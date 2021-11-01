@@ -24,7 +24,7 @@ public class MetallicsArts
 {
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
-
+    //puto el que lee
     public MetallicsArts() {
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
