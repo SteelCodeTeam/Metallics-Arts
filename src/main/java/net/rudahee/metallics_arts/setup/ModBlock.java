@@ -49,19 +49,7 @@ public class ModBlock {
     }
 
 
-
-    /*
-    public static final RegistryObject<Block> ALUMINUM_BLOCK = register("aluminum_block",
-            () -> (new Block(Block.Properties.of(Material.METAL)
-                    .strength(5,15)
-                    .harvestLevel(3)
-                    .sound(SoundType.METAL)
-                    .requiresCorrectToolForDrops()
-            )));
-
-    */
     protected static void register() {}
-
 
     private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> blockSupplier) {
         return Registration.BLOCKS.register(name, blockSupplier);

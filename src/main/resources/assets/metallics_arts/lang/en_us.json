@@ -1,5 +1,34 @@
 {
   "item.metallics_arts.steel_ingot": "Steel Ingot",
+  "item.metallics_arts.tin_ingot": "Tin Ingot",
+  "item.metallics_arts.pewter_ingot": "Pewter Ingot",
+  "item.metallics_arts.bronze_ingot": "Bronze Ingot",
+  "item.metallics_arts.copper_ingot": "Copper Ingot",
+  "item.metallics_arts.zinc_ingot": "Zinc Ingot",
+  "item.metallics_arts.brass_ingot": "Brass Ingot",
+  "item.metallics_arts.electrum_ingot": "Electrum Ingot",
+  "item.metallics_arts.cadmium_ingot": "Cadmium Ingot",
+  "item.metallics_arts.bendalloy_ingot": "Bendalloy Ingot",
+  "item.metallics_arts.aluminum_ingot": "Aluminum Ingot",
+  "item.metallics_arts.duralumin_ingot": "Duralumin Ingot",
+  "item.metallics_arts.chromium_ingot": "Chromium Ingot",
+  "item.metallics_arts.nicrosil_ingot": "Nicrosil Ingot",
+
+
+  "item.metallics_arts.steel_nugget":"Steel Nugget",
+  "item.metallics_arts.tin_nugget": "Tin Nugget",
+  "item.metallics_arts.pewter_nugget": "Pewter Nugget",
+  "item.metallics_arts.bronze_nugget": "Bronze Nugget",
+  "item.metallics_arts.copper_nugget": "Copper Nugget",
+  "item.metallics_arts.zinc_nugget": "Zinc Nugget",
+  "item.metallics_arts.brass_nugget": "Brass Nugget",
+  "item.metallics_arts.electrum_nugget": "Electrum Nugget",
+  "item.metallics_arts.cadmium_nugget": "Cadmium Nugget",
+  "item.metallics_arts.bendalloy_nugget": "Bendalloy Nugget",
+  "item.metallics_arts.aluminum_nugget": "Aluminum Nugget",
+  "item.metallics_arts.duralumin_nugget": "Duralumin Nugget",
+  "item.metallics_arts.chromium_nugget": "Chromium Nugget",
+  "item.metallics_arts.nicrosil_nugget": "Nicrosil Nugget",
 
 
   "block.metallics_arts.steel_ore": "Steel Ore",
@@ -17,7 +46,7 @@
   "block.metallics_arts.chromium_ore": "Chromium Ore",
   "block.metallics_arts.nicrosil_ore": "Nicrosil Ore",
 
-  
+
   "block.metallics_arts.steel_block": "Block of Steel",
   "block.metallics_arts.tin_block": "Block of Tin",
   "block.metallics_arts.pewter_block": "Block of Pewter",
