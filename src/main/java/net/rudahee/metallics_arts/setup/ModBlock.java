@@ -20,14 +20,19 @@ import java.util.function.Supplier;
 
 public class ModBlock {
 
-    public static final RegistryObject<Block> ALUMINUM_ORE = register("aluminum_ore",
-            () -> (new Block(Block.Properties.of(Material.STONE)
+    static {
+        List<Metal> metalList = Arrays.asList(Metal.values());
+
+        metalList.forEach(metal -> {
+            register(metal.getMetalNameLower() +"_ore",
+                    () -> (new Block(Block.Properties.of(Material.METAL)
                             .strength(3,10)
                             .harvestLevel(2)
                             .sound(SoundType.STONE)
                             .requiresCorrectToolForDrops()
-            )));
-
+                    )));
+        });
+    }
 
     static {
         List<Metal> metalList = Arrays.asList(Metal.values());

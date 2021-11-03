@@ -2,9 +2,22 @@
   "item.metallics_arts.steel_ingot": "Steel Ingot",
 
 
+  "block.metallics_arts.steel_ore": "Steel Ore",
+  "block.metallics_arts.tin_ore": "Tin Ore",
+  "block.metallics_arts.pewter_ore": "Pewter Ore",
+  "block.metallics_arts.bronze_ore": "Bronze Ore",
+  "block.metallics_arts.copper_ore": "Copper Ore",
+  "block.metallics_arts.zinc_ore": "Zinc Ore",
+  "block.metallics_arts.brass_ore": "Brass Ore",
+  "block.metallics_arts.electrum_ore": "Electrum Ore",
+  "block.metallics_arts.cadmium_ore": "Cadmium Ore",
+  "block.metallics_arts.bendalloy_ore": "Bendalloy Ore",
   "block.metallics_arts.aluminum_ore": "Aluminum Ore",
+  "block.metallics_arts.duralumin_ore": "Duralumin Ore",
+  "block.metallics_arts.chromium_ore": "Chromium Ore",
+  "block.metallics_arts.nicrosil_ore": "Nicrosil Ore",
 
-
+  
   "block.metallics_arts.steel_block": "Block of Steel",
   "block.metallics_arts.tin_block": "Block of Tin",
   "block.metallics_arts.pewter_block": "Block of Pewter",
