@@ -1,0 +1,22 @@
+{
+  "item.metallics_arts.steel_ingot": "Steel Ingot",
+
+
+  "block.metallics_arts.aluminum_ore": "Aluminum Ore",
+
+
+  "block.metallics_arts.steel_block": "Block of Steel",
+  "block.metallics_arts.tin_block": "Block of Tin",
+  "block.metallics_arts.pewter_block": "Block of Pewter",
+  "block.metallics_arts.bronze_block": "Block of Bronze",
+  "block.metallics_arts.copper_block": "Block of Copper",
+  "block.metallics_arts.zinc_block": "Block of Zinc",
+  "block.metallics_arts.brass_block": "Block of Brass",
+  "block.metallics_arts.electrum_block": "Block of Electrum",
+  "block.metallics_arts.cadmium_block": "Block of Cadmium",
+  "block.metallics_arts.bendalloy_block": "Block of Bendalloy",
+  "block.metallics_arts.aluminum_block": "Block of Aluminum",
+  "block.metallics_arts.duralumin_block": "Block of Duralumin",
+  "block.metallics_arts.chromium_block": "Block of Chromium",
+  "block.metallics_arts.nicrosil_block": "Block of Nicrosil"
+}
