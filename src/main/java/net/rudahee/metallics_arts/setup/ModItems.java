@@ -25,6 +25,15 @@ public class ModItems {
 
     }
 
+    static {
+        List<Metal> metalList = Arrays.asList(Metal.values());
+
+        metalList.forEach(metal ->  {
+            register( metal.getMetalNameLower() + "_nugget",
+                    ()-> (new Item(new Item.Properties().tab(ItemGroup.TAB_MATERIALS))));
+        });
+    }
+
     protected static void register() {}
 
     private static <T extends Item> RegistryObject<T> register(String name, Supplier<T> itemSupplier) {
