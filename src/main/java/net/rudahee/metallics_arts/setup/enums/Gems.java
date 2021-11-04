@@ -4,7 +4,7 @@ public enum Gems {
 
     ATIUM("atium", "ATIUM", true, true, true),
     MALATIUM("malatium", "MALATIUM", true, true, true),
-    DURALUMIN("duralumin", "DURALUMIN", true, true, true),
+    LERASIUM("lerasium", "LERASIUM", true, true, true),
     ETTMETAL("ettmetal", "ETTMETAL", true, true, true);
 
 
