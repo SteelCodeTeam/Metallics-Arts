@@ -14,6 +14,10 @@
   "item.metallics_arts.chromium_ingot": "Chromium Ingot",
   "item.metallics_arts.nicrosil_ingot": "Nicrosil Ingot",
 
+  "item.metallics_arts.silver_ingot": "Silver Ingot",
+  "item.metallics_arts.lead_ingot": "Lead Ingot",
+  "item.metallics_arts.nickel_ingot": "Nickel Ingot",
+
 
   "item.metallics_arts.steel_nugget":"Steel Nugget",
   "item.metallics_arts.tin_nugget": "Tin Nugget",
@@ -30,21 +34,23 @@
   "item.metallics_arts.chromium_nugget": "Chromium Nugget",
   "item.metallics_arts.nicrosil_nugget": "Nicrosil Nugget",
 
+  "item.metallics_arts.silver_nugget": "Silver Nugget",
+  "item.metallics_arts.lead_nugget": "Lead Nugget",
+  "item.metallics_arts.nickel_nugget": "Nickel Nugget",
 
-  "block.metallics_arts.steel_ore": "Steel Ore",
+
   "block.metallics_arts.tin_ore": "Tin Ore",
-  "block.metallics_arts.pewter_ore": "Pewter Ore",
   "block.metallics_arts.bronze_ore": "Bronze Ore",
   "block.metallics_arts.copper_ore": "Copper Ore",
   "block.metallics_arts.zinc_ore": "Zinc Ore",
   "block.metallics_arts.brass_ore": "Brass Ore",
-  "block.metallics_arts.electrum_ore": "Electrum Ore",
   "block.metallics_arts.cadmium_ore": "Cadmium Ore",
-  "block.metallics_arts.bendalloy_ore": "Bendalloy Ore",
   "block.metallics_arts.aluminum_ore": "Aluminum Ore",
-  "block.metallics_arts.duralumin_ore": "Duralumin Ore",
   "block.metallics_arts.chromium_ore": "Chromium Ore",
-  "block.metallics_arts.nicrosil_ore": "Nicrosil Ore",
+
+  "block.metallics_arts.silver_ore": "Silver Ore",
+  "block.metallics_arts.lead_ore": "Lead Ore",
+  "block.metallics_arts.nickel_ore": "Nickel Ore",
 
 
   "block.metallics_arts.steel_block": "Block of Steel",
@@ -60,5 +66,9 @@
   "block.metallics_arts.aluminum_block": "Block of Aluminum",
   "block.metallics_arts.duralumin_block": "Block of Duralumin",
   "block.metallics_arts.chromium_block": "Block of Chromium",
-  "block.metallics_arts.nicrosil_block": "Block of Nicrosil"
+  "block.metallics_arts.nicrosil_block": "Block of Nicrosil",
+
+  "block.metallics_arts.silver_block": "Block of Silver",
+  "block.metallics_arts.lead_block": "Block of Lead",
+  "block.metallics_arts.nickel_block": "Block of Nickel"
 }
