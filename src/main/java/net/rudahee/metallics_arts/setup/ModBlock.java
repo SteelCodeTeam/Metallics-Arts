@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.setup.enums.Gems;
 import net.rudahee.metallics_arts.setup.enums.Metal;
 
 import java.util.ArrayList;
@@ -21,23 +22,24 @@ import java.util.function.Supplier;
 public class ModBlock {
 
     static {
+        /*
+            INITIALIZING METALS
+         */
         List<Metal> metalList = Arrays.asList(Metal.values());
 
         metalList.forEach(metal -> {
-            register(metal.getMetalNameLower() +"_ore",
-                    () -> (new Block(Block.Properties.of(Material.METAL)
-                            .strength(3,10)
-                            .harvestLevel(2)
-                            .sound(SoundType.STONE)
-                            .requiresCorrectToolForDrops()
-                    )));
-        });
-    }
+            // If not alloy, create ore.
+            if (!metal.isAlloy()) {
+                register(metal.getMetalNameLower() +"_ore",
+                        () -> (new Block(Block.Properties.of(Material.METAL)
+                                .strength(3,10)
+                                .harvestLevel(2)
+                                .sound(SoundType.STONE)
+                                .requiresCorrectToolForDrops()
+                        )));
+            }
 
-    static {
-        List<Metal> metalList = Arrays.asList(Metal.values());
-
-        metalList.forEach(metal -> {
+            // Always create block.
             register(metal.getMetalNameLower() + "_block",
                     () -> (new Block(Block.Properties.of(Material.METAL)
                             .strength(5, 15)
@@ -45,9 +47,29 @@ public class ModBlock {
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops()
                     )));
+
         });
     }
 
+    static {
+        /*
+            INITIALIZING GEMS
+         */
+        List<Gems> gemsList = Arrays.asList(Gems.values());
+
+        gemsList.forEach(gem -> {
+            // Always create blocks.
+
+                register(gem.getGemNameLower() + "_block",
+                        () -> (new Block(Block.Properties.of(Material.METAL)
+                                .strength(10, 25)
+                                .harvestLevel(3)
+                                .sound(SoundType.METAL)
+                                .requiresCorrectToolForDrops()
+                        )));
+
+            });
+        }
 
     protected static void register() {}
 
