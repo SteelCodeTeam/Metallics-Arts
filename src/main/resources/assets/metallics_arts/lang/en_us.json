@@ -18,6 +18,11 @@
   "item.metallics_arts.lead_ingot": "Lead Ingot",
   "item.metallics_arts.nickel_ingot": "Nickel Ingot",
 
+  "item.metallics_arts.atium": "Atium",
+  "item.metallics_arts.malatium": "Malatium",
+  "item.metallics_arts.lerasium": "Lerasium",
+  "item.metallics_arts.ettmetal": "Ettmetal",
+
 
   "item.metallics_arts.steel_nugget":"Steel Nugget",
   "item.metallics_arts.tin_nugget": "Tin Nugget",
@@ -37,6 +42,11 @@
   "item.metallics_arts.silver_nugget": "Silver Nugget",
   "item.metallics_arts.lead_nugget": "Lead Nugget",
   "item.metallics_arts.nickel_nugget": "Nickel Nugget",
+
+  "item.metallics_arts.atium_nugget": "Atium Nugget",
+  "item.metallics_arts.malatium_nugget": "Malatium Nugget",
+  "item.metallics_arts.lerasium_nugget": "Lerasium Nugget",
+  "item.metallics_arts.ettmetal_nugget": "Ettmetal Nugget",
 
 
   "block.metallics_arts.tin_ore": "Tin Ore",
@@ -70,5 +80,10 @@
 
   "block.metallics_arts.silver_block": "Block of Silver",
   "block.metallics_arts.lead_block": "Block of Lead",
-  "block.metallics_arts.nickel_block": "Block of Nickel"
+  "block.metallics_arts.nickel_block": "Block of Nickel",
+
+  "block.metallics_arts.atium_block": "Block of Atium",
+  "block.metallics_arts.malatium_block": "Block of Malatium",
+  "block.metallics_arts.lerasium_block": "Block of Lerasium",
+  "block.metallics_arts.ettmetal_block": "Block of Ettmetal"
 }
