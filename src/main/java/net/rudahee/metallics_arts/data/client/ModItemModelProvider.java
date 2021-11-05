@@ -27,8 +27,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
 
         metalList.forEach(metal -> {
-            builder(itemGenerated, "item/" +metal.getMetalNameLower()+"_ingot");
-            builder(itemGenerated, "item/" +metal.getMetalNameLower()+"_nugget");
+            builder(itemGenerated, "item/ingot/" +metal.getMetalNameLower()+"_ingot");
+            builder(itemGenerated, "item/nugget/" +metal.getMetalNameLower()+"_nugget");
 
         });
     }
