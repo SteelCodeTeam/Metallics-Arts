@@ -7,8 +7,11 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.setup.enums.Metal;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
+import java.util.List;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
@@ -18,15 +21,19 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels(){
 //        withExistingParent("steel_block", modLoc("block/steel_block"));
-  //      withExistingParent("steel_ore", modLoc("block/steel_ore"));
+//        withExistingParent("steel_ore", modLoc("block/steel_ore"));
 
-        ModelFile itemGenerated = getExistingFile (mcLoc("item/generated"));
-        builder(itemGenerated, "steel_ingot");
+        List<Metal> metalList = Arrays.asList(Metal.values());
+        ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
 
+        metalList.forEach(metal -> {
+            builder(itemGenerated, "item/" +metal.getMetalNameLower()+"_ingot");
+            builder(itemGenerated, "item/" +metal.getMetalNameLower()+"_nugget");
+
+        });
     }
     private ItemModelBuilder builder (ModelFile itemGenerated, String name){
-        return  getBuilder(name).parent(itemGenerated).texture("layalr0",name);
+        return  getBuilder(name).parent(itemGenerated).texture("layer0",name);
     }
 
 }
-//NO SE, BUSCA POR ACA
