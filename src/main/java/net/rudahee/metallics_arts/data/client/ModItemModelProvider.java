@@ -23,17 +23,17 @@ public class ModItemModelProvider extends ItemModelProvider {
 //        withExistingParent("steel_block", modLoc("block/steel_block"));
 //        withExistingParent("steel_ore", modLoc("block/steel_ore"));
 
+        ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
         List<Metal> metalList = Arrays.asList(Metal.values());
 
         metalList.forEach(metal -> {
-            ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
-            builder(itemGenerated, "item/" +metal.getMetalNameLower()+"_ingot");
-            builder(itemGenerated, "item/" +metal.getMetalNameLower()+"_nugget");
+            builder(itemGenerated,"item/"+ metal.getMetalNameLower()+"_ingot", "item/ingot/" +metal.getMetalNameLower()+"_ingot");
+            builder(itemGenerated,"item/"+ metal.getMetalNameLower()+"_nugget", "item/nugget/" +metal.getMetalNameLower()+"_nugget");
 
         });
     }
-    private ItemModelBuilder builder (ModelFile itemGenerated, String name){
-        return  getBuilder(name).parent(itemGenerated).texture("layer0",name);
+    private ItemModelBuilder builder (ModelFile itemGenerated, String outPath, String texturePath){
+        return  getBuilder(outPath).parent(itemGenerated).texture("layer0",texturePath);
     }
 
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "metallics_arts:item/copper_ingot"
+    "layer0": "metallics_arts:item/ingot/copper_ingot"
   }
 }
