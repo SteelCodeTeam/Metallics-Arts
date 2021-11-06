@@ -24,9 +24,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 //        withExistingParent("steel_ore", modLoc("block/steel_ore"));
 
         List<Metal> metalList = Arrays.asList(Metal.values());
-        ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
 
         metalList.forEach(metal -> {
+            ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
             builder(itemGenerated, "item/" +metal.getMetalNameLower()+"_ingot");
             builder(itemGenerated, "item/" +metal.getMetalNameLower()+"_nugget");
 
