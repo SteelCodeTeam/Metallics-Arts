@@ -75,7 +75,7 @@ public class ModBlock {
             });
     }
 
-    public static final RegistryObject <ModAlloyFurnaceBlock> alloyFurnace = register("alloyFurnace",() ->
+    public static final RegistryObject<? extends org.graalvm.compiler.nodes.cfg.Block> alloyFurnace = register("alloyFurnace",() ->
             new ModAlloyFurnaceBlock(AbstractBlock.Properties.of(Material.METAL)
                     .strength(4,20)
                     .sound(SoundType.METAL)));

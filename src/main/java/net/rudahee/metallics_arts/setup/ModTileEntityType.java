@@ -10,17 +10,13 @@ import java.util.function.Supplier;
 
 public class ModTileEntityType  {
 
-    public static final RegistryObject <TileEntityType<ModTileEntityType>> ALLOY_FURNACE = register (
-            "alloyFurcace",
-            ModAlloyFurnaceTileEntity::new,
-            ModBlock.alloyFurnace);
+    public static final RegistryObject <TileEntityType<ModAlloyFurnaceTileEntity>> ALLOY_FURNACE = register (
+            "alloyFurcace", ModAlloyFurnaceTileEntity::new, ModBlock.alloyFurnace);
 
 
     static void register(){}
 
-    private static <T extends  TileEntity> RegistryObject <TileEntityType<T>> register (String name,
-                                                                                        Supplier<T> factory,
-                                                                                        RegistryObject<? extends Block> block){
+    private static <T extends  TileEntity> RegistryObject <TileEntityType<T>> register (String name, Supplier<T> factory, RegistryObject<? extends Block> block){
         return Registration.TILE_ENTITIES.register (name, () ->{
             //aa
             return TileEntityType.Builder.of(factory, (net.minecraft.block.Block) block.get()).build(null);

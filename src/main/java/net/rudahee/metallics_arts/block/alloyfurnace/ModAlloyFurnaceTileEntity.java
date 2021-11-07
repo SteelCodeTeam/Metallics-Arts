@@ -19,7 +19,9 @@ public class ModAlloyFurnaceTileEntity extends LockableTileEntity implements ISi
         super(tileEntityType);
     }
 
-    void encodeExtraData (PacketBuffer buffer)
+    void encodeExtraData (PacketBuffer buffer){
+
+    }
 
     @Override
     public void tick() {
