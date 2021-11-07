@@ -1,19 +1,17 @@
 package net.rudahee.metallics_arts.setup;
 
-import com.electronwill.nightconfig.core.utils.TransformingCollection;
+
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
-import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.block.alloyfurnace.ModAlloyFurnaceBlock;
 import net.rudahee.metallics_arts.setup.enums.Gems;
 import net.rudahee.metallics_arts.setup.enums.Metal;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -75,7 +73,12 @@ public class ModBlock {
                         ))));
 
             });
-        }
+    }
+
+    public static final RegistryObject <ModAlloyFurnaceBlock> alloyFurnace = register("alloyFurnace",() ->
+            new ModAlloyFurnaceBlock(AbstractBlock.Properties.of(Material.METAL)
+                    .strength(4,20)
+                    .sound(SoundType.METAL)));
 
     protected static void register() {}
 
