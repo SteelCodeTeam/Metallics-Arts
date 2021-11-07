@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "metallics_arts:item/nugget/lead_nugget"
+    "layer0": "metallics_arts:item/metal/nugget/lead_nugget"
   }
 }

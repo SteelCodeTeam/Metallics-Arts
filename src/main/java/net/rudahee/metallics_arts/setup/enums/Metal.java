@@ -21,8 +21,6 @@ public enum Metal {
     LEAD("lead", "LEAD", false, false, false, false),
     NICKEL("nickel", "NICKEL", false, false, false, false);
 
-
-
     private final String metalNameLower;
     private final String metalNameUpper;
     private final Boolean allomantic;

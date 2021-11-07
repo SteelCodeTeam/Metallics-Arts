@@ -21,6 +21,10 @@ import java.util.function.Supplier;
 
 public class ModBlock {
 
+    public static final ArrayList<RegistryObject> METAL_BLOCKS = new ArrayList<RegistryObject>();
+    public static final ArrayList<RegistryObject> METAL_ORES = new ArrayList<RegistryObject>();
+    public static final ArrayList<RegistryObject> GEMS_BLOCKS = new ArrayList<RegistryObject>();
+
     static {
         /*
             INITIALIZING METALS
@@ -30,23 +34,25 @@ public class ModBlock {
         metalList.forEach(metal -> {
             // If not alloy, create ore.
             if (!metal.isAlloy()) {
-                register(metal.getMetalNameLower() +"_ore",
+            METAL_ORES.add(
+                register(metal.getMetalNameLower() + "_ore",
                         () -> (new Block(Block.Properties.of(Material.METAL)
                                 .strength(3,10)
                                 .harvestLevel(2)
                                 .sound(SoundType.STONE)
                                 .requiresCorrectToolForDrops()
-                        )));
+                        ))));
             }
 
             // Always create block.
-            register(metal.getMetalNameLower() + "_block",
-                    () -> (new Block(Block.Properties.of(Material.METAL)
+            METAL_BLOCKS.add(
+                    register(metal.getMetalNameLower() + "_block",
+                        () -> (new Block(Block.Properties.of(Material.METAL)
                             .strength(5, 15)
                             .harvestLevel(3)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops()
-                    )));
+                        ))));
 
         });
     }
@@ -59,14 +65,14 @@ public class ModBlock {
 
         gemsList.forEach(gem -> {
             // Always create blocks.
-
+            GEMS_BLOCKS.add(
                 register(gem.getGemNameLower() + "_block",
                         () -> (new Block(Block.Properties.of(Material.METAL)
                                 .strength(10, 25)
                                 .harvestLevel(3)
                                 .sound(SoundType.METAL)
                                 .requiresCorrectToolForDrops()
-                        )));
+                        ))));
 
             });
         }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "metallics_arts:item/ingot/bronze_ingot"
+    "layer0": "metallics_arts:item/metal/ingot/bronze_ingot"
   }
 }
