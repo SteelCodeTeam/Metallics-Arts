@@ -5,14 +5,21 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.block.alloyfurnace.AlloyFurnaceContainer;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -56,4 +63,11 @@ public class Registration {
         return DeferredRegister.create(registry, MetallicsArts.MOD_ID);
     }
 
+    @Mod.EventBusSubscriber(modid = MetallicsArts.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class Client {
+        @SubscribeEvent
+        public static void onClientSetup (FMLClientSetupEvent event){
+            ModContainerTypes.registerScreen();
+        }
+    }
 }
