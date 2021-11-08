@@ -1,9 +1,8 @@
 package net.rudahee.metallics_arts.block.alloyfurnace;
 
-import com.google.common.graph.Network;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.DirectionalBlock;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -39,6 +38,7 @@ public class ModAlloyFurnaceBlock extends Block {
     }
 
     @Nullable
+
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new ModAlloyFurnaceTileEntity();
