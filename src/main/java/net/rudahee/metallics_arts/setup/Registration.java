@@ -6,10 +6,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -18,18 +16,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.block.alloyfurnace.AlloyFurnaceContainer;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 public class Registration {
 
     // In this class we register each TYPE OF OBJECT we add in our mod.
 
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MetallicsArts.MOD_ID);
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MetallicsArts.MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = create(ForgeRegistries.BLOCKS);
+    public static final DeferredRegister<Item> ITEMS = create(ForgeRegistries.ITEMS);
 
     public static final DeferredRegister <ContainerType<?>> CONTAINERS = create(ForgeRegistries.CONTAINERS);
     public static final DeferredRegister <IRecipeSerializer<?>> RECIPE_SERIALIZERS = create(ForgeRegistries.RECIPE_SERIALIZERS);
@@ -53,7 +46,7 @@ public class Registration {
         ModBlock.register();
 
         //for Alloy Furnace
-        ModTileEntityType.register();
+        ModTileEntityTypes.register();
         ModContainerTypes.register();
         ModRecipeSerializers.register();
 
@@ -63,11 +56,4 @@ public class Registration {
         return DeferredRegister.create(registry, MetallicsArts.MOD_ID);
     }
 
-    @Mod.EventBusSubscriber(modid = MetallicsArts.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class Client {
-        @SubscribeEvent
-        public static void onClientSetup (FMLClientSetupEvent event){
-            ModContainerTypes.registerScreen();
-        }
-    }
 }

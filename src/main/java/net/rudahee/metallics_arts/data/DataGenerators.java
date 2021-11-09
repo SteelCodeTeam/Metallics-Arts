@@ -8,6 +8,8 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.client.ModBlockStateProvider;
 import net.rudahee.metallics_arts.data.client.ModItemModelProvider;
+import net.rudahee.metallics_arts.data.client.ModLootTableProvider;
+import net.rudahee.metallics_arts.data.client.ModRecipeProvider;
 
 @Mod.EventBusSubscriber (modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {
@@ -20,6 +22,9 @@ public final class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         gen.addProvider(new ModBlockStateProvider(gen,existingFileHelper));
         gen.addProvider(new ModItemModelProvider(gen,existingFileHelper));
+
+        gen.addProvider(new ModLootTableProvider(gen));
+        gen.addProvider(new ModRecipeProvider(gen));
 
     }
 }

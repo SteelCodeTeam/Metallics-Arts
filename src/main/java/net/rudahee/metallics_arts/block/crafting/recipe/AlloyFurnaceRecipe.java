@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 
 public class AlloyFurnaceRecipe extends SingleItemRecipe {
     public AlloyFurnaceRecipe( ResourceLocation recipeId, Ingredient ingredient, ItemStack result) {
-        super (ModRecipeSerializers.Types.alloyFurnace, ModRecipeSerializers.Serializers.alloyFurnace.get(), recipeId, "", ingredient, result);
+        super (ModRecipeSerializers.Types.ALLOY_FURNACE_RECIPE, ModRecipeSerializers.Serializers.ALLOY_FURNACE_RECIPE.get(), recipeId, "", ingredient, result);
     }
 
     @Override

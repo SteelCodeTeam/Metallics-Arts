@@ -1,14 +1,11 @@
 package net.rudahee.metallics_arts.block.alloyfurnace;
 
-import com.mojang.datafixers.TypeRewriteRule;
-import jdk.internal.org.jline.utils.InfoCmp;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
@@ -24,15 +21,13 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.rudahee.metallics_arts.block.crafting.recipe.AlloyFurnaceRecipe;
 import net.rudahee.metallics_arts.setup.ModRecipeSerializers;
-import net.rudahee.metallics_arts.setup.ModTileEntityType;
+import net.rudahee.metallics_arts.setup.ModTileEntityTypes;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Optional;
 
 public class ModAlloyFurnaceTileEntity extends LockableTileEntity implements ISidedInventory, ITickableTileEntity {
     static final int workTime = 2 * 20;
@@ -69,7 +64,7 @@ public class ModAlloyFurnaceTileEntity extends LockableTileEntity implements ISi
     };
 
     public ModAlloyFurnaceTileEntity() {
-        super(ModTileEntityType.ALLOY_FURNACE.get());
+        super(ModTileEntityTypes.ALLOY_FURNACE.get());
         this.handlerns = SidedInvWrapper.create(this,new Direction[]{Direction.UP,Direction.DOWN,Direction.NORTH});
         this.items =NonNullList.withSize(2,ItemStack.EMPTY);
     }
@@ -98,7 +93,7 @@ public class ModAlloyFurnaceTileEntity extends LockableTileEntity implements ISi
         if (this.level == null || getItem(0).isEmpty()){
             return null;
         }
-        return this.level.getRecipeManager().getRecipeFor(ModRecipeSerializers.Types.alloyFurnace, this, this.level).orElse(null);
+        return this.level.getRecipeManager().getRecipeFor(ModRecipeSerializers.Types.ALLOY_FURNACE_RECIPE, this, this.level).orElse(null);
     }
 
     private ItemStack getWorkOutput(@Nullable AlloyFurnaceRecipe recipe){

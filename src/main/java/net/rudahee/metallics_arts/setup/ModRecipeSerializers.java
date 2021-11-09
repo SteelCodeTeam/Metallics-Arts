@@ -11,18 +11,22 @@ import java.util.function.Supplier;
 
 public class ModRecipeSerializers {
     public static class Types {
-        public static final IRecipeType<AlloyFurnaceRecipe> alloyFurnace = IRecipeType.register(
-                MetallicsArts.MOD_ID + "alloyFurnace");
-        private Types (){
+        public static final IRecipeType<AlloyFurnaceRecipe> ALLOY_FURNACE_RECIPE = IRecipeType.register(
+                MetallicsArts.MOD_ID + "alloy_furnace");
+
+        private Types() {
 
         }
     }
 
 
     public static class Serializers {
-        public static final RegistryObject<IRecipeSerializer<?>> alloyFurnace = Registration.RECIPE_SERIALIZERS.register(
-                "alloyFurnace", AlloyFurnaceRecipe.Serializer::new);
-
+        public static final RegistryObject<IRecipeSerializer<?>> ALLOY_FURNACE_RECIPE = Registration.RECIPE_SERIALIZERS.register(
+                "alloy_furnace", AlloyFurnaceRecipe.Serializer::new);
     }
-    static void register(){}
+
+    static void register() {
+    }
+
 }
+
