@@ -13,8 +13,6 @@ public class ModContainerTypes {
     public static final RegistryObject<ContainerType<AlloyFurnaceContainer>> alloyFurnace = register("alloyFurnace",AlloyFurnaceContainer::new);
     static void register(){}
 
-
-
     private static <T extends Container> RegistryObject<ContainerType<T>> register (String name, IContainerFactory<T> factory){
         return Registration.CONTAINERS.register(name, () -> IForgeContainerType.create(factory));
     }
