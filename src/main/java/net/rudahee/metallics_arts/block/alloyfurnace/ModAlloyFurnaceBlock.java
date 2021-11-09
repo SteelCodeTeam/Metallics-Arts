@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.block.alloyfurnace;
 
 
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -38,7 +39,6 @@ public class ModAlloyFurnaceBlock extends Block {
     }
 
     @Nullable
-
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new ModAlloyFurnaceTileEntity();
@@ -57,8 +57,8 @@ public class ModAlloyFurnaceBlock extends Block {
     private void interactiveWith(World world, BlockPos pos, PlayerEntity player) {
         TileEntity tileEntity = world.getBlockEntity(pos);
         if (tileEntity instanceof ModAlloyFurnaceTileEntity && player instanceof ServerPlayerEntity){
-            ModAlloyFurnaceTileEntity te = (ModAlloyFurnaceTileEntity) tileEntity;
-            NetworkHooks.openGui((ServerPlayerEntity) player, te, te::encodeExtraData);
+            ModAlloyFurnaceTileEntity furnaceTileEntity = (ModAlloyFurnaceTileEntity) tileEntity;
+            NetworkHooks.openGui((ServerPlayerEntity) player, furnaceTileEntity, furnaceTileEntity::encodeExtraData);
         }
     }
 
@@ -95,10 +95,11 @@ public class ModAlloyFurnaceBlock extends Block {
         return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
 
+
     @SuppressWarnings("deprecation")
     @Override
-    protected void fillStateConteiner (StateContainer.Builder<Block, BlockState> bluilder){
-        bluilder.add(FACING);
+    protected void createBlockStateDefinition (StateContainer.Builder<Block, BlockState> builder){
+        builder.add(FACING);
     }
 
 

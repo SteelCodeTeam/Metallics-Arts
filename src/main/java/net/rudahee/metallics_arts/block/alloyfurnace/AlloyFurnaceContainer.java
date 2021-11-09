@@ -27,7 +27,7 @@ public class AlloyFurnaceContainer extends Container {
     }
 
     public AlloyFurnaceContainer (int id, PlayerInventory playerInventory, IInventory inventory, IIntArray fields){
-        super(ModContainerTypes.alloyFurnace.get(), id);
+        super(ModContainerTypes.ALLOY_FURNACE.get(), id);
         this.inventory = inventory;
         this.fields = fields;
 
