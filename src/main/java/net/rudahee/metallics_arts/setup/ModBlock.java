@@ -39,7 +39,7 @@ public class ModBlock {
                             .harvestLevel(2)
                             .sound(SoundType.STONE)
                             .requiresCorrectToolForDrops());
-
+                    MetalGenerationData.valueOf(metal.getMetalNameUpper()).setBlock(block);
                     BLOCK_METAL_ORES.put(metal.getMetalNameLower(), block);
                     return block;
                 });

@@ -1,26 +1,29 @@
 package net.rudahee.metallics_arts.setup.enums;
 
+import net.minecraft.block.Block;
+
 public enum MetalGenerationData implements IMetal{
 
-    TIN("tin", "TIN", 10, 10, 10, 5),
-    COPPER("copper", "COPPER", 10, 10, 10, 5),
-    ZINC("zinc", "ZINC", 10, 10, 10, 5),
-    CADMIUM("cadmium", "CADMIUM", 10, 10, 10, 5),
-    ALUMINUM("aluminum", "ALUMINUM", 10, 10, 10, 5),
-    CHROMIUM("chromium", "CHROMIUM", 10, 10, 10, 5),
-    SILVER("silver", "SILVER", 5, 5, 5, 5),
-    LEAD("lead", "LEAD", 5, 5, 5, 5),
-    NICKEL("nickel", "NICKEL", 5, 5, 5, 5);
+    TIN("tin", "TIN", null,10, 10, 10, 5),
+    COPPER("copper", "COPPER", null,10, 10, 10, 5),
+    ZINC("zinc", "ZINC",null,10, 10, 10, 5),
+    CADMIUM("cadmium", "CADMIUM",null,10, 10, 10, 5),
+    ALUMINUM("aluminum", "ALUMINUM",null,10, 10, 10, 5),
+    CHROMIUM("chromium", "CHROMIUM",null,10, 10, 10, 5),
+    SILVER("silver", "SILVER",null,5, 5, 5, 5),
+    LEAD("lead", "LEAD",null, 5, 5, 5, 5),
+    NICKEL("nickel", "NICKEL",null,5, 5, 5, 5);
 
     private final String metalNameLower;
     private final String metalNameUpper;
+    private Block block;
     private final int veinSize;
     private final int minHeight;
     private final int maxHeigth;
     private final int amountPerChunk;
 
 
-    MetalGenerationData( String metalNameLower, String metalNameUpper,int veinSize, int minHeight, int maxHeigth, int amountPerChunk) {
+    MetalGenerationData( String metalNameLower, String metalNameUpper, Block block, int veinSize, int minHeight, int maxHeigth, int amountPerChunk) {
         this.veinSize = veinSize;
         this.minHeight = minHeight;
         this.maxHeigth = maxHeigth;
@@ -53,5 +56,13 @@ public enum MetalGenerationData implements IMetal{
     @Override
     public String getMetalNameUpper() {
         return null;
+    }
+
+    public Block getBlock() {
+        return block;
+    }
+
+    public void setBlock(Block block) {
+        this.block = block;
     }
 }

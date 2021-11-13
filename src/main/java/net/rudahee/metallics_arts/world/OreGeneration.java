@@ -16,6 +16,7 @@ import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.rudahee.metallics_arts.setup.ModBlock;
+import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.enums.MetalGenerationData;
 
 import java.util.Arrays;
@@ -28,10 +29,9 @@ public class OreGeneration {
         List<MetalGenerationData> metalGenerationList = Arrays.asList(MetalGenerationData.values());
 
         metalGenerationList.forEach( block -> {
-
             if(!(event.getCategory().equals(Biome.Category.NETHER) || event.getCategory().equals(Biome.Category.THEEND))) {
                 generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                        ModBlock.BLOCK_METAL_ORES.get(block.getMetalNameLower()).defaultBlockState(),
+                        block.getBlock().defaultBlockState(),
                         block.getVeinSize(), block.getMinHeight(), block.getMaxHeigth(), block.getAmountPerChunk());
             }
         });
