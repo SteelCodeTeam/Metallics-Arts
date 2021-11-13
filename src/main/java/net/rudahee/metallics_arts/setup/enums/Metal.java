@@ -2,7 +2,7 @@ package net.rudahee.metallics_arts.setup.enums;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
-public enum Metal {
+public enum Metal implements IMetal {
     STEEL("steel", "STEEL", true, true, true, true),
     TIN("tin", "TIN", true, true, true, false),
     PEWTER("pewter", "PEWTER", true, true, true, true),
