@@ -27,10 +27,11 @@ public class OreGeneration {
 
         List<MetalGenerationData> metalGenerationList = Arrays.asList(MetalGenerationData.values());
 
-        metalGenerationList.forEach(block -> {
+        metalGenerationList.forEach( block -> {
+
             if(!(event.getCategory().equals(Biome.Category.NETHER) || event.getCategory().equals(Biome.Category.THEEND))) {
                 generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                        ModBlock.BLOCK_METAL_ORES.get(block.getMetalNameLower()).getBlock().defaultBlockState(),
+                        ModBlock.BLOCK_METAL_ORES.get(block.getMetalNameLower()).defaultBlockState(),
                         block.getVeinSize(), block.getMinHeight(), block.getMaxHeigth(), block.getAmountPerChunk());
             }
         });
