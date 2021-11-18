@@ -9,10 +9,9 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
-import net.rudahee.metallics_arts.block.alloyfurnace.ModAlloyFurnaceBlock;
+import net.rudahee.metallics_arts.minecraft_objects.blocks.AlloyFurnaceBlock;
 import net.rudahee.metallics_arts.setup.enums.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -82,19 +81,8 @@ public class ModBlock {
         });
     }
 
-    public static Block ALLOY_FURNACE_BLOCK = null;
-    public static RegistryObject<?> ALLOY_FURNACE_REGISTRY = null;
-
-    static {
-        ALLOY_FURNACE_REGISTRY = register("alloy_furnace", () -> {
-            ALLOY_FURNACE_BLOCK = new ModAlloyFurnaceBlock(AbstractBlock.Properties.of(Material.METAL)
-                    .strength(4, 20)
-                    .sound(SoundType.METAL));
-
-            return ALLOY_FURNACE_BLOCK;
-        });
-
-    }
+    public static final RegistryObject<Block> ALLOY_FURNACE_BLOCK = register("alloy_furnace",
+            () -> new AlloyFurnaceBlock(AbstractBlock.Properties.of(Material.STONE)));
 
     protected static void register() {
     }

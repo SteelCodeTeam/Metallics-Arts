@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -13,6 +14,8 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.rudahee.metallics_arts.minecraft_objects.containers.ModContainers;
+import net.rudahee.metallics_arts.minecraft_objects.screen.AlloyFurnaceScreen;
 import net.rudahee.metallics_arts.setup.Registration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -61,7 +64,13 @@ public class MetallicsArts
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().options);
+
+        event.enqueueWork(() -> {
+            ScreenManager.register(ModContainers.ALLOY_FURNACE_CONTAINER.get(),
+                    AlloyFurnaceScreen::new);
+        });
     }
+
 
     private void enqueueIMC(final InterModEnqueueEvent event)
     {

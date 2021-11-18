@@ -50,6 +50,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     simpleBlockItem(block, model);
                 }
         );
+
         /*Registration.BLOCKS.getEntries().forEach(
                 block -> {
                     // for each registry block, i get model wih format ("block/name_typeblock")

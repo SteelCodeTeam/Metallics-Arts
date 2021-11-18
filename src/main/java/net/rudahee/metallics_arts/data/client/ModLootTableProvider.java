@@ -71,7 +71,8 @@ public class ModLootTableProvider extends LootTableProvider {
                 dropSelf(block.getBlock());
             });
 
-            dropSelf((Block) ModBlock.ALLOY_FURNACE_REGISTRY.get());
+            dropSelf(ModBlock.ALLOY_FURNACE_BLOCK.get());
+
         }
 
         @Override
@@ -87,6 +88,6 @@ public class ModLootTableProvider extends LootTableProvider {
 
     @Override
     public String getName() {
-        return "MetallicsArts_lootTables";
+        return "metallics_arts_loot_table";
     }
 }
