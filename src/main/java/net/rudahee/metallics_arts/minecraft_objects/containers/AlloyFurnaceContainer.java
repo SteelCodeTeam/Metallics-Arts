@@ -31,8 +31,17 @@ public class AlloyFurnaceContainer extends Container {
 
         if(tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new SlotItemHandler(h, 0, 80, 31)); // SLOTS DISPONIBLES
-                addSlot(new SlotItemHandler(h, 1, 80, 53));
+                // SLOTS METAL
+                addSlot(new SlotItemHandler(h, 0, 50, 11));
+                addSlot(new SlotItemHandler(h, 3, 50, 33));
+                addSlot(new SlotItemHandler(h, 2, 62, 11));
+                addSlot(new SlotItemHandler(h, 1, 62, 33));
+
+                // SLOTS COMBUSTIBLE
+                addSlot(new SlotItemHandler(h, 4, 71, 50));
+
+                // SLOTS SALIDA
+                addSlot(new SlotItemHandler(h, 5, 107, 22));
             });
         }
     }
@@ -88,7 +97,7 @@ public class AlloyFurnaceContainer extends Container {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must match TileEntityInventoryBasic.NUMBER_OF_SLOTS
+    private static final int TE_INVENTORY_SLOT_COUNT = 6;  // must match TileEntityInventoryBasic.NUMBER_OF_SLOTS
 
     @Override
     public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {

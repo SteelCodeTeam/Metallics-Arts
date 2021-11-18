@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -22,6 +23,7 @@ import net.rudahee.metallics_arts.minecraft_objects.tile_entity.AlloyFurnaceTile
 import net.rudahee.metallics_arts.minecraft_objects.tile_entity.ModTileEntities;
 
 import javax.annotation.Nullable;
+import java.util.function.Consumer;
 
 public class AlloyFurnaceBlock extends Block {
     public AlloyFurnaceBlock(Properties properties) {
@@ -41,6 +43,12 @@ public class AlloyFurnaceBlock extends Block {
 
                         NetworkHooks.openGui((ServerPlayerEntity) player, containerProvider, tileEntity.getBlockPos());
                     } else {
+                        NetworkHooks.openGui((ServerPlayerEntity) player, containerProvider, new Consumer<PacketBuffer>() {
+                            @Override
+                            public void accept(PacketBuffer buffer) {
+                                buffer.writeInt(player.getId());
+                            }
+                        });
                         return ActionResultType.SUCCESS;
 
                     }

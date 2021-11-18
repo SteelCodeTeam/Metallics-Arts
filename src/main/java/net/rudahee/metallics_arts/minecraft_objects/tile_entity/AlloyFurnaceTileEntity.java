@@ -4,7 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -18,7 +18,7 @@ import net.rudahee.metallics_arts.setup.ModItems;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class AlloyFurnaceTileEntity extends TileEntity {
+public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileEntity {
 
     private final ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
@@ -45,13 +45,17 @@ public class AlloyFurnaceTileEntity extends TileEntity {
 
 
     private ItemStackHandler createHandler() {
-        return new ItemStackHandler(2) {
+        return new ItemStackHandler(6) {
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
                 switch (slot) {
-                    case 0: return stack.getItem() == Items.GLASS_PANE; //Limit what u can put in each slot
-                    case 1: return stack.getItem() == ModItems.ITEM_GEMS_BASE.get("lead_ingot") ||
-                            stack.getItem() == ModItems.ITEM_GEMS_BASE.get("steel_ingot"); //Result
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        return ModItems.ITEM_METAL_INGOT.values().stream().anyMatch(m -> m == stack.getItem());
+                    case 4:
+                        return Items.COAL_BLOCK.getItem() == stack.getItem() ? true : false;
                     default:
                         return false;
                 }
@@ -84,5 +88,9 @@ public class AlloyFurnaceTileEntity extends TileEntity {
         return super.getCapability(cap, side);
     }
 
+    @Override
+    public void tick() {
+
+    }
 }
 
