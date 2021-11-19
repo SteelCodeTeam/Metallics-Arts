@@ -63,7 +63,7 @@ public class AlloyFurnaceBlock extends Block {
         return new INamedContainerProvider() {
             @Override
             public ITextComponent getDisplayName() {
-                return new TranslationTextComponent("screen.tutorialmod.lightning_channeler");
+                return new TranslationTextComponent("screen.metallics_arts.alloy_furnace");
             }
 
             @Nullable

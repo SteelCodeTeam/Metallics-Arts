@@ -85,5 +85,8 @@
   "block.metallics_arts.atium_block": "Block of Atium",
   "block.metallics_arts.malatium_block": "Block of Malatium",
   "block.metallics_arts.lerasium_block": "Block of Lerasium",
-  "block.metallics_arts.ettmetal_block": "Block of Ettmetal"
+  "block.metallics_arts.ettmetal_block": "Block of Ettmetal",
+
+  "itemGroup.metallic_arts_tag": "Metallic Arts",
+  "screen.metallics_arts.alloy_furnace": "Alloy Furnace"
 }

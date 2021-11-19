@@ -13,6 +13,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.rudahee.metallics_arts.setup.ModBlock;
 import net.rudahee.metallics_arts.setup.ModItems;
 
 import javax.annotation.Nonnull;
@@ -54,6 +55,7 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
                     case 2:
                     case 3:
                         return ModItems.ITEM_METAL_INGOT.values().stream().anyMatch(m -> m == stack.getItem());
+
                     case 4:
                         return Items.COAL_BLOCK.getItem() == stack.getItem() ? true : false;
                     default:

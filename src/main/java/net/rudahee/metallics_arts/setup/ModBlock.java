@@ -9,6 +9,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
+import net.rudahee.metallics_arts.ModItemGroup;
 import net.rudahee.metallics_arts.minecraft_objects.blocks.AlloyFurnaceBlock;
 import net.rudahee.metallics_arts.setup.enums.*;
 
@@ -94,8 +95,7 @@ public class ModBlock {
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier) {
 
         RegistryObject<T> blockRegistered = registerNoItem(name, blockSupplier);
-        Registration.ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS))));
-
+        Registration.ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG))));
         return blockRegistered;
     }
 }

@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.setup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
+import net.rudahee.metallics_arts.ModItemGroup;
 import net.rudahee.metallics_arts.setup.enums.Gems;
 import net.rudahee.metallics_arts.setup.enums.Metal;
 
@@ -29,14 +30,14 @@ public class ModItems {
 
         metalList.forEach(metal -> {
             register(metal.getMetalNameLower() + "_ingot", () -> {
-                Item item = new Item(new Item.Properties().tab(ItemGroup.TAB_MATERIALS));
+                Item item = new Item(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
 
                 ITEM_METAL_INGOT.put(metal.getMetalNameLower(), item);
                 return item;
             });
 
             register(metal.getMetalNameLower() + "_nugget", () -> {
-                Item item = new Item(new Item.Properties().tab(ItemGroup.TAB_MATERIALS));
+                Item item = new Item(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
 
                 ITEM_METAL_NUGGET.put(metal.getMetalNameLower(), item);
                 return item;
@@ -50,7 +51,7 @@ public class ModItems {
         gemList.forEach(gem -> {
             register(gem.getGemNameLower(),
                     () -> {
-                        Item item = new Item(new Item.Properties().tab(ItemGroup.TAB_MATERIALS));
+                        Item item = new Item(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
 
                         ITEM_GEMS_BASE.put(gem.getGemNameLower(), item);
                         return item;
@@ -58,7 +59,7 @@ public class ModItems {
 
             register(gem.getGemNameLower() + "_nugget",
                     () -> {
-                        Item item = new Item(new Item.Properties().tab(ItemGroup.TAB_MATERIALS));
+                        Item item = new Item(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
 
                         ITEM_GEMS_NUGGET.put(gem.getGemNameLower(), item);
                         return item;

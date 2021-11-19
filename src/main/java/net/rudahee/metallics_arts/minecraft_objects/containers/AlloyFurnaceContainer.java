@@ -32,16 +32,16 @@ public class AlloyFurnaceContainer extends Container {
         if(tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
                 // SLOTS METAL
-                addSlot(new SlotItemHandler(h, 0, 50, 11));
-                addSlot(new SlotItemHandler(h, 3, 50, 33));
-                addSlot(new SlotItemHandler(h, 2, 62, 11));
-                addSlot(new SlotItemHandler(h, 1, 62, 33));
+                addSlot(new SlotItemHandler(h, 0, 41, 16));
+                addSlot(new SlotItemHandler(h, 3, 41, 35));
+                addSlot(new SlotItemHandler(h, 2, 60, 16));
+                addSlot(new SlotItemHandler(h, 1, 60, 35));
 
                 // SLOTS COMBUSTIBLE
-                addSlot(new SlotItemHandler(h, 4, 71, 50));
+                addSlot(new SlotItemHandler(h, 4, 50, 55));
 
                 // SLOTS SALIDA
-                addSlot(new SlotItemHandler(h, 5, 107, 22));
+                addSlot(new SlotItemHandler(h, 5, 124, 30));
             });
         }
     }
@@ -75,9 +75,9 @@ public class AlloyFurnaceContainer extends Container {
     }
 
     private void layoutPlayerInventorySlots(int leftCol, int topRow) {
-        addSlotBox(playerInventory, 9, leftCol, topRow, 9, 18, 3, 18);
+        addSlotBox(playerInventory, 9, leftCol, topRow-2, 9, 18, 3, 18);
 
-        topRow += 58;
+        topRow += 56;
         addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
     }
 
