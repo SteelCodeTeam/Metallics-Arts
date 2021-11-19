@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.minecraft_objects.tile_entity;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -54,7 +55,9 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
                     case 1:
                     case 2:
                     case 3:
-                        return ModItems.ITEM_METAL_INGOT.values().stream().anyMatch(m -> m == stack.getItem());
+                        return (Items.IRON_INGOT == stack.getItem()||Items.GOLD_INGOT == stack.getItem()||
+                                ModItems.ITEM_METAL_INGOT.values().stream().anyMatch(m -> m == stack.getItem()));
+                        //QUITAR LAS ALEACIONES DE LA LISTA
 
                     case 4:
                         return Items.COAL_BLOCK.getItem() == stack.getItem() ? true : false;

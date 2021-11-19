@@ -46,8 +46,6 @@ public class AlloyFurnaceContainer extends Container {
         }
     }
 
-
-
     @Override
     public boolean stillValid(PlayerEntity playerIn) {
         return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()),
