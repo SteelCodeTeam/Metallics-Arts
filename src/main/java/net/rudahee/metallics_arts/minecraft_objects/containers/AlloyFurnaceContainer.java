@@ -41,7 +41,7 @@ public class AlloyFurnaceContainer extends Container {
                 addSlot(new SlotItemHandler(h, 4, 50, 55));
 
                 // SLOTS SALIDA
-                addSlot(new SlotItemHandler(h, 5, 124, 30));
+                addSlot(new SlotItemHandler(h, 5, 122, 26));
             });
         }
     }
