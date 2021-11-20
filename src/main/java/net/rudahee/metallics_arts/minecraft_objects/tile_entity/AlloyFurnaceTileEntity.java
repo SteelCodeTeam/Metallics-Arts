@@ -20,6 +20,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.rudahee.metallics_arts.setup.ModBlock;
 import net.rudahee.metallics_arts.setup.ModItems;
+import net.rudahee.metallics_arts.setup.enums.Metal;
 
 
 import javax.annotation.Nonnull;
@@ -62,21 +63,21 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
                     case 3:
                         return (Items.IRON_INGOT == stack.getItem()||
                                 Items.GOLD_INGOT == stack.getItem()||
-                                ModItems.ITEM_METAL_INGOT.values().stream().anyMatch(m -> m == stack.getItem()));
+                                ModItems.ITEM_METAL_INGOT.values().stream().anyMatch(m-> m == stack.getItem())||
+                                ModItems.ITEM_GEMS_BASE.values().stream().anyMatch(m -> m == stack.getItem()));
+
                         //QUITAR LAS ALEACIONES DE LA LISTA
                     case 4:
                         return (Items.COAL_BLOCK.getItem() == stack.getItem()||
                                 Items.COAL.getItem() == stack.getItem()||
                                 Items.BLAZE_ROD.getItem() == stack.getItem()||
-                                Items.DRIED_KELP_BLOCK.getItem() == stack.getItem());
+                                Items.DRIED_KELP_BLOCK.getItem() == stack.getItem()||
+                                Items.LAVA_BUCKET.getItem() == stack.getItem());
                         // return Items.COAL_BLOCK.getItem() == stack.getItem() ? true : false;
                     default:
                         return false;
                 }
             }
-
-
-             //CookingRecipeBuilder.blasting(Ingredient.of(block),ModItems.ITEM_METAL_INGOT.get(name),0.5f,100)
 
             @Override
             public int getSlotLimit(int slot) {
