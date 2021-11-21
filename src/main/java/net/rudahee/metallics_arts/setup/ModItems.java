@@ -6,6 +6,8 @@ import net.minecraftforge.fml.RegistryObject;
 import net.rudahee.metallics_arts.ModItemGroup;
 import net.rudahee.metallics_arts.setup.enums.Gems;
 import net.rudahee.metallics_arts.setup.enums.Metal;
+import net.rudahee.metallics_arts.setup.enums.MetalBurningRecipeData;
+import net.rudahee.metallics_arts.setup.enums.MetalGenerationData;
 
 import java.util.Arrays;
 
@@ -33,6 +35,11 @@ public class ModItems {
                 Item item = new Item(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
 
                 ITEM_METAL_INGOT.put(metal.getMetalNameLower(), item);
+
+                if (metal.isAlloy()) {
+                    MetalBurningRecipeData.valueOf(metal.getMetalNameUpper()).setItem(item);
+                }
+
                 return item;
             });
 

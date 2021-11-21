@@ -13,6 +13,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
+import net.rudahee.metallics_arts.minecraft_objects.tile_entity.AlloyFurnaceTileEntity;
 import net.rudahee.metallics_arts.setup.ModBlock;
 
 public class AlloyFurnaceContainer extends Container {
@@ -129,4 +130,9 @@ public class AlloyFurnaceContainer extends Container {
         sourceSlot.onTake(playerEntity, sourceStack);
         return copyOfSourceStack;
     }
+
+    public AlloyFurnaceTileEntity getTileEntity() {
+        return (AlloyFurnaceTileEntity) this.tileEntity;
+    }
+
 }

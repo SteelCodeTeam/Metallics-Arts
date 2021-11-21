@@ -3,8 +3,6 @@ package net.rudahee.metallics_arts.minecraft_objects.screen;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.renderer.texture.SimpleTexture;
-import net.minecraft.client.renderer.texture.Texture;
-import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -12,11 +10,14 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.minecraft_objects.containers.AlloyFurnaceContainer;
 
 public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
+    private AlloyFurnaceContainer alloyContainer = null;
+
     private final ResourceLocation GUI = new ResourceLocation(MetallicsArts.MOD_ID,
             "textures/gui/alloy_furnace.png");
 
     public AlloyFurnaceScreen(AlloyFurnaceContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
+        this.alloyContainer = screenContainer;
     }
 
 
@@ -33,5 +34,21 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         int i = this.getGuiLeft();
         int j = this.getGuiTop();
         super.blit(matrixStack, i, j, 0, 0, this.getXSize(), this.getYSize());
+
+
+        // Ajustar la altura del fuel
+        if (this.alloyContainer.getTileEntity().isLit()) {
+            int k = this.alloyContainer.getTileEntity().getLitProgress();
+            this.blit(matrixStack, i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
+        }
+        if (this.alloyContainer.getTileEntity().isLit()) {
+            int k = this.alloyContainer.getTileEntity().getLitProgress();
+            this.blit(matrixStack, i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
+        }
+        // Altura de la flecha
+        int l = this.alloyContainer.getTileEntity().getBurnProgress();
+        this.blit(matrixStack, i + 79, j + 34, 176, 14, l + 1, 16);
+
     }
+
 }

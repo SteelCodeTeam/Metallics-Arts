@@ -9,6 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.data.recipes.ModRecipeTypes;
 import net.rudahee.metallics_arts.minecraft_objects.containers.ModContainers;
 import net.rudahee.metallics_arts.minecraft_objects.tile_entity.ModTileEntities;
 
@@ -32,6 +33,7 @@ public class Registration {
         ModBlock.register();
         ModTileEntities.register(modEventBus);
         ModContainers.register(modEventBus);
+        ModRecipeTypes.register(modEventBus);
     }
 
     private static <T extends IForgeRegistryEntry<T>> DeferredRegister<T> create (IForgeRegistry<T> registry){
