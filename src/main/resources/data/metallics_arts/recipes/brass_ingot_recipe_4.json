@@ -1,0 +1,20 @@
+{
+    "type": "metallics_arts:alloy",
+    "ingredients": [
+      {
+        "item": "metallics_arts:copper_ingot"
+      },
+      {
+        "item": "metallics_arts:zinc_ingot"
+      },
+      {
+        "item": "metallics_arts:zinc_ingot"
+      },
+      {
+        "item": "metallics_arts:copper_ingot"
+      }
+    ],
+    "output": {
+      "item": "metallics_arts:brass_ingot"
+    }
+  }

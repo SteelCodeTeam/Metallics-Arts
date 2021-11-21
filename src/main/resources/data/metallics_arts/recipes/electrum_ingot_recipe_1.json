@@ -1,0 +1,20 @@
+{
+    "type": "metallics_arts:alloy",
+    "ingredients": [
+      {
+        "item": "minecraft:gold_ingot"
+      },
+      {
+        "item": "metallics_arts:silver_ingot"
+      },
+      {
+        "item": "metallics_arts:silver_ingot"
+      },
+      {
+        "item": "metallics_arts:silver_ingot"
+      }
+    ],
+    "output": {
+      "item": "metallics_arts:electrum_ingot"
+    }
+  }

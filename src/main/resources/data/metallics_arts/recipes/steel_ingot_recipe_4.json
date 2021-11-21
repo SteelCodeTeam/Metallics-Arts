@@ -1,0 +1,20 @@
+{
+    "type": "metallics_arts:alloy",
+    "ingredients": [
+      {
+        "item": "minecraft:coal"
+      },
+      {
+        "item": "minecraft:coal"
+      },
+      {
+        "item": "minecraft:coal"
+      },
+      {
+        "item": "minecraft:iron_ingot"
+      }
+    ],
+    "output": {
+      "item": "metallics_arts:steel_ingot"
+    }
+  }

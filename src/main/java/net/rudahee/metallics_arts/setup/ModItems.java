@@ -61,6 +61,11 @@ public class ModItems {
                         Item item = new Item(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
 
                         ITEM_GEMS_BASE.put(gem.getGemNameLower(), item);
+
+                        if (gem.getGemNameLower() == "malatium") {
+                            MetalBurningRecipeData.valueOf(gem.getGemNameUpper()).setItem(item);
+                        }
+
                         return item;
                     });
 

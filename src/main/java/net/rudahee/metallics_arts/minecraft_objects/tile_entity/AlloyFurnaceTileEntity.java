@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.minecraft_objects.tile_entity;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.crash.ReportedException;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,6 +23,7 @@ import net.rudahee.metallics_arts.data.recipes.ModRecipeTypes;
 import net.rudahee.metallics_arts.setup.ModItems;
 import net.rudahee.metallics_arts.setup.enums.FuelsTime;
 import net.rudahee.metallics_arts.setup.enums.MetalBurningRecipeData;
+import org.jline.utils.Log;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -139,10 +141,15 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
 
 
         if (actualTimeToActualRecipe < 0) {
-            actualTimeToActualRecipe = Arrays.stream(MetalBurningRecipeData.values())
+            try {
+                actualTimeToActualRecipe = Arrays.stream(MetalBurningRecipeData.values())
                                         .filter(m -> m.getItem().getDescriptionId().equals(output.getItem().getDescriptionId()))
                                             .findFirst().get()
                                             .getTicksToCompleteBurning();
+            } catch (ReportedException | NullPointerException ex) {
+                Log.warn("Reported Exception encountered: Ticking Block Entity - Alloy Furnace Tile Entity: " + this.worldPosition.toString());
+                actualTimeToActualRecipe = -1;
+            }
 
             maxTimeToActualRecipe = actualTimeToActualRecipe;
         } else {

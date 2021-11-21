@@ -51,6 +51,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 }
         );
 
+        
         simpleBlock(ModBlock.ALLOY_FURNACE_BLOCK.get());
         simpleBlockItem(ModBlock.ALLOY_FURNACE_BLOCK.get(), new ModelFile.UncheckedModelFile(modLoc("block/alloy_furnace")));
         /*Registration.BLOCKS.getEntries().forEach(

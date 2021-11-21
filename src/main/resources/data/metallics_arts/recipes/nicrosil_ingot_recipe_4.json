@@ -1,0 +1,20 @@
+{
+    "type": "metallics_arts:alloy",
+    "ingredients": [
+      {
+        "item": "metallics_arts:chromium_ingot"
+      },
+      {
+        "item": "metallics_arts:chromium_ingot"
+      },
+      {
+        "item": "metallics_arts:chromium_ingot"
+      },
+      {
+        "item": "metallics_arts:nickel_ingot"
+      }
+    ],
+    "output": {
+      "item": "metallics_arts:nicrosil_ingot"
+    }
+  }
