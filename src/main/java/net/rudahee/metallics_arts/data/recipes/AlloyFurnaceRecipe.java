@@ -2,7 +2,6 @@ package net.rudahee.metallics_arts.data.recipes;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
@@ -17,8 +16,9 @@ import net.rudahee.metallics_arts.setup.ModBlock;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
 
+
+public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
 
     private final ResourceLocation id;
     private final ItemStack output;
@@ -88,7 +88,6 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
 
             ItemStack output = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "output"));
 
-
             JsonArray ingredients = JSONUtils.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(4, Ingredient.EMPTY);
 
@@ -98,6 +97,7 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
 
             return new AlloyFurnaceRecipe(recipeId, output, inputs);
         }
+
 
         @Nullable
         @Override

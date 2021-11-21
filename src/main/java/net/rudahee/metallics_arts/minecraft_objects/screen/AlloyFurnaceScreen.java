@@ -39,15 +39,17 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         // Ajustar la altura del fuel
         if (this.alloyContainer.getTileEntity().isLit()) {
             int k = this.alloyContainer.getTileEntity().getLitProgress();
-            this.blit(matrixStack, i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
+            this.blit(matrixStack, i + 34, j + 36 + 32 - k, 176, 12 - k, 14, k + 1);
         }
+
         if (this.alloyContainer.getTileEntity().isLit()) {
             int k = this.alloyContainer.getTileEntity().getLitProgress();
-            this.blit(matrixStack, i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
+            this.blit(matrixStack, i + 69, j + 36 + 32 - k, 176, 12 - k, 14, k + 1);
         }
+
         // Altura de la flecha
         int l = this.alloyContainer.getTileEntity().getBurnProgress();
-        this.blit(matrixStack, i + 79, j + 34, 176, 14, l + 1, 16);
+        this.blit(matrixStack, i + 85, j + 28, 176, 14, l + 1, 16);
 
     }
 
