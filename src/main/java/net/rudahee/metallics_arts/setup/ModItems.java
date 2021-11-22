@@ -3,12 +3,17 @@ package net.rudahee.metallics_arts.setup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.ModItemGroup;
 import net.rudahee.metallics_arts.setup.enums.Gems;
 import net.rudahee.metallics_arts.setup.enums.Metal;
 import net.rudahee.metallics_arts.setup.enums.MetalBurningRecipeData;
 import net.rudahee.metallics_arts.setup.enums.MetalGenerationData;
+import net.rudahee.metallics_arts.setup.vial.Vial;
 
+import java.rmi.registry.Registry;
 import java.util.Arrays;
 
 
@@ -78,6 +83,9 @@ public class ModItems {
                     });
         });
     }
+
+    public static final RegistryObject<Item> VIAL = register
+            ("vial", () -> new Vial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
 
     protected static void register() {
     }

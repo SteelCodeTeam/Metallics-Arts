@@ -33,6 +33,8 @@ public class ModItemModelProvider extends ItemModelProvider {
             builder(itemGenerated,"item/"+ gem.getGemNameLower(), "item/gems/gems/" +gem.getGemNameLower());
             builder(itemGenerated,"item/"+ gem.getGemNameLower()+"_nugget", "item/gems/nugget/" +gem.getGemNameLower()+"_nugget");
         });
+
+        builder(itemGenerated,"item/vial","item/consumables/vial");
     }
     private ItemModelBuilder builder (ModelFile itemGenerated, String outPath, String texturePath){
         return  getBuilder(outPath).parent(itemGenerated).texture("layer0",texturePath);
