@@ -20,14 +20,12 @@ import net.rudahee.metallics_arts.setup.enums.Gems;
 import net.rudahee.metallics_arts.setup.enums.Metal;
 import net.rudahee.metallics_arts.setup.enums.MetalsNBTData;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 public class Vial extends Item {
 
-    ListNBT list = new ListNBT();
+    Map<String, CompoundNBT> list = new HashMap<>();
 
     public Vial(Properties properties) {
         super(properties);
@@ -35,9 +33,8 @@ public class Vial extends Item {
         Arrays.asList(MetalsNBTData.values()).forEach(m -> {
             CompoundNBT nbt = new CompoundNBT();
             nbt.contains(m.getNameLower()+"_reserve",0);
-            list.add(m.getPosition(),nbt);
+            list.put(m.getNameLower(),nbt);
         });
-
     }
 
 
@@ -45,10 +42,15 @@ public class Vial extends Item {
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         player.inventory.add(new ItemStack(Items.STONE));
-        list.forEach(m -> {        });
+        Arrays.asList(MetalsNBTData.values()).forEach(m ->{
+            list.get(m.getNameLower()).putInt
+                    (m.getNameLower()+"_reserve",
+                            list.get(m.getNameLower()).getInt(m.getNameLower()+"_reserve")+1);
+        });
+        Arrays.asList(MetalsNBTData.values()).forEach(m -> {
+            System.out.println("\n\n"+m.getNameLower()+":" + list.get(m.getNameLower()).getInt(m.getNameLower()+"_reserve"));
+        });
 
-        nbt.putInt("uses", nbt.getInt("uses")+1);
-        System.out.println("\n\n\nUSES:" + nbt.getInt("uses")+"\n\n\n");
         return new ActionResult<>(ActionResultType.SUCCESS,player.getItemInHand(hand));
     }
 
