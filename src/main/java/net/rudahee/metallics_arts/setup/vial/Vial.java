@@ -16,26 +16,37 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.rudahee.metallics_arts.setup.enums.Gems;
 import net.rudahee.metallics_arts.setup.enums.Metal;
+import net.rudahee.metallics_arts.setup.enums.MetalsNBTData;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
 public class Vial extends Item {
 
-    CompoundNBT nbt;
-    public Vial(Properties p_i48487_1_) {
-        super(p_i48487_1_);
-        nbt = new CompoundNBT();
-        nbt.contains("uses",0);
+    ListNBT list = new ListNBT();
+
+    public Vial(Properties properties) {
+        super(properties);
+
+        Arrays.asList(MetalsNBTData.values()).forEach(m -> {
+            CompoundNBT nbt = new CompoundNBT();
+            nbt.contains(m.getNameLower()+"_reserve",0);
+            list.add(m.getPosition(),nbt);
+        });
+
     }
 
 
 
-        @Override
+    @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         player.inventory.add(new ItemStack(Items.STONE));
+        list.forEach(m -> {        });
+
         nbt.putInt("uses", nbt.getInt("uses")+1);
         System.out.println("\n\n\nUSES:" + nbt.getInt("uses")+"\n\n\n");
         return new ActionResult<>(ActionResultType.SUCCESS,player.getItemInHand(hand));

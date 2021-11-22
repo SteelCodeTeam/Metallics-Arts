@@ -17,6 +17,7 @@ public enum Metal implements IMetal {
     DURALUMIN("duralumin", "DURALUMIN", true, true, true, true),
     CHROMIUM("chromium", "CHROMIUM", true, true, true, false),
     NICROSIL("nicrosil", "NICROSIL", true, true, true, true),
+
     SILVER("silver", "SILVER", false, false, false, false),
     LEAD("lead", "LEAD", false, false, false, false),
     NICKEL("nickel", "NICKEL", false, false, false, false);

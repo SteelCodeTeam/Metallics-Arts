@@ -1,6 +1,6 @@
 package net.rudahee.metallics_arts.setup.enums;
 
-public enum Gems {
+public enum Gems implements IGems {
 
     ATIUM("atium", "ATIUM", true, true, true),
     MALATIUM("malatium", "MALATIUM", true, true, true),
