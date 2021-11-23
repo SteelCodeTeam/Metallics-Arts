@@ -33,15 +33,11 @@ public class Vial extends Item {
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         player.inventory.add(new ItemStack(Items.STONE));
 
-        Arrays.asList(MetalsNBTData.values()).forEach(m->{
+            Arrays.asList(MetalsNBTData.values()).forEach(m->{
             compoundNBT.putInt(m.getNameLower()+"_reserve",compoundNBT.getInt(m.getNameLower()+"_reserve")+1);
-            System.out.println(m.getNameLower()+"_reserve: "+compoundNBT.getInt(m.getNameLower()+"_reserve"));
-        });
-/*        Arrays.asList(MetalsNBTData.values()).forEach(m->{
-            System.out.println(m.getNameLower()+"_reserve: "+compoundNBT.getInt(m.getNameLower()+"_reserve"));
+
         });
 
-  */
         return new ActionResult<>(ActionResultType.SUCCESS,player.getItemInHand(hand));
     }
 
