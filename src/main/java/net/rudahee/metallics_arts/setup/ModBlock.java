@@ -3,15 +3,17 @@ package net.rudahee.metallics_arts.setup;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
 import net.rudahee.metallics_arts.ModItemGroup;
 import net.rudahee.metallics_arts.minecraft_objects.blocks.AlloyFurnaceBlock;
-import net.rudahee.metallics_arts.setup.enums.*;
+import net.rudahee.metallics_arts.setup.enums.Gems;
+import net.rudahee.metallics_arts.setup.enums.Metal;
+import net.rudahee.metallics_arts.setup.enums.MetalGenerationData;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,6 +25,8 @@ public class ModBlock {
     public static final HashMap<String, Block> BLOCK_METAL_ORES = new HashMap<String, Block>();
     public static final HashMap<String, Block> BLOCK_METAL_BLOCKS = new HashMap<String, Block>();
     public static final HashMap<String, Block> BLOCK_GEMS_BLOCKS = new HashMap<String, Block>();
+
+
 
     static {
         /*
@@ -83,7 +87,7 @@ public class ModBlock {
     }
 
     public static final RegistryObject<Block> ALLOY_FURNACE_BLOCK = register("alloy_furnace",
-            () -> new AlloyFurnaceBlock(AbstractBlock.Properties.of(Material.STONE)));
+            () -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE)));
 
     protected static void register() {
     }

@@ -20,6 +20,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.rudahee.metallics_arts.data.recipes.AlloyFurnaceRecipe;
 import net.rudahee.metallics_arts.data.recipes.ModRecipeTypes;
+import net.rudahee.metallics_arts.minecraft_objects.blocks.AlloyFurnaceBlock;
 import net.rudahee.metallics_arts.setup.ModItems;
 import net.rudahee.metallics_arts.setup.enums.FuelsTime;
 import net.rudahee.metallics_arts.setup.enums.MetalBurningRecipeData;
@@ -36,6 +37,7 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
     private int maxFuelBurning = -1;
     private int actualTimeToActualRecipe = -1;
     private int maxTimeToActualRecipe = -1;
+
 
     private final ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
@@ -178,9 +180,9 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
         if (!this.level.isClientSide()) {
             if (actualFuelBurning < 0) {
                 if (itemHandler.getStackInSlot(4).isEmpty()) {
-                    return;
+                    this.getBlockState().setValue(AlloyFurnaceBlock.LIT, false);                    return;
                 } else {
-                    Item fuelItem = itemHandler.extractItem(4, 1, false).getItem();
+                    this.getBlockState().setValue(AlloyFurnaceBlock.LIT, true);                    Item fuelItem = itemHandler.extractItem(4, 1, false).getItem();
 
                     maxFuelBurning = Arrays.stream(FuelsTime.values())
                             .filter(f -> f.getItem().equals(fuelItem.getItem()))
