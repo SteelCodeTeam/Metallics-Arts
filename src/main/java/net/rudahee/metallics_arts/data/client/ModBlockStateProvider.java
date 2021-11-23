@@ -51,19 +51,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 }
         );
 
-        
         simpleBlock(ModBlock.ALLOY_FURNACE_BLOCK.get());
         simpleBlockItem(ModBlock.ALLOY_FURNACE_BLOCK.get(), new ModelFile.UncheckedModelFile(modLoc("block/alloy_furnace")));
-        /*Registration.BLOCKS.getEntries().forEach(
-                block -> {
-                    // for each registry block, i get model wih format ("block/name_typeblock")
-                    ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/" + block.get().getRegistryName().getPath()));
 
-                    // later i put texture in block and item.
-                    simpleBlock(block.get());
-                    simpleBlockItem(block.get(), model);
-                }
-        );*/
 
     }
 }

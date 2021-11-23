@@ -40,7 +40,6 @@ public class AlloyFurnaceBlock extends Block {
                     INamedContainerProvider containerProvider = createContainerProvider(worldIn, pos);
 
                     if (player instanceof ServerPlayerEntity) {
-
                         NetworkHooks.openGui((ServerPlayerEntity) player, containerProvider, tileEntity.getBlockPos());
                     } else {
                         NetworkHooks.openGui((ServerPlayerEntity) player, containerProvider, new Consumer<PacketBuffer>() {

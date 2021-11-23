@@ -2,36 +2,35 @@ package net.rudahee.metallics_arts.setup.enums;
 
 public enum MetalsNBTData implements IMetal, IGems {
     STEEL("steel", "STEEL", 1),
+    IRON("iron", "IRON", 1),
     TIN("tin", "TIN", 2),
-    PEWTER("pewter", "PEWTER",3),
-    COPPER("copper", "COPPER", 4),
-    BRONZE("bronze", "BRONZE", 5),
-    ZINC("zinc", "ZINC", 6),
-    BRASS("brass", "BRASS",7),
+    PEWTER("pewter", "PEWTER", 2),
+    COPPER("copper", "COPPER", 3),
+    BRONZE("bronze", "BRONZE", 3),
+    ZINC("zinc", "ZINC", 4),
+    BRASS("brass", "BRASS", 4),
+    CHROMIUM("chromium", "CHROMIUM", 5),
+    NICROSIL("nicrosil", "NICROSIL", 5),
+    ALUMINUM("aluminum", "ALUMINUM", 6),
+    DURALUMIN("duralumin", "DURALUMIN", 6),
+    CADMIUM("cadmium", "CADMIUM", 7),
+    BENDALLOY("bendalloy", "BENDALLOY", 7),
     ELECTRUM("electrum", "ELECTRUM", 8),
-    CADMIUM("cadmium", "CADMIUM", 9),
-    BENDALLOY("bendalloy", "BENDALLOY",10),
-    ALUMINUM("aluminum", "ALUMINUM", 11),
-    DURALUMIN("duralumin", "DURALUMIN",12),
-    CHROMIUM("chromium", "CHROMIUM", 13),
-    NICROSIL("nicrosil", "NICROSIL",14),
-    ATIUM("atium", "ATIUM",15 ),
-    MALATIUM("malatium", "MALATIUM", 16),
-    LERASIUM("lerasium", "LERASIUM",17),
-    ETTMETAL("ettmetal", "ETTMETAL",18),
-    GOLD("gold", "GOLD",19),
-    IRON("iron", "IRON",20);
+    GOLD("gold", "GOLD", 8),
+    ATIUM("atium", "ATIUM", 9),
+    MALATIUM("malatium", "MALATIUM", 9),
+    LERASIUM("lerasium", "LERASIUM", 10),
+    ETTMETAL("ettmetal", "ETTMETAL", 10);
 
 
     private final String nameLower;
     private final String nameUpper;
-    private final int position;
+    private final int group;
 
-
-    MetalsNBTData(String nameLower, String nameUpper, int position) {
+    MetalsNBTData(String nameLower, String nameUpper, int group) {
         this.nameLower = nameLower;
         this.nameUpper = nameUpper;
-        this.position = position;
+        this.group = group;
     }
 
     public String getNameLower() {
@@ -42,8 +41,8 @@ public enum MetalsNBTData implements IMetal, IGems {
         return nameUpper;
     }
 
-    public int getPosition() {
-        return position;
+    public int getGroup() {
+        return group;
     }
 
     @Override
