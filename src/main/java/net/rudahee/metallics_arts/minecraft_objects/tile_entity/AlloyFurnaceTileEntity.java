@@ -33,10 +33,13 @@ import java.util.Optional;
 
 public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileEntity {
 
-    private int actualFuelBurning = -1;
-    private int maxFuelBurning = -1;
-    private int actualTimeToActualRecipe = -1;
-    private int maxTimeToActualRecipe = -1;
+    private int actualFuelBurning = 0;
+    private int maxFuelBurning = 0;
+    private boolean isCrafting = false;
+
+    private int actualTimeToActualRecipe = 0;
+    private int maxTimeToActualRecipe = 0;
+    private boolean existsRecipe = false;
 
 
     private final ItemStackHandler itemHandler = createHandler();
@@ -79,7 +82,6 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
                                 ModItems.ITEM_METAL_INGOT.values().stream().anyMatch(m-> m == stack.getItem())||
                                 ModItems.ITEM_GEMS_BASE.values().stream().anyMatch(m -> m == stack.getItem()));
 
-                        //QUITAR LAS ALEACIONES DE LA LISTA
                     case 4:
                         return (Items.COAL_BLOCK.getItem() == stack.getItem()||
                                 Items.COAL.getItem() == stack.getItem()||
@@ -119,52 +121,6 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
         return super.getCapability(cap, side);
     }
 
-    public void craft() {
-        Inventory inv = new Inventory(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
-            inv.setItem(i, itemHandler.getStackInSlot(i));
-        }
-
-        Optional<AlloyFurnaceRecipe> recipe = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.ALLOY_FURNACE_RECIPE,inv ,level);
-
-        if(!recipe.isPresent()) {
-            return;
-        }
-
-        ItemStack output = recipe.get().getResultItem();
-
-        // ESTO NO ARREGLA EL PROBLEMA DEL ACERO
-        if (output.getDescriptionId().equals(ModItems.ITEM_METAL_INGOT.get("steel"))) {
-            if (itemHandler.getStackInSlot(0).isEmpty() || itemHandler.getStackInSlot(1).isEmpty()
-                    || itemHandler.getStackInSlot(2).isEmpty() ||itemHandler.getStackInSlot(3).isEmpty()) {
-                return;
-            }
-        }
-
-
-        if (actualTimeToActualRecipe < 0) {
-            try {
-                actualTimeToActualRecipe = Arrays.stream(MetalBurningRecipeData.values())
-                                        .filter(m -> m.getItem().getDescriptionId().equals(output.getItem().getDescriptionId()))
-                                            .findFirst().get()
-                                            .getTicksToCompleteBurning();
-            } catch (ReportedException | NullPointerException ex) {
-                Log.warn("Reported Exception encountered: Ticking Block Entity - Alloy Furnace Tile Entity: " + this.worldPosition.toString());
-                actualTimeToActualRecipe = -1;
-            }
-
-            maxTimeToActualRecipe = actualTimeToActualRecipe;
-        } else {
-
-            if (actualTimeToActualRecipe == 0) {
-                craftTheItem(output);
-                actualTimeToActualRecipe--;
-            } else{
-                actualTimeToActualRecipe--;
-            }
-        }
-    }
-
     private void craftTheItem(ItemStack output) {
         itemHandler.extractItem(0, 1, false);
         itemHandler.extractItem(1, 1, false);
@@ -174,49 +130,156 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
         itemHandler.insertItem(5, output, false);
     }
 
-    // REFACTOR BURNING TIME TO ONLY WITH ITEM
     @Override
     public void tick() {
         if (!this.level.isClientSide()) {
-            if (actualFuelBurning < 0) {
-                if (itemHandler.getStackInSlot(4).isEmpty()) {
-                    this.getBlockState().setValue(AlloyFurnaceBlock.LIT, false);                    return;
-                } else {
-                    this.getBlockState().setValue(AlloyFurnaceBlock.LIT, true);                    Item fuelItem = itemHandler.extractItem(4, 1, false).getItem();
-
-                    maxFuelBurning = Arrays.stream(FuelsTime.values())
-                            .filter(f -> f.getItem().equals(fuelItem.getItem()))
-                            .findFirst().get()
-                            .getTicksBurning();
-
-                    this.actualFuelBurning = maxFuelBurning;
-                    craft();
-                }
+            if(cookingRecipe()) {
+                this.getBlockState().setValue(AlloyFurnaceBlock.LIT, true);
             } else {
-                this.actualFuelBurning--;
-                craft();
+                this.getBlockState().setValue(AlloyFurnaceBlock.LIT, false);
             }
-
-        } else {
-            return;
         }
     }
+
+    private boolean checkFuel() {
+        Inventory inventoryFuel = new Inventory(1);
+        inventoryFuel.setItem(0, itemHandler.getStackInSlot(4));
+
+        if (inventoryFuel.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean checkAir(Inventory inventoryRecipe) {
+        boolean containAir = false;
+        for (int i = 0; i < inventoryRecipe.getContainerSize(); i++) {
+            if (inventoryRecipe.getItem(i).getItem().equals(Items.AIR)
+                    || inventoryRecipe.getItem(i).isEmpty()
+                    || inventoryRecipe.getItem(i).getItem() == null) {
+
+                containAir = true;
+            }
+        }
+
+        return  containAir;
+
+    }
+
+    private boolean cookingRecipe() {
+
+        // Create inventory with X slots
+        Inventory inventoryRecipe = new Inventory(4);
+
+        // For each slot put in inventory what we do here.
+        for (int i = 0; i < 4; i++) {
+            inventoryRecipe.setItem(i, itemHandler.getStackInSlot(i));
+        }
+
+        Optional<AlloyFurnaceRecipe> recipe = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.ALLOY_FURNACE_RECIPE, inventoryRecipe, level);
+
+        if (checkAir(inventoryRecipe)) {
+            recipe = Optional.empty();
+        }
+
+        // If not crafting anything
+        if (!isCrafting) {
+            // If recipe exists and is lit, we start to craft the item.
+            if (recipe.isPresent()) {
+                if (isLit()) {
+                    AlloyFurnaceRecipe presentRecipe = recipe.get();
+                    isCrafting = true;
+
+                    maxTimeToActualRecipe = Arrays.stream(MetalBurningRecipeData.values())
+                            .filter(m -> m.getItem().getDescriptionId().equals(presentRecipe.getResultItem().getDescriptionId()))
+                            .findFirst().get()
+                            .getTicksToCompleteBurning();
+
+                    actualTimeToActualRecipe = maxTimeToActualRecipe;
+                    actualFuelBurning--;
+                } else {
+
+                    // If not lit, we check fuel, and we have fuel, get 1 and lit.
+                    if (checkFuel()) {
+                        refillLit();
+                    } else {
+                        actualTimeToActualRecipe = -1;
+                        isCrafting = false;
+                    }
+                }
+            } else {
+                if (isLit()) {
+                    actualFuelBurning--;
+                }
+            }
+        } else {
+            if (checkAir(inventoryRecipe)) {
+                isCrafting = false;
+                actualTimeToActualRecipe = -1;
+            }
+
+            if (isLit()) {
+                actualFuelBurning--;
+                actualTimeToActualRecipe = (actualTimeToActualRecipe <= 0) ? actualTimeToActualRecipe : --actualTimeToActualRecipe;
+
+                if (isCompleteCrafting() && !checkAir(inventoryRecipe)) {
+                    craftTheItem(recipe.get().getResultItem());
+
+                    actualTimeToActualRecipe = -1;
+                    isCrafting = false;
+
+                } else {
+                    if (!isLit()) {
+                        if (checkFuel()) {
+                            refillLit();
+                        } else {
+                            actualTimeToActualRecipe = -1;
+                            isCrafting = false;
+                        }
+                    }
+                }
+            } else {
+                if (checkFuel()) {
+                    refillLit();
+                } else {
+                    actualTimeToActualRecipe = -1;
+                    isCrafting = false;
+                }
+            }
+        }
+        return isCrafting;
+    }
+
 
 
     @OnlyIn(Dist.CLIENT)
     public int getBurnProgress() {
-
-        return this.actualFuelBurning / this.maxFuelBurning * 100;
+        return actualFuelBurning;
     }
 
     @OnlyIn(Dist.CLIENT)
     public int getLitProgress() {
-        return this.actualTimeToActualRecipe / this.maxTimeToActualRecipe * 100;
+        return actualTimeToActualRecipe;
     }
 
-    @OnlyIn(Dist.CLIENT)
     public boolean isLit() {
-        return (actualFuelBurning < 0) ? true : false;
+        return (actualFuelBurning >= 0) ? true : false;
+    }
+
+    public boolean isCompleteCrafting() {
+        return (actualTimeToActualRecipe <= 0) ? true : false;
+    }
+
+    public void refillLit() {
+        Item fuelItem = itemHandler.extractItem(4, 1, false).getItem();
+
+        maxFuelBurning = Arrays.stream(FuelsTime.values())
+                .filter(f -> f.getItem().equals(fuelItem.getItem()))
+                .findFirst().get()
+                .getTicksBurning();
+
+        actualFuelBurning = maxFuelBurning;
     }
 }
 
