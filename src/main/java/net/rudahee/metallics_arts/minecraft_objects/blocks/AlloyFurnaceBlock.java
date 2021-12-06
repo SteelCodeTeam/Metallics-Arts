@@ -44,9 +44,6 @@ public class AlloyFurnaceBlock extends Block {
         this.registerDefaultState(this.defaultBlockState().setValue(LIT, false));
     }
 
-
-
-
     @Deprecated
     @Override
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos,

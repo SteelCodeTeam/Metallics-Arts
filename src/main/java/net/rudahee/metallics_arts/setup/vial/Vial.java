@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.setup.vial;
 
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,6 +11,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.rudahee.metallics_arts.setup.enums.MetalsNBTData;
 
 import java.util.*;
@@ -33,12 +35,12 @@ public class Vial extends Item {
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         player.inventory.add(new ItemStack(Items.STONE));
 
-            Arrays.asList(MetalsNBTData.values()).forEach(m->{
+        Arrays.asList(MetalsNBTData.values()).forEach(m->{
             compoundNBT.putInt(m.getNameLower()+"_reserve",compoundNBT.getInt(m.getNameLower()+"_reserve")+1);
-
+            System.out.println(m.getNameLower() + " -- " + compoundNBT.getInt(m.getNameLower() + "_reserve"));
         });
 
-        return new ActionResult<>(ActionResultType.SUCCESS,player.getItemInHand(hand));
+        return new ActionResult<>(ActionResultType.CONSUME, player.getItemInHand(hand));
     }
 
     public void generatedNBT (String name){
@@ -46,8 +48,14 @@ public class Vial extends Item {
     }
 
     @Override
+    public ItemStack finishUsingItem(ItemStack itemStack, World word, LivingEntity livingEntity) {
+
+        return super.finishUsingItem(itemStack, word, livingEntity);
+    }
+
+    @Override
     public int getUseDuration(ItemStack p_77626_1_) {
-        return 100;
+        return 10000;
     }
 
     @Override
@@ -59,6 +67,8 @@ public class Vial extends Item {
     public UseAction getUseAnimation(ItemStack stack) {
         return UseAction.DRINK;
     }
+
+
 
 }
 
