@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.setup;
 
+import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
@@ -85,7 +86,7 @@ public class ModItems {
     }
 
     public static final RegistryObject<Item> VIAL = register
-            ("vial", () -> new Vial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
+            ("vial", () -> new Vial(new Item.Properties().food(new Food.Builder().nutrition(0).build()).tab(ModItemGroup.METALLIC_ARTS_TAG)));
 
     protected static void register() {
     }

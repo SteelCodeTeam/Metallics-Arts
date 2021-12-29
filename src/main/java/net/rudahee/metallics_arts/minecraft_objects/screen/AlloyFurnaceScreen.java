@@ -63,4 +63,6 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         this.font.draw(matrixStack, String.valueOf(i), (float) 128, (float) 54, 123);
 
     }
+
+
 }
