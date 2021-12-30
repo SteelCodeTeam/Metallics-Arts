@@ -8,6 +8,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.setup.vial.VialItemRecipes;
 
 public class ModRecipeTypes {
     public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZER =
@@ -18,6 +19,15 @@ public class ModRecipeTypes {
 
     public static IRecipeType<AlloyFurnaceRecipe> ALLOY_FURNACE_RECIPE
             = IRecipeType.register("metallics_arts:alloy");
+
+
+
+    public static final RegistryObject<IRecipeSerializer<VialItemRecipes>> VIAL_SERIALIZER
+            = RECIPE_SERIALIZER.register("vial", VialItemRecipes.Serializer::new);
+
+    public static IRecipeType<AlloyFurnaceRecipe> VIAL_RECIPE
+            = IRecipeType.register("metallics_arts:vial");
+
 
     public static void register(IEventBus eventBus) {
         RECIPE_SERIALIZER.register(eventBus);
