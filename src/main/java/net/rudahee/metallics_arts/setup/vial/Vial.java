@@ -8,9 +8,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.ModItemGroup;
 import net.rudahee.metallics_arts.setup.enums.MetalsNBTData;
 
 import java.util.*;

@@ -1,9 +1,7 @@
 package net.rudahee.metallics_arts.setup.enums;
 
 public enum MetalsNBTData implements IMetal, IGems {
-    /*
-    1s = 20 ticks, 1600 = 80s
-     */
+    /* 1s = 20 ticks, 1600 = 80s */
     STEEL("steel", "STEEL", 1, 1600, 6000),
     IRON("iron", "IRON", 1, 1600, 6000),
     TIN("tin", "TIN", 2, 1600, 6000),

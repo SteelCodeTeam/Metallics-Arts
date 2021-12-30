@@ -1,12 +1,17 @@
 package net.rudahee.metallics_arts.data.client;
 
 import net.minecraft.data.*;
+import net.minecraft.item.PotionItem;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.brewing.BrewingRecipe;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.rudahee.metallics_arts.setup.ModBlock;
 import net.rudahee.metallics_arts.setup.ModItems;
+import net.rudahee.metallics_arts.setup.vial.Vial;
 
 import java.util.function.Consumer;
 
@@ -98,6 +103,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         });
 
+       //BrewingRecipeRegistry.addRecipe(Ingredient.of(() -> ModItems.VIAL.get() ),Ingredient.of(ModItems.ITEM_METAL_NUGGET.get("steel").asItem()),ModItems.VIAL.get().getDefaultInstance());
 
     }
 

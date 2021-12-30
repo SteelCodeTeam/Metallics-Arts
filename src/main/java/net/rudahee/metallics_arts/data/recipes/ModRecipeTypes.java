@@ -21,14 +21,6 @@ public class ModRecipeTypes {
             = IRecipeType.register("metallics_arts:alloy");
 
 
-
-    public static final RegistryObject<IRecipeSerializer<VialItemRecipes>> VIAL_SERIALIZER
-            = RECIPE_SERIALIZER.register("vial", VialItemRecipes.Serializer::new);
-
-    public static IRecipeType<AlloyFurnaceRecipe> VIAL_RECIPE
-            = IRecipeType.register("metallics_arts:vial");
-
-
     public static void register(IEventBus eventBus) {
         RECIPE_SERIALIZER.register(eventBus);
         Registry.register(Registry.RECIPE_TYPE, AlloyFurnaceRecipe.TYPE_ID, ALLOY_FURNACE_RECIPE);
