@@ -78,12 +78,8 @@ public class MetallicsArts
     {
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
                 ()-> SlotTypePreset.BRACELET.getMessageBuilder().build());
-        InterModComms.sendTo("curios1", SlotTypeMessage.REGISTER_TYPE,
-                ()-> SlotTypePreset.BRACELET.getMessageBuilder().build());
-        InterModComms.sendTo("curios2", SlotTypeMessage.REGISTER_TYPE,
-                ()-> SlotTypePreset.BRACELET.getMessageBuilder().build());
-        InterModComms.sendTo("curios3", SlotTypeMessage.REGISTER_TYPE,
-                ()-> SlotTypePreset.RING.getMessageBuilder().build());
+
+
     }
 
     private void processIMC(final InterModProcessEvent event)
