@@ -2,15 +2,16 @@ package net.rudahee.metallics_arts.setup.metalMind.band;
 
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
+import net.rudahee.metallics_arts.MetallicsArts;
 
 public class BandLerasiumEttmetal extends BandMindAbstract {
-    CompoundNBT nbt;
+    CompoundNBT nbt = new CompoundNBT();
     public BandLerasiumEttmetal (Item.Properties properties){
         super(properties);
-        nbt.putInt("lerasium",0);
-        nbt.putInt("ettmetal",0);
-        nbt.putInt("capacityLerasium",100);
-        nbt.putInt("capacityEttmetal",100);
+        nbt.putInt(MetallicsArts.MOD_ID+".BandPwterTin.lerasium",0);
+        nbt.putInt(MetallicsArts.MOD_ID+".BandPwterTin.ettmetal",0);
+        nbt.putInt(MetallicsArts.MOD_ID+".BandPwterTin.capacityLerasium",100);
+        nbt.putInt(MetallicsArts.MOD_ID+".BandPwterTin.capacityEttmetal",100);
         setNbt(nbt);
     }
 }

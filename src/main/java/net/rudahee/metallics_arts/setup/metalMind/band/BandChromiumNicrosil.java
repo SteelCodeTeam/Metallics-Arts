@@ -2,15 +2,16 @@ package net.rudahee.metallics_arts.setup.metalMind.band;
 
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
+import net.rudahee.metallics_arts.MetallicsArts;
 
 public class BandChromiumNicrosil extends BandMindAbstract {
-    CompoundNBT nbt;
+    CompoundNBT nbt = new CompoundNBT();
     public BandChromiumNicrosil(Item.Properties properties){
         super(properties);
-        nbt.putInt("chromium",0);
-        nbt.putInt("nicrosil",0);
-        nbt.putInt("capacityChromium",100);
-        nbt.putInt("capacityNicrosil",100);
+        nbt.putInt(MetallicsArts.MOD_ID+".BandChromiumNicrosil.chromium",0);
+        nbt.putInt(MetallicsArts.MOD_ID+".BandChromiumNicrosil.nicrosil",0);
+        nbt.putInt(MetallicsArts.MOD_ID+".BandChromiumNicrosil.capacityChromium",100);
+        nbt.putInt(MetallicsArts.MOD_ID+".BandChromiumNicrosil.capacityNicrosil",100);
         setNbt(nbt);
     }
 }

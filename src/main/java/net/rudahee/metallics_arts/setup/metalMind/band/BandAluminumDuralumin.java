@@ -2,15 +2,16 @@ package net.rudahee.metallics_arts.setup.metalMind.band;
 
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
+import net.rudahee.metallics_arts.MetallicsArts;
 
 public class BandAluminumDuralumin extends BandMindAbstract {
-    CompoundNBT nbt;
+    CompoundNBT nbt = new CompoundNBT();
     public BandAluminumDuralumin (Item.Properties properties){
         super(properties);
-        nbt.putInt("aluminum",0);
-        nbt.putInt("duralumin",0);
-        nbt.putInt("capacityAluminum",100);
-        nbt.putInt("capacityDuralumin",100);
+        nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.aluminum",0);
+        nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.duralumin",0);
+        nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.capacityAluminum",100);
+        nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.capacityDuralumin",100);
         setNbt(nbt);
     }
 }

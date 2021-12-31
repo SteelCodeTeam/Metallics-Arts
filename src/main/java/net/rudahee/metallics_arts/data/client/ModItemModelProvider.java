@@ -34,6 +34,30 @@ public class ModItemModelProvider extends ItemModelProvider {
             builder(itemGenerated,"item/"+ gem.getGemNameLower()+"_nugget", "item/gems/nugget/" +gem.getGemNameLower()+"_nugget");
         });
 
+
+        builder(itemGenerated,"item/band_aluminum_duralumin","item/metal_mind/band");
+        builder(itemGenerated,"item/band_atium_malatium","item/metal_mind/band");
+        builder(itemGenerated,"item/band_cadmium_endalloy","item/metal_mind/band");
+        builder(itemGenerated,"item/band_chromium_nicrosil","item/metal_mind/band");
+        builder(itemGenerated,"item/band_copper_bronze","item/metal_mind/band");
+        builder(itemGenerated,"item/band_electrum_gold","item/metal_mind/band");
+        builder(itemGenerated,"item/band_lerasium_ettmetal","item/metal_mind/band");
+        builder(itemGenerated,"item/band_pewter_tin","item/metal_mind/band");
+        builder(itemGenerated,"item/band_steel_iron","item/metal_mind/band");
+        builder(itemGenerated,"item/band_zinc_brass","item/metal_mind/band");
+
+        builder(itemGenerated,"item/ring_aluminum_duralumin","item/metal_mind/ring");
+        builder(itemGenerated,"item/ring_atium_malatium","item/metal_mind/ring");
+        builder(itemGenerated,"item/ring_cadmium_endalloy","item/metal_mind/ring");
+        builder(itemGenerated,"item/ring_chromium_nicrosil","item/metal_mind/ring");
+        builder(itemGenerated,"item/ring_copper_bronze","item/metal_mind/ring");
+        builder(itemGenerated,"item/ring_electrum_gold","item/metal_mind/ring");
+        builder(itemGenerated,"item/ring_lerasium_ettmetal","item/metal_mind/ring");
+        builder(itemGenerated,"item/ring_pewter_tin","item/metal_mind/ring");
+        builder(itemGenerated,"item/ring_steel_iron","item/metal_mind/ring");
+        builder(itemGenerated,"item/ring_zinc_brass","item/metal_mind/ring");
+
+
         builder(itemGenerated,"item/vial","item/consumables/vial");
     }
     private ItemModelBuilder builder (ModelFile itemGenerated, String outPath, String texturePath){

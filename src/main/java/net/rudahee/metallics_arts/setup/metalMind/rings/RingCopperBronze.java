@@ -1,15 +1,16 @@
 package net.rudahee.metallics_arts.setup.metalMind.rings;
 
 import net.minecraft.nbt.CompoundNBT;
+import net.rudahee.metallics_arts.MetallicsArts;
 
 public class RingCopperBronze extends RingsMindAbstract{
-    CompoundNBT nbt;
+    CompoundNBT nbt = new CompoundNBT();
     public RingCopperBronze(Properties properties){
         super(properties);
-        nbt.putInt("copper",0);
-        nbt.putInt("bronze",0);
-        nbt.putInt("capacityCopper",100);
-        nbt.putInt("capacityBronze",100);
+        nbt.putInt(MetallicsArts.MOD_ID+".RingCopperBronze.copper",0);
+        nbt.putInt(MetallicsArts.MOD_ID+".RingCopperBronze.bronze",0);
+        nbt.putInt(MetallicsArts.MOD_ID+".RingCopperBronze.capacityCopper",100);
+        nbt.putInt(MetallicsArts.MOD_ID+".RingCopperBronze.capacityBronze",100);
         setNbt(nbt);
     }
 }
