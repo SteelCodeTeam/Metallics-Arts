@@ -126,6 +126,10 @@ dependencies {
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.5-4.0.6.8")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.5-4.0.6.8:api")
 
+    compileOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.138:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.138")
+
+
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
     // compile "some.group:artifact:version"
@@ -164,6 +168,19 @@ jar {
 repositories {
     maven {
         url = "https://maven.theillusivec4.top/"
+    }
+}
+
+repositories {
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.dev"
     }
 }
 
