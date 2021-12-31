@@ -1,8 +1,6 @@
 package net.rudahee.metallics_arts.players;
 
-import com.google.common.graph.Network;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraftforge.fml.network.NetworkHooks;
 import net.rudahee.metallics_arts.data.NetworkUtils;
 import net.rudahee.metallics_arts.setup.enums.MetalsNBTData;
 

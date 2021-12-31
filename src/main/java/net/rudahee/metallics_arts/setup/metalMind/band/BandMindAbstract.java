@@ -1,9 +1,12 @@
 package net.rudahee.metallics_arts.setup.metalMind.band;
 
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class BandMindAbstract extends Item {
+public class BandMindAbstract extends Item implements ICurioItem {
 
     private CompoundNBT nbt;
     private int maxCapacity;
@@ -35,4 +38,8 @@ public class BandMindAbstract extends Item {
         this.maxCapacity = maxCapacity;
     }
 
+    @Override
+    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+        ICurioItem.super.curioTick(identifier, index, livingEntity, stack);
+    }
 }

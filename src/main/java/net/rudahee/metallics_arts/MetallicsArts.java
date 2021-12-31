@@ -19,6 +19,8 @@ import net.rudahee.metallics_arts.minecraft_objects.screen.AlloyFurnaceScreen;
 import net.rudahee.metallics_arts.setup.Registration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import top.theillusivec4.curios.api.SlotTypeMessage;
+import top.theillusivec4.curios.api.SlotTypePreset;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -74,8 +76,14 @@ public class MetallicsArts
 
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
-        // some example code to dispatch IMC to another mod
-        InterModComms.sendTo("examplemod", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
+                ()-> SlotTypePreset.BRACELET.getMessageBuilder().build());
+        InterModComms.sendTo("curios1", SlotTypeMessage.REGISTER_TYPE,
+                ()-> SlotTypePreset.BRACELET.getMessageBuilder().build());
+        InterModComms.sendTo("curios2", SlotTypeMessage.REGISTER_TYPE,
+                ()-> SlotTypePreset.BRACELET.getMessageBuilder().build());
+        InterModComms.sendTo("curios3", SlotTypeMessage.REGISTER_TYPE,
+                ()-> SlotTypePreset.RING.getMessageBuilder().build());
     }
 
     private void processIMC(final InterModProcessEvent event)

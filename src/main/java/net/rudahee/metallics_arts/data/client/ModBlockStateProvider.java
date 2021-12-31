@@ -6,7 +6,6 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.ModBlock;
-import net.rudahee.metallics_arts.setup.Registration;
 
 public class ModBlockStateProvider extends BlockStateProvider {
 
