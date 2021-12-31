@@ -9,9 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.recipes.ModRecipeTypes;
-import net.rudahee.metallics_arts.minecraft_objects.containers.ModContainers;
-import net.rudahee.metallics_arts.minecraft_objects.tile_entity.ModTileEntities;
+import net.rudahee.metallics_arts.setup.registries.*;
 
 public class Registration {
 
@@ -22,7 +20,7 @@ public class Registration {
 
 
     public static void register() {
-        // We inject our objects to "Minecraft Bus" to load all of this? these? i dont know?
+        // We inject our objects to "Minecraft Bus" to load all of this
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 

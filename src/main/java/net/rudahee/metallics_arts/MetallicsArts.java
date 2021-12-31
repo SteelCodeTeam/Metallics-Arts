@@ -1,10 +1,8 @@
 package net.rudahee.metallics_arts;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -14,17 +12,14 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.rudahee.metallics_arts.minecraft_objects.containers.ModContainers;
-import net.rudahee.metallics_arts.minecraft_objects.screen.AlloyFurnaceScreen;
+import net.rudahee.metallics_arts.setup.registries.ModContainers;
+import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceScreen;
 import net.rudahee.metallics_arts.setup.Registration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
