@@ -136,65 +136,38 @@ public class ModRecipeProvider extends RecipeProvider {
                     .save(recipesConsumer,new ResourceLocation("alomantic_arts_band_"+object.getFirstMetal()+"_"+object.getSecondMetal()+"2"));
 
 
-/*
+            if (object.isGems()){
+                item1 = ModItems.ITEM_GEMS_BASE.get(object.getFirstMetal()).asItem();
+                item2 = ModItems.ITEM_GEMS_BASE.get(object.getSecondMetal()).asItem();
+            }else if (object.isVanilla()){
+                if (object.getSecondMetal()=="iron")
+                    item1 = Items.IRON_INGOT;
+                else
+                    item1 = Items.GOLD_INGOT;
+                item2 = ModItems.ITEM_METAL_INGOT.get(object.getFirstMetal()).asItem();
+            }else{
+                item1 = ModItems.ITEM_METAL_INGOT.get(object.getFirstMetal()).asItem();
+                item2 = ModItems.ITEM_METAL_INGOT.get(object.getSecondMetal()).asItem();
+            }
+
             ShapedRecipeBuilder.shaped(object.getRing())
-                    .define('#',ModItems.ITEM_METAL_INGOT.get(object.getFirstMetal()))
-                    .define('x',ModItems.ITEM_METAL_INGOT.get(object.getSecondMetal()))
+                    .define('#',item1)
+                    .define('x',item2)
                     .pattern("xxx")
                     .pattern("# x")
                     .pattern("###")
-                    .unlockedBy("has_item",has(object.getBand()))
+                    .unlockedBy("has_item",has(object.getRing()))
                     .save(recipesConsumer,new ResourceLocation("alomantic_arts_ring_"+object.getFirstMetal()+"_"+object.getSecondMetal()));
 
             ShapedRecipeBuilder.shaped(object.getRing())
-                    .define('x',ModItems.ITEM_METAL_INGOT.get(object.getFirstMetal()))
-                    .define('#',ModItems.ITEM_METAL_INGOT.get(object.getSecondMetal()))
+                    .define('#',item2)
+                    .define('x',item1)
                     .pattern("xxx")
                     .pattern("# x")
                     .pattern("###")
                     .unlockedBy("has_item",has(object.getRing()))
                     .save(recipesConsumer,new ResourceLocation("alomantic_arts_ring_"+object.getFirstMetal()+"_"+object.getSecondMetal()+"2"));
-*/
-
         });
-
-
-
-
-
-
-        /*
-        ModItems.ITEM_GEMS_NUGGET.forEach((name, item) -> {
-            ShapedRecipeBuilder.shaped(ModItems.ITEM_GEMS_BASE.get(name))
-                    .define('#', ModItems.ITEM_GEMS_NUGGET.get(name))
-                    .pattern("###")
-                    .pattern("###")
-                    .pattern("###")
-                    .unlockedBy("has_block", has(item))
-                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModItems.ITEM_GEMS_BASE.get(name).getDescriptionId()));
-        });
-         */
-
-
-/*
-        ShapedRecipeBuilder.shaped(ModItems.BandAluminumDuralumin.get())
-                .define('#',ModBlock.BLOCK_METAL_BLOCKS.get("aluminum").asItem())
-                .define('x',ModBlock.BLOCK_METAL_BLOCKS.get("duralumin").asItem())
-                .pattern("xxx").pattern("# x").pattern("###")
-                .unlockedBy("has_item",has(ModItems.BandAluminumDuralumin.get()))
-                .save(recipesConsumer,new ResourceLocation("alomantic_arts_band_aluminum_duralumin"));
-
-        ShapedRecipeBuilder.shaped(ModItems.BandAluminumDuralumin.get())
-                .define('x',ModBlock.BLOCK_METAL_BLOCKS.get("aluminum").asItem())
-                .define('#',ModBlock.BLOCK_METAL_BLOCKS.get("duralumin").asItem())
-                .pattern("xxx").pattern("# x").pattern("###")
-                .unlockedBy("has_item",has(ModItems.BandAluminumDuralumin.get()))
-                .save(recipesConsumer,new ResourceLocation("alomantic_arts_band_aluminum_duralumin2"));
-
-
-*/
-
-       //BrewingRecipeRegistry.addRecipe(Ingredient.of(() -> ModItems.VIAL.get() ),Ingredient.of(ModItems.ITEM_METAL_NUGGET.get("steel").asItem()),ModItems.VIAL.get().getDefaultInstance());
 
     }
 
