@@ -72,68 +72,152 @@ public class ModItems {
 
     }
 
-    //public static final RegistryObject<Item> BandAluminumDuralumin = register
-           // ("band_aluminum_duralumin", ()-> new BandAluminumDuralumin(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
+    static {
+         RegistryObject<Item> BandAluminumDuralumin = register("band_aluminum_duralumin",
+                 () ->{
+                     Item item = new BandAluminumDuralumin(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                     MetalMindData.valueOf("ALUMINUM_DURALUMIN").setBand(item);
+                     return item;
+                 }
+                 );
+        RegistryObject<Item> BandAtiumMalatium = register("band_atium_malatium",
+                () ->{
+                    Item item = new BandAtiumMalatium(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("ATIUM_MALTIUM").setBand(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> BandCadmiumBendalloy = register("band_cadmium_bendalloy",
+                () ->{
+                    Item item = new BandCadmiumBendalloy(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("CADMIUM_BENDALLOY").setBand(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> BandChromiumNicrosil = register("band_chromium_nicrosil",
+                () ->{
+                    Item item = new BandChromiumNicrosil(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("CHROMIUM_NICROSIL").setBand(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> BandCopperBronze = register("band_copper_bronze",
+                () ->{
+                    Item item = new BandCopperBronze(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("COPPER_BRONZE").setBand(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> BandElectrumGold = register("band_electrum_gold",
+                () ->{
+                    Item item = new BandElectrumGold(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("ELECTRUM_GOLD").setBand(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> BandLerasiumEttmetal = register("band_lerasium_ettmetal",
+                () ->{
+                    Item item = new BandLerasiumEttmetal(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("LERASIUM_ETTMETAL").setBand(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> BandPewterTin = register("band_pewter_tin",
+                () ->{
+                    Item item = new BandPwterTin(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("TIN_PEWTER").setBand(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> BandSteelIron = register("band_steel_iron",
+                () ->{
+                    Item item = new BandSteelIron(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("STEEL_IRON").setBand(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> BandZincBrass = register("band_zinc_brass",
+                () ->{
+                    Item item = new RingZincBrass(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("ZINC_BRASS").setBand(item);
+                    return item;
+                }
+        );
 
-
-    public static final RegistryObject<Item> BandAtiumMalatium = register
-            ("band_atium_malatium", ()-> new BandAtiumMalatium(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> BandCadmiumBendalloy = register
-            ("band_cadmium_endalloy", ()-> new BandCadmiumBendalloy(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> BandChromiumNicrosil = register
-            ("band_chromium_nicrosil", ()-> new BandChromiumNicrosil(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> BandCopperBronze = register
-            ("band_copper_bronze", ()-> new BandCopperBronze(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> BandElectrumGold = register
-            ("band_electrum_gold", ()-> new BandElectrumGold(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> BandLerasiumEttmetal = register
-            ("band_lerasium_ettmetal", ()-> new BandLerasiumEttmetal(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> BandPewterTin = register
-            ("band_pewter_tin", ()-> new BandPwterTin(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> BandSteelIron = register
-            ("band_steel_iron", ()-> new BandSteelIron(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> BandZincBrass = register
-            ("band_zinc_brass", ()-> new RingZincBrass(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-
-    public static final RegistryObject<Item> RingAluminumDuralumin = register
-            ("ring_aluminum_duralumin", ()-> new RingAluminumDuralumin(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> RingAtiumMalatium = register
-            ("ring_atium_malatium", ()-> new RingAtiumMalatium(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> RingCadmiumBendalloy = register
-            ("ring_cadmium_endalloy", ()-> new RingCadmiumBendalloy(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> RingChromiumNicrosil = register
-            ("ring_chromium_nicrosil", ()-> new RingChromiumNicrosil(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> RingCopperBronze = register
-            ("ring_copper_bronze", ()-> new RingCopperBronze(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> RingElectrumGold = register
-            ("ring_electrum_gold", ()-> new RingElectrumGold(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> RingLerasiumEttmetal = register
-            ("ring_lerasium_ettmetal", ()-> new RingLerasiumEttmetal(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> RingPewterTin = register
-            ("ring_pewter_tin", ()-> new RingPewterTin(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> RingSteelIron = register
-            ("ring_steel_iron", ()-> new RingSteelIron(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-    public static final RegistryObject<Item> RingZincBrass = register
-            ("ring_zinc_brass", ()-> new RingZincBrass(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-
-    /*static {
-
-        //public static final RegistryObject<Item> BandAluminumDuralumin = register
-        //      ("band_aluminum_duralumin", ()-> new BandAluminumDuralumin(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
-
-        Arrays.asList(MetalMindData.values()).forEach(object -> {
-            RegistryObject<Item> BandAluminumDuralumin
-            object.setBand();
-        });
-    }*/
-
-    //MetalBurningRecipeData.valueOf(gem.getGemNameUpper()).setItem(item);
+        RegistryObject<Item> RingAluminumDuralumin = register("ring_aluminum_duralumin",
+                () ->{
+                    Item item = new RingAluminumDuralumin(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("ALUMINUM_DURALUMIN").setRing(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> RingAtiumMalatium = register("ring_atium_malatium",
+                () ->{
+                    Item item = new RingAtiumMalatium(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("ATIUM_MALTIUM").setRing(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> RingCadmiumBendalloy = register("ring_cadmium_endalloy",
+                () ->{
+                    Item item = new RingCadmiumBendalloy(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("CADMIUM_BENDALLOY").setRing(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> RingChromiumNicrosil = register("ring_chromium_nicrosil",
+                () ->{
+                    Item item = new RingChromiumNicrosil(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("CHROMIUM_NICROSIL").setRing(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> RingCopperBronze = register("ring_copper_bronze",
+                () ->{
+                    Item item = new RingCopperBronze(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("COPPER_BRONZE").setRing(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> RingElectrumGold = register("ring_electrum_gold",
+                () ->{
+                    Item item = new RingElectrumGold(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("ELECTRUM_GOLD").setRing(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> RingLerasiumEttmetal = register("ring_lerasium_ettmetal",
+                () ->{
+                    Item item = new RingLerasiumEttmetal(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("LERASIUM_ETTMETAL").setRing(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> RingPewterTin = register("ring_pewter_tin",
+                () ->{
+                    Item item = new RingPewterTin(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("TIN_PEWTER").setRing(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> RingSteelIron = register("ring_steel_iron",
+                () ->{
+                    Item item = new RingSteelIron(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("STEEL_IRON").setRing(item);
+                    return item;
+                }
+        );
+        RegistryObject<Item> RingZincBrass = register("ring_zinc_brass",
+                () ->{
+                    Item item = new RingZincBrass(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                    MetalMindData.valueOf("ZINC_BRASS").setRing(item);
+                    return item;
+                }
+        );
+    }
 
     public static final RegistryObject<Item> VIAL = register
             ("vial", () -> new Vial(new Item.Properties().food(new Food.Builder().nutrition(0).build()).tab(ModItemGroup.METALLIC_ARTS_TAG)));
-
-
-
 
     public static void register() {
     }

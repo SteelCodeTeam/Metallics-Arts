@@ -1,6 +1,8 @@
 package net.rudahee.metallics_arts.data.client_providers;
 
 import net.minecraft.data.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
@@ -99,41 +101,57 @@ public class ModRecipeProvider extends RecipeProvider {
 
         });
 
-
         Arrays.asList(MetalMindData.values()).forEach(object -> {
+            Item item1,item2;
+            if (object.isGems()){
+                item1 = ModBlock.BLOCK_GEMS_BLOCKS.get(object.getFirstMetal()).asItem();
+                item2 = ModBlock.BLOCK_GEMS_BLOCKS.get(object.getSecondMetal()).asItem();
+            }else if (object.isVanilla()){
+                if (object.getSecondMetal()=="iron")
+                    item1 = Items.IRON_BLOCK;
+                else
+                    item1 = Items.GOLD_BLOCK;
+                item2 = ModBlock.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
+            }else{
+               item1 = ModBlock.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
+               item2 = ModBlock.BLOCK_METAL_BLOCKS.get(object.getSecondMetal()).asItem();
+            }
 
             ShapedRecipeBuilder.shaped(object.getBand())
-                    .define('#',ModBlock.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem())
-                    .define('x',ModBlock.BLOCK_METAL_BLOCKS.get(object.getSecondMetal()).asItem())
-                    .pattern("xxx").pattern("# x").pattern("###")
+                    .define('#',item1)
+                    .define('x',item2)
+                    .pattern("xxx")
+                    .pattern("# x")
+                    .pattern("###")
                     .unlockedBy("has_item",has(object.getBand()))
                     .save(recipesConsumer,new ResourceLocation("alomantic_arts_band_"+object.getFirstMetal()+"_"+object.getSecondMetal()));
 
-            /*ShapedRecipeBuilder.shaped(ModItems.BandAluminumDuralumin.get())
-                    .define('#',ModBlock.BLOCK_METAL_BLOCKS.get("aluminum").asItem())
-                    .define('x',ModBlock.BLOCK_METAL_BLOCKS.get("duralumin").asItem())
-                    .pattern("xxx").pattern("# x").pattern("###")
-                    .unlockedBy("has_item",has(ModItems.BandAluminumDuralumin.get()))
-                    .save(recipesConsumer,new ResourceLocation("alomantic_arts_band_aluminum_duralumin"));/
-
-
-            /*ShapedRecipeBuilder.shaped(object.getBand())
-                    .define('#',ModBlock.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem())
-                    .define('x',ModBlock.BLOCK_METAL_BLOCKS.get(object.getSecondMetal()).asItem())
-                    .pattern("xxx").pattern("# x").pattern("###")
+            ShapedRecipeBuilder.shaped(object.getBand())
+                    .define('#',item2)
+                    .define('x',item1)
+                    .pattern("xxx")
+                    .pattern("# x")
+                    .pattern("###")
                     .unlockedBy("has_item",has(object.getBand()))
                     .save(recipesConsumer,new ResourceLocation("alomantic_arts_band_"+object.getFirstMetal()+"_"+object.getSecondMetal()+"2"));
 
+
+/*
             ShapedRecipeBuilder.shaped(object.getRing())
-                    .define('#',ModItems.ITEM_METAL_INGOT.get(object.getFirstMetal()).asItem())
-                    .define('x',ModItems.ITEM_METAL_INGOT.get(object.getSecondMetal()).asItem())
-                    .pattern("xxx").pattern("# x").pattern("###")
-                    .unlockedBy("has_item",has(object.getRing()))
+                    .define('#',ModItems.ITEM_METAL_INGOT.get(object.getFirstMetal()))
+                    .define('x',ModItems.ITEM_METAL_INGOT.get(object.getSecondMetal()))
+                    .pattern("xxx")
+                    .pattern("# x")
+                    .pattern("###")
+                    .unlockedBy("has_item",has(object.getBand()))
                     .save(recipesConsumer,new ResourceLocation("alomantic_arts_ring_"+object.getFirstMetal()+"_"+object.getSecondMetal()));
+
             ShapedRecipeBuilder.shaped(object.getRing())
-                    .define('#',ModItems.ITEM_METAL_INGOT.get(object.getFirstMetal()).asItem())
-                    .define('x',ModItems.ITEM_METAL_INGOT.get(object.getSecondMetal()).asItem())
-                    .pattern("xxx").pattern("# x").pattern("###")
+                    .define('x',ModItems.ITEM_METAL_INGOT.get(object.getFirstMetal()))
+                    .define('#',ModItems.ITEM_METAL_INGOT.get(object.getSecondMetal()))
+                    .pattern("xxx")
+                    .pattern("# x")
+                    .pattern("###")
                     .unlockedBy("has_item",has(object.getRing()))
                     .save(recipesConsumer,new ResourceLocation("alomantic_arts_ring_"+object.getFirstMetal()+"_"+object.getSecondMetal()+"2"));
 */
