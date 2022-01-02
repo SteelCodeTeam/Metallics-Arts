@@ -6,6 +6,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.rudahee.metallics_arts.modules.items.metalminds.bands.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.rings.*;
 import net.rudahee.metallics_arts.setup.Registration;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
 import net.rudahee.metallics_arts.setup.enums.gems.Gems;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.enums.metals.MetalBurningRecipeData;
@@ -31,23 +32,18 @@ public class ModItems {
     static {
         // Generating ingots and nuggets off all metals
         List<Metal> metalList = Arrays.asList(Metal.values());
-
         metalList.forEach(metal -> {
             register(metal.getMetalNameLower() + "_ingot", () -> {
                 Item item = new Item(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
-
                 ITEM_METAL_INGOT.put(metal.getMetalNameLower(), item);
-
                 if (metal.isAlloy()) {
                     MetalBurningRecipeData.valueOf(metal.getMetalNameUpper()).setItem(item);
                 }
-
                 return item;
             });
 
             register(metal.getMetalNameLower() + "_nugget", () -> {
                 Item item = new Item(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
-
                 ITEM_METAL_NUGGET.put(metal.getMetalNameLower(), item);
                 return item;
             });
@@ -60,28 +56,26 @@ public class ModItems {
             register(gem.getGemNameLower(),
                     () -> {
                         Item item = new Item(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
-
                         ITEM_GEMS_BASE.put(gem.getGemNameLower(), item);
-
                         if (gem.getGemNameLower() == "malatium") {
                             MetalBurningRecipeData.valueOf(gem.getGemNameUpper()).setItem(item);
                         }
-
                         return item;
                     });
-
             register(gem.getGemNameLower() + "_nugget",
                     () -> {
                         Item item = new Item(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
-
                         ITEM_GEMS_NUGGET.put(gem.getGemNameLower(), item);
                         return item;
                     });
         });
+
     }
 
-    public static final RegistryObject<Item> BandAluminumDuralumin = register
-            ("band_aluminum_duralumin", ()-> new BandAluminumDuralumin(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
+    //public static final RegistryObject<Item> BandAluminumDuralumin = register
+           // ("band_aluminum_duralumin", ()-> new BandAluminumDuralumin(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
+
+
     public static final RegistryObject<Item> BandAtiumMalatium = register
             ("band_atium_malatium", ()-> new BandAtiumMalatium(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
     public static final RegistryObject<Item> BandCadmiumBendalloy = register
@@ -121,8 +115,23 @@ public class ModItems {
             ("ring_steel_iron", ()-> new RingSteelIron(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
     public static final RegistryObject<Item> RingZincBrass = register
             ("ring_zinc_brass", ()-> new RingZincBrass(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
+
+    /*static {
+
+        //public static final RegistryObject<Item> BandAluminumDuralumin = register
+        //      ("band_aluminum_duralumin", ()-> new BandAluminumDuralumin(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG)));
+
+        Arrays.asList(MetalMindData.values()).forEach(object -> {
+            RegistryObject<Item> BandAluminumDuralumin
+            object.setBand();
+        });
+    }*/
+
+    //MetalBurningRecipeData.valueOf(gem.getGemNameUpper()).setItem(item);
+
     public static final RegistryObject<Item> VIAL = register
             ("vial", () -> new Vial(new Item.Properties().food(new Food.Builder().nutrition(0).build()).tab(ModItemGroup.METALLIC_ARTS_TAG)));
+
 
 
 
