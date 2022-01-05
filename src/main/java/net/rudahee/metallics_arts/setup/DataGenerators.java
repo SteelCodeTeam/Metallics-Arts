@@ -26,5 +26,6 @@ public final class DataGenerators {
         gen.addProvider(new ModLootTableProvider(gen));
         gen.addProvider(new ModRecipeProvider(gen));
 
+
     }
 }
