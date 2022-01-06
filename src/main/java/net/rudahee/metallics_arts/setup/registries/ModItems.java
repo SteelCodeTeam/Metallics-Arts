@@ -11,7 +11,6 @@ import net.rudahee.metallics_arts.setup.enums.gems.Gems;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.enums.metals.MetalBurningRecipeData;
 import net.rudahee.metallics_arts.modules.items.vials.vial.Vial;
-
 import java.util.Arrays;
 
 

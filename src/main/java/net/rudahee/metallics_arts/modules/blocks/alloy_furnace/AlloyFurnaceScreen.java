@@ -8,7 +8,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceContainer;
 
 public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
     private AlloyFurnaceContainer alloyContainer = null;

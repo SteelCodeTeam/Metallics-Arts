@@ -1,17 +1,14 @@
 package net.rudahee.metallics_arts.setup;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.setup.registries.*;
 
 public class Registration {

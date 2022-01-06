@@ -7,7 +7,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceTileEntity;
-import net.rudahee.metallics_arts.setup.registries.ModBlock;
 
 public class ModTileEntities {
 
