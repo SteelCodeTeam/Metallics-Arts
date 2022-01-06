@@ -2,9 +2,11 @@ package net.rudahee.metallics_arts;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -12,6 +14,7 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.setup.registries.ModContainers;
 import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceScreen;
 import net.rudahee.metallics_arts.setup.Registration;
@@ -65,6 +68,7 @@ public class MetallicsArts
         event.enqueueWork(() -> {
             ScreenManager.register(ModContainers.ALLOY_FURNACE_CONTAINER.get(),
                     AlloyFurnaceScreen::new);
+            KeyInit.register();
         });
     }
 
