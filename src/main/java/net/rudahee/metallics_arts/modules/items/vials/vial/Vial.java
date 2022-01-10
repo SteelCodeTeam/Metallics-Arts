@@ -7,10 +7,12 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModItemGroup;
+import net.rudahee.metallics_arts.setup.registries.ModItems;
 
 import java.util.*;
 
@@ -22,11 +24,10 @@ public class Vial extends Item {
 
     public Vial(Properties properties) {
         super(properties);
-
         Arrays.asList(MetalsNBTData.values()).forEach(m->{
             compoundNBT.putInt(MetallicsArts.MOD_ID + "." + m.getNameLower()+"_reserve",0);
         });
-        compoundNBT.putInt(MetallicsArts.MOD_ID + "." +"max_capavility",10);
+
     }
 
     @Override
@@ -36,7 +37,6 @@ public class Vial extends Item {
 
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        player.inventory.add(new ItemStack(Items.STONE)); // remove
 
         player.startUsingItem(hand);
 
@@ -47,12 +47,13 @@ public class Vial extends Item {
 
     @Override
     public ItemStack finishUsingItem(ItemStack itemStack, World world, LivingEntity livingEntity) {
+
         if (!world.isClientSide()) {
             Arrays.asList(MetalsNBTData.values()).forEach(m->{
                 // Do logic here!!
-                int auxMetalValue = compoundNBT.getInt(MetallicsArts.MOD_ID + "." + m.getNameLower()+"_reserve");
-                compoundNBT.putInt(MetallicsArts.MOD_ID + "." + m.getNameLower()+"_reserve",auxMetalValue+1);
-                System.out.println(MetallicsArts.MOD_ID + "." + m.getNameLower() + " -- " + compoundNBT.getInt(MetallicsArts.MOD_ID + "." + m.getNameLower() + "_reserve"));
+                ((PlayerEntity) livingEntity).inventory.add(new ItemStack(Items.STONE));
+                System.out.println(m.getGemNameLower()+ " -- "+ itemStack.getTag().getInt(m.getGemNameLower()));
+
             });
         }
         return super.finishUsingItem(itemStack, world, livingEntity);
@@ -76,6 +77,21 @@ public class Vial extends Item {
     @Override
     public boolean isEdible() {
         return true;
+    }
+
+    @Override
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+        items.add(new ItemStack(this, 1));
+
+        ItemStack resultItem = new ItemStack(ModItems.VIAL.get(),1);
+        CompoundNBT nbt = new CompoundNBT();
+        for (MetalsNBTData mt : MetalsNBTData.values()) {
+            nbt.putInt(mt.getGemNameLower(), 0);
+            //MetallicsArts.MOD_ID + "." + metal.getNameLower()+"_reserve"
+        }
+        nbt.putInt("CustomModelData", 1);
+        resultItem.setTag(nbt);
+        items.add(resultItem);
     }
 
     public CompoundNBT getCompoundNBT() {

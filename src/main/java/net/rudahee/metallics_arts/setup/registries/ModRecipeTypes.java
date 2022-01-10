@@ -19,15 +19,19 @@ public class ModRecipeTypes {
             = RECIPE_SERIALIZER.register("alloy", AlloyFurnaceRecipe.Serializer::new);
 
     public static final RegistryObject<IRecipeSerializer<VialItemRecipe>> VIAL_ITEM_RECIPE_SERIALIZER
-            = RECIPE_SERIALIZER.register("vial_recippe", VialItemRecipe.Serializer::new);
+            = RECIPE_SERIALIZER.register("vial_filling", VialItemRecipe.Serializer::new);
 
     public static IRecipeType<AlloyFurnaceRecipe> ALLOY_FURNACE_RECIPE
             = IRecipeType.register("metallics_arts:alloy");
+
+    public static IRecipeType<VialItemRecipe> VIAL_ITEM_RECIPE
+            = IRecipeType.register("metallics_arts:vial_filling");
 
 
     public static void register(IEventBus eventBus) {
         RECIPE_SERIALIZER.register(eventBus);
         Registry.register(Registry.RECIPE_TYPE, AlloyFurnaceRecipe.TYPE_ID, ALLOY_FURNACE_RECIPE);
+        Registry.register(Registry.RECIPE_TYPE,"metallics_arts:vial_filling",VIAL_ITEM_RECIPE);
     }
 
 }

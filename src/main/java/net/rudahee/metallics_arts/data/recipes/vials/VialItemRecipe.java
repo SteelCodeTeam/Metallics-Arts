@@ -8,6 +8,7 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.SpecialRecipe;
 import net.minecraft.item.crafting.SpecialRecipeSerializer;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.rudahee.metallics_arts.MetallicsArts;
@@ -32,9 +33,9 @@ public class VialItemRecipe extends SpecialRecipe {
             add(Ingredient.of(metal.getItem()));
         }
         for (Item metal: ModItems.ITEM_METAL_NUGGET.values()) {
-            if (!ModItems.ITEM_METAL_INGOT.get("lead").getDescriptionId().equals(metal.getDescriptionId())
-                && !ModItems.ITEM_METAL_INGOT.get("silver").getDescriptionId().equals(metal.getDescriptionId())
-                && !ModItems.ITEM_METAL_INGOT.get("nickel").getDescriptionId().equals(metal.getDescriptionId())) {
+            if (!ModItems.ITEM_METAL_NUGGET.get("lead").getDescriptionId().equals(metal.getDescriptionId())
+                && !ModItems.ITEM_METAL_NUGGET.get("silver").getDescriptionId().equals(metal.getDescriptionId())
+                && !ModItems.ITEM_METAL_NUGGET.get("nickel").getDescriptionId().equals(metal.getDescriptionId())) {
 
                 add(Ingredient.of(metal.getItem()));
             }
@@ -47,15 +48,25 @@ public class VialItemRecipe extends SpecialRecipe {
         super(location);
     }
 
+    public ItemStack  auxiliar = null;
     @Override
     public boolean matches(CraftingInventory inv, World world) {
         ItemStack result = ItemStack.EMPTY;
         ItemStack actualIngredient = null;
 
-        int[] metalsAgregar = new int[MetalsNBTData.values().length];
         int[] metalsEnVial = new int[MetalsNBTData.values().length];
-        Arrays.fill(metalsAgregar,0);
         Arrays.fill(metalsEnVial,0);
+
+        int[] cantStorage = new int[MetalsNBTData.values().length];
+        Arrays.fill(cantStorage,0);
+
+        boolean[] cantPep = new boolean[MetalsNBTData.values().length];
+        Arrays.fill(cantPep,false);
+
+        boolean[] ingredients = {false, false};
+
+        int cantMaxPep = 10;
+
 
         for(int i = 0; i < inv.getContainerSize(); i++) {
             actualIngredient = inv.getItem(i);
@@ -63,45 +74,61 @@ public class VialItemRecipe extends SpecialRecipe {
                 if (INGREDIENT_VIAL.test(inv.getItem(i))) {
                     if (actualIngredient.getTag() != null){
                         for (MetalsNBTData metal : MetalsNBTData.values()) {
-                            if (actualIngredient.getTag().contains(MetallicsArts.MOD_ID + "." + metal.getNameLower()+"_reserve")){
-                                int value = actualIngredient.getTag().getInt(MetallicsArts.MOD_ID + "." + metal.getNameLower()+"_reserve");
-                                metalsEnVial[metal.getIndex()] = value;
+                            if (actualIngredient.getTag().contains(metal.getGemNameLower())){
+                                cantStorage[metal.getIndex()] = metal.getMaxAllomanticTicksStorage()/cantMaxPep;
+                                metalsEnVial[metal.getIndex()] = actualIngredient.getTag().getInt(MetallicsArts.MOD_ID + "." + metal.getNameLower()+"_reserve");
                             }
                         }
-
+                        ingredients[0] = true;
                     }
-                    //Obtener NBT
-                } else if (INGREDIENT_NUGGET.contains(Ingredient.of(actualIngredient))) {
-                    for (MetalsNBTData metal : MetalsNBTData.values()){
-
+                }
+                auxiliar = actualIngredient;
+                if (INGREDIENT_NUGGET.stream().anyMatch(
+                        pepe -> pepe.getItems()[0].getItem().getDescriptionId().equals(auxiliar.getItem().getDescriptionId()))) {
+                    for (MetalsNBTData metal : MetalsNBTData.values()) {
+                        cantPep[metal.getIndex()]=true;
                     }
+                    ingredients[1] = true;
                 }
             }
         }
 
-        //logica para cambiar nbt
+        if (ingredients[0] && ingredients[1]){
 
+            this.final_result = new ItemStack(ModItems.VIAL.get(),1);
+            CompoundNBT compoundNBT = new CompoundNBT();
 
+            for (MetalsNBTData metal : MetalsNBTData.values()){
+                if (cantPep[metal.getIndex()]){
+                    compoundNBT.putInt(metal.getGemNameLower(),metalsEnVial[metal.getIndex()]+cantStorage[metal.getIndex()]);
+                }
 
-        return true;
+            }
+
+            this.final_result.setTag(compoundNBT);
+            return true;
+
+        }
+        else {
+            return false;
+        }
     }
 
     @Override
     public ItemStack assemble(CraftingInventory inv) {
-        return null;
+        return this.final_result.copy();
+
     }
 
     @Override
     public boolean canCraftInDimensions(int nose, int nose2) {
-        return false;
+        return true;
     }
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return ModRecipeTypes.ALLOY_FURNACE_SERIALIZER.get();
+        return ModRecipeTypes.VIAL_ITEM_RECIPE_SERIALIZER.get();
     }
-
-
 
     public static class Serializer extends SpecialRecipeSerializer<VialItemRecipe> {
 

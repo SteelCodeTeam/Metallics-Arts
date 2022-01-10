@@ -2,6 +2,8 @@ package net.rudahee.metallics_arts;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -29,6 +31,8 @@ public class MetallicsArts
 {
     // Mod id
     public static final String MOD_ID = "metallics_arts";
+
+
 
 
     // Directly reference a log4j logger.
