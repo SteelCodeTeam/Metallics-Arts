@@ -11,6 +11,7 @@ import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.items.vials.vial.Vial;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
@@ -51,7 +52,6 @@ public class VialItemRecipe extends SpecialRecipe {
     public ItemStack  auxiliar = null;
     @Override
     public boolean matches(CraftingInventory inv, World world) {
-        ItemStack result = ItemStack.EMPTY;
         ItemStack actualIngredient = null;
 
         int[] metalsEnVial = new int[MetalsNBTData.values().length];
@@ -60,13 +60,12 @@ public class VialItemRecipe extends SpecialRecipe {
         int[] cantStorage = new int[MetalsNBTData.values().length];
         Arrays.fill(cantStorage,0);
 
-        boolean[] cantPep = new boolean[MetalsNBTData.values().length];
-        Arrays.fill(cantPep,false);
+        boolean[] addMetal = new boolean[MetalsNBTData.values().length];
+        Arrays.fill(addMetal,false);
 
         boolean[] ingredients = {false, false};
 
         int cantMaxPep = 10;
-
 
         for(int i = 0; i < inv.getContainerSize(); i++) {
             actualIngredient = inv.getItem(i);
@@ -76,38 +75,50 @@ public class VialItemRecipe extends SpecialRecipe {
                         for (MetalsNBTData metal : MetalsNBTData.values()) {
                             if (actualIngredient.getTag().contains(metal.getGemNameLower())){
                                 cantStorage[metal.getIndex()] = metal.getMaxAllomanticTicksStorage()/cantMaxPep;
-                                metalsEnVial[metal.getIndex()] = actualIngredient.getTag().getInt(MetallicsArts.MOD_ID + "." + metal.getNameLower()+"_reserve");
+                                metalsEnVial[metal.getIndex()] = actualIngredient.getTag().getInt(metal.getNameLower());
+                                if(metalsEnVial[metal.getIndex()]==metal.getMaxAllomanticTicksStorage()){
+                                    return false;
+                                }
                             }
                         }
                         ingredients[0] = true;
                     }
                 }
                 auxiliar = actualIngredient;
+                /*for(Ingredient ingredient: INGREDIENT_NUGGET){
+                    if (ingredient.test(actualIngredient)){
+                        for (MetalsNBTData metal : MetalsNBTData.values()){
+                        }
+                        ingredients[1] = true;
+                    }
+                }*/
                 if (INGREDIENT_NUGGET.stream().anyMatch(
                         pepe -> pepe.getItems()[0].getItem().getDescriptionId().equals(auxiliar.getItem().getDescriptionId()))) {
                     for (MetalsNBTData metal : MetalsNBTData.values()) {
-                        cantPep[metal.getIndex()]=true;
+                         if (metal.getNameLower().equals(actualIngredient.getItem().getDescriptionId().substring(20,actualIngredient.getItem().getDescriptionId().indexOf("_",21)))){
+                            if (addMetal[metal.getIndex()]==true){
+                                return false;
+                            }
+                            addMetal[metal.getIndex()]=true;
+                            ingredients[1] = true;
+                        }
                     }
-                    ingredients[1] = true;
                 }
             }
         }
 
         if (ingredients[0] && ingredients[1]){
-
             this.final_result = new ItemStack(ModItems.VIAL.get(),1);
             CompoundNBT compoundNBT = new CompoundNBT();
-
             for (MetalsNBTData metal : MetalsNBTData.values()){
-                if (cantPep[metal.getIndex()]){
+                if (addMetal[metal.getIndex()]){
                     compoundNBT.putInt(metal.getGemNameLower(),metalsEnVial[metal.getIndex()]+cantStorage[metal.getIndex()]);
+                }else{
+                    compoundNBT.putInt(metal.getGemNameLower(),metalsEnVial[metal.getIndex()]);
                 }
-
             }
-
             this.final_result.setTag(compoundNBT);
             return true;
-
         }
         else {
             return false;

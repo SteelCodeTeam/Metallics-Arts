@@ -24,10 +24,6 @@ public class Vial extends Item {
 
     public Vial(Properties properties) {
         super(properties);
-        Arrays.asList(MetalsNBTData.values()).forEach(m->{
-            compoundNBT.putInt(MetallicsArts.MOD_ID + "." + m.getNameLower()+"_reserve",0);
-        });
-
     }
 
     @Override
@@ -40,8 +36,6 @@ public class Vial extends Item {
 
         player.startUsingItem(hand);
 
-        System.out.println(MetalsNBTData.values().length); // remove
-
         return new ActionResult<>(ActionResultType.CONSUME, player.getItemInHand(hand));
     }
 
@@ -51,7 +45,6 @@ public class Vial extends Item {
         if (!world.isClientSide()) {
             Arrays.asList(MetalsNBTData.values()).forEach(m->{
                 // Do logic here!!
-                ((PlayerEntity) livingEntity).inventory.add(new ItemStack(Items.STONE));
                 System.out.println(m.getGemNameLower()+ " -- "+ itemStack.getTag().getInt(m.getGemNameLower()));
 
             });
@@ -81,15 +74,11 @@ public class Vial extends Item {
 
     @Override
     public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
-        items.add(new ItemStack(this, 1));
-
         ItemStack resultItem = new ItemStack(ModItems.VIAL.get(),1);
         CompoundNBT nbt = new CompoundNBT();
         for (MetalsNBTData mt : MetalsNBTData.values()) {
             nbt.putInt(mt.getGemNameLower(), 0);
-            //MetallicsArts.MOD_ID + "." + metal.getNameLower()+"_reserve"
         }
-        nbt.putInt("CustomModelData", 1);
         resultItem.setTag(nbt);
         items.add(resultItem);
     }
