@@ -81,4 +81,8 @@ public enum MetalsNBTData implements IMetal, IGems {
     public int getMaxFeruchemicTicksStorage() {
         return maxFeruchemicTicksStorage;
     }
+
+    public int getIndex() {
+        return ordinal();
+    }
 }

@@ -10,13 +10,13 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.registries.ModItemGroup;
 
 import java.util.*;
 
 
 public class Vial extends Item {
 
-    //Map<String, CompoundNBT> list = new HashMap<>();
 
     CompoundNBT compoundNBT = new CompoundNBT();
 
@@ -26,6 +26,7 @@ public class Vial extends Item {
         Arrays.asList(MetalsNBTData.values()).forEach(m->{
             compoundNBT.putInt(MetallicsArts.MOD_ID + "." + m.getNameLower()+"_reserve",0);
         });
+        compoundNBT.putInt(MetallicsArts.MOD_ID + "." +"max_capavility",10);
     }
 
     @Override
@@ -75,6 +76,14 @@ public class Vial extends Item {
     @Override
     public boolean isEdible() {
         return true;
+    }
+
+    public CompoundNBT getCompoundNBT() {
+        return compoundNBT;
+    }
+
+    public void setCompoundNBT(CompoundNBT compoundNBT) {
+        this.compoundNBT = compoundNBT;
     }
 
 }
