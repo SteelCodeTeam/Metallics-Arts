@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public interface IInvestedPlayerData {
 
     void tickAllomancyBurningMetals(ServerPlayerEntity player);
-
     void tickFeruchemyStorageMetals(ServerPlayerEntity player);
     void tickFeruchemyDecantMetals(ServerPlayerEntity player);
 

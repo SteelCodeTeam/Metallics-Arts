@@ -50,6 +50,7 @@ public class VialItemRecipe extends SpecialRecipe {
     }
 
     public ItemStack  auxiliar = null;
+
     @Override
     public boolean matches(CraftingInventory inv, World world) {
         ItemStack actualIngredient = null;
@@ -85,13 +86,7 @@ public class VialItemRecipe extends SpecialRecipe {
                     }
                 }
                 auxiliar = actualIngredient;
-                /*for(Ingredient ingredient: INGREDIENT_NUGGET){
-                    if (ingredient.test(actualIngredient)){
-                        for (MetalsNBTData metal : MetalsNBTData.values()){
-                        }
-                        ingredients[1] = true;
-                    }
-                }*/
+                System.out.printf("COUNT = "+actualIngredient.getCount());
                 if (INGREDIENT_NUGGET.stream().anyMatch(
                         pepe -> pepe.getItems()[0].getItem().getDescriptionId().equals(auxiliar.getItem().getDescriptionId()))) {
                     for (MetalsNBTData metal : MetalsNBTData.values()) {
@@ -106,7 +101,6 @@ public class VialItemRecipe extends SpecialRecipe {
                 }
             }
         }
-
         if (ingredients[0] && ingredients[1]){
             this.final_result = new ItemStack(ModItems.VIAL.get(),1);
             CompoundNBT compoundNBT = new CompoundNBT();

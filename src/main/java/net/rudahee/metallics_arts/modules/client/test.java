@@ -23,6 +23,4 @@ public class test {
             player.inventory.add(new ItemStack(Items.FURNACE));
         }
     }
-
-
 }

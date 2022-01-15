@@ -185,7 +185,6 @@ public class DefaultInvestedPlayerData implements IInvestedPlayerData {
     @Override
     public void setCompleteInvested() {
         Arrays.asList(MetalsNBTData.values()).forEach(metalsNBTData -> {
-
             rootMetals.get(metalsNBTData.getNameLower()).replace("hasPlayerAllomanticPower", 1);
             rootMetals.get(metalsNBTData.getNameLower()).replace("hasPlayerFeruchemicPower", 1);
 
