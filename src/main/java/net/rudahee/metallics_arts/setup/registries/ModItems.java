@@ -157,7 +157,7 @@ public class ModItems {
                     return item;
                 }
         );
-        RegistryObject<Item> RingCadmiumBendalloy = register("ring_cadmium_endalloy",
+        RegistryObject<Item> RingCadmiumBendalloy = register("ring_cadmium_bendalloy",
                 () ->{
                     Item item = new RingCadmiumBendalloy(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
                     MetalMindData.valueOf("CADMIUM_BENDALLOY").setRing(item);

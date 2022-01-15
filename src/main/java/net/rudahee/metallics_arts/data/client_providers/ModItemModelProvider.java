@@ -40,7 +40,7 @@ public class ModItemModelProvider extends ItemModelProvider {
          */
         builder(itemGenerated,"item/band_aluminum_duralumin","item/metal_mind/band");
         builder(itemGenerated,"item/band_atium_malatium","item/metal_mind/band");
-        builder(itemGenerated,"item/band_cadmium_endalloy","item/metal_mind/band");
+        builder(itemGenerated,"item/band_cadmium_bendalloy","item/metal_mind/band");
         builder(itemGenerated,"item/band_chromium_nicrosil","item/metal_mind/band");
         builder(itemGenerated,"item/band_copper_bronze","item/metal_mind/band");
         builder(itemGenerated,"item/band_electrum_gold","item/metal_mind/band");
@@ -52,16 +52,16 @@ public class ModItemModelProvider extends ItemModelProvider {
         /*
         All textures for feruchemic rings
          */
-        builder(itemGenerated,"item/ring_aluminum_duralumin","item/metal_mind/ring");
+        builder(itemGenerated,"item/ring_aluminum_duralumin","item/metal_mind/aliminium_duralumin_ring");
         builder(itemGenerated,"item/ring_atium_malatium","item/metal_mind/ring");
-        builder(itemGenerated,"item/ring_cadmium_endalloy","item/metal_mind/ring");
-        builder(itemGenerated,"item/ring_chromium_nicrosil","item/metal_mind/ring");
-        builder(itemGenerated,"item/ring_copper_bronze","item/metal_mind/ring");
-        builder(itemGenerated,"item/ring_electrum_gold","item/metal_mind/ring");
+        builder(itemGenerated,"item/ring_cadmium_bendalloy","item/metal_mind/cadmium_bendalloy_ring");
+        builder(itemGenerated,"item/ring_chromium_nicrosil","item/metal_mind/chromium_nicrosil_ring");
+        builder(itemGenerated,"item/ring_copper_bronze","item/metal_mind/copper_bronze_ring");
+        builder(itemGenerated,"item/ring_electrum_gold","item/metal_mind/gold_electrum_ring");
         builder(itemGenerated,"item/ring_lerasium_ettmetal","item/metal_mind/ring");
-        builder(itemGenerated,"item/ring_pewter_tin","item/metal_mind/ring");
-        builder(itemGenerated,"item/ring_steel_iron","item/metal_mind/ring");
-        builder(itemGenerated,"item/ring_zinc_brass","item/metal_mind/ring");
+        builder(itemGenerated,"item/ring_pewter_tin","item/metal_mind/tin_pewter_ring");
+        builder(itemGenerated,"item/ring_steel_iron","item/metal_mind/iron_steel_ring");
+        builder(itemGenerated,"item/ring_zinc_brass","item/metal_mind/zinc_brass_ring");
 
 
         builder(itemGenerated,"item/vial","item/consumables/vial");
