@@ -38,16 +38,16 @@ public class ModItemModelProvider extends ItemModelProvider {
         /*
         All textures for feruchemic bands
          */
-        builder(itemGenerated,"item/band_aluminum_duralumin","item/metal_mind/band");
+        builder(itemGenerated,"item/band_aluminum_duralumin","item/metal_mind/aluminium_duralumin_band");
         builder(itemGenerated,"item/band_atium_malatium","item/metal_mind/band");
-        builder(itemGenerated,"item/band_cadmium_bendalloy","item/metal_mind/band");
-        builder(itemGenerated,"item/band_chromium_nicrosil","item/metal_mind/band");
-        builder(itemGenerated,"item/band_copper_bronze","item/metal_mind/band");
-        builder(itemGenerated,"item/band_electrum_gold","item/metal_mind/band");
+        builder(itemGenerated,"item/band_cadmium_bendalloy","item/metal_mind/cadmium_bendalloy_band");
+        builder(itemGenerated,"item/band_chromium_nicrosil","item/metal_mind/chromium_nicrosil_band");
+        builder(itemGenerated,"item/band_copper_bronze","item/metal_mind/copper_bronze_band");
+        builder(itemGenerated,"item/band_electrum_gold","item/metal_mind/gold_electrum_band");
         builder(itemGenerated,"item/band_lerasium_ettmetal","item/metal_mind/band");
-        builder(itemGenerated,"item/band_pewter_tin","item/metal_mind/band");
-        builder(itemGenerated,"item/band_steel_iron","item/metal_mind/band");
-        builder(itemGenerated,"item/band_zinc_brass","item/metal_mind/band");
+        builder(itemGenerated,"item/band_pewter_tin","item/metal_mind/tin_pewter_band");
+        builder(itemGenerated,"item/band_steel_iron","item/metal_mind/iron_steel_band");
+        builder(itemGenerated,"item/band_zinc_brass","item/metal_mind/zinc_brass_band");
 
         /*
         All textures for feruchemic rings
