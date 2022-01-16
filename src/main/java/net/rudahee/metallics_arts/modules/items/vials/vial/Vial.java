@@ -9,9 +9,9 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.CapabilityProvider;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.player.DefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.player.InvestedPlayerCapability;
+import net.rudahee.metallics_arts.modules.player.*;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModItemGroup;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
@@ -33,46 +33,46 @@ public class Vial extends Item {
         super.releaseUsing(p_77615_1_, p_77615_2_, p_77615_3_, p_77615_4_);
     }
 
+    static IInvestedPlayerData finalData = null;
+
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 
-        /*player.startUsingItem(hand);
+        ItemStack startingVial = player.getItemInHand(hand);
+        CompoundNBT vialNbts = startingVial.getTag();
 
-        return new ActionResult<>(ActionResultType.CONSUME, player.getItemInHand(hand));*/
+        InvestedPlayerDataProvider provider = new InvestedPlayerDataProvider();
+
+        //DefaultInvestedPlayerData capability =  provider.getCapability(InvestedPlayerCapability.PLAYER_CAP).resolve().get();
 
 
-        ItemStack itemStack = player.getItemInHand(hand);
-        ActionResult<ItemStack> res = player.getCapability(InvestedPlayerCapability.PLAYER_CAP).map(data ->{
-            if (itemStack.hasTag()){
-                for (MetalsNBTData metal:MetalsNBTData.values()){
-                    if (itemStack.getTag().contains(metal.getGemNameLower()) && itemStack.getTag().getInt(metal.getNameLower())>0){
-                      if (data.getAllomanticAmount(metal)<metal.getMaxAllomanticTicksStorage()){
-                          int a = itemStack.getTag().getInt(metal.getNameLower());
-                          int b = data.getAllomanticAmount(metal);
-                          if ((a+b)>=metal.getMaxAllomanticTicksStorage()){
-                              data.setAllomanticMetalsAmount(metal,metal.getMaxAllomanticTicksStorage());
-                          } else {
-                              data.setAllomanticMetalsAmount(metal,a+b);
-                          }
-                          /*player.startUsingItem(hand);
-                          return new ActionResult<>(ActionResultType.SUCCESS,player.getItemInHand(hand));*/
-                       }
-                  }
-             }
+
+        if (!startingVial.isEmpty() && startingVial != null) {
+
+            player.startUsingItem(hand);
+            /*
+            for(MetalsNBTData allomanticNbts : capability.getAllomanticPowers()) {
+                if (vialNbts.getInt(allomanticNbts.getNameLower()) > 0
+                        && capability.getAllomanticAmount(allomanticNbts) < allomanticNbts.getMaxAllomanticTicksStorage()) {
+
+                    capability.setAllomanticMetalsAmount(allomanticNbts, vialNbts.getInt(allomanticNbts.getNameLower()));
+
+                    return new ActionResult<>(ActionResultType.CONSUME, new ItemStack(ModItems.VIAL.get()));
+                }
+                return new ActionResult<>(ActionResultType.FAIL, startingVial);
+            }
+
+             */
+            return new ActionResult<>(ActionResultType.FAIL, startingVial);
         }
-        return new ActionResult<>(ActionResultType.FAIL,itemStack);
-        }).orElse(new ActionResult<>(ActionResultType.FAIL, itemStack));
-        return new ActionResult<>(ActionResultType.SUCCESS,player.getItemInHand(hand));
+        return new ActionResult<>(ActionResultType.FAIL, startingVial);
     }
 
     @Override
     public ItemStack finishUsingItem(ItemStack itemStack, World world, LivingEntity livingEntity) {
 
         if (!world.isClientSide()) {
-            Arrays.asList(MetalsNBTData.values()).forEach(metal->{
-                // Do logic here!!
-
-            });
+            // :3
         }
         return super.finishUsingItem(itemStack, world, livingEntity);
     }

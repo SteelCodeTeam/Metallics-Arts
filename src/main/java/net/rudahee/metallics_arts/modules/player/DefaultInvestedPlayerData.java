@@ -2,9 +2,9 @@ package net.rudahee.metallics_arts.modules.player;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.rudahee.metallics_arts.data.network.NetworkUtils;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import net.rudahee.metallics_arts.setup.enums.metals.Metal;
+
+import java.util.*;
 
 public class DefaultInvestedPlayerData implements IInvestedPlayerData {
 
@@ -28,6 +28,37 @@ public class DefaultInvestedPlayerData implements IInvestedPlayerData {
 
         });
     }};
+
+    public static ArrayList<String> getMetalIndex() {
+        ArrayList<String> rootMetalsIndexs = new ArrayList<String>() {{
+                for (MetalsNBTData metal : MetalsNBTData.values()) {
+                    add(metal.getNameLower());
+
+                }
+            }};
+
+        return rootMetalsIndexs;
+    }
+    public static ArrayList<String> getDataForEachMetalIndex() {
+        ArrayList<String> rootMetalsIndexs = new ArrayList<String>() {{
+            add("hasPlayerAllomanticPower");
+            add("hasPlayerFeruchemicPower");
+            add("isBurning");
+            add("isDecanting");
+            add("isStoring");
+
+            // int = quantity.
+            add("actualBurnQty");
+            add("actualStorageQty");
+            add("maxBurnQty");
+            add("maxStorageQty");
+        }};
+
+        return rootMetalsIndexs;
+    }
+    public HashMap<String, HashMap> getMetalsRoot() {
+        return rootMetals;
+    }
 
     @Override
     public void tickAllomancyBurningMetals(ServerPlayerEntity player) {
