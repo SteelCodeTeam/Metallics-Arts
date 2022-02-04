@@ -78,9 +78,7 @@ public class MetallicsArts
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
-                ()-> SlotTypePreset.BRACELET.getMessageBuilder().build());
-
-
+                ()-> new SlotTypeMessage.Builder("ma_mentalmind_slot").priority(1).size(4).build());
     }
 
     private void processIMC(final InterModProcessEvent event)

@@ -6,6 +6,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraftforge.fml.RegistryObject;
 import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceBlock;
 import net.rudahee.metallics_arts.setup.Registration;
@@ -23,8 +24,6 @@ public class ModBlock {
     public static final HashMap<String, Block> BLOCK_METAL_ORES = new HashMap<String, Block>();
     public static final HashMap<String, Block> BLOCK_METAL_BLOCKS = new HashMap<String, Block>();
     public static final HashMap<String, Block> BLOCK_GEMS_BLOCKS = new HashMap<String, Block>();
-
-
 
     static {
         /*
@@ -93,6 +92,7 @@ public class ModBlock {
     private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> blockSupplier) {
         return Registration.BLOCKS.register(name, blockSupplier);
     }
+
 
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier) {
 
