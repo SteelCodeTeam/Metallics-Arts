@@ -63,6 +63,31 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/ring_steel_iron","item/metal_mind/iron_steel_ring");
         builder(itemGenerated,"item/ring_zinc_brass","item/metal_mind/zinc_brass_ring");
 
+        /*
+        All textures for spikes
+         */
+        builder(itemGenerated,"item/iron_spike","item/spike");
+        builder(itemGenerated,"item/steel_spike","item/spike");
+        builder(itemGenerated,"item/tin_spike","item/spike");
+        builder(itemGenerated,"item/pewter_spike","item/spike");
+        builder(itemGenerated,"item/copper_spike","item/spike");
+        builder(itemGenerated,"item/bronze_spike","item/spike");
+        builder(itemGenerated,"item/zinc_spike","item/spike");
+        builder(itemGenerated,"item/brass_spike","item/spike");
+        builder(itemGenerated,"item/chromium_spike","item/spike");
+        builder(itemGenerated,"item/nicrosil_spike","item/spike");
+        builder(itemGenerated,"item/aluminum_spike","item/spike");
+        builder(itemGenerated,"item/duralumin_spike","item/spike");
+        builder(itemGenerated,"item/cadmium_spike","item/spike");
+        builder(itemGenerated,"item/bendalloy_spike","item/spike");
+        builder(itemGenerated,"item/electrum_spike","item/spike");
+        builder(itemGenerated,"item/gold_spike","item/spike");
+        builder(itemGenerated,"item/atium_spike","item/spike");
+        builder(itemGenerated,"item/malatium_spike","item/spike");
+        builder(itemGenerated,"item/lerasium_spike","item/spike");
+        builder(itemGenerated,"item/ettmetal_spike","item/spike");
+
+
 
         builder(itemGenerated,"item/vial","item/consumables/vial");
     }

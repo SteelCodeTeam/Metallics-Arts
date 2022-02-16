@@ -4,7 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
 
 
-public class RingsMindAbstract extends Item {
+public abstract class RingsMindAbstract extends Item {
 
 
     private CompoundNBT nbt;
@@ -16,7 +16,6 @@ public class RingsMindAbstract extends Item {
 
     public RingsMindAbstract() {
         super(new Properties());
-
     }
 
     public void storing(String metal, int qty){
