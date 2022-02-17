@@ -22,8 +22,7 @@ public enum MetalSpikesData {
     ATIUM("atium", null,false,true),
     MALATIUM("malatium", null,false,true),
     LERASIUM("lerasium", null,false,true),
-    ETTMETAL("ettmetal", null,false,true),
-    ;
+    ETTMETAL("ettmetal", null,false,true);
 
     private String name;
     private Item spike;

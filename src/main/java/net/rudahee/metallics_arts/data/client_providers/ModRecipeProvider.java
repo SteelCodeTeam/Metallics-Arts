@@ -7,6 +7,7 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalSpikesData;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 
@@ -103,6 +104,8 @@ public class ModRecipeProvider extends RecipeProvider {
 
         Arrays.asList(MetalMindData.values()).forEach(object -> {
             Item item1,item2;
+
+            //BLOCKS
             if (object.isGems()){
                 item1 = ModBlock.BLOCK_GEMS_BLOCKS.get(object.getFirstMetal()).asItem();
                 item2 = ModBlock.BLOCK_GEMS_BLOCKS.get(object.getSecondMetal()).asItem();
@@ -116,7 +119,7 @@ public class ModRecipeProvider extends RecipeProvider {
                item1 = ModBlock.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
                item2 = ModBlock.BLOCK_METAL_BLOCKS.get(object.getSecondMetal()).asItem();
             }
-
+            //BANDS
             ShapedRecipeBuilder.shaped(object.getBand())
                     .define('#',item1)
                     .define('x',item2)
@@ -136,6 +139,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .save(recipesConsumer,new ResourceLocation("alomantic_arts_band_"+object.getFirstMetal()+"_"+object.getSecondMetal()+"2"));
 
 
+            //INGOTS
             if (object.isGems()){
                 item1 = ModItems.ITEM_GEMS_BASE.get(object.getFirstMetal()).asItem();
                 item2 = ModItems.ITEM_GEMS_BASE.get(object.getSecondMetal()).asItem();
@@ -150,6 +154,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 item2 = ModItems.ITEM_METAL_INGOT.get(object.getSecondMetal()).asItem();
             }
 
+            //RINGS
             ShapedRecipeBuilder.shaped(object.getRing())
                     .define('#',item1)
                     .define('x',item2)
@@ -169,6 +174,34 @@ public class ModRecipeProvider extends RecipeProvider {
                     .save(recipesConsumer,new ResourceLocation("alomantic_arts_ring_"+object.getFirstMetal()+"_"+object.getSecondMetal()+"2"));
         });
 
+        //SPIKES
+        Arrays.asList(MetalSpikesData.values()).forEach(object -> {
+            Item head,body;
+            if (object.isGems()){
+                head = ModBlock.BLOCK_GEMS_BLOCKS.get(object.getName()).asItem();
+                body = ModItems.ITEM_GEMS_BASE.get(object.getName()).asItem();
+            }else if (object.isVanilla()){
+                if (object.getName()=="iron"){
+                    head = Items.IRON_BLOCK;
+                    body = Items.IRON_INGOT;
+                }
+                else{
+                    head = Items.GOLD_BLOCK;
+                    body = Items.GOLD_INGOT;
+                }
+            }else{
+                head = ModBlock.BLOCK_METAL_BLOCKS.get(object.getName()).asItem();
+                body = ModItems.ITEM_METAL_INGOT.get(object.getName()).asItem();
+            }
+            ShapedRecipeBuilder.shaped(object.getSpike())
+                    .define('#',head)
+                    .define('x',body)
+                    .pattern(" # ")
+                    .pattern(" x ")
+                    .pattern(" x ")
+                    .unlockedBy("has_item",has(object.getSpike()))
+                    .save(recipesConsumer,new ResourceLocation("alomantic_arts_spike"+object.getName()));
+        });
     }
 
 
