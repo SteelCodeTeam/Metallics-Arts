@@ -196,11 +196,20 @@ public class ModRecipeProvider extends RecipeProvider {
             ShapedRecipeBuilder.shaped(object.getSpike())
                     .define('#',head)
                     .define('x',body)
-                    .pattern(" # ")
+                    .pattern(" ##")
                     .pattern(" x ")
                     .pattern(" x ")
                     .unlockedBy("has_item",has(object.getSpike()))
                     .save(recipesConsumer,new ResourceLocation("alomantic_arts_spike"+object.getName()));
+
+            ShapedRecipeBuilder.shaped(object.getSpike())
+                    .define('#',head)
+                    .define('x',body)
+                    .pattern("## ")
+                    .pattern(" x ")
+                    .pattern(" x ")
+                    .unlockedBy("has_item",has(object.getSpike()))
+                    .save(recipesConsumer,new ResourceLocation("alomantic_arts_spike"+object.getName()+"_2"));
         });
     }
 
