@@ -39,7 +39,7 @@ public class Vial extends Item {
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 
         ItemStack startingVial = player.getItemInHand(hand);
-        CompoundNBT vialNbts = startingVial.getTag();
+        //CompoundNBT vialNbts = startingVial.getTag();
 
         InvestedPlayerDataProvider provider = new InvestedPlayerDataProvider();
 

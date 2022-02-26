@@ -87,7 +87,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/lerasium_spike","item/spike");
         builder(itemGenerated,"item/ettmetal_spike","item/spike");
 
-
+        builder(itemGenerated,"item/koloss_blade","item/combat/koloss_blade");
+        builder(itemGenerated,"item/cristal_dagger","item/combat/cristal_dagger");
+        builder(itemGenerated,"item/obsidian_dagger","item/combat/obsidian_dagger");
 
         builder(itemGenerated,"item/vial","item/consumables/vial");
     }

@@ -2,7 +2,11 @@ package net.rudahee.metallics_arts.setup.registries;
 
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
+import net.rudahee.metallics_arts.modules.items.combat.CristalDagger;
+import net.rudahee.metallics_arts.modules.items.combat.KolossBlade;
+import net.rudahee.metallics_arts.modules.items.combat.ObsidianDagger;
 import net.rudahee.metallics_arts.modules.items.metal_spike.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.bands.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.rings.*;
@@ -74,6 +78,7 @@ public class ModItems {
 
     }
 
+    //MentalMinds
     static {
         RegistryObject<Item> BandAluminumDuralumin = register("band_aluminum_duralumin",
                 () -> {
@@ -218,6 +223,7 @@ public class ModItems {
         );
     }
 
+    //spikes
     static {
         RegistryObject<Item> IronSpike = register("iron_spike",
                 () -> {
@@ -362,7 +368,24 @@ public class ModItems {
 
     }
 
-
+    //weapons
+    static {
+        RegistryObject<Item> ObsidianDagger = register("obsidian_dagger",
+                () -> {
+                    return new ObsidianDagger(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+                }
+        );
+        RegistryObject<Item> CristalDagger = register("cristal_dagger",
+                () -> {
+                    return new CristalDagger(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+                }
+        );
+        RegistryObject<Item> KolossBlade = register("koloss_blade",
+                () -> {
+                    return new KolossBlade(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+                }
+        );
+    }
 
     public static final RegistryObject<Item> VIAL = register
             ("vial", () -> new Vial(new Item.Properties().food(new Food.Builder().nutrition(0).build()).tab(ModItemGroup.METALLIC_ARTS_TAG)));
