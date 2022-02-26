@@ -4,9 +4,7 @@ import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
-import net.rudahee.metallics_arts.modules.items.combat.CristalDagger;
-import net.rudahee.metallics_arts.modules.items.combat.KolossBlade;
-import net.rudahee.metallics_arts.modules.items.combat.ObsidianDagger;
+import net.rudahee.metallics_arts.modules.items.combat.*;
 import net.rudahee.metallics_arts.modules.items.metal_spike.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.bands.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.rings.*;
@@ -385,11 +383,21 @@ public class ModItems {
                     return new KolossBlade(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
                 }
         );
+        RegistryObject<Item> DuelingStaff = register("dueling_staff",
+                () -> {
+                    return new DuelingStaff(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+                }
+        );
+        RegistryObject<Item> ObsidianAxe = register("obsidian_axe",
+                () -> {
+                    return new ObsidianAxe(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+                }
+        );
     }
 
     public static final RegistryObject<Item> VIAL = register
-            ("vial", () -> new Vial(new Item.Properties().food(new Food.Builder().nutrition(0).build()).tab(ModItemGroup.METALLIC_ARTS_TAG)));
-
+            ("vial", () -> new Vial(new Item.Properties().food(new Food.Builder().nutrition(0).build())));
+//.tab(ModItemGroup.METALLIC_ARTS_TAG)
     public static void register() {
     }
 

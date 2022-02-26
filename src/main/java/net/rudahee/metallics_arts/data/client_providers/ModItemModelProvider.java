@@ -90,6 +90,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/koloss_blade","item/combat/koloss_blade");
         builder(itemGenerated,"item/cristal_dagger","item/combat/cristal_dagger");
         builder(itemGenerated,"item/obsidian_dagger","item/combat/obsidian_dagger");
+        builder(itemGenerated,"item/dueling_staff","item/combat/dueling_staff");
+        builder(itemGenerated,"item/obsidian_axe","item/combat/obsidian_axe");
 
         builder(itemGenerated,"item/vial","item/consumables/vial");
     }
