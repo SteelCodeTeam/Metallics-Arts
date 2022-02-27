@@ -32,7 +32,7 @@ public class ModItems {
     public static final HashMap<String, Item> ITEM_GEMS_NUGGET = new HashMap<String, Item>();
 
 
-
+    //ingots an nuggets
     static {
         // Generating ingots and nuggets off all metals
         List<Metal> metalList = Arrays.asList(Metal.values());
@@ -54,6 +54,7 @@ public class ModItems {
         });
     }
 
+    //gems
     static {
         List<Gems> gemList = Arrays.asList(Gems.values());
         gemList.forEach(gem -> {
@@ -396,8 +397,8 @@ public class ModItems {
     }
 
     public static final RegistryObject<Item> VIAL = register
-            ("vial", () -> new Vial(new Item.Properties().food(new Food.Builder().nutrition(0).build())));
-//.tab(ModItemGroup.METALLIC_ARTS_TAG)
+            ("vial", () -> new Vial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).food(new Food.Builder().nutrition(0).build())));
+
     public static void register() {
     }
 

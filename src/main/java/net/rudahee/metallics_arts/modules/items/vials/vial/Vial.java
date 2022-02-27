@@ -9,14 +9,13 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.CapabilityProvider;
-import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.player.*;
+import net.minecraftforge.common.capabilities.Capability;
+import net.rudahee.metallics_arts.modules.DataPlayer.DefaultInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.DataPlayer.IDefaultInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.DataPlayer.InvestedCapability;
+import net.rudahee.metallics_arts.modules.DataPlayer.InvestedDataProvider;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.registries.ModItemGroup;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
-
-import java.util.*;
 
 
 public class Vial extends Item {
@@ -33,25 +32,28 @@ public class Vial extends Item {
         super.releaseUsing(p_77615_1_, p_77615_2_, p_77615_3_, p_77615_4_);
     }
 
-    static IInvestedPlayerData finalData = null;
+    //static IInvestedPlayerData finalData = null;
 
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 
         ItemStack startingVial = player.getItemInHand(hand);
-        //CompoundNBT vialNbts = startingVial.getTag();
+        CompoundNBT vialNbts = startingVial.getTag();
 
-        InvestedPlayerDataProvider provider = new InvestedPlayerDataProvider();
+        InvestedDataProvider provider = new InvestedDataProvider();
 
-        //DefaultInvestedPlayerData capability =  provider.getCapability(InvestedPlayerCapability.PLAYER_CAP).resolve().get();
-
-
+        IDefaultInvestedPlayerData capability =  provider.getCapability(InvestedCapability.PLAYER_CAP).resolve().get();
 
         if (!startingVial.isEmpty() && startingVial != null) {
 
             player.startUsingItem(hand);
-            /*
+
             for(MetalsNBTData allomanticNbts : capability.getAllomanticPowers()) {
+
+                System.out.println(allomanticNbts.getGemNameLower()+": "+capability.getAllomanticAmount(allomanticNbts)+"\n");
+
+
+
                 if (vialNbts.getInt(allomanticNbts.getNameLower()) > 0
                         && capability.getAllomanticAmount(allomanticNbts) < allomanticNbts.getMaxAllomanticTicksStorage()) {
 
@@ -62,7 +64,7 @@ public class Vial extends Item {
                 return new ActionResult<>(ActionResultType.FAIL, startingVial);
             }
 
-             */
+
             return new ActionResult<>(ActionResultType.FAIL, startingVial);
         }
         return new ActionResult<>(ActionResultType.FAIL, startingVial);

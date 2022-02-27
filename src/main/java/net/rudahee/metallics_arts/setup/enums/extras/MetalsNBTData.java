@@ -5,41 +5,39 @@ import net.rudahee.metallics_arts.setup.enums.metals.IMetal;
 
 public enum MetalsNBTData implements IMetal, IGems {
     /* 1s = 20 ticks, 1600 = 80s */
-    STEEL("steel", "STEEL", 1, 1600, 6000),
-    IRON("iron", "IRON", 1, 1600, 6000),
-    TIN("tin", "TIN", 2, 1600, 6000),
-    PEWTER("pewter", "PEWTER", 2, 1600, 6000),
-    COPPER("copper", "COPPER", 3, 1600, 6000),
-    BRONZE("bronze", "BRONZE", 3, 1600, 6000),
-    ZINC("zinc", "ZINC", 4, 1600, 6000),
-    BRASS("brass", "BRASS", 4, 1600, 6000),
-    CHROMIUM("chromium", "CHROMIUM", 5, 1600, 6000),
-    NICROSIL("nicrosil", "NICROSIL", 5, 1600, 6000),
-    ALUMINUM("aluminum", "ALUMINUM", 6, 1600, 6000),
-    DURALUMIN("duralumin", "DURALUMIN", 6, 1600, 6000),
-    CADMIUM("cadmium", "CADMIUM", 7, 1600, 6000),
-    BENDALLOY("bendalloy", "BENDALLOY", 7, 1600, 6000),
-    ELECTRUM("electrum", "ELECTRUM", 8, 1600, 6000),
-    GOLD("gold", "GOLD", 8, 1600, 6000),
-    ATIUM("atium", "ATIUM", 9, 1600, 6000),
-    MALATIUM("malatium", "MALATIUM", 9, 1600, 6000),
-    LERASIUM("lerasium", "LERASIUM", 10, 1600, 6000),
-    ETTMETAL("ettmetal", "ETTMETAL", 10, 1600, 6000);
+    STEEL("steel", "STEEL", 1, 1600),
+    IRON("iron", "IRON", 1, 1600),
+    TIN("tin", "TIN", 2, 1600),
+    PEWTER("pewter", "PEWTER", 2, 1600),
+    COPPER("copper", "COPPER", 3, 1600),
+    BRONZE("bronze", "BRONZE", 3, 1600),
+    ZINC("zinc", "ZINC", 4, 1600),
+    BRASS("brass", "BRASS", 4, 1600),
+    CHROMIUM("chromium", "CHROMIUM", 5, 1600),
+    NICROSIL("nicrosil", "NICROSIL", 5, 1600),
+    ALUMINUM("aluminum", "ALUMINUM", 6, 1600),
+    DURALUMIN("duralumin", "DURALUMIN", 6, 1600),
+    CADMIUM("cadmium", "CADMIUM", 7, 1600),
+    BENDALLOY("bendalloy", "BENDALLOY", 7, 1600),
+    ELECTRUM("electrum", "ELECTRUM", 8, 1600),
+    GOLD("gold", "GOLD", 8, 1600),
+    ATIUM("atium", "ATIUM", 9, 1600),
+    MALATIUM("malatium", "MALATIUM", 9, 1600),
+    LERASIUM("lerasium", "LERASIUM", 10, 1600),
+    ETTMETAL("ettmetal", "ETTMETAL", 10, 1600);
 
 
     private final String nameLower;
     private final String nameUpper;
     private final int group;
     private final int maxAllomanticTicksStorage;
-    private final int maxFeruchemicTicksStorage;
 
 
-    MetalsNBTData(String nameLower, String nameUpper, int group, int maxAllomanticTicksStorage, int maxFeruchemicTicksStorage) {
+    MetalsNBTData(String nameLower, String nameUpper, int group, int maxAllomanticTicksStorage) {
         this.nameLower = nameLower;
         this.nameUpper = nameUpper;
         this.group = group;
         this.maxAllomanticTicksStorage = maxAllomanticTicksStorage;
-        this.maxFeruchemicTicksStorage = maxFeruchemicTicksStorage;
     }
 
     public String getNameLower() {
@@ -76,10 +74,6 @@ public enum MetalsNBTData implements IMetal, IGems {
 
     public int getMaxAllomanticTicksStorage() {
         return maxAllomanticTicksStorage;
-    }
-
-    public int getMaxFeruchemicTicksStorage() {
-        return maxFeruchemicTicksStorage;
     }
 
     public int getIndex() {

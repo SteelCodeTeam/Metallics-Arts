@@ -10,7 +10,6 @@ import net.rudahee.metallics_arts.data.client_providers.ModBlockStateProvider;
 import net.rudahee.metallics_arts.data.client_providers.ModItemModelProvider;
 import net.rudahee.metallics_arts.data.client_providers.ModLootTableProvider;
 import net.rudahee.metallics_arts.data.client_providers.ModRecipeProvider;
-import net.rudahee.metallics_arts.modules.player.InvestedPlayerDataProvider;
 
 @Mod.EventBusSubscriber (modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {
@@ -26,6 +25,5 @@ public final class DataGenerators {
 
         gen.addProvider(new ModLootTableProvider(gen));
         gen.addProvider(new ModRecipeProvider(gen));
-        gen.addProvider(new InvestedPlayerDataProvider());
     }
 }
