@@ -200,4 +200,6 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
         return this.allomantic_reseve[metal.getIndex()];
     }
 
+
+
 }

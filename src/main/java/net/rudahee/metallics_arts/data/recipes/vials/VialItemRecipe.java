@@ -89,6 +89,7 @@ public class VialItemRecipe extends SpecialRecipe {
                 System.out.printf("COUNT = "+actualIngredient.getCount());
                 if (INGREDIENT_NUGGET.stream().anyMatch(
                         pepe -> pepe.getItems()[0].getItem().getDescriptionId().equals(auxiliar.getItem().getDescriptionId()))) {
+
                     for (MetalsNBTData metal : MetalsNBTData.values()) {
                          if (metal.getNameLower().equals(actualIngredient.getItem().getDescriptionId().substring(20,actualIngredient.getItem().getDescriptionId().indexOf("_",21)))){
                             if (addMetal[metal.getIndex()]==true){
@@ -101,6 +102,9 @@ public class VialItemRecipe extends SpecialRecipe {
                 }
             }
         }
+
+        //INTENTAR QUE SE PUEDAN CARGAR MAS DE UNA PEPITA DE UN METAL A LA VEZ
+
         if (ingredients[0] && ingredients[1]){
             this.final_result = new ItemStack(ModItems.VIAL.get(),1);
             CompoundNBT compoundNBT = new CompoundNBT();

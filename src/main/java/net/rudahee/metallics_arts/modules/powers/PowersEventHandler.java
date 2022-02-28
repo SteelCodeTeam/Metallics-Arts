@@ -11,6 +11,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.rudahee.metallics_arts.modules.DataPlayer.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.PewterHelper;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import sun.net.www.MeteredStream;
 
 import java.util.List;
 
@@ -63,21 +64,21 @@ public class PowersEventHandler {
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                         playerCapability ->{
 
-                            if (!playerCapability.isInvested()) {
+                            for (MetalsNBTData metal: MetalsNBTData.values()){
+                                System.out.println(metal.getNameLower()+":"+player.getMainHandItem().getItem().getTags().contains(metal.getGemNameLower())+"\n");
+                                System.out.println(metal.getNameLower()+":"+playerCapability.hasAllomanticPower(metal)+"\n");
 
-                                /*
+                            }
 
-                                    TICK WITH - TIN -
 
-                                 */
-
-                               if (playerCapability.isBurning(MetalsNBTData.TIN)) {
-                                    player.addEffect(new EffectInstance(Effects.NIGHT_VISION, Short.MAX_VALUE, 5, true, false));
-                                    if (player.hasEffect(Effects.BLINDNESS)) {
-                                        player.removeEffect(Effects.BLINDNESS);
-                                    }
+                            if (!playerCapability.isFullInvested()){
+                                for (MetalsNBTData metal: MetalsNBTData.values()){
+                                    playerCapability.addAllomanticPower(metal);
+                                    playerCapability.setMistborn(true);
+                                    playerCapability.addFeruchemicPower(metal);
+                                    playerCapability.setFullInvested(true);
+                                    playerCapability.setFullFeruchemic(true);
                                 }
-
 
                             }
                     });

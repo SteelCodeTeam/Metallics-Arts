@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.items.vials.vial;
 
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
@@ -36,7 +37,24 @@ public class Vial extends Item {
 
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack itemStackIn = player.getItemInHand(hand);
+        ActionResult<ItemStack> res = player.getCapability(InvestedCapability.PLAYER_CAP).map(data -> {
+            //If all the ones being filled are full, don't allow
+            int filling = 0, full = 0;
+            if (itemStackIn.hasTag()) {
+                for (MetalsNBTData metal : MetalsNBTData.values()) {
+                    if (itemStackIn.getTag().contains(metal.getNameLower()) && itemStackIn.getTag().getInt(metal.getNameLower())>0) {
+                        player.startUsingItem(hand);
+                        return new ActionResult<>(ActionResultType.SUCCESS, itemStackIn);
+                    }
+                }
+            }
+            return new ActionResult<>(ActionResultType.FAIL, itemStackIn);
+        }).orElse(new ActionResult<>(ActionResultType.FAIL, itemStackIn));
+        return res;
 
+
+        /*
         ItemStack startingVial = player.getItemInHand(hand);
         CompoundNBT vialNbts = startingVial.getTag();
 
@@ -67,16 +85,33 @@ public class Vial extends Item {
 
             return new ActionResult<>(ActionResultType.FAIL, startingVial);
         }
-        return new ActionResult<>(ActionResultType.FAIL, startingVial);
+        return new ActionResult<>(ActionResultType.FAIL, startingVial);*/
     }
 
     @Override
     public ItemStack finishUsingItem(ItemStack itemStack, World world, LivingEntity livingEntity) {
-
-        if (!world.isClientSide()) {
-            // :3
+        if (!itemStack.hasTag()) {
+            return itemStack;
         }
-        return super.finishUsingItem(itemStack, world, livingEntity);
+
+        livingEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+            for (MetalsNBTData metal : MetalsNBTData.values()) {
+                if (itemStack.getTag().contains(metal.getNameLower()) && itemStack.getTag().getInt(metal.getNameLower())>0) {
+                    data.setAllomanticMetalsAmount(metal,itemStack.getTag().getInt(metal.getNameLower()));
+                }
+            }
+        });
+
+        if (!((PlayerEntity) (livingEntity)).abilities.instabuild) {
+            itemStack.shrink(1);
+
+            if (!((PlayerEntity) livingEntity).inventory.add(new ItemStack(ModItems.VIAL.get(), 1))) {
+                world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItems.VIAL.get(), 1)));
+            }
+        }
+
+        return itemStack;
+
     }
 
     @Override
