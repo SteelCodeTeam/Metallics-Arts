@@ -2,8 +2,6 @@ package net.rudahee.metallics_arts.modules.powers;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -11,7 +9,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.rudahee.metallics_arts.modules.DataPlayer.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.PewterHelper;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import sun.net.www.MeteredStream;
 
 import java.util.List;
 

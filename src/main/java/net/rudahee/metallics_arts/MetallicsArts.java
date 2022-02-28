@@ -2,9 +2,14 @@ package net.rudahee.metallics_arts;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -14,6 +19,8 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.rudahee.metallics_arts.modules.DataPlayer.InvestedCapability;
+import net.rudahee.metallics_arts.modules.DataPlayer.InvestedDataProvider;
 import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceScreen;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.setup.Registration;
@@ -33,8 +40,6 @@ public class MetallicsArts
     public static final String MOD_ID = "metallics_arts";
 
 
-
-
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -52,8 +57,16 @@ public class MetallicsArts
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
+
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    @SubscribeEvent
+    public void attachCapabilitiesEntity(final AttachCapabilitiesEvent<Entity> event) {
+
+        event.addCapability(InvestedCapability.IDENTIFIER, new InvestedDataProvider());
+
     }
 
     private void setup(final FMLCommonSetupEvent event)

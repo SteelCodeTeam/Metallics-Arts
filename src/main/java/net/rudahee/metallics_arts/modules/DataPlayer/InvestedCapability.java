@@ -22,7 +22,7 @@ public class InvestedCapability {
     public static final ResourceLocation IDENTIFIER = new ResourceLocation(MetallicsArts.MOD_ID, "allomancy_data");
 
     public static void register() {
-        CapabilityManager.INSTANCE.register(IDefaultInvestedPlayerData.class, new Storage(), DefaultInvestedPlayerData::new);
+        CapabilityManager.INSTANCE.register(IDefaultInvestedPlayerData.class, new Storage(), () -> new DefaultInvestedPlayerData());
     }
 
 

@@ -9,6 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.modules.DataPlayer.InvestedCapability;
 import net.rudahee.metallics_arts.setup.registries.*;
 
 public class Registration {
@@ -32,7 +33,7 @@ public class Registration {
         ModTileEntities.register(modEventBus);
         ModContainers.register(modEventBus);
         ModRecipeTypes.register(modEventBus);
-
+        InvestedCapability.register();
 
     }
 
