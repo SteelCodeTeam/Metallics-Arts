@@ -14,6 +14,9 @@ public class InvestedDataProvider implements ICapabilitySerializable<CompoundNBT
     private final DefaultInvestedPlayerData data = new DefaultInvestedPlayerData();
     private final LazyOptional<IDefaultInvestedPlayerData> dataOptional = LazyOptional.of(() -> this.data);
 
+    public InvestedDataProvider() {
+    }
+
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {

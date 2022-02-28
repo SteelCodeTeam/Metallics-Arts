@@ -33,7 +33,6 @@ public class Registration {
         ModTileEntities.register(modEventBus);
         ModContainers.register(modEventBus);
         ModRecipeTypes.register(modEventBus);
-        InvestedCapability.register();
 
     }
 
