@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.powers.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.api.distmarker.Dist;
@@ -11,7 +12,10 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.rudahee.metallics_arts.data.network.PowerConfiguration;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.modules.powers.client.gui.MetalOverlay;
+import net.rudahee.metallics_arts.modules.powers.client.gui.MetalSelectScreen;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import org.lwjgl.glfw.GLFW;
 
@@ -85,6 +89,20 @@ public class ClientEventHandler {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onRenderGameOverlay(RenderGameOverlayEvent event) {
+        if (!PowerConfiguration.enable_overlay.get() && !(this.mc.screen instanceof MetalSelectScreen)) {
+            return;
+        }
+        if (event.isCancelable() || event.getType() != RenderGameOverlayEvent.ElementType.EXPERIENCE) {
+            return;
+        }
+        if (!this.mc.isWindowActive() || !this.mc.player.isAlive()) {
+            return;
+        }
+        if (this.mc.screen != null && !(this.mc.screen instanceof ChatScreen) && !(this.mc.screen instanceof MetalSelectScreen)) {
+            return;
+        }
+
+        MetalOverlay.drawMetalOverlay(event.getMatrixStack());
 
     }
 

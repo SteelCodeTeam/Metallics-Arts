@@ -79,4 +79,13 @@ public enum MetalsNBTData implements IMetal, IGems {
     public int getIndex() {
         return ordinal();
     }
+
+    public static MetalsNBTData getMetal(int index) {
+        for (MetalsNBTData metal : values()) {
+            if (metal.getIndex() == index) {
+                return metal;
+            }
+        }
+        throw new IllegalArgumentException("Allomancy: Bad Metal Index");
+    }
 }
