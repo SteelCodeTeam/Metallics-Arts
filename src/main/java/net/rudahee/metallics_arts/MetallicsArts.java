@@ -24,6 +24,7 @@ import net.rudahee.metallics_arts.setup.registries.ModContainers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
+import top.theillusivec4.curios.api.SlotTypePreset;
 
 import java.util.stream.Collectors;
 
@@ -89,7 +90,8 @@ public class MetallicsArts
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
-                ()-> new SlotTypeMessage.Builder("ma_mentalmind_slot").priority(1).size(4).build());
+                ()-> new SlotTypeMessage.Builder("mentalmind_slot").priority(1).size(4).build());
+
     }
 
     private void processIMC(final InterModProcessEvent event)

@@ -66,8 +66,6 @@ public class PowersEventHandler {
                                 System.out.println(metal.getNameLower()+":"+playerCapability.hasAllomanticPower(metal)+"\n");
 
                             }
-
-
                             if (!playerCapability.isFullInvested()){
                                 for (MetalsNBTData metal: MetalsNBTData.values()){
                                     playerCapability.addAllomanticPower(metal);
@@ -76,10 +74,8 @@ public class PowersEventHandler {
                                     playerCapability.setFullInvested(true);
                                     playerCapability.setFullFeruchemic(true);
                                 }
-
                             }
                     });
-
             }
         }
     }

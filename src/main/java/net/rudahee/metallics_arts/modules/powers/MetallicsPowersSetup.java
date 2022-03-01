@@ -10,11 +10,9 @@ public class MetallicsPowersSetup {
 
     public static void clientInit(final FMLClientSetupEvent event) {
         MinecraftForge.EVENT_BUS.register(new PowersEventHandler());
-        //PowersClientSetup.initKeyBindings();
     }
 
     public static void registerCommands(final RegisterCommandsEvent event) {
-        //AllomancyPowerCommand.register(e.getDispatcher());
     }
 
     public static void init(final FMLCommonSetupEvent event) {

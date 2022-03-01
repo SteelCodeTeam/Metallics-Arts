@@ -41,5 +41,8 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         this.maxCapacity = maxCapacity;
     }
 
-
+    @Override
+    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+        ICurioItem.super.curioTick(identifier, index, livingEntity, stack);
+    }
 }
