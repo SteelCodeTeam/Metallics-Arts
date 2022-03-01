@@ -9,8 +9,8 @@ import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.DataPlayer.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.DataPlayer.InvestedCapability;
+import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 
 
 public class NetworkUtils {

@@ -1,14 +1,10 @@
 package net.rudahee.metallics_arts.modules.powers;
 
-import com.mojang.brigadier.arguments.ArgumentType;
-import net.minecraft.command.arguments.ArgumentSerializer;
-import net.minecraft.command.arguments.ArgumentTypes;
-import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.rudahee.metallics_arts.modules.DataPlayer.InvestedCapability;
+import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 
 public class MetallicsPowersSetup {
 

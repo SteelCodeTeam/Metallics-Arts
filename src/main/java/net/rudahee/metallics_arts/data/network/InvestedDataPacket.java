@@ -5,8 +5,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
-import net.rudahee.metallics_arts.modules.DataPlayer.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.DataPlayer.InvestedCapability;
+import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 
 import java.util.UUID;
 import java.util.function.Supplier;

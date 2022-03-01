@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.DataPlayer;
+package net.rudahee.metallics_arts.modules.data_player;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;

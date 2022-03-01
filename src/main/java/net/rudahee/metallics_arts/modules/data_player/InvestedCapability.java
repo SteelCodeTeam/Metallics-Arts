@@ -1,18 +1,10 @@
-package net.rudahee.metallics_arts.modules.DataPlayer;
+package net.rudahee.metallics_arts.modules.data_player;
 
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.NBTTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-
-import javax.annotation.Nullable;
 
 public class InvestedCapability {
 

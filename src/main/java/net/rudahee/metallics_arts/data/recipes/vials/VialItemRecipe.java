@@ -35,8 +35,8 @@ public class VialItemRecipe extends SpecialRecipe {
         }
         for (Item metal: ModItems.ITEM_METAL_NUGGET.values()) {
             if (!ModItems.ITEM_METAL_NUGGET.get("lead").getDescriptionId().equals(metal.getDescriptionId())
-                && !ModItems.ITEM_METAL_NUGGET.get("silver").getDescriptionId().equals(metal.getDescriptionId())
-                && !ModItems.ITEM_METAL_NUGGET.get("nickel").getDescriptionId().equals(metal.getDescriptionId())) {
+                    && !ModItems.ITEM_METAL_NUGGET.get("silver").getDescriptionId().equals(metal.getDescriptionId())
+                    && !ModItems.ITEM_METAL_NUGGET.get("nickel").getDescriptionId().equals(metal.getDescriptionId())) {
 
                 add(Ingredient.of(metal.getItem()));
             }
@@ -86,17 +86,17 @@ public class VialItemRecipe extends SpecialRecipe {
                     }
                 }
                 auxiliar = actualIngredient;
-                System.out.printf("COUNT = "+actualIngredient.getCount());
                 if (INGREDIENT_NUGGET.stream().anyMatch(
-                        pepe -> pepe.getItems()[0].getItem().getDescriptionId().equals(auxiliar.getItem().getDescriptionId()))) {
-
+                        ing -> ing.getItems()[0].getItem().getDescriptionId().equals(auxiliar.getItem().getDescriptionId()))) {
                     for (MetalsNBTData metal : MetalsNBTData.values()) {
-                         if (metal.getNameLower().equals(actualIngredient.getItem().getDescriptionId().substring(20,actualIngredient.getItem().getDescriptionId().indexOf("_",21)))){
+                        if ((actualIngredient.getItem().getDescriptionId()).equals("item.minecraft."+metal.getNameLower()+"_nugget")
+                                ||(actualIngredient.getItem().getDescriptionId()).equals("item.metallics_arts."+metal.getNameLower()+"_nugget")){
                             if (addMetal[metal.getIndex()]==true){
                                 return false;
                             }
                             addMetal[metal.getIndex()]=true;
                             ingredients[1] = true;
+
                         }
                     }
                 }
@@ -110,9 +110,9 @@ public class VialItemRecipe extends SpecialRecipe {
             CompoundNBT compoundNBT = new CompoundNBT();
             for (MetalsNBTData metal : MetalsNBTData.values()){
                 if (addMetal[metal.getIndex()]){
-                    compoundNBT.putInt(metal.getGemNameLower(),metalsEnVial[metal.getIndex()]+cantStorage[metal.getIndex()]);
+                    compoundNBT.putInt(metal.getNameLower(),metalsEnVial[metal.getIndex()]+cantStorage[metal.getIndex()]);
                 }else{
-                    compoundNBT.putInt(metal.getGemNameLower(),metalsEnVial[metal.getIndex()]);
+                    compoundNBT.putInt(metal.getNameLower(),metalsEnVial[metal.getIndex()]);
                 }
             }
             this.final_result.setTag(compoundNBT);
