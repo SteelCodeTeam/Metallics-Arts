@@ -38,7 +38,6 @@ public class Vial extends Item {
         ItemStack itemStackIn = player.getItemInHand(hand);
         ActionResult<ItemStack> res = player.getCapability(InvestedCapability.PLAYER_CAP).map(data -> {
             //If all the ones being filled are full, don't allow
-            int filling = 0, full = 0;
             if (itemStackIn.hasTag()) {
                 for (MetalsNBTData metal : MetalsNBTData.values()) {
                     if (itemStackIn.getTag().contains(metal.getNameLower()) && itemStackIn.getTag().getInt(metal.getNameLower())>0) {
@@ -69,14 +68,18 @@ public class Vial extends Item {
         if (!((PlayerEntity) (livingEntity)).abilities.instabuild) {
             itemStack.shrink(1);
 
-            if (!((PlayerEntity) livingEntity).inventory.add(new ItemStack(ModItems.VIAL.get()))) {
-                //new Vial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).food(new Food.Builder().nutrition(0).build())))
+            ItemStack item = new ItemStack(ModItems.VIAL.get());
+            CompoundNBT data = new CompoundNBT();
+            for (MetalsNBTData metal : MetalsNBTData.values()){
+                data.putInt(metal.getNameLower(),0);
+            }
+            item.setTag(data);
+
+            if (!((PlayerEntity) livingEntity).inventory.add(item)) {
                 world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItems.VIAL.get(), 1)));
             }
         }
-
         return itemStack;
-
     }
 
     @Override
