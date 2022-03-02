@@ -1,12 +1,9 @@
-package net.rudahee.metallics_arts.modules.items.vials.vial;
+package net.rudahee.metallics_arts.modules.items.vials;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.UseAction;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
@@ -15,6 +12,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.registries.ModItemGroup;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 
 
@@ -32,9 +30,21 @@ public abstract class Vial extends Item {
         }
     }
 
+    public Vial(Properties properties, CompoundNBT compoundNBT) {
+        super(properties);
+    }
+
+    public Vial(Properties properties) {
+        super(properties);
+    }
+
+    public Vial() {
+        super(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new Food.Builder().nutrition(0).build()));
+    }
+
     @Override
-    public void releaseUsing(ItemStack p_77615_1_, World p_77615_2_, LivingEntity p_77615_3_, int p_77615_4_) {
-        super.releaseUsing(p_77615_1_, p_77615_2_, p_77615_3_, p_77615_4_);
+    public void releaseUsing(ItemStack itemStack, World world, LivingEntity livingEntity, int number) {
+        super.releaseUsing(itemStack, world, livingEntity, number);
     }
 
     @Override
@@ -75,7 +85,7 @@ public abstract class Vial extends Item {
             if(this.maxNuggets==5){
                 item = new ItemStack(ModItems.SMALL_VIAL.get());
             }else {
-                item = new ItemStack(ModItems.BIG_VIAL.get());
+                item = new ItemStack(ModItems.LARGE_VIAL.get());
             }
 
             CompoundNBT data = new CompoundNBT();
@@ -88,7 +98,7 @@ public abstract class Vial extends Item {
                 if(this.maxNuggets==5){
                     world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItems.SMALL_VIAL.get(), 1)));
                 }else {
-                    world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItems.BIG_VIAL.get(), 1)));
+                    world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItems.LARGE_VIAL.get(), 1)));
                 }
             }
         }
@@ -96,17 +106,17 @@ public abstract class Vial extends Item {
     }
 
     @Override
-    public int getUseDuration(ItemStack p_77626_1_) {
+    public int getUseDuration(ItemStack itemStack) {
         return 32;
     }
 
     @Override
-    public boolean isEnchantable(ItemStack p_77616_1_) {
+    public boolean isEnchantable(ItemStack itemStack) {
         return false;
     }
 
     @Override
-    public UseAction getUseAnimation(ItemStack stack) {
+    public UseAction getUseAnimation(ItemStack itemStack) {
         return UseAction.DRINK;
     }
 
@@ -122,7 +132,7 @@ public abstract class Vial extends Item {
         if(this.maxNuggets==5){
             resultItem = new ItemStack(ModItems.SMALL_VIAL.get(),1);
         }else{
-            resultItem = new ItemStack(ModItems.BIG_VIAL.get(),1);
+            resultItem = new ItemStack(ModItems.LARGE_VIAL.get(),1);
         }
         CompoundNBT nbt = new CompoundNBT();
         for (MetalsNBTData mt : MetalsNBTData.values()) {

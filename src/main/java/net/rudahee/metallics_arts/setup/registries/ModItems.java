@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.setup.registries;
 
+import com.electronwill.nightconfig.core.ConfigSpec;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -8,15 +9,15 @@ import net.rudahee.metallics_arts.modules.items.combat.*;
 import net.rudahee.metallics_arts.modules.items.metal_spike.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.bands.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.rings.*;
-import net.rudahee.metallics_arts.modules.items.vials.vial.BigVial;
-import net.rudahee.metallics_arts.modules.items.vials.vial.SmallVial;
+import net.rudahee.metallics_arts.modules.items.vials.large_vial.LargeVial;
+import net.rudahee.metallics_arts.modules.items.vials.small_vial.SmallVial;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalSpikesData;
 import net.rudahee.metallics_arts.setup.enums.gems.Gems;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.enums.metals.MetalBurningRecipeData;
-import net.rudahee.metallics_arts.modules.items.vials.vial.Vial;
+
 import java.util.Arrays;
 
 
@@ -32,7 +33,6 @@ public class ModItems {
 
     public static final HashMap<String, Item> ITEM_GEMS_BASE = new HashMap<String, Item>();
     public static final HashMap<String, Item> ITEM_GEMS_NUGGET = new HashMap<String, Item>();
-
 
 
     //ingots an nuggets
@@ -402,11 +402,15 @@ public class ModItems {
         );
     }
 
-    public static final RegistryObject<Item> SMALL_VIAL = register
-            ("small_vial", () -> new SmallVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).food(new Food.Builder().nutrition(0).build())));
+    public static RegistryObject<Item> LARGE_VIAL= register("big_vial",
+            () -> {
+                return new LargeVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new Food.Builder().nutrition(0).build()));
+            });
 
-    public static final RegistryObject<Item> BIG_VIAL = register
-            ("big_vial", () -> new BigVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).food(new Food.Builder().nutrition(0).build())));
+    public static RegistryObject<Item> SMALL_VIAL = register("small_vial",
+            () -> {
+                return new SmallVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new Food.Builder().nutrition(0).build()));
+            });
 
     public static void register() {
     }

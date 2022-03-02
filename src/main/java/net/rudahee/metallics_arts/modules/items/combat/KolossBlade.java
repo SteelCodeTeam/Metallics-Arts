@@ -7,4 +7,6 @@ public class KolossBlade extends SwordItem {
     public KolossBlade(Properties properties) {
         super(ItemTier.STONE, 9, -2.6F, properties);
     }
+
+
 }

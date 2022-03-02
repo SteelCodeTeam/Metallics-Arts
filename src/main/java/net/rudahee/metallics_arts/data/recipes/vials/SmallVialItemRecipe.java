@@ -45,7 +45,7 @@ public class SmallVialItemRecipe extends SpecialRecipe {
         super(location);
     }
 
-    public ItemStack  auxiliar = null;
+    public ItemStack auxiliar = null;
 
     @Override
     public boolean matches(CraftingInventory inv, World world) {
@@ -71,9 +71,9 @@ public class SmallVialItemRecipe extends SpecialRecipe {
                     if (actualIngredient.getTag() != null){
                         for (MetalsNBTData metal : MetalsNBTData.values()) {
                             if (actualIngredient.getTag().contains(metal.getGemNameLower())){
-                                cantStorage[metal.getIndex()] = ((metal.getMaxAllomanticTicksStorage())/2)/cantMaxPep;
+                                cantStorage[metal.getIndex()] = metal.getMaxAllomanticTicksStorage() / cantMaxPep;
                                 metalsEnVial[metal.getIndex()] = actualIngredient.getTag().getInt(metal.getNameLower());
-                                if(metalsEnVial[metal.getIndex()]==metal.getMaxAllomanticTicksStorage()){
+                                if(metalsEnVial[metal.getIndex()] >= metal.getMaxAllomanticTicksStorage()){
                                     return false;
                                 }
                             }
@@ -132,13 +132,13 @@ public class SmallVialItemRecipe extends SpecialRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return ModRecipeTypes.VIAL_ITEM_RECIPE_SERIALIZER.get();
+        return ModRecipeTypes.SMALL_VIAL_ITEM_RECIPE_SERIALIZER.get();
     }
 
-    public static class Serializer extends SpecialRecipeSerializer<BigVialItemRecipe> {
+    public static class Serializer extends SpecialRecipeSerializer<SmallVialItemRecipe> {
 
         public Serializer() {
-            super(BigVialItemRecipe::new);
+            super(SmallVialItemRecipe::new);
         }
     }
 }

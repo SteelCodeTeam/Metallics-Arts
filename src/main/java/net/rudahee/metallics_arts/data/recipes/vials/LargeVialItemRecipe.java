@@ -11,7 +11,6 @@ import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.rudahee.metallics_arts.modules.items.vials.vial.BigVial;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
@@ -20,11 +19,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class BigVialItemRecipe extends SpecialRecipe {
+public class LargeVialItemRecipe extends SpecialRecipe {
 
     private ItemStack final_result = ItemStack.EMPTY;
 
-    private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItems.BIG_VIAL.get());
+    private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItems.LARGE_VIAL.get());
 
     private static final List<Ingredient> INGREDIENT_NUGGET = new ArrayList<Ingredient>() {{
         for (Item metal: ModItems.ITEM_GEMS_NUGGET.values()) {
@@ -42,7 +41,7 @@ public class BigVialItemRecipe extends SpecialRecipe {
         }
     }};
 
-    public BigVialItemRecipe(ResourceLocation location) {
+    public LargeVialItemRecipe(ResourceLocation location) {
         super(location);
     }
 
@@ -74,7 +73,7 @@ public class BigVialItemRecipe extends SpecialRecipe {
                             if (actualIngredient.getTag().contains(metal.getGemNameLower())){
                                 cantStorage[metal.getIndex()] = metal.getMaxAllomanticTicksStorage()/cantMaxPep;
                                 metalsEnVial[metal.getIndex()] = actualIngredient.getTag().getInt(metal.getNameLower());
-                                if(metalsEnVial[metal.getIndex()]==metal.getMaxAllomanticTicksStorage()){
+                                if(metalsEnVial[metal.getIndex()] >= metal.getMaxAllomanticTicksStorage()){
                                     return false;
                                 }
                             }
@@ -103,7 +102,7 @@ public class BigVialItemRecipe extends SpecialRecipe {
         //INTENTAR QUE SE PUEDAN CARGAR MAS DE UNA PEPITA DE UN METAL A LA VEZ
 
         if (ingredients[0] && ingredients[1]){
-            this.final_result = new ItemStack(ModItems.BIG_VIAL.get(),1);
+            this.final_result = new ItemStack(ModItems.LARGE_VIAL.get(),1);
             CompoundNBT compoundNBT = new CompoundNBT();
             for (MetalsNBTData metal : MetalsNBTData.values()){
                 if (addMetal[metal.getIndex()]){
@@ -133,13 +132,13 @@ public class BigVialItemRecipe extends SpecialRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return ModRecipeTypes.VIAL_ITEM_RECIPE_SERIALIZER.get();
+        return ModRecipeTypes.LARGE_VIAL_ITEM_RECIPE_SERIALIZER.get();
     }
 
-    public static class Serializer extends SpecialRecipeSerializer<BigVialItemRecipe> {
+    public static class Serializer extends SpecialRecipeSerializer<LargeVialItemRecipe> {
 
         public Serializer() {
-            super(BigVialItemRecipe::new);
+            super(LargeVialItemRecipe::new);
         }
     }
 }
