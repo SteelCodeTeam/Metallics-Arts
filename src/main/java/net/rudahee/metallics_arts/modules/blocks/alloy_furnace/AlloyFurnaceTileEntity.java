@@ -18,11 +18,11 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.rudahee.metallics_arts.data.recipes.alloy_furnace.AlloyFurnaceRecipe;
-import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
-import net.rudahee.metallics_arts.setup.registries.ModTileEntities;
 import net.rudahee.metallics_arts.setup.enums.extras.FuelsTime;
 import net.rudahee.metallics_arts.setup.enums.metals.MetalBurningRecipeData;
+import net.rudahee.metallics_arts.setup.registries.ModItems;
+import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
+import net.rudahee.metallics_arts.setup.registries.ModTileEntities;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

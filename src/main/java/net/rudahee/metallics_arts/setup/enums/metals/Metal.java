@@ -1,7 +1,5 @@
 package net.rudahee.metallics_arts.setup.enums.metals;
 
-import net.rudahee.metallics_arts.setup.enums.metals.IMetal;
-
 public enum Metal implements IMetal {
     STEEL("steel", "STEEL", true, true, true, true),
     TIN("tin", "TIN", true, true, true, false),

@@ -1,7 +1,6 @@
 package net.rudahee.metallics_arts.setup.enums.metals;
 
 import net.minecraft.block.Block;
-import net.rudahee.metallics_arts.setup.enums.metals.IMetal;
 
 public enum MetalGenerationData implements IMetal {
 

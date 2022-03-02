@@ -2,8 +2,6 @@ package net.rudahee.metallics_arts.modules.items.combat;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.item.IItemTier;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.crafting.Ingredient;
 

@@ -2,8 +2,6 @@ package net.rudahee.metallics_arts.modules.powers.helpers;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class PewterHelper {
 
