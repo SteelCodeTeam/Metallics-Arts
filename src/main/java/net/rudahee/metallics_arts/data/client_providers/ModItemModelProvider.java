@@ -93,7 +93,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/dueling_staff","item/combat/dueling_staff");
         builder(itemGenerated,"item/obsidian_axe","item/combat/obsidian_axe");
 
-        builder(itemGenerated,"item/vial","item/consumables/vial");
+        builder(itemGenerated,"item/big_vial","item/consumables/big_vial");
+        builder(itemGenerated,"item/small_vial","item/consumables/small_vial");
     }
     private ItemModelBuilder builder (ModelFile itemGenerated, String outPath, String texturePath){
         return  getBuilder(outPath).parent(itemGenerated).texture("layer0",texturePath);
