@@ -11,6 +11,7 @@ import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.rudahee.metallics_arts.modules.items.vials.vial.BigVial;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
@@ -19,11 +20,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class VialItemRecipe extends SpecialRecipe {
+public class BigVialItemRecipe extends SpecialRecipe {
 
     private ItemStack final_result = ItemStack.EMPTY;
 
-    private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItems.VIAL.get());
+    private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItems.BIG_VIAL.get());
 
     private static final List<Ingredient> INGREDIENT_NUGGET = new ArrayList<Ingredient>() {{
         for (Item metal: ModItems.ITEM_GEMS_NUGGET.values()) {
@@ -41,7 +42,7 @@ public class VialItemRecipe extends SpecialRecipe {
         }
     }};
 
-    public VialItemRecipe(ResourceLocation location) {
+    public BigVialItemRecipe(ResourceLocation location) {
         super(location);
     }
 
@@ -102,7 +103,7 @@ public class VialItemRecipe extends SpecialRecipe {
         //INTENTAR QUE SE PUEDAN CARGAR MAS DE UNA PEPITA DE UN METAL A LA VEZ
 
         if (ingredients[0] && ingredients[1]){
-            this.final_result = new ItemStack(ModItems.VIAL.get(),1);
+            this.final_result = new ItemStack(ModItems.BIG_VIAL.get(),1);
             CompoundNBT compoundNBT = new CompoundNBT();
             for (MetalsNBTData metal : MetalsNBTData.values()){
                 if (addMetal[metal.getIndex()]){
@@ -135,10 +136,10 @@ public class VialItemRecipe extends SpecialRecipe {
         return ModRecipeTypes.VIAL_ITEM_RECIPE_SERIALIZER.get();
     }
 
-    public static class Serializer extends SpecialRecipeSerializer<VialItemRecipe> {
+    public static class Serializer extends SpecialRecipeSerializer<BigVialItemRecipe> {
 
         public Serializer() {
-            super(VialItemRecipe::new);
+            super(BigVialItemRecipe::new);
         }
     }
 }

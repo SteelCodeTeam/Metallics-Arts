@@ -18,13 +18,15 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 
 
-public class Vial extends Item {
+public abstract class Vial extends Item {
 
 
     CompoundNBT compoundNBT = new CompoundNBT();
+    private int maxNuggets;
 
-    public Vial(Properties properties) {
+    public Vial(Properties properties,int maxNuggets) {
         super(properties);
+        this.maxNuggets = maxNuggets;
         for (MetalsNBTData metal : MetalsNBTData.values()){
             this.compoundNBT.putInt(metal.getNameLower(),0);
         }
@@ -69,8 +71,13 @@ public class Vial extends Item {
 
         if (!((PlayerEntity) (livingEntity)).abilities.instabuild) {
             itemStack.shrink(1);
+            ItemStack item = null;
+            if(this.maxNuggets==5){
+                item = new ItemStack(ModItems.SMALL_VIAL.get());
+            }else {
+                item = new ItemStack(ModItems.BIG_VIAL.get());
+            }
 
-            ItemStack item = new ItemStack(ModItems.VIAL.get());
             CompoundNBT data = new CompoundNBT();
             for (MetalsNBTData metal : MetalsNBTData.values()){
                 data.putInt(metal.getNameLower(),0);
@@ -78,7 +85,11 @@ public class Vial extends Item {
             item.setTag(data);
 
             if (!((PlayerEntity) livingEntity).inventory.add(item)) {
-                world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItems.VIAL.get(), 1)));
+                if(this.maxNuggets==5){
+                    world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItems.SMALL_VIAL.get(), 1)));
+                }else {
+                    world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItems.BIG_VIAL.get(), 1)));
+                }
             }
         }
         return itemStack;
@@ -106,7 +117,13 @@ public class Vial extends Item {
 
     @Override
     public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
-        ItemStack resultItem = new ItemStack(ModItems.VIAL.get(),1);
+
+        ItemStack resultItem = null;
+        if(this.maxNuggets==5){
+            resultItem = new ItemStack(ModItems.SMALL_VIAL.get(),1);
+        }else{
+            resultItem = new ItemStack(ModItems.BIG_VIAL.get(),1);
+        }
         CompoundNBT nbt = new CompoundNBT();
         for (MetalsNBTData mt : MetalsNBTData.values()) {
             nbt.putInt(mt.getGemNameLower(), 0);
@@ -118,7 +135,6 @@ public class Vial extends Item {
     public CompoundNBT getCompoundNBT() {
         return compoundNBT;
     }
-
 }
 
 

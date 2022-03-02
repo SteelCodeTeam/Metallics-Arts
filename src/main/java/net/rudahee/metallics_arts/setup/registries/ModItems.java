@@ -8,6 +8,8 @@ import net.rudahee.metallics_arts.modules.items.combat.*;
 import net.rudahee.metallics_arts.modules.items.metal_spike.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.bands.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.rings.*;
+import net.rudahee.metallics_arts.modules.items.vials.vial.BigVial;
+import net.rudahee.metallics_arts.modules.items.vials.vial.SmallVial;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalSpikesData;
@@ -400,8 +402,11 @@ public class ModItems {
         );
     }
 
-    public static final RegistryObject<Item> VIAL = register
-            ("vial", () -> new Vial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).food(new Food.Builder().nutrition(0).build())));
+    public static final RegistryObject<Item> SMALL_VIAL = register
+            ("small_vial", () -> new SmallVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).food(new Food.Builder().nutrition(0).build())));
+
+    public static final RegistryObject<Item> BIG_VIAL = register
+            ("big_vial", () -> new BigVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).food(new Food.Builder().nutrition(0).build())));
 
     public static void register() {
     }

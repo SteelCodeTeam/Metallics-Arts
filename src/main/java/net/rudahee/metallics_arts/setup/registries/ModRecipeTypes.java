@@ -9,7 +9,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.recipes.alloy_furnace.AlloyFurnaceRecipe;
-import net.rudahee.metallics_arts.data.recipes.vials.VialItemRecipe;
+import net.rudahee.metallics_arts.data.recipes.vials.BigVialItemRecipe;
 
 public class ModRecipeTypes {
     public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZER =
@@ -18,13 +18,13 @@ public class ModRecipeTypes {
     public static final RegistryObject<IRecipeSerializer<AlloyFurnaceRecipe>> ALLOY_FURNACE_SERIALIZER
             = RECIPE_SERIALIZER.register("alloy", AlloyFurnaceRecipe.Serializer::new);
 
-    public static final RegistryObject<IRecipeSerializer<VialItemRecipe>> VIAL_ITEM_RECIPE_SERIALIZER
-            = RECIPE_SERIALIZER.register("vial_filling", VialItemRecipe.Serializer::new);
+    public static final RegistryObject<IRecipeSerializer<BigVialItemRecipe>> VIAL_ITEM_RECIPE_SERIALIZER
+            = RECIPE_SERIALIZER.register("vial_filling", BigVialItemRecipe.Serializer::new);
 
     public static IRecipeType<AlloyFurnaceRecipe> ALLOY_FURNACE_RECIPE
             = IRecipeType.register("metallics_arts:alloy");
 
-    //public static IRecipeType<VialItemRecipe> VIAL_ITEM_RECIPE = IRecipeType.register("metallics_arts:vial_filling");
+    //public static IRecipeType<BigVialItemRecipe> VIAL_ITEM_RECIPE = IRecipeType.register("metallics_arts:vial_filling");
 
 
     public static void register(IEventBus eventBus) {
