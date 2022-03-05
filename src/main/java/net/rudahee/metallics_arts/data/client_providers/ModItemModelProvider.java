@@ -82,10 +82,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/bendalloy_spike","item/spikes/bendalloy_spike");
         builder(itemGenerated,"item/electrum_spike","item/spikes/electrum_spike");
         builder(itemGenerated,"item/gold_spike","item/spikes/gold_spike");
-        builder(itemGenerated,"item/atium_spike","item/spike");
-        builder(itemGenerated,"item/malatium_spike","item/spike");
-        builder(itemGenerated,"item/lerasium_spike","item/spike");
-        builder(itemGenerated,"item/ettmetal_spike","item/spike");
+        builder(itemGenerated,"item/atium_spike","item/spikes/atium_spike");
+        builder(itemGenerated,"item/malatium_spike","item/spikes/malatium_spike");
+        builder(itemGenerated,"item/lerasium_spike","item/spikes/lerasium_spike");
+        builder(itemGenerated,"item/ettmetal_spike","item/spikes/ettmetal_spike");
 
         builder(itemGenerated,"item/koloss_blade","item/combat/koloss_blade");
         builder(itemGenerated,"item/cristal_dagger","item/combat/cristal_dagger");
