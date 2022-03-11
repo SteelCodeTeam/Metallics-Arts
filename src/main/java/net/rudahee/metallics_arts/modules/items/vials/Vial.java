@@ -20,7 +20,7 @@ public abstract class Vial extends Item {
 
 
     CompoundNBT compoundNBT = new CompoundNBT();
-    private int maxNuggets;
+    private int maxNuggets = 0;
 
     public Vial(Properties properties,int maxNuggets) {
         super(properties);
@@ -139,7 +139,10 @@ public abstract class Vial extends Item {
             nbt.putInt(mt.getGemNameLower(), 0);
         }
         resultItem.setTag(nbt);
-        items.add(resultItem);
+
+        if (this.allowdedIn(group)) {
+            items.add(resultItem);
+        }
     }
 
     public CompoundNBT getCompoundNBT() {
