@@ -4,15 +4,15 @@ import net.minecraft.block.Block;
 
 public enum MetalGenerationData implements IMetal {
 
-    TIN("tin", "TIN", null,10, 10, 10, 5),
-    COPPER("copper", "COPPER", null,10, 10, 10, 5),
-    ZINC("zinc", "ZINC",null,10, 10, 10, 5),
-    CADMIUM("cadmium", "CADMIUM",null,10, 10, 10, 5),
-    ALUMINUM("aluminum", "ALUMINUM",null,10, 10, 10, 5),
-    CHROMIUM("chromium", "CHROMIUM",null,10, 10, 10, 5),
-    SILVER("silver", "SILVER",null,5, 5, 5, 5),
-    LEAD("lead", "LEAD",null, 5, 5, 5, 5),
-    NICKEL("nickel", "NICKEL",null,5, 5, 5, 5);
+    TIN("tin", "TIN", null,12, 10, 54, 5),
+    COPPER("copper", "COPPER", null,8, 25, 50, 6),
+    ZINC("zinc", "ZINC",null,8, 1, 24, 6),
+    CADMIUM("cadmium", "CADMIUM",null,6, 1, 16, 4),
+    ALUMINUM("aluminum", "ALUMINUM",null,6, 18, 45, 5),
+    CHROMIUM("chromium", "CHROMIUM",null,8, 1, 20, 5),
+    SILVER("silver", "SILVER",null,6, 18, 50, 5),
+    LEAD("lead", "LEAD",null, 6, 1, 30, 5),
+    NICKEL("nickel", "NICKEL",null,4, 10, 25, 5);
 
     private final String metalNameLower;
     private final String metalNameUpper;
