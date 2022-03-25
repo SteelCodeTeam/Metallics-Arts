@@ -27,7 +27,11 @@ public interface IDefaultInvestedPlayerData {
 
     void setMistborn(boolean mistborn);
 
+    void addAllAllomantic();
+
     void setFullFeruchemic(boolean feruchemic);
+
+    void addAllFeruchemic();
 
     void setFullInvested(boolean invested);
 
@@ -41,13 +45,19 @@ public interface IDefaultInvestedPlayerData {
 
     void setInvested(boolean invested);
 
+    void setUninvested();
+
     void addAllomanticPower(MetalsNBTData metal);
 
     void addFeruchemicPower(MetalsNBTData metal);
 
     void removeAllomanticPower(MetalsNBTData metal);
 
+    void removeAllAllomanticPower();
+
     void removeFeruchemicPower(MetalsNBTData metal);
+
+    void removeAllFeruchemicPower();
 
     boolean isBurning(MetalsNBTData metal);
 

@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -20,6 +21,7 @@ import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceScree
 import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.*;
 import net.rudahee.metallics_arts.setup.Registration;
+import net.rudahee.metallics_arts.setup.commands.MetallicArtsCommand;
 import net.rudahee.metallics_arts.setup.registries.ModContainers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -105,5 +107,10 @@ public class MetallicsArts
     public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+
+    @SubscribeEvent
+    public void onCommandsRegister(RegisterCommandsEvent event){
+        MetallicArtsCommand.register(event.getDispatcher());
     }
 }

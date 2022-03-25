@@ -9,6 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.setup.commands.MetallicArtsCommand;
 import net.rudahee.metallics_arts.setup.registries.*;
 
 public class Registration {

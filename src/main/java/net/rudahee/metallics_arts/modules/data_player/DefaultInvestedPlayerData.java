@@ -121,6 +121,7 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     public void setMistborn(boolean mistborn){
         this.mistborn = mistborn;
     }
+
     @Override
     public void setFullFeruchemic(boolean feruchemic){
         this.fullFeruchemic = feruchemic;
@@ -157,6 +158,13 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     }
 
     @Override
+    public void setUninvested() {
+
+    }
+
+
+    //ADD
+    @Override
     public void addAllomanticPower(MetalsNBTData metal){
         this.allomantic_powers[metal.getIndex()] = true;
     }
@@ -166,8 +174,27 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     }
 
     @Override
+    public void addAllAllomantic(){
+        Arrays.fill(this.allomantic_powers, true);
+        this.mistborn = true;
+    }
+
+    @Override
+    public void addAllFeruchemic(){
+        Arrays.fill(this.feruchemic_powers, true);
+        this.fullFeruchemic = true;
+    }
+
+    //REMOVE
+    @Override
     public void removeAllomanticPower(MetalsNBTData metal){
         this.allomantic_powers[metal.getIndex()] = false;
+    }
+
+    @Override
+    public void removeAllAllomanticPower() {
+        Arrays.fill(this.allomantic_powers, false);
+        this.mistborn = false;
     }
 
     @Override
@@ -175,6 +202,14 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
         this.feruchemic_powers[metal.getIndex()] = false;
     }
 
+    @Override
+    public void removeAllFeruchemicPower() {
+        Arrays.fill(this.feruchemic_powers, false);
+        this.fullFeruchemic = false;
+    }
+
+
+    //BURN
     @Override
     public boolean isBurning(MetalsNBTData metal){
         return this.burning_metals[metal.getIndex()];
