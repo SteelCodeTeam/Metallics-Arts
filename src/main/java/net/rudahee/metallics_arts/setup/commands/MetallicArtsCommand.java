@@ -7,12 +7,17 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class MetallicArtsCommand {
 
@@ -547,12 +552,69 @@ public class MetallicArtsCommand {
             e.printStackTrace();
         }
         if (playerEntity != null){
-            playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{ p.hasAllomanticPower(metalsNBTData); } );
+            ServerPlayerEntity finalPlayerEntity = playerEntity;
+            playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> sendSimpleMessage(finalPlayerEntity, cap.hasAllomanticPower(metalsNBTData), metalsNBTData, "allomantic"));
         }
-
         return 1;
     }
 
+    private static void sendAllMessage(ServerPlayerEntity finalPlayerEntity, ArrayList<MetalsNBTData> result, String type) {
+
+        ArrayList<MetalsNBTData> allMetals = new ArrayList<>(Arrays.asList(MetalsNBTData.values()));
+
+
+        if (type.equals("all") || type.equals("allomantic")) {
+
+            StringBuilder allAlomanticMetalsHave = new StringBuilder("");
+
+            for (MetalsNBTData metal: result) {
+                allAlomanticMetalsHave.append(metal.getNameLower() + "\n");
+            }
+
+            StringBuilder allAllomanticMetalsDontHave = new StringBuilder("");
+
+            ArrayList<MetalsNBTData> resultAllomanticDontHave = new ArrayList<>(allMetals.stream().filter(f-> !result.contains(f)).collect(Collectors.toList()));
+
+            for (MetalsNBTData metal: resultAllomanticDontHave) {
+                allAllomanticMetalsDontHave.append(metal.getNameLower() + " ");
+            }
+
+            finalPlayerEntity.sendMessage(new StringTextComponent("The player have those allomantic powers: " + allAlomanticMetalsHave.toString()),finalPlayerEntity.getUUID());
+            finalPlayerEntity.sendMessage(new StringTextComponent("The player dont have those allomantic powers: " + allAllomanticMetalsDontHave.toString()),finalPlayerEntity.getUUID());
+
+        } else if (type.equals("all") || type.equals("feruchemic")) {
+            StringBuilder allFeruchemicMetalsHave = new StringBuilder("");
+
+            for (MetalsNBTData metal: result) {
+                allFeruchemicMetalsHave.append(metal.getNameLower() + "\n");
+            }
+
+            StringBuilder allFeruchemicMetalsDontHave = new StringBuilder("");
+
+            ArrayList<MetalsNBTData> resultFeruchemicDontHave = new ArrayList<>(allMetals.stream().filter(f-> !result.contains(f)).collect(Collectors.toList()));
+
+            for (MetalsNBTData metal: resultFeruchemicDontHave) {
+                allFeruchemicMetalsDontHave.append(metal.getNameLower() + " ");
+            }
+
+            finalPlayerEntity.sendMessage(new StringTextComponent("The player have those feruchemic powers: " + allFeruchemicMetalsHave.toString()),finalPlayerEntity.getUUID());
+            finalPlayerEntity.sendMessage(new StringTextComponent("The player dont have those feruchemic powers: " + allFeruchemicMetalsDontHave.toString()),finalPlayerEntity.getUUID());
+
+        }
+    }
+
+
+    private static void sendSimpleMessage(ServerPlayerEntity finalPlayerEntity, boolean result, MetalsNBTData metal, String type) {
+
+        String have = (result) ?  "have " : "have not ";
+
+
+        ITextComponent text = new StringTextComponent("The player " + have + type + " " + metal.getNameLower() + " power");
+
+        finalPlayerEntity.sendMessage(text, finalPlayerEntity.getUUID());
+    }
+
+    
     public static int getFeruchemicPower (CommandContext<CommandSource> context){
 
         return 1;
