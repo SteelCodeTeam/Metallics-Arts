@@ -568,7 +568,7 @@ public class MetallicArtsCommand {
             StringBuilder allAlomanticMetalsHave = new StringBuilder("");
 
             for (MetalsNBTData metal: result) {
-                allAlomanticMetalsHave.append(metal.getNameLower() + "\n");
+                allAlomanticMetalsHave.append(metal.getNameLower() + " ");
             }
 
             StringBuilder allAllomanticMetalsDontHave = new StringBuilder("");
@@ -586,7 +586,7 @@ public class MetallicArtsCommand {
             StringBuilder allFeruchemicMetalsHave = new StringBuilder("");
 
             for (MetalsNBTData metal: result) {
-                allFeruchemicMetalsHave.append(metal.getNameLower() + "\n");
+                allFeruchemicMetalsHave.append(metal.getNameLower() + " ");
             }
 
             StringBuilder allFeruchemicMetalsDontHave = new StringBuilder("");
