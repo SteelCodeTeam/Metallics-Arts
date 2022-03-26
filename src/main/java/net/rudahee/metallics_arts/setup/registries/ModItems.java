@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.setup.registries;
 
-import com.electronwill.nightconfig.core.ConfigSpec;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -19,8 +18,6 @@ import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.enums.metals.MetalBurningRecipeData;
 
 import java.util.Arrays;
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Supplier;
