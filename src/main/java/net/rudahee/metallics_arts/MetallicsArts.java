@@ -4,6 +4,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -18,8 +21,10 @@ import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceScreen;
+import net.rudahee.metallics_arts.modules.client.GUI.MetalOverlay;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.*;
+import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.commands.MetallicArtsCommand;
 import net.rudahee.metallics_arts.setup.registries.ModContainers;
@@ -74,6 +79,8 @@ public class MetallicsArts
 
         CapabilityManager.INSTANCE.register(IDefaultInvestedPlayerData.class, new InvestedStorage(), DefaultInvestedPlayerData::new);
 
+        MetallicsPowersSetup.register(event);
+
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -113,4 +120,5 @@ public class MetallicsArts
     public void onCommandsRegister(RegisterCommandsEvent event){
         MetallicArtsCommand.register(event.getDispatcher());
     }
+
 }

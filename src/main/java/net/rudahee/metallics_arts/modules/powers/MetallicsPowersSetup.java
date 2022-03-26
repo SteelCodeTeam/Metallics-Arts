@@ -5,6 +5,7 @@ import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.modules.powers.client.ClientEventHandler;
 
 public class MetallicsPowersSetup {
 
@@ -15,10 +16,8 @@ public class MetallicsPowersSetup {
     public static void registerCommands(final RegisterCommandsEvent event) {
     }
 
-    public static void init(final FMLCommonSetupEvent event) {
-
-        InvestedCapability.register();
-        MinecraftForge.EVENT_BUS.register(PowersEventHandler.class);
+    public static void register(final FMLCommonSetupEvent event) {
+        MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
     }
 
     public static void register() {

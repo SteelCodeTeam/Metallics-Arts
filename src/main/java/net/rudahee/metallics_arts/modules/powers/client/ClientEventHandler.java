@@ -12,7 +12,7 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.rudahee.metallics_arts.modules.client.MetalSelector.MetalSelector;
+import net.rudahee.metallics_arts.modules.client.GUI.MetalOverlay;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import org.lwjgl.glfw.GLFW;
@@ -30,12 +30,11 @@ public class ClientEventHandler {
 
     private int tickOffset = 0;
 
-    @OnlyIn(Dist.CLIENT)
+    /*@OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onClientTick(final TickEvent.ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
 
-            PlayerEntity player = this.mc.player;
 
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                     playerCapability -> {
@@ -58,7 +57,7 @@ public class ClientEventHandler {
 
         }
 
-    }
+    }*/
 
 
     @OnlyIn(Dist.CLIENT)
@@ -67,6 +66,12 @@ public class ClientEventHandler {
         if (event.getAction() == GLFW.GLFW_PRESS) {
             acceptInput();
         }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @SubscribeEvent
+    public void onRenderGameOverlay(final RenderGameOverlayEvent event) {
+        MetalOverlay.drawMetalOverlay(event.getMatrixStack());
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -84,20 +89,7 @@ public class ClientEventHandler {
 
     }
 
-    @OnlyIn(Dist.CLIENT)
-    @SubscribeEvent
-    public void onRenderGameOverlay(RenderGameOverlayEvent event) {
-        if (!this.mc.isWindowActive() || !this.mc.player.isAlive()) {
-            return;
-        }
-        if (event.isCancelable() || event.getType() != RenderGameOverlayEvent.ElementType.EXPERIENCE) {
-            return;
-        }
-        if (this.mc.screen != null && !(this.mc.screen instanceof ChatScreen)) {
-            return;
-        }
-        MetalSelector.drawMetalOverlay(event.getMatrixStack());
-    }
+
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent

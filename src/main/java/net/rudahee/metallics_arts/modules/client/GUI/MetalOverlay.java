@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.client.MetalSelector;
+package net.rudahee.metallics_arts.modules.client.GUI;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.MainWindow;
@@ -13,7 +13,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
-public class MetalSelector {
+public class MetalOverlay {
     private static final Point[] Frames = new Point[4];
     private static final ResourceLocation meterLoc = new ResourceLocation("metallics_arts", "textures/gui/overlay/meter.png");
     private static int animationCounter = 0;
@@ -44,8 +44,6 @@ public class MetalSelector {
         int renderX = 5;
         int renderY = 10;
 
-
-
         ForgeIngameGui gui = new ForgeIngameGui(mc);
         mc.getTextureManager().bind(meterLoc);
         Texture obj;
@@ -54,29 +52,21 @@ public class MetalSelector {
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
 
-            if (!data.isFullInvested()) {
-                return;
-            }
+
 
             /*
              * The rendering for the overlay
              */
-            for (MetalsNBTData mt : MetalsNBTData.values()) {
-                if (data.hasAllomanticPower(mt)) {
-                    int metalY = 9 - data.getAllomanticAmount(mt);
-                    int i = mt.getIndex();
-                    int offset = (i / 2) * 4; // Adding a gap between pairs
-                    // Draw the bars first
-                    blit(matrix, gui, renderX + 1 + (7 * i) + offset, renderY + 5 + metalY, 7 + (6 * i), 1 + metalY, 3, 10 - metalY);
-                    // Draw the gauges second, so that highlights and decorations show over the bar.
-                    blit(matrix, gui, renderX + (7 * i) + offset, renderY, 0, 0, 5, 20);
-                    // Draw the fire if it is burning
-                    if (data.isBurning(mt)) {
-                        blit(matrix, gui, renderX + (7 * i) + offset, renderY + 4 + metalY, Frames[currentFrame].x, Frames[currentFrame].y, 5, 3);
-                    }
-                }
 
-            }
+
+                int metalY = 9;
+                // Draw the bars first
+                blit(matrix, gui, 0, 0, 0, 0, 128, 128);
+                // Draw the gauges second, so that highlights and decorations show over the bar.
+                blit(matrix, gui, 0, 0, 0, 0, 128, 128);
+                // Draw the fire if it is burning
+
+
         });
 
         // Update the animation counters
