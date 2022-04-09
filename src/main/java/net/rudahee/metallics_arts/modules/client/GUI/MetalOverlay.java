@@ -5,9 +5,12 @@ import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.texture.Texture;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.registries.ModNetwork;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -58,11 +61,16 @@ public class MetalOverlay {
              */
 
 
+            for (MetalsNBTData metal: data.getAllomanticPowers()) {
+                System.out.println(metal);
+                blit(matrix, gui, 0, 0 ,0, 0, 5, 17);
+            }
+
                 int metalY = 9;
                 // Draw the bars first
-                blit(matrix, gui, 0, 0, 0, 0, 128, 128);
+                //blit(matrix, gui, 0, 0, 0, 0, 128, 128);
                 // Draw the gauges second, so that highlights and decorations show over the bar.
-                blit(matrix, gui, 0, 0, 0, 0, 128, 128);
+                //blit(matrix, gui, 0, 0, 0, 0, 128, 128);
                 // Draw the fire if it is burning
 
 

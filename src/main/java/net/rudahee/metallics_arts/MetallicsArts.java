@@ -24,6 +24,7 @@ import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.commands.MetallicArtsCommand;
 import net.rudahee.metallics_arts.setup.registries.ModContainers;
+import net.rudahee.metallics_arts.setup.registries.ModNetwork;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
@@ -76,6 +77,7 @@ public class MetallicsArts
         CapabilityManager.INSTANCE.register(IDefaultInvestedPlayerData.class, new InvestedStorage(), DefaultInvestedPlayerData::new);
 
         MetallicsPowersSetup.register(event);
+        ModNetwork.registerPackets();
 
     }
 

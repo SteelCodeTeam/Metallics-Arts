@@ -1,5 +1,7 @@
 package net.rudahee.metallics_arts.modules.powers.client;
 
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,9 +11,14 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.rudahee.metallics_arts.modules.client.GUI.MetalOverlay;
+import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.setup.registries.ModNetwork;
 import org.lwjgl.glfw.GLFW;
+import org.lwjgl.opengl.GL11;
+import sun.awt.X11.XSystemTrayPeer;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,34 +33,24 @@ public class ClientEventHandler {
 
     private int tickOffset = 0;
 
-    /*@OnlyIn(Dist.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onClientTick(final TickEvent.ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
-
+            PlayerEntity player = this.mc.player;
 
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                     playerCapability -> {
+                        System.out.println(playerCapability.getAllomanticPowerCount());
 
-                        for (MetalsNBTData metal : MetalsNBTData.values()) {
-                            System.out.println(metal.getNameLower() + ":" + player.getMainHandItem().getItem().getTags().contains(metal.getGemNameLower()) + "\n");
-                            System.out.println(metal.getNameLower() + ":" + playerCapability.hasAllomanticPower(metal) + "\n");
 
-                        }
-                        if (!playerCapability.isFullInvested()) {
-                            for (MetalsNBTData metal : MetalsNBTData.values()) {
-                                playerCapability.addAllomanticPower(metal);
-                                playerCapability.setMistborn(true);
-                                playerCapability.addFeruchemicPower(metal);
-                                playerCapability.setFullInvested(true);
-                                playerCapability.setFullFeruchemic(true);
-                            }
-                        }
+
                     });
+
 
         }
 
-    }*/
+    }
 
 
     @OnlyIn(Dist.CLIENT)
@@ -90,7 +87,31 @@ public class ClientEventHandler {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event) {
+        PlayerEntity player = this.mc.player;
+        if (player == null || !player.isAlive() || this.mc.options.getCameraType().isMirrored()) {
+            return;
+        }
 
+        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+
+            if (!data.isInvested()) {
+                return;
+            }
+
+
+            // TODO investigate depreciation
+            RenderSystem.pushMatrix();
+            RenderSystem.disableTexture();
+            RenderSystem.disableDepthTest();
+            RenderSystem.depthMask(false);
+            RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
+            RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+            RenderSystem.enableBlend();
+
+            double dist = 1;
+            double yaw = ((this.mc.player.yRot + 90) * Math.PI) / 180;
+            double pitch = ((this.mc.player.xRot + 90) * Math.PI) / 180;
+        });
     }
 
     @OnlyIn(Dist.CLIENT)
