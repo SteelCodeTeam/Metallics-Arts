@@ -12,6 +12,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -560,7 +561,8 @@ public class MetallicArtsCommand {
                 p.addAllomanticPower(metalsNBTData);
                     }
             );
-            playerEntity.sendMessage(new StringTextComponent("Hecho"),playerEntity.getUUID());
+            ModNetwork.sync(playerEntity);
+            playerEntity.sendMessage(new StringTextComponent("Added " + metalsNBTData.getNameLower() + " allomantic power to " + playerEntity.getScoreboardName()),playerEntity.getUUID());
         }
         return 1;
     }
@@ -576,7 +578,8 @@ public class MetallicArtsCommand {
                         p.addFeruchemicPower(metalsNBTData);
                     }
             );
-            playerEntity.sendMessage(new StringTextComponent("Hecho"),playerEntity.getUUID());
+            ModNetwork.sync(playerEntity);
+            playerEntity.sendMessage(new StringTextComponent("Added " + metalsNBTData.getNameLower() + " feruchemic power to " + playerEntity.getScoreboardName()),playerEntity.getUUID());
         }
         return 1;
     }
@@ -592,7 +595,8 @@ public class MetallicArtsCommand {
                         p.addAllAllomantic();
                     }
             );
-            playerEntity.sendMessage(new StringTextComponent("Hecho"),playerEntity.getUUID());
+            ModNetwork.sync(playerEntity);
+            playerEntity.sendMessage(new StringTextComponent("Added all allomantics powers to " + playerEntity.getScoreboardName()),playerEntity.getUUID());
         }
         return 1;
     }
@@ -608,7 +612,8 @@ public class MetallicArtsCommand {
                         p.addAllFeruchemic();
                     }
             );
-            playerEntity.sendMessage(new StringTextComponent("Hecho"),playerEntity.getUUID());
+            ModNetwork.sync(playerEntity);
+            playerEntity.sendMessage(new StringTextComponent("Added all feruchemics powers to " + playerEntity.getScoreboardName()),playerEntity.getUUID());
         }
 
         return 1;
@@ -626,7 +631,8 @@ public class MetallicArtsCommand {
                         p.addAllFeruchemic();
                     }
             );
-            playerEntity.sendMessage(new StringTextComponent("Hecho"),playerEntity.getUUID());
+            ModNetwork.sync(playerEntity);
+            playerEntity.sendMessage(new StringTextComponent("Added all powers to " + playerEntity.getScoreboardName()),playerEntity.getUUID());
         }
 
         return 1;
@@ -648,6 +654,7 @@ public class MetallicArtsCommand {
                 addAllomanticPower(context,metal);
             }
         }
+        ModNetwork.sync(playerEntity);
         return 1;
     }
 
@@ -663,7 +670,8 @@ public class MetallicArtsCommand {
                         p.removeAllomanticPower(metalsNBTData);
                     }
             );
-            playerEntity.sendMessage(new StringTextComponent("Hecho"),playerEntity.getUUID());
+            ModNetwork.sync(playerEntity);
+            playerEntity.sendMessage(new StringTextComponent("Revoke " + metalsNBTData.getNameLower() + " allomantic power to " + playerEntity.getScoreboardName()),playerEntity.getUUID());
         }
         return 1;
     }
@@ -679,7 +687,8 @@ public class MetallicArtsCommand {
                         p.removeFeruchemicPower(metalsNBTData);
                     }
             );
-            playerEntity.sendMessage(new StringTextComponent("Hecho"),playerEntity.getUUID());
+            ModNetwork.sync(playerEntity);
+            playerEntity.sendMessage(new StringTextComponent("Revoke " + metalsNBTData.getNameLower() + " feruchemic power to " + playerEntity.getScoreboardName()),playerEntity.getUUID());
         }
         return 1;
     }
@@ -695,7 +704,8 @@ public class MetallicArtsCommand {
                         p.removeAllAllomanticPower();
                     }
             );
-            playerEntity.sendMessage(new StringTextComponent("Hecho"),playerEntity.getUUID());
+            ModNetwork.sync(playerEntity);
+            playerEntity.sendMessage(new StringTextComponent("Revoke all allomantics powers to " + playerEntity.getScoreboardName()),playerEntity.getUUID());
         }
 
         return 1;
@@ -712,7 +722,8 @@ public class MetallicArtsCommand {
                         p.removeAllFeruchemicPower();
                     }
             );
-            playerEntity.sendMessage(new StringTextComponent("Hecho"),playerEntity.getUUID());
+            ModNetwork.sync(playerEntity);
+            playerEntity.sendMessage(new StringTextComponent("Revoke all feruchemics powers to " + playerEntity.getScoreboardName()),playerEntity.getUUID());
         }
         return 1;
     }
@@ -729,7 +740,8 @@ public class MetallicArtsCommand {
                         p.removeAllFeruchemicPower();
                     }
             );
-            playerEntity.sendMessage(new StringTextComponent("Hecho"),playerEntity.getUUID());
+            ModNetwork.sync(playerEntity);
+            playerEntity.sendMessage(new StringTextComponent("Revoke all powers to " + playerEntity.getScoreboardName()),playerEntity.getUUID());
         }
         return 1;
     }

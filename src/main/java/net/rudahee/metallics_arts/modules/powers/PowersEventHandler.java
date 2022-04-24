@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.modules.powers;
 
-import com.google.common.graph.Network;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.World;
@@ -11,7 +10,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.PewterHelper;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.registries.ModNetwork;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.Arrays;
 import java.util.List;
@@ -139,7 +138,7 @@ public class PowersEventHandler {
                 PlayerEntity player = playerList.get(playerIndex);
 
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
-                        playerCapability ->{
+                        playerCapability -> {
 
                             for (MetalsNBTData metal: MetalsNBTData.values()){
                                 System.out.println(metal.getNameLower()+":"+player.getMainHandItem().getItem().getTags().contains(metal.getGemNameLower())+"\n");
@@ -155,6 +154,8 @@ public class PowersEventHandler {
                                     playerCapability.setFullFeruchemic(true);
                                 }
                             }
+
+                        ModNetwork.sync(player);
                     });
             }
         }

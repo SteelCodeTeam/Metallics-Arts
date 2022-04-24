@@ -5,12 +5,10 @@ import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.texture.Texture;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.registries.ModNetwork;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -43,9 +41,6 @@ public class MetalOverlay {
             return;
         }
 
-        int renderX = 5;
-        int renderY = 10;
-
         ForgeIngameGui gui = new ForgeIngameGui(mc);
         mc.getTextureManager().bind(meterLoc);
         Texture obj;
@@ -61,18 +56,34 @@ public class MetalOverlay {
              */
 
 
+            int offSetY = 5;
+            int actualOffSetX = 0;
+            int barOffSet = 7;
+            float vHeightBar = 0;
             for (MetalsNBTData metal: data.getAllomanticPowers()) {
-                System.out.println(metal);
-                blit(matrix, gui, 0, 0 ,0, 0, 5, 17);
+                vHeightBar = (data.getAllomanticAmount(metal) + 1) / metal.getMaxAllomanticTicksStorage();
+                System.out.println(data.getAllomanticAmount(metal));
+                System.out.println(metal.getMaxAllomanticTicksStorage());
+                actualOffSetX = actualOffSetX + offSetY;
+                blit(matrix, gui, actualOffSetX + (2 * metal.getIndex()),  offSetY, 0, 0, 5, 17);
+                System.out.println(metal.getNameLower() + ": - vHeightBar: " + vHeightBar );
+                blit(matrix, gui, actualOffSetX + (2 * metal.getIndex()) + 1, offSetY + 3, barOffSet, 0, 3, Math.round(12 * vHeightBar));
+                barOffSet = barOffSet + 6;
+
+                //if (data.isBurning(metal)) {
+                blit(matrix, gui, actualOffSetX + (2 * metal.getIndex()), offSetY + 3, Frames[currentFrame].x, Frames[currentFrame].y, 5, 3);
+                //}
             }
 
-                int metalY = 9;
-                // Draw the bars first
-                //blit(matrix, gui, 0, 0, 0, 0, 128, 128);
-                // Draw the gauges second, so that highlights and decorations show over the bar.
-                //blit(matrix, gui, 0, 0, 0, 0, 128, 128);
-                // Draw the fire if it is burning
+            animationCounter++;
+            if (animationCounter > 10) {
+                animationCounter = 0;
+                currentFrame++;
+                if(currentFrame > 3) {
+                    currentFrame = 0;
+                }
 
+            }
 
         });
 

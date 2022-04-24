@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.modules.data_player;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,12 +55,37 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
 
     @Override
     public void tickAllomancyBurningMetals(ServerPlayerEntity player){
+        boolean readyToSync = false;
+
+        for (MetalsNBTData metal: MetalsNBTData.values()) {
+            // Allomatic things
+            if (this.isBurning(metal)) {
+                if (!this.hasAllomanticPower(metal)) {
+                    this.setBurning(metal, false);
+                    readyToSync = true;
+                }
+                else {
+                    this.setAllomanticMetalsAmount(metal, this.getAllomanticAmount(metal) - 1);
+                    if (this.getAllomanticAmount(metal) <= 0) {
+                        this.setBurning(metal, false);
+                    }
+                    readyToSync = true;
+                }
+
+                if (readyToSync) {
+                    ModNetwork.sync(this, player);
+                }
+            }
+
+        }
+
 
     }
     @Override
     public void tickFeruchemyStorageMetals(ServerPlayerEntity player){
 
     }
+
     @Override
     public void tickFeruchemyDecantMetals(ServerPlayerEntity player){
 

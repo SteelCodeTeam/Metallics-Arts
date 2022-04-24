@@ -15,10 +15,8 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.rudahee.metallics_arts.modules.client.GUI.MetalOverlay;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.setup.registries.ModNetwork;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
-import sun.awt.X11.XSystemTrayPeer;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,15 +37,13 @@ public class ClientEventHandler {
         if (event.phase == TickEvent.Phase.END) {
             PlayerEntity player = this.mc.player;
 
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
-                    playerCapability -> {
-                        System.out.println(playerCapability.getAllomanticPowerCount());
+            if (player != null && player instanceof PlayerEntity) {
+                player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
+                        playerCapability -> {
 
 
-
-                    });
-
-
+                });
+            }
         }
 
     }
