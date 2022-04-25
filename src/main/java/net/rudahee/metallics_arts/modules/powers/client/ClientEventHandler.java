@@ -13,7 +13,8 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.rudahee.metallics_arts.modules.client.GUI.MetalOverlay;
+import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalOverlay;
+import net.rudahee.metallics_arts.modules.client.GUI.FeruchemicMetalOverlay;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
@@ -60,7 +61,9 @@ public class ClientEventHandler {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onRenderGameOverlay(final RenderGameOverlayEvent event) {
-        MetalOverlay.drawMetalOverlay(event.getMatrixStack());
+        AllomanticMetalOverlay.drawMetalOverlay(event.getMatrixStack());
+        FeruchemicMetalOverlay.drawMetalOverlay(event.getMatrixStack());
+
     }
 
     @OnlyIn(Dist.CLIENT)
