@@ -12,17 +12,18 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class AllomanticMetalOverlay {
     private static final Point[] AllomanticFrames = new Point[6];
 
-    private static final ResourceLocation allomanticMeterLoc = new ResourceLocation("metallics_arts", "textures/gui/overlay/allomancy_meter.png");
+    private static final ResourceLocation meterLocation = new ResourceLocation("metallics_arts", "textures/gui/overlay/meter.png");
     private static int animationCounter = 0;
     private static int currentFrame = 0;
 
     static {
-        int x = 0;
-        int firsty = 22;
+        int x = 9;
+        int firsty = 33;
         for (int i = 0; i < 6; i++) {
             AllomanticFrames[i] = new Point(x, firsty + (6 * i));
         }
@@ -46,9 +47,9 @@ public class AllomanticMetalOverlay {
         }
 
         ForgeIngameGui gui = new ForgeIngameGui(mc);
-        mc.getTextureManager().bind(allomanticMeterLoc);
+        mc.getTextureManager().bind(meterLocation);
         Texture objAllomantic;
-        objAllomantic = mc.getTextureManager().getTexture(allomanticMeterLoc);
+        objAllomantic = mc.getTextureManager().getTexture(meterLocation);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, objAllomantic.getId());
 
 
@@ -69,11 +70,11 @@ public class AllomanticMetalOverlay {
             int allomanticWidthVial = 5;
             int allomanticHeightVial = 16;
 
-            int allomanticPixelOffsetXInVialBar = 4;
+            int allomanticPixelOffsetXInVialBar = 3;
             int barOffSet = 7;
 
             int allomanticWidthBar = 3;
-            int allomanticHeightBar = 11;
+            int allomanticHeightBar = 13;
 
             int allomanticHeightAnimation = 5;
             int allomanticWidthAnimation = 5;
@@ -113,26 +114,27 @@ public class AllomanticMetalOverlay {
             int feruchemicWidthVial = 5;
             int feruchemicHeightVial = 16;
 
-            int feruchemicPixelOffsetXInVialBar = 4;
-            int feruchemicbarOffSet = 7;
+            int feruchemicPixelOffsetXInVialBar = 3;
 
             int feruchemicWidthBar = 3;
-            int feruchemicHeightBar = 11;
+            int feruchemicHeightBar = 13;
 
             int feruchemicHeightAnimation = 5;
             int feruchemicWidthAnimation = 5;
 
+            barOffSet = 7;
             for (MetalsNBTData metal: data.getFeruchemicPowers()) {
 
                 feruchemicActualOffSetX = feruchemicActualOffSetX + feruchemicWidthVial + 3;
-                blit(matrix, gui, feruchemicActualOffSetX,  feruchemicOffsetY + offSetTop, 0, 2, feruchemicWidthVial, feruchemicHeightVial);
+                blit(matrix, gui, feruchemicActualOffSetX,  feruchemicOffsetY + offSetTop, 0, 17, feruchemicWidthVial, feruchemicHeightVial);
+                blit(matrix, gui, feruchemicActualOffSetX + 1, feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop, barOffSet, 0, feruchemicWidthBar, feruchemicHeightBar);
+                //if decant
+                blit(matrix, gui, feruchemicActualOffSetX, feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation, feruchemicHeightAnimation);
+                // else if storage
+                //blit(matrix, gui, feruchemicActualOffSetX, feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation, feruchemicHeightAnimation);
 
-
+                barOffSet = barOffSet + 6;
             }
-
-
-
-
 
 
         });
@@ -140,17 +142,14 @@ public class AllomanticMetalOverlay {
 
 
             animationCounter++;
-            if (animationCounter > 100) {
+            if (animationCounter > 300) {
                 animationCounter = 0;
-                currentFrame++;
+                currentFrame = ThreadLocalRandom.current().nextInt(0, 5 + 1);;
                 if(currentFrame > 5) {
                     currentFrame = 0;
                 }
 
             }
-
-
-
     }
 
     private static void blit(MatrixStack matrix, ForgeIngameGui gui, int x, int y, float uOffset, float vOffset, int uWidth, int vHeight) {
