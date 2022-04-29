@@ -114,7 +114,7 @@ public class AllomanticMetalOverlay {
             int feruchemicWidthVial = 5;
             int feruchemicHeightVial = 16;
 
-            int feruchemicPixelOffsetXInVialBar = 3;
+            int feruchemicPixelOffsetXInVialBar = 2;
 
             int feruchemicWidthBar = 3;
             int feruchemicHeightBar = 13;
@@ -144,10 +144,12 @@ public class AllomanticMetalOverlay {
             animationCounter++;
             if (animationCounter > 300) {
                 animationCounter = 0;
-                currentFrame = ThreadLocalRandom.current().nextInt(0, 5 + 1);;
+                currentFrame++;
+                //currentFrame = ThreadLocalRandom.current().nextInt(0, 5 + 1);;
                 if(currentFrame > 5) {
                     currentFrame = 0;
                 }
+
 
             }
     }
