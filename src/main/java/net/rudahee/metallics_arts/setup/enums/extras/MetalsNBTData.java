@@ -5,39 +5,45 @@ import net.rudahee.metallics_arts.setup.enums.metals.IMetal;
 
 public enum MetalsNBTData implements IMetal, IGems {
     /* 1s = 20 ticks, 1600 = 80s */
-    STEEL("steel", "STEEL", 1, 1600),
-    IRON("iron", "IRON", 1, 1600),
-    TIN("tin", "TIN", 2, 1600),
-    PEWTER("pewter", "PEWTER", 2, 1600),
-    COPPER("copper", "COPPER", 3, 1600),
-    BRONZE("bronze", "BRONZE", 3, 1600),
-    ZINC("zinc", "ZINC", 4, 1600),
-    BRASS("brass", "BRASS", 4, 1600),
-    CHROMIUM("chromium", "CHROMIUM", 5, 1600),
-    NICROSIL("nicrosil", "NICROSIL", 5, 1600),
-    ALUMINUM("aluminum", "ALUMINUM", 6, 1600),
-    DURALUMIN("duralumin", "DURALUMIN", 6, 1600),
-    CADMIUM("cadmium", "CADMIUM", 7, 1600),
-    BENDALLOY("bendalloy", "BENDALLOY", 7, 1600),
-    ELECTRUM("electrum", "ELECTRUM", 8, 1600),
-    GOLD("gold", "GOLD", 8, 1600),
-    ATIUM("atium", "ATIUM", 9, 1600),
-    MALATIUM("malatium", "MALATIUM", 9, 1600),
-    LERASIUM("lerasium", "LERASIUM", 10, 1600),
-    ETTMETAL("ettmetal", "ETTMETAL", 10, 1600);
+    STEEL("steel", "STEEL", 1, 1600, true, false, 1),
+    IRON("iron", "IRON", 1, 1600, true, false, 1),
+    TIN("tin", "TIN", 2, 1600, false, false, 2),
+    PEWTER("pewter", "PEWTER", 2, 1600, false, false, 2),
+    COPPER("copper", "COPPER", 3, 1600, true, false, 3),
+    BRONZE("bronze", "BRONZE", 3, 1600, true, false, 3),
+    ZINC("zinc", "ZINC", 4, 1600, false, false, 4),
+    BRASS("brass", "BRASS", 4, 1600, false, false, 4),
+    CHROMIUM("chromium", "CHROMIUM", 5, 1600, true, false, 5),
+    NICROSIL("nicrosil", "NICROSIL", 5, 1600, true, false, 5),
+    ALUMINUM("aluminum", "ALUMINUM", 6, 1600, false, false, 6),
+    DURALUMIN("duralumin", "DURALUMIN", 6, 1600, false, false, 6),
+    CADMIUM("cadmium", "CADMIUM", 7, 1600, true, false, 7),
+    BENDALLOY("bendalloy", "BENDALLOY", 7, 1600, true, false, 7),
+    ELECTRUM("electrum", "ELECTRUM", 8, 1600, false, false, 8),
+    GOLD("gold", "GOLD", 8, 1600, false, false, 8),
+    ATIUM("atium", "ATIUM", 9, 1600, false, true, -1),
+    MALATIUM("malatium", "MALATIUM", 9, 1600, false, true, -1),
+    LERASIUM("lerasium", "LERASIUM", 10, 1600, false, true, -1),
+    ETTMETAL("ettmetal", "ETTMETAL", 10, 1600, false, true, -1);
 
 
     private final String nameLower;
     private final String nameUpper;
     private final int group;
     private final int maxAllomanticTicksStorage;
+    private final boolean external;
+    private final boolean divine;
+    private final int pair;
 
 
-    MetalsNBTData(String nameLower, String nameUpper, int group, int maxAllomanticTicksStorage) {
+    MetalsNBTData(String nameLower, String nameUpper, int group, int maxAllomanticTicksStorage, boolean external, boolean divine, int pair) {
         this.nameLower = nameLower;
         this.nameUpper = nameUpper;
         this.group = group;
         this.maxAllomanticTicksStorage = maxAllomanticTicksStorage;
+        this.external = external;
+        this.divine = divine;
+        this.pair = pair;
     }
 
     public String getNameLower() {
@@ -87,5 +93,17 @@ public enum MetalsNBTData implements IMetal, IGems {
             }
         }
         throw new IllegalArgumentException("Allomancy: Bad Metal Index");
+    }
+
+    public boolean isDivine() {
+        return divine;
+    }
+
+    public boolean isExternal() {
+        return external;
+    }
+
+    public int getPair() {
+        return pair;
     }
 }

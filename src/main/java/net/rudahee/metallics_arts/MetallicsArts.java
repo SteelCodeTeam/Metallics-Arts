@@ -4,6 +4,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -27,7 +28,9 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModContainers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
+import top.theillusivec4.curios.api.type.util.IIconHelper;
 
 import java.util.stream.Collectors;
 
@@ -95,9 +98,11 @@ public class MetallicsArts
 
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
+        IIconHelper iconHelper = CuriosApi.getIconHelper();
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
-                ()-> new SlotTypeMessage.Builder("mentalmind_slot").priority(1).size(4).build());
+                ()-> new SlotTypeMessage.Builder("metalmind_slot").priority(1).size(4).build());
 
+        iconHelper.addIcon("metalmind_slot", new ResourceLocation(MOD_ID, "textures/item/spikes/atium_spike.png"));
     }
 
     private void processIMC(final InterModProcessEvent event)
