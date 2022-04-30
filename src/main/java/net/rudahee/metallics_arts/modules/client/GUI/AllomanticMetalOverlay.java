@@ -30,8 +30,6 @@ public class AllomanticMetalOverlay {
     }
 
 
-
-
     /**
      * Draws the overlay for the metals
      *
