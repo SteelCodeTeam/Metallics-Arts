@@ -13,7 +13,10 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalOverlay;
+import net.rudahee.metallics_arts.modules.client.GUI.MetalSelector;
+import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
@@ -61,6 +64,24 @@ public class ClientEventHandler {
     @SubscribeEvent
     public void onRenderGameOverlay(final RenderGameOverlayEvent event) {
         AllomanticMetalOverlay.drawMetalOverlay(event.getMatrixStack());
+        if (KeyInit.allomancy.isDown()){
+            PlayerEntity player = this.mc.player;
+            if (this.mc.screen == null){
+                if (player==null || !this.mc.isWindowActive()){
+                    return;
+                }
+                player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+                    int num_powers = data.getAllomanticPowerCount();
+                    if (num_powers ==0){
+                        return;
+                    }
+                    else {
+                        this.mc.setScreen(new MetalSelector());
+                    }
+                });
+            }
+        }
+
     }
 
     @OnlyIn(Dist.CLIENT)
