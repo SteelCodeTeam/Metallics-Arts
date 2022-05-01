@@ -115,19 +115,6 @@ public class ClientEventHandler {
                 return;
             }
 
-
-            // TODO investigate depreciation
-            RenderSystem.pushMatrix();
-            RenderSystem.disableTexture();
-            RenderSystem.disableDepthTest();
-            RenderSystem.depthMask(false);
-            RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
-            RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            RenderSystem.enableBlend();
-
-            double dist = 1;
-            double yaw = ((this.mc.player.yRot + 90) * Math.PI) / 180;
-            double pitch = ((this.mc.player.xRot + 90) * Math.PI) / 180;
         });
     }
 

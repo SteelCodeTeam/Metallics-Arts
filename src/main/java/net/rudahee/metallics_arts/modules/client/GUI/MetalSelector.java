@@ -78,6 +78,8 @@ public class MetalSelector extends Screen {
             float step = (float) Math.PI / 180;
             float degreesPerSegment  = (float) Math.PI * 2 / internalSegments ;
 
+            float degreesExternalPerDivineSegmentsInNameTooLargeLMAO = (float) Math.PI * 2 / divineMetals.size();
+
             this.slotSelected = -1;
 
             Tessellator tess = Tessellator.getInstance();
@@ -300,14 +302,14 @@ public class MetalSelector extends Screen {
             //pintado externo
             for (int actualSegment  = 16; actualSegment  < 20 ; actualSegment ++) {
                 MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
-                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*2  * actualSegment < angle && angle < degreesPerSegment *2 * (actualSegment  + 1))  && (120<distance && distance<135);
+                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesExternalPerDivineSegmentsInNameTooLargeLMAO*2  * actualSegment < angle && angle < degreesExternalPerDivineSegmentsInNameTooLargeLMAO *2 * (actualSegment  + 1))  && (120<distance && distance<135);
                 float radius =135;
                 if (mouseInSector) {
                     radius *= 1.025f;
                 }
 
 
-                float rad = (actualSegment  + 0.5f) * degreesPerSegment;
+                float rad = (actualSegment  + 0.5f) * degreesExternalPerDivineSegmentsInNameTooLargeLMAO;
                 float xp = centerX  + MathHelper.cos(rad) * radius;
                 float yp = centerY  + MathHelper.sin(rad) * radius;
 

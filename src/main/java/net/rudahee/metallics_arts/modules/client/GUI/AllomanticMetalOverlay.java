@@ -4,15 +4,18 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.texture.Texture;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import org.lwjgl.opengl.GL11;
+import sun.awt.X11.XSystemTrayPeer;
 
 import java.awt.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class AllomanticMetalOverlay {
     private static final Point[] AllomanticFrames = new Point[6];
@@ -85,15 +88,23 @@ public class AllomanticMetalOverlay {
                 //Operacion necesaria para separar los botes de cristal
                 allomanticActualOffSetX = allomanticActualOffSetX + allomanticWidthVial + 3;
 
+                float division = (float)data.getAllomanticAmount(metal) / (float)metal.getMaxAllomanticTicksStorage();
+                int basura = Math.round(division * allomanticHeightBar);
+
+
                 blit(matrix, gui, allomanticActualOffSetX,  allomanticOffsetY, 0, 0, allomanticWidthVial, allomanticHeightVial);
-                blit(matrix, gui, allomanticActualOffSetX + 1, allomanticOffsetY + allomanticPixelOffsetXInVialBar, barOffSet, 0, allomanticWidthBar, allomanticHeightBar);
+                blit(matrix, gui, allomanticActualOffSetX + 1, allomanticOffsetY + allomanticPixelOffsetXInVialBar + (allomanticHeightBar - basura), barOffSet, 0, allomanticWidthBar, basura);
+
+                ITextComponent text = new StringTextComponent(Math.round(division * 100) + "%");
+
+                //ForgeIngameGui.drawString(matrix, mc.font, text, allomanticActualOffSetX, allomanticOffsetY + allomanticHeightVial + 1, Integer.parseInt("FF0000", 16));
 
                 // Este calculo mueve el offset 6 pixeles (3 para las barras, y 3 blancos).
                 barOffSet = barOffSet + 6;
 
-                //if (data.isBurning(metal)) {
-                blit(matrix, gui, allomanticActualOffSetX, allomanticOffsetY + allomanticPixelOffsetXInVialBar, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, allomanticWidthAnimation, allomanticHeightAnimation);
-                //}
+                if (data.isBurning(metal)) {
+                    blit(matrix, gui, allomanticActualOffSetX, allomanticOffsetY + allomanticPixelOffsetXInVialBar, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, allomanticWidthAnimation, allomanticHeightAnimation);
+                }
             }
 
 

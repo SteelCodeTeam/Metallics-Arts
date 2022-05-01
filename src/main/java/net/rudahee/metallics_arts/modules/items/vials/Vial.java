@@ -74,7 +74,7 @@ public abstract class Vial extends Item {
         livingEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
             for (MetalsNBTData metal : MetalsNBTData.values()) {
                 if (itemStack.getTag().contains(metal.getNameLower()) && itemStack.getTag().getInt(metal.getNameLower())>0) {
-                    data.setAllomanticMetalsAmount(metal,itemStack.getTag().getInt(metal.getNameLower()));
+                    data.setAllomanticMetalsAmount(metal,itemStack.getTag().getInt(metal.getNameLower()) + data.getAllomanticAmount(metal));
                 }
             }
         });

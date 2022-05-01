@@ -7,6 +7,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.PewterHelper;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
@@ -15,6 +16,7 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import java.util.Arrays;
 import java.util.List;
 
+@Mod.EventBusSubscriber
 public class PowersEventHandler {
 
     @SubscribeEvent
@@ -125,6 +127,7 @@ public class PowersEventHandler {
         }
     }
 
+    public static int ticks = 0;
 
     @SubscribeEvent
     public static void onWorldTickEvent(final TickEvent.WorldTickEvent event) {
@@ -132,31 +135,26 @@ public class PowersEventHandler {
 
             World world = event.world;
             List<? extends PlayerEntity> playerList = world.players();
-
+            ticks++;
             for (int playerIndex = playerList.size() - 1; playerIndex >= 0; playerIndex--) {
 
                 PlayerEntity player = playerList.get(playerIndex);
 
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                         playerCapability -> {
+                            if (ticks < 1000){
+                                playerCapability.setBurning(MetalsNBTData.BRASS, true);
+                            } else {
 
-                            for (MetalsNBTData metal: MetalsNBTData.values()){
-                                System.out.println(metal.getNameLower()+":"+player.getMainHandItem().getItem().getTags().contains(metal.getGemNameLower())+"\n");
-                                System.out.println(metal.getNameLower()+":"+playerCapability.hasAllomanticPower(metal)+"\n");
+                                playerCapability.setBurning(MetalsNBTData.BRASS, false);
+                            }
 
-                            }
-                            if (!playerCapability.isFullInvested()){
-                                for (MetalsNBTData metal: MetalsNBTData.values()){
-                                    playerCapability.addAllomanticPower(metal);
-                                    playerCapability.setMistborn(true);
-                                    playerCapability.addFeruchemicPower(metal);
-                                    playerCapability.setFullInvested(true);
-                                    playerCapability.setFullFeruchemic(true);
-                                }
-                            }
 
                         ModNetwork.sync(player);
                     });
+            }
+            if (ticks > 6000) {
+                ticks = 0;
             }
         }
     }
