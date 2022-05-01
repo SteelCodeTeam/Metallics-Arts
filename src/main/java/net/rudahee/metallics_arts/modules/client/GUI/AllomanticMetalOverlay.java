@@ -13,7 +13,6 @@ import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import org.lwjgl.opengl.GL11;
-import sun.awt.X11.XSystemTrayPeer;
 
 import java.awt.*;
 
