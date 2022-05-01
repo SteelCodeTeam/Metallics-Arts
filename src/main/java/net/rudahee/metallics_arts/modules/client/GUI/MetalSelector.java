@@ -354,9 +354,8 @@ public class MetalSelector extends Screen {
     }
 
     /*
-
-                int actualColor[] = new int[4];
-                actualColor = new int[]{200, 200, 200, 200};
+          int actualColor[] = new int[4];
+          actualColor = new int[]{200, 200, 200, 200};
                 if (actualSegment % 2 == 0) {
                     actualColor = new int[]{225, 225, 225, 220};
                 }
@@ -372,8 +371,6 @@ public class MetalSelector extends Screen {
                 if (actualSegment % 2 == 0) {
                     gs += 0x19;
                 }
-
-
 
     }*/
 

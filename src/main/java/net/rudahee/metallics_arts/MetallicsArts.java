@@ -50,6 +50,8 @@ public class MetallicsArts
         //In our main, we register all our objects.
         Registration.register();
 
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientInit);
+
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -122,6 +124,11 @@ public class MetallicsArts
     @SubscribeEvent
     public void onCommandsRegister(RegisterCommandsEvent event){
         MetallicArtsCommand.register(event.getDispatcher());
+    }
+
+
+    public void clientInit(final FMLClientSetupEvent e){
+        MetallicsPowersSetup.clientInit(e);
     }
 
 }
