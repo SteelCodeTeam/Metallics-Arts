@@ -54,7 +54,7 @@ public class MetalSelector extends Screen {
     }
 
     private static double mouseDistance (int centroX, int centroY, int mouseX, int mouseY) {
-
+        return Math.sqrt(Math.pow((mouseX-centroX),2)+Math.pow((mouseY-centroY),2));
     }
 
     private static int toMetalIndex(int segment) {
@@ -71,9 +71,10 @@ public class MetalSelector extends Screen {
             int centerY  = this.height / 2;
             int maxRadius = 80;
 
-            double angle = mouseAngle(centerX , centerY , mx, my);
+            double angle = mouseAngle(centerX,centerY , mx, my);
+            double distance = mouseDistance(centerX,centerY,mx,my);
 
-            int internalSegments  = 20;
+            int internalSegments = 8;
             float step = (float) Math.PI / 180;
             float degreesPerSegment  = (float) Math.PI * 2 / internalSegments ;
 
@@ -89,12 +90,96 @@ public class MetalSelector extends Screen {
             RenderSystem.shadeModel(GL11.GL_FLAT);
             buf.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
 
-            for (int actualSegment  = 0; actualSegment  < internalSegments     ; actualSegment ++) {
-                MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment ));
-                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment  * actualSegment  < angle && angle < degreesPerSegment  * (actualSegment  + 1));
-                float radius = Math.max(0F, Math.min((this.timeIn + partialTicks - actualSegment  * 6F / internalSegments ) * 40F, maxRadius));
+
+            //circulo interno
+            for (int actualSegment=0; actualSegment<internalSegments;actualSegment++) {
+                MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
+
+                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))  && (distance<maxRadius);
+
+                float radius = 80;
                 if (mouseInSector) {
                     this.slotSelected = actualSegment ;
+                    radius *= 1.025f;
+                }
+
+                int gs = 0x40;
+                if (actualSegment  % 2 == 0) {
+                    gs += 0x19;
+                }
+
+                gs = (!data.hasAllomanticPower(metal) || data.getAllomanticAmount(metal) == 0) ? 0 : gs;
+
+                int r = data.isBurning(metal) ? 0xFF : gs;
+                int g = gs;
+                int b = gs;
+                int a = 0x99;
+
+                if (actualSegment  == 0) {
+                    buf.vertex(centerX,centerY,0).color(r, g, b, a).endVertex();
+                }
+
+
+                for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
+                    float rad = v + actualSegment  * degreesPerSegment ;
+                    float xp = centerX  + MathHelper.cos(rad) * radius;
+                    float yp = centerY  + MathHelper.sin(rad) * radius;
+
+                    if (v == 0) {
+                        buf.vertex(xp, yp, 0).color(r, g, b, a).endVertex();
+                    }
+                    buf.vertex(xp, yp, 0).color(r, g, b, a).endVertex();
+                }
+            }
+
+
+            //circulo intermedio
+            for (int actualSegment  = 0; actualSegment  < internalSegments; actualSegment++) {
+                MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
+                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*actualSegment<angle && angle < degreesPerSegment  * (actualSegment  + 1))  && (maxRadius<distance && distance<120);
+                float radius = 120;
+
+                if (mouseInSector) {
+                    this.slotSelected = actualSegment;
+                    radius *= 1.025f;
+                }
+
+                int gs = 0x40;
+                if (actualSegment  % 2 == 0) {
+                    gs += 0x19;
+                }
+
+                gs = (!data.hasAllomanticPower(metal) || data.getAllomanticAmount(metal) == 0) ? 0 : gs;
+
+                int r = data.isBurning(metal) ? 0xFF : gs;
+                int g = gs;
+                int b = gs;
+                int a = 0x99;
+
+                if (actualSegment  == 0) {
+                    buf.vertex(centerX,centerY,0).color(r, g, b, a).endVertex();
+                }
+
+
+                for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
+                    float rad = v + actualSegment  * degreesPerSegment ;
+                    float xp = centerX  + MathHelper.cos(rad) * radius;
+                    float yp = centerY  + MathHelper.sin(rad) * radius;
+
+                    if (v == 0) {
+                        buf.vertex(xp, yp, 0).color(r, g, b, a).endVertex();
+                    }
+                    buf.vertex(xp, yp, 0).color(r, g, b, a).endVertex();
+                }
+            }
+
+            for (int actualSegment  = 0; actualSegment  < 4; actualSegment++) {
+                MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
+                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*2*actualSegment<angle && angle < degreesPerSegment*2* (actualSegment  + 1))  && (120<distance && distance<135);
+                float radius = 135;
+
+                if (mouseInSector) {
+                    this.slotSelected = actualSegment;
                     radius *= 1.025f;
                 }
 
@@ -132,9 +217,10 @@ public class MetalSelector extends Screen {
             RenderSystem.shadeModel(GL11.GL_FLAT);
             RenderSystem.enableTexture();
 
+            //pintado interno
             for (int actualSegment  = 0; actualSegment  < internalSegments ; actualSegment ++) {
                 MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment ));
-                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment  * actualSegment  < angle && angle < degreesPerSegment  * (actualSegment  + 1));
+                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment  * actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))  && (distance<maxRadius);
                 float radius = Math.max(0F, Math.min((this.timeIn + partialTicks - actualSegment  * 6F / internalSegments ) * 40F, maxRadius));
                 if (mouseInSector) {
                     radius *= 1.025f;
@@ -170,6 +256,88 @@ public class MetalSelector extends Screen {
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
             }
+
+            //pintado intermedio
+            for (int actualSegment  = 8; actualSegment  < internalSegments+8 ; actualSegment ++) {
+                MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
+                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment  * actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))  && (maxRadius<distance && distance<120);
+                float radius = Math.max(Math.min((this.timeIn + partialTicks - actualSegment  * 6F / internalSegments ) * 40F, maxRadius),Math.min((this.timeIn + partialTicks - actualSegment  * 6F / internalSegments ) * 40F, 120) );
+                if (mouseInSector) {
+                    radius *= 1.025f;
+                }
+
+
+                float rad = (actualSegment  + 0.5f) * degreesPerSegment;
+                float xp = centerX  + MathHelper.cos(rad) * radius;
+                float yp = centerY  + MathHelper.sin(rad) * radius;
+
+                float xsp = xp - 4;
+                float ysp = yp;
+                String name = (mouseInSector ? TextFormatting.UNDERLINE : TextFormatting.RESET) + new TranslationTextComponent(metal.getNameLower()).getString();
+                int width = this.mc.getEntityRenderDispatcher().getFont().width(name);
+
+                if (xsp < centerX ) {
+                    xsp -= width - 8;
+                }
+                if (ysp < centerY ) {
+                    ysp -= 9;
+                }
+
+                this.mc.getEntityRenderDispatcher().getFont().drawShadow(matrixStack, name, xsp, ysp, 0xFFFFFF);
+
+                double mod = 0.8;
+                int xdp = (int) ((xp - centerX ) * mod + centerX );
+                int ydp = (int) ((yp - centerY ) * mod + centerY );
+
+
+
+                //this.mc.getEntityRenderDispatcher().textureManager.bind( metal.getNameLower());
+                RenderSystem.color4f(1, 1, 1, 1);
+                blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
+
+            }
+
+            //pintado externo
+            for (int actualSegment  = 16; actualSegment  < 20 ; actualSegment ++) {
+                MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
+                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*2  * actualSegment < angle && angle < degreesPerSegment *2 * (actualSegment  + 1))  && (120<distance && distance<135);
+                float radius =135;
+                if (mouseInSector) {
+                    radius *= 1.025f;
+                }
+
+
+                float rad = (actualSegment  + 0.5f) * degreesPerSegment;
+                float xp = centerX  + MathHelper.cos(rad) * radius;
+                float yp = centerY  + MathHelper.sin(rad) * radius;
+
+                float xsp = xp - 4;
+                float ysp = yp;
+                String name = (mouseInSector ? TextFormatting.UNDERLINE : TextFormatting.RESET) + new TranslationTextComponent(metal.getNameLower()).getString();
+                int width = this.mc.getEntityRenderDispatcher().getFont().width(name);
+
+                if (xsp < centerX ) {
+                    xsp -= width - 8;
+                }
+                if (ysp < centerY ) {
+                    ysp -= 9;
+                }
+
+                this.mc.getEntityRenderDispatcher().getFont().drawShadow(matrixStack, name, xsp, ysp, 0xFFFFFF);
+
+                double mod = 0.8;
+                int xdp = (int) ((xp - centerX ) * mod + centerX );
+                int ydp = (int) ((yp - centerY ) * mod + centerY );
+
+
+
+                //this.mc.getEntityRenderDispatcher().textureManager.bind( metal.getNameLower());
+                RenderSystem.color4f(1, 1, 1, 1);
+                blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
+
+            }
+
+
 
             RenderSystem.enableRescaleNormal();
             RenderSystem.enableBlend();
