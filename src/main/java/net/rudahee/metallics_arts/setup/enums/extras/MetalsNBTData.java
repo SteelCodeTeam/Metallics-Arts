@@ -21,10 +21,10 @@ public enum MetalsNBTData implements IMetal, IGems {
     BENDALLOY("bendalloy", "BENDALLOY", 7, 1600, true, false, 7),
     ELECTRUM("electrum", "ELECTRUM", 8, 1600, false, false, 8),
     GOLD("gold", "GOLD", 8, 1600, false, false, 8),
-    ATIUM("atium", "ATIUM", 9, 1600, false, true, -1),
-    MALATIUM("malatium", "MALATIUM", 9, 1600, false, true, -1),
-    LERASIUM("lerasium", "LERASIUM", 10, 1600, false, true, -1),
-    ETTMETAL("ettmetal", "ETTMETAL", 10, 1600, false, true, -1);
+    ATIUM("atium", "ATIUM", 9, 1600, false, true, 9),
+    MALATIUM("malatium", "MALATIUM", 9, 1600, false, true, 9),
+    LERASIUM("lerasium", "LERASIUM", 10, 1600, false, true, 10),
+    ETTMETAL("ettmetal", "ETTMETAL", 10, 1600, false, true, 10);
 
 
     private final String nameLower;

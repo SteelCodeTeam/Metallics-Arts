@@ -101,7 +101,7 @@ public class MetalSelector extends Screen {
 
             //circulo interno
             for (int actualSegment=0; actualSegment<internalSegments;actualSegment++) {
-                MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
+                MetalsNBTData metal = internalMetals.get(actualSegment);
                 boolean mouseInSector = data.hasAllomanticPower(metal) &&
                         (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))  && (distance<internalRadio);
                 float radius = internalRadio;
@@ -143,8 +143,7 @@ public class MetalSelector extends Screen {
 
             //circulo intermedio
             for (int actualSegment  = 0; actualSegment  < internalSegments; actualSegment++) {
-                MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
-                // MetalsNBTData metal = externalMetal.get(actualSegment);
+                MetalsNBTData metal = externalMetals.get(actualSegment);
                 boolean mouseInSector = data.hasAllomanticPower(metal) &&
                         (degreesPerSegment*actualSegment<angle && angle < degreesPerSegment  * (actualSegment  + 1)) &&
                         (internalRadio<distance && distance<mediumRadio);
@@ -185,11 +184,12 @@ public class MetalSelector extends Screen {
             }
 
             //circulo externo
-            for (int actualSegment  = 0; actualSegment  < 4; actualSegment++) {
-                MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
+            for (int actualSegment  = 0; actualSegment  < divineMetals.size(); actualSegment++) {
+                MetalsNBTData metal = divineMetals.get(actualSegment);
                 boolean mouseInSector = data.hasAllomanticPower(metal) &&
-                        (degreesPerSegment*2*actualSegment<angle && angle < degreesPerSegment*2* (actualSegment  + 1))
+                        (degreesPerSegment*2*actualSegment < angle && angle < degreesPerSegment*2* (actualSegment  + 1))
                         && (mediumRadio<distance && distance<externalRadio);
+
                 float radius = externalRadio;
 
                 if (mouseInSector) {
@@ -197,6 +197,8 @@ public class MetalSelector extends Screen {
                     radius *= 1.025f;
                 }
 
+
+                //desde aqui es dibujado de parte del circulo
                 int gs = 0x40;
                 if (actualSegment  % 2 == 0) {
                     gs += 0x19;
@@ -233,15 +235,14 @@ public class MetalSelector extends Screen {
 
             //pintado interno
             for (int actualSegment  = 0; actualSegment  < internalSegments ; actualSegment ++) {
-                MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment ));
+                MetalsNBTData metal = internalMetals.get(actualSegment);
                 boolean mouseInSector = data.hasAllomanticPower(metal)
-                        && (degreesPerSegment  * actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))
+                        && (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment*(actualSegment  + 1))
                         && (distance<internalRadio);
                 float radius = internalRadio;
                 if (mouseInSector) {
                     radius *= 1.025f;
                 }
-
 
                 float rad = (actualSegment  + 0.5f) * degreesPerSegment;
                 float xp = centerX  + MathHelper.cos(rad) * radius;
@@ -258,7 +259,7 @@ public class MetalSelector extends Screen {
                 int xdp = (int) ((xp - centerX ) * mod + centerX );
                 int ydp = (int) ((yp - centerY ) * mod + centerY );
 
-                this.mc.getEntityRenderDispatcher().textureManager.bind( new ResourceLocation(MetallicsArts.MOD_ID,"textures/item/metal_mind/copper_bronze_band.png"));
+                this.mc.getEntityRenderDispatcher().textureManager.bind( new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
                 RenderSystem.color4f(1, 1, 1, 1);
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
@@ -266,7 +267,8 @@ public class MetalSelector extends Screen {
 
             //pintado intermedio
             for (int actualSegment  = 0; actualSegment  < internalSegments ; actualSegment ++) {
-                MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
+                //MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
+                MetalsNBTData metal = externalMetals.get(actualSegment);
                 boolean mouseInSector = data.hasAllomanticPower(metal) &&
                         (degreesPerSegment* actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))  &&
                         (internalRadio<distance && distance<mediumRadio);
@@ -294,45 +296,39 @@ public class MetalSelector extends Screen {
 
 
 
-                this.mc.getEntityRenderDispatcher().textureManager.bind( new ResourceLocation(MetallicsArts.MOD_ID,"textures/item/metal_mind/copper_bronze_band.png"));
+                this.mc.getEntityRenderDispatcher().textureManager.bind( new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
                 RenderSystem.color4f(1, 1, 1, 1);
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
             }
 
             //pintado externo
-            for (int actualSegment  = 0; actualSegment  < 4 ; actualSegment ++) {
-                MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
-
+            for (int actualSegment  = 0; actualSegment  < divineMetals.size() ; actualSegment ++) {
+                //MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
+                MetalsNBTData metal = divineMetals.get(actualSegment);
                 boolean mouseInSector = data.hasAllomanticPower(metal) &&
-                        (degreesExternal*2* actualSegment < angle && angle < degreesExternal*2 * (actualSegment  + 1))
+                        (degreesExternal*2*actualSegment < angle && angle < degreesExternal*2 * (actualSegment  + 1))
                         && (mediumRadio<distance && distance<externalRadio);
 
                 float radius = externalRadio;
+
                 if (mouseInSector) {
                     radius *= 1.025f;
                 }
-
 
                 float rad = (actualSegment + 0.5f) * degreesExternal;
                 float xp = centerX  + MathHelper.cos(rad) * radius;
                 float yp = centerY  + MathHelper.sin(rad) * radius;
 
-                float xsp = xp - 4;
-                float ysp = yp;
-
                 if (mouseInSector){
                     renderTooltip(matrixStack, new StringTextComponent(metal.getNameLower()),mx,my);
                 }
 
-
-                double mod = 0.8;
+                double mod = 0.9;
                 int xdp = (int) ((xp - centerX ) * mod + centerX );
                 int ydp = (int) ((yp - centerY ) * mod + centerY );
 
-
-
-                this.mc.getEntityRenderDispatcher().textureManager.bind( new ResourceLocation(MetallicsArts.MOD_ID,"textures/item/metal_mind/copper_bronze_band.png"));
+                this.mc.getEntityRenderDispatcher().textureManager.bind( new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
                 RenderSystem.color4f(1, 1, 1, 1);
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
