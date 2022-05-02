@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.modules.client.GUI;
 
-import com.ibm.icu.impl.coll.Collation;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
@@ -20,7 +19,6 @@ import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Arrays;
@@ -35,11 +33,14 @@ public class MetalSelector extends Screen {
                     metal -> !metal.isExternal()
                             && !metal.isDivine()).collect (Collectors.toList());
 
+
+
     private static final List<MetalsNBTData> externalMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> metal.isExternal() && !metal.isDivine()).collect(Collectors.toList());
     private static final List<MetalsNBTData> divineMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> metal.isDivine()).collect(Collectors.toList());
 
     final Minecraft mc;
     int slotSelected = -1;
+    int list =-1;
     int timeIn = 8;
 
     public MetalSelector() {
@@ -54,11 +55,6 @@ public class MetalSelector extends Screen {
     private static double mouseDistance (int centroX, int centroY, int mouseX, int mouseY) {
         return Math.sqrt(Math.pow((mouseX-centroX),2)+Math.pow((mouseY-centroY),2));
     }
-
-    private static int toMetalIndex(int segment) {
-        return (segment + 5) % Metal.values().length;
-    }
-
 
     @Override
     public void render(MatrixStack matrixStack, int mx, int my, float partialTicks) {
@@ -81,6 +77,7 @@ public class MetalSelector extends Screen {
 
             this.slotSelected = -1;
 
+
             Tessellator tess = Tessellator.getInstance();
             BufferBuilder buf = tess.getBuilder();
 
@@ -99,7 +96,8 @@ public class MetalSelector extends Screen {
                 float radius = internalRadio;
 
                 if (mouseInSector) {
-                    this.slotSelected = actualSegment ;
+                    this.slotSelected = actualSegment;
+                    this.list=1;
                     radius *= 1.025f;
                 }
 
@@ -143,6 +141,7 @@ public class MetalSelector extends Screen {
 
                 if (mouseInSector) {
                     this.slotSelected = actualSegment;
+                    this.list=2;
                     radius *= 1.025f;
                 }
 
@@ -179,13 +178,14 @@ public class MetalSelector extends Screen {
             for (int actualSegment  = 0; actualSegment  < divineMetals.size(); actualSegment++) {
                 MetalsNBTData metal = divineMetals.get(actualSegment);
                 boolean mouseInSector = data.hasAllomanticPower(metal) &&
-                        (degreesPerSegment*actualSegment*2 < angle && angle*2 < degreesPerSegment* (actualSegment  + 1))
+                        (degreesPerSegment*actualSegment*2 < angle && angle < degreesPerSegment* (actualSegment  + 1))
                         && (mediumRadio<distance && distance<externalRadio);
 
                 float radius = externalRadio;
 
                 if (mouseInSector) {
                     this.slotSelected = actualSegment;
+                    this.list=3;
                     radius *= 1.025f;
                 }
 
@@ -361,8 +361,9 @@ public class MetalSelector extends Screen {
     }*/
 
 
-    public boolean mouseClicked(double mouseX, double mouseY, int mouseButton, MetalsNBTData mt) {
-        toggleSelected(mt);
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
+        toggleSelected();
         return super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 
@@ -396,8 +397,19 @@ public class MetalSelector extends Screen {
     /**
      * Toggles the metal the mouse is currently over
      */
-    private void toggleSelected(MetalsNBTData mt) {
+    private void toggleSelected() {
         if (this.slotSelected != -1) {
+            MetalsNBTData mt ;
+
+            if(this.list==1){
+                mt = internalMetals.get(this.slotSelected);
+            }else if(this.list==2){
+                mt = externalMetals.get(this.slotSelected);
+            }else if(this.list==3){
+                mt = divineMetals.get(this.slotSelected);
+            }else{
+                mt = null;
+            }
 
             this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
                 ClientUtils.toggleBurn(mt, data);
