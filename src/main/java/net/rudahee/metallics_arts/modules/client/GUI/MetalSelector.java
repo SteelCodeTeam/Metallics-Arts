@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.client.GUI;
 
+import com.ibm.icu.impl.coll.Collation;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
@@ -8,29 +9,20 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.GuiScreenEvent;
-import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
-import net.rudahee.metallics_arts.modules.data_player.DefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import org.lwjgl.opengl.GL11;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,7 +31,10 @@ import java.util.stream.Collectors;
 public class MetalSelector extends Screen {
 
 
-    private static final List<MetalsNBTData> internalMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> !metal.isExternal() && !metal.isDivine()).collect(Collectors.toList());
+    private static final List<MetalsNBTData> internalMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(
+                    metal -> !metal.isExternal()
+                            && !metal.isDivine()).collect (Collectors.toList());
+
     private static final List<MetalsNBTData> externalMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> metal.isExternal() && !metal.isDivine()).collect(Collectors.toList());
     private static final List<MetalsNBTData> divineMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> metal.isDivine()).collect(Collectors.toList());
 
@@ -68,7 +63,6 @@ public class MetalSelector extends Screen {
     @Override
     public void render(MatrixStack matrixStack, int mx, int my, float partialTicks) {
         super.render(matrixStack, mx, my, partialTicks);
-
         this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             int centerX  = this.width / 2;
             int centerY  = this.height / 2;
@@ -78,8 +72,6 @@ public class MetalSelector extends Screen {
 
             double angle = mouseAngle(centerX,centerY , mx, my);
             double distance = mouseDistance(centerX,centerY,mx,my);
-
-
 
             int internalSegments = 8;
             float step = (float) Math.PI / 180;
@@ -187,7 +179,7 @@ public class MetalSelector extends Screen {
             for (int actualSegment  = 0; actualSegment  < divineMetals.size(); actualSegment++) {
                 MetalsNBTData metal = divineMetals.get(actualSegment);
                 boolean mouseInSector = data.hasAllomanticPower(metal) &&
-                        (degreesPerSegment*2*actualSegment < angle && angle < degreesPerSegment*2* (actualSegment  + 1))
+                        (degreesPerSegment*actualSegment*2 < angle && angle*2 < degreesPerSegment* (actualSegment  + 1))
                         && (mediumRadio<distance && distance<externalRadio);
 
                 float radius = externalRadio;
@@ -304,10 +296,9 @@ public class MetalSelector extends Screen {
 
             //pintado externo
             for (int actualSegment  = 0; actualSegment  < divineMetals.size() ; actualSegment ++) {
-                //MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
                 MetalsNBTData metal = divineMetals.get(actualSegment);
                 boolean mouseInSector = data.hasAllomanticPower(metal) &&
-                        (degreesExternal*2*actualSegment < angle && angle < degreesExternal*2 * (actualSegment  + 1))
+                        (degreesExternal*actualSegment < angle && angle < degreesExternal * (actualSegment  + 1))
                         && (mediumRadio<distance && distance<externalRadio);
 
                 float radius = externalRadio;
@@ -333,8 +324,6 @@ public class MetalSelector extends Screen {
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
             }
-
-
 
             RenderSystem.enableRescaleNormal();
             RenderSystem.enableBlend();
