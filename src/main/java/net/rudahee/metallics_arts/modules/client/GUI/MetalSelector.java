@@ -22,6 +22,7 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,14 +30,11 @@ import java.util.stream.Collectors;
 public class MetalSelector extends Screen {
 
 
-    private static final List<MetalsNBTData> internalMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(
-                    metal -> !metal.isExternal()
-                            && !metal.isDivine()).collect (Collectors.toList());
+    private static final List<MetalsNBTData> internalMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> !metal.isExternal() && !metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
+    private static final List<MetalsNBTData> externalMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> metal.isExternal() && !metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
+    private static final List<MetalsNBTData> divineMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
 
 
-
-    private static final List<MetalsNBTData> externalMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> metal.isExternal() && !metal.isDivine()).collect(Collectors.toList());
-    private static final List<MetalsNBTData> divineMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> metal.isDivine()).collect(Collectors.toList());
 
     final Minecraft mc;
     int slotSelected = -1;
@@ -45,6 +43,7 @@ public class MetalSelector extends Screen {
 
     public MetalSelector() {
         super(new StringTextComponent("metallic_arts_selector"));
+
         this.mc = Minecraft.getInstance();
     }
 

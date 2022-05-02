@@ -9,8 +9,9 @@ public enum MetalsNBTData implements IMetal, IGems {
     IRON("iron", "IRON", 1, 1600, true, false, 6),
     TIN("tin", "TIN", 2, 1600, false, false, 5),
     PEWTER("pewter", "PEWTER", 2, 1600, false, false, 4),
-    COPPER("copper", "COPPER", 3, 1600, true, false, 6),
-    BRONZE("bronze", "BRONZE", 3, 1600, true, false, 7),
+    COPPER("copper", "COPPER", 3, 16000, true, false, 6),
+
+    BRONZE("bronze", "BRONZE", 3, 16000, true, false, 7),
     ZINC("zinc", "ZINC", 4, 1600, false, false, 6),
     BRASS("brass", "BRASS", 4, 1600, false, false, 7),
     CHROMIUM("chromium", "CHROMIUM", 5, 1600, true, false, 3),
@@ -103,7 +104,7 @@ public enum MetalsNBTData implements IMetal, IGems {
         return external;
     }
 
-    public int getPair() {
+    public int getOrder() {
         return order;
     }
 }

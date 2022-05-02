@@ -1,8 +1,22 @@
 package net.rudahee.metallics_arts.modules.powers;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.MoverType;
+import net.minecraft.entity.ai.controller.MovementController;
+import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.tileentity.ITickableTileEntity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -129,6 +143,10 @@ public class PowersEventHandler {
 
     public static int ticks = 0;
 
+    public static int x = 8;
+    public static int y = 8;
+    public static int z = 8;
+
     @SubscribeEvent
     public static void onWorldTickEvent(final TickEvent.WorldTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
@@ -141,20 +159,114 @@ public class PowersEventHandler {
                 PlayerEntity player = playerList.get(playerIndex);
 
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
-                        playerCapability -> {
-                            if (ticks < 1000){
-                                playerCapability.setBurning(MetalsNBTData.BRASS, true);
-                            } else {
-
-                                playerCapability.setBurning(MetalsNBTData.BRASS, false);
+                    playerCapability -> {
+                        if (playerCapability.isInvested()) {
+                            if (player instanceof ServerPlayerEntity) {
+                                playerCapability.tickAllomancyBurningMetals((ServerPlayerEntity) player);
                             }
 
+                            /************************
+                                BENDALLOY POWERS
+                             ************************/
+                            if (playerCapability.hasAllomanticPower(MetalsNBTData.BENDALLOY) && playerCapability.isBurning(MetalsNBTData.BENDALLOY)) {
+                                if (!playerCapability.isBurning(MetalsNBTData.CADMIUM)) {
 
-                        ModNetwork.sync(player);
-                    });
-            }
-            if (ticks > 6000) {
-                ticks = 0;
+                                    player.addEffect(new EffectInstance(Effects.DIG_SPEED, 3, 2, true, false));
+                                    player.aiStep();
+                                    player.aiStep();
+
+                                    if (event.world instanceof ServerWorld) {
+                                        BlockPos negative = new BlockPos(player.position()).offset(-x, -y, -z);
+                                        BlockPos positive = new BlockPos(player.position()).offset(x, y, z);
+
+                                        // Ticks extra in random blocks, tile entities and entities.
+                                        event.world.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(negative, positive)).forEach(entity -> {
+                                            entity.aiStep();
+                                        });
+
+                                        BlockPos.betweenClosedStream(negative, positive).forEach(blockPos -> {
+                                            BlockState block = event.world.getBlockState(blockPos);
+                                            TileEntity tileEntity = event.world.getBlockEntity(blockPos);
+
+                                            for (int i = 0; i < x * 4 / (tileEntity == null ? 10 : 1); i++) {
+                                                if (tileEntity instanceof ITickableTileEntity) {
+                                                    if (Math.random() > 0.50) {
+                                                        ((ITickableTileEntity) tileEntity).tick();
+                                                    }
+                                                } else if (block.isRandomlyTicking()) {
+                                                    if (Math.random() > 0.50) {
+                                                        block.randomTick((ServerWorld) event.world, blockPos, event.world.random);
+
+                                                    }
+                                                }
+                                            }
+                                        });
+
+                                    }
+
+                                }
+                            }
+                            /************************
+                             CADMIUM POWERS
+                             ************************/
+                            if (playerCapability.hasAllomanticPower(MetalsNBTData.CADMIUM) && playerCapability.isBurning(MetalsNBTData.CADMIUM)) {
+                                if (!playerCapability.isBurning(MetalsNBTData.BENDALLOY)) {
+
+                                    BlockPos negative = new BlockPos(player.position()).offset(-x, -y, -z);
+                                    BlockPos positive = new BlockPos(player.position()).offset(x, y, z);
+                                    int slowness_amplifier = 2;
+                                    player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 10, 4, true, false));
+
+                                    if (event.world instanceof ServerWorld) {
+
+                                        event.world.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(negative, positive)).forEach(entity -> {
+                                            if (entity != player) {
+                                                entity.addEffect(new EffectInstance(Effects.SLOW_FALLING, 10, 2, true, false));
+                                                entity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 10, slowness_amplifier, true, false));
+                                            }
+                                        });
+                                    }
+
+                                }
+                            }
+                        }
+                        /************************
+                         PEWTER POWERS
+                         ************************/
+                        if (playerCapability.hasAllomanticPower(MetalsNBTData.PEWTER) && playerCapability.isBurning(MetalsNBTData.PEWTER)) {
+                            player.addEffect(new EffectInstance(Effects.JUMP, 3, 2, true, false));
+                            player.addEffect(new EffectInstance(Effects.DIG_SPEED, 3, 1, true, false));
+                            player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 3, 1, true, false));
+                        }
+
+                        /************************
+                         COPPER POWERS
+                         ************************/
+
+                        if (playerCapability.hasAllomanticPower(MetalsNBTData.COPPER) && playerCapability.isBurning(MetalsNBTData.COPPER)) {
+
+                            if (event.world instanceof ServerWorld) {
+
+                                BlockPos negative = new BlockPos(player.position()).offset(-x, -y, -z);
+                                BlockPos positive = new BlockPos(player.position()).offset(x, y, z);
+
+                                event.world.getEntitiesOfClass(MobEntity.class, new AxisAlignedBB(negative, positive)).forEach(entity -> {
+                                    entity.goalSelector.removeGoal(entity.goalSelector.getRunningGoals().findFirst().orElse(null));
+                                    entity.getLookControl().setLookAt(player.position().x, player.position().y, player.position().z);
+                                    entity.getMoveControl().setWantedPosition(player.position().x, player.position().y, player.position().z, 1.3f);
+                                });
+                            }
+                        }
+                        /************************
+                        COPPER POWERS
+                        ************************/
+                        if (playerCapability.hasAllomanticPower(MetalsNBTData.BRONZE) && playerCapability.isBurning(MetalsNBTData.BRONZE)) {
+
+                        }
+                    ModNetwork.sync(player);
+
+
+                });
             }
         }
     }
