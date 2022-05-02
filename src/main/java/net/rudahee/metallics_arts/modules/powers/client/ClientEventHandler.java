@@ -18,11 +18,14 @@ import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalOverlay;
 import net.rudahee.metallics_arts.modules.client.GUI.MetalSelector;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static net.rudahee.metallics_arts.modules.client.ClientUtils.toggleBurn;
 
 public class ClientEventHandler {
 
@@ -71,6 +74,9 @@ public class ClientEventHandler {
                     return;
                 }
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+                    //ClientUtils.toggleBurn(MetalsNBTData.BENDALLOY, data); Llamada a funcion de quemar cruck
+
+                    // EL SUICIDIO ES UNA OPCION
                     int num_powers = data.getAllomanticPowerCount();
                     if (num_powers ==0){
                         return;

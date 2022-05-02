@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.modules.client;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.rudahee.metallics_arts.data.network.UpdateBurnPacket;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
@@ -15,8 +16,8 @@ public class ClientUtils {
             return;
         }
 
-        //new UpdateBurnPacket(metal, !capability.isBurning(metal))
-        ModNetwork.sendToServer("a");
+
+        ModNetwork.sendToServer(new UpdateBurnPacket(metal, !capability.isBurning(metal)));
 
         if (capability.getAllomanticAmount(metal) > 0) {
             capability.setBurning(metal, !capability.isBurning(metal));

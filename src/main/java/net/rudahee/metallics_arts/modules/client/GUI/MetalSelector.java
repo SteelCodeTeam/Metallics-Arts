@@ -144,6 +144,7 @@ public class MetalSelector extends Screen {
             //circulo intermedio
             for (int actualSegment  = 0; actualSegment  < internalSegments; actualSegment++) {
                 MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
+                // MetalsNBTData metal = externalMetal.get(actualSegment);
                 boolean mouseInSector = data.hasAllomanticPower(metal) &&
                         (degreesPerSegment*actualSegment<angle && angle < degreesPerSegment  * (actualSegment  + 1)) &&
                         (internalRadio<distance && distance<mediumRadio);
@@ -406,6 +407,7 @@ public class MetalSelector extends Screen {
         }
         return super.mouseReleased(mouseX, mouseY, button);
     }
+
     /**
      * Toggles the metal the mouse is currently over
      */

@@ -153,7 +153,7 @@ public class AllomanticMetalOverlay {
             if (animationCounter > 300) {
                 animationCounter = 0;
                 currentFrame++;
-                //currentFrame = ThreadLocalRandom.current().nextInt(0, 5 + 1);;
+
                 if(currentFrame > 5) {
                     currentFrame = 0;
                 }

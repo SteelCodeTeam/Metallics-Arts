@@ -10,6 +10,7 @@ import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.network.InvestedDataPacket;
+import net.rudahee.metallics_arts.data.network.UpdateBurnPacket;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 
@@ -26,6 +27,7 @@ public class ModNetwork {
 
     public static void registerPackets() {
         INSTANCE.registerMessage(nextIndex(), InvestedDataPacket.class, InvestedDataPacket::encode, InvestedDataPacket::decode, InvestedDataPacket::handle);
+        INSTANCE.registerMessage(nextIndex(), UpdateBurnPacket.class, UpdateBurnPacket::encode, UpdateBurnPacket::decode, UpdateBurnPacket::handle);
     }
 
     public static void sendToServer(Object msg) {
