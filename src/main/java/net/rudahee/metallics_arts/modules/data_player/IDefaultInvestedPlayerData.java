@@ -66,4 +66,6 @@ public interface IDefaultInvestedPlayerData {
     void setAllomanticMetalsAmount(MetalsNBTData metal, int amt);
 
     int getAllomanticAmount(MetalsNBTData metal);
+
+    void drainMetals(MetalsNBTData... metals);
 }

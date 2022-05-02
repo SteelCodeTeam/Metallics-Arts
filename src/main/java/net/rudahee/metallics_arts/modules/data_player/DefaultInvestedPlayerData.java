@@ -143,6 +143,14 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
         return powers;
     }
 
+    public void drainMetals(MetalsNBTData... metals) {
+        for (MetalsNBTData mt : metals) {
+            this.allomantic_reseve[mt.getIndex()] = 0;
+            // So that they burn out next tick
+            setAllomanticMetalsAmount(mt,1);
+        }
+    }
+
     @Override
     public void setMistborn(boolean mistborn){
         this.mistborn = mistborn;
