@@ -139,6 +139,15 @@ public class PowersEventHandler {
                         event.setAmount(amountDamage);
                     }
 
+                    if (playerCapability.isBurning(MetalsNBTData.CHROMIUM)) {
+                        if (event.getEntityLiving() instanceof PlayerEntity) {
+                            ((PlayerEntity) event.getEntityLiving()).getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+                                for (MetalsNBTData metalsNBTData : data.getAllomanticPowers()){
+                                    data.drainMetals(metalsNBTData);
+                                }
+                            });
+                        }
+                    }
                 });
 
         }
@@ -248,14 +257,14 @@ public class PowersEventHandler {
                          ************************/
 
                         if (playerCapability.hasAllomanticPower(MetalsNBTData.TIN) && playerCapability.isBurning(MetalsNBTData.TIN)) {
-                            player.addEffect(new EffectInstance(Effects.NIGHT_VISION, 3, 30, true, false));
+                            player.addEffect(new EffectInstance(Effects.NIGHT_VISION, 100, 3, true, false));
                         }
 
                         /************************
-                         COPPER POWERS
+                         BRONZE POWERS
                          ************************/
 
-                        if (playerCapability.hasAllomanticPower(MetalsNBTData.COPPER) && playerCapability.isBurning(MetalsNBTData.COPPER)) {
+                        if (playerCapability.hasAllomanticPower(MetalsNBTData.BRONZE) && playerCapability.isBurning(MetalsNBTData.BRONZE)) {
 
                             if (event.world instanceof ServerWorld) {
 
@@ -270,12 +279,11 @@ public class PowersEventHandler {
                             }
                         }
                         /************************
-                        anti COPPER POWERS
+                        COPPER POWERS
                         ************************/
-                        if (playerCapability.hasAllomanticPower(MetalsNBTData.BRONZE) && playerCapability.isBurning(MetalsNBTData.BRONZE)) {
+                        if (playerCapability.hasAllomanticPower(MetalsNBTData.COPPER) && playerCapability.isBurning(MetalsNBTData.COPPER)) {
 
                         }
-
 
                         /************************
                          ALUMINUM POWER
@@ -285,10 +293,6 @@ public class PowersEventHandler {
                                  playerCapability.drainMetals(metalsNBTData);
                              }
                         }
-
-
-
-
 
                     ModNetwork.sync(player);
 

@@ -65,7 +65,7 @@ public class MetalSelector extends Screen {
             float mediumRadio = (float) (internalRadio*1.5);
             float externalRadio = (float) (mediumRadio*1.25);
 
-            double angle = mouseAngle(centerX,centerY , mx, my);
+            double angle = mouseAngle(centerX,centerY,mx,my);
             double distance = mouseDistance(centerX,centerY,mx,my);
 
             int internalSegments = 8;
