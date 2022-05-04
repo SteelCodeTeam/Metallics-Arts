@@ -15,6 +15,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalOverlay;
+import net.rudahee.metallics_arts.modules.client.GUI.FeruchemyMetalSelector;
 import net.rudahee.metallics_arts.modules.client.GUI.MetalSelector;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
@@ -78,11 +79,31 @@ public class ClientEventHandler {
 
                     // EL SUICIDIO ES UNA OPCION
                     int num_powers = data.getAllomanticPowerCount();
-                    if (num_powers ==0){
+                    if (num_powers == 0){
                         return;
                     }
                     else {
                         this.mc.setScreen(new MetalSelector());
+                    }
+                });
+            }
+        }
+        if (KeyInit.feruchemic.isDown()){
+            PlayerEntity player = this.mc.player;
+            if (this.mc.screen == null){
+                if (player==null || !this.mc.isWindowActive()){
+                    return;
+                }
+                player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+                    //ClientUtils.toggleBurn(MetalsNBTData.BENDALLOY, data); Llamada a funcion de quemar cruck
+
+                    // EL SUICIDIO ES UNA OPCION
+                    int num_powers = data.getFeruchemicPowerCount();
+                    if (num_powers == 0){
+                        return;
+                    }
+                    else {
+                        this.mc.setScreen(new FeruchemyMetalSelector());
                     }
                 });
             }

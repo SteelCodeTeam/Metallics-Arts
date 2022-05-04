@@ -42,7 +42,7 @@ public class MetalSelector extends Screen {
     int timeIn = 8;
 
     public MetalSelector() {
-        super(new StringTextComponent("metallic_arts_selector"));
+        super(new StringTextComponent("metallic_arts_allomantic_selector"));
 
         this.mc = Minecraft.getInstance();
     }
@@ -90,8 +90,7 @@ public class MetalSelector extends Screen {
             //circulo interno
             for (int actualSegment=0; actualSegment<internalSegments;actualSegment++) {
                 MetalsNBTData metal = internalMetals.get(actualSegment);
-                boolean mouseInSector = data.hasAllomanticPower(metal) &&
-                        (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))  && (distance<internalRadio);
+                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))  && (distance<internalRadio);
                 float radius = internalRadio;
 
                 if (mouseInSector) {

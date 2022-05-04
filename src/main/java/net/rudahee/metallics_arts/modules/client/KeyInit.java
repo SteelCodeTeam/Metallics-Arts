@@ -25,9 +25,9 @@ public class KeyInit {
     public static KeyBinding hud;
 
     public static void register (){
-        feruchemic = new KeyBinding("key." + MetallicsArts.MOD_ID + "." + "Allomancy", GLFW.GLFW_KEY_N, "Metallic Arts");
-        allomancy = new KeyBinding("key." + MetallicsArts.MOD_ID + "." + "Feruchemic", GLFW.GLFW_KEY_M, "Metallic Arts");
-        hud = new KeyBinding("key." + MetallicsArts.MOD_ID + "." + "Hud", GLFW.GLFW_KEY_O, "Metallic Arts");
+        feruchemic = new KeyBinding("key." + MetallicsArts.MOD_ID + "." + "feruchemic", GLFW.GLFW_KEY_N, "metallic_arts");
+        allomancy = new KeyBinding("key." + MetallicsArts.MOD_ID + "." + "allomancy", GLFW.GLFW_KEY_M, "metallic_arts");
+        hud = new KeyBinding("key." + MetallicsArts.MOD_ID + "." + "hud", GLFW.GLFW_KEY_O, "metallic_arts");
 
         ClientRegistry.registerKeyBinding(feruchemic);
         ClientRegistry.registerKeyBinding(allomancy);
