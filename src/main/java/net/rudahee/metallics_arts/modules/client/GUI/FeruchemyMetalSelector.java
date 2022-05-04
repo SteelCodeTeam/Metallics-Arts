@@ -51,48 +51,49 @@ public class FeruchemyMetalSelector extends Screen {
 
             Point center = new Point(this.width / 2,this.height / 2);
 
-            Point xPositivo = new Point((int) (center.x*1.5), center.y);
-            Point xNegativo = new Point((int) (center.x*0.5), center.y);
-            Point yPositivo = new Point(center.x, (int) (center.y*0.5));
-            Point yNegativo = new Point(center.x,(int) (center.y*1.5));
+            Point xPositivo = new Point((int) (center.x*1.2), center.y);
+            Point xNegativo = new Point((int) (center.x-(xPositivo.x-center.x)), center.y);
+            Point yPositivo = new Point(center.x, (int) (center.y-(xPositivo.x-center.x)));
+            Point yNegativo = new Point(center.x,(int) (center.y+(xPositivo.x- center.x)));
 
+            //extremos externos
+            Point xPositivoExterno = new Point((int) (xPositivo.x+(xPositivo.x-center.x)), center.y);
+            Point xNegativoExterno = new Point((int) (xNegativo.x)-(xPositivo.x- center.x), center.y);
 
+            Point yNegativoExterno = new Point(center.x,(int) (yNegativo.y+(xPositivo.x- center.x)));
+            Point yPositivoExterno = new Point(center.x,(int) (yPositivo.y-(xPositivo.x- center.x)));
+
+            //diagonales internos
             Point intermedioXPosYNeg = new Point(xPositivo.x,yNegativo.y);
             Point intermedioXPosYPos = new Point(xPositivo.x,yPositivo.y);
             Point intermedioXNegYNeg = new Point(xNegativo.x,yNegativo.y);
             Point intermedioXNegYPos = new Point(xNegativo.x,yPositivo.y);
 
-
-            Point xPositivoExterno = new Point(center.x*2, center.y);
-            Point xNegativoExterno = new Point((int) (center.x*0.25), center.y);
-
-            Point yNegativoExterno = new Point(center.x,center.y*2);
-            Point yPositivoExterno = new Point(center.x, (int) (center.y*0.25));
-
+            //diagonales
             Point intermedioXPosYNegExterno = new Point(xPositivoExterno.x,yNegativoExterno.y);
             Point intermedioXPosYPosExterno = new Point(xPositivoExterno.x,yPositivoExterno.y);
             Point intermedioXNegYNegExterno = new Point(xNegativoExterno.x,yNegativoExterno.y);
             Point intermedioXNegYPosExterno = new Point(xNegativoExterno.x,yPositivoExterno.y);
 
 
+            int[] rojo = new int[]{255, 0, 0, 100};
+            int[] verde = new int[]{0, 255, 0, 100};
+            int[] azul = new int[]{0, 0, 255, 100};
 
-            int[] rojo = new int[]{255, 0, 0, 255};
-            int[] verde = new int[]{0, 255, 0, 255};
-            int[] azul = new int[]{0, 0, 255, 255};
-
-            int[] amarillo = new int[]{255, 165, 0, 255};
-            int[] violeta = new int[]{120, 0, 150, 255};
-            int[] rosa = new int[]{238, 130, 238, 255};
+            int[] amarillo = new int[]{255, 165, 0, 100};
+            int[] violeta = new int[]{120, 0, 150, 100};
+            int[] rosa = new int[]{238, 130, 238, 100};
 
 
             Tessellator tess = Tessellator.getInstance();
             BufferBuilder buf = tess.getBuilder();
+            BufferBuilder bufExterno = tess.getBuilder();
 
             RenderSystem.disableCull();
             RenderSystem.disableTexture();
             RenderSystem.enableBlend();
             RenderSystem.shadeModel(GL11.GL_FLAT);
-            buf.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
+            buf.begin(GL11.GL_TRIANGLES, DefaultVertexFormats.POSITION_COLOR);
 
             //selector
 
@@ -116,7 +117,7 @@ public class FeruchemyMetalSelector extends Screen {
             pintar(buf,center,intermedioXNegYPos,xNegativo, verde,MetalsNBTData.DURALUMIN);
             pintar(buf,center,xNegativo,intermedioXNegYNeg, azul,MetalsNBTData.ALUMINUM);
             pintar(buf,center,intermedioXNegYNeg,yNegativo, rojo,MetalsNBTData.GOLD);
-            pintar(buf,center,yNegativo,intermedioXPosYNeg, verde,MetalsNBTData.ELECTRUM);
+            pintar(buf,center,yNegativo,intermedioXPosYNeg, rosa,MetalsNBTData.ELECTRUM);
 
             ///
 
