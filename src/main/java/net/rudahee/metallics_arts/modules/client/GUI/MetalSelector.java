@@ -226,9 +226,7 @@ public class MetalSelector extends Screen {
             //pintado interno
             for (int actualSegment  = 0; actualSegment  < internalSegments ; actualSegment ++) {
                 MetalsNBTData metal = internalMetals.get(actualSegment);
-                boolean mouseInSector = data.hasAllomanticPower(metal)
-                        && (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment*(actualSegment  + 1))
-                        && (distance<internalRadio);
+                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment*(actualSegment  + 1)) && (distance<internalRadio);
                 float radius = internalRadio;
                 if (mouseInSector) {
                     radius *= 1.025f;
@@ -238,18 +236,16 @@ public class MetalSelector extends Screen {
                 float xp = centerX  + MathHelper.cos(rad) * radius;
                 float yp = centerY  + MathHelper.sin(rad) * radius;
 
-                float xsp = xp - 4;
-                float ysp = yp;
 
                 if (mouseInSector){
                     renderTooltip(matrixStack, new StringTextComponent(metal.getNameLower()),mx,my);
                 }
 
                 double mod = 0.8;
-                int xdp = (int) ((xp - centerX ) * mod + centerX );
-                int ydp = (int) ((yp - centerY ) * mod + centerY );
+                int xdp = (int) ((xp - centerX ) *mod+centerX);
+                int ydp = (int) ((yp - centerY ) *mod+centerY);
 
-                this.mc.getEntityRenderDispatcher().textureManager.bind( new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+                this.mc.getEntityRenderDispatcher().textureManager.bind(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
                 RenderSystem.color4f(1, 1, 1, 1);
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 

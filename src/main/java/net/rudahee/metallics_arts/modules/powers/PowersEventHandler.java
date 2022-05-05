@@ -257,7 +257,7 @@ public class PowersEventHandler {
                          ************************/
 
                         if (playerCapability.hasAllomanticPower(MetalsNBTData.TIN) && playerCapability.isBurning(MetalsNBTData.TIN)) {
-                            player.addEffect(new EffectInstance(Effects.NIGHT_VISION, 100, 3, true, false));
+                            player.addEffect(new EffectInstance(Effects.NIGHT_VISION, 100, 100, true, true));
                         }
 
                         /************************
