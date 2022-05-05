@@ -57,16 +57,16 @@ public class FeruchemyMetalSelector extends Screen {
 
 
             Point xPositivo = new Point((int) (center.x*1.2), center.y);
-            Point xNegativo = new Point((int) (center.x-(xPositivo.x-center.x)), center.y);
-            Point yPositivo = new Point(center.x, (int) (center.y-(xPositivo.x-center.x)));
-            Point yNegativo = new Point(center.x,(int) (center.y+(xPositivo.x- center.x)));
+            Point xNegativo = new Point(center.x-(xPositivo.x-center.x), center.y);
+            Point yPositivo = new Point(center.x, center.y-(xPositivo.x-center.x));
+            Point yNegativo = new Point(center.x, center.y+(xPositivo.x- center.x));
 
             //extremos externos
-            Point xPositivoExterno = new Point((int) (xPositivo.x+(xPositivo.x-center.x)), center.y);
-            Point xNegativoExterno = new Point((int) (xNegativo.x)-(xPositivo.x- center.x), center.y);
+            Point xPositivoExterno = new Point(xPositivo.x+(xPositivo.x-center.x), center.y);
+            Point xNegativoExterno = new Point(xNegativo.x -(xPositivo.x- center.x), center.y);
 
-            Point yNegativoExterno = new Point(center.x,(int) (yNegativo.y+(xPositivo.x- center.x)));
-            Point yPositivoExterno = new Point(center.x,(int) (yPositivo.y-(xPositivo.x- center.x)));
+            Point yNegativoExterno = new Point(center.x, yNegativo.y+(xPositivo.x- center.x));
+            Point yPositivoExterno = new Point(center.x, yPositivo.y-(xPositivo.x- center.x));
 
             //diagonales internos
             Point intermedioXPosYNeg = new Point(xPositivo.x,yNegativo.y);

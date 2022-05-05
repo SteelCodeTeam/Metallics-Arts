@@ -41,11 +41,7 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
 
         for (Ingredient in: testTarget) {
             for (int i = 0; i < inventory.getContainerSize(); i++) {
-                if (in.test(inventory.getItem(i))) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return in.test(inventory.getItem(i));
             }
         }
         return false;

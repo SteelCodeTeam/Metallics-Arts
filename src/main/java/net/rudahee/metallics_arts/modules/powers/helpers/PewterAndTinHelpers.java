@@ -1,9 +1,12 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 
-public class PewterHelper {
+public class PewterAndTinHelpers {
 
 
     public static float getExtraDamageWithItemInHand(Item itemInHand) {
@@ -26,5 +29,18 @@ public class PewterHelper {
 
     public static float getDamageWithIncrementAndMultiplier(float amount) {
         return getDamageWithIncrement(getDamageWithMultiplier(amount));
+    }
+
+    public static void addPewterEffects(PlayerEntity player) {
+        player.addEffect(new EffectInstance(Effects.JUMP, 3, 2, true, false));
+        player.addEffect(new EffectInstance(Effects.DIG_SPEED, 3, 1, true, false));
+        player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 3, 1, true, false));
+    }
+
+
+    public static void addTinEffects(PlayerEntity player) {
+        if(player.tickCount % 20 == 0) {
+            player.addEffect(new EffectInstance(Effects.NIGHT_VISION, 20, 100, true, true));
+        }
     }
 }

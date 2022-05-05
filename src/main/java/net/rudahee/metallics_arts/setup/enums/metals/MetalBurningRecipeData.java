@@ -17,7 +17,7 @@ public enum MetalBurningRecipeData implements IMetal {
         private final String metalNameLower;
         private final String metalNameUpper;
         private Item item;
-        private int ticksToCompleteBurning;
+        private final int ticksToCompleteBurning;
 
     MetalBurningRecipeData(String metalNameLower, String metalNameUpper, Item item, int ticksToCompleteBurning) {
         this.metalNameLower = metalNameLower;

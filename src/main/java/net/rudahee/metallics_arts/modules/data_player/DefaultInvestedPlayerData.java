@@ -93,16 +93,12 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
 
     @Override
     public boolean hasAllomanticPower(MetalsNBTData metal){
-        if (this.allomantic_powers[metal.getIndex()])
-            return true;
-        return false;
+        return this.allomantic_powers[metal.getIndex()];
     }
 
     @Override
     public boolean hasFeruchemicPower(MetalsNBTData metal){
-        if (this.feruchemic_powers[metal.getIndex()])
-            return true;
-        return false;
+        return this.feruchemic_powers[metal.getIndex()];
     }
 
     @Override

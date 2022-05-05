@@ -37,7 +37,7 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
 
     private int actualTimeToActualRecipe = 0;
     private int maxTimeToActualRecipe = 0;
-    private boolean existsRecipe = false;
+    private final boolean existsRecipe = false;
 
 
     private final ItemStackHandler itemHandler = createHandler();
@@ -143,11 +143,7 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
         Inventory inventoryFuel = new Inventory(1);
         inventoryFuel.setItem(0, itemHandler.getStackInSlot(4));
 
-        if (inventoryFuel.isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+        return !inventoryFuel.isEmpty();
     }
 
     private boolean checkAir(Inventory inventoryRecipe) {
@@ -262,11 +258,11 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
     }
 
     public boolean isLit() {
-        return (actualFuelBurning >= 0) ? true : false;
+        return actualFuelBurning >= 0;
     }
 
     public boolean isCompleteCrafting() {
-        return (actualTimeToActualRecipe <= 0) ? true : false;
+        return actualTimeToActualRecipe <= 0;
     }
 
     public void refillLit() {

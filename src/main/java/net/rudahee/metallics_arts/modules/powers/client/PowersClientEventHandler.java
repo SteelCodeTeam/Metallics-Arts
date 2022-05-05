@@ -1,10 +1,12 @@
 package net.rudahee.metallics_arts.modules.powers.client;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.google.common.graph.Network;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
@@ -13,6 +15,7 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.rudahee.metallics_arts.data.network.ChangeEmotionPacket;
 import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalOverlay;
 import net.rudahee.metallics_arts.modules.client.GUI.FeruchemyMetalSelector;
@@ -20,15 +23,13 @@ import net.rudahee.metallics_arts.modules.client.GUI.MetalSelector;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.opengl.GL11;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static net.rudahee.metallics_arts.modules.client.ClientUtils.toggleBurn;
-
-public class ClientEventHandler {
+public class PowersClientEventHandler {
 
 
     private final Minecraft mc = Minecraft.getInstance();
@@ -36,7 +37,7 @@ public class ClientEventHandler {
     private final Set<Entity> metal_entities = new HashSet<>();
     private final Set<PlayerEntity> nearby_allomancers = new HashSet<>();
 
-    private int tickOffset = 0;
+    private final int tickOffset = 0;
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
@@ -46,10 +47,48 @@ public class ClientEventHandler {
 
             if (player != null && player instanceof PlayerEntity) {
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
-                        playerCapability -> {
+                    playerCapability -> {
+                        if (playerCapability.isInvested()) {
 
+                            /** LEFT CLICK (ATTACK) */
 
-                });
+                            if (this.mc.options.keyAttack.isDown()) {
+                                RayTraceResult trace = ClientUtils.getMouseOverExtended(20F * 1.5F);
+
+                                /***********************************
+                                 * DO CLICK AN ENTITY WITH  - ZINC -
+                                 ***********************************/
+                                if (playerCapability.isBurning(MetalsNBTData.ZINC)) {
+                                    Entity entity;
+                                    if ((trace != null) && (trace.getType() == RayTraceResult.Type.ENTITY)) {
+                                        entity = ((EntityRayTraceResult) trace).getEntity();
+                                        if (entity instanceof CreatureEntity) {
+                                            ModNetwork.sendToServer(new ChangeEmotionPacket(entity.getId(), true));
+                                        }
+                                    }
+                                }
+                            }
+
+                            /** RIGHT CLICK (USE) */
+
+                            if (this.mc.options.keyUse.isDown()) {
+                                RayTraceResult trace = ClientUtils.getMouseOverExtended(20F * 1.5F);
+
+                                /***********************************
+                                 * DO CLICK AN ENTITY WITH  - BRASS -
+                                 ***********************************/
+                                if (playerCapability.isBurning(MetalsNBTData.BRASS)) {
+                                    Entity entity;
+                                    if ((trace != null) && (trace.getType() == RayTraceResult.Type.ENTITY)) {
+                                        entity = ((EntityRayTraceResult) trace).getEntity();
+                                        if (entity instanceof CreatureEntity) {
+                                            ModNetwork.sendToServer(new ChangeEmotionPacket(entity.getId(), false));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
             }
         }
 

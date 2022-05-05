@@ -799,13 +799,13 @@ public class MetallicArtsCommand {
 
         if (type.equals("all") || type.equals("allomantic")) {
 
-            StringBuilder allAlomanticMetalsHave = new StringBuilder("");
+            StringBuilder allAlomanticMetalsHave = new StringBuilder();
 
             for (MetalsNBTData metal: result) {
                 allAlomanticMetalsHave.append(metal.getNameLower() + " ");
             }
 
-            StringBuilder allAllomanticMetalsDontHave = new StringBuilder("");
+            StringBuilder allAllomanticMetalsDontHave = new StringBuilder();
 
             ArrayList<MetalsNBTData> resultAllomanticDontHave = new ArrayList<>(allMetals.stream().filter(f-> !result.contains(f)).collect(Collectors.toList()));
 
@@ -813,17 +813,17 @@ public class MetallicArtsCommand {
                 allAllomanticMetalsDontHave.append(metal.getNameLower() + " ");
             }
 
-            finalPlayerEntity.sendMessage(new StringTextComponent("The player have those allomantic powers: " + allAlomanticMetalsHave.toString()),finalPlayerEntity.getUUID());
-            finalPlayerEntity.sendMessage(new StringTextComponent("The player dont have those feruchemic powers: " + allAllomanticMetalsDontHave.toString()),finalPlayerEntity.getUUID());
+            finalPlayerEntity.sendMessage(new StringTextComponent("The player have those allomantic powers: " + allAlomanticMetalsHave),finalPlayerEntity.getUUID());
+            finalPlayerEntity.sendMessage(new StringTextComponent("The player dont have those feruchemic powers: " + allAllomanticMetalsDontHave),finalPlayerEntity.getUUID());
 
         } else if (type.equals("all") || type.equals("feruchemic")) {
-            StringBuilder allFeruchemicMetalsHave = new StringBuilder("");
+            StringBuilder allFeruchemicMetalsHave = new StringBuilder();
 
             for (MetalsNBTData metal: result) {
                 allFeruchemicMetalsHave.append(metal.getNameLower() + " ");
             }
 
-            StringBuilder allFeruchemicMetalsDontHave = new StringBuilder("");
+            StringBuilder allFeruchemicMetalsDontHave = new StringBuilder();
 
             ArrayList<MetalsNBTData> resultFeruchemicDontHave = new ArrayList<>(allMetals.stream().filter(f-> !result.contains(f)).collect(Collectors.toList()));
 
@@ -831,8 +831,8 @@ public class MetallicArtsCommand {
                 allFeruchemicMetalsDontHave.append(metal.getNameLower() + " ");
             }
 
-            finalPlayerEntity.sendMessage(new StringTextComponent("The player have those feruchemic powers: " + allFeruchemicMetalsHave.toString()),finalPlayerEntity.getUUID());
-            finalPlayerEntity.sendMessage(new StringTextComponent("The player dont have those feruchemic powers: " + allFeruchemicMetalsDontHave.toString()),finalPlayerEntity.getUUID());
+            finalPlayerEntity.sendMessage(new StringTextComponent("The player have those feruchemic powers: " + allFeruchemicMetalsHave),finalPlayerEntity.getUUID());
+            finalPlayerEntity.sendMessage(new StringTextComponent("The player dont have those feruchemic powers: " + allFeruchemicMetalsDontHave),finalPlayerEntity.getUUID());
 
         }
     }

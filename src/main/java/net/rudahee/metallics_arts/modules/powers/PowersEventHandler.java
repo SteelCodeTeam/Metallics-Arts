@@ -1,20 +1,12 @@
 package net.rudahee.metallics_arts.modules.powers;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.ai.controller.MovementController;
-import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
+import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.TickEvent;
@@ -22,11 +14,9 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.rudahee.metallics_arts.modules.data_player.DefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.modules.powers.helpers.PewterHelper;
+import net.rudahee.metallics_arts.modules.powers.helpers.*;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.Arrays;
@@ -120,36 +110,41 @@ public class PowersEventHandler {
             playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                 playerCapability -> {
 
-                    /*
-
-                     DAMAGE WITH - PEWTER -
-
-                     */
+                    /*******************************
+                     *   DAMAGE WITH - PEWTER -
+                     *******************************/
                     if (playerCapability.isBurning(MetalsNBTData.PEWTER)) {
                         float amountDamage = event.getAmount();
-                        amountDamage =  amountDamage + PewterHelper.getExtraDamageWithItemInHand(playerEntity.getMainHandItem().getItem());
+                        amountDamage =  amountDamage + PewterAndTinHelpers.getExtraDamageWithItemInHand(playerEntity.getMainHandItem().getItem());
 
                         /* PEWTER + DURALUMIN */
 
                         if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
-                            amountDamage = PewterHelper.getDamageWithMultiplier(amountDamage);
+                            amountDamage = PewterAndTinHelpers.getDamageWithMultiplier(amountDamage);
                         } else {
-                            amountDamage = PewterHelper.getDamageWithIncrement(amountDamage);
+                            amountDamage = PewterAndTinHelpers.getDamageWithIncrement(amountDamage);
                         }
                         event.setAmount(amountDamage);
                     }
 
+                    /*******************************
+                     *   DAMAGE WITH - CHROMIUM -
+                     *******************************/
                     if (playerCapability.isBurning(MetalsNBTData.CHROMIUM)) {
                         if (event.getEntityLiving() instanceof PlayerEntity) {
-                            ((PlayerEntity) event.getEntityLiving()).getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
-                                for (MetalsNBTData metalsNBTData : data.getAllomanticPowers()){
-                                    data.drainMetals(metalsNBTData);
-                                }
-                            });
+                            ChromiumAndNicrosilHelpers.drainMetalChromium((PlayerEntity) event.getEntityLiving());
                         }
                     }
-                });
 
+                    /*******************************
+                     *   DAMAGE WITH - ZINC -
+                     *******************************/
+                    if (playerCapability.isBurning(MetalsNBTData.ZINC)) {
+                        if (event.getEntityLiving() instanceof PlayerEntity) {
+                            ZincAndBrassHelpers.drawSaturatedScreen((PlayerEntity) event.getEntityLiving()); //TODO
+                        }
+                    }
+            });
         }
     }
 
@@ -178,63 +173,42 @@ public class PowersEventHandler {
                             }
 
                             /************************
-                                BENDALLOY POWERS
+                             * BENDALLOY POWERS
                              ************************/
                             if (playerCapability.hasAllomanticPower(MetalsNBTData.BENDALLOY) && playerCapability.isBurning(MetalsNBTData.BENDALLOY)) {
                                 if (!playerCapability.isBurning(MetalsNBTData.CADMIUM)) {
 
-                                    player.addEffect(new EffectInstance(Effects.DIG_SPEED, 3, 2, true, false));
-                                    player.aiStep();
-                                    player.aiStep();
+                                    BendalloyAndCadmiunHelpers.AddAiSteeps(player);
 
                                     if (event.world instanceof ServerWorld) {
-                                        BlockPos negative = new BlockPos(player.position()).offset(-x, -y, -z);
-                                        BlockPos positive = new BlockPos(player.position()).offset(x, y, z);
+                                        BlockPos negative = new BlockPos(player.position()).offset(-x - 2, -y - 2, -z - 2);
+                                        BlockPos positive = new BlockPos(player.position()).offset(x + 2, y + 2 , z + 2);
 
                                         // Ticks extra in random blocks, tile entities and entities.
-                                        event.world.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(negative, positive)).forEach(entity -> {
-                                            entity.aiStep();
-                                        });
-
-                                        BlockPos.betweenClosedStream(negative, positive).forEach(blockPos -> {
-                                            BlockState block = event.world.getBlockState(blockPos);
-                                            TileEntity tileEntity = event.world.getBlockEntity(blockPos);
-
-                                            for (int i = 0; i < x * 4 / (tileEntity == null ? 10 : 1); i++) {
-                                                if (tileEntity instanceof ITickableTileEntity) {
-                                                    if (Math.random() > 0.50) {
-                                                        ((ITickableTileEntity) tileEntity).tick();
-                                                    }
-                                                } else if (block.isRandomlyTicking()) {
-                                                    if (Math.random() > 0.50) {
-                                                        block.randomTick((ServerWorld) event.world, blockPos, event.world.random);
-
-                                                    }
-                                                }
-                                            }
-                                        });
-
+                                        BendalloyAndCadmiunHelpers.BendalloyEffects(player, event.world,new AxisAlignedBB(negative, positive), negative, positive);
                                     }
-
                                 }
                             }
+
+
                             /************************
-                             CADMIUM POWERS
+                             * CADMIUM POWERS
                              ************************/
                             if (playerCapability.hasAllomanticPower(MetalsNBTData.CADMIUM) && playerCapability.isBurning(MetalsNBTData.CADMIUM)) {
                                 if (!playerCapability.isBurning(MetalsNBTData.BENDALLOY)) {
 
                                     BlockPos negative = new BlockPos(player.position()).offset(-x, -y, -z);
                                     BlockPos positive = new BlockPos(player.position()).offset(x, y, z);
-                                    int slowness_amplifier = 2;
-                                    player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 10, 4, true, false));
+
+                                    // Do myself my own powers
+                                    BendalloyAndCadmiunHelpers.CadmiumEffectSelfPlayer(player);
 
                                     if (event.world instanceof ServerWorld) {
 
                                         event.world.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(negative, positive)).forEach(entity -> {
                                             if (entity != player) {
-                                                entity.addEffect(new EffectInstance(Effects.SLOW_FALLING, 10, 2, true, false));
-                                                entity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 10, slowness_amplifier, true, false));
+                                                //Do others in de cloud my powers.
+                                                BendalloyAndCadmiunHelpers.CadmiumEffectsOtherPlayers(entity, 10, 2);
                                             }
                                         });
                                     }
@@ -242,47 +216,48 @@ public class PowersEventHandler {
                                 }
                             }
                         }
+
                         /************************
-                         PEWTER POWERS
+                         * PEWTER POWERS
                          ************************/
                         if (playerCapability.hasAllomanticPower(MetalsNBTData.PEWTER) && playerCapability.isBurning(MetalsNBTData.PEWTER)) {
-                            player.addEffect(new EffectInstance(Effects.JUMP, 3, 2, true, false));
-                            player.addEffect(new EffectInstance(Effects.DIG_SPEED, 3, 1, true, false));
-                            player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 3, 1, true, false));
+                            // Add strength, jump and speed.
+                            PewterAndTinHelpers.addPewterEffects(player);
                         }
 
 
                         /************************
-                         TIN POWERS
+                         * TIN POWERS
                          ************************/
-
                         if (playerCapability.hasAllomanticPower(MetalsNBTData.TIN) && playerCapability.isBurning(MetalsNBTData.TIN)) {
-                            player.addEffect(new EffectInstance(Effects.NIGHT_VISION, 100, 100, true, true));
+                            PewterAndTinHelpers.addTinEffects(player);
                         }
 
                         /************************
-                         BRONZE POWERS
+                         * BRONZE POWERS
                          ************************/
-
                         if (playerCapability.hasAllomanticPower(MetalsNBTData.BRONZE) && playerCapability.isBurning(MetalsNBTData.BRONZE)) {
 
                             if (event.world instanceof ServerWorld) {
 
-                                BlockPos negative = new BlockPos(player.position()).offset(-x, -y, -z);
-                                BlockPos positive = new BlockPos(player.position()).offset(x, y, z);
+                                BlockPos negative = new BlockPos(player.position()).offset(-x - 4, -y - 4, -z - 4);
+                                BlockPos positive = new BlockPos(player.position()).offset(x + 4, y + 4, z + 4);
 
-                                event.world.getEntitiesOfClass(MobEntity.class, new AxisAlignedBB(negative, positive)).forEach(entity -> {
-                                    entity.goalSelector.removeGoal(entity.goalSelector.getRunningGoals().findFirst().orElse(null));
-                                    entity.getLookControl().setLookAt(player.position().x, player.position().y, player.position().z);
-                                    entity.getMoveControl().setWantedPosition(player.position().x, player.position().y, player.position().z, 1.3f);
-                                });
+                                CopperAndBronzeHelpers.BronzeAiEntityManipulation(new AxisAlignedBB(negative, positive), player, event.world);
+
                             }
                         }
-                        /************************
-                        COPPER POWERS
-                        ************************/
-                        if (playerCapability.hasAllomanticPower(MetalsNBTData.COPPER) && playerCapability.isBurning(MetalsNBTData.COPPER)) {
 
+                        /************************
+                         * COPPER POWERS
+                         ************************/
+                        if (playerCapability.hasAllomanticPower(MetalsNBTData.COPPER) && playerCapability.isBurning(MetalsNBTData.COPPER)) {
+                            if (event.world instanceof ServerWorld) {
+                                BlockPos negative = new BlockPos(player.position()).offset(-x - 4, -y - 4, -z - 4);
+                                BlockPos positive = new BlockPos(player.position()).offset(x + 4, y + 4, z + 4);
+
+                                CopperAndBronzeHelpers.CopperAiEntityManipulation(new AxisAlignedBB(negative, positive), player, event.world);
+                            }
                         }
 
                         /************************
@@ -294,9 +269,11 @@ public class PowersEventHandler {
                              }
                         }
 
+
+
+
+                    // SYNC NETWORK
                     ModNetwork.sync(player);
-
-
                 });
             }
         }

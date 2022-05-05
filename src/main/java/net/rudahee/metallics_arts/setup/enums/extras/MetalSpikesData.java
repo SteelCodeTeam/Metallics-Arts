@@ -24,10 +24,10 @@ public enum MetalSpikesData {
     LERASIUM("lerasium", null,false,true),
     ETTMETAL("ettmetal", null,false,true);
 
-    private String name;
+    private final String name;
     private Item spike;
-    private boolean vanilla;
-    private boolean gems;
+    private final boolean vanilla;
+    private final boolean gems;
 
 
     MetalSpikesData(String name, Item spike, boolean vanilla,boolean gems) {
