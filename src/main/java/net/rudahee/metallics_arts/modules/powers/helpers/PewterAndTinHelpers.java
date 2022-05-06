@@ -40,7 +40,7 @@ public class PewterAndTinHelpers {
 
     public static void addTinEffects(PlayerEntity player) {
         if(player.tickCount % 20 == 0) {
-            player.addEffect(new EffectInstance(Effects.NIGHT_VISION, 20, 100, true, true));
+            player.addEffect(new EffectInstance(Effects.NIGHT_VISION, 320, 1, true, false, false));
         }
     }
 }
