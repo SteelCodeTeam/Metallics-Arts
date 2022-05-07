@@ -216,7 +216,6 @@ public class PowersEventHandler {
                                 }
                             }
                         }
-
                         /************************
                          * PEWTER POWERS
                          ************************/

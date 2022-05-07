@@ -86,100 +86,6 @@ public class AllomanticMetalSelector extends Screen {
             buf.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
 
 
-            //circulo interno
-            for (int actualSegment=0; actualSegment<internalSegments;actualSegment++) {
-                MetalsNBTData metal = internalMetals.get(actualSegment);
-                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))  && (distance<internalRadio);
-                float radius = internalRadio;
-
-                if (mouseInSector) {
-                    this.slotSelected = actualSegment;
-                    this.list=1;
-                    radius *= 1.025f;
-                }
-
-
-                int actualColor[];
-                actualColor = new int[]{109, 109, 109, 255};
-
-                if (actualSegment % 2 == 0) {
-                    actualColor = new int[]{125, 125, 125, 255};
-                }
-
-                if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
-                    actualColor = new int[]{109, 109, 109, 255};
-                }
-
-                if (data.isBurning(metal)) {
-                    actualColor = new int[]{109, 170, 181, 255};
-                }
-
-
-                if (actualSegment  == 0) {
-                    buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
-                }
-
-
-                for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
-                    float rad = v + actualSegment  * degreesPerSegment ;
-                    float xp = centerX  + MathHelper.cos(rad) * radius;
-                    float yp = centerY  + MathHelper.sin(rad) * radius;
-
-                    if (v == 0) {
-                        buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
-                    }
-                    buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
-                }
-            }
-
-
-            //circulo intermedio
-            for (int actualSegment  = 0; actualSegment  < internalSegments; actualSegment++) {
-                MetalsNBTData metal = externalMetals.get(actualSegment);
-                boolean mouseInSector = data.hasAllomanticPower(metal) &&
-                        (degreesPerSegment*actualSegment<angle && angle < degreesPerSegment  * (actualSegment  + 1)) &&
-                        (internalRadio<distance && distance<mediumRadio);
-                float radius = mediumRadio;
-
-                if (mouseInSector) {
-                    this.slotSelected = actualSegment;
-                    this.list=2;
-                    radius *= 1.025f;
-                }
-
-                int actualColor[];
-                actualColor = new int[]{125, 125, 125, 255};
-
-                if (actualSegment % 2 == 0) {
-                    actualColor = new int[]{109, 109, 109, 255};
-                }
-
-                if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
-                    actualColor = new int[]{109, 109, 109, 255};
-                }
-
-                if (data.isBurning(metal)) {
-                    actualColor = new int[]{109, 170, 181, 255};
-                }
-
-
-                if (actualSegment  == 0) {
-                    buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
-                }
-
-
-                for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
-                    float rad = v + actualSegment  * degreesPerSegment ;
-                    float xp = centerX  + MathHelper.cos(rad) * radius;
-                    float yp = centerY  + MathHelper.sin(rad) * radius;
-
-                    if (v == 0) {
-                        buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
-                    }
-                    buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
-                }
-
-            }
 
             //circulo externo
             for (int actualSegment  = 0; actualSegment  < divineMetals.size(); actualSegment++) {
@@ -212,7 +118,7 @@ public class AllomanticMetalSelector extends Screen {
                 }
 
                 if (data.isBurning(metal)) {
-                    actualColor = new int[]{109, 170, 181, 255};
+                    actualColor = new int[]{133, 207, 221, 255};
                 }
 
                 if (actualSegment  == 0) {
@@ -231,6 +137,144 @@ public class AllomanticMetalSelector extends Screen {
                     buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1], actualColor[2], actualColor[3]).endVertex();
                 }
             }
+
+
+
+
+            //circulo intermedio
+            for (int actualSegment  = 0; actualSegment  < internalSegments; actualSegment++) {
+                MetalsNBTData metal = externalMetals.get(actualSegment);
+                boolean mouseInSector = data.hasAllomanticPower(metal) &&
+                        (degreesPerSegment*actualSegment<angle && angle < degreesPerSegment  * (actualSegment  + 1)) &&
+                        (internalRadio<distance && distance<mediumRadio);
+                float radius = mediumRadio;
+
+                if (mouseInSector) {
+                    this.slotSelected = actualSegment;
+                    this.list=2;
+                    radius *= 1.025f;
+                }
+
+                int actualColor[];
+
+                if (actualSegment % 2 == 0) {
+                    actualColor = new int[]{109, 109, 109, 255};
+                    if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
+                        actualColor = new int[]{103, 110, 140, 255};
+                    }
+                    if (data.isBurning(metal)) {
+                        actualColor = new int[]{103, 195, 211, 255};
+                    }
+                }else{
+                    actualColor = new int[]{125, 125, 125, 255};
+
+                    if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
+                        actualColor = new int[]{84, 91, 120, 255};
+                    }
+                    if (data.isBurning(metal)) {
+                        actualColor = new int[]{73, 180, 199, 255};
+                    }
+                }
+                /*
+
+                int actualColor[];
+                actualColor = new int[]{125, 125, 125, 255};
+
+                if (actualSegment % 2 == 0) {
+                    actualColor = new int[]{109, 109, 109, 255};
+                }
+
+                if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
+                    actualColor = new int[]{109, 109, 109, 255};
+                }
+
+                if (data.isBurning(metal)) {
+                    actualColor = new int[]{103, 195, 211, 255};
+                }
+                 */
+
+
+
+
+                if (actualSegment  == 0) {
+                    buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
+                }
+
+
+                for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
+                    float rad = v + actualSegment  * degreesPerSegment ;
+                    float xp = centerX  + MathHelper.cos(rad) * radius;
+                    float yp = centerY  + MathHelper.sin(rad) * radius;
+
+                    if (v == 0) {
+                        buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
+                    }
+                    buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
+                }
+
+            }
+
+
+            //circulo interno
+            for (int actualSegment=0; actualSegment<internalSegments;actualSegment++) {
+                MetalsNBTData metal = internalMetals.get(actualSegment);
+                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))  && (distance<internalRadio);
+                float radius = internalRadio;
+
+                if (mouseInSector) {
+                    this.slotSelected = actualSegment;
+                    this.list=1;
+                    radius *= 1.025f;
+                }
+
+                /*
+                static int[] celeste1 = new int[]{73, 180, 199, 100};
+                static int[] celeste2 = new int[]{103, 195, 211, 100};
+                static int[] celeste3 = new int[]{133, 207, 221, 100};
+                 */
+
+                int actualColor[];
+
+                if (actualSegment % 2 == 0) {
+                    actualColor = new int[]{125, 125, 125, 255};
+
+                    if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
+                        actualColor = new int[]{84, 91, 120, 255};
+                    }
+                    if (data.isBurning(metal)) {
+                        actualColor = new int[]{73, 180, 199, 255};
+                    }
+
+                }else{
+                    actualColor = new int[]{109, 109, 109, 255};
+                    if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
+                        actualColor = new int[]{103, 110, 140, 255};
+                    }
+                    if (data.isBurning(metal)) {
+                        actualColor = new int[]{103, 195, 211, 255};
+                    }
+                }
+
+
+
+
+                if (actualSegment  == 0) {
+                    buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
+                }
+
+
+                for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
+                    float rad = v + actualSegment  * degreesPerSegment ;
+                    float xp = centerX  + MathHelper.cos(rad) * radius;
+                    float yp = centerY  + MathHelper.sin(rad) * radius;
+
+                    if (v == 0) {
+                        buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
+                    }
+                    buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
+                }
+            }
+
 
             tess.end();
 

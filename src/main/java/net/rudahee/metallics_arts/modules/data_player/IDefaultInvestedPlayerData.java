@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.data_player;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.math.BlockPos;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 import java.util.ArrayList;
@@ -70,4 +71,13 @@ public interface IDefaultInvestedPlayerData {
     int getAllomanticAmount(MetalsNBTData metal);
 
     void drainMetals(MetalsNBTData... metals);
+
+    Integer[] getDeathpos();
+
+    Integer[] getSpawnPos();
+
+    void setDeathPos(Integer[] deathPos);
+
+    void setSpawnPos(Integer[] spawnPos);
+
 }

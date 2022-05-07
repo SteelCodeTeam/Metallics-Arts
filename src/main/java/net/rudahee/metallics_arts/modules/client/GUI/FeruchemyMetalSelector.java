@@ -17,6 +17,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
+import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import org.lwjgl.opengl.GL11;
@@ -109,7 +110,6 @@ public class FeruchemyMetalSelector extends Screen {
 
             Tessellator tess = Tessellator.getInstance();
             BufferBuilder buf = tess.getBuilder();
-            BufferBuilder bufExterno = tess.getBuilder();
 
             RenderSystem.disableCull();
             RenderSystem.disableTexture();
@@ -119,23 +119,30 @@ public class FeruchemyMetalSelector extends Screen {
 
             //trazado
 
-            pintar(buf,xPositivo,intermedioXPosYNeg,xPositivoExterno, violeta,MetalsNBTData.BRASS,mouse,2);
-            pintar(buf,xPositivo,intermedioXPosYPos,xPositivoExterno, amarillo,MetalsNBTData.ZINC,mouse,1);
-            pintar(buf,yPositivo,yPositivoExterno,intermedioXPosYPos, rosa,MetalsNBTData.IRON,mouse,1);
-            pintar(buf,yPositivo,yPositivoExterno,intermedioXNegYPos, amarillo,MetalsNBTData.STEEL,mouse,0);
-            pintar(buf,xNegativo,intermedioXNegYPos,xNegativoExterno, violeta,MetalsNBTData.CHROMIUM,mouse,0);
-            pintar(buf,xNegativo,intermedioXNegYNeg,xNegativoExterno, rosa,MetalsNBTData.NICROSIL,mouse,3);
-            pintar(buf,yNegativo,yNegativoExterno,intermedioXNegYNeg, rosa,MetalsNBTData.CADMIUM,mouse,3);
-            pintar(buf,yNegativo,yNegativoExterno,intermedioXPosYNeg, amarillo,MetalsNBTData.BENDALLOY,mouse,2);
+            pintar(buf,xPositivo,intermedioXPosYNeg,xPositivoExterno,MetalsNBTData.BRASS,mouse,2,true,data);
+            pintar(buf,xPositivo,intermedioXPosYPos,xPositivoExterno,MetalsNBTData.ZINC,mouse,1,false,data);
+            pintar(buf,yPositivo,yPositivoExterno,intermedioXPosYPos,MetalsNBTData.IRON,mouse,1,true,data);
+            pintar(buf,yPositivo,yPositivoExterno,intermedioXNegYPos,MetalsNBTData.STEEL,mouse,0,false,data);
+            pintar(buf,xNegativo,intermedioXNegYPos,xNegativoExterno,MetalsNBTData.CHROMIUM,mouse,0,true,data);
+            pintar(buf,xNegativo,intermedioXNegYNeg,xNegativoExterno,MetalsNBTData.NICROSIL,mouse,3,false,data);
+            pintar(buf,yNegativo,yNegativoExterno,intermedioXNegYNeg,MetalsNBTData.CADMIUM,mouse,3,true,data);
+            pintar(buf,yNegativo,yNegativoExterno,intermedioXPosYNeg,MetalsNBTData.BENDALLOY,mouse,2,false,data);
 
-            pintar(buf,xPositivo,intermedioXPosYNeg,center, rojo,MetalsNBTData.BRONZE,mouse,3);
-            pintar(buf,xPositivo,intermedioXPosYPos,center, verde,MetalsNBTData.COPPER,mouse,0);
-            pintar(buf,yPositivo,center,intermedioXPosYPos, azul,MetalsNBTData.TIN,mouse,2);
-            pintar(buf,yPositivo,center,intermedioXNegYPos, rojo,MetalsNBTData.PEWTER,mouse,3);
-            pintar(buf,xNegativo,intermedioXNegYPos,center, verde,MetalsNBTData.DURALUMIN,mouse,1);
-            pintar(buf,xNegativo,intermedioXNegYNeg,center, azul,MetalsNBTData.ALUMINUM,mouse,2);
-            pintar(buf,yNegativo,center,intermedioXNegYNeg, rojo,MetalsNBTData.GOLD,mouse,0);
-            pintar(buf,yNegativo,center,intermedioXPosYNeg, rosa,MetalsNBTData.ELECTRUM,mouse,1);
+            pintar(buf,xPositivo,intermedioXPosYNeg,center,MetalsNBTData.BRONZE,mouse,3,false,data);
+            pintar(buf,xPositivo,intermedioXPosYPos,center,MetalsNBTData.COPPER,mouse,0,true,data);
+            pintar(buf,yPositivo,center,intermedioXPosYPos,MetalsNBTData.TIN,mouse,2,false,data);
+            pintar(buf,yPositivo,center,intermedioXNegYPos,MetalsNBTData.PEWTER,mouse,3,true,data);
+            pintar(buf,xNegativo,intermedioXNegYPos,center,MetalsNBTData.DURALUMIN,mouse,1,false,data);
+            pintar(buf,xNegativo,intermedioXNegYNeg,center,MetalsNBTData.ALUMINUM,mouse,2,true,data);
+            pintar(buf,yNegativo,center,intermedioXNegYNeg,MetalsNBTData.GOLD,mouse,0,false,data);
+            pintar(buf,yNegativo,center,intermedioXPosYNeg,MetalsNBTData.ELECTRUM,mouse,1,true,data);
+
+
+
+            /*pintar(buf,xNegativo,intermedioXNegYPos,center,MetalsNBTData.ATIUM,mouse,1,false,data);
+            pintar(buf,xNegativo,intermedioXNegYNeg,center,MetalsNBTData.MALATIUM,mouse,2,true,data);
+            pintar(buf,yNegativo,center,intermedioXNegYNeg,MetalsNBTData.ETTMETAL,mouse,0,false,data);
+            pintar(buf,yNegativo,center,intermedioXPosYNeg,MetalsNBTData.LERASIUM,mouse,0,true,data);*/
 
 
 
@@ -196,15 +203,52 @@ public class FeruchemyMetalSelector extends Screen {
     }
 
 
-    public void pintar (BufferBuilder buf, Point a,Point b,Point c, int[] color,MetalsNBTData metal, Point mouse,int tipo){
+    public void pintar (BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse,int tipo, boolean paridad, IDefaultInvestedPlayerData data){
 
         Point vertex1 = new Point(a.x,a.y);
         Point vertex2 = new Point(b.x,b.y);
         Point vertex3 = new Point(c.x,c.y);
 
         boolean inSelector = pointInTriangle(mouse,vertex1,vertex2,vertex3);
+        if (inSelector) {
+            if (tipo == 0) {
+                vertex2.y = vertex2.y - 4;
+                vertex3.x = vertex3.x - 4;
+            } else if (tipo == 1) {
+                vertex2.y = vertex2.y - 4;
+                vertex3.x = vertex3.x + 4;
+            } else if (tipo == 2) {
+                vertex2.y = vertex2.y + 4;
+                vertex3.x = vertex3.x + 4;
+            } else if (tipo == 3) {
+                vertex2.y = vertex2.y + 4;
+                vertex3.x = vertex3.x - 4;
+            }
+        }
 
-        if (inSelector){
+        int actualColor[];
+        if(paridad){
+            actualColor = new int[]{125, 125, 125, 255};
+
+            if (!data.hasAllomanticPower(metal) ) { // || si no tiene equipada la mente de ese metal
+                actualColor = new int[]{84, 91, 120, 255};
+            }
+            if (data.isBurning(metal)) {
+                actualColor = new int[]{73, 180, 199, 255};
+            }
+
+        }else{
+            actualColor = new int[]{109, 109, 109, 255};
+            if (!data.hasAllomanticPower(metal)) { // || si no tiene equipada la mente de ese metal
+                actualColor = new int[]{103, 110, 140, 255};
+            }
+            if (data.isBurning(metal)) {
+                actualColor = new int[]{103, 195, 211, 255};
+            }
+
+        }
+
+        /*if (inSelector){
             if(tipo==0){
 
                 vertex1.x = vertex1.x+4;
@@ -245,12 +289,11 @@ public class FeruchemyMetalSelector extends Screen {
                 vertex3.x = vertex3.x-10;
                 vertex3.y = vertex3.y-4;
             }
-        }
+        }*/
 
-
-        buf.vertex(vertex1.x,vertex1.y,0).color(color[0],color[1],color[2],color[3]).endVertex();
-        buf.vertex(vertex2.x,vertex2.y,0).color(color[0],color[1],color[2],color[3]).endVertex();
-        buf.vertex(vertex3.x,vertex3.y,0).color(color[0],color[1],color[2],color[3]).endVertex();
+        buf.vertex(vertex1.x,vertex1.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
+        buf.vertex(vertex2.x,vertex2.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
+        buf.vertex(vertex3.x,vertex3.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
 
 
     }

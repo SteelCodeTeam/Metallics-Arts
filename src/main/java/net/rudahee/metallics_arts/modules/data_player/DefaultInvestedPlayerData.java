@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.data_player;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.math.BlockPos;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
@@ -20,6 +21,9 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     private boolean mistborn;
     private boolean fullFeruchemic;
     private boolean fullInvested;
+
+    private Integer[] death_pos;
+    private Integer[] spawn_pos;
 
 
     public DefaultInvestedPlayerData(){
@@ -46,6 +50,9 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
             this.max_burning_time[i] = metals.getMaxAllomanticTicksStorage();
             i++;
         }
+
+        this.death_pos = new Integer[4];
+        this.spawn_pos = new Integer[4];
 
         this.burning_metals = new boolean[powers];
         Arrays.fill(this.burning_metals, false);
@@ -146,6 +153,31 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
             setAllomanticMetalsAmount(mt,1);
         }
     }
+
+    @Override
+    public Integer[] getDeathpos() {
+        return this.death_pos;
+    }
+
+    @Override
+    public Integer[] getSpawnPos() {
+        return this.spawn_pos;
+    }
+
+    @Override
+    public void setDeathPos(Integer[] deathPos) {
+        for(int i=0;i<this.death_pos.length;i++){
+            this.death_pos[i]=deathPos[i];
+        }
+    }
+
+    @Override
+    public void setSpawnPos(Integer[] spawnPos) {
+        for(int i=0;i<this.spawn_pos.length;i++){
+            this.spawn_pos[i]=spawnPos[i];
+        }
+    }
+
 
     @Override
     public void setMistborn(boolean mistborn){

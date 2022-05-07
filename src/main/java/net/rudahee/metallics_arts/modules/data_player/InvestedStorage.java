@@ -6,6 +6,8 @@ import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
+import java.util.Arrays;
+
 public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlayerData> {
 
     @Override
@@ -13,11 +15,12 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
 
 
         CompoundNBT invested_data = new CompoundNBT();
-
         CompoundNBT allomantic_powers = new CompoundNBT();
         CompoundNBT feruchemic_powers = new CompoundNBT();
         CompoundNBT allomantic_reseve = new CompoundNBT();
         CompoundNBT burning_metals = new CompoundNBT();
+        CompoundNBT death_pos = new CompoundNBT();
+        CompoundNBT spawn_pos = new CompoundNBT();
 
 
         for (MetalsNBTData metal : MetalsNBTData.values()) {
@@ -36,6 +39,24 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         invested_data.putBoolean("mistborn",data.isMistborn());
         invested_data.putBoolean("fullFeruchemic",data.isFullFeruchemic());
         invested_data.putBoolean("fullInvested",data.isFullInvested());
+
+
+        if (!Arrays.stream(data.getDeathpos()).anyMatch(pos -> pos==null)){
+            death_pos.putInt("death_pos_x",data.getDeathpos()[0]);
+            death_pos.putInt("death_pos_y",data.getDeathpos()[1]);
+            death_pos.putInt("death_pos_z",data.getDeathpos()[2]);
+            death_pos.putInt("death_dimension",data.getDeathpos()[3]);
+        }
+
+        if (!Arrays.stream(data.getSpawnPos()).anyMatch(pos -> pos==null)){
+            spawn_pos.putInt("spawn_pos_x",data.getSpawnPos()[0]);
+            spawn_pos.putInt("spawn_pos_y",data.getSpawnPos()[1]);
+            spawn_pos.putInt("spawn_pos_z",data.getSpawnPos()[2]);
+            spawn_pos.putInt("spawn_dimension",data.getSpawnPos()[3]);
+        }
+
+        invested_data.put ("death_pos",death_pos);
+        invested_data.put ("spawn_pos",spawn_pos);
 
 
 
@@ -68,6 +89,8 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         CompoundNBT allomantic_reseve = (CompoundNBT) invested_data.get("allomantic_reseve");
         CompoundNBT burning_metals = (CompoundNBT) invested_data.get("burning_metals");
 
+        CompoundNBT death_pos = (CompoundNBT) invested_data.get("death_pos");
+        CompoundNBT spawn_pos = (CompoundNBT) invested_data.get("spawn_pos");
 
         for (MetalsNBTData metal : MetalsNBTData.values()) {
             if (allomantic_powers.getBoolean(metal.getNameLower())) {
@@ -88,20 +111,10 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
             }
         }
 
-        data.setInvested(invested_data.getBoolean("invested"));
-        data.setMistborn(invested_data.getBoolean("mistborn"));
-        data.setFullFeruchemic(invested_data.getBoolean("fullFeruchemic"));
-        data.setFullInvested(invested_data.getBoolean("fullInvested"));
+        data.setDeathPos(new Integer[]{death_pos.getInt("death_pos_x"),death_pos.getInt("death_pos_y"),death_pos.getInt("death_pos_z"),death_pos.getInt("death_dimension")});
 
-            /*
+        data.setSpawnPos(new Integer[]{spawn_pos.getInt("spawn_pos_x"),spawn_pos.getInt("spawn_pos_y"),spawn_pos.getInt("spawn_pos_z"),spawn_pos.getInt("spawn_dimension")});
 
-            CompoundNBT position = (CompoundNBT) allomancy_data.get("position");
-            if (position.contains("death_dimension")) {
-                data.setDeathLoc(new BlockPos(position.getInt("death_x"), position.getInt("death_y"), position.getInt("death_z")), position.getString("death_dimension"));
-            }
-            if (position.contains("spawn_dimension")) {
-                data.setSpawnLoc(new BlockPos(position.getInt("spawn_x"), position.getInt("spawn_y"), position.getInt("spawn_z")), position.getString("spawn_dimension"));
-            }*/
     }
 }
 
