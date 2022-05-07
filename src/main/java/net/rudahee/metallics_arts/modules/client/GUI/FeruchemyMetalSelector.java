@@ -45,6 +45,23 @@ public class FeruchemyMetalSelector extends Screen {
         this.mc = Minecraft.getInstance();
     }
 
+
+    static int[] gris1 = new int[]{109, 109, 109, 100};
+    static int[] gris2 = new int[]{127, 127, 127, 100};
+    static int[] gris3 = new int[]{143, 143, 143, 100};
+
+    static int[] celeste1 = new int[]{73, 180, 199, 100};
+    static int[] celeste2 = new int[]{103, 195, 211, 100};
+    static int[] celeste3 = new int[]{133, 207, 221, 100};
+
+    static int[] verdiAzul1 = new int[]{108, 165, 155, 100};
+    static int[] verdiAzul2 = new int[]{112, 187, 174, 100};
+    static int[] verdiAzul3 = new int[]{128, 206, 196, 100};
+
+    static int[] verde1 = new int[]{84, 142, 96, 100};
+    static int[] verde2 = new int[]{101, 165, 115, 100};
+    static int[] verde3 = new int[]{119, 173, 131, 100};
+
     @Override
     public void render(MatrixStack matrixStack, int mx, int my, float partialTicks) {
         super.render(matrixStack, mx, my, partialTicks);
@@ -100,31 +117,25 @@ public class FeruchemyMetalSelector extends Screen {
             RenderSystem.shadeModel(GL11.GL_FLAT);
             buf.begin(GL11.GL_TRIANGLES, DefaultVertexFormats.POSITION_COLOR);
 
-            //selector
+            //trazado
 
-            pintar(buf,xPositivo,xPositivoExterno,intermedioXPosYNeg, violeta,MetalsNBTData.BRASS,mouse);
-            pintar(buf,xPositivo,xPositivoExterno,intermedioXPosYPos, amarillo,MetalsNBTData.ZINC,mouse);
+            pintar(buf,xPositivo,intermedioXPosYNeg,xPositivoExterno, violeta,MetalsNBTData.BRASS,mouse,2);
+            pintar(buf,xPositivo,intermedioXPosYPos,xPositivoExterno, amarillo,MetalsNBTData.ZINC,mouse,1);
+            pintar(buf,yPositivo,yPositivoExterno,intermedioXPosYPos, rosa,MetalsNBTData.IRON,mouse,1);
+            pintar(buf,yPositivo,yPositivoExterno,intermedioXNegYPos, amarillo,MetalsNBTData.STEEL,mouse,0);
+            pintar(buf,xNegativo,intermedioXNegYPos,xNegativoExterno, violeta,MetalsNBTData.CHROMIUM,mouse,0);
+            pintar(buf,xNegativo,intermedioXNegYNeg,xNegativoExterno, rosa,MetalsNBTData.NICROSIL,mouse,3);
+            pintar(buf,yNegativo,yNegativoExterno,intermedioXNegYNeg, rosa,MetalsNBTData.CADMIUM,mouse,3);
+            pintar(buf,yNegativo,yNegativoExterno,intermedioXPosYNeg, amarillo,MetalsNBTData.BENDALLOY,mouse,2);
 
-            pintar(buf,yPositivo,yPositivoExterno,intermedioXPosYPos, rosa,MetalsNBTData.IRON,mouse);
-            pintar(buf,yPositivo,yPositivoExterno,intermedioXNegYPos, amarillo,MetalsNBTData.STEEL,mouse);
-
-            pintar(buf,xNegativo,xNegativoExterno,intermedioXNegYPos, violeta,MetalsNBTData.CHROMIUM,mouse);
-            pintar(buf,xNegativo,xNegativoExterno,intermedioXNegYNeg, rosa,MetalsNBTData.NICROSIL,mouse);
-
-            pintar(buf,yNegativo,yNegativoExterno,intermedioXNegYNeg, rosa,MetalsNBTData.CADMIUM,mouse);
-            pintar(buf,yNegativo,yNegativoExterno,intermedioXPosYNeg, amarillo,MetalsNBTData.BENDALLOY,mouse);
-
-
-            pintar(buf,center,xPositivo,intermedioXPosYNeg, rojo,MetalsNBTData.BRONZE,mouse);
-            pintar(buf,center,xPositivo,intermedioXPosYPos, verde,MetalsNBTData.COPPER,mouse);
-            pintar(buf,center,intermedioXPosYPos,yPositivo, azul,MetalsNBTData.TIN,mouse);
-            pintar(buf,center,yPositivo,intermedioXNegYPos, rojo,MetalsNBTData.PEWTER,mouse);
-            pintar(buf,center,intermedioXNegYPos,xNegativo, verde,MetalsNBTData.DURALUMIN,mouse);
-            pintar(buf,center,xNegativo,intermedioXNegYNeg, azul,MetalsNBTData.ALUMINUM,mouse);
-            pintar(buf,center,intermedioXNegYNeg,yNegativo, rojo,MetalsNBTData.GOLD,mouse);
-            pintar(buf,center,yNegativo,intermedioXPosYNeg, rosa,MetalsNBTData.ELECTRUM,mouse);
-
-            ///
+            pintar(buf,xPositivo,intermedioXPosYNeg,center, rojo,MetalsNBTData.BRONZE,mouse,3);
+            pintar(buf,xPositivo,intermedioXPosYPos,center, verde,MetalsNBTData.COPPER,mouse,0);
+            pintar(buf,yPositivo,center,intermedioXPosYPos, azul,MetalsNBTData.TIN,mouse,2);
+            pintar(buf,yPositivo,center,intermedioXNegYPos, rojo,MetalsNBTData.PEWTER,mouse,3);
+            pintar(buf,xNegativo,intermedioXNegYPos,center, verde,MetalsNBTData.DURALUMIN,mouse,1);
+            pintar(buf,xNegativo,intermedioXNegYNeg,center, azul,MetalsNBTData.ALUMINUM,mouse,2);
+            pintar(buf,yNegativo,center,intermedioXNegYNeg, rojo,MetalsNBTData.GOLD,mouse,0);
+            pintar(buf,yNegativo,center,intermedioXPosYNeg, rosa,MetalsNBTData.ELECTRUM,mouse,1);
 
 
 
@@ -133,35 +144,29 @@ public class FeruchemyMetalSelector extends Screen {
             RenderSystem.enableTexture();
 
             //pintado
-            addpintado(matrixStack,xPositivo,xPositivoExterno,intermedioXPosYNeg,MetalsNBTData.BRASS,mouse);
-            /*addpintado(matrixStack,xPositivo,xPositivoExterno,intermedioXPosYPos,MetalsNBTData.ZINC,mouse);
 
+            addpintado(matrixStack,xPositivo,intermedioXPosYNeg,xPositivoExterno,MetalsNBTData.BRASS,mouse);
+            addpintado(matrixStack,xPositivo,intermedioXPosYPos,xPositivoExterno,MetalsNBTData.ZINC,mouse);
             addpintado(matrixStack,yPositivo,yPositivoExterno,intermedioXPosYPos,MetalsNBTData.IRON,mouse);
             addpintado(matrixStack,yPositivo,yPositivoExterno,intermedioXNegYPos,MetalsNBTData.STEEL,mouse);
-
-            addpintado(matrixStack,xNegativo,xNegativoExterno,intermedioXNegYPos,MetalsNBTData.CHROMIUM,mouse);
-            addpintado(matrixStack,xNegativo,xNegativoExterno,intermedioXNegYNeg,MetalsNBTData.NICROSIL,mouse);
-
+            addpintado(matrixStack,xNegativo,intermedioXNegYPos,xNegativoExterno,MetalsNBTData.CHROMIUM,mouse);
+            addpintado(matrixStack,xNegativo,intermedioXNegYNeg,xNegativoExterno,MetalsNBTData.NICROSIL,mouse);
             addpintado(matrixStack,yNegativo,yNegativoExterno,intermedioXNegYNeg,MetalsNBTData.CADMIUM,mouse);
             addpintado(matrixStack,yNegativo,yNegativoExterno,intermedioXPosYNeg,MetalsNBTData.BENDALLOY,mouse);
 
-
-            addpintado(matrixStack,center,xPositivo,intermedioXPosYNeg,MetalsNBTData.BRONZE,mouse);
-            addpintado(matrixStack,center,xPositivo,intermedioXPosYPos,MetalsNBTData.COPPER,mouse);
-            addpintado(matrixStack,center,intermedioXPosYPos,yPositivo,MetalsNBTData.TIN,mouse);
-            addpintado(matrixStack,center,yPositivo,intermedioXNegYPos,MetalsNBTData.PEWTER,mouse);
-            addpintado(matrixStack,center,intermedioXNegYPos,xNegativo,MetalsNBTData.DURALUMIN,mouse);
-            addpintado(matrixStack,center,xNegativo,intermedioXNegYNeg,MetalsNBTData.ALUMINUM,mouse);
-            addpintado(matrixStack,center,intermedioXNegYNeg,yNegativo,MetalsNBTData.GOLD,mouse);
-            addpintado(matrixStack,center,yNegativo,intermedioXPosYNeg,MetalsNBTData.ELECTRUM,mouse);*/
-
+            addpintado(matrixStack,xPositivo,intermedioXPosYNeg,center,MetalsNBTData.BRONZE,mouse);
+            addpintado(matrixStack,xPositivo,intermedioXPosYPos,center,MetalsNBTData.COPPER,mouse);
+            addpintado(matrixStack,yPositivo,center,intermedioXPosYPos,MetalsNBTData.TIN,mouse);
+            addpintado(matrixStack,yPositivo,center,intermedioXNegYPos,MetalsNBTData.PEWTER,mouse);
+            addpintado(matrixStack,xNegativo,intermedioXNegYPos,center,MetalsNBTData.DURALUMIN,mouse);
+            addpintado(matrixStack,xNegativo,intermedioXNegYNeg,center,MetalsNBTData.ALUMINUM,mouse);
+            addpintado(matrixStack,yNegativo,center,intermedioXNegYNeg,MetalsNBTData.GOLD,mouse);
+            addpintado(matrixStack,yNegativo,center,intermedioXPosYNeg,MetalsNBTData.ELECTRUM,mouse);
 
             RenderSystem.enableRescaleNormal();
             RenderSystem.enableBlend();
             RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
             RenderHelper.turnBackOn();
-
-
 
             RenderHelper.turnOff();
             RenderSystem.disableBlend();
@@ -172,28 +177,13 @@ public class FeruchemyMetalSelector extends Screen {
 
     }
 
-    public void addpintado(MatrixStack matrixStack, Point vertex1,Point vertex2,Point vertex3,MetalsNBTData metal, Point mouse){
+    public void addpintado(MatrixStack matrixStack, Point a,Point b,Point c,MetalsNBTData metal, Point mouse){
 
+        Point vertex1 = new Point(a.x,a.y);
+        Point vertex2 = new Point(b.x,b.y);
+        Point vertex3 = new Point(c.x,c.y);
 
-        Point d = new Point(vertex2.x-vertex1.x,vertex2.y-vertex1.y);
-        Point e = new Point(vertex3.x-vertex1.x,vertex3.y-vertex1.y);
-
-        //Variable de ponderación a~b
-
-        float div1 =(d.x * e.y - d.y * e.x);
-        if (div1==0){
-            div1=0.000001f;
-        }
-        float div2 = e.y;
-        if (div2==0){
-            div2=0.000001f;
-        }
-        int w1 = Math.round((e.x * (vertex1.y - mouse.y) + e.y * (mouse.x - vertex1.x)) / div1);
-
-        //Variable de ponderación a~c
-        int w2 = Math.round((mouse.y - vertex1.y - w1 * d.y) / div2);
-
-        boolean inSelector=(w1 >= 0.0) && (w2 >= 0.0) && ((w1 + w2) <= 1.0);
+        boolean inSelector = pointInTriangle(mouse,vertex1,vertex2,vertex3);
 
         if (inSelector){
             renderTooltip(matrixStack, new StringTextComponent(metal.getNameLower()),mouse.x,mouse.y);
@@ -206,59 +196,76 @@ public class FeruchemyMetalSelector extends Screen {
     }
 
 
-                                                    //a             b             c
-    public void pintar (BufferBuilder buf, Point vertex1,Point vertex2,Point vertex3, int[] color,MetalsNBTData metal, Point mouse){
+    public void pintar (BufferBuilder buf, Point a,Point b,Point c, int[] color,MetalsNBTData metal, Point mouse,int tipo){
 
-        Point d = new Point(vertex2.x-vertex1.x,vertex2.y-vertex1.y);
-        Point e = new Point(vertex3.x-vertex1.x,vertex3.y-vertex1.y);
+        Point vertex1 = new Point(a.x,a.y);
+        Point vertex2 = new Point(b.x,b.y);
+        Point vertex3 = new Point(c.x,c.y);
 
-        //Variable de ponderación a~b
+        boolean inSelector = pointInTriangle(mouse,vertex1,vertex2,vertex3);
 
-        int div1 =(d.x * e.y - d.y * e.x);
-        if (div1==0){
-            div1=1;
+        if (inSelector){
+            if(tipo==0){
+
+                vertex1.x = vertex1.x+4;
+                vertex1.y = vertex1.y+4;
+
+                vertex2.x = vertex2.x+4;
+                vertex2.y = vertex2.y-10;
+
+                vertex3.x = vertex3.x-10;
+                vertex3.y = vertex3.y+4;
+            }else if(tipo==1){
+
+                vertex1.x = vertex1.x-4;
+                vertex1.y = vertex1.y+4;
+
+                vertex2.x = vertex2.x-4;
+                vertex2.y = vertex2.y-10;
+
+                vertex3.x = vertex3.x+10;
+                vertex3.y = vertex3.y+4;
+            }else if (tipo==2){
+
+                vertex1.x = vertex1.x-4;
+                vertex1.y = vertex1.y-4;
+
+                vertex2.x = vertex2.x-4;
+                vertex2.y = vertex2.y+10;
+
+                vertex3.x = vertex3.x+10;
+                vertex3.y = vertex3.y-4;
+            }else if(tipo==3){
+                vertex1.x = vertex1.x+4;
+                vertex1.y = vertex1.y-4;
+
+                vertex2.x = vertex2.x+4;
+                vertex2.y = vertex2.y+10;
+
+                vertex3.x = vertex3.x-10;
+                vertex3.y = vertex3.y-4;
+            }
         }
-        int div2 = e.y;
-        if (div2==0){
-            div2=1;
-        }
-        int w1 = (e.x * (vertex1.y - mouse.y) + e.y * (mouse.x - vertex1.x)) / div1;
 
-        //Variable de ponderación a~c
-        int w2 = (mouse.y - vertex1.y - w1 * d.y) / div2;
 
-        boolean inSelector=(w1 >= 0.0) && (w2 >= 0.0) && ((w1 + w2) <= 1.0);
-
-        /*if (inSelector){
-            vertex1.x = (int) (vertex1.x*1.025f);
-            vertex1.y = (int) (vertex1.y*1.025f);
-
-            vertex2.x = (int) (vertex2.x*1.025f);
-            vertex2.y = (int) (vertex2.y*1.025f);
-
-            vertex3.x = (int) (vertex3.x*1.025f);
-            vertex3.y = (int) (vertex3.y*1.025f);
-
-        }*/
         buf.vertex(vertex1.x,vertex1.y,0).color(color[0],color[1],color[2],color[3]).endVertex();
         buf.vertex(vertex2.x,vertex2.y,0).color(color[0],color[1],color[2],color[3]).endVertex();
         buf.vertex(vertex3.x,vertex3.y,0).color(color[0],color[1],color[2],color[3]).endVertex();
 
-        /*if ((w1 >= 0.0) && (w2 >= 0.0) && ((w1 + w2) <= 1.0)){
-            renderTooltip(matrixStack, new StringTextComponent(metal.getNameLower()),mouse.x,mouse.y);
-        }*/
-
-
-
 
     }
 
+    public float sign(Point p1, Point p2, Point p3) {
+        return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
+    }
 
-
-
-
-
-
+    public boolean pointInTriangle(Point pt, Point v1, Point v2, Point v3) {
+        boolean b1, b2, b3;
+        b1 = sign(pt, v1, v2) < 0.0f;
+        b2 = sign(pt, v2, v3) < 0.0f;
+        b3 = sign(pt, v3, v1) < 0.0f;
+        return ((b1 == b2) && (b2 == b3));
+    }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {

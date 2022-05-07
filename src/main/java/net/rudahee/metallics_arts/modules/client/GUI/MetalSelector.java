@@ -99,20 +99,25 @@ public class MetalSelector extends Screen {
                     radius *= 1.025f;
                 }
 
-                int gs = 0x40;
-                if (actualSegment  % 2 == 0) {
-                    gs += 0x19;
+
+                int actualColor[];
+                actualColor = new int[]{109, 109, 109, 255};
+
+                if (actualSegment % 2 == 0) {
+                    actualColor = new int[]{125, 125, 125, 255};
                 }
 
-                gs = (!data.hasAllomanticPower(metal) || data.getAllomanticAmount(metal) == 0) ? 0 : gs;
+                if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
+                    actualColor = new int[]{109, 109, 109, 255};
+                }
 
-                int r = data.isBurning(metal) ? 0xFF : gs;
-                int g = gs;
-                int b = gs;
-                int a = 0x99;
+                if (data.isBurning(metal)) {
+                    actualColor = new int[]{109, 170, 181, 255};
+                }
+
 
                 if (actualSegment  == 0) {
-                    buf.vertex(centerX,centerY,0).color(r, g, b, a).endVertex();
+                    buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
                 }
 
 
@@ -122,9 +127,9 @@ public class MetalSelector extends Screen {
                     float yp = centerY  + MathHelper.sin(rad) * radius;
 
                     if (v == 0) {
-                        buf.vertex(xp, yp, 0).color(r, g, b, a).endVertex();
+                        buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
                     }
-                    buf.vertex(xp, yp, 0).color(r, g, b, a).endVertex();
+                    buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
                 }
             }
 
@@ -143,20 +148,24 @@ public class MetalSelector extends Screen {
                     radius *= 1.025f;
                 }
 
-                int gs = 0x40;
-                if (actualSegment  % 2 == 0) {
-                    gs += 0x19;
+                int actualColor[];
+                actualColor = new int[]{125, 125, 125, 255};
+
+                if (actualSegment % 2 == 0) {
+                    actualColor = new int[]{109, 109, 109, 255};
                 }
 
-                gs = (!data.hasAllomanticPower(metal) || data.getAllomanticAmount(metal) == 0) ? 0 : gs;
+                if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
+                    actualColor = new int[]{109, 109, 109, 255};
+                }
 
-                int r = data.isBurning(metal) ? 0xFF : gs;
-                int g = gs;
-                int b = gs;
-                int a = 0x99;
+                if (data.isBurning(metal)) {
+                    actualColor = new int[]{109, 170, 181, 255};
+                }
+
 
                 if (actualSegment  == 0) {
-                    buf.vertex(centerX,centerY,0).color(r, g, b, a).endVertex();
+                    buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
                 }
 
 
@@ -166,10 +175,11 @@ public class MetalSelector extends Screen {
                     float yp = centerY  + MathHelper.sin(rad) * radius;
 
                     if (v == 0) {
-                        buf.vertex(xp, yp, 0).color(r, g, b, a).endVertex();
+                        buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
                     }
-                    buf.vertex(xp, yp, 0).color(r, g, b, a).endVertex();
+                    buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
                 }
+
             }
 
             //circulo externo
@@ -189,20 +199,25 @@ public class MetalSelector extends Screen {
 
 
                 //desde aqui es dibujado de parte del circulo
-                int gs = 0x40;
-                if (actualSegment  % 2 == 0) {
-                    gs += 0x19;
+
+
+                int actualColor[];
+                actualColor = new int[]{200, 200, 200, 255};
+
+                if (actualSegment % 2 == 0) {
+                    actualColor = new int[]{225, 225, 225, 255};
                 }
 
-                gs = (!data.hasAllomanticPower(metal) || data.getAllomanticAmount(metal) == 0) ? 0 : gs;
+                if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
+                    actualColor = new int[]{100, 100, 100, 255};
+                }
 
-                int r = data.isBurning(metal) ? 0xFF : gs;
-                int g = gs;
-                int b = gs;
-                int a = 0x99;
+                if (data.isBurning(metal)) {
+                    actualColor = new int[]{109, 170, 181, 255};
+                }
 
                 if (actualSegment  == 0) {
-                    buf.vertex(centerX,centerY,0).color(r, g, b, a).endVertex();
+                    buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1], actualColor[2], actualColor[3]).endVertex();
                 }
 
 
@@ -212,9 +227,9 @@ public class MetalSelector extends Screen {
                     float yp = centerY  + MathHelper.sin(rad) * radius;
 
                     if (v == 0) {
-                        buf.vertex(xp, yp, 0).color(r, g, b, a).endVertex();
+                        buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1], actualColor[2], actualColor[3]).endVertex();
                     }
-                    buf.vertex(xp, yp, 0).color(r, g, b, a).endVertex();
+                    buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1], actualColor[2], actualColor[3]).endVertex();
                 }
             }
 
@@ -251,7 +266,7 @@ public class MetalSelector extends Screen {
 
             }
 
-            //pintado intermedio
+           //pintado intermedio
             for (int actualSegment  = 0; actualSegment  < internalSegments ; actualSegment ++) {
                 //MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
                 MetalsNBTData metal = externalMetals.get(actualSegment);
