@@ -248,6 +248,17 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
         return this.burning_metals[metal.getIndex()];
     }
 
+    @Override
+    public boolean isBurningSomething() {
+        boolean burning = false;
+        for(MetalsNBTData metal: MetalsNBTData.values()) {
+            if (isBurning(metal)) {
+                burning = true;
+            }
+        }
+
+        return burning;
+    }
 
     @Override
     public void setBurning(MetalsNBTData metal, boolean state){

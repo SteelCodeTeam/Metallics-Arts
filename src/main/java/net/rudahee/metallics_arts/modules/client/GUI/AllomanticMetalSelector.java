@@ -22,12 +22,11 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @OnlyIn(Dist.CLIENT)
-public class MetalSelector extends Screen {
+public class AllomanticMetalSelector extends Screen {
 
 
     private static final List<MetalsNBTData> internalMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> !metal.isExternal() && !metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
@@ -41,7 +40,7 @@ public class MetalSelector extends Screen {
     int list =-1;
     int timeIn = 8;
 
-    public MetalSelector() {
+    public AllomanticMetalSelector() {
         super(new StringTextComponent("metallic_arts_allomantic_selector"));
 
         this.mc = Minecraft.getInstance();

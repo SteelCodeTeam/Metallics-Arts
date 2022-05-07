@@ -3,9 +3,12 @@ package net.rudahee.metallics_arts.modules.powers.client;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
@@ -22,7 +25,7 @@ import net.rudahee.metallics_arts.data.network.PullAndPushPacket;
 import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalOverlay;
 import net.rudahee.metallics_arts.modules.client.GUI.FeruchemyMetalSelector;
-import net.rudahee.metallics_arts.modules.client.GUI.MetalSelector;
+import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalSelector;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
@@ -32,8 +35,7 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -47,7 +49,7 @@ public class PowersClientEventHandler {
     private final Set<MetalBlockHelpers> metal_blobs = new HashSet<>();
 
 
-    private final int tickOffset = 0;
+    private int tickOffset = 0;
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
@@ -61,6 +63,8 @@ public class PowersClientEventHandler {
                         if (playerCapability.isInvested()) {
 
                             this.redoLists(player, playerCapability);
+
+                            this.tickOffset = (tickOffset + 1) % 2;
 
                             /** LEFT CLICK (ATTACK) */
 
@@ -80,12 +84,16 @@ public class PowersClientEventHandler {
                                     }
                                 }
                                 /***********************************
-                                 * DO CLICK AN ENTITY WITH  - IRON -
+                                 * DO CLICK AN SOMETHING WITH  - IRON -
                                  ***********************************/
                                 if (playerCapability.isBurning(MetalsNBTData.IRON)) {
-                                    BlockPos blockPosition = ((BlockRayTraceResult) trace).getBlockPos();
-                                    if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
-                                        ModNetwork.sendToServer(new PullAndPushPacket(blockPosition, Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player))));
+                                    if (trace instanceof BlockRayTraceResult) { // IF ITS A BLOCK
+                                        BlockPos blockPosition = ((BlockRayTraceResult) trace).getBlockPos();
+                                        if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
+                                            ModNetwork.sendToServer(new PullAndPushPacket(blockPosition, Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player))));
+                                        }
+                                    } else if (trace instanceof EntityRayTraceResult) {
+                                        //TODO
                                     }
                                 }
                             }
@@ -134,14 +142,16 @@ public class PowersClientEventHandler {
 
     }
 
+    int radius = 8;
+
     private void redoLists(PlayerEntity player, IDefaultInvestedPlayerData playerCapability) {
 
         if (this.tickOffset == 0) {
             // Populate the metal lists
-            this.metal_blobs.clear();
             this.metal_entities.clear();
+            this.metal_blobs.clear();
             if (playerCapability.isBurning(MetalsNBTData.IRON) || playerCapability.isBurning(MetalsNBTData.STEEL)) {
-                int max = 32;
+                int max = 8;
                 BlockPos negative = player.blockPosition().offset(-max, -max, -max);
                 BlockPos positive = player.blockPosition().offset(max, max, max);
 
@@ -166,14 +176,10 @@ public class PowersClientEventHandler {
                             mbb.add(bp);
                             this.metal_blobs.add(mbb);
                             break;
-
                     }
-
                 });
 
             }
-            // Populate our list of nearby allomancy users
-            this.nearby_allomancers.clear();
         }
     }
 
@@ -189,7 +195,22 @@ public class PowersClientEventHandler {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onRenderGameOverlay(final RenderGameOverlayEvent event) {
+        if ((this.mc.screen instanceof AllomanticMetalSelector) || (this.mc.screen instanceof FeruchemyMetalSelector)) {
+            return;
+        }
+        if (event.isCancelable() || event.getType() != RenderGameOverlayEvent.ElementType.EXPERIENCE) {
+            return;
+        }
+        if (!mc.isWindowActive() || !this.mc.player.isAlive()) {
+            return;
+        }
+        if (this.mc.screen != null && this.mc.screen instanceof ChatScreen) {
+            return;
+        }
+
         AllomanticMetalOverlay.drawMetalOverlay(event.getMatrixStack());
+
+
         if (KeyInit.allomancy.isDown()){
             PlayerEntity player = this.mc.player;
             if (this.mc.screen == null){
@@ -198,13 +219,12 @@ public class PowersClientEventHandler {
                 }
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
 
-                    // EL SUICIDIO ES UNA OPCION
                     int num_powers = data.getAllomanticPowerCount();
                     if (num_powers == 0){
                         return;
                     }
                     else {
-                        this.mc.setScreen(new MetalSelector());
+                        this.mc.setScreen(new AllomanticMetalSelector());
                     }
                 });
             }
@@ -217,7 +237,6 @@ public class PowersClientEventHandler {
                 }
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
 
-                    // EL SUICIDIO ES UNA OPCION
                     int num_powers = data.getFeruchemicPowerCount();
                     if (num_powers == 0){
                         return;
@@ -270,7 +289,6 @@ public class PowersClientEventHandler {
 
             matrixStack.translate(-view.x, -view.y, -view.z);
 
-            // TODO investigate depreciation
             RenderSystem.pushMatrix();
             RenderSystem.multMatrix(matrixStack.last().pose());
             RenderSystem.disableTexture();
@@ -294,7 +312,7 @@ public class PowersClientEventHandler {
              ***********************************/
 
             if (playerCap.isBurning(MetalsNBTData.IRON) || playerCap.isBurning(MetalsNBTData.STEEL)) {
-                for (Entity entity :this.metal_entities) {
+                for (Entity entity : this.metal_entities) {
                     ClientUtils.drawMetalLine(playerVector, entity.position(), 2f, 0, 0.6f, 1f);
                 }
 
@@ -302,9 +320,41 @@ public class PowersClientEventHandler {
                     ClientUtils.drawMetalLine(playerVector, mb.getCenter(), MathHelper.clamp(0.3F + mb.size() * 0.4F, 0.5F, 7.5F), 0F, 0.6F, 1F);
                 }
             }
+            /***********************************
+             * DRAW LINES  - COPPER -
+             ***********************************/
+            if (playerCap.isBurning(MetalsNBTData.BRONZE)) {
+                BlockPos playerPos = player.blockPosition();
+                BlockPos negative = new BlockPos(player.position()).offset(playerPos.getX() - 12,playerPos.getX() - 12,playerPos.getX() - 12);
+                BlockPos positive = new BlockPos(player.position()).offset(playerPos.getX() + 12, playerPos.getX() + 12, playerPos.getX() + 12);
 
+                List<PlayerEntity> players = player.level.getEntitiesOfClass(PlayerEntity.class, new AxisAlignedBB(negative, positive)).stream().collect(Collectors.toList());
 
+                for (PlayerEntity otherPlayer: players) {
+                    IDefaultInvestedPlayerData cap = otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).orElse(null);
 
+                    if (cap.isBurningSomething() && !cap.isBurning(MetalsNBTData.COPPER)) {
+                        ClientUtils.drawMetalLine(playerVector, otherPlayer.position(), 5.0f, 0.7f, 0.20f, 0.20f);
+                    }
+                }
+            }
+
+            /***********************************
+             * DRAW LINES  - ELECTRUM  formato = int[4] = 123, 123, 123, 0
+             *
+             * Las tres primeras coordenadas son las coords = X, Y, Z
+             *
+             * El cuarto valor solo puede tomar los valores 0,1,2. 0 = Overworld, 1=Nether, 2=End
+             ***********************************/
+            if (playerCap.isBurning(MetalsNBTData.ELECTRUM)) {
+
+            }
+            /***********************************
+             * DRAW LINES  - GOLD -
+             ***********************************/
+            if (playerCap.isBurning(MetalsNBTData.GOLD)) {
+
+            }
 
             RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
             RenderSystem.disableBlend();

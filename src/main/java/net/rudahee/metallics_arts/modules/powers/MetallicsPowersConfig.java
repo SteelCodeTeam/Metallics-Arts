@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.modules.powers;
 import net.minecraft.block.Block;
 import net.minecraft.item.Items;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 
 import java.util.HashSet;
@@ -10,7 +11,12 @@ import java.util.Set;
 
 public class MetallicsPowersConfig {
 
-    public static final Set<String> whitelist = new HashSet<>();
+    public static final Set<String> whitelist = new HashSet<String>() {{
+        for (MetalsNBTData metals : MetalsNBTData.values()) {
+            add(metals.getNameLower());
+        }
+        //TODO insertar cosas hechas de metal a mano.
+    }};
     public static ForgeConfigSpec.IntValue maxDistanceMetalDetection;
     public static ForgeConfigSpec.BooleanValue animalSelection;
     public static ForgeConfigSpec.BooleanValue enableMoreKeybinding;
@@ -22,17 +28,5 @@ public class MetallicsPowersConfig {
         // TODO
     }
 
-    public static Set<Object> generateDefaultWhitelist() {
-        Set<Object> defaultWhitelist = new HashSet<Object>() {{
-            add(Items.IRON_BLOCK);
-            add(Items.IRON_ORE);
-            for(Block block: ModBlock.BLOCK_METAL_BLOCKS.values()) {
-                add(block);
-                add(block.asItem());
-            }
-        }};
-
-        return defaultWhitelist;
-    }
 
 }

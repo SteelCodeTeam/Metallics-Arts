@@ -5,26 +5,26 @@ import net.rudahee.metallics_arts.setup.enums.metals.IMetal;
 
 public enum MetalsNBTData implements IMetal, IGems {
     /* 1s = 20 ticks, 1600 = 80s */
-    STEEL("steel", "STEEL",             1, 1600, true, false, 3),
-    IRON("iron", "IRON",                1, 1600, true, false, 2),
-    TIN("tin", "TIN",                   2, 1600, false, false, 2),
-    PEWTER("pewter", "PEWTER",          2, 1600, false, false, 3),
-    COPPER("copper", "COPPER",          3, 16000, false, false, 1),
-    BRONZE("bronze", "BRONZE",          3, 16000, false, false, 0),
-    ZINC("zinc", "ZINC",                4, 1600, true, false, 1),
-    BRASS("brass", "BRASS",             4, 1600, true, false, 0),
-    CHROMIUM("chromium", "CHROMIUM",    5, 1600, true, false, 5),
-    NICROSIL("nicrosil", "NICROSIL",    5, 1600, true, false, 4),
-    ALUMINUM("aluminum", "ALUMINUM",    6, 1600, false, false, 5),
-    DURALUMIN("duralumin", "DURALUMIN", 6, 1600, false, false, 4),
-    CADMIUM("cadmium", "CADMIUM",       7, 1600, true, false, 6),
-    BENDALLOY("bendalloy", "BENDALLOY", 7, 1600, true, false, 7),
-    ELECTRUM("electrum", "ELECTRUM",    8, 1600, false, false, 7),
-    GOLD("gold", "GOLD",                8, 1600, false, false, 6),
-    ATIUM("atium", "ATIUM",             9, 1600, false, true, 0),
-    MALATIUM("malatium", "MALATIUM",    9, 1600, false, true, 1),
-    LERASIUM("lerasium", "LERASIUM",   10, 1600, false, true, 2),
-    ETTMETAL("ettmetal", "ETTMETAL",   10, 1600, false, true, 3);
+    IRON("iron", "IRON",1, 16000, true, false, 2),
+    STEEL("steel", "STEEL",1, 16000, true, false, 3),
+    TIN("tin", "TIN",2, 16000, false, false, 2),
+    PEWTER("pewter", "PEWTER",2, 16000, false, false, 3),
+    ZINC("zinc", "ZINC", 4, 16000, true, false, 1),
+    BRASS("brass", "BRASS",4, 16000, true, false, 0),
+    COPPER("copper", "COPPER",3, 16000, false, false, 1),
+    BRONZE("bronze", "BRONZE",3, 16000, false, false, 0),
+    ALUMINUM("aluminum", "ALUMINUM",6, 16000, false, false, 5),
+    DURALUMIN("duralumin", "DURALUMIN",6, 16000, false, false, 4),
+    CHROMIUM("chromium", "CHROMIUM",5, 16000, true, false, 5),
+    NICROSIL("nicrosil", "NICROSIL",5, 16000, true, false, 4),
+    GOLD("gold", "GOLD",8, 16000, false, false, 6),
+    ELECTRUM("electrum", "ELECTRUM",8, 16000, false, false, 7),
+    ATIUM("atium", "ATIUM", 9,16000, false, true, 0),
+    CADMIUM("cadmium", "CADMIUM",7, 16000, true, false, 6),
+    BENDALLOY("bendalloy", "BENDALLOY", 7, 16000, true, false, 7),
+    MALATIUM("malatium", "MALATIUM",9, 16000, false, true, 1),
+    LERASIUM("lerasium", "LERASIUM",10, 16000, false, true, 2),
+    ETTMETAL("ettmetal", "ETTMETAL",10, 16000, false, true, 3);
 
 
     private final String nameLower;

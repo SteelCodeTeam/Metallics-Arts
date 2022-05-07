@@ -79,31 +79,35 @@ public class AllomanticMetalOverlay {
             int allomanticHeightAnimation = 5;
             int allomanticWidthAnimation = 5;
 
-            for (MetalsNBTData metal: data.getAllomanticPowers()) {
+            for (MetalsNBTData metal: MetalsNBTData.values()) {
 
                 //matrix, gui, offset en la imagen en el eje X, offset en la imagen en el eje Y, offset a pintar en el juego X,
                 // offser a pintar en el juego Y, Cantidad de pixeles a pintar en el eje X, cantidad de pixeles a pintar en el eje Y.
 
                 //Operacion necesaria para separar los botes de cristal
-                allomanticActualOffSetX = allomanticActualOffSetX + allomanticWidthVial + 3;
 
-                float division = (float)data.getAllomanticAmount(metal) / (float)metal.getMaxAllomanticTicksStorage();
-                int basura = Math.round(division * allomanticHeightBar);
+                    allomanticActualOffSetX = allomanticActualOffSetX + allomanticWidthVial + 3;
+
+                    float division = (float)data.getAllomanticAmount(metal) / (float)metal.getMaxAllomanticTicksStorage();
+                    int basura = Math.round(division * allomanticHeightBar);
+
+                if (data.hasAllomanticPower(metal)) {
+
+                    blit(matrix, gui, allomanticActualOffSetX,  allomanticOffsetY, 0, 0, allomanticWidthVial, allomanticHeightVial);
+                    blit(matrix, gui, allomanticActualOffSetX + 1, allomanticOffsetY + allomanticPixelOffsetXInVialBar + (allomanticHeightBar - basura), barOffSet, 0, allomanticWidthBar, basura);
 
 
-                blit(matrix, gui, allomanticActualOffSetX,  allomanticOffsetY, 0, 0, allomanticWidthVial, allomanticHeightVial);
-                blit(matrix, gui, allomanticActualOffSetX + 1, allomanticOffsetY + allomanticPixelOffsetXInVialBar + (allomanticHeightBar - basura), barOffSet, 0, allomanticWidthBar, basura);
+                    //ForgeIngameGui.drawString(matrix, mc.font, text, allomanticActualOffSetX, allomanticOffsetY + allomanticHeightVial + 1, Integer.parseInt("FF0000", 16));
 
-                ITextComponent text = new StringTextComponent(Math.round(division * 100) + "%");
+                    // Este calculo mueve el offset 6 pixeles (3 para las barras, y 3 blancos).
 
-                //ForgeIngameGui.drawString(matrix, mc.font, text, allomanticActualOffSetX, allomanticOffsetY + allomanticHeightVial + 1, Integer.parseInt("FF0000", 16));
-
-                // Este calculo mueve el offset 6 pixeles (3 para las barras, y 3 blancos).
-                barOffSet = barOffSet + 6;
-
-                if (data.isBurning(metal)) {
-                    blit(matrix, gui, allomanticActualOffSetX, allomanticOffsetY + allomanticPixelOffsetXInVialBar, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, allomanticWidthAnimation, allomanticHeightAnimation);
+                    if (data.isBurning(metal)) {
+                        blit(matrix, gui, allomanticActualOffSetX, allomanticOffsetY + allomanticPixelOffsetXInVialBar, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, allomanticWidthAnimation, allomanticHeightAnimation);
+                    }
+                } else {
+                    blit(matrix, gui, allomanticActualOffSetX,  allomanticOffsetY, 102, 102, allomanticWidthVial, allomanticHeightVial);
                 }
+                barOffSet = barOffSet + 6;
             }
 
 
@@ -131,15 +135,20 @@ public class AllomanticMetalOverlay {
             int feruchemicWidthAnimation = 5;
 
             barOffSet = 7;
-            for (MetalsNBTData metal: data.getFeruchemicPowers()) {
+            for (MetalsNBTData metal: MetalsNBTData.values()) {
 
                 feruchemicActualOffSetX = feruchemicActualOffSetX + feruchemicWidthVial + 3;
-                blit(matrix, gui, feruchemicActualOffSetX,  feruchemicOffsetY + offSetTop, 0, 17, feruchemicWidthVial, feruchemicHeightVial);
-                blit(matrix, gui, feruchemicActualOffSetX + 1, feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop, barOffSet, 0, feruchemicWidthBar, feruchemicHeightBar);
-                //if decant
-                blit(matrix, gui, feruchemicActualOffSetX, feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation, feruchemicHeightAnimation);
-                // else if storage
-                //blit(matrix, gui, feruchemicActualOffSetX, feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation, feruchemicHeightAnimation);
+
+                if (data.hasFeruchemicPower(metal)) {
+                    blit(matrix, gui, feruchemicActualOffSetX, feruchemicOffsetY + offSetTop, 0, 17, feruchemicWidthVial, feruchemicHeightVial);
+                    blit(matrix, gui, feruchemicActualOffSetX + 1, feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop, barOffSet, 0, feruchemicWidthBar, feruchemicHeightBar);
+                    //if decant
+                    blit(matrix, gui, feruchemicActualOffSetX, feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation, feruchemicHeightAnimation);
+                    // else if storage
+                    //blit(matrix, gui, feruchemicActualOffSetX, feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation, feruchemicHeightAnimation);
+                } else {
+                    blit(matrix, gui, feruchemicActualOffSetX,  feruchemicOffsetY + offSetTop, 109, 103, feruchemicWidthVial, feruchemicHeightVial);
+                }
 
                 barOffSet = barOffSet + 6;
             }

@@ -11,6 +11,7 @@ import net.minecraft.entity.item.minecart.AbstractMinecartEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
@@ -20,6 +21,8 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersConfig;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 public class IronAndSteelHelpers {
@@ -33,11 +36,13 @@ public class IronAndSteelHelpers {
     }
 
     public static boolean isBlockStateMetal(BlockState state) {
-        return isBlockMetal(state.getBlock());
+        boolean a = isBlockMetal(state.getBlock());
+        return a;
     }
 
     public static boolean isBlockMetal(Block block) {
-        return isOnWhitelist(block.getRegistryName().toString());
+        boolean a = isOnWhitelist(block.getDescriptionId());
+        return a;
     }
 
     public static boolean isItemMetal(ItemStack item) {
@@ -45,7 +50,7 @@ public class IronAndSteelHelpers {
     }
 
     private static boolean isOnWhitelist(String s) {
-        return MetallicsPowersConfig.whitelist.contains(s);
+       return MetallicsPowersConfig.whitelist.stream().anyMatch(ws -> s.contains(ws));
     }
 
     public static boolean isEntityMetal(Entity entity) {

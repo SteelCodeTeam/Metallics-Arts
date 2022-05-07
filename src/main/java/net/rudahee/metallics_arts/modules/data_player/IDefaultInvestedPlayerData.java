@@ -61,6 +61,8 @@ public interface IDefaultInvestedPlayerData {
 
     boolean isBurning(MetalsNBTData metal);
 
+    boolean isBurningSomething();
+
     void setBurning(MetalsNBTData metal, boolean state);
 
     void setAllomanticMetalsAmount(MetalsNBTData metal, int amt);
