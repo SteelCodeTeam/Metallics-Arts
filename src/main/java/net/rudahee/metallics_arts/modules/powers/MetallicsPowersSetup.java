@@ -5,6 +5,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.rudahee.metallics_arts.modules.powers.client.PowersClientEventHandler;
 
+
 public class MetallicsPowersSetup {
 
     public static void clientInit(final FMLClientSetupEvent event) {

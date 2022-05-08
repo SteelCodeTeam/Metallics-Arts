@@ -72,12 +72,19 @@ public interface IDefaultInvestedPlayerData {
 
     void drainMetals(MetalsNBTData... metals);
 
-    Integer[] getDeathpos();
+    int[] getDeathPos();
 
-    Integer[] getSpawnPos();
+    int[] getSpawnPos();
 
-    void setDeathPos(Integer[] deathPos);
+    void setDeathPos(int[] deathPos);
 
-    void setSpawnPos(Integer[] spawnPos);
+    void setSpawnPos(int[] spawnPos);
 
+    String getDeathDimension();
+
+    String getSpawnDimension();
+
+    void setDeathDimension(String dimension);
+
+    void setSpawnDimension(String dimension);
 }

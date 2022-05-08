@@ -21,6 +21,8 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         CompoundNBT burning_metals = new CompoundNBT();
         CompoundNBT death_pos = new CompoundNBT();
         CompoundNBT spawn_pos = new CompoundNBT();
+        CompoundNBT spawn_dimension = new CompoundNBT();
+        CompoundNBT death_dimension = new CompoundNBT();
 
 
         for (MetalsNBTData metal : MetalsNBTData.values()) {
@@ -40,42 +42,16 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         invested_data.putBoolean("fullFeruchemic",data.isFullFeruchemic());
         invested_data.putBoolean("fullInvested",data.isFullInvested());
 
+        death_pos.putIntArray("death_pos",data.getDeathPos());
+        death_dimension.putString("death_dimension",data.getDeathDimension());
 
-        if (!Arrays.stream(data.getDeathpos()).anyMatch(pos -> pos==null)){
-            death_pos.putInt("death_pos_x",data.getDeathpos()[0]);
-            death_pos.putInt("death_pos_y",data.getDeathpos()[1]);
-            death_pos.putInt("death_pos_z",data.getDeathpos()[2]);
-            death_pos.putInt("death_dimension",data.getDeathpos()[3]);
-        }
-
-        if (!Arrays.stream(data.getSpawnPos()).anyMatch(pos -> pos==null)){
-            spawn_pos.putInt("spawn_pos_x",data.getSpawnPos()[0]);
-            spawn_pos.putInt("spawn_pos_y",data.getSpawnPos()[1]);
-            spawn_pos.putInt("spawn_pos_z",data.getSpawnPos()[2]);
-            spawn_pos.putInt("spawn_dimension",data.getSpawnPos()[3]);
-        }
-
-        invested_data.put ("death_pos",death_pos);
-        invested_data.put ("spawn_pos",spawn_pos);
+        spawn_pos.putIntArray("spawn_pos", data.getSpawnPos());
+        spawn_dimension.putString("spawn_dimension",data.getSpawnDimension());
 
 
-
-            /*CompoundNBT position = new CompoundNBT();
-            BlockPos death_pos = data.getDeathLoc();
-            if (death_pos != null) {
-                position.putString("death_dimension", data.getDeathDim().location().toString());
-                position.putInt("death_x", death_pos.getX());
-                position.putInt("death_y", death_pos.getY());
-                position.putInt("death_z", death_pos.getZ());
-            }
-            BlockPos spawn_pos = data.getSpawnLoc();
-            if (spawn_pos != null) {
-                position.putString("spawn_dimension", data.getSpawnDim().location().toString());
-                position.putInt("spawn_x", spawn_pos.getX());
-                position.putInt("spawn_y", spawn_pos.getY());
-                position.putInt("spawn_z", spawn_pos.getZ());
-            }
-            invested_data.put("position", position);*/
+        invested_data.put("death_pos",death_pos);
+        invested_data.put("death_dimension", spawn_dimension);
+        invested_data.put("spawn_pos",spawn_pos);
 
         return invested_data;
     }
@@ -91,7 +67,8 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
 
         CompoundNBT death_pos = (CompoundNBT) invested_data.get("death_pos");
         CompoundNBT spawn_pos = (CompoundNBT) invested_data.get("spawn_pos");
-
+        CompoundNBT death_dimension = (CompoundNBT) invested_data.get("death_dimension");
+        CompoundNBT spawn_dimension = (CompoundNBT) invested_data.get("spawn_dimension");
         for (MetalsNBTData metal : MetalsNBTData.values()) {
             if (allomantic_powers.getBoolean(metal.getNameLower())) {
                 data.addAllomanticPower(metal);
@@ -111,10 +88,14 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
             }
         }
 
-        data.setDeathPos(new Integer[]{death_pos.getInt("death_pos_x"),death_pos.getInt("death_pos_y"),death_pos.getInt("death_pos_z"),death_pos.getInt("death_dimension")});
-
-        data.setSpawnPos(new Integer[]{spawn_pos.getInt("spawn_pos_x"),spawn_pos.getInt("spawn_pos_y"),spawn_pos.getInt("spawn_pos_z"),spawn_pos.getInt("spawn_dimension")});
-
+        if (death_pos.getIntArray("death_pos") != null || death_dimension.getString("death_dimension") != null) {
+            data.setDeathPos(death_pos.getIntArray("death_pos"));
+            data.setDeathDimension(death_dimension.getString("death_dimension"));
+        }
+        if (spawn_pos.getIntArray("spawn_pos") != null || spawn_dimension.getString("spawn_dimension") != null) {
+            data.setSpawnPos(spawn_pos.getIntArray("spawn_pos"));
+            data.setSpawnDimension(spawn_dimension.getString("spawn_dimension"));
+        }
     }
 }
 

@@ -10,10 +10,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.*;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
@@ -32,6 +35,13 @@ public class PowersEventHandler {
                 ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
 
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+
+                    data.setDeathPos(new int[]{(int) player.position().x,(int) player.position().y,(int) player.position().z});
+                    data.setSpawnPos(new int[]{(int) player.position().x,(int) player.position().y,(int) player.position().z});
+
+                    data.setDeathDimension(player.getLevel().dimension().getRegistryName().getNamespace());
+                    data.setSpawnDimension(player.getLevel().dimension().getRegistryName().getNamespace());
+
                     //Handle random misting case
                     if (data.getAllomanticPowerCount() + data.getFeruchemicPowerCount() == 0) {
                         List<MetalsNBTData> metals = Arrays.asList(MetalsNBTData.values());
@@ -53,8 +63,38 @@ public class PowersEventHandler {
     }
 
     @SubscribeEvent
+    public static void onSetSpawn(final PlayerSetSpawnEvent event) {
+        PlayerEntity playerEntity = event.getPlayer();
+        if (event.getPlayer() instanceof ServerPlayerEntity) {
+
+
+            playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
+                capabilities -> {
+                    capabilities.setSpawnDimension(event.getSpawnWorld().getRegistryName().toString());
+                    capabilities.setSpawnPos(new int[]{event.getNewSpawn().getX(), event.getNewSpawn().getY() + 1, event.getNewSpawn().getZ()});
+
+                    ModNetwork.sync(capabilities, playerEntity);
+            });
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingDeath(final LivingDeathEvent event) {
+        if (event.getEntityLiving() instanceof ServerPlayerEntity) {
+            ServerPlayerEntity player = (ServerPlayerEntity) event.getEntityLiving();
+            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(capabilites -> {
+                capabilites.setDeathDimension(player.getRespawnDimension().getRegistryName().toString());
+                capabilites.setDeathPos(new int[]{(int) player.position().x, (int) player.position().y, (int) player.position().z});
+
+                ModNetwork.sync(capabilites, player);
+            });
+        }
+    }
+
+    @SubscribeEvent
     public static void onRespawn(final PlayerEvent.PlayerRespawnEvent event) {
         if (!event.getPlayer().getCommandSenderWorld().isClientSide()) {
+
             ModNetwork.sync(event.getPlayer());
         }
     }
@@ -62,6 +102,20 @@ public class PowersEventHandler {
     @SubscribeEvent
     public static void onChangeDimension(final PlayerEvent.PlayerChangedDimensionEvent event) {
         if (!event.getPlayer().getCommandSenderWorld().isClientSide()) {
+            ModNetwork.sync(event.getPlayer());
+
+            if (event.getEntityLiving() instanceof ServerPlayerEntity) {
+                ServerPlayerEntity entity = (ServerPlayerEntity) event.getEntityLiving();
+                entity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+                    if (data.isBurning(MetalsNBTData.ELECTRUM)) {
+                        ClientUtils.toggleBurn(MetalsNBTData.ELECTRUM, data);
+                    }
+
+                    if (data.isBurning(MetalsNBTData.GOLD)) {
+                        ClientUtils.toggleBurn(MetalsNBTData.GOLD, data);
+                    }
+                });
+            }
             ModNetwork.sync(event.getPlayer());
         }
     }
@@ -94,10 +148,13 @@ public class PowersEventHandler {
                                 data.addFeruchemicPower(mt);
                             }
                         }
+                        data.setDeathPos(oldData.getDeathPos());
+                        data.setSpawnPos(oldData.getSpawnPos());
+                        data.setDeathDimension(oldData.getDeathDimension());
+                        data.setSpawnDimension(oldData.getSpawnDimension());
                     }
                 });
             });
-
             ModNetwork.sync(player);
         }
     }

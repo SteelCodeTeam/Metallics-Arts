@@ -22,8 +22,11 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     private boolean fullFeruchemic;
     private boolean fullInvested;
 
-    private Integer[] death_pos;
-    private Integer[] spawn_pos;
+    private int[] death_pos;
+    private int[] spawn_pos;
+
+    private String death_dimension;
+    private String spawn_dimension;
 
 
     public DefaultInvestedPlayerData(){
@@ -51,8 +54,8 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
             i++;
         }
 
-        this.death_pos = new Integer[4];
-        this.spawn_pos = new Integer[4];
+        this.death_pos = new int[3];
+        this.spawn_pos = new int[3];
 
         this.burning_metals = new boolean[powers];
         Arrays.fill(this.burning_metals, false);
@@ -155,27 +158,45 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     }
 
     @Override
-    public Integer[] getDeathpos() {
+    public int[] getDeathPos() {
         return this.death_pos;
     }
 
     @Override
-    public Integer[] getSpawnPos() {
+    public int[] getSpawnPos() {
         return this.spawn_pos;
     }
 
     @Override
-    public void setDeathPos(Integer[] deathPos) {
+    public void setDeathPos(int[] deathPos) {
         for(int i=0;i<this.death_pos.length;i++){
             this.death_pos[i]=deathPos[i];
         }
     }
 
     @Override
-    public void setSpawnPos(Integer[] spawnPos) {
+    public void setSpawnPos(int[] spawnPos) {
         for(int i=0;i<this.spawn_pos.length;i++){
             this.spawn_pos[i]=spawnPos[i];
         }
+    }
+
+    @Override
+    public void setDeathDimension(String dimension) {
+        this.death_dimension = dimension;
+    }
+
+    @Override
+    public void setSpawnDimension(String dimension) {
+        this.spawn_dimension = dimension;
+    }
+    @Override
+    public String getDeathDimension() {
+        return this.death_dimension;
+    }
+    @Override
+    public String getSpawnDimension() {
+        return this.spawn_dimension;
     }
 
 
@@ -223,7 +244,6 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     public void setUninvested() {
 
     }
-
 
     //ADD
     @Override

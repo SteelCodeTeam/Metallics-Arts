@@ -35,7 +35,9 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -340,20 +342,28 @@ public class PowersClientEventHandler {
             }
 
             /***********************************
-             * DRAW LINES  - ELECTRUM  formato = int[4] = 123, 123, 123, 0
-             *
-             * Las tres primeras coordenadas son las coords = X, Y, Z
-             *
-             * El cuarto valor solo puede tomar los valores 0,1,2. 0 = Overworld, 1=Nether, 2=End
+             * DRAW LINES  - ELECTRUM -
              ***********************************/
             if (playerCap.isBurning(MetalsNBTData.ELECTRUM)) {
+                Vector3d vector = new Vector3d(playerCap.getSpawnPos()[0], playerCap.getSpawnPos()[1], playerCap.getSpawnPos()[2]);
 
+                //if(player.level.dimension().getRegistryName().toString().equals(playerCap.getSpawnDimension())) {
+                    ClientUtils.drawMetalLine(playerVector,vector, 2f, 0.6f, 0.6f, 0.1f);
+                //} else {
+                  //  ClientUtils.drawMetalLine(playerVector, playerVector, 0,0,0,0);
+                //}
             }
             /***********************************
              * DRAW LINES  - GOLD -
              ***********************************/
             if (playerCap.isBurning(MetalsNBTData.GOLD)) {
+                Vector3d vector = new Vector3d(playerCap.getDeathPos()[0], playerCap.getDeathPos()[1], playerCap.getDeathPos()[2]);
 
+                //if(player.level.dimension().getRegistryName().toString().equals(playerCap.getDeathDimension())) {
+                    ClientUtils.drawMetalLine(playerVector,vector, 2f, 0.6f, 0.6f, 0.1f);
+                //} else {
+                  //  ClientUtils.drawMetalLine(playerVector, playerVector, 0,0,0,0);
+                //}
             }
 
             RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
@@ -366,6 +376,16 @@ public class PowersClientEventHandler {
         });
 
 
+    }
+
+    public String getDimensionById(int dimension) {
+        if (dimension == 0) {
+            return "minecraft:overworld";
+        } else if (dimension == 1) {
+            return "minecraft:the_nether";
+        } else {
+            return "minecraft:the_end";
+        }
     }
 
     @OnlyIn(Dist.CLIENT)

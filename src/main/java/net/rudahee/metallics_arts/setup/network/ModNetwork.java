@@ -15,7 +15,6 @@ import net.rudahee.metallics_arts.data.network.PullAndPushPacket;
 import net.rudahee.metallics_arts.data.network.UpdateBurnPacket;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.modules.powers.helpers.IronAndSteelHelpers;
 
 public class ModNetwork {
     private static final String VERSION = "1.1";
