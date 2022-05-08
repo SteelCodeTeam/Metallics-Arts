@@ -79,325 +79,327 @@ public class ModItems {
     }
 
     //MentalMinds
-    static {
-        Item.Properties properties = new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1);
-        RegistryObject<Item> BandAluminumDuralumin = register("band_aluminum_duralumin",
-                () -> {
-                    Item item = new BandAluminumDuralumin(properties);
-                    MetalMindData.valueOf("ALUMINUM_DURALUMIN").setBand(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> BandAtiumMalatium = register("band_atium_malatium",
-                () -> {
-                    Item item = new BandAtiumMalatium(properties);
-                    MetalMindData.valueOf("ATIUM_MALTIUM").setBand(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> BandCadmiumBendalloy = register("band_cadmium_bendalloy",
-                () -> {
-                    Item item = new BandCadmiumBendalloy(properties);
-                    MetalMindData.valueOf("CADMIUM_BENDALLOY").setBand(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> BandChromiumNicrosil = register("band_chromium_nicrosil",
-                () -> {
-                    Item item = new BandChromiumNicrosil(properties);
-                    MetalMindData.valueOf("CHROMIUM_NICROSIL").setBand(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> BandCopperBronze = register("band_copper_bronze",
-                () -> {
-                    Item item = new BandCopperBronze(properties);
-                    MetalMindData.valueOf("COPPER_BRONZE").setBand(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> BandElectrumGold = register("band_electrum_gold",
-                () -> {
-                    Item item = new BandElectrumGold(properties);
-                    MetalMindData.valueOf("ELECTRUM_GOLD").setBand(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> BandLerasiumEttmetal = register("band_lerasium_ettmetal",
-                () -> {
-                    Item item = new BandLerasiumEttmetal(properties);
-                    MetalMindData.valueOf("LERASIUM_ETTMETAL").setBand(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> BandPewterTin = register("band_pewter_tin",
-                () -> {
-                    Item item = new BandPwterTin(properties);
-                    MetalMindData.valueOf("TIN_PEWTER").setBand(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> BandSteelIron = register("band_steel_iron",
-                () -> {
-                    Item item = new BandSteelIron(properties);
-                    MetalMindData.valueOf("STEEL_IRON").setBand(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> BandZincBrass = register("band_zinc_brass",
-                () -> {
-                    Item item = new RingZincBrass(properties);
-                    MetalMindData.valueOf("ZINC_BRASS").setBand(item);
-                    return item;
-                }
-        );
 
-        RegistryObject<Item> RingAluminumDuralumin = register("ring_aluminum_duralumin",
-                () -> {
-                    Item item = new RingAluminumDuralumin(properties);
-                    MetalMindData.valueOf("ALUMINUM_DURALUMIN").setRing(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> RingAtiumMalatium = register("ring_atium_malatium",
-                () -> {
-                    Item item = new RingAtiumMalatium(properties);
-                    MetalMindData.valueOf("ATIUM_MALTIUM").setRing(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> RingCadmiumBendalloy = register("ring_cadmium_bendalloy",
-                () -> {
-                    Item item = new RingCadmiumBendalloy(properties);
-                    MetalMindData.valueOf("CADMIUM_BENDALLOY").setRing(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> RingChromiumNicrosil = register("ring_chromium_nicrosil",
-                () -> {
-                    Item item = new RingChromiumNicrosil(properties);
-                    MetalMindData.valueOf("CHROMIUM_NICROSIL").setRing(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> RingCopperBronze = register("ring_copper_bronze",
-                () -> {
-                    Item item = new RingCopperBronze(properties);
-                    MetalMindData.valueOf("COPPER_BRONZE").setRing(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> RingElectrumGold = register("ring_electrum_gold",
-                () -> {
-                    Item item = new RingElectrumGold(properties);
-                    MetalMindData.valueOf("ELECTRUM_GOLD").setRing(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> RingLerasiumEttmetal = register("ring_lerasium_ettmetal",
-                () -> {
-                    Item item = new RingLerasiumEttmetal(properties);
-                    MetalMindData.valueOf("LERASIUM_ETTMETAL").setRing(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> RingPewterTin = register("ring_pewter_tin",
-                () -> {
-                    Item item = new RingPewterTin(properties);
-                    MetalMindData.valueOf("TIN_PEWTER").setRing(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> RingSteelIron = register("ring_steel_iron",
-                () -> {
-                    Item item = new RingSteelIron(properties);
-                    MetalMindData.valueOf("STEEL_IRON").setRing(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> RingZincBrass = register("ring_zinc_brass",
-                () -> {
-                    Item item = new RingZincBrass(properties);
-                    MetalMindData.valueOf("ZINC_BRASS").setRing(item);
-                    return item;
-                }
-        );
-    }
+    private static Item.Properties PROPERTY_METALMINDS = new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1);
 
-    //spikes
-    static {
-        Item.Properties properties = new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1);
-        RegistryObject<Item> IronSpike = register("iron_spike",
-                () -> {
-                    Item item = new IronSpike(properties);
-                    MetalSpikesData.valueOf("IRON").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> SteelSpike = register("steel_spike",
-                () -> {
-                    Item item = new SteelSpike(properties);
-                    MetalSpikesData.valueOf("STEEL").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> TinSpike = register("tin_spike",
-                () -> {
-                    Item item = new TinSpike(properties);
-                    MetalSpikesData.valueOf("TIN").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> PewterSpike = register("pewter_spike",
-                () -> {
-                    Item item = new PewterSpike(properties);
-                    MetalSpikesData.valueOf("PEWTER").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> CopperSpike = register("copper_spike",
-                () -> {
-                    Item item = new CopperSpike(properties);
-                    MetalSpikesData.valueOf("COPPER").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> BronzeSpike = register("bronze_spike",
-                () -> {
-                    Item item = new BronzeSpike(properties);
-                    MetalSpikesData.valueOf("BRONZE").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> ZINC_SPIKE = register("zinc_spike",
-                () -> {
-                    Item item = new ZincSpike(properties);
-                    MetalSpikesData.valueOf("ZINC").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> BrassSpike = register("brass_spike",
-                () -> {
-                    Item item = new BrassSpike(properties);
-                    MetalSpikesData.valueOf("BRASS").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> ChromiumSpike = register("chromium_spike",
-                () -> {
-                    Item item = new ChromiumSpike(properties);
-                    MetalSpikesData.valueOf("CHROMIUM").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> NicrosilSpike = register("nicrosil_spike",
-                () -> {
-                    Item item = new NicrosilSpike(properties);
-                    MetalSpikesData.valueOf("NICROSIL").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> ALUMINUM_SPIKE = register("aluminum_spike",
-                () -> {
-                    Item item = new AluminumSpike(properties);
-                    MetalSpikesData.valueOf("ALUMINUM").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> DuraluminSpike = register("duralumin_spike",
-                () -> {
-                    Item item = new DuraluminSpike(properties);
-                    MetalSpikesData.valueOf("DURALUMIN").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> CadmiumSpike = register("cadmium_spike",
-                () -> {
-                    Item item = new CadmiumSpike(properties);
-                    MetalSpikesData.valueOf("CADMIUM").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> BendalloySpike = register("bendalloy_spike",
-                () -> {
-                    Item item = new BendalloySpike(properties);
-                    MetalSpikesData.valueOf("BENDALLOY").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> ElectrumSpike = register("electrum_spike",
-                () -> {
-                    Item item = new ElectrumSpike(properties);
-                    MetalSpikesData.valueOf("ELECTRUM").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> GoldSpike = register("gold_spike",
-                () -> {
-                    Item item = new GoldSpike(properties);
-                    MetalSpikesData.valueOf("GOLD").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> AtiumSpike = register("atium_spike",
-                () -> {
-                    Item item = new AtiumSpike(properties);
-                    MetalSpikesData.valueOf("ATIUM").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> MalatiumSpike = register("malatium_spike",
-                () -> {
-                    Item item = new MalatiumSpike(properties);
-                    MetalSpikesData.valueOf("MALATIUM").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> LerasiumSpike = register("lerasium_spike",
-                () -> {
-                    Item item = new LerasiumSpike(properties);
-                    MetalSpikesData.valueOf("LERASIUM").setSpike(item);
-                    return item;
-                }
-        );
-        RegistryObject<Item> EttmetalSpike = register("ettmetal_spike",
-                () -> {
-                    Item item = new EttmetalSpike(properties);
-                    MetalSpikesData.valueOf("ETTMETAL").setSpike(item);
-                    return item;
-                }
-        );
+    public static RegistryObject<Item> BAND_ALUMINUM_DURALUMIN = register("band_aluminum_duralumin",
+            () -> {
+                Item item = new BandAluminumDuralumin(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("ALUMINUM_DURALUMIN").setBand(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> BAND_ATIUM_MALATIUM = register("band_atium_malatium",
+            () -> {
+                Item item = new BandAtiumMalatium(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("ATIUM_MALTIUM").setBand(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> BAND_CADMIUM_BENDALLOY = register("band_cadmium_bendalloy",
+            () -> {
+                Item item = new BandCadmiumBendalloy(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("CADMIUM_BENDALLOY").setBand(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> BAND_CHROMIUM_NICROSIL = register("band_chromium_nicrosil",
+            () -> {
+                Item item = new BandChromiumNicrosil(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("CHROMIUM_NICROSIL").setBand(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> BAND_COPPER_BRONZE = register("band_copper_bronze",
+            () -> {
+                Item item = new BandCopperBronze(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("COPPER_BRONZE").setBand(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> BAND_ELECTRUM_GOLD = register("band_electrum_gold",
+            () -> {
+                Item item = new BandElectrumGold(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("ELECTRUM_GOLD").setBand(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> BAND_LERASIUM_ETTMETAL = register("band_lerasium_ettmetal",
+            () -> {
+                Item item = new BandLerasiumEttmetal(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("LERASIUM_ETTMETAL").setBand(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> BAND_PEWTER_TIN = register("band_pewter_tin",
+            () -> {
+                Item item = new BandPwterTin(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("TIN_PEWTER").setBand(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> BAND_STEEL_IRON = register("band_steel_iron",
+            () -> {
+                Item item = new BandSteelIron(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("STEEL_IRON").setBand(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> BAND_ZINC_BRASS = register("band_zinc_brass",
+            () -> {
+                Item item = new RingZincBrass(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("ZINC_BRASS").setBand(item);
+                return item;
+            }
+    );
 
-    }
+    public static RegistryObject<Item> RING_ALUMINUM_DURALUMIN = register("ring_aluminum_duralumin",
+            () -> {
+                Item item = new RingAluminumDuralumin(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("ALUMINUM_DURALUMIN").setRing(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> RING_ATIUM_MALATIUM = register("ring_atium_malatium",
+            () -> {
+                Item item = new RingAtiumMalatium(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("ATIUM_MALTIUM").setRing(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> RING_CADMIUM_BENDALLOY = register("ring_cadmium_bendalloy",
+            () -> {
+                Item item = new RingCadmiumBendalloy(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("CADMIUM_BENDALLOY").setRing(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> RING_CHROMIUM_NICROSIL = register("ring_chromium_nicrosil",
+            () -> {
+                Item item = new RingChromiumNicrosil(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("CHROMIUM_NICROSIL").setRing(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> RING_COPPER_BRONZE = register("ring_copper_bronze",
+            () -> {
+                Item item = new RingCopperBronze(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("COPPER_BRONZE").setRing(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> RING_ELECTRUM_GOLD = register("ring_electrum_gold",
+            () -> {
+                Item item = new RingElectrumGold(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("ELECTRUM_GOLD").setRing(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> RING_LERASIUM_ETTMETAL = register("ring_lerasium_ettmetal",
+            () -> {
+                Item item = new RingLerasiumEttmetal(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("LERASIUM_ETTMETAL").setRing(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> RING_PEWTER_TIN = register("ring_pewter_tin",
+            () -> {
+                Item item = new RingPewterTin(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("TIN_PEWTER").setRing(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> RING_STEEL_IRON = register("ring_steel_iron",
+            () -> {
+                Item item = new RingSteelIron(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("STEEL_IRON").setRing(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> RING_ZINC_BRASS = register("ring_zinc_brass",
+            () -> {
+                Item item = new RingZincBrass(PROPERTY_METALMINDS);
+                MetalMindData.valueOf("ZINC_BRASS").setRing(item);
+                return item;
+            }
+    );
 
-    //weapons
-    static {
-        RegistryObject<Item> ObsidianDagger = register("obsidian_dagger",
-                () -> {
-                    return new ObsidianDagger(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
-                }
-        );
-        RegistryObject<Item> CristalDagger = register("cristal_dagger",
-                () -> {
-                    return new CristalDagger(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
-                }
-        );
-        RegistryObject<Item> KolossBlade = register("koloss_blade",
-                () -> {
-                    return new KolossBlade(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
-                }
-        );
-        RegistryObject<Item> DuelingStaff = register("dueling_staff",
-                () -> {
-                    return new DuelingStaff(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
-                }
-        );
-        RegistryObject<Item> ObsidianAxe = register("obsidian_axe",
-                () -> {
-                    return new ObsidianAxe(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
-                }
-        );
-    }
+
+//spikes
+
+    private static Item.Properties PROPERTY_SPIKE = new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1);
+
+    public static RegistryObject<Item> IRON_SPIKE = register("iron_spike",
+            () -> {
+                Item item = new IronSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("IRON").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> STEEL_SPIKE = register("steel_spike",
+            () -> {
+                Item item = new SteelSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("STEEL").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> TIN_SPIKE = register("tin_spike",
+            () -> {
+                Item item = new TinSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("TIN").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> PEWTER_SPIKE = register("pewter_spike",
+            () -> {
+                Item item = new PewterSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("PEWTER").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> COPPER_SPIKE = register("copper_spike",
+            () -> {
+                Item item = new CopperSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("COPPER").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> BRONZE_SPIKE = register("bronze_spike",
+            () -> {
+                Item item = new BronzeSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("BRONZE").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> ZINC_SPIKE = register("zinc_spike",
+            () -> {
+                Item item = new ZincSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("ZINC").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> BRASS_SPIKE = register("brass_spike",
+            () -> {
+                Item item = new BrassSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("BRASS").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> CHROMIUM_SPIKE = register("chromium_spike",
+            () -> {
+                Item item = new ChromiumSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("CHROMIUM").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> NICROSIL_SPIKE = register("nicrosil_spike",
+            () -> {
+                Item item = new NicrosilSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("NICROSIL").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> ALUMINUM_SPIKE = register("aluminum_spike",
+            () -> {
+                Item item = new AluminumSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("ALUMINUM").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> DURALUMIN_SPIKE = register("duralumin_spike",
+            () -> {
+                Item item = new DuraluminSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("DURALUMIN").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> CADMIUM_SPIKE = register("cadmium_spike",
+            () -> {
+                Item item = new CadmiumSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("CADMIUM").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> BENDALLOY_SPIKE = register("bendalloy_spike",
+            () -> {
+                Item item = new BendalloySpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("BENDALLOY").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> ELECTRUM_SPIKE = register("electrum_spike",
+            () -> {
+                Item item = new ElectrumSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("ELECTRUM").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> GOLD_SPIKE = register("gold_spike",
+            () -> {
+                Item item = new GoldSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("GOLD").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> ATIUM_SPIKE = register("atium_spike",
+            () -> {
+                Item item = new AtiumSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("ATIUM").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> MALATIUM_SPIKE = register("malatium_spike",
+            () -> {
+                Item item = new MalatiumSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("MALATIUM").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> LERASIUM_SPIKE = register("lerasium_spike",
+            () -> {
+                Item item = new LerasiumSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("LERASIUM").setSpike(item);
+                return item;
+            }
+    );
+    public static RegistryObject<Item> ETTMETAL_SPIKE = register("ettmetal_spike",
+            () -> {
+                Item item = new EttmetalSpike(PROPERTY_SPIKE);
+                MetalSpikesData.valueOf("ETTMETAL").setSpike(item);
+                return item;
+            }
+    );
+
+
+
+//weapons
+
+    public static RegistryObject<Item> OBSIDIAN_DAGGER = register("obsidian_dagger",
+            () -> {
+                return new ObsidianDagger(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+            }
+    );
+    public static RegistryObject<Item> CRISTAL_DAGGER = register("cristal_dagger",
+            () -> {
+                return new CristalDagger(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+            }
+    );
+    public static RegistryObject<Item> KOLOSS_BLADE = register("koloss_blade",
+            () -> {
+                return new KolossBlade(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+            }
+    );
+    public static RegistryObject<Item> DUELING_STAFF = register("dueling_staff",
+            () -> {
+                return new DuelingStaff(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+            }
+    );
+    public static RegistryObject<Item> OBSIDIAN_AXE = register("obsidian_axe",
+            () -> {
+                return new ObsidianAxe(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+            }
+    );
+
 
     public static RegistryObject<Item> LARGE_VIAL= register("big_vial",
             () -> {
