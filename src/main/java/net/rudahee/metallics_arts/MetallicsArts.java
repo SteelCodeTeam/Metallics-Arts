@@ -103,8 +103,9 @@ public class MetallicsArts
         IIconHelper iconHelper = CuriosApi.getIconHelper();
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
                 ()-> new SlotTypeMessage.Builder("metalmind_slot").priority(1).size(4).build());
+        //new ResourceLocation(MOD_ID, "textures/icon/slot.png")
 
-        iconHelper.addIcon("metalmind_slot", new ResourceLocation(MOD_ID, "textures/item/spikes/atium_spike.png"));
+        //iconHelper.addIcon("metalmind_slot", new ResourceLocation(MOD_ID, "textures/item/spikes/atium_spike.png"));
     }
 
     private void processIMC(final InterModProcessEvent event)
