@@ -16,7 +16,7 @@ public abstract class MetalSpikeAbstract extends SwordItem {
     private static final IItemTier tier = new IItemTier() {
         @Override
         public int getUses() {
-            return 2;
+            return 1;
         }
 
         @Override

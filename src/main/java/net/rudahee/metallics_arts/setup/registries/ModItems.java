@@ -269,7 +269,7 @@ public class ModItems {
                     return item;
                 }
         );
-        RegistryObject<Item> ZincSpike = register("zinc_spike",
+        RegistryObject<Item> ZINC_SPIKE = register("zinc_spike",
                 () -> {
                     Item item = new ZincSpike(properties);
                     MetalSpikesData.valueOf("ZINC").setSpike(item);
@@ -297,7 +297,7 @@ public class ModItems {
                     return item;
                 }
         );
-        RegistryObject<Item> AluminumSpike = register("aluminum_spike",
+        RegistryObject<Item> ALUMINUM_SPIKE = register("aluminum_spike",
                 () -> {
                     Item item = new AluminumSpike(properties);
                     MetalSpikesData.valueOf("ALUMINUM").setSpike(item);

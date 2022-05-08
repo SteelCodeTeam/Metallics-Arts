@@ -99,13 +99,8 @@ public class FeruchemyMetalSelector extends Screen {
             Point intermedioXNegYPosExterno = new Point(xNegativoExterno.x,yPositivoExterno.y);
 
 
-            int[] rojo = new int[]{255, 0, 0, 100};
-            int[] verde = new int[]{0, 255, 0, 100};
-            int[] azul = new int[]{0, 0, 255, 100};
+            int large = xPositivo.x-center.x;
 
-            int[] amarillo = new int[]{255, 165, 0, 100};
-            int[] violeta = new int[]{120, 0, 150, 100};
-            int[] rosa = new int[]{238, 130, 238, 100};
 
 
             Tessellator tess = Tessellator.getInstance();
@@ -137,13 +132,10 @@ public class FeruchemyMetalSelector extends Screen {
             pintar(buf,yNegativo,center,intermedioXNegYNeg,MetalsNBTData.GOLD,mouse,0,false,data);
             pintar(buf,yNegativo,center,intermedioXPosYNeg,MetalsNBTData.ELECTRUM,mouse,1,true,data);
 
-
-
-            /*pintar(buf,xNegativo,intermedioXNegYPos,center,MetalsNBTData.ATIUM,mouse,1,false,data);
-            pintar(buf,xNegativo,intermedioXNegYNeg,center,MetalsNBTData.MALATIUM,mouse,2,true,data);
-            pintar(buf,yNegativo,center,intermedioXNegYNeg,MetalsNBTData.ETTMETAL,mouse,0,false,data);
-            pintar(buf,yNegativo,center,intermedioXPosYNeg,MetalsNBTData.LERASIUM,mouse,0,true,data);*/
-
+            pintar(buf,intermedioXPosYNegExterno,new Point(intermedioXPosYNegExterno.x,intermedioXPosYNegExterno.y-large),new Point(intermedioXPosYNegExterno.x-large,intermedioXPosYNegExterno.y),MetalsNBTData.ATIUM,mouse,0,false,data);
+            pintar(buf,intermedioXPosYPosExterno,new Point(intermedioXPosYPosExterno.x,intermedioXPosYPosExterno.y+large),new Point(intermedioXPosYPosExterno.x-large,intermedioXPosYPosExterno.y),MetalsNBTData.MALATIUM,mouse,3,true,data);
+            pintar(buf,intermedioXNegYNegExterno,new Point(intermedioXNegYNegExterno.x,intermedioXNegYNegExterno.y-large),new Point(intermedioXNegYNegExterno.x+large,intermedioXNegYNegExterno.y),MetalsNBTData.ETTMETAL,mouse,1,false,data);
+            pintar(buf,intermedioXNegYPosExterno,new Point(intermedioXNegYPosExterno.x,intermedioXNegYPosExterno.y+large),new Point(intermedioXNegYPosExterno.x+large,intermedioXNegYPosExterno.y),MetalsNBTData.LERASIUM,mouse,2,true,data);
 
 
             tess.end();
@@ -169,6 +161,11 @@ public class FeruchemyMetalSelector extends Screen {
             addpintado(matrixStack,xNegativo,intermedioXNegYNeg,center,MetalsNBTData.ALUMINUM,mouse);
             addpintado(matrixStack,yNegativo,center,intermedioXNegYNeg,MetalsNBTData.GOLD,mouse);
             addpintado(matrixStack,yNegativo,center,intermedioXPosYNeg,MetalsNBTData.ELECTRUM,mouse);
+
+            addpintado(matrixStack,intermedioXPosYNegExterno,new Point(intermedioXPosYNegExterno.x,intermedioXPosYNegExterno.y-large),new Point(intermedioXPosYNegExterno.x-large,intermedioXPosYNegExterno.y),MetalsNBTData.ATIUM,mouse);
+            addpintado(matrixStack,intermedioXPosYPosExterno,new Point(intermedioXPosYPosExterno.x,intermedioXPosYPosExterno.y+large),new Point(intermedioXPosYPosExterno.x-large,intermedioXPosYPosExterno.y),MetalsNBTData.MALATIUM,mouse);
+            addpintado(matrixStack,intermedioXNegYNegExterno,new Point(intermedioXNegYNegExterno.x,intermedioXNegYNegExterno.y-large),new Point(intermedioXNegYNegExterno.x+large,intermedioXNegYNegExterno.y),MetalsNBTData.ETTMETAL,mouse);
+            addpintado(matrixStack,intermedioXNegYPosExterno,new Point(intermedioXNegYPosExterno.x,intermedioXNegYPosExterno.y+large),new Point(intermedioXNegYPosExterno.x+large,intermedioXNegYPosExterno.y),MetalsNBTData.LERASIUM,mouse);
 
             RenderSystem.enableRescaleNormal();
             RenderSystem.enableBlend();
