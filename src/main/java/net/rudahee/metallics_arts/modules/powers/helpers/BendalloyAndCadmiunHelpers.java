@@ -38,10 +38,44 @@ public class BendalloyAndCadmiunHelpers {
         });
     }
 
+    public static void BendalloyEffectsEnhanced(PlayerEntity player, World world, AxisAlignedBB axisAlignedBB, BlockPos negative, BlockPos positive) {
+        world.getEntitiesOfClass(LivingEntity.class, axisAlignedBB).forEach(entity -> {
+            entity.aiStep();
+            entity.aiStep();
+            entity.aiStep();
+            entity.aiStep();
+        });
+
+        BlockPos.betweenClosedStream(negative, positive).forEach(blockPos -> {
+            BlockState block = world.getBlockState(blockPos);
+            TileEntity tileEntity = world.getBlockEntity(blockPos);
+
+            for (int i = 0; i < 12 * 4 / (tileEntity == null ? 10 : 1); i++) {
+                if (tileEntity instanceof ITickableTileEntity) {
+                    if (Math.random() > 0.20) {
+                        ((ITickableTileEntity) tileEntity).tick();
+                        ((ITickableTileEntity) tileEntity).tick();
+                        ((ITickableTileEntity) tileEntity).tick();
+                    }
+                } else if (block.isRandomlyTicking()) {
+                    if (Math.random() > 0.20) {
+                        block.randomTick((ServerWorld) world, blockPos, world.random);
+                        block.randomTick((ServerWorld) world, blockPos, world.random);
+                        block.randomTick((ServerWorld) world, blockPos, world.random);
+                    }
+                }
+            }
+        });
+    }
+
 
 
     public static void CadmiumEffectSelfPlayer(PlayerEntity player) {
         player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 10, 4, true, false));
+    }
+
+    public static void CadmiumEffectSelfPlayerEnhanced(PlayerEntity player) {
+        player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 20, 100, true, false));
     }
 
     public static void CadmiumEffectsOtherPlayers(LivingEntity player, int duration, int amplifier) {
@@ -52,8 +86,23 @@ public class BendalloyAndCadmiunHelpers {
         player.addEffect(new EffectInstance(Effects.SLOW_FALLING, duration, amplifier, true, false));
     }
 
+    public static void CadmiumEffectsOtherPlayersEnhanced(LivingEntity player, int duration, int amplifier) {
+
+        player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, duration, amplifier, true, false));
+        player.addEffect(new EffectInstance(Effects.SLOW_FALLING, duration, amplifier, true, false));
+    }
+
     public static void AddAiSteeps(PlayerEntity player) {
         player.addEffect(new EffectInstance(Effects.DIG_SPEED, 3, 2, true, false));
+        player.aiStep();
+        player.aiStep();
+    }
+
+    public static void AddAiSteepsEnhanced(PlayerEntity player) {
+        player.addEffect(new EffectInstance(Effects.DIG_SPEED, 10, 10, true, false));
+        player.aiStep();
+        player.aiStep();
+        player.aiStep();
         player.aiStep();
         player.aiStep();
     }

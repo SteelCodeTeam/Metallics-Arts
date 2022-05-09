@@ -101,8 +101,9 @@ public class MetallicsArts
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
         IIconHelper iconHelper = CuriosApi.getIconHelper();
+
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
-                ()-> new SlotTypeMessage.Builder("metalmind_slot").priority(1).size(4).build());
+                ()-> new SlotTypeMessage.Builder("metalmind_slot").icon(new ResourceLocation(MetallicsArts.MOD_ID, "item/slot")).priority(1).size(4).build());
 
     }
 

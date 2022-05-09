@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.modules.powers.helpers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 
@@ -41,6 +42,20 @@ public class PewterAndTinHelpers {
     public static void addTinEffects(PlayerEntity player) {
         if(player.tickCount % 20 == 0) {
             player.addEffect(new EffectInstance(Effects.NIGHT_VISION, 320, 1, true, false, false));
+        }
+    }
+
+    public static void addPewterEffectsEnhanced(PlayerEntity player) {
+        player.addEffect(new EffectInstance(Effects.JUMP, 40, 6, true, false));
+        player.addEffect(new EffectInstance(Effects.DIG_SPEED, 40, 3, true, false));
+        player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 40, 3, true, false));
+    }
+
+
+    public static void addTinEffectsEnhanced(PlayerEntity player) {
+        if(player.tickCount % 20 == 0) {
+            player.addEffect(new EffectInstance(Effects.BLINDNESS, 60, 1, true, false, false));
+            player.addEffect(new EffectInstance(Effects.CONFUSION, 240, 1, true, false, false));
         }
     }
 }

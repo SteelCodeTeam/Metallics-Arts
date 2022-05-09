@@ -323,7 +323,7 @@ public class PowersClientEventHandler {
                 }
             }
             /***********************************
-             * DRAW LINES  - COPPER -
+             * DRAW LINES  - BRONZE -
              ***********************************/
             if (playerCap.isBurning(MetalsNBTData.BRONZE)) {
                 BlockPos playerPos = player.blockPosition();
@@ -387,6 +387,8 @@ public class PowersClientEventHandler {
             return "minecraft:the_end";
         }
     }
+
+
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
