@@ -87,4 +87,10 @@ public interface IDefaultInvestedPlayerData {
     void setDeathDimension(String dimension);
 
     void setSpawnDimension(String dimension);
+
+    boolean getMetalMindEquiped (int group);
+
+    void setMetalMindEquiped (int group,boolean value);
+
+    boolean[] getMetalMindEquipedList ();
 }

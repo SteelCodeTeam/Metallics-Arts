@@ -25,6 +25,8 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     private int[] death_pos;
     private int[] spawn_pos;
 
+    private  boolean[] metal_mind_equiped;
+
     private String death_dimension;
     private String spawn_dimension;
 
@@ -56,6 +58,9 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
 
         this.death_pos = new int[3];
         this.spawn_pos = new int[3];
+
+        this.metal_mind_equiped = new boolean[10];
+        Arrays.fill(this.metal_mind_equiped, false);
 
         this.burning_metals = new boolean[powers];
         Arrays.fill(this.burning_metals, false);
@@ -190,6 +195,22 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     public void setSpawnDimension(String dimension) {
         this.spawn_dimension = dimension;
     }
+
+    @Override
+    public boolean getMetalMindEquiped(int group) {
+        return this.metal_mind_equiped[group];
+    }
+
+    @Override
+    public void setMetalMindEquiped(int group, boolean value) {
+        this.metal_mind_equiped[group] = value;
+    }
+
+    @Override
+    public boolean[] getMetalMindEquipedList() {
+        return this.metal_mind_equiped;
+    }
+
     @Override
     public String getDeathDimension() {
         return this.death_dimension;

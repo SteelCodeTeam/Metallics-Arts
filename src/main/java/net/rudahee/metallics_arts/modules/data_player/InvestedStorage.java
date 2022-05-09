@@ -23,6 +23,7 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         CompoundNBT spawn_pos = new CompoundNBT();
         CompoundNBT spawn_dimension = new CompoundNBT();
         CompoundNBT death_dimension = new CompoundNBT();
+        CompoundNBT metal_mind_equiped = new CompoundNBT();
 
 
         for (MetalsNBTData metal : MetalsNBTData.values()) {
@@ -30,6 +31,10 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
             feruchemic_powers.putBoolean(metal.getNameLower(), data.hasFeruchemicPower(metal));
             allomantic_reseve.putInt(metal.getNameLower(), data.getAllomanticAmount(metal));
             burning_metals.putBoolean(metal.getNameLower(), data.isBurning(metal));
+        }
+
+        for (int i=0; i<data.getMetalMindEquipedList().length;i++){
+            metal_mind_equiped.putBoolean("group"+i,data.getMetalMindEquipedList()[i]);
         }
 
         invested_data.put("allomantic_powers", allomantic_powers);
@@ -53,6 +58,8 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
 
         invested_data.put("spawn_pos", spawn_pos);
         invested_data.put("spawn_dim", spawn_dimension);
+
+        invested_data.put("metal_mind_equiped",metal_mind_equiped);
         return invested_data;
     }
 
@@ -69,6 +76,13 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         CompoundNBT spawn_pos = (CompoundNBT) invested_data.get("spawn_pos");
         CompoundNBT death_dimension = (CompoundNBT) invested_data.get("death_dim");
         CompoundNBT spawn_dimension = (CompoundNBT) invested_data.get("spawn_dim");
+
+        CompoundNBT metal_mind_equiped = (CompoundNBT) invested_data.get("metal_mind_equiped");
+
+
+        for (int i=0; i<data.getMetalMindEquipedList().length;i++){
+            data.setMetalMindEquiped(i,metal_mind_equiped.getBoolean("group"+i));
+        }
 
         for (MetalsNBTData metal : MetalsNBTData.values()) {
             if (allomantic_powers.getBoolean(metal.getNameLower())) {

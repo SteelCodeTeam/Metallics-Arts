@@ -207,6 +207,7 @@ public class FeruchemyMetalSelector extends Screen {
         Point vertex3 = new Point(c.x,c.y);
 
         boolean inSelector = pointInTriangle(mouse,vertex1,vertex2,vertex3);
+
         if (inSelector) {
             if (tipo == 0) {
                 vertex2.y = vertex2.y - 4;
@@ -223,27 +224,7 @@ public class FeruchemyMetalSelector extends Screen {
             }
         }
 
-        int actualColor[];
-        if(paridad){
-            actualColor = new int[]{125, 125, 125, 255};
 
-            if (!data.hasAllomanticPower(metal) ) { // || si no tiene equipada la mente de ese metal
-                actualColor = new int[]{84, 91, 120, 255};
-            }
-            if (data.isBurning(metal)) {
-                actualColor = new int[]{73, 180, 199, 255};
-            }
-
-        }else{
-            actualColor = new int[]{109, 109, 109, 255};
-            if (!data.hasAllomanticPower(metal)) { // || si no tiene equipada la mente de ese metal
-                actualColor = new int[]{103, 110, 140, 255};
-            }
-            if (data.isBurning(metal)) {
-                actualColor = new int[]{103, 195, 211, 255};
-            }
-
-        }
 
         /*if (inSelector){
             if(tipo==0){
@@ -287,6 +268,29 @@ public class FeruchemyMetalSelector extends Screen {
                 vertex3.y = vertex3.y-4;
             }
         }*/
+
+        int actualColor[];
+        if(paridad){
+            actualColor = new int[]{125, 125, 125, 255};
+
+            if (!data.hasAllomanticPower(metal) ) { // || si no tiene equipada la mente de ese metal
+                actualColor = new int[]{84, 91, 120, 255};
+            }
+            if (data.isBurning(metal)) {
+                actualColor = new int[]{73, 180, 199, 255};
+            }
+
+        }else{
+            actualColor = new int[]{109, 109, 109, 255};
+            if (!data.hasAllomanticPower(metal)) { // || si no tiene equipada la mente de ese metal
+                actualColor = new int[]{103, 110, 140, 255};
+            }
+            if (data.isBurning(metal)) {
+                actualColor = new int[]{103, 195, 211, 255};
+            }
+
+        }
+
 
         buf.vertex(vertex1.x,vertex1.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
         buf.vertex(vertex2.x,vertex2.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();

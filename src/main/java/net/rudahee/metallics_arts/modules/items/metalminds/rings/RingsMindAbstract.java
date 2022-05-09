@@ -2,9 +2,10 @@ package net.rudahee.metallics_arts.modules.items.metalminds.rings;
 
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 
-public abstract class RingsMindAbstract extends Item {
+public abstract class RingsMindAbstract extends Item implements ICurioItem {
 
 
     private CompoundNBT nbt;
