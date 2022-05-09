@@ -17,62 +17,12 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 public class RingAluminumDuralumin extends RingsMindAbstract implements ICurioItem{
     CompoundNBT nbt = new CompoundNBT();
     public RingAluminumDuralumin (Properties properties){
-        super(properties);
+        super(properties, MetalsNBTData.ALUMINUM,MetalsNBTData.DURALUMIN);
         nbt.putInt(MetallicsArts.MOD_ID+".RingAlluminumDuralumin.aluminum",0);
         nbt.putInt(MetallicsArts.MOD_ID+".RingAlluminumDuralumin.duralumin",0);
         nbt.putInt(MetallicsArts.MOD_ID+".RingAlluminumDuralumin.capacityAluminum",100);
         nbt.putInt(MetallicsArts.MOD_ID+".RingAlluminumDuralumin.capacityDuralumin",100);
         setNbt(nbt);
-    }
-
-    @Override
-    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-        super.curioTick(identifier, index, livingEntity, stack);
-        //if hasFeruchemicPower de algun metal de la banda/arillo, lo activo en el power selector
-    }
-
-    @Override
-    public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-        ICurioItem.super.onEquip(slotContext, prevStack, stack);
-
-        PlayerEntity player = (PlayerEntity) slotContext.getWearer();
-
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
-            data.setMetalMindEquiped(MetalsNBTData.ALUMINUM.getGroup(),true);
-            data.setMetalMindEquiped(MetalsNBTData.DURALUMIN.getGroup(),true);
-            ModNetwork.sync(data,player);
-        });
-
-    }
-
-    @Override
-    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        ICurioItem.super.onUnequip(slotContext, newStack, stack);
-
-        PlayerEntity player = (PlayerEntity) slotContext.getWearer();
-
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
-            data.setMetalMindEquiped(MetalsNBTData.ALUMINUM.getGroup(),false);
-            data.setMetalMindEquiped(MetalsNBTData.DURALUMIN.getGroup(),false);
-
-            ModNetwork.sync(data,player);
-        });
-    }
-
-    private static IDefaultInvestedPlayerData cap = null;
-
-    @Override
-    public boolean canEquip(ItemStack stack, EquipmentSlotType armorType, Entity entity) {
-        PlayerEntity player = (PlayerEntity) entity;
-
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
-            cap = data;
-        });
-        if (cap != null){
-            ModNetwork.sync(cap,player);
-            return (!(cap.getMetalMindEquiped(MetalsNBTData.ALUMINUM.getGroup()) && cap.getMetalMindEquiped(MetalsNBTData.DURALUMIN.getGroup())));
-        }
-        return false;
     }
 
 

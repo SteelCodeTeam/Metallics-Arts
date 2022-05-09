@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class BandAluminumDuralumin extends BandMindAbstract implements ICurioItem {
     CompoundNBT nbt = new CompoundNBT();
     public BandAluminumDuralumin (Item.Properties properties){
-        super(properties);
+        super(properties,MetalsNBTData.ALUMINUM,MetalsNBTData.DURALUMIN);
         nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.aluminum",0);
         nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.duralumin",0);
         nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.capacityAluminum", 100);
@@ -37,7 +37,7 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
     }
 
 
-    @Override
+    /*@Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         super.curioTick(identifier, index, livingEntity, stack);
         //if hasFeruchemicPower de algun metal de la banda/arillo, lo activo en el power selector
@@ -72,18 +72,17 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
     }
 
     private static IDefaultInvestedPlayerData cap = null;
-
     @Override
-    public boolean canEquip(ItemStack stack, EquipmentSlotType armorType, Entity entity) {
-        PlayerEntity player = (PlayerEntity) entity;
-        ModNetwork.sync(player);
+    public boolean canEquip(String identifier, LivingEntity livingEntity, ItemStack stack) {
+        PlayerEntity player = (PlayerEntity) livingEntity;
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             cap = data;
         });
         if (cap != null){
+            //ModNetwork.sync(cap,player);
             return (!(cap.getMetalMindEquiped(MetalsNBTData.ALUMINUM.getGroup()) && cap.getMetalMindEquiped(MetalsNBTData.DURALUMIN.getGroup())));
         }
         return false;
-    }
+    }*/
 }

@@ -224,73 +224,36 @@ public class FeruchemyMetalSelector extends Screen {
             }
         }
 
-
-
-        /*if (inSelector){
-            if(tipo==0){
-
-                vertex1.x = vertex1.x+4;
-                vertex1.y = vertex1.y+4;
-
-                vertex2.x = vertex2.x+4;
-                vertex2.y = vertex2.y-10;
-
-                vertex3.x = vertex3.x-10;
-                vertex3.y = vertex3.y+4;
-            }else if(tipo==1){
-
-                vertex1.x = vertex1.x-4;
-                vertex1.y = vertex1.y+4;
-
-                vertex2.x = vertex2.x-4;
-                vertex2.y = vertex2.y-10;
-
-                vertex3.x = vertex3.x+10;
-                vertex3.y = vertex3.y+4;
-            }else if (tipo==2){
-
-                vertex1.x = vertex1.x-4;
-                vertex1.y = vertex1.y-4;
-
-                vertex2.x = vertex2.x-4;
-                vertex2.y = vertex2.y+10;
-
-                vertex3.x = vertex3.x+10;
-                vertex3.y = vertex3.y-4;
-            }else if(tipo==3){
-                vertex1.x = vertex1.x+4;
-                vertex1.y = vertex1.y-4;
-
-                vertex2.x = vertex2.x+4;
-                vertex2.y = vertex2.y+10;
-
-                vertex3.x = vertex3.x-10;
-                vertex3.y = vertex3.y-4;
-            }
-        }*/
-
         int actualColor[];
         if(paridad){
             actualColor = new int[]{125, 125, 125, 255};
 
-            if (!data.hasAllomanticPower(metal) ) { // || si no tiene equipada la mente de ese metal
+            if (!data.hasFeruchemicPower(metal)) { // || si no tiene equipada la mente de ese metal
                 actualColor = new int[]{84, 91, 120, 255};
             }
-            if (data.isBurning(metal)) {
+            if(!data.getMetalMindEquiped(metal.getGroup())){
+                actualColor = new int[]{220, 20, 0, 255};
+            }
+
+            if (data.isBurning(metal)) {//logica de almacenamiento y decante
                 actualColor = new int[]{73, 180, 199, 255};
             }
 
+
+
         }else{
             actualColor = new int[]{109, 109, 109, 255};
-            if (!data.hasAllomanticPower(metal)) { // || si no tiene equipada la mente de ese metal
+            if (!data.hasFeruchemicPower(metal)) { // || si no tiene equipada la mente de ese metal
                 actualColor = new int[]{103, 110, 140, 255};
             }
-            if (data.isBurning(metal)) {
-                actualColor = new int[]{103, 195, 211, 255};
+            if(!data.getMetalMindEquiped(metal.getGroup())){
+                actualColor = new int[]{255, 0, 0, 255};
             }
 
+            if (data.isBurning(metal)) {//logica de almacenamiento y decante
+                actualColor = new int[]{103, 195, 211, 255};
+            }
         }
-
 
         buf.vertex(vertex1.x,vertex1.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
         buf.vertex(vertex2.x,vertex2.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();

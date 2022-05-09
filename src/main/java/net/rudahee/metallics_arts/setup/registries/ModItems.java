@@ -147,7 +147,7 @@ public class ModItems {
     );
     public static RegistryObject<Item> BAND_ZINC_BRASS = register("band_zinc_brass",
             () -> {
-                Item item = new RingZincBrass(PROPERTY_METALMINDS);
+                Item item = new BandZincBrass(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("ZINC_BRASS").setBand(item);
                 return item;
             }
