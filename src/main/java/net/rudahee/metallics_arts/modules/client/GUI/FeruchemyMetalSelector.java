@@ -20,6 +20,7 @@ import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.CallbackI;
 
@@ -37,8 +38,21 @@ public class FeruchemyMetalSelector extends Screen {
 
     final Minecraft mc;
     int slotSelected = -1;
-    int list =-1;
+
+    Point point1 = null;
+    Point point2 = null;
+    Point point3 = null;
+
+    int tipoTemp =-1;
+    boolean paridadTemp;
+
+    MetalsNBTData metalTemp=null;
+
+
     int timeIn = 8;
+
+
+
 
     public FeruchemyMetalSelector() {
         super(new StringTextComponent("metallic_arts_feruchemic_selector"));
@@ -68,7 +82,6 @@ public class FeruchemyMetalSelector extends Screen {
         super.render(matrixStack, mx, my, partialTicks);
         this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
 
-
             Point center = new Point(this.width / 2,this.height / 2);
 
             Point mouse = new Point(mx,my);
@@ -77,7 +90,7 @@ public class FeruchemyMetalSelector extends Screen {
             Point xPositivo = new Point((int) (center.x*1.2), center.y);
             Point xNegativo = new Point(center.x-(xPositivo.x-center.x), center.y);
             Point yPositivo = new Point(center.x, center.y-(xPositivo.x-center.x));
-            Point yNegativo = new Point(center.x, center.y+(xPositivo.x- center.x));
+            Point yNegativo = new Point(center.x, center.y+(xPositivo.x-center.x));
 
             //extremos externos
             Point xPositivoExterno = new Point(xPositivo.x+(xPositivo.x-center.x), center.y);
@@ -100,8 +113,6 @@ public class FeruchemyMetalSelector extends Screen {
 
 
             int large = xPositivo.x-center.x;
-
-
 
             Tessellator tess = Tessellator.getInstance();
             BufferBuilder buf = tess.getBuilder();
@@ -138,6 +149,9 @@ public class FeruchemyMetalSelector extends Screen {
             pintar(buf,intermedioXNegYPosExterno,new Point(intermedioXNegYPosExterno.x,intermedioXNegYPosExterno.y+large),new Point(intermedioXNegYPosExterno.x+large,intermedioXNegYPosExterno.y),MetalsNBTData.LERASIUM,mouse,2,true,data);
 
 
+            if(this.point1!=null&&this.point2!=null&&this.point3!=null&&this.tipoTemp!=-1){
+                pintar(buf,this.point1,this.point2,this.point3,this.metalTemp,mouse,this.tipoTemp,this.paridadTemp,data);
+            }
 
             tess.end();
             RenderSystem.shadeModel(GL11.GL_FLAT);
@@ -167,6 +181,10 @@ public class FeruchemyMetalSelector extends Screen {
             addpintado(matrixStack,intermedioXPosYPosExterno,new Point(intermedioXPosYPosExterno.x,intermedioXPosYPosExterno.y+large),new Point(intermedioXPosYPosExterno.x-large,intermedioXPosYPosExterno.y),MetalsNBTData.MALATIUM,mouse);
             addpintado(matrixStack,intermedioXNegYNegExterno,new Point(intermedioXNegYNegExterno.x,intermedioXNegYNegExterno.y-large),new Point(intermedioXNegYNegExterno.x+large,intermedioXNegYNegExterno.y),MetalsNBTData.ETTMETAL,mouse);
             addpintado(matrixStack,intermedioXNegYPosExterno,new Point(intermedioXNegYPosExterno.x,intermedioXNegYPosExterno.y+large),new Point(intermedioXNegYPosExterno.x+large,intermedioXNegYPosExterno.y),MetalsNBTData.LERASIUM,mouse);
+
+            if(this.point1!=null&&this.point2!=null&&this.point3!=null){
+                addpintado(matrixStack,this.point1,this.point2,this.point3,this.metalTemp,mouse);
+            }
 
             RenderSystem.enableRescaleNormal();
             RenderSystem.enableBlend();
@@ -210,6 +228,7 @@ public class FeruchemyMetalSelector extends Screen {
         boolean inSelector = pointInTriangle(mouse,vertex1,vertex2,vertex3);
 
         if (inSelector) {
+            this.slotSelected = metal.getIndex();
             if (tipo == 0) {
                 vertex2.y = vertex2.y - 4;
                 vertex3.x = vertex3.x - 4;
@@ -223,6 +242,12 @@ public class FeruchemyMetalSelector extends Screen {
                 vertex2.y = vertex2.y + 4;
                 vertex3.x = vertex3.x - 4;
             }
+            this.point1 = vertex1;
+            this.point2 = vertex2;
+            this.point3 = vertex3;
+            this.tipoTemp = tipo;
+            this.paridadTemp = paridad;
+            this.metalTemp = metal;
         }
 
         int actualColor[];
@@ -240,8 +265,6 @@ public class FeruchemyMetalSelector extends Screen {
                 actualColor = new int[]{73, 180, 199, 255};
             }
 
-
-
         }else{
             actualColor = new int[]{109, 109, 109, 255};
             if (!data.hasFeruchemicPower(metal)) { // || si no tiene equipada la mente de ese metal
@@ -256,9 +279,9 @@ public class FeruchemyMetalSelector extends Screen {
             }
         }
 
-        buf.vertex(vertex1.x,vertex1.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
-        buf.vertex(vertex2.x,vertex2.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
-        buf.vertex(vertex3.x,vertex3.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
+        buf.vertex(a.x,a.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
+        buf.vertex(b.x,b.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
+        buf.vertex(c.x,c.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
 
 
     }
@@ -277,7 +300,14 @@ public class FeruchemyMetalSelector extends Screen {
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
-        toggleSelected();
+        // 0: left click
+        // 1: right click
+        if(mouseButton == 1){
+            toggleSelectedRight();
+        }else if (mouseButton==0){
+            toggleSelectedLeft();
+        }
+
         return super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 
@@ -307,32 +337,29 @@ public class FeruchemyMetalSelector extends Screen {
         return super.mouseReleased(mouseX, mouseY, button);
     }
 
-
-    private void toggleSelected() {
-        /*if (this.slotSelected != -1) {
-            MetalsNBTData mt ;
-
-            if(this.list==1){
-                mt = internalMetals.get(this.slotSelected);
-            }else if(this.list==2){
-                mt = externalMetals.get(this.slotSelected);
-            }else if(this.list==3){
-                mt = divineMetals.get(this.slotSelected);
-            }else{
-                mt = null;
-            }
-
+    private void toggleSelectedRight() {
+        if (this.slotSelected != -1) {
+            MetalsNBTData metal = MetalsNBTData.getMetal(this.slotSelected);
             this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
-                ClientUtils.toggleBurn(mt, data);
+                ClientUtils.toggleStorage(metal, data);
                 this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK, 0.1F, 2.0F);
             });
-        }*/
+        }
+    }
+
+    private void toggleSelectedLeft() {
+        if (this.slotSelected != -1) {
+            MetalsNBTData metal = MetalsNBTData.getMetal(this.slotSelected);
+            this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+                ClientUtils.toggleDecant(metal, data);
+                this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK, 0.1F, 2.0F);
+            });
+        }
     }
 
     @Override
     public boolean isPauseScreen() {
         return false;
     }
-
 
 }

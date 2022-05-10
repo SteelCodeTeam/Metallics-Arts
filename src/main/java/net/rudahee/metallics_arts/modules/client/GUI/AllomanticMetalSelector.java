@@ -391,27 +391,6 @@ public class AllomanticMetalSelector extends Screen {
 
     }
 
-    /*
-          int actualColor[] = new int[4];
-          actualColor = new int[]{200, 200, 200, 200};
-                if (actualSegment % 2 == 0) {
-                    actualColor = new int[]{225, 225, 225, 220};
-                }
-
-                if (!cap.hasAllomanticPower(mt) || cap.getAllomanticPowerCount() <= 0) {
-                    actualColor = new int[]{100, 100, 100, 100};
-                }
-
-                if (cap.isBurning(mt)) {
-                    actualColor = new int[]{200, 150, 150, 200};
-                }
-                int gs = 0x40;
-                if (actualSegment % 2 == 0) {
-                    gs += 0x19;
-                }
-
-    }*/
-
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {

@@ -16,6 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.data.network.UpdateBurnPacket;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import org.lwjgl.opengl.GL11;
 
@@ -76,12 +77,12 @@ public class ClientUtils {
             return;
         }
 
-
         ModNetwork.sendToServer(new UpdateBurnPacket(metal, !capability.isBurning(metal)));
 
         if (capability.getAllomanticAmount(metal) > 0) {
             capability.setBurning(metal, !capability.isBurning(metal));
         }
+
         // play a sound effect
 
         /*if (capability.isBurning(metal)) {
@@ -89,5 +90,20 @@ public class ClientUtils {
         } else {
             player.playSound(new SoundEvent(new ResourceLocation("block.fire.extinguish")), 1, 4);
         }*/
+    }
+
+    public static  void  toggleDecant (MetalsNBTData metal, IDefaultInvestedPlayerData capability ){
+        if (!capability.hasFeruchemicPower(metal)||!capability.getMetalMindEquiped(metal.getGroup())){
+            return;
+        }
+        System.out.println( "HIZO CLICK IZQUIERDO EN :"+metal.getNameLower());
+
+    }
+
+    public static  void  toggleStorage (MetalsNBTData metal, IDefaultInvestedPlayerData capability ){
+        if (!capability.hasFeruchemicPower(metal)||!capability.getMetalMindEquiped(metal.getGroup())){
+            return;
+        }
+        System.out.println( "HIZO CLICK DERECHO EN :"+metal.getNameLower());
     }
 }
