@@ -81,10 +81,10 @@ public class FeruchemyMetalSelector extends Screen {
 
             //extremos externos
             Point xPositivoExterno = new Point(xPositivo.x+(xPositivo.x-center.x), center.y);
-            Point xNegativoExterno = new Point(xNegativo.x -(xPositivo.x- center.x), center.y);
+            Point xNegativoExterno = new Point(xNegativo.x-(xPositivo.x- center.x), center.y);
 
-            Point yNegativoExterno = new Point(center.x, yNegativo.y+(xPositivo.x- center.x));
-            Point yPositivoExterno = new Point(center.x, yPositivo.y-(xPositivo.x- center.x));
+            Point yNegativoExterno = new Point(center.x,yNegativo.y+(xPositivo.x- center.x));
+            Point yPositivoExterno = new Point(center.x,yPositivo.y-(xPositivo.x- center.x));
 
             //diagonales internos
             Point intermedioXPosYNeg = new Point(xPositivo.x,yNegativo.y);
@@ -136,6 +136,7 @@ public class FeruchemyMetalSelector extends Screen {
             pintar(buf,intermedioXPosYPosExterno,new Point(intermedioXPosYPosExterno.x,intermedioXPosYPosExterno.y+large),new Point(intermedioXPosYPosExterno.x-large,intermedioXPosYPosExterno.y),MetalsNBTData.MALATIUM,mouse,3,true,data);
             pintar(buf,intermedioXNegYNegExterno,new Point(intermedioXNegYNegExterno.x,intermedioXNegYNegExterno.y-large),new Point(intermedioXNegYNegExterno.x+large,intermedioXNegYNegExterno.y),MetalsNBTData.ETTMETAL,mouse,1,false,data);
             pintar(buf,intermedioXNegYPosExterno,new Point(intermedioXNegYPosExterno.x,intermedioXNegYPosExterno.y+large),new Point(intermedioXNegYPosExterno.x+large,intermedioXNegYPosExterno.y),MetalsNBTData.LERASIUM,mouse,2,true,data);
+
 
 
             tess.end();
