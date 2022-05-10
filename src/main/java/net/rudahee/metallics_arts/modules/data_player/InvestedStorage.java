@@ -19,22 +19,21 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         CompoundNBT feruchemic_powers = new CompoundNBT();
         CompoundNBT allomantic_reseve = new CompoundNBT();
         CompoundNBT burning_metals = new CompoundNBT();
+        CompoundNBT decanting_metals = new CompoundNBT();
+        CompoundNBT storing_metals = new CompoundNBT();
         CompoundNBT death_pos = new CompoundNBT();
         CompoundNBT spawn_pos = new CompoundNBT();
         CompoundNBT spawn_dimension = new CompoundNBT();
         CompoundNBT death_dimension = new CompoundNBT();
         CompoundNBT metal_mind_equiped = new CompoundNBT();
 
-
         for (MetalsNBTData metal : MetalsNBTData.values()) {
             allomantic_powers.putBoolean(metal.getNameLower(), data.hasAllomanticPower(metal));
             feruchemic_powers.putBoolean(metal.getNameLower(), data.hasFeruchemicPower(metal));
             allomantic_reseve.putInt(metal.getNameLower(), data.getAllomanticAmount(metal));
             burning_metals.putBoolean(metal.getNameLower(), data.isBurning(metal));
-        }
-
-        for (int i=0; i<data.getMetalMindEquipedList().length;i++){
-            metal_mind_equiped.putBoolean("group"+i,data.getMetalMindEquipedList()[i]);
+            decanting_metals.putBoolean(metal.getNameLower(), data.isDecanting(metal));
+            storing_metals.putBoolean(metal.getNameLower(), data.isStoring(metal));
         }
 
         invested_data.put("allomantic_powers", allomantic_powers);
@@ -60,6 +59,10 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         invested_data.put("spawn_dim", spawn_dimension);
 
         invested_data.put("metal_mind_equiped",metal_mind_equiped);
+
+        invested_data.put("decanting_metals", decanting_metals);
+        invested_data.put("storing_metals", storing_metals);
+
         return invested_data;
     }
 
@@ -71,6 +74,9 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         CompoundNBT feruchemic_powers = (CompoundNBT) invested_data.get("feruchemic_powers");
         CompoundNBT allomantic_reseve = (CompoundNBT) invested_data.get("allomantic_reseve");
         CompoundNBT burning_metals = (CompoundNBT) invested_data.get("burning_metals");
+        CompoundNBT storing_metals = (CompoundNBT) invested_data.get("storing_metals");
+        CompoundNBT decanting_metals = (CompoundNBT) invested_data.get("decanting_metals");
+
 
         CompoundNBT death_pos = (CompoundNBT) invested_data.get("death_pos");
         CompoundNBT spawn_pos = (CompoundNBT) invested_data.get("spawn_pos");
@@ -78,11 +84,6 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         CompoundNBT spawn_dimension = (CompoundNBT) invested_data.get("spawn_dim");
 
         CompoundNBT metal_mind_equiped = (CompoundNBT) invested_data.get("metal_mind_equiped");
-
-
-        for (int i=0; i<data.getMetalMindEquipedList().length;i++){
-            data.setMetalMindEquiped(i,metal_mind_equiped.getBoolean("group"+i));
-        }
 
         for (MetalsNBTData metal : MetalsNBTData.values()) {
             if (allomantic_powers.getBoolean(metal.getNameLower())) {
@@ -96,6 +97,9 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
             } else {
                 data.removeFeruchemicPower(metal);
             }
+
+            data.setDecanting(metal, decanting_metals.getBoolean(metal.getNameLower()));
+            data.setStoring(metal, storing_metals.getBoolean(metal.getNameLower()));
 
             if (data.hasAllomanticPower(metal)){
                 data.setAllomanticMetalsAmount(metal,allomantic_reseve.getInt(metal.getNameLower()));

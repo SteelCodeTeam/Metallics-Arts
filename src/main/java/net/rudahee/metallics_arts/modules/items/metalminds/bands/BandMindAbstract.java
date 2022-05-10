@@ -18,6 +18,8 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
     private int maxCapacity;
     private MetalsNBTData[] metals = new MetalsNBTData[2];
 
+    public String unkeyedString = "ESTA LIBRE PAPU";
+
     public BandMindAbstract(Properties properties,MetalsNBTData metal1, MetalsNBTData metal2) {
         super(properties);
         metals[0]=metal1;

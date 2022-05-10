@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.data_player.DefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
@@ -21,13 +22,21 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import javax.swing.table.DefaultTableCellRenderer;
 
 public class BandAluminumDuralumin extends BandMindAbstract implements ICurioItem {
-    CompoundNBT nbt = new CompoundNBT();
+    private CompoundNBT nbt = new CompoundNBT();
+    private static int MAX_ALUMINUM = 100;
+    private static int MAX_DURALUMIN = 16000;
+
     public BandAluminumDuralumin (Item.Properties properties){
         super(properties,MetalsNBTData.ALUMINUM,MetalsNBTData.DURALUMIN);
         nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.aluminum",0);
         nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.duralumin",0);
         nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.capacityAluminum", 100);
         nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.capacityDuralumin",100);
+
+        nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_aluminum_reserve", 0);
+        nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_duralumin_reserve", 0);
+        nbt.putString(MetallicsArts.MOD_ID + ".user_key", super.unkeyedString);
+
         setNbt(nbt);
     }
 
@@ -36,13 +45,64 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
         return super.useOn(p_195939_1_);
     }
 
+    private static boolean needUpdate = false;
 
-    /*@Override
+    @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         super.curioTick(identifier, index, livingEntity, stack);
-        //if hasFeruchemicPower de algun metal de la banda/arillo, lo activo en el power selector
+
+        if (livingEntity.level instanceof ServerWorld) {
+            needUpdate = false;
+
+            if (livingEntity instanceof PlayerEntity) {
+                PlayerEntity player = (PlayerEntity) livingEntity;
+
+                player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+
+                    if (data.isDecanting(MetalsNBTData.ALUMINUM)) {
+                        if (nbt.getInt(MetallicsArts.MOD_ID + ".feruchemic_aluminum_reserve") > 0) {
+                            this.nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_aluminum_reserve", this.nbt.getInt(MetallicsArts.MOD_ID + ".feruchemic_aluminum_reserve") - 1);
+                        } else {
+                            data.setDecanting(MetalsNBTData.ALUMINUM, false);
+                        }
+                        needUpdate = true;
+                    } else if (data.isStoring(MetalsNBTData.ALUMINUM)) {
+                        if (nbt.getInt(MetallicsArts.MOD_ID + ".feruchemic_aluminum_reserve") <= this.MAX_ALUMINUM) {
+                            this.nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_aluminum_reserve", this.nbt.getInt(MetallicsArts.MOD_ID + ".feruchemic_aluminum_reserve") + 1);
+                        } else {
+                            data.setStoring(MetalsNBTData.ALUMINUM, false);
+                        }
+                        needUpdate = true;
+                    }
+
+                    if (data.isDecanting(MetalsNBTData.DURALUMIN)) {
+                        if (nbt.getInt(MetallicsArts.MOD_ID + ".feruchemic_duralumin_reserve") > 0) {
+                            this.nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_duralumin_reserve", this.nbt.getInt(MetallicsArts.MOD_ID + ".feruchemic_duralumin_reserve") - 1);
+                        } else {
+                            data.setDecanting(MetalsNBTData.DURALUMIN, false);
+                        }
+                        needUpdate = true;
+                    } else if (data.isStoring(MetalsNBTData.DURALUMIN)) {
+                        if (nbt.getInt(MetallicsArts.MOD_ID + ".feruchemic_duralumin_reserve") <= this.MAX_DURALUMIN) {
+                            this.nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_duralumin_reserve", this.nbt.getInt(MetallicsArts.MOD_ID + ".feruchemic_duralumin_reserve") + 1);
+                        } else {
+                            data.setDecanting(MetalsNBTData.DURALUMIN, false);
+                        }
+                        needUpdate = true;
+                    }
+
+                    if (needUpdate) {
+                        ModNetwork.sync(data, player);
+                    }
+
+                });
+            }
+        }
+
+
     }
 
+    /*
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
         ICurioItem.super.onEquip(slotContext, prevStack, stack);
