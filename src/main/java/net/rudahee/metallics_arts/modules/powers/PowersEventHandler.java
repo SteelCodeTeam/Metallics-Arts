@@ -5,6 +5,8 @@ import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -61,6 +63,7 @@ public class PowersEventHandler {
                         }
                         data.setInvested(true);
                     }
+
                 });
 
                 //Sync cap to client
@@ -248,6 +251,13 @@ public class PowersEventHandler {
                             if (player instanceof ServerPlayerEntity) {
                                 playerCapability.tickAllomancyBurningMetals((ServerPlayerEntity) player);
                             }
+
+                            if (playerCapability.isDecanting(MetalsNBTData.DURALUMIN)) {
+                                player.addEffect(new EffectInstance(Effects.REGENERATION, 100, 100, true, true));
+                            } else if (playerCapability.isStoring(MetalsNBTData.DURALUMIN)) {
+                                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 100, 100, true, true));
+                            }
+
 
                             /************************
                              * BENDALLOY POWERS

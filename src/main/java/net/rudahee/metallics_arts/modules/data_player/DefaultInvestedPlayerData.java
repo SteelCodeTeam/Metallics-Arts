@@ -1,7 +1,6 @@
 package net.rudahee.metallics_arts.modules.data_player;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.math.BlockPos;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
@@ -15,6 +14,11 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
 
     private final int[] allomantic_reseve;
     private final boolean[] burning_metals;
+
+    private final boolean[] decanting_metals;
+
+    private final boolean[] storing_metals;
+
     private final int[] max_burning_time;
 
     private boolean invested;
@@ -31,7 +35,7 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     private String spawn_dimension;
 
 
-    public DefaultInvestedPlayerData(){
+    public DefaultInvestedPlayerData() {
         int powers = MetalsNBTData.values().length;
         int i = 0;
 
@@ -45,6 +49,12 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
 
         this.feruchemic_powers = new boolean[powers];
         Arrays.fill(this.feruchemic_powers, false);
+
+        this.decanting_metals = new boolean[powers];
+        Arrays.fill(this.decanting_metals, false);
+
+        this.storing_metals = new boolean[powers];
+        Arrays.fill(this.storing_metals, false);
 
         this.allomantic_reseve = new int[powers];
         Arrays.fill(this.allomantic_reseve, 0);
@@ -331,6 +341,26 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
         }
 
         return burning;
+    }
+
+    @Override
+    public boolean isDecanting(MetalsNBTData metal) {
+        return this.decanting_metals[metal.getIndex()];
+    }
+
+    @Override
+    public boolean isStoring(MetalsNBTData metal) {
+        return this.storing_metals[metal.getIndex()];
+    }
+
+    @Override
+    public void setDecanting(MetalsNBTData metal, boolean value) {
+        this.decanting_metals[metal.getIndex()] = value;
+    }
+
+    @Override
+    public void setStoring(MetalsNBTData metal, boolean value) {
+        this.storing_metals[metal.getIndex()] = value;
     }
 
     @Override
