@@ -13,7 +13,6 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
     @Override
     public INBT writeNBT(Capability<IDefaultInvestedPlayerData> capability, IDefaultInvestedPlayerData data, Direction side) {
 
-
         CompoundNBT invested_data = new CompoundNBT();
         CompoundNBT allomantic_powers = new CompoundNBT();
         CompoundNBT feruchemic_powers = new CompoundNBT();
@@ -58,6 +57,10 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         invested_data.put("spawn_pos", spawn_pos);
         invested_data.put("spawn_dim", spawn_dimension);
 
+        for (int i=0;i<10;i++){
+            metal_mind_equiped.putBoolean("group"+i,data.getMetalMindEquiped(i));
+        }
+
         invested_data.put("metal_mind_equiped",metal_mind_equiped);
 
         invested_data.put("decanting_metals", decanting_metals);
@@ -76,7 +79,6 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         CompoundNBT burning_metals = (CompoundNBT) invested_data.get("burning_metals");
         CompoundNBT storing_metals = (CompoundNBT) invested_data.get("storing_metals");
         CompoundNBT decanting_metals = (CompoundNBT) invested_data.get("decanting_metals");
-
 
         CompoundNBT death_pos = (CompoundNBT) invested_data.get("death_pos");
         CompoundNBT spawn_pos = (CompoundNBT) invested_data.get("spawn_pos");
@@ -107,6 +109,10 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
             }
         }
 
+        for (int i=0;i<10;i++){
+            data.setMetalMindEquiped(i,metal_mind_equiped.getBoolean("group"+i));
+        }
+
         try {
             if (death_pos.getIntArray("death_position") != null && death_dimension.getString("death_dimension") != null) {
                 data.setDeathPos(death_pos.getIntArray("death_position"));
@@ -119,7 +125,6 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         } catch(Exception ex) {
             System.out.println("SIGUE SIENDO UNA COSTRA DE NULL EL DEATH O SPAWN POS :D");
         }
-
     }
 }
 

@@ -29,7 +29,7 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     private int[] death_pos;
     private int[] spawn_pos;
 
-    private  boolean[] metal_mind_equiped;
+    private final boolean[] metal_mind_equiped;
 
     private String death_dimension;
     private String spawn_dimension;
@@ -103,8 +103,6 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
             }
 
         }
-
-
     }
     @Override
     public void tickFeruchemyStorageMetals(ServerPlayerEntity player){
@@ -219,6 +217,13 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     @Override
     public boolean[] getMetalMindEquipedList() {
         return this.metal_mind_equiped;
+    }
+
+    @Override
+    public void setMetalMindEquipedList(boolean[] list) {
+        for (int i = 0;i<10;i++){
+            this.metal_mind_equiped[i] =list[i];
+        }
     }
 
     @Override

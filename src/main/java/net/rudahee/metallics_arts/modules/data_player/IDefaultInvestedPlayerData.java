@@ -101,4 +101,6 @@ public interface IDefaultInvestedPlayerData {
     void setMetalMindEquiped (int group,boolean value);
 
     boolean[] getMetalMindEquipedList ();
+
+    void setMetalMindEquipedList (boolean [] list);
 }

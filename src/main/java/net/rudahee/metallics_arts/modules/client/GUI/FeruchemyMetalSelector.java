@@ -285,6 +285,54 @@ public class FeruchemyMetalSelector extends Screen {
 
 
     }
+    /*public void pintadoUnico (BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse,int tipo, boolean paridad, IDefaultInvestedPlayerData data){
+
+        Point vertex1 = new Point(a.x,a.y);
+        Point vertex2 = new Point(b.x,b.y);
+        Point vertex3 = new Point(c.x,c.y);
+
+        boolean inSelector = pointInTriangle(mouse,vertex1,vertex2,vertex3);
+
+        if (inSelector) {
+            this.slotSelected = metal.getIndex();
+        }
+
+        int actualColor[];
+        if(paridad){
+            actualColor = new int[]{125, 125, 125, 255};
+
+            if (!data.hasFeruchemicPower(metal)) { // || si no tiene equipada la mente de ese metal
+                actualColor = new int[]{84, 91, 120, 255};
+            }
+            if(!data.getMetalMindEquiped(metal.getGroup())){
+                actualColor = new int[]{220, 20, 0, 255};
+            }
+
+            if (data.isBurning(metal)) {//logica de almacenamiento y decante
+                actualColor = new int[]{73, 180, 199, 255};
+            }
+
+        }else{
+            actualColor = new int[]{109, 109, 109, 255};
+            if (!data.hasFeruchemicPower(metal)) { // || si no tiene equipada la mente de ese metal
+                actualColor = new int[]{103, 110, 140, 255};
+            }
+            if(!data.getMetalMindEquiped(metal.getGroup())){
+                actualColor = new int[]{255, 0, 0, 255};
+            }
+
+            if (data.isBurning(metal)) {//logica de almacenamiento y decante
+                actualColor = new int[]{103, 195, 211, 255};
+            }
+        }
+
+        buf.vertex(a.x,a.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
+        buf.vertex(b.x,b.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
+        buf.vertex(c.x,c.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
+    }*/
+
+
+
 
     public float sign(Point p1, Point p2, Point p3) {
         return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
