@@ -91,6 +91,7 @@ public class MetallicsArts
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().options);
 
         event.enqueueWork(() -> {
+            //CuriosApi.getIconHelper().addIcon("metalmind_slot_icon", new ResourceLocation("item/slot"));
             ScreenManager.register(ModContainers.ALLOY_FURNACE_CONTAINER.get(),
                     AlloyFurnaceScreen::new);
             KeyInit.register();
