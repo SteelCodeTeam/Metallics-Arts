@@ -9,10 +9,7 @@ import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.network.ChangeEmotionPacket;
-import net.rudahee.metallics_arts.data.network.InvestedDataPacket;
-import net.rudahee.metallics_arts.data.network.PullAndPushPacket;
-import net.rudahee.metallics_arts.data.network.UpdateBurnPacket;
+import net.rudahee.metallics_arts.data.network.*;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 
@@ -32,7 +29,8 @@ public class ModNetwork {
         INSTANCE.registerMessage(nextIndex(), UpdateBurnPacket.class, UpdateBurnPacket::encode, UpdateBurnPacket::decode, UpdateBurnPacket::handle);
         INSTANCE.registerMessage(nextIndex(), ChangeEmotionPacket.class, ChangeEmotionPacket::encode, ChangeEmotionPacket::decode, ChangeEmotionPacket::handle);
         INSTANCE.registerMessage(nextIndex(), PullAndPushPacket.class, PullAndPushPacket::encode, PullAndPushPacket::decode, PullAndPushPacket::handle);
-
+        INSTANCE.registerMessage(nextIndex(), UpdateDecantPacket.class, UpdateDecantPacket::encode, UpdateDecantPacket::decode, UpdateDecantPacket::handle);
+        INSTANCE.registerMessage(nextIndex(), UpdateStoragePacket.class, UpdateStoragePacket::encode, UpdateStoragePacket::decode, UpdateStoragePacket::handle);
     }
 
     public static void sendToServer(Object msg) {

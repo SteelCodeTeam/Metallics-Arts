@@ -14,6 +14,8 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.data.network.UpdateBurnPacket;
+import net.rudahee.metallics_arts.data.network.UpdateDecantPacket;
+import net.rudahee.metallics_arts.data.network.UpdateStoragePacket;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
@@ -92,11 +94,15 @@ public class ClientUtils {
         }*/
     }
 
-    public static  void  toggleDecant (MetalsNBTData metal, IDefaultInvestedPlayerData capability ){
+    public static  void toggleDecant (MetalsNBTData metal, IDefaultInvestedPlayerData capability ){
         if (!capability.hasFeruchemicPower(metal)||!capability.getMetalMindEquiped(metal.getGroup())){
             return;
         }
-        System.out.println( "HIZO CLICK IZQUIERDO EN :"+metal.getNameLower());
+
+        if (capability.isStoring(metal)) {
+            ModNetwork.sendToServer(new UpdateStoragePacket(metal, false));
+        }
+        ModNetwork.sendToServer(new UpdateDecantPacket(metal, !capability.isDecanting(metal)));
 
     }
 
@@ -104,6 +110,9 @@ public class ClientUtils {
         if (!capability.hasFeruchemicPower(metal)||!capability.getMetalMindEquiped(metal.getGroup())){
             return;
         }
-        System.out.println( "HIZO CLICK DERECHO EN :"+metal.getNameLower());
+        if (capability.isDecanting(metal)) {
+            ModNetwork.sendToServer(new UpdateDecantPacket(metal, false));
+        }
+        ModNetwork.sendToServer(new UpdateStoragePacket(metal, !capability.isStoring(metal)));
     }
 }
