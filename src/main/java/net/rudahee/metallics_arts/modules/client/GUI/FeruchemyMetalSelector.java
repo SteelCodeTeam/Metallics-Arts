@@ -14,6 +14,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.model.CompositeModel;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
@@ -22,6 +23,7 @@ import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.NVConservativeRasterPreSnapTriangles;
 import org.lwjgl.system.CallbackI;
 
 import java.awt.*;
@@ -61,7 +63,21 @@ public class FeruchemyMetalSelector extends Screen {
     }
 
 
-    static int[] gris1 = new int[]{109, 109, 109, 100};
+    static int[] noPowerPar = new int[] {84, 91, 120, 255};
+    static int[] noPowerImpar = new int[]{103, 110, 140, 255};
+
+    static int[] isDecantingPar = new int[]{119, 173, 131, 255};
+    static int[] isDecantingImpar = new int[]{84, 142, 96, 255};
+
+    static int[] isStoragePar = new int[]{206, 160, 32, 255};
+    static int[] isStorageImpar = new int[]{235, 190, 68, 255};
+
+
+    static int[] normalPar = new int[]{125, 125, 125, 255};
+    static int[] normalImpar = new int[]{109, 109, 109, 255};
+
+/*
+ static int[] gris1 = new int[]{109, 109, 109, 100};
     static int[] gris2 = new int[]{127, 127, 127, 100};
     static int[] gris3 = new int[]{143, 143, 143, 100};
 
@@ -73,9 +89,8 @@ public class FeruchemyMetalSelector extends Screen {
     static int[] verdiAzul2 = new int[]{112, 187, 174, 100};
     static int[] verdiAzul3 = new int[]{128, 206, 196, 100};
 
-    static int[] verde1 = new int[]{84, 142, 96, 100};
-    static int[] verde2 = new int[]{101, 165, 115, 100};
-    static int[] verde3 = new int[]{119, 173, 131, 100};
+ */
+
 
     @Override
     public void render(MatrixStack matrixStack, int mx, int my, float partialTicks) {
@@ -206,17 +221,24 @@ public class FeruchemyMetalSelector extends Screen {
         Point vertex2 = new Point(b.x,b.y);
         Point vertex3 = new Point(c.x,c.y);
 
+        Point baticenter = baticentro(vertex1,vertex2,vertex3);
         boolean inSelector = pointInTriangle(mouse,vertex1,vertex2,vertex3);
 
         if (inSelector){
             renderTooltip(matrixStack, new StringTextComponent(metal.getNameLower()),mouse.x,mouse.y);
         }
 
-        //this.mc.getEntityRenderDispatcher().textureManager.bind(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+        this.mc.getEntityRenderDispatcher().textureManager.bind(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png"));
         RenderSystem.color4f(1, 1, 1, 1);
-        //blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
+        blit(matrixStack, baticenter.x, baticenter.y, 0, 0, 16, 16, 16, 16);
 
     }
+
+    public Point baticentro(Point vertex1,Point vertex2,Point vertex3) {
+        return new Point(((vertex1.x+vertex2.x+vertex3.x)/3),((vertex1.y+vertex2.y+vertex3.y)/3));
+    }
+
+
 
 
     public void pintar (BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse,int tipo, boolean paridad, IDefaultInvestedPlayerData data){
@@ -252,30 +274,26 @@ public class FeruchemyMetalSelector extends Screen {
 
         int actualColor[];
         if(paridad){
-            actualColor = new int[]{125, 125, 125, 255};
+            if (!data.hasFeruchemicPower(metal)||!data.getMetalMindEquiped(metal.getGroup())) { // || si no tiene equipada la mente de ese metal
+                actualColor = noPowerPar;
+            }else if(data.isStoring(metal)){
+                actualColor = isStoragePar;
+            }else if (data.isDecanting(metal)){
+                actualColor = isDecantingPar;
+            }else {
+                actualColor = normalPar;
+            }
 
-            if (!data.hasFeruchemicPower(metal)) { // || si no tiene equipada la mente de ese metal
-                actualColor = new int[]{84, 91, 120, 255};
-            }
-            if(!data.getMetalMindEquiped(metal.getGroup())){
-                actualColor = new int[]{220, 20, 0, 255};
-            }
-
-            if (data.isBurning(metal)) {//logica de almacenamiento y decante
-                actualColor = new int[]{73, 180, 199, 255};
-            }
 
         }else{
-            actualColor = new int[]{109, 109, 109, 255};
-            if (!data.hasFeruchemicPower(metal)) { // || si no tiene equipada la mente de ese metal
-                actualColor = new int[]{103, 110, 140, 255};
-            }
-            if(!data.getMetalMindEquiped(metal.getGroup())){
-                actualColor = new int[]{255, 0, 0, 255};
-            }
-
-            if (data.isBurning(metal)) {//logica de almacenamiento y decante
-                actualColor = new int[]{103, 195, 211, 255};
+            if (!data.hasFeruchemicPower(metal)||!data.getMetalMindEquiped(metal.getGroup())) { // || si no tiene equipada la mente de ese metal
+                actualColor = noPowerImpar;
+            }else if(data.isStoring(metal)){
+                actualColor = isStorageImpar;
+            }else if (data.isDecanting(metal)){
+                actualColor = isDecantingImpar;
+            }else {
+                actualColor = normalImpar;
             }
         }
 

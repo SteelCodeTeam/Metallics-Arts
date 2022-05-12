@@ -255,9 +255,6 @@ public class AllomanticMetalSelector extends Screen {
                     }
                 }
 
-
-
-
                 if (actualSegment  == 0) {
                     buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
                 }
@@ -300,8 +297,8 @@ public class AllomanticMetalSelector extends Screen {
                 }
 
                 double mod = 0.8;
-                int xdp = (int) ((xp - centerX ) *mod+centerX);
-                int ydp = (int) ((yp - centerY ) *mod+centerY);
+                int xdp = (int) ((xp - centerX )*mod+centerX);
+                int ydp = (int) ((yp - centerY )*mod+centerY);
 
                 this.mc.getEntityRenderDispatcher().textureManager.bind(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
                 RenderSystem.color4f(1, 1, 1, 1);
