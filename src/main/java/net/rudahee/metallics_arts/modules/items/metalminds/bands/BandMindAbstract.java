@@ -77,6 +77,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         });
     }
 
+
     private static IDefaultInvestedPlayerData cap = null;
     @Override
     public boolean canEquip(String identifier, LivingEntity livingEntity, ItemStack stack) {

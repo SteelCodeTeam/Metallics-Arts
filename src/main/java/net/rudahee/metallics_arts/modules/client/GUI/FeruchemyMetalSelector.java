@@ -230,7 +230,7 @@ public class FeruchemyMetalSelector extends Screen {
 
         this.mc.getEntityRenderDispatcher().textureManager.bind(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png"));
         RenderSystem.color4f(1, 1, 1, 1);
-        blit(matrixStack, baticenter.x, baticenter.y, 0, 0, 16, 16, 16, 16);
+        blit(matrixStack, baticenter.x-8, baticenter.y-8, 0, 0, 16, 16, 16, 16);
 
     }
 

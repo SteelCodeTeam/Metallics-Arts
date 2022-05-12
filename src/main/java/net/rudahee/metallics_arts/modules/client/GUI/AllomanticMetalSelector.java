@@ -335,8 +335,6 @@ public class AllomanticMetalSelector extends Screen {
                 int xdp = (int) ((xp - centerX ) * mod + centerX );
                 int ydp = (int) ((yp - centerY ) * mod + centerY );
 
-
-
                 this.mc.getEntityRenderDispatcher().textureManager.bind( new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
                 RenderSystem.color4f(1, 1, 1, 1);
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
