@@ -1,5 +1,7 @@
 package net.rudahee.metallics_arts.modules.items.vials;
 
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,11 +11,16 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModItemGroup;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 
 public abstract class Vial extends Item {
@@ -40,6 +47,21 @@ public abstract class Vial extends Item {
 
     public Vial() {
         super(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new Food.Builder().nutrition(0).build()));
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
+        if (Screen.hasControlDown()){
+            for (MetalsNBTData metal : MetalsNBTData.values()){
+                if(stack.getTag().getInt(metal.getGemNameLower())>0){
+                    toolTips.add(new StringTextComponent(metal.getNameLower()+": "+stack.getTag().getInt(metal.getGemNameLower())));
+                }
+            }
+        }
+
+
+
+        super.appendHoverText(stack, world, toolTips, flagIn);
     }
 
     @Override
@@ -104,6 +126,8 @@ public abstract class Vial extends Item {
         }
         return itemStack;
     }
+
+
 
     @Override
     public int getUseDuration(ItemStack itemStack) {

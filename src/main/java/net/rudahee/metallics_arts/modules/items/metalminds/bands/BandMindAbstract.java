@@ -1,16 +1,25 @@
 package net.rudahee.metallics_arts.modules.items.metalminds.bands;
 
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.World;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public abstract class BandMindAbstract extends Item implements ICurioItem {
 
@@ -35,6 +44,16 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     public CompoundNBT getNbt() {
         return nbt;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
+
+        //if (Screen.hasControlDown()){
+            //toolTips.add(new StringTextComponent(metals[0].getNameLower()+": "+stack.getTag().getInt(MetallicsArts.MOD_ID + ".feruchemic_"+metals[0].getNameLower()+"_reserve")));
+            //toolTips.add(new StringTextComponent(metals[1].getNameLower()+": "+stack.getTag().getInt(MetallicsArts.MOD_ID + ".feruchemic_"+metals[1].getNameLower()+"_reserve")));
+        //}
+        super.appendHoverText(stack, world, toolTips, flagIn);
     }
 
     public void setNbt(CompoundNBT nbt) {

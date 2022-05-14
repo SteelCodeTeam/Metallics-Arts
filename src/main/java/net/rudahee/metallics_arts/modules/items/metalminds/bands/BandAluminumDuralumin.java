@@ -28,13 +28,11 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
 
     public BandAluminumDuralumin (Item.Properties properties){
         super(properties,MetalsNBTData.ALUMINUM,MetalsNBTData.DURALUMIN);
-        nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.aluminum",0);
-        nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.duralumin",0);
-        nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.capacityAluminum", 100);
-        nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.capacityDuralumin",100);
+        //nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.capacityAluminum", 100);
+        //nbt.putInt(MetallicsArts.MOD_ID+".BandAluminumDuralumin.capacityDuralumin",100);
 
-        nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_aluminum_reserve", 0);
-        nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_duralumin_reserve", 0);
+        this.nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_aluminum_reserve", 0);
+        this.nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_duralumin_reserve", 0);
         nbt.putString(MetallicsArts.MOD_ID + ".user_key", super.unkeyedString);
 
         setNbt(nbt);
