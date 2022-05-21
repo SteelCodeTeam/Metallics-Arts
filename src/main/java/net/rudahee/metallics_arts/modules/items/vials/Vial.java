@@ -58,9 +58,6 @@ public abstract class Vial extends Item {
                 }
             }
         }
-
-
-
         super.appendHoverText(stack, world, toolTips, flagIn);
     }
 

@@ -13,6 +13,14 @@ public class BandSteelIron extends BandMindAbstract {
         nbt.putInt(MetallicsArts.MOD_ID+".BandSteelIron.iron",0);
         nbt.putInt(MetallicsArts.MOD_ID+".BandSteelIron.capacitySteel",100);
         nbt.putInt(MetallicsArts.MOD_ID+".BandSteelIron.capacityIron",100);
-        setNbt(nbt);
+    }
+    @Override
+    public void storing(CompoundNBT nbt, String metal, int qty) {
+        nbt.putInt(metal, nbt.getInt(metal) + qty);
+    }
+
+    @Override
+    public void decanting(CompoundNBT nbt, String metal, int qty) {
+        nbt.putInt(metal,nbt.getInt(metal)-qty);
     }
 }

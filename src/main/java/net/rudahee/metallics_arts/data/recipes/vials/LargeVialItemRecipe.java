@@ -33,7 +33,6 @@ public class LargeVialItemRecipe extends SpecialRecipe {
             if (!ModItems.ITEM_METAL_NUGGET.get("lead").getDescriptionId().equals(metal.getDescriptionId())
                     && !ModItems.ITEM_METAL_NUGGET.get("silver").getDescriptionId().equals(metal.getDescriptionId())
                     && !ModItems.ITEM_METAL_NUGGET.get("nickel").getDescriptionId().equals(metal.getDescriptionId())) {
-
                 add(Ingredient.of(metal.getItem()));
             }
             add(Ingredient.of(Items.IRON_NUGGET.getItem()));

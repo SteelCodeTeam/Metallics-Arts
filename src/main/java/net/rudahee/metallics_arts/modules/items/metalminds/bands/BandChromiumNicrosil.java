@@ -22,12 +22,12 @@ public class BandChromiumNicrosil extends BandMindAbstract {
         nbt.putInt(MetallicsArts.MOD_ID+".BandChromiumNicrosil.nicrosil",0);
         nbt.putInt(MetallicsArts.MOD_ID+".BandChromiumNicrosil.capacityChromium",100);
         nbt.putInt(MetallicsArts.MOD_ID+".BandChromiumNicrosil.capacityNicrosil",100);
-        setNbt(nbt);
+
         nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_nicrosil_reserve", 0);
         nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_chromium_reserve", 0);
         nbt.putString(MetallicsArts.MOD_ID + ".user_key", super.unkeyedString);
 
-        setNbt(nbt);
+
     }
 
     private static boolean needUpdate = false;
@@ -83,5 +83,15 @@ public class BandChromiumNicrosil extends BandMindAbstract {
                 });
             }
         }
+    }
+
+    @Override
+    public void storing(CompoundNBT nbt, String metal, int qty) {
+        nbt.putInt(metal, nbt.getInt(metal) + qty);
+    }
+
+    @Override
+    public void decanting(CompoundNBT nbt, String metal, int qty) {
+        nbt.putInt(metal,nbt.getInt(metal)-qty);
     }
 }

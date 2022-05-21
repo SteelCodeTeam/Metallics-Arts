@@ -21,13 +21,11 @@ public class BandCadmiumBendalloy extends BandMindAbstract {
         nbt.putInt(MetallicsArts.MOD_ID+".BandCadmiumBendalloy.bendalloy",0);
         nbt.putInt(MetallicsArts.MOD_ID+".BandCadmiumBendalloy.capacityCadmium",100);
         nbt.putInt(MetallicsArts.MOD_ID+".BandCadmiumBendalloy.capacityBendalloy",100);
-        setNbt(nbt);
 
         nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_bendalloy_reserve", 0);
         nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_cadmium_reserve", 0);
         nbt.putString(MetallicsArts.MOD_ID + ".user_key", super.unkeyedString);
 
-        setNbt(nbt);
     }
 
     private static boolean needUpdate = false;
@@ -83,6 +81,16 @@ public class BandCadmiumBendalloy extends BandMindAbstract {
                 });
             }
         }
+    }
+
+    @Override
+    public void storing(CompoundNBT nbt, String metal, int qty) {
+        nbt.putInt(metal, nbt.getInt(metal) + qty);
+    }
+
+    @Override
+    public void decanting(CompoundNBT nbt, String metal, int qty) {
+        nbt.putInt(metal,nbt.getInt(metal)-qty);
     }
 
 }

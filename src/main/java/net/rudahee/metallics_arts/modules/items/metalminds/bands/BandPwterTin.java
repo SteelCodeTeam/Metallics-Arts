@@ -13,6 +13,15 @@ public class BandPwterTin extends BandMindAbstract {
         nbt.putInt(MetallicsArts.MOD_ID+".BandPwterTin.pewter",0);
         nbt.putInt(MetallicsArts.MOD_ID+".BandPwterTin.capacityTin",100);
         nbt.putInt(MetallicsArts.MOD_ID+".BandPwterTin.capacityPewter",100);
-        setNbt(nbt);
+
+    }
+    @Override
+    public void storing(CompoundNBT nbt, String metal, int qty) {
+        nbt.putInt(metal, nbt.getInt(metal) + qty);
+    }
+
+    @Override
+    public void decanting(CompoundNBT nbt, String metal, int qty) {
+        nbt.putInt(metal,nbt.getInt(metal)-qty);
     }
 }

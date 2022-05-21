@@ -23,7 +23,6 @@ import java.util.List;
 
 public abstract class BandMindAbstract extends Item implements ICurioItem {
 
-    private CompoundNBT nbt;
     private int maxCapacity;
     private MetalsNBTData[] metals = new MetalsNBTData[2];
 
@@ -35,29 +34,19 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         metals[1]=metal2;
     }
 
-    public void storing(String metal, int qty){
-        this.nbt.putInt(metal,this.nbt.getInt(metal)+qty);
-    }
-    public void decanting(String metal, int qty){
-        this.nbt.putInt(metal,this.nbt.getInt(metal)-qty);
-    }
+    public abstract void storing(CompoundNBT nbt, String metal, int qty);
 
-    public CompoundNBT getNbt() {
-        return nbt;
-    }
+    public abstract void decanting(CompoundNBT nbt,String metal, int qty);
 
-    @Override public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
+    /*@Override public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
 
         if (Screen.hasControlDown()){
             toolTips.add(new StringTextComponent(metals[0].getNameLower()+": "+stack.getTag().getInt(MetallicsArts.MOD_ID + ".feruchemic_"+metals[0].getNameLower()+"_reserve")));
             toolTips.add(new StringTextComponent(metals[1].getNameLower()+": "+stack.getTag().getInt(MetallicsArts.MOD_ID + ".feruchemic_"+metals[1].getNameLower()+"_reserve")));
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
-    }
+    }*/
 
-    public void setNbt(CompoundNBT nbt) {
-        this.nbt = nbt;
-    }
 
     public int getMaxCapacity() {
         return maxCapacity;

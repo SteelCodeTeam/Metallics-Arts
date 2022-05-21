@@ -13,6 +13,15 @@ public class BandElectrumGold extends BandMindAbstract {
         nbt.putInt(MetallicsArts.MOD_ID+".BandPwterTin.electrum",0);
         nbt.putInt(MetallicsArts.MOD_ID+".BandPwterTin.capacityGold",100);
         nbt.putInt(MetallicsArts.MOD_ID+".BandPwterTin.capacityElectrum",100);
-        setNbt(nbt);
+    }
+
+    @Override
+    public void storing(CompoundNBT nbt, String metal, int qty) {
+        nbt.putInt(metal, nbt.getInt(metal) + qty);
+    }
+
+    @Override
+    public void decanting(CompoundNBT nbt, String metal, int qty) {
+        nbt.putInt(metal,nbt.getInt(metal)-qty);
     }
 }
