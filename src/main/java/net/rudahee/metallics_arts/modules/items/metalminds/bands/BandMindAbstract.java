@@ -46,13 +46,12 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         return nbt;
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
+    @Override public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
 
-        //if (Screen.hasControlDown()){
-            //toolTips.add(new StringTextComponent(metals[0].getNameLower()+": "+stack.getTag().getInt(MetallicsArts.MOD_ID + ".feruchemic_"+metals[0].getNameLower()+"_reserve")));
-            //toolTips.add(new StringTextComponent(metals[1].getNameLower()+": "+stack.getTag().getInt(MetallicsArts.MOD_ID + ".feruchemic_"+metals[1].getNameLower()+"_reserve")));
-        //}
+        if (Screen.hasControlDown()){
+            toolTips.add(new StringTextComponent(metals[0].getNameLower()+": "+stack.getTag().getInt(MetallicsArts.MOD_ID + ".feruchemic_"+metals[0].getNameLower()+"_reserve")));
+            toolTips.add(new StringTextComponent(metals[1].getNameLower()+": "+stack.getTag().getInt(MetallicsArts.MOD_ID + ".feruchemic_"+metals[1].getNameLower()+"_reserve")));
+        }
         super.appendHoverText(stack, world, toolTips, flagIn);
     }
 

@@ -1,5 +1,7 @@
 package net.rudahee.metallics_arts.modules.items.metalminds.bands;
 
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,6 +11,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.data_player.DefaultInvestedPlayerData;
@@ -19,7 +24,9 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
+import javax.annotation.Nullable;
 import javax.swing.table.DefaultTableCellRenderer;
+import java.util.List;
 
 public class BandAluminumDuralumin extends BandMindAbstract implements ICurioItem {
     private CompoundNBT nbt = new CompoundNBT();
@@ -54,9 +61,7 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
 
             if (livingEntity instanceof PlayerEntity) {
                 PlayerEntity player = (PlayerEntity) livingEntity;
-
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
-
                     if (data.isDecanting(MetalsNBTData.ALUMINUM)) {
                         if (nbt.getInt(MetallicsArts.MOD_ID + ".feruchemic_aluminum_reserve") > 0) {
                             this.nbt.putInt(MetallicsArts.MOD_ID + ".feruchemic_aluminum_reserve", this.nbt.getInt(MetallicsArts.MOD_ID + ".feruchemic_aluminum_reserve") - 1);
@@ -88,59 +93,11 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
                         }
                         needUpdate = true;
                     }
-
                     if (needUpdate) {
                         ModNetwork.sync(data, player);
                     }
-
                 });
             }
         }
-
-
     }
-
-    /*
-    @Override
-    public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-        ICurioItem.super.onEquip(slotContext, prevStack, stack);
-
-        PlayerEntity player = (PlayerEntity) slotContext.getWearer();
-
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
-            data.setMetalMindEquiped(MetalsNBTData.ALUMINUM.getGroup(),true);
-            data.setMetalMindEquiped(MetalsNBTData.DURALUMIN.getGroup(),true);
-            ModNetwork.sync(data,player);
-        });
-
-    }
-
-    @Override
-    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        ICurioItem.super.onUnequip(slotContext, newStack, stack);
-
-        PlayerEntity player = (PlayerEntity) slotContext.getWearer();
-
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
-            data.setMetalMindEquiped(MetalsNBTData.ALUMINUM.getGroup(),false);
-            data.setMetalMindEquiped(MetalsNBTData.DURALUMIN.getGroup(),false);
-
-            ModNetwork.sync(data,player);
-        });
-    }
-
-    private static IDefaultInvestedPlayerData cap = null;
-    @Override
-    public boolean canEquip(String identifier, LivingEntity livingEntity, ItemStack stack) {
-        PlayerEntity player = (PlayerEntity) livingEntity;
-
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
-            cap = data;
-        });
-        if (cap != null){
-            //ModNetwork.sync(cap,player);
-            return (!(cap.getMetalMindEquiped(MetalsNBTData.ALUMINUM.getGroup()) && cap.getMetalMindEquiped(MetalsNBTData.DURALUMIN.getGroup())));
-        }
-        return false;
-    }*/
 }

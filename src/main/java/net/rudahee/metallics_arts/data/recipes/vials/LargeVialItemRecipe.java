@@ -92,7 +92,6 @@ public class LargeVialItemRecipe extends SpecialRecipe {
                             }
                             addMetal[metal.getIndex()]=true;
                             ingredients[1] = true;
-
                         }
                     }
                 }
