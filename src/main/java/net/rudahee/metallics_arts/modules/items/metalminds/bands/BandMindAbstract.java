@@ -198,13 +198,9 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             }
         }
 
-        super.curioTick(identifier, index, livingEntity, stack);
+        ICurioItem.super.curioTick(identifier, index, livingEntity, stack);
     }
 
-
-
-
 */
-
 
 }

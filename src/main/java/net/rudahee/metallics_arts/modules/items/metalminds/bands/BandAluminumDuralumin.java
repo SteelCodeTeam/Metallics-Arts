@@ -34,8 +34,8 @@ import java.util.List;
 public class BandAluminumDuralumin extends BandMindAbstract implements ICurioItem {
 
     CompoundNBT nbt = new CompoundNBT();
-    private static int MAX_ALUMINUM = 200;
-    private static int MAX_DURALUMIN = 200;
+    private final static int MAX_ALUMINUM = 200;
+    private final static int MAX_DURALUMIN = 200;
 
     public BandAluminumDuralumin (Item.Properties properties){
         super(properties,MetalsNBTData.ALUMINUM,MetalsNBTData.DURALUMIN);
@@ -102,6 +102,4 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
         }
         super.curioTick(identifier, index, livingEntity, stack);
     }
-
-
 }
