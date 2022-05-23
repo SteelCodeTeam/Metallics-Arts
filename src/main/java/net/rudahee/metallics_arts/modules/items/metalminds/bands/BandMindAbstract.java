@@ -12,6 +12,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
@@ -142,4 +143,68 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             toolTips.add(new StringTextComponent(metals[1].getNameLower()+": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")));
         //}
     }
+
+
+
+    private static boolean needUpdate = false;
+
+    /*@Override
+    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+        CompoundNBT nbtLocal = stack.getTag();
+        if (livingEntity.level instanceof ServerWorld) {
+            needUpdate = false;
+            if (livingEntity instanceof PlayerEntity) {
+                PlayerEntity player = (PlayerEntity) livingEntity;
+                player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+
+                    if (data.isDecanting(metals[0])) {
+                        if (stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") > 0) {
+                            nbtLocal.putInt(metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve")-1));
+                            stack.setTag(nbtLocal);
+                        } else {
+                            data.setDecanting(MetalsNBTData.ALUMINUM, false);
+                        }
+                        needUpdate = true;
+                    } else if (data.isStoring(MetalsNBTData.ALUMINUM)) {
+                        if (stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") < this.MAX_ALUMINUM) {
+                            nbtLocal.putInt(metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve")+1));
+                            stack.setTag(nbtLocal);
+                        } else {
+                            data.setStoring(MetalsNBTData.ALUMINUM, false);
+                        }
+                        needUpdate = true;
+                    }
+                    if (data.isDecanting(MetalsNBTData.DURALUMIN)) {
+                        if (stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") > 0) {
+                            nbtLocal.putInt(metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")-1));
+                            stack.setTag(nbtLocal);
+                        } else {
+                            data.setDecanting(MetalsNBTData.DURALUMIN, false);
+                        }
+                        needUpdate = true;
+                    } else if (data.isStoring(MetalsNBTData.DURALUMIN)) {
+                        if (stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") < this.MAX_DURALUMIN) {
+                            nbtLocal.putInt(metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")+1));
+                            stack.setTag(nbtLocal);
+                        } else {
+                            data.setStoring(MetalsNBTData.DURALUMIN, false);
+                        }
+                        needUpdate = true;
+                    }
+                    if (needUpdate) {
+                        ModNetwork.sync(data, player);
+                    }
+                });
+            }
+        }
+
+        super.curioTick(identifier, index, livingEntity, stack);
+    }
+
+
+
+
+*/
+
+
 }
