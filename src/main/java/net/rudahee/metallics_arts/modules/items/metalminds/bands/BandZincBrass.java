@@ -6,22 +6,8 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 public class BandZincBrass extends BandMindAbstract {
-    CompoundNBT nbt = new CompoundNBT();
+
     public BandZincBrass (Item.Properties properties){
         super(properties, MetalsNBTData.ZINC,MetalsNBTData.BRASS);
-        nbt.putInt(MetallicsArts.MOD_ID+".BandZincBrass.zinc",0);
-        nbt.putInt(MetallicsArts.MOD_ID+".BandZincBrass.brass",0);
-        nbt.putInt(MetallicsArts.MOD_ID+".BandZincBrass.capacityZinc",100);
-        nbt.putInt(MetallicsArts.MOD_ID+".BandZincBrass.capacityBrass",100);
-    }
-
-    @Override
-    public void storing(CompoundNBT nbt, String metal, int qty) {
-        nbt.putInt(metal, nbt.getInt(metal) + qty);
-    }
-
-    @Override
-    public void decanting(CompoundNBT nbt, String metal, int qty) {
-        nbt.putInt(metal,nbt.getInt(metal)-qty);
     }
 }

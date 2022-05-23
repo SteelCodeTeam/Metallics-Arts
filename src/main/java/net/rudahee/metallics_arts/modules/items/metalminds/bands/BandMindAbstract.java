@@ -5,8 +5,10 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -15,6 +17,7 @@ import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModItems;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -23,7 +26,7 @@ import java.util.List;
 
 public abstract class BandMindAbstract extends Item implements ICurioItem {
 
-    private int maxCapacity;
+    CompoundNBT compoundNBT = new CompoundNBT();
     private MetalsNBTData[] metals = new MetalsNBTData[2];
 
     public String unkeyedString = "ESTA LIBRE PAPU";
@@ -32,28 +35,11 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         super(properties);
         metals[0]=metal1;
         metals[1]=metal2;
-    }
 
-    public abstract void storing(CompoundNBT nbt, String metal, int qty);
-
-    public abstract void decanting(CompoundNBT nbt,String metal, int qty);
-
-    /*@Override public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
-
-        if (Screen.hasControlDown()){
-            toolTips.add(new StringTextComponent(metals[0].getNameLower()+": "+stack.getTag().getInt(MetallicsArts.MOD_ID + ".feruchemic_"+metals[0].getNameLower()+"_reserve")));
-            toolTips.add(new StringTextComponent(metals[1].getNameLower()+": "+stack.getTag().getInt(MetallicsArts.MOD_ID + ".feruchemic_"+metals[1].getNameLower()+"_reserve")));
-        }
-        super.appendHoverText(stack, world, toolTips, flagIn);
-    }*/
-
-
-    public int getMaxCapacity() {
-        return maxCapacity;
-    }
-
-    public void setMaxCapacity(int maxCapacity) {
-        this.maxCapacity = maxCapacity;
+        this.compoundNBT.putInt(metal1.getGemNameLower()+"_feruchemic_reserve",0);
+        this.compoundNBT.putInt(metal2.getGemNameLower()+"_feruchemic_reserve",0);
+        this.compoundNBT.putInt(metal1.getGemNameLower()+"_feruchemic_max_capacity",1000);
+        this.compoundNBT.putInt(metal2.getGemNameLower()+"_feruchemic_max_capacity",1000);
     }
 
     @Override
@@ -89,7 +75,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
     @Override
     public boolean canEquip(String identifier, LivingEntity livingEntity, ItemStack stack) {
         PlayerEntity player = (PlayerEntity) livingEntity;
-
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             cap = data;
         });
@@ -98,5 +83,63 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             return (!(cap.getMetalMindEquiped(this.metals[0].getGroup()) && cap.getMetalMindEquiped(this.metals[1].getGroup())));
         }
         return false;
+    }
+
+    @Override
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+        ItemStack resultItem;
+        switch (this.metals[0].getGroup()){
+            case 0:
+                resultItem = new ItemStack(ModItems.BAND_STEEL_IRON.get(),1);
+                break;
+            case 1:
+                resultItem = new ItemStack(ModItems.BAND_PEWTER_TIN.get(),1);
+                break;
+            case 2:
+                resultItem = new ItemStack(ModItems.BAND_COPPER_BRONZE.get(),1);
+                break;
+            case 3:
+                resultItem = new ItemStack(ModItems.BAND_ZINC_BRASS.get(),1);
+                break;
+            case 4:
+                resultItem = new ItemStack(ModItems.BAND_CHROMIUM_NICROSIL.get(),1);
+                break;
+            case 5:
+                resultItem = new ItemStack(ModItems.BAND_ALUMINUM_DURALUMIN.get(),1);
+                break;
+            case 6:
+                resultItem = new ItemStack(ModItems.BAND_CADMIUM_BENDALLOY.get(),1);
+                break;
+            case 7:
+                resultItem = new ItemStack(ModItems.BAND_ELECTRUM_GOLD.get(),1);
+                break;
+            case 8:
+                resultItem = new ItemStack(ModItems.BAND_ATIUM_MALATIUM.get(),1);
+                break;
+            case 9:
+                resultItem = new ItemStack(ModItems.BAND_LERASIUM_ETTMETAL.get(),1);
+                break;
+            default:
+                resultItem = null;
+        }
+
+        CompoundNBT nbt = new CompoundNBT();
+        nbt.putInt(metals[0].getNameLower()+"_feruchemic_reserve",0);
+        nbt.putInt(metals[1].getGemNameLower()+"_feruchemic_reserve",0);
+        nbt.putInt(metals[0].getNameLower()+"_feruchemic_max_capacity",1000);
+        nbt.putInt(metals[1].getGemNameLower()+"_feruchemic_max_capacity",1000);
+        resultItem.setTag(nbt);
+        if (this.allowdedIn(group)) {
+            items.add(resultItem);
+        }
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
+        super.appendHoverText(stack, world, toolTips, flagIn);
+        //if (Screen.hasControlDown()) {
+            toolTips.add(new StringTextComponent(metals[0].getNameLower()+": "+ stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve")));
+            toolTips.add(new StringTextComponent(metals[1].getNameLower()+": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")));
+        //}
     }
 }

@@ -25,7 +25,6 @@ import java.util.List;
 
 public abstract class Vial extends Item {
 
-
     CompoundNBT compoundNBT = new CompoundNBT();
     private int maxNuggets = 0;
 
