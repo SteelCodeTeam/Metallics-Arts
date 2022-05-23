@@ -30,18 +30,25 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
     CompoundNBT compoundNBT = new CompoundNBT();
     private MetalsNBTData[] metals = new MetalsNBTData[2];
 
+    private int[] metalsMaxReserve = new int[2];
+
     public String unkeyedString = "ESTA LIBRE PAPU";
 
-    public BandMindAbstract(Properties properties,MetalsNBTData metal1, MetalsNBTData metal2) {
+    public BandMindAbstract(Properties properties,MetalsNBTData metal1, MetalsNBTData metal2,int maxReserve1,int maxReserve2) {
         super(properties);
         metals[0]=metal1;
         metals[1]=metal2;
 
+        metalsMaxReserve[0]=maxReserve1;
+        metalsMaxReserve[1]=maxReserve2;
+
         this.compoundNBT.putInt(metal1.getGemNameLower()+"_feruchemic_reserve",0);
         this.compoundNBT.putInt(metal2.getGemNameLower()+"_feruchemic_reserve",0);
-        this.compoundNBT.putInt(metal1.getGemNameLower()+"_feruchemic_max_capacity",1000);
-        this.compoundNBT.putInt(metal2.getGemNameLower()+"_feruchemic_max_capacity",1000);
+        this.compoundNBT.putInt(metal1.getGemNameLower()+"_feruchemic_max_capacity",maxReserve1);
+        this.compoundNBT.putInt(metal2.getGemNameLower()+"_feruchemic_max_capacity",maxReserve2);
     }
+
+
 
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
@@ -148,7 +155,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     private static boolean needUpdate = false;
 
-    /*@Override
+    @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         CompoundNBT nbtLocal = stack.getTag();
         if (livingEntity.level instanceof ServerWorld) {
@@ -162,32 +169,32 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                             nbtLocal.putInt(metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve")-1));
                             stack.setTag(nbtLocal);
                         } else {
-                            data.setDecanting(MetalsNBTData.ALUMINUM, false);
+                            data.setDecanting(metals[0], false);
                         }
                         needUpdate = true;
-                    } else if (data.isStoring(MetalsNBTData.ALUMINUM)) {
-                        if (stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") < this.MAX_ALUMINUM) {
+                    } else if (data.isStoring(metals[0])) {
+                        if (stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") < this.metalsMaxReserve[0]) {
                             nbtLocal.putInt(metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve")+1));
                             stack.setTag(nbtLocal);
                         } else {
-                            data.setStoring(MetalsNBTData.ALUMINUM, false);
+                            data.setStoring(metals[0], false);
                         }
                         needUpdate = true;
                     }
-                    if (data.isDecanting(MetalsNBTData.DURALUMIN)) {
+                    if (data.isDecanting(metals[1])) {
                         if (stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") > 0) {
                             nbtLocal.putInt(metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")-1));
                             stack.setTag(nbtLocal);
                         } else {
-                            data.setDecanting(MetalsNBTData.DURALUMIN, false);
+                            data.setDecanting(metals[1], false);
                         }
                         needUpdate = true;
-                    } else if (data.isStoring(MetalsNBTData.DURALUMIN)) {
-                        if (stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") < this.MAX_DURALUMIN) {
+                    } else if (data.isStoring(metals[1])) {
+                        if (stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") < this.metalsMaxReserve[1]) {
                             nbtLocal.putInt(metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")+1));
                             stack.setTag(nbtLocal);
                         } else {
-                            data.setStoring(MetalsNBTData.DURALUMIN, false);
+                            data.setStoring(metals[1], false);
                         }
                         needUpdate = true;
                     }
@@ -201,6 +208,5 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         ICurioItem.super.curioTick(identifier, index, livingEntity, stack);
     }
 
-*/
 
 }

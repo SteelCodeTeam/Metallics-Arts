@@ -22,6 +22,7 @@ import net.rudahee.metallics_arts.modules.data_player.DefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import top.theillusivec4.curios.api.SlotContext;
@@ -33,16 +34,16 @@ import java.util.List;
 
 public class BandAluminumDuralumin extends BandMindAbstract implements ICurioItem {
 
-    CompoundNBT nbt = new CompoundNBT();
-    private final static int MAX_ALUMINUM = 200;
-    private final static int MAX_DURALUMIN = 200;
+    //CompoundNBT nbt = new CompoundNBT();
+    private static int MAX_ALUMINUM = 200;
+    private static int MAX_DURALUMIN = 200;
 
     public BandAluminumDuralumin (Item.Properties properties){
-        super(properties,MetalsNBTData.ALUMINUM,MetalsNBTData.DURALUMIN);
-        nbt.putInt("duralumin_feruchemic_reserve",0);
+        super(properties, MetalsNBTData.ALUMINUM,MetalsNBTData.DURALUMIN,MAX_ALUMINUM,MAX_DURALUMIN);
+        /*nbt.putInt("duralumin_feruchemic_reserve",0);
         nbt.putInt("aluminum_feruchemic_reserve",0);
         nbt.putInt("duralumin_feruchemic_max_capacity",MAX_DURALUMIN);
-        nbt.putInt("aluminum_feruchemic_max_capacity",MAX_ALUMINUM);
+        nbt.putInt("aluminum_feruchemic_max_capacity",MAX_ALUMINUM);*/
     }
 
     @Override
@@ -50,9 +51,10 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
         return super.useOn(p_195939_1_);
     }
 
-    private static boolean needUpdate = false;
 
-    @Override
+    //private static boolean needUpdate = false;
+
+    /*@Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         CompoundNBT nbtLocal = stack.getTag();
         if (livingEntity.level instanceof ServerWorld) {
@@ -101,5 +103,5 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
             }
         }
         super.curioTick(identifier, index, livingEntity, stack);
-    }
+    }*/
 }

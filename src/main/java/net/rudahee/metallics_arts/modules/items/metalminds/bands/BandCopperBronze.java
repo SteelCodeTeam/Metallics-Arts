@@ -17,7 +17,6 @@ public class BandCopperBronze extends BandMindAbstract {
     private static int MAX_COPPER = 100;
     private static int MAX_BRONZE = 16000;
     public BandCopperBronze(Item.Properties properties){
-        super(properties, MetalsNBTData.COPPER,MetalsNBTData.BRONZE);
-
+        super(properties, MetalsNBTData.COPPER,MetalsNBTData.BRONZE,MAX_COPPER,MAX_BRONZE);
     }
 }

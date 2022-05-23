@@ -7,7 +7,10 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 public class BandZincBrass extends BandMindAbstract {
 
+    private static int MAX_ZINC = 100;
+    private static int MAX_BRASS = 16000;
+
     public BandZincBrass (Item.Properties properties){
-        super(properties, MetalsNBTData.ZINC,MetalsNBTData.BRASS);
+        super(properties, MetalsNBTData.ZINC,MetalsNBTData.BRASS,MAX_ZINC,MAX_BRASS);
     }
 }
