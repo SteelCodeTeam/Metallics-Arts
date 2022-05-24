@@ -237,6 +237,8 @@ public class PowersEventHandler {
     public static int z = 8;
 
     public static int tickOffset= 0;
+    public static int actualTick = 0;
+
 
     @SubscribeEvent
     public static void onWorldTickEvent(final TickEvent.WorldTickEvent event) {
@@ -262,20 +264,26 @@ public class PowersEventHandler {
                             }
 
 
+
+
                             /************************
                              * BRASS FERUCHEMIC
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.BRASS)){
 
                             } else if (playerCapability.isStoring(MetalsNBTData.BRASS)){
-                                player.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE,20,1,true, false));
+                                if (actualTick > 40) {
+                                    player.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 20, 1, true, false));
+                                }
                             }
 
                             /************************
                              * ZINC FERUCHEMIC
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.ZINC)){
-                                player.addEffect(new EffectInstance(Effects.LUCK,20,40,true, false));
+                                if (actualTick == 80) {
+                                    player.addEffect(new EffectInstance(Effects.LUCK,20,90,true, false));
+                                }
                             } else if (playerCapability.isStoring(MetalsNBTData.ZINC)){
                                 player.addEffect(new EffectInstance(Effects.UNLUCK,20,1,true, false));
                             }
@@ -285,16 +293,22 @@ public class PowersEventHandler {
                             /************************
                              * GOLD FERUCHEMIC
                              ************************/
-                            if (playerCapability.isDecanting(MetalsNBTData.GOLD)){
-                                player.addEffect(new EffectInstance(Effects.REGENERATION,20,1,true, false));
-                            } else if (playerCapability.isStoring(MetalsNBTData.GOLD)){
-                                player.addEffect(new EffectInstance(Effects.POISON,20,1,true, false));
+                            if (playerCapability.isDecanting(MetalsNBTData.GOLD)) {
+                                if (actualTick == 80) {
+                                    player.addEffect(new EffectInstance(Effects.REGENERATION, 90, 1, true, false));
+                                }
+                            } else if (playerCapability.isStoring(MetalsNBTData.GOLD)) {
+                                if (actualTick == 80) {
+                                    player.addEffect(new EffectInstance(Effects.POISON, 90, 1, true, false));
+                                }
                             }
                             /************************
                              * ELECTRUM FERUCHEMIC
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.ELECTRUM)){
-                                player.addEffect(new EffectInstance(Effects.ABSORPTION,20,4,true, false));
+                                if (actualTick == 80) {
+                                    player.addEffect(new EffectInstance(Effects.ABSORPTION, 90, 5, true, false));
+                                }
                             } else if (playerCapability.isStoring(MetalsNBTData.ELECTRUM)){
 
                             }
@@ -342,6 +356,16 @@ public class PowersEventHandler {
                             }else if (playerCapability.isStoring(MetalsNBTData.BENDALLOY)){
                                 player.addEffect(new EffectInstance(Effects.HUNGER, 20, 1, true, false));
                             }
+
+
+
+                            if (actualTick >= 90) {
+                                actualTick = 0;
+                            } else {
+                                actualTick++;
+                            }
+
+
 
                             /************************
                              * BENDALLOY POWERS
