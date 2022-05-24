@@ -12,8 +12,8 @@ import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 public class BandAtiumMalatium extends BandMindAbstract {
-    private static int MAX_ATIUM = 200;
-    private static int MAX_MALATIUM = 200;
+    private static int MAX_ATIUM = 2000;
+    private static int MAX_MALATIUM = 2000;
 
     public BandAtiumMalatium (Item.Properties properties){
         super(properties, MetalsNBTData.ATIUM,MetalsNBTData.MALATIUM,MAX_ATIUM,MAX_MALATIUM);

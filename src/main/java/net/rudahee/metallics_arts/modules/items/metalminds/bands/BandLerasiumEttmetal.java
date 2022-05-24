@@ -7,7 +7,7 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 public class BandLerasiumEttmetal extends BandMindAbstract {
 
-    private static int MAX_LERASIUM = 100;
+    private static int MAX_LERASIUM = 1000;
     private static int MAX_ETTMETAL = 16000;
 
     public BandLerasiumEttmetal (Item.Properties properties){

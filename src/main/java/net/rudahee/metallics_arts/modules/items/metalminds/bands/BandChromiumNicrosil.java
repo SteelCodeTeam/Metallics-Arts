@@ -13,7 +13,7 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 public class BandChromiumNicrosil extends BandMindAbstract {
 
-    private static int MAX_CHROMIUM = 100;
+    private static int MAX_CHROMIUM = 1000;
     private static int MAX_NICROSIL = 16000;
     public BandChromiumNicrosil(Item.Properties properties){
         super(properties, MetalsNBTData.CHROMIUM,MetalsNBTData.NICROSIL,MAX_CHROMIUM,MAX_NICROSIL);

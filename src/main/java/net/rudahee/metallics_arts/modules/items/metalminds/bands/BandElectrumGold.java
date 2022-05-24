@@ -7,7 +7,7 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 public class BandElectrumGold extends BandMindAbstract {
 
-    private static int MAX_GOLD = 500;
+    private static int MAX_GOLD = 1000;
     private static int MAX_ELECTRUM = 16000;
 
     public BandElectrumGold(Item.Properties properties) {

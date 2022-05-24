@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.powers;
 
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
@@ -239,9 +240,6 @@ public class PowersEventHandler {
 
     @SubscribeEvent
     public static void onWorldTickEvent(final TickEvent.WorldTickEvent event) {
-
-
-
         if (event.phase == TickEvent.Phase.END) {
 
             World world = event.world;
@@ -274,6 +272,17 @@ public class PowersEventHandler {
                             }
 
                             /************************
+                             * ZINC FERUCHEMIC
+                             ************************/
+                            if (playerCapability.isDecanting(MetalsNBTData.ZINC)){
+                                player.addEffect(new EffectInstance(Effects.LUCK,20,40,true, false));
+                            } else if (playerCapability.isStoring(MetalsNBTData.ZINC)){
+                                player.addEffect(new EffectInstance(Effects.UNLUCK,20,1,true, false));
+                            }
+
+
+
+                            /************************
                              * GOLD FERUCHEMIC
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.GOLD)){
@@ -281,6 +290,15 @@ public class PowersEventHandler {
                             } else if (playerCapability.isStoring(MetalsNBTData.GOLD)){
                                 player.addEffect(new EffectInstance(Effects.POISON,20,1,true, false));
                             }
+                            /************************
+                             * ELECTRUM FERUCHEMIC
+                             ************************/
+                            if (playerCapability.isDecanting(MetalsNBTData.ELECTRUM)){
+                                player.addEffect(new EffectInstance(Effects.ABSORPTION,20,4,true, false));
+                            } else if (playerCapability.isStoring(MetalsNBTData.ELECTRUM)){
+
+                            }
+
 
                             /************************
                              * STEEL FERUCHEMIC
@@ -300,11 +318,9 @@ public class PowersEventHandler {
                              ************************/
 
                             if(playerCapability.isDecanting(MetalsNBTData.IRON)){
-
-                                //player.lerpMotion(player.getDeltaMovement().x,(player.getDeltaMovement().y)*4,player.getDeltaMovement().z);
-
+                                //player.setDeltaMovement(player.getDeltaMovement().x,(player.getDeltaMovement().y)*10,player.getDeltaMovement().z);
                             }else if (playerCapability.isStoring(MetalsNBTData.IRON)){
-                                //player.lerpMotion(player.getDeltaMovement().x,(player.getDeltaMovement().y)/4,player.getDeltaMovement().z);
+                                //player.setDeltaMovement(player.getDeltaMovement().x,(player.getDeltaMovement().y)/10,player.getDeltaMovement().z);
                             }
 
                             /************************

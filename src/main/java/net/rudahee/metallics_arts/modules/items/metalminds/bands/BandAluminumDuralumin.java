@@ -35,15 +35,11 @@ import java.util.List;
 public class BandAluminumDuralumin extends BandMindAbstract implements ICurioItem {
 
     //CompoundNBT nbt = new CompoundNBT();
-    private static int MAX_ALUMINUM = 200;
-    private static int MAX_DURALUMIN = 200;
+    private static int MAX_ALUMINUM = 2000;
+    private static int MAX_DURALUMIN = 2000;
 
     public BandAluminumDuralumin (Item.Properties properties){
         super(properties, MetalsNBTData.ALUMINUM,MetalsNBTData.DURALUMIN,MAX_ALUMINUM,MAX_DURALUMIN);
-        /*nbt.putInt("duralumin_feruchemic_reserve",0);
-        nbt.putInt("aluminum_feruchemic_reserve",0);
-        nbt.putInt("duralumin_feruchemic_max_capacity",MAX_DURALUMIN);
-        nbt.putInt("aluminum_feruchemic_max_capacity",MAX_ALUMINUM);*/
     }
 
     @Override

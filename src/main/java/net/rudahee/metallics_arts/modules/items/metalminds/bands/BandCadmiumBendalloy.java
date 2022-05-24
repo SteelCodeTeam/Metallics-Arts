@@ -13,7 +13,7 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 public class BandCadmiumBendalloy extends BandMindAbstract {
 
-    private static int MAX_CADMIUM = 100;
+    private static int MAX_CADMIUM = 1000;
     private static int MAX_BENDALLOY = 16000;
     public BandCadmiumBendalloy (Item.Properties properties){
         super(properties, MetalsNBTData.CADMIUM,MetalsNBTData.BENDALLOY,MAX_CADMIUM,MAX_BENDALLOY);
