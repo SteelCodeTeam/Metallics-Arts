@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.powers;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
@@ -7,8 +8,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.TickEvent;
@@ -236,6 +239,9 @@ public class PowersEventHandler {
 
     @SubscribeEvent
     public static void onWorldTickEvent(final TickEvent.WorldTickEvent event) {
+
+
+
         if (event.phase == TickEvent.Phase.END) {
 
             World world = event.world;
@@ -244,7 +250,6 @@ public class PowersEventHandler {
             for (int playerIndex = playerList.size() - 1; playerIndex >= 0; playerIndex--) {
 
                 PlayerEntity player = playerList.get(playerIndex);
-
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                     playerCapability -> {
                         if (playerCapability.isInvested()) {
@@ -253,11 +258,74 @@ public class PowersEventHandler {
                             }
 
                             if (playerCapability.isDecanting(MetalsNBTData.DURALUMIN)) {
-                                player.addEffect(new EffectInstance(Effects.REGENERATION, 100, 100, true, true));
+                                //
                             } else if (playerCapability.isStoring(MetalsNBTData.DURALUMIN)) {
-                                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 100, 100, true, true));
+                                //
                             }
 
+
+                            /************************
+                             * BRASS FERUCHEMIC
+                             ************************/
+                            if (playerCapability.isDecanting(MetalsNBTData.BRASS)){
+
+                            } else if (playerCapability.isStoring(MetalsNBTData.BRASS)){
+                                player.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE,20,1,true, false));
+                            }
+
+                            /************************
+                             * GOLD FERUCHEMIC
+                             ************************/
+                            if (playerCapability.isDecanting(MetalsNBTData.GOLD)){
+                                player.addEffect(new EffectInstance(Effects.REGENERATION,20,1,true, false));
+                            } else if (playerCapability.isStoring(MetalsNBTData.GOLD)){
+                                player.addEffect(new EffectInstance(Effects.POISON,20,1,true, false));
+                            }
+
+                            /************************
+                             * STEEL FERUCHEMIC
+                             ************************/
+                            if(playerCapability.isDecanting(MetalsNBTData.STEEL)){
+                                if (playerCapability.isBurning(MetalsNBTData.STEEL)){
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 20, true, false));
+                                }else{
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 2, true, false));
+                                }
+                            }else if (playerCapability.isStoring(MetalsNBTData.STEEL)){
+                                player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2, true, false));
+                            }
+
+                            /************************
+                             * IRON FERUCHEMIC
+                             ************************/
+
+                            if(playerCapability.isDecanting(MetalsNBTData.IRON)){
+
+                                //player.lerpMotion(player.getDeltaMovement().x,(player.getDeltaMovement().y)*4,player.getDeltaMovement().z);
+
+                            }else if (playerCapability.isStoring(MetalsNBTData.IRON)){
+                                //player.lerpMotion(player.getDeltaMovement().x,(player.getDeltaMovement().y)/4,player.getDeltaMovement().z);
+                            }
+
+                            /************************
+                             * CADMIUM FERUCHEMIC
+                             ************************/
+                            if(playerCapability.isDecanting(MetalsNBTData.CADMIUM)){
+                                player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
+                            }else if (playerCapability.isStoring(MetalsNBTData.CADMIUM)){
+                                //AHOGARSE
+                            }
+
+                            /************************
+                             * BENDALLOY FERUCHEMIC
+                             ************************/
+
+                            //NO LO HACE INSTANTANEO
+                            if(playerCapability.isDecanting(MetalsNBTData.BENDALLOY)){
+                                player.addEffect(new EffectInstance(Effects.SATURATION, 20, 1, true, false));
+                            }else if (playerCapability.isStoring(MetalsNBTData.BENDALLOY)){
+                                player.addEffect(new EffectInstance(Effects.HUNGER, 20, 1, true, false));
+                            }
 
                             /************************
                              * BENDALLOY POWERS

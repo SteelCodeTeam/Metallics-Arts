@@ -48,14 +48,10 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         this.compoundNBT.putInt(metal2.getGemNameLower()+"_feruchemic_max_capacity",maxReserve2);
     }
 
-
-
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
         ICurioItem.super.onEquip(slotContext, prevStack, stack);
-
         PlayerEntity player = (PlayerEntity) slotContext.getWearer();
-
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             data.setMetalMindEquiped(this.metals[0].getGroup(),true);
             data.setMetalMindEquiped(this.metals[1].getGroup(),true);
@@ -73,13 +69,14 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             data.setMetalMindEquiped(this.metals[0].getGroup(),false);
             data.setMetalMindEquiped(this.metals[1].getGroup(),false);
-
+            //DEBERIA APAGAR EL DECANTE O ALMACENAJE
             ModNetwork.sync(data,player);
         });
     }
 
 
     private static IDefaultInvestedPlayerData cap = null;
+
     @Override
     public boolean canEquip(String identifier, LivingEntity livingEntity, ItemStack stack) {
         PlayerEntity player = (PlayerEntity) livingEntity;
@@ -87,7 +84,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             cap = data;
         });
         if (cap != null){
-            //ModNetwork.sync(cap,player);
             return (!(cap.getMetalMindEquiped(this.metals[0].getGroup()) && cap.getMetalMindEquiped(this.metals[1].getGroup())));
         }
         return false;
@@ -134,8 +130,8 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         CompoundNBT nbt = new CompoundNBT();
         nbt.putInt(metals[0].getNameLower()+"_feruchemic_reserve",0);
         nbt.putInt(metals[1].getGemNameLower()+"_feruchemic_reserve",0);
-        nbt.putInt(metals[0].getNameLower()+"_feruchemic_max_capacity",1000);
-        nbt.putInt(metals[1].getGemNameLower()+"_feruchemic_max_capacity",1000);
+        nbt.putInt(metals[0].getNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[0]);
+        nbt.putInt(metals[1].getGemNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[1]);
         resultItem.setTag(nbt);
         if (this.allowdedIn(group)) {
             items.add(resultItem);
@@ -204,9 +200,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                 });
             }
         }
-
         ICurioItem.super.curioTick(identifier, index, livingEntity, stack);
     }
-
 
 }
