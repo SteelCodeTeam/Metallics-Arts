@@ -1,7 +1,10 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
 import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.IReputationType;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.AbstractSkeletonEntity;
@@ -18,6 +21,7 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 
+import java.util.Collection;
 import java.util.function.Predicate;
 
 public class ZincAndBrassHelpers {
@@ -99,6 +103,37 @@ public class ZincAndBrassHelpers {
                 villager.goalSelector.removeGoal(goal);
             });
             villager.addEffect(new EffectInstance(Effects.REGENERATION, 60, 2, true, true));
+        }
+    }
+
+    public static void addFireAspectToPlayer(LivingEntity livingEntity,int secondsFire){
+        livingEntity.setSecondsOnFire(secondsFire);
+    }
+
+    public static void addLootToEnemy(LivingEntity livingEntity, double percentaje) {
+        if(!(livingEntity instanceof PlayerEntity)){
+            if (!livingEntity.isAlive()){
+                if(Math.random()<percentaje){
+                    Collection<ItemEntity> drops = livingEntity.captureDrops();
+                    drops.addAll(drops);
+                }
+            }
+        }else {
+            //si matas a un pj
+        }
+    }
+
+    public static void removeLootToEnemy(LivingEntity livingEntity, double percentaje) {
+        if(!(livingEntity instanceof PlayerEntity)){
+            if (!livingEntity.isAlive()){
+                if(Math.random()<percentaje){
+                    //evitar drops
+                    Collection<ItemEntity> drops = livingEntity.captureDrops();
+                    drops.removeAll(drops);
+                }
+            }
+        }else {
+            //si matas a un pj
         }
     }
 }

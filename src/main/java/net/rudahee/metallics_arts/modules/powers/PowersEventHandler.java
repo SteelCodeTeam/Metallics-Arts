@@ -14,7 +14,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -226,6 +228,25 @@ public class PowersEventHandler {
                             ZincAndBrassHelpers.drawSaturatedScreen((PlayerEntity) event.getEntityLiving()); //TODO
                         }
                     }
+
+                    /*******************************
+                     *   DAMAGE WITH - BRASS - FERUCHEMIC
+                     *******************************/
+                    if (playerCapability.isDecanting(MetalsNBTData.BRASS)) {
+                        ZincAndBrassHelpers.addFireAspectToPlayer(event.getEntityLiving(),5);
+                    }
+
+                    /*******************************
+                     *   DAMAGE WITH - ZINC - FERUCHEMIC
+                     *******************************/
+                    if (playerCapability.isDecanting(MetalsNBTData.ZINC)) {
+                        ZincAndBrassHelpers.addLootToEnemy(event.getEntityLiving(),0.6);
+                    }else if (playerCapability.isStoring(MetalsNBTData.ZINC)) {
+                        ZincAndBrassHelpers.removeLootToEnemy(event.getEntityLiving(),0.6);
+                    }
+
+
+
             });
         }
     }
@@ -263,18 +284,13 @@ public class PowersEventHandler {
                                 //
                             }
 
-
-
-
                             /************************
                              * BRASS FERUCHEMIC
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.BRASS)){
-
+                                    //despues vemos
                             } else if (playerCapability.isStoring(MetalsNBTData.BRASS)){
-                                if (actualTick > 40) {
-                                    player.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 20, 1, true, false));
-                                }
+                                player.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 20, 1, true, false));
                             }
 
                             /************************
@@ -287,8 +303,6 @@ public class PowersEventHandler {
                             } else if (playerCapability.isStoring(MetalsNBTData.ZINC)){
                                 player.addEffect(new EffectInstance(Effects.UNLUCK,20,1,true, false));
                             }
-
-
 
                             /************************
                              * GOLD FERUCHEMIC
@@ -343,6 +357,7 @@ public class PowersEventHandler {
                             if(playerCapability.isDecanting(MetalsNBTData.CADMIUM)){
                                 player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
                             }else if (playerCapability.isStoring(MetalsNBTData.CADMIUM)){
+                                BendalloyAndCadmiunHelpers.drowningEffect(player,1);
                                 //AHOGARSE
                             }
 
@@ -357,6 +372,159 @@ public class PowersEventHandler {
                                 player.addEffect(new EffectInstance(Effects.HUNGER, 20, 1, true, false));
                             }
 
+                            /************************
+                             * DURALUMIN FERUCHEMIC
+                             ************************/
+
+                            Biome biome = world.getBiome(player.getEntity().blockPosition());
+
+                            if(playerCapability.isDecanting(MetalsNBTData.DURALUMIN)){
+
+                                if(biome.getBiomeCategory().equals(Biome.Category.EXTREME_HILLS)) {
+
+                                    player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 20, 1, true, false));
+                                    player.addEffect(new EffectInstance(Effects.JUMP, 20, 4, true, false));
+
+                                }else if(biome.getBiomeCategory().equals(Biome.Category.MESA)) {
+
+                                    player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 20, 1, true, false));
+                                    player.addEffect(new EffectInstance(Effects.JUMP, 20, 4, true, false));
+
+                                    //montañas salto 4
+                                }else if(biome.getBiomeCategory().equals(Biome.Category.JUNGLE)) {
+
+                                    player.addEffect(new EffectInstance(Effects.JUMP, 20, 3, true, false));
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 1, true, false));
+
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.TAIGA)) {
+                                    player.addEffect(new EffectInstance(Effects.JUMP, 20, 2, true, false));
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 2, true, false));
+
+                                }
+                                else if(biome.getBiomeCategory().equals(Biome.Category.PLAINS)) {
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 5, true, false));
+
+                                    //velocidad 4
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.SAVANNA)) {
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 5, true, false));
+                                    //velocidad 4
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.BEACH)) {
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 2, true, false));
+                                    player.addEffect(new EffectInstance(Effects.JUMP, 20, 1, true, false));
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.FOREST)) {
+                                    player.addEffect(new EffectInstance(Effects.DIG_SPEED, 20, 2, true, false));
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 2, true, false));
+                                    //prisa minera poca
+                                    //velocidad
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.DESERT)) {
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 3, true, false));
+                                    player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 20, 2, true, false));
+                                    //velocidad
+                                    //fuerza
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.MUSHROOM)) {
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 3, true, false));
+                                    player.addEffect(new EffectInstance(Effects.JUMP, 20, 1, true, false));
+                                    //velocidad 3 salto 1
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.ICY)) {
+                                    player.addEffect(new EffectInstance(Effects.DOLPHINS_GRACE, 20, 3, true, false));
+                                    player.addEffect(new EffectInstance(Effects.JUMP, 20, 1, true, false));
+                                    //gracia del delfin//salto
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.OCEAN)) {
+                                    player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
+                                    player.addEffect(new EffectInstance(Effects.DOLPHINS_GRACE, 20, 3, true, false));
+                                    //apnea//gracia del delfin
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.SWAMP)) {
+                                    player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
+                                    player.addEffect(new EffectInstance(Effects.DOLPHINS_GRACE, 20, 3, true, false));
+                                    //gracia del delfin //velocidad
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.RIVER)) {
+                                    player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
+                                    player.addEffect(new EffectInstance(Effects.DOLPHINS_GRACE, 20, 3, true, false));
+                                    //gracia del delfin //velocidad
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.NETHER)) {
+                                    player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 20, 2, true, false));
+                                    player.addEffect(new EffectInstance(Effects.DIG_SPEED, 20, 2, true, false));
+                                    //fuerza 2
+                                    //prisa 2
+                                }else if(biome.getBiomeCategory().equals(Biome.Category.THEEND)) {
+                                    player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 20, 1, true, false));
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 3, true, false));
+                                    //caida lenta//velocidad 3
+                                }
+                                else{
+                                    System.out.println("no hay poderes papa");
+                                }
+
+                            }else if (playerCapability.isStoring(MetalsNBTData.DURALUMIN)){
+                                if(biome.getBiomeCategory().equals(Biome.Category.EXTREME_HILLS)) {
+
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2, true, false));
+
+
+                                }else if(biome.getBiomeCategory().equals(Biome.Category.MESA)) {
+
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 1, true, false));
+                                    //montañas salto 4
+                                }else if(biome.getBiomeCategory().equals(Biome.Category.JUNGLE)) {
+
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 1, true, false));
+
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.TAIGA)) {
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2, true, false));
+
+                                }
+                                else if(biome.getBiomeCategory().equals(Biome.Category.PLAINS)) {
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 5, true, false));
+
+                                    //velocidad 4
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.SAVANNA)) {
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 5, true, false));
+                                    //velocidad 4
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.BEACH)) {
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2, true, false));
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.FOREST)) {
+                                    player.addEffect(new EffectInstance(Effects.DIG_SLOWDOWN, 20, 2, true, false));
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2, true, false));
+                                    //prisa minera poca
+                                    //velocidad
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.DESERT)) {
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
+                                    player.addEffect(new EffectInstance(Effects.WEAKNESS, 20, 2, true, false));
+                                    //velocidad
+                                    //fuerza
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.MUSHROOM)) {
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
+                                    //velocidad 3 salto 1
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.ICY)) {
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
+                                    //gracia del delfin//salto
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.OCEAN)) {
+                                    //AHOGAMIENTO //player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
+                                    //apnea//gracia del delfin
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.SWAMP)) {
+                                    //AHOGAMIENTO //player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
+                                    //gracia del delfin //velocidad
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.RIVER)) {
+                                    //AHOGAMIENTO //player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
+                                    //gracia del delfin //velocidad
+                                } else if(biome.getBiomeCategory().equals(Biome.Category.NETHER)) {
+                                    player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 20, 2, true, false));
+                                    player.addEffect(new EffectInstance(Effects.DIG_SPEED, 20, 2, true, false));
+                                    //fuerza 2
+                                    //prisa 2
+                                }else if(biome.getBiomeCategory().equals(Biome.Category.THEEND)) {
+                                    player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 20, 1, true, false));
+                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
+                                    //caida lenta//velocidad 3
+                                }
+                                else{
+                                    System.out.println("no hay poderes papa");
+                                }
+
+                            }
 
 
                             if (actualTick >= 90) {
@@ -364,7 +532,6 @@ public class PowersEventHandler {
                             } else {
                                 actualTick++;
                             }
-
 
 
                             /************************

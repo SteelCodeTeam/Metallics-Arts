@@ -1,10 +1,12 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -105,5 +107,25 @@ public class BendalloyAndCadmiunHelpers {
         player.aiStep();
         player.aiStep();
         player.aiStep();
+    }
+
+
+    public static void drowningEffect(PlayerEntity player, int speed){
+
+        if (!player.isEyeInFluid(FluidTags.WATER)){
+            player.setAirSupply(player.getAirSupply()-speed);
+        }else if(player.isEyeInFluid(FluidTags.WATER)){
+            player.setAirSupply(player.getAirSupply()-(speed*2));
+        }
+
+        /*if(player.getAirSupply() < player.getMaxAirSupply() && player.isEyeInFluid(FluidTags.WATER)){
+            if(Math.random()>0.66f){
+                player.setAirSupply();
+
+
+                player.setAir(player.getAirSupply()+ MetalMind.CD);
+            }
+        }*/
+
     }
 }
