@@ -48,4 +48,12 @@ public class GoldAndElectrumHelpers {
             return World.OVERWORLD;
         }
     }
+
+    public static void removeHearts(PlayerEntity player, int cant){
+
+        if(player.getHealth()>player.getMaxHealth()-cant){
+            player.setHealth(player.getMaxHealth()-cant);
+        }
+    }
+
 }

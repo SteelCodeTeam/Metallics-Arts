@@ -324,7 +324,7 @@ public class PowersEventHandler {
                                     player.addEffect(new EffectInstance(Effects.ABSORPTION, 90, 5, true, false));
                                 }
                             } else if (playerCapability.isStoring(MetalsNBTData.ELECTRUM)){
-
+                                GoldAndElectrumHelpers.removeHearts(player,5);
                             }
 
 

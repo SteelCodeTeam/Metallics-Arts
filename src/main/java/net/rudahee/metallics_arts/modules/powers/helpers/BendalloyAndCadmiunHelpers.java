@@ -113,6 +113,8 @@ public class BendalloyAndCadmiunHelpers {
     public static void drowningEffect(PlayerEntity player, int speed){
 
         if (!player.isEyeInFluid(FluidTags.WATER)){
+            //no lo hace fuera del agua, buscar como agregar burbujas
+
             player.setAirSupply(player.getAirSupply()-speed);
         }else if(player.isEyeInFluid(FluidTags.WATER)){
             player.setAirSupply(player.getAirSupply()-(speed*2));
