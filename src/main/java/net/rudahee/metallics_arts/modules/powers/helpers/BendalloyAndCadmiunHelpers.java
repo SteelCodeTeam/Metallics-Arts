@@ -127,7 +127,6 @@ public class BendalloyAndCadmiunHelpers {
 
     }
 
-
     public static void drowningEffect(PlayerEntity player, int speed){
 
         if (!player.isEyeInFluid(FluidTags.WATER)){
