@@ -46,6 +46,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         this.compoundNBT.putInt(metal2.getGemNameLower()+"_feruchemic_reserve",0);
         this.compoundNBT.putInt(metal1.getGemNameLower()+"_feruchemic_max_capacity",maxReserve1);
         this.compoundNBT.putInt(metal2.getGemNameLower()+"_feruchemic_max_capacity",maxReserve2);
+        this.compoundNBT.putString("key",unkeyedString);
     }
 
     @Override
@@ -57,13 +58,16 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             data.setMetalMindEquiped(this.metals[1].getGroup(),true);
             ModNetwork.sync(data,player);
         });
+        if (stack.getTag().getString("key").equals("ESTA LIBRE PAPU")){
+            stack.getTag().putString("key", player.getUUID().toString());
+        }
 
     }
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        ICurioItem.super.onUnequip(slotContext, newStack, stack);
 
+        ICurioItem.super.onUnequip(slotContext, newStack, stack);
         PlayerEntity player = (PlayerEntity) slotContext.getWearer();
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
@@ -72,6 +76,12 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             //DEBERIA APAGAR EL DECANTE O ALMACENAJE
             ModNetwork.sync(data,player);
         });
+
+        //if (((stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve")) == 0) && ((stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")) == 0)){
+            stack.getTag().putString("key", unkeyedString);
+        //}
+
+
     }
 
 
@@ -132,6 +142,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         nbt.putInt(metals[1].getGemNameLower()+"_feruchemic_reserve",0);
         nbt.putInt(metals[0].getNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[0]);
         nbt.putInt(metals[1].getGemNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[1]);
+        nbt.putString("key",unkeyedString);
         resultItem.setTag(nbt);
         if (this.allowdedIn(group)) {
             items.add(resultItem);
@@ -144,6 +155,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         //if (Screen.hasControlDown()) {
             toolTips.add(new StringTextComponent(metals[0].getNameLower()+": "+ stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve")));
             toolTips.add(new StringTextComponent(metals[1].getNameLower()+": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")));
+            toolTips.add(new StringTextComponent("Propiety: "+stack.getTag().getString("key")));
         //}
     }
 

@@ -3,6 +3,10 @@ package net.rudahee.metallics_arts.modules.powers;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -260,6 +265,8 @@ public class PowersEventHandler {
     public static int tickOffset= 0;
     public static int actualTick = 0;
 
+    public static boolean restoreHealth = false;
+
 
     @SubscribeEvent
     public static void onWorldTickEvent(final TickEvent.WorldTickEvent event) {
@@ -308,37 +315,41 @@ public class PowersEventHandler {
                              * GOLD FERUCHEMIC
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.GOLD)) {
-                                if (actualTick == 80) {
+                                if (actualTick==30||actualTick==60||actualTick==90){
+                                    GoldAndElectrumHelpers.addHealth(player,1);
+                                }
+
+                                /*if (actualTick == 80) {
                                     player.addEffect(new EffectInstance(Effects.REGENERATION, 90, 1, true, false));
-                                }
+                                }*/
                             } else if (playerCapability.isStoring(MetalsNBTData.GOLD)) {
-                                if (actualTick == 80) {
-                                    player.addEffect(new EffectInstance(Effects.POISON, 90, 1, true, false));
+                                if (actualTick==30||actualTick==60||actualTick==90){
+                                    GoldAndElectrumHelpers.removeHealth(player,1);
                                 }
+
                             }
                             /************************
                              * ELECTRUM FERUCHEMIC
                              ************************/
-                            if (playerCapability.isDecanting(MetalsNBTData.ELECTRUM)){
-                                if (actualTick == 80) {
-                                    player.addEffect(new EffectInstance(Effects.ABSORPTION, 90, 5, true, false));
-                                }
-                            } else if (playerCapability.isStoring(MetalsNBTData.ELECTRUM)){
-                                GoldAndElectrumHelpers.removeHearts(player,5);
-                            }
 
+                            if (playerCapability.isDecanting(MetalsNBTData.ELECTRUM)){
+                                GoldAndElectrumHelpers.addHearts(player,30);
+                                restoreHealth = true;
+                            } else if (playerCapability.isStoring(MetalsNBTData.ELECTRUM)){
+                                GoldAndElectrumHelpers.removeHearts(player,10);
+                                restoreHealth = true;
+                            }else if (restoreHealth){
+                                GoldAndElectrumHelpers.restoreHearts(player);
+                                restoreHealth = false;
+                            }
 
                             /************************
                              * STEEL FERUCHEMIC
                              ************************/
                             if(playerCapability.isDecanting(MetalsNBTData.STEEL)){
-                                if (playerCapability.isBurning(MetalsNBTData.STEEL)){
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 20, true, false));
-                                }else{
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 2, true, false));
-                                }
+                                IronAndSteelHelpers.addSpeed(player,20);
                             }else if (playerCapability.isStoring(MetalsNBTData.STEEL)){
-                                player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2, true, false));
+                                IronAndSteelHelpers.removeSpeed(player,4);
                             }
 
                             /************************
@@ -346,10 +357,22 @@ public class PowersEventHandler {
                              ************************/
 
                             if(playerCapability.isDecanting(MetalsNBTData.IRON)){
+
+                                //Vector3d movement = new Vector3d(player.getDeltaMovement().x,player.getDeltaMovement().y/100,player.getDeltaMovement().z);
+                                //player.travel(movement);
+
+                                //player.setDeltaMovement(player.handleRelativeFrictionAndCalculateMovement(player.getDeltaMovement(),10));
                                 //player.setDeltaMovement(player.getDeltaMovement().x,(player.getDeltaMovement().y)*10,player.getDeltaMovement().z);
                             }else if (playerCapability.isStoring(MetalsNBTData.IRON)){
+
+                                Vector3d playerDeltaMovement = new Vector3d(player.getDeltaMovement().x,player.getDeltaMovement().y*100,player.getDeltaMovement().z);
+                                player.travel(playerDeltaMovement);
+                                //player.setDeltaMovement(player.handleRelativeFrictionAndCalculateMovement(player.getDeltaMovement(),1));
                                 //player.setDeltaMovement(player.getDeltaMovement().x,(player.getDeltaMovement().y)/10,player.getDeltaMovement().z);
                             }
+
+
+                            //ModifiableAttributeInstance gravity = this.getAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
 
                             /************************
                              * CADMIUM FERUCHEMIC
@@ -367,9 +390,13 @@ public class PowersEventHandler {
 
                             //NO LO HACE INSTANTANEO
                             if(playerCapability.isDecanting(MetalsNBTData.BENDALLOY)){
-                                player.addEffect(new EffectInstance(Effects.SATURATION, 20, 1, true, false));
+                                if (actualTick==30||actualTick==60||actualTick==90){
+                                    BendalloyAndCadmiunHelpers.addFoodLevel(player,1);
+                                }
                             }else if (playerCapability.isStoring(MetalsNBTData.BENDALLOY)){
-                                player.addEffect(new EffectInstance(Effects.HUNGER, 20, 1, true, false));
+                                if (actualTick==30||actualTick==60||actualTick==90){
+                                    BendalloyAndCadmiunHelpers.removeFoodLevel(player,1);
+                                }
                             }
 
                             /************************

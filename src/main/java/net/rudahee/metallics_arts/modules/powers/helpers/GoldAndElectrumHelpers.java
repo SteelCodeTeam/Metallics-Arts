@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
@@ -49,11 +50,24 @@ public class GoldAndElectrumHelpers {
         }
     }
 
-    public static void removeHearts(PlayerEntity player, int cant){
 
-        if(player.getHealth()>player.getMaxHealth()-cant){
-            player.setHealth(player.getMaxHealth()-cant);
-        }
+    public static void addHealth(PlayerEntity player,int cant){
+        player.setHealth(player.getHealth()+cant);
     }
 
+    public static void removeHealth(PlayerEntity player, int cant){
+        player.setHealth(player.getHealth()-cant);
+    }
+
+    public static void removeHearts(PlayerEntity player, int cant){
+        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(cant);
+    }
+
+    public static void restoreHearts(PlayerEntity player){
+        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
+    }
+
+    public static void addHearts(PlayerEntity player, int cant) {
+        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(cant);
+    }
 }

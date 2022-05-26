@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.modules.powers.helpers;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -109,12 +110,28 @@ public class BendalloyAndCadmiunHelpers {
         player.aiStep();
     }
 
+    //
+
+    public static void addFoodLevel(PlayerEntity player, int speed){
+
+        if (player.getFoodData().getFoodLevel()<20){
+            player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()+speed);
+        }
+
+    }
+
+    public static void removeFoodLevel(PlayerEntity player, int speed){
+        if (player.getFoodData().getFoodLevel()>0){
+            player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()-speed);
+        }
+
+    }
+
 
     public static void drowningEffect(PlayerEntity player, int speed){
 
         if (!player.isEyeInFluid(FluidTags.WATER)){
             //no lo hace fuera del agua, buscar como agregar burbujas
-
             player.setAirSupply(player.getAirSupply()-speed);
         }else if(player.isEyeInFluid(FluidTags.WATER)){
             player.setAirSupply(player.getAirSupply()-(speed*2));

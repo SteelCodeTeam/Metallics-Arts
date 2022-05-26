@@ -13,6 +13,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -116,5 +118,14 @@ public class IronAndSteelHelpers {
 
     public static float getMultiplier(PlayerEntity player) {
         return 2.4f;
+    }
+
+
+    public static void addSpeed(PlayerEntity player, int add){
+        player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, add, true, false));
+    }
+
+    public static void removeSpeed(PlayerEntity player, int remove){
+        player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, remove, true, false));
     }
 }

@@ -34,7 +34,6 @@ import java.util.List;
 
 public class BandAluminumDuralumin extends BandMindAbstract implements ICurioItem {
 
-    //CompoundNBT nbt = new CompoundNBT();
     private static int MAX_ALUMINUM = 2000;
     private static int MAX_DURALUMIN = 2000;
 
@@ -47,57 +46,4 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
         return super.useOn(p_195939_1_);
     }
 
-
-    //private static boolean needUpdate = false;
-
-    /*@Override
-    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-        CompoundNBT nbtLocal = stack.getTag();
-        if (livingEntity.level instanceof ServerWorld) {
-            needUpdate = false;
-            if (livingEntity instanceof PlayerEntity) {
-                PlayerEntity player = (PlayerEntity) livingEntity;
-                player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
-                    if (data.isDecanting(MetalsNBTData.ALUMINUM)) {
-                        if (stack.getTag().getInt("aluminum_feruchemic_reserve") > 0) {
-                            nbtLocal.putInt("aluminum_feruchemic_reserve",(stack.getTag().getInt("aluminum_feruchemic_reserve")-1));
-                            stack.setTag(nbtLocal);
-                        } else {
-                            data.setDecanting(MetalsNBTData.ALUMINUM, false);
-                        }
-                        needUpdate = true;
-                    } else if (data.isStoring(MetalsNBTData.ALUMINUM)) {
-                        if (stack.getTag().getInt("aluminum_feruchemic_reserve") < this.MAX_ALUMINUM) {
-                            nbtLocal.putInt("aluminum_feruchemic_reserve",(stack.getTag().getInt("aluminum_feruchemic_reserve")+1));
-                            stack.setTag(nbtLocal);
-                        } else {
-                            data.setStoring(MetalsNBTData.ALUMINUM, false);
-                        }
-                        needUpdate = true;
-                    }
-                    if (data.isDecanting(MetalsNBTData.DURALUMIN)) {
-                        if (stack.getTag().getInt("duralumin_feruchemic_reserve") > 0) {
-                            nbtLocal.putInt("duralumin_feruchemic_reserve",(stack.getTag().getInt("duralumin_feruchemic_reserve")-1));
-                            stack.setTag(nbtLocal);
-                        } else {
-                            data.setDecanting(MetalsNBTData.DURALUMIN, false);
-                        }
-                        needUpdate = true;
-                    } else if (data.isStoring(MetalsNBTData.DURALUMIN)) {
-                        if (stack.getTag().getInt("duralumin_feruchemic_reserve") < this.MAX_DURALUMIN) {
-                            nbtLocal.putInt("duralumin_feruchemic_reserve",(stack.getTag().getInt("duralumin_feruchemic_reserve")+1));
-                            stack.setTag(nbtLocal);
-                        } else {
-                            data.setStoring(MetalsNBTData.DURALUMIN, false);
-                        }
-                        needUpdate = true;
-                    }
-                    if (needUpdate) {
-                        ModNetwork.sync(data, player);
-                    }
-                });
-            }
-        }
-        super.curioTick(identifier, index, livingEntity, stack);
-    }*/
 }
