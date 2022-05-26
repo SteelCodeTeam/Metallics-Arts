@@ -388,7 +388,6 @@ public class PowersEventHandler {
                              * BENDALLOY FERUCHEMIC
                              ************************/
 
-                            //NO LO HACE INSTANTANEO
                             if(playerCapability.isDecanting(MetalsNBTData.BENDALLOY)){
                                 if (actualTick==30||actualTick==60||actualTick==90){
                                     BendalloyAndCadmiunHelpers.addFoodLevel(player,1);
