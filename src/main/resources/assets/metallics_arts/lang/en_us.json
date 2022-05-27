@@ -144,6 +144,7 @@
 
 
   "itemGroup.metallic_arts_tag": "Metallic Arts",
-  "screen.metallics_arts.alloy_furnace": "Alloy Furnace",
+  "block.metallics_arts.alloy_furnace": "Alloy Furnace",
+  "screen.metallic_arts.alloy_furnace": "Alloy Furnace",
   "curios.identifier.ma_metalmind_slot": "MetalMind Slot"
 }

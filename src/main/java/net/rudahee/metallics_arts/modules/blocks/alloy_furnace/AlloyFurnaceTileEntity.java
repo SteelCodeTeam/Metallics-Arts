@@ -31,11 +31,11 @@ import java.util.Optional;
 
 public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileEntity {
 
-    private int actualFuelBurning = 0;
-    private int maxFuelBurning = 0;
+    private static int actualFuelBurning = 0;
+    private static int maxFuelBurning = 0;
     private boolean isCrafting = false;
 
-    private int actualTimeToActualRecipe = 0;
+    private static int actualTimeToActualRecipe = 0;
     private int maxTimeToActualRecipe = 0;
     private final boolean existsRecipe = false;
 
@@ -248,20 +248,24 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
 
 
     @OnlyIn(Dist.CLIENT)
-    public int getBurnProgress() {
+    public static int getBurnProgress() {
         return actualFuelBurning;
     }
 
+    public static int getMaxBurnProgress() {
+        return maxFuelBurning;
+    }
+
     @OnlyIn(Dist.CLIENT)
-    public int getLitProgress() {
+    public static int getLitProgress() {
         return actualTimeToActualRecipe;
     }
 
-    public boolean isLit() {
+    public static boolean isLit() {
         return actualFuelBurning >= 0;
     }
 
-    public boolean isCompleteCrafting() {
+    public static boolean isCompleteCrafting() {
         return actualTimeToActualRecipe <= 0;
     }
 

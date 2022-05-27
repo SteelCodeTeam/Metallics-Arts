@@ -9,6 +9,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.rudahee.metallics_arts.MetallicsArts;
 
+import java.awt.*;
+
 public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
     private AlloyFurnaceContainer alloyContainer = null;
 
@@ -47,14 +49,43 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         int i = this.getGuiLeft();
         int j = this.getGuiTop();
         super.blit(matrixStack, i, j, 0, 0, this.getXSize(), this.getYSize());
+
+        Point activeArrowInImage = new Point(176, 14);
+        Point activeArrowInGame = new Point(i + 85, j + 25);
+
+        int progressLit = AlloyFurnaceTileEntity.getLitProgress();
+
+        int arrowLength = 0;
+        if (!AlloyFurnaceTileEntity.isCompleteCrafting()) {
+            arrowLength = (Math.round((progressLit / 200.0f) * 24)-24)*-1;
+        }
+
+        super.blit(matrixStack, activeArrowInGame.x, activeArrowInGame.y, activeArrowInImage.x , activeArrowInImage.y, arrowLength, 16);
+
+        Point LitBarInImage = new Point(176, 13);
+        Point LitBarInGameLeft = new Point(i + 34, j + 68);
+        Point LitBarInGameRight = new Point(i + 69, j + 68);
+
+        int progressBar = AlloyFurnaceTileEntity.getBurnProgress();
+        int barLength = 0;
+        int max = AlloyFurnaceTileEntity.getMaxBurnProgress();
+        if (AlloyFurnaceTileEntity.getBurnProgress() > 0) {
+            barLength = (Math.round(((progressBar + 1) / Float.parseFloat(Integer.toString(max)) * 13)));
+        }
+
+        super.blit(matrixStack, LitBarInGameLeft.x, LitBarInGameLeft.y-13, LitBarInImage.x , LitBarInImage.y-13, 13, 13 - barLength);
+        super.blit(matrixStack, LitBarInGameRight.x, LitBarInGameRight.y-13, LitBarInImage.x ,LitBarInImage.y-13, 13, 13 - barLength);
+
         super.tick();
+
     }
 
     @Override
     protected void renderLabels(MatrixStack matrixStack, int i, int j) {
         i++;
-        // Ajustar la altura del fuel
-        this.font.draw(matrixStack, String.valueOf(i), (float) 128, (float) 54, 123);
+
+        //TODO
+
 
     }
 
