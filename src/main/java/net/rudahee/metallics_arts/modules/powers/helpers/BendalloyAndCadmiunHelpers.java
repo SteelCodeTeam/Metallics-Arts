@@ -130,6 +130,7 @@ public class BendalloyAndCadmiunHelpers {
     }
 
 
+
     public static void drowningEffect(PlayerEntity player){
 
         if (!player.isEyeInFluid(FluidTags.WATER) && !player.isEyeInFluid(FluidTags.LAVA)) {
