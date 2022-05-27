@@ -121,11 +121,11 @@ public class IronAndSteelHelpers {
     }
 
 
-    public static void addSpeed(PlayerEntity player, int add){
-        player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, add, true, false));
+    public static void addSpeed(PlayerEntity player, int effectLevel){
+        player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, effectLevel, true, false));
     }
 
-    public static void removeSpeed(PlayerEntity player, int remove){
-        player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, remove, true, false));
+    public static void removeSpeed(PlayerEntity player, int effectLevel){
+        player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, effectLevel, true, false));
     }
 }

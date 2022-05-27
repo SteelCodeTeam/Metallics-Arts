@@ -51,23 +51,23 @@ public class GoldAndElectrumHelpers {
     }
 
 
-    public static void addHealth(PlayerEntity player,int cant){
-        player.setHealth(player.getHealth()+cant);
+    public static void addHealth(PlayerEntity player,int qtyHealth){
+        player.setHealth(player.getHealth()+qtyHealth);
     }
 
-    public static void removeHealth(PlayerEntity player, int cant){
-        player.setHealth(player.getHealth()-cant);
+    public static void removeHealth(PlayerEntity player, int qtyHealth){
+        player.setHealth(player.getHealth()-qtyHealth);
     }
 
-    public static void removeHearts(PlayerEntity player, int cant){
-        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(cant);
+    public static void removeHearts(PlayerEntity player, int qtyHearth){
+        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(qtyHearth);
     }
 
     public static void restoreHearts(PlayerEntity player){
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
     }
 
-    public static void addHearts(PlayerEntity player, int cant) {
-        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(cant);
+    public static void addHearts(PlayerEntity player, int qtyHearth) {
+        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(qtyHearth);
     }
 }

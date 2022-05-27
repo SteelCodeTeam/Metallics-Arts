@@ -5,11 +5,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -112,39 +114,42 @@ public class BendalloyAndCadmiunHelpers {
 
     //
 
-    public static void addFoodLevel(PlayerEntity player, int speed){
+    public static void addFoodLevel(PlayerEntity player, int qty){
 
         if (player.getFoodData().getFoodLevel()<20){
-            player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()+speed);
+            player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()+qty);
         }
 
     }
 
-    public static void removeFoodLevel(PlayerEntity player, int speed){
+    public static void removeFoodLevel(PlayerEntity player, int qty){
         if (player.getFoodData().getFoodLevel()>0){
-            player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()-speed);
+            player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()-qty);
         }
 
     }
 
 
-    public static void drowningEffect(PlayerEntity player, int speed){
+    public static void drowningEffect(PlayerEntity player){
 
-        if (!player.isEyeInFluid(FluidTags.WATER)){
-            //no lo hace fuera del agua, buscar como agregar burbujas
-            player.setAirSupply(player.getAirSupply()-speed);
-        }else if(player.isEyeInFluid(FluidTags.WATER)){
-            player.setAirSupply(player.getAirSupply()-(speed*2));
+        if (!player.isEyeInFluid(FluidTags.WATER) && !player.isEyeInFluid(FluidTags.LAVA)) {
+            player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 40, 0, true, false));
         }
 
-        /*if(player.getAirSupply() < player.getMaxAirSupply() && player.isEyeInFluid(FluidTags.WATER)){
-            if(Math.random()>0.66f){
-                player.setAirSupply();
+        if (player.isEyeInFluid(FluidTags.WATER) || player.isEyeInFluid(FluidTags.LAVA)) {
+            player.setAirSupply(player.getAirSupply() - (player.getAirSupply() / 2));
+            player.hurt(DamageSource.DROWN, 2);
+        }
+    }
 
+    public static void throwBreathEffect(PlayerEntity player, int effectLevel) {
 
-                player.setAir(player.getAirSupply()+ MetalMind.CD);
-            }
-        }*/
+        if (!player.isEyeInFluid(FluidTags.WATER) && !player.isEyeInFluid(FluidTags.LAVA)) {
+            player.hurt(DamageSource.DROWN, 2);
+        }
 
+        if (player.isEyeInFluid(FluidTags.WATER)) {
+            player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 40, effectLevel, true, false));
+        }
     }
 }

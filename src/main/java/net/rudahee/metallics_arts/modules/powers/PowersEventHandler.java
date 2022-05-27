@@ -1,27 +1,15 @@
 package net.rudahee.metallics_arts.modules.powers;
 
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
-import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -55,7 +43,7 @@ public class PowersEventHandler {
                         data.setSpawnPos(pos);
                         data.setSpawnDimension(dim);
                     }
-                    if(data.getDeathDimension() == null) {
+                    if (data.getDeathDimension() == null) {
                         int[] pos = {player.level.getLevelData().getXSpawn(),player.level.getLevelData().getYSpawn(),player.level.getLevelData().getZSpawn()};
                         String dim = player.level.dimension().getRegistryName().getNamespace();
 
@@ -170,7 +158,7 @@ public class PowersEventHandler {
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
 
                 event.getOriginal().getCapability(InvestedCapability.PLAYER_CAP).ifPresent(oldData -> {
-                    if (oldData.isInvested()) { // make sure the new player has the same power status
+                    if (oldData.isInvested()) {
                         for (MetalsNBTData mt : MetalsNBTData.values()) {
                             if (oldData.hasAllomanticPower(mt)) {
                                 data.addAllomanticPower(mt);
@@ -246,7 +234,7 @@ public class PowersEventHandler {
                      *******************************/
                     if (playerCapability.isDecanting(MetalsNBTData.ZINC)) {
                         ZincAndBrassHelpers.addLootToEnemy(event.getEntityLiving(),0.6);
-                    }else if (playerCapability.isStoring(MetalsNBTData.ZINC)) {
+                    } else if (playerCapability.isStoring(MetalsNBTData.ZINC)) {
                         ZincAndBrassHelpers.removeLootToEnemy(event.getEntityLiving(),0.6);
                     }
 
@@ -285,29 +273,49 @@ public class PowersEventHandler {
                                 playerCapability.tickAllomancyBurningMetals((ServerPlayerEntity) player);
                             }
 
-                            if (playerCapability.isDecanting(MetalsNBTData.DURALUMIN)) {
-                                //
-                            } else if (playerCapability.isStoring(MetalsNBTData.DURALUMIN)) {
-                                //
+
+                            /************************
+                             * BRONZE FERUCHEMIC
+                             ************************/
+                            if (playerCapability.isDecanting(MetalsNBTData.BRONZE)) {
+                                BlockPos negative = new BlockPos(player.position()).offset(-x -4, -y -4, -z -4);
+                                BlockPos positive = new BlockPos(player.position()).offset(x +4, y + 24 , z +4);
+
+                                CopperAndBronzeHelpers.DontSpawnPhantoms(player, new AxisAlignedBB(negative, positive), event.world);
+                            } else if (playerCapability.isStoring(MetalsNBTData.BRONZE)) {
+                                CopperAndBronzeHelpers.SpawnPhamtonsWithFireResistance(player, world); //TODO we need implement a network packet to spawn mobs in world
+                            }
+
+                            /************************
+                             * COPPER FERUCHEMIC
+                             ************************/
+                            if (playerCapability.isDecanting(MetalsNBTData.COPPER)) {
+                                if (actualTick % 10 == 0) {
+                                    CopperAndBronzeHelpers.generateExperience(player, event.world);
+                                }
+                            } else if (playerCapability.isStoring(MetalsNBTData.COPPER)) {
+                                if (actualTick % 10 == 0) {
+                                    CopperAndBronzeHelpers.saveExperience(player, event.world);
+                                }
                             }
 
                             /************************
                              * BRASS FERUCHEMIC
                              ************************/
-                            if (playerCapability.isDecanting(MetalsNBTData.BRASS)){
-                                    //despues vemos
-                            } else if (playerCapability.isStoring(MetalsNBTData.BRASS)){
-                                player.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 20, 1, true, false));
+                            if (playerCapability.isDecanting(MetalsNBTData.BRASS)) {
+                                    // TODO
+                            } else if (playerCapability.isStoring(MetalsNBTData.BRASS)) {
+                                player.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 40, 1, true, false));
                             }
 
                             /************************
                              * ZINC FERUCHEMIC
                              ************************/
-                            if (playerCapability.isDecanting(MetalsNBTData.ZINC)){
+                            if (playerCapability.isDecanting(MetalsNBTData.ZINC)) {
                                 if (actualTick == 80) {
                                     player.addEffect(new EffectInstance(Effects.LUCK,20,90,true, false));
                                 }
-                            } else if (playerCapability.isStoring(MetalsNBTData.ZINC)){
+                            } else if (playerCapability.isStoring(MetalsNBTData.ZINC)) {
                                 player.addEffect(new EffectInstance(Effects.UNLUCK,20,1,true, false));
                             }
 
@@ -315,15 +323,11 @@ public class PowersEventHandler {
                              * GOLD FERUCHEMIC
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.GOLD)) {
-                                if (actualTick==30||actualTick==60||actualTick==90){
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
                                     GoldAndElectrumHelpers.addHealth(player,1);
                                 }
-
-                                /*if (actualTick == 80) {
-                                    player.addEffect(new EffectInstance(Effects.REGENERATION, 90, 1, true, false));
-                                }*/
                             } else if (playerCapability.isStoring(MetalsNBTData.GOLD)) {
-                                if (actualTick==30||actualTick==60||actualTick==90){
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
                                     GoldAndElectrumHelpers.removeHealth(player,1);
                                 }
 
@@ -331,14 +335,13 @@ public class PowersEventHandler {
                             /************************
                              * ELECTRUM FERUCHEMIC
                              ************************/
-
-                            if (playerCapability.isDecanting(MetalsNBTData.ELECTRUM)){
+                            if (playerCapability.isDecanting(MetalsNBTData.ELECTRUM)) {
                                 GoldAndElectrumHelpers.addHearts(player,30);
                                 restoreHealth = true;
-                            } else if (playerCapability.isStoring(MetalsNBTData.ELECTRUM)){
+                            } else if (playerCapability.isStoring(MetalsNBTData.ELECTRUM)) {
                                 GoldAndElectrumHelpers.removeHearts(player,10);
                                 restoreHealth = true;
-                            }else if (restoreHealth){
+                            } else if (restoreHealth) {
                                 GoldAndElectrumHelpers.restoreHearts(player);
                                 restoreHealth = false;
                             }
@@ -346,55 +349,44 @@ public class PowersEventHandler {
                             /************************
                              * STEEL FERUCHEMIC
                              ************************/
-                            if(playerCapability.isDecanting(MetalsNBTData.STEEL)){
-                                IronAndSteelHelpers.addSpeed(player,20);
-                            }else if (playerCapability.isStoring(MetalsNBTData.STEEL)){
-                                IronAndSteelHelpers.removeSpeed(player,4);
+                            if (playerCapability.isDecanting(MetalsNBTData.STEEL)) {
+                                IronAndSteelHelpers.addSpeed(player,3);
+                            } else if (playerCapability.isStoring(MetalsNBTData.STEEL)) {
+                                IronAndSteelHelpers.removeSpeed(player,3);
                             }
 
                             /************************
                              * IRON FERUCHEMIC
+                             // TODO
                              ************************/
+                            if (playerCapability.isDecanting(MetalsNBTData.IRON)) {
 
-                            if(playerCapability.isDecanting(MetalsNBTData.IRON)){
+                            } else if (playerCapability.isStoring(MetalsNBTData.IRON)) {
 
-                                //Vector3d movement = new Vector3d(player.getDeltaMovement().x,player.getDeltaMovement().y/100,player.getDeltaMovement().z);
-                                //player.travel(movement);
-
-                                //player.setDeltaMovement(player.handleRelativeFrictionAndCalculateMovement(player.getDeltaMovement(),10));
-                                //player.setDeltaMovement(player.getDeltaMovement().x,(player.getDeltaMovement().y)*10,player.getDeltaMovement().z);
-                            }else if (playerCapability.isStoring(MetalsNBTData.IRON)){
-
-                                Vector3d playerDeltaMovement = new Vector3d(player.getDeltaMovement().x,player.getDeltaMovement().y*100,player.getDeltaMovement().z);
-                                player.travel(playerDeltaMovement);
-                                //player.setDeltaMovement(player.handleRelativeFrictionAndCalculateMovement(player.getDeltaMovement(),1));
-                                //player.setDeltaMovement(player.getDeltaMovement().x,(player.getDeltaMovement().y)/10,player.getDeltaMovement().z);
                             }
-
-
-                            //ModifiableAttributeInstance gravity = this.getAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
 
                             /************************
                              * CADMIUM FERUCHEMIC
                              ************************/
-                            if(playerCapability.isDecanting(MetalsNBTData.CADMIUM)){
-                                player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
-                            }else if (playerCapability.isStoring(MetalsNBTData.CADMIUM)){
-                                BendalloyAndCadmiunHelpers.drowningEffect(player,1);
-                                //AHOGARSE
+                            if (playerCapability.isDecanting(MetalsNBTData.CADMIUM)) {
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
+                                    BendalloyAndCadmiunHelpers.throwBreathEffect(player, 10);
+                                }
+                            } else if (playerCapability.isStoring(MetalsNBTData.CADMIUM)) {
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
+                                    BendalloyAndCadmiunHelpers.drowningEffect(player);
+                                }
                             }
 
                             /************************
                              * BENDALLOY FERUCHEMIC
                              ************************/
-
-                            //NO LO HACE INSTANTANEO
-                            if(playerCapability.isDecanting(MetalsNBTData.BENDALLOY)){
-                                if (actualTick==30||actualTick==60||actualTick==90){
+                            if (playerCapability.isDecanting(MetalsNBTData.BENDALLOY)) {
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
                                     BendalloyAndCadmiunHelpers.addFoodLevel(player,1);
                                 }
-                            }else if (playerCapability.isStoring(MetalsNBTData.BENDALLOY)){
-                                if (actualTick==30||actualTick==60||actualTick==90){
+                            } else if (playerCapability.isStoring(MetalsNBTData.BENDALLOY)) {
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
                                     BendalloyAndCadmiunHelpers.removeFoodLevel(player,1);
                                 }
                             }
@@ -402,155 +394,16 @@ public class PowersEventHandler {
                             /************************
                              * DURALUMIN FERUCHEMIC
                              ************************/
-
                             Biome biome = world.getBiome(player.getEntity().blockPosition());
 
-                            if(playerCapability.isDecanting(MetalsNBTData.DURALUMIN)){
-
-                                if(biome.getBiomeCategory().equals(Biome.Category.EXTREME_HILLS)) {
-
-                                    player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 20, 1, true, false));
-                                    player.addEffect(new EffectInstance(Effects.JUMP, 20, 4, true, false));
-
-                                }else if(biome.getBiomeCategory().equals(Biome.Category.MESA)) {
-
-                                    player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 20, 1, true, false));
-                                    player.addEffect(new EffectInstance(Effects.JUMP, 20, 4, true, false));
-
-                                    //montañas salto 4
-                                }else if(biome.getBiomeCategory().equals(Biome.Category.JUNGLE)) {
-
-                                    player.addEffect(new EffectInstance(Effects.JUMP, 20, 3, true, false));
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 1, true, false));
-
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.TAIGA)) {
-                                    player.addEffect(new EffectInstance(Effects.JUMP, 20, 2, true, false));
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 2, true, false));
-
+                            if (playerCapability.isDecanting(MetalsNBTData.DURALUMIN)) {
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
+                                    DuraluminAndAluminumHelpers.duraluminDecantingEffects(player, biome);
                                 }
-                                else if(biome.getBiomeCategory().equals(Biome.Category.PLAINS)) {
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 5, true, false));
-
-                                    //velocidad 4
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.SAVANNA)) {
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 5, true, false));
-                                    //velocidad 4
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.BEACH)) {
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 2, true, false));
-                                    player.addEffect(new EffectInstance(Effects.JUMP, 20, 1, true, false));
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.FOREST)) {
-                                    player.addEffect(new EffectInstance(Effects.DIG_SPEED, 20, 2, true, false));
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 2, true, false));
-                                    //prisa minera poca
-                                    //velocidad
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.DESERT)) {
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 3, true, false));
-                                    player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 20, 2, true, false));
-                                    //velocidad
-                                    //fuerza
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.MUSHROOM)) {
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 3, true, false));
-                                    player.addEffect(new EffectInstance(Effects.JUMP, 20, 1, true, false));
-                                    //velocidad 3 salto 1
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.ICY)) {
-                                    player.addEffect(new EffectInstance(Effects.DOLPHINS_GRACE, 20, 3, true, false));
-                                    player.addEffect(new EffectInstance(Effects.JUMP, 20, 1, true, false));
-                                    //gracia del delfin//salto
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.OCEAN)) {
-                                    player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
-                                    player.addEffect(new EffectInstance(Effects.DOLPHINS_GRACE, 20, 3, true, false));
-                                    //apnea//gracia del delfin
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.SWAMP)) {
-                                    player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
-                                    player.addEffect(new EffectInstance(Effects.DOLPHINS_GRACE, 20, 3, true, false));
-                                    //gracia del delfin //velocidad
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.RIVER)) {
-                                    player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
-                                    player.addEffect(new EffectInstance(Effects.DOLPHINS_GRACE, 20, 3, true, false));
-                                    //gracia del delfin //velocidad
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.NETHER)) {
-                                    player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 20, 2, true, false));
-                                    player.addEffect(new EffectInstance(Effects.DIG_SPEED, 20, 2, true, false));
-                                    //fuerza 2
-                                    //prisa 2
-                                }else if(biome.getBiomeCategory().equals(Biome.Category.THEEND)) {
-                                    player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 20, 1, true, false));
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 3, true, false));
-                                    //caida lenta//velocidad 3
+                            } else if (playerCapability.isStoring(MetalsNBTData.DURALUMIN)) {
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
+                                    DuraluminAndAluminumHelpers.duraluminStoringEffects(player, biome);
                                 }
-                                else{
-                                    System.out.println("no hay poderes papa");
-                                }
-
-                            }else if (playerCapability.isStoring(MetalsNBTData.DURALUMIN)){
-                                if(biome.getBiomeCategory().equals(Biome.Category.EXTREME_HILLS)) {
-
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2, true, false));
-
-
-                                }else if(biome.getBiomeCategory().equals(Biome.Category.MESA)) {
-
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 1, true, false));
-                                    //montañas salto 4
-                                }else if(biome.getBiomeCategory().equals(Biome.Category.JUNGLE)) {
-
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 1, true, false));
-
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.TAIGA)) {
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2, true, false));
-
-                                }
-                                else if(biome.getBiomeCategory().equals(Biome.Category.PLAINS)) {
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 5, true, false));
-
-                                    //velocidad 4
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.SAVANNA)) {
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 5, true, false));
-                                    //velocidad 4
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.BEACH)) {
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2, true, false));
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.FOREST)) {
-                                    player.addEffect(new EffectInstance(Effects.DIG_SLOWDOWN, 20, 2, true, false));
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2, true, false));
-                                    //prisa minera poca
-                                    //velocidad
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.DESERT)) {
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
-                                    player.addEffect(new EffectInstance(Effects.WEAKNESS, 20, 2, true, false));
-                                    //velocidad
-                                    //fuerza
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.MUSHROOM)) {
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
-                                    //velocidad 3 salto 1
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.ICY)) {
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
-                                    //gracia del delfin//salto
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.OCEAN)) {
-                                    //AHOGAMIENTO //player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
-                                    //apnea//gracia del delfin
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.SWAMP)) {
-                                    //AHOGAMIENTO //player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
-                                    //gracia del delfin //velocidad
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.RIVER)) {
-                                    //AHOGAMIENTO //player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 20, 1, true, false));
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
-                                    //gracia del delfin //velocidad
-                                } else if(biome.getBiomeCategory().equals(Biome.Category.NETHER)) {
-                                    player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 20, 2, true, false));
-                                    player.addEffect(new EffectInstance(Effects.DIG_SPEED, 20, 2, true, false));
-                                    //fuerza 2
-                                    //prisa 2
-                                }else if(biome.getBiomeCategory().equals(Biome.Category.THEEND)) {
-                                    player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 20, 1, true, false));
-                                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
-                                    //caida lenta//velocidad 3
-                                }
-                                else{
-                                    System.out.println("no hay poderes papa");
-                                }
-
                             }
 
 
@@ -724,7 +577,7 @@ public class PowersEventHandler {
                          * ALUMINUM POWER
                          ************************/
                         if (playerCapability.hasAllomanticPower(MetalsNBTData.ALUMINUM) && playerCapability.isBurning(MetalsNBTData.ALUMINUM)) {
-                             for (MetalsNBTData metalsNBTData: playerCapability.getAllomanticPowers()){
+                             for (MetalsNBTData metalsNBTData: playerCapability.getAllomanticPowers()) {
                                  playerCapability.drainMetals(metalsNBTData);
                              }
                         }

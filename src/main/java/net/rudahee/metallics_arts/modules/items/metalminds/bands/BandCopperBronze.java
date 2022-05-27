@@ -14,8 +14,8 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 public class BandCopperBronze extends BandMindAbstract {
 
 
-    private static int MAX_COPPER = 1000;
-    private static int MAX_BRONZE = 16000;
+    private static int MAX_COPPER = 100000;
+    private static int MAX_BRONZE = 160000;
     public BandCopperBronze(Item.Properties properties){
         super(properties, MetalsNBTData.COPPER,MetalsNBTData.BRONZE,MAX_COPPER,MAX_BRONZE);
     }

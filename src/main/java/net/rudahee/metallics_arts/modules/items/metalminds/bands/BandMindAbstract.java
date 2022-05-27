@@ -24,6 +24,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.UUID;
 
 public abstract class BandMindAbstract extends Item implements ICurioItem {
 
@@ -32,7 +33,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     private int[] metalsMaxReserve = new int[2];
 
-    public String unkeyedString = "ESTA LIBRE PAPU";
+    public String unkeyedString = "Nobody";
 
     public BandMindAbstract(Properties properties,MetalsNBTData metal1, MetalsNBTData metal2,int maxReserve1,int maxReserve2) {
         super(properties);
@@ -153,9 +154,11 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
         super.appendHoverText(stack, world, toolTips, flagIn);
         //if (Screen.hasControlDown()) {
-            toolTips.add(new StringTextComponent(metals[0].getNameLower()+": "+ stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve")));
-            toolTips.add(new StringTextComponent(metals[1].getNameLower()+": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")));
-            toolTips.add(new StringTextComponent("Propiety: "+stack.getTag().getString("key")));
+            if (stack.hasTag()) {
+                toolTips.add(new StringTextComponent(metals[0].getNameLower().substring(0,1).toUpperCase()+metals[0].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
+                toolTips.add(new StringTextComponent(metals[1].getNameLower().substring(0,1).toUpperCase()+metals[1].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
+                toolTips.add(new StringTextComponent("Owner: "+ (stack.getTag().getString("key").equals(unkeyedString) ? "Nobody" : world.getPlayerByUUID(UUID.fromString(stack.getTag().getString("key"))).getDisplayName().toString())));
+            }
         //}
     }
 
