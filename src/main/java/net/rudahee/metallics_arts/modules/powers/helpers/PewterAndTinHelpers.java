@@ -1,5 +1,7 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
+import net.minecraft.entity.EntitySize;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -58,4 +60,17 @@ public class PewterAndTinHelpers {
             player.addEffect(new EffectInstance(Effects.CONFUSION, 240, 1, true, false, false));
         }
     }
+
+
+    public static void addFecruchemicVision(PlayerEntity player){
+        player.addEffect(new EffectInstance(Effects.NIGHT_VISION, 100, 1, true, false, false));
+    }
+
+    public static void removeFeruchemicVision(PlayerEntity player){
+        player.addEffect(new EffectInstance(Effects.BLINDNESS, 60, 1, true, false, false));
+    }
+
+
+
+
 }

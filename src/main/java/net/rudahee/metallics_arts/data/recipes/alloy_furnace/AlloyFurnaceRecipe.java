@@ -48,6 +48,11 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
     }
 
     @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return recipeItems;
+    }
+
+    @Override
     public ItemStack assemble(IInventory inventory) {
         return output.copy();
     }

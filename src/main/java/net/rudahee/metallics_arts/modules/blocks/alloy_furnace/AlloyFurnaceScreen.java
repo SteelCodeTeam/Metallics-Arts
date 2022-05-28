@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.texture.Texture;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.rudahee.metallics_arts.MetallicsArts;
 
 import java.awt.*;
@@ -40,6 +41,7 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
+        this.renderTooltip(matrixStack,mouseX,mouseY);
     }
 
     @Override
@@ -63,8 +65,8 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         super.blit(matrixStack, activeArrowInGame.x, activeArrowInGame.y, activeArrowInImage.x , activeArrowInImage.y, arrowLength, 16);
 
         Point LitBarInImage = new Point(176, 13);
-        Point LitBarInGameLeft = new Point(i + 34, j + 68);
-        Point LitBarInGameRight = new Point(i + 69, j + 68);
+        Point LitBarInGameLeft = new Point(i + 34, j + 70);
+        Point LitBarInGameRight = new Point(i + 69, j + 70);
 
         int progressBar = AlloyFurnaceTileEntity.getBurnProgress();
         int barLength = 0;
@@ -79,15 +81,5 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         super.tick();
 
     }
-
-    @Override
-    protected void renderLabels(MatrixStack matrixStack, int i, int j) {
-        i++;
-
-        //TODO
-
-
-    }
-
 
 }

@@ -43,12 +43,17 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
     private final ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 
+    private static ItemStack[] itemInSlot = new ItemStack[6];
+
+
     public AlloyFurnaceTileEntity(TileEntityType<?> p_i48289_1_) {
         super(p_i48289_1_);
+        Arrays.fill(AlloyFurnaceTileEntity.itemInSlot,null);
     }
 
     public AlloyFurnaceTileEntity() {
         this(ModTileEntities.ALLOY_FURNACE_TILE_ENTITY.get());
+        Arrays.fill(AlloyFurnaceTileEntity.itemInSlot,null);
     }
 
     @Override
@@ -62,7 +67,6 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
         compound.put("inv", itemHandler.serializeNBT());
         return super.save(compound);
     }
-
 
     private ItemStackHandler createHandler() {
         return new ItemStackHandler(6) {
@@ -103,6 +107,8 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
                 if(!isItemValid(slot, stack)) {
                     return stack; // Only insert correct item
                 }
+
+                AlloyFurnaceTileEntity.itemInSlot[slot] = stack;
 
                 return super.insertItem(slot, stack, simulate);
             }
@@ -278,6 +284,10 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
                 .getTicksBurning();
 
         actualFuelBurning = maxFuelBurning;
+    }
+
+    public static ItemStack getItemInSlot(int slot) {
+        return itemInSlot[slot];
     }
 }
 

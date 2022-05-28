@@ -347,6 +347,21 @@ public class PowersEventHandler {
                             }
 
                             /************************
+                             * TIN FERUCHEMIC
+                             ************************/
+                            if (playerCapability.isDecanting(MetalsNBTData.TIN)) {
+                                PewterAndTinHelpers.addFecruchemicVision(player);
+                            } else if (playerCapability.isStoring(MetalsNBTData.TIN)) {
+                                PewterAndTinHelpers.removeFeruchemicVision(player);
+                            }
+
+                            /************************
+                             * TIN FERUCHEMIC
+                             ************************/
+
+
+
+                            /************************
                              * STEEL FERUCHEMIC
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.STEEL)) {
