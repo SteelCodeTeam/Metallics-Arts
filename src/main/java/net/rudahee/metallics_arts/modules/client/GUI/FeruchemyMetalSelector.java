@@ -50,10 +50,7 @@ public class FeruchemyMetalSelector extends Screen {
 
     MetalsNBTData metalTemp=null;
 
-
     int timeIn = 8;
-
-
 
 
     public FeruchemyMetalSelector() {
@@ -160,8 +157,8 @@ public class FeruchemyMetalSelector extends Screen {
 
             pintar(buf,intermedioXPosYNegExterno,new Point(intermedioXPosYNegExterno.x,intermedioXPosYNegExterno.y-large),new Point(intermedioXPosYNegExterno.x-large,intermedioXPosYNegExterno.y),MetalsNBTData.ATIUM,mouse,0,false,data);
             pintar(buf,intermedioXPosYPosExterno,new Point(intermedioXPosYPosExterno.x,intermedioXPosYPosExterno.y+large),new Point(intermedioXPosYPosExterno.x-large,intermedioXPosYPosExterno.y),MetalsNBTData.MALATIUM,mouse,3,true,data);
-            pintar(buf,intermedioXNegYNegExterno,new Point(intermedioXNegYNegExterno.x,intermedioXNegYNegExterno.y-large),new Point(intermedioXNegYNegExterno.x+large,intermedioXNegYNegExterno.y),MetalsNBTData.ETTMETAL,mouse,1,false,data);
-            pintar(buf,intermedioXNegYPosExterno,new Point(intermedioXNegYPosExterno.x,intermedioXNegYPosExterno.y+large),new Point(intermedioXNegYPosExterno.x+large,intermedioXNegYPosExterno.y),MetalsNBTData.LERASIUM,mouse,2,true,data);
+            pintar(buf,intermedioXNegYNegExterno,new Point(intermedioXNegYNegExterno.x,intermedioXNegYNegExterno.y-large),new Point(intermedioXNegYNegExterno.x+large,intermedioXNegYNegExterno.y),MetalsNBTData.ETTMETAL,mouse,1,true,data);
+            pintar(buf,intermedioXNegYPosExterno,new Point(intermedioXNegYPosExterno.x,intermedioXNegYPosExterno.y+large),new Point(intermedioXNegYPosExterno.x+large,intermedioXNegYPosExterno.y),MetalsNBTData.LERASIUM,mouse,2,false,data);
 
 
             if(this.point1!=null&&this.point2!=null&&this.point3!=null&&this.tipoTemp!=-1){

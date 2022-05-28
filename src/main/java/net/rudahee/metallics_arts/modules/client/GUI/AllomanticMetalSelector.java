@@ -69,7 +69,8 @@ public class AllomanticMetalSelector extends Screen {
 
             int internalSegments = 8;
             float step = (float) Math.PI / 180;
-            float degreesPerSegment  = (float) Math.PI * 2 / internalSegments ;
+            float degreesPerSegment  = (float) Math.PI * 2 / internalSegments;
+            float degreesDivinePerSegment  = (float) Math.PI * 2 / 4;
 
             float degreesExternal = (float) Math.PI * 2 / divineMetals.size();
 
@@ -86,13 +87,18 @@ public class AllomanticMetalSelector extends Screen {
             buf.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
 
 
-
             //circulo externo
             for (int actualSegment  = 0; actualSegment  < divineMetals.size(); actualSegment++) {
                 MetalsNBTData metal = divineMetals.get(actualSegment);
                 boolean mouseInSector = data.hasAllomanticPower(metal) &&
-                        (degreesPerSegment*actualSegment*2 < angle && angle < degreesPerSegment* (actualSegment  + 1))
+                        (degreesDivinePerSegment*actualSegment < angle && angle < degreesDivinePerSegment*(actualSegment  + 1))
+
                         && (mediumRadio<distance && distance<externalRadio);
+
+                /*
+                data.hasAllomanticPower(metal) && (degreesDivinePerSegment*actualSegment<angle && angle < degreesDivinePerSegment  * (actualSegment  + 1)) &&
+                        (internalRadio<distance && distance<mediumRadio);
+                 */
 
                 float radius = externalRadio;
 
@@ -126,8 +132,8 @@ public class AllomanticMetalSelector extends Screen {
                 }
 
 
-                for (float v = 0; v < degreesPerSegment  + step/2; v += step) {
-                    float rad = (v + actualSegment  * degreesPerSegment)*2 ; // (*2) DUPLICA EL TAMAÑO DE LOS ULTIMOS SELECTORES, VISUALMENTE
+                for (float v = 0; v < degreesDivinePerSegment  + step/2; v += step) {
+                    float rad = (v + actualSegment  * degreesDivinePerSegment) ; // (*2) DUPLICA EL TAMAÑO DE LOS ULTIMOS SELECTORES, VISUALMENTE
                     float xp = centerX  + MathHelper.cos(rad) * radius;
                     float yp = centerY  + MathHelper.sin(rad) * radius;
 
@@ -175,26 +181,6 @@ public class AllomanticMetalSelector extends Screen {
                         actualColor = new int[]{73, 180, 199, 255};
                     }
                 }
-                /*
-
-                int actualColor[];
-                actualColor = new int[]{125, 125, 125, 255};
-
-                if (actualSegment % 2 == 0) {
-                    actualColor = new int[]{109, 109, 109, 255};
-                }
-
-                if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
-                    actualColor = new int[]{109, 109, 109, 255};
-                }
-
-                if (data.isBurning(metal)) {
-                    actualColor = new int[]{103, 195, 211, 255};
-                }
-                 */
-
-
-
 
                 if (actualSegment  == 0) {
                     buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
@@ -214,7 +200,6 @@ public class AllomanticMetalSelector extends Screen {
 
             }
 
-
             //circulo interno
             for (int actualSegment=0; actualSegment<internalSegments;actualSegment++) {
                 MetalsNBTData metal = internalMetals.get(actualSegment);
@@ -226,12 +211,6 @@ public class AllomanticMetalSelector extends Screen {
                     this.list=1;
                     radius *= 1.025f;
                 }
-
-                /*
-                static int[] celeste1 = new int[]{73, 180, 199, 100};
-                static int[] celeste2 = new int[]{103, 195, 211, 100};
-                static int[] celeste3 = new int[]{133, 207, 221, 100};
-                 */
 
                 int actualColor[];
 

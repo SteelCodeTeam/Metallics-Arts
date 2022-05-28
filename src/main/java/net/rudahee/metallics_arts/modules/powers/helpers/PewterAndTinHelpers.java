@@ -70,7 +70,4 @@ public class PewterAndTinHelpers {
         player.addEffect(new EffectInstance(Effects.BLINDNESS, 60, 1, true, false, false));
     }
 
-
-
-
 }
