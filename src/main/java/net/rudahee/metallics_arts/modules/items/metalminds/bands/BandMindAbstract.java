@@ -58,10 +58,22 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             data.setMetalMindEquiped(this.metals[1].getGroup(),true);
             ModNetwork.sync(data,player);
         });
-        if (stack.getTag().getString("key").equals("ESTA LIBRE PAPU")){
-            stack.getTag().putString("key", player.getUUID().toString());
+        if(stack.hasTag()){
+            if (stack.getTag().getString("key").equals("ESTA LIBRE PAPU")){
+                stack.getTag().putString("key", player.getUUID().toString());
+            }
+        } else {
+            CompoundNBT local = new CompoundNBT();
+            local.putInt(metals[0].getGemNameLower()+"_feruchemic_reserve",0);
+            local.putInt(metals[1].getGemNameLower()+"_feruchemic_reserve",0);
+            local.putInt(metals[0].getGemNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[0]);
+            local.putInt(metals[1].getGemNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[1]);
+            local.putString("key", player.getUUID().toString());
+            stack.setTag(local);
         }
+
     }
+
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
@@ -72,12 +84,23 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             data.setMetalMindEquiped(this.metals[0].getGroup(),false);
             data.setMetalMindEquiped(this.metals[1].getGroup(),false);
+            data.setStoring(this.metals[0],false);
+            data.setStoring(this.metals[1],false);
+            data.setDecanting(this.metals[0],false);
+            data.setDecanting(this.metals[1],false);
             //DEBERIA APAGAR EL DECANTE O ALMACENAJE
             ModNetwork.sync(data,player);
         });
 
-        //if (((stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve")) == 0) && ((stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")) == 0)){
-            stack.getTag().putString("key", unkeyedString);
+        if(stack.hasTag()){
+            if (((stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve")) == 0) && ((stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")) == 0)){
+                CompoundNBT local = stack.getTag();
+                local.putString("key",unkeyedString);
+                stack.setTag(local);
+            }
+        }
+        //
+
         //}
     }
 
