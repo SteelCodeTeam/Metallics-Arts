@@ -31,7 +31,6 @@ public class AtiumAndMalatiumHelpers {
                     if(Math.random()<0.5){
                         damage = 0F;    //hit with probability
                     }
-
                 }
             }else{
                 damage = amount;//normal hit
@@ -51,7 +50,10 @@ public class AtiumAndMalatiumHelpers {
                 else {
                     damage = amount;
                 }
+            }else {
+                damage = amount;
             }
+
         });
         return damage;
     }

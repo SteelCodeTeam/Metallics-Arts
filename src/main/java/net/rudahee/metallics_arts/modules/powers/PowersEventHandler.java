@@ -24,6 +24,7 @@ import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.*;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.Arrays;
@@ -101,17 +102,21 @@ public class PowersEventHandler {
     public static void onLivingDeath(final LivingDeathEvent event) {
         if (event.getEntityLiving() instanceof ServerPlayerEntity) {
             ServerPlayerEntity player = (ServerPlayerEntity) event.getEntityLiving();
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(capabilites -> {
+            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability -> {
 
                 int[] pos = {(int) player.position().x,(int) player.position().y, (int) player.position().z};
                 String dim = player.level.dimension().getRegistryName().getNamespace();
+                playerCapability.setDeathDimension(dim);
+                playerCapability.setDeathPos(pos);
 
+                for (MetalsNBTData metal:MetalsNBTData.values()) {
+                    playerCapability.setBurning(metal,false);
+                    playerCapability.setDecanting(metal,false);
+                    playerCapability.setStoring(metal,false);
+                    playerCapability.setMetalMindEquiped(metal.getGroup(),false);
+                }
 
-
-                capabilites.setDeathDimension(dim);
-                capabilites.setDeathPos(pos);
-
-                ModNetwork.sync(capabilites, player);
+                ModNetwork.sync(playerCapability, player);
             });
         }
     }
@@ -260,9 +265,12 @@ public class PowersEventHandler {
         /*******************************
          *   DAMAGE IF PLAYER IS BURN ATIUM
          *******************************/
+
         if (event.getEntityLiving() instanceof ServerPlayerEntity) {
             event.setAmount(AtiumAndMalatiumHelpers.atiumHitMobPlayer((PlayerEntity) event.getEntityLiving(), event.getAmount()));
         }
+
+
 
     }
 

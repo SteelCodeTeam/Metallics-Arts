@@ -30,9 +30,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     CompoundNBT compoundNBT = new CompoundNBT();
     private MetalsNBTData[] metals = new MetalsNBTData[2];
-
     private int[] metalsMaxReserve = new int[2];
-
     public String unkeyedString = "Nobody";
 
     public BandMindAbstract(Properties properties,MetalsNBTData metal1, MetalsNBTData metal2,int maxReserve1,int maxReserve2) {
@@ -43,12 +41,13 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         metalsMaxReserve[0]=maxReserve1;
         metalsMaxReserve[1]=maxReserve2;
 
-        this.compoundNBT.putInt(metal1.getGemNameLower()+"_feruchemic_reserve",0);
-        this.compoundNBT.putInt(metal2.getGemNameLower()+"_feruchemic_reserve",0);
-        this.compoundNBT.putInt(metal1.getGemNameLower()+"_feruchemic_max_capacity",maxReserve1);
-        this.compoundNBT.putInt(metal2.getGemNameLower()+"_feruchemic_max_capacity",maxReserve2);
+        this.compoundNBT.putInt(metals[0].getGemNameLower()+"_feruchemic_reserve",0);
+        this.compoundNBT.putInt(metals[1].getGemNameLower()+"_feruchemic_reserve",0);
+        this.compoundNBT.putInt(metals[0].getGemNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[0]);
+        this.compoundNBT.putInt(metals[1].getGemNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[1]);
         this.compoundNBT.putString("key",unkeyedString);
     }
+
 
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
@@ -62,7 +61,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         if (stack.getTag().getString("key").equals("ESTA LIBRE PAPU")){
             stack.getTag().putString("key", player.getUUID().toString());
         }
-
     }
 
     @Override
@@ -81,8 +79,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         //if (((stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve")) == 0) && ((stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")) == 0)){
             stack.getTag().putString("key", unkeyedString);
         //}
-
-
     }
 
 
