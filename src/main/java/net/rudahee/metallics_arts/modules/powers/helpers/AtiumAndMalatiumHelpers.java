@@ -5,8 +5,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
-import java.util.concurrent.atomic.AtomicReference;
-
 
 public class AtiumAndMalatiumHelpers {
 

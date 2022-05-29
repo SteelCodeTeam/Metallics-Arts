@@ -449,11 +449,7 @@ public class PowersEventHandler {
                              * ETTMETAL FERUCHEMIC
                              ************************/
                             if (playerCapability.isBurning(MetalsNBTData.ETTMETAL)){
-                                BlockPos negative = new BlockPos(player.position()).offset(-x - 2, -y - 2, -z - 2);
-                                BlockPos positive = new BlockPos(player.position()).offset(x + 2, y + 2 , z + 2);
-
-                                LerasiumAndEttmetalHelpers.ettmetalExplotion(event.world,player,new AxisAlignedBB(negative, positive),negative,positive);
-
+                                LerasiumAndEttmetalHelpers.ettmetalExplotion(event.world,player);
                             }
 
 

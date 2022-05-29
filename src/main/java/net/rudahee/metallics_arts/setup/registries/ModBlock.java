@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.setup.registries;
 
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
