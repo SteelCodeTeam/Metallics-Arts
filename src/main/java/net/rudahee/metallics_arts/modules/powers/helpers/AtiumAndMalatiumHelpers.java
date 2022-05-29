@@ -1,0 +1,60 @@
+package net.rudahee.metallics_arts.modules.powers.helpers;
+
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+
+import java.util.concurrent.atomic.AtomicReference;
+
+
+public class AtiumAndMalatiumHelpers {
+
+    private static boolean playerIsBurning = false;
+    private static float damage = 0F;
+
+
+    public static float atiumHit(ServerPlayerEntity playerEntity, PlayerEntity objetive, float amount) {
+
+        playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability ->{
+            if (playerCapability.isBurning(MetalsNBTData.ATIUM)){
+                playerIsBurning = true;
+            } else{
+                playerIsBurning = false;
+            }
+        });
+
+        objetive.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(objetiveCapability ->{
+            if (objetiveCapability.isBurning(MetalsNBTData.ATIUM)){
+                if (playerIsBurning) {
+                    damage = amount;//normal hit
+
+                } else {
+                    if(Math.random()<0.5){
+                        damage = 0F;    //hit with probability
+                    }
+
+                }
+            }else{
+                damage = amount;//normal hit
+            }
+        });
+
+        return damage;
+
+    }
+
+    public static float atiumHitMobPlayer(PlayerEntity playerEntity, float amount) {
+        playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability ->{
+            if (playerCapability.isBurning(MetalsNBTData.ATIUM)){
+                if (Math.random()<0.5){
+                    damage = 0F;
+                }
+                else {
+                    damage = amount;
+                }
+            }
+        });
+        return damage;
+    }
+}

@@ -5,8 +5,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
@@ -15,6 +17,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
+import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.modules.client.ClientUtils;
@@ -103,6 +106,8 @@ public class PowersEventHandler {
                 int[] pos = {(int) player.position().x,(int) player.position().y, (int) player.position().z};
                 String dim = player.level.dimension().getRegistryName().getNamespace();
 
+
+
                 capabilites.setDeathDimension(dim);
                 capabilites.setDeathPos(pos);
 
@@ -182,6 +187,7 @@ public class PowersEventHandler {
     @SubscribeEvent
     public static void onDamageEvent(final LivingHurtEvent event) {
         if (event.getSource().getDirectEntity() instanceof ServerPlayerEntity) {
+
             ServerPlayerEntity playerEntity = (ServerPlayerEntity) event.getSource().getEntity();
 
             playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
@@ -212,6 +218,15 @@ public class PowersEventHandler {
                             ChromiumAndNicrosilHelpers.drainMetalChromium((PlayerEntity) event.getEntityLiving());
                         }
                     }
+                    /*******************************
+                     *   DAMAGE IF ENEMY BURN ATIUM
+                     *******************************/
+                    //event.getEntityliving : recive daño
+                    //playerEntity hace daño
+
+                    if (event.getEntityLiving() instanceof PlayerEntity) {
+                        event.setAmount(AtiumAndMalatiumHelpers.atiumHit(playerEntity, (PlayerEntity) event.getEntityLiving(), event.getAmount()));
+                    }
 
                     /*******************************
                      *   DAMAGE WITH - ZINC -
@@ -238,10 +253,17 @@ public class PowersEventHandler {
                         ZincAndBrassHelpers.removeLootToEnemy(event.getEntityLiving(),0.6);
                     }
 
-
-
             });
         }
+
+
+        /*******************************
+         *   DAMAGE IF PLAYER IS BURN ATIUM
+         *******************************/
+        if (event.getEntityLiving() instanceof ServerPlayerEntity) {
+            event.setAmount(AtiumAndMalatiumHelpers.atiumHitMobPlayer((PlayerEntity) event.getEntityLiving(), event.getAmount()));
+        }
+
     }
 
     public static int ticks = 0;
@@ -356,7 +378,7 @@ public class PowersEventHandler {
                             }
 
                             /************************
-                             * TIN FERUCHEMIC
+                             * PEWTER FERUCHEMIC
                              ************************/
 
 
@@ -420,6 +442,18 @@ public class PowersEventHandler {
                                 if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
                                     DuraluminAndAluminumHelpers.duraluminStoringEffects(player, biome);
                                 }
+                            }
+
+
+                            /************************
+                             * ETTMETAL FERUCHEMIC
+                             ************************/
+                            if (playerCapability.isBurning(MetalsNBTData.ETTMETAL)){
+                                BlockPos negative = new BlockPos(player.position()).offset(-x - 2, -y - 2, -z - 2);
+                                BlockPos positive = new BlockPos(player.position()).offset(x + 2, y + 2 , z + 2);
+
+                                LerasiumAndEttmetalHelpers.ettmetalExplotion(event.world,player,new AxisAlignedBB(negative, positive),negative,positive);
+
                             }
 
 
