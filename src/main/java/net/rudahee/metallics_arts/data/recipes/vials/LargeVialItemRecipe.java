@@ -120,7 +120,6 @@ public class LargeVialItemRecipe extends SpecialRecipe {
     @Override
     public ItemStack assemble(CraftingInventory inv) {
         return this.final_result.copy();
-
     }
 
     @Override

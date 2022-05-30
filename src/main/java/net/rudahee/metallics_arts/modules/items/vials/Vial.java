@@ -5,7 +5,10 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
@@ -16,7 +19,6 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.registries.ModItemGroup;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 
 import javax.annotation.Nullable;
@@ -26,7 +28,7 @@ import java.util.List;
 public abstract class Vial extends Item {
 
     CompoundNBT compoundNBT = new CompoundNBT();
-    private int maxNuggets = 0;
+    private int maxNuggets;
 
     public Vial(Properties properties,int maxNuggets) {
         super(properties);
@@ -36,20 +38,14 @@ public abstract class Vial extends Item {
         }
     }
 
-    public Vial(Properties properties, CompoundNBT compoundNBT) {
-        super(properties);
-    }
-
-    public Vial(Properties properties) {
-        super(properties);
-    }
-
-    public Vial() {
-        super(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new Food.Builder().nutrition(0).build()));
-    }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
+
+        if(!stack.hasTag()){
+            stack.setTag(addVialTags(stack));
+        }
+
         if (Screen.hasControlDown()){
             for (MetalsNBTData metal : MetalsNBTData.values()){
                 if(stack.getTag().getInt(metal.getGemNameLower())>0){
@@ -58,6 +54,14 @@ public abstract class Vial extends Item {
             }
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
+    }
+
+    private static CompoundNBT addVialTags(ItemStack stack) {
+        CompoundNBT nbt = new CompoundNBT();
+        for (MetalsNBTData metal : MetalsNBTData.values()){
+            nbt.putInt(metal.getNameLower(),0);
+        }
+        return nbt;
     }
 
     @Override
@@ -88,7 +92,6 @@ public abstract class Vial extends Item {
         if (!itemStack.hasTag()) {
             return itemStack;
         }
-
         livingEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
             for (MetalsNBTData metal : MetalsNBTData.values()) {
                 if (itemStack.getTag().contains(metal.getNameLower()) && itemStack.getTag().getInt(metal.getNameLower())>0) {
@@ -148,7 +151,7 @@ public abstract class Vial extends Item {
     @Override
     public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
 
-        ItemStack resultItem = null;
+        ItemStack resultItem;
         if(this.maxNuggets==5){
             resultItem = new ItemStack(ModItems.SMALL_VIAL.get(),1);
         }else{

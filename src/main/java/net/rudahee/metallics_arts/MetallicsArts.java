@@ -4,7 +4,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -28,12 +27,8 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModContainers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.lwjgl.system.CallbackI;
-import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
-import top.theillusivec4.curios.api.type.util.IIconHelper;
 
-import java.time.LocalDate;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -42,8 +37,6 @@ public class MetallicsArts
 {
     // Mod id
     public static final String MOD_ID = "metallics_arts";
-
-
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -63,7 +56,6 @@ public class MetallicsArts
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -80,12 +72,9 @@ public class MetallicsArts
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
-
         CapabilityManager.INSTANCE.register(IDefaultInvestedPlayerData.class, new InvestedStorage(), DefaultInvestedPlayerData::new);
         MetallicsPowersSetup.register(event);
         ModNetwork.registerPackets();
-
-
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -100,14 +89,10 @@ public class MetallicsArts
         });
     }
 
-
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
-        //IIconHelper iconHelper = CuriosApi.getIconHelper();
-
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
                 ()-> new SlotTypeMessage.Builder("metalmind_slot").priority(1).size(4).build());
-
     }
 
     private void processIMC(final InterModProcessEvent event)
@@ -128,7 +113,6 @@ public class MetallicsArts
     public void onCommandsRegister(RegisterCommandsEvent event){
         MetallicArtsCommand.register(event.getDispatcher());
     }
-
 
     public void clientInit(final FMLClientSetupEvent e){
         MetallicsPowersSetup.clientInit(e);
