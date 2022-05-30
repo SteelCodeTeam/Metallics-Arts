@@ -1,17 +1,24 @@
 package net.rudahee.metallics_arts.data.client_providers;
 
+import com.sun.tools.javac.tree.JCTree;
+import net.minecraft.client.Minecraft;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.crafting.ShapedRecipe;
+import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
+import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalSpikesData;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
+import net.rudahee.metallics_arts.setup.registries.ModItemGroup;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class ModRecipeProvider extends RecipeProvider {
@@ -202,6 +209,17 @@ public class ModRecipeProvider extends RecipeProvider {
                     .unlockedBy("has_item",has(object.getSpike()))
                     .save(recipesConsumer,new ResourceLocation("alomantic_arts_spike"+object.getName()));
         });
+
+        /*ShapedRecipeBuilder.shaped(ModItems.SMALL_VIAL.get())
+                .define('#',Items.GLASS)
+                .define('x',Items.GLASS_BOTTLE)
+                .define('=',Items.BIRCH_PLANKS)
+                .define('t',)
+                .pattern(" = ")
+                .pattern("#x#")
+                .pattern(" # ")
+                .unlockedBy("has_item",has(ModItems.SMALL_VIAL.get()))
+                .save(recipesConsumer,new ResourceLocation("allomantic_small_vial"));*/
     }
 
 
