@@ -3,7 +3,6 @@ package net.rudahee.metallics_arts.modules.items.metalminds.rings;
 import net.minecraft.nbt.CompoundNBT;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class RingAtiumMalatium extends RingsMindAbstract {
     CompoundNBT nbt = new CompoundNBT();

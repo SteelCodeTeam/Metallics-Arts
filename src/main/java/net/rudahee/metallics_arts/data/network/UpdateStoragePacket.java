@@ -6,9 +6,6 @@ import net.minecraftforge.fml.network.NetworkEvent;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
-import top.theillusivec4.curios.api.type.util.IIconHelper;
 
 import java.util.function.Supplier;
 
