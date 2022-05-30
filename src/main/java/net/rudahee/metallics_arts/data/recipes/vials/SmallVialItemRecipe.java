@@ -71,11 +71,8 @@ public class SmallVialItemRecipe extends SpecialRecipe {
                     if (actualIngredient.getTag() != null){
                         for (MetalsNBTData metal : MetalsNBTData.values()) {
                             if (actualIngredient.getTag().contains(metal.getGemNameLower())){
-                                cantStorage[metal.getIndex()] = metal.getMaxAllomanticTicksStorage() / cantMaxPep;
+                                cantStorage[metal.getIndex()] = (metal.getMaxAllomanticTicksStorage()/2)/cantMaxPep;
                                 metalsEnVial[metal.getIndex()] = actualIngredient.getTag().getInt(metal.getNameLower());
-                                if(metalsEnVial[metal.getIndex()] >= metal.getMaxAllomanticTicksStorage()){
-                                    return false;
-                                }
                             }
                         }
                         ingredients[0] = true;
@@ -88,6 +85,9 @@ public class SmallVialItemRecipe extends SpecialRecipe {
                         if ((actualIngredient.getItem().getDescriptionId()).equals("item.minecraft."+metal.getNameLower()+"_nugget")
                                 ||(actualIngredient.getItem().getDescriptionId()).equals("item.metallics_arts."+metal.getNameLower()+"_nugget")){
                             if (addMetal[metal.getIndex()]==true){
+                                return false;
+                            }
+                            if(metalsEnVial[metal.getIndex()] >= metal.getMaxAllomanticTicksStorage()/2){
                                 return false;
                             }
                             addMetal[metal.getIndex()]=true;
