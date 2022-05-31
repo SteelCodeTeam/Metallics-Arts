@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.data.client_providers;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.data.*;
+import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -10,6 +11,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.ShapedRecipe;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
+import net.rudahee.metallics_arts.modules.items.vials.small_vial.SmallVial;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalSpikesData;
@@ -211,19 +213,31 @@ public class ModRecipeProvider extends RecipeProvider {
                     .unlockedBy("has_item", has(object.getSpike()))
                     .save(recipesConsumer, new ResourceLocation("alomantic_arts_spike" + object.getName()));
         });
-    }
-}
 
-        /*ShapedRecipeBuilder.shaped(ModItems.SMALL_VIAL.get())
+        ShapedRecipeBuilder.shaped(ModItems.SMALL_VIAL.get())
                 .define('#',Items.GLASS)
                 .define('x',Items.GLASS_BOTTLE)
-                .define('=',Items.BIRCH_PLANKS)
-                .pattern(" = ")
+                .define('+',Items.BIRCH_PLANKS)
+                .pattern(" + ")
                 .pattern("#x#")
                 .pattern(" # ")
                 .unlockedBy("has_item",has(ModItems.SMALL_VIAL.get()))
-                .save(recipesConsumer,new ResourceLocation("allomantic_small_vial"));/*
+                .save(recipesConsumer,new ResourceLocation("allomantic_small_vial"));
 
-         */
+        ShapedRecipeBuilder.shaped(ModItems.LARGE_VIAL.get())
+                .define('#',Items.GLASS)
+                .define('x',ModItems.SMALL_VIAL.get())
+                .define('+',Items.BIRCH_PLANKS)
+                .pattern(" + ")
+                .pattern("#x#")
+                .pattern(" # ")
+                .unlockedBy("has_item",has(ModItems.LARGE_VIAL.get()))
+                .save(recipesConsumer,new ResourceLocation("allomantic_large_vial"));
+    }
+}
+
+
+
+
 
 

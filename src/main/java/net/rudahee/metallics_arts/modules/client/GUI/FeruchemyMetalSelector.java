@@ -162,7 +162,7 @@ public class FeruchemyMetalSelector extends Screen {
 
 
             if(this.point1!=null&&this.point2!=null&&this.point3!=null&&this.tipoTemp!=-1){
-                pintar(buf,this.point1,this.point2,this.point3,this.metalTemp,mouse,this.tipoTemp,this.paridadTemp,data);
+                pintadoUnico(buf,this.point1,this.point2,this.point3,this.metalTemp,mouse,this.tipoTemp,this.paridadTemp,data);
             }
 
             tess.end();
@@ -236,8 +236,6 @@ public class FeruchemyMetalSelector extends Screen {
     }
 
 
-
-
     public void pintar (BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse,int tipo, boolean paridad, IDefaultInvestedPlayerData data){
 
         Point vertex1 = new Point(a.x,a.y);
@@ -281,7 +279,6 @@ public class FeruchemyMetalSelector extends Screen {
                 actualColor = normalPar;
             }
 
-
         }else{
             if (!data.hasFeruchemicPower(metal)||!data.getMetalMindEquiped(metal.getGroup())) { // || si no tiene equipada la mente de ese metal
                 actualColor = noPowerImpar;
@@ -300,7 +297,7 @@ public class FeruchemyMetalSelector extends Screen {
 
 
     }
-    /*public void pintadoUnico (BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse,int tipo, boolean paridad, IDefaultInvestedPlayerData data){
+    public void pintadoUnico (BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse,int tipo, boolean paridad, IDefaultInvestedPlayerData data){
 
         Point vertex1 = new Point(a.x,a.y);
         Point vertex2 = new Point(b.x,b.y);
@@ -314,37 +311,32 @@ public class FeruchemyMetalSelector extends Screen {
 
         int actualColor[];
         if(paridad){
-            actualColor = new int[]{125, 125, 125, 255};
-
-            if (!data.hasFeruchemicPower(metal)) { // || si no tiene equipada la mente de ese metal
-                actualColor = new int[]{84, 91, 120, 255};
-            }
-            if(!data.getMetalMindEquiped(metal.getGroup())){
-                actualColor = new int[]{220, 20, 0, 255};
-            }
-
-            if (data.isBurning(metal)) {//logica de almacenamiento y decante
-                actualColor = new int[]{73, 180, 199, 255};
+            if (!data.hasFeruchemicPower(metal)||!data.getMetalMindEquiped(metal.getGroup())) { // || si no tiene equipada la mente de ese metal
+                actualColor = noPowerPar;
+            }else if(data.isStoring(metal)){
+                actualColor = isStoragePar;
+            }else if (data.isDecanting(metal)){
+                actualColor = isDecantingPar;
+            }else {
+                actualColor = normalPar;
             }
 
         }else{
-            actualColor = new int[]{109, 109, 109, 255};
-            if (!data.hasFeruchemicPower(metal)) { // || si no tiene equipada la mente de ese metal
-                actualColor = new int[]{103, 110, 140, 255};
-            }
-            if(!data.getMetalMindEquiped(metal.getGroup())){
-                actualColor = new int[]{255, 0, 0, 255};
-            }
-
-            if (data.isBurning(metal)) {//logica de almacenamiento y decante
-                actualColor = new int[]{103, 195, 211, 255};
+            if (!data.hasFeruchemicPower(metal)||!data.getMetalMindEquiped(metal.getGroup())) { // || si no tiene equipada la mente de ese metal
+                actualColor = noPowerImpar;
+            }else if(data.isStoring(metal)){
+                actualColor = isStorageImpar;
+            }else if (data.isDecanting(metal)){
+                actualColor = isDecantingImpar;
+            }else {
+                actualColor = normalImpar;
             }
         }
 
         buf.vertex(a.x,a.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
         buf.vertex(b.x,b.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
         buf.vertex(c.x,c.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
-    }*/
+    }
 
 
 

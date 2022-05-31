@@ -39,44 +39,29 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         metalsMaxReserve[0]=maxReserve1;
         metalsMaxReserve[1]=maxReserve2;
 
-        this.compoundNBT.putInt(metals[0].getGemNameLower()+"_feruchemic_reserve",0);
-        this.compoundNBT.putInt(metals[1].getGemNameLower()+"_feruchemic_reserve",0);
-        this.compoundNBT.putInt(metals[0].getGemNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[0]);
-        this.compoundNBT.putInt(metals[1].getGemNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[1]);
-        this.compoundNBT.putString("key",unkeyedString);
     }
 
 
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-        ICurioItem.super.onEquip(slotContext, prevStack, stack);
         PlayerEntity player = (PlayerEntity) slotContext.getWearer();
+
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             data.setMetalMindEquiped(this.metals[0].getGroup(),true);
             data.setMetalMindEquiped(this.metals[1].getGroup(),true);
             ModNetwork.sync(data,player);
         });
-        if(stack.hasTag()){
-            if (stack.getTag().getString("key").equals("ESTA LIBRE PAPU")){
+        if(stack.hasTag()) {
+            if (stack.getTag().getString("key").equals("Nobody")) {
                 stack.getTag().putString("key", player.getUUID().toString());
             }
-        } else {
-            CompoundNBT local = new CompoundNBT();
-            local.putInt(metals[0].getGemNameLower()+"_feruchemic_reserve",0);
-            local.putInt(metals[1].getGemNameLower()+"_feruchemic_reserve",0);
-            local.putInt(metals[0].getGemNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[0]);
-            local.putInt(metals[1].getGemNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[1]);
-            local.putString("key", player.getUUID().toString());
-            stack.setTag(local);
         }
-
+        ICurioItem.super.onEquip(slotContext, prevStack, stack);
     }
-
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
 
-        ICurioItem.super.onUnequip(slotContext, newStack, stack);
         PlayerEntity player = (PlayerEntity) slotContext.getWearer();
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
@@ -91,15 +76,13 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         });
 
         if(stack.hasTag()){
-            if (((stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve")) == 0) && ((stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")) == 0)){
+            if ((stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") == 0) && (stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")) == 0){
                 CompoundNBT local = stack.getTag();
                 local.putString("key",unkeyedString);
                 stack.setTag(local);
             }
         }
-        //
-
-        //}
+        ICurioItem.super.onUnequip(slotContext, newStack, stack);
     }
 
 
@@ -169,14 +152,25 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
+        if(!stack.hasTag()){
+            stack.setTag(addBandTags());
+        }
+        if (stack.hasTag()) {
+            toolTips.add(new StringTextComponent(metals[0].getNameLower().substring(0,1).toUpperCase()+metals[0].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
+            toolTips.add(new StringTextComponent(metals[1].getNameLower().substring(0,1).toUpperCase()+metals[1].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
+            toolTips.add(new StringTextComponent("Owner: "+ (stack.getTag().getString("key").equals(unkeyedString) ? "Nobody" : world.getPlayerByUUID(UUID.fromString(stack.getTag().getString("key"))).getDisplayName().toString())));
+        }
         super.appendHoverText(stack, world, toolTips, flagIn);
-        //if (Screen.hasControlDown()) {
-            if (stack.hasTag()) {
-                toolTips.add(new StringTextComponent(metals[0].getNameLower().substring(0,1).toUpperCase()+metals[0].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
-                toolTips.add(new StringTextComponent(metals[1].getNameLower().substring(0,1).toUpperCase()+metals[1].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
-                toolTips.add(new StringTextComponent("Owner: "+ (stack.getTag().getString("key").equals(unkeyedString) ? "Nobody" : world.getPlayerByUUID(UUID.fromString(stack.getTag().getString("key"))).getDisplayName().toString())));
-            }
-        //}
+    }
+
+    private CompoundNBT addBandTags() {
+        CompoundNBT local = new CompoundNBT();
+        local.putInt(this.metals[0].getGemNameLower()+"_feruchemic_reserve",0);
+        local.putInt(this.metals[1].getGemNameLower()+"_feruchemic_reserve",0);
+        local.putInt(this.metals[0].getGemNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[0]);
+        local.putInt(this.metals[1].getGemNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[1]);
+        local.putString("key",unkeyedString);
+        return local;
     }
 
 

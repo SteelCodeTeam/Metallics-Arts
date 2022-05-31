@@ -400,7 +400,10 @@ public class ModItems {
             }
     );
 
-
+/*
+Item item = new Item(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
+                ITEM_METAL_INGOT.put(metal.getMetalNameLower(), item);
+ */
     public static RegistryObject<Item> LARGE_VIAL= register("big_vial",
             () -> {
                 return new LargeVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new Food.Builder().nutrition(0).build()));
@@ -408,7 +411,9 @@ public class ModItems {
 
     public static RegistryObject<Item> SMALL_VIAL = register("small_vial",
             () -> {
-                return new SmallVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new Food.Builder().nutrition(0).build()));
+        Item item = new SmallVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new Food.Builder().nutrition(0).build()));
+        return item;
+                //return new SmallVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new Food.Builder().nutrition(0).build()));
             });
 
     public static void register() {

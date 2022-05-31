@@ -93,8 +93,28 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/dueling_staff","item/combat/dueling_staff");
         builder(itemGenerated,"item/obsidian_axe","item/combat/obsidian_axe");
 
-        builder(itemGenerated,"item/big_vial","item/consumables/big_vial");
-        builder(itemGenerated,"item/small_vial","item/consumables/small_vial");
+
+        ModelFile mf_small = builder(itemGenerated,"item/small_vial_fill","item/consumables/small_vial_fill");
+
+        getBuilder("small_vial")
+                .parent(itemGenerated)
+                .texture("layer0","item/consumables/small_vial")
+                .override()
+                .predicate(mcLoc("custom_model_data"),1)
+                .model(mf_small)
+                .end();
+
+        ModelFile mf_large = builder(itemGenerated,"item/big_vial_fill","item/consumables/big_vial_fill");
+
+        getBuilder("big_vial")
+                .parent(itemGenerated)
+                .texture("layer0","item/consumables/big_vial")
+                .override()
+                .predicate(mcLoc("custom_model_data"),1)
+                .model(mf_large)
+                .end();
+
+
     }
     private ItemModelBuilder builder (ModelFile itemGenerated, String outPath, String texturePath){
         return  getBuilder(outPath).parent(itemGenerated).texture("layer0",texturePath);
