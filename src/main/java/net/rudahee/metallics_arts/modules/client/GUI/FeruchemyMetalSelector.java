@@ -95,9 +95,7 @@ public class FeruchemyMetalSelector extends Screen {
         this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
 
             Point center = new Point(this.width / 2,this.height / 2);
-
             Point mouse = new Point(mx,my);
-
 
             Point xPositivo = new Point((int) (center.x*1.2), center.y);
             Point xNegativo = new Point(center.x-(xPositivo.x-center.x), center.y);
@@ -162,7 +160,14 @@ public class FeruchemyMetalSelector extends Screen {
 
 
             if(this.point1!=null&&this.point2!=null&&this.point3!=null&&this.tipoTemp!=-1){
-                pintadoUnico(buf,this.point1,this.point2,this.point3,this.metalTemp,mouse,this.tipoTemp,this.paridadTemp,data);
+                if(pointInTriangle(mouse,this.point1,this.point2,this.point3)) {
+                    pintadoUnico(buf,this.point1,this.point2,this.point3,this.metalTemp,mouse,this.tipoTemp,this.paridadTemp,data);
+                }else {
+                     this.point1 = null;
+                     this.point2 = null;
+                     this.point3 = null;
+                     this.metalTemp=null;
+                }
             }
 
             tess.end();
@@ -171,31 +176,76 @@ public class FeruchemyMetalSelector extends Screen {
 
             //pintado
 
-            addpintado(matrixStack,xPositivo,intermedioXPosYNeg,xPositivoExterno,MetalsNBTData.BRASS,mouse);
-            addpintado(matrixStack,xPositivo,intermedioXPosYPos,xPositivoExterno,MetalsNBTData.ZINC,mouse);
-            addpintado(matrixStack,yPositivo,yPositivoExterno,intermedioXPosYPos,MetalsNBTData.IRON,mouse);
-            addpintado(matrixStack,yPositivo,yPositivoExterno,intermedioXNegYPos,MetalsNBTData.STEEL,mouse);
-            addpintado(matrixStack,xNegativo,intermedioXNegYPos,xNegativoExterno,MetalsNBTData.CHROMIUM,mouse);
-            addpintado(matrixStack,xNegativo,intermedioXNegYNeg,xNegativoExterno,MetalsNBTData.NICROSIL,mouse);
-            addpintado(matrixStack,yNegativo,yNegativoExterno,intermedioXNegYNeg,MetalsNBTData.CADMIUM,mouse);
-            addpintado(matrixStack,yNegativo,yNegativoExterno,intermedioXPosYNeg,MetalsNBTData.BENDALLOY,mouse);
-
-            addpintado(matrixStack,xPositivo,intermedioXPosYNeg,center,MetalsNBTData.BRONZE,mouse);
-            addpintado(matrixStack,xPositivo,intermedioXPosYPos,center,MetalsNBTData.COPPER,mouse);
-            addpintado(matrixStack,yPositivo,center,intermedioXPosYPos,MetalsNBTData.TIN,mouse);
-            addpintado(matrixStack,yPositivo,center,intermedioXNegYPos,MetalsNBTData.PEWTER,mouse);
-            addpintado(matrixStack,xNegativo,intermedioXNegYPos,center,MetalsNBTData.DURALUMIN,mouse);
-            addpintado(matrixStack,xNegativo,intermedioXNegYNeg,center,MetalsNBTData.ALUMINUM,mouse);
-            addpintado(matrixStack,yNegativo,center,intermedioXNegYNeg,MetalsNBTData.GOLD,mouse);
-            addpintado(matrixStack,yNegativo,center,intermedioXPosYNeg,MetalsNBTData.ELECTRUM,mouse);
-
-            addpintado(matrixStack,intermedioXPosYNegExterno,new Point(intermedioXPosYNegExterno.x,intermedioXPosYNegExterno.y-large),new Point(intermedioXPosYNegExterno.x-large,intermedioXPosYNegExterno.y),MetalsNBTData.ATIUM,mouse);
-            addpintado(matrixStack,intermedioXPosYPosExterno,new Point(intermedioXPosYPosExterno.x,intermedioXPosYPosExterno.y+large),new Point(intermedioXPosYPosExterno.x-large,intermedioXPosYPosExterno.y),MetalsNBTData.MALATIUM,mouse);
-            addpintado(matrixStack,intermedioXNegYNegExterno,new Point(intermedioXNegYNegExterno.x,intermedioXNegYNegExterno.y-large),new Point(intermedioXNegYNegExterno.x+large,intermedioXNegYNegExterno.y),MetalsNBTData.ETTMETAL,mouse);
-            addpintado(matrixStack,intermedioXNegYPosExterno,new Point(intermedioXNegYPosExterno.x,intermedioXNegYPosExterno.y+large),new Point(intermedioXNegYPosExterno.x+large,intermedioXNegYPosExterno.y),MetalsNBTData.LERASIUM,mouse);
-
-            if(this.point1!=null&&this.point2!=null&&this.point3!=null){
-                addpintado(matrixStack,this.point1,this.point2,this.point3,this.metalTemp,mouse);
+            if (this.metalTemp != MetalsNBTData.BRASS) {
+                addpintado(matrixStack, xPositivo, intermedioXPosYNeg, xPositivoExterno, MetalsNBTData.BRASS, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.ZINC) {
+                addpintado(matrixStack, xPositivo, intermedioXPosYPos, xPositivoExterno, MetalsNBTData.ZINC, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.IRON) {
+                addpintado(matrixStack, yPositivo, yPositivoExterno, intermedioXPosYPos, MetalsNBTData.IRON, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.STEEL) {
+                addpintado(matrixStack, yPositivo, yPositivoExterno, intermedioXNegYPos, MetalsNBTData.STEEL, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.CHROMIUM) {
+                addpintado(matrixStack, xNegativo, intermedioXNegYPos, xNegativoExterno, MetalsNBTData.CHROMIUM, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.NICROSIL) {
+                addpintado(matrixStack, xNegativo, intermedioXNegYNeg, xNegativoExterno, MetalsNBTData.NICROSIL, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.CADMIUM) {
+                addpintado(matrixStack, yNegativo, yNegativoExterno, intermedioXNegYNeg, MetalsNBTData.CADMIUM, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.BENDALLOY) {
+                addpintado(matrixStack, yNegativo, yNegativoExterno, intermedioXPosYNeg, MetalsNBTData.BENDALLOY, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.BRONZE) {
+                addpintado(matrixStack, xPositivo, intermedioXPosYNeg, center, MetalsNBTData.BRONZE, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.COPPER) {
+                addpintado(matrixStack, xPositivo, intermedioXPosYPos, center, MetalsNBTData.COPPER, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.TIN) {
+                addpintado(matrixStack, yPositivo, center, intermedioXPosYPos, MetalsNBTData.TIN, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.PEWTER) {
+                addpintado(matrixStack, yPositivo, center, intermedioXNegYPos, MetalsNBTData.PEWTER, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.DURALUMIN) {
+                addpintado(matrixStack, xNegativo, intermedioXNegYPos, center, MetalsNBTData.DURALUMIN, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.ALUMINUM) {
+                addpintado(matrixStack, xNegativo, intermedioXNegYNeg, center, MetalsNBTData.ALUMINUM, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.GOLD) {
+                addpintado(matrixStack, yNegativo, center, intermedioXNegYNeg, MetalsNBTData.GOLD, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.ELECTRUM) {
+                addpintado(matrixStack, yNegativo, center, intermedioXPosYNeg, MetalsNBTData.ELECTRUM, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.ATIUM) {
+                addpintado(matrixStack, intermedioXPosYNegExterno,
+                        new Point(intermedioXPosYNegExterno.x, intermedioXPosYNegExterno.y - large),
+                        new Point(intermedioXPosYNegExterno.x - large, intermedioXPosYNegExterno.y), MetalsNBTData.ATIUM, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.MALATIUM) {
+                addpintado(matrixStack, intermedioXPosYPosExterno,
+                        new Point(intermedioXPosYPosExterno.x, intermedioXPosYPosExterno.y + large),
+                        new Point(intermedioXPosYPosExterno.x - large, intermedioXPosYPosExterno.y), MetalsNBTData.MALATIUM, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.ETTMETAL) {
+                addpintado(matrixStack, intermedioXNegYNegExterno,
+                        new Point(intermedioXNegYNegExterno.x, intermedioXNegYNegExterno.y - large),
+                        new Point(intermedioXNegYNegExterno.x + large, intermedioXNegYNegExterno.y), MetalsNBTData.ETTMETAL, mouse);
+            }
+            if (this.metalTemp != MetalsNBTData.LERASIUM) {
+                addpintado(matrixStack, intermedioXNegYPosExterno,
+                        new Point(intermedioXNegYPosExterno.x, intermedioXNegYPosExterno.y + large),
+                        new Point(intermedioXNegYPosExterno.x + large, intermedioXNegYPosExterno.y), MetalsNBTData.LERASIUM, mouse);
+            }
+            if (this.point1 != null && this.point2 != null && this.point3 != null) {
+                addpintado(matrixStack, this.point1, this.point2, this.point3, this.metalTemp, mouse);
             }
 
             RenderSystem.enableRescaleNormal();
@@ -362,7 +412,6 @@ public class FeruchemyMetalSelector extends Screen {
         }else if (mouseButton==0){
             toggleSelectedLeft();
         }
-
         return super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 
