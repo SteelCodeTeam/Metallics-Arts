@@ -156,8 +156,6 @@ public class AllomanticMetalOverlay {
 
         });
 
-
-
             animationCounter++;
             if (animationCounter > 300) {
                 animationCounter = 0;

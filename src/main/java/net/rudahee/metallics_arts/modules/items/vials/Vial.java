@@ -158,9 +158,7 @@ public abstract class Vial extends Item {
             for (MetalsNBTData mt : MetalsNBTData.values()) {
                 nbt.putInt(mt.getGemNameLower(), 0);
             }
-
             nbt.putInt("CustomModelData", 1);
-            //texture
             resultItem.setTag(nbt);
             items.add(resultItem);
         }

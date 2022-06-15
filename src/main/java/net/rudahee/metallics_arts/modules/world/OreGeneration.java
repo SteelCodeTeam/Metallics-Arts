@@ -10,11 +10,12 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.enums.metals.MetalGenerationData;
 
 import java.util.Arrays;
 import java.util.List;
-
 
 public class OreGeneration {
     public static void generateOres (final BiomeLoadingEvent event){

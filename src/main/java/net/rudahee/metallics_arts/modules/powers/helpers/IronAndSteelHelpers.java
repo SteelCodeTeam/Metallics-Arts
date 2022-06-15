@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.item.ItemFrameEntity;
@@ -20,9 +21,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraftforge.common.ForgeMod;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersConfig;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
 
+import javax.naming.directory.AttributeModificationException;
+import javax.naming.directory.Attributes;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -120,6 +124,11 @@ public class IronAndSteelHelpers {
         return 2.4f;
     }
 
+    public static void removeGravity(PlayerEntity player){
+        //player.canChangeDimensions()
+
+        //player.getAttribute(ForgeMod.ENTITY_GRAVITY.get())
+    }
 
     public static void addSpeed(PlayerEntity player, int effectLevel){
         player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, effectLevel, true, false));

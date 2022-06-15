@@ -418,9 +418,9 @@ public class PowersEventHandler {
                                     BendalloyAndCadmiunHelpers.throwBreathEffect(player, 10);
                                 }
                             } else if (playerCapability.isStoring(MetalsNBTData.CADMIUM)) {
-                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
-                                    BendalloyAndCadmiunHelpers.drowningEffect(player);
-                                }
+                                //if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
+                                    BendalloyAndCadmiunHelpers.drowningEffect(player,actualTick);
+                                //}
                             }
 
                             /************************

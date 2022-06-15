@@ -8,6 +8,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.ITeleporter;
+import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 import java.util.function.Function;
 
@@ -31,7 +33,6 @@ public class GoldAndElectrumHelpers {
                         }
                     });
                 }
-
                 player.teleportToWithTicket(pos.getX(), pos.getY() + 1.5, pos.getZ());
                 player.fallDistance = 0.0F;
             }

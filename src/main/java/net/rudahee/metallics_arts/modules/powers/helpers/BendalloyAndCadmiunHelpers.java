@@ -6,6 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
@@ -14,6 +15,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -129,17 +131,22 @@ public class BendalloyAndCadmiunHelpers {
 
     }
 
-
-
-    public static void drowningEffect(PlayerEntity player){
-
-        if (!player.isEyeInFluid(FluidTags.WATER) && !player.isEyeInFluid(FluidTags.LAVA)) {
-            player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 40, 0, true, false));
-        }
-
-        if (player.isEyeInFluid(FluidTags.WATER) || player.isEyeInFluid(FluidTags.LAVA)) {
-            player.setAirSupply(player.getAirSupply() - (player.getAirSupply() / 2));
-            player.hurt(DamageSource.DROWN, 2);
+    public static void drowningEffect(PlayerEntity player,int actualtick) {
+        if (!player.isEyeInFluid(FluidTags.WATER)) {
+            if (player.getAirSupply()<=-10) {
+                player.setAirSupply(-10);
+                if (actualtick % 10 == 0) {
+                    player.hurt(DamageSource.DROWN,1);
+                }
+            } else {
+                player.setAirSupply(player.getAirSupply()-6);
+            }
+        } else {
+            if (player.getAirSupply() <= 0) {
+                player.setAirSupply(0);
+            }else {
+                player.setAirSupply(player.getAirSupply()-1);
+            }
         }
     }
 
