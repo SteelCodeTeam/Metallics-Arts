@@ -22,8 +22,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.common.ForgeMod;
+import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersConfig;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 import javax.naming.directory.AttributeModificationException;
 import javax.naming.directory.Attributes;
@@ -35,8 +37,10 @@ public class IronAndSteelHelpers {
 
     public static final byte PUSH = 1;
     public static final byte PULL = -1;
+
     private static final Pattern ACTIVE_METAL_REGEX = Pattern.compile(
             ".*(iron|steel|tin_|pewter|zinc|brass|copper|bronze|duralumin|chromium|nicrosil|gold|electrum|cadmium|bendalloy|lead_|silver|platinum|nickle|nickel).*");
+
     public static boolean doesResourceContainsMetal(ResourceLocation input) {
         return ACTIVE_METAL_REGEX.matcher(input.getPath()).matches();
     }
@@ -120,8 +124,16 @@ public class IronAndSteelHelpers {
         }
     }
 
-    public static float getMultiplier(PlayerEntity player) {
-        return 2.4f;
+    public static float getMultiplier(PlayerEntity player,boolean duralumin, boolean lerasium) {
+        if (duralumin && lerasium){
+            return 6f;
+        } else if (duralumin && !lerasium){
+            return 4f;
+        } else if (!duralumin && lerasium){
+            return 2f;
+        } else {
+            return 1f;
+        }
     }
 
     public static void removeGravity(PlayerEntity player){
