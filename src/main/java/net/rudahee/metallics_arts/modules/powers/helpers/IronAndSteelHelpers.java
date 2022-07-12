@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.entity.item.ItemEntity;
@@ -26,6 +27,7 @@ import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersConfig;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import org.lwjgl.system.CallbackI;
 
 import javax.naming.directory.AttributeModificationException;
 import javax.naming.directory.Attributes;
@@ -136,17 +138,22 @@ public class IronAndSteelHelpers {
         }
     }
 
-    public static void removeGravity(PlayerEntity player){
-        //player.canChangeDimensions()
-
-        //player.getAttribute(ForgeMod.ENTITY_GRAVITY.get())
-    }
-
     public static void addSpeed(PlayerEntity player, int effectLevel){
         player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, effectLevel, true, false));
     }
 
     public static void removeSpeed(PlayerEntity player, int effectLevel){
         player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, effectLevel, true, false));
+    }
+
+    public static void reduceWeight(PlayerEntity player) {
+        player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 20, 1, true, false));
+        player.addEffect(new EffectInstance(Effects.JUMP, 20, 2, true, false));
+        player.addEffect(new EffectInstance(Effects.WEAKNESS, 20, 1, true, false));
+    }
+
+    public static void increaseWeight(PlayerEntity player) {
+        player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 5, true, false));
+        player.addEffect(new EffectInstance(Effects.JUMP, 20, 128, true, true));
     }
 }

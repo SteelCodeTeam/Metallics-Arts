@@ -28,7 +28,6 @@ import java.util.UUID;
 
 public abstract class BandMindAbstract extends Item implements ICurioItem {
 
-    //CompoundNBT compoundNBT = new CompoundNBT();
     private MetalsNBTData[] metals = new MetalsNBTData[2];
     private int[] metalsMaxReserve = new int[2];
     public String unkeyedString = "Nobody";
@@ -40,7 +39,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
         metalsMaxReserve[0]=maxReserve1;
         metalsMaxReserve[1]=maxReserve2;
-
     }
 
     @Override
@@ -79,7 +77,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                 ModNetwork.sync(data,player);
             });
         }
-
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
     }
 
@@ -150,7 +147,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
-        super.appendHoverText(stack, world, toolTips, flagIn);
         if(!stack.hasTag()){
             stack.setTag(addBandTags());
         }
@@ -159,6 +155,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             toolTips.add(new StringTextComponent(metals[1].getNameLower().substring(0,1).toUpperCase()+metals[1].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
             toolTips.add(new StringTextComponent("Owner: "+ (stack.getTag().getString("key"))));
         }
+        super.appendHoverText(stack, world, toolTips, flagIn);
     }
 
     private CompoundNBT addBandTags() {
@@ -170,8 +167,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         nbt.putString("key",this.unkeyedString);
         return nbt;
     }
-
-
 
     private static boolean needUpdate = false;
 
@@ -223,46 +218,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                         needUpdate = true;
 
                     }
-
-                    /*
-                    if (data.isDecanting(metals[0])) {
-                        if (stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") > 0) {
-                            nbtLocal.putInt(metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve")-1));
-                            stack.setTag(nbtLocal);
-                        } else {
-                            data.setDecanting(metals[0], false);
-                        }
-                        needUpdate = true;
-                    } else if (data.isStoring(metals[0])) {
-                        if (stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve") < this.metalsMaxReserve[0]) {
-                            nbtLocal.putInt(metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve")+1));
-                            stack.setTag(nbtLocal);
-                        } else {
-                            data.setStoring(metals[0], false);
-                        }
-                        needUpdate = true;
-                    }
-                    if (data.isDecanting(metals[1])) {
-                        if (stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve") > 0) {
-                            nbtLocal.putInt(metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")-1));
-                            stack.setTag(nbtLocal);
-                        } else {
-                            data.setDecanting(metals[1], false);
-                        }
-                        needUpdate = true;
-                    } else if (data.isStoring(metals[1])) {
-                        if (stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve") < this.metalsMaxReserve[1]) {
-                            nbtLocal.putInt(metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve")+1));
-                            stack.setTag(nbtLocal);
-                        } else {
-                            data.setStoring(metals[1], false);
-                        }
-                        needUpdate = true;
-                    }
-                    if (needUpdate) {
-                        ModNetwork.sync(data, player);
-                    }
-                     */
                 });
             }
         }

@@ -406,9 +406,9 @@ public class PowersEventHandler {
                              // TODO
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.IRON)) {
-
+                                IronAndSteelHelpers.increaseWeight(player);
                             } else if (playerCapability.isStoring(MetalsNBTData.IRON)) {
-
+                                IronAndSteelHelpers.reduceWeight(player);
                             }
 
                             /************************
@@ -464,8 +464,6 @@ public class PowersEventHandler {
                                     ChromiumAndNicrosilHelpers.badLuck(player,true);
                                 else
                                     ChromiumAndNicrosilHelpers.badLuck(player,false);
-
-
                             }
 
                             if (actualTick >= 90) {
