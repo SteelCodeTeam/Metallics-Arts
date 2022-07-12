@@ -341,13 +341,13 @@ public class PowersEventHandler {
                             /************************
                              * ZINC FERUCHEMIC
                              ************************/
-                            if (playerCapability.isDecanting(MetalsNBTData.ZINC)) {
+                            /*if (playerCapability.isDecanting(MetalsNBTData.ZINC)) {
                                 if (actualTick == 80) {
                                     player.addEffect(new EffectInstance(Effects.LUCK,20,90,true, false));
                                 }
                             } else if (playerCapability.isStoring(MetalsNBTData.ZINC)) {
                                 player.addEffect(new EffectInstance(Effects.UNLUCK,20,1,true, false));
-                            }
+                            }*/
 
                             /************************
                              * GOLD FERUCHEMIC
@@ -388,6 +388,7 @@ public class PowersEventHandler {
                             /************************
                              * PEWTER FERUCHEMIC
                              ************************/
+
 
 
 
@@ -452,14 +453,20 @@ public class PowersEventHandler {
                                 }
                             }
 
-
                             /************************
-                             * ETTMETAL FERUCHEMIC
+                             * CHROMIUM FERUCHEMIC
                              ************************/
-                            if (playerCapability.isBurning(MetalsNBTData.ETTMETAL)){
-                                LerasiumAndEttmetalHelpers.ettmetalExplotion(event.world,player);
-                            }
+                            //fortuna
+                            if (playerCapability.isDecanting(MetalsNBTData.CHROMIUM)){
+                                ChromiumAndNicrosilHelpers.goodLuck(player);
+                            } else if (playerCapability.isStoring(MetalsNBTData.CHROMIUM)){
+                                if (actualTick==90)
+                                    ChromiumAndNicrosilHelpers.badLuck(player,true);
+                                else
+                                    ChromiumAndNicrosilHelpers.badLuck(player,false);
 
+
+                            }
 
                             if (actualTick >= 90) {
                                 actualTick = 0;
@@ -622,9 +629,15 @@ public class PowersEventHandler {
                             if (event.world instanceof ServerWorld) {
                                 BlockPos negative = new BlockPos(player.position()).offset(-x - 4, -y - 4, -z - 4);
                                 BlockPos positive = new BlockPos(player.position()).offset(x + 4, y + 4, z + 4);
-
                                 CopperAndBronzeHelpers.CopperAiEntityManipulation(new AxisAlignedBB(negative, positive), player, event.world);
                             }
+                        }
+
+                        /************************
+                         * ETTMETAL
+                         ************************/
+                        if (playerCapability.isBurning(MetalsNBTData.ETTMETAL)){
+                            LerasiumAndEttmetalHelpers.ettmetalExplotion(event.world,player);
                         }
 
                         /************************
