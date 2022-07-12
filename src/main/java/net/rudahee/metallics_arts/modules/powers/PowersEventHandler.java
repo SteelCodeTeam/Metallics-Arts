@@ -459,6 +459,7 @@ public class PowersEventHandler {
                             //fortuna
                             if (playerCapability.isDecanting(MetalsNBTData.CHROMIUM)){
                                 ChromiumAndNicrosilHelpers.goodLuck(player);
+                                //player.getLuck()
                             } else if (playerCapability.isStoring(MetalsNBTData.CHROMIUM)){
                                 if (actualTick==90)
                                     ChromiumAndNicrosilHelpers.badLuck(player,true);

@@ -22,11 +22,11 @@ public class ChromiumAndNicrosilHelpers {
 
     public static void goodLuck(PlayerEntity player) {
 
-        player.addEffect(new EffectInstance(Effects.LUCK,40,10,true, true));
+        player.addEffect(new EffectInstance(Effects.LUCK,40,15,true, true));
     }
 
     public static void badLuck(PlayerEntity player, boolean tick) {
-        player.addEffect(new EffectInstance(Effects.UNLUCK,40,90,true, true));
+        player.addEffect(new EffectInstance(Effects.UNLUCK,40,15,true, true));
 
         if (tick){
             if (Math.random()<0.5) {

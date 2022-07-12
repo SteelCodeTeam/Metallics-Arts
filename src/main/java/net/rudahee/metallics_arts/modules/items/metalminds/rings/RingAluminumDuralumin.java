@@ -6,7 +6,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 public class RingAluminumDuralumin extends RingsMindAbstract implements ICurioItem{
 
     public RingAluminumDuralumin (Properties properties){
-        super(properties, MetalsNBTData.ALUMINUM,MetalsNBTData.DURALUMIN);
+        super(properties, MetalsNBTData.ALUMINUM,MetalsNBTData.DURALUMIN,MetalsNBTData.ALUMINUM.getMaxReserveRing(),MetalsNBTData.DURALUMIN.getMaxReserveRing());
     }
 
 

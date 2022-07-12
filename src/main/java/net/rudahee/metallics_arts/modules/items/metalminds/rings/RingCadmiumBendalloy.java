@@ -5,14 +5,8 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 public class RingCadmiumBendalloy extends RingsMindAbstract{
-    CompoundNBT nbt = new CompoundNBT();
     public RingCadmiumBendalloy (Properties properties){
-        super(properties, MetalsNBTData.CADMIUM,MetalsNBTData.BENDALLOY);
-        nbt.putInt(MetallicsArts.MOD_ID+".RingCadmiumBendalloy.candmium",0);
-        nbt.putInt(MetallicsArts.MOD_ID+".RingCadmiumBendalloy.bendalloy",0);
-        nbt.putInt(MetallicsArts.MOD_ID+".RingCadmiumBendalloy.capacityCadmium",100);
-        nbt.putInt(MetallicsArts.MOD_ID+".RingCadmiumBendalloy.capacityBendalloy",100);
-        setNbt(nbt);
+        super(properties, MetalsNBTData.CADMIUM,MetalsNBTData.BENDALLOY,MetalsNBTData.CADMIUM.getMaxReserveRing(),MetalsNBTData.BENDALLOY.getMaxReserveRing());
     }
 
 }

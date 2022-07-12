@@ -134,10 +134,10 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         }
 
         CompoundNBT nbt = new CompoundNBT();
-        nbt.putInt(metals[0].getNameLower()+"_feruchemic_reserve",0);
-        nbt.putInt(metals[1].getGemNameLower()+"_feruchemic_reserve",0);
-        nbt.putInt(metals[0].getNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[0]);
-        nbt.putInt(metals[1].getGemNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[1]);
+        nbt.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",0);
+        nbt.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",0);
+        nbt.putInt(this.metals[0].getNameLower()+"_feruchemic_max_capacity",this.metalsMaxReserve[0]);
+        nbt.putInt(this.metals[0].getNameLower()+"_feruchemic_max_capacity",this.metalsMaxReserve[1]);
         nbt.putString("key",unkeyedString);
         resultItem.setTag(nbt);
         if (this.allowdedIn(group)) {
@@ -160,10 +160,11 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     private CompoundNBT addBandTags() {
         CompoundNBT nbt = new CompoundNBT();
+
         nbt.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",0);
         nbt.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",0);
         nbt.putInt(this.metals[0].getNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[0]);
-        nbt.putInt(this.metals[1].getNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[1]);
+        nbt.putInt(this.metals[0].getNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[1]);
         nbt.putString("key",this.unkeyedString);
         return nbt;
     }
@@ -172,7 +173,12 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+        if(!stack.hasTag()){
+            stack.setTag(addBandTags());
+        }
+
         CompoundNBT nbtLocal = stack.getTag();
+
         if (livingEntity.level instanceof ServerWorld) {
             needUpdate = false;
             if (livingEntity instanceof PlayerEntity) {
@@ -222,6 +228,10 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             }
         }
         ICurioItem.super.curioTick(identifier, index, livingEntity, stack);
+    }
+
+    public MetalsNBTData getMetals(int pos) {
+        return this.metals[pos];
     }
 
 }
