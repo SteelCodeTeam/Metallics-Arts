@@ -125,27 +125,31 @@ public class BendalloyAndCadmiunHelpers {
     }
 
     public static void removeFoodLevel(PlayerEntity player, int qty){
-        if (player.getFoodData().getFoodLevel()>0){
-            player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()-qty);
-        }
 
+        if (!player.isCreative()){
+            if (player.getFoodData().getFoodLevel()>0){
+                player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()-qty);
+            }
+        }
     }
 
     public static void drowningEffect(PlayerEntity player,int actualtick) {
-        if (!player.isEyeInFluid(FluidTags.WATER)) {
-            if (player.getAirSupply()<=-10) {
-                player.setAirSupply(-10);
-                if (actualtick % 10 == 0) {
-                    player.hurt(DamageSource.DROWN,1);
+        if (!player.isCreative()){
+            if (!player.isEyeInFluid(FluidTags.WATER)) {
+                if (player.getAirSupply()<=-10) {
+                    player.setAirSupply(-10);
+                    if (actualtick % 10 == 0) {
+                        player.hurt(DamageSource.DROWN,1);
+                    }
+                } else {
+                    player.setAirSupply(player.getAirSupply()-6);
                 }
             } else {
-                player.setAirSupply(player.getAirSupply()-6);
-            }
-        } else {
-            if (player.getAirSupply() <= 0) {
-                player.setAirSupply(0);
-            }else {
-                player.setAirSupply(player.getAirSupply()-1);
+                if (player.getAirSupply() <= 0) {
+                    player.setAirSupply(0);
+                }else {
+                    player.setAirSupply(player.getAirSupply()-1);
+                }
             }
         }
     }

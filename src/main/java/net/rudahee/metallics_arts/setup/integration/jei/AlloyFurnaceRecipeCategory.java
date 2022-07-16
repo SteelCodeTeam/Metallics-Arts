@@ -23,7 +23,7 @@ public class AlloyFurnaceRecipeCategory implements IRecipeCategory<AlloyFurnaceR
 
     private final static ResourceLocation UID = new ResourceLocation(MetallicsArts.MOD_ID, "alloy_furnace_uid");
     private final static ResourceLocation TEXTURE = new ResourceLocation(MetallicsArts.MOD_ID,
-            "textures/gui/alloy_furnace.png");
+            "textures/gui/alloy_furnace_jei.png");
 
     private final IDrawable backgrund;
     private final IDrawable icon;
@@ -31,9 +31,9 @@ public class AlloyFurnaceRecipeCategory implements IRecipeCategory<AlloyFurnaceR
 
 
     public AlloyFurnaceRecipeCategory(IGuiHelper helper) {
-        this.backgrund = helper.createDrawable(TEXTURE,0,0,176,165);
+        this.backgrund = helper.createDrawable(TEXTURE,0,0,118,65);
         this.icon = helper.createDrawableIngredient(new ItemStack(ModBlock.ALLOY_FURNACE_BLOCK.get()));
-        this.arrow = helper.createDrawable(TEXTURE,176,14,20,16);
+        this.arrow = helper.createDrawable(TEXTURE,65,14,20,16);
     }
 
 
@@ -80,12 +80,12 @@ public class AlloyFurnaceRecipeCategory implements IRecipeCategory<AlloyFurnaceR
 
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, AlloyFurnaceRecipe recipe, IIngredients ingredients) {
-        recipeLayout.getItemStacks().init(0,true,40,15);
-        recipeLayout.getItemStacks().init(3,true,40,34);
-        recipeLayout.getItemStacks().init(2,true,59,15);
-        recipeLayout.getItemStacks().init(1,true,59,34);
+        recipeLayout.getItemStacks().init(0,true,10,4);
+        recipeLayout.getItemStacks().init(3,true,10,23);
+        recipeLayout.getItemStacks().init(2,true,29,4);
+        recipeLayout.getItemStacks().init(1,true,29,23);
         //recipeLayout.getItemStacks().init(4,true,50,55);
-        recipeLayout.getItemStacks().init(5,false,121,25);
+        recipeLayout.getItemStacks().init(5,false,91,14);
 
         recipeLayout.getItemStacks().set(ingredients);
     }

@@ -154,7 +154,7 @@ public class IronAndSteelHelpers {
 
     public static void increaseWeight(PlayerEntity player) {
         player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 5, true, false));
-        player.addEffect(new EffectInstance(Effects.JUMP, 20, 128, true, true));
+        player.addEffect(new EffectInstance(Effects.JUMP, 20, 128, true, false));
         //128de amplificador de jump deshabilita el salto, no me preguntes, solo funciona
     }
 }

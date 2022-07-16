@@ -4,6 +4,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -92,7 +93,8 @@ public class MetallicsArts
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
-                ()-> new SlotTypeMessage.Builder("metalmind_slot").priority(1).size(4).build());
+                ()-> new SlotTypeMessage.Builder("metalmind_slot")
+                        .priority(1).size(4).icon(new ResourceLocation("curios:slot/metal_mind_slot")).build());
     }
 
     private void processIMC(final InterModProcessEvent event)

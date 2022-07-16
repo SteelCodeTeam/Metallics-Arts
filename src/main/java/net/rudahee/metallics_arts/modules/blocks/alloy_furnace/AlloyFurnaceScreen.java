@@ -52,8 +52,8 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         int j = this.getGuiTop();
         super.blit(matrixStack, i, j, 0, 0, this.getXSize(), this.getYSize());
 
-        Point activeArrowInImage = new Point(176, 14);
-        Point activeArrowInGame = new Point(i + 85, j + 25);
+        Point activeArrowInImage = new Point(177, 15);
+        Point activeArrowInGame = new Point(i + 86, j + 25);
 
         int progressLit = AlloyFurnaceTileEntity.getLitProgress();
 
@@ -64,9 +64,9 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
 
         super.blit(matrixStack, activeArrowInGame.x, activeArrowInGame.y, activeArrowInImage.x , activeArrowInImage.y, arrowLength, 16);
 
-        Point LitBarInImage = new Point(176, 13);
-        Point LitBarInGameLeft = new Point(i + 34, j + 70);
-        Point LitBarInGameRight = new Point(i + 69, j + 70);
+        Point LitBarInImage = new Point(176, 14);
+        Point LitBarInGameLeft = new Point(i + 32, j + 69);
+        Point LitBarInGameRight = new Point(i + 69, j + 69);
 
         int progressBar = AlloyFurnaceTileEntity.getBurnProgress();
         int barLength = 0;
@@ -75,8 +75,8 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
             barLength = (Math.round(((progressBar + 1) / Float.parseFloat(Integer.toString(max)) * 13)));
         }
 
-        super.blit(matrixStack, LitBarInGameLeft.x, LitBarInGameLeft.y-13, LitBarInImage.x , LitBarInImage.y-13, 13, 13 - barLength);
-        super.blit(matrixStack, LitBarInGameRight.x, LitBarInGameRight.y-13, LitBarInImage.x ,LitBarInImage.y-13, 13, 13 - barLength);
+        super.blit(matrixStack, LitBarInGameLeft.x, LitBarInGameLeft.y-14, LitBarInImage.x , LitBarInImage.y-14, 14, 14 - barLength);
+        super.blit(matrixStack, LitBarInGameRight.x, LitBarInGameRight.y-14, LitBarInImage.x ,LitBarInImage.y-14, 14, 14 - barLength);
 
         super.tick();
 

@@ -57,7 +57,15 @@ public class GoldAndElectrumHelpers {
     }
 
     public static void removeHealth(PlayerEntity player, int qtyHealth){
-        player.setHealth(player.getHealth()-qtyHealth);
+        if (!player.isCreative()){
+            if (player.getHealth()==1){
+                player.kill();
+            } else {
+                player.setHealth(player.getHealth()-qtyHealth);
+            }
+        }
+
+
     }
 
     public static void removeHearts(PlayerEntity player, int qtyHearth){

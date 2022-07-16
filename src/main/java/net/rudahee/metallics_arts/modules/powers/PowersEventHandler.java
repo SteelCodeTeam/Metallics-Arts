@@ -332,22 +332,9 @@ public class PowersEventHandler {
                             /************************
                              * BRASS FERUCHEMIC
                              ************************/
-                            if (playerCapability.isDecanting(MetalsNBTData.BRASS)) {
-                                    // TODO
-                            } else if (playerCapability.isStoring(MetalsNBTData.BRASS)) {
+                            if (playerCapability.isStoring(MetalsNBTData.BRASS)) {
                                 player.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 40, 1, true, false));
                             }
-
-                            /************************
-                             * ZINC FERUCHEMIC
-                             ************************/
-                            /*if (playerCapability.isDecanting(MetalsNBTData.ZINC)) {
-                                if (actualTick == 80) {
-                                    player.addEffect(new EffectInstance(Effects.LUCK,20,90,true, false));
-                                }
-                            } else if (playerCapability.isStoring(MetalsNBTData.ZINC)) {
-                                player.addEffect(new EffectInstance(Effects.UNLUCK,20,1,true, false));
-                            }*/
 
                             /************************
                              * GOLD FERUCHEMIC
