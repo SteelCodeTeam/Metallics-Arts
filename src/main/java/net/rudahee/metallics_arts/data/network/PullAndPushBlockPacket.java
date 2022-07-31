@@ -34,7 +34,7 @@ public class PullAndPushBlockPacket {
     }
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
+        /*ctx.get().enqueueWork(() -> {
             ServerPlayerEntity player = ctx.get().getSender();
             BlockPos pos = this.blockPos;
             // Sanity check to make sure  the block is loaded in the server
@@ -44,7 +44,7 @@ public class PullAndPushBlockPacket {
                     IronAndSteelHelpers.move(this.direction, player, pos);
                 }
             }
-        });
+        });*/
         ctx.get().setPacketHandled(true);
     }
 

@@ -14,7 +14,7 @@ public class MetallicsPowersSetup {
 
 
     public static void register(final FMLCommonSetupEvent event) {
-        MinecraftForge.EVENT_BUS.register(new PowersClientEventHandler());
+        MinecraftForge.EVENT_BUS.register(PowersClientEventHandler.class);
     }
 
     public static void register() {

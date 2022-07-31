@@ -35,7 +35,7 @@ public class ChangeEmotionPacket {
     }
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
+        /*ctx.get().enqueueWork(() -> {
             PlayerEntity allomancer = ctx.get().getSender();
             CreatureEntity target = (CreatureEntity) allomancer.level.getEntity(this.entityID);
             if (target == null) {
@@ -47,7 +47,7 @@ public class ChangeEmotionPacket {
             } else {
                 ZincAndBrassHelpers.happyEntities(target, allomancer);
             }
-        });
+        });*/
         ctx.get().setPacketHandled(true);
     }
 }

@@ -54,6 +54,12 @@ public class PowersClientEventHandler {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onClientTick(final TickEvent.ClientTickEvent event) {
+
+        if (event.phase != TickEvent.Phase.END || this.mc.isPaused() || this.mc.player == null || !this.mc.player.isAlive()) {
+            return;
+        }
+
+
         if (event.phase == TickEvent.Phase.END) {
             PlayerEntity player = this.mc.player;
 
