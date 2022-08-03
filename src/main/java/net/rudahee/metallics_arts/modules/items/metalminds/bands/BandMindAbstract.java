@@ -168,7 +168,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         }
         CompoundNBT nbtLocal = stack.getTag();
 
-
         if (livingEntity.level instanceof ServerWorld) {
             needUpdate = false;
             if (livingEntity instanceof PlayerEntity) {

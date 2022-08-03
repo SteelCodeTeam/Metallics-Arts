@@ -43,13 +43,13 @@ public class InvestedDataPacket {
     }
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
-        /*ctx.get().enqueueWork(() -> {
+        ctx.get().enqueueWork(() -> {
             PlayerEntity player = Minecraft.getInstance().level.getPlayerByUUID(this.uuid);
 
             if (player != null && InvestedCapability.PLAYER_CAP != null) {
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> InvestedCapability.PLAYER_CAP.readNBT(cap, null, this.nbt));
             }
-        });*/
+        });
 
         ctx.get().setPacketHandled(true);
     }

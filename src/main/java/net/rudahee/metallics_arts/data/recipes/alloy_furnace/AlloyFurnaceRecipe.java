@@ -3,7 +3,9 @@ package net.rudahee.metallics_arts.data.recipes.alloy_furnace;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
@@ -35,6 +37,7 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
     }
 
     //  NO SE QUE COÑO HACE ESTO XD
+    //buena ruda
     @Override
     public boolean matches(IInventory inventory, World world) {
         List<Ingredient> testTarget = recipeItems;
@@ -107,23 +110,25 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
         @Nullable
         @Override
         public AlloyFurnaceRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(4, Ingredient.EMPTY);
+            /*NonNullList<Ingredient> inputs = NonNullList.withSize(4, Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromNetwork(buffer));
             }
 
             ItemStack output = buffer.readItem();
-            return new AlloyFurnaceRecipe(recipeId, output, inputs);
+            return new AlloyFurnaceRecipe(recipeId, output, inputs);*/
+            return new AlloyFurnaceRecipe(recipeId,new ItemStack(Items.ACACIA_WOOD),NonNullList.withSize(4, Ingredient.of(new ItemStack(Items.ACACIA_WOOD),new ItemStack(Items.ACACIA_WOOD),new ItemStack(Items.ACACIA_WOOD),new ItemStack(Items.ACACIA_WOOD))));
         }
 
         @Override
         public void toNetwork(PacketBuffer buffer, AlloyFurnaceRecipe recipe) {
-            buffer.writeInt(recipe.getIngredients().size());
+            /*buffer.writeInt(recipe.getIngredients().size());
+            buffer.writeItemStack(recipe.getResultItem(), false);
+
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buffer);
-            }
-            buffer.writeItemStack(recipe.getResultItem(), false);
+            }*/
         }
     }
 }

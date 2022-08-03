@@ -29,7 +29,7 @@ public class UpdateBurnPacket {
     }
 
     public void handle(Supplier<NetworkEvent.Context> context) {
-        /*context.get().enqueueWork( () -> {
+        context.get().enqueueWork( () -> {
             ServerPlayerEntity player = context.get().getSender();
 
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> {
@@ -40,7 +40,7 @@ public class UpdateBurnPacket {
                 }
                 ModNetwork.sync(cap, player);
             });
-        });*/
+        });
 
         context.get().setPacketHandled(true);
     }

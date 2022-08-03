@@ -41,7 +41,7 @@ public class PullAndPushEntityPacket {
     }
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
-        /*ctx.get().enqueueWork(() -> {
+        ctx.get().enqueueWork(() -> {
             ServerPlayerEntity player = ctx.get().getSender();
             Entity target = player.level.getEntity(this.entityIDOther);
             if (target != null) {
@@ -64,7 +64,7 @@ public class PullAndPushEntityPacket {
                 }
             }
 
-        });*/
+        });
         ctx.get().setPacketHandled(true);
     }
 }

@@ -46,7 +46,7 @@ public class MetallicsArts
         //In our main, we register all our objects.
         Registration.register();
 
-        //FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientInit);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientInit);
 
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -81,7 +81,7 @@ public class MetallicsArts
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().options);
-        MetallicsPowersSetup.clientInit(event);
+
         event.enqueueWork(() -> {
             //CuriosApi.getIconHelper().addIcon("metalmind_slot_icon", new ResourceLocation("item/slot"));
             ScreenManager.register(ModContainers.ALLOY_FURNACE_CONTAINER.get(),
@@ -116,8 +116,8 @@ public class MetallicsArts
         MetallicArtsCommand.register(event.getDispatcher());
     }
 
-    //public void clientInit(final FMLClientSetupEvent e){
-
-    //}
+    public void clientInit(final FMLClientSetupEvent e){
+        MetallicsPowersSetup.clientInit(e);
+    }
 
 }
