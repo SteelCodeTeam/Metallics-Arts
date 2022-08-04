@@ -1,6 +1,12 @@
 package net.rudahee.metallics_arts.modules.items.metalminds.bands;
 
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.world.server.ServerWorld;
+import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -12,8 +18,10 @@ public class BandZincBrass extends BandMindAbstract implements ICurioItem {
 
     private static boolean needUpdate = false;
 
-    /*@Override
+
+    @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+
         CompoundNBT nbtLocal = stack.getTag();
 
         if (livingEntity.level instanceof ServerWorld) {
@@ -67,5 +75,7 @@ public class BandZincBrass extends BandMindAbstract implements ICurioItem {
             }
         }
         super.curioTick(identifier, index, livingEntity, stack);
-    }*/
+    }
+
+
 }

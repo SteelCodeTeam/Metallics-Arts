@@ -15,6 +15,8 @@ import java.util.function.Function;
 
 public class GoldAndElectrumHelpers {
 
+
+
     public static void teleport(PlayerEntity player, World world, RegistryKey<World> dimension, BlockPos pos) {
         if (!world.isClientSide) {
             if (player != null) {
@@ -79,5 +81,34 @@ public class GoldAndElectrumHelpers {
 
     public static void addHearts(PlayerEntity player, int qtyHearth) {
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(qtyHearth);
+    }
+
+
+    private static BlockPos block = null;
+    private static String dimension = null;
+
+    public static void takeDeathPosToObjetive(PlayerEntity playerEntity) {
+        playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap ->{
+            if (cap.getDeathPos() != null && cap.getDeathDimension() != null) {
+                block = new BlockPos(cap.getDeathPos()[0], cap.getDeathPos()[1], cap.getDeathPos()[2]);
+                dimension = cap.getDeathDimension();
+            }
+        });
+    }
+
+    public static BlockPos getBlock() {
+        return block;
+    }
+
+    public static void setBlock(BlockPos block) {
+        GoldAndElectrumHelpers.block = block;
+    }
+
+    public static String getDimension() {
+        return dimension;
+    }
+
+    public static void setDimension(String dimension) {
+        GoldAndElectrumHelpers.dimension = dimension;
     }
 }

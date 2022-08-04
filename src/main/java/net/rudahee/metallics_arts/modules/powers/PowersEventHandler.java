@@ -14,6 +14,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
@@ -97,6 +98,7 @@ public class PowersEventHandler {
             });
         }
     }
+
 
     @SubscribeEvent
     public static void onLivingDeath(final LivingDeathEvent event) {
@@ -189,6 +191,8 @@ public class PowersEventHandler {
         }
     }
 
+
+
     @SubscribeEvent
     public static void onDamageEvent(final LivingHurtEvent event) {
         if (event.getSource().getDirectEntity() instanceof ServerPlayerEntity) {
@@ -238,9 +242,20 @@ public class PowersEventHandler {
                      *******************************/
                     if (playerCapability.isBurning(MetalsNBTData.ZINC)) {
                         if (event.getEntityLiving() instanceof PlayerEntity) {
-                            ZincAndBrassHelpers.drawSaturatedScreen((PlayerEntity) event.getEntityLiving()); //TODO
+                            ZincAndBrassHelpers.drawSaturatedScreen((PlayerEntity) event.getEntityLiving());
                         }
                     }
+
+                    /*******************************
+                     *   DAMAGE WITH - MALATIUM -
+                     *******************************/
+                    if (playerCapability.isBurning(MetalsNBTData.MALATIUM)) {
+                        if (event.getEntityLiving() instanceof PlayerEntity) {
+                            GoldAndElectrumHelpers.takeDeathPosToObjetive((PlayerEntity) event.getEntityLiving());
+                        }
+                    }
+
+
 
                     /*******************************
                      *   DAMAGE WITH - BRASS - FERUCHEMIC
@@ -284,6 +299,8 @@ public class PowersEventHandler {
     public static int actualTick = 0;
 
     public static boolean restoreHealth = false;
+
+
 
 
     @SubscribeEvent
@@ -672,6 +689,28 @@ public class PowersEventHandler {
 
                             playerCapability.drainMetals(MetalsNBTData.DURALUMIN, MetalsNBTData.ELECTRUM);
                         }
+
+                        /************************
+                         * MALATIUM POWER (ENHANCED)
+                         ************************/
+                        if (playerCapability.isBurning(MetalsNBTData.MALATIUM) && playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
+                            BlockPos block = null;
+                            String dimension = null;
+
+                            if (GoldAndElectrumHelpers.getBlock() != null && GoldAndElectrumHelpers.getDimension() != null) {
+                                block = GoldAndElectrumHelpers.getBlock();
+                                dimension = GoldAndElectrumHelpers.getDimension();
+                                GoldAndElectrumHelpers.teleport(player, event.world, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension), block);
+                                GoldAndElectrumHelpers.setBlock(null);
+                                GoldAndElectrumHelpers.setDimension(null);
+                            }
+
+                            playerCapability.drainMetals(MetalsNBTData.DURALUMIN, MetalsNBTData.ELECTRUM);
+                        }
+
+
+
+
 
                     // SYNC NETWORK
                     ModNetwork.sync(player);
