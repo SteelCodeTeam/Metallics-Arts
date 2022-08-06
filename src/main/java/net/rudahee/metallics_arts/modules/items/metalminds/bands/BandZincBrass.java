@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import org.spongepowered.asm.mixin.Final;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class BandZincBrass extends BandMindAbstract implements ICurioItem {

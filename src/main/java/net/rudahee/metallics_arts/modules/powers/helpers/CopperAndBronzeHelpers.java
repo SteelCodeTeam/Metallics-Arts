@@ -14,6 +14,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 import java.util.Random;
 
@@ -57,6 +59,11 @@ public class CopperAndBronzeHelpers {
     public static void saveExperience(PlayerEntity player, World world) {
         if (player.totalExperience > 0) {
             player.giveExperiencePoints(-7);
+        } else {
+            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
+                    capabilities -> {
+                        capabilities.setStoring(MetalsNBTData.COPPER,false);
+                    });
         }
         world.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.EXPERIENCE_BOTTLE_THROW, SoundCategory.PLAYERS, 0.1F, (new Random().nextFloat() - new Random().nextFloat()) * 0.35F + 0.9F, false);
     }
@@ -64,7 +71,6 @@ public class CopperAndBronzeHelpers {
     public static void generateExperience(PlayerEntity player, World world) {
         player.giveExperiencePoints(7);
         world.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 0.1F, (new Random().nextFloat() - new Random().nextFloat()) * 0.35F + 0.9F, false);
-
     }
 
 }

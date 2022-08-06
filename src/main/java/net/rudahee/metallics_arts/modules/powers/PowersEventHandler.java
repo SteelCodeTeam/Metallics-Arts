@@ -300,7 +300,7 @@ public class PowersEventHandler {
 
     public static boolean restoreHealth = false;
 
-
+    public static boolean previusAtium = false;
 
 
     @SubscribeEvent
@@ -319,7 +319,6 @@ public class PowersEventHandler {
                             if (player instanceof ServerPlayerEntity) {
                                 playerCapability.tickAllomancyBurningMetals((ServerPlayerEntity) player);
                             }
-
 
                             /************************
                              * BRONZE FERUCHEMIC
@@ -407,7 +406,6 @@ public class PowersEventHandler {
 
                             /************************
                              * IRON FERUCHEMIC
-                             // TODO
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.IRON)) {
                                 IronAndSteelHelpers.increaseWeight(player);
@@ -470,6 +468,23 @@ public class PowersEventHandler {
                                 else
                                     ChromiumAndNicrosilHelpers.badLuck(player,false);
                             }
+
+
+                            /************************
+                             * ATIUM FERUCHEMIC
+                             ************************/
+
+                            if (playerCapability.isDecanting(MetalsNBTData.ATIUM)){
+                                AtiumAndMalatiumHelpers.changeExperience(player, true);
+                            } else if (playerCapability.isStoring(MetalsNBTData.ATIUM)){
+
+                                AtiumAndMalatiumHelpers.changeExperience(player, false);
+                            }
+
+                            if (!playerCapability.isStoring(MetalsNBTData.ATIUM) && !playerCapability.isDecanting(MetalsNBTData.ATIUM)){
+                                previusAtium = false;
+                            }
+
 
                             if (actualTick >= 90) {
                                 actualTick = 0;

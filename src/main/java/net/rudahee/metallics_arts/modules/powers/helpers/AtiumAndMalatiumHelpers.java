@@ -8,8 +8,10 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 public class AtiumAndMalatiumHelpers {
 
+    public static Object changeExperience;
     private static boolean playerIsBurning = false;
     private static float damage = 0F;
+
 
 
     public static float atiumHit(ServerPlayerEntity playerEntity, PlayerEntity objetive, float amount) {
@@ -56,5 +58,26 @@ public class AtiumAndMalatiumHelpers {
 
         });
         return damage;
+    }
+
+    private static int experienceLocal;
+
+    public static void changeExperience(PlayerEntity player, boolean decant) {
+        if (decant) {
+            //decanta + xp
+            if (player.totalExperience > experienceLocal) {
+                player.totalExperience = player.totalExperience + (player.totalExperience - experienceLocal);
+            }
+
+        } else {
+            //storage -xp
+            if (player.totalExperience > experienceLocal) {
+                player.totalExperience = experienceLocal;
+            }
+        }
+    }
+
+    public static void setExperienceLocal(int experienceLocal) {
+        AtiumAndMalatiumHelpers.experienceLocal = experienceLocal;
     }
 }

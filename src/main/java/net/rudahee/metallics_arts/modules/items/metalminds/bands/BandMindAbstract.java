@@ -166,6 +166,12 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         if(!stack.hasTag()) {
             stack.setTag(addBandTags());
         }
+
+        if (this instanceof BandZincBrass){
+            return;
+        }
+
+
         CompoundNBT nbtLocal = stack.getTag();
 
         if (livingEntity.level instanceof ServerWorld) {
