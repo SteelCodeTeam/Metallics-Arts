@@ -57,7 +57,7 @@ public class CopperAndBronzeHelpers {
     }
 
     public static void saveExperience(PlayerEntity player, World world) {
-        if (player.totalExperience > 0) {
+        /*if (player.totalExperience > 0) {
             player.giveExperiencePoints(-7);
         } else {
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
@@ -65,12 +65,12 @@ public class CopperAndBronzeHelpers {
                         capabilities.setStoring(MetalsNBTData.COPPER,false);
                     });
         }
-        world.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.EXPERIENCE_BOTTLE_THROW, SoundCategory.PLAYERS, 0.1F, (new Random().nextFloat() - new Random().nextFloat()) * 0.35F + 0.9F, false);
+        world.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.EXPERIENCE_BOTTLE_THROW, SoundCategory.PLAYERS, 0.1F, (new Random().nextFloat() - new Random().nextFloat()) * 0.35F + 0.9F, false);*/
     }
 
     public static void generateExperience(PlayerEntity player, World world) {
-        player.giveExperiencePoints(7);
-        world.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 0.1F, (new Random().nextFloat() - new Random().nextFloat()) * 0.35F + 0.9F, false);
+        //player.giveExperiencePoints(7);
+        //world.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 0.1F, (new Random().nextFloat() - new Random().nextFloat()) * 0.35F + 0.9F, false);
     }
 
 }

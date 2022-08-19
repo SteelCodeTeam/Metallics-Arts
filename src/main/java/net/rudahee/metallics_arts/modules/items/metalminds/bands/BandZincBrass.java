@@ -25,6 +25,8 @@ public class BandZincBrass extends BandMindAbstract implements ICurioItem {
 
         CompoundNBT nbtLocal = stack.getTag();
 
+
+
         if (livingEntity.level instanceof ServerWorld) {
             needUpdate = false;
             if (livingEntity instanceof PlayerEntity) {
@@ -40,6 +42,8 @@ public class BandZincBrass extends BandMindAbstract implements ICurioItem {
                         }
                         needUpdate = true;
                     } else if (data.isStoring(getMetals(0))){
+
+
 
                         if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_max_capacity")) {
                             nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")+1));
@@ -60,7 +64,7 @@ public class BandZincBrass extends BandMindAbstract implements ICurioItem {
                         }
                         needUpdate = true;
 
-                    } else if (data.isStoring(getMetals(1))){   //propio de almacenar calor
+                    } else if (data.isStoring(getMetals(1))){   //PROPIO DE ESTA MENTE DE METAL <- CALOR
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
                             if (player.isOnFire()){
                                 nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));

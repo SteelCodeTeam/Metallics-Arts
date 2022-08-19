@@ -167,7 +167,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             stack.setTag(addBandTags());
         }
 
-        if (this instanceof BandZincBrass){
+        if (this instanceof BandZincBrass || this instanceof BandCopperBronze){
             return;
         }
 
