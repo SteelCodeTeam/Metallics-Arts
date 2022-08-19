@@ -8,8 +8,11 @@ import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.Dimension;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
@@ -28,6 +31,7 @@ import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalSelector;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.modules.powers.helpers.GoldAndElectrumHelpers;
 import net.rudahee.metallics_arts.modules.powers.helpers.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
@@ -50,6 +54,10 @@ public class PowersClientEventHandler {
 
 
     private int tickOffset = 0;
+
+    BlockPos otherPlayerDeathPos = null;
+
+    RegistryKey<World> otherPlayerDimension = null;
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
@@ -109,6 +117,26 @@ public class PowersClientEventHandler {
                                                                     playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                         }
                                     }
+                                }
+                                /***********************************
+                                 * DO CLICK AN ENTITY WITH  - MALATIUM -
+                                 ***********************************/
+                                if (playerCapability.isBurning(MetalsNBTData.MALATIUM)) {
+                                    Entity entity;
+                                    if ((trace != null) && (trace.getType() == RayTraceResult.Type.ENTITY)) {
+                                        entity = ((EntityRayTraceResult) trace).getEntity();
+                                        if (entity instanceof PlayerEntity) {
+                                            PlayerEntity otherPlayerEntity = (PlayerEntity) entity;
+
+                                            otherPlayerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> {
+                                                otherPlayerDeathPos = new BlockPos(cap.getDeathPos()[0],cap.getDeathPos()[1],cap.getDeathPos()[2]);
+                                                otherPlayerDimension = GoldAndElectrumHelpers.getRegistryKeyFromString(cap.getDeathDimension());
+                                            });
+                                        }
+                                    }
+                                } else if (!playerCapability.isBurning(MetalsNBTData.MALATIUM) && otherPlayerDeathPos != null) {
+                                    otherPlayerDeathPos = null;
+                                    otherPlayerDimension = null;
                                 }
                             }
 
@@ -378,6 +406,19 @@ public class PowersClientEventHandler {
                 //} else {
                   //  ClientUtils.drawMetalLine(playerVector, playerVector, 0,0,0,0);
                 //}
+            }
+
+            /***********************************
+             * DRAW LINES  - MALATIUM -
+             ***********************************/
+            if (playerCap.isBurning(MetalsNBTData.MALATIUM) && otherPlayerDeathPos != null) {
+                Vector3d vector = new Vector3d(otherPlayerDeathPos.getX(), otherPlayerDeathPos.getY(), otherPlayerDeathPos.getZ());
+
+                if(player.level.dimension().getRegistryName().toString().equals(otherPlayerDimension.getRegistryName().toString())) {
+                    ClientUtils.drawMetalLine(playerVector,vector, 2.3f, 0.2f, 0.6f, 0.7f);
+                } else {
+                    ClientUtils.drawMetalLine(playerVector, playerVector, 0,0,0,0);
+                }
             }
 
             RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);

@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.modules.powers.helpers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -60,12 +61,7 @@ public class GoldAndElectrumHelpers {
 
     public static void removeHealth(PlayerEntity player, int qtyHealth){
         if (!player.isCreative()){
-            if (player.getHealth()==0){
-                //player.inventory.dropAll();
-                player.kill();
-            } else {
-                player.setHealth(player.getHealth()-qtyHealth);
-            }
+            player.hurt(DamageSource.GENERIC, qtyHealth);
         }
 
 

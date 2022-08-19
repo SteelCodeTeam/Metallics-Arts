@@ -16,7 +16,8 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         CompoundNBT invested_data = new CompoundNBT();
         CompoundNBT allomantic_powers = new CompoundNBT();
         CompoundNBT feruchemic_powers = new CompoundNBT();
-        CompoundNBT allomantic_reseve = new CompoundNBT();
+        CompoundNBT allomantic_reserve = new CompoundNBT();
+        CompoundNBT lerasium_reserve = new CompoundNBT();
         CompoundNBT burning_metals = new CompoundNBT();
         CompoundNBT decanting_metals = new CompoundNBT();
         CompoundNBT storing_metals = new CompoundNBT();
@@ -29,7 +30,8 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         for (MetalsNBTData metal : MetalsNBTData.values()) {
             allomantic_powers.putBoolean(metal.getNameLower(), data.hasAllomanticPower(metal));
             feruchemic_powers.putBoolean(metal.getNameLower(), data.hasFeruchemicPower(metal));
-            allomantic_reseve.putInt(metal.getNameLower(), data.getAllomanticAmount(metal));
+            allomantic_reserve.putInt(metal.getNameLower(), data.getAllomanticAmount(metal));
+            lerasium_reserve.putInt(metal.getNameLower(), data.getAmountLerasiumReserve(metal));
             burning_metals.putBoolean(metal.getNameLower(), data.isBurning(metal));
             decanting_metals.putBoolean(metal.getNameLower(), data.isDecanting(metal));
             storing_metals.putBoolean(metal.getNameLower(), data.isStoring(metal));
@@ -37,7 +39,8 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
 
         invested_data.put("allomantic_powers", allomantic_powers);
         invested_data.put("feruchemic_powers", feruchemic_powers);
-        invested_data.put("allomantic_reseve", allomantic_reseve);
+        invested_data.put("lerasium_reserve", lerasium_reserve);
+        invested_data.put("allomantic_reserve", allomantic_reserve);
         invested_data.put("burning_metals", burning_metals);
 
         invested_data.putBoolean("invested",data.isInvested());
@@ -75,7 +78,8 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
 
         CompoundNBT allomantic_powers = (CompoundNBT) invested_data.get("allomantic_powers");
         CompoundNBT feruchemic_powers = (CompoundNBT) invested_data.get("feruchemic_powers");
-        CompoundNBT allomantic_reseve = (CompoundNBT) invested_data.get("allomantic_reseve");
+        CompoundNBT allomantic_reserve = (CompoundNBT) invested_data.get("allomantic_reserve");
+        CompoundNBT lerasium_reserve = (CompoundNBT) invested_data.get("lerasium_reserve");
         CompoundNBT burning_metals = (CompoundNBT) invested_data.get("burning_metals");
         CompoundNBT storing_metals = (CompoundNBT) invested_data.get("storing_metals");
         CompoundNBT decanting_metals = (CompoundNBT) invested_data.get("decanting_metals");
@@ -103,8 +107,10 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
             data.setDecanting(metal, decanting_metals.getBoolean(metal.getNameLower()));
             data.setStoring(metal, storing_metals.getBoolean(metal.getNameLower()));
 
+            data.setAmountLerasiumReserve(metal,lerasium_reserve.getInt(metal.getNameLower()));
+
             if (data.hasAllomanticPower(metal)){
-                data.setAllomanticMetalsAmount(metal,allomantic_reseve.getInt(metal.getNameLower()));
+                data.setAllomanticMetalsAmount(metal,allomantic_reserve.getInt(metal.getNameLower()));
                 data.setBurning(metal,burning_metals.getBoolean(metal.getNameLower()));
             }
         }

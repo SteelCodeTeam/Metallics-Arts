@@ -227,6 +227,16 @@ public class PowersEventHandler {
                             ChromiumAndNicrosilHelpers.drainMetalChromium((PlayerEntity) event.getEntityLiving());
                         }
                     }
+
+                    /*******************************
+                     *   DAMAGE WITH - ETTMETAL FERUCHEMIC -
+                     *******************************/
+                    if (playerCapability.isBurning(MetalsNBTData.ETTMETAL)) {
+                        if (event.getEntityLiving() instanceof PlayerEntity) {
+                            ChromiumAndNicrosilHelpers.drainMetalChromium((PlayerEntity) event.getEntityLiving());
+                        }
+                    }
+
                     /*******************************
                      *   DAMAGE IF ENEMY BURN ATIUM
                      *******************************/
@@ -254,8 +264,6 @@ public class PowersEventHandler {
                             GoldAndElectrumHelpers.takeDeathPosToObjetive((PlayerEntity) event.getEntityLiving());
                         }
                     }
-
-
 
                     /*******************************
                      *   DAMAGE WITH - BRASS - FERUCHEMIC
@@ -360,6 +368,9 @@ public class PowersEventHandler {
                                     GoldAndElectrumHelpers.addHealth(player,1);
                                 }
                             } else if (playerCapability.isStoring(MetalsNBTData.GOLD)) {
+                                if (playerCapability.isStoring(MetalsNBTData.ELECTRUM)) {
+                                    playerCapability.setStoring(MetalsNBTData.ELECTRUM, false);
+                                }
                                 if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
                                     GoldAndElectrumHelpers.removeHealth(player,1);
                                 }
@@ -372,6 +383,9 @@ public class PowersEventHandler {
                                 GoldAndElectrumHelpers.addHearts(player,30);
                                 restoreHealth = true;
                             } else if (playerCapability.isStoring(MetalsNBTData.ELECTRUM)) {
+                                if (playerCapability.isStoring(MetalsNBTData.GOLD)) {
+                                    playerCapability.setStoring(MetalsNBTData.GOLD, false);
+                                }
                                 GoldAndElectrumHelpers.removeHearts(player,10);
                                 restoreHealth = true;
                             } else if (restoreHealth) {
@@ -458,7 +472,6 @@ public class PowersEventHandler {
                             /************************
                              * CHROMIUM FERUCHEMIC
                              ************************/
-                            //fortuna
                             if (playerCapability.isDecanting(MetalsNBTData.CHROMIUM)){
                                 ChromiumAndNicrosilHelpers.goodLuck(player);
                                 //player.getLuck()
@@ -473,16 +486,28 @@ public class PowersEventHandler {
                             /************************
                              * ATIUM FERUCHEMIC
                              ************************/
-
                             if (playerCapability.isDecanting(MetalsNBTData.ATIUM)){
                                 AtiumAndMalatiumHelpers.changeExperience(player, true);
                             } else if (playerCapability.isStoring(MetalsNBTData.ATIUM)){
-
                                 AtiumAndMalatiumHelpers.changeExperience(player, false);
+                            } else if (!playerCapability.isStoring(MetalsNBTData.ATIUM) && !playerCapability.isDecanting(MetalsNBTData.ATIUM)){
+                                previusAtium = false;
                             }
 
-                            if (!playerCapability.isStoring(MetalsNBTData.ATIUM) && !playerCapability.isDecanting(MetalsNBTData.ATIUM)){
-                                previusAtium = false;
+                            /************************
+                             * LERASIUM FERUCHEMIC
+                             ************************/
+                            boolean completed = false;
+                            if (playerCapability.isDecanting(MetalsNBTData.LERASIUM)) {
+                                completed = LerasiumAndEttmetalHelpers.loadAllomanticReserve(player, playerCapability);
+                                if (completed) {
+                                    playerCapability.setDecanting(MetalsNBTData.LERASIUM, false);
+                                }
+                            } else if (playerCapability.isStoring(MetalsNBTData.LERASIUM)) {
+                                completed = LerasiumAndEttmetalHelpers.saveAllomanticReserve(player, playerCapability);
+                                if (completed) {
+                                    playerCapability.setStoring(MetalsNBTData.LERASIUM, false);
+                                }
                             }
 
 
@@ -491,7 +516,6 @@ public class PowersEventHandler {
                             } else {
                                 actualTick++;
                             }
-
 
                             /************************
                              * BENDALLOY POWERS

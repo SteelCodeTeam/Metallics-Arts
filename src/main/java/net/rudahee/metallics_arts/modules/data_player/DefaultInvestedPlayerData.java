@@ -13,6 +13,7 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     private final boolean[] feruchemic_powers;
 
     private final int[] allomantic_reseve;
+    private final int[] lerasium_reseve;
     private final boolean[] burning_metals;
 
     private final boolean[] decanting_metals;
@@ -58,6 +59,9 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
 
         this.allomantic_reseve = new int[powers];
         Arrays.fill(this.allomantic_reseve, 0);
+
+        this.lerasium_reseve = new int[powers];
+        Arrays.fill(this.lerasium_reseve, 0);
 
         this.max_burning_time = new int[powers];
 
@@ -381,6 +385,40 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
             value = this.max_burning_time[metal.getIndex()];
         this.allomantic_reseve[metal.getIndex()]=value;
     }
+
+    public boolean addAllomanticMetalAmount(MetalsNBTData metal, int amt) {
+        int value = this.allomantic_reseve[metal.getIndex()];
+        if (this.max_burning_time[metal.getIndex()] < value + amt) {
+            this.allomantic_reseve[metal.getIndex()] = this.max_burning_time[metal.getIndex()];
+            return false;
+        } else {
+            this.allomantic_reseve[metal.getIndex()] = value + amt;
+            return true;
+        }
+    }
+    public boolean substractAllomanticMetalAmount(MetalsNBTData metal, int amt) {
+        int value = this.allomantic_reseve[metal.getIndex()];
+        if (value - amt < 0) {
+            this.allomantic_reseve[metal.getIndex()] = 0;
+            return false;
+        } else {
+            this.allomantic_reseve[metal.getIndex()] = value - amt;
+            return true;
+        }
+    }
+
+    @Override
+    public void setAmountLerasiumReserve(MetalsNBTData metal, int amt) {
+        if (amt > 0 && amt < metal.getMaxAllomanticTicksStorage()) {
+            this.lerasium_reseve[metal.getIndex()] = amt;
+        }
+    }
+
+    @Override
+    public int getAmountLerasiumReserve(MetalsNBTData metal) {
+        return this.lerasium_reseve[metal.getIndex()];
+    }
+
 
     @Override
     public int getAllomanticAmount(MetalsNBTData metal){
