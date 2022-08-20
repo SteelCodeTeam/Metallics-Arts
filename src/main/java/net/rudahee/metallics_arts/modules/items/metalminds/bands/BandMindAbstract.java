@@ -189,13 +189,17 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                 PlayerEntity player = (PlayerEntity) livingEntity;
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
 
+                    if (data.isDecanting(MetalsNBTData.ALUMINUM)){
+                        stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                    }
+
                     if (data.isDecanting(this.metals[0])) {
                         if (stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")>0) {
                             nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")-1));
                             stack.setTag(nbtLocal);
                         } else {
-                            data.setDecanting(this.metals[0],false);
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                            data.setDecanting(this.metals[0],false);
                         }
                         needUpdate = true;
                     } else if (data.isStoring(this.metals[0])) {
@@ -211,11 +215,12 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
                     if (data.isDecanting(this.metals[1])) {
                         if (stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")>0) {
+
                             nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")-1));
                             stack.setTag(nbtLocal);
                         } else {
-                            data.setDecanting(this.metals[1],false);
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                            data.setDecanting(this.metals[1],false);
                         }
                         needUpdate = true;
 
@@ -246,17 +251,17 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
         dato = compoundNBT.getString("key");
 
-        if (isFirstReserveZero && isSecondReserveZero && goBase)  {
+        if (isFirstReserveZero && isSecondReserveZero && goBase)  { // ambas 0 y decanta
             dato =  unkeyedString;
-        } else if (isFirstReserveZero && isSecondReserveZero && !goBase) {
+        } else if (isFirstReserveZero && isSecondReserveZero && !goBase) { //ambas 0 y almacena
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
-                if (!data.isStoring(MetalsNBTData.ALUMINUM)) {
-                    dato = player.getStringUUID();
-                } else {
+                if (data.isStoring(MetalsNBTData.ALUMINUM)) {
                     dato = unkeyedString;
+                } else {
+                    dato = player.getStringUUID();
                 }
             });
-        } else if ((!isFirstReserveZero || !isSecondReserveZero) && isUnkey) {
+        } else if ((!isFirstReserveZero || !isSecondReserveZero) && isUnkey) {  //alguno no es 0 y esta desbloqueada
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
                 if (data.isDecanting(MetalsNBTData.ALUMINUM)) {
                     dato = player.getStringUUID();
