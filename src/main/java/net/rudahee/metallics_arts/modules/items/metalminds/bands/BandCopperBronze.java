@@ -30,7 +30,7 @@ public class BandCopperBronze extends BandMindAbstract {
                 PlayerEntity player = (PlayerEntity) livingEntity;
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
 
-                    if (data.isDecanting(MetalsNBTData.ALUMINUM)){
+                    if (data.isDecanting(MetalsNBTData.ALUMINUM)||data.isStoring(MetalsNBTData.ALUMINUM)){
                         stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                     }
 
@@ -38,23 +38,21 @@ public class BandCopperBronze extends BandMindAbstract {
                     if (data.isDecanting(getMetals(0))) {
                         if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")>0) {
                             player.giveExperiencePoints(1);
-
                             nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")-1));
                             stack.setTag(nbtLocal);
                         } else {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(getMetals(0),false);
                         }
                         needUpdate = true;
                     } else if (data.isStoring(getMetals(0))){
 
                         if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_max_capacity")) {
-
                             if (player.totalExperience>0){
+                                stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
                                 player.giveExperiencePoints(-1);
                                 nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")+1));
                             }
-
                             stack.setTag(nbtLocal);
                         } else {
                             data.setStoring(getMetals(0),false);
@@ -67,14 +65,14 @@ public class BandCopperBronze extends BandMindAbstract {
                             nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")-1));
                             stack.setTag(nbtLocal);
                         } else {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(getMetals(1),false);
                         }
                         needUpdate = true;
 
                     } else if (data.isStoring(getMetals(1))) {
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
                             nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
                             stack.setTag(nbtLocal);
                         } else {
