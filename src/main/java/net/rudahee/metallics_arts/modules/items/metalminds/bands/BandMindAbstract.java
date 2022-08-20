@@ -77,10 +77,19 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             cap = data;
         });
+        boolean canEquip = false;
         if (cap != null) {
-            return (!(cap.getMetalMindEquiped(this.metals[0].getGroup()) && cap.getMetalMindEquiped(this.metals[1].getGroup())));
+             canEquip = (!(cap.getMetalMindEquiped(this.metals[0].getGroup()) && cap.getMetalMindEquiped(this.metals[1].getGroup())));
         }
-        return false;
+
+        if (canEquip){
+            if (!stack.getTag().getString("key").equals(unkeyedString)
+                    && !player.getStringUUID().equals(stack.getTag().getString("key"))){
+                canEquip = false;
+            }
+        }
+
+        return canEquip;
     }
 
     @Override
@@ -221,7 +230,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                         needUpdate = true;
                     }
                 });
-
             }
         }
         ICurioItem.super.curioTick(identifier, index, livingEntity, stack);

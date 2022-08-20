@@ -39,9 +39,7 @@ public class LerasiumAndEttmetalHelpers {
                     firstQty = playerCapability.getAllomanticAmount(metal);
                     qtyToRemove = Math.toIntExact(Math.round(firstQty * 0.1));
                 }
-
                 continueSaving = playerCapability.substractAllomanticMetalAmount(metal, qtyToRemove);
-
                 if (!continueSaving || firstQty == 0) {
                     firstQty = 0;
                     qtyToRemove = 0;

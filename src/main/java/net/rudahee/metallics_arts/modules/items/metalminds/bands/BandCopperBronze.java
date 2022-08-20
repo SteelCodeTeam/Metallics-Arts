@@ -30,12 +30,12 @@ public class BandCopperBronze extends BandMindAbstract {
                 PlayerEntity player = (PlayerEntity) livingEntity;
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
 
-
                     //PROPIO DE ESTA MENTE DE METAL <- EXPERIENCIA
                     if (data.isDecanting(getMetals(0))) {
                         if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")>0) {
-                            player.giveExperiencePoints(10);
-                            nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")-10));
+                            player.giveExperiencePoints(1);
+
+                            nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")-1));
                             stack.setTag(nbtLocal);
                         } else {
                             data.setDecanting(getMetals(0),false);
@@ -45,9 +45,10 @@ public class BandCopperBronze extends BandMindAbstract {
 
                         if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_max_capacity")) {
 
-                            if (player.experienceProgress>0||player.experienceLevel>0){
-                                player.giveExperiencePoints(-10);
-                                nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")+10));
+
+                            if (player.totalExperience>0){
+                                player.giveExperiencePoints(-1);
+                                nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")+1));
                             }
 
                             stack.setTag(nbtLocal);
@@ -55,10 +56,7 @@ public class BandCopperBronze extends BandMindAbstract {
                             data.setStoring(getMetals(0),false);
                         }
                         needUpdate = true;
-
                     }
-
-
 
 
 

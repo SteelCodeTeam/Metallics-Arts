@@ -14,6 +14,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.modules.items.metalminds.bands.BandCopperBronze;
+import net.rudahee.metallics_arts.modules.items.metalminds.bands.BandZincBrass;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
@@ -164,6 +166,10 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
         if(!stack.hasTag()){
             stack.setTag(addRingTags());
         }
+        if (this instanceof RingZincBrass || this instanceof RingCopperBronze){
+            return;
+        }
+
         CompoundNBT nbtLocal = stack.getTag();
         if (livingEntity.level instanceof ServerWorld) {
             needUpdate = false;
