@@ -93,4 +93,18 @@ public abstract class MetalSpikeAbstract extends SwordItem {
         return cap.hasFeruchemicPower(metal);
     }
 
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flag) {
+
+        if (stack.hasTag()){
+            if (stack.getTag().getBoolean("feruchemic")){
+                toolTips.add(new StringTextComponent("Power: Feruchemic"));
+            }
+            if (stack.getTag().getBoolean("allomantic")){
+                toolTips.add(new StringTextComponent("Power: Allomantic"));
+            }
+
+        }
+        super.appendHoverText(stack, world, toolTips, flag);
+    }
 }

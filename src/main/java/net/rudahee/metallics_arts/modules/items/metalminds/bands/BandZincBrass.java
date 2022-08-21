@@ -25,8 +25,6 @@ public class BandZincBrass extends BandMindAbstract implements ICurioItem {
 
         CompoundNBT nbtLocal = stack.getTag();
 
-
-
         if (livingEntity.level instanceof ServerWorld) {
             needUpdate = false;
             if (livingEntity instanceof PlayerEntity) {

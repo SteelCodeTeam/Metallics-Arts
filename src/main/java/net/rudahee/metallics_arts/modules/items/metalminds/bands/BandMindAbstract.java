@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.items.metalminds.bands;
 
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -73,6 +74,9 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     @Override
     public boolean canEquip(String identifier, LivingEntity livingEntity, ItemStack stack) {
+        if(!stack.hasTag()) {
+            stack.setTag(addBandTags());
+        }
         PlayerEntity player = (PlayerEntity) livingEntity;
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             cap = data;
@@ -148,6 +152,10 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         if(!stack.hasTag()) {
             stack.setTag(addBandTags());
         }
+        if (this instanceof BandLerasiumEttmetal){
+            return;
+        }
+
         if (stack.hasTag()) {
             toolTips.add(new StringTextComponent(metals[0].getNameLower().substring(0,1).toUpperCase()+metals[0].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
             toolTips.add(new StringTextComponent(metals[1].getNameLower().substring(0,1).toUpperCase()+metals[1].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
@@ -176,7 +184,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             stack.setTag(addBandTags());
         }
 
-        if (this instanceof BandZincBrass || this instanceof BandCopperBronze){
+        if (this instanceof BandZincBrass || this instanceof BandCopperBronze || this instanceof BandLerasiumEttmetal){
             return;
         }
 

@@ -497,7 +497,7 @@ public class PowersEventHandler {
                             /************************
                              * LERASIUM FERUCHEMIC
                              ************************/
-                            boolean completed = false;
+                            /*boolean completed = false;
                             if (playerCapability.isDecanting(MetalsNBTData.LERASIUM)) {
                                 completed = LerasiumAndEttmetalHelpers.loadAllomanticReserve(player, playerCapability);
                                 if (completed) {
@@ -508,7 +508,7 @@ public class PowersEventHandler {
                                 if (completed) {
                                     playerCapability.setStoring(MetalsNBTData.LERASIUM, false);
                                 }
-                            }
+                            }*/
 
 
                             if (actualTick >= 90) {
