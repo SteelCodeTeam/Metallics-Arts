@@ -27,16 +27,18 @@ public class AtiumSpike extends MetalSpikeAbstract{
                 boolean hasAllomanticPower = super.hasAllomanticPower(MetalsNBTData.ATIUM, data);
                 boolean hasFeruchemicPower = super.hasFeruchemicPower(MetalsNBTData.ATIUM, data);
 
-                boolean couldStealPower = Math.random()>0.90;
+                boolean couldStealPower = Math.random()>0.30;
                 boolean couldRemovePower = Math.random()>0.50;
                 boolean isAllomantic = Math.random()>0.50;
 
                 if (!super.hasPlayerBothPowers(MetalsNBTData.ATIUM, data)) {
                     if (super.getFeruchemicNbt()){
-                        data.addFeruchemicPower(MetalsNBTData.ATIUM);
+                        super.setFeruchemicNbt(true);
                     } else if (super.getAllomanticNbt()){
-                        data.addAllomanticPower(MetalsNBTData.ATIUM);
+                        super.setAllomanticNbt(true);
                     }
+                    this.addItemToPlayer((PlayerEntity) target);
+
                 } else {
                     if (super.hasPlayerBothPowers(MetalsNBTData.ATIUM, data)) {
                         if (isAllomantic) {
@@ -44,6 +46,7 @@ public class AtiumSpike extends MetalSpikeAbstract{
                                 if (couldRemovePower){
                                     data.removeAllomanticPower(MetalsNBTData.ATIUM);
                                 }
+                                super.setAllomanticNbt(true);
                                 this.addItemToPlayer((PlayerEntity) target);
                             }
                         } else {
@@ -51,6 +54,7 @@ public class AtiumSpike extends MetalSpikeAbstract{
                                 if (couldRemovePower){
                                     data.removeFeruchemicPower(MetalsNBTData.ATIUM);
                                 }
+                                super.setFeruchemicNbt(true);
                                 this.addItemToPlayer((PlayerEntity) target);
                             }
                         }
@@ -59,6 +63,7 @@ public class AtiumSpike extends MetalSpikeAbstract{
                             if (Math.random()>0.49){
                                 data.removeAllomanticPower(MetalsNBTData.ATIUM);
                             }
+                            super.setAllomanticNbt(true);
                             this.addItemToPlayer((PlayerEntity) target);
                         }
                     } else if (hasFeruchemicPower){
@@ -66,6 +71,7 @@ public class AtiumSpike extends MetalSpikeAbstract{
                             if (Math.random()>0.49){
                                 data.removeFeruchemicPower(MetalsNBTData.ATIUM);
                             }
+                            super.setFeruchemicNbt(true);
                             this.addItemToPlayer((PlayerEntity) target);
                         }
                     }
