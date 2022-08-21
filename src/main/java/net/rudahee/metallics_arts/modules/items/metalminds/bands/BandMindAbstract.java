@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.items.metalminds.bands;
 
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -73,6 +74,9 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     @Override
     public boolean canEquip(String identifier, LivingEntity livingEntity, ItemStack stack) {
+        if(!stack.hasTag()) {
+            stack.setTag(addBandTags());
+        }
         PlayerEntity player = (PlayerEntity) livingEntity;
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             cap = data;
@@ -148,6 +152,10 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         if(!stack.hasTag()) {
             stack.setTag(addBandTags());
         }
+        if (this instanceof BandLerasiumEttmetal){
+            return;
+        }
+
         if (stack.hasTag()) {
             toolTips.add(new StringTextComponent(metals[0].getNameLower().substring(0,1).toUpperCase()+metals[0].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
             toolTips.add(new StringTextComponent(metals[1].getNameLower().substring(0,1).toUpperCase()+metals[1].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
@@ -176,7 +184,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             stack.setTag(addBandTags());
         }
 
-        if (this instanceof BandZincBrass || this instanceof BandCopperBronze){
+        if (this instanceof BandZincBrass || this instanceof BandCopperBronze || this instanceof BandLerasiumEttmetal){
             return;
         }
 
@@ -189,18 +197,22 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                 PlayerEntity player = (PlayerEntity) livingEntity;
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
 
+                    if (data.isDecanting(MetalsNBTData.ALUMINUM)||data.isStoring(MetalsNBTData.ALUMINUM)){
+                        stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                    }
+
                     if (data.isDecanting(this.metals[0])) {
                         if (stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")>0) {
                             nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")-1));
                             stack.setTag(nbtLocal);
                         } else {
+                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(this.metals[0],false);
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
                         }
                         needUpdate = true;
                     } else if (data.isStoring(this.metals[0])) {
                         if (stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_max_capacity")) {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
                             nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")+1));
                             stack.setTag(nbtLocal);
                         } else {
@@ -211,17 +223,18 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
                     if (data.isDecanting(this.metals[1])) {
                         if (stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")>0) {
+
                             nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")-1));
                             stack.setTag(nbtLocal);
                         } else {
+                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(this.metals[1],false);
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
                         }
                         needUpdate = true;
 
                     } else if (data.isStoring(this.metals[1])) {
                         if (stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_max_capacity")) {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
                             nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")+1));
                             stack.setTag(nbtLocal);
                         } else {
@@ -237,7 +250,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     private static String dato;
 
-    public String changeOwner(PlayerEntity player, CompoundNBT compoundNBT,boolean goBase) {
+    public String changeOwner(PlayerEntity player, CompoundNBT compoundNBT,boolean iStoreMetal) {
 
         boolean isFirstReserveZero = compoundNBT.getInt(this.metals[0].getNameLower()+"_feruchemic_reserve") == 0;
         boolean isSecondReserveZero = compoundNBT.getInt(this.metals[1].getNameLower()+"_feruchemic_reserve") == 0;
@@ -246,23 +259,38 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
         dato = compoundNBT.getString("key");
 
-        if (isFirstReserveZero && isSecondReserveZero && goBase)  {
+        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+            if (isFirstReserveZero && isSecondReserveZero && !data.isStoring(MetalsNBTData.ALUMINUM) &&
+                    !data.isDecanting(MetalsNBTData.ALUMINUM) && iStoreMetal){
+                dato = player.getStringUUID();
+            } else if (isFirstReserveZero && isSecondReserveZero && !data.isStoring(MetalsNBTData.ALUMINUM) &&
+                    !data.isDecanting(MetalsNBTData.ALUMINUM) && !iStoreMetal){
+                dato = unkeyedString;
+            }
+            else if (data.isStoring(MetalsNBTData.ALUMINUM)) {
+                dato = unkeyedString;
+            } else if (data.isDecanting(MetalsNBTData.ALUMINUM)){
+                dato = player.getStringUUID();
+            }
+        });
+
+        /*if (isFirstReserveZero && isSecondReserveZero && goBase)  { // ambas 0 y decanta
             dato =  unkeyedString;
-        } else if (isFirstReserveZero && isSecondReserveZero && !goBase) {
+        } else if (isFirstReserveZero && isSecondReserveZero && !goBase) { //ambas 0 y almacena
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
-                if (!data.isStoring(MetalsNBTData.ALUMINUM)) {
-                    dato = player.getStringUUID();
-                } else {
+                if (data.isStoring(MetalsNBTData.ALUMINUM)) {
                     dato = unkeyedString;
+                } else {
+                    dato = player.getStringUUID();
                 }
             });
-        } else if ((!isFirstReserveZero || !isSecondReserveZero) && isUnkey) {
+        } else if ((!isFirstReserveZero || !isSecondReserveZero) && isUnkey) {  //alguno no es 0 y esta desbloqueada
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
                 if (data.isDecanting(MetalsNBTData.ALUMINUM)) {
                     dato = player.getStringUUID();
                 }
             });
-        }
+        }*/
         return dato;
     }
 
