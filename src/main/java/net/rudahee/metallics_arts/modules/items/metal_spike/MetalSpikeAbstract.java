@@ -4,6 +4,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
@@ -24,6 +25,12 @@ public abstract class MetalSpikeAbstract extends SwordItem {
 
     private static final int ATTACK_DAMAGE = 1;
     private static final float ATTACK_SPEED = -3f;
+
+    public MetalSpikeAbstract(Properties properties) {
+        super(tier, ATTACK_DAMAGE, ATTACK_SPEED, properties);
+        nbt = new CompoundNBT();
+    }
+
 
     private static final IItemTier tier = new IItemTier() {
         @Override
@@ -61,11 +68,6 @@ public abstract class MetalSpikeAbstract extends SwordItem {
         return nbt;
     }
 
-    public MetalSpikeAbstract(Properties properties) {
-        super(tier,ATTACK_DAMAGE,ATTACK_SPEED,properties);
-        nbt = new CompoundNBT();
-    }
-
     public boolean getFeruchemicNbt() {
         return this.nbt.getBoolean("feruchemic");
     }
@@ -79,6 +81,8 @@ public abstract class MetalSpikeAbstract extends SwordItem {
         this.nbt.putBoolean("allomantic", value);
     }
 
+
+
     public boolean hasPlayerBothPowers(MetalsNBTData metal, IDefaultInvestedPlayerData cap) {
         if (cap.hasAllomanticPower(metal) && cap.hasFeruchemicPower(metal)) {
             return true;
@@ -86,10 +90,10 @@ public abstract class MetalSpikeAbstract extends SwordItem {
         return false;
     }
 
-    public boolean hasAllomanticPower(MetalsNBTData metal, IDefaultInvestedPlayerData cap) {
+    public boolean hasPlayerAllomanticPower(MetalsNBTData metal, IDefaultInvestedPlayerData cap) {
         return cap.hasAllomanticPower(metal);
     }
-    public boolean hasFeruchemicPower(MetalsNBTData metal, IDefaultInvestedPlayerData cap) {
+    public boolean hasPlayerFeruchemicPower(MetalsNBTData metal, IDefaultInvestedPlayerData cap) {
         return cap.hasFeruchemicPower(metal);
     }
 

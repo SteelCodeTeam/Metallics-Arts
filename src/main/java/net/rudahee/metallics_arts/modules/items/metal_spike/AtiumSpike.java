@@ -1,10 +1,14 @@
 package net.rudahee.metallics_arts.modules.items.metal_spike;
 
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
@@ -22,70 +26,102 @@ public class AtiumSpike extends MetalSpikeAbstract{
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if ((target instanceof ServerPlayerEntity || target instanceof PlayerEntity) && (attacker instanceof ServerPlayerEntity || attacker instanceof PlayerEntity)){
 
-            target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+            target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(targetCapability ->{
 
-                boolean hasAllomanticPower = super.hasAllomanticPower(MetalsNBTData.ATIUM, data);
-                boolean hasFeruchemicPower = super.hasFeruchemicPower(MetalsNBTData.ATIUM, data);
+                boolean hasTargetAllomanticPower = super.hasPlayerAllomanticPower(MetalsNBTData.ATIUM, targetCapability);
+                boolean hasTargetFeruchemicPower = super.hasPlayerFeruchemicPower(MetalsNBTData.ATIUM, targetCapability);
 
-                boolean couldStealPower = Math.random()>0.30;
+                boolean couldStealPower = Math.random()>0.60;
                 boolean couldRemovePower = Math.random()>0.50;
                 boolean isAllomantic = Math.random()>0.50;
 
-                if (!super.hasPlayerBothPowers(MetalsNBTData.ATIUM, data)) {
-                    if (super.getFeruchemicNbt()){
-                        super.setFeruchemicNbt(true);
-                    } else if (super.getAllomanticNbt()){
-                        super.setAllomanticNbt(true);
+                // We show the item's nbt, if we dont have nbt we steal it, otherwise we concede the power.
+                if (super.getAllomanticNbt() || super.getFeruchemicNbt()) {
+
+                    if (super.getAllomanticNbt()) {
+                        if (!super.hasPlayerAllomanticPower(MetalsNBTData.ATIUM, targetCapability)) {
+                            targetCapability.addAllomanticPower(MetalsNBTData.ATIUM);
+                            target.hurt(DamageSource.MAGIC, 6);
+                            new LightningBoltEntity(EntityType.LIGHTNING_BOLT, target.level).setVisualOnly(true);
+                            target.level.playLocalSound(target.position().x, target.position().y, target.position().z, SoundEvents.GENERIC_EXPLODE ,SoundCategory.HOSTILE, 1.0f, 2.0f, true);
+                        }
+                    } else {
+                        if (!super.hasPlayerFeruchemicPower(MetalsNBTData.ATIUM, targetCapability)) {
+                            targetCapability.addFeruchemicPower(MetalsNBTData.ATIUM);
+                            target.hurt(DamageSource.MAGIC, 6);
+                            new LightningBoltEntity(EntityType.LIGHTNING_BOLT, target.level).setVisualOnly(true);
+                            target.level.playLocalSound(target.position().x, target.position().y, target.position().z, SoundEvents.GENERIC_EXPLODE ,SoundCategory.HOSTILE, 1.0f, 2.0f, true);
+
+                        }
                     }
-                    this.addItemToPlayer((PlayerEntity) target);
 
                 } else {
-                    if (super.hasPlayerBothPowers(MetalsNBTData.ATIUM, data)) {
+                    // if target have both (Allomancy and Feruchemic)
+                    if (super.hasPlayerBothPowers(MetalsNBTData.ATIUM, targetCapability)) {
+                        // 50% allomancy
                         if (isAllomantic) {
+                            // 40% to steal
                             if (couldStealPower){
+                                // 50% of 40% to remove power
                                 if (couldRemovePower){
-                                    data.removeAllomanticPower(MetalsNBTData.ATIUM);
+                                    targetCapability.removeAllomanticPower(MetalsNBTData.ATIUM);
                                 }
+                                // Spike obtain the power
                                 super.setAllomanticNbt(true);
-                                this.addItemToPlayer((PlayerEntity) target);
+                                // Give the new item to player
+                                this.addItemToPlayer((PlayerEntity) attacker);
                             }
+                        // 50% feruchemic
                         } else {
+                            // 40% to steal
                             if (couldStealPower){
+                                // 50% of 40% to remove power
                                 if (couldRemovePower){
-                                    data.removeFeruchemicPower(MetalsNBTData.ATIUM);
+                                    targetCapability.removeFeruchemicPower(MetalsNBTData.ATIUM);
                                 }
+                                // Spike obtain the power
                                 super.setFeruchemicNbt(true);
-                                this.addItemToPlayer((PlayerEntity) target);
+                                // Give the new item to player
+                                this.addItemToPlayer((PlayerEntity) attacker);
                             }
                         }
-                    } else if (hasAllomanticPower){
-                        if (Math.random()>0.90){
-                            if (Math.random()>0.49){
-                                data.removeAllomanticPower(MetalsNBTData.ATIUM);
+                    // if the target only have allomantic power
+                    } else if (hasTargetAllomanticPower){
+                        // if only have 1/2 powers less prob to steal and lose your power
+                        if (Math.random()>0.70) {
+                            if (Math.random() > 0.70) {
+                                targetCapability.removeAllomanticPower(MetalsNBTData.ATIUM);
                             }
+                            // Spike obtain the power
                             super.setAllomanticNbt(true);
-                            this.addItemToPlayer((PlayerEntity) target);
+                            // Give the new item to player
+                            this.addItemToPlayer((PlayerEntity) attacker);
                         }
-                    } else if (hasFeruchemicPower){
-                        if (Math.random()>0.90){
-                            if (Math.random()>0.49){
-                                data.removeFeruchemicPower(MetalsNBTData.ATIUM);
+                    // if the target only have feruchemic power
+                    } else if (hasTargetFeruchemicPower){
+                        // if only have 1/2 powers less prob to steal and lose your power
+                        if (Math.random()>0.70){
+                            if (Math.random()>0.70){
+                                targetCapability.removeFeruchemicPower(MetalsNBTData.ATIUM);
                             }
+                            // Spike obtain the power
                             super.setFeruchemicNbt(true);
-                            this.addItemToPlayer((PlayerEntity) target);
+                            // Give the new item to player
+                            this.addItemToPlayer((PlayerEntity) attacker);
                         }
                     }
+
                 }
-                ModNetwork.sync(data,(PlayerEntity) target);
+
+                ModNetwork.sync(targetCapability,(PlayerEntity) target);
             });
         }
         return super.hurtEnemy(stack, target, attacker);
     }
 
-
-    public void addItemToPlayer(PlayerEntity target) {
+    public void addItemToPlayer(PlayerEntity attacker) {
         this.final_result = new ItemStack(ModItems.ATIUM_SPIKE.get(), 1);
         final_result.addTagElement("atium_spike", super.getAllNbt());
-        target.addItem(final_result);
+        attacker.addItem(final_result);
     }
 }

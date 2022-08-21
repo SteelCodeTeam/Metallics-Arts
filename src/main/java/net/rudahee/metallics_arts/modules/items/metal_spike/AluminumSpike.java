@@ -25,8 +25,8 @@ public class AluminumSpike extends MetalSpikeAbstract {
 
             target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
 
-                boolean hasAllomanticPower = super.hasAllomanticPower(MetalsNBTData.ALUMINUM, data);
-                boolean hasFeruchemicPower = super.hasFeruchemicPower(MetalsNBTData.ALUMINUM, data);
+                boolean hasAllomanticPower = super.hasPlayerAllomanticPower(MetalsNBTData.ALUMINUM, data);
+                boolean hasFeruchemicPower = super.hasPlayerFeruchemicPower(MetalsNBTData.ALUMINUM, data);
 
                 boolean couldStealPower = Math.random()>0.90;
                 boolean couldRemovePower = Math.random()>0.50;

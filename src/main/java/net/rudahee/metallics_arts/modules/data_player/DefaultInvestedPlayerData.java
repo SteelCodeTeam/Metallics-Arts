@@ -6,6 +6,7 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
 
@@ -350,6 +351,21 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
         }
 
         return burning;
+    }
+
+    @Override
+    public MetalsNBTData getRandomBurningMetal() {
+        ArrayList<MetalsNBTData> metals = new ArrayList<>();
+        int index = 0;
+        for (MetalsNBTData metal : MetalsNBTData.values()) {
+            if (this.burning_metals[index]) {
+                metals.add(metal);
+            }
+            index++;
+        }
+
+        Collections.shuffle(metals);
+        return metals.get(0);
     }
 
     @Override

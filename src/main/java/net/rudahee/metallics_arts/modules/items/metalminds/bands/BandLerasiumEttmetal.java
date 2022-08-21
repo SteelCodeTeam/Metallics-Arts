@@ -7,12 +7,16 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.modules.powers.helpers.BendalloyAndCadmiunHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -93,6 +97,66 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
         super.curioTick(identifier, index, livingEntity, stack);
     }
 
+    private PlayerEntity target;
+    private IDefaultInvestedPlayerData targetCapability;
+    private MetalsNBTData targetMetal;
+    public boolean stealThePowerWithEttmetal(IDefaultInvestedPlayerData playerCapability, PlayerEntity player, World world) {
+
+        Vector3d posPlayer = player.position();
+
+        BlockPos posLeftTop = new BlockPos(posPlayer.x + 6, posPlayer.y + 6, posPlayer.z + 6);
+        BlockPos posRightDown = new BlockPos(posPlayer.x - 6, posPlayer.y - 6, posPlayer.z - 6);
+
+
+        if (world instanceof ServerWorld) {
+
+                world.getEntitiesOfClass(PlayerEntity.class, new AxisAlignedBB(posLeftTop, posRightDown)).forEach(newTarget -> {
+                    if (newTarget != player && (newTarget == target || target == null)) {
+                        newTarget.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(newTargetCapability -> {
+                            if (newTargetCapability.isBurningSomething() && (newTarget == target || target == null)) {
+                                target = newTarget;
+                                targetCapability = newTargetCapability;
+                                targetMetal = newTargetCapability.getRandomBurningMetal();
+                            } else {
+                                target = null;
+                                targetCapability = null;
+                                targetMetal = null;
+                            }
+                        });
+                    }
+                });
+            }
+        if (target != null && targetCapability != null && targetMetal != null) {
+            // CARGAR EL NBT
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean firstInteraction = true;
+    public void useStealedPower(IDefaultInvestedPlayerData playerCapability) {
+        MetalsNBTData metalDelNBT = MetalsNBTData.ALUMINUM; // OBTENER NBT
+
+        if (firstInteraction) {
+            playerCapability.setAllomanticMetalsAmount(metalDelNBT, playerCapability.getAllomanticAmount(metalDelNBT) + 5);
+            firstInteraction = false;
+        }
+
+        if (!playerCapability.isBurning(metalDelNBT)) {
+            playerCapability.setAllomanticMetalsAmount(metalDelNBT, playerCapability.getAllomanticAmount(metalDelNBT) + 1);
+            playerCapability.setBurning(metalDelNBT, true);
+        }
+    }
+
+    public void finishUsingStealedPower(IDefaultInvestedPlayerData playerCapability) {
+        MetalsNBTData metalDelNBT = MetalsNBTData.ALUMINUM;
+        firstInteraction = true;
+        playerCapability.setBurning(metalDelNBT, false);
+
+        // VACIAR EL NBT
+
+    }
 
 
     public boolean saveAllomanticReserve(IDefaultInvestedPlayerData playerCapability) {

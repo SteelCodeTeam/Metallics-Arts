@@ -211,8 +211,20 @@ public class ModRecipeProvider extends RecipeProvider {
                     .pattern("xx#")
                     .pattern("   ")
                     .unlockedBy("has_item", has(object.getSpike()))
-                    .save(recipesConsumer, new ResourceLocation("alomantic_arts_spike" + object.getName()));
+                    .save(recipesConsumer, new ResourceLocation("allomantic_arts_spike" + object.getName()));
         });
+
+
+        ShapedRecipeBuilder.shaped(ModBlock.ALLOY_FURNACE_BLOCK.get().asItem())
+                .define('#', Items.BLAST_FURNACE)
+                .define('X', Items.STONE_BRICKS)
+                .define('_', Items.STONE_BRICK_SLAB)
+                .define('U', Items.COAL_BLOCK)
+                .pattern("___")
+                .pattern("X#X")
+                .pattern("UUU")
+                .unlockedBy("has_item", has(Items.BLAST_FURNACE))
+                .save(recipesConsumer, new ResourceLocation("allomantic_alloy_furnace"));
 
         ShapedRecipeBuilder.shaped(ModItems.SMALL_VIAL.get())
                 .define('#',Items.GLASS)

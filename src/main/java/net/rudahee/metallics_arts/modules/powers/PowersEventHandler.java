@@ -3,6 +3,10 @@ package net.rudahee.metallics_arts.modules.powers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemTier;
+import net.minecraft.item.SwordItem;
+import net.minecraft.item.TieredItem;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
@@ -59,6 +63,7 @@ public class PowersEventHandler {
                     if (data.getAllomanticPowerCount() + data.getFeruchemicPowerCount() == 0) {
                         List<MetalsNBTData> metals = Arrays.asList(MetalsNBTData.values());
                         MetalsNBTData initialMetal = metals.get(((int) Math.random())*metals.size());
+
 
                         if (Math.random() > 0.49) {
                             data.addAllomanticPower(initialMetal);
@@ -493,23 +498,6 @@ public class PowersEventHandler {
                             } else if (!playerCapability.isStoring(MetalsNBTData.ATIUM) && !playerCapability.isDecanting(MetalsNBTData.ATIUM)){
                                 previusAtium = false;
                             }
-
-                            /************************
-                             * LERASIUM FERUCHEMIC
-                             ************************/
-                            /*boolean completed = false;
-                            if (playerCapability.isDecanting(MetalsNBTData.LERASIUM)) {
-                                completed = LerasiumAndEttmetalHelpers.loadAllomanticReserve(player, playerCapability);
-                                if (completed) {
-                                    playerCapability.setDecanting(MetalsNBTData.LERASIUM, false);
-                                }
-                            } else if (playerCapability.isStoring(MetalsNBTData.LERASIUM)) {
-                                completed = LerasiumAndEttmetalHelpers.saveAllomanticReserve(player, playerCapability);
-                                if (completed) {
-                                    playerCapability.setStoring(MetalsNBTData.LERASIUM, false);
-                                }
-                            }*/
-
 
                             if (actualTick >= 90) {
                                 actualTick = 0;

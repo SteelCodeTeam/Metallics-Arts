@@ -13,15 +13,24 @@ import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import org.lwjgl.opengl.GL11;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import java.awt.*;
 
 public class AllomanticMetalOverlay {
     private static final Point[] AllomanticFrames = new Point[6];
+    private static final Point[] FeruchemicDecantFrames = new Point[6];
+    private static final Point[] FeruchemicStorageFrames = new Point[6];
+
 
     private static final ResourceLocation meterLocation = new ResourceLocation("metallics_arts", "textures/gui/overlay/meter.png");
     private static int animationCounter = 0;
+
     private static int currentFrame = 0;
+
+    private static int animationCounterFeruchemic = 0;
+
+    private static int currentFrameFeruchemic = 0;
 
     static {
         int x = 9;
@@ -31,6 +40,24 @@ public class AllomanticMetalOverlay {
         }
     }
 
+    static {
+        int xStorage = 17;
+        int xDecant = 9;
+
+        int firstStorageY = 33;
+        int firstDecantY = 33;
+
+        for (int i = 0; i < 6; i++) {
+            FeruchemicStorageFrames[i] = new Point(xStorage, firstStorageY + (6 * i));
+        }
+
+        for (int i = 0; i < 6; i++) {
+            FeruchemicDecantFrames[i] = new Point(xDecant, firstDecantY + (6 * i));
+        }
+    }
+
+    private static int actualFeruchemicReserve = -1;
+    private static String actualIsBandOrRing = "";
 
     /**
      * Draws the overlay for the metals
@@ -89,12 +116,12 @@ public class AllomanticMetalOverlay {
                     allomanticActualOffSetX = allomanticActualOffSetX + allomanticWidthVial + 3;
 
                     float division = (float)data.getAllomanticAmount(metal) / (float)metal.getMaxAllomanticTicksStorage();
-                    int basura = Math.round(division * allomanticHeightBar);
+                    int modifierAllomantic = Math.round(division * allomanticHeightBar);
 
                 if (data.hasAllomanticPower(metal)) {
 
                     blit(matrix, gui, allomanticActualOffSetX,  allomanticOffsetY, 0, 0, allomanticWidthVial, allomanticHeightVial);
-                    blit(matrix, gui, allomanticActualOffSetX + 1, allomanticOffsetY + allomanticPixelOffsetXInVialBar + (allomanticHeightBar - basura), barOffSet, 0, allomanticWidthBar, basura);
+                    blit(matrix, gui, allomanticActualOffSetX + 1, allomanticOffsetY + allomanticPixelOffsetXInVialBar + (allomanticHeightBar - modifierAllomantic), barOffSet, 0, allomanticWidthBar, modifierAllomantic);
 
 
                     //ForgeIngameGui.drawString(matrix, mc.font, text, allomanticActualOffSetX, allomanticOffsetY + allomanticHeightVial + 1, Integer.parseInt("FF0000", 16));
@@ -112,7 +139,7 @@ public class AllomanticMetalOverlay {
 
 
             /*
-             * RENDERING ALLOMANTIC THINGS
+             * RENDERING FERUCHEMIC THINGS
              */
 
 
@@ -134,18 +161,60 @@ public class AllomanticMetalOverlay {
             int feruchemicHeightAnimation = 5;
             int feruchemicWidthAnimation = 5;
 
+            int reserve = -1;
             barOffSet = 7;
             for (MetalsNBTData metal: MetalsNBTData.values()) {
 
                 feruchemicActualOffSetX = feruchemicActualOffSetX + feruchemicWidthVial + 3;
 
+                CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curioData -> {
+                    for (int i=0; i < curioData.getSlots(); i++) {
+                        if (curioData.getStackInSlot(i).getDisplayName().getString().toLowerCase().contains(metal.getNameLower())) {
+                            if (curioData.getStackInSlot(i).hasTag()) {
+                                actualFeruchemicReserve = curioData.getStackInSlot(i).getTag().getInt(metal.getNameLower() + "_feruchemic_reserve");
+                            }
+                            if (curioData.getStackInSlot(i).getDisplayName().getString().toLowerCase().contains("band")) {
+                                actualIsBandOrRing = "band";
+                            } else {
+                                actualIsBandOrRing = "ring";
+                            }
+                        }
+                    }
+                });
+
+                int feruchemicReserve = 0;
+                boolean isBandOrRing = true; //if band = true;
+                if (actualFeruchemicReserve != -1) {
+                    feruchemicReserve = actualFeruchemicReserve;
+                    actualFeruchemicReserve = -1;
+                }
+
+                if (actualIsBandOrRing != "") {
+                    isBandOrRing = (actualIsBandOrRing.equals("band")) ? true : false;
+                    actualIsBandOrRing = "";
+                }
+
+                int maxReserve = (isBandOrRing) ? metal.getMaxReserveBand() : metal.getMaxReserveRing();
+
+                float divisionFeruchemic = (float)feruchemicReserve / (float)maxReserve;
+                int modifierFeruchemic = Math.round(divisionFeruchemic * feruchemicHeightBar);
+
+                boolean fixOffset = ((feruchemicHeightBar - modifierFeruchemic) < (float)feruchemicHeightBar / 2f) ? true : false;
+
                 if (data.hasFeruchemicPower(metal)) {
                     blit(matrix, gui, feruchemicActualOffSetX, feruchemicOffsetY + offSetTop, 0, 17, feruchemicWidthVial, feruchemicHeightVial);
-                    blit(matrix, gui, feruchemicActualOffSetX + 1, feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop, barOffSet, 0, feruchemicWidthBar, feruchemicHeightBar);
+
+                    int feruchemicCalculatedOffset = feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop + (feruchemicHeightBar - modifierFeruchemic) - ((fixOffset) ? 1 : 0);
+                    if (data.getMetalMindEquiped(metal.getGroup())) {
+                        blit(matrix, gui, feruchemicActualOffSetX + 1, feruchemicCalculatedOffset, barOffSet, 0, feruchemicWidthBar, modifierFeruchemic);
+                    }
                     //if decant
-                    blit(matrix, gui, feruchemicActualOffSetX, feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation, feruchemicHeightAnimation);
+                    if (data.isDecanting(metal)) {
+                        blit(matrix, gui, feruchemicActualOffSetX, feruchemicCalculatedOffset, FeruchemicStorageFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation, ((fixOffset) ? feruchemicHeightAnimation : 2));
+                    } else if (data.isStoring(metal)) {
+                        blit(matrix, gui, feruchemicActualOffSetX, feruchemicCalculatedOffset, FeruchemicDecantFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation,  + ((fixOffset) ? feruchemicHeightAnimation : 2));
+                    }
                     // else if storage
-                    //blit(matrix, gui, feruchemicActualOffSetX, feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation, feruchemicHeightAnimation);
                 } else {
                     blit(matrix, gui, feruchemicActualOffSetX,  feruchemicOffsetY + offSetTop, 109, 103, feruchemicWidthVial, feruchemicHeightVial);
                 }
@@ -156,17 +225,29 @@ public class AllomanticMetalOverlay {
 
         });
 
-            animationCounter++;
-            if (animationCounter > 300) {
-                animationCounter = 0;
-                currentFrame++;
+        animationCounterFeruchemic++;
+        if (animationCounterFeruchemic > 100) {
+            animationCounterFeruchemic = 0;
+            currentFrameFeruchemic++;
 
-                if(currentFrame > 5) {
-                    currentFrame = 0;
-                }
-
-
+            if(currentFrameFeruchemic > 5) {
+                currentFrameFeruchemic = 0;
             }
+
+
+        }
+
+        animationCounter++;
+        if (animationCounter > 200) {
+            animationCounter = 0;
+            currentFrame++;
+
+            if(currentFrame > 5) {
+                currentFrame = 0;
+            }
+
+
+        }
     }
 
     private static void blit(MatrixStack matrix, ForgeIngameGui gui, int x, int y, float uOffset, float vOffset, int uWidth, int vHeight) {
