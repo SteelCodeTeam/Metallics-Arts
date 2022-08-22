@@ -161,14 +161,7 @@ public class PowersEventHandler {
         }
     }
 
-    @SubscribeEvent
-    public static void onStartTracking(final net.minecraftforge.event.entity.player.PlayerEvent.StartTracking event) {
-        if (!event.getTarget().level.isClientSide) {
-            if (event.getTarget() instanceof ServerPlayerEntity && event.getPlayer() instanceof ServerPlayerEntity) {
-                ModNetwork.sync(event.getPlayer());
-            }
-        }
-    }
+
 
     @SubscribeEvent
     public static void onPlayerClone(final PlayerEvent.Clone event) {
