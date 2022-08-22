@@ -23,10 +23,8 @@ import java.util.List;
 
 public class BandAtiumMalatium extends BandMindAbstract {
 
-    private CompoundNBT localNbtMalatium= new CompoundNBT();;
     public BandAtiumMalatium (Item.Properties properties){
         super(properties, MetalsNBTData.ATIUM,MetalsNBTData.MALATIUM,MetalsNBTData.ATIUM.getMaxReserveBand(),MetalsNBTData.MALATIUM.getMaxReserveBand());
-        localNbtMalatium.putInt("tier_malatium_storage",-1);
     }
 
     private static boolean needUpdate = false;
@@ -70,20 +68,20 @@ public class BandAtiumMalatium extends BandMindAbstract {
                     ///////////// MALATIUM /////////////
                     if (data.isDecanting(getMetals(1))) {
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")>0) {
-                            if (isDecanting(player)) {
+                            if (isDecanting(player, stack)) {
                                 nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")-1));
                                 stack.setTag(nbtLocal);
                             }
                         } else {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
-                            localNbtMalatium.putInt("tier_malatium_storage",-1);
+                            stack.getTag().putInt("tier_malatium_storage",-1);
                             data.setDecanting(getMetals(1),false);
                         }
                         needUpdate = true;
 
                     } else if (data.isStoring(getMetals(1))) {
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
-                            if (isStoring(player)){
+                            if (isStoring(player, stack)){
                                 stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
                                 nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
                                 stack.setTag(nbtLocal);
@@ -101,17 +99,17 @@ public class BandAtiumMalatium extends BandMindAbstract {
 
 
 
-    public boolean isStoring (PlayerEntity player){
+    public boolean isStoring (PlayerEntity player, ItemStack stack){
 
-        if (localNbtMalatium.getInt("tier_malatium_storage") == -1){
-            if (!generateIternalReserve(player)){
+        if (stack.getTag().getInt("tier_malatium_storage") == -1){
+            if (!generateIternalReserve(player, stack)){
                 return false;
             }
         }
 
         if (player.getMainHandItem().getItem() instanceof TieredItem ) {
             TieredItem tiered = (TieredItem) player.getMainHandItem().getItem();
-            if (tiered.getTier().getLevel() == localNbtMalatium.getInt("tier_malatium_storage")){
+            if (tiered.getTier().getLevel() == stack.getTag().getInt("tier_malatium_storage")){
                 if (player.getItemInHand(Hand.MAIN_HAND).getDamageValue() == player.getItemInHand(Hand.MAIN_HAND).getMaxDamage()){
                     player.setItemInHand(Hand.MAIN_HAND,ItemStack.EMPTY);
                     return false;
@@ -123,7 +121,7 @@ public class BandAtiumMalatium extends BandMindAbstract {
         } else if ( player.getMainHandItem().getItem() instanceof ArmorItem) {
             ArmorItem armorItem = (ArmorItem) player.getMainHandItem().getItem();
             int tier = convertMaterialToTier(armorItem.getMaterial().getName());
-            if (tier == localNbtMalatium.getInt("tier_malatium_storage")){
+            if (tier == stack.getTag().getInt("tier_malatium_storage")){
                 if (player.getItemInHand(Hand.MAIN_HAND).getDamageValue() == player.getItemInHand(Hand.MAIN_HAND).getMaxDamage()){
                     player.setItemInHand(Hand.MAIN_HAND,ItemStack.EMPTY);
                     return false;
@@ -135,11 +133,11 @@ public class BandAtiumMalatium extends BandMindAbstract {
         return false;//no es un item con tier
     }
 
-    public boolean isDecanting(PlayerEntity player) {
+    public boolean isDecanting(PlayerEntity player, ItemStack stack) {
 
         if (player.getMainHandItem().getItem() instanceof TieredItem) {
             TieredItem tiered = (TieredItem) player.getMainHandItem().getItem();
-            if (tiered.getTier().getLevel() == localNbtMalatium.getInt("tier_malatium_storage")){
+            if (tiered.getTier().getLevel() == stack.getTag().getInt("tier_malatium_storage")){
                 if (player.getItemInHand(Hand.MAIN_HAND).getDamageValue() == 0){
                     return false;
                 }
@@ -150,7 +148,7 @@ public class BandAtiumMalatium extends BandMindAbstract {
         } else if ( player.getMainHandItem().getItem() instanceof ArmorItem) {
             ArmorItem armorItem = (ArmorItem) player.getMainHandItem().getItem();
             int tier = convertMaterialToTier(armorItem.getMaterial().getName());
-            if (tier == localNbtMalatium.getInt("tier_malatium_storage")){
+            if (tier == stack.getTag().getInt("tier_malatium_storage")){
                 if (player.getItemInHand(Hand.MAIN_HAND).getDamageValue() == 0){
                     return false;
                 }
@@ -162,10 +160,10 @@ public class BandAtiumMalatium extends BandMindAbstract {
         return false;
     }
 
-    public boolean generateIternalReserve (PlayerEntity player){
+    public boolean generateIternalReserve (PlayerEntity player, ItemStack stack){
         if (player.getMainHandItem().getItem() instanceof TieredItem) {
             TieredItem tiered = (TieredItem) player.getMainHandItem().getItem();
-            localNbtMalatium.putInt("tier_malatium_storage",tiered.getTier().getLevel());
+            stack.getTag().putInt("tier_malatium_storage",tiered.getTier().getLevel());
             return true;
         }
         return false;
@@ -213,9 +211,9 @@ public class BandAtiumMalatium extends BandMindAbstract {
 
             }
             toolTips.add(new StringTextComponent("Owner: "+ (stack.getTag().getString("key"))));
-            if (localNbtMalatium.getInt("tier_malatium_storage")!=-1){
+            if (stack.getTag().getInt("tier_malatium_storage")!=-1){
                 toolTips.add(new StringTextComponent("-------------------"));
-                toolTips.add(new StringTextComponent("Tier: "+convertTierToMaterial(localNbtMalatium.getInt("tier_malatium_storage"))));
+                toolTips.add(new StringTextComponent("Tier: "+convertTierToMaterial(stack.getTag().getInt("tier_malatium_storage"))));
             }
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
