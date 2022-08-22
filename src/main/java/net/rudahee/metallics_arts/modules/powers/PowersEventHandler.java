@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.powers;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -16,6 +17,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -27,6 +29,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.modules.data_player.InvestedDataProvider;
 import net.rudahee.metallics_arts.modules.powers.helpers.*;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
@@ -37,6 +40,7 @@ import java.util.List;
 
 @Mod.EventBusSubscriber
 public class PowersEventHandler {
+
 
     @SubscribeEvent
     public static void onJoinWorld(final PlayerEvent.PlayerLoggedInEvent event) {
@@ -76,7 +80,7 @@ public class PowersEventHandler {
                 });
 
                 //Sync cap to client
-                ModNetwork.sync(player);
+                ModNetwork.sync(event.getPlayer());
             }
         }
     }
@@ -160,11 +164,8 @@ public class PowersEventHandler {
     @SubscribeEvent
     public static void onStartTracking(final net.minecraftforge.event.entity.player.PlayerEvent.StartTracking event) {
         if (!event.getTarget().level.isClientSide) {
-            if (event.getTarget() instanceof ServerPlayerEntity) {
-                ServerPlayerEntity player = (ServerPlayerEntity) event.getTarget();
-                player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> {
-                    ModNetwork.sync(event.getPlayer());
-                });
+            if (event.getTarget() instanceof ServerPlayerEntity && event.getPlayer() instanceof ServerPlayerEntity) {
+                ModNetwork.sync(event.getPlayer());
             }
         }
     }
@@ -172,6 +173,8 @@ public class PowersEventHandler {
     @SubscribeEvent
     public static void onPlayerClone(final PlayerEvent.Clone event) {
         if (!event.getPlayer().level.isClientSide()) {
+
+            event.getOriginal().revive();
 
             PlayerEntity player = event.getPlayer();
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
@@ -187,13 +190,21 @@ public class PowersEventHandler {
                                 data.addFeruchemicPower(mt);
                             }
                         }
-                        data.setDeathPos(oldData.getDeathPos());
+
+                        if (oldData.getDeathDimension() != null) {
+                            data.setDeathPos(oldData.getDeathPos());
+                            data.setDeathDimension(oldData.getDeathDimension());
+                        } else {
+                            data.setDeathPos(oldData.getSpawnPos());
+                            data.setDeathDimension(oldData.getSpawnDimension());
+                        }
                         data.setSpawnPos(oldData.getSpawnPos());
-                        data.setDeathDimension(oldData.getDeathDimension());
                         data.setSpawnDimension(oldData.getSpawnDimension());
                     }
                 });
             });
+
+            event.getOriginal().getCapability(InvestedCapability.PLAYER_CAP).invalidate();
             ModNetwork.sync(player);
         }
     }
@@ -318,19 +329,30 @@ public class PowersEventHandler {
     public static boolean previusAtium = false;
 
 
+    private static PlayerEntity newPlayer = null;
     @SubscribeEvent
     public static void onWorldTickEvent(final TickEvent.WorldTickEvent event) {
-        if (event.phase == TickEvent.Phase.END) {
-
-            World world = event.world;
+        if (event.phase != TickEvent.Phase.END) {
+            return;
+        }
+        World world = event.world;
             List<? extends PlayerEntity> playerList = world.players();
             ticks++;
             for (int playerIndex = playerList.size() - 1; playerIndex >= 0; playerIndex--) {
 
-                PlayerEntity player = playerList.get(playerIndex);
-                if (player == null) {
+                if (playerList.get(playerIndex) instanceof PlayerEntity || playerList.get(playerIndex) instanceof ServerPlayerEntity) {
+                    newPlayer = playerList.get(playerIndex);
+                } else {
+                    newPlayer = null;
+                }
+
+                if (newPlayer == null) {
                     return;
                 }
+
+                PlayerEntity player = newPlayer;
+
+
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                     playerCapability -> {
                         if (playerCapability.isInvested()) {
@@ -741,10 +763,9 @@ public class PowersEventHandler {
                         }
 
                 });
-                // SYNC NETWORK
-                    ModNetwork.sync(player);
+                   // ModNetwork.sync(player);
 
-            }
+
         }
     }
 }
