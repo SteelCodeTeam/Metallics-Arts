@@ -23,7 +23,7 @@ import java.util.List;
 
 public class BandAtiumMalatium extends BandMindAbstract {
 
-    CompoundNBT localNbtMalatium = new CompoundNBT();
+    private CompoundNBT localNbtMalatium = new CompoundNBT();
     public BandAtiumMalatium (Item.Properties properties){
         super(properties, MetalsNBTData.ATIUM,MetalsNBTData.MALATIUM,MetalsNBTData.ATIUM.getMaxReserveBand(),MetalsNBTData.MALATIUM.getMaxReserveBand());
         localNbtMalatium.putInt("tier_malatium_storage",-1);
@@ -201,10 +201,8 @@ public class BandAtiumMalatium extends BandMindAbstract {
         return "";
     }
 
-
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
-
         if (stack.hasTag()) {
             if (!Screen.hasControlDown()){
                 toolTips.add(new StringTextComponent(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
@@ -215,8 +213,8 @@ public class BandAtiumMalatium extends BandMindAbstract {
 
             }
             toolTips.add(new StringTextComponent("Owner: "+ (stack.getTag().getString("key"))));
-            toolTips.add(new StringTextComponent("-------------------"));
             if (localNbtMalatium.getInt("tier_malatium_storage")!=-1){
+                toolTips.add(new StringTextComponent("-------------------"));
                 toolTips.add(new StringTextComponent("Tier: "+convertTierToMaterial(localNbtMalatium.getInt("tier_malatium_storage"))));
             }
         }
