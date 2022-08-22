@@ -7,6 +7,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -25,6 +28,7 @@ public class BandAtiumMalatium extends BandMindAbstract {
 
     public BandAtiumMalatium (Item.Properties properties){
         super(properties, MetalsNBTData.ATIUM,MetalsNBTData.MALATIUM,MetalsNBTData.ATIUM.getMaxReserveBand(),MetalsNBTData.MALATIUM.getMaxReserveBand());
+
     }
 
     private static boolean needUpdate = false;
@@ -63,8 +67,6 @@ public class BandAtiumMalatium extends BandMindAbstract {
                         needUpdate = true;
                     }
 
-
-
                     ///////////// MALATIUM /////////////
                     if (data.isDecanting(getMetals(1))) {
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")>0) {
@@ -98,7 +100,6 @@ public class BandAtiumMalatium extends BandMindAbstract {
     }
 
 
-
     public boolean isStoring (PlayerEntity player, ItemStack stack){
 
         if (stack.getTag().getInt("tier_malatium_storage") == -1){
@@ -112,6 +113,7 @@ public class BandAtiumMalatium extends BandMindAbstract {
             if (tiered.getTier().getLevel() == stack.getTag().getInt("tier_malatium_storage")){
                 if (player.getItemInHand(Hand.MAIN_HAND).getDamageValue() == player.getItemInHand(Hand.MAIN_HAND).getMaxDamage()){
                     player.setItemInHand(Hand.MAIN_HAND,ItemStack.EMPTY);
+                    player.level.playLocalSound(player.getX(),player.getY(),player.getZ(), SoundEvents.ITEM_BREAK, SoundCategory.NEUTRAL,1.0f, 2.0f, true);
                     return false;
                 }
                 player.getItemInHand(Hand.MAIN_HAND).setDamageValue(player.getItemInHand(Hand.MAIN_HAND).getDamageValue()+1);
@@ -130,7 +132,7 @@ public class BandAtiumMalatium extends BandMindAbstract {
                 return true;
             }
         }
-        return false;//no es un item con tier
+        return false;
     }
 
     public boolean isDecanting(PlayerEntity player, ItemStack stack) {
@@ -166,6 +168,11 @@ public class BandAtiumMalatium extends BandMindAbstract {
             stack.getTag().putInt("tier_malatium_storage",tiered.getTier().getLevel());
             return true;
         }
+        if (player.getMainHandItem().getItem() instanceof ArmorItem){
+            ArmorItem armorItem = (ArmorItem) player.getMainHandItem().getItem();
+            stack.getTag().putInt("tier_malatium_storage",convertMaterialToTier(armorItem.getMaterial().getName()));
+            return true;
+        }
         return false;
     }
 
@@ -186,11 +193,11 @@ public class BandAtiumMalatium extends BandMindAbstract {
 
     public String convertTierToMaterial (int tier) {
         if (tier == 0){
-            return ItemTier.GOLD.name()+" "+ArmorMaterial.LEATHER.getName();
+            return ItemTier.GOLD.name()+" "+ArmorMaterial.LEATHER.getName().toUpperCase();
         } else if (tier == 1){
             ArmorMaterial.TURTLE.getName();
         } else if (tier == 2){
-            return ItemTier.IRON.name()+" "+ArmorMaterial.CHAIN.getName();
+            return ItemTier.IRON.name()+" "+ArmorMaterial.CHAIN.getName().toUpperCase();
         } else if (tier == 3){
             return ItemTier.DIAMOND.name();
         } else if (tier == 4){
@@ -202,13 +209,15 @@ public class BandAtiumMalatium extends BandMindAbstract {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
         if (stack.hasTag()) {
+            if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")== 0){
+                stack.getTag().putInt("tier_malatium_storage",-1);
+            }
             if (!Screen.hasControlDown()){
                 toolTips.add(new StringTextComponent(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
                 toolTips.add(new StringTextComponent(getMetals(1).getNameLower().substring(0,1).toUpperCase()+getMetals(1).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+" Uses"));
             } else {
                 toolTips.add(new StringTextComponent(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": "+ ((stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_max_capacity"))+"%"));
                 toolTips.add(new StringTextComponent(getMetals(1).getNameLower().substring(0,1).toUpperCase()+getMetals(1).getNameLower().substring(1)+": "+ ((stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity"))+"%"));
-
             }
             toolTips.add(new StringTextComponent("Owner: "+ (stack.getTag().getString("key"))));
             if (stack.getTag().getInt("tier_malatium_storage")!=-1){
