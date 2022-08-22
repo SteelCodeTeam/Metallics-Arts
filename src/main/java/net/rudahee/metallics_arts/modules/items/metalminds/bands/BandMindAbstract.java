@@ -152,13 +152,19 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         if(!stack.hasTag()) {
             stack.setTag(addBandTags());
         }
-        if (this instanceof BandLerasiumEttmetal){
+        if (this instanceof BandLerasiumEttmetal || this instanceof BandAtiumMalatium || this instanceof BandZincBrass || this instanceof BandCopperBronze){
             return;
         }
 
         if (stack.hasTag()) {
-            toolTips.add(new StringTextComponent(metals[0].getNameLower().substring(0,1).toUpperCase()+metals[0].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
-            toolTips.add(new StringTextComponent(metals[1].getNameLower().substring(0,1).toUpperCase()+metals[1].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
+            if (!Screen.hasControlDown()){
+                toolTips.add(new StringTextComponent(metals[0].getNameLower().substring(0,1).toUpperCase()+metals[0].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
+                toolTips.add(new StringTextComponent(metals[1].getNameLower().substring(0,1).toUpperCase()+metals[1].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
+            } else {
+                toolTips.add(new StringTextComponent(metals[0].getNameLower().substring(0,1).toUpperCase()+metals[0].getNameLower().substring(1)+": "+ ((stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_max_capacity"))+"%"));
+                toolTips.add(new StringTextComponent(metals[1].getNameLower().substring(0,1).toUpperCase()+metals[1].getNameLower().substring(1)+": "+ ((stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_max_capacity"))+"%"));
+
+            }
             toolTips.add(new StringTextComponent("Owner: "+ (stack.getTag().getString("key"))));
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
@@ -184,10 +190,9 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             stack.setTag(addBandTags());
         }
 
-        if (this instanceof BandZincBrass || this instanceof BandCopperBronze || this instanceof BandLerasiumEttmetal){
+        if (this instanceof BandZincBrass || this instanceof BandCopperBronze || this instanceof BandLerasiumEttmetal ||this instanceof BandAtiumMalatium){
             return;
         }
-
 
         CompoundNBT nbtLocal = stack.getTag();
 
@@ -254,8 +259,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
         boolean isFirstReserveZero = compoundNBT.getInt(this.metals[0].getNameLower()+"_feruchemic_reserve") == 0;
         boolean isSecondReserveZero = compoundNBT.getInt(this.metals[1].getNameLower()+"_feruchemic_reserve") == 0;
-        boolean isUnkey = compoundNBT.getString("key").equals(unkeyedString);
-        //boolean isMetalMindOfAluminum = this.metals[0].getNameLower() == MetalsNBTData.ALUMINUM.getNameLower() || this.metals[0].getNameLower() == MetalsNBTData.ALUMINUM.getNameLower();
 
         dato = compoundNBT.getString("key");
 
@@ -273,24 +276,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                 dato = player.getStringUUID();
             }
         });
-
-        /*if (isFirstReserveZero && isSecondReserveZero && goBase)  { // ambas 0 y decanta
-            dato =  unkeyedString;
-        } else if (isFirstReserveZero && isSecondReserveZero && !goBase) { //ambas 0 y almacena
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
-                if (data.isStoring(MetalsNBTData.ALUMINUM)) {
-                    dato = unkeyedString;
-                } else {
-                    dato = player.getStringUUID();
-                }
-            });
-        } else if ((!isFirstReserveZero || !isSecondReserveZero) && isUnkey) {  //alguno no es 0 y esta desbloqueada
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
-                if (data.isDecanting(MetalsNBTData.ALUMINUM)) {
-                    dato = player.getStringUUID();
-                }
-            });
-        }*/
         return dato;
     }
 

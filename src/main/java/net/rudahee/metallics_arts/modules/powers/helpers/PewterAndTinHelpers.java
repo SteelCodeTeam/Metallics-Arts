@@ -36,9 +36,15 @@ public class PewterAndTinHelpers {
     }
 
     public static void addPewterEffects(PlayerEntity player) {
-        player.addEffect(new EffectInstance(Effects.JUMP, 3, 2, true, false));
-        player.addEffect(new EffectInstance(Effects.DIG_SPEED, 3, 1, true, false));
-        player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 3, 1, true, false));
+        player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 1, 1, true, false));
+        player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 1, 1, true, false));
+        player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 1, 1, true, false));
+    }
+
+
+    public static void decantPewterEffectsFeruchemic(PlayerEntity player) {
+        player.addEffect(new EffectInstance(Effects.JUMP, 1, 2, true, false));
+        player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 1, 2, true, false));
     }
 
 

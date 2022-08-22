@@ -2,6 +2,9 @@ package net.rudahee.metallics_arts.modules.items.metal_spike;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
@@ -15,6 +18,8 @@ import net.minecraft.world.World;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModItems;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -107,7 +112,6 @@ public abstract class MetalSpikeAbstract extends SwordItem {
             if (stack.getTag().getBoolean("allomantic")){
                 toolTips.add(new StringTextComponent("Power: Allomantic"));
             }
-
         }
         super.appendHoverText(stack, world, toolTips, flag);
     }
