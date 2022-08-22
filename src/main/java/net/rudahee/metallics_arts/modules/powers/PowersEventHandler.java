@@ -76,7 +76,7 @@ public class PowersEventHandler {
                 });
 
                 //Sync cap to client
-                ModNetwork.sync(event.getPlayer());
+                ModNetwork.sync(player);
             }
         }
     }
@@ -162,7 +162,9 @@ public class PowersEventHandler {
         if (!event.getTarget().level.isClientSide) {
             if (event.getTarget() instanceof ServerPlayerEntity) {
                 ServerPlayerEntity player = (ServerPlayerEntity) event.getTarget();
-                ModNetwork.sync(player);
+                player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> {
+                    ModNetwork.sync(event.getPlayer());
+                });
             }
         }
     }
@@ -740,7 +742,10 @@ public class PowersEventHandler {
 
 
                     // SYNC NETWORK
-                    ModNetwork.sync(player);
+                        if (player != null) {
+                            ModNetwork.sync(player);
+                        }
+
                 });
             }
         }
