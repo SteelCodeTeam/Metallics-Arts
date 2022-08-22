@@ -328,6 +328,9 @@ public class PowersEventHandler {
             for (int playerIndex = playerList.size() - 1; playerIndex >= 0; playerIndex--) {
 
                 PlayerEntity player = playerList.get(playerIndex);
+                if (player == null) {
+                    return;
+                }
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                     playerCapability -> {
                         if (playerCapability.isInvested()) {
@@ -737,16 +740,10 @@ public class PowersEventHandler {
                             playerCapability.drainMetals(MetalsNBTData.DURALUMIN, MetalsNBTData.ELECTRUM);
                         }
 
-
-
-
-
-                    // SYNC NETWORK
-                        if (player != null) {
-                            ModNetwork.sync(player);
-                        }
-
                 });
+                // SYNC NETWORK
+                    ModNetwork.sync(player);
+
             }
         }
     }

@@ -49,7 +49,16 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         invested_data.putBoolean("fullInvested",data.isFullInvested());
 
         death_pos.putIntArray("death_position",data.getDeathPos());
-        death_dimension.putString("death_dimension",data.getDeathDimension());
+
+        try {
+            if (data.getDeathDimension() != null) {
+                death_dimension.putString("death_dimension",data.getDeathDimension());
+            } else {
+                death_dimension.putString("death_dimension", data.getSpawnDimension());
+            }
+        } catch (Exception ex) {
+            System.out.println("TREMENDO PELOTUDO TOBIAS.");
+        }
 
         spawn_pos.putIntArray("spawn_position", data.getSpawnPos());
         spawn_dimension.putString("spawn_dimension",data.getSpawnDimension());
@@ -122,7 +131,7 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         try {
             if (death_pos.getIntArray("death_position") != null && death_dimension.getString("death_dimension") != null) {
                 data.setDeathPos(death_pos.getIntArray("death_position"));
-                data.setDeathDimension(death_dimension.getString("death_dimension"));
+                data.setDeathDimension(death_dimension.getString("death_dimensions"));
             }
             if (spawn_pos.getIntArray("spawn_position") != null && spawn_dimension.getString("spawn_dimension") != null) {
                 data.setSpawnPos(spawn_pos.getIntArray("spawn_position"));
