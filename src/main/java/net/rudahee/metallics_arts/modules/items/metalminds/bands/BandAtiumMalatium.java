@@ -23,7 +23,7 @@ import java.util.List;
 
 public class BandAtiumMalatium extends BandMindAbstract {
 
-    private CompoundNBT localNbtMalatium = new CompoundNBT();
+    private CompoundNBT localNbtMalatium= new CompoundNBT();;
     public BandAtiumMalatium (Item.Properties properties){
         super(properties, MetalsNBTData.ATIUM,MetalsNBTData.MALATIUM,MetalsNBTData.ATIUM.getMaxReserveBand(),MetalsNBTData.MALATIUM.getMaxReserveBand());
         localNbtMalatium.putInt("tier_malatium_storage",-1);
