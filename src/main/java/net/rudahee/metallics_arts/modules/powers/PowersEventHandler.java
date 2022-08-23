@@ -430,9 +430,11 @@ public class PowersEventHandler {
                             /************************
                              * PEWTER FERUCHEMIC
                              ************************/
-
-
-
+                            if (playerCapability.isDecanting(MetalsNBTData.PEWTER)) {
+                                PewterAndTinHelpers.decantPewterEffectsFeruchemic(player);
+                            } else if (playerCapability.isStoring(MetalsNBTData.PEWTER)) {
+                                PewterAndTinHelpers.storePewterEffectsFeruchemic(player);
+                            }
 
                             /************************
                              * STEEL FERUCHEMIC
