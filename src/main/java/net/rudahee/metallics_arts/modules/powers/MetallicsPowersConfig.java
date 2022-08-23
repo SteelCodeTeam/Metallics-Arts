@@ -24,6 +24,7 @@ public class MetallicsPowersConfig {
         }
         //TODO insertar cosas hechas de metal a mano.
     }};
+
     public static ForgeConfigSpec.IntValue maxDistanceMetalDetection;
     public static ForgeConfigSpec.BooleanValue animalSelection;
     public static ForgeConfigSpec.BooleanValue enableMoreKeybinding;

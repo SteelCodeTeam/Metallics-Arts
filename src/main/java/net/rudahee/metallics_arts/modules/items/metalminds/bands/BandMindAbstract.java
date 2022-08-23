@@ -156,6 +156,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             return;
         }
 
+
         if (stack.hasTag()) {
             if (!Screen.hasControlDown()){
                 toolTips.add(new StringTextComponent(metals[0].getNameLower().substring(0,1).toUpperCase()+metals[0].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
