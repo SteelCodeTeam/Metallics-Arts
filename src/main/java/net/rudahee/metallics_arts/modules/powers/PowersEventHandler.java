@@ -280,7 +280,7 @@ public class PowersEventHandler {
                      *   DAMAGE WITH - BRASS - FERUCHEMIC
                      *******************************/
                     if (playerCapability.isDecanting(MetalsNBTData.BRASS)) {
-                        ZincAndBrassHelpers.addFireAspectToPlayer(event.getEntityLiving(),5);
+                        ZincAndBrassHelpers.addFireAspectToPlayer(event.getEntityLiving(),1);
                     }
 
                     /*******************************

@@ -25,6 +25,7 @@ public class BandCopperBronze extends BandMindAbstract {
 
 
     private static boolean needUpdate = false;
+    private static boolean nicConsume = false;
 
 
     @Override
@@ -70,8 +71,17 @@ public class BandCopperBronze extends BandMindAbstract {
 
                     if (data.isDecanting(getMetals(1))) {
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")>0) {
-                            nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")-1));
-                            stack.setTag(nbtLocal);
+                            if (data.isDecanting(MetalsNBTData.NICROSIL)){
+                                if (!nicConsume){
+                                    nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")-1));
+                                    stack.setTag(nbtLocal);
+                                }
+                                nicConsume = !nicConsume;
+                            } else {
+                                //las dos lineas de abajo van sin el nicrosil
+                                nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")-1));
+                                stack.setTag(nbtLocal);
+                            }
                         } else {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(getMetals(1),false);
@@ -80,9 +90,21 @@ public class BandCopperBronze extends BandMindAbstract {
 
                     } else if (data.isStoring(getMetals(1))) {
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
-                            nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
-                            stack.setTag(nbtLocal);
+                            if (data.isStoring(MetalsNBTData.NICROSIL)) {
+                                if (!nicConsume){
+                                    stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                    nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
+                                    stack.setTag(nbtLocal);
+                                }
+                                nicConsume = !nicConsume;
+                            } else {
+                                //3 lineas, sin nicrosil
+                                stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
+                                stack.setTag(nbtLocal);
+                            }
+
+
                         } else {
                             data.setStoring(getMetals(1),false);
                         }

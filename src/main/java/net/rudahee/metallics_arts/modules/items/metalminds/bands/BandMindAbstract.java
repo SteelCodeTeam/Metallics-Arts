@@ -152,7 +152,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         if(!stack.hasTag()) {
             stack.setTag(addBandTags());
         }
-        if (this instanceof BandLerasiumEttmetal || this instanceof BandAtiumMalatium || this instanceof BandZincBrass || this instanceof BandCopperBronze){
+        if (this instanceof BandLerasiumEttmetal || this instanceof BandAtiumMalatium || this instanceof BandZincBrass || this instanceof BandCopperBronze || this instanceof BandChromiumNicrosil){
             return;
         }
 
@@ -183,6 +183,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     private static boolean needUpdate = false;
 
+    private static boolean nicConsume = false;
 
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
@@ -190,7 +191,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             stack.setTag(addBandTags());
         }
 
-        if (this instanceof BandZincBrass || this instanceof BandCopperBronze || this instanceof BandLerasiumEttmetal ||this instanceof BandAtiumMalatium){
+        if (this instanceof BandZincBrass || this instanceof BandCopperBronze || this instanceof BandLerasiumEttmetal ||this instanceof BandAtiumMalatium ||this instanceof BandChromiumNicrosil) {
             return;
         }
 
@@ -208,8 +209,17 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
                     if (data.isDecanting(this.metals[0])) {
                         if (stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")>0) {
-                            nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")-1));
-                            stack.setTag(nbtLocal);
+                            if (data.isDecanting(MetalsNBTData.NICROSIL)){
+                                if (!nicConsume){
+                                    nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")-1));
+                                    stack.setTag(nbtLocal);
+                                }
+                                nicConsume = !nicConsume;
+                            } else {
+                                //las dos lineas de abajo van sin el nicrosil
+                                nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")-1));
+                                stack.setTag(nbtLocal);
+                            }
                         } else {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(this.metals[0],false);
@@ -217,9 +227,23 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                         needUpdate = true;
                     } else if (data.isStoring(this.metals[0])) {
                         if (stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_max_capacity")) {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
-                            nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")+1));
-                            stack.setTag(nbtLocal);
+
+                            if (data.isStoring(MetalsNBTData.NICROSIL) && !(this instanceof BandAluminumDuralumin)) {
+                                if (!nicConsume){
+                                    stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                    nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")+1));
+                                    stack.setTag(nbtLocal);
+                                }
+                                nicConsume = !nicConsume;
+
+                            } else {
+                                //estas 3 lineas ban sin la logica del nocrosil
+                                stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")+1));
+                                stack.setTag(nbtLocal);
+                            }
+
+
                         } else {
                             data.setStoring(this.metals[0],false);
                         }
@@ -228,9 +252,21 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
                     if (data.isDecanting(this.metals[1])) {
                         if (stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")>0) {
+                            if (data.isDecanting(MetalsNBTData.NICROSIL) && !(this instanceof BandAluminumDuralumin)){
+                                if (!nicConsume){
+                                    nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")-1));
+                                    stack.setTag(nbtLocal);
+                                }
+                                nicConsume = !nicConsume;
+                            } else {
+                                //las dos lineas de abajo van sin el nicrosil
+                                nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")-1));
+                                stack.setTag(nbtLocal);
+                            }
 
-                            nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")-1));
-                            stack.setTag(nbtLocal);
+
+
+
                         } else {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(this.metals[1],false);
@@ -239,9 +275,20 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
                     } else if (data.isStoring(this.metals[1])) {
                         if (stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_max_capacity")) {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
-                            nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")+1));
-                            stack.setTag(nbtLocal);
+
+                            if (data.isStoring(MetalsNBTData.NICROSIL)) {
+                                if (!nicConsume){
+                                    stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                    nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")+1));
+                                    stack.setTag(nbtLocal);
+                                }
+                                nicConsume = !nicConsume;
+
+                            } else {
+                                stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")+1));
+                                stack.setTag(nbtLocal);
+                            }
                         } else {
                             data.setStoring(this.metals[1],false);
                         }
