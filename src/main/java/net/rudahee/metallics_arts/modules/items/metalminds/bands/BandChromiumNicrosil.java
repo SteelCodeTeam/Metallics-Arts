@@ -52,7 +52,7 @@ public class BandChromiumNicrosil extends BandMindAbstract {
                                     nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")-1));
                                     stack.setTag(nbtLocal);
                                 }
-                                nicConsume = !nicConsume;
+
                             } else {
                                 //las dos lineas de abajo van sin el nicrosil
                                 nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")-1));
@@ -75,7 +75,7 @@ public class BandChromiumNicrosil extends BandMindAbstract {
                                     nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")+1));
                                     stack.setTag(nbtLocal);
                                 }
-                                nicConsume = !nicConsume;
+
 
                             } else {
                                 //estas 3 lineas ban sin la logica del nocrosil
@@ -109,10 +109,19 @@ public class BandChromiumNicrosil extends BandMindAbstract {
                     } else if (data.isStoring(getMetals(1))) {
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
                             if (data.cantMetalsStoring()>0){
-
                                 if (!nicConsume){
                                     stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
-                                    nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+data.cantMetalsStoring()));
+
+                                    if (data.isStoring(MetalsNBTData.BRASS)){
+                                        if (!player.isOnFire()){
+                                            nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+(data.cantMetalsStoring()-1)));
+                                        } else {
+                                            nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+data.cantMetalsStoring()));
+                                        }
+                                    } else {
+                                        nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+data.cantMetalsStoring()));
+                                    }
+
                                     stack.setTag(nbtLocal);
                                 }
                                 nicConsume = !nicConsume;

@@ -183,7 +183,8 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     private static boolean needUpdate = false;
 
-    private static boolean nicConsume = false;
+    private static boolean nicConsumeMet0 = false;
+    private static boolean nicConsumeMet1 = false;
 
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
@@ -210,11 +211,11 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                     if (data.isDecanting(this.metals[0])) {
                         if (stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")>0) {
                             if (data.isDecanting(MetalsNBTData.NICROSIL)){
-                                if (!nicConsume){
+                                if (!nicConsumeMet0){
                                     nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")-1));
                                     stack.setTag(nbtLocal);
                                 }
-                                nicConsume = !nicConsume;
+                                nicConsumeMet0 = !nicConsumeMet0;
                             } else {
                                 //las dos lineas de abajo van sin el nicrosil
                                 nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")-1));
@@ -229,12 +230,12 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                         if (stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_max_capacity")) {
 
                             if (data.isStoring(MetalsNBTData.NICROSIL) && !(this instanceof BandAluminumDuralumin)) {
-                                if (!nicConsume){
+                                if (!nicConsumeMet0){
                                     stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
                                     nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")+1));
                                     stack.setTag(nbtLocal);
                                 }
-                                nicConsume = !nicConsume;
+                                nicConsumeMet0 = !nicConsumeMet0;
 
                             } else {
                                 //estas 3 lineas ban sin la logica del nocrosil
@@ -253,11 +254,11 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                     if (data.isDecanting(this.metals[1])) {
                         if (stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")>0) {
                             if (data.isDecanting(MetalsNBTData.NICROSIL) && !(this instanceof BandAluminumDuralumin)){
-                                if (!nicConsume){
+                                if (!nicConsumeMet1){
                                     nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")-1));
                                     stack.setTag(nbtLocal);
                                 }
-                                nicConsume = !nicConsume;
+                                nicConsumeMet1 = !nicConsumeMet1;
                             } else {
                                 //las dos lineas de abajo van sin el nicrosil
                                 nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")-1));
@@ -277,12 +278,12 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                         if (stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_max_capacity")) {
 
                             if (data.isStoring(MetalsNBTData.NICROSIL)) {
-                                if (!nicConsume){
+                                if (!nicConsumeMet1){
                                     stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
                                     nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")+1));
                                     stack.setTag(nbtLocal);
                                 }
-                                nicConsume = !nicConsume;
+                                nicConsumeMet1 = !nicConsumeMet1;
 
                             } else {
                                 stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
