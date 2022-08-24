@@ -6,6 +6,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.ZincAndBrassHelpers;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 import java.util.function.Supplier;
 
@@ -34,6 +35,8 @@ public class ChangeEmotionPacket {
         buf.writeBoolean(this.make_aggressive);
     }
 
+    private static boolean enhanced;
+
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             PlayerEntity allomancer = ctx.get().getSender();
@@ -41,11 +44,24 @@ public class ChangeEmotionPacket {
             if (target == null) {
                 return;
             }
-            boolean enhanced = allomancer.getCapability(InvestedCapability.PLAYER_CAP).isPresent();
+            boolean isEnhanced = false;
+
+            allomancer.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+                enhanced = data.isBurning(MetalsNBTData.DURALUMIN);
+            });
+
             if (this.make_aggressive) {
-                ZincAndBrassHelpers.angryEntities(target, allomancer);
+                if (isEnhanced) {
+                    ZincAndBrassHelpers.angryEntitiesEnhanced(target, allomancer);
+                } else {
+                    ZincAndBrassHelpers.angryEntities(target, allomancer);
+                }
             } else {
-                ZincAndBrassHelpers.happyEntities(target, allomancer);
+                if (isEnhanced) {
+                    ZincAndBrassHelpers.happyEntitiesEnhanced(target, allomancer);
+                } else {
+                    ZincAndBrassHelpers.happyEntities(target, allomancer);
+                }
             }
         });
         ctx.get().setPacketHandled(true);

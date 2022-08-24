@@ -251,7 +251,7 @@ public class PowersEventHandler {
                     /*******************************
                      *   DAMAGE IF ENEMY BURN ATIUM
                      *******************************/
-                    //event.getEntityliving : recive daño
+                    //event.getEntityliving : recibe daño
                     //playerEntity hace daño
 
                     if (event.getEntityLiving() instanceof PlayerEntity) {
@@ -568,6 +568,22 @@ public class PowersEventHandler {
 
 
                             /************************
+                             * CHROMIUM ENHANCED
+                             ************************/
+                            if (playerCapability.isBurning(MetalsNBTData.CHROMIUM) && playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
+                                if (player instanceof PlayerEntity) {
+                                    if (event.world instanceof ServerWorld) {
+                                        BlockPos negative = new BlockPos(player.position()).offset(-x - 3, -y - 3, -z - 3);
+                                        BlockPos positive = new BlockPos(player.position()).offset(x + 3, y + 3 , z + 3);
+
+                                        // Ticks extra in random blocks, tile entities and entities.
+                                        ChromiumAndNicrosilHelpers.drainMetalCloudChromium(event.world, player, new AxisAlignedBB(negative, positive));
+                                    }
+                                }
+                            }
+
+
+                            /************************
                              * CADMIUM POWERS
                              ************************/
                             if (playerCapability.hasAllomanticPower(MetalsNBTData.CADMIUM) && playerCapability.isBurning(MetalsNBTData.CADMIUM)) {
@@ -675,6 +691,23 @@ public class PowersEventHandler {
                         }
 
                         /************************
+                         * BRONZE ENHANCED POWERS
+                         ************************/
+
+                        if (playerCapability.hasAllomanticPower(MetalsNBTData.BRONZE) && playerCapability.isBurning(MetalsNBTData.BRONZE)) {
+                            if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
+                                if (event.world instanceof ServerWorld) {
+
+                                    BlockPos negative = new BlockPos(player.position()).offset(-x - 7, -y - 7, -z - 7);
+                                    BlockPos positive = new BlockPos(player.position()).offset(x + 7, y + 7, z + 7);
+
+                                    CopperAndBronzeHelpers.BronzeEnhancedAiEntityManipulation(new AxisAlignedBB(negative, positive), player, event.world);
+
+                                }
+                            }
+                        }
+
+                        /************************
                          * COPPER POWERS
                          ************************/
                         if (playerCapability.hasAllomanticPower(MetalsNBTData.COPPER) && playerCapability.isBurning(MetalsNBTData.COPPER)) {
@@ -682,6 +715,19 @@ public class PowersEventHandler {
                                 BlockPos negative = new BlockPos(player.position()).offset(-x - 4, -y - 4, -z - 4);
                                 BlockPos positive = new BlockPos(player.position()).offset(x + 4, y + 4, z + 4);
                                 CopperAndBronzeHelpers.CopperAiEntityManipulation(new AxisAlignedBB(negative, positive), player, event.world);
+                            }
+                        }
+
+                        /************************
+                         * COPPER ENHANCED POWERS
+                         ************************/
+                        if (playerCapability.hasAllomanticPower(MetalsNBTData.COPPER) && playerCapability.isBurning(MetalsNBTData.COPPER)) {
+                            if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
+                                if (event.world instanceof ServerWorld) {
+                                    BlockPos negative = new BlockPos(player.position()).offset(-x - 7, -y - 7, -z - 7);
+                                    BlockPos positive = new BlockPos(player.position()).offset(x + 7, y + 7, z + 7);
+                                    CopperAndBronzeHelpers.CopperEnhancedAiEntityManipulation(new AxisAlignedBB(negative, positive), player, event.world);
+                                }
                             }
                         }
 
@@ -758,8 +804,6 @@ public class PowersEventHandler {
                         }
 
                 });
-                   // ModNetwork.sync(player);
-
 
         }
     }

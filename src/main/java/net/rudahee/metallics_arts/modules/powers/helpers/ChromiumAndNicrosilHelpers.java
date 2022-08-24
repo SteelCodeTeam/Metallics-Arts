@@ -5,6 +5,8 @@ import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.world.World;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
@@ -66,6 +68,13 @@ public class ChromiumAndNicrosilHelpers {
         }
     }
 
+    public static void drainMetalCloudChromium(World world, PlayerEntity player, AxisAlignedBB axisAlignedBB) {
+        world.getEntitiesOfClass(PlayerEntity.class, axisAlignedBB).forEach(entity -> {
+            if (entity != player && entity != null) {
+                drainMetalChromium(player);
+            }
+        });
+    }
 }
 
 
