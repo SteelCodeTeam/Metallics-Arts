@@ -25,6 +25,7 @@ public class BandAtiumMalatium extends BandMindAbstract {
 
     public BandAtiumMalatium (Item.Properties properties){
         super(properties, MetalsNBTData.ATIUM,MetalsNBTData.MALATIUM,MetalsNBTData.ATIUM.getMaxReserveBand(),MetalsNBTData.MALATIUM.getMaxReserveBand());
+        
     }
 
     private static boolean needUpdate = false;
