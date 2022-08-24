@@ -33,6 +33,7 @@ public class ClientUtils {
         float partialTicks = mc.getFrameTime();
         RayTraceResult objectMouseOver = null;
         Entity entity = mc.getCameraEntity();
+
         if (entity != null) {
             if (mc.level != null) {
                 objectMouseOver = entity.pick(dist, partialTicks, false);

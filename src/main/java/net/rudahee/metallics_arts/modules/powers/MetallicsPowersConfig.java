@@ -12,6 +12,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.powers.helpers.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
+import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.util.MetalicsArtsConfig;
 
 import java.util.*;
@@ -19,12 +20,51 @@ import java.util.*;
 public class MetallicsPowersConfig {
 
     public static final Set<String> whitelist = new HashSet<String>() {{
+
         for (MetalsNBTData metals : MetalsNBTData.values()) {
-            add(metals.getNameLower());
+            if (!metals.equals(MetalsNBTData.TIN)&&!metals.equals(MetalsNBTData.ALUMINUM)){
+                add(metals.getNameLower());
+            }
         }
+        add("shield");
+        add("anvil");
+        add("rail");
+        add("piston");
+        add("hook");
+        add("cauldron");
+        add("minecart");
+        add("chain");
+        add("hopper");
+        add("bucket");
+        add("netherite");
+        add("lantern");
 
 
-        add (Blocks.ANVIL.getDescriptionId());
+        add(Items.CROSSBOW.getDescriptionId());
+        add(Items.CROSSBOW.getRegistryName().toString());
+
+        add(Items.BELL.getDescriptionId());
+        add(Items.BELL.getRegistryName().toString());
+
+
+        add(Items.SMITHING_TABLE.getDescriptionId());
+        add(Items.SMITHING_TABLE.getRegistryName().toString());
+
+        add(Items.LODESTONE.getDescriptionId());
+        add(Items.LODESTONE.getRegistryName().toString());
+        add(Items.STONECUTTER.getDescriptionId());
+        add(Items.STONECUTTER.getRegistryName().toString());
+
+        add(ModBlock.ALLOY_FURNACE_BLOCK.get().getDescriptionId());
+        add(Items.STONECUTTER.getRegistryName().toString());
+
+        add(Items.BLAST_FURNACE.getDescriptionId());
+        add(Items.STONECUTTER.getRegistryName().toString());
+
+        add(Items.CLOCK.getRegistryName().toString());
+        add(Items.COMPASS.getRegistryName().toString());
+        add(Items.SHEARS.getRegistryName().toString());
+
 
         //TODO insertar cosas hechas de metal a mano.
 
