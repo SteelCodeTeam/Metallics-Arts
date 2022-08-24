@@ -362,7 +362,9 @@ public class PowersEventHandler {
 
                                 CopperAndBronzeHelpers.DontSpawnPhantoms(player, new AxisAlignedBB(negative, positive), event.world);
                             } else if (playerCapability.isStoring(MetalsNBTData.BRONZE)) {
-                                CopperAndBronzeHelpers.SpawnPhamtonsWithFireResistance(player, world); //TODO we need implement a network packet to spawn mobs in world
+                                if (actualTick == 240) {
+                                    CopperAndBronzeHelpers.SpawnPhamtonsWithFireResistance(player, world);
+                                }
                             }
 
                             /************************
@@ -389,14 +391,14 @@ public class PowersEventHandler {
                              * GOLD FERUCHEMIC
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.GOLD)) {
-                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
                                     GoldAndElectrumHelpers.addHealth(player,1);
                                 }
                             } else if (playerCapability.isStoring(MetalsNBTData.GOLD)) {
                                 if (playerCapability.isStoring(MetalsNBTData.ELECTRUM)) {
                                     playerCapability.setStoring(MetalsNBTData.ELECTRUM, false);
                                 }
-                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
                                     GoldAndElectrumHelpers.removeHealth(player,1);
                                 }
 
@@ -458,11 +460,11 @@ public class PowersEventHandler {
                              * CADMIUM FERUCHEMIC
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.CADMIUM)) {
-                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
                                     BendalloyAndCadmiunHelpers.throwBreathEffect(player, 10);
                                 }
                             } else if (playerCapability.isStoring(MetalsNBTData.CADMIUM)) {
-                                //if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
+                                //if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
                                     BendalloyAndCadmiunHelpers.drowningEffect(player,actualTick);
                                 //}
                             }
@@ -472,11 +474,11 @@ public class PowersEventHandler {
                              ************************/
 
                             if (playerCapability.isDecanting(MetalsNBTData.BENDALLOY)) {
-                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
                                     BendalloyAndCadmiunHelpers.addFoodLevel(player,1);
                                 }
                             } else if (playerCapability.isStoring(MetalsNBTData.BENDALLOY)) {
-                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
                                     BendalloyAndCadmiunHelpers.removeFoodLevel(player,1);
                                 }
                             }
@@ -487,11 +489,11 @@ public class PowersEventHandler {
                             Biome biome = world.getBiome(player.getEntity().blockPosition());
 
                             if (playerCapability.isDecanting(MetalsNBTData.DURALUMIN)) {
-                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
                                     DuraluminAndAluminumHelpers.duraluminDecantingEffects(player, biome);
                                 }
                             } else if (playerCapability.isStoring(MetalsNBTData.DURALUMIN)) {
-                                if (actualTick == 30 || actualTick == 60 || actualTick == 90) {
+                                if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
                                     DuraluminAndAluminumHelpers.duraluminStoringEffects(player, biome);
                                 }
                             }
@@ -503,7 +505,7 @@ public class PowersEventHandler {
                                 ChromiumAndNicrosilHelpers.goodLuck(player);
                                 //player.getLuck()
                             } else if (playerCapability.isStoring(MetalsNBTData.CHROMIUM)){
-                                if (actualTick==90)
+                                if (actualTick==80 || actualTick == 160 || actualTick == 240)
                                     ChromiumAndNicrosilHelpers.badLuck(player,true);
                                 else
                                     ChromiumAndNicrosilHelpers.badLuck(player,false);
@@ -521,7 +523,7 @@ public class PowersEventHandler {
                                 previusAtium = false;
                             }
 
-                            if (actualTick >= 90) {
+                            if (actualTick >= 240) {
                                 actualTick = 0;
                             } else {
                                 actualTick++;

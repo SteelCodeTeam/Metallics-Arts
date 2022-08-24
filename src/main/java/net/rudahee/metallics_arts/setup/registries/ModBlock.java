@@ -1,11 +1,13 @@
 package net.rudahee.metallics_arts.setup.registries;
 
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
+import net.rudahee.metallics_arts.modules.blocks.EttmetalBlock;
 import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceBlock;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.enums.gems.Gems;
@@ -67,22 +69,38 @@ public class ModBlock {
 
         gemsList.forEach(gem -> {
             // Always create blocks.
-            register(gem.getGemNameLower() + "_block", () -> {
-                Block block = new Block(Block.Properties.of(Material.METAL)
-                        .strength(10, 25)
-                        .harvestLevel(3)
-                        .sound(SoundType.METAL)
-                        .requiresCorrectToolForDrops());
 
-                BLOCK_GEMS_BLOCKS.put(gem.getGemNameLower(), block);
-                return block;
-            });
+            if (!gem.getGemNameLower().equals(Gems.ETTMETAL.getGemNameLower())) {
+                register(gem.getGemNameLower() + "_block", () -> {
+                    Block block = new Block(Block.Properties.of(Material.METAL)
+                            .strength(10, 25)
+                            .harvestLevel(3)
+                            .sound(SoundType.METAL)
+                            .randomTicks()
+                            .requiresCorrectToolForDrops());
+
+                    BLOCK_GEMS_BLOCKS.put(gem.getGemNameLower(), block);
+                    return block;
+                });
+            }
 
         });
     }
 
     public static final RegistryObject<Block> ALLOY_FURNACE_BLOCK = register("alloy_furnace",
             () -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE)));
+
+    public static final RegistryObject<Block> ETTMETAL_BLOCK = register(Gems.ETTMETAL.getGemNameLower()+"_block",
+            () -> {
+                Block block = new EttmetalBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL)
+                        .strength(10, 10)
+                        .harvestLevel(3)
+                        .sound(SoundType.METAL)
+                        .requiresCorrectToolForDrops());
+
+                BLOCK_GEMS_BLOCKS.put(Gems.ETTMETAL.getGemNameLower(), block);
+                return block;
+            });
 
     public static void register() {
     }

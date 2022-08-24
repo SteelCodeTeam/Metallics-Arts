@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.FlyingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
@@ -86,7 +87,13 @@ public class CopperAndBronzeHelpers {
     }
 
     public static void SpawnPhamtonsWithFireResistance(PlayerEntity player, World world) {
-        // TODO
+
+        PhantomEntity phantom = new PhantomEntity(EntityType.PHANTOM, world);
+        phantom.setPos(player.position().x,player.position().y + 4, player.position().z);
+        phantom.setTarget(player);
+        phantom.setAggressive(true);
+        phantom.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 240, 2, true, true, true));
+        world.addFreshEntity(phantom);
     }
 
     public static void saveExperience(PlayerEntity player, World world) {
