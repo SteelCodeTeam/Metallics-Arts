@@ -71,7 +71,7 @@ public class AtiumSpike extends MetalSpikeAbstract{
                                 // Give the new item to player
                                 this.addItemToPlayer((PlayerEntity) attacker);
                             }
-                        // 50% feruchemic
+                            // 50% feruchemic
                         } else {
                             // 40% to steal
                             if (couldStealPower){
@@ -85,7 +85,7 @@ public class AtiumSpike extends MetalSpikeAbstract{
                                 this.addItemToPlayer((PlayerEntity) attacker);
                             }
                         }
-                    // if the target only have allomantic power
+                        // if the target only have allomantic power
                     } else if (hasTargetAllomanticPower){
                         // if only have 1/2 powers less prob to steal and lose your power
                         if (Math.random()>0.70) {
@@ -97,7 +97,7 @@ public class AtiumSpike extends MetalSpikeAbstract{
                             // Give the new item to player
                             this.addItemToPlayer((PlayerEntity) attacker);
                         }
-                    // if the target only have feruchemic power
+                        // if the target only have feruchemic power
                     } else if (hasTargetFeruchemicPower){
                         // if only have 1/2 powers less prob to steal and lose your power
                         if (Math.random()>0.70){

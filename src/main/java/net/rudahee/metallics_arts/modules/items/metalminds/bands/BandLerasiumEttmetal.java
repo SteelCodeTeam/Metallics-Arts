@@ -16,9 +16,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.modules.powers.helpers.BendalloyAndCadmiunHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -71,21 +69,24 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                     /////////////ETTMETAL////////////////
                     if (data.isDecanting(getMetals(1))) {
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")>0) {
+                            decantingEttmetal(data,stack);
                             nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")-1));
                             stack.setTag(nbtLocal);
                         } else {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                            finishUsingStealedPower(stack);
                             data.setDecanting(getMetals(1),false);
                         }
                         needUpdate = true;
 
                     } else if (data.isStoring(getMetals(1))) {
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
+                            if (isStoringEttmetal(player,player.level,stack)){
+                                stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
+                                stack.setTag(nbtLocal);
 
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
-
-                            nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
-                            stack.setTag(nbtLocal);
+                            }
                         } else {
                             data.setStoring(getMetals(1),false);
                         }
@@ -102,7 +103,8 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
     private MetalsNBTData targetMetal;
 
 
-    public boolean searchTarget(IDefaultInvestedPlayerData playerCapability, PlayerEntity player, World world, ItemStack stack) {
+
+    public boolean isStoringEttmetal(PlayerEntity player, World world, ItemStack stack) {
 
         Vector3d posPlayer = player.position();
 
@@ -113,7 +115,17 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                 world.getEntitiesOfClass(PlayerEntity.class, new AxisAlignedBB(posLeftTop, posRightDown)).forEach(newTarget -> {
                     if (newTarget != player && (newTarget == target || target == null)) {
                         newTarget.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(newTargetCapability -> {
-                            if (newTargetCapability.isBurningSomething() && (newTarget == target || target == null)) {
+
+                            if (stack.getTag().getInt("metal_steal_index") != -1) {
+                                if (newTargetCapability.isBurning(MetalsNBTData.getMetal(stack.getTag().getInt("metal_steal_index")))){
+                                    return;
+                                } else {
+                                    target = null;
+                                    targetCapability = null;
+                                    targetMetal = null;
+                                    return;
+                                }
+                            } else if (newTargetCapability.isBurningSomething() && (newTarget == target || target == null)) {
                                 target = newTarget;
                                 targetCapability = newTargetCapability;
                                 targetMetal = newTargetCapability.getRandomBurningMetal();
@@ -125,7 +137,7 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                         });
                     }
                 });
-            }
+        }
         if (target != null && targetCapability != null && targetMetal != null) {
             stack.getTag().putInt("metal_steal_index",targetMetal.getIndex());
             return true;
@@ -135,29 +147,21 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
     }
 
     private boolean firstInteraction = true;
-    public void useStealedPower(IDefaultInvestedPlayerData playerCapability, ItemStack stack) {
-
+    public void decantingEttmetal(IDefaultInvestedPlayerData playerCapability, ItemStack stack) {
         MetalsNBTData metalDelNBT = MetalsNBTData.getMetal(stack.getTag().getInt("metal_steal_index"));
-
         if (firstInteraction) {
             playerCapability.setAllomanticMetalsAmount(metalDelNBT, playerCapability.getAllomanticAmount(metalDelNBT) + 3);
             firstInteraction = false;
         }
-
         if (!playerCapability.isBurning(metalDelNBT)) {
             playerCapability.setAllomanticMetalsAmount(metalDelNBT, playerCapability.getAllomanticAmount(metalDelNBT) + 1);
             playerCapability.setBurning(metalDelNBT, true);
         }
     }
 
-    public void finishUsingStealedPower(IDefaultInvestedPlayerData playerCapability, ItemStack stack) {
-        MetalsNBTData metalDelNBT = MetalsNBTData.ALUMINUM;
+    public void finishUsingStealedPower(ItemStack stack) {
         firstInteraction = true;
-        playerCapability.setBurning(metalDelNBT, false);
         stack.getTag().putInt("metal_steal_index",-1);
-
-        // VACIAR EL NBT
-
     }
 
 
@@ -181,12 +185,9 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                     qtyToRemove = 0;
                     continueSaving = false;
                 } else {
-
                     if (!stack.getTag().contains(metal.getNameLower()+"inLerasiumBand")){ //no existe el tag
-
                         stack.getTag().putInt(metal.getNameLower()+"inLerasiumBand",0);
                     }
-
                     stack.getTag().putInt(metal.getNameLower()+"inLerasiumBand", stack.getTag().getInt(metal.getNameLower()+"inLerasiumBand")+qtyToRemove);
                     itsDone = true;
                 }
@@ -230,7 +231,6 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
-
         if (stack.hasTag()) {
             if (!Screen.hasControlDown()){
                 toolTips.add(new StringTextComponent(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
@@ -247,18 +247,6 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                     }
                 }
             }
-
-            /*
-            toolTips.add(new StringTextComponent(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
-            toolTips.add(new StringTextComponent(getMetals(1).getNameLower().substring(0,1).toUpperCase()+getMetals(1).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
-            toolTips.add(new StringTextComponent("Owner: "+ (stack.getTag().getString("key"))));
-            if (Screen.hasControlDown()){
-                for (MetalsNBTData metal : MetalsNBTData.values()){
-                    if(this.localNbtLerasium.getInt(metal.getNameLower()+"inLerasiumBand")>0){
-                        toolTips.add(new StringTextComponent(metal.getNameLower()+": "+this.localNbtLerasium.getInt(metal.getNameLower()+"inLerasiumBand")));
-                    }
-                }
-            }*/
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
     }

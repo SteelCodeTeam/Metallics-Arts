@@ -22,14 +22,14 @@ public class BronzeSpike extends MetalSpikeAbstract{
     }
     private ItemStack final_result = ItemStack.EMPTY;
 
-    @Override
+   @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if ((target instanceof ServerPlayerEntity || target instanceof PlayerEntity) && (attacker instanceof ServerPlayerEntity || attacker instanceof PlayerEntity)){
 
             target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(targetCapability ->{
 
-                boolean hasTargetAllomanticPower = super.hasPlayerAllomanticPower(MetalsNBTData.BRONZE, targetCapability);
-                boolean hasTargetFeruchemicPower = super.hasPlayerFeruchemicPower(MetalsNBTData.BRONZE, targetCapability);
+                boolean hasTargetAllomanticPower = super.hasPlayerAllomanticPower(MetalsNBTData.ZINC, targetCapability);
+                boolean hasTargetFeruchemicPower = super.hasPlayerFeruchemicPower(MetalsNBTData.ZINC, targetCapability);
 
                 boolean couldStealPower = Math.random()>0.60;
                 boolean couldRemovePower = Math.random()>0.50;
@@ -39,15 +39,15 @@ public class BronzeSpike extends MetalSpikeAbstract{
                 if (super.getAllomanticNbt() || super.getFeruchemicNbt()) {
 
                     if (super.getAllomanticNbt()) {
-                        if (!super.hasPlayerAllomanticPower(MetalsNBTData.BRONZE, targetCapability)) {
-                            targetCapability.addAllomanticPower(MetalsNBTData.BRONZE);
+                        if (!super.hasPlayerAllomanticPower(MetalsNBTData.ZINC, targetCapability)) {
+                            targetCapability.addAllomanticPower(MetalsNBTData.ZINC);
                             target.hurt(DamageSource.MAGIC, 6);
                             new LightningBoltEntity(EntityType.LIGHTNING_BOLT, target.level).setVisualOnly(true);
                             target.level.playLocalSound(target.position().x, target.position().y, target.position().z, SoundEvents.GENERIC_EXPLODE , SoundCategory.HOSTILE, 1.0f, 2.0f, true);
                         }
                     } else {
-                        if (!super.hasPlayerFeruchemicPower(MetalsNBTData.BRONZE, targetCapability)) {
-                            targetCapability.addFeruchemicPower(MetalsNBTData.BRONZE);
+                        if (!super.hasPlayerFeruchemicPower(MetalsNBTData.ZINC, targetCapability)) {
+                            targetCapability.addFeruchemicPower(MetalsNBTData.ZINC);
                             target.hurt(DamageSource.MAGIC, 6);
                             new LightningBoltEntity(EntityType.LIGHTNING_BOLT, target.level).setVisualOnly(true);
                             target.level.playLocalSound(target.position().x, target.position().y, target.position().z, SoundEvents.GENERIC_EXPLODE ,SoundCategory.HOSTILE, 1.0f, 2.0f, true);
@@ -57,14 +57,14 @@ public class BronzeSpike extends MetalSpikeAbstract{
 
                 } else {
                     // if target have both (Allomancy and Feruchemic)
-                    if (super.hasPlayerBothPowers(MetalsNBTData.BRONZE, targetCapability)) {
+                    if (super.hasPlayerBothPowers(MetalsNBTData.ZINC, targetCapability)) {
                         // 50% allomancy
                         if (isAllomantic) {
                             // 40% to steal
                             if (couldStealPower){
                                 // 50% of 40% to remove power
                                 if (couldRemovePower){
-                                    targetCapability.removeAllomanticPower(MetalsNBTData.BRONZE);
+                                    targetCapability.removeAllomanticPower(MetalsNBTData.ZINC);
                                 }
                                 // Spike obtain the power
                                 super.setAllomanticNbt(true);
@@ -77,7 +77,7 @@ public class BronzeSpike extends MetalSpikeAbstract{
                             if (couldStealPower){
                                 // 50% of 40% to remove power
                                 if (couldRemovePower){
-                                    targetCapability.removeFeruchemicPower(MetalsNBTData.BRONZE);
+                                    targetCapability.removeFeruchemicPower(MetalsNBTData.ZINC);
                                 }
                                 // Spike obtain the power
                                 super.setFeruchemicNbt(true);
@@ -90,7 +90,7 @@ public class BronzeSpike extends MetalSpikeAbstract{
                         // if only have 1/2 powers less prob to steal and lose your power
                         if (Math.random()>0.70) {
                             if (Math.random() > 0.70) {
-                                targetCapability.removeAllomanticPower(MetalsNBTData.BRONZE);
+                                targetCapability.removeAllomanticPower(MetalsNBTData.ZINC);
                             }
                             // Spike obtain the power
                             super.setAllomanticNbt(true);
@@ -102,7 +102,7 @@ public class BronzeSpike extends MetalSpikeAbstract{
                         // if only have 1/2 powers less prob to steal and lose your power
                         if (Math.random()>0.70){
                             if (Math.random()>0.70){
-                                targetCapability.removeFeruchemicPower(MetalsNBTData.BRONZE);
+                                targetCapability.removeFeruchemicPower(MetalsNBTData.ZINC);
                             }
                             // Spike obtain the power
                             super.setFeruchemicNbt(true);
@@ -120,8 +120,8 @@ public class BronzeSpike extends MetalSpikeAbstract{
     }
 
     public void addItemToPlayer(PlayerEntity attacker) {
-        this.final_result = new ItemStack(ModItems.BRONZE_SPIKE.get(), 1);
-        final_result.addTagElement("bronze_spike", super.getAllNbt());
+        this.final_result = new ItemStack(ModItems.ZINC_SPIKE.get(), 1);
+        final_result.addTagElement("zinc_spike", super.getAllNbt());
         attacker.addItem(final_result);
     }
 }

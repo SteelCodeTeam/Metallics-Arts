@@ -28,8 +28,8 @@ public class EttmetalSpike extends MetalSpikeAbstract{
 
             target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(targetCapability ->{
 
-                boolean hasTargetAllomanticPower = super.hasPlayerAllomanticPower(MetalsNBTData.ETTMETAL, targetCapability);
-                boolean hasTargetFeruchemicPower = super.hasPlayerFeruchemicPower(MetalsNBTData.ETTMETAL, targetCapability);
+                boolean hasTargetAllomanticPower = super.hasPlayerAllomanticPower(MetalsNBTData.ZINC, targetCapability);
+                boolean hasTargetFeruchemicPower = super.hasPlayerFeruchemicPower(MetalsNBTData.ZINC, targetCapability);
 
                 boolean couldStealPower = Math.random()>0.60;
                 boolean couldRemovePower = Math.random()>0.50;
@@ -39,15 +39,15 @@ public class EttmetalSpike extends MetalSpikeAbstract{
                 if (super.getAllomanticNbt() || super.getFeruchemicNbt()) {
 
                     if (super.getAllomanticNbt()) {
-                        if (!super.hasPlayerAllomanticPower(MetalsNBTData.ETTMETAL, targetCapability)) {
-                            targetCapability.addAllomanticPower(MetalsNBTData.ETTMETAL);
+                        if (!super.hasPlayerAllomanticPower(MetalsNBTData.ZINC, targetCapability)) {
+                            targetCapability.addAllomanticPower(MetalsNBTData.ZINC);
                             target.hurt(DamageSource.MAGIC, 6);
                             new LightningBoltEntity(EntityType.LIGHTNING_BOLT, target.level).setVisualOnly(true);
                             target.level.playLocalSound(target.position().x, target.position().y, target.position().z, SoundEvents.GENERIC_EXPLODE , SoundCategory.HOSTILE, 1.0f, 2.0f, true);
                         }
                     } else {
-                        if (!super.hasPlayerFeruchemicPower(MetalsNBTData.ETTMETAL, targetCapability)) {
-                            targetCapability.addFeruchemicPower(MetalsNBTData.ETTMETAL);
+                        if (!super.hasPlayerFeruchemicPower(MetalsNBTData.ZINC, targetCapability)) {
+                            targetCapability.addFeruchemicPower(MetalsNBTData.ZINC);
                             target.hurt(DamageSource.MAGIC, 6);
                             new LightningBoltEntity(EntityType.LIGHTNING_BOLT, target.level).setVisualOnly(true);
                             target.level.playLocalSound(target.position().x, target.position().y, target.position().z, SoundEvents.GENERIC_EXPLODE ,SoundCategory.HOSTILE, 1.0f, 2.0f, true);
@@ -57,14 +57,14 @@ public class EttmetalSpike extends MetalSpikeAbstract{
 
                 } else {
                     // if target have both (Allomancy and Feruchemic)
-                    if (super.hasPlayerBothPowers(MetalsNBTData.ETTMETAL, targetCapability)) {
+                    if (super.hasPlayerBothPowers(MetalsNBTData.ZINC, targetCapability)) {
                         // 50% allomancy
                         if (isAllomantic) {
                             // 40% to steal
                             if (couldStealPower){
                                 // 50% of 40% to remove power
                                 if (couldRemovePower){
-                                    targetCapability.removeAllomanticPower(MetalsNBTData.ETTMETAL);
+                                    targetCapability.removeAllomanticPower(MetalsNBTData.ZINC);
                                 }
                                 // Spike obtain the power
                                 super.setAllomanticNbt(true);
@@ -77,7 +77,7 @@ public class EttmetalSpike extends MetalSpikeAbstract{
                             if (couldStealPower){
                                 // 50% of 40% to remove power
                                 if (couldRemovePower){
-                                    targetCapability.removeFeruchemicPower(MetalsNBTData.ETTMETAL);
+                                    targetCapability.removeFeruchemicPower(MetalsNBTData.ZINC);
                                 }
                                 // Spike obtain the power
                                 super.setFeruchemicNbt(true);
@@ -90,7 +90,7 @@ public class EttmetalSpike extends MetalSpikeAbstract{
                         // if only have 1/2 powers less prob to steal and lose your power
                         if (Math.random()>0.70) {
                             if (Math.random() > 0.70) {
-                                targetCapability.removeAllomanticPower(MetalsNBTData.ETTMETAL);
+                                targetCapability.removeAllomanticPower(MetalsNBTData.ZINC);
                             }
                             // Spike obtain the power
                             super.setAllomanticNbt(true);
@@ -102,7 +102,7 @@ public class EttmetalSpike extends MetalSpikeAbstract{
                         // if only have 1/2 powers less prob to steal and lose your power
                         if (Math.random()>0.70){
                             if (Math.random()>0.70){
-                                targetCapability.removeFeruchemicPower(MetalsNBTData.ETTMETAL);
+                                targetCapability.removeFeruchemicPower(MetalsNBTData.ZINC);
                             }
                             // Spike obtain the power
                             super.setFeruchemicNbt(true);
@@ -120,8 +120,8 @@ public class EttmetalSpike extends MetalSpikeAbstract{
     }
 
     public void addItemToPlayer(PlayerEntity attacker) {
-        this.final_result = new ItemStack(ModItems.ETTMETAL_SPIKE.get(), 1);
-        final_result.addTagElement("ettmetal_spike", super.getAllNbt());
+        this.final_result = new ItemStack(ModItems.ZINC_SPIKE.get(), 1);
+        final_result.addTagElement("zinc_spike", super.getAllNbt());
         attacker.addItem(final_result);
     }
 }

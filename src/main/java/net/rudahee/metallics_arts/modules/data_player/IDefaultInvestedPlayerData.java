@@ -70,6 +70,11 @@ public interface IDefaultInvestedPlayerData {
 
     boolean isStoring(MetalsNBTData metal);
 
+    int cantMetalsDecanting();
+
+    int cantMetalsStoring();
+
+
     void setDecanting(MetalsNBTData metal, boolean value);
 
     void setStoring(MetalsNBTData metal, boolean value);

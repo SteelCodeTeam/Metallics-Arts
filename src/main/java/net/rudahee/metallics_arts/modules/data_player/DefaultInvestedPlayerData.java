@@ -379,6 +379,32 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     }
 
     @Override
+    public int cantMetalsDecanting(){
+        int cant = 0;
+        for (MetalsNBTData metal:MetalsNBTData.values()){
+            if (metal!=MetalsNBTData.ALUMINUM && metal!=MetalsNBTData.LERASIUM && metal!=MetalsNBTData.NICROSIL && metal!=MetalsNBTData.MALATIUM && metal!=MetalsNBTData.COPPER){
+                if (isDecanting(metal)){
+                    cant++;
+                }
+            }
+        }
+        return cant;
+    }
+
+    @Override
+    public int cantMetalsStoring() {
+        int cant = 0;
+        for (MetalsNBTData metal:MetalsNBTData.values()){
+            if (metal!=MetalsNBTData.ALUMINUM && metal!=MetalsNBTData.LERASIUM && metal!=MetalsNBTData.NICROSIL && metal!=MetalsNBTData.MALATIUM && metal!=MetalsNBTData.COPPER ){
+                if (isStoring(metal)){
+                    cant++;
+                }
+            }
+        }
+        return cant;
+    }
+
+    @Override
     public void setDecanting(MetalsNBTData metal, boolean value) {
         this.decanting_metals[metal.getIndex()] = value;
     }

@@ -280,7 +280,7 @@ public class PowersEventHandler {
                      *   DAMAGE WITH - BRASS - FERUCHEMIC
                      *******************************/
                     if (playerCapability.isDecanting(MetalsNBTData.BRASS)) {
-                        ZincAndBrassHelpers.addFireAspectToPlayer(event.getEntityLiving(),5);
+                        ZincAndBrassHelpers.addFireAspectToPlayer(event.getEntityLiving(),1);
                     }
 
                     /*******************************
@@ -430,9 +430,11 @@ public class PowersEventHandler {
                             /************************
                              * PEWTER FERUCHEMIC
                              ************************/
-
-
-
+                            if (playerCapability.isDecanting(MetalsNBTData.PEWTER)) {
+                                PewterAndTinHelpers.decantPewterEffectsFeruchemic(player);
+                            } else if (playerCapability.isStoring(MetalsNBTData.PEWTER)) {
+                                PewterAndTinHelpers.storePewterEffectsFeruchemic(player);
+                            }
 
                             /************************
                              * STEEL FERUCHEMIC
