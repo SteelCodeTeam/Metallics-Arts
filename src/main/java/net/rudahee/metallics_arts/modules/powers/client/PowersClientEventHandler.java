@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.modules.powers.client;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.entity.CreatureEntity;
@@ -97,6 +98,7 @@ public class PowersClientEventHandler {
                                         }
                                     }
                                 }
+
                                 /***********************************
                                  * DO CLICK AN SOMETHING WITH  - IRON -
                                  ***********************************/
@@ -181,6 +183,49 @@ public class PowersClientEventHandler {
                                     }
                                 }
                             }
+
+                            /*if (this.mc.options.keyJump.isDown() && this.mc.options.keyUse.isDown()) {
+
+                                int x = (int) player.getX();
+                                int y = (int) player.getY();
+                                int z = (int) player.getZ();
+                                BlockPos blockPos = new BlockPos(x,y,z);
+
+                                while (player.level.getBlockState(blockPos).is(Blocks.AIR)){
+                                    blockPos = new BlockPos(x,y-1,z);
+                                }
+
+                                RayTraceResult traceResult = new BlockRayTraceResult();
+
+                                RayTraceResult myTrace = new BlockRayTraceResult(player.position(),null,blockPos,false);
+
+                                if (playerCapability.isBurning(MetalsNBTData.STEEL)) {
+                                    if (myTrace !=null){
+                                        if (myTrace instanceof BlockRayTraceResult) { // IF ITS A BLOCK
+                                            BlockPos blockPosition = ((BlockRayTraceResult) myTrace).getBlockPos();
+                                            if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
+                                                ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
+                                                        Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                                playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+                                            }
+                                        }
+                                        if (myTrace instanceof EntityRayTraceResult) {
+                                            ModNetwork.sendToServer(
+                                                    new PullAndPushEntityPacket(((EntityRayTraceResult) myTrace).getEntity().getId(),
+                                                            Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                                    playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+                                        }
+                                    }
+                                }
+
+                            }*/
+
+
+
+
+
+
+
                         }
                     });
             }

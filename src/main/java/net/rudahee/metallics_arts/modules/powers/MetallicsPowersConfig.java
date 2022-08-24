@@ -22,8 +22,15 @@ public class MetallicsPowersConfig {
         for (MetalsNBTData metals : MetalsNBTData.values()) {
             add(metals.getNameLower());
         }
+
+
+        add (Blocks.ANVIL.getDescriptionId());
+
         //TODO insertar cosas hechas de metal a mano.
+
+
     }};
+
 
     public static ForgeConfigSpec.IntValue maxDistanceMetalDetection;
     public static ForgeConfigSpec.BooleanValue animalSelection;

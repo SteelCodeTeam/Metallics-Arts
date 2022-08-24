@@ -13,7 +13,7 @@ public enum MetalsNBTData implements IMetal, IGems {
     BRASS("brass", "BRASS",3, 16000, true, false, 0,5000,1000),
     COPPER("copper", "COPPER",2, 16000, false, false, 1,5000,1000),
     BRONZE("bronze", "BRONZE",2, 16000, false, false, 0,5000,1000),
-    ALUMINUM("aluminum", "ALUMINUM",5, 16000, false, false, 5,5000,1000),
+    ALUMINUM("aluminum", "ALUMINUM",5, 16000, false, false, 5,1,1),
     DURALUMIN("duralumin", "DURALUMIN",5, 16000, false, false, 4,5000,1000),
     CHROMIUM("chromium", "CHROMIUM",4, 16000, true, false, 5,5000,1000),
     NICROSIL("nicrosil", "NICROSIL",4, 16000, true, false, 4,5000,1000),

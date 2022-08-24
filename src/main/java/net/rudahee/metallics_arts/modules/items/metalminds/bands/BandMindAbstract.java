@@ -193,7 +193,9 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             stack.setTag(addBandTags());
         }
 
-        if (this instanceof BandZincBrass || this instanceof BandCopperBronze || this instanceof BandLerasiumEttmetal ||this instanceof BandAtiumMalatium ||this instanceof BandChromiumNicrosil) {
+        if (this instanceof BandZincBrass || this instanceof BandCopperBronze
+                || this instanceof BandLerasiumEttmetal ||this instanceof BandAtiumMalatium
+                ||this instanceof BandChromiumNicrosil || this instanceof BandAluminumDuralumin) {
             return;
         }
 
@@ -230,7 +232,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                     } else if (data.isStoring(this.metals[0])) {
                         if (stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_max_capacity")) {
 
-                            if (data.isStoring(MetalsNBTData.NICROSIL) && !(this instanceof BandAluminumDuralumin)) {
+                            if (data.isStoring(MetalsNBTData.NICROSIL)) {
                                 if (!nicConsumeMet0){
                                     stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
                                     nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")+1));
@@ -254,7 +256,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
                     if (data.isDecanting(this.metals[1])) {
                         if (stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")>0) {
-                            if (data.isDecanting(MetalsNBTData.NICROSIL) && !(this instanceof BandAluminumDuralumin)){
+                            if (data.isDecanting(MetalsNBTData.NICROSIL)){
                                 if (!nicConsumeMet1){
                                     nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")-1));
                                     stack.setTag(nbtLocal);

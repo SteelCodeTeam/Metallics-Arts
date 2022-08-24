@@ -185,12 +185,9 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                     qtyToRemove = 0;
                     continueSaving = false;
                 } else {
-
                     if (!stack.getTag().contains(metal.getNameLower()+"inLerasiumBand")){ //no existe el tag
-
                         stack.getTag().putInt(metal.getNameLower()+"inLerasiumBand",0);
                     }
-
                     stack.getTag().putInt(metal.getNameLower()+"inLerasiumBand", stack.getTag().getInt(metal.getNameLower()+"inLerasiumBand")+qtyToRemove);
                     itsDone = true;
                 }
@@ -250,18 +247,6 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                     }
                 }
             }
-
-            /*
-            toolTips.add(new StringTextComponent(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
-            toolTips.add(new StringTextComponent(getMetals(1).getNameLower().substring(0,1).toUpperCase()+getMetals(1).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
-            toolTips.add(new StringTextComponent("Owner: "+ (stack.getTag().getString("key"))));
-            if (Screen.hasControlDown()){
-                for (MetalsNBTData metal : MetalsNBTData.values()){
-                    if(this.localNbtLerasium.getInt(metal.getNameLower()+"inLerasiumBand")>0){
-                        toolTips.add(new StringTextComponent(metal.getNameLower()+": "+this.localNbtLerasium.getInt(metal.getNameLower()+"inLerasiumBand")));
-                    }
-                }
-            }*/
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
     }
