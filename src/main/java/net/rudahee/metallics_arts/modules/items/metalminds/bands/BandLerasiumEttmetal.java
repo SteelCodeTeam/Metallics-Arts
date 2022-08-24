@@ -17,6 +17,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -46,25 +47,29 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                     /////////////LERASIUM///////////////////
 
                     if (data.isDecanting(getMetals(0))) {
-                        if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")>0) {
-                            loadAllomanticReserve(data, stack);
-                            nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")-1));
-                            stack.setTag(nbtLocal);
-                        } else {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
-                            data.setDecanting(getMetals(0),false);
-                        }
+                        loadAllomanticReserve(data, stack);
+                        nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",0);
+
+                        stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                        data.setDecanting(getMetals(0),false);
+                        stack.setTag(nbtLocal);
+
                         needUpdate = true;
                     } else if (data.isStoring(getMetals(0))) {
-                        if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_max_capacity")) {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
-                            saveAllomanticReserve(data, stack);
-                            nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")+1));
-                            stack.setTag(nbtLocal);
+
+                        saveAllomanticReserve(data,stack);
+                        if (haveAnyReserve(stack)){
+                            nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",1);
                         } else {
-                            data.setStoring(getMetals(0),false);
+                            nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",0);
                         }
+                        stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+
+                        data.setStoring(getMetals(0),false);
+                        stack.setTag(nbtLocal);
                         needUpdate = true;
+
+
                     }
                     /////////////ETTMETAL////////////////
                     if (data.isDecanting(getMetals(1))) {
@@ -96,6 +101,17 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
             }
         }
         super.curioTick(identifier, index, livingEntity, stack);
+    }
+
+    private boolean haveAnyReserve(ItemStack stack) {
+
+        for (MetalsNBTData metal: MetalsNBTData.values()){
+            if (stack.getTag().getInt(metal.getNameLower()+"inLerasiumBand")>0){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private PlayerEntity target;
@@ -165,6 +181,8 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
     }
 
 
+
+    //ACA TENEMOS QUE ARREGLAR QUE NO SE PIERDA LAS RESERVAS ESXTA QUE VAN A LA MENTE DE LERASIUM
     public boolean saveAllomanticReserve(IDefaultInvestedPlayerData playerCapability, ItemStack stack) {
         boolean itsDone = false;
         ArrayList<MetalsNBTData> metals = playerCapability.getAllomanticPowers();
@@ -185,11 +203,19 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                     qtyToRemove = 0;
                     continueSaving = false;
                 } else {
+
                     if (!stack.getTag().contains(metal.getNameLower()+"inLerasiumBand")){ //no existe el tag
                         stack.getTag().putInt(metal.getNameLower()+"inLerasiumBand",0);
                     }
+
                     stack.getTag().putInt(metal.getNameLower()+"inLerasiumBand", stack.getTag().getInt(metal.getNameLower()+"inLerasiumBand")+qtyToRemove);
                     itsDone = true;
+
+                    if (stack.getTag().getInt(metal.getNameLower()+"inLerasiumBand") > metal.getMaxAllomanticTicksStorage()) {
+                        stack.getTag().putInt(metal.getNameLower()+"inLerasiumBand",metal.getMaxAllomanticTicksStorage());
+                        continueSaving = false;
+                    }
+
                 }
             }
         }
@@ -228,12 +254,11 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
         return itsDone;
     }
 
-
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flagIn) {
         if (stack.hasTag()) {
             if (!Screen.hasControlDown()){
-                toolTips.add(new StringTextComponent(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
+                toolTips.add(new StringTextComponent(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")));
                 toolTips.add(new StringTextComponent(getMetals(1).getNameLower().substring(0,1).toUpperCase()+getMetals(1).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
                 toolTips.add(new StringTextComponent("Owner: "+ (stack.getTag().getString("key"))));
             } else {

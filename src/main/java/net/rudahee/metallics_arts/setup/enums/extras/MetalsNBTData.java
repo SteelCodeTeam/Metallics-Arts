@@ -23,7 +23,7 @@ public enum MetalsNBTData implements IMetal, IGems {
     CADMIUM("cadmium", "CADMIUM",6, 16000, true, false, 6,5000,1000),
     BENDALLOY("bendalloy", "BENDALLOY", 6, 16000, true, false, 7,5000,1000),
     MALATIUM("malatium", "MALATIUM",8, 16000, false, true, 1,5000,1000),
-    LERASIUM("lerasium", "LERASIUM",9, 16000, false, true, 2,5000,1000),
+    LERASIUM("lerasium", "LERASIUM",9, 16000, false, true, 2,1,1),
     ETTMETAL("ettmetal", "ETTMETAL",9, 16000, false, true, 3,5000,1000);
 
 
