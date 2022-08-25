@@ -49,48 +49,40 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                     if (data.isDecanting(getMetals(0))) {
                         loadAllomanticReserve(data, stack);
                         nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",0);
-
-                        stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                        nbtLocal.putString("key",changeOwner(player,nbtLocal,false));
                         data.setDecanting(getMetals(0),false);
                         stack.setTag(nbtLocal);
-
                         needUpdate = true;
                     } else if (data.isStoring(getMetals(0))) {
-
                         saveAllomanticReserve(data,stack);
                         if (haveAnyReserve(stack)){
                             nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",1);
                         } else {
                             nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",0);
                         }
-                        stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
-
+                        nbtLocal.putString("key",changeOwner(player,nbtLocal,true));
                         data.setStoring(getMetals(0),false);
                         stack.setTag(nbtLocal);
                         needUpdate = true;
-
-
                     }
                     /////////////ETTMETAL////////////////
                     if (data.isDecanting(getMetals(1))) {
-                        if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")>0) {
+                        if (nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")>0) {
                             decantingEttmetal(data,stack);
-                            nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")-1));
+                            nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")-1));
                             stack.setTag(nbtLocal);
                         } else {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                            nbtLocal.putString("key",changeOwner(player,nbtLocal,false));
                             finishUsingStealedPower(stack);
                             data.setDecanting(getMetals(1),false);
                         }
                         needUpdate = true;
-
                     } else if (data.isStoring(getMetals(1))) {
-                        if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
+                        if (nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
                             if (isStoringEttmetal(player,player.level,stack)){
-                                stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
-                                nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
+                                nbtLocal.putString("key",changeOwner(player,nbtLocal,true));
+                                nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
                                 stack.setTag(nbtLocal);
-
                             }
                         } else {
                             data.setStoring(getMetals(1),false);
@@ -100,6 +92,9 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                 });
             }
         }
+
+
+
         super.curioTick(identifier, index, livingEntity, stack);
     }
 

@@ -184,44 +184,53 @@ public class PowersClientEventHandler {
                                 }
                             }
 
-                            /*if (this.mc.options.keyJump.isDown() && this.mc.options.keyUse.isDown()) {
+
+
+                            /*if (this.mc.options.keyJump.isDown() && this.mc.options.keyShift.isDown()) {
 
                                 int x = (int) player.getX();
                                 int y = (int) player.getY();
                                 int z = (int) player.getZ();
-                                BlockPos blockPos = new BlockPos(x,y,z);
 
-                                while (player.level.getBlockState(blockPos).is(Blocks.AIR)){
-                                    blockPos = new BlockPos(x,y-1,z);
+                                BlockPos blockPos;
+                                if (this.mc.options.keyLeft.isDown()) {
+                                    blockPos = new BlockPos(x,y,z+3);
+                                } else if (this.mc.options.keyRight.isDown()) {
+                                    blockPos = new BlockPos(x,y,z-3);
+                                } else if (this.mc.options.keyDown.isDown()) {
+                                    blockPos = new BlockPos(x+3,y,z);
+                                }  else if (this.mc.options.keyUp.isDown()) {
+                                    blockPos = new BlockPos(x-3,y,z);
+                                } else {
+                                    blockPos = new BlockPos(x,y,z);
                                 }
 
-                                RayTraceResult traceResult = new BlockRayTraceResult();
+                                int p = 5;
 
-                                RayTraceResult myTrace = new BlockRayTraceResult(player.position(),null,blockPos,false);
+                                for (int i=0;i<p;i++){
+                                    if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
+                                        blockPos = new BlockPos(blockPos.getX(),blockPos.getY()-1,blockPos.getZ());
+                                    }
+                                }
+
 
                                 if (playerCapability.isBurning(MetalsNBTData.STEEL)) {
-                                    if (myTrace !=null){
-                                        if (myTrace instanceof BlockRayTraceResult) { // IF ITS A BLOCK
-                                            BlockPos blockPosition = ((BlockRayTraceResult) myTrace).getBlockPos();
+                                    if (!player.level.getBlockState(blockPos).is(Blocks.AIR)){
+                                        // IF ITS A BLOCK
+                                            BlockPos blockPosition = blockPos;
                                             if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
                                                 ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
                                                         Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
                                                                 playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                             }
-                                        }
-                                        if (myTrace instanceof EntityRayTraceResult) {
-                                            ModNetwork.sendToServer(
-                                                    new PullAndPushEntityPacket(((EntityRayTraceResult) myTrace).getEntity().getId(),
-                                                            Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
-                                                                    playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
-                                        }
+
+
+                                            //ModNetwork.sendToServer(new PullAndPushEntityPacket(((EntityRayTraceResult) myTrace).getEntity().getId(), Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN), playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+
                                     }
                                 }
 
                             }*/
-
-
-
 
 
 
