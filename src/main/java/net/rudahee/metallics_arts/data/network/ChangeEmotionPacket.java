@@ -7,6 +7,7 @@ import net.minecraftforge.fml.network.NetworkEvent;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.ZincAndBrassHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.function.Supplier;
 
@@ -48,11 +49,22 @@ public class ChangeEmotionPacket {
 
             allomancer.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
                 enhanced = data.isBurning(MetalsNBTData.DURALUMIN);
+                if (enhanced) {
+                    if (data.isBurning(MetalsNBTData.ZINC)) {
+                        data.drainMetals(MetalsNBTData.DURALUMIN, MetalsNBTData.ZINC);
+                    }
+                    if (data.isBurning(MetalsNBTData.BRASS)) {
+                        data.drainMetals(MetalsNBTData.DURALUMIN, MetalsNBTData.BRASS);
+                    }
+                    ModNetwork.sync(data, allomancer);
+
+                }
             });
 
             if (this.make_aggressive) {
                 if (isEnhanced) {
                     ZincAndBrassHelpers.angryEntitiesEnhanced(target, allomancer);
+
                 } else {
                     ZincAndBrassHelpers.angryEntities(target, allomancer);
                 }

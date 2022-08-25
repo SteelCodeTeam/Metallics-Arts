@@ -74,6 +74,11 @@ public abstract class MetalSpikeAbstract extends SwordItem {
     };
 
 
+    @Override
+    public boolean isFoil(ItemStack stack) {
+        return stack.getTag().getBoolean("feruchemic_power") || stack.getTag().getBoolean("allomantic_power") ? true : false;
+    }
+
     public boolean hasPlayerBothPowers(MetalsNBTData metal, IDefaultInvestedPlayerData cap) {
         if (cap.hasAllomanticPower(metal) && cap.hasFeruchemicPower(metal)) {
             return true;

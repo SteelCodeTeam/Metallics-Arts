@@ -168,10 +168,12 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     }
 
     public void drainMetals(MetalsNBTData... metals) {
-        for (MetalsNBTData mt : metals) {
-            this.allomantic_reseve[mt.getIndex()] = 0;
-            // So that they burn out next tick
-            setAllomanticMetalsAmount(mt,1);
+        for (MetalsNBTData metal : metals) {
+
+            setAllomanticMetalsAmount(metal, 1);
+            setBurning(metal, false);
+
+
         }
     }
 
@@ -420,39 +422,39 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     }
 
     @Override
-    public void setAllomanticMetalsAmount(MetalsNBTData metal, int amt){
+    public void setAllomanticMetalsAmount(MetalsNBTData metal, int qty){
         int value = this.allomantic_reseve[metal.getIndex()];
-        value =+ amt;
+        value =+ qty;
         if (this.max_burning_time[metal.getIndex()]<value)
             value = this.max_burning_time[metal.getIndex()];
         this.allomantic_reseve[metal.getIndex()]=value;
     }
 
-    public boolean addAllomanticMetalAmount(MetalsNBTData metal, int amt) {
+    public boolean addAllomanticMetalAmount(MetalsNBTData metal, int qty) {
         int value = this.allomantic_reseve[metal.getIndex()];
-        if (this.max_burning_time[metal.getIndex()] < value + amt) {
+        if (this.max_burning_time[metal.getIndex()] < value + qty) {
             this.allomantic_reseve[metal.getIndex()] = this.max_burning_time[metal.getIndex()];
             return false;
         } else {
-            this.allomantic_reseve[metal.getIndex()] = value + amt;
+            this.allomantic_reseve[metal.getIndex()] = value + qty;
             return true;
         }
     }
-    public boolean substractAllomanticMetalAmount(MetalsNBTData metal, int amt) {
+    public boolean substractAllomanticMetalAmount(MetalsNBTData metal, int qty) {
         int value = this.allomantic_reseve[metal.getIndex()];
-        if (value - amt < 0) {
+        if (value - qty < 0) {
             this.allomantic_reseve[metal.getIndex()] = 0;
             return false;
         } else {
-            this.allomantic_reseve[metal.getIndex()] = value - amt;
+            this.allomantic_reseve[metal.getIndex()] = value - qty;
             return true;
         }
     }
 
     @Override
-    public void setAmountLerasiumReserve(MetalsNBTData metal, int amt) {
-        if (amt > 0 && amt < metal.getMaxAllomanticTicksStorage()) {
-            this.lerasium_reseve[metal.getIndex()] = amt;
+    public void setAmountLerasiumReserve(MetalsNBTData metal, int qty) {
+        if (qty > 0 && qty < metal.getMaxAllomanticTicksStorage()) {
+            this.lerasium_reseve[metal.getIndex()] = qty;
         }
     }
 

@@ -4,7 +4,10 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.NetworkEvent;
+import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.IronAndSteelHelpers;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.function.Supplier;
 
@@ -37,6 +40,21 @@ public class PullAndPushBlockPacket {
         ctx.get().enqueueWork(() -> {
             ServerPlayerEntity player = ctx.get().getSender();
             BlockPos pos = this.blockPos;
+
+            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(capability -> {
+
+                if (capability.isBurning(MetalsNBTData.DURALUMIN)) {
+                    if (capability.isBurning(MetalsNBTData.IRON)) {
+                        capability.drainMetals(MetalsNBTData.DURALUMIN, MetalsNBTData.IRON);
+                    }
+                    if (capability.isBurning(MetalsNBTData.STEEL)) {
+                        capability.drainMetals(MetalsNBTData.DURALUMIN, MetalsNBTData.STEEL);
+                    }
+                    ModNetwork.sync(capability, player);
+
+                }
+            });
+
             // Sanity check to make sure  the block is loaded in the server
             if (player.level.isLoaded(pos)) {
                 // activate blocks

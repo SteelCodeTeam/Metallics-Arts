@@ -3,12 +3,15 @@ package net.rudahee.metallics_arts.modules.powers.helpers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.Random;
 
@@ -17,6 +20,7 @@ public class ChromiumAndNicrosilHelpers {
         entityLiving.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             for (MetalsNBTData metalsNBTData : data.getAllomanticPowers()){
                 data.drainMetals(metalsNBTData);
+                ModNetwork.sync(data, entityLiving);
             }
         });
     }
@@ -68,11 +72,19 @@ public class ChromiumAndNicrosilHelpers {
         }
     }
 
-    public static void drainMetalCloudChromium(World world, PlayerEntity player, AxisAlignedBB axisAlignedBB) {
+    public static void drainMetalCloudChromium(World world, AxisAlignedBB axisAlignedBB) {
         world.getEntitiesOfClass(PlayerEntity.class, axisAlignedBB).forEach(entity -> {
-            if (entity != player && entity != null) {
-                drainMetalChromium(player);
+
+            if (entity != null) {
+                entity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(capability -> {
+                    capability.drainMetals(MetalsNBTData.values());
+
+                    ModNetwork.sync(capability, entity);
+                });
             }
+
+
+
         });
     }
 }

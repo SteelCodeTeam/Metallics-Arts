@@ -31,7 +31,7 @@ public class GoldAndElectrumHelpers {
                         @Override
                         public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
                             Entity repositionedEntity = repositionEntity.apply(false);
-                            repositionedEntity.teleportTo(pos.getX(), pos.getY(), pos.getZ());
+                            repositionedEntity.teleportTo(pos.getX(), pos.getY() + 1, pos.getZ());
                             return repositionedEntity;
                         }
                     });
