@@ -370,8 +370,6 @@ public class ModItems {
             }
     );
 
-
-
 //weapons
 
     public static RegistryObject<Item> OBSIDIAN_DAGGER = register("obsidian_dagger",

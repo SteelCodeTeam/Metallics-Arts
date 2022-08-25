@@ -2,9 +2,11 @@ package net.rudahee.metallics_arts.modules.items.metal_spike;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
+import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.*;
@@ -28,14 +30,14 @@ import java.util.List;
 
 public abstract class MetalSpikeAbstract extends SwordItem {
 
-    protected CompoundNBT nbt;
-
     private static final int ATTACK_DAMAGE = 1;
     private static final float ATTACK_SPEED = -3f;
 
-    public MetalSpikeAbstract(Properties properties) {
+    private MetalsNBTData metalSpike;
+
+    public MetalSpikeAbstract(Properties properties,MetalsNBTData metalsNBTData) {
         super(tier, ATTACK_DAMAGE, ATTACK_SPEED, properties);
-        nbt = new CompoundNBT();
+        this.metalSpike = metalsNBTData;
     }
 
 
@@ -71,24 +73,6 @@ public abstract class MetalSpikeAbstract extends SwordItem {
         }
     };
 
-    public INBT getAllNbt() {
-        return nbt;
-    }
-
-    public boolean getFeruchemicNbt() {
-        return this.nbt.getBoolean("feruchemic");
-    }
-    public void setFeruchemicNbt(boolean value) {
-        this.nbt.putBoolean("feruchemic", value);
-    }
-    public boolean getAllomanticNbt() {
-        return this.nbt.getBoolean("allomantic");
-    }
-    public void setAllomanticNbt(boolean value) {
-        this.nbt.putBoolean("allomantic", value);
-    }
-
-
 
     public boolean hasPlayerBothPowers(MetalsNBTData metal, IDefaultInvestedPlayerData cap) {
         if (cap.hasAllomanticPower(metal) && cap.hasFeruchemicPower(metal)) {
@@ -97,24 +81,110 @@ public abstract class MetalSpikeAbstract extends SwordItem {
         return false;
     }
 
-    public boolean hasPlayerAllomanticPower(MetalsNBTData metal, IDefaultInvestedPlayerData cap) {
-        return cap.hasAllomanticPower(metal);
-    }
-    public boolean hasPlayerFeruchemicPower(MetalsNBTData metal, IDefaultInvestedPlayerData cap) {
-        return cap.hasFeruchemicPower(metal);
-    }
-
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flag) {
-
+        if  (!stack.getTag().contains("metal_spike")||!stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
+            stack.setTag(generateTags(stack));
+        }
         if (stack.hasTag()){
-            if (stack.getTag().getBoolean("feruchemic")){
+
+            if (stack.getTag().getBoolean("feruchemic_power")){
                 toolTips.add(new StringTextComponent("Power: Feruchemic"));
             }
-            if (stack.getTag().getBoolean("allomantic")){
+            if (stack.getTag().getBoolean("allomantic_power")){
                 toolTips.add(new StringTextComponent("Power: Allomantic"));
             }
         }
         super.appendHoverText(stack, world, toolTips, flag);
+    }
+
+    public CompoundNBT generateTags(ItemStack stack){
+        stack.getTag().putInt("metal_spike",this.metalSpike.getIndex());
+        stack.getTag().putBoolean("feruchemic_power",false);
+        stack.getTag().putBoolean("allomantic_power",false);
+        return stack.getTag();
+    }
+
+
+
+    @Override
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+
+        if  (!stack.getTag().contains("metal_spike")||!stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
+            stack.setTag(generateTags(stack));
+        }
+
+        if ((target instanceof ServerPlayerEntity || target instanceof PlayerEntity) && (attacker instanceof ServerPlayerEntity || attacker instanceof PlayerEntity)){
+
+            System.out.println("algo");
+            target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(targetData ->{
+
+                boolean hasAllomanticPower = targetData.hasAllomanticPower(MetalsNBTData.getMetal(stack.getTag().getInt("metal_spike")));
+                boolean hasFeruchemicPower = targetData.hasFeruchemicPower(MetalsNBTData.getMetal(stack.getTag().getInt("metal_spike")));
+
+                boolean couldStealPower = Math.random()>0.90;
+                boolean couldRemovePower = Math.random()>0.50;
+                boolean isAllomantic = Math.random()>0.50;
+
+                MetalsNBTData localMetal = MetalsNBTData.getMetal(stack.getTag().getInt("metal_spike"));
+
+                //DAR PODER
+                if (stack.getTag().getBoolean("allomantic_power")){
+                    if (!targetData.hasAllomanticPower(localMetal)){
+                        targetData.addAllomanticPower(localMetal);
+                    }
+
+                } else if (stack.getTag().getBoolean("feruchemic_power")){
+                    if (!targetData.hasFeruchemicPower(localMetal)){
+                        targetData.addFeruchemicPower(localMetal);
+                    }
+
+                //SI EL CLAVO NO TIENE PODERES -> intenta robar
+                } else if (hasPlayerBothPowers(localMetal, targetData)) {
+                    //SI EL OBJETIVO TIENE AMBOS PODERES
+                    if (isAllomantic) {
+                        if (couldStealPower){
+                            if (couldRemovePower){
+                                targetData.removeAllomanticPower(localMetal);
+                            }
+                            stack.getTag().putBoolean("allomantic_power",true);
+                            addItemToPlayer((PlayerEntity) attacker, stack);
+                        }
+                    } else {
+                        if (couldStealPower){
+                            if (couldRemovePower){
+                                targetData.removeFeruchemicPower(localMetal);
+                            }
+                            stack.getTag().putBoolean("feruchemic_power",true);
+                            addItemToPlayer((PlayerEntity) attacker, stack);
+                        }
+                    }
+                } else if (hasAllomanticPower){
+                    if (Math.random()>0.90){
+                        if (Math.random()>0.49){
+                            targetData.removeAllomanticPower(localMetal);
+                        }
+                        stack.getTag().putBoolean("allomantic_power",true);
+                        addItemToPlayer((PlayerEntity) attacker, stack);
+                    }
+                } else if (hasFeruchemicPower){
+                    if (Math.random()>0.90){
+                        if (Math.random()>0.49){
+                            targetData.removeFeruchemicPower(localMetal);
+                        }
+                        stack.getTag().putBoolean("feruchemic_power",true);
+                        addItemToPlayer((PlayerEntity) attacker, stack);
+                    }
+                }
+                ModNetwork.sync(targetData,(PlayerEntity) target);
+            });
+        }
+        return super.hurtEnemy(stack, target, attacker);
+    }
+
+
+    public void addItemToPlayer(PlayerEntity attacker,ItemStack stack) {
+        ItemStack itemStack = stack.copy();
+        attacker.addItem(itemStack);
     }
 }
