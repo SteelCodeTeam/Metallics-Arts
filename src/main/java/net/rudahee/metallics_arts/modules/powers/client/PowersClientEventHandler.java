@@ -188,6 +188,9 @@ public class PowersClientEventHandler {
 
                             /*if (this.mc.options.keyJump.isDown() && this.mc.options.keyShift.isDown()) {
 
+
+                                //FUNCIONA PUTO
+
                                 int x = (int) player.getX();
                                 int y = (int) player.getY();
                                 int z = (int) player.getZ();
