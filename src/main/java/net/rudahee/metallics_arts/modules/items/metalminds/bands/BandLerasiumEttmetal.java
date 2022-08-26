@@ -68,22 +68,18 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                     /////////////ETTMETAL////////////////
                     if (data.isDecanting(getMetals(1))) {
                         if (nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")>0) {
-                            decantingEttmetal(data,stack);
                             nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")-1));
                             stack.setTag(nbtLocal);
                         } else {
                             nbtLocal.putString("key",changeOwner(player,nbtLocal,false));
-                            finishUsingStealedPower(stack);
                             data.setDecanting(getMetals(1),false);
                         }
                         needUpdate = true;
                     } else if (data.isStoring(getMetals(1))) {
                         if (nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
-                            if (isStoringEttmetal(player,player.level,stack)){
-                                nbtLocal.putString("key",changeOwner(player,nbtLocal,true));
-                                nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
-                                stack.setTag(nbtLocal);
-                            }
+                            nbtLocal.putString("key",changeOwner(player,nbtLocal,true));
+                            nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
+                            stack.setTag(nbtLocal);
                         } else {
                             data.setStoring(getMetals(1),false);
                         }
@@ -113,67 +109,6 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
     private IDefaultInvestedPlayerData targetCapability;
     private MetalsNBTData targetMetal;
 
-
-
-    public boolean isStoringEttmetal(PlayerEntity player, World world, ItemStack stack) {
-
-        Vector3d posPlayer = player.position();
-
-        BlockPos posLeftTop = new BlockPos(posPlayer.x + 6, posPlayer.y + 6, posPlayer.z + 6);
-        BlockPos posRightDown = new BlockPos(posPlayer.x - 6, posPlayer.y - 6, posPlayer.z - 6);
-
-        if (world instanceof ServerWorld) {
-                world.getEntitiesOfClass(PlayerEntity.class, new AxisAlignedBB(posLeftTop, posRightDown)).forEach(newTarget -> {
-                    if (newTarget != player && (newTarget == target || target == null)) {
-                        newTarget.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(newTargetCapability -> {
-
-                            if (stack.getTag().getInt("metal_steal_index") != -1) {
-                                if (newTargetCapability.isBurning(MetalsNBTData.getMetal(stack.getTag().getInt("metal_steal_index")))){
-                                    return;
-                                } else {
-                                    target = null;
-                                    targetCapability = null;
-                                    targetMetal = null;
-                                    return;
-                                }
-                            } else if (newTargetCapability.isBurningSomething() && (newTarget == target || target == null)) {
-                                target = newTarget;
-                                targetCapability = newTargetCapability;
-                                targetMetal = newTargetCapability.getRandomBurningMetal();
-                            } else {
-                                target = null;
-                                targetCapability = null;
-                                targetMetal = null;
-                            }
-                        });
-                    }
-                });
-        }
-        if (target != null && targetCapability != null && targetMetal != null) {
-            stack.getTag().putInt("metal_steal_index",targetMetal.getIndex());
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean firstInteraction = true;
-    public void decantingEttmetal(IDefaultInvestedPlayerData playerCapability, ItemStack stack) {
-        MetalsNBTData metalDelNBT = MetalsNBTData.getMetal(stack.getTag().getInt("metal_steal_index"));
-        if (firstInteraction) {
-            playerCapability.setAllomanticMetalsAmount(metalDelNBT, playerCapability.getAllomanticAmount(metalDelNBT) + 3);
-            firstInteraction = false;
-        }
-        if (!playerCapability.isBurning(metalDelNBT)) {
-            playerCapability.setAllomanticMetalsAmount(metalDelNBT, playerCapability.getAllomanticAmount(metalDelNBT) + 1);
-            playerCapability.setBurning(metalDelNBT, true);
-        }
-    }
-
-    public void finishUsingStealedPower(ItemStack stack) {
-        firstInteraction = true;
-        stack.getTag().putInt("metal_steal_index",-1);
-    }
 
 
 

@@ -1,16 +1,28 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 
 public class AtiumAndMalatiumHelpers {
 
-    public static Object changeExperience;
     private static boolean playerIsBurning = false;
     private static float damage = 0F;
+
+
+    public static void decantAtium(PlayerEntity player) {
+        player.addEffect(new EffectInstance(Effects.INVISIBILITY, 5, 1, true,true));
+    }
+
+    public static void storageAtium(PlayerEntity player) {
+        player.addEffect(new EffectInstance(Effects.GLOWING, 5, 1, true,true));
+    }
+
 
 
 
@@ -60,24 +72,5 @@ public class AtiumAndMalatiumHelpers {
         return damage;
     }
 
-    private static int experienceLocal;
 
-    public static void changeExperience(PlayerEntity player, boolean decant) {
-        if (decant) {
-            //decanta + xp
-            if (player.totalExperience > experienceLocal) {
-                player.totalExperience = player.totalExperience + (player.totalExperience - experienceLocal);
-            }
-
-        } else {
-            //storage -xp
-            if (player.totalExperience > experienceLocal) {
-                player.totalExperience = experienceLocal;
-            }
-        }
-    }
-
-    public static void setExperienceLocal(int experienceLocal) {
-        AtiumAndMalatiumHelpers.experienceLocal = experienceLocal;
-    }
 }

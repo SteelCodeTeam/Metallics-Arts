@@ -527,11 +527,9 @@ public class PowersEventHandler {
                              * ATIUM FERUCHEMIC
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.ATIUM)){
-                                AtiumAndMalatiumHelpers.changeExperience(player, true);
+                                AtiumAndMalatiumHelpers.decantAtium(player);
                             } else if (playerCapability.isStoring(MetalsNBTData.ATIUM)){
-                                AtiumAndMalatiumHelpers.changeExperience(player, false);
-                            } else if (!playerCapability.isStoring(MetalsNBTData.ATIUM) && !playerCapability.isDecanting(MetalsNBTData.ATIUM)){
-                                previusAtium = false;
+                                AtiumAndMalatiumHelpers.storageAtium(player);
                             }
 
                             if (actualTick >= 240) {

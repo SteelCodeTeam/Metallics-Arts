@@ -133,7 +133,7 @@ public class ModItems {
     );
     public static RegistryObject<Item> BAND_PEWTER_TIN = register("band_pewter_tin",
             () -> {
-                Item item = new BandPwterTin(PROPERTY_METALMINDS);
+                Item item = new BandPewterTin(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("TIN_PEWTER").setBand(item);
                 return item;
             }
