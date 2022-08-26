@@ -6,9 +6,12 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.ChatScreen;
+import net.minecraft.client.renderer.FaceDirection;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
@@ -189,16 +192,35 @@ public class PowersClientEventHandler {
 
 
 
-                            /*if (this.mc.options.keyJump.isDown() && this.mc.options.keyShift.isDown()) {
+                            /*if (player.isFallFlying() && playerCapability.isBurning(MetalsNBTData.STEEL)) {
+                                player.setPose(Pose.FALL_FLYING);
+                            }
 
+                            if (!player.level.getBlockState(new BlockPos(player.position().x, player.position().y - 1, player.position().z)).is(Blocks.AIR)) {
+                                player.stopFallFlying();
 
-                                //FUNCIONA PUTO
+                            }
 
-                                int x = (int) player.getX();
-                                int y = (int) player.getY();
-                                int z = (int) player.getZ();
+                            if(!playerCapability.isBurning(MetalsNBTData.STEEL)) {
+                                player.stopFallFlying();
+                            }*/
 
-                                BlockPos blockPos;
+                            if (this.mc.options.keyJump.isDown() && this.mc.options.keyShift.isDown() && playerCapability.isBurning(MetalsNBTData.STEEL)) {
+                                //player.startFallFlying();
+
+                                double x = player.getX();
+                                double y = player.getY();
+                                double z = player.getZ();
+
+                                //BlockPos blockPos;
+
+                                Vector3d vector = player.getViewVector(1.0F);
+
+                                double pushX = vector.x() >= 0 ? x - (vector.x*7) : x - (vector.x*7);
+                                double pushZ = vector.z() >= 0 ? z - (vector.z*7) : z - (vector.z*7);
+
+                                BlockPos blockPos = new BlockPos(pushX, y, pushZ);
+                                /*
                                 if (this.mc.options.keyLeft.isDown()) {
                                     blockPos = new BlockPos(x,y,z+3);
                                 } else if (this.mc.options.keyRight.isDown()) {
@@ -210,8 +232,8 @@ public class PowersClientEventHandler {
                                 } else {
                                     blockPos = new BlockPos(x,y,z);
                                 }
-
-                                int p = 5;
+                                */
+                                int p = 10;
 
                                 for (int i=0;i<p;i++){
                                     if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
@@ -236,7 +258,7 @@ public class PowersClientEventHandler {
                                     }
                                 }
 
-                            }*/
+                            }
 
 
 
