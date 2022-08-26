@@ -206,57 +206,70 @@ public class PowersClientEventHandler {
                             }*/
 
                             if (this.mc.options.keyJump.isDown() && this.mc.options.keyShift.isDown() && playerCapability.isBurning(MetalsNBTData.STEEL)) {
-                                //player.startFallFlying();
 
                                 double x = player.getX();
                                 double y = player.getY();
                                 double z = player.getZ();
 
-                                //BlockPos blockPos;
-
+                                BlockPos blockPos = new BlockPos(x,y,z);
                                 Vector3d vector = player.getViewVector(1.0F);
 
-                                double pushX = vector.x() >= 0 ? x - (vector.x*7) : x - (vector.x*7);
-                                double pushZ = vector.z() >= 0 ? z - (vector.z*7) : z - (vector.z*7);
+                                double pushX;
+                                double pushZ;
 
-                                BlockPos blockPos = new BlockPos(pushX, y, pushZ);
-                                /*
-                                if (this.mc.options.keyLeft.isDown()) {
-                                    blockPos = new BlockPos(x,y,z+3);
-                                } else if (this.mc.options.keyRight.isDown()) {
-                                    blockPos = new BlockPos(x,y,z-3);
+                                int maxAltitude = 10;
+                                /*int actualAltitude = 0;
+
+                                for (int i = 0;i<maxAltitude;i++){ <--------- revisar aqui
+                                    if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
+                                        blockPos = new BlockPos(blockPos.getX(),blockPos.getY()-1,blockPos.getZ());
+                                        actualAltitude++;
+                                    }
+                                }*/
+
+                                //int range = actualAltitude < 2 ? 2 : 7;
+                                int range = 7;
+                                //double pushX = vector.x() >= 0 ? x - (vector.x*7) : x - (vector.x*7);
+                                //double pushZ = vector.z() >= 0 ? z - (vector.z*7) : z - (vector.z*7);
+
+                                if (this.mc.options.keyUp.isDown()) {
+                                     pushX = x - (vector.x*range);
+                                     pushZ = z - (vector.z*range);
                                 } else if (this.mc.options.keyDown.isDown()) {
-                                    blockPos = new BlockPos(x+3,y,z);
-                                }  else if (this.mc.options.keyUp.isDown()) {
-                                    blockPos = new BlockPos(x-3,y,z);
-                                } else {
-                                    blockPos = new BlockPos(x,y,z);
-                                }
-                                */
-                                int p = 10;
+                                    pushX = x + (vector.x*range);
+                                    pushZ = z + (vector.z*range);
 
-                                for (int i=0;i<p;i++){
+                                } else if (this.mc.options.keyRight.isDown()) { // <--------- revisar aqui
+                                    pushX = vector.x() >= 0 ? x - (vector.x*range) : x + (vector.x*range);
+                                    pushZ = vector.z() >= 0 ? z + (vector.z*range) : z - (vector.z*range);
+
+                                } else if (this.mc.options.keyLeft.isDown()) {
+                                    pushX = vector.x() >= 0 ? x + (vector.x*range) : x - (vector.x*range);
+                                    pushZ = vector.z() >= 0 ? z - (vector.z*range) : z + (vector.z*range);
+                                }  else {
+                                    pushX = x - (vector.x*range);
+                                    pushZ = z - (vector.z*range);
+                                }
+                                blockPos = new BlockPos(pushX, y, pushZ);
+
+                                for (int i=0;i<maxAltitude;i++){
                                     if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
                                         blockPos = new BlockPos(blockPos.getX(),blockPos.getY()-1,blockPos.getZ());
                                     }
                                 }
-
-
-                                if (playerCapability.isBurning(MetalsNBTData.STEEL)) {
-                                    if (!player.level.getBlockState(blockPos).is(Blocks.AIR)){
-                                        // IF ITS A BLOCK
-                                            BlockPos blockPosition = blockPos;
-                                            if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
-                                                ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
-                                                        Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
-                                                                playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
-                                            }
-
-
-                                            //ModNetwork.sendToServer(new PullAndPushEntityPacket(((EntityRayTraceResult) myTrace).getEntity().getId(), Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN), playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+                                if (!player.level.getBlockState(blockPos).is(Blocks.AIR)){
+                                    // IF ITS A BLOCK
+                                    BlockPos blockPosition = blockPos;
+                                    if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition)) /*||tiene pepitas*/ ) {
+                                        ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
+                                                Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                        playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
 
                                     }
+                                    //ModNetwork.sendToServer(new PullAndPushEntityPacket(((EntityRayTraceResult) myTrace).getEntity().getId(), Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN), playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+
                                 }
+
 
                             }
 

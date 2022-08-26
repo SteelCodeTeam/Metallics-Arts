@@ -7,21 +7,23 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.enums.metals.Metal;
+import org.lwjgl.system.NonnullDefault;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BandLerasiumEttmetal extends BandMindAbstract {
 
@@ -68,8 +70,17 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                     /////////////ETTMETAL////////////////
                     if (data.isDecanting(getMetals(1))) {
                         if (nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")>0) {
-                            nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")-1));
-                            stack.setTag(nbtLocal);
+
+                            if (nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")>10){
+                                player.level.explode(player,player.position().x,player.position().y,player.position().z,nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")/10, Explosion.Mode.NONE);
+                                nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",0);
+                                stack.setTag(nbtLocal);
+                            } else {
+                                nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",0);
+                                nbtLocal.putString("key",changeOwner(player,nbtLocal,false));
+                                data.setDecanting(getMetals(1),false);
+                            }
+
                         } else {
                             nbtLocal.putString("key",changeOwner(player,nbtLocal,false));
                             data.setDecanting(getMetals(1),false);
@@ -77,12 +88,20 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                         needUpdate = true;
                     } else if (data.isStoring(getMetals(1))) {
                         if (nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
-                            nbtLocal.putString("key",changeOwner(player,nbtLocal,true));
-                            nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
+
+                            if (player.getLastDamageSource() != null){
+                                if ((player.getLastDamageSource().isExplosion())){
+                                    nbtLocal.putString("key",changeOwner(player,nbtLocal,true));
+                                    player.addEffect(new EffectInstance(Effects.REGENERATION,20,3,true,true));
+                                    nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
+                                }
+                            }
+
                             stack.setTag(nbtLocal);
                         } else {
                             data.setStoring(getMetals(1),false);
                         }
+                        // /gamerule keepInventory true
                         needUpdate = true;
                     }
                 });
@@ -105,12 +124,14 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
         return false;
     }
 
-    private PlayerEntity target;
-    private IDefaultInvestedPlayerData targetCapability;
-    private MetalsNBTData targetMetal;
 
-
-
+    public int calculateDamage (PlayerEntity player) {
+        int value = 0;
+        if (player.getLastDamageSource().isExplosion()) {
+            player.getLastDamageSource();
+        }
+        return value;
+    }
 
     //ACA TENEMOS QUE ARREGLAR QUE NO SE PIERDA LAS RESERVAS ESXTA QUE VAN A LA MENTE DE LERASIUM
     public boolean saveAllomanticReserve(IDefaultInvestedPlayerData playerCapability, ItemStack stack) {
@@ -189,7 +210,7 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
         if (stack.hasTag()) {
             if (!Screen.hasControlDown()){
                 toolTips.add(new StringTextComponent(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")));
-                toolTips.add(new StringTextComponent(getMetals(1).getNameLower().substring(0,1).toUpperCase()+getMetals(1).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
+                toolTips.add(new StringTextComponent(getMetals(1).getNameLower().substring(0,1).toUpperCase()+getMetals(1).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")));
                 toolTips.add(new StringTextComponent("Owner: "+ (stack.getTag().getString("key"))));
             } else {
                 toolTips.add(new StringTextComponent(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": "+ ((stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_max_capacity"))+"%"));
