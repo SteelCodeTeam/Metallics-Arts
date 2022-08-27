@@ -76,6 +76,8 @@ public class PullAndPushEntityPacket {
                             if (playerCapability.isDecanting(MetalsNBTData.IRON)) targetFeruchemicIron = 1;
                             else if (playerCapability.isStoring(MetalsNBTData.IRON)) targetFeruchemicIron = -1;});
 
+
+
                         if (playerFeruchemicIron == targetFeruchemicIron) {  //pesan igual
                             IronAndSteelHelpers.move(this.direction / 2.0, target, player.blockPosition());
                             IronAndSteelHelpers.move(this.direction / 2.0, player, target.blockPosition());

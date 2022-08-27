@@ -221,7 +221,7 @@ public class PowersClientEventHandler {
                                 double pushZ;
 
                                 int maxAltitude = 10;
-                                //int actualAltitude = 0;
+                                int actualAltitude = 0;
 
                                 //for (int i = 0;i<maxAltitude;i++){ <--------- revisar aqui
                                 //  if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
