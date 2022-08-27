@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.data.network;
 
+import com.electronwill.nightconfig.core.conversion.PreserveNotNull;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.item.FallingBlockEntity;
@@ -11,7 +12,9 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
+import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.IronAndSteelHelpers;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 import java.util.function.Supplier;
 
@@ -40,6 +43,9 @@ public class PullAndPushEntityPacket {
         buf.writeInt(this.direction);
     }
 
+    int playerFeruchemicIron;
+    int targetFeruchemicIron;
+
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayerEntity player = ctx.get().getSender();
@@ -56,10 +62,42 @@ public class PullAndPushEntityPacket {
                         IronAndSteelHelpers.move(this.direction / 2.0, target, player.blockPosition());
 
                         // Split the difference
-                    } else if (!(target instanceof ProjectileItemEntity)) {
-                        IronAndSteelHelpers.move(this.direction / 2.0, target, player.blockPosition());
+                    } else if (!(target instanceof ProjectileItemEntity)) { //2 players ?
+                        //  0 = no storing = no decanting
+                        //  1 = decanting  -> Pesa mas
+                        // -1 = storing    -> Pesa menos
+                        playerFeruchemicIron = 0;
+                        targetFeruchemicIron = 0;
+                        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability -> {
+                            if (playerCapability.isDecanting(MetalsNBTData.IRON)) playerFeruchemicIron = 1;
+                            else if (playerCapability.isStoring(MetalsNBTData.IRON)) playerFeruchemicIron = -1;});
 
-                        IronAndSteelHelpers.move(this.direction / 2.0, player, target.blockPosition());
+                        target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability -> {
+                            if (playerCapability.isDecanting(MetalsNBTData.IRON)) targetFeruchemicIron = 1;
+                            else if (playerCapability.isStoring(MetalsNBTData.IRON)) targetFeruchemicIron = -1;});
+
+                        if (playerFeruchemicIron == targetFeruchemicIron) {  //pesan igual
+                            IronAndSteelHelpers.move(this.direction / 2.0, target, player.blockPosition());
+                            IronAndSteelHelpers.move(this.direction / 2.0, player, target.blockPosition());
+                        } else if(playerFeruchemicIron == -1) { //peso menos
+                            if (targetFeruchemicIron == 0) {
+                                IronAndSteelHelpers.move(this.direction, player, target.blockPosition());
+                            } else {
+                                IronAndSteelHelpers.move(this.direction * 2.0, player, player.blockPosition());
+                            }
+                        } else if(playerFeruchemicIron == 0) {  //peso normal
+                            if (targetFeruchemicIron == -1) {
+                                IronAndSteelHelpers.move(this.direction, target, target.blockPosition());
+                            } else {
+                                IronAndSteelHelpers.move(this.direction, player, player.blockPosition());
+                            }
+                        } else if (playerFeruchemicIron == 1){  //pesa mas
+                            if (targetFeruchemicIron == 0) {
+                                IronAndSteelHelpers.move(this.direction, target, player.blockPosition());
+                            } else {
+                                IronAndSteelHelpers.move(this.direction * 2.0, target, player.blockPosition());
+                            }
+                        }
                     }
                 }
             }

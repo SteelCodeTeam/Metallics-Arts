@@ -55,7 +55,6 @@ public class FeruchemyMetalSelector extends Screen {
 
     public FeruchemyMetalSelector() {
         super(new StringTextComponent("metallic_arts_feruchemic_selector"));
-
         this.mc = Minecraft.getInstance();
     }
 

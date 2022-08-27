@@ -205,6 +205,9 @@ public class PowersClientEventHandler {
                                 player.stopFallFlying();
                             }*/
 
+
+                            //aqui va el empuje
+
                             if (this.mc.options.keyJump.isDown() && this.mc.options.keyShift.isDown() && playerCapability.isBurning(MetalsNBTData.STEEL)) {
 
                                 double x = player.getX();
@@ -218,14 +221,14 @@ public class PowersClientEventHandler {
                                 double pushZ;
 
                                 int maxAltitude = 10;
-                                /*int actualAltitude = 0;
+                                //int actualAltitude = 0;
 
-                                for (int i = 0;i<maxAltitude;i++){ <--------- revisar aqui
-                                    if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
-                                        blockPos = new BlockPos(blockPos.getX(),blockPos.getY()-1,blockPos.getZ());
-                                        actualAltitude++;
-                                    }
-                                }*/
+                                //for (int i = 0;i<maxAltitude;i++){ <--------- revisar aqui
+                                //  if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
+                                //    blockPos = new BlockPos(blockPos.getX(),blockPos.getY()-1,blockPos.getZ());
+                                //  actualAltitude++;
+                                //}
+                                //}
 
                                 //int range = actualAltitude < 2 ? 2 : 7;
                                 int range = 7;
@@ -233,8 +236,8 @@ public class PowersClientEventHandler {
                                 //double pushZ = vector.z() >= 0 ? z - (vector.z*7) : z - (vector.z*7);
 
                                 if (this.mc.options.keyUp.isDown()) {
-                                     pushX = x - (vector.x*range);
-                                     pushZ = z - (vector.z*range);
+                                    pushX = x - (vector.x*range);
+                                    pushZ = z - (vector.z*range);
                                 } else if (this.mc.options.keyDown.isDown()) {
                                     pushX = x + (vector.x*range);
                                     pushZ = z + (vector.z*range);
@@ -272,7 +275,6 @@ public class PowersClientEventHandler {
 
 
                             }
-
 
 
 
