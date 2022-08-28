@@ -143,10 +143,6 @@ public class AlloyFurnaceContainer extends Container {
         return copyOfSourceStack;
     }
 
-    public AlloyFurnaceTileEntity getTileEntity() {
-        return (AlloyFurnaceTileEntity) this.tileEntity;
-    }
-
     public int getBurnProgress() {
         return data.actualFuelBurning;
     }

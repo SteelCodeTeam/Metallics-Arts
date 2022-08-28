@@ -42,7 +42,6 @@ import java.util.Optional;
 public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 
     private final AlloyFurnaceData data = new AlloyFurnaceData();
-
     private final ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 
@@ -145,9 +144,9 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
     public void tick() {
         if (!this.level.isClientSide()) {
             if(cookingRecipe() == 1) {
-                this.getBlockState().setValue(AlloyFurnaceBlock.LIT, true);
+                //this.getBlockState().setValue(AlloyFurnaceBlock.LIT, true);
             } else {
-                this.getBlockState().setValue(AlloyFurnaceBlock.LIT, false);
+                //this.getBlockState().setValue(AlloyFurnaceBlock.LIT, false);
             }
         }
     }

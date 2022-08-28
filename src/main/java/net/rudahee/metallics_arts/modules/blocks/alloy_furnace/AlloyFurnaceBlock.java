@@ -15,25 +15,27 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.extensions.IForgeBlock;
 import net.minecraftforge.fml.network.NetworkHooks;
+import net.rudahee.metallics_arts.modules.blocks.IAllomancyUsableBlock;
 
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
 public class AlloyFurnaceBlock extends ContainerBlock {
 
-    public static final DirectionProperty FACING = HorizontalBlock.FACING;
-    public static final BooleanProperty LIT = BlockStateProperties.LIT;
+    //public static final DirectionProperty FACING = HorizontalBlock.FACING;
+    //public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public AlloyFurnaceBlock(Properties properties) {
-        super(properties.dynamicShape());
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false)));
+        super(properties);
+        //this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false)));
     }
 
-    @Override
+    /*@Override
     public void onRemove(BlockState state, World world, BlockPos pos, BlockState newState, boolean bool) {
         super.onRemove(state, world, pos, newState, bool);
-    }
+    }*/
 
     @Deprecated
     @Override
@@ -63,9 +65,9 @@ public class AlloyFurnaceBlock extends ContainerBlock {
     }
 
 
-    public BlockRenderType getRenderType(BlockState state) {
+    /*public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
-    }
+    }*/
 
     @Nullable
     @Override
@@ -79,13 +81,13 @@ public class AlloyFurnaceBlock extends ContainerBlock {
     }
 
 
-    @Override
+    /*@Override
     public BlockState getStateForPlacement(BlockItemUseContext ctx) {
         return this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, ctx.getHorizontalDirection().getOpposite());
-    }
+    }*/
 
 
-    @Override
+    /*@Override
     public BlockState rotate(BlockState blockState, Rotation rotation) {
         return blockState.setValue(BlockStateProperties.HORIZONTAL_FACING, rotation.rotate(blockState.getValue(BlockStateProperties.HORIZONTAL_FACING)));
     }
@@ -93,12 +95,12 @@ public class AlloyFurnaceBlock extends ContainerBlock {
     @Override
     public BlockState mirror(BlockState blockState, Mirror mirror) {
         return blockState.rotate(mirror.getRotation(blockState.getValue(BlockStateProperties.HORIZONTAL_FACING)));
-    }
+    }*/
 
-    @Override
+   /* @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateContainer) {
         stateContainer.add(FACING, LIT);
-    }
+    }*/
 
 
     /*

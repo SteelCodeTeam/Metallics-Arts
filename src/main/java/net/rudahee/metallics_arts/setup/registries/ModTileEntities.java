@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.setup.registries;
 
+import com.mojang.datafixers.types.Type;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;

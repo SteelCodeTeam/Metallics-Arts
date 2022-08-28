@@ -11,6 +11,7 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.powers.helpers.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.util.MetalicsArtsConfig;
@@ -26,6 +27,9 @@ public class MetallicsPowersConfig {
                 add(metals.getNameLower());
             }
         }
+
+        add("lead");
+        add("nickel");
         add("shield");
         add("anvil");
         add("rail");
@@ -38,6 +42,15 @@ public class MetallicsPowersConfig {
         add("bucket");
         add("netherite");
         add("lantern");
+
+        add(ModItems.TIN_SPIKE.get().getDescriptionId());
+        add(ModItems.TIN_SPIKE.get().getRegistryName().toString());
+        add(ModItems.BAND_PEWTER_TIN.get().getDescriptionId());
+        add(ModItems.BAND_PEWTER_TIN.get().getRegistryName().toString());
+        add(ModItems.RING_PEWTER_TIN.get().getDescriptionId());
+        add(ModItems.RING_PEWTER_TIN.get().getRegistryName().toString());
+
+        add("tin_");
 
 
         add(Items.CROSSBOW.getDescriptionId());

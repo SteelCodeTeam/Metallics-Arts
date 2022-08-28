@@ -35,7 +35,6 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
     @Override
     public void tick() {
         super.tick();
-        menu.broadcastChanges();
 
     }
 

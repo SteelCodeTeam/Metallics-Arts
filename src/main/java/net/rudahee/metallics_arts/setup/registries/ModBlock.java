@@ -95,7 +95,7 @@ public class ModBlock {
             () -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE)
                                                 .harvestTool(ToolType.PICKAXE)
                                                 .strength(3.5F)
-                                                .lightLevel(litBlockEmission(13))
+                                                //.lightLevel(litBlockEmission(13))
                                                 .requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> ETTMETAL_BLOCK = register(Gems.ETTMETAL.getGemNameLower()+"_block",

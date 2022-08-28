@@ -58,8 +58,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 }
         );
 
-        simpleBlock(ModBlock.ALLOY_FURNACE_BLOCK.get());
-        simpleBlockItem(ModBlock.ALLOY_FURNACE_BLOCK.get(), new ModelFile.UncheckedModelFile(modLoc("block/" + ModBlock.ALLOY_FURNACE_BLOCK.get().getRegistryName().getPath())));
+        simpleBlock(ModBlock.ALLOY_FURNACE_BLOCK.get(), new ModelFile.UncheckedModelFile(modLoc("block/alloy_furnace_front")));
+        simpleBlockItem(ModBlock.ALLOY_FURNACE_BLOCK.get(), new ModelFile.UncheckedModelFile(modLoc("block/alloy_furnace_front")));
+
         /**
         RECUERDA BORRAR LA TEXTURA ALLOY_FURNACE.PNG (deben quedar solo las front, side y top)
          */
