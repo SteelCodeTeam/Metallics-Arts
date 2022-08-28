@@ -1,6 +1,8 @@
 package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 
+import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -142,13 +144,18 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
 
     @Override
     public void tick() {
+
         if (!this.level.isClientSide()) {
             if(cookingRecipe() == 1) {
-                //this.getBlockState().setValue(AlloyFurnaceBlock.LIT, true);
+                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(AlloyFurnaceBlock.LIT, Boolean.valueOf(this.isLit())), 3);
+
             } else {
-                //this.getBlockState().setValue(AlloyFurnaceBlock.LIT, false);
+                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(AlloyFurnaceBlock.LIT, Boolean.valueOf(this.isLit())), 3);
+
             }
         }
+
+
     }
 
     private boolean checkFuel() {

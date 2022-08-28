@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
@@ -22,6 +23,7 @@ import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.NVConservativeRasterPreSnapTriangles;
 import org.lwjgl.system.CallbackI;
@@ -38,7 +40,9 @@ public class FeruchemyMetalSelector extends Screen {
     private static final java.util.List<MetalsNBTData> externalMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> metal.isExternal() && !metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
     private static final List<MetalsNBTData> divineMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
 
-    final Minecraft mc;
+    private Minecraft mc;
+
+    private PlayerEntity player;
     int slotSelected = -1;
 
     Point point1 = null;
@@ -88,10 +92,17 @@ public class FeruchemyMetalSelector extends Screen {
  */
 
 
+
+
     @Override
     public void render(MatrixStack matrixStack, int mx, int my, float partialTicks) {
         super.render(matrixStack, mx, my, partialTicks);
-        this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+
+        if (player == null) {
+            return;
+        }
+
+        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
 
             Point center = new Point(this.width / 2,this.height / 2);
             Point mouse = new Point(mx,my);
@@ -285,7 +296,7 @@ public class FeruchemyMetalSelector extends Screen {
     }
 
 
-    public void pintar (BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse,int tipo, boolean paridad, IDefaultInvestedPlayerData data){
+    public void pintar(BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse,int tipo, boolean paridad, IDefaultInvestedPlayerData data){
 
         Point vertex1 = new Point(a.x,a.y);
         Point vertex2 = new Point(b.x,b.y);
@@ -416,6 +427,7 @@ public class FeruchemyMetalSelector extends Screen {
 
     @Override
     public void tick() { // tick
+        player = Minecraft.getInstance().player;
         this.timeIn++;
     }
 

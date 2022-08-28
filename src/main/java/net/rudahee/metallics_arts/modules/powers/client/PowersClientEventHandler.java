@@ -236,13 +236,13 @@ public class PowersClientEventHandler {
                                         pushX = x + (vector.x*range);
                                         pushZ = z + (vector.z*range);
 
-                                    } else if (this.mc.options.keyRight.isDown()) { // <--------- revisar aqui
+                                   /* } else if (this.mc.options.keyRight.isDown()) { // <--------- revisar aqui
                                         pushX = vector.x() >= 0 ? x - (vector.x*range) : x + (vector.x*range);
                                         pushZ = vector.z() >= 0 ? z + (vector.z*range) : z - (vector.z*range);
 
                                     } else if (this.mc.options.keyLeft.isDown()) {
                                         pushX = vector.x() >= 0 ? x + (vector.x*range) : x - (vector.x*range);
-                                        pushZ = vector.z() >= 0 ? z - (vector.z*range) : z + (vector.z*range);
+                                        pushZ = vector.z() >= 0 ? z - (vector.z*range) : z + (vector.z*range);*/
                                     }  else {
                                         pushX = x - (vector.x*range);
                                         pushZ = z - (vector.z*range);

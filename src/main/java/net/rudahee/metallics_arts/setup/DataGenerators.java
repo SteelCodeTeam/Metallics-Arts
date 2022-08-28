@@ -6,10 +6,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.client_providers.ModBlockStateProvider;
-import net.rudahee.metallics_arts.data.client_providers.ModItemModelProvider;
-import net.rudahee.metallics_arts.data.client_providers.ModLootTableProvider;
-import net.rudahee.metallics_arts.data.client_providers.ModRecipeProvider;
+import net.rudahee.metallics_arts.data.network.client_providers.ModBlockStateProvider;
+import net.rudahee.metallics_arts.data.network.client_providers.ModItemModelProvider;
+import net.rudahee.metallics_arts.data.network.client_providers.ModLootTableProvider;
+import net.rudahee.metallics_arts.data.network.client_providers.ModRecipeProvider;
 
 @Mod.EventBusSubscriber (modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {

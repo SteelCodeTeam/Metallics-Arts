@@ -16,7 +16,7 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
     private AlloyFurnaceContainer alloyContainer;
 
     private final ResourceLocation GUI = new ResourceLocation(MetallicsArts.MOD_ID,
-            "textures/gui/alloy_furnace.png");
+            "textures/gui/alloy_furnace_gui.png");
 
     private final Texture texture = new SimpleTexture(GUI);
 

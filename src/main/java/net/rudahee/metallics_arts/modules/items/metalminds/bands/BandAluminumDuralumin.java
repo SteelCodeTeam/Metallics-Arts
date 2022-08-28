@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class BandAluminumDuralumin extends BandMindAbstract implements ICurioItem {
@@ -106,9 +107,11 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
                         }
                         needUpdate = true;
                     }
+//                    ModNetwork.sync(data, player);
                 });
             }
         }
+
         super.curioTick(identifier, index, livingEntity, stack);
     }
 

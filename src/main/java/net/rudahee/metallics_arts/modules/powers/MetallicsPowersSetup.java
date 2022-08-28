@@ -1,13 +1,9 @@
 package net.rudahee.metallics_arts.modules.powers;
 
-import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceScreen;
-import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.powers.client.PowersClientEventHandler;
-import net.rudahee.metallics_arts.setup.registries.ModContainers;
 
 
 public class MetallicsPowersSetup {
