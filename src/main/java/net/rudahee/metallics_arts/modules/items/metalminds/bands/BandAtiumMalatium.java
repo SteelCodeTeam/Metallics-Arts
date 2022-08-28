@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -25,14 +26,12 @@ public class BandAtiumMalatium extends BandMindAbstract {
         super(properties, MetalsNBTData.ATIUM,MetalsNBTData.MALATIUM,MetalsNBTData.ATIUM.getMaxReserveBand(),MetalsNBTData.MALATIUM.getMaxReserveBand());
     }
 
-    private static boolean needUpdate = false;
-
+    private static boolean nicConsume = false;
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         CompoundNBT nbtLocal = stack.getTag();
 
         if (livingEntity.level instanceof ServerWorld) {
-            needUpdate = false;
             if (livingEntity instanceof PlayerEntity) {
                 PlayerEntity player = (PlayerEntity) livingEntity;
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
@@ -43,22 +42,39 @@ public class BandAtiumMalatium extends BandMindAbstract {
 
                     if (data.isDecanting(getMetals(0))) {
                         if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")>0) {
-                            nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")-1));
-                            stack.setTag(nbtLocal);
+                            if (data.isDecanting(MetalsNBTData.NICROSIL)){
+                                if (!nicConsume){
+                                    nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")-1));
+                                    stack.setTag(nbtLocal);
+                                }
+                                nicConsume = !nicConsume;
+                            } else {
+                                //las dos lineas de abajo van sin el nicrosil
+                                nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")-1));
+                                stack.setTag(nbtLocal);
+                            }
                         } else {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(getMetals(0),false);
                         }
-                        needUpdate = true;
                     } else if (data.isStoring(getMetals(0))) {
                         if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_max_capacity")) {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
-                            nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")+1));
-                            stack.setTag(nbtLocal);
+                            if (data.isStoring(MetalsNBTData.NICROSIL)) {
+                                if (!nicConsume){
+                                    stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                    nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")+1));
+                                    stack.setTag(nbtLocal);
+                                }
+                                nicConsume = !nicConsume;
+                            } else {
+                                //3 lineas, sin nicrosil
+                                stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")+1));
+                                stack.setTag(nbtLocal);
+                            }
                         } else {
                             data.setStoring(getMetals(0),false);
                         }
-                        needUpdate = true;
                     }
 
                     ///////////// MALATIUM /////////////
@@ -73,7 +89,6 @@ public class BandAtiumMalatium extends BandMindAbstract {
                             stack.getTag().putInt("tier_malatium_storage",-1);
                             data.setDecanting(getMetals(1),false);
                         }
-                        needUpdate = true;
 
                     } else if (data.isStoring(getMetals(1))) {
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
@@ -85,8 +100,8 @@ public class BandAtiumMalatium extends BandMindAbstract {
                         } else {
                             data.setStoring(getMetals(1),false);
                         }
-                        needUpdate = true;
                     }
+                    ModNetwork.sync(data, player);
                 });
             }
         }

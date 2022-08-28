@@ -185,8 +185,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         return nbt;
     }
 
-    private static boolean needUpdate = false;
-
     private static boolean nicConsumeMet0 = false;
     private static boolean nicConsumeMet1 = false;
 
@@ -205,7 +203,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         CompoundNBT nbtLocal = stack.getTag();
 
         if (livingEntity.level instanceof ServerWorld) {
-            needUpdate = false;
             if (livingEntity instanceof PlayerEntity) {
                 PlayerEntity player = (PlayerEntity) livingEntity;
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
@@ -231,7 +228,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(this.metals[0],false);
                         }
-                        needUpdate = true;
                     } else if (data.isStoring(this.metals[0])) {
                         if (stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_max_capacity")) {
 
@@ -254,7 +250,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                         } else {
                             data.setStoring(this.metals[0],false);
                         }
-                        needUpdate = true;
                     }
 
                     if (data.isDecanting(this.metals[1])) {
@@ -278,7 +273,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(this.metals[1],false);
                         }
-                        needUpdate = true;
 
                     } else if (data.isStoring(this.metals[1])) {
                         if (stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_max_capacity")) {
@@ -299,8 +293,8 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                         } else {
                             data.setStoring(this.metals[1],false);
                         }
-                        needUpdate = true;
                     }
+                    ModNetwork.sync(data, player);
                 });
             }
         }

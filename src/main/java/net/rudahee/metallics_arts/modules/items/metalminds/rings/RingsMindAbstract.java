@@ -15,10 +15,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.modules.items.metalminds.bands.BandAtiumMalatium;
-import net.rudahee.metallics_arts.modules.items.metalminds.bands.BandCopperBronze;
-import net.rudahee.metallics_arts.modules.items.metalminds.bands.BandLerasiumEttmetal;
-import net.rudahee.metallics_arts.modules.items.metalminds.bands.BandZincBrass;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
@@ -59,8 +55,7 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
         PlayerEntity player = (PlayerEntity) slotContext.getWearer();
-
-        if (stack.getItem() != newStack.getItem()){
+        if (stack.getItem() != newStack.getItem()) {
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
                 data.setMetalMindEquiped(this.metals[0].getGroup(),false);
                 data.setMetalMindEquiped(this.metals[1].getGroup(),false);
@@ -74,25 +69,39 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
     }
 
+
+
     private static IDefaultInvestedPlayerData cap = null;
 
     @Override
     public boolean canEquip(String identifier, LivingEntity livingEntity, ItemStack stack) {
+        if(!stack.hasTag()) {
+            stack.setTag(addRingTags());
+        }
         PlayerEntity player = (PlayerEntity) livingEntity;
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             cap = data;
         });
-        if (cap != null){
-            return (!(cap.getMetalMindEquiped(this.metals[0].getGroup()) && cap.getMetalMindEquiped(this.metals[1].getGroup())));
+        boolean canEquip = false;
+        if (cap != null) {
+            canEquip = (!(cap.getMetalMindEquiped(this.metals[0].getGroup()) && cap.getMetalMindEquiped(this.metals[1].getGroup())));
         }
-        return false;
+
+        if (canEquip){
+            if (!stack.getTag().getString("key").equals(unkeyedString)
+                    && !player.getStringUUID().equals(stack.getTag().getString("key"))){
+                canEquip = false;
+            }
+        }
+
+        return canEquip;
     }
 
     @Override
     public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
         ItemStack resultItem;
 
-        switch (this.metals[0].getGroup()){
+        switch (this.metals[0].getGroup()) {
             case 0:
                 resultItem = new ItemStack(ModItems.RING_STEEL_IRON.get(),1);
                 break;
@@ -144,9 +153,10 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
         if(!stack.hasTag()) {
             stack.setTag(addRingTags());
         }
-        if (this instanceof RingLerasiumEttmetal || this instanceof RingAtiumMalatium || this instanceof RingZincBrass || this instanceof RingCopperBronze){
+        if (this instanceof RingLerasiumEttmetal || this instanceof RingAtiumMalatium || this instanceof RingZincBrass || this instanceof RingCopperBronze || this instanceof RingChromiumNicrosil){
             return;
         }
+
 
         if (stack.hasTag()) {
             if (!Screen.hasControlDown()){
@@ -164,29 +174,33 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
 
     private CompoundNBT addRingTags() {
         CompoundNBT nbt = new CompoundNBT();
+
         nbt.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",0);
         nbt.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",0);
-        nbt.putInt(this.metals[0].getNameLower()+"_feruchemic_max_capacity",this.metalsMaxReserve[0]);
-        nbt.putInt(this.metals[1].getNameLower()+"_feruchemic_max_capacity",this.metalsMaxReserve[1]);
+        nbt.putInt(this.metals[0].getNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[0]);
+        nbt.putInt(this.metals[1].getNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[1]);
         nbt.putString("key",this.unkeyedString);
         return nbt;
     }
 
-    private static boolean needUpdate = false;
+    private static boolean nicConsumeMet0 = false;
+    private static boolean nicConsumeMet1 = false;
 
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-        if(!stack.hasTag()){
+        if(!stack.hasTag()) {
             stack.setTag(addRingTags());
         }
-        if (this instanceof RingLerasiumEttmetal || this instanceof RingAtiumMalatium || this instanceof RingZincBrass || this instanceof RingCopperBronze){
+
+        if (this instanceof RingZincBrass || this instanceof RingCopperBronze
+                || this instanceof RingLerasiumEttmetal ||this instanceof RingAtiumMalatium
+                ||this instanceof RingChromiumNicrosil || this instanceof RingAluminumDuralumin) {
             return;
         }
 
         CompoundNBT nbtLocal = stack.getTag();
 
         if (livingEntity.level instanceof ServerWorld) {
-            needUpdate = false;
             if (livingEntity instanceof PlayerEntity) {
                 PlayerEntity player = (PlayerEntity) livingEntity;
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
@@ -197,51 +211,89 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
 
                     if (data.isDecanting(this.metals[0])) {
                         if (stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")>0) {
-                            nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")-1));
-                            stack.setTag(nbtLocal);
+                            if (data.isDecanting(MetalsNBTData.NICROSIL)){
+                                if (!nicConsumeMet0){
+                                    nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")-1));
+                                    stack.setTag(nbtLocal);
+                                }
+                                nicConsumeMet0 = !nicConsumeMet0;
+                            } else {
+                                //las dos lineas de abajo van sin el nicrosil
+                                nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")-1));
+                                stack.setTag(nbtLocal);
+                            }
                         } else {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(this.metals[0],false);
                         }
-                        needUpdate = true;
                     } else if (data.isStoring(this.metals[0])) {
                         if (stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_max_capacity")) {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
-                            nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")+1));
-                            stack.setTag(nbtLocal);
+
+                            if (data.isStoring(MetalsNBTData.NICROSIL)) {
+                                if (!nicConsumeMet0){
+                                    stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                    nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")+1));
+                                    stack.setTag(nbtLocal);
+                                }
+                                nicConsumeMet0 = !nicConsumeMet0;
+
+                            } else {
+                                //estas 3 lineas ban sin la logica del nocrosil
+                                stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                nbtLocal.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[0].getNameLower()+"_feruchemic_reserve")+1));
+                                stack.setTag(nbtLocal);
+                            }
+
+
                         } else {
                             data.setStoring(this.metals[0],false);
                         }
-                        needUpdate = true;
                     }
 
                     if (data.isDecanting(this.metals[1])) {
                         if (stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")>0) {
-
-                            nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")-1));
-                            stack.setTag(nbtLocal);
+                            if (data.isDecanting(MetalsNBTData.NICROSIL)){
+                                if (!nicConsumeMet1){
+                                    nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")-1));
+                                    stack.setTag(nbtLocal);
+                                }
+                                nicConsumeMet1 = !nicConsumeMet1;
+                            } else {
+                                //las dos lineas de abajo van sin el nicrosil
+                                nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")-1));
+                                stack.setTag(nbtLocal);
+                            }
                         } else {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(this.metals[1],false);
                         }
-                        needUpdate = true;
 
                     } else if (data.isStoring(this.metals[1])) {
                         if (stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_max_capacity")) {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
-                            nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")+1));
-                            stack.setTag(nbtLocal);
+
+                            if (data.isStoring(MetalsNBTData.NICROSIL)) {
+                                if (!nicConsumeMet1){
+                                    stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                    nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")+1));
+                                    stack.setTag(nbtLocal);
+                                }
+                                nicConsumeMet1 = !nicConsumeMet1;
+
+                            } else {
+                                stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")+1));
+                                stack.setTag(nbtLocal);
+                            }
                         } else {
                             data.setStoring(this.metals[1],false);
                         }
-                        needUpdate = true;
                     }
+                    ModNetwork.sync(data, player);
                 });
             }
         }
         ICurioItem.super.curioTick(identifier, index, livingEntity, stack);
     }
-
 
     private static String dato;
 

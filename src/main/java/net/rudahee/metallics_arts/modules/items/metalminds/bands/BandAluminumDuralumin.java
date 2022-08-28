@@ -17,7 +17,6 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
         super(properties, MetalsNBTData.ALUMINUM,MetalsNBTData.DURALUMIN,MetalsNBTData.ALUMINUM.getMaxReserveBand(),MetalsNBTData.DURALUMIN.getMaxReserveBand());
     }
 
-    public static boolean needUpdate = false;
     public static boolean nicConsumeMet1 = false;
 
     @Override
@@ -26,7 +25,6 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
         CompoundNBT nbtLocal = stack.getTag();
 
         if (livingEntity.level instanceof ServerWorld) {
-            needUpdate = false;
             if (livingEntity instanceof PlayerEntity) {
                 PlayerEntity player = (PlayerEntity) livingEntity;
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
@@ -35,32 +33,8 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
                         stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                     }
 
-                    ///////ALUMINUM
-                    if (data.isDecanting(getMetals(0))) {
-                        if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")>0) {
+                    nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",1);
 
-                            //las dos lineas de abajo van sin el nicrosil
-                            nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")-1));
-                            stack.setTag(nbtLocal);
-
-                        } else {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
-                            /*data.setDecanting(getMetals(0),false);*/
-                        }
-                        needUpdate = true;
-                    } else if (data.isStoring(getMetals(0))) {
-                        if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_max_capacity")) {
-
-                            //estas 3 lineas ban sin la logica del nocrosil
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
-                            nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")+1));
-                            stack.setTag(nbtLocal);
-
-                        } /*else {
-                            data.setStoring(getMetals(0),false);
-                        }*/
-                        needUpdate = true;
-                    }
 
                     ///////DURALUMINUM
                     if (data.isDecanting(getMetals(1))) {
@@ -76,45 +50,64 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
                                 nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")-1));
                                 stack.setTag(nbtLocal);
                             }
-
-
-
-
                         } else {
-                            stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                            stack.getTag().putString("key",localChangeOwner(player,stack.getTag(),false));
                             data.setDecanting(getMetals(1),false);
                         }
-                        needUpdate = true;
 
                     } else if (data.isStoring(getMetals(1))) {
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
 
                             if (data.isStoring(MetalsNBTData.NICROSIL)) {
                                 if (!nicConsumeMet1){
-                                    stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                    stack.getTag().putString("key",localChangeOwner(player,stack.getTag(),true));
                                     nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
                                     stack.setTag(nbtLocal);
                                 }
                                 nicConsumeMet1 = !nicConsumeMet1;
 
                             } else {
-                                stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                                stack.getTag().putString("key",localChangeOwner(player,stack.getTag(),true));
                                 nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
                                 stack.setTag(nbtLocal);
                             }
                         } else {
                             data.setStoring(getMetals(1),false);
                         }
-                        needUpdate = true;
                     }
-//                    ModNetwork.sync(data, player);
+                    ModNetwork.sync(data, player);
                 });
             }
         }
-
         super.curioTick(identifier, index, livingEntity, stack);
     }
 
+
+
+    private static String dato;
+
+    public String localChangeOwner(PlayerEntity player, CompoundNBT compoundNBT,boolean iStoreMetal) {
+
+        boolean isSecondReserveZero = compoundNBT.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") == 0;
+
+        dato = compoundNBT.getString("key");
+
+        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+            if (isSecondReserveZero && !data.isStoring(MetalsNBTData.ALUMINUM) &&
+                    !data.isDecanting(MetalsNBTData.ALUMINUM) && iStoreMetal){
+                dato = player.getStringUUID();
+            } else if (isSecondReserveZero && !data.isStoring(MetalsNBTData.ALUMINUM) &&
+                    !data.isDecanting(MetalsNBTData.ALUMINUM) && !iStoreMetal){
+                dato = unkeyedString;
+            }
+            else if (data.isStoring(MetalsNBTData.ALUMINUM)) {
+                dato = unkeyedString;
+            } else if (data.isDecanting(MetalsNBTData.ALUMINUM)){
+                dato = player.getStringUUID();
+            }
+        });
+        return dato;
+    }
 
 
 }

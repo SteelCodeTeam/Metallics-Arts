@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -23,8 +24,6 @@ public class BandCopperBronze extends BandMindAbstract {
         super(properties, MetalsNBTData.COPPER,MetalsNBTData.BRONZE,MetalsNBTData.COPPER.getMaxReserveBand(),MetalsNBTData.BRONZE.getMaxReserveBand());
     }
 
-
-    private static boolean needUpdate = false;
     private static boolean nicConsume = false;
 
 
@@ -34,7 +33,6 @@ public class BandCopperBronze extends BandMindAbstract {
         CompoundNBT nbtLocal = stack.getTag();
 
         if (livingEntity.level instanceof ServerWorld) {
-            needUpdate = false;
             if (livingEntity instanceof PlayerEntity) {
                 PlayerEntity player = (PlayerEntity) livingEntity;
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
@@ -53,7 +51,6 @@ public class BandCopperBronze extends BandMindAbstract {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(getMetals(0),false);
                         }
-                        needUpdate = true;
                     } else if (data.isStoring(getMetals(0))){
 
                         if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_max_capacity")) {
@@ -66,7 +63,6 @@ public class BandCopperBronze extends BandMindAbstract {
                         } else {
                             data.setStoring(getMetals(0),false);
                         }
-                        needUpdate = true;
                     }
 
                     if (data.isDecanting(getMetals(1))) {
@@ -86,7 +82,6 @@ public class BandCopperBronze extends BandMindAbstract {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(getMetals(1),false);
                         }
-                        needUpdate = true;
 
                     } else if (data.isStoring(getMetals(1))) {
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
@@ -103,13 +98,11 @@ public class BandCopperBronze extends BandMindAbstract {
                                 nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
                                 stack.setTag(nbtLocal);
                             }
-
-
                         } else {
                             data.setStoring(getMetals(1),false);
                         }
-                        needUpdate = true;
                     }
+                    ModNetwork.sync(data, player);
                 });
             }
         }

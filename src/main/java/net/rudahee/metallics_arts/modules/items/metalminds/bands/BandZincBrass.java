@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
@@ -24,7 +25,6 @@ public class BandZincBrass extends BandMindAbstract implements ICurioItem {
         super(properties, MetalsNBTData.ZINC,MetalsNBTData.BRASS,MetalsNBTData.ZINC.getMaxReserveBand(),MetalsNBTData.BRASS.getMaxReserveBand());
     }
 
-    private static boolean needUpdate = false;
     private static boolean nicConsumeMet0 = false;
     private static boolean nicConsumeMet1 = false;
 
@@ -34,7 +34,6 @@ public class BandZincBrass extends BandMindAbstract implements ICurioItem {
         CompoundNBT nbtLocal = stack.getTag();
 
         if (livingEntity.level instanceof ServerWorld) {
-            needUpdate = false;
             if (livingEntity instanceof PlayerEntity) {
                 PlayerEntity player = (PlayerEntity) livingEntity;
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
@@ -60,7 +59,6 @@ public class BandZincBrass extends BandMindAbstract implements ICurioItem {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(getMetals(0),false);
                         }
-                        needUpdate = true;
                     } else if (data.isStoring(getMetals(0))) {
                         if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_max_capacity")) {
                             if (data.isStoring(MetalsNBTData.NICROSIL)) {
@@ -84,7 +82,6 @@ public class BandZincBrass extends BandMindAbstract implements ICurioItem {
                         } else {
                             data.setStoring(getMetals(0),false);
                         }
-                        needUpdate = true;
                     }
 
                     if (data.isDecanting(getMetals(1))) {
@@ -105,7 +102,6 @@ public class BandZincBrass extends BandMindAbstract implements ICurioItem {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(getMetals(1),false);
                         }
-                        needUpdate = true;
 
                     } else if (data.isStoring(getMetals(1))){   //PROPIO DE ESTA MENTE DE METAL <- CALOR
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
@@ -126,8 +122,8 @@ public class BandZincBrass extends BandMindAbstract implements ICurioItem {
                         } else {
                             data.setStoring(getMetals(1),false);
                         }
-                        needUpdate = true;
                     }
+                    ModNetwork.sync(data, player);
                 });
             }
         }
