@@ -19,6 +19,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels(){
+
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
         List<Metal> metalList = Arrays.asList(Metal.values());
         List<Gems> gemList = Arrays.asList(Gems.values());

@@ -45,8 +45,28 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                     }
                     /////////////LERASIUM///////////////////
 
+                    System.out.println("algo");
 
-                    if (data.isDecanting(getMetals(0))) {
+                    if (data.isDecanting(getMetals(0)) && nbtLocal.getInt(getMetals(0).getNameLower() + "_feruchemic_reserve") == 1){
+                        loadAllomanticReserve(data, stack);
+                        nbtLocal.putInt(getMetals(0).getNameLower() + "_feruchemic_reserve", 0);
+                        nbtLocal.putString("key", changeOwner(player, nbtLocal, false));
+                        data.setDecanting(getMetals(0), false);
+                        data.setDecanting(getMetals(0), false);
+                        stack.setTag(nbtLocal);
+
+                    } else if (data.isStoring(getMetals(0)) && nbtLocal.getInt(getMetals(0).getNameLower() + "_feruchemic_reserve") == 0) {
+                        saveAllomanticReserve(data, stack);
+                        nbtLocal.putInt(getMetals(0).getNameLower() + "_feruchemic_reserve", 0);
+                        nbtLocal.putString("key", changeOwner(player, nbtLocal, false));
+                        data.setStoring(getMetals(0), false);
+                        stack.setTag(nbtLocal);
+                    } else {
+                        data.setDecanting(getMetals(0), false);
+                        data.setStoring(getMetals(0), false);
+                    }
+
+                    /*if (data.isDecanting(getMetals(0))) {
                         if (nbtLocal.getInt(getMetals(0).getNameLower() + "_feruchemic_reserve") > 0) {
                             loadAllomanticReserve(data, stack);
                             nbtLocal.putInt(getMetals(0).getNameLower() + "_feruchemic_reserve", 0);
@@ -73,7 +93,7 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                         } else {
                             data.setStoring(getMetals(0), false);
                         }
-                    }
+                    }*/
 
 
                     /////////////ETTMETAL////////////////
@@ -116,8 +136,6 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                 });
             }
         }
-
-
 
         super.curioTick(identifier, index, livingEntity, stack);
     }

@@ -444,7 +444,7 @@ public class FeruchemyMetalSelector extends Screen {
         if (this.slotSelected != -1) {
             MetalsNBTData metal = MetalsNBTData.getMetal(this.slotSelected);
             this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
-                ClientUtils.toggleStorage(metal, data);
+                ClientUtils.toggleStorage(metal, data, this.mc.player);
                 this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK, 0.1F, 2.0F);
             });
         }
@@ -454,7 +454,7 @@ public class FeruchemyMetalSelector extends Screen {
         if (this.slotSelected != -1) {
             MetalsNBTData metal = MetalsNBTData.getMetal(this.slotSelected);
             this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
-                ClientUtils.toggleDecant(metal, data);
+                ClientUtils.toggleDecant(metal, data,this.mc.player);
                 this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK, 0.1F, 2.0F);
             });
         }

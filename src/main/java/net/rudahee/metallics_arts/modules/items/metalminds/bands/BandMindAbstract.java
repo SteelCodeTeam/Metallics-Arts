@@ -39,6 +39,9 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         metalsMaxReserve[1]=maxReserve2;
     }
 
+
+
+
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
         PlayerEntity player = (PlayerEntity) slotContext.getWearer();
