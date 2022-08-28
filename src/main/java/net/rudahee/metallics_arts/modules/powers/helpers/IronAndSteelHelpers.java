@@ -29,6 +29,7 @@ import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import org.lwjgl.system.CallbackI;
 
+import javax.annotation.Nullable;
 import javax.naming.directory.AttributeModificationException;
 import javax.naming.directory.Attributes;
 import java.util.HashSet;
@@ -108,15 +109,25 @@ public class IronAndSteelHelpers {
         Vector3d mag = abs(value);
         return new Vector3d(mag.x < e ? 0 : value.x, mag.y < e ? 0 : value.y, mag.z < e ? 0 : value.z);
     }
-
     public static void move(double directionScalar, Entity toMove, BlockPos block) {
+        move(directionScalar, toMove, block, false);
+    }
+    public static void move(double directionScalar, Entity toMove, BlockPos block, @Nullable Boolean weightModified) {
 
         if (toMove.isPassenger()) {
             toMove = toMove.getVehicle();
         }
+        Vector3d motion;
 
-        Vector3d motion = toMove.position().subtract(Vector3d.atCenterOf(block)).normalize().scale(directionScalar * 1.1);
+        if(weightModified == null || !weightModified) {
+            motion = toMove.position().subtract(Vector3d.atCenterOf(block)).normalize().scale(directionScalar * 1.1);
+        } else {
+            motion = toMove.position().subtract(Vector3d.atCenterOf(block)).normalize().scale(directionScalar * 1.6);
+        }
+
         Vector3d mod = clamp(cutoff(motion.add(toMove.getDeltaMovement()), 0.1), abs(motion).reverse(), abs(motion));
+
+
         toMove.setDeltaMovement(mod);
         toMove.hurtMarked = true;
 

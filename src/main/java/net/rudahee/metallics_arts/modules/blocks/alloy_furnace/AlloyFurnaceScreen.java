@@ -13,7 +13,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import java.awt.*;
 
 public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
-    private AlloyFurnaceContainer alloyContainer = null;
+    private AlloyFurnaceContainer alloyContainer;
 
     private final ResourceLocation GUI = new ResourceLocation(MetallicsArts.MOD_ID,
             "textures/gui/alloy_furnace.png");
@@ -35,13 +35,15 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
     @Override
     public void tick() {
         super.tick();
+        menu.broadcastChanges();
+
     }
 
     @Override
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
-        this.renderTooltip(matrixStack,mouseX,mouseY);
+        this.renderTooltip(matrixStack, mouseX, mouseY);
     }
 
     @Override
@@ -55,10 +57,11 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         Point activeArrowInImage = new Point(177, 15);
         Point activeArrowInGame = new Point(i + 86, j + 25);
 
-        int progressLit = AlloyFurnaceTileEntity.getLitProgress();
+
+        int progressLit = menu.getLitProgress();
 
         int arrowLength = 0;
-        if (!AlloyFurnaceTileEntity.isCompleteCrafting()) {
+        if (!menu.isCompleteCrafting()) {
             arrowLength = (Math.round((progressLit / 200.0f) * 24)-24)*-1;
         }
 
@@ -68,10 +71,10 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         Point LitBarInGameLeft = new Point(i + 32, j + 69);
         Point LitBarInGameRight = new Point(i + 69, j + 69);
 
-        int progressBar = AlloyFurnaceTileEntity.getBurnProgress();
+        int progressBar = menu.getBurnProgress();
         int barLength = 0;
-        int max = AlloyFurnaceTileEntity.getMaxBurnProgress();
-        if (AlloyFurnaceTileEntity.getBurnProgress() > 0) {
+        int max = menu.getMaxBurnProgress();
+        if (menu.getBurnProgress() > 0) {
             barLength = (Math.round(((progressBar + 1) / Float.parseFloat(Integer.toString(max)) * 13)));
         }
 

@@ -111,6 +111,7 @@ public class ClientUtils {
         if (!capability.hasFeruchemicPower(metal)||!capability.getMetalMindEquiped(metal.getGroup())){
             return;
         }
+
         if (capability.isDecanting(metal)) {
             ModNetwork.sendToServer(new UpdateDecantPacket(metal, false));
         }

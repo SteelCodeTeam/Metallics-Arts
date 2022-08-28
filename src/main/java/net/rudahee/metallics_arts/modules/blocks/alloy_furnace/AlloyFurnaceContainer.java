@@ -6,6 +6,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -21,12 +22,15 @@ public class AlloyFurnaceContainer extends Container {
     private final TileEntity tileEntity;
     private final PlayerEntity playerEntity;
     private final IItemHandler playerInventory;
+    private final AlloyFurnaceData data;
 
     public AlloyFurnaceContainer(int windowId, World world, BlockPos pos,
-                                 PlayerInventory playerInventory, PlayerEntity player) {
+                                 PlayerInventory playerInventory, PlayerEntity player, AlloyFurnaceData data) {
         super(ModContainers.ALLOY_FURNACE_CONTAINER.get(), windowId);
         this.tileEntity = world.getBlockEntity(pos);
         playerEntity = player;
+        this.data = data;
+        addDataSlots(data);
         this.playerInventory = new InvWrapper(playerInventory);
         layoutPlayerInventorySlots(8, 86);
 
@@ -45,6 +49,14 @@ public class AlloyFurnaceContainer extends Container {
                 addSlot(new SlotItemHandler(h, 5, 122, 26));
             });
         }
+    }
+
+    public static AlloyFurnaceContainer createContainerInServerSide(int windowId, BlockPos pos, PlayerInventory playerInventory, AlloyFurnaceData data) {
+        return new AlloyFurnaceContainer(windowId, playerInventory.player.level, pos, playerInventory, playerInventory.player, data);
+    }
+
+    public static AlloyFurnaceContainer createContainerInClientSide(int windowId, BlockPos pos, PlayerInventory playerInventory, net.minecraft.network.PacketBuffer extraData) {
+        return new AlloyFurnaceContainer(windowId, playerInventory.player.level, pos, playerInventory, playerInventory.player, new AlloyFurnaceData());
     }
 
     @Override
@@ -131,10 +143,28 @@ public class AlloyFurnaceContainer extends Container {
         return copyOfSourceStack;
     }
 
-
-
     public AlloyFurnaceTileEntity getTileEntity() {
         return (AlloyFurnaceTileEntity) this.tileEntity;
+    }
+
+    public int getBurnProgress() {
+        return data.actualFuelBurning;
+    }
+
+    public int getMaxBurnProgress() {
+        return data.maxFuelBurning;
+    }
+
+    public int getLitProgress() {
+        return data.actualTimeToActualRecipe;
+    }
+
+    public boolean isLit() {
+        return data.actualFuelBurning >= 0;
+    }
+
+    public boolean isCompleteCrafting() {
+        return data.actualTimeToActualRecipe <= 0;
     }
 
 }

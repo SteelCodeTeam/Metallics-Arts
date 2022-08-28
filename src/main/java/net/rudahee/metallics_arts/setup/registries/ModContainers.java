@@ -19,8 +19,7 @@ public class ModContainers {
             = CONTAINERS.register("alloy_furnace_container",
             () -> IForgeContainerType.create(((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
-                World world = inv.player.level;
-                return new AlloyFurnaceContainer(windowId, world, pos, inv, inv.player);
+                return AlloyFurnaceContainer.createContainerInClientSide(windowId, pos, inv, data);
             })));
 
 

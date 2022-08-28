@@ -8,10 +8,12 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.item.ItemFrameEntity;
 import net.minecraft.entity.item.minecart.AbstractMinecartEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
+import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
@@ -43,67 +45,74 @@ public class PullAndPushEntityPacket {
         buf.writeInt(this.direction);
     }
 
-    int playerFeruchemicIron;
-    int targetFeruchemicIron;
+    private int sourceFeruchemicIron;
+    private int targetFeruchemicIron;
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
-            ServerPlayerEntity player = ctx.get().getSender();
-            Entity target = player.level.getEntity(this.entityIDOther);
+            ServerPlayerEntity source = ctx.get().getSender();
+            Entity target = source.level.getEntity(this.entityIDOther);
             if (target != null) {
 
-                if (IronAndSteelHelpers.isEntityMetal(target)){
-                    // The player moves
+                if (IronAndSteelHelpers.isEntityMetal(target)) {
+                    // The source moves
                     if (target instanceof IronGolemEntity || target instanceof ItemFrameEntity) {
-                        IronAndSteelHelpers.move(this.direction, player, target.blockPosition());
+                        IronAndSteelHelpers.move(this.direction, source, target.blockPosition());
 
                     } else if (target instanceof ItemEntity || target instanceof FallingBlockEntity || target instanceof ArmorStandEntity ||
                             (target instanceof AbstractMinecartEntity && !target.isVehicle())) {
-                        IronAndSteelHelpers.move(this.direction / 2.0, target, player.blockPosition());
+                        IronAndSteelHelpers.move(this.direction / 2.0, target, source.blockPosition());
 
                         // Split the difference
-                    } else if (!(target instanceof ProjectileItemEntity)) { //2 players ?
-                        //  0 = no storing = no decanting
-                        //  1 = decanting  -> Pesa mas
-                        // -1 = storing    -> Pesa menos
-                        playerFeruchemicIron = 0;
-                        targetFeruchemicIron = 0;
-                        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability -> {
-                            if (playerCapability.isDecanting(MetalsNBTData.IRON)) playerFeruchemicIron = 1;
-                            else if (playerCapability.isStoring(MetalsNBTData.IRON)) playerFeruchemicIron = -1;});
+                    }  //2 sources ?
 
-                        target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability -> {
-                            if (playerCapability.isDecanting(MetalsNBTData.IRON)) targetFeruchemicIron = 1;
-                            else if (playerCapability.isStoring(MetalsNBTData.IRON)) targetFeruchemicIron = -1;});
+                    // If entity are player.
+                    if (target instanceof PlayerEntity || target instanceof ServerPlayerEntity) {
+                        IDefaultInvestedPlayerData sourceCapability = source.getCapability(InvestedCapability.PLAYER_CAP).resolve().get();
+                        IDefaultInvestedPlayerData targetCapability = target.getCapability(InvestedCapability.PLAYER_CAP).resolve().get();
+                        boolean areInSameState = false;
 
+                        // if both are decanting or both storing are in same state
+                        if ((sourceCapability.isDecanting(MetalsNBTData.IRON) && targetCapability.isDecanting(MetalsNBTData.IRON))
+                                || (sourceCapability.isStoring(MetalsNBTData.IRON) && targetCapability.isStoring(MetalsNBTData.IRON))) {
+                            areInSameState = true;
 
+                            // otherwise, if both are NOT decanting, o both are not storing, both its doing nothing, also = same state.
+                        } else if ((!sourceCapability.isDecanting(MetalsNBTData.IRON) && !targetCapability.isDecanting(MetalsNBTData.IRON))
+                                || (!sourceCapability.isStoring(MetalsNBTData.IRON) && !targetCapability.isStoring(MetalsNBTData.IRON))) {
+                            areInSameState = true;
+                        }
 
-                        if (playerFeruchemicIron == targetFeruchemicIron) {  //pesan igual
-                            IronAndSteelHelpers.move(this.direction / 2.0, target, player.blockPosition());
-                            IronAndSteelHelpers.move(this.direction / 2.0, player, target.blockPosition());
-                        } else if(playerFeruchemicIron == -1) { //peso menos
-                            if (targetFeruchemicIron == 0) {
-                                IronAndSteelHelpers.move(this.direction, player, target.blockPosition());
-                            } else {
-                                IronAndSteelHelpers.move(this.direction * 2.0, player, player.blockPosition());
-                            }
-                        } else if(playerFeruchemicIron == 0) {  //peso normal
-                            if (targetFeruchemicIron == -1) {
-                                IronAndSteelHelpers.move(this.direction, target, target.blockPosition());
-                            } else {
-                                IronAndSteelHelpers.move(this.direction, player, player.blockPosition());
-                            }
-                        } else if (playerFeruchemicIron == 1){  //pesa mas
-                            if (targetFeruchemicIron == 0) {
-                                IronAndSteelHelpers.move(this.direction, target, player.blockPosition());
-                            } else {
-                                IronAndSteelHelpers.move(this.direction * 2.0, target, player.blockPosition());
+                        // by default, they are not in same state.
+
+                        // Normal move in same state.
+                        if (areInSameState) {
+                            IronAndSteelHelpers.move(this.direction / 2.0, target, source.blockPosition());
+                            IronAndSteelHelpers.move(this.direction / 2.0, source, target.blockPosition());
+                        } else {
+                            if (sourceCapability.isDecanting(MetalsNBTData.IRON)) { // is decanting, so more weight
+                                if (targetCapability.isStoring(MetalsNBTData.IRON)) { // is storing, so less weight
+                                    IronAndSteelHelpers.move(this.direction, target, target.blockPosition(), true);
+                                } else { // Not storing and decanting.
+                                    IronAndSteelHelpers.move(this.direction, target, target.blockPosition(), false);
+                                }
+                            } else if (sourceCapability.isStoring(MetalsNBTData.IRON)) {
+                                if (targetCapability.isDecanting(MetalsNBTData.IRON)) {
+                                    IronAndSteelHelpers.move(this.direction, source, source.blockPosition(), true);
+                                } else { // Not storing and decanting.
+                                    IronAndSteelHelpers.move(this.direction, source, source.blockPosition(), false);
+                                }
+                            } else if (!sourceCapability.isStoring(MetalsNBTData.IRON) && !sourceCapability.isDecanting(MetalsNBTData.IRON)) {
+                                if (targetCapability.isDecanting(MetalsNBTData.IRON)) {
+                                    IronAndSteelHelpers.move(this.direction, source, source.blockPosition(), true);
+                                } else if (targetCapability.isStoring(MetalsNBTData.IRON)) {
+                                    IronAndSteelHelpers.move(this.direction, target, target.blockPosition(), false);
+                                }
                             }
                         }
                     }
                 }
             }
-
         });
         ctx.get().setPacketHandled(true);
     }

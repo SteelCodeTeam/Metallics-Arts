@@ -6,16 +6,12 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.ChatScreen;
-import net.minecraft.client.renderer.FaceDirection;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.Pose;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Direction;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.Dimension;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -30,8 +26,8 @@ import net.rudahee.metallics_arts.data.network.PullAndPushBlockPacket;
 import net.rudahee.metallics_arts.data.network.PullAndPushEntityPacket;
 import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalOverlay;
-import net.rudahee.metallics_arts.modules.client.GUI.FeruchemyMetalSelector;
 import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalSelector;
+import net.rudahee.metallics_arts.modules.client.GUI.FeruchemyMetalSelector;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
@@ -42,8 +38,9 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
-import java.util.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -77,209 +74,206 @@ public class PowersClientEventHandler {
 
             if (player != null && player instanceof PlayerEntity) {
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
-                    playerCapability -> {
-                        if (playerCapability.isInvested()) {
+                        playerCapability -> {
+                            if (playerCapability.isInvested()) {
 
-                            this.redoLists(player, playerCapability);
+                                this.redoLists(player, playerCapability);
 
-                            this.tickOffset = (tickOffset + 1) % 2;
+                                this.tickOffset = (tickOffset + 1) % 2;
 
-                            /** LEFT CLICK (ATTACK) */
+                                /** LEFT CLICK (ATTACK) */
 
-                            if (this.mc.options.keyAttack.isDown()) {
-                                RayTraceResult trace = ClientUtils.getMouseOverExtended(20F * 1.5F);
+                                if (this.mc.options.keyAttack.isDown()) {
+                                    RayTraceResult trace = ClientUtils.getMouseOverExtended(20F * 1.5F);
 
-                                /***********************************
-                                 * DO CLICK AN ENTITY WITH  - ZINC -
-                                 ***********************************/
-                                if (playerCapability.isBurning(MetalsNBTData.ZINC)) {
-                                    Entity entity;
-                                    if ((trace != null) && (trace.getType() == RayTraceResult.Type.ENTITY)) {
-                                        entity = ((EntityRayTraceResult) trace).getEntity();
-                                        if (entity instanceof CreatureEntity) {
-                                            ModNetwork.sendToServer(new ChangeEmotionPacket(entity.getId(), true));
-                                        }
-                                    }
-                                }
-
-                                /***********************************
-                                 * DO CLICK AN SOMETHING WITH  - IRON -
-                                 ***********************************/
-                                if (playerCapability.isBurning(MetalsNBTData.IRON)) {
-                                    if (trace !=null){
-                                        if (trace instanceof BlockRayTraceResult) { // IF ITS A BLOCK
-                                            BlockPos blockPosition = ((BlockRayTraceResult) trace).getBlockPos();
-                                            if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
-                                                ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
-                                                        Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
-                                                                playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+                                    /***********************************
+                                     * DO CLICK AN ENTITY WITH  - ZINC -
+                                     ***********************************/
+                                    if (playerCapability.isBurning(MetalsNBTData.ZINC)) {
+                                        Entity entity;
+                                        if ((trace != null) && (trace.getType() == RayTraceResult.Type.ENTITY)) {
+                                            entity = ((EntityRayTraceResult) trace).getEntity();
+                                            if (entity instanceof CreatureEntity) {
+                                                ModNetwork.sendToServer(new ChangeEmotionPacket(entity.getId(), true));
                                             }
                                         }
-                                        if (trace instanceof EntityRayTraceResult) {
-                                            ModNetwork.sendToServer(
-                                                    new PullAndPushEntityPacket(((EntityRayTraceResult) trace).getEntity().getId(),
+                                    }
+
+                                    /***********************************
+                                     * DO CLICK AN SOMETHING WITH  - IRON -
+                                     ***********************************/
+                                    if (playerCapability.isBurning(MetalsNBTData.IRON)) {
+                                        if (trace !=null){
+                                            if (trace instanceof BlockRayTraceResult) { // IF ITS A BLOCK
+                                                BlockPos blockPosition = ((BlockRayTraceResult) trace).getBlockPos();
+                                                if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
+                                                    ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
                                                             Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
                                                                     playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
-                                        }
-                                    }
-                                }
-                                /***********************************
-                                 * DO CLICK AN ENTITY WITH  - MALATIUM -
-                                 ***********************************/
-                                if (playerCapability.isBurning(MetalsNBTData.MALATIUM)) {
-                                    Entity entity;
-                                    if ((trace != null) && (trace.getType() == RayTraceResult.Type.ENTITY)) {
-                                        entity = ((EntityRayTraceResult) trace).getEntity();
-                                        if (entity instanceof PlayerEntity) {
-                                            PlayerEntity otherPlayerEntity = (PlayerEntity) entity;
-
-                                            otherPlayerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> {
-                                                otherPlayerDeathPos = new BlockPos(cap.getDeathPos()[0],cap.getDeathPos()[1],cap.getDeathPos()[2]);
-                                                otherPlayerDimension = GoldAndElectrumHelpers.getRegistryKeyFromString(cap.getDeathDimension());
-                                            });
-                                        }
-                                    }
-                                } else if (!playerCapability.isBurning(MetalsNBTData.MALATIUM) && otherPlayerDeathPos != null) {
-                                    otherPlayerDeathPos = null;
-                                    otherPlayerDimension = null;
-                                }
-                            }
-
-                            /** RIGHT CLICK (USE) */
-
-                            if (this.mc.options.keyUse.isDown()) {
-                                RayTraceResult trace = ClientUtils.getMouseOverExtended(20F * 1.5F);
-
-                                /***********************************
-                                 * DO CLICK AN ENTITY WITH  - BRASS -
-                                 ***********************************/
-                                if (playerCapability.isBurning(MetalsNBTData.BRASS)) {
-                                    Entity entity;
-                                    if ((trace != null) && (trace.getType() == RayTraceResult.Type.ENTITY)) {
-                                        entity = ((EntityRayTraceResult) trace).getEntity();
-                                        if (entity instanceof CreatureEntity) {
-                                            ModNetwork.sendToServer(new ChangeEmotionPacket(entity.getId(), false));
-                                        }
-                                    }
-                                }
-
-                                /***********************************
-                                 * DO CLICK AN ENTITY WITH  - STEEL -
-                                 ***********************************/
-
-                                if (playerCapability.isBurning(MetalsNBTData.STEEL)) {
-                                    if (trace !=null){
-                                        if (trace instanceof BlockRayTraceResult) { // IF ITS A BLOCK
-                                            BlockPos blockPosition = ((BlockRayTraceResult) trace).getBlockPos();
-                                            if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
-                                                ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
-                                                        Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
-                                                                playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+                                                }
+                                            }
+                                            if (trace instanceof EntityRayTraceResult) {
+                                                ModNetwork.sendToServer(
+                                                        new PullAndPushEntityPacket(((EntityRayTraceResult) trace).getEntity().getId(),
+                                                                Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                                        playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                             }
                                         }
-                                        if (trace instanceof EntityRayTraceResult) {
-                                            ModNetwork.sendToServer(
-                                                    new PullAndPushEntityPacket(((EntityRayTraceResult) trace).getEntity().getId(),
-                                                            Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
-                                                                    playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
-                                        }
                                     }
-                                    if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
-                                        playerCapability.drainMetals(MetalsNBTData.STEEL, MetalsNBTData.DURALUMIN);
+                                    /***********************************
+                                     * DO CLICK AN ENTITY WITH  - MALATIUM -
+                                     ***********************************/
+                                    if (playerCapability.isBurning(MetalsNBTData.MALATIUM)) {
+                                        Entity entity;
+                                        if ((trace != null) && (trace.getType() == RayTraceResult.Type.ENTITY)) {
+                                            entity = ((EntityRayTraceResult) trace).getEntity();
+                                            if (entity instanceof PlayerEntity) {
+                                                PlayerEntity otherPlayerEntity = (PlayerEntity) entity;
+
+                                                otherPlayerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> {
+                                                    otherPlayerDeathPos = new BlockPos(cap.getDeathPos()[0],cap.getDeathPos()[1],cap.getDeathPos()[2]);
+                                                    otherPlayerDimension = GoldAndElectrumHelpers.getRegistryKeyFromString(cap.getDeathDimension());
+                                                });
+                                            }
+                                        }
+                                    } else if (!playerCapability.isBurning(MetalsNBTData.MALATIUM) && otherPlayerDeathPos != null) {
+                                        otherPlayerDeathPos = null;
+                                        otherPlayerDimension = null;
                                     }
                                 }
-                            }
+
+                                /** RIGHT CLICK (USE) */
+
+                                if (this.mc.options.keyUse.isDown()) {
+                                    RayTraceResult trace = ClientUtils.getMouseOverExtended(20F * 1.5F);
+
+                                    /***********************************
+                                     * DO CLICK AN ENTITY WITH  - BRASS -
+                                     ***********************************/
+                                    if (playerCapability.isBurning(MetalsNBTData.BRASS)) {
+                                        Entity entity;
+                                        if ((trace != null) && (trace.getType() == RayTraceResult.Type.ENTITY)) {
+                                            entity = ((EntityRayTraceResult) trace).getEntity();
+                                            if (entity instanceof CreatureEntity) {
+                                                ModNetwork.sendToServer(new ChangeEmotionPacket(entity.getId(), false));
+                                            }
+                                        }
+                                    }
+
+                                    /***********************************
+                                     * DO CLICK AN ENTITY WITH  - STEEL -
+                                     ***********************************/
+
+                                    if (playerCapability.isBurning(MetalsNBTData.STEEL)) {
+                                        if (trace !=null){
+                                            if (trace instanceof BlockRayTraceResult) { // IF ITS A BLOCK
+                                                BlockPos blockPosition = ((BlockRayTraceResult) trace).getBlockPos();
+                                                if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
+                                                    ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
+                                                            Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                                    playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+                                                }
+                                            }
+                                            if (trace instanceof EntityRayTraceResult) {
+                                                ModNetwork.sendToServer(
+                                                        new PullAndPushEntityPacket(((EntityRayTraceResult) trace).getEntity().getId(),
+                                                                Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                                        playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+                                            }
+                                        }
+                                        if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
+                                            playerCapability.drainMetals(MetalsNBTData.STEEL, MetalsNBTData.DURALUMIN);
+                                        }
+                                    }
+                                }
 
 
 
                             /*if (player.isFallFlying() && playerCapability.isBurning(MetalsNBTData.STEEL)) {
                                 player.setPose(Pose.FALL_FLYING);
                             }
-
                             if (!player.level.getBlockState(new BlockPos(player.position().x, player.position().y - 1, player.position().z)).is(Blocks.AIR)) {
                                 player.stopFallFlying();
-
                             }
-
                             if(!playerCapability.isBurning(MetalsNBTData.STEEL)) {
                                 player.stopFallFlying();
                             }*/
 
 
-                            //aqui va el empuje
+                                //aqui va el empuje
 
-                            if (this.mc.options.keyJump.isDown() && this.mc.options.keyShift.isDown() && playerCapability.isBurning(MetalsNBTData.STEEL)) {
+                                if (this.mc.options.keyJump.isDown() && this.mc.options.keyShift.isDown() && playerCapability.isBurning(MetalsNBTData.STEEL)) {
 
-                                double x = player.getX();
-                                double y = player.getY();
-                                double z = player.getZ();
+                                    double x = player.getX();
+                                    double y = player.getY();
+                                    double z = player.getZ();
 
-                                BlockPos blockPos = new BlockPos(x,y,z);
-                                Vector3d vector = player.getViewVector(1.0F);
+                                    BlockPos blockPos = new BlockPos(x,y,z);
+                                    Vector3d vector = player.getViewVector(1.0F);
 
-                                double pushX;
-                                double pushZ;
+                                    double pushX;
+                                    double pushZ;
 
-                                int maxAltitude = 10;
-                                int actualAltitude = 0;
+                                    int maxAltitude = 10;
+                                    int actualAltitude = 0;
 
-                                //for (int i = 0;i<maxAltitude;i++){ <--------- revisar aqui
-                                //  if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
-                                //    blockPos = new BlockPos(blockPos.getX(),blockPos.getY()-1,blockPos.getZ());
-                                //  actualAltitude++;
-                                //}
-                                //}
+                                    //for (int i = 0;i<maxAltitude;i++){ <--------- revisar aqui
+                                    //  if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
+                                    //    blockPos = new BlockPos(blockPos.getX(),blockPos.getY()-1,blockPos.getZ());
+                                    //  actualAltitude++;
+                                    //}
+                                    //}
 
-                                //int range = actualAltitude < 2 ? 2 : 7;
-                                int range = 7;
-                                //double pushX = vector.x() >= 0 ? x - (vector.x*7) : x - (vector.x*7);
-                                //double pushZ = vector.z() >= 0 ? z - (vector.z*7) : z - (vector.z*7);
+                                    //int range = actualAltitude < 2 ? 2 : 7;
+                                    int range = 7;
+                                    //double pushX = vector.x() >= 0 ? x - (vector.x*7) : x - (vector.x*7);
+                                    //double pushZ = vector.z() >= 0 ? z - (vector.z*7) : z - (vector.z*7);
 
-                                if (this.mc.options.keyUp.isDown()) {
-                                    pushX = x - (vector.x*range);
-                                    pushZ = z - (vector.z*range);
-                                } else if (this.mc.options.keyDown.isDown()) {
-                                    pushX = x + (vector.x*range);
-                                    pushZ = z + (vector.z*range);
+                                    if (this.mc.options.keyUp.isDown()) {
+                                        pushX = x - (vector.x*range);
+                                        pushZ = z - (vector.z*range);
+                                    } else if (this.mc.options.keyDown.isDown()) {
+                                        pushX = x + (vector.x*range);
+                                        pushZ = z + (vector.z*range);
 
-                                } else if (this.mc.options.keyRight.isDown()) { // <--------- revisar aqui
-                                    pushX = vector.x() >= 0 ? x - (vector.x*range) : x + (vector.x*range);
-                                    pushZ = vector.z() >= 0 ? z + (vector.z*range) : z - (vector.z*range);
+                                    } else if (this.mc.options.keyRight.isDown()) { // <--------- revisar aqui
+                                        pushX = vector.x() >= 0 ? x - (vector.x*range) : x + (vector.x*range);
+                                        pushZ = vector.z() >= 0 ? z + (vector.z*range) : z - (vector.z*range);
 
-                                } else if (this.mc.options.keyLeft.isDown()) {
-                                    pushX = vector.x() >= 0 ? x + (vector.x*range) : x - (vector.x*range);
-                                    pushZ = vector.z() >= 0 ? z - (vector.z*range) : z + (vector.z*range);
-                                }  else {
-                                    pushX = x - (vector.x*range);
-                                    pushZ = z - (vector.z*range);
-                                }
-                                blockPos = new BlockPos(pushX, y, pushZ);
-
-                                for (int i=0;i<maxAltitude;i++){
-                                    if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
-                                        blockPos = new BlockPos(blockPos.getX(),blockPos.getY()-1,blockPos.getZ());
+                                    } else if (this.mc.options.keyLeft.isDown()) {
+                                        pushX = vector.x() >= 0 ? x + (vector.x*range) : x - (vector.x*range);
+                                        pushZ = vector.z() >= 0 ? z - (vector.z*range) : z + (vector.z*range);
+                                    }  else {
+                                        pushX = x - (vector.x*range);
+                                        pushZ = z - (vector.z*range);
                                     }
-                                }
-                                if (!player.level.getBlockState(blockPos).is(Blocks.AIR)){
-                                    // IF ITS A BLOCK
-                                    BlockPos blockPosition = blockPos;
-                                    if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition)) /*||tiene pepitas*/ ) {
-                                        ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
-                                                Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
-                                                        playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+                                    blockPos = new BlockPos(pushX, y, pushZ);
+
+                                    for (int i=0;i<maxAltitude;i++){
+                                        if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
+                                            blockPos = new BlockPos(blockPos.getX(),blockPos.getY()-1,blockPos.getZ());
+                                        }
+                                    }
+                                    if (!player.level.getBlockState(blockPos).is(Blocks.AIR)){
+                                        // IF ITS A BLOCK
+                                        BlockPos blockPosition = blockPos;
+                                        if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition)) /*||tiene pepitas*/ ) {
+                                            ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
+                                                    Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                            playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+
+                                        }
+                                        //ModNetwork.sendToServer(new PullAndPushEntityPacket(((EntityRayTraceResult) myTrace).getEntity().getId(), Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN), playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
 
                                     }
-                                    //ModNetwork.sendToServer(new PullAndPushEntityPacket(((EntityRayTraceResult) myTrace).getEntity().getId(), Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN), playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+
 
                                 }
+
 
 
                             }
-
-
-
-                        }
-                    });
+                        });
             }
         }
     }
@@ -487,9 +481,9 @@ public class PowersClientEventHandler {
                 Vector3d vector = new Vector3d(playerCap.getSpawnPos()[0], playerCap.getSpawnPos()[1], playerCap.getSpawnPos()[2]);
 
                 //if(player.level.dimension().getRegistryName().toString().equals(playerCap.getSpawnDimension())) {
-                    ClientUtils.drawMetalLine(playerVector,vector, 2f, 0.6f, 0.6f, 0.1f);
+                ClientUtils.drawMetalLine(playerVector,vector, 2f, 0.6f, 0.6f, 0.1f);
                 //} else {
-                  //  ClientUtils.drawMetalLine(playerVector, playerVector, 0,0,0,0);
+                //  ClientUtils.drawMetalLine(playerVector, playerVector, 0,0,0,0);
                 //}
             }
             /***********************************
@@ -499,9 +493,9 @@ public class PowersClientEventHandler {
                 Vector3d vector = new Vector3d(playerCap.getDeathPos()[0], playerCap.getDeathPos()[1], playerCap.getDeathPos()[2]);
 
                 //if(player.level.dimension().getRegistryName().toString().equals(playerCap.getDeathDimension())) {
-                    ClientUtils.drawMetalLine(playerVector,vector, 2f, 0.6f, 0.6f, 0.1f);
+                ClientUtils.drawMetalLine(playerVector,vector, 2f, 0.6f, 0.6f, 0.1f);
                 //} else {
-                  //  ClientUtils.drawMetalLine(playerVector, playerVector, 0,0,0,0);
+                //  ClientUtils.drawMetalLine(playerVector, playerVector, 0,0,0,0);
                 //}
             }
 

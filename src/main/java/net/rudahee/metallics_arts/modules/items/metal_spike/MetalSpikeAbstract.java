@@ -121,8 +121,7 @@ public abstract class MetalSpikeAbstract extends SwordItem {
 
         if ((target instanceof ServerPlayerEntity || target instanceof PlayerEntity) && (attacker instanceof ServerPlayerEntity || attacker instanceof PlayerEntity)){
 
-            System.out.println("algo");
-            target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(targetData ->{
+            target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(targetData -> {
 
                 boolean hasAllomanticPower = targetData.hasAllomanticPower(MetalsNBTData.getMetal(stack.getTag().getInt("metal_spike")));
                 boolean hasFeruchemicPower = targetData.hasFeruchemicPower(MetalsNBTData.getMetal(stack.getTag().getInt("metal_spike")));

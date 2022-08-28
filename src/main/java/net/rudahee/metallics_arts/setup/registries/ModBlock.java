@@ -2,10 +2,13 @@ package net.rudahee.metallics_arts.setup.registries;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.rudahee.metallics_arts.modules.blocks.EttmetalBlock;
 import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceBlock;
@@ -18,6 +21,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 
 public class ModBlock {
 
@@ -88,7 +92,11 @@ public class ModBlock {
     }
 
     public static final RegistryObject<Block> ALLOY_FURNACE_BLOCK = register("alloy_furnace",
-            () -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE)));
+            () -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE)
+                                                .harvestTool(ToolType.PICKAXE)
+                                                .strength(3.5F)
+                                                .lightLevel(litBlockEmission(13))
+                                                .requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> ETTMETAL_BLOCK = register(Gems.ETTMETAL.getGemNameLower()+"_block",
             () -> {
@@ -115,5 +123,11 @@ public class ModBlock {
         RegistryObject<T> blockRegistered = registerNoItem(name, blockSupplier);
         Registration.ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG))));
         return blockRegistered;
+    }
+
+    private static ToIntFunction<BlockState> litBlockEmission(int value) {
+        return (funcValue) -> {
+            return funcValue.getValue(BlockStateProperties.LIT) ? value : 0;
+        };
     }
 }

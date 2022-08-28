@@ -1,15 +1,25 @@
 package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
@@ -29,16 +39,9 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Optional;
 
-public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileEntity {
+public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 
-    private static int actualFuelBurning = 0;
-    private static int maxFuelBurning = 0;
-    private boolean isCrafting = false;
-
-    private static int actualTimeToActualRecipe = 0;
-    private int maxTimeToActualRecipe = 0;
-    private final boolean existsRecipe = false;
-
+    private final AlloyFurnaceData data = new AlloyFurnaceData();
 
     private final ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
@@ -46,8 +49,8 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
     private static ItemStack[] itemInSlot = new ItemStack[6];
 
 
-    public AlloyFurnaceTileEntity(TileEntityType<?> p_i48289_1_) {
-        super(p_i48289_1_);
+    public AlloyFurnaceTileEntity(TileEntityType<?> type) {
+        super(type);
         Arrays.fill(AlloyFurnaceTileEntity.itemInSlot,null);
     }
 
@@ -58,14 +61,18 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
 
     @Override
     public void load(BlockState state, CompoundNBT nbt) {
-        itemHandler.deserializeNBT(nbt.getCompound("inv"));
         super.load(state, nbt);
+        data.readNBTData(nbt);
+        itemHandler.deserializeNBT(nbt.getCompound("inv"));
     }
 
     @Override
     public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
+        data.updateNBTData(compound);
         compound.put("inv", itemHandler.serializeNBT());
-        return super.save(compound);
+
+        return compound;
     }
 
     private ItemStackHandler createHandler() {
@@ -137,7 +144,7 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
     @Override
     public void tick() {
         if (!this.level.isClientSide()) {
-            if(cookingRecipe()) {
+            if(cookingRecipe() == 1) {
                 this.getBlockState().setValue(AlloyFurnaceBlock.LIT, true);
             } else {
                 this.getBlockState().setValue(AlloyFurnaceBlock.LIT, false);
@@ -167,7 +174,7 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
 
     }
 
-    private boolean cookingRecipe() {
+    private int cookingRecipe() {
 
         // Create inventory with X slots
         Inventory inventoryRecipe = new Inventory(4);
@@ -184,58 +191,58 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
         }
 
         // If not crafting anything
-        if (!isCrafting) {
+        if (!(data.isCrafting == 1)) {
             // If recipe exists and is lit, we start to craft the item.
             if (recipe.isPresent()) {
                 if (isLit()) {
                     AlloyFurnaceRecipe presentRecipe = recipe.get();
-                    isCrafting = true;
+                    data.isCrafting = 1;
 
-                    maxTimeToActualRecipe = Arrays.stream(MetalBurningRecipeData.values())
+                    data.maxTimeToActualRecipe = Arrays.stream(MetalBurningRecipeData.values())
                             .filter(m -> m.getItem().getDescriptionId().equals(presentRecipe.getResultItem().getDescriptionId()))
                             .findFirst().get()
                             .getTicksToCompleteBurning();
 
-                    actualTimeToActualRecipe = maxTimeToActualRecipe;
-                    actualFuelBurning--;
+                    data.actualTimeToActualRecipe = data.maxTimeToActualRecipe;
+                    data.actualFuelBurning--;
                 } else {
 
                     // If not lit, we check fuel, and we have fuel, get 1 and lit.
                     if (checkFuel()) {
                         refillLit();
                     } else {
-                        actualTimeToActualRecipe = -1;
-                        isCrafting = false;
+                        data.actualTimeToActualRecipe = -1;
+                        data.isCrafting = 0;
                     }
                 }
             } else {
                 if (isLit()) {
-                    actualFuelBurning--;
+                    data.actualFuelBurning--;
                 }
             }
         } else {
             if (checkAir(inventoryRecipe)) {
-                isCrafting = false;
-                actualTimeToActualRecipe = -1;
+                data.isCrafting = 0;
+                data.actualTimeToActualRecipe = -1;
             }
 
             if (isLit()) {
-                actualFuelBurning--;
-                actualTimeToActualRecipe = (actualTimeToActualRecipe <= 0) ? actualTimeToActualRecipe : --actualTimeToActualRecipe;
+                data.actualFuelBurning--;
+                data.actualTimeToActualRecipe = (data.actualTimeToActualRecipe <= 0) ? data.actualTimeToActualRecipe : --data.actualTimeToActualRecipe;
 
                 if (isCompleteCrafting() && !checkAir(inventoryRecipe)) {
                     craftTheItem(recipe.get().getResultItem());
 
-                    actualTimeToActualRecipe = -1;
-                    isCrafting = false;
+                    data.actualTimeToActualRecipe = -1;
+                    data.isCrafting = 0;
 
                 } else {
                     if (!isLit()) {
                         if (checkFuel()) {
                             refillLit();
                         } else {
-                            actualTimeToActualRecipe = -1;
-                            isCrafting = false;
+                            data.actualTimeToActualRecipe = -1;
+                            data.isCrafting = 0;
                         }
                     }
                 }
@@ -243,51 +250,80 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
                 if (checkFuel()) {
                     refillLit();
                 } else {
-                    actualTimeToActualRecipe = -1;
-                    isCrafting = false;
+                    data.actualTimeToActualRecipe = -1;
+                    data.isCrafting = 0;
                 }
             }
         }
-        return isCrafting;
+
+        return data.isCrafting;
     }
 
-
-
-    @OnlyIn(Dist.CLIENT)
-    public static int getBurnProgress() {
-        return actualFuelBurning;
+    @Nullable
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket() {
+        CompoundNBT nbtTagCompound = new CompoundNBT();
+        nbtTagCompound = save(nbtTagCompound);
+        int tileEntityType = getType().hashCode();  // arbitrary number; only used for vanilla TileEntities.  You can use it, or not, as you want.
+        return new SUpdateTileEntityPacket(getBlockPos(), tileEntityType, nbtTagCompound);
     }
 
-    public static int getMaxBurnProgress() {
-        return maxFuelBurning;
+    @Override
+    public void handleUpdateTag(BlockState state, CompoundNBT tag) {
+        super.handleUpdateTag(state, tag);
+        data.updateNBTData(tag);
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public static int getLitProgress() {
-        return actualTimeToActualRecipe;
+    @Override
+    public CompoundNBT getUpdateTag() {
+        super.getUpdateTag();
+
+        CompoundNBT tag = new CompoundNBT();
+        tag = save(tag);
+        return tag;
     }
 
-    public static boolean isLit() {
-        return actualFuelBurning >= 0;
+    public boolean isLit() {
+        return data.actualFuelBurning >= 0;
     }
 
-    public static boolean isCompleteCrafting() {
-        return actualTimeToActualRecipe <= 0;
+    public boolean isCompleteCrafting() {
+        return data.actualTimeToActualRecipe <= 0;
     }
 
     public void refillLit() {
         Item fuelItem = itemHandler.extractItem(4, 1, false).getItem();
 
-        maxFuelBurning = Arrays.stream(FuelsTime.values())
+        data.maxFuelBurning = Arrays.stream(FuelsTime.values())
                 .filter(f -> f.getItem().equals(fuelItem.getItem()))
                 .findFirst().get()
                 .getTicksBurning();
 
-        actualFuelBurning = maxFuelBurning;
+
+        data.actualFuelBurning = data.maxFuelBurning;
     }
 
     public static ItemStack getItemInSlot(int slot) {
         return itemInSlot[slot];
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+        super.onDataPacket(net, pkt);
+        BlockState blockState = getBlockState();
+        this.load(blockState, pkt.getTag());   // read from the nbt in the packet
+
+    }
+
+    @Nullable
+    @Override
+    public AlloyFurnaceContainer createMenu(int windowId, PlayerInventory inventory, PlayerEntity entity) {
+        return AlloyFurnaceContainer.createContainerInServerSide(windowId, this.getBlockPos(), inventory, this.data);
+    }
+
+    @Override
+    public ITextComponent getDisplayName() {
+        return new TranslationTextComponent("screen.metallics_arts.alloy_furnace");
     }
 }
 

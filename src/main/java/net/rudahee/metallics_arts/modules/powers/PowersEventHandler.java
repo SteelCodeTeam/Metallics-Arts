@@ -8,6 +8,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.TieredItem;
+import net.minecraft.particles.BasicParticleType;
+import net.minecraft.particles.BlockParticleData;
+import net.minecraft.particles.ParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
@@ -340,7 +344,9 @@ public class PowersEventHandler {
             return;
         }
         World world = event.world;
-            List<? extends PlayerEntity> playerList = world.players();
+
+
+        List<? extends PlayerEntity> playerList = world.players();
             ticks++;
             for (int playerIndex = playerList.size() - 1; playerIndex >= 0; playerIndex--) {
 
@@ -355,7 +361,6 @@ public class PowersEventHandler {
                 }
 
                 PlayerEntity player = newPlayer;
-
 
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                     playerCapability -> {
@@ -580,6 +585,7 @@ public class PowersEventHandler {
                              ************************/
                             if (playerCapability.isBurning(MetalsNBTData.CHROMIUM) && playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
                                 if (player instanceof PlayerEntity) {
+
                                     if (event.world instanceof ServerWorld) {
                                         BlockPos negative = new BlockPos(player.position()).offset(-x - 3, -y - 3, -z - 3);
                                         BlockPos positive = new BlockPos(player.position()).offset(x + 3, y + 3 , z + 3);

@@ -17,13 +17,10 @@ import net.minecraft.world.server.ServerWorld;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import org.lwjgl.system.NonnullDefault;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class BandLerasiumEttmetal extends BandMindAbstract {
 
@@ -43,40 +40,52 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                 PlayerEntity player = (PlayerEntity) livingEntity;
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
 
-                    if (data.isDecanting(MetalsNBTData.ALUMINUM)||data.isStoring(MetalsNBTData.ALUMINUM)){
-                        stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                    if (data.isDecanting(MetalsNBTData.ALUMINUM) || data.isStoring(MetalsNBTData.ALUMINUM)) {
+                        stack.getTag().putString("key", changeOwner(player, stack.getTag(), false));
                     }
                     /////////////LERASIUM///////////////////
 
+
                     if (data.isDecanting(getMetals(0))) {
-                        loadAllomanticReserve(data, stack);
-                        nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",0);
-                        nbtLocal.putString("key",changeOwner(player,nbtLocal,false));
-                        data.setDecanting(getMetals(0),false);
-                        stack.setTag(nbtLocal);
-                        needUpdate = true;
-                    } else if (data.isStoring(getMetals(0))) {
-                        saveAllomanticReserve(data,stack);
-                        if (haveAnyReserve(stack)){
-                            nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",1);
+                        if (nbtLocal.getInt(getMetals(0).getNameLower() + "_feruchemic_reserve") > 0) {
+                            loadAllomanticReserve(data, stack);
+                            nbtLocal.putInt(getMetals(0).getNameLower() + "_feruchemic_reserve", 0);
+                            nbtLocal.putString("key", changeOwner(player, nbtLocal, false));
+                            data.setDecanting(getMetals(0), false);
+                            stack.setTag(nbtLocal);
+                            needUpdate = true;
                         } else {
-                            nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",0);
+                            data.setDecanting(getMetals(0), false);
                         }
-                        nbtLocal.putString("key",changeOwner(player,nbtLocal,true));
-                        data.setStoring(getMetals(0),false);
-                        stack.setTag(nbtLocal);
-                        needUpdate = true;
+                    } else if (data.isStoring(getMetals(0))) {
+                        if (nbtLocal.getInt(getMetals(0).getNameLower() + "_feruchemic_reserve") < 1) {
+
+                            saveAllomanticReserve(data, stack);
+                            if (haveAnyReserve(stack)) {
+                                nbtLocal.putInt(getMetals(0).getNameLower() + "_feruchemic_reserve", 1);
+                            } else {
+                                nbtLocal.putInt(getMetals(0).getNameLower() + "_feruchemic_reserve", 0);
+                            }
+                            nbtLocal.putString("key", changeOwner(player, nbtLocal, true));
+                            data.setStoring(getMetals(0), false);
+                            stack.setTag(nbtLocal);
+                            needUpdate = true;
+                        } else {
+                            data.setStoring(getMetals(0), false);
+                        }
                     }
+
+
                     /////////////ETTMETAL////////////////
                     if (data.isDecanting(getMetals(1))) {
-                        if (nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")>0) {
+                        if (nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve") > 0) {
 
-                            if (nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")>10){
-                                player.level.explode(player,player.position().x,player.position().y,player.position().z,nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")/10, Explosion.Mode.NONE);
-                                nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",0);
+                            if (nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve") > 10) {
+                                player.level.explode(player, player.position().x, player.position().y, player.position().z, nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve") / 10, Explosion.Mode.NONE);
+                                nbtLocal.putInt(getMetals(1).getNameLower() + "_feruchemic_reserve", 0);
                                 stack.setTag(nbtLocal);
                             } else {
-                                nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",0);
+                                nbtLocal.putInt(getMetals(1).getNameLower() + "_feruchemic_reserve", 0);
                                 nbtLocal.putString("key",changeOwner(player,nbtLocal,false));
                                 data.setDecanting(getMetals(1),false);
                             }
@@ -99,7 +108,7 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
 
                             stack.setTag(nbtLocal);
                         } else {
-                            data.setStoring(getMetals(1),false);
+                            data.setStoring(getMetals(1), false);
                         }
                         // /gamerule keepInventory true
                         needUpdate = true;

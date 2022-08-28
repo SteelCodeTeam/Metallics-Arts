@@ -129,7 +129,8 @@ public class AllomanticMetalOverlay {
                     // Este calculo mueve el offset 6 pixeles (3 para las barras, y 3 blancos).
 
                     if (data.isBurning(metal)) {
-                        blit(matrix, gui, allomanticActualOffSetX, allomanticOffsetY + allomanticPixelOffsetXInVialBar, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, allomanticWidthAnimation, allomanticHeightAnimation);
+
+                        blit(matrix, gui, allomanticActualOffSetX, allomanticOffsetY + allomanticPixelOffsetXInVialBar + (allomanticHeightBar - modifierAllomantic), AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, allomanticWidthAnimation, allomanticHeightAnimation);
                     }
                 } else {
                     blit(matrix, gui, allomanticActualOffSetX,  allomanticOffsetY, 102, 102, allomanticWidthVial, allomanticHeightVial);
