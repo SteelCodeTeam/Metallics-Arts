@@ -3,7 +3,11 @@ package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
@@ -11,10 +15,12 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -36,10 +42,22 @@ public class AlloyFurnaceBlock extends FurnaceBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false)));
     }
 
-    /*@Override
+    @Override
     public void onRemove(BlockState state, World world, BlockPos pos, BlockState newState, boolean bool) {
+
+        if (!state.is(newState.getBlock())) {
+            TileEntity tileentity = world.getBlockEntity(pos);
+            if (tileentity instanceof  AlloyFurnaceTileEntity) {
+                AlloyFurnaceTileEntity furnaceTE = (AlloyFurnaceTileEntity)tileentity;
+                ItemStack stack;
+                for (int i=0; i<=5; i++) {
+                    stack = furnaceTE.itemHandler.getStackInSlot(i);
+                    InventoryHelper.dropItemStack(world, pos.getX(),pos.getY(), pos.getZ(),stack);
+                }
+            }
+        }
         super.onRemove(state, world, pos, newState, bool);
-    }*/
+    }
 
     @Deprecated
     @Override
@@ -84,6 +102,17 @@ public class AlloyFurnaceBlock extends FurnaceBlock {
     public BlockState getStateForPlacement(BlockItemUseContext ctx) {
         return this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, ctx.getHorizontalDirection().getOpposite());
     }
+
+
+    @Override
+    public boolean hasAnalogOutputSignal(BlockState state) {
+        if(state.getValue(LIT)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 
     @Override

@@ -16,6 +16,8 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 import net.rudahee.metallics_arts.setup.registries.ModContainers;
 
+import javax.annotation.Nonnull;
+
 public class AlloyFurnaceContainer extends Container {
 
     private final TileEntity tileEntity;
@@ -45,7 +47,12 @@ public class AlloyFurnaceContainer extends Container {
                 addSlot(new SlotItemHandler(h, 4, 50, 55));
 
                 // SLOTS SALIDA
-                addSlot(new SlotItemHandler(h, 5, 122, 26));
+                addSlot(new SlotItemHandler(h, 5, 122, 26) {
+                    @Override
+                    public boolean mayPlace(@Nonnull ItemStack stack) {
+                        return false;
+                    }
+                });
             });
         }
     }
@@ -115,6 +122,11 @@ public class AlloyFurnaceContainer extends Container {
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
+
+        if (index == 5) {
+            return ItemStack.EMPTY;
+        }
+
 
         // Check if the slot clicked is one of the vanilla container slots
         if (index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {

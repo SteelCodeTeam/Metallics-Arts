@@ -5,7 +5,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
@@ -18,6 +21,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -38,13 +42,20 @@ import net.rudahee.metallics_arts.setup.registries.ModTileEntities;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.swing.text.html.Option;
 import java.util.Arrays;
 import java.util.Optional;
 
-public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, ISidedInventory {
+
+    private static final int[] SLOTS_FOR_UP = new int[]{0,1,2,3};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{5};
+    private static final int[] SLOTS_FOR_SIDES = new int[]{4};
+
+    protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
 
     private final AlloyFurnaceData data = new AlloyFurnaceData();
-    private final ItemStackHandler itemHandler = createHandler();
+    public final ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 
     private static ItemStack[] itemInSlot = new ItemStack[6];
@@ -85,13 +96,17 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
                     case 1:
                     case 2:
                     case 3:
-                    case 5:
                         return (Items.IRON_INGOT == stack.getItem()||
                                 Items.GOLD_INGOT == stack.getItem()||
                                 Items.COAL == stack.getItem() ||
                                 ModItems.ITEM_METAL_INGOT.values().stream().anyMatch(m-> m == stack.getItem())||
                                 ModItems.ITEM_GEMS_BASE.values().stream().anyMatch(m -> m == stack.getItem()));
-
+                    case 5:
+                        if (recipe.isPresent()) {
+                            return (recipe.get().getResultItem().getItem() == stack.getItem());
+                        } else {
+                            return false;
+                        }
                     case 4:
                         return (Items.COAL_BLOCK.getItem() == stack.getItem()||
                                 Items.COAL.getItem() == stack.getItem()||
@@ -180,6 +195,8 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
 
     }
 
+    Optional<AlloyFurnaceRecipe> recipe = Optional.empty();
+
     private int cookingRecipe() {
 
         // Create inventory with X slots
@@ -190,35 +207,55 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
             inventoryRecipe.setItem(i, itemHandler.getStackInSlot(i));
         }
 
-        Optional<AlloyFurnaceRecipe> recipe = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.ALLOY_FURNACE_RECIPE, inventoryRecipe, level);
+
+        recipe = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.ALLOY_FURNACE_RECIPE, inventoryRecipe, level);
+
+        boolean isResultItemValid = false;
+
+        if (recipe.isPresent()) {
+            if (recipe.get().getResultItem().getItem() == itemHandler.getStackInSlot(5).getItem() || itemHandler.getStackInSlot(5).isEmpty()) {
+                isResultItemValid = true;
+            }
+        }
+
 
         if (checkAir(inventoryRecipe)) {
             recipe = Optional.empty();
         }
+        if (itemHandler.getStackInSlot(5).getCount() >= 64) {
+            data.isCrafting = 0;
+        }
 
         // If not crafting anything
-        if (!(data.isCrafting == 1)) {
+        if (data.isCrafting == 0) {
             // If recipe exists and is lit, we start to craft the item.
             if (recipe.isPresent()) {
-                if (isLit()) {
-                    AlloyFurnaceRecipe presentRecipe = recipe.get();
-                    data.isCrafting = 1;
-
-                    data.maxTimeToActualRecipe = Arrays.stream(MetalBurningRecipeData.values())
-                            .filter(m -> m.getItem().getDescriptionId().equals(presentRecipe.getResultItem().getDescriptionId()))
-                            .findFirst().get()
-                            .getTicksToCompleteBurning();
-
-                    data.actualTimeToActualRecipe = data.maxTimeToActualRecipe;
-                    data.actualFuelBurning--;
+                if  (!isResultItemValid || itemHandler.getStackInSlot(5).getCount() >= 64) {
+                    if (data.actualFuelBurning > 0) {
+                        data.actualFuelBurning--;
+                    }
+                    data.actualTimeToActualRecipe = 0;
                 } else {
+                    if (isLit()) {
+                        AlloyFurnaceRecipe presentRecipe = recipe.get();
+                        data.isCrafting = 1;
 
-                    // If not lit, we check fuel, and we have fuel, get 1 and lit.
-                    if (checkFuel()) {
-                        refillLit();
+                        data.maxTimeToActualRecipe = Arrays.stream(MetalBurningRecipeData.values())
+                                .filter(m -> m.getItem().getDescriptionId().equals(presentRecipe.getResultItem().getDescriptionId()))
+                                .findFirst().get()
+                                .getTicksToCompleteBurning();
+
+                        data.actualTimeToActualRecipe = data.maxTimeToActualRecipe;
+                        data.actualFuelBurning--;
                     } else {
-                        data.actualTimeToActualRecipe = -1;
-                        data.isCrafting = 0;
+
+                        // If not lit, we check fuel, and we have fuel, get 1 and lit.
+                        if (checkFuel()) {
+                            refillLit();
+                        } else {
+                            data.actualTimeToActualRecipe = -1;
+                            data.isCrafting = 0;
+                        }
                     }
                 }
             } else {
@@ -227,6 +264,13 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
                 }
             }
         } else {
+
+            if (!this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.ALLOY_FURNACE_RECIPE, inventoryRecipe, level).isPresent()) {
+                data.isCrafting = 0;
+                data.actualTimeToActualRecipe = -1;
+                recipe = Optional.empty();
+            }
+
             if (checkAir(inventoryRecipe)) {
                 data.isCrafting = 0;
                 data.actualTimeToActualRecipe = -1;
@@ -237,10 +281,16 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
                 data.actualTimeToActualRecipe = (data.actualTimeToActualRecipe <= 0) ? data.actualTimeToActualRecipe : --data.actualTimeToActualRecipe;
 
                 if (isCompleteCrafting() && !checkAir(inventoryRecipe)) {
-                    craftTheItem(recipe.get().getResultItem());
+                    if (!this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.ALLOY_FURNACE_RECIPE, inventoryRecipe, level).isPresent()) {
+                        recipe = Optional.empty();
+                    } else {
+                        craftTheItem(recipe.get().getResultItem());
+                    }
 
                     data.actualTimeToActualRecipe = -1;
                     data.isCrafting = 0;
+
+
 
                 } else {
                     if (!isLit()) {
@@ -258,6 +308,8 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
                 } else {
                     data.actualTimeToActualRecipe = -1;
                     data.isCrafting = 0;
+
+
                 }
             }
         }
@@ -330,6 +382,80 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
     @Override
     public ITextComponent getDisplayName() {
         return new TranslationTextComponent("screen.metallics_arts.alloy_furnace");
+    }
+
+    public int[] getSlotsForFace(Direction direction) {
+        if (direction == Direction.DOWN) {
+            return SLOTS_FOR_DOWN;
+        } else {
+            return direction == Direction.UP ? SLOTS_FOR_UP : SLOTS_FOR_SIDES;
+        }
+    }
+
+    public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @Nullable Direction direction) {
+        if (direction == null) {
+            return this.canPlaceItem(slot, stack);
+        } else {
+            return this.itemHandler.isItemValid(slot, stack);
+        }
+    }
+
+    public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction direction) {
+        if (direction == Direction.DOWN && slot == 5) {
+            if (recipe.isPresent()) {
+                if (recipe.get().getResultItem() == stack) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public int getContainerSize() {
+        return this.items.size();
+    }
+
+    public boolean isEmpty() {
+        for(ItemStack itemstack : this.items) {
+            if (!itemstack.isEmpty()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public ItemStack getItem(int slot) {
+        return this.items.get(slot);
+    }
+
+    public ItemStack removeItem(int slot, int otherSlot) {
+        return ItemStackHelper.removeItem(this.items, slot, otherSlot);
+    }
+
+    public ItemStack removeItemNoUpdate(int slot) {
+        return ItemStackHelper.takeItem(this.items, slot);
+    }
+
+    public void setItem(int slot, ItemStack stack) {
+        this.items.set(slot, stack);
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
+        }
+    }
+
+    @Override
+    public boolean stillValid(PlayerEntity entity) {
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
+            return false;
+        } else {
+            return entity.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
+        }
+    }
+
+    @Override
+    public void clearContent() {
+        this.items.clear();
     }
 }
 

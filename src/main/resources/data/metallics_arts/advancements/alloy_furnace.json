@@ -1,0 +1,25 @@
+{
+  "display": {
+    "icon": {
+      "item": "metallics_arts:alloy_furnace"
+    },
+    "title": "Being Horny",
+    "description": "You know what's up now!",
+    "frame": "task",
+    "annouce_to_chat": true,
+    "show_toast": true
+  },
+  "parent": "metallics_arts:metallics_arts",
+  "criteria": {
+    "requirements": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:alloy_furnace"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
+import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -13,9 +14,12 @@ import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
+import net.minecraft.particles.BasicParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -27,6 +31,7 @@ import net.rudahee.metallics_arts.setup.registries.ModItems;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Random;
 
 public abstract class MetalSpikeAbstract extends SwordItem {
 
@@ -111,7 +116,6 @@ public abstract class MetalSpikeAbstract extends SwordItem {
     }
 
 
-
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 
@@ -119,7 +123,9 @@ public abstract class MetalSpikeAbstract extends SwordItem {
             stack.setTag(generateTags(stack));
         }
 
-        if ((target instanceof ServerPlayerEntity || target instanceof PlayerEntity) && (attacker instanceof ServerPlayerEntity || attacker instanceof PlayerEntity)){
+
+        if ((target instanceof PlayerEntity) && (attacker instanceof PlayerEntity)){
+
 
             target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(targetData -> {
 
@@ -132,15 +138,27 @@ public abstract class MetalSpikeAbstract extends SwordItem {
 
                 MetalsNBTData localMetal = MetalsNBTData.getMetal(stack.getTag().getInt("metal_spike"));
 
+                Random rng = new Random();
+                World world = target.level;
+                BlockPos pos = new BlockPos(target.position());
+
                 //DAR PODER
                 if (stack.getTag().getBoolean("allomantic_power")){
                     if (!targetData.hasAllomanticPower(localMetal)){
                         targetData.addAllomanticPower(localMetal);
+
+                        doEffects(rng, world, pos);
+
                     }
+
 
                 } else if (stack.getTag().getBoolean("feruchemic_power")){
                     if (!targetData.hasFeruchemicPower(localMetal)){
                         targetData.addFeruchemicPower(localMetal);
+
+                        doEffects(rng, world, pos);
+
+
                     }
 
                 //SI EL CLAVO NO TIENE PODERES -> intenta robar
@@ -184,6 +202,18 @@ public abstract class MetalSpikeAbstract extends SwordItem {
             });
         }
         return super.hurtEnemy(stack, target, attacker);
+    }
+
+    private void doEffects(Random rng, World world, BlockPos pos) {
+        BasicParticleType basicparticletype = ParticleTypes.CRIT;
+
+        world.addParticle(ParticleTypes.EXPLOSION, (double)pos.getX() + 0.25D + rng.nextDouble() / 2.0D * (double)(rng.nextBoolean() ? 1 : -1), (double)pos.getY() + 0.4D, (double)pos.getZ() + 0.25D + rng.nextDouble() / 2.0D * (double)(rng.nextBoolean() ? 1 : -1), 0.0D, 0.005D, 0.0D);
+        for(int i = 0; i < 10 + 1; ++i) {
+            world.addAlwaysVisibleParticle(basicparticletype, true, (double)pos.getX() + 0.5D + rng.nextDouble() / 3.0D * (double)(rng.nextBoolean() ? 1 : -1), (double)pos.getY() + rng.nextDouble() + rng.nextDouble(), (double)pos.getZ() + 0.5D + rng.nextDouble() / 3.0D * (double)(rng.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
+        }
+
+        world.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.LIGHTNING_BOLT_IMPACT, SoundCategory.PLAYERS, 0.5F + rng.nextFloat(), rng.nextFloat() * 0.7F + 0.6F, false);
+
     }
 
 
