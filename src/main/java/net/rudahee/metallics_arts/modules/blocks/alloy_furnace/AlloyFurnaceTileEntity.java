@@ -46,7 +46,7 @@ import javax.swing.text.html.Option;
 import java.util.Arrays;
 import java.util.Optional;
 
-public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, ISidedInventory {
+public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 
     private static final int[] SLOTS_FOR_UP = new int[]{0,1,2,3};
     private static final int[] SLOTS_FOR_DOWN = new int[]{5};
@@ -384,78 +384,5 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
         return new TranslationTextComponent("screen.metallics_arts.alloy_furnace");
     }
 
-    public int[] getSlotsForFace(Direction direction) {
-        if (direction == Direction.DOWN) {
-            return SLOTS_FOR_DOWN;
-        } else {
-            return direction == Direction.UP ? SLOTS_FOR_UP : SLOTS_FOR_SIDES;
-        }
-    }
-
-    public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @Nullable Direction direction) {
-        if (direction == null) {
-            return this.canPlaceItem(slot, stack);
-        } else {
-            return this.itemHandler.isItemValid(slot, stack);
-        }
-    }
-
-    public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction direction) {
-        if (direction == Direction.DOWN && slot == 5) {
-            if (recipe.isPresent()) {
-                if (recipe.get().getResultItem() == stack) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public int getContainerSize() {
-        return this.items.size();
-    }
-
-    public boolean isEmpty() {
-        for(ItemStack itemstack : this.items) {
-            if (!itemstack.isEmpty()) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public ItemStack getItem(int slot) {
-        return this.items.get(slot);
-    }
-
-    public ItemStack removeItem(int slot, int otherSlot) {
-        return ItemStackHelper.removeItem(this.items, slot, otherSlot);
-    }
-
-    public ItemStack removeItemNoUpdate(int slot) {
-        return ItemStackHelper.takeItem(this.items, slot);
-    }
-
-    public void setItem(int slot, ItemStack stack) {
-        this.items.set(slot, stack);
-        if (stack.getCount() > this.getMaxStackSize()) {
-            stack.setCount(this.getMaxStackSize());
-        }
-    }
-
-    @Override
-    public boolean stillValid(PlayerEntity entity) {
-        if (this.level.getBlockEntity(this.worldPosition) != this) {
-            return false;
-        } else {
-            return entity.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
-        }
-    }
-
-    @Override
-    public void clearContent() {
-        this.items.clear();
-    }
 }
 

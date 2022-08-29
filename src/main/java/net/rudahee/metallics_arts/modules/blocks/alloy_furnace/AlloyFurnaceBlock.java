@@ -3,11 +3,9 @@ package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
@@ -15,24 +13,20 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.extensions.IForgeBlock;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.function.Consumer;
 
-public class AlloyFurnaceBlock extends FurnaceBlock {
+public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
 
     public static final DirectionProperty FACING = HorizontalBlock.FACING;
     public static final BooleanProperty LIT = FurnaceBlock.LIT;
@@ -59,7 +53,7 @@ public class AlloyFurnaceBlock extends FurnaceBlock {
         super.onRemove(state, world, pos, newState, bool);
     }
 
-    @Deprecated
+    /*@Deprecated
     @Override
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos,
                                              PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
@@ -84,6 +78,30 @@ public class AlloyFurnaceBlock extends FurnaceBlock {
                 }
         }
         return ActionResultType.SUCCESS;
+    }*/
+
+    @Override
+    protected void openContainer(World world, BlockPos pos, PlayerEntity player) {
+        if(!world.isClientSide) {
+            TileEntity tileEntity = world.getBlockEntity(pos);
+            BlockState state = world.getBlockState(pos);
+            if(tileEntity instanceof AlloyFurnaceTileEntity) {
+
+                if (player instanceof ServerPlayerEntity) {
+                    NetworkHooks.openGui((ServerPlayerEntity) player, this.getMenuProvider(state, world, pos), tileEntity.getBlockPos());
+                } else {
+                    NetworkHooks.openGui((ServerPlayerEntity) player, this.getMenuProvider(state, world, pos), new Consumer<PacketBuffer>() {
+                        @Override
+                        public void accept(PacketBuffer buffer) {
+                            buffer.writeInt(player.getId());
+                        }
+                    });
+
+                }
+            } else {
+                throw new IllegalStateException("Our Container provider is missing!");
+            }
+        }
     }
 
     @Nullable
