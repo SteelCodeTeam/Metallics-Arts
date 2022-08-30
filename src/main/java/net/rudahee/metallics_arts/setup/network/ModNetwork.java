@@ -30,6 +30,9 @@ public class ModNetwork {
         INSTANCE.registerMessage(nextIndex(), UpdateBurnPacket.class, UpdateBurnPacket::encode, UpdateBurnPacket::decode, UpdateBurnPacket::handle);
         INSTANCE.registerMessage(nextIndex(), ChangeEmotionPacket.class, ChangeEmotionPacket::encode, ChangeEmotionPacket::decode, ChangeEmotionPacket::handle);
         INSTANCE.registerMessage(nextIndex(), PullAndPushBlockPacket.class, PullAndPushBlockPacket::encode, PullAndPushBlockPacket::decode, PullAndPushBlockPacket::handle);
+
+        INSTANCE.registerMessage(nextIndex(), PullAndPushNuggetPacket.class, PullAndPushNuggetPacket::encode, PullAndPushNuggetPacket::decode, PullAndPushNuggetPacket::handle);
+
         INSTANCE.registerMessage(nextIndex(), PullAndPushEntityPacket.class, PullAndPushEntityPacket::encode, PullAndPushEntityPacket::decode, PullAndPushEntityPacket::handle);
         INSTANCE.registerMessage(nextIndex(), UpdateDecantPacket.class, UpdateDecantPacket::encode, UpdateDecantPacket::decode, UpdateDecantPacket::handle);
         INSTANCE.registerMessage(nextIndex(), UpdateStoragePacket.class, UpdateStoragePacket::encode, UpdateStoragePacket::decode, UpdateStoragePacket::handle);

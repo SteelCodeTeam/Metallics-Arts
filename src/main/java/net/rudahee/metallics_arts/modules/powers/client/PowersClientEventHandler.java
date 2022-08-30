@@ -8,7 +8,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
@@ -24,6 +28,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.rudahee.metallics_arts.data.network.ChangeEmotionPacket;
 import net.rudahee.metallics_arts.data.network.PullAndPushBlockPacket;
 import net.rudahee.metallics_arts.data.network.PullAndPushEntityPacket;
+import net.rudahee.metallics_arts.data.network.PullAndPushNuggetPacket;
 import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalOverlay;
 import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalSelector;
@@ -35,9 +40,11 @@ import net.rudahee.metallics_arts.modules.powers.helpers.GoldAndElectrumHelpers;
 import net.rudahee.metallics_arts.modules.powers.helpers.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModItems;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -60,6 +67,8 @@ public class PowersClientEventHandler {
 
     RegistryKey<World> otherPlayerDimension = null;
 
+    private int controlTick = 0;
+
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onClientTick(final TickEvent.ClientTickEvent event) {
@@ -67,7 +76,6 @@ public class PowersClientEventHandler {
         if (event.phase != TickEvent.Phase.END || this.mc.isPaused() || this.mc.player == null || !this.mc.player.isAlive()) {
             return;
         }
-
 
         if (event.phase == TickEvent.Phase.END) {
             PlayerEntity player = this.mc.player;
@@ -187,20 +195,16 @@ public class PowersClientEventHandler {
                                     }
                                 }
 
+                                /*if (player.isFallFlying() && playerCapability.isBurning(MetalsNBTData.STEEL)) {
+                                    player.setPose(Pose.FALL_FLYING);
+                                }
+                                if (!player.level.getBlockState(new BlockPos(player.position().x, player.position().y - 1, player.position().z)).is(Blocks.AIR)) {
+                                    player.stopFallFlying();
+                                }
+                                if(!playerCapability.isBurning(MetalsNBTData.STEEL)) {
+                                    player.stopFallFlying();
+                                }*/
 
-
-                            /*if (player.isFallFlying() && playerCapability.isBurning(MetalsNBTData.STEEL)) {
-                                player.setPose(Pose.FALL_FLYING);
-                            }
-                            if (!player.level.getBlockState(new BlockPos(player.position().x, player.position().y - 1, player.position().z)).is(Blocks.AIR)) {
-                                player.stopFallFlying();
-                            }
-                            if(!playerCapability.isBurning(MetalsNBTData.STEEL)) {
-                                player.stopFallFlying();
-                            }*/
-
-
-                                //aqui va el empuje
 
                                 if (this.mc.options.keyJump.isDown() && this.mc.options.keyShift.isDown() && playerCapability.isBurning(MetalsNBTData.STEEL)) {
 
@@ -215,19 +219,7 @@ public class PowersClientEventHandler {
                                     double pushZ;
 
                                     int maxAltitude = 10;
-                                    int actualAltitude = 0;
-
-                                    //for (int i = 0;i<maxAltitude;i++){ <--------- revisar aqui
-                                    //  if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
-                                    //    blockPos = new BlockPos(blockPos.getX(),blockPos.getY()-1,blockPos.getZ());
-                                    //  actualAltitude++;
-                                    //}
-                                    //}
-
-                                    //int range = actualAltitude < 2 ? 2 : 7;
-                                    int range = 7;
-                                    //double pushX = vector.x() >= 0 ? x - (vector.x*7) : x - (vector.x*7);
-                                    //double pushZ = vector.z() >= 0 ? z - (vector.z*7) : z - (vector.z*7);
+                                    int range = 6;
 
                                     if (this.mc.options.keyUp.isDown()) {
                                         pushX = x - (vector.x*range);
@@ -249,33 +241,55 @@ public class PowersClientEventHandler {
                                     }
                                     blockPos = new BlockPos(pushX, y, pushZ);
 
+                                    int altitude = 0;
                                     for (int i=0;i<maxAltitude;i++){
                                         if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
                                             blockPos = new BlockPos(blockPos.getX(),blockPos.getY()-1,blockPos.getZ());
+                                            altitude++;
                                         }
                                     }
                                     if (!player.level.getBlockState(blockPos).is(Blocks.AIR)){
                                         // IF ITS A BLOCK
                                         BlockPos blockPosition = blockPos;
-                                        if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition)) /*||tiene pepitas*/ ) {
+
+                                        if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
                                             ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
                                                     Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
                                                             playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
-
+                                        } else if (haveNuggets(player) != -1) {
+                                            if (altitude<2 || controlTick == 0 ){
+                                                player.inventory.removeItem(haveNuggets(player),1);
+                                                ModNetwork.sendToServer(new PullAndPushNuggetPacket(blockPosition,
+                                                        Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                                playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+                                                controlTick = 80;
+                                            }
                                         }
-                                        //ModNetwork.sendToServer(new PullAndPushEntityPacket(((EntityRayTraceResult) myTrace).getEntity().getId(), Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN), playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
-
                                     }
-
-
+                                    if (controlTick>0) {
+                                        controlTick--;
+                                    }
                                 }
-
-
-
                             }
                         });
             }
         }
+    }
+    public int haveNuggets (PlayerEntity player){
+
+        ArrayList <Item> list = new ArrayList<>();
+
+        list.addAll(ModItems.ITEM_METAL_NUGGET.values());
+
+        list.add(Items.IRON_NUGGET);
+        list.add(Items.GOLD_NUGGET);
+
+        for (ItemStack stack: player.inventory.items){
+            if (list.contains(stack.getItem())){
+                return player.inventory.findSlotMatchingItem(stack);
+            }
+        }
+        return -1;
     }
 
     int radius = 8;
