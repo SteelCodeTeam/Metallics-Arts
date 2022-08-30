@@ -109,7 +109,7 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
         @Nullable
         @Override
         public AlloyFurnaceRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(4, Ingredient.EMPTY);
+            NonNullList<Ingredient> inputs = NonNullList.withSize(buffer.readInt(), Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromNetwork(buffer));
@@ -123,11 +123,11 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
         @Override
         public void toNetwork(PacketBuffer buffer, AlloyFurnaceRecipe recipe) {
             buffer.writeInt(recipe.getIngredients().size());
-            buffer.writeItemStack(recipe.getResultItem(), false);
 
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buffer);
             }
+            buffer.writeItemStack(recipe.getResultItem(), false);
         }
     }
 }

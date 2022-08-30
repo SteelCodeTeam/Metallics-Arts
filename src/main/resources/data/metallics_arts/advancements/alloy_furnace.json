@@ -6,8 +6,9 @@
     "title": "Being Horny",
     "description": "You know what's up now!",
     "frame": "task",
-    "annouce_to_chat": true,
-    "show_toast": true
+    "announce_to_chat": true,
+    "show_toast": true,
+    "hidden": false
   },
   "parent": "metallics_arts:metallics_arts",
   "criteria": {

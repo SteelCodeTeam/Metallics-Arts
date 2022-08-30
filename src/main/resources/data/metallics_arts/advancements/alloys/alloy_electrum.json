@@ -1,0 +1,25 @@
+{
+  "parent": "metallics_arts:alloy_furnace",
+  "display": {
+    "icon": {
+      "item": "metallics_arts:electrum_ingot"
+    },
+    "title": "Obtain Electrum",
+    "description": "Obtain electrum.",
+    "frame": "goal",
+    "announce_to_chat": true,
+    "show_toast": true
+  },
+  "criteria": {
+    "requirements": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:electrum_ingot"
+          }
+        ]
+      }
+    }
+  }
+}
