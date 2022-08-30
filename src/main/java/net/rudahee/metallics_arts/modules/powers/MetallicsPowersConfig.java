@@ -52,9 +52,15 @@ public class MetallicsPowersConfig {
 
         add("tin_");
 
-
         add(Items.CROSSBOW.getDescriptionId());
         add(Items.CROSSBOW.getRegistryName().toString());
+
+        add(Items.HEAVY_WEIGHTED_PRESSURE_PLATE.getDescriptionId());
+        add(Items.HEAVY_WEIGHTED_PRESSURE_PLATE.getRegistryName().toString());
+
+        add(Items.LIGHT_WEIGHTED_PRESSURE_PLATE.getDescriptionId());
+        add(Items.LIGHT_WEIGHTED_PRESSURE_PLATE.getRegistryName().toString());
+
 
         add(Items.BELL.getDescriptionId());
         add(Items.BELL.getRegistryName().toString());

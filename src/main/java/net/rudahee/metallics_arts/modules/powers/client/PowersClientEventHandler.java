@@ -219,7 +219,7 @@ public class PowersClientEventHandler {
                                     double pushZ;
 
                                     int maxAltitude = 10;
-                                    int range = 6;
+                                    int range = 7;
 
                                     if (this.mc.options.keyUp.isDown()) {
                                         pushX = x - (vector.x*range);
@@ -241,11 +241,9 @@ public class PowersClientEventHandler {
                                     }
                                     blockPos = new BlockPos(pushX, y, pushZ);
 
-                                    int altitude = 0;
                                     for (int i=0;i<maxAltitude;i++){
                                         if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
                                             blockPos = new BlockPos(blockPos.getX(),blockPos.getY()-1,blockPos.getZ());
-                                            altitude++;
                                         }
                                     }
                                     if (!player.level.getBlockState(blockPos).is(Blocks.AIR)){
@@ -257,12 +255,12 @@ public class PowersClientEventHandler {
                                                     Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
                                                             playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                         } else if (haveNuggets(player) != -1) {
-                                            if (altitude<2 || controlTick == 0 ){
+                                            ModNetwork.sendToServer(new PullAndPushNuggetPacket(blockPosition,
+                                                    Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                            playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+                                            if (controlTick == 0 ){
                                                 player.inventory.removeItem(haveNuggets(player),1);
-                                                ModNetwork.sendToServer(new PullAndPushNuggetPacket(blockPosition,
-                                                        Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
-                                                                playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
-                                                controlTick = 80;
+                                                controlTick = 18;
                                             }
                                         }
                                     }
@@ -280,6 +278,7 @@ public class PowersClientEventHandler {
         ArrayList <Item> list = new ArrayList<>();
 
         list.addAll(ModItems.ITEM_METAL_NUGGET.values());
+        list.addAll(ModItems.ITEM_GEMS_NUGGET.values());
 
         list.add(Items.IRON_NUGGET);
         list.add(Items.GOLD_NUGGET);

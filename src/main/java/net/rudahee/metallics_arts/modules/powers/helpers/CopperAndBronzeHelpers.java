@@ -23,6 +23,7 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import java.util.Random;
 
 public class CopperAndBronzeHelpers {
+
     public static void BronzeAiEntityManipulation(AxisAlignedBB axisAlignedBB, PlayerEntity player, World world) {
         world.getEntitiesOfClass(MobEntity.class, axisAlignedBB).forEach(entity -> {
             entity.goalSelector.removeGoal(entity.goalSelector.getRunningGoals().findFirst().orElse(null));
@@ -68,10 +69,8 @@ public class CopperAndBronzeHelpers {
                     entity.setTarget(null);
                 }
             }
-
             entity.addEffect(new EffectInstance(Effects.WEAKNESS, 100, 2, true, true, true));
             entity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 100, 2, true, true, true));
-
         });
     }
 
@@ -96,21 +95,6 @@ public class CopperAndBronzeHelpers {
         world.addFreshEntity(phantom);
     }
 
-    public static void saveExperience(PlayerEntity player, World world) {
-        /*if (player.totalExperience > 0) {
-            player.giveExperiencePoints(-7);
-        } else {
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
-                    capabilities -> {
-                        capabilities.setStoring(MetalsNBTData.COPPER,false);
-                    });
-        }
-        world.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.EXPERIENCE_BOTTLE_THROW, SoundCategory.PLAYERS, 0.1F, (new Random().nextFloat() - new Random().nextFloat()) * 0.35F + 0.9F, false);*/
-    }
 
-    public static void generateExperience(PlayerEntity player, World world) {
-        //player.giveExperiencePoints(7);
-        //world.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 0.1F, (new Random().nextFloat() - new Random().nextFloat()) * 0.35F + 0.9F, false);
-    }
 
 }

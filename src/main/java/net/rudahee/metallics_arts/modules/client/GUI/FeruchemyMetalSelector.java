@@ -88,11 +88,7 @@ public class FeruchemyMetalSelector extends Screen {
     static int[] verdiAzul1 = new int[]{108, 165, 155, 100};
     static int[] verdiAzul2 = new int[]{112, 187, 174, 100};
     static int[] verdiAzul3 = new int[]{128, 206, 196, 100};
-
  */
-
-
-
 
     @Override
     public void render(MatrixStack matrixStack, int mx, int my, float partialTicks) {
@@ -266,10 +262,7 @@ public class FeruchemyMetalSelector extends Screen {
             RenderHelper.turnOff();
             RenderSystem.disableBlend();
             RenderSystem.disableRescaleNormal();
-
         });
-
-
     }
 
     public void addpintado(MatrixStack matrixStack, Point a,Point b,Point c,MetalsNBTData metal, Point mouse){
@@ -329,24 +322,23 @@ public class FeruchemyMetalSelector extends Screen {
 
         int actualColor[];
         if(paridad){
-            if (!data.hasFeruchemicPower(metal)||!data.getMetalMindEquiped(metal.getGroup())) { // || si no tiene equipada la mente de ese metal
+            if (!data.hasFeruchemicPower(metal)||!data.getMetalMindEquiped(metal.getGroup())){
                 actualColor = noPowerPar;
-            }else if(data.isStoring(metal)){
+            } else if(data.isStoring(metal)){
                 actualColor = isStoragePar;
-            }else if (data.isDecanting(metal)){
+            } else if (data.isDecanting(metal)){
                 actualColor = isDecantingPar;
-            }else {
+            } else {
                 actualColor = normalPar;
             }
-
         }else{
-            if (!data.hasFeruchemicPower(metal)||!data.getMetalMindEquiped(metal.getGroup())) { // || si no tiene equipada la mente de ese metal
+            if (!data.hasFeruchemicPower(metal)||!data.getMetalMindEquiped(metal.getGroup())) {
                 actualColor = noPowerImpar;
-            }else if(data.isStoring(metal)){
+            } else if(data.isStoring(metal)){
                 actualColor = isStorageImpar;
-            }else if (data.isDecanting(metal)){
+            } else if (data.isDecanting(metal)){
                 actualColor = isDecantingImpar;
-            }else {
+            } else {
                 actualColor = normalImpar;
             }
         }
