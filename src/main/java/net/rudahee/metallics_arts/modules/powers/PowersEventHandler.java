@@ -257,7 +257,6 @@ public class PowersEventHandler {
                     } else if (playerCapability.isStoring(MetalsNBTData.ZINC)) {
                         ZincAndBrassHelpers.removeLootToEnemy(event.getEntityLiving(),0.6);
                     }
-
             });
         }
 
@@ -305,7 +304,6 @@ public class PowersEventHandler {
                 }
 
                 PlayerEntity player = newPlayer;
-
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                     playerCapability -> {
                         if (playerCapability.isInvested()) {
