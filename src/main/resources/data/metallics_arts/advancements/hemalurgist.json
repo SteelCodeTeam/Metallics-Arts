@@ -1,0 +1,261 @@
+{
+  "parent": "metallics_arts:metallics_arts",
+  "display": {
+    "icon": {
+      "item": "metallics_arts:cadmium_spike"
+    },
+    "title": "Hemalurgist",
+    "description": "pensando un comentario",
+    "frame": "goal",
+    "announce_to_chat": true,
+    "show_toast": true
+  },
+  "criteria": {
+
+    "get_iron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:iron_spike"
+          }
+        ]
+      }
+    }, "get_tin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:tin_spike"
+          }
+        ]
+      }
+    }, "get_gold": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:gold_spike"
+          }
+        ]
+      }
+    }, "get_zinc": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:zinc_spike"
+          }
+        ]
+      }
+    }, "get_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:copper_spike"
+          }
+        ]
+      }
+    },"get_aluminum": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:aluminum_spike"
+          }
+        ]
+      }
+    },"get_chromium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:chromium_spike"
+          }
+        ]
+      }
+    }, "get_cadmium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:cadmium_spike"
+          }
+        ]
+      }
+    }, "get_atium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:atium_spike"
+          }
+        ]
+      }
+    },
+    "get_lerasium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:lerasium_spike"
+          }
+        ]
+      }
+    },"get_ettmetal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:ettmetal_spike"
+          }
+        ]
+      }
+    },
+    "get_steel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:steel_spike"
+          }
+        ]
+      }
+    }, "get_pewter": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:pewter_spike"
+          }
+        ]
+      }
+    }, "get_electrum": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:electrum_spike"
+          }
+        ]
+      }
+    }, "get_brass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:brass_spike"
+          }
+        ]
+      }
+    }, "get_bronze": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:bronze_spike"
+          }
+        ]
+      }
+    },"get_duralumin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:duralumin_spike"
+          }
+        ]
+      }
+    },"get_nicrosil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:nicrosil_spike"
+          }
+        ]
+      }
+    }, "get_bendalloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:bendalloy_spike"
+          }
+        ]
+      }
+    }, "get_malatium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:malatium_spike"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_steel"
+    ],
+    [
+      "get_brass"
+    ],
+    [
+      "get_pewter"
+    ],
+    [
+      "get_electrum"
+    ],
+    [
+      "get_nicrosil"
+    ],
+    [
+      "get_bendalloy"
+    ],
+    [
+      "get_duralumin"
+    ],
+    [
+      "get_bronze"
+    ],
+    [
+      "get_malatium"
+    ],
+    [
+      "get_iron"
+    ],
+    [
+      "get_zinc"
+    ],
+    [
+      "get_tin"
+    ],
+    [
+      "get_gold"
+    ],
+    [
+      "get_chromium"
+    ],
+    [
+      "get_cadmium"
+    ],
+    [
+      "get_aluminum"
+    ],
+    [
+      "get_copper"
+    ],
+    [
+      "get_atium"
+    ],
+    [
+      "get_lerasium"
+    ],
+    [
+      "get_ettmetal"
+    ]
+  ]
+}

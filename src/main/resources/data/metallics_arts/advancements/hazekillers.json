@@ -2,21 +2,24 @@
   "parent": "metallics_arts:metallics_arts",
   "display": {
     "icon": {
-      "item": "metallics_arts:lerasium"
+      "item": "metallics_arts:dueling_staff"
     },
-    "title": "Obtain Lerasium",
-    "description": "A quiet life for eternity.",
-    "frame": "challenge",
+    "title": "Hazekiller",
+    "description": "Trying to survive!",
+    "frame": "task",
     "announce_to_chat": true,
-    "show_toast": true
+    "show_toast": true,
+    "hidden": false
   },
+
+
   "criteria": {
     "requirements": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "metallics_arts:lerasium"
+            "item": "metallics_arts:dueling_staff"
           }
         ]
       }

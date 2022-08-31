@@ -1,0 +1,140 @@
+{
+  "parent": "metallics_arts:feruchemist_rings",
+  "display": {
+    "icon": {
+      "item": "metallics_arts:band_copper_bronze"
+    },
+    "title": "Feruchemist++",
+    "description": "pensando un comentario",
+    "frame": "goal",
+    "announce_to_chat": true,
+    "show_toast": true
+  },
+  "criteria": {
+
+    "band_aluminum_duralumin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:band_aluminum_duralumin"
+          }
+        ]
+      }
+    }, "band_atium_malatium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:band_atium_malatium"
+          }
+        ]
+      }
+    }, "band_cadmium_bendalloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:band_cadmium_bendalloy"
+          }
+        ]
+      }
+    }, "band_chromium_nicrosil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:band_chromium_nicrosil"
+          }
+        ]
+      }
+    }, "band_copper_bronze": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:band_copper_bronze"
+          }
+        ]
+      }
+    },"band_electrum_gold": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:band_electrum_gold"
+          }
+        ]
+      }
+    },"band_steel_iron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:band_steel_iron"
+          }
+        ]
+      }
+    }, "band_lerasium_ettmetal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:band_lerasium_ettmetal"
+          }
+        ]
+      }
+    }, "band_pewter_tin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:band_pewter_tin"
+          }
+        ]
+      }
+    },
+    "band_zinc_brass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:band_zinc_brass"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "band_zinc_brass"
+    ],
+    [
+      "band_pewter_tin"
+    ],
+    [
+      "band_lerasium_ettmetal"
+    ],
+    [
+      "band_steel_iron"
+    ],
+    [
+      "band_electrum_gold"
+    ],
+    [
+      "band_copper_bronze"
+    ],
+    [
+      "band_chromium_nicrosil"
+    ],
+    [
+      "band_cadmium_bendalloy"
+    ],
+    [
+      "band_atium_malatium"
+    ],
+    [
+      "band_aluminum_duralumin"
+    ]
+  ]
+}

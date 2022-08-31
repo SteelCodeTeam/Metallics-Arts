@@ -1,0 +1,56 @@
+{
+  "parent": "metallics_arts:alloy_furnace",
+  "display": {
+    "icon": {
+      "item": "metallics_arts:ettmetal"
+    },
+    "title": "Path of the gods.",
+    "description": "16?",
+    "frame": "challenge",
+    "announce_to_chat": true,
+    "show_toast": true
+  },
+  "criteria": {
+    "find_atium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:atium"
+          }
+        ]
+      }
+    },
+    "find_lerasium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:lerasium"
+          }
+        ]
+      }
+    },
+    "find_ettmetal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:ettmetal"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "find_atium"
+    ],
+    [
+      "find_lerasium"
+    ],
+    [
+      "find_ettmetal"
+    ]
+  ]
+}

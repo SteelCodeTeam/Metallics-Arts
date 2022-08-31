@@ -1,4 +1,5 @@
 {
+  "parent": "metallics_arts:metallics_arts",
   "display": {
     "icon": {
       "item": "metallics_arts:alloy_furnace"
@@ -10,7 +11,8 @@
     "show_toast": true,
     "hidden": false
   },
-  "parent": "metallics_arts:metallics_arts",
+
+
   "criteria": {
     "requirements": {
       "trigger": "minecraft:inventory_changed",

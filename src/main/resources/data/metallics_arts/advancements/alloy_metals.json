@@ -1,0 +1,126 @@
+{
+  "parent": "metallics_arts:basic_metals",
+  "display": {
+    "icon": {
+      "item": "metallics_arts:pewter_ingot"
+    },
+    "title": "Metalurgist++",
+    "description": "Catch them all!",
+    "frame": "goal",
+    "announce_to_chat": true,
+    "show_toast": true
+  },
+  "criteria": {
+    "get_steel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:steel_ingot"
+          }
+        ]
+      }
+    }, "get_pewter": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:pewter_ingot"
+          }
+        ]
+      }
+    }, "get_electrum": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:electrum_ingot"
+          }
+        ]
+      }
+    }, "get_brass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:brass_ingot"
+          }
+        ]
+      }
+    }, "get_bronze": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:bronze_ingot"
+          }
+        ]
+      }
+    },"get_duralumin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:duralumin_ingot"
+          }
+        ]
+      }
+    },"get_nicrosil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:nicrosil_ingot"
+          }
+        ]
+      }
+    }, "get_bendalloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:bendalloy_ingot"
+          }
+        ]
+      }
+    }, "get_malatium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:malatium"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_steel"
+    ],
+    [
+      "get_brass"
+    ],
+    [
+      "get_pewter"
+    ],
+    [
+      "get_electrum"
+    ],
+    [
+      "get_nicrosil"
+    ],
+    [
+      "get_bendalloy"
+    ],
+    [
+      "get_duralumin"
+    ],
+    [
+      "get_bronze"
+    ],
+    [
+      "get_malatium"
+    ]
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "parent": "metallics_arts:alloy_furnace",
+  "display": {
+    "icon": {
+      "item": "metallics_arts:chromium_ingot"
+    },
+    "title": "Metalurgist",
+    "description": "Fuel for the soul's fire.",
+    "frame": "goal",
+    "announce_to_chat": true,
+    "show_toast": true
+  },
+  "criteria": {
+    "get_iron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:iron_ingot"
+          }
+        ]
+      }
+    }, "get_tin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:tin_ingot"
+          }
+        ]
+      }
+    }, "get_gold": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:gold_ingot"
+          }
+        ]
+      }
+    }, "get_zinc": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:zinc_ingot"
+          }
+        ]
+      }
+    }, "get_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:copper_ingot"
+          }
+        ]
+      }
+    },"get_aluminum": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:aluminum_ingot"
+          }
+        ]
+      }
+    },"get_chromium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:chromium_ingot"
+          }
+        ]
+      }
+    }, "get_cadmium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "metallics_arts:cadmium_ingot"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_iron"
+    ],
+    [
+      "get_zinc"
+    ],
+    [
+      "get_tin"
+    ],
+    [
+      "get_gold"
+    ],
+    [
+      "get_chromium"
+    ],
+    [
+      "get_cadmium"
+    ],
+    [
+      "get_aluminum"
+    ],
+    [
+      "get_copper"
+    ]
+  ]
+}
