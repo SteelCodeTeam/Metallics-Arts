@@ -1,12 +1,15 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 
 public class AtiumAndMalatiumHelpers {
@@ -23,9 +26,6 @@ public class AtiumAndMalatiumHelpers {
         player.addEffect(new EffectInstance(Effects.GLOWING, 5, 1, true,true));
     }
 
-
-
-
     public static float atiumHit(ServerPlayerEntity playerEntity, PlayerEntity objetive, float amount) {
 
         playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability ->{
@@ -35,7 +35,6 @@ public class AtiumAndMalatiumHelpers {
                 playerIsBurning = false;
             }
         });
-
         objetive.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(objetiveCapability ->{
             if (objetiveCapability.isBurning(MetalsNBTData.ATIUM)){
                 if (playerIsBurning) {
@@ -50,15 +49,15 @@ public class AtiumAndMalatiumHelpers {
                 damage = amount;//normal hit
             }
         });
-
         return damage;
-
     }
 
     public static float atiumHitMobPlayer(PlayerEntity playerEntity, float amount) {
+        List<Integer> typeOfPower = Arrays.asList(0,1); // Leras footjob
+        Collections.shuffle(typeOfPower);
         playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability ->{
             if (playerCapability.isBurning(MetalsNBTData.ATIUM)){
-                if (Math.random()<0.5){
+                if (typeOfPower.get(0)==0){
                     damage = 0F;
                 }
                 else {
@@ -67,7 +66,6 @@ public class AtiumAndMalatiumHelpers {
             }else {
                 damage = amount;
             }
-
         });
         return damage;
     }

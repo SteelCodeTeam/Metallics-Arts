@@ -5,18 +5,16 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.RegistryKey;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.ITeleporter;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 import java.util.function.Function;
 
 public class GoldAndElectrumHelpers {
-
-
 
     public static void teleport(PlayerEntity player, World world, RegistryKey<World> dimension, BlockPos pos) {
         if (!world.isClientSide) {
@@ -24,7 +22,6 @@ public class GoldAndElectrumHelpers {
                 if (player.isPassenger()) {
                     player.stopRiding();
                 }
-
                 if (player.level.dimension() != dimension) {
                     //change dimension
                     player = (PlayerEntity) player.changeDimension(world.getServer().getLevel(dimension), new ITeleporter() {
@@ -42,6 +39,13 @@ public class GoldAndElectrumHelpers {
         }
     }
 
+    public static void multiTeleport (PlayerEntity player, AxisAlignedBB axisAlignedBB, World world, RegistryKey<World> dimension, BlockPos pos) {
+        world.getEntitiesOfClass(PlayerEntity.class, axisAlignedBB).forEach(entity -> {
+            teleport(entity,world,dimension,pos);
+        });
+        teleport(player,world,dimension,pos);
+    }
+
     public static RegistryKey<World> getRegistryKeyFromString(String dim) {
         if (dim == World.OVERWORLD.getRegistryName().getNamespace()){
             return World.OVERWORLD;
@@ -54,7 +58,6 @@ public class GoldAndElectrumHelpers {
         }
     }
 
-
     public static void addHealth(PlayerEntity player,int qtyHealth){
         player.setHealth(player.getHealth()+qtyHealth);
     }
@@ -63,8 +66,6 @@ public class GoldAndElectrumHelpers {
         if (!player.isCreative()){
             player.hurt(DamageSource.GENERIC, qtyHealth);
         }
-
-
     }
 
     public static void removeHearts(PlayerEntity player, int qtyHearth){
@@ -78,7 +79,6 @@ public class GoldAndElectrumHelpers {
     public static void addHearts(PlayerEntity player, int qtyHearth) {
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(qtyHearth);
     }
-
 
     private static BlockPos block = null;
     private static String dimension = null;

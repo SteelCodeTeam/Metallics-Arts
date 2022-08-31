@@ -1,43 +1,25 @@
 package net.rudahee.metallics_arts.modules.powers;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemTier;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.TieredItem;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.BlockParticleData;
-import net.minecraft.particles.ParticleType;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
-import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.EarlyLoaderGUI;
 import net.minecraftforge.fml.common.Mod;
-import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.modules.data_player.InvestedDataProvider;
 import net.rudahee.metallics_arts.modules.powers.helpers.*;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.Arrays;
@@ -92,9 +74,7 @@ public class PowersEventHandler {
                         }
                     }
                         data.setInvested(true);
-
                 });
-
                 //Sync cap to client
                 ModNetwork.sync(event.getPlayer());
             }
@@ -105,44 +85,34 @@ public class PowersEventHandler {
     public static void onSetSpawn(final PlayerSetSpawnEvent event) {
         PlayerEntity playerEntity = event.getPlayer();
         if (event.getPlayer() instanceof ServerPlayerEntity) {
-
-
             playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                 capabilities -> {
-
                     int[] pos = {(int) playerEntity.position().x,(int) playerEntity.position().y, (int) playerEntity.position().z};
                     String dim = playerEntity.level.dimension().getRegistryName().getNamespace();
-
                     if (capabilities.getSpawnPos() != null) {
                         capabilities.setSpawnDimension(dim);
                         capabilities.setSpawnPos(pos);
                     }
-
-
                     ModNetwork.sync(capabilities, playerEntity);
             });
         }
     }
-
 
     @SubscribeEvent
     public static void onLivingDeath(final LivingDeathEvent event) {
         if (event.getEntityLiving() instanceof ServerPlayerEntity) {
             ServerPlayerEntity player = (ServerPlayerEntity) event.getEntityLiving();
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability -> {
-
                 int[] pos = {(int) player.position().x,(int) player.position().y, (int) player.position().z};
                 String dim = player.level.dimension().getRegistryName().getNamespace();
                 playerCapability.setDeathDimension(dim);
                 playerCapability.setDeathPos(pos);
-
                 for (MetalsNBTData metal:MetalsNBTData.values()) {
                     playerCapability.setBurning(metal,false);
                     playerCapability.setDecanting(metal,false);
                     playerCapability.setStoring(metal,false);
                     playerCapability.setMetalMindEquiped(metal.getGroup(),false);
                 }
-
                 ModNetwork.sync(playerCapability, player);
             });
         }
@@ -177,29 +147,22 @@ public class PowersEventHandler {
         }
     }
 
-
-
     @SubscribeEvent
     public static void onPlayerClone(final PlayerEvent.Clone event) {
         if (!event.getPlayer().level.isClientSide()) {
-
             event.getOriginal().revive();
-
             PlayerEntity player = event.getPlayer();
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
-
                 event.getOriginal().getCapability(InvestedCapability.PLAYER_CAP).ifPresent(oldData -> {
                     if (oldData.isInvested()) {
                         for (MetalsNBTData mt : MetalsNBTData.values()) {
                             if (oldData.hasAllomanticPower(mt)) {
                                 data.addAllomanticPower(mt);
                             }
-
                             if (oldData.hasFeruchemicPower(mt)) {
                                 data.addFeruchemicPower(mt);
                             }
                         }
-
                         if (oldData.getDeathDimension() != null) {
                             data.setDeathPos(oldData.getDeathPos());
                             data.setDeathDimension(oldData.getDeathDimension());
@@ -212,7 +175,6 @@ public class PowersEventHandler {
                     }
                 });
             });
-
             event.getOriginal().getCapability(InvestedCapability.PLAYER_CAP).invalidate();
             ModNetwork.sync(player);
         }
@@ -223,9 +185,7 @@ public class PowersEventHandler {
     @SubscribeEvent
     public static void onDamageEvent(final LivingHurtEvent event) {
         if (event.getSource().getDirectEntity() instanceof ServerPlayerEntity) {
-
             ServerPlayerEntity playerEntity = (ServerPlayerEntity) event.getSource().getEntity();
-
             playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                 playerCapability -> {
 
@@ -237,7 +197,6 @@ public class PowersEventHandler {
                         amountDamage =  amountDamage + PewterAndTinHelpers.getExtraDamageWithItemInHand(playerEntity.getMainHandItem().getItem());
 
                         /* PEWTER + DURALUMIN */
-
                         if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
                             amountDamage = PewterAndTinHelpers.getDamageWithMultiplier(amountDamage);
                         } else {
@@ -310,9 +269,6 @@ public class PowersEventHandler {
         if (event.getEntityLiving() instanceof ServerPlayerEntity) {
             event.setAmount(AtiumAndMalatiumHelpers.atiumHitMobPlayer((PlayerEntity) event.getEntityLiving(), event.getAmount()));
         }
-
-
-
     }
 
     public static int ticks = 0;
@@ -321,13 +277,9 @@ public class PowersEventHandler {
     public static int y = 8;
     public static int z = 8;
 
-    public static int tickOffset= 0;
     public static int actualTick = 0;
 
     public static boolean restoreHealth = false;
-
-    public static boolean previusAtium = false;
-
 
     private static PlayerEntity newPlayer = null;
     @SubscribeEvent
@@ -360,7 +312,6 @@ public class PowersEventHandler {
                             if (player instanceof ServerPlayerEntity) {
                                 playerCapability.tickAllomancyBurningMetals((ServerPlayerEntity) player);
                             }
-
                             /************************
                              * BRONZE FERUCHEMIC
                              ************************/
@@ -374,15 +325,12 @@ public class PowersEventHandler {
                                     CopperAndBronzeHelpers.SpawnPhamtonsWithFireResistance(player, world);
                                 }
                             }
-
-
                             /************************
                              * BRASS FERUCHEMIC
                              ************************/
                             if (playerCapability.isStoring(MetalsNBTData.BRASS)) {
                                 player.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 40, 1, true, false));
                             }
-
                             /************************
                              * GOLD FERUCHEMIC
                              ************************/
@@ -397,7 +345,6 @@ public class PowersEventHandler {
                                 if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
                                     GoldAndElectrumHelpers.removeHealth(player,1);
                                 }
-
                             }
                             /************************
                              * ELECTRUM FERUCHEMIC
@@ -415,7 +362,6 @@ public class PowersEventHandler {
                                 GoldAndElectrumHelpers.restoreHearts(player);
                                 restoreHealth = false;
                             }
-
                             /************************
                              * TIN FERUCHEMIC
                              ************************/
@@ -424,7 +370,6 @@ public class PowersEventHandler {
                             } else if (playerCapability.isStoring(MetalsNBTData.TIN)) {
                                 PewterAndTinHelpers.removeFeruchemicVision(player);
                             }
-
                             /************************
                              * PEWTER FERUCHEMIC
                              ************************/
@@ -433,7 +378,6 @@ public class PowersEventHandler {
                             } else if (playerCapability.isStoring(MetalsNBTData.PEWTER)) {
                                 PewterAndTinHelpers.storePewterEffectsFeruchemic(player);
                             }
-
                             /************************
                              * STEEL FERUCHEMIC
                              ************************/
@@ -442,7 +386,6 @@ public class PowersEventHandler {
                             } else if (playerCapability.isStoring(MetalsNBTData.STEEL)) {
                                 IronAndSteelHelpers.removeSpeed(player,3);
                             }
-
                             /************************
                              * IRON FERUCHEMIC
                              ************************/
@@ -451,7 +394,6 @@ public class PowersEventHandler {
                             } else if (playerCapability.isStoring(MetalsNBTData.IRON)) {
                                 IronAndSteelHelpers.reduceWeight(player);
                             }
-
                             /************************
                              * CADMIUM FERUCHEMIC
                              ************************/
@@ -464,11 +406,9 @@ public class PowersEventHandler {
                                     BendalloyAndCadmiunHelpers.drowningEffect(player,actualTick);
                                 //}
                             }
-
                             /************************
                              * BENDALLOY FERUCHEMIC
                              ************************/
-
                             if (playerCapability.isDecanting(MetalsNBTData.BENDALLOY)) {
                                 if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
                                     BendalloyAndCadmiunHelpers.addFoodLevel(player,1);
@@ -478,12 +418,10 @@ public class PowersEventHandler {
                                     BendalloyAndCadmiunHelpers.removeFoodLevel(player,1);
                                 }
                             }
-
                             /************************
                              * DURALUMIN FERUCHEMIC
                              ************************/
                             Biome biome = world.getBiome(player.getEntity().blockPosition());
-
                             if (playerCapability.isDecanting(MetalsNBTData.DURALUMIN)) {
                                 if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
                                     DuraluminAndAluminumHelpers.duraluminDecantingEffects(player, biome);
@@ -493,7 +431,6 @@ public class PowersEventHandler {
                                     DuraluminAndAluminumHelpers.duraluminStoringEffects(player, biome);
                                 }
                             }
-
                             /************************
                              * CHROMIUM FERUCHEMIC
                              ************************/
@@ -506,8 +443,6 @@ public class PowersEventHandler {
                                 else
                                     ChromiumAndNicrosilHelpers.badLuck(player,false);
                             }
-
-
                             /************************
                              * ATIUM FERUCHEMIC
                              ************************/
@@ -516,13 +451,48 @@ public class PowersEventHandler {
                             } else if (playerCapability.isStoring(MetalsNBTData.ATIUM)){
                                 AtiumAndMalatiumHelpers.storageAtium(player);
                             }
-
                             if (actualTick >= 240) {
                                 actualTick = 0;
                             } else {
                                 actualTick++;
                             }
-
+                            /************************
+                             * ZINC POWERS
+                             ************************/
+                            if (playerCapability.isBurning(MetalsNBTData.ZINC)&&playerCapability.isBurning(MetalsNBTData.LERASIUM)){
+                                BlockPos negative;
+                                BlockPos positive;
+                                if (event.world instanceof ServerWorld) {
+                                    if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)){
+                                        negative = new BlockPos(player.position()).offset(-x - 6, -y - 6, -z - 6);
+                                        positive = new BlockPos(player.position()).offset(x + 6, y + 6 , z + 6);
+                                        playerCapability.drainMetals(MetalsNBTData.LERASIUM,MetalsNBTData.DURALUMIN,MetalsNBTData.ZINC);
+                                    } else {
+                                        negative = new BlockPos(player.position()).offset(-x - 4, -y - 4, -z - 4);
+                                        positive = new BlockPos(player.position()).offset(x + 4, y + 4 , z + 4);
+                                    }
+                                    ZincAndBrassHelpers.angryEntitiesWithLerasium
+                                            (player,event.world,new AxisAlignedBB(negative, positive),playerCapability.isBurning(MetalsNBTData.DURALUMIN));
+                                }
+                            }
+                            /************************
+                             * ZINC POWERS
+                             ************************/
+                            if (playerCapability.isBurning(MetalsNBTData.BRASS)&&playerCapability.isBurning(MetalsNBTData.LERASIUM)){
+                                BlockPos negative;
+                                BlockPos positive;
+                                if (event.world instanceof ServerWorld) {
+                                    if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)){
+                                        negative = new BlockPos(player.position()).offset(-x - 6, -y - 6, -z - 6);
+                                        positive = new BlockPos(player.position()).offset(x + 6, y + 6 , z + 6);
+                                        playerCapability.drainMetals(MetalsNBTData.LERASIUM,MetalsNBTData.DURALUMIN,MetalsNBTData.BRASS);
+                                    } else {
+                                        negative = new BlockPos(player.position()).offset(-x - 4, -y - 4, -z - 4);
+                                        positive = new BlockPos(player.position()).offset(x + 4, y + 4 , z + 4);
+                                    }
+                                    ZincAndBrassHelpers.happyEntitiesWithLerasium(player,event.world,new AxisAlignedBB(negative, positive),playerCapability.isBurning(MetalsNBTData.DURALUMIN));
+                                }
+                            }
                             /************************
                              * BENDALLOY POWERS
                              ************************/
@@ -564,8 +534,6 @@ public class PowersEventHandler {
                                     }
                                 }
                             }
-
-
                             /************************
                              * CHROMIUM ENHANCED
                              ************************/
@@ -586,7 +554,6 @@ public class PowersEventHandler {
                                     playerCapability.drainMetals(MetalsNBTData.CHROMIUM, MetalsNBTData.DURALUMIN);
                                 }
                             }
-
                             /************************
                              * CADMIUM POWERS
                              ************************/
@@ -596,10 +563,8 @@ public class PowersEventHandler {
                                     BlockPos positive;
                                     int amplifier;
                                     int time;
-
                                     /** ENHANCED */
                                     if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
-
                                         if (playerCapability.isBurning(MetalsNBTData.LERASIUM)) {
                                             negative = new BlockPos(player.position()).offset(-x -8, -y -8, -z -8);
                                             positive = new BlockPos(player.position()).offset(x+8 , y+8, z+8);
@@ -651,7 +616,6 @@ public class PowersEventHandler {
                                 }
                             }
                         }
-
                         // Extra delete when you are using both.
                         if (playerCapability.isBurning(MetalsNBTData.CADMIUM) && playerCapability.isBurning(MetalsNBTData.BENDALLOY)) {
                             if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
@@ -661,25 +625,20 @@ public class PowersEventHandler {
                                 playerCapability.drainMetals(MetalsNBTData.CADMIUM, MetalsNBTData.BENDALLOY, MetalsNBTData.DURALUMIN);
                             }
                         }
-
                         /************************
                          * PEWTER POWERS
                          ************************/
                         if (playerCapability.isBurning(MetalsNBTData.PEWTER)) {
-
                             /***
                              * ENHANCED
                              */
                             if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
                                 PewterAndTinHelpers.addPewterEffectsEnhanced(player);
                                 playerCapability.drainMetals(MetalsNBTData.PEWTER, MetalsNBTData.DURALUMIN);
-
                             } else {
                                 PewterAndTinHelpers.addPewterEffects(player);
                             }
                         }
-
-
                         /************************
                          * TIN POWERS
                          ************************/
@@ -693,13 +652,10 @@ public class PowersEventHandler {
                                     playerCapability.drainMetals(MetalsNBTData.LERASIUM);
                                 }
                                 playerCapability.drainMetals(MetalsNBTData.TIN, MetalsNBTData.DURALUMIN);
-
                             } else {
                                 PewterAndTinHelpers.addTinEffects(player);
                             }
                         }
-
-
                         /************************
                          * BRONZE POWERS
                          ************************/
@@ -719,7 +675,6 @@ public class PowersEventHandler {
                             /************************
                              * BRONZE ENHANCED POWERS
                              ************************/
-
                         } else if (playerCapability.isBurning(MetalsNBTData.BRONZE) && playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
                             if (event.world instanceof ServerWorld) {
                                 BlockPos negative;
@@ -736,13 +691,9 @@ public class PowersEventHandler {
                                 playerCapability.drainMetals(MetalsNBTData.BRONZE, MetalsNBTData.DURALUMIN);
                             }
                         }
-
-
-
                         /************************
                          * COPPER POWERS
                          ************************/
-
                         if (playerCapability.isBurning(MetalsNBTData.COPPER) && !playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
                             if (event.world instanceof ServerWorld) {
                                 BlockPos negative;
@@ -775,14 +726,12 @@ public class PowersEventHandler {
                                 playerCapability.drainMetals(MetalsNBTData.COPPER, MetalsNBTData.DURALUMIN);
                             }
                         }
-
                         /************************
                          * ETTMETAL
                          ************************/
                         if (playerCapability.isBurning(MetalsNBTData.ETTMETAL)){
                             LerasiumAndEttmetalHelpers.ettmetalExplotion(event.world,player);
                         }
-
                         /************************
                          * ALUMINUM POWER
                          ************************/
@@ -790,8 +739,8 @@ public class PowersEventHandler {
                              for (MetalsNBTData metalsNBTData: playerCapability.getAllomanticPowers()) {
                                  playerCapability.drainMetals(metalsNBTData);
                              }
+                             player.removeAllEffects();
                         }
-
                         /************************
                          * ELECTRUM POWER (ENHANCED)
                          ************************/
@@ -805,12 +754,18 @@ public class PowersEventHandler {
                                 block = new BlockPos(world.getLevelData().getXSpawn(),world.getLevelData().getYSpawn(), world.getLevelData().getZSpawn());
                                 dimension = World.OVERWORLD.getRegistryName().getNamespace();
                             }
-
-                            GoldAndElectrumHelpers.teleport(player, event.world, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension), block);
-
+                            if (playerCapability.isBurning(MetalsNBTData.LERASIUM)){
+                                BlockPos negative;
+                                BlockPos positive;
+                                negative = new BlockPos(player.position()).offset(-x - 3, -y - 3, -z - 3);
+                                positive = new BlockPos(player.position()).offset(x + 3, y + 3, z + 3);
+                                GoldAndElectrumHelpers.multiTeleport(player, new AxisAlignedBB(negative, positive), event.world, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension),block);
+                                playerCapability.drainMetals(MetalsNBTData.LERASIUM);
+                            } else {
+                                GoldAndElectrumHelpers.teleport(player, event.world, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension), block);
+                            }
                             playerCapability.drainMetals(MetalsNBTData.DURALUMIN, MetalsNBTData.ELECTRUM);
                         }
-
                         /************************
                          * GOLD POWER (ENHANCED)
                          ************************/
@@ -824,32 +779,43 @@ public class PowersEventHandler {
                                 block = new BlockPos(world.getLevelData().getXSpawn(),world.getLevelData().getYSpawn(), world.getLevelData().getZSpawn());
                                 dimension = World.OVERWORLD.getRegistryName().getNamespace();
                             }
-
-                            GoldAndElectrumHelpers.teleport(player, event.world, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension), block);
-
+                            if (playerCapability.isBurning(MetalsNBTData.LERASIUM)){
+                                BlockPos negative;
+                                BlockPos positive;
+                                negative = new BlockPos(player.position()).offset(-x - 3, -y - 3, -z - 3);
+                                positive = new BlockPos(player.position()).offset(x + 3, y + 3, z + 3);
+                                GoldAndElectrumHelpers.multiTeleport(player, new AxisAlignedBB(negative, positive), event.world, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension),block);
+                                playerCapability.drainMetals(MetalsNBTData.LERASIUM);
+                            } else {
+                                GoldAndElectrumHelpers.teleport(player, event.world, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension), block);
+                            }
                             playerCapability.drainMetals(MetalsNBTData.DURALUMIN, MetalsNBTData.GOLD);
                         }
-
                         /************************
                          * MALATIUM POWER (ENHANCED)
                          ************************/
                         if (playerCapability.isBurning(MetalsNBTData.MALATIUM) && playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
                             BlockPos block = null;
                             String dimension = null;
-
                             if (GoldAndElectrumHelpers.getBlock() != null && GoldAndElectrumHelpers.getDimension() != null) {
                                 block = GoldAndElectrumHelpers.getBlock();
                                 dimension = GoldAndElectrumHelpers.getDimension();
-                                GoldAndElectrumHelpers.teleport(player, event.world, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension), block);
+                                if (playerCapability.isBurning(MetalsNBTData.LERASIUM)) {
+                                    BlockPos negative;
+                                    BlockPos positive;
+                                    negative = new BlockPos(player.position()).offset(-x - 3, -y - 3, -z - 3);
+                                    positive = new BlockPos(player.position()).offset(x + 3, y + 3, z + 3);
+                                    GoldAndElectrumHelpers.multiTeleport(player, new AxisAlignedBB(negative, positive), event.world, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension),block);
+                                    playerCapability.drainMetals(MetalsNBTData.LERASIUM);
+                                } else {
+                                    GoldAndElectrumHelpers.teleport(player, event.world, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension), block);
+                                }
                                 GoldAndElectrumHelpers.setBlock(null);
                                 GoldAndElectrumHelpers.setDimension(null);
                             }
-
                             playerCapability.drainMetals(MetalsNBTData.DURALUMIN, MetalsNBTData.MALATIUM);
                         }
-
                 });
-
         }
     }
 }
