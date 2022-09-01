@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.setup.enums.extras;
 
-import net.minecraft.item.Item;
+
+import net.minecraft.world.item.Item;
 
 public enum MetalSpikesData {
     IRON("iron",null,true,false),

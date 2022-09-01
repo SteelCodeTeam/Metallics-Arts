@@ -1,32 +1,34 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.util.ITeleporter;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 
 import java.util.function.Function;
 
+
 public class GoldAndElectrumHelpers {
 
-    public static void teleport(PlayerEntity player, World world, RegistryKey<World> dimension, BlockPos pos) {
+    public static void teleport(Player player, Level world, ResourceKey<Level> dimension, BlockPos pos) {
         if (!world.isClientSide) {
             if (player != null) {
                 if (player.isPassenger()) {
                     player.stopRiding();
                 }
-                if (player.level.dimension() != dimension) {
+                if (player.getLevel().dimension() != dimension) {
                     //change dimension
-                    player = (PlayerEntity) player.changeDimension(world.getServer().getLevel(dimension), new ITeleporter() {
+                    player = (Player) player.changeDimension(world.getServer().getLevel(dimension), new ITeleporter() {
                         @Override
-                        public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
+                        public Entity placeEntity(Entity entity, ServerLevel currentWorld, ServerLevel destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
                             Entity repositionedEntity = repositionEntity.apply(false);
                             repositionedEntity.teleportTo(pos.getX(), pos.getY() + 1, pos.getZ());
                             return repositionedEntity;
@@ -39,51 +41,51 @@ public class GoldAndElectrumHelpers {
         }
     }
 
-    public static void multiTeleport (PlayerEntity player, AxisAlignedBB axisAlignedBB, World world, RegistryKey<World> dimension, BlockPos pos) {
-        world.getEntitiesOfClass(PlayerEntity.class, axisAlignedBB).forEach(entity -> {
+    public static void multiTeleport (Player player, AABB axisAlignedBB, Level world, ResourceKey<Level> dimension, BlockPos pos) {
+        world.getEntitiesOfClass(Player.class, axisAlignedBB).forEach(entity -> {
             teleport(entity,world,dimension,pos);
         });
         teleport(player,world,dimension,pos);
     }
 
-    public static RegistryKey<World> getRegistryKeyFromString(String dim) {
-        if (dim == World.OVERWORLD.getRegistryName().getNamespace()){
-            return World.OVERWORLD;
-        } else if (dim == World.NETHER.getRegistryName().getNamespace()) {
-            return World.NETHER;
-        } else if (dim == World.END.getRegistryName().getNamespace()) {
-            return World.END;
+    public static ResourceKey<Level> getRegistryKeyFromString(String dim) {
+        if (dim == Level.OVERWORLD.registry().getNamespace()){
+            return Level.OVERWORLD;
+        } else if (dim == Level.NETHER.registry().getNamespace()) {
+            return Level.NETHER;
+        } else if (dim == Level.END.registry().getNamespace()) {
+            return Level.END;
         } else {
-            return World.OVERWORLD;
+            return Level.OVERWORLD;
         }
     }
 
-    public static void addHealth(PlayerEntity player,int qtyHealth){
+    public static void addHealth(Player player,int qtyHealth){
         player.setHealth(player.getHealth()+qtyHealth);
     }
 
-    public static void removeHealth(PlayerEntity player, int qtyHealth){
+    public static void removeHealth(Player player, int qtyHealth){
         if (!player.isCreative()){
             player.hurt(DamageSource.GENERIC, qtyHealth);
         }
     }
 
-    public static void removeHearts(PlayerEntity player, int qtyHearth){
+    public static void removeHearts(Player player, int qtyHearth){
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(qtyHearth);
     }
 
-    public static void restoreHearts(PlayerEntity player){
+    public static void restoreHearts(Player player){
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
     }
 
-    public static void addHearts(PlayerEntity player, int qtyHearth) {
+    public static void addHearts(Player player, int qtyHearth) {
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(qtyHearth);
     }
 
     private static BlockPos block = null;
     private static String dimension = null;
 
-    public static void takeDeathPosToObjetive(PlayerEntity playerEntity) {
+    public static void takeDeathPosToObjetive(Player playerEntity) {
         playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap ->{
             if (cap.getDeathPos() != null && cap.getDeathDimension() != null) {
                 block = new BlockPos(cap.getDeathPos()[0], cap.getDeathPos()[1], cap.getDeathPos()[2]);

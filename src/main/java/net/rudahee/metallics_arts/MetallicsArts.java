@@ -1,12 +1,11 @@
 package net.rudahee.metallics_arts;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ResourceLocation;
+import com.mojang.blaze3d.platform.ScreenManager;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -16,7 +15,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceScreen;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
@@ -55,6 +53,9 @@ public class MetallicsArts
         // Register the processIMC method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
+
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(InvestedCapability::register);
+
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
         // Register ourselves for server and other game events we are interested in
@@ -63,7 +64,7 @@ public class MetallicsArts
 
     @SubscribeEvent
     public void attachCapabilitiesEntity(final AttachCapabilitiesEvent<Entity> event) {
-        if (event.getObject() instanceof PlayerEntity) {
+        if (event.getObject() instanceof Player) {
             event.addCapability(InvestedCapability.IDENTIFIER, new InvestedDataProvider());
         }
     }
@@ -72,20 +73,21 @@ public class MetallicsArts
     {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
-        CapabilityManager.INSTANCE.register(IDefaultInvestedPlayerData.class, new InvestedStorage(), DefaultInvestedPlayerData::new);
+        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getDescriptionId());
         MetallicsPowersSetup.register(event);
         ModNetwork.registerPackets();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
-        LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().options);
+
 
         event.enqueueWork(() -> {
-            //CuriosApi.getIconHelper().addIcon("metalmind_slot_icon", new ResourceLocation("item/slot"));
-            ScreenManager.register(ModContainers.ALLOY_FURNACE_CONTAINER.get(),
+
+            /** /!\
+             * ScreenManager.register(ModContainers.ALLOY_FURNACE_CONTAINER.get(),
                     AlloyFurnaceScreen::new);
+             */
             KeyInit.register();
         });
     }
@@ -105,11 +107,7 @@ public class MetallicsArts
                 collect(Collectors.toList()));
     }
     // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(FMLServerStartingEvent event) {
-        // do something when the server starts
-        LOGGER.info("HELLO from server starting");
-    }
+
 
     @SubscribeEvent
     public void onCommandsRegister(RegisterCommandsEvent event){

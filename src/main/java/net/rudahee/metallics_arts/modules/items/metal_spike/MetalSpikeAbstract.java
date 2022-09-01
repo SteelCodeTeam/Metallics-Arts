@@ -1,35 +1,22 @@
 package net.rudahee.metallics_arts.modules.items.metal_spike;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.client.particle.LargeExplosionParticle;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.LightningBoltEntity;
-import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.entity.passive.ChickenEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
+import com.mojang.math.Vector3d;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -42,13 +29,13 @@ public abstract class MetalSpikeAbstract extends SwordItem {
 
     private MetalsNBTData metalSpike;
 
-    public MetalSpikeAbstract(Properties properties,MetalsNBTData metalsNBTData) {
+    public MetalSpikeAbstract(Item.Properties properties, MetalsNBTData metalsNBTData) {
         super(tier, ATTACK_DAMAGE, ATTACK_SPEED, properties);
         this.metalSpike = metalsNBTData;
     }
 
 
-    private static final IItemTier tier = new IItemTier() {
+    private static final Tier tier = new Tier() {
         @Override
         public int getUses() {
             return 1;
@@ -93,23 +80,26 @@ public abstract class MetalSpikeAbstract extends SwordItem {
         return false;
     }
 
+
+
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> toolTips, ITooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flag) {
         if  (!stack.getTag().contains("metal_spike")||!stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
             stack.setTag(generateTags(stack));
         }
         if (stack.hasTag()){
-            if (stack.getTag().getBoolean("feruchemic_power")){
-                toolTips.add(new StringTextComponent("Power: Feruchemic"));
+            if (stack.getTag().getBoolean("feruchemic_power")) {
+
+                toolTips.add(Component.translatable("Power stored: Feruchemic"));
             }
-            if (stack.getTag().getBoolean("allomantic_power")){
-                toolTips.add(new StringTextComponent("Power: Allomantic"));
+            if (stack.getTag().getBoolean("allomantic_power")) {
+                toolTips.add(Component.translatable("Power stored: Allomantic"));
             }
         }
         super.appendHoverText(stack, world, toolTips, flag);
     }
 
-    public CompoundNBT generateTags(ItemStack stack){
+    public CompoundTag generateTags(ItemStack stack){
         stack.getTag().putInt("metal_spike",this.metalSpike.getIndex());
         stack.getTag().putBoolean("feruchemic_power",false);
         stack.getTag().putBoolean("allomantic_power",false);
@@ -125,7 +115,7 @@ public abstract class MetalSpikeAbstract extends SwordItem {
         }
 
 
-        if ((target instanceof PlayerEntity) && (attacker instanceof PlayerEntity)){
+        if ((target instanceof Player) && (attacker instanceof Player)){
 
 
             target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(targetData -> {
@@ -140,7 +130,7 @@ public abstract class MetalSpikeAbstract extends SwordItem {
                 MetalsNBTData localMetal = MetalsNBTData.getMetal(stack.getTag().getInt("metal_spike"));
 
                 Random rng = new Random();
-                World world = target.level;
+                Level world = target.level;
                 BlockPos pos = new BlockPos(target.position());
 
                 //DAR PODER
@@ -171,7 +161,7 @@ public abstract class MetalSpikeAbstract extends SwordItem {
                                 targetData.removeAllomanticPower(localMetal);
                             }
                             stack.getTag().putBoolean("allomantic_power",true);
-                            addItemToPlayer((PlayerEntity) attacker, stack);
+                            addItemToPlayer((Player) attacker, stack);
                         }
                     } else {
                         if (couldStealPower){
@@ -179,7 +169,7 @@ public abstract class MetalSpikeAbstract extends SwordItem {
                                 targetData.removeFeruchemicPower(localMetal);
                             }
                             stack.getTag().putBoolean("feruchemic_power",true);
-                            addItemToPlayer((PlayerEntity) attacker, stack);
+                            addItemToPlayer((Player) attacker, stack);
                         }
                     }
                 } else if (hasAllomanticPower){
@@ -188,7 +178,7 @@ public abstract class MetalSpikeAbstract extends SwordItem {
                             targetData.removeAllomanticPower(localMetal);
                         }
                         stack.getTag().putBoolean("allomantic_power",true);
-                        addItemToPlayer((PlayerEntity) attacker, stack);
+                        addItemToPlayer((Player) attacker, stack);
                     }
                 } else if (hasFeruchemicPower){
                     if (Math.random()>0.90){
@@ -196,26 +186,26 @@ public abstract class MetalSpikeAbstract extends SwordItem {
                             targetData.removeFeruchemicPower(localMetal);
                         }
                         stack.getTag().putBoolean("feruchemic_power",true);
-                        addItemToPlayer((PlayerEntity) attacker, stack);
+                        addItemToPlayer((Player) attacker, stack);
                     }
                 }
-                ModNetwork.sync(targetData,(PlayerEntity) target);
+                ModNetwork.sync(targetData,(Player) target);
             });
         }
         return super.hurtEnemy(stack, target, attacker);
     }
 
-    private void doEffects(Random rng, World world, BlockPos pos) {
-        LightningBoltEntity lightning = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, world);
+    private void doEffects(Random rng, Level world, BlockPos pos) {
+        LightningBolt lightning = new LightningBolt(EntityType.LIGHTNING_BOLT, world);
 
         lightning.setVisualOnly(true);
-        lightning.moveTo(new Vector3d(pos.getX(), pos.getY(), pos.getZ()));
+        lightning.moveTo(new Vec3(pos.getX(), pos.getY(), pos.getZ()));
 
         world.addFreshEntity(lightning);
     }
 
 
-    public void addItemToPlayer(PlayerEntity attacker,ItemStack stack) {
+    public void addItemToPlayer(Player attacker,ItemStack stack) {
         ItemStack itemStack = stack.copy();
         attacker.addItem(itemStack);
     }

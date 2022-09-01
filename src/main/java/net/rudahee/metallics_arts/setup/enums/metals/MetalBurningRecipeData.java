@@ -1,6 +1,6 @@
 package net.rudahee.metallics_arts.setup.enums.metals;
 
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 
 public enum MetalBurningRecipeData implements IMetal {
 

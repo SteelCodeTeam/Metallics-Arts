@@ -13,11 +13,11 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 
-version = 'alpha-3.3'
+version = 'alpha-3.2'
 group = 'net.rudahee.metallics_arts' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'metallics_arts'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
+java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
@@ -32,7 +32,7 @@ minecraft {
     //
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'official', version: '1.16.5'
+    mappings channel: 'official', version: '1.19.2'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
@@ -101,15 +101,15 @@ minecraft {
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             args '--mod', 'metallics_arts', '--all',
-            '--output', file('src/generated/resources/'),
-            '--existing', file('src/main/resources/'),
-            '--existing', file('src/generated/resources').toString(),
+                    '--output', file('src/generated/resources/'),
+                    '--existing', file('src/main/resources/'),
+                    '--existing', file('src/generated/resources').toString(),
 
-            mods {
-                metallics_arts {
-                    source sourceSets.main
-                }
-            }
+                    mods {
+                        metallics_arts {
+                            source sourceSets.main
+                        }
+                    }
         }
     }
 }
@@ -122,13 +122,15 @@ dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.16.5-36.2.26'
+    minecraft 'net.minecraftforge:forge:1.19.2-43.1.3'
 
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.5-4.0.6.8")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.5-4.0.6.8:api")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.2-5.1.1.0")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.2-5.1.1.0:api")
 
-    compileOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.138:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.138")
+    compileOnly fg.deobf("mezz.jei:jei-1.19.2-common-api:11.2.0.246")
+    compileOnly fg.deobf("mezz.jei:jei-1.19.2-forge-api:11.2.0.246")
+
+    compileOnly fg.deobf("mezz.jei:jei-1.19.2-forge:11.2.0.246")
 
 
     // Compile against the Hwyla API, but do not include it at runtime
@@ -161,13 +163,13 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "metallics_arts",
-            "Specification-Vendor": "rudahee",
-            "Specification-Version": "1", // We are version 1 of ourselves
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"rudahee",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Specification-Title": "metallics_arts",
+                "Specification-Vendor": "rudahee",
+                "Specification-Version": "1", // We are version 1 of ourselves
+                "Implementation-Title": project.name,
+                "Implementation-Version": "${version}",
+                "Implementation-Vendor" :"rudahee",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
@@ -176,7 +178,9 @@ repositories {
     maven {
         url = "https://maven.theillusivec4.top/"
     }
-    maven { url "https://maven.tehnut.info" }
+    maven {
+        url = "https://maven.tehnut.info/"
+    }
 }
 
 repositories {

@@ -1,6 +1,9 @@
 package net.rudahee.metallics_arts.modules.data_player;
 
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.common.capabilities.Capability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
@@ -88,7 +91,7 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
 
 
     @Override
-    public void tickAllomancyBurningMetals(ServerPlayerEntity player){
+    public void tickAllomancyBurningMetals(ServerPlayer player){
         boolean readyToSync = false;
 
         for (MetalsNBTData metal: MetalsNBTData.values()) {
@@ -114,12 +117,12 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
         }
     }
     @Override
-    public void tickFeruchemyStorageMetals(ServerPlayerEntity player){
+    public void tickFeruchemyStorageMetals(ServerPlayer player){
 
     }
 
     @Override
-    public void tickFeruchemyDecantMetals(ServerPlayerEntity player){
+    public void tickFeruchemyDecantMetals(ServerPlayer player){
 
     }
 
@@ -468,6 +471,136 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     @Override
     public int getAllomanticAmount(MetalsNBTData metal){
         return this.allomantic_reseve[metal.getIndex()];
+    }
+
+    @Override
+    public CompoundTag save() {
+
+        CompoundTag invested_data = new CompoundTag();
+        CompoundTag allomantic_powers = new CompoundTag();
+        CompoundTag feruchemic_powers = new CompoundTag();
+        CompoundTag allomantic_reserve = new CompoundTag();
+        CompoundTag burning_metals = new CompoundTag();
+        CompoundTag decanting_metals = new CompoundTag();
+        CompoundTag storing_metals = new CompoundTag();
+        CompoundTag death_pos = new CompoundTag();
+        CompoundTag spawn_pos = new CompoundTag();
+        CompoundTag spawn_dimension = new CompoundTag();
+        CompoundTag death_dimension = new CompoundTag();
+        CompoundTag metal_mind_equiped = new CompoundTag();
+
+        for (MetalsNBTData metal : MetalsNBTData.values()) {
+            allomantic_powers.putBoolean(metal.getNameLower(), this.hasAllomanticPower(metal));
+            feruchemic_powers.putBoolean(metal.getNameLower(), this.hasFeruchemicPower(metal));
+            allomantic_reserve.putInt(metal.getNameLower(), this.getAllomanticAmount(metal));
+            burning_metals.putBoolean(metal.getNameLower(), this.isBurning(metal));
+            decanting_metals.putBoolean(metal.getNameLower(), this.isDecanting(metal));
+            storing_metals.putBoolean(metal.getNameLower(), this.isStoring(metal));
+        }
+
+        invested_data.put("allomantic_powers", allomantic_powers);
+        invested_data.put("feruchemic_powers", feruchemic_powers);
+        invested_data.put("allomantic_reserve", allomantic_reserve);
+        invested_data.put("burning_metals", burning_metals);
+
+        invested_data.putBoolean("invested",this.isInvested());
+        invested_data.putBoolean("mistborn",this.isMistborn());
+        invested_data.putBoolean("fullFeruchemic",this.isFullFeruchemic());
+        invested_data.putBoolean("fullInvested",this.isFullInvested());
+
+        death_pos.putIntArray("death_position",this.getDeathPos());
+
+        try {
+            if (this.getDeathDimension() != null) {
+                death_dimension.putString("death_dimension",this.getDeathDimension());
+            } else {
+                death_dimension.putString("death_dimension", this.getSpawnDimension());
+            }
+        } catch (Exception ex) {
+            System.out.println("TREMENDO PELOTUDO TOBIAS.");
+        }
+
+        spawn_pos.putIntArray("spawn_position", this.getSpawnPos());
+        spawn_dimension.putString("spawn_dimension",this.getSpawnDimension());
+
+        invested_data.put("death_pos", death_pos);
+        invested_data.put("death_dim", death_dimension);
+
+        invested_data.put("spawn_pos", spawn_pos);
+        invested_data.put("spawn_dim", spawn_dimension);
+
+        for (int i=0;i<10;i++){
+            metal_mind_equiped.putBoolean("group"+i,this.getMetalMindEquiped(i));
+        }
+
+        invested_data.put("metal_mind_equiped",metal_mind_equiped);
+
+        invested_data.put("decanting_metals", decanting_metals);
+        invested_data.put("storing_metals", storing_metals);
+
+        invested_data.putBoolean("external_enhanced", this.getExternalEnhanced());
+
+        return invested_data;
+    }
+
+    @Override
+    public void load(CompoundTag nbt) {
+        CompoundTag invested_data = (CompoundTag) nbt;
+
+        this.setExternalEnhanced(invested_data.getBoolean("external_enhanced"));
+
+        CompoundTag allomantic_powers = (CompoundTag) invested_data.get("allomantic_powers");
+        CompoundTag feruchemic_powers = (CompoundTag) invested_data.get("feruchemic_powers");
+        CompoundTag allomantic_reserve = (CompoundTag) invested_data.get("allomantic_reserve");
+        CompoundTag burning_metals = (CompoundTag) invested_data.get("burning_metals");
+        CompoundTag storing_metals = (CompoundTag) invested_data.get("storing_metals");
+        CompoundTag decanting_metals = (CompoundTag) invested_data.get("decanting_metals");
+
+        CompoundTag death_pos = (CompoundTag) invested_data.get("death_pos");
+        CompoundTag spawn_pos = (CompoundTag) invested_data.get("spawn_pos");
+        CompoundTag death_dimension = (CompoundTag) invested_data.get("death_dim");
+        CompoundTag spawn_dimension = (CompoundTag) invested_data.get("spawn_dim");
+
+        CompoundTag metal_mind_equiped = (CompoundTag) invested_data.get("metal_mind_equiped");
+
+        for (MetalsNBTData metal : MetalsNBTData.values()) {
+            if (allomantic_powers.getBoolean(metal.getNameLower())) {
+                this.addAllomanticPower(metal);
+            } else {
+                this.removeAllomanticPower(metal);
+            }
+
+            if (feruchemic_powers.getBoolean(metal.getNameLower())) {
+                this.addFeruchemicPower(metal);
+            } else {
+                this.removeFeruchemicPower(metal);
+            }
+
+            this.setDecanting(metal, decanting_metals.getBoolean(metal.getNameLower()));
+            this.setStoring(metal, storing_metals.getBoolean(metal.getNameLower()));
+
+            if (this.hasAllomanticPower(metal)){
+                this.setAllomanticMetalsAmount(metal,allomantic_reserve.getInt(metal.getNameLower()));
+                this.setBurning(metal,burning_metals.getBoolean(metal.getNameLower()));
+            }
+        }
+
+        for (int i=0;i<10;i++){
+            this.setMetalMindEquiped(i,metal_mind_equiped.getBoolean("group"+i));
+        }
+
+        try {
+            if (death_pos.getIntArray("death_position") != null && death_dimension.getString("death_dimension") != null) {
+                this.setDeathPos(death_pos.getIntArray("death_position"));
+                this.setDeathDimension(death_dimension.getString("death_dimensions"));
+            }
+            if (spawn_pos.getIntArray("spawn_position") != null && spawn_dimension.getString("spawn_dimension") != null) {
+                this.setSpawnPos(spawn_pos.getIntArray("spawn_position"));
+                this.setSpawnDimension(spawn_dimension.getString("spawn_dimension"));
+            }
+        } catch(Exception ex) {
+            System.out.println("SIGUE SIENDO UNA COSTRA DE NULL EL DEATH O SPAWN POS :D");
+        }
     }
 
 

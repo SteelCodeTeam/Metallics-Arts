@@ -1,13 +1,14 @@
 package net.rudahee.metallics_arts.setup.network;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.ResourceLocation;
+
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.fml.network.NetworkDirection;
-import net.minecraftforge.fml.network.NetworkRegistry;
-import net.minecraftforge.fml.network.PacketDistributor;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.minecraftforge.network.NetworkDirection;
+import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.network.PacketDistributor;
+import net.minecraftforge.network.simple.SimpleChannel;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.network.*;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
@@ -43,7 +44,7 @@ public class ModNetwork {
         INSTANCE.sendToServer(msg);
     }
 
-    public static void sendTo(Object msg, ServerPlayerEntity player) {
+    public static void sendTo(Object msg, ServerPlayer player) {
         if (!(player instanceof FakePlayer)) {
             INSTANCE.sendTo(msg, player.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
         }
@@ -53,15 +54,15 @@ public class ModNetwork {
         INSTANCE.send(target, msg);
     }
 
-    public static void sync(PlayerEntity player) {
+    public static void sync(Player player) {
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> sync(data, player));
     }
 
-    public static void sync(IDefaultInvestedPlayerData cap, PlayerEntity player) {
+    public static void sync(IDefaultInvestedPlayerData cap, Player player) {
         sync(new InvestedDataPacket(cap, player), player);
     }
 
-    public static void sync(Object msg, PlayerEntity player) {
+    public static void sync(Object msg, Player player) {
         sendTo(msg, PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player));
     }
 

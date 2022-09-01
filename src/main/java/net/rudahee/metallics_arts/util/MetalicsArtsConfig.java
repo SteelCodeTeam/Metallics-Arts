@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.util;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersConfig;
 
 public class MetalicsArtsConfig {
@@ -17,12 +18,12 @@ public class MetalicsArtsConfig {
         COMMON_CONFIG = COMMON_BUILDER.build();
         CLIENT_CONFIG = CLIENT_BUILDER.build();
     }
-    public static void onReload(final ModConfig.Reloading e) {
+    public static void onReload(final ModConfigEvent e) {
         MetallicsPowersConfig.refresh(e);
     }
 
 
-    public static void onLoad(final ModConfig.Loading e) {
+    public static void onLoad(final ModConfigEvent e) {
         MetallicsPowersConfig.load_whitelist(e);
     }
 }

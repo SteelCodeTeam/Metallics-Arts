@@ -1,9 +1,10 @@
 package net.rudahee.metallics_arts.data.network;
 
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.fml.network.NetworkEvent;
+
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.network.NetworkEvent;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.ZincAndBrassHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
@@ -27,11 +28,11 @@ public class ChangeEmotionPacket {
         this.make_aggressive = make_aggressive;
     }
 
-    public static ChangeEmotionPacket decode(PacketBuffer buf) {
+    public static ChangeEmotionPacket decode(FriendlyByteBuf buf) {
         return new ChangeEmotionPacket(buf.readInt(), buf.readBoolean());
     }
 
-    public void encode(PacketBuffer buf) {
+    public void encode(FriendlyByteBuf buf) {
         buf.writeInt(this.entityID);
         buf.writeBoolean(this.make_aggressive);
     }
@@ -40,8 +41,8 @@ public class ChangeEmotionPacket {
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
-            PlayerEntity allomancer = ctx.get().getSender();
-            CreatureEntity target = (CreatureEntity) allomancer.level.getEntity(this.entityID);
+            Player allomancer = ctx.get().getSender();
+            Mob target = (Mob) allomancer.level.getEntity(this.entityID);
             if (target == null) {
                 return;
             }

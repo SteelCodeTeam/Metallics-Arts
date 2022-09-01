@@ -1,7 +1,7 @@
 package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.IIntArray;
+
+import net.minecraft.nbt.CompoundTag;
 
 public class AlloyFurnaceData implements IIntArray {
 
@@ -12,7 +12,7 @@ public class AlloyFurnaceData implements IIntArray {
     public int maxTimeToActualRecipe;
 
 
-    public void updateNBTData(CompoundNBT nbt) {
+    public void updateNBTData(CompoundTag nbt) {
         nbt.putInt("actual_fuel_burning", actualFuelBurning);
         nbt.putInt("max_fuel_burning", maxFuelBurning);
         nbt.putInt("is_crafting", isCrafting);
@@ -20,7 +20,7 @@ public class AlloyFurnaceData implements IIntArray {
         nbt.putInt("max_time_to_recipe", maxTimeToActualRecipe);
     }
 
-    public void readNBTData(CompoundNBT nbt) {
+    public void readNBTData(CompoundTag nbt) {
         actualFuelBurning = nbt.getInt("actual_fuel_burning");
         maxFuelBurning = nbt.getInt("max_fuel_burning");
         isCrafting = nbt.getInt("is_crafting");

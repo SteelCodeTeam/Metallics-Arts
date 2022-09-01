@@ -3,18 +3,13 @@ package net.rudahee.metallics_arts.setup.commands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.command.arguments.EntityArgument;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.items.vials.Vial;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
@@ -29,14 +24,14 @@ import java.util.stream.Collectors;
 
 public class MetallicArtsCommand {
 
-    private static final DynamicCommandExceptionType ERROR_CANT_ADD = new DynamicCommandExceptionType(s -> new TranslationTextComponent("commands.metallic_arts.err_add", s));
-    private static final DynamicCommandExceptionType ERROR_CANT_REMOVE = new DynamicCommandExceptionType(s -> new TranslationTextComponent("commands.metallic_arts.err_remove", s));
+    private static final DynamicCommandExceptionType ERROR_CANT_ADD = new DynamicCommandExceptionType(s -> Component.translatable("commands.metallic_arts.err_add", s));
+    private static final DynamicCommandExceptionType ERROR_CANT_REMOVE = new DynamicCommandExceptionType(s -> Component.translatable("commands.metallic_arts.err_remove", s));
 
-    private static Predicate<CommandSource> permissions(int level) {
+    private static Predicate<CommandSourceStack> permissions(int level) {
         return (player) -> player.hasPermission(level);
     }
 
-    public static void register(CommandDispatcher<CommandSource> dispatcher) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
 
         dispatcher.register(Commands.literal("ma-items").requires(commandSource -> commandSource.hasPermission(2))
                 .then(Commands.literal("get")
@@ -586,65 +581,65 @@ public class MetallicArtsCommand {
 
     }
 
-    private static int getLargeVial(CommandContext<CommandSource> context, ServerPlayerEntity target) {
+    private static int getLargeVial(CommandContext<CommandSourceStack> context, ServerPlayer target) {
         ItemStack vial = new ItemStack(ModItems.LARGE_VIAL.get());
         vial.setTag(Vial.addFullReserveVialTags());
-        CompoundNBT nbt = new CompoundNBT();
+        CompoundTag nbt = new CompoundTag();
         nbt.putInt("CustomModelData", 1);
         vial.setTag(nbt);
 
-        target.inventory.add(vial);
-        target.sendMessage(new StringTextComponent("Added 1 Vial with all metals to " + target.getScoreboardName()), target.getUUID());
+        target.getInventory().add(vial);
+        target.sendSystemMessage(Component.translatable("Added 1 Vial with all metals to " + target.getScoreboardName()));
         return  1;
     }
 
-    public static int addAllomanticPower (CommandContext<CommandSource> context,MetalsNBTData metalsNBTData, ServerPlayerEntity player){
+    public static int addAllomanticPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
             p.addAllomanticPower(metalsNBTData);
                 }
         );
         ModNetwork.sync(player);
-        player.sendMessage(new StringTextComponent("Added " + metalsNBTData.getNameLower() + " allomantic power to " + player.getScoreboardName()),player.getUUID());
+        player.sendSystemMessage(Component.translatable("Added " + metalsNBTData.getNameLower() + " allomantic power to " + player.getScoreboardName()));
 
         return 1;
     }
-    public static int addFeruchemicPower (CommandContext<CommandSource> context,MetalsNBTData metalsNBTData, ServerPlayerEntity player){
+    public static int addFeruchemicPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
                     p.addFeruchemicPower(metalsNBTData);
                 }
         );
         ModNetwork.sync(player);
-        player.sendMessage(new StringTextComponent("Added " + metalsNBTData.getNameLower() + " feruchemic power to " + player.getScoreboardName()), player.getUUID());
+        player.sendSystemMessage(Component.translatable("Added " + metalsNBTData.getNameLower() + " feruchemic power to " + player.getScoreboardName()));
 
         return 1;
     }
-    public static int addAllAllomanticPower (CommandContext<CommandSource> context, ServerPlayerEntity player){
-        ServerPlayerEntity playerEntity = null;
+    public static int addAllAllomanticPower (CommandContext<CommandSourceStack> context, ServerPlayer player){
+        ServerPlayer playerEntity = null;
 
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
                         p.addAllAllomantic();
                     }
             );
             ModNetwork.sync(player);
-            player.sendMessage(new StringTextComponent("Added all allomantics powers to " + player.getScoreboardName()),player.getUUID());
+            player.sendSystemMessage(Component.translatable("Added all allomantics powers to " + player.getScoreboardName()));
 
         return 1;
     }
-    public static int addAllFeruchemicPower (CommandContext<CommandSource> context, ServerPlayerEntity player){
+    public static int addAllFeruchemicPower (CommandContext<CommandSourceStack> context, ServerPlayer player){
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
                     p.addAllFeruchemic();
                 }
         );
         ModNetwork.sync(player);
-        player.sendMessage(new StringTextComponent("Added all feruchemics powers to " + player.getScoreboardName()),player.getUUID());
+        player.sendSystemMessage(Component.translatable("Added all feruchemics powers to " + player.getScoreboardName()));
 
 
         return 1;
     }
-    public static int addAllPower(CommandContext<CommandSource> context, ServerPlayerEntity player){
+    public static int addAllPower(CommandContext<CommandSourceStack> context, ServerPlayer player){
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
                     p.addAllAllomantic();
@@ -652,12 +647,12 @@ public class MetallicArtsCommand {
                 }
         );
         ModNetwork.sync(player);
-        player.sendMessage(new StringTextComponent("Added all powers to " + player.getScoreboardName()),player.getUUID());
+        player.sendSystemMessage(Component.translatable("Added all powers to " + player.getScoreboardName()));
 
 
         return 1;
     }
-    public static int addRandomPower(CommandContext<CommandSource> context, ServerPlayerEntity player){
+    public static int addRandomPower(CommandContext<CommandSourceStack> context, ServerPlayer player){
 
         Random random = new Random();
         MetalsNBTData metal;
@@ -673,52 +668,52 @@ public class MetallicArtsCommand {
         return 1;
     }
 
-    public static int removeAllomanticPower (CommandContext<CommandSource> context,MetalsNBTData metalsNBTData, ServerPlayerEntity player){
+    public static int removeAllomanticPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
                     p.removeAllomanticPower(metalsNBTData);
                 });
 
         ModNetwork.sync(player);
-        player.sendMessage(new StringTextComponent("Revoke " + metalsNBTData.getNameLower() + " allomantic power to " + player.getScoreboardName()),player.getUUID());
+        player.sendSystemMessage(Component.translatable("Revoke " + metalsNBTData.getNameLower() + " allomantic power to " + player.getScoreboardName()));
 
         return 1;
     }
-    public static int removeFeruchemicPower (CommandContext<CommandSource> context,MetalsNBTData metalsNBTData, ServerPlayerEntity player){
+    public static int removeFeruchemicPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
                     p.removeFeruchemicPower(metalsNBTData);
                 }
         );
         ModNetwork.sync(player);
-        player.sendMessage(new StringTextComponent("Revoke " + metalsNBTData.getNameLower() + " feruchemic power to " + player.getScoreboardName()),player.getUUID());
+        player.sendSystemMessage(Component.translatable("Revoke " + metalsNBTData.getNameLower() + " feruchemic power to " + player.getScoreboardName()));
 
         return 1;
     }
-    public static int removeAllAllomanticPower (CommandContext<CommandSource> context, ServerPlayerEntity player){
+    public static int removeAllAllomanticPower (CommandContext<CommandSourceStack> context, ServerPlayer player){
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
                     p.removeAllAllomanticPower();
                 }
         );
         ModNetwork.sync(player);
-        player.sendMessage(new StringTextComponent("Revoke all allomantics powers to " + player.getScoreboardName()),player.getUUID());
+        player.sendSystemMessage(Component.translatable("Revoke all allomantics powers to " + player.getScoreboardName()));
 
 
         return 1;
     }
-    public static int removeAllFeruchemicPower (CommandContext<CommandSource> context, ServerPlayerEntity player){
+    public static int removeAllFeruchemicPower (CommandContext<CommandSourceStack> context, ServerPlayer player){
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
                     p.removeAllFeruchemicPower();
                 }
         );
         ModNetwork.sync(player);
-        player.sendMessage(new StringTextComponent("Revoke all feruchemics powers to " + player.getScoreboardName()),player.getUUID());
+        player.sendSystemMessage(Component.translatable("Revoke all feruchemics powers to " + player.getScoreboardName()));
 
         return 1;
     }
-    public static int removeAllPower(CommandContext<CommandSource> context, ServerPlayerEntity player){
+    public static int removeAllPower(CommandContext<CommandSourceStack> context, ServerPlayer player){
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
                     p.removeAllAllomanticPower();
@@ -726,23 +721,23 @@ public class MetallicArtsCommand {
                 }
         );
         ModNetwork.sync(player);
-        player.sendMessage(new StringTextComponent("Revoke all powers to " + player.getScoreboardName()),player.getUUID());
+        player.sendSystemMessage(Component.translatable("Revoke all powers to " + player.getScoreboardName()));
 
         return 1;
     }
-    public static int getAllomanticPower (CommandContext<CommandSource> context, MetalsNBTData metalsNBTData, ServerPlayerEntity player){
+    public static int getAllomanticPower (CommandContext<CommandSourceStack> context, MetalsNBTData metalsNBTData, ServerPlayer player){
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> sendSimpleMessage(player, cap.hasAllomanticPower(metalsNBTData), metalsNBTData, "allomantic"));
 
         return 1;
     }
-    public static int getFeruchemicPower (CommandContext<CommandSource> context,MetalsNBTData metalsNBTData, ServerPlayerEntity player){
+    public static int getFeruchemicPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
 
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> sendSimpleMessage(player, cap.hasFeruchemicPower(metalsNBTData), metalsNBTData, "feruchemic"));
 
         return 1;
     }
-    public static int getAllPower (CommandContext<CommandSource> context, String type, ServerPlayerEntity player){
+    public static int getAllPower (CommandContext<CommandSourceStack> context, String type, ServerPlayer player){
 
         if(type.equals("allomantic")){
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> sendAllMessage(player, cap.getAllomanticPowers(), type));
@@ -756,7 +751,7 @@ public class MetallicArtsCommand {
 
         return 1;
     }
-    private static void sendAllMessage(ServerPlayerEntity finalPlayerEntity, ArrayList<MetalsNBTData> result, String type) {
+    private static void sendAllMessage(ServerPlayer finalPlayerEntity, ArrayList<MetalsNBTData> result, String type) {
 
         ArrayList<MetalsNBTData> allMetals = new ArrayList<>(Arrays.asList(MetalsNBTData.values()));
 
@@ -777,8 +772,8 @@ public class MetallicArtsCommand {
                 allAllomanticMetalsDontHave.append(metal.getNameLower() + " ");
             }
 
-            finalPlayerEntity.sendMessage(new StringTextComponent("The player have those allomantic powers: " + allAlomanticMetalsHave),finalPlayerEntity.getUUID());
-            finalPlayerEntity.sendMessage(new StringTextComponent("The player dont have those feruchemic powers: " + allAllomanticMetalsDontHave),finalPlayerEntity.getUUID());
+            finalPlayerEntity.sendSystemMessage(Component.translatable("The player have those allomantic powers: " + allAlomanticMetalsHave));
+            finalPlayerEntity.sendSystemMessage(Component.translatable("The player dont have those feruchemic powers: " + allAllomanticMetalsDontHave));
 
         } else if (type.equals("all") || type.equals("feruchemic")) {
             StringBuilder allFeruchemicMetalsHave = new StringBuilder();
@@ -795,18 +790,18 @@ public class MetallicArtsCommand {
                 allFeruchemicMetalsDontHave.append(metal.getNameLower() + " ");
             }
 
-            finalPlayerEntity.sendMessage(new StringTextComponent("The player have those feruchemic powers: " + allFeruchemicMetalsHave),finalPlayerEntity.getUUID());
-            finalPlayerEntity.sendMessage(new StringTextComponent("The player dont have those feruchemic powers: " + allFeruchemicMetalsDontHave),finalPlayerEntity.getUUID());
+            finalPlayerEntity.sendSystemMessage(Component.translatable("The player have those feruchemic powers: " + allFeruchemicMetalsHave));
+            finalPlayerEntity.sendSystemMessage(Component.translatable("The player dont have those feruchemic powers: " + allFeruchemicMetalsDontHave));
 
         }
     }
-    private static void sendSimpleMessage(ServerPlayerEntity finalPlayerEntity, boolean result, MetalsNBTData metal, String type) {
+    private static void sendSimpleMessage(ServerPlayer finalPlayerEntity, boolean result, MetalsNBTData metal, String type) {
 
         String have = (result) ?  "have " : "have not ";
 
 
-        ITextComponent text = new StringTextComponent("The player " + have + type + " " + metal.getNameLower() + " power");
+        Component text = Component.translatable("The player " + have + type + " " + metal.getNameLower() + " power");
 
-        finalPlayerEntity.sendMessage(text, finalPlayerEntity.getUUID());
+        finalPlayerEntity.sendSystemMessage(text);
     }
 }

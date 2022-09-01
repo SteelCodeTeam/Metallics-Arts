@@ -2,19 +2,19 @@ package net.rudahee.metallics_arts.data.recipes.alloy_furnace;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import com.mojang.realmsclient.util.JsonUtils;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistry;
+import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceContainer;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
 
@@ -36,7 +36,7 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
     }
 
     @Override
-    public boolean matches(IInventory inventory, World world) {
+    public boolean matches(AlloyFurnaceContainer inventory, Level world) {
         List<Ingredient> testTarget = recipeItems;
 
         if (testTarget.get(0).test(inventory.getItem(0))
@@ -55,7 +55,7 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
     }
 
     @Override
-    public ItemStack assemble(IInventory inventory) {
+    public ItemStack assemble(AlloyFurnaceContainer inventory) {
         return output.copy();
     }
 
@@ -74,26 +74,26 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return ModRecipeTypes.ALLOY_FURNACE_SERIALIZER.get();
     }
 
 
-    public static class AlloyFurnaceRecipeType implements IRecipeType<AlloyFurnaceRecipe> {
+    public static class AlloyFurnaceRecipeType implements RecipeType<AlloyFurnaceRecipe> {
         @Override
         public String toString() {
             return AlloyFurnaceRecipe.TYPE_ID.toString();
         }
     }
 
-    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
-            implements IRecipeSerializer<AlloyFurnaceRecipe> {
+    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>>
+            implements RecipeSerializer<AlloyFurnaceRecipe> {
 
 
         @Override
         public AlloyFurnaceRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 
-            ItemStack output = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "output"));
+            ItemStack output = ShapedRecipe.itemFromJson(JsonUtils.getAsJsonObject(json, "output"));
 
             JsonArray ingredients = JSONUtils.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(4, Ingredient.EMPTY);
@@ -108,7 +108,7 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
 
         @Nullable
         @Override
-        public AlloyFurnaceRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public AlloyFurnaceRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(buffer.readInt(), Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
@@ -121,7 +121,7 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
         }
 
         @Override
-        public void toNetwork(PacketBuffer buffer, AlloyFurnaceRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, AlloyFurnaceRecipe recipe) {
             buffer.writeInt(recipe.getIngredients().size());
 
             for (Ingredient ing : recipe.getIngredients()) {

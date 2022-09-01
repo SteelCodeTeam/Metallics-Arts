@@ -1,15 +1,14 @@
 package net.rudahee.metallics_arts.setup.registries;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraftforge.common.ToolType;
-import net.minecraftforge.fml.RegistryObject;
+
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.Material;
+import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.modules.blocks.EttmetalBlock;
 import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceBlock;
 import net.rudahee.metallics_arts.setup.Registration;
@@ -22,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
+
 
 public class ModBlock {
 
@@ -41,7 +41,6 @@ public class ModBlock {
                 register(metal.getMetalNameLower() + "_ore", () -> {
                     Block block = new Block(Block.Properties.of(Material.METAL)
                             .strength(3, 10)
-                            .harvestLevel(2)
                             .sound(SoundType.STONE)
                             .requiresCorrectToolForDrops());
                     MetalGenerationData.valueOf(metal.getMetalNameUpper()).setBlock(block);
@@ -54,7 +53,6 @@ public class ModBlock {
             register(metal.getMetalNameLower() + "_block", () -> {
                 Block block = new Block(Block.Properties.of(Material.METAL)
                         .strength(5, 15)
-                        .harvestLevel(3)
                         .sound(SoundType.METAL)
                         .requiresCorrectToolForDrops());
 
@@ -78,7 +76,6 @@ public class ModBlock {
                 register(gem.getGemNameLower() + "_block", () -> {
                     Block block = new Block(Block.Properties.of(Material.METAL)
                             .strength(10, 25)
-                            .harvestLevel(3)
                             .sound(SoundType.METAL)
                             .randomTicks()
                             .requiresCorrectToolForDrops());
@@ -93,16 +90,12 @@ public class ModBlock {
 
     public static final RegistryObject<Block> ALLOY_FURNACE_BLOCK = register("alloy_furnace",
             () -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE)
-                                                .harvestTool(ToolType.PICKAXE)
                                                 .strength(3.5F)
-                                                //.lightLevel(litBlockEmission(13))
                                                 .requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> ETTMETAL_BLOCK = register(Gems.ETTMETAL.getGemNameLower()+"_block",
             () -> {
-                Block block = new EttmetalBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL)
-                        .strength(10, 10)
-                        .harvestLevel(3)
+                Block block = new EttmetalBlock(Block.Properties.of(Material.HEAVY_METAL).strength(10f, 10f)
                         .sound(SoundType.METAL)
                         .requiresCorrectToolForDrops());
 

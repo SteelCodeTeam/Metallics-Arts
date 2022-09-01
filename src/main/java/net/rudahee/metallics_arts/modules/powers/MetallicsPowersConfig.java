@@ -1,17 +1,11 @@
 package net.rudahee.metallics_arts.modules.powers;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Items;
-import net.minecraft.util.ResourceLocation;
+
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ForgeRegistryEntry;
-import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.powers.helpers.IronAndSteelHelpers;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.util.MetalicsArtsConfig;
@@ -43,46 +37,44 @@ public class MetallicsPowersConfig {
         add("netherite");
         add("lantern");
 
-        add(ModItems.TIN_SPIKE.get().getDescriptionId());
-        add(ModItems.TIN_SPIKE.get().getRegistryName().toString());
         add(ModItems.BAND_PEWTER_TIN.get().getDescriptionId());
-        add(ModItems.BAND_PEWTER_TIN.get().getRegistryName().toString());
+        add(ModItems.BAND_PEWTER_TIN.get().getDescription().toString());
         add(ModItems.RING_PEWTER_TIN.get().getDescriptionId());
-        add(ModItems.RING_PEWTER_TIN.get().getRegistryName().toString());
+        add(ModItems.RING_PEWTER_TIN.get().getDescription().toString());
 
         add("tin_");
 
         add(Items.CROSSBOW.getDescriptionId());
-        add(Items.CROSSBOW.getRegistryName().toString());
+        add(Items.CROSSBOW.getDescription().toString());
 
         add(Items.HEAVY_WEIGHTED_PRESSURE_PLATE.getDescriptionId());
-        add(Items.HEAVY_WEIGHTED_PRESSURE_PLATE.getRegistryName().toString());
+        add(Items.HEAVY_WEIGHTED_PRESSURE_PLATE.getDescription().toString());
 
         add(Items.LIGHT_WEIGHTED_PRESSURE_PLATE.getDescriptionId());
-        add(Items.LIGHT_WEIGHTED_PRESSURE_PLATE.getRegistryName().toString());
+        add(Items.LIGHT_WEIGHTED_PRESSURE_PLATE.getDescription().toString());
 
 
         add(Items.BELL.getDescriptionId());
-        add(Items.BELL.getRegistryName().toString());
+        add(Items.BELL.getDescription().toString());
 
 
         add(Items.SMITHING_TABLE.getDescriptionId());
-        add(Items.SMITHING_TABLE.getRegistryName().toString());
+        add(Items.SMITHING_TABLE.getDescription().toString());
 
         add(Items.LODESTONE.getDescriptionId());
-        add(Items.LODESTONE.getRegistryName().toString());
+        add(Items.LODESTONE.getDescription().toString());
         add(Items.STONECUTTER.getDescriptionId());
-        add(Items.STONECUTTER.getRegistryName().toString());
+        add(Items.STONECUTTER.getDescription().toString());
 
-        add(ModBlock.ALLOY_FURNACE_BLOCK.get().getDescriptionId());
-        add(Items.STONECUTTER.getRegistryName().toString());
+        //add(ModBlock.ALLOY_FURNACE_BLOCK.get().getDescriptionId());
+        add(Items.STONECUTTER.getDescription().toString());
 
         add(Items.BLAST_FURNACE.getDescriptionId());
-        add(Items.STONECUTTER.getRegistryName().toString());
+        add(Items.STONECUTTER.getDescription().toString());
 
-        add(Items.CLOCK.getRegistryName().toString());
-        add(Items.COMPASS.getRegistryName().toString());
-        add(Items.SHEARS.getRegistryName().toString());
+        add(Items.CLOCK.getDescription().toString());
+        add(Items.COMPASS.getDescription().toString());
+        add(Items.SHEARS.getDescription().toString());
 
 
         //TODO insertar cosas hechas de metal a mano.
@@ -121,7 +113,7 @@ public class MetallicsPowersConfig {
         clientBuilder.pop();
     }
 
-    public static void refresh(final ModConfig.ModConfigEvent e) {
+    public static void refresh(final ModConfigEvent e) {
         ModConfig cfg = e.getConfig();
         if (cfg.getSpec() == MetalicsArtsConfig.COMMON_CONFIG) {
             refresh_whitelist();
@@ -133,7 +125,7 @@ public class MetallicsPowersConfig {
         whitelist.addAll(cfg_whitelist.get());
     }
 
-    public static void load_whitelist(final ModConfig.Loading e) {
+    public static void load_whitelist(final ModConfigEvent e) {
         ModConfig cfg = e.getConfig();
         if (cfg.getSpec() == MetalicsArtsConfig.COMMON_CONFIG) {
             if (generateWhitelist.get()) {

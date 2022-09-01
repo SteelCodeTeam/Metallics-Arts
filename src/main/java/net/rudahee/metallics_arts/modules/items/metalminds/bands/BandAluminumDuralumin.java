@@ -1,11 +1,12 @@
 package net.rudahee.metallics_arts.modules.items.metalminds.bands;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.world.server.ServerWorld;
+
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
@@ -22,11 +23,11 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
 
-        CompoundNBT nbtLocal = stack.getTag();
+        CompoundTag nbtLocal = stack.getTag();
 
-        if (livingEntity.level instanceof ServerWorld) {
-            if (livingEntity instanceof PlayerEntity) {
-                PlayerEntity player = (PlayerEntity) livingEntity;
+        if (livingEntity.level instanceof ServerLevel) {
+            if (livingEntity instanceof Player) {
+                Player player = (Player) livingEntity;
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
 
                     if (data.isDecanting(MetalsNBTData.ALUMINUM)||data.isStoring(MetalsNBTData.ALUMINUM)){
@@ -34,7 +35,6 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
                     }
 
                     nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",1);
-
 
                     ///////DURALUMINUM
                     if (data.isDecanting(getMetals(1))) {
@@ -86,7 +86,7 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
 
     private static String dato;
 
-    public String localChangeOwner(PlayerEntity player, CompoundNBT compoundNBT,boolean iStoreMetal) {
+    public String localChangeOwner(Player player, CompoundTag compoundNBT,boolean iStoreMetal) {
 
         boolean isSecondReserveZero = compoundNBT.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") == 0;
 

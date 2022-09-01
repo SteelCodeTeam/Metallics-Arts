@@ -1,18 +1,17 @@
 package net.rudahee.metallics_arts.data.network;
 
-import com.electronwill.nightconfig.core.conversion.PreserveNotNull;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ArmorStandEntity;
-import net.minecraft.entity.item.FallingBlockEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.item.ItemFrameEntity;
-import net.minecraft.entity.item.minecart.AbstractMinecartEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.projectile.ProjectileItemEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.fml.network.NetworkEvent;
+
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.decoration.ItemFrame;
+import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.AbstractMinecart;
+import net.minecraftforge.network.NetworkEvent;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.IronAndSteelHelpers;
@@ -36,11 +35,11 @@ public class PullAndPushEntityPacket {
 
     }
 
-    public static PullAndPushEntityPacket decode(PacketBuffer buf) {
+    public static PullAndPushEntityPacket decode(FriendlyByteBuf buf) {
         return new PullAndPushEntityPacket(buf.readInt(), buf.readInt());
     }
 
-    public void encode(PacketBuffer buf) {
+    public void encode(FriendlyByteBuf buf) {
         buf.writeInt(this.entityIDOther);
         buf.writeInt(this.direction);
     }
@@ -50,24 +49,24 @@ public class PullAndPushEntityPacket {
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
-            ServerPlayerEntity source = ctx.get().getSender();
+            ServerPlayer source = ctx.get().getSender();
             Entity target = source.level.getEntity(this.entityIDOther);
             if (target != null) {
 
                 if (IronAndSteelHelpers.isEntityMetal(target)) {
                     // The source moves
-                    if (target instanceof IronGolemEntity || target instanceof ItemFrameEntity) {
+                    if (target instanceof IronGolem || target instanceof ItemFrame) {
                         IronAndSteelHelpers.move(this.direction, source, target.blockPosition());
 
-                    } else if (target instanceof ItemEntity || target instanceof FallingBlockEntity || target instanceof ArmorStandEntity ||
-                            (target instanceof AbstractMinecartEntity && !target.isVehicle())) {
+                    } else if (target instanceof ItemEntity || target instanceof FallingBlockEntity || target instanceof ArmorStand ||
+                            (target instanceof AbstractMinecart && !target.isVehicle())) {
                         IronAndSteelHelpers.move(this.direction / 2.0, target, source.blockPosition());
 
                         // Split the difference
                     }  //2 sources ?
 
                     // If entity are player.
-                    if (target instanceof PlayerEntity || target instanceof ServerPlayerEntity) {
+                    if (target instanceof Player || target instanceof ServerPlayer) {
                         IDefaultInvestedPlayerData sourceCapability = source.getCapability(InvestedCapability.PLAYER_CAP).resolve().get();
                         IDefaultInvestedPlayerData targetCapability = target.getCapability(InvestedCapability.PLAYER_CAP).resolve().get();
                         boolean areInSameState = false;

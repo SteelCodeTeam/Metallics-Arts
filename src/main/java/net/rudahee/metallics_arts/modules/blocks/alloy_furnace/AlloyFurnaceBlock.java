@@ -1,34 +1,37 @@
 package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 
-import net.minecraft.block.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.Containers;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 import java.util.function.Consumer;
 
 public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
 
-    public static final DirectionProperty FACING = HorizontalBlock.FACING;
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty LIT = FurnaceBlock.LIT;
 
     public AlloyFurnaceBlock(Properties properties) {
@@ -36,17 +39,19 @@ public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false)));
     }
 
+
+
     @Override
-    public void onRemove(BlockState state, World world, BlockPos pos, BlockState newState, boolean bool) {
+    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean bool) {
 
         if (!state.is(newState.getBlock())) {
-            TileEntity tileentity = world.getBlockEntity(pos);
+            BlockEntity tileentity = world.getBlockEntity(pos);
             if (tileentity instanceof  AlloyFurnaceTileEntity) {
                 AlloyFurnaceTileEntity furnaceTE = (AlloyFurnaceTileEntity)tileentity;
                 ItemStack stack;
                 for (int i=0; i<=5; i++) {
                     stack = furnaceTE.itemHandler.getStackInSlot(i);
-                    InventoryHelper.dropItemStack(world, pos.getX(),pos.getY(), pos.getZ(),stack);
+                    Containers.dropContents(world, pos, NonNullList.of(stack));
                 }
             }
         }
@@ -81,18 +86,18 @@ public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
     }*/
 
     @Override
-    protected void openContainer(World world, BlockPos pos, PlayerEntity player) {
+    protected void openContainer(Level world, BlockPos pos, Player player) {
         if(!world.isClientSide) {
-            TileEntity tileEntity = world.getBlockEntity(pos);
+            BlockEntity tileEntity = world.getBlockEntity(pos);
             BlockState state = world.getBlockState(pos);
             if(tileEntity instanceof AlloyFurnaceTileEntity) {
 
-                if (player instanceof ServerPlayerEntity) {
-                    NetworkHooks.openGui((ServerPlayerEntity) player, this.getMenuProvider(state, world, pos), tileEntity.getBlockPos());
+                if (player instanceof ServerPlayer) {
+                    NetworkHooks.openScreen((ServerPlayer) player, this.getMenuProvider(state, world, pos), tileEntity.getBlockPos());
                 } else {
-                    NetworkHooks.openGui((ServerPlayerEntity) player, this.getMenuProvider(state, world, pos), new Consumer<PacketBuffer>() {
+                    NetworkHooks.openScreen((ServerPlayer) player, this.getMenuProvider(state, world, pos), new Consumer<FriendlyByteBuf>() {
                         @Override
-                        public void accept(PacketBuffer buffer) {
+                        public void accept(FriendlyByteBuf buffer) {
                             buffer.writeInt(player.getId());
                         }
                     });
@@ -104,23 +109,6 @@ public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
         }
     }
 
-    @Nullable
-    @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return newBlockEntity(world);
-    }
-
-    @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
-    }
-
-
-    @Override
-    public BlockState getStateForPlacement(BlockItemUseContext ctx) {
-        return this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, ctx.getHorizontalDirection().getOpposite());
-    }
-
 
     @Override
     public boolean hasAnalogOutputSignal(BlockState state) {
@@ -130,8 +118,6 @@ public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
             return false;
         }
     }
-
-
 
     @Override
     public BlockState rotate(BlockState blockState, Rotation rotation) {
@@ -148,7 +134,7 @@ public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateContainer) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateContainer) {
         stateContainer.add(FACING, LIT);
     }
 
@@ -156,16 +142,16 @@ public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void animateTick(BlockState state, World world, BlockPos pos, Random rng) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rng) {
         if (state.getValue(LIT)) {
             if (rng.nextInt(10) == 0) {
-                world.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5F + rng.nextFloat(), rng.nextFloat() * 0.7F + 0.6F, false);
+                world.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 0.5F + rng.nextFloat(), rng.nextFloat() * 0.7F + 0.6F, false);
             }
             for(int i = 0; i < rng.nextInt(1) + 1; ++i) {
                 //world.addParticle(ParticleTypes.LAVA, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, (double)(rng.nextFloat() / 2.0F), 5.0E-5D, (double)(rng.nextFloat() / 2.0F));
                 world.addParticle(ParticleTypes.SMOKE, (double)pos.getX() + 0.25D + rng.nextDouble() / 2.0D * (double)(rng.nextBoolean() ? 1 : -1), (double)pos.getY() + 0.4D, (double)pos.getZ() + 0.25D + rng.nextDouble() / 2.0D * (double)(rng.nextBoolean() ? 1 : -1), 0.0D, 0.005D, 0.0D);
             }
-            BasicParticleType basicparticletype = ParticleTypes.CAMPFIRE_COSY_SMOKE;
+            SimpleParticleType basicparticletype = ParticleTypes.CAMPFIRE_COSY_SMOKE;
             world.addAlwaysVisibleParticle(basicparticletype, true, (double)pos.getX() + 0.5D + rng.nextDouble() / 3.0D * (double)(rng.nextBoolean() ? 1 : -1), (double)pos.getY() + rng.nextDouble() + rng.nextDouble(), (double)pos.getZ() + 0.5D + rng.nextDouble() / 3.0D * (double)(rng.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
 
         }
@@ -178,7 +164,8 @@ public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
 
     @Nullable
     @Override
-    public TileEntity newBlockEntity(IBlockReader reader) {
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new AlloyFurnaceTileEntity();
     }
+
 }

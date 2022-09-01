@@ -1,15 +1,15 @@
 package net.rudahee.metallics_arts.modules.items.combat;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
 
 public class CristalDagger extends SwordItem {
     private static final int ATTACK_DAMAGE = 12;
     private static final float ATTACK_SPEED = 9.2F;
 
-    private static final IItemTier tier = new IItemTier() {
+    private static final Tier tier = new Tier() {
         @Override
         public int getUses() {
             return 3;

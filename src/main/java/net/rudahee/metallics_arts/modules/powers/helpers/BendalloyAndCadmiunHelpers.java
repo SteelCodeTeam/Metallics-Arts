@@ -1,29 +1,30 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+
 
 public class BendalloyAndCadmiunHelpers {
 
-    public static void BendalloyEffects(PlayerEntity player, World world, AxisAlignedBB axisAlignedBB, BlockPos negative, BlockPos positive) {
+    public static void BendalloyMobEffects(Player player, Level world, AABB axisAlignedBB, BlockPos negative, BlockPos positive) {
         world.getEntitiesOfClass(LivingEntity.class, axisAlignedBB).forEach(entity -> {
             entity.aiStep();
         });
 
         BlockPos.betweenClosedStream(negative, positive).forEach(blockPos -> {
             BlockState block = world.getBlockState(blockPos);
-            TileEntity tileEntity = world.getBlockEntity(blockPos);
+            BlockEntity tileEntity = world.getBlockEntity(blockPos);
 
             for (int i = 0; i < 12 * 4 / (tileEntity == null ? 10 : 1); i++) {
                 if (tileEntity instanceof ITickableTileEntity) {
@@ -32,7 +33,7 @@ public class BendalloyAndCadmiunHelpers {
                     }
                 } else if (block.isRandomlyTicking()) {
                     if (Math.random() > 0.70) {
-                        block.randomTick((ServerWorld) world, blockPos, world.random);
+                        block.randomTick((ServerLevel) world, blockPos, world.random);
 
                     }
                 }
@@ -40,7 +41,7 @@ public class BendalloyAndCadmiunHelpers {
         });
     }
 
-    public static void BendalloyEffectsEnhanced(PlayerEntity player, World world, AxisAlignedBB axisAlignedBB, BlockPos negative, BlockPos positive) {
+    public static void BendalloyMobEffectsEnhanced(Player player, Level world, AABB axisAlignedBB, BlockPos negative, BlockPos positive) {
         world.getEntitiesOfClass(LivingEntity.class, axisAlignedBB).forEach(entity -> {
             entity.aiStep();
             entity.aiStep();
@@ -50,7 +51,7 @@ public class BendalloyAndCadmiunHelpers {
 
         BlockPos.betweenClosedStream(negative, positive).forEach(blockPos -> {
             BlockState block = world.getBlockState(blockPos);
-            TileEntity tileEntity = world.getBlockEntity(blockPos);
+            BlockEntity tileEntity = world.getBlockEntity(blockPos);
 
             for (int i = 0; i < 12 * 4 / (tileEntity == null ? 10 : 1); i++) {
                 if (tileEntity instanceof ITickableTileEntity) {
@@ -61,9 +62,9 @@ public class BendalloyAndCadmiunHelpers {
                     }
                 } else if (block.isRandomlyTicking()) {
                     if (Math.random() > 0.20) {
-                        block.randomTick((ServerWorld) world, blockPos, world.random);
-                        block.randomTick((ServerWorld) world, blockPos, world.random);
-                        block.randomTick((ServerWorld) world, blockPos, world.random);
+                        block.randomTick((ServerLevel) world, blockPos, world.random);
+                        block.randomTick((ServerLevel) world, blockPos, world.random);
+                        block.randomTick((ServerLevel) world, blockPos, world.random);
                     }
                 }
             }
@@ -72,36 +73,36 @@ public class BendalloyAndCadmiunHelpers {
 
 
 
-    public static void CadmiumEffectSelfPlayer(PlayerEntity player) {
-        player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 10, 4, true, false));
+    public static void CadmiumEffectSelfPlayer(Player player) {
+        player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 10, 4, true, false));
     }
 
-    public static void CadmiumEffectSelfPlayerEnhanced(PlayerEntity player) {
-        player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 20, 100, true, false));
+    public static void CadmiumEffectSelfPlayerEnhanced(Player player) {
+        player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 20, 100, true, false));
     }
 
-    public static void CadmiumEffectsOtherPlayers(LivingEntity player, int duration, int amplifier) {
+    public static void CadmiumMobEffectsOtherPlayers(LivingEntity player, int duration, int amplifier) {
 
-        if (player instanceof PlayerEntity) {
-            player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, duration, amplifier, true, false));
+        if (player instanceof Player) {
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, amplifier, true, false));
         }
-        player.addEffect(new EffectInstance(Effects.SLOW_FALLING, duration, amplifier, true, false));
+        player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, duration, amplifier, true, false));
     }
 
-    public static void CadmiumEffectsOtherPlayersEnhanced(LivingEntity player, int duration, int amplifier) {
+    public static void CadmiumMobEffectsOtherPlayersEnhanced(LivingEntity player, int duration, int amplifier) {
 
-        player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, duration, amplifier, true, false));
-        player.addEffect(new EffectInstance(Effects.SLOW_FALLING, duration, amplifier, true, false));
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, amplifier, true, false));
+        player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, duration, amplifier, true, false));
     }
 
-    public static void AddAiSteeps(PlayerEntity player) {
-        player.addEffect(new EffectInstance(Effects.DIG_SPEED, 3, 2, true, false));
+    public static void AddAiSteeps(Player player) {
+        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 3, 2, true, false));
         player.aiStep();
         player.aiStep();
     }
 
-    public static void AddAiSteepsEnhanced(PlayerEntity player) {
-        player.addEffect(new EffectInstance(Effects.DIG_SPEED, 10, 10, true, false));
+    public static void AddAiSteepsEnhanced(Player player) {
+        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 10, 10, true, false));
         player.aiStep();
         player.aiStep();
         player.aiStep();
@@ -111,7 +112,7 @@ public class BendalloyAndCadmiunHelpers {
 
     //
 
-    public static void addFoodLevel(PlayerEntity player, int qty){
+    public static void addFoodLevel(Player player, int qty){
 
         if (player.getFoodData().getFoodLevel()<20){
             player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()+qty);
@@ -119,7 +120,7 @@ public class BendalloyAndCadmiunHelpers {
 
     }
 
-    public static void removeFoodLevel(PlayerEntity player, int qty){
+    public static void removeFoodLevel(Player player, int qty){
 
         if (!player.isCreative()){
             if (player.getFoodData().getFoodLevel()>0){
@@ -128,7 +129,7 @@ public class BendalloyAndCadmiunHelpers {
         }
     }
 
-    public static void drowningEffect(PlayerEntity player,int actualtick) {
+    public static void drowningEffect(Player player,int actualtick) {
         if (!player.isCreative()){
             if (!player.isEyeInFluid(FluidTags.WATER)) {
                 if (player.getAirSupply()<=-10) {
@@ -149,14 +150,14 @@ public class BendalloyAndCadmiunHelpers {
         }
     }
 
-    public static void throwBreathEffect(PlayerEntity player, int effectLevel) {
+    public static void throwBreathEffect(Player player, int effectLevel) {
 
         if (!player.isEyeInFluid(FluidTags.WATER) && !player.isEyeInFluid(FluidTags.LAVA)) {
             player.hurt(DamageSource.DROWN, 2);
         }
 
         if (player.isEyeInFluid(FluidTags.WATER)) {
-            player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 40, effectLevel, true, false));
+            player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 40, effectLevel, true, false));
         }
     }
 }

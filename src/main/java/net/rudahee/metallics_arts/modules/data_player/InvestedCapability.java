@@ -1,20 +1,25 @@
 package net.rudahee.metallics_arts.modules.data_player;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.capabilities.CapabilityToken;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.rudahee.metallics_arts.MetallicsArts;
 
 public class InvestedCapability {
 
-    @CapabilityInject(IDefaultInvestedPlayerData.class)
-    public static final Capability<IDefaultInvestedPlayerData> PLAYER_CAP = null;
+    public static final Capability<IDefaultInvestedPlayerData> PLAYER_CAP = CapabilityManager.get(new CapabilityToken<IDefaultInvestedPlayerData>(){
+        @Override
+        public String toString() {
+            return super.toString();
+        }
+    });
 
-    public static final ResourceLocation IDENTIFIER = new ResourceLocation(MetallicsArts.MOD_ID, "allomancy_data");
+    public static final ResourceLocation IDENTIFIER = new ResourceLocation(MetallicsArts.MOD_ID, "ma_data");
 
-    public static void register() {
-        CapabilityManager.INSTANCE.register(IDefaultInvestedPlayerData.class, new InvestedStorage(), DefaultInvestedPlayerData::new);
+    public static void register(final RegisterCapabilitiesEvent event) {
+        event.register(IDefaultInvestedPlayerData.class);
     }
 
 }

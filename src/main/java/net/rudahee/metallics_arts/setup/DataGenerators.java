@@ -2,9 +2,9 @@ package net.rudahee.metallics_arts.setup;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.network.client_providers.ModBlockStateProvider;
 import net.rudahee.metallics_arts.data.network.client_providers.ModItemModelProvider;

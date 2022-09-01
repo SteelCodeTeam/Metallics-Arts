@@ -1,9 +1,9 @@
 package net.rudahee.metallics_arts.setup.registries;
 
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.modules.items.combat.*;
 import net.rudahee.metallics_arts.modules.items.metal_spike.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.bands.*;
@@ -227,7 +227,7 @@ public class ModItems {
 
 //spikes
 
-    private static Item.Properties PROPERTY_SPIKE = new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1);
+    private static final Item.Properties PROPERTY_SPIKE = new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1);
 
     public static RegistryObject<Item> IRON_SPIKE = register("iron_spike",
             () -> {
@@ -374,27 +374,27 @@ public class ModItems {
 
     public static RegistryObject<Item> OBSIDIAN_DAGGER = register("obsidian_dagger",
             () -> {
-                return new ObsidianDagger(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+                return new ObsidianDagger(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(CreativeModeTab.TAB_COMBAT));
             }
     );
     public static RegistryObject<Item> CRISTAL_DAGGER = register("cristal_dagger",
             () -> {
-                return new CristalDagger(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+                return new CristalDagger(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(CreativeModeTab.TAB_COMBAT));
             }
     );
     public static RegistryObject<Item> KOLOSS_BLADE = register("koloss_blade",
             () -> {
-                return new KolossBlade(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+                return new KolossBlade(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(CreativeModeTab.TAB_COMBAT));
             }
     );
     public static RegistryObject<Item> DUELING_STAFF = register("dueling_staff",
             () -> {
-                return new DuelingStaff(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+                return new DuelingStaff(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(CreativeModeTab.TAB_COMBAT));
             }
     );
     public static RegistryObject<Item> OBSIDIAN_AXE = register("obsidian_axe",
             () -> {
-                return new ObsidianAxe(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(ItemGroup.TAB_COMBAT));
+                return new ObsidianAxe(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(CreativeModeTab.TAB_COMBAT));
             }
     );
 
@@ -404,12 +404,12 @@ Item item = new Item(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
  */
     public static RegistryObject<Item> LARGE_VIAL= register("big_vial",
             () -> {
-                return new LargeVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new Food.Builder().nutrition(0).build()));
+                return new LargeVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new FoodProperties.Builder().nutrition(0).build()));
             });
 
     public static RegistryObject<Item> SMALL_VIAL = register("small_vial",
             () -> {
-        Item item = new SmallVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new Food.Builder().nutrition(0).build()));
+        Item item = new SmallVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new FoodProperties.Builder().nutrition(0).build()));
         return item;
                 //return new SmallVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new Food.Builder().nutrition(0).build()));
             });

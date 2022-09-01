@@ -1,15 +1,10 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 
 public class AtiumAndMalatiumHelpers {
@@ -18,21 +13,21 @@ public class AtiumAndMalatiumHelpers {
     private static float damage = 0F;
 
 
-    public static void decantAtium(PlayerEntity player) {
-        player.addEffect(new EffectInstance(Effects.INVISIBILITY, 5, 1, true, true));
+    public static void decantAtium(Player player) {
+        player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 5, 1, true, true));
     }
 
-    public static void storageAtium(PlayerEntity player) {
-        player.addEffect(new EffectInstance(Effects.GLOWING, 5, 1, true, true));
+    public static void storageAtium(Player player) {
+        player.addEffect(new MobEffectInstance(MobEffects.GLOWING, 5, 1, true, true));
     }
 
     private float qty = 0f;
 
-    public static float getDamageWhenUseAtium(PlayerEntity source, PlayerEntity target, float qty) {
+    public static float getDamageWhenUseAtium(Player source, Player target, float qty) {
         return new AtiumAndMalatiumHelpers().internalDamageWhenUseAtium(source, target, qty);
     }
 
-    private float internalDamageWhenUseAtium(PlayerEntity source, PlayerEntity target, float receivedQty) {
+    private float internalDamageWhenUseAtium(Player source, Player target, float receivedQty) {
 
         qty = receivedQty;
 
@@ -118,7 +113,7 @@ public class AtiumAndMalatiumHelpers {
         return qty;
     }
 /*
-    public static float atiumHit(ServerPlayerEntity playerEntity, PlayerEntity objetive, float amount) {
+    public static float atiumHit(ServerPlayer playerEntity, Player objetive, float amount) {
 
         playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability -> {
             if (playerCapability.isBurning(MetalsNBTData.ATIUM)) {
@@ -144,7 +139,7 @@ public class AtiumAndMalatiumHelpers {
         return damage;
     }
 
-    public static float atiumHitMobPlayer(PlayerEntity playerEntity, float amount) {
+    public static float atiumHitMobPlayer(Player playerEntity, float amount) {
         List<Integer> typeOfPower = Arrays.asList(0, 1);
         Collections.shuffle(typeOfPower);
         playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability ->{

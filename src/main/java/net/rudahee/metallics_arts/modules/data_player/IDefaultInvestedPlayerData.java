@@ -1,18 +1,18 @@
 package net.rudahee.metallics_arts.modules.data_player;
 
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 import java.util.ArrayList;
 
 public interface IDefaultInvestedPlayerData {
 
-    void tickAllomancyBurningMetals(ServerPlayerEntity player);
+    void tickAllomancyBurningMetals(ServerPlayer player);
 
-    void tickFeruchemyStorageMetals(ServerPlayerEntity player);
+    void tickFeruchemyStorageMetals(ServerPlayer player);
 
-    void tickFeruchemyDecantMetals(ServerPlayerEntity player);
+    void tickFeruchemyDecantMetals(ServerPlayer player);
 
     boolean hasAllomanticPower(MetalsNBTData metal);
 
@@ -118,4 +118,9 @@ public interface IDefaultInvestedPlayerData {
     boolean getExternalEnhanced();
 
     void setExternalEnhanced(boolean isExternalEnhanced);
+
+
+    CompoundTag save();
+
+    void load(CompoundTag nbt);
 }

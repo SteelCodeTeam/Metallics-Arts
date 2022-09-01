@@ -1,25 +1,27 @@
 package net.rudahee.metallics_arts.data.recipes.vials;
 
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.SpecialRecipe;
-import net.minecraft.item.crafting.SpecialRecipeSerializer;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import com.google.gson.JsonObject;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CustomRecipe;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class LargeVialItemRecipe extends SpecialRecipe {
+public class LargeVialItemRecipe extends CustomRecipe {
 
     private ItemStack final_result = ItemStack.EMPTY;
 
@@ -27,16 +29,16 @@ public class LargeVialItemRecipe extends SpecialRecipe {
 
     private static final List<Ingredient> INGREDIENT_NUGGET = new ArrayList<Ingredient>() {{
         for (Item metal: ModItems.ITEM_GEMS_NUGGET.values()) {
-            add(Ingredient.of(metal.getItem()));
+            add(Ingredient.of(metal.asItem()));
         }
         for (Item metal: ModItems.ITEM_METAL_NUGGET.values()) {
             if (!ModItems.ITEM_METAL_NUGGET.get("lead").getDescriptionId().equals(metal.getDescriptionId())
                     && !ModItems.ITEM_METAL_NUGGET.get("silver").getDescriptionId().equals(metal.getDescriptionId())
                     && !ModItems.ITEM_METAL_NUGGET.get("nickel").getDescriptionId().equals(metal.getDescriptionId())) {
-                add(Ingredient.of(metal.getItem()));
+                add(Ingredient.of(metal.asItem()));
             }
-            add(Ingredient.of(Items.IRON_NUGGET.getItem()));
-            add(Ingredient.of(Items.GOLD_NUGGET.getItem()));
+            add(Ingredient.of(Items.IRON_NUGGET.asItem()));
+            add(Ingredient.of(Items.GOLD_NUGGET.asItem()));
         }
     }};
 
@@ -46,8 +48,10 @@ public class LargeVialItemRecipe extends SpecialRecipe {
 
     public ItemStack  auxiliar = null;
 
+
+
     @Override
-    public boolean matches(CraftingInventory inv, World world) {
+    public boolean matches(CraftingContainer inv, Level world) {
         ItemStack actualIngredient = null;
 
         int[] metalsEnVial = new int[MetalsNBTData.values().length];
@@ -101,7 +105,7 @@ public class LargeVialItemRecipe extends SpecialRecipe {
 
         if (ingredients[0] && ingredients[1]){
             this.final_result = new ItemStack(ModItems.LARGE_VIAL.get(),1);
-            CompoundNBT compoundNBT = new CompoundNBT();
+            CompoundTag compoundNBT = new CompoundTag();
             for (MetalsNBTData metal : MetalsNBTData.values()){
                 if (addMetal[metal.getIndex()]){
                     compoundNBT.putInt(metal.getNameLower(),metalsEnVial[metal.getIndex()]+cantStorage[metal.getIndex()]);
@@ -119,7 +123,7 @@ public class LargeVialItemRecipe extends SpecialRecipe {
     }
 
     @Override
-    public ItemStack assemble(CraftingInventory inv) {
+    public ItemStack assemble(CraftingContainer inv) {
         return this.final_result.copy();
     }
 
@@ -129,14 +133,26 @@ public class LargeVialItemRecipe extends SpecialRecipe {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return ModRecipeTypes.LARGE_VIAL_ITEM_RECIPE_SERIALIZER.get();
     }
 
-    public static class Serializer extends SpecialRecipeSerializer<LargeVialItemRecipe> {
+    public static class Serializer implements RecipeSerializer<LargeVialItemRecipe> {
 
-        public Serializer() {
-            super(LargeVialItemRecipe::new);
+
+        @Override
+        public LargeVialItemRecipe fromJson(ResourceLocation p_44103_, JsonObject p_44104_) {
+            return null;
+        }
+
+        @Override
+        public @Nullable LargeVialItemRecipe fromNetwork(ResourceLocation p_44105_, FriendlyByteBuf p_44106_) {
+            return null;
+        }
+
+        @Override
+        public void toNetwork(FriendlyByteBuf p_44101_, LargeVialItemRecipe p_44102_) {
+
         }
     }
 }

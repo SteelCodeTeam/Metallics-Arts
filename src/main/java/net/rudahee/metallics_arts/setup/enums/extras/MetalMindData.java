@@ -1,7 +1,7 @@
 package net.rudahee.metallics_arts.setup.enums.extras;
 
-import net.minecraft.item.Item;
 
+import net.minecraft.world.item.Item;
 
 public enum MetalMindData {
     STEEL_IRON("steel", "iron",null,null,true,false),

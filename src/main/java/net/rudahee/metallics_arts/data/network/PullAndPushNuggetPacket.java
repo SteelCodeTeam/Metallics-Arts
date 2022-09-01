@@ -1,9 +1,10 @@
 package net.rudahee.metallics_arts.data.network;
 
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.network.NetworkEvent;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.network.NetworkEvent;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
@@ -27,18 +28,18 @@ public class PullAndPushNuggetPacket {
         this.direction = direction;
     }
 
-    public static PullAndPushNuggetPacket decode(PacketBuffer buf) {
+    public static PullAndPushNuggetPacket decode(FriendlyByteBuf buf) {
         return new PullAndPushNuggetPacket(buf.readBlockPos(), buf.readInt());
     }
 
-    public void encode(PacketBuffer buf) {
+    public void encode(FriendlyByteBuf buf) {
         buf.writeBlockPos(this.blockPos);
         buf.writeInt(this.direction);
     }
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
-            ServerPlayerEntity player = ctx.get().getSender();
+            ServerPlayer player = ctx.get().getSender();
             BlockPos pos = this.blockPos;
 
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(capability -> {

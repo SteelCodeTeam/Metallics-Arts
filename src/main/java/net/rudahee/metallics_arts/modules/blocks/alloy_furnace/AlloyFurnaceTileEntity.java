@@ -1,33 +1,18 @@
 package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 
-import net.minecraft.block.AbstractFurnaceBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -42,11 +27,10 @@ import net.rudahee.metallics_arts.setup.registries.ModTileEntities;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.text.html.Option;
 import java.util.Arrays;
 import java.util.Optional;
 
-public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+public class AlloyFurnaceTileEntity extends BlockEntity implements ITickableBlockEntity, INamedContainerProvider {
 
     private static final int[] SLOTS_FOR_UP = new int[]{0,1,2,3};
     private static final int[] SLOTS_FOR_DOWN = new int[]{5};
@@ -61,7 +45,7 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
     private static ItemStack[] itemInSlot = new ItemStack[6];
 
 
-    public AlloyFurnaceTileEntity(TileEntityType<?> type) {
+    public AlloyFurnaceTileEntity(BlockEntityType<?> type) {
         super(type);
         Arrays.fill(AlloyFurnaceTileEntity.itemInSlot,null);
     }
@@ -71,15 +55,19 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
         Arrays.fill(AlloyFurnaceTileEntity.itemInSlot,null);
     }
 
+    public AlloyFurnaceTileEntity(BlockPos blockPos, BlockState blockState) {
+
+    }
+
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
+    public void load(BlockState state, CompoundTag nbt) {
         super.load(state, nbt);
         data.readNBTData(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inv"));
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         super.save(compound);
         data.updateNBTData(compound);
         compound.put("inv", itemHandler.serializeNBT());
@@ -108,11 +96,11 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
                             return false;
                         }
                     case 4:
-                        return (Items.COAL_BLOCK.getItem() == stack.getItem()||
-                                Items.COAL.getItem() == stack.getItem()||
-                                Items.BLAZE_ROD.getItem() == stack.getItem()||
-                                Items.DRIED_KELP_BLOCK.getItem() == stack.getItem()||
-                                Items.LAVA_BUCKET.getItem() == stack.getItem());
+                        return (Items.COAL_BLOCK.asItem() == stack.getItem()||
+                                Items.COAL.asItem() == stack.getItem()||
+                                Items.BLAZE_ROD.asItem() == stack.getItem()||
+                                Items.DRIED_KELP_BLOCK.asItem() == stack.getItem()||
+                                Items.LAVA_BUCKET.asItem() == stack.getItem());
                         // return Items.COAL_BLOCK.getItem() == stack.getItem() ? true : false;
                     default:
                         return false;
@@ -320,23 +308,23 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
     @Nullable
     @Override
     public SUpdateTileEntityPacket getUpdatePacket() {
-        CompoundNBT nbtTagCompound = new CompoundNBT();
+        CompoundTag nbtTagCompound = new CompoundTag();
         nbtTagCompound = save(nbtTagCompound);
         int tileEntityType = getType().hashCode();  // arbitrary number; only used for vanilla TileEntities.  You can use it, or not, as you want.
         return new SUpdateTileEntityPacket(getBlockPos(), tileEntityType, nbtTagCompound);
     }
 
     @Override
-    public void handleUpdateTag(BlockState state, CompoundNBT tag) {
+    public void handleUpdateTag(BlockState state, CompoundTag tag) {
         super.handleUpdateTag(state, tag);
         data.updateNBTData(tag);
     }
 
     @Override
-    public CompoundNBT getUpdateTag() {
+    public CompoundTag getUpdateTag() {
         super.getUpdateTag();
 
-        CompoundNBT tag = new CompoundNBT();
+        CompoundTag tag = new CompoundTag();
         tag = save(tag);
         return tag;
     }
@@ -353,7 +341,7 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
         Item fuelItem = itemHandler.extractItem(4, 1, false).getItem();
 
         data.maxFuelBurning = Arrays.stream(FuelsTime.values())
-                .filter(f -> f.getItem().equals(fuelItem.getItem()))
+                .filter(f -> f.getItem().equals(fuelItem.asItem()))
                 .findFirst().get()
                 .getTicksBurning();
 
@@ -375,13 +363,13 @@ public class AlloyFurnaceTileEntity extends TileEntity implements ITickableTileE
 
     @Nullable
     @Override
-    public AlloyFurnaceContainer createMenu(int windowId, PlayerInventory inventory, PlayerEntity entity) {
+    public AlloyFurnaceContainer createMenu(int windowId, Inventory inventory, Player entity) {
         return AlloyFurnaceContainer.createContainerInServerSide(windowId, this.getBlockPos(), inventory, this.data);
     }
 
     @Override
-    public ITextComponent getDisplayName() {
-        return new TranslationTextComponent("screen.metallics_arts.alloy_furnace");
+    public Component getDisplayName() {
+        return Component.translatable("screen.metallics_arts.alloy_furnace");
     }
 
 }

@@ -1,27 +1,18 @@
 package net.rudahee.metallics_arts.data.network.client_providers;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.data.*;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
-import net.minecraft.tags.ITag;
-import net.minecraft.util.ResourceLocation;
-import net.rudahee.metallics_arts.modules.items.vials.small_vial.SmallVial;
-import net.rudahee.metallics_arts.setup.Registration;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalSpikesData;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
-import net.rudahee.metallics_arts.setup.registries.ModItemGroup;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.Consumer;
 
 public class ModRecipeProvider extends RecipeProvider {
@@ -30,9 +21,9 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     @Override
-    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> recipesConsumer) {
+    protected void buildCraftingRecipes(Consumer<FinishedRecipe> recipesConsumer) {
         ModItems.ITEM_METAL_INGOT.forEach((name, item) -> {
-            ShapelessRecipeBuilder.shapeless(item.getItem(), 9)
+            ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
                     .requires(ModBlock.BLOCK_METAL_BLOCKS.get(name))
                     .unlockedBy("has_item", has(item))
                     .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlock.BLOCK_METAL_BLOCKS.get(name).getDescriptionId()));
@@ -49,7 +40,7 @@ public class ModRecipeProvider extends RecipeProvider {
         });
 
         ModItems.ITEM_GEMS_BASE.forEach((name, item) -> {
-            ShapelessRecipeBuilder.shapeless(item.getItem(), 9)
+            ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
                     .requires(ModBlock.BLOCK_GEMS_BLOCKS.get(name))
                     .unlockedBy("has_item", has(item))
                     .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlock.BLOCK_GEMS_BLOCKS.get(name).getDescriptionId()));
@@ -100,13 +91,13 @@ public class ModRecipeProvider extends RecipeProvider {
         });
 
         ModBlock.BLOCK_METAL_ORES.forEach((name, block) -> {
-            CookingRecipeBuilder.cooking(Ingredient.of(block), ModItems.ITEM_METAL_INGOT.get(name), 0.5f, 100, IRecipeSerializer.SMELTING_RECIPE)
+            SimpleCookingRecipeBuilder.cooking(Ingredient.of(block), ModItems.ITEM_METAL_INGOT.get(name), 0.5f, 100, RecipeSerializer.SMELTING_RECIPE)
                     .unlockedBy("has_block", has(block))
                     .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItems.ITEM_METAL_INGOT.get(name).getDescriptionId() + "_furnace"));
         });
 
         ModBlock.BLOCK_METAL_ORES.forEach((name, block) -> {
-            CookingRecipeBuilder.blasting(Ingredient.of(block), ModItems.ITEM_METAL_INGOT.get(name), 0.5f, 100)
+            SimpleCookingRecipeBuilder.blasting(Ingredient.of(block), ModItems.ITEM_METAL_INGOT.get(name), 0.5f, 100)
                     .unlockedBy("has_block", has(block))
                     .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItems.ITEM_METAL_INGOT.get(name).getDescriptionId() + "_blasting"));
 

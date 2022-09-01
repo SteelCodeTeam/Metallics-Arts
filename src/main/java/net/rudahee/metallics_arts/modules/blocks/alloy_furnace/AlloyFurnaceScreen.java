@@ -1,28 +1,28 @@
 package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.client.renderer.texture.SimpleTexture;
-import net.minecraft.client.renderer.texture.Texture;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
 import net.rudahee.metallics_arts.MetallicsArts;
 
 import java.awt.*;
 
-public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
+
+public class AlloyFurnaceScreen extends ContainerScreen {
     private AlloyFurnaceContainer alloyContainer;
 
     private final ResourceLocation GUI = new ResourceLocation(MetallicsArts.MOD_ID,
             "textures/gui/alloy_furnace_gui.png");
 
-    private final Texture texture = new SimpleTexture(GUI);
+    private final SimpleTexture texture = new SimpleTexture(GUI);
 
     private final int i = 0;
 
-    public AlloyFurnaceScreen(AlloyFurnaceContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public AlloyFurnaceScreen(AlloyFurnaceContainer screenContainer, Inventory inv, Component titleIn) {
         super(screenContainer, inv, titleIn);
         this.alloyContainer = screenContainer;
     }
@@ -32,21 +32,17 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         super.init();
     }
 
-    @Override
-    public void tick() {
-        super.tick();
 
-    }
 
     @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+    public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
         this.renderTooltip(matrixStack, mouseX, mouseY);
     }
 
     @Override
-    protected void renderBg(MatrixStack matrixStack, float partialTicks, int x, int y) {
+    protected void renderBg(PoseStack matrixStack, float partialTicks, int x, int y) {
         renderBackground(matrixStack);
         this.minecraft.textureManager.register(GUI, texture);
         int i = this.getGuiLeft();
@@ -56,11 +52,12 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         Point activeArrowInImage = new Point(177, 15);
         Point activeArrowInGame = new Point(i + 86, j + 25);
 
+        AlloyFurnaceContainer menuContainer = (AlloyFurnaceContainer) super.menu.getContainer();
 
-        int progressLit = menu.getLitProgress();
+        int progressLit = menuContainer.getLitProgress();
 
         int arrowLength = 0;
-        if (!menu.isCompleteCrafting()) {
+        if (!menuContainer.isCompleteCrafting()) {
             arrowLength = (Math.round((progressLit / 200.0f) * 24)-24)*-1;
         }
 
@@ -70,10 +67,10 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         Point LitBarInGameLeft = new Point(i + 32, j + 69);
         Point LitBarInGameRight = new Point(i + 69, j + 69);
 
-        int progressBar = menu.getBurnProgress();
+        int progressBar = menuContainer.getBurnProgress();
         int barLength = 0;
-        int max = menu.getMaxBurnProgress();
-        if (menu.getBurnProgress() > 0) {
+        int max = menuContainer.getMaxBurnProgress();
+        if (menuContainer.getBurnProgress() > 0) {
             barLength = (Math.round(((progressBar + 1) / Float.parseFloat(Integer.toString(max)) * 13)));
         }
 

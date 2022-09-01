@@ -1,32 +1,23 @@
 package net.rudahee.metallics_arts.modules.client.GUI;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.model.CompositeModel;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.enums.metals.Metal;
-import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.NVConservativeRasterPreSnapTriangles;
-import org.lwjgl.system.CallbackI;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -42,7 +33,7 @@ public class FeruchemyMetalSelector extends Screen {
 
     private Minecraft mc;
 
-    private PlayerEntity player;
+    private Player player;
     int slotSelected = -1;
 
     Point point1 = null;
@@ -58,7 +49,7 @@ public class FeruchemyMetalSelector extends Screen {
 
 
     public FeruchemyMetalSelector() {
-        super(new StringTextComponent("metallic_arts_feruchemic_selector"));
+        super(Component.translatable("metallic_arts_feruchemic_selector"));
         this.mc = Minecraft.getInstance();
     }
 
@@ -91,7 +82,7 @@ public class FeruchemyMetalSelector extends Screen {
  */
 
     @Override
-    public void render(MatrixStack matrixStack, int mx, int my, float partialTicks) {
+    public void render(PoseStack matrixStack, int mx, int my, float partialTicks) {
         super.render(matrixStack, mx, my, partialTicks);
 
         if (player == null) {
@@ -130,14 +121,14 @@ public class FeruchemyMetalSelector extends Screen {
 
             int large = xPositivo.x-center.x;
 
-            Tessellator tess = Tessellator.getInstance();
+            Tesselator tess = Tesselator.getInstance();
             BufferBuilder buf = tess.getBuilder();
 
             RenderSystem.disableCull();
             RenderSystem.disableTexture();
             RenderSystem.enableBlend();
-            RenderSystem.shadeModel(GL11.GL_FLAT);
-            buf.begin(GL11.GL_TRIANGLES, DefaultVertexFormats.POSITION_COLOR);
+            //RenderSystem.SGL11.GL_FLAT);
+            buf.begin(VertexFormat.Mode.TRIANGLES, DefaultVertexFormat.POSITION_COLOR);
 
             //trazado
 
@@ -177,7 +168,7 @@ public class FeruchemyMetalSelector extends Screen {
             }
 
             tess.end();
-            RenderSystem.shadeModel(GL11.GL_FLAT);
+            //RenderSystem.shadeModel(GL11.GL_FLAT);
             RenderSystem.enableTexture();
 
             //pintado
@@ -254,18 +245,18 @@ public class FeruchemyMetalSelector extends Screen {
                 addpintado(matrixStack, this.point1, this.point2, this.point3, this.metalTemp, mouse);
             }
 
-            RenderSystem.enableRescaleNormal();
+            //RenderSystem.enableRescaleNormal();
             RenderSystem.enableBlend();
             RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
-            RenderHelper.turnBackOn();
+            //RenderHelper.turnBackOn();
 
-            RenderHelper.turnOff();
+            //RenderHelper.turnOff();
             RenderSystem.disableBlend();
-            RenderSystem.disableRescaleNormal();
+            //RenderSystem.disableRescaleNormal();
         });
     }
 
-    public void addpintado(MatrixStack matrixStack, Point a,Point b,Point c,MetalsNBTData metal, Point mouse){
+    public void addpintado(PoseStack matrixStack, Point a,Point b,Point c,MetalsNBTData metal, Point mouse){
 
         Point vertex1 = new Point(a.x,a.y);
         Point vertex2 = new Point(b.x,b.y);
@@ -275,11 +266,11 @@ public class FeruchemyMetalSelector extends Screen {
         boolean inSelector = pointInTriangle(mouse,vertex1,vertex2,vertex3);
 
         if (inSelector){
-            renderTooltip(matrixStack, new StringTextComponent(metal.getNameLower()),mouse.x,mouse.y);
+            renderTooltip(matrixStack, Component.translatable(metal.getNameLower()),mouse.x,mouse.y);
         }
 
-        this.mc.getEntityRenderDispatcher().textureManager.bind(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png"));
-        RenderSystem.color4f(1, 1, 1, 1);
+        this.mc.getEntityRenderDispatcher().textureManager.bindForSetup(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png"));
+        RenderSystem.setShaderColor(1, 1, 1, 1);
         blit(matrixStack, baticenter.x-8, baticenter.y-8, 0, 0, 16, 16, 16, 16);
 
     }
@@ -388,6 +379,8 @@ public class FeruchemyMetalSelector extends Screen {
         buf.vertex(a.x,a.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
         buf.vertex(b.x,b.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
         buf.vertex(c.x,c.y,0).color(actualColor[0],actualColor[1],actualColor[2],actualColor[3]).endVertex();
+
+        this.timeIn++;
     }
 
 
@@ -417,11 +410,6 @@ public class FeruchemyMetalSelector extends Screen {
         return super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 
-    @Override
-    public void tick() { // tick
-        player = Minecraft.getInstance().player;
-        this.timeIn++;
-    }
 
     @Override
     public boolean keyReleased(int keysym, int scancode, int modifiers) {

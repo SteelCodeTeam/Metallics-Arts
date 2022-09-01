@@ -1,17 +1,14 @@
 package net.rudahee.metallics_arts.modules.client.GUI;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.MetallicsArts;
@@ -41,13 +38,13 @@ public class AllomanticMetalSelector extends Screen {
     int timeIn = 8;
 
     public AllomanticMetalSelector() {
-        super(new StringTextComponent("metallic_arts_allomantic_selector"));
+        super(Component.translatable("metallic_arts_allomantic_selector"));
 
         this.mc = Minecraft.getInstance();
     }
 
     private static double mouseAngle(int centroX, int centroY, int mouseX, int mouseY) {
-        return (MathHelper.atan2(mouseY - centroY, mouseX - centroX) + Math.PI * 2) % (Math.PI * 2);
+        return (Mth.atan2(mouseY - centroY, mouseX - centroX) + Math.PI * 2) % (Math.PI * 2);
     }
 
     private static double mouseDistance (int centroX, int centroY, int mouseX, int mouseY) {
@@ -55,7 +52,7 @@ public class AllomanticMetalSelector extends Screen {
     }
 
     @Override
-    public void render(MatrixStack matrixStack, int mx, int my, float partialTicks) {
+    public void render(PoseStack matrixStack, int mx, int my, float partialTicks) {
         super.render(matrixStack, mx, my, partialTicks);
         this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             int centerX  = this.width / 2;
@@ -77,14 +74,14 @@ public class AllomanticMetalSelector extends Screen {
             this.slotSelected = -1;
 
 
-            Tessellator tess = Tessellator.getInstance();
+            Tesselator tess = Tesselator.getInstance();
             BufferBuilder buf = tess.getBuilder();
 
             RenderSystem.disableCull();
             RenderSystem.disableTexture();
             RenderSystem.enableBlend();
-            RenderSystem.shadeModel(GL11.GL_FLAT);
-            buf.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
+            //RenderSystem.shadeModel(GL11.GL_FLAT);
+            buf.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION_COLOR);
 
 
             //circulo externo
@@ -134,8 +131,8 @@ public class AllomanticMetalSelector extends Screen {
 
                 for (float v = 0; v < degreesDivinePerSegment  + step/2; v += step) {
                     float rad = (v + actualSegment  * degreesDivinePerSegment) ; // (*2) DUPLICA EL TAMAÑO DE LOS ULTIMOS SELECTORES, VISUALMENTE
-                    float xp = centerX  + MathHelper.cos(rad) * radius;
-                    float yp = centerY  + MathHelper.sin(rad) * radius;
+                    float xp = centerX  + Mth.cos(rad) * radius;
+                    float yp = centerY  + Mth.sin(rad) * radius;
 
                     if (v == 0) {
                         buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1], actualColor[2], actualColor[3]).endVertex();
@@ -189,8 +186,8 @@ public class AllomanticMetalSelector extends Screen {
 
                 for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
                     float rad = v + actualSegment  * degreesPerSegment ;
-                    float xp = centerX  + MathHelper.cos(rad) * radius;
-                    float yp = centerY  + MathHelper.sin(rad) * radius;
+                    float xp = centerX  + Mth.cos(rad) * radius;
+                    float yp = centerY  + Mth.sin(rad) * radius;
 
                     if (v == 0) {
                         buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
@@ -241,8 +238,8 @@ public class AllomanticMetalSelector extends Screen {
 
                 for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
                     float rad = v + actualSegment  * degreesPerSegment ;
-                    float xp = centerX  + MathHelper.cos(rad) * radius;
-                    float yp = centerY  + MathHelper.sin(rad) * radius;
+                    float xp = centerX  + Mth.cos(rad) * radius;
+                    float yp = centerY  + Mth.sin(rad) * radius;
 
                     if (v == 0) {
                         buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
@@ -254,7 +251,7 @@ public class AllomanticMetalSelector extends Screen {
 
             tess.end();
 
-            RenderSystem.shadeModel(GL11.GL_FLAT);
+            //RenderSystem.shadeModel(GL11.GL_FLAT);
             RenderSystem.enableTexture();
 
             //pintado interno
@@ -267,20 +264,20 @@ public class AllomanticMetalSelector extends Screen {
                 }
 
                 float rad = (actualSegment  + 0.5f) * degreesPerSegment;
-                float xp = centerX  + MathHelper.cos(rad) * radius;
-                float yp = centerY  + MathHelper.sin(rad) * radius;
+                float xp = centerX  + Mth.cos(rad) * radius;
+                float yp = centerY  + Mth.sin(rad) * radius;
 
 
                 if (mouseInSector){
-                    renderTooltip(matrixStack, new StringTextComponent(metal.getNameLower()),mx,my);
+                    renderTooltip(matrixStack, Component.translatable(metal.getNameLower()),mx,my);
                 }
 
                 double mod = 0.8;
                 int xdp = (int) ((xp - centerX )*mod+centerX);
                 int ydp = (int) ((yp - centerY )*mod+centerY);
 
-                this.mc.getEntityRenderDispatcher().textureManager.bind(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
-                RenderSystem.color4f(1, 1, 1, 1);
+                this.mc.getEntityRenderDispatcher().textureManager.bindForSetup(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+                RenderSystem.setShaderColor(1, 1, 1, 1);
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
             }
@@ -300,22 +297,22 @@ public class AllomanticMetalSelector extends Screen {
 
 
                 float rad = (actualSegment  + 0.5f) * degreesPerSegment;
-                float xp = centerX  + MathHelper.cos(rad) * radius;
-                float yp = centerY  + MathHelper.sin(rad) * radius;
+                float xp = centerX  + Mth.cos(rad) * radius;
+                float yp = centerY  + Mth.sin(rad) * radius;
 
                 float xsp = xp - 4;
                 float ysp = yp;
 
                 if (mouseInSector){
-                    renderTooltip(matrixStack, new StringTextComponent(metal.getNameLower()),mx,my);
+                    renderTooltip(matrixStack, Component.translatable(metal.getNameLower()),mx,my);
                 }
 
                 double mod = 0.8;
                 int xdp = (int) ((xp - centerX ) * mod + centerX );
                 int ydp = (int) ((yp - centerY ) * mod + centerY );
 
-                this.mc.getEntityRenderDispatcher().textureManager.bind( new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
-                RenderSystem.color4f(1, 1, 1, 1);
+                this.mc.getEntityRenderDispatcher().textureManager.bindForSetup(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+                RenderSystem.setShaderColor(1, 1, 1, 1);
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
             }
@@ -334,31 +331,31 @@ public class AllomanticMetalSelector extends Screen {
                 }
 
                 float rad = (actualSegment + 0.5f) * degreesExternal;
-                float xp = centerX  + MathHelper.cos(rad) * radius;
-                float yp = centerY  + MathHelper.sin(rad) * radius;
+                float xp = centerX  + Mth.cos(rad) * radius;
+                float yp = centerY  + Mth.sin(rad) * radius;
 
                 if (mouseInSector){
-                    renderTooltip(matrixStack, new StringTextComponent(metal.getNameLower()),mx,my);
+                    renderTooltip(matrixStack, Component.translatable(metal.getNameLower()),mx,my);
                 }
 
                 double mod = 0.9;
                 int xdp = (int) ((xp - centerX ) * mod + centerX );
                 int ydp = (int) ((yp - centerY ) * mod + centerY );
 
-                this.mc.getEntityRenderDispatcher().textureManager.bind( new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
-                RenderSystem.color4f(1, 1, 1, 1);
+                this.mc.getEntityRenderDispatcher().textureManager.bindForSetup( new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+                RenderSystem.setShaderColor(1, 1, 1, 1);
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
             }
 
-            RenderSystem.enableRescaleNormal();
+            //RenderSystem.enableRescaleNormal();
             RenderSystem.enableBlend();
             RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
-            RenderHelper.turnBackOn();
+            //RenderHelper.turnBackOn();
 
-            RenderHelper.turnOff();
+            //RenderHelper.turnOff();
             RenderSystem.disableBlend();
-            RenderSystem.disableRescaleNormal();
+            //RenderSystem.disableRescaleNormal();
 
 
         });

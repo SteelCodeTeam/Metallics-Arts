@@ -1,15 +1,16 @@
 package net.rudahee.metallics_arts.setup.registries;
 
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.Mod;
-import net.rudahee.metallics_arts.MetallicsArts;
+
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
 public class ModItemGroup {
-    public static final ItemGroup METALLIC_ARTS_TAG = new ItemGroup("metallic_arts_tag") {
+
+
+    public static final CreativeModeTab METALLIC_ARTS_TAG = new CreativeModeTab("metallic_arts_tag") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModItems.ITEM_METAL_INGOT.get("aluminum").getItem());
+            return new ItemStack(ModItems.ITEM_METAL_INGOT.get("aluminum").asItem());
         }
     };
 }

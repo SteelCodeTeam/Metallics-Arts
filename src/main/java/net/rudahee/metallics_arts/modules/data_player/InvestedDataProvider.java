@@ -1,7 +1,7 @@
 package net.rudahee.metallics_arts.modules.data_player;
 
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
@@ -9,7 +9,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class InvestedDataProvider implements ICapabilitySerializable<CompoundNBT> {
+public class InvestedDataProvider implements ICapabilitySerializable<CompoundTag> {
 
     private final DefaultInvestedPlayerData data = new DefaultInvestedPlayerData();
     private final LazyOptional<IDefaultInvestedPlayerData> dataOptional = LazyOptional.of(() -> this.data);
@@ -24,19 +24,19 @@ public class InvestedDataProvider implements ICapabilitySerializable<CompoundNBT
     }
 
     @Override
-    public CompoundNBT serializeNBT() {
+    public CompoundTag serializeNBT() {
         if (InvestedCapability.PLAYER_CAP == null) {
-            return new CompoundNBT();
+            return new CompoundTag();
         } else {
-            return (CompoundNBT) InvestedCapability.PLAYER_CAP.writeNBT(this.data, null);
+            return data.save();
         }
 
     }
 
     @Override
-    public void deserializeNBT(CompoundNBT nbt) {
+    public void deserializeNBT(CompoundTag nbt) {
         if (InvestedCapability.PLAYER_CAP != null) {
-            InvestedCapability.PLAYER_CAP.readNBT(this.data, null, nbt);
+            data.load(nbt);
         }
     }
 

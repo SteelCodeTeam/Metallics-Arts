@@ -1,14 +1,10 @@
 package net.rudahee.metallics_arts.modules.data_player;
 
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.util.Direction;
-import net.minecraftforge.common.capabilities.Capability;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
-import java.util.Arrays;
-
+/*
 public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlayerData> {
+
+
 
     @Override
     public INBT writeNBT(Capability<IDefaultInvestedPlayerData> capability, IDefaultInvestedPlayerData data, Direction side) {
@@ -138,6 +134,6 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         } catch(Exception ex) {
             System.out.println("SIGUE SIENDO UNA COSTRA DE NULL EL DEATH O SPAWN POS :D");
         }
-    }
-}
+}       
+    }*/
 
