@@ -7,6 +7,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -14,7 +15,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistry;
-import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceContainer;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
 
@@ -23,7 +23,7 @@ import java.util.List;
 
 
 
-public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
+/*public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
 
     private final ResourceLocation id;
     private final ItemStack output;
@@ -35,8 +35,19 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
         this.recipeItems = recipeItems;
     }
 
+
     @Override
-    public boolean matches(AlloyFurnaceContainer inventory, Level world) {
+    public NonNullList<Ingredient> getIngredients() {
+        return recipeItems;
+    }
+
+
+    public ItemStack getIcon() {
+        return new ItemStack(ModBlock.ALLOY_FURNACE_BLOCK.get());
+    }
+
+    @Override
+    public boolean matches(CraftingContainer inventory, Level world) {
         List<Ingredient> testTarget = recipeItems;
 
         if (testTarget.get(0).test(inventory.getItem(0))
@@ -50,17 +61,8 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
     }
 
     @Override
-    public NonNullList<Ingredient> getIngredients() {
-        return recipeItems;
-    }
-
-    @Override
-    public ItemStack assemble(AlloyFurnaceContainer inventory) {
+    public ItemStack assemble(CraftingContainer inventory) {
         return output.copy();
-    }
-
-    public ItemStack getIcon() {
-        return new ItemStack(ModBlock.ALLOY_FURNACE_BLOCK.get());
     }
 
     @Override
@@ -130,4 +132,4 @@ public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
             buffer.writeItemStack(recipe.getResultItem(), false);
         }
     }
-}
+}*/

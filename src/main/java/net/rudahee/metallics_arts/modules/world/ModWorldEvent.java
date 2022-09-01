@@ -7,8 +7,8 @@ import net.rudahee.metallics_arts.MetallicsArts;
 @Mod.EventBusSubscriber (modid  = MetallicsArts.MOD_ID)
 public class ModWorldEvent {
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void biomeLoadingEvent (final BiomeLoadingEvent event){
         OreGeneration.generateOres(event);
-    }
+    }*/
 }

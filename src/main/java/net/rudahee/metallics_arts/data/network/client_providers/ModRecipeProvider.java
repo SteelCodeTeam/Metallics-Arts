@@ -206,7 +206,7 @@ public class ModRecipeProvider extends RecipeProvider {
         });
 
 
-        ShapedRecipeBuilder.shaped(ModBlock.ALLOY_FURNACE_BLOCK.get().asItem())
+        /*ShapedRecipeBuilder.shaped(ModBlock.ALLOY_FURNACE_BLOCK.get().asItem())
                 .define('#', Items.BLAST_FURNACE)
                 .define('X', Items.STONE_BRICKS)
                 .define('_', Items.STONE_BRICK_SLAB)
@@ -215,7 +215,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("X#X")
                 .pattern("UUU")
                 .unlockedBy("has_item", has(Items.BLAST_FURNACE))
-                .save(recipesConsumer, new ResourceLocation("allomantic_alloy_furnace"));
+                .save(recipesConsumer, new ResourceLocation("allomantic_alloy_furnace"));*/
 
         ShapedRecipeBuilder.shaped(ModItems.SMALL_VIAL.get())
                 .define('#',Items.GLASS)

@@ -1,22 +1,21 @@
 package net.rudahee.metallics_arts.setup.integration.jei;
 
+
 import com.mojang.blaze3d.vertex.PoseStack;
-import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
-import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
-import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.recipes.alloy_furnace.AlloyFurnaceRecipe;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 
-public class AlloyFurnaceRecipeCategory implements IRecipeCategory<AlloyFurnaceRecipe> {
+import java.awt.*;
+
+/*public class AlloyFurnaceRecipeCategory implements IRecipeCategory<AlloyFurnaceRecipe> {
 
     private final static ResourceLocation UID = new ResourceLocation(MetallicsArts.MOD_ID, "alloy_furnace_uid");
     private final static ResourceLocation TEXTURE = new ResourceLocation(MetallicsArts.MOD_ID,
@@ -44,11 +43,10 @@ public class AlloyFurnaceRecipeCategory implements IRecipeCategory<AlloyFurnaceR
 
     @Override
     public RecipeType<AlloyFurnaceRecipe> getRecipeType() {
-        return ; /**
+        return ;
                 REHACER
 
-         */
-    }
+    /}
 
     @Override
     public Component getTitle() {
@@ -67,8 +65,9 @@ public class AlloyFurnaceRecipeCategory implements IRecipeCategory<AlloyFurnaceR
 
 
 
+
     @Override
-    public void setIngredients(AlloyFurnaceRecipe recipe, IFocusGroup ingredients) {
+    public void setIngredients(CraftingContainer recipe, IFocusGroup ingredients) {
         ingredients.setInputIngredients(recipe.getIngredients());
         ingredients.setOutput(VanillaTypes.ITEM,recipe.getResultItem());
     }
@@ -91,4 +90,4 @@ public class AlloyFurnaceRecipeCategory implements IRecipeCategory<AlloyFurnaceR
         IRecipeCategory.super.draw(recipe, matrixStack, mouseX, mouseY);
     }
 
-}
+}*/

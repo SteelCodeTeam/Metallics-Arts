@@ -4,11 +4,14 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraftforge.common.Tags;
 
 public class DuraluminAndAluminumHelpers {
 
 
     public static void duraluminDecantingMobEffects(Player player, Biome biome) {
+        //Tags.Biomes.
         if(biome.getBiomeCategory().equals(Biome.Category.EXTREME_HILLS)) {
 
             player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 40, 1, true, false));

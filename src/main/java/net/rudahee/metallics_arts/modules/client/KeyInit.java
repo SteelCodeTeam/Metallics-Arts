@@ -1,31 +1,25 @@
 package net.rudahee.metallics_arts.modules.client;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.settings.KeyConflictContext;
 import net.rudahee.metallics_arts.MetallicsArts;
 import org.lwjgl.glfw.GLFW;
 
 @OnlyIn(Dist.CLIENT)
 public class KeyInit {
-    
-    //particulas y sonidos
 
-    @OnlyIn(Dist.CLIENT)
-    public static KeyMapping allomancy;
+    public static final String KEY_CATEGORY = "key.category" + MetallicsArts.MOD_ID;
+    public static final String FERUCHEMIC_KEY = "key." + MetallicsArts.MOD_ID + "." + "feruchemic";
+    public static final String ALLOMANTIC_KEY = "key." + MetallicsArts.MOD_ID + "." + "allomantic";
 
-    @OnlyIn(Dist.CLIENT)
-    public static KeyMapping feruchemic;
 
-    @OnlyIn(Dist.CLIENT)
-    public static KeyMapping hud;
+    public static final KeyMapping ALLOMANTIC_POWER_SELECTOR = new KeyMapping(ALLOMANTIC_KEY,
+            KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM,GLFW.GLFW_KEY_M,KEY_CATEGORY);
 
-    public static void register (){
-        feruchemic = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic", GLFW.GLFW_KEY_N, "metallic_arts");
-        allomancy = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomancy", GLFW.GLFW_KEY_M, "metallic_arts");
-        hud = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "hud", GLFW.GLFW_KEY_O, "metallic_arts");
+    public static final KeyMapping FERUCHEMIC_POWER_SELECTOR = new KeyMapping(FERUCHEMIC_KEY,
+            KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM,GLFW.GLFW_KEY_N,KEY_CATEGORY);
 
-        ClientRegistry.registerKeyBinding(feruchemic);
-        ClientRegistry.registerKeyBinding(allomancy);
-    }
 }

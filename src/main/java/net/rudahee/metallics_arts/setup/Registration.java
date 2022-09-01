@@ -29,7 +29,7 @@ public class Registration {
         ModItems.register();
         ModBlock.register();
         ModTileEntities.register(modEventBus);
-        ModContainers.register(modEventBus);
+        //ModContainers.register(modEventBus);
         ModRecipeTypes.register(modEventBus);
     }
 

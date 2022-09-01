@@ -8,8 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.recipes.alloy_furnace.AlloyFurnaceRecipe;
-import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
+
 
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -21,7 +20,7 @@ public class MetallicsArtsJei implements IModPlugin {
         return new ResourceLocation(MetallicsArts.MOD_ID,"jei_plugin");
     }
 
-    @Override
+    /*@Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new AlloyFurnaceRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
@@ -31,5 +30,5 @@ public class MetallicsArtsJei implements IModPlugin {
         RecipeManager recipeManager = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
         registration.addRecipes(recipeManager.getAllRecipesFor(ModRecipeTypes.ALLOY_FURNACE_RECIPE).stream()
                 .filter(r -> r instanceof AlloyFurnaceRecipe).collect(Collectors.toList()),AlloyFurnaceRecipeCategory.getUidStatic());
-    }
+    }*/
 }

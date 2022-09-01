@@ -7,7 +7,7 @@ import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.rudahee.metallics_arts.MetallicsArts;
 
-public interface IAlloyFurnaceRecipe extends CustomRecipe {
+/*public interface IAlloyFurnaceRecipe extends CustomRecipe {
 
     ResourceLocation TYPE_ID = new ResourceLocation(MetallicsArts.MOD_ID, "alloy");
 
@@ -22,8 +22,9 @@ public interface IAlloyFurnaceRecipe extends CustomRecipe {
             return true;
     }
 
+
     @Override
     default boolean isSpecial(){
             return true;
     }
-}
+}*/

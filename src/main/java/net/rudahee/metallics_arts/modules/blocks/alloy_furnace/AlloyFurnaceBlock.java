@@ -29,7 +29,7 @@ import net.minecraftforge.network.NetworkHooks;
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
-public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
+/*public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty LIT = FurnaceBlock.LIT;
@@ -83,7 +83,7 @@ public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
                 }
         }
         return ActionResultType.SUCCESS;
-    }*/
+    }
 
     @Override
     protected void openContainer(Level world, BlockPos pos, Player player) {
@@ -168,4 +168,4 @@ public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
         return new AlloyFurnaceTileEntity();
     }
 
-}
+}*/

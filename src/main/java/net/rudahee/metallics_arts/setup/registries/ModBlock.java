@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.modules.blocks.EttmetalBlock;
-import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceBlock;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.enums.gems.Gems;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
@@ -88,10 +87,10 @@ public class ModBlock {
         });
     }
 
-    public static final RegistryObject<Block> ALLOY_FURNACE_BLOCK = register("alloy_furnace",
+    /*public static final RegistryObject<Block> ALLOY_FURNACE_BLOCK = register("alloy_furnace",
             () -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE)
                                                 .strength(3.5F)
-                                                .requiresCorrectToolForDrops()));
+                                                .requiresCorrectToolForDrops()));*/
 
     public static final RegistryObject<Block> ETTMETAL_BLOCK = register(Gems.ETTMETAL.getGemNameLower()+"_block",
             () -> {

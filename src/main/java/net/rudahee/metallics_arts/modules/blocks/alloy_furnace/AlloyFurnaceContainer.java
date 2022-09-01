@@ -18,7 +18,7 @@ import net.rudahee.metallics_arts.setup.registries.ModContainers;
 
 import javax.annotation.Nonnull;
 
-public class AlloyFurnaceContainer implements Container {
+/*public class AlloyFurnaceContainer implements Container {
 
     private final BlockEntity tileEntity;
     private final Player playerEntity;
@@ -214,4 +214,4 @@ public class AlloyFurnaceContainer implements Container {
     public void clearContent() {
 
     }
-}
+}*/

@@ -377,7 +377,7 @@ public class AllomanticMetalSelector extends Screen {
     @Override
     public boolean keyReleased(int keysym, int scancode, int modifiers) {
 
-        if (KeyInit.allomancy.matches(keysym,scancode)){
+        if (KeyInit.ALLOMANTIC_POWER_SELECTOR.consumeClick()) {
             this.mc.setScreen(null);
             this.mc.mouseHandler.grabMouse();
             return true;
@@ -388,7 +388,7 @@ public class AllomanticMetalSelector extends Screen {
 
     @Override
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
-        if (KeyInit.allomancy.matchesMouse(button)) {
+        if (KeyInit.ALLOMANTIC_POWER_SELECTOR.consumeClick()) {
             this.mc.setScreen(null);
             this.mc.mouseHandler.grabMouse();
             return true;

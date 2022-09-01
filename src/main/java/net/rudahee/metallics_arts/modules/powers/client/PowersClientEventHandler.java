@@ -360,7 +360,8 @@ public class PowersClientEventHandler {
         AllomanticMetalOverlay.drawMetalOverlay(event.getPoseStack());
 
 
-        if (KeyInit.allomancy.isDown()){
+
+        if (KeyInit.ALLOMANTIC_POWER_SELECTOR.isDown()){
             Player player = this.mc.player;
             if (this.mc.screen == null){
                 if (player==null || !this.mc.isWindowActive()){
@@ -378,7 +379,7 @@ public class PowersClientEventHandler {
                 });
             }
         }
-        if (KeyInit.feruchemic.isDown()){
+        if (KeyInit.FERUCHEMIC_POWER_SELECTOR.isDown()){
             Player player = this.mc.player;
             if (this.mc.screen == null){
                 if (player==null || !this.mc.isWindowActive()){
@@ -546,8 +547,6 @@ public class PowersClientEventHandler {
             return "minecraft:the_end";
         }
     }
-
-
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent

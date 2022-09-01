@@ -16,7 +16,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceScreen;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.*;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
@@ -88,7 +87,7 @@ public class MetallicsArts
              * ScreenManager.register(ModContainers.ALLOY_FURNACE_CONTAINER.get(),
                     AlloyFurnaceScreen::new);
              */
-            KeyInit.register();
+            //KeyInit.register();
         });
     }
 

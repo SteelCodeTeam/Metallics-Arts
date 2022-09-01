@@ -27,11 +27,11 @@ public class BendalloyAndCadmiunHelpers {
             BlockEntity tileEntity = world.getBlockEntity(blockPos);
 
             for (int i = 0; i < 12 * 4 / (tileEntity == null ? 10 : 1); i++) {
-                if (tileEntity instanceof ITickableTileEntity) {
+                /*if (tileEntity instanceof TickableTileEntity) {
                     if (Math.random() > 0.70) {
                         ((ITickableTileEntity) tileEntity).tick();
                     }
-                } else if (block.isRandomlyTicking()) {
+                } else*/ if (block.isRandomlyTicking()) {
                     if (Math.random() > 0.70) {
                         block.randomTick((ServerLevel) world, blockPos, world.random);
 
@@ -54,13 +54,13 @@ public class BendalloyAndCadmiunHelpers {
             BlockEntity tileEntity = world.getBlockEntity(blockPos);
 
             for (int i = 0; i < 12 * 4 / (tileEntity == null ? 10 : 1); i++) {
-                if (tileEntity instanceof ITickableTileEntity) {
+                /*if (tileEntity instanceof ITickableTileEntity) {
                     if (Math.random() > 0.20) {
                         ((ITickableTileEntity) tileEntity).tick();
                         ((ITickableTileEntity) tileEntity).tick();
                         ((ITickableTileEntity) tileEntity).tick();
                     }
-                } else if (block.isRandomlyTicking()) {
+                } else */if (block.isRandomlyTicking()) {
                     if (Math.random() > 0.20) {
                         block.randomTick((ServerLevel) world, blockPos, world.random);
                         block.randomTick((ServerLevel) world, blockPos, world.random);

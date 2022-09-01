@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OreGeneration {
-    public static void generateOres (final BiomeLoadingEvent event){
+    /*public static void generateOres (final BiomeLoadingEvent event){
 
         List<MetalGenerationData> metalGenerationList = Arrays.asList(MetalGenerationData.values());
 
@@ -30,5 +30,5 @@ public class OreGeneration {
                         .decorated(Placement.RANGE.configured(new TopSolidRangeConfig(minHeight, 0, maxHeight)))
                         .squared().count(amountPerChunk));
 
-    }
+    }*/
 }

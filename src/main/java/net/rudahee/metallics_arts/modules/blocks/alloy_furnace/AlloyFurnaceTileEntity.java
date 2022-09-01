@@ -15,10 +15,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.rudahee.metallics_arts.data.recipes.alloy_furnace.AlloyFurnaceRecipe;
 import net.rudahee.metallics_arts.setup.enums.extras.FuelsTime;
 import net.rudahee.metallics_arts.setup.enums.metals.MetalBurningRecipeData;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
@@ -30,7 +28,7 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Optional;
 
-public class AlloyFurnaceTileEntity extends BlockEntity implements ITickableBlockEntity, INamedContainerProvider {
+/*public class AlloyFurnaceTileEntity extends BlockEntity implements ITickableBlockEntity, INamedContainerProvider {
 
     private static final int[] SLOTS_FOR_UP = new int[]{0,1,2,3};
     private static final int[] SLOTS_FOR_DOWN = new int[]{5};
@@ -372,5 +370,5 @@ public class AlloyFurnaceTileEntity extends BlockEntity implements ITickableBloc
         return Component.translatable("screen.metallics_arts.alloy_furnace");
     }
 
-}
+}*/
 

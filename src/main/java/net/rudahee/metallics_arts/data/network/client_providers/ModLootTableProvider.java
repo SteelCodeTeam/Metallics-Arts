@@ -1,10 +1,13 @@
 package net.rudahee.metallics_arts.data.network.client_providers;
 
+
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
+import com.ibm.icu.impl.Pair;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.LootTables;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -13,6 +16,7 @@ import net.rudahee.metallics_arts.setup.registries.ModBlock;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -21,7 +25,7 @@ public class ModLootTableProvider extends LootTableProvider {
         super(generator);
     }
 
-    @Override
+    /*@Override
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> getTables() {
         return ImmutableList.of(Pair.of(ModBlockLootTable::new, LootParameterSets.BLOCK));
     }
@@ -82,4 +86,6 @@ public class ModLootTableProvider extends LootTableProvider {
     public String getName() {
         return "metallics_arts_loot_table";
     }
+
+     */
 }

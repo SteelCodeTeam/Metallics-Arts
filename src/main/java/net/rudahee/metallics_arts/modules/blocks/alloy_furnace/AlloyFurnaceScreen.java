@@ -12,7 +12,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import java.awt.*;
 
 
-public class AlloyFurnaceScreen extends ContainerScreen {
+/*public class AlloyFurnaceScreen extends ContainerScreen {
     private AlloyFurnaceContainer alloyContainer;
 
     private final ResourceLocation GUI = new ResourceLocation(MetallicsArts.MOD_ID,
@@ -81,4 +81,4 @@ public class AlloyFurnaceScreen extends ContainerScreen {
 
     }
 
-}
+}*/

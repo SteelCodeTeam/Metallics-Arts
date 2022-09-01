@@ -2,8 +2,10 @@ package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 
 
 import net.minecraft.nbt.CompoundTag;
+import org.antlr.runtime.misc.IntArray;
 
-public class AlloyFurnaceData implements IIntArray {
+//implemente IIntArray
+public class AlloyFurnaceData extends IntArray {
 
     public int actualFuelBurning;
     public int maxFuelBurning;
@@ -29,7 +31,7 @@ public class AlloyFurnaceData implements IIntArray {
     }
 
 
-    @Override
+    /*@Override
     public int get(int key) {
         if (key == 1) {
             return actualFuelBurning;
@@ -64,5 +66,5 @@ public class AlloyFurnaceData implements IIntArray {
     @Override
     public int getCount() {
         return 5;
-    }
+    }*/
 }

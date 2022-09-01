@@ -414,7 +414,7 @@ public class FeruchemyMetalSelector extends Screen {
     @Override
     public boolean keyReleased(int keysym, int scancode, int modifiers) {
 
-        if (KeyInit.feruchemic.matches(keysym,scancode)){
+        if (KeyInit.FERUCHEMIC_POWER_SELECTOR.consumeClick()){
             this.mc.setScreen(null);
             this.mc.mouseHandler.grabMouse();
             return true;
@@ -424,7 +424,7 @@ public class FeruchemyMetalSelector extends Screen {
 
     @Override
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
-        if (KeyInit.feruchemic.matchesMouse(button)) {
+        if (KeyInit.FERUCHEMIC_POWER_SELECTOR.consumeClick()) {
             this.mc.setScreen(null);
             this.mc.mouseHandler.grabMouse();
             return true;
