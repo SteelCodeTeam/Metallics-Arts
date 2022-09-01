@@ -58,6 +58,14 @@ public abstract class Vial extends Item {
         return nbt;
     }
 
+    public static CompoundNBT addFullReserveVialTags() {
+        CompoundNBT nbt = new CompoundNBT();
+        for (MetalsNBTData metal : MetalsNBTData.values()){
+            nbt.putInt(metal.getNameLower(), metal.getMaxAllomanticTicksStorage());
+        }
+        return nbt;
+    }
+
     @Override
     public void releaseUsing(ItemStack itemStack, World world, LivingEntity livingEntity, int number) {
         super.releaseUsing(itemStack, world, livingEntity, number);

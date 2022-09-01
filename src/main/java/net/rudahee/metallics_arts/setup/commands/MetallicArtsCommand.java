@@ -9,12 +9,17 @@ import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.modules.items.vials.Vial;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModItems;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +37,14 @@ public class MetallicArtsCommand {
     }
 
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
-        dispatcher.register(Commands.literal("ma").requires(commandSource -> commandSource.hasPermission(0))
+
+        dispatcher.register(Commands.literal("ma-items").requires(commandSource -> commandSource.hasPermission(2))
+                .then(Commands.literal("get")
+                        .then(Commands.literal("large_vial")
+                                .then(Commands.argument("target", EntityArgument.player())
+                                        .executes(context -> getLargeVial(context, EntityArgument.getPlayer(context, "target")))))));
+
+        dispatcher.register(Commands.literal("ma-powers").requires(commandSource -> commandSource.hasPermission(2))
                 .then(Commands.literal("get")
                         .then(Commands.literal("all")
                                 .then(Commands.argument("target",EntityArgument.player())
@@ -572,6 +584,18 @@ public class MetallicArtsCommand {
                 )
         );
 
+    }
+
+    private static int getLargeVial(CommandContext<CommandSource> context, ServerPlayerEntity target) {
+        ItemStack vial = new ItemStack(ModItems.LARGE_VIAL.get());
+        vial.setTag(Vial.addFullReserveVialTags());
+        CompoundNBT nbt = new CompoundNBT();
+        nbt.putInt("CustomModelData", 1);
+        vial.setTag(nbt);
+
+        target.inventory.add(vial);
+        target.sendMessage(new StringTextComponent("Added 1 Vial with all metals to " + target.getScoreboardName()), target.getUUID());
+        return  1;
     }
 
     public static int addAllomanticPower (CommandContext<CommandSource> context,MetalsNBTData metalsNBTData, ServerPlayerEntity player){

@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.items.metal_spike;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.client.particle.LargeExplosionParticle;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -20,6 +21,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -97,7 +99,6 @@ public abstract class MetalSpikeAbstract extends SwordItem {
             stack.setTag(generateTags(stack));
         }
         if (stack.hasTag()){
-
             if (stack.getTag().getBoolean("feruchemic_power")){
                 toolTips.add(new StringTextComponent("Power: Feruchemic"));
             }
@@ -205,15 +206,12 @@ public abstract class MetalSpikeAbstract extends SwordItem {
     }
 
     private void doEffects(Random rng, World world, BlockPos pos) {
-        BasicParticleType basicparticletype = ParticleTypes.CRIT;
+        LightningBoltEntity lightning = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, world);
 
-        world.addParticle(ParticleTypes.EXPLOSION, (double)pos.getX() + 0.25D + rng.nextDouble() / 2.0D * (double)(rng.nextBoolean() ? 1 : -1), (double)pos.getY() + 0.4D, (double)pos.getZ() + 0.25D + rng.nextDouble() / 2.0D * (double)(rng.nextBoolean() ? 1 : -1), 0.0D, 0.005D, 0.0D);
-        for(int i = 0; i < 10 + 1; ++i) {
-            world.addAlwaysVisibleParticle(basicparticletype, true, (double)pos.getX() + 0.5D + rng.nextDouble() / 3.0D * (double)(rng.nextBoolean() ? 1 : -1), (double)pos.getY() + rng.nextDouble() + rng.nextDouble(), (double)pos.getZ() + 0.5D + rng.nextDouble() / 3.0D * (double)(rng.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
-        }
+        lightning.setVisualOnly(true);
+        lightning.moveTo(new Vector3d(pos.getX(), pos.getY(), pos.getZ()));
 
-        world.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.LIGHTNING_BOLT_IMPACT, SoundCategory.PLAYERS, 0.5F + rng.nextFloat(), rng.nextFloat() * 0.7F + 0.6F, false);
-
+        world.addFreshEntity(lightning);
     }
 
 

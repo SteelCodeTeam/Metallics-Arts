@@ -83,6 +83,14 @@ public class ChromiumAndNicrosilHelpers {
 
         });
     }
+
+    public static void changeNBTinTargetForEnhanced(PlayerEntity target) {
+        target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> {
+            cap.setExternalEnhanced(true);
+
+            ModNetwork.sync(cap, target);
+        });
+    }
 }
 
 

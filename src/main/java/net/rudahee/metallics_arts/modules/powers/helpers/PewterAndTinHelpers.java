@@ -20,7 +20,7 @@ public class PewterAndTinHelpers {
     }
 
     public static float getDamageWithMultiplier(float amount) {
-        return amount + 2;
+        return amount * 1.3f;
     }
 
     public static float getDamageWithIncrement(float amount) {
@@ -33,8 +33,8 @@ public class PewterAndTinHelpers {
 
     public static void addPewterEffects(PlayerEntity player) {
         player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 5, 1, true, true));
-        player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 5, 1, true, true));
-        player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 5, 1, true, true));
+        player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 5, 0, true, true));
+        player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 5, 0, true, true));
     }
 
 
@@ -56,9 +56,10 @@ public class PewterAndTinHelpers {
     }
 
     public static void addPewterEffectsEnhanced(PlayerEntity player) {
-        player.addEffect(new EffectInstance(Effects.JUMP, 40, 6, true, false));
-        player.addEffect(new EffectInstance(Effects.DIG_SPEED, 40, 3, true, false));
-        player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 40, 3, true, false));
+        player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 20, 1, true, true));
+        player.addEffect(new EffectInstance(Effects.JUMP, 20, 0, true, true));
+        player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 20, 1, true, true));
+        player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 20, 2, true, true));
     }
 
 

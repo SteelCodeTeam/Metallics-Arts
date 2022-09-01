@@ -36,6 +36,8 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     private String death_dimension;
     private String spawn_dimension;
 
+    private boolean external_enhanced;
+
 
     public DefaultInvestedPlayerData() {
         int powers = MetalsNBTData.values().length;
@@ -79,6 +81,8 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
 
         this.burning_metals = new boolean[powers];
         Arrays.fill(this.burning_metals, false);
+
+        this.external_enhanced = false;
 
     }
 
@@ -231,6 +235,16 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
         for (int i = 0;i<10;i++){
             this.metal_mind_equiped[i] =list[i];
         }
+    }
+
+    @Override
+    public boolean getExternalEnhanced() {
+        return this.external_enhanced;
+    }
+
+    @Override
+    public void setExternalEnhanced(boolean isExternalEnhanced) {
+        this.external_enhanced = isExternalEnhanced;
     }
 
     @Override
@@ -450,19 +464,6 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
             return true;
         }
     }
-
-    @Override
-    public void setAmountLerasiumReserve(MetalsNBTData metal, int qty) {
-        if (qty > 0 && qty < metal.getMaxAllomanticTicksStorage()) {
-            this.lerasium_reseve[metal.getIndex()] = qty;
-        }
-    }
-
-    @Override
-    public int getAmountLerasiumReserve(MetalsNBTData metal) {
-        return this.lerasium_reseve[metal.getIndex()];
-    }
-
 
     @Override
     public int getAllomanticAmount(MetalsNBTData metal){

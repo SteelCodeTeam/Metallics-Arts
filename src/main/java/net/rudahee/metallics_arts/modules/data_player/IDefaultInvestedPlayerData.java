@@ -87,10 +87,6 @@ public interface IDefaultInvestedPlayerData {
 
     boolean addAllomanticMetalAmount(MetalsNBTData metal, int amt);
 
-    void setAmountLerasiumReserve(MetalsNBTData metal, int amt);
-
-    int getAmountLerasiumReserve(MetalsNBTData metal);
-
     int getAllomanticAmount(MetalsNBTData metal);
 
     void drainMetals(MetalsNBTData... metals);
@@ -118,4 +114,8 @@ public interface IDefaultInvestedPlayerData {
     boolean[] getMetalMindEquipedList ();
 
     void setMetalMindEquipedList (boolean [] list);
+
+    boolean getExternalEnhanced();
+
+    void setExternalEnhanced(boolean isExternalEnhanced);
 }
