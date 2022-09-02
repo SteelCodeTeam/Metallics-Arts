@@ -27,6 +27,7 @@ import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.commands.MetallicArtsCommand;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.world.OreGeneration;
 import net.rudahee.metallics_arts.world.feature.ModConfiguredFeatures;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -63,6 +64,8 @@ public class MetallicsArts
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
         Registration.register();
+
+        OreGeneration.register(modEventBus);
 
         modEventBus.addListener(this::clientInit);
 
