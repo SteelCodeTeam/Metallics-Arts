@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
   "biomes": "#minecraft:is_overworld",
-  "features": "metallics_arts:zinc_ore_placed_stone",
+  "features": "metallics_arts:tin_ore_placed_stone",
   "step": "underground_ores"
 }

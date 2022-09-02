@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.setup.registries;
 
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
@@ -40,14 +41,13 @@ public class ModBlock {
             INITIALIZING METALS
          */
         List<Metal> metalList = Arrays.asList(Metal.values());
-
         metalList.forEach(metal -> {
             // If not alloy, create ore.
             if (!metal.isAlloy()) {
                 if (metal.isStone()) {
                     registerBlock(metal.getMetalNameLower() + "_ore", () -> {
                         Block block = new Block(Block.Properties.of(Material.STONE)
-                                .strength(3, 10)
+                                .strength(3.0F, 3.0F)
                                 .sound(SoundType.STONE)
                                 .requiresCorrectToolForDrops());
                         MetalGenerationData.valueOf(metal.getMetalNameUpper()).setBlock(block);
@@ -58,8 +58,8 @@ public class ModBlock {
                 if (metal.isDeepslate()) {
                     registerBlock("deepslate_" + metal.getMetalNameLower() + "_ore", () -> {
                         Block block = new Block(Block.Properties.of(Material.STONE)
-                                .strength(4, 10)
-                                .sound(SoundType.STONE)
+                                .strength(4.5F, 3.0F)
+                                .sound(SoundType.DEEPSLATE)
                                 .requiresCorrectToolForDrops());
                         MetalGenerationData.valueOf(metal.getMetalNameUpper()).setBlock(block);
                         BLOCK_METAL_DEEPSLATE_ORES.put(metal.getMetalNameLower(), block);
