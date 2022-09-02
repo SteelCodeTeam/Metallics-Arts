@@ -1,14 +1,8 @@
 package net.rudahee.metallics_arts.data.recipes.alloy_furnace;
 
 
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.CustomRecipe;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.rudahee.metallics_arts.MetallicsArts;
-
-/*public interface IAlloyFurnaceRecipe extends CustomRecipe {
-
+public interface IAlloyFurnaceRecipe  {
+/*
     ResourceLocation TYPE_ID = new ResourceLocation(MetallicsArts.MOD_ID, "alloy");
 
     @Override
@@ -26,5 +20,5 @@ import net.rudahee.metallics_arts.MetallicsArts;
     @Override
     default boolean isSpecial(){
             return true;
-    }
-}*/
+    }*/
+}

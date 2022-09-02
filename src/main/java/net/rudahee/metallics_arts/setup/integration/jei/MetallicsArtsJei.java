@@ -1,21 +1,11 @@
 package net.rudahee.metallics_arts.setup.integration.jei;
 
-import mezz.jei.api.IModPlugin;
-import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
-import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.rudahee.metallics_arts.MetallicsArts;
 
-
-import java.util.Objects;
-import java.util.stream.Collectors;
-
-@JeiPlugin
-public class MetallicsArtsJei implements IModPlugin {
-    @Override
+//@JeiPlugin
+public class MetallicsArtsJei  {
+    //@Override
     public ResourceLocation getPluginUid() {
         return new ResourceLocation(MetallicsArts.MOD_ID,"jei_plugin");
     }

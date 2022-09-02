@@ -27,6 +27,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         metalList.forEach(metal -> {
             builder(itemGenerated,"item/"+ metal.getMetalNameLower()+"_ingot", "item/metal/ingot/" +metal.getMetalNameLower()+"_ingot");
             builder(itemGenerated,"item/"+ metal.getMetalNameLower()+"_nugget", "item/metal/nugget/" +metal.getMetalNameLower()+"_nugget");
+            if (!metal.isAlloy()) {
+                builder(itemGenerated,"item/raw_"+ metal.getMetalNameLower(), "item/metal/raw/raw_" +metal.getMetalNameLower());
+            }
 
         });
 

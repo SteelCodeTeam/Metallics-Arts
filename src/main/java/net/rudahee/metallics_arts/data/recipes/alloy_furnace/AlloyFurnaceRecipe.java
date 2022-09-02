@@ -23,8 +23,8 @@ import java.util.List;
 
 
 
-/*public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
-
+public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
+/*
     private final ResourceLocation id;
     private final ItemStack output;
     private final NonNullList<Ingredient> recipeItems;
@@ -131,5 +131,5 @@ import java.util.List;
             }
             buffer.writeItemStack(recipe.getResultItem(), false);
         }
-    }
-}*/
+    }*/
+}

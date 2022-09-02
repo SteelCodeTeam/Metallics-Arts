@@ -1,29 +1,8 @@
 package net.rudahee.metallics_arts.data.recipes.vials;
 
 
-import com.google.gson.JsonObject;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.inventory.CraftingContainer;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.CustomRecipe;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.level.Level;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
-import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class SmallVialItemRecipe extends CustomRecipe {
-
+public class SmallVialItemRecipe  {
+/*
     private ItemStack final_result = ItemStack.EMPTY;
 
     private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItems.SMALL_VIAL.get());
@@ -154,5 +133,5 @@ public class SmallVialItemRecipe extends CustomRecipe {
         public void toNetwork(FriendlyByteBuf p_44101_, SmallVialItemRecipe p_44102_) {
 
         }
-    }
+    }*/
 }

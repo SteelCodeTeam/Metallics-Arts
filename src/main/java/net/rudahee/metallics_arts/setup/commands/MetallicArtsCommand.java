@@ -6,15 +6,11 @@ import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.modules.items.vials.Vial;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -582,7 +578,7 @@ public class MetallicArtsCommand {
     }
 
     private static int getLargeVial(CommandContext<CommandSourceStack> context, ServerPlayer target) {
-        ItemStack vial = new ItemStack(ModItems.LARGE_VIAL.get());
+        /*ItemStack vial = new ItemStack(ModItems.LARGE_VIAL.get());
         vial.setTag(Vial.addFullReserveVialTags());
         CompoundTag nbt = new CompoundTag();
         nbt.putInt("CustomModelData", 1);
@@ -590,7 +586,7 @@ public class MetallicArtsCommand {
 
         target.getInventory().add(vial);
         target.sendSystemMessage(Component.translatable("Added 1 Vial with all metals to " + target.getScoreboardName()));
-        return  1;
+        */return  1;
     }
 
     public static int addAllomanticPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
