@@ -1,9 +1,8 @@
 package net.rudahee.metallics_arts.modules.data_player;
 
 
+public class InvestedStorage  {
 /*
-public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlayerData> {
-
 
 
     @Override
@@ -134,6 +133,6 @@ public class InvestedStorage implements Capability.IStorage<IDefaultInvestedPlay
         } catch(Exception ex) {
             System.out.println("SIGUE SIENDO UNA COSTRA DE NULL EL DEATH O SPAWN POS :D");
         }
-}       
-    }*/
+}     */
+    }
 

@@ -23,34 +23,49 @@ public class ModBlockStateProvider extends BlockStateProvider {
             so I just grab all the blocks and put the texture of the block folder in them.
          */
         ModBlock.BLOCK_GEMS_BLOCKS.forEach((name, block) -> {
-                    // for each registry block, i get model wih format ("block/name_typeblock")
-                    ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/" + block.getDescriptionId()));
+            ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/" + name + "_block"));
 
-                    // later i put texture in block and item.
-                    simpleBlock(block);
-                    simpleBlockItem(block, model);
-                }
-        );
+            // later i put texture in block and item.
+            simpleBlock(block);
+            simpleBlockItem(block, model);
+
+        });
+
         ModBlock.BLOCK_METAL_ORES.forEach((name, block) -> {
-                    // for each registry block, i get model wih format ("block/name_typeblock")
-                    ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/" + block.getDescriptionId()));
+            // for each registry block, i get model wih format ("block/name_typeblock")
+            ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/" + name + "_ore"));
 
-                    // later i put texture in block and item.
-                    simpleBlock(block);
-                    simpleBlockItem(block, model);
-                }
-        );
+            // later i put texture in block and item.
+            simpleBlock(block);
+            simpleBlockItem(block, model);
+        });
+
+        ModBlock.BLOCK_METAL_DEEPSLATE_ORES.forEach((name, block) -> {
+            // for each registry block, i get model wih format ("block/name_typeblock")
+            ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/deepslate_" + name + "_ore"));
+
+            // later i put texture in block and item.
+            simpleBlock(block);
+            simpleBlockItem(block, model);
+        });
+
         ModBlock.BLOCK_METAL_BLOCKS.forEach((name, block) -> {
-                    // for each registry block, i get model wih format ("block/name_typeblock")
-                    ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/" + block.getDescriptionId()));
+            // for each registry block, i get model wih format ("block/name_typeblock")
+            ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/" + name + "_block"));
 
-                    // later i put texture in block and item.
-                    simpleBlock(block);
-                    simpleBlockItem(block, model);
-                }
-        );
+            // later, I put texture in block and item.
+            simpleBlock(block);
+            simpleBlockItem(block, model);
+        });
 
+        ModBlock.RAW_METAL_BLOCKS.forEach((name, block) -> {
+            // for each registry block, i get model wih format ("block/name_typeblock")
+            ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/raw_" + name + "_block"));
 
+            // later, I put texture in block and item.
+            simpleBlock(block);
+            simpleBlockItem(block, model);
+        });
 
 
     }

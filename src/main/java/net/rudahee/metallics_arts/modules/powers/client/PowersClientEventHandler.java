@@ -1,13 +1,9 @@
 package net.rudahee.metallics_arts.modules.powers.client;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
@@ -21,7 +17,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
-import net.minecraftforge.client.event.RenderLevelLastEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -42,11 +37,9 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -417,126 +410,126 @@ public class PowersClientEventHandler {
 
 
 
-    @OnlyIn(Dist.CLIENT)
-    @SubscribeEvent
-    public void onRenderWorldLast(RenderLevelLastEvent event) {
-        Player player = this.mc.player;
-        if (player == null || !player.isAlive() || this.mc.options.getCameraType().isMirrored()) {
-            return;
-        }
-
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCap -> {
-
-            if (!playerCap.isInvested()) {
-                return;
-            }
-
-            PoseStack matrixStack = event.getPoseStack();
-
-            matrixStack.pushPose();
-
-            Vec3 view = this.mc.cameraEntity.getEyePosition(event.getPartialTick());
-
-            matrixStack.translate(-view.x, -view.y, -view.z);
-
-            //RenderSystem.pushMatrix();
-            //RenderSystem.multMatrix(matrixStack.last().pose());
-            RenderSystem.disableTexture();
-            RenderSystem.disableDepthTest();
-            RenderSystem.depthMask(false);
-            RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
-            RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            RenderSystem.enableBlend();
-
-
-            double dist = 1;
-            double yaw = ((this.mc.player.yRotO + 90) * Math.PI) / 180;
-            double pitch = ((this.mc.player.xRotO + 90) * Math.PI) / 180;
-
-            Vec3 playerVector = view.add(Mth.sin((float) pitch) * Mth.cos((float) yaw) * dist, Mth.cos((float) pitch) * dist - 0.35,
-                    Mth.sin((float) pitch) * Mth.sin((float) yaw) * dist);
-
-
-            /***********************************
-             * DRAW LINES  - STEEL & IRON -
-             ***********************************/
-
-            if (playerCap.isBurning(MetalsNBTData.IRON) || playerCap.isBurning(MetalsNBTData.STEEL)) {
-                for (Entity entity : this.metal_entities) {
-                    ClientUtils.drawMetalLine(playerVector, entity.position(), 2f, 0, 0.6f, 1f);
-                }
-
-                for (MetalBlockHelpers mb : this.metal_blobs) {
-                    ClientUtils.drawMetalLine(playerVector, mb.getCenter(), Mth.clamp(0.3F + mb.size() * 0.4F, 0.5F, 7.5F), 0F, 0.6F, 1F);
-                }
-            }
-            /***********************************
-             * DRAW LINES  - BRONZE -
-             ***********************************/
-            if (playerCap.isBurning(MetalsNBTData.BRONZE)) {
-                BlockPos playerPos = player.blockPosition();
-                BlockPos negative = new BlockPos(player.position()).offset(playerPos.getX() - 12,playerPos.getX() - 12,playerPos.getX() - 12);
-                BlockPos positive = new BlockPos(player.position()).offset(playerPos.getX() + 12, playerPos.getX() + 12, playerPos.getX() + 12);
-
-                List<Player> players = player.level.getEntitiesOfClass(Player.class, new AABB(negative, positive)).stream().collect(Collectors.toList());
-
-                for (Player otherPlayer: players) {
-                    IDefaultInvestedPlayerData cap = otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).orElse(null);
-
-                    if (cap.isBurningSomething() && !cap.isBurning(MetalsNBTData.COPPER)) {
-                        ClientUtils.drawMetalLine(playerVector, otherPlayer.position(), 5.0f, 0.7f, 0.20f, 0.20f);
-                    }
-                }
-            }
-
-            /***********************************
-             * DRAW LINES  - ELECTRUM -
-             ***********************************/
-            if (playerCap.isBurning(MetalsNBTData.ELECTRUM)) {
-                Vec3 vector = new Vec3(playerCap.getSpawnPos()[0], playerCap.getSpawnPos()[1], playerCap.getSpawnPos()[2]);
-
-                //if(player.level.dimension().getRegistryName().toString().equals(playerCap.getSpawnDimension())) {
-                ClientUtils.drawMetalLine(playerVector,vector, 2f, 0.6f, 0.6f, 0.1f);
-                //} else {
-                //  ClientUtils.drawMetalLine(playerVector, playerVector, 0,0,0,0);
-                //}
-            }
-            /***********************************
-             * DRAW LINES  - GOLD -
-             ***********************************/
-            if (playerCap.isBurning(MetalsNBTData.GOLD)) {
-                Vec3 vector = new Vec3(playerCap.getDeathPos()[0], playerCap.getDeathPos()[1], playerCap.getDeathPos()[2]);
-
-                //if(player.level.dimension().getRegistryName().toString().equals(playerCap.getDeathDimension())) {
-                ClientUtils.drawMetalLine(playerVector,vector, 2f, 0.6f, 0.6f, 0.1f);
-                //} else {
-                //  ClientUtils.drawMetalLine(playerVector, playerVector, 0,0,0,0);
-                //}
-            }
-
-            /***********************************
-             * DRAW LINES  - MALATIUM -
-             ***********************************/
-            if (playerCap.isBurning(MetalsNBTData.MALATIUM) && otherPlayerDeathPos != null) {
-                Vec3 vector = new Vec3(otherPlayerDeathPos.getX(), otherPlayerDeathPos.getY(), otherPlayerDeathPos.getZ());
-
-                if(player.level.dimension().equals(otherPlayerDimension)) {
-                    ClientUtils.drawMetalLine(playerVector,vector, 2.3f, 0.2f, 0.6f, 0.7f);
-                } else {
-                    ClientUtils.drawMetalLine(playerVector, playerVector, 0,0,0,0);
-                }
-            }
-
-            RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
-            RenderSystem.disableBlend();
-            RenderSystem.enableDepthTest();
-            RenderSystem.depthMask(true);
-            RenderSystem.enableTexture();
-            matrixStack.popPose();
-        });
-
-
-    }
+//    @OnlyIn(Dist.CLIENT)
+//    @SubscribeEvent
+//    public void onRenderWorldLast(RenderLevelLastEvent event) {
+//        Player player = this.mc.player;
+//        if (player == null || !player.isAlive() || this.mc.options.getCameraType().isMirrored()) {
+//            return;
+//        }
+//
+//        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCap -> {
+//
+//            if (!playerCap.isInvested()) {
+//                return;
+//            }
+//
+//            PoseStack matrixStack = event.getPoseStack();
+//
+//            matrixStack.pushPose();
+//
+//            Vec3 view = this.mc.cameraEntity.getEyePosition(event.getPartialTick());
+//
+//            matrixStack.translate(-view.x, -view.y, -view.z);
+//
+//            //RenderSystem.pushMatrix();
+//            //RenderSystem.multMatrix(matrixStack.last().pose());
+//            RenderSystem.disableTexture();
+//            RenderSystem.disableDepthTest();
+//            RenderSystem.depthMask(false);
+//            RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
+//            RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+//            RenderSystem.enableBlend();
+//
+//
+//            double dist = 1;
+//            double yaw = ((this.mc.player.yRotO + 90) * Math.PI) / 180;
+//            double pitch = ((this.mc.player.xRotO + 90) * Math.PI) / 180;
+//
+//            Vec3 playerVector = view.add(Mth.sin((float) pitch) * Mth.cos((float) yaw) * dist, Mth.cos((float) pitch) * dist - 0.35,
+//                    Mth.sin((float) pitch) * Mth.sin((float) yaw) * dist);
+//
+//
+//            /***********************************
+//             * DRAW LINES  - STEEL & IRON -
+//             ***********************************/
+//
+//            if (playerCap.isBurning(MetalsNBTData.IRON) || playerCap.isBurning(MetalsNBTData.STEEL)) {
+//                for (Entity entity : this.metal_entities) {
+//                    ClientUtils.drawMetalLine(playerVector, entity.position(), 2f, 0, 0.6f, 1f);
+//                }
+//
+//                for (MetalBlockHelpers mb : this.metal_blobs) {
+//                    ClientUtils.drawMetalLine(playerVector, mb.getCenter(), Mth.clamp(0.3F + mb.size() * 0.4F, 0.5F, 7.5F), 0F, 0.6F, 1F);
+//                }
+//            }
+//            /***********************************
+//             * DRAW LINES  - BRONZE -
+//             ***********************************/
+//            if (playerCap.isBurning(MetalsNBTData.BRONZE)) {
+//                BlockPos playerPos = player.blockPosition();
+//                BlockPos negative = new BlockPos(player.position()).offset(playerPos.getX() - 12,playerPos.getX() - 12,playerPos.getX() - 12);
+//                BlockPos positive = new BlockPos(player.position()).offset(playerPos.getX() + 12, playerPos.getX() + 12, playerPos.getX() + 12);
+//
+//                List<Player> players = player.level.getEntitiesOfClass(Player.class, new AABB(negative, positive)).stream().collect(Collectors.toList());
+//
+//                for (Player otherPlayer: players) {
+//                    IDefaultInvestedPlayerData cap = otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).orElse(null);
+//
+//                    if (cap.isBurningSomething() && !cap.isBurning(MetalsNBTData.COPPER)) {
+//                        ClientUtils.drawMetalLine(playerVector, otherPlayer.position(), 5.0f, 0.7f, 0.20f, 0.20f);
+//                    }
+//                }
+//            }
+//
+//            /***********************************
+//             * DRAW LINES  - ELECTRUM -
+//             ***********************************/
+//            if (playerCap.isBurning(MetalsNBTData.ELECTRUM)) {
+//                Vec3 vector = new Vec3(playerCap.getSpawnPos()[0], playerCap.getSpawnPos()[1], playerCap.getSpawnPos()[2]);
+//
+//                //if(player.level.dimension().getRegistryName().toString().equals(playerCap.getSpawnDimension())) {
+//                ClientUtils.drawMetalLine(playerVector,vector, 2f, 0.6f, 0.6f, 0.1f);
+//                //} else {
+//                //  ClientUtils.drawMetalLine(playerVector, playerVector, 0,0,0,0);
+//                //}
+//            }
+//            /***********************************
+//             * DRAW LINES  - GOLD -
+//             ***********************************/
+//            if (playerCap.isBurning(MetalsNBTData.GOLD)) {
+//                Vec3 vector = new Vec3(playerCap.getDeathPos()[0], playerCap.getDeathPos()[1], playerCap.getDeathPos()[2]);
+//
+//                //if(player.level.dimension().getRegistryName().toString().equals(playerCap.getDeathDimension())) {
+//                ClientUtils.drawMetalLine(playerVector,vector, 2f, 0.6f, 0.6f, 0.1f);
+//                //} else {
+//                //  ClientUtils.drawMetalLine(playerVector, playerVector, 0,0,0,0);
+//                //}
+//            }
+//
+//            /***********************************
+//             * DRAW LINES  - MALATIUM -
+//             ***********************************/
+//            if (playerCap.isBurning(MetalsNBTData.MALATIUM) && otherPlayerDeathPos != null) {
+//                Vec3 vector = new Vec3(otherPlayerDeathPos.getX(), otherPlayerDeathPos.getY(), otherPlayerDeathPos.getZ());
+//
+//                if(player.level.dimension().equals(otherPlayerDimension)) {
+//                    ClientUtils.drawMetalLine(playerVector,vector, 2.3f, 0.2f, 0.6f, 0.7f);
+//                } else {
+//                    ClientUtils.drawMetalLine(playerVector, playerVector, 0,0,0,0);
+//                }
+//            }
+//
+//            RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
+//            RenderSystem.disableBlend();
+//            RenderSystem.enableDepthTest();
+//            RenderSystem.depthMask(true);
+//            RenderSystem.enableTexture();
+//            matrixStack.popPose();
+//        });
+//
+//
+//    }
 
     public String getDimensionById(int dimension) {
         if (dimension == 0) {

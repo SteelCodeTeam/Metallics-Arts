@@ -69,10 +69,6 @@ public class MetalBlockHelpers {
         return false;
     }
 
-    public boolean isIn(BlockPos pos) {
-        return this.blocks.contains(pos);
-    }
-
     public Vec3 getCenter() {
         return this.center;
     }

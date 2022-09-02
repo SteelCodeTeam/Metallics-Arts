@@ -1,19 +1,8 @@
 package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.gui.screens.inventory.ContainerScreen;
-import net.minecraft.client.renderer.texture.SimpleTexture;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Inventory;
-import net.rudahee.metallics_arts.MetallicsArts;
-
-import java.awt.*;
-
-
-/*public class AlloyFurnaceScreen extends ContainerScreen {
-    private AlloyFurnaceContainer alloyContainer;
+public class AlloyFurnaceScreen {
+ /*   private AlloyFurnaceContainer alloyContainer;
 
     private final ResourceLocation GUI = new ResourceLocation(MetallicsArts.MOD_ID,
             "textures/gui/alloy_furnace_gui.png");
@@ -79,6 +68,6 @@ import java.awt.*;
 
         super.tick();
 
-    }
+    }*/
 
-}*/
+}
