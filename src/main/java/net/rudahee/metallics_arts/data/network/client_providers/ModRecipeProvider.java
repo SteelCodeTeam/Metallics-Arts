@@ -30,7 +30,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlock.BLOCK_METAL_BLOCKS.get(name).getDescriptionId()));
         });
 
-            ModBlock.BLOCK_METAL_BLOCKS.forEach((name, block) -> {
+        ModBlock.BLOCK_METAL_BLOCKS.forEach((name, block) -> {
             ShapedRecipeBuilder.shaped(block)
                     .define('#', ModItems.ITEM_METAL_INGOT.get(name))
                     .pattern("###")
@@ -39,6 +39,17 @@ public class ModRecipeProvider extends RecipeProvider {
                     .unlockedBy("has_block", has(block))
                     .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItems.ITEM_METAL_INGOT.get(name).getDescriptionId()));
         });
+
+        ModBlock.RAW_METAL_BLOCKS.forEach((name, block) -> {
+            ShapedRecipeBuilder.shaped(block)
+                    .define('#', ModItems.ITEM_RAW_METAL.get(name))
+                    .pattern("###")
+                    .pattern("###")
+                    .pattern("###")
+                    .unlockedBy("has_block", has(block))
+                    .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItems.ITEM_RAW_METAL.get(name).getDescriptionId()));
+        });
+
 
         ModItems.ITEM_GEMS_BASE.forEach((name, item) -> {
             ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
@@ -112,9 +123,15 @@ public class ModRecipeProvider extends RecipeProvider {
                 item1 = ModBlock.BLOCK_GEMS_BLOCKS.get(object.getFirstMetal()).asItem();
                 item2 = ModBlock.BLOCK_GEMS_BLOCKS.get(object.getSecondMetal()).asItem();
             } else if (object.isVanilla()) {
-                if (object.getSecondMetal() == "iron") {item1 = Items.IRON_BLOCK;}
-                else if (object.getSecondMetal() == "gold") {item1 = Items.GOLD_BLOCK;}
-                else {item1 = Items.COPPER_BLOCK;}
+                if (object.getSecondMetal() == "iron") {
+                    item1 = Items.IRON_BLOCK;
+                }
+                else if (object.getSecondMetal() == "gold") {
+                    item1 = Items.GOLD_BLOCK;
+                }
+                else {
+                    item1 = Items.COPPER_BLOCK;
+                }
                 item2 = ModBlock.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
             } else {
                 item1 = ModBlock.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
@@ -177,6 +194,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         //SPIKES
         Arrays.asList(MetalSpikesData.values()).forEach(object -> {
+
             Item head, body;
             if (object.isGems()) {
                 head = ModBlock.BLOCK_GEMS_BLOCKS.get(object.getName()).asItem();
@@ -196,6 +214,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 head = ModBlock.BLOCK_METAL_BLOCKS.get(object.getName()).asItem();
                 body = ModItems.ITEM_METAL_INGOT.get(object.getName()).asItem();
             }
+
             ShapedRecipeBuilder.shaped(object.getSpike())
                     .define('#', head)
                     .define('x', body)

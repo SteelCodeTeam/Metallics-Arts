@@ -6,7 +6,7 @@ import net.minecraft.world.item.Item;
 public enum MetalMindData {
     STEEL_IRON("steel", "iron",null,null,true,false),
     TIN_PEWTER("tin", "pewter",null,null,false,false),
-    COPPER_BRONZE("copper", "bronze",null,null,false,false),
+    COPPER_BRONZE("bronze", "copper",null,null,true,false),
     ZINC_BRASS("zinc", "brass",null,null,false,false),
     CHROMIUM_NICROSIL("chromium", "nicrosil",null,null,false,false),
     ALUMINUM_DURALUMIN("aluminum", "duralumin",null,null,false,false),

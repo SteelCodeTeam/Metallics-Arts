@@ -23,7 +23,7 @@ public final class DataGenerators {
         gen.addProvider(true, new ModBlockStateProvider(gen,existingFileHelper));
         gen.addProvider(true, new ModItemModelProvider(gen,existingFileHelper));
 
-        gen.addProvider(true, new ModLootTableProvider(gen));
+        //gen.addProvider(true, new ModLootTableProvider(gen));
         gen.addProvider(true, new ModRecipeProvider(gen));
     }
 }

@@ -8,7 +8,7 @@ public enum MetalSpikesData {
     STEEL("steel", null,false,false),
     TIN("tin", null,false,false),
     PEWTER("pewter", null,false,false),
-    COPPER("copper", null,false,false),
+    COPPER("copper", null,true,false),
     BRONZE("bronze", null,false,false),
     ZINC("zinc", null,false,false),
     BRASS("brass", null,false,false),

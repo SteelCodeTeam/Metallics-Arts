@@ -1,24 +1,14 @@
 package net.rudahee.metallics_arts.setup.integration.jei;
 
+
 import net.minecraft.resources.ResourceLocation;
 import net.rudahee.metallics_arts.MetallicsArts;
 
 //@JeiPlugin
 public class MetallicsArtsJei  {
-    //@Override
+
     public ResourceLocation getPluginUid() {
         return new ResourceLocation(MetallicsArts.MOD_ID,"jei_plugin");
     }
 
-    /*@Override
-    public void registerCategories(IRecipeCategoryRegistration registration) {
-        registration.addRecipeCategories(new AlloyFurnaceRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-    }
-
-    @Override
-    public void registerRecipes(IRecipeRegistration registration) {
-        RecipeManager recipeManager = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
-        registration.addRecipes(recipeManager.getAllRecipesFor(ModRecipeTypes.ALLOY_FURNACE_RECIPE).stream()
-                .filter(r -> r instanceof AlloyFurnaceRecipe).collect(Collectors.toList()),AlloyFurnaceRecipeCategory.getUidStatic());
-    }*/
 }

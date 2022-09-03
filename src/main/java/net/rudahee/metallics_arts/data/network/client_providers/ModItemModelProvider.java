@@ -39,9 +39,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         });
 
 
-        /*
-        All textures for feruchemic bands
-         */
+        /** All textures for feruchemic bands **/
+
         builder(itemGenerated,"item/band_aluminum_duralumin","item/metal_mind/aluminium_duralumin_band");
         builder(itemGenerated,"item/band_atium_malatium","item/metal_mind/atium_malatium_band");
         builder(itemGenerated,"item/band_cadmium_bendalloy","item/metal_mind/cadmium_bendalloy_band");
@@ -53,9 +52,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/band_steel_iron","item/metal_mind/iron_steel_band");
         builder(itemGenerated,"item/band_zinc_brass","item/metal_mind/zinc_brass_band");
 
-        /*
-        All textures for feruchemic rings
-         */
+        /** All textures for feruchemic rings **/
+
         builder(itemGenerated,"item/ring_aluminum_duralumin","item/metal_mind/aliminium_duralumin_ring");
         builder(itemGenerated,"item/ring_atium_malatium","item/metal_mind/atium_malatium_ring");
         builder(itemGenerated,"item/ring_cadmium_bendalloy","item/metal_mind/cadmium_bendalloy_ring");
@@ -67,9 +65,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/ring_steel_iron","item/metal_mind/iron_steel_ring");
         builder(itemGenerated,"item/ring_zinc_brass","item/metal_mind/zinc_brass_ring");
 
-        /*
-        All textures for spikes
-         */
+        /** All textures for spikes **/
+
         builder(itemGenerated,"item/iron_spike","item/spikes/iron_spike");
         builder(itemGenerated,"item/steel_spike","item/spikes/steel_spike");
         builder(itemGenerated,"item/tin_spike","item/spikes/tin_spike");
