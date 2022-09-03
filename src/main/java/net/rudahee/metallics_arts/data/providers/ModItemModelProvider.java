@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.data.network.client_providers;
+package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;

@@ -1,9 +1,7 @@
-package net.rudahee.metallics_arts.data.network.client_providers;
+package net.rudahee.metallics_arts.data.providers;
 
 
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
@@ -26,9 +24,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.setup.enums.metals.MetalGenerationData;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 
@@ -39,7 +35,6 @@ import java.util.Map;
 
 public class ModLootTableProvider extends LootTableProvider {
 
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     protected final Map<Block, LootTable.Builder> lootTables = new HashMap<>();
     private final DataGenerator generator;
 
@@ -47,30 +42,28 @@ public class ModLootTableProvider extends LootTableProvider {
         super(generator);
         this.generator = generator;
     }
+
     private void addBlockTables() {
-
         //AGREGAR FOR POR ore y ore deepslate con add silktoch o como sea con valores maximos y miunimos por block
-
-        /*for (String key: ModBlock.BLOCK_METAL_ORES.keySet()) {
+        for (String key: ModBlock.BLOCK_METAL_ORES.keySet()) {
             Block ore = ModBlock.BLOCK_METAL_ORES.get(key);
             Item raw = ModItems.ITEM_RAW_METAL.get(key);
-            addSilkTouchBlock(,ore,raw, MetalGenerationData.valueOf(key).getMinDrop(),MetalGenerationData.valueOf(key).getMaxDrop());
-        }*/
+            addSilkTouchBlock(ore.getLootTable().getPath(),ore,raw,1,1);
+        }
+        for (String key: ModBlock.BLOCK_METAL_DEEPSLATE_ORES.keySet()) {
+            Block ds = ModBlock.BLOCK_METAL_DEEPSLATE_ORES.get(key);
+            Item raw = ModItems.ITEM_RAW_METAL.get(key);
+            addSilkTouchBlock(ds.getLootTable().getPath(),ds,raw,1,1);
+        }
         for (String key: ModBlock.RAW_METAL_BLOCKS.keySet()) {
             addSimpleBlock(ModBlock.RAW_METAL_BLOCKS.get(key));
         }
-
         for (String key : ModBlock.BLOCK_METAL_BLOCKS.keySet()) {
-            //addSimpleBlock("loot_tables/blocks/"+key+"_block",ModBlock.BLOCK_METAL_BLOCKS.get(key));
             addSimpleBlock(ModBlock.BLOCK_METAL_BLOCKS.get(key));
         }
-
         for (String key : ModBlock.BLOCK_GEMS_BLOCKS.keySet()) {
             addSimpleBlock(ModBlock.BLOCK_GEMS_BLOCKS.get(key));
-            //addSimpleBlock("loot_tables/blocks/"+key+"_block",ModBlock.BLOCK_GEMS_BLOCKS.get(key));
         }
-
-
     }
 
     @Override
@@ -81,7 +74,6 @@ public class ModLootTableProvider extends LootTableProvider {
         for (Map.Entry<Block, LootTable.Builder> entry : this.lootTables.entrySet()) {
             tables.put(entry.getKey().getLootTable(), entry.getValue().setParamSet(LootContextParamSets.BLOCK).build());
         }
-
         writeTables(cachedOutput, tables);
     }
 
@@ -123,12 +115,8 @@ public class ModLootTableProvider extends LootTableProvider {
         this.lootTables.put(block, LootTable.lootTable().withPool(builder));
     }
 
-
-
     @Override
     public String getName() {
         return "metallics_arts_loot_table";
     }
-
-
 }

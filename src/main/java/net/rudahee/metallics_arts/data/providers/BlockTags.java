@@ -1,16 +1,12 @@
-package net.rudahee.metallics_arts.data.network.client_providers;
+package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
-import org.checkerframework.checker.units.qual.K;
 
 public class BlockTags extends BlockTagsProvider {
 
