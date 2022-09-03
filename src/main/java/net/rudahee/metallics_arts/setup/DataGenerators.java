@@ -6,10 +6,7 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.network.client_providers.ModBlockStateProvider;
-import net.rudahee.metallics_arts.data.network.client_providers.ModItemModelProvider;
-import net.rudahee.metallics_arts.data.network.client_providers.ModLootTableProvider;
-import net.rudahee.metallics_arts.data.network.client_providers.ModRecipeProvider;
+import net.rudahee.metallics_arts.data.network.client_providers.*;
 
 @Mod.EventBusSubscriber (modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {
@@ -22,8 +19,8 @@ public final class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         gen.addProvider(true, new ModBlockStateProvider(gen,existingFileHelper));
         gen.addProvider(true, new ModItemModelProvider(gen,existingFileHelper));
-
-        //gen.addProvider(true, new ModLootTableProvider(gen));
+        gen.addProvider(true, new BlockTags(gen, MetallicsArts.MOD_ID, event.getExistingFileHelper()));
+        gen.addProvider(true, new ModLootTableProvider(gen));
         gen.addProvider(true, new ModRecipeProvider(gen));
     }
 }

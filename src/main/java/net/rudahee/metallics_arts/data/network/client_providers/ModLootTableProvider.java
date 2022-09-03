@@ -26,7 +26,9 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.setup.enums.metals.MetalGenerationData;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 
@@ -45,21 +47,32 @@ public class ModLootTableProvider extends LootTableProvider {
         super(generator);
         this.generator = generator;
     }
-    /*private void addBlockTables() {
+    private void addBlockTables() {
 
-        for (String key: ModBlock.BLOCK_METAL_ORES.keySet()) {
+        //AGREGAR FOR POR ore y ore deepslate con add silktoch o como sea con valores maximos y miunimos por block
+
+        /*for (String key: ModBlock.BLOCK_METAL_ORES.keySet()) {
             Block ore = ModBlock.BLOCK_METAL_ORES.get(key);
             Item raw = ModItems.ITEM_RAW_METAL.get(key);
-            addSilkTouchBlock("loot_tables/blocks/"+key, ore, raw, 1, 1);
-            if (ModBlock.BLOCK_METAL_DEEPSLATE_ORES.containsKey(key)){
-                addSilkTouchBlock("loot_tables/blocks/deepslate_"+key,
-                        ModBlock.BLOCK_METAL_DEEPSLATE_ORES.get(key), raw, 1, 1);
-            }
-            addSimpleBlock("loot_tables/blocks/raw_"+key,ModBlock.RAW_METAL_BLOCKS.get(key));
+            addSilkTouchBlock(,ore,raw, MetalGenerationData.valueOf(key).getMinDrop(),MetalGenerationData.valueOf(key).getMaxDrop());
+        }*/
+        for (String key: ModBlock.RAW_METAL_BLOCKS.keySet()) {
+            addSimpleBlock(ModBlock.RAW_METAL_BLOCKS.get(key));
         }
 
-    }*/
-/*
+        for (String key : ModBlock.BLOCK_METAL_BLOCKS.keySet()) {
+            //addSimpleBlock("loot_tables/blocks/"+key+"_block",ModBlock.BLOCK_METAL_BLOCKS.get(key));
+            addSimpleBlock(ModBlock.BLOCK_METAL_BLOCKS.get(key));
+        }
+
+        for (String key : ModBlock.BLOCK_GEMS_BLOCKS.keySet()) {
+            addSimpleBlock(ModBlock.BLOCK_GEMS_BLOCKS.get(key));
+            //addSimpleBlock("loot_tables/blocks/"+key+"_block",ModBlock.BLOCK_GEMS_BLOCKS.get(key));
+        }
+
+
+    }
+
     @Override
     public void run(CachedOutput cachedOutput) {
         addBlockTables();
@@ -84,10 +97,11 @@ public class ModLootTableProvider extends LootTableProvider {
         });
     }
 
-
-    protected void addSimpleBlock(String name, Block block) {
+//String name,
+    protected void addSimpleBlock(Block block) {
         MetallicsArts.LOGGER.debug("Creating Loot Table for block " + block.getDescriptionId());
-        LootPool.Builder builder = LootPool.lootPool().name(name).setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(block));
+        LootPool.Builder builder = LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(block));
+        //LootPool.Builder builder = LootPool.lootPool().name(name).setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(block));
         this.lootTables.put(block, LootTable.lootTable().withPool(builder));
     }
 
@@ -107,81 +121,14 @@ public class ModLootTableProvider extends LootTableProvider {
                         .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE, 1))
                         .apply(ApplyExplosionDecay.explosionDecay())));
         this.lootTables.put(block, LootTable.lootTable().withPool(builder));
-    }*/
-
-    /*@Override
-    public void run(CachedOutput cachedOutputs) {
-        addBlocks();
-        Map<ResourceLocation, LootTable> lootTables = new HashMap<>();
-
-        for (Map.Entry<Block, LootTable.Builder> entry: this.lootTables.entrySet()) {
-            lootTables.put(entry.getKey().getLootTable(), entry.getValue().setParamSet(LootContextParamSets.BLOCK).build());
-        }
     }
 
 
-    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> getTables() {
-        return ImmutableList.of(Pair.of(ModBlockLootTable::new, LootParameterSets.BLOCK));
-    }
 
     @Override
-    protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationtracker) {
-        final Set<ResourceLocation> modLootTableIds =
-                LootTables.
-                        .all()
-                        .stream()
-                        .filter(lootTable -> lootTable.getNamespace().equals(MetallicsArts.MOD_ID))
-                        .collect(Collectors.toSet());
-
-        for (ResourceLocation id : Sets.difference(modLootTableIds, map.keySet()))
-            validationtracker.reportProblem("Missing mod loot table: " + id);
-
-        map.forEach((id, lootTable) ->
-                LootTableManager.validate(validationtracker, id, lootTable));
-    }
-
-    public static class ModBlockLootTable extends BlockLootTables {
-
-        public ModBlockLootTable() {
-
-        }
-
-        @Override
-        protected void addTables() {
-
-            ModBlock.BLOCK_METAL_ORES.forEach((name, ore) -> {
-                dropSelf(ore.getBlock());
-            });
-
-            ModBlock.BLOCK_METAL_BLOCKS.forEach((name, block) -> {
-                dropSelf(block.getBlock());
-            });
-
-            ModBlock.BLOCK_GEMS_BLOCKS.forEach((name, block) -> {
-                dropSelf(block.getBlock());
-            });
-
-            dropSelf(ModBlock.ALLOY_FURNACE_BLOCK.get());
-
-        }
-
-        @Override
-        protected Iterable<Block> getKnownBlocks() {
-            return StreamSupport
-                    .stream(ForgeRegistries.BLOCKS.spliterator(), false)
-                    .filter(
-                            entry -> entry.getRegistryName() != null &&
-                                    entry.getRegistryName().getNamespace().equals(MetallicsArts.MOD_ID)
-                    ).collect(Collectors.toSet());
-        }
-    }
-    }*/
-
-
-    /*@Override
     public String getName() {
         return "metallics_arts_loot_table";
-    }*/
+    }
 
 
 }
