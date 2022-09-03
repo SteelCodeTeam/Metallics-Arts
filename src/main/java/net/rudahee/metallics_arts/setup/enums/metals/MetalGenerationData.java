@@ -37,7 +37,6 @@ public enum MetalGenerationData implements IMetal {
         this.maxDrop = maxDrop;
     }
 
-    public
 
     public int getVeinSize() {
         return veinSize;
