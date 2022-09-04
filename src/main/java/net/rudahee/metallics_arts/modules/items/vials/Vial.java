@@ -8,12 +8,14 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.registries.ModItems;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -102,9 +104,9 @@ public abstract class Vial extends Item {
             itemStack.shrink(1);
             ItemStack item = null;
             if(this.maxNuggets==5){
-                //item = new ItemStack(ModItems.SMALL_VIAL.get());
+                item = new ItemStack(ModItems.SMALL_VIAL.get());
             }else {
-                //item = new ItemStack(ModItems.LARGE_VIAL.get());
+                item = new ItemStack(ModItems.LARGE_VIAL.get());
             }
 
             CompoundTag data = new CompoundTag();
@@ -115,9 +117,9 @@ public abstract class Vial extends Item {
 
             if (!((Player) livingEntity).getInventory().add(item)) {
                 if(this.maxNuggets==5){
-                    //world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItems.SMALL_VIAL.get(), 1)));
+                    world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItems.SMALL_VIAL.get(), 1)));
                 }else {
-                    //world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItems.LARGE_VIAL.get(), 1)));
+                    world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItems.LARGE_VIAL.get(), 1)));
                 }
             }
         }
@@ -154,9 +156,9 @@ public abstract class Vial extends Item {
 
         if (group == MetallicsArts.MA_TAB){
             if(this.maxNuggets==5){
-                //resultItem = new ItemStack(ModItems.SMALL_VIAL.get(),1);
+                resultItem = new ItemStack(ModItems.SMALL_VIAL.get(),1);
             }else if (this.maxNuggets==10) {
-                //resultItem = new ItemStack(ModItems.LARGE_VIAL.get(),1);
+                resultItem = new ItemStack(ModItems.LARGE_VIAL.get(),1);
             }
             CompoundTag nbt = new CompoundTag();
             for (MetalsNBTData mt : MetalsNBTData.values()) {

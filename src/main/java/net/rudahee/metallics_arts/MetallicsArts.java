@@ -49,10 +49,11 @@ public class MetallicsArts
     public static final Logger LOGGER = LogManager.getLogger();
 
     // creative tab
+
     public static final CreativeModeTab MA_TAB = new CreativeModeTab(MOD_ID) {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(Items.DEEPSLATE_GOLD_ORE);
+            return new ItemStack(Items.IRON_INGOT);
         }
     };
 
@@ -139,10 +140,9 @@ public class MetallicsArts
     @SubscribeEvent
     public void onGuOveirlayEvent(final RegisterGuiOverlaysEvent event) {
         event.registerBelowAll("invested_overlay", new InvestedMetalOverlay());
+
         PowersClientEventHandler.onRenderGameOverlay(event);
     }
-
-
 
 
     @SubscribeEvent

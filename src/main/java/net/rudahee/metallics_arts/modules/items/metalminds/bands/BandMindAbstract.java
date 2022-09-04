@@ -13,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
@@ -38,8 +39,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         metalsMaxReserve[0]=maxReserve1;
         metalsMaxReserve[1]=maxReserve2;
     }
-
-
 
 
     @Override

@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.powers.client;
 
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.core.BlockPos;
@@ -38,6 +39,7 @@ import net.rudahee.metallics_arts.setup.registries.ModItems;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -335,8 +337,7 @@ public class PowersClientEventHandler {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onRenderGameOverlay(final RegisterGuiOverlaysEvent event) {
-        Minecraft mc = Minecraft.getInstance();
-
+        /*Minecraft mc = Minecraft.getInstance();
         if ((mc.screen instanceof AllomanticMetalSelector) || (mc.screen instanceof FeruchemyMetalSelector)) {
             return;
         }
@@ -350,7 +351,6 @@ public class PowersClientEventHandler {
         if (mc.screen != null && mc.screen instanceof ChatScreen) {
             return;
         }
-
 
         if (KeyInit.ALLOMANTIC_POWER_SELECTOR.isDown()){
             Player player = mc.player;
@@ -387,7 +387,7 @@ public class PowersClientEventHandler {
                     }
                 });
             }
-        }
+        }*/
 
     }
 
@@ -404,6 +404,41 @@ public class PowersClientEventHandler {
      */
     private void acceptInput() {
 
+        if (!KeyInit.ALLOMANTIC_POWER_SELECTOR.isDown()) {
+            return;
+        }
+        if (this.mc.screen != null) {
+            return;
+        }
+        Player player = this.mc.player;
+        if (player == null || !this.mc.isWindowActive()) {
+            return;
+        }
+
+        if (KeyInit.ALLOMANTIC_POWER_SELECTOR.isDown()){
+            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+
+                int num_powers = data.getAllomanticPowerCount();
+                if (num_powers == 0){
+                    return;
+                }
+                else {
+                    mc.setScreen(new AllomanticMetalSelector());
+                }
+            });
+        }
+        if (KeyInit.FERUCHEMIC_POWER_SELECTOR.isDown()){
+            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+
+                int num_powers = data.getFeruchemicPowerCount();
+                if (num_powers == 0){
+                    return;
+                }
+                else {
+                    mc.setScreen(new FeruchemyMetalSelector());
+                }
+            });
+        }
     }
 
 

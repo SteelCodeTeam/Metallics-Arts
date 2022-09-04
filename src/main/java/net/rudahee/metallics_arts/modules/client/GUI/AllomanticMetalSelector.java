@@ -36,7 +36,6 @@ public class AllomanticMetalSelector extends Screen {
 
     public AllomanticMetalSelector() {
         super(Component.translatable("metallic_arts_allomantic_selector"));
-
         this.mc = Minecraft.getInstance();
     }
 
@@ -359,7 +358,6 @@ public class AllomanticMetalSelector extends Screen {
 
     }
 
-
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
         toggleSelected();
@@ -373,8 +371,7 @@ public class AllomanticMetalSelector extends Screen {
 
     @Override
     public boolean keyReleased(int keysym, int scancode, int modifiers) {
-
-        if (KeyInit.ALLOMANTIC_POWER_SELECTOR.consumeClick()) {
+        if (KeyInit.ALLOMANTIC_POWER_SELECTOR.matches(keysym,scancode)) {
             this.mc.setScreen(null);
             this.mc.mouseHandler.grabMouse();
             return true;
@@ -385,7 +382,7 @@ public class AllomanticMetalSelector extends Screen {
 
     @Override
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
-        if (KeyInit.ALLOMANTIC_POWER_SELECTOR.consumeClick()) {
+        if (KeyInit.ALLOMANTIC_POWER_SELECTOR.matchesMouse(button)) {
             this.mc.setScreen(null);
             this.mc.mouseHandler.grabMouse();
             return true;

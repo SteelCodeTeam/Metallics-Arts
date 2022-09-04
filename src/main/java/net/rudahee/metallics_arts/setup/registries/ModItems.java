@@ -1,11 +1,16 @@
 package net.rudahee.metallics_arts.setup.registries;
 
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.modules.items.combat.*;
 import net.rudahee.metallics_arts.modules.items.metal_spike.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.bands.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.rings.*;
+import net.rudahee.metallics_arts.modules.items.vials.large_vial.LargeVial;
+import net.rudahee.metallics_arts.modules.items.vials.small_vial.SmallVial;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalSpikesData;
 import net.rudahee.metallics_arts.setup.enums.gems.Gems;
@@ -84,7 +89,7 @@ public class ModItems {
 
     //MentalMinds
 
-    private static Item.Properties PROPERTY_METALMINDS = new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1);
+    private static final Item.Properties PROPERTY_METALMINDS = new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1);
 
     public static RegistryObject<Item> BAND_ALUMINUM_DURALUMIN = MetallicsArts.registerItem("band_aluminum_duralumin",
             () -> {
@@ -231,7 +236,7 @@ public class ModItems {
 
 //spikes
 
-    private static final Item.Properties PROPERTY_SPIKE = new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1);
+    private static Item.Properties PROPERTY_SPIKE = new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1);
 
     public static RegistryObject<Item> IRON_SPIKE = MetallicsArts.registerItem("iron_spike",
             () -> {
@@ -375,43 +380,41 @@ public class ModItems {
     );
 
 //weapons
-/*
+
     public static RegistryObject<Item> OBSIDIAN_DAGGER = MetallicsArts.registerItem("obsidian_dagger",
             () -> {
-                return new ObsidianDagger(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(CreativeModeTab.TAB_COMBAT));
+                return new ObsidianDagger(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT));
             }
     );
     public static RegistryObject<Item> CRISTAL_DAGGER = MetallicsArts.registerItem("cristal_dagger",
             () -> {
-                return new CristalDagger(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(CreativeModeTab.TAB_COMBAT));
+                return new CristalDagger(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT));
             }
     );
     public static RegistryObject<Item> KOLOSS_BLADE = MetallicsArts.registerItem("koloss_blade",
             () -> {
-                return new KolossBlade(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(CreativeModeTab.TAB_COMBAT));
+                return new KolossBlade(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT));
             }
     );
     public static RegistryObject<Item> DUELING_STAFF = MetallicsArts.registerItem("dueling_staff",
             () -> {
-                return new DuelingStaff(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(CreativeModeTab.TAB_COMBAT));
+                return new DuelingStaff(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT));
             }
     );
     public static RegistryObject<Item> OBSIDIAN_AXE = MetallicsArts.registerItem("obsidian_axe",
             () -> {
-                return new ObsidianAxe(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).tab(CreativeModeTab.TAB_COMBAT));
+                return new ObsidianAxe(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT));
             }
     );
 
-/*
-Item item = new Item(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG));
-                ITEM_METAL_INGOT.put(metal.getMetalNameLower(), item);
- */
-/*    public static RegistryObject<Item> LARGE_VIAL= MetallicsArts.registerItem("big_vial",
-            () -> new LargeVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new FoodProperties.Builder().nutrition(0).build())));
+
+
+   public static RegistryObject<Item> LARGE_VIAL= MetallicsArts.registerItem("big_vial",
+            () -> new LargeVial(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1).food(new FoodProperties.Builder().nutrition(0).build())));
 
     public static RegistryObject<Item> SMALL_VIAL = MetallicsArts.registerItem("small_vial",
-            () -> new SmallVial(new Item.Properties().tab(ModItemGroup.METALLIC_ARTS_TAG).stacksTo(1).food(new FoodProperties.Builder().nutrition(0).build())));
-*/
+            () -> new SmallVial(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1).food(new FoodProperties.Builder().nutrition(0).build())));
+
 
 
 }

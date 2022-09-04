@@ -1,8 +1,30 @@
 package net.rudahee.metallics_arts.data.recipes.vials;
 
 
-public class SmallVialItemRecipe  {
-/*
+import com.google.gson.JsonObject;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CustomRecipe;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
+import net.minecraft.world.level.Level;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.registries.ModItems;
+import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class SmallVialItemRecipe extends CustomRecipe {
+
     private ItemStack final_result = ItemStack.EMPTY;
 
     private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItems.SMALL_VIAL.get());
@@ -102,14 +124,23 @@ public class SmallVialItemRecipe  {
     }
 
     @Override
-    public ItemStack assemble(CraftingContainer inv) {
+    public ItemStack assemble(CraftingContainer inv) { //getCraftingResult
         return this.final_result.copy();
-
     }
 
     @Override
-    public boolean canCraftInDimensions(int nose, int nose2) {
+    public boolean isSpecial() {
         return true;
+    }
+
+    @Override
+    public ItemStack getResultItem() {
+        return this.final_result;
+    }
+
+    @Override
+    public boolean canCraftInDimensions(int width, int height) {
+        return width * height >= 2;
     }
 
     @Override
@@ -117,21 +148,9 @@ public class SmallVialItemRecipe  {
         return ModRecipeTypes.SMALL_VIAL_ITEM_RECIPE_SERIALIZER.get();
     }
 
-    public static class Serializer implements RecipeSerializer<SmallVialItemRecipe> {
-
-        @Override
-        public SmallVialItemRecipe fromJson(ResourceLocation p_44103_, JsonObject p_44104_) {
-            return null;
+    public static class Serializer extends SimpleRecipeSerializer<SmallVialItemRecipe> {
+        public Serializer() {
+            super(SmallVialItemRecipe::new);
         }
-
-        @Override
-        public @Nullable SmallVialItemRecipe fromNetwork(ResourceLocation p_44105_, FriendlyByteBuf p_44106_) {
-            return null;
-        }
-
-        @Override
-        public void toNetwork(FriendlyByteBuf p_44101_, SmallVialItemRecipe p_44102_) {
-
-        }
-    }*/
+    }
 }
