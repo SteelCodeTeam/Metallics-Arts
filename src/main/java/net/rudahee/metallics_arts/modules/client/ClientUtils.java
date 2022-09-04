@@ -100,7 +100,7 @@ public class ClientUtils {
     private static boolean isBand = false;
 
 
-    public static  void toggleDecant (MetalsNBTData metal, IDefaultInvestedPlayerData capability, Player player){
+    public static void toggleDecant(MetalsNBTData metal, IDefaultInvestedPlayerData capability, Player player){
         if (!capability.hasFeruchemicPower(metal)||!capability.getMetalMindEquiped(metal.getGroup())){
             return;
         }
@@ -144,7 +144,7 @@ public class ClientUtils {
 
     }
 
-    public static  void  toggleStorage (MetalsNBTData metal, IDefaultInvestedPlayerData capability, Player player){
+    public static void toggleStorage(MetalsNBTData metal, IDefaultInvestedPlayerData capability, Player player){
         if (!capability.hasFeruchemicPower(metal)||!capability.getMetalMindEquiped(metal.getGroup())){
             return;
         }

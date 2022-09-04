@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.modules.powers;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.rudahee.metallics_arts.modules.client.GUI.InvestedMetalOverlay;
 import net.rudahee.metallics_arts.modules.powers.client.PowersClientEventHandler;
 
 

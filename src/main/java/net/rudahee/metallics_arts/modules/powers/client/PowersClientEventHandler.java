@@ -16,7 +16,7 @@ import net.minecraft.world.phys.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.client.event.RenderGuiOverlayEvent;
+import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -25,7 +25,6 @@ import net.rudahee.metallics_arts.data.network.PullAndPushBlockPacket;
 import net.rudahee.metallics_arts.data.network.PullAndPushEntityPacket;
 import net.rudahee.metallics_arts.data.network.PullAndPushNuggetPacket;
 import net.rudahee.metallics_arts.modules.client.ClientUtils;
-import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalOverlay;
 import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalSelector;
 import net.rudahee.metallics_arts.modules.client.GUI.FeruchemyMetalSelector;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
@@ -335,29 +334,28 @@ public class PowersClientEventHandler {
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
-    public void onRenderGameOverlay(final RenderGuiOverlayEvent event) {
-        if ((this.mc.screen instanceof AllomanticMetalSelector) || (this.mc.screen instanceof FeruchemyMetalSelector)) {
+    public static void onRenderGameOverlay(final RegisterGuiOverlaysEvent event) {
+        Minecraft mc = Minecraft.getInstance();
+
+        if ((mc.screen instanceof AllomanticMetalSelector) || (mc.screen instanceof FeruchemyMetalSelector)) {
             return;
         }
         //event.getOverlay() != RenderGameOverlayEvent.ElementType.EXPERIENCE
         if (event.isCancelable()) {
             return;
         }
-        if (!mc.isWindowActive() || !this.mc.player.isAlive()) {
+        if (!mc.isWindowActive() || !mc.player.isAlive()) {
             return;
         }
-        if (this.mc.screen != null && this.mc.screen instanceof ChatScreen) {
+        if (mc.screen != null && mc.screen instanceof ChatScreen) {
             return;
         }
-
-        AllomanticMetalOverlay.drawMetalOverlay(event.getPoseStack());
-
 
 
         if (KeyInit.ALLOMANTIC_POWER_SELECTOR.isDown()){
-            Player player = this.mc.player;
-            if (this.mc.screen == null){
-                if (player==null || !this.mc.isWindowActive()){
+            Player player = mc.player;
+            if (mc.screen == null){
+                if (player==null || !mc.isWindowActive()){
                     return;
                 }
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
@@ -367,15 +365,15 @@ public class PowersClientEventHandler {
                         return;
                     }
                     else {
-                        this.mc.setScreen(new AllomanticMetalSelector());
+                        mc.setScreen(new AllomanticMetalSelector());
                     }
                 });
             }
         }
         if (KeyInit.FERUCHEMIC_POWER_SELECTOR.isDown()){
-            Player player = this.mc.player;
-            if (this.mc.screen == null){
-                if (player==null || !this.mc.isWindowActive()){
+            Player player = mc.player;
+            if (mc.screen == null){
+                if (player==null || !mc.isWindowActive()){
                     return;
                 }
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
@@ -385,7 +383,7 @@ public class PowersClientEventHandler {
                         return;
                     }
                     else {
-                        this.mc.setScreen(new FeruchemyMetalSelector());
+                        mc.setScreen(new FeruchemyMetalSelector());
                     }
                 });
             }

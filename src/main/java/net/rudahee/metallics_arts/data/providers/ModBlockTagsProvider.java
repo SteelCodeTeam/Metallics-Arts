@@ -8,10 +8,10 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 
-public class BlockTags extends BlockTagsProvider {
+public class ModBlockTagsProvider extends BlockTagsProvider {
 
 
-    public BlockTags(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
+    public ModBlockTagsProvider(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
         super(gen, modid, exFileHelper);
     }
 

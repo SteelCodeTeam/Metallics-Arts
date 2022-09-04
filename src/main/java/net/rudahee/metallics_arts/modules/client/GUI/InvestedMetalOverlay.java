@@ -2,12 +2,18 @@ package net.rudahee.metallics_arts.modules.client.GUI;
 
 
 import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.ChatScreen;
+import net.minecraft.client.gui.screens.Overlay;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.texture.SimpleTexture;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
+import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import org.lwjgl.opengl.GL11;
@@ -16,7 +22,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import java.awt.*;
 
 
-public class AllomanticMetalOverlay {
+public class InvestedMetalOverlay implements IGuiOverlay {
     private static final Point[] AllomanticFrames = new Point[6];
     private static final Point[] FeruchemicDecantFrames = new Point[6];
     private static final Point[] FeruchemicStorageFrames = new Point[6];
@@ -58,12 +64,16 @@ public class AllomanticMetalOverlay {
     private static int actualFeruchemicReserve = -1;
     private static String actualIsBandOrRing = "";
 
-    /**
-     * Draws the overlay for the metals
-     *
-     * @param matrix
-     */
-    public static void drawMetalOverlay(PoseStack matrix) {
+    private static void blit(PoseStack matrix, ForgeGui gui, int x, int y, float uOffset, float vOffset, int uWidth, int vHeight) {
+        ForgeGui.blit(matrix, x, y, gui.getBlitOffset(), uOffset, vOffset, uWidth, vHeight, 128, 128);
+    }
+
+
+    public InvestedMetalOverlay() {}
+
+
+    @Override
+    public void render(ForgeGui gui, PoseStack matrix, float partialTick, int screenWidth, int screenHeight) {
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer player = mc.player;
 
@@ -73,13 +83,15 @@ public class AllomanticMetalOverlay {
         if (!player.isAlive()) {
             return;
         }
+        if (mc.options.hideGui || !mc.isWindowActive() || !player.isAlive()) {
+            return;
+        }
+        if (mc.screen != null && !(mc.screen instanceof ChatScreen)) {
+            return;
+        }
 
-        ForgeGui gui = new ForgeGui(mc);
-        mc.getTextureManager().bindForSetup(meterLocation);
-        SimpleTexture objAllomantic;
-        objAllomantic = (SimpleTexture) mc.getTextureManager().getTexture(meterLocation);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, objAllomantic.getId());
-
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderTexture(0, meterLocation);
 
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
 
@@ -114,10 +126,10 @@ public class AllomanticMetalOverlay {
 
                 //Operacion necesaria para separar los botes de cristal
 
-                    allomanticActualOffSetX = allomanticActualOffSetX + allomanticWidthVial + 3;
+                allomanticActualOffSetX = allomanticActualOffSetX + allomanticWidthVial + 3;
 
-                    float division = (float)data.getAllomanticAmount(metal) / (float)metal.getMaxAllomanticTicksStorage();
-                    int modifierAllomantic = Math.round(division * allomanticHeightBar);
+                float division = (float)data.getAllomanticAmount(metal) / (float)metal.getMaxAllomanticTicksStorage();
+                int modifierAllomantic = Math.round(division * allomanticHeightBar);
 
                 if (data.hasAllomanticPower(metal)) {
 
@@ -250,9 +262,5 @@ public class AllomanticMetalOverlay {
 
 
         }
-    }
-
-    private static void blit(PoseStack matrix, ForgeGui gui, int x, int y, float uOffset, float vOffset, int uWidth, int vHeight) {
-        ForgeGui.blit(matrix, x, y, gui.getBlitOffset(), uOffset, vOffset, uWidth, vHeight, 128, 128);
     }
 }

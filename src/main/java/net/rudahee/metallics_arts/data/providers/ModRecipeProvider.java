@@ -5,8 +5,11 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalSpikesData;
+import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 
@@ -98,6 +101,22 @@ public class ModRecipeProvider extends RecipeProvider {
                     .pattern("###")
                     .unlockedBy("has_block", has(item))
                     .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModItems.ITEM_GEMS_BASE.get(name).getDescriptionId()));
+        });
+
+        Arrays.asList(Metal.values()).forEach(metal -> {
+            if (!metal.isAlloy()){
+                SimpleCookingRecipeBuilder.cooking(Ingredient.of(ModItems.ITEM_RAW_METAL.get(metal.getMetalNameLower())), ModItems.ITEM_METAL_INGOT.get(metal.getMetalNameLower()), 0.5f, 250, RecipeSerializer.SMELTING_RECIPE)
+                        .unlockedBy("has_block", has(ModItems.ITEM_RAW_METAL.get(metal.getMetalNameLower())))
+                        .save(recipesConsumer, new ResourceLocation(ModItems.ITEM_RAW_METAL.get(metal.getMetalNameLower()).getDescriptionId() + "_to_" + ModItems.ITEM_METAL_INGOT.get(metal.getMetalNameLower()).getDescriptionId() + "_furnace"));
+            }
+        });
+
+        Arrays.asList(Metal.values()).forEach(metal -> {
+            if (!metal.isAlloy()){
+                SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModItems.ITEM_RAW_METAL.get(metal.getMetalNameLower())), ModItems.ITEM_METAL_INGOT.get(metal.getMetalNameLower()), 0.8f, 100)
+                        .unlockedBy("has_block", has(ModItems.ITEM_RAW_METAL.get(metal.getMetalNameLower())))
+                        .save(recipesConsumer, new ResourceLocation(ModItems.ITEM_RAW_METAL.get(metal.getMetalNameLower()).getDescriptionId() + "_to_" + ModItems.ITEM_METAL_INGOT.get(metal.getMetalNameLower()).getDescriptionId() + "_blast"));
+            }
         });
 
         /*ModBlock.BLOCK_METAL_ORES.forEach((name, block) -> {

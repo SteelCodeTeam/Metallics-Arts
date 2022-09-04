@@ -19,7 +19,7 @@ public final class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         gen.addProvider(true, new ModBlockStateProvider(gen,existingFileHelper));
         gen.addProvider(true, new ModItemModelProvider(gen,existingFileHelper));
-        gen.addProvider(true, new BlockTags(gen, MetallicsArts.MOD_ID, event.getExistingFileHelper()));
+        gen.addProvider(true, new ModBlockTagsProvider(gen, MetallicsArts.MOD_ID, event.getExistingFileHelper()));
         gen.addProvider(true, new ModLootTableProvider(gen));
         gen.addProvider(true, new ModRecipeProvider(gen));
     }

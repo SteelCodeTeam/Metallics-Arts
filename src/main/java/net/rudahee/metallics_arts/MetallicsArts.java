@@ -6,6 +6,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -21,9 +22,11 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.rudahee.metallics_arts.modules.client.GUI.InvestedMetalOverlay;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.data_player.InvestedDataProvider;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
+import net.rudahee.metallics_arts.modules.powers.client.PowersClientEventHandler;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.commands.MetallicArtsCommand;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
@@ -75,6 +78,9 @@ public class MetallicsArts
         modEventBus.addListener(this::enqueueIMC);
         // Register the processIMC method for modloading
         modEventBus.addListener(this::processIMC);
+
+        modEventBus.addListener(this::onGuOveirlayEvent);
+
         // Register the doClientStuff method for modloading
         modEventBus.addListener(InvestedCapability::register);
         modEventBus.addListener(this::doClientStuff);
@@ -129,6 +135,14 @@ public class MetallicsArts
                 collect(Collectors.toList()));
     }
     // You can use SubscribeEvent and let the Event Bus discover methods to call
+
+    @SubscribeEvent
+    public void onGuOveirlayEvent(final RegisterGuiOverlaysEvent event) {
+        event.registerBelowAll("invested_overlay", new InvestedMetalOverlay());
+        PowersClientEventHandler.onRenderGameOverlay(event);
+    }
+
+
 
 
     @SubscribeEvent
