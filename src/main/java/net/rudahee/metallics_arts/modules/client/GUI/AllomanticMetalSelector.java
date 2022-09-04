@@ -5,6 +5,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -50,6 +51,7 @@ public class AllomanticMetalSelector extends Screen {
     @Override
     public void render(PoseStack matrixStack, int mx, int my, float partialTicks) {
         super.render(matrixStack, mx, my, partialTicks);
+
         this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             int centerX  = this.width / 2;
             int centerY  = this.height / 2;
@@ -73,10 +75,12 @@ public class AllomanticMetalSelector extends Screen {
             Tesselator tess = Tesselator.getInstance();
             BufferBuilder buf = tess.getBuilder();
 
+
             RenderSystem.disableCull();
             RenderSystem.disableTexture();
             RenderSystem.enableBlend();
-            //RenderSystem.shadeModel(GL11.GL_FLAT);
+            RenderSystem.setShader(GameRenderer::getPositionColorShader);
+
             buf.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION_COLOR);
 
 
@@ -247,7 +251,6 @@ public class AllomanticMetalSelector extends Screen {
 
             tess.end();
 
-            //RenderSystem.shadeModel(GL11.GL_FLAT);
             RenderSystem.enableTexture();
 
             //pintado interno
@@ -272,8 +275,11 @@ public class AllomanticMetalSelector extends Screen {
                 int xdp = (int) ((xp - centerX )*mod+centerX);
                 int ydp = (int) ((yp - centerY )*mod+centerY);
 
-                this.mc.getEntityRenderDispatcher().textureManager.bindForSetup(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
-                RenderSystem.setShaderColor(1, 1, 1, 1);
+
+                RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+               //this.mc.getEntityRenderDispatcher().textureManager.bindForSetup(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+                //RenderSystem.setShaderColor(1, 1, 1, 1);
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
             }
@@ -307,8 +313,10 @@ public class AllomanticMetalSelector extends Screen {
                 int xdp = (int) ((xp - centerX ) * mod + centerX );
                 int ydp = (int) ((yp - centerY ) * mod + centerY );
 
-                this.mc.getEntityRenderDispatcher().textureManager.bindForSetup(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
-                RenderSystem.setShaderColor(1, 1, 1, 1);
+                //this.mc.getEntityRenderDispatcher().textureManager.bindForSetup(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+                //RenderSystem.setShaderColor(1, 1, 1, 1);
+                RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
             }
@@ -338,20 +346,17 @@ public class AllomanticMetalSelector extends Screen {
                 int xdp = (int) ((xp - centerX ) * mod + centerX );
                 int ydp = (int) ((yp - centerY ) * mod + centerY );
 
-                this.mc.getEntityRenderDispatcher().textureManager.bindForSetup( new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
-                RenderSystem.setShaderColor(1, 1, 1, 1);
+                RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+                //this.mc.getEntityRenderDispatcher().textureManager.bindForSetup( new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+                //RenderSystem.setShaderColor(1, 1, 1, 1);
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
             }
 
-            //RenderSystem.enableRescaleNormal();
             RenderSystem.enableBlend();
             RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
-            //RenderHelper.turnBackOn();
-
-            //RenderHelper.turnOff();
             RenderSystem.disableBlend();
-            //RenderSystem.disableRescaleNormal();
 
 
         });

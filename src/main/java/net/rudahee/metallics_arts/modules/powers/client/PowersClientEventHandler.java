@@ -404,7 +404,7 @@ public class PowersClientEventHandler {
      */
     private void acceptInput() {
 
-        if (!KeyInit.ALLOMANTIC_POWER_SELECTOR.isDown()) {
+        if (!KeyInit.ALLOMANTIC_POWER_SELECTOR.isDown() && !KeyInit.FERUCHEMIC_POWER_SELECTOR.isDown()) {
             return;
         }
         if (this.mc.screen != null) {
@@ -429,7 +429,6 @@ public class PowersClientEventHandler {
         }
         if (KeyInit.FERUCHEMIC_POWER_SELECTOR.isDown()){
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
-
                 int num_powers = data.getFeruchemicPowerCount();
                 if (num_powers == 0){
                     return;

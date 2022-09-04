@@ -53,6 +53,7 @@ public class SmallVialItemRecipe extends CustomRecipe {
 
     @Override
     public boolean matches(CraftingContainer inv, Level world) {
+
         ItemStack actualIngredient = null;
 
         int[] metalsEnVial = new int[MetalsNBTData.values().length];
@@ -68,10 +69,10 @@ public class SmallVialItemRecipe extends CustomRecipe {
 
         int cantMaxPep = 5;
 
-        for(int i = 0; i < inv.getContainerSize(); i++) {
+        for(int i = 0; i < inv.getContainerSize();i++) {
             actualIngredient = inv.getItem(i);
-            if (actualIngredient != null && !actualIngredient.isEmpty()) {
-                if (INGREDIENT_VIAL.test(inv.getItem(i))) {
+            if (!actualIngredient.isEmpty()) {
+                if (INGREDIENT_VIAL.test(actualIngredient)) {
                     if (actualIngredient.getTag() != null){
                         for (MetalsNBTData metal : MetalsNBTData.values()) {
                             if (actualIngredient.getTag().contains(metal.getGemNameLower())){
@@ -83,12 +84,13 @@ public class SmallVialItemRecipe extends CustomRecipe {
                     }
                 }
                 auxiliar = actualIngredient;
+
                 if (INGREDIENT_NUGGET.stream().anyMatch(
                         ing -> ing.getItems()[0].getItem().getDescriptionId().equals(auxiliar.getItem().getDescriptionId()))) {
                     for (MetalsNBTData metal : MetalsNBTData.values()) {
                         if ((actualIngredient.getItem().getDescriptionId()).equals("item.minecraft."+metal.getNameLower()+"_nugget")
                                 ||(actualIngredient.getItem().getDescriptionId()).equals("item.metallics_arts."+metal.getNameLower()+"_nugget")){
-                            if (addMetal[metal.getIndex()]==true){
+                            if (addMetal[metal.getIndex()]){
                                 return false;
                             }
                             if(metalsEnVial[metal.getIndex()] >= metal.getMaxAllomanticTicksStorage()/2){

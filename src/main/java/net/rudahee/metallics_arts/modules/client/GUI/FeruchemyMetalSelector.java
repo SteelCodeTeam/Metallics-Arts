@@ -5,6 +5,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -85,11 +86,8 @@ public class FeruchemyMetalSelector extends Screen {
     public void render(PoseStack matrixStack, int mx, int my, float partialTicks) {
         super.render(matrixStack, mx, my, partialTicks);
 
-        if (player == null) {
-            return;
-        }
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+        this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
 
             Point center = new Point(this.width / 2,this.height / 2);
             Point mouse = new Point(mx,my);
@@ -121,13 +119,15 @@ public class FeruchemyMetalSelector extends Screen {
 
             int large = xPositivo.x-center.x;
 
+
             Tesselator tess = Tesselator.getInstance();
             BufferBuilder buf = tess.getBuilder();
 
             RenderSystem.disableCull();
             RenderSystem.disableTexture();
             RenderSystem.enableBlend();
-            //RenderSystem.SGL11.GL_FLAT);
+            RenderSystem.setShader(GameRenderer::getPositionColorShader);
+
             buf.begin(VertexFormat.Mode.TRIANGLES, DefaultVertexFormat.POSITION_COLOR);
 
             //trazado
@@ -168,7 +168,7 @@ public class FeruchemyMetalSelector extends Screen {
             }
 
             tess.end();
-            //RenderSystem.shadeModel(GL11.GL_FLAT);
+
             RenderSystem.enableTexture();
 
             //pintado
@@ -245,14 +245,9 @@ public class FeruchemyMetalSelector extends Screen {
                 addpintado(matrixStack, this.point1, this.point2, this.point3, this.metalTemp, mouse);
             }
 
-            //RenderSystem.enableRescaleNormal();
             RenderSystem.enableBlend();
             RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
-            //RenderHelper.turnBackOn();
-
-            //RenderHelper.turnOff();
             RenderSystem.disableBlend();
-            //RenderSystem.disableRescaleNormal();
         });
     }
 
@@ -269,8 +264,11 @@ public class FeruchemyMetalSelector extends Screen {
             renderTooltip(matrixStack, Component.translatable(metal.getNameLower()),mouse.x,mouse.y);
         }
 
-        this.mc.getEntityRenderDispatcher().textureManager.bindForSetup(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png"));
-        RenderSystem.setShaderColor(1, 1, 1, 1);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png") );
+
+        //this.mc.getEntityRenderDispatcher().textureManager.bindForSetup(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png"));
+        //RenderSystem.setShaderColor(1, 1, 1, 1);
         blit(matrixStack, baticenter.x-8, baticenter.y-8, 0, 0, 16, 16, 16, 16);
 
     }
