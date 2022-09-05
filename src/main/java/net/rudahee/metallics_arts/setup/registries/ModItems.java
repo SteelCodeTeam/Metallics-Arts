@@ -85,19 +85,20 @@ public class ModItems {
                     });
         });
 
+
     }
 
     //MentalMinds
 
     private static final Item.Properties PROPERTY_METALMINDS = new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1);
 
-    public static RegistryObject<Item> BAND_ALUMINUM_DURALUMIN = MetallicsArts.registerItem("band_aluminum_duralumin",
+    public static  RegistryObject<Item> BAND_ALUMINUM_DURALUMIN = MetallicsArts.registerItem("band_aluminum_duralumin",
             () -> {
                 Item item = new BandAluminumDuralumin(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("ALUMINUM_DURALUMIN").setBand(item);
                 return item;
-            }
-    );
+            });
+
     public static RegistryObject<Item> BAND_ATIUM_MALATIUM = MetallicsArts.registerItem("band_atium_malatium",
             () -> {
                 Item item = new BandAtiumMalatium(PROPERTY_METALMINDS);
