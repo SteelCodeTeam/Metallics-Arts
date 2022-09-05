@@ -1,12 +1,14 @@
 package net.rudahee.metallics_arts.setup.registries;
 
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.modules.blocks.AtiumBuddingBlock;
 import net.rudahee.metallics_arts.modules.blocks.EttmetalBlock;
 import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceBlock;
 import net.rudahee.metallics_arts.setup.enums.gems.Gems;
@@ -133,6 +135,37 @@ public class ModBlock {
 
 
     }
+
+
+    /* bloque de lingotes
+    public static final RegistryObject<AmethystBlock> SELENITE_BLOCK = registerBlock("selenite_block",
+            () -> new AmethystBlock(BlockBehaviour.Properties.of(Material.AMETHYST, MaterialColor.TERRACOTTA_WHITE).strength(0.5F).sound(SoundType.AMETHYST).noOcclusion()));*/
+
+    public static final RegistryObject<AmethystBlock> BUDDING_ATIUM = registerBlock("budding_atium",
+            () -> new AtiumBuddingBlock(BlockBehaviour.Properties.of(Material.AMETHYST).randomTicks().strength(1.0F).sound(SoundType.AMETHYST).noOcclusion()));
+
+    public static final RegistryObject<AmethystBlock> ATIUM_CLUSTER = registerBlock("atium_cluster",
+            () -> new AmethystClusterBlock(7, 3, BlockBehaviour.Properties.of(Material.AMETHYST).noOcclusion().strength(0.5F).randomTicks().sound(SoundType.AMETHYST_CLUSTER).noOcclusion().lightLevel((p_152632_) -> {
+                return 5;
+            })));
+
+    public static final RegistryObject<AmethystBlock> LARGE_ATIUM_BUD = registerBlock("large_atium_bud",
+            () -> new AmethystClusterBlock(5, 3, BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).sound(SoundType.MEDIUM_AMETHYST_BUD).noOcclusion().lightLevel((p_152629_) -> {
+                return 4;
+            })));
+
+    public static final RegistryObject<AmethystBlock> MEDIUM_ATIUM_BUD = registerBlock("medium_atium_bud",
+            () -> new AmethystClusterBlock(4, 3, BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).sound(SoundType.LARGE_AMETHYST_BUD).noOcclusion().lightLevel((p_152617_) -> {
+                return 2;
+            })));
+
+    public static final RegistryObject<AmethystBlock> SMALL_ATIUM_BUD = registerBlock("small_atium_bud",
+            () -> new AmethystClusterBlock(3, 4, BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).sound(SoundType.SMALL_AMETHYST_BUD).noOcclusion().lightLevel((p_187409_) -> {
+                return 1;
+            })));
+
+
+
 
 
 

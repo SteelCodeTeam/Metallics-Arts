@@ -8,7 +8,10 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.rudahee.metallics_arts.setup.registries.ModBlock;
 
 public class AtiumBuddingBlock extends AmethystBlock {
 
@@ -20,25 +23,24 @@ public class AtiumBuddingBlock extends AmethystBlock {
         super(properties);
     }
 
-
     public PushReaction getPistonPushReaction(BlockState p_152733_) {
         return PushReaction.DESTROY;
     }
 
     public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSourse) {
-        if (randomSourse.nextInt(5) == 0) {
+        if (randomSourse.nextInt(GROWTH_CHANCE) == 0) {
             Direction direction = DIRECTIONS[randomSourse.nextInt(DIRECTIONS.length)];
             BlockPos blockpos = blockPos.relative(direction);
             BlockState blockstate = serverLevel.getBlockState(blockpos);
             Block block = null;
             if (canClusterGrowAtState(blockstate)) {
-                block = Blocks.SMALL_AMETHYST_BUD;
-            } else if (blockstate.is(Blocks.SMALL_AMETHYST_BUD) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = Blocks.MEDIUM_AMETHYST_BUD;
-            } else if (blockstate.is(Blocks.MEDIUM_AMETHYST_BUD) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = Blocks.LARGE_AMETHYST_BUD;
-            } else if (blockstate.is(Blocks.LARGE_AMETHYST_BUD) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = Blocks.AMETHYST_CLUSTER;
+                block = ModBlock.SMALL_ATIUM_BUD.get();
+            } else if (blockstate.is(ModBlock.SMALL_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlock.MEDIUM_ATIUM_BUD.get();
+            } else if (blockstate.is(ModBlock.MEDIUM_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlock.LARGE_ATIUM_BUD.get();
+            } else if (blockstate.is(ModBlock.LARGE_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlock.ATIUM_CLUSTER.get();
             }
 
             if (block != null) {
@@ -53,5 +55,3 @@ public class AtiumBuddingBlock extends AmethystBlock {
         return blockState.isAir() || blockState.is(Blocks.WATER) && blockState.getFluidState().getAmount() == 8;
     }
 }
-
-

@@ -22,8 +22,6 @@ public class EttmetalBlock extends Block {
         return true;
     }
 
-
-
     @Override
     public void tick(BlockState blockState, ServerLevel serverWorld, BlockPos blockPos, RandomSource random) {
 
