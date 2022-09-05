@@ -15,7 +15,7 @@ public class KeyInit {
     public static final String FERUCHEMIC_KEY = "key." + MetallicsArts.MOD_ID + "." + "feruchemic";
     public static final String ALLOMANTIC_KEY = "key." + MetallicsArts.MOD_ID + "." + "allomantic";
 
-    public static final String VERTICAL_JUMP_KEY = "key." + MetallicsArts.MOD_ID + "." + "allomantic";
+    public static final String VERTICAL_JUMP_KEY = "key." + MetallicsArts.MOD_ID + "." + "vertical_jump";
 
 
     public static final KeyMapping ALLOMANTIC_POWER_SELECTOR = new KeyMapping(ALLOMANTIC_KEY,

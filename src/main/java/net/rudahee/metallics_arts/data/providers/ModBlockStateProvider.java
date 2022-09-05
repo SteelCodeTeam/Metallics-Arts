@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.level.block.AmethystBlock;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -67,6 +68,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
             simpleBlockItem(block, model);
         });
 
+        ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/budding_atium"));
+        simpleBlock(ModBlock.BUDDING_ATIUM.get());
+        simpleBlockItem(ModBlock.BUDDING_ATIUM.get(),model);
 
     }
 }
