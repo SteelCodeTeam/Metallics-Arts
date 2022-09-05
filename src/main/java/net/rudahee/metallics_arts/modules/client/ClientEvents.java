@@ -20,6 +20,7 @@ public class ClientEvents {
             public static void onKeyRegister(RegisterKeyMappingsEvent event) {
                 event.register(KeyInit.ALLOMANTIC_POWER_SELECTOR);
                 event.register(KeyInit.FERUCHEMIC_POWER_SELECTOR);
+                event.register(KeyInit.VERTICAL_JUMP);
             }
 
         }
