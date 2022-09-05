@@ -44,7 +44,6 @@ public class ModLootTableProvider extends LootTableProvider {
     }
 
     private void addBlockTables() {
-        //AGREGAR FOR POR ore y ore deepslate con add silktoch o como sea con valores maximos y miunimos por block
         for (String key: ModBlock.BLOCK_METAL_ORES.keySet()) {
             Block ore = ModBlock.BLOCK_METAL_ORES.get(key);
             Item raw = ModItems.ITEM_RAW_METAL.get(key);
@@ -64,6 +63,8 @@ public class ModLootTableProvider extends LootTableProvider {
         for (String key : ModBlock.BLOCK_GEMS_BLOCKS.keySet()) {
             addSimpleBlock(ModBlock.BLOCK_GEMS_BLOCKS.get(key));
         }
+
+        addSilkTouchBlock(ModBlock.ATIUM_CLUSTER.get().getLootTable().getPath(),ModBlock.ATIUM_CLUSTER.get(),ModItems.ITEM_GEMS_BASE.get("atium"),1,1);
     }
 
     @Override

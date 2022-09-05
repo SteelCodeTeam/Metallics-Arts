@@ -24,7 +24,7 @@ public class KeyInit {
     public static final KeyMapping FERUCHEMIC_POWER_SELECTOR = new KeyMapping(FERUCHEMIC_KEY,
             KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM,GLFW.GLFW_KEY_N,KEY_CATEGORY);
 
-    public static final KeyMapping VERTICAL_JUMP = new KeyMapping(FERUCHEMIC_KEY,
+    public static final KeyMapping VERTICAL_JUMP = new KeyMapping(VERTICAL_JUMP_KEY,
             KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM,GLFW.GLFW_KEY_LEFT_CONTROL,KEY_CATEGORY);
 
 }

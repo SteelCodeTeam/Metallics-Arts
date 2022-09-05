@@ -116,6 +116,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .end();
 
 
+
     }
     private ItemModelBuilder builder (ModelFile itemGenerated, String outPath, String texturePath){
         return  getBuilder(outPath).parent(itemGenerated).texture("layer0",texturePath);
