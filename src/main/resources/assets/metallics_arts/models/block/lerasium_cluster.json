@@ -1,0 +1,7 @@
+{
+  "parent": "metallics_arts:block/ore_cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "metallics_arts:block/lerasium_cluster"
+  }
+}

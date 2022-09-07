@@ -49,6 +49,18 @@
   "item.metallics_arts.ettmetal_nugget": "Ettmetal Nugget",
 
 
+
+  "item.metallics_arts.raw_tin": "Raw Tin",
+  "item.metallics_arts.raw_zinc": "Raw Zinc",
+  "item.metallics_arts.raw_cadmium": "Raw Cadmium",
+  "item.metallics_arts.raw_aluminum": "Raw Aluminum",
+
+  "item.metallics_arts.raw_chromium": "Raw Chromium",
+  "item.metallics_arts.raw_silver": "Raw Silver",
+  "item.metallics_arts.raw_lead": "Raw Lead",
+  "item.metallics_arts.raw_nickel": "Raw Nickel",
+
+
   "block.metallics_arts.tin_ore": "Tin Ore",
   "block.metallics_arts.bronze_ore": "Bronze Ore",
   "block.metallics_arts.copper_ore": "Copper Ore",
@@ -57,10 +69,23 @@
   "block.metallics_arts.cadmium_ore": "Cadmium Ore",
   "block.metallics_arts.aluminum_ore": "Aluminum Ore",
   "block.metallics_arts.chromium_ore": "Chromium Ore",
-
-  "block.metallics_arts.silver_ore": "Silver Ore",
   "block.metallics_arts.lead_ore": "Lead Ore",
-  "block.metallics_arts.nickel_ore": "Nickel Ore",
+
+  "block.metallics_arts.deepslate_chromium_ore": "Deepslate Chromium Ore",
+  "block.metallics_arts.deepslate_aluminum_ore": "Deepslate Aluminum Ore",
+  "block.metallics_arts.deepslate_silver_ore": "Deepslate Silver Ore",
+  "block.metallics_arts.deepslate_lead_ore": "Deepslate Lead Ore",
+  "block.metallics_arts.deepslate_nickel_ore": "Deepslate Nickel Ore",
+
+  "block.metallics_arts.raw_tin_block": "Raw Tin Block",
+  "block.metallics_arts.raw_zinc_block": "Raw Zinc Block",
+  "block.metallics_arts.raw_cadmium_block": "Raw Cadmium Block",
+  "block.metallics_arts.raw_aluminum_block": "Raw Aluminum Block",
+
+  "block.metallics_arts.raw_chromium_block": "Raw Chromium Block",
+  "block.metallics_arts.raw_silver_block": "Raw Silver Block",
+  "block.metallics_arts.raw_lead_block": "Raw Lead Block",
+  "block.metallics_arts.raw_nickel_block": "Raw Nickel Block",
 
 
   "block.metallics_arts.steel_block": "Block of Steel",
@@ -136,13 +161,34 @@
   "item.metallics_arts.dueling_staff": "Dueling Staff",
   "item.metallics_arts.obsidian_axe": "Obsidian Axe",
 
-  "item.metallics_arts.big_vial": "Big Vial",
+  "item.metallics_arts.large_vial": "Large Vial",
   "item.metallics_arts.small_vial": "Small Vial",
 
 
   "curios.identifier.metalmind_slot": "MetalMind Slot",
 
+  "block.metallics_arts.budding_atium": "Budding Atium",
+  "block.metallics_arts.atium_cluster": "Atium Cluster",
+  "block.metallics_arts.small_atium_bud": "Small Atium Bud",
+  "block.metallics_arts.medium_atium_bud": "Medium Atium Bud",
+  "block.metallics_arts.large_atium_bud": "Large Atium Bud",
+
+  "block.metallics_arts.budding_lerasium": "Budding Lerasium",
+  "block.metallics_arts.lerasium_cluster": "Lerasium Cluster",
+  "block.metallics_arts.small_lerasium_bud": "Small Lerasium Bud",
+  "block.metallics_arts.medium_lerasium_bud": "Medium Lerasium Bud",
+  "block.metallics_arts.large_lerasium_bud": "Large Lerasium Bud",
+
+  "block.metallics_arts.budding_ettmetal": "Budding Ettmetal",
+  "block.metallics_arts.ettmetal_cluster": "Ettmetal Cluster",
+  "block.metallics_arts.small_ettmetal_bud": "Small Ettmetal Bud",
+  "block.metallics_arts.medium_ettmetal_bud": "Medium Ettmetal Bud",
+  "block.metallics_arts.large_ettmetal_bud": "Large Ettmetal Bud",
+
+
+  "itemGroup.metallics_arts": "Metallic Arts",
   "block.metallics_arts.alloy_furnace": "Alloy Furnace",
+
   "screen.metallics_arts.alloy_furnace": "Alloy Furnace",
   "curios.identifier.ma_metalmind_slot": "MetalMind Slot"
 }

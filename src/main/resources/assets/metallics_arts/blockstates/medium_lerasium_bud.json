@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "metallics_arts:block/medium_lerasium_bud",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "metallics_arts:block/medium_lerasium_bud",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "metallics_arts:block/medium_lerasium_bud",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "metallics_arts:block/medium_lerasium_bud",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "metallics_arts:block/medium_lerasium_bud"
+    },
+    "facing=west": {
+      "model": "metallics_arts:block/medium_lerasium_bud",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -105,11 +105,11 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .model(mf_small)
                 .end();
 
-        ModelFile mf_large = builder(itemGenerated,"item/big_vial_fill","item/consumables/big_vial_fill");
+        ModelFile mf_large = builder(itemGenerated,"item/large_vial_fill","item/consumables/large_vial_fill");
 
-        getBuilder("big_vial")
+        getBuilder("large_vial")
                 .parent(itemGenerated)
-                .texture("layer0","item/consumables/big_vial")
+                .texture("layer0","item/consumables/large_vial")
                 .override()
                 .predicate(mcLoc("custom_model_data"),1)
                 .model(mf_large)

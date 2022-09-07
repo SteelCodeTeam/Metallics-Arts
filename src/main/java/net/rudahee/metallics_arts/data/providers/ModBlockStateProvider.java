@@ -72,5 +72,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(ModBlock.BUDDING_ATIUM.get());
         simpleBlockItem(ModBlock.BUDDING_ATIUM.get(),model);
 
+        model = new ModelFile.UncheckedModelFile(modLoc("block/budding_lerasium"));
+
+        simpleBlock(ModBlock.BUDDING_LERASIUM.get());
+        simpleBlockItem(ModBlock.BUDDING_LERASIUM.get(),model);
+
+        model = new ModelFile.UncheckedModelFile(modLoc("block/budding_ettmetal"));
+
+        simpleBlock(ModBlock.BUDDING_ETTMETAL.get());
+        simpleBlockItem(ModBlock.BUDDING_ETTMETAL.get(),model);
+
     }
 }

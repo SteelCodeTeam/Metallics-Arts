@@ -413,7 +413,7 @@ public class ModItems {
 
 
 
-   public static RegistryObject<Item> LARGE_VIAL= MetallicsArts.registerItem("big_vial",
+   public static RegistryObject<Item> LARGE_VIAL= MetallicsArts.registerItem("large_vial",
             () -> new LargeVial(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1).food(new FoodProperties.Builder().nutrition(0).build())));
 
     public static RegistryObject<Item> SMALL_VIAL = MetallicsArts.registerItem("small_vial",
