@@ -32,6 +32,7 @@ public class ModItemModelProvider extends ItemModelProvider {
             }
 
         });
+        builder(itemGenerated,"item/copper_nugget", "item/metal/nugget/copper_nugget");
 
         gemList.forEach(gem -> {
             builder(itemGenerated,"item/"+ gem.getGemNameLower(), "item/gems/gems/" +gem.getGemNameLower());

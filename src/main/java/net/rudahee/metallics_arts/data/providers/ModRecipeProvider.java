@@ -7,6 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalSpikesData;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
@@ -68,22 +69,41 @@ public class ModRecipeProvider extends RecipeProvider {
                     .unlockedBy("has_block", has(block))
                     .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItems.ITEM_GEMS_BASE.get(name).getDescriptionId()));
         });
-
         ModItems.ITEM_METAL_INGOT.forEach((name, item) -> {
             ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_NUGGET.get(name), 9)
                     .requires(item)
                     .unlockedBy("has_block", has(item))
                     .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModItems.ITEM_METAL_NUGGET.get(name).getDescriptionId()));
+
+
         });
 
+        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_NUGGET.get("copper_nugget"), 9)
+                .requires(Items.COPPER_INGOT)
+                .unlockedBy("has_block", has(Items.COPPER_INGOT))
+                .save(recipesConsumer, new ResourceLocation(Items.COPPER_INGOT.getDescriptionId() + "_to_" + ModItems.ITEM_METAL_NUGGET.get("copper_nugget").getDescriptionId()));
+
+
         ModItems.ITEM_METAL_NUGGET.forEach((name, item) -> {
-            ShapedRecipeBuilder.shaped(ModItems.ITEM_METAL_INGOT.get(name))
-                    .define('#', ModItems.ITEM_METAL_NUGGET.get(name))
-                    .pattern("###")
-                    .pattern("###")
-                    .pattern("###")
-                    .unlockedBy("has_block", has(item))
-                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModItems.ITEM_METAL_INGOT.get(name).getDescriptionId()));
+            if (!name.equals("copper_nugget")) {
+                ShapedRecipeBuilder.shaped(ModItems.ITEM_METAL_INGOT.get(name))
+                        .define('#', ModItems.ITEM_METAL_NUGGET.get(name))
+                        .pattern("###")
+                        .pattern("###")
+                        .pattern("###")
+                        .unlockedBy("has_block", has(item))
+                        .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModItems.ITEM_METAL_INGOT.get(name).getDescriptionId()));
+            } else {
+
+                ShapedRecipeBuilder.shaped(Items.COPPER_INGOT)
+                        .define('#', ModItems.ITEM_METAL_NUGGET.get(name))
+                        .pattern("###")
+                        .pattern("###")
+                        .pattern("###")
+                        .unlockedBy("has_block", has(item))
+                        .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + Items.COPPER_INGOT.getDescriptionId()));
+            }
+
         });
 
         ModItems.ITEM_GEMS_BASE.forEach((name, item) -> {

@@ -63,6 +63,12 @@ public class ModItems {
             }
         });
 
+        MetallicsArts.registerItem("copper_nugget",() -> {
+            Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(64));
+            ITEM_METAL_NUGGET.put("copper_nugget", item);
+            return item;
+        });
+
 
         List<Gems> gemList = Arrays.asList(Gems.values());
 
@@ -84,10 +90,6 @@ public class ModItems {
                         return item;
                     });
         });
-
-
-
-
 
     }
 
