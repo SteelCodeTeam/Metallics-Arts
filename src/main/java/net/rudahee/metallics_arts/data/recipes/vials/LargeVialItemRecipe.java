@@ -17,6 +17,7 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,7 +73,7 @@ public class LargeVialItemRecipe extends CustomRecipe {
             actualIngredient = inv.getItem(i);
             if (actualIngredient != null && !actualIngredient.isEmpty()) {
                 if (INGREDIENT_VIAL.test(inv.getItem(i))) {
-                    if (actualIngredient.getTag() != null){
+                    if (actualIngredient.hasTag()){
                         for (MetalsNBTData metal : MetalsNBTData.values()) {
                             if (actualIngredient.getTag().contains(metal.getGemNameLower())){
                                 cantStorage[metal.getIndex()] = metal.getMaxAllomanticTicksStorage()/cantMaxPep;
@@ -88,7 +89,7 @@ public class LargeVialItemRecipe extends CustomRecipe {
                     for (MetalsNBTData metal : MetalsNBTData.values()) {
                         if ((actualIngredient.getItem().getDescriptionId()).equals("item.minecraft."+metal.getNameLower()+"_nugget")
                                 ||(actualIngredient.getItem().getDescriptionId()).equals("item.metallics_arts."+metal.getNameLower()+"_nugget")){
-                            if (addMetal[metal.getIndex()]==true){
+                            if (addMetal[metal.getIndex()]){
                                 return false;
                             }
                             if(metalsEnVial[metal.getIndex()] >= metal.getMaxAllomanticTicksStorage()){
@@ -133,12 +134,11 @@ public class LargeVialItemRecipe extends CustomRecipe {
         return true;
     }
 
+    @Nonnull
     @Override
     public RecipeSerializer<?> getSerializer() {
         return ModRecipeTypes.LARGE_VIAL_ITEM_RECIPE_SERIALIZER.get();
     }
-
-
 
     public static class Serializer extends SimpleRecipeSerializer<LargeVialItemRecipe> {
         public Serializer() {

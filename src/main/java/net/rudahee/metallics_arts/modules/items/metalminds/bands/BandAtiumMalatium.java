@@ -14,6 +14,8 @@ import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -26,7 +28,9 @@ public class BandAtiumMalatium extends BandMindAbstract {
 
     private static boolean nicConsume = false;
     @Override
-    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        LivingEntity livingEntity = slotContext.entity();
+
         CompoundTag nbtLocal = stack.getTag();
 
         if (livingEntity.level instanceof ServerLevel) {
@@ -103,12 +107,14 @@ public class BandAtiumMalatium extends BandMindAbstract {
                 });
             }
         }
-        super.curioTick(identifier, index, livingEntity, stack);
+        super.curioTick(slotContext, stack);
     }
 
 
     public boolean isStoring (Player player, ItemStack stack){
-
+        if (!stack.getTag().contains("tier_malatium_storage")){
+            stack.getTag().putInt("tier_malatium_storage",-1);
+        }
         if (stack.getTag().getInt("tier_malatium_storage") == -1){
             if (!generateIternalReserve(player, stack)){
                 return false;
@@ -218,7 +224,8 @@ public class BandAtiumMalatium extends BandMindAbstract {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
         if (stack.hasTag()) {
-            if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")== 0){
+
+            if (!stack.getTag().contains("tier_malatium_storage") || stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") == 0){
                 stack.getTag().putInt("tier_malatium_storage",-1);
             }
             if (!Screen.hasControlDown()){

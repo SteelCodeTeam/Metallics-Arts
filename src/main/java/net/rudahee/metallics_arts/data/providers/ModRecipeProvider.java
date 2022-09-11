@@ -3,16 +3,20 @@ package net.rudahee.metallics_arts.data.providers;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.fml.common.Mod;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalSpikesData;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
+import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
 
 import java.util.Arrays;
 import java.util.function.Consumer;
@@ -274,25 +278,30 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(Items.BLAST_FURNACE))
                 .save(recipesConsumer, new ResourceLocation("allomantic_alloy_furnace"));*/
 
-       /* ShapedRecipeBuilder.shaped(ModItems.SMALL_VIAL.get())
+        ShapedRecipeBuilder.shaped(ModItems.SMALL_VIAL.get())
                 .define('#',Items.GLASS)
                 .define('x',Items.GLASS_BOTTLE)
-                .define('+',Items.BIRCH_PLANKS)
+                .define('+',ItemTags.PLANKS)
                 .pattern(" + ")
                 .pattern("#x#")
                 .pattern(" # ")
                 .unlockedBy("has_item",has(ModItems.SMALL_VIAL.get()))
                 .save(recipesConsumer,new ResourceLocation("allomantic_small_vial"));
 
+
+
         ShapedRecipeBuilder.shaped(ModItems.LARGE_VIAL.get())
                 .define('#',Items.GLASS)
                 .define('x',ModItems.SMALL_VIAL.get())
-                .define('+',Items.BIRCH_PLANKS)
+                .define('+',ItemTags.PLANKS)
                 .pattern(" + ")
                 .pattern("#x#")
                 .pattern(" # ")
                 .unlockedBy("has_item",has(ModItems.LARGE_VIAL.get()))
-                .save(recipesConsumer,new ResourceLocation("allomantic_large_vial"));*/
+                .save(recipesConsumer,new ResourceLocation("allomantic_large_vial"));
+
+        SpecialRecipeBuilder.special(ModRecipeTypes.LARGE_VIAL_ITEM_RECIPE_SERIALIZER.get()).save(recipesConsumer, MetallicsArts.MOD_ID+":large_vial_filling_recipe");
+        SpecialRecipeBuilder.special(ModRecipeTypes.SMALL_VIAL_ITEM_RECIPE_SERIALIZER.get()).save(recipesConsumer, MetallicsArts.MOD_ID+":small_vial_filling_recipe");
     }
 }
 

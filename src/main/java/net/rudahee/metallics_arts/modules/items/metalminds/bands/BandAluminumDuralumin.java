@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class BandAluminumDuralumin extends BandMindAbstract implements ICurioItem {
@@ -21,7 +22,8 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
     public static boolean nicConsumeMet1 = false;
 
     @Override
-    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        LivingEntity livingEntity = slotContext.entity();
 
         CompoundTag nbtLocal = stack.getTag();
 
@@ -79,7 +81,7 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
                 });
             }
         }
-        super.curioTick(identifier, index, livingEntity, stack);
+        super.curioTick(slotContext, stack);
     }
 
 

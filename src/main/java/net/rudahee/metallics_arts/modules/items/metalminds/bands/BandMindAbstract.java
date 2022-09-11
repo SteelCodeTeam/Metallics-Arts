@@ -6,6 +6,8 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
@@ -74,7 +76,31 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     private static IDefaultInvestedPlayerData cap = null;
 
+
     @Override
+    public boolean canEquip(SlotContext slotContext, ItemStack stack) {
+        if(!stack.hasTag()) {
+            stack.setTag(addBandTags());
+        }
+        Player player = (Player) slotContext.entity();
+        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+            cap = data;
+        });
+        boolean canEquip = false;
+        if (cap != null) {
+            canEquip = (!(cap.getMetalMindEquiped(this.metals[0].getGroup()) && cap.getMetalMindEquiped(this.metals[1].getGroup())));
+        }
+
+        if (canEquip){
+            if (!stack.getTag().getString("key").equals(unkeyedString)
+                    && !player.getStringUUID().equals(stack.getTag().getString("key"))){
+                canEquip = false;
+            }
+        }
+        return ICurioItem.super.canEquip(slotContext, stack);
+    }
+
+   /* @Override
     public boolean canEquip(String identifier, LivingEntity livingEntity, ItemStack stack) {
         if(!stack.hasTag()) {
             stack.setTag(addBandTags());
@@ -96,7 +122,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         }
 
         return canEquip;
-    }
+    }*/
 
     @Override
     public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
@@ -187,8 +213,11 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
     private static boolean nicConsumeMet0 = false;
     private static boolean nicConsumeMet1 = false;
 
+
     @Override
-    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        LivingEntity livingEntity = slotContext.entity();
+
         if(!stack.hasTag()) {
             stack.setTag(addBandTags());
         }
@@ -265,9 +294,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                                 stack.setTag(nbtLocal);
                             }
 
-
-
-
                         } else {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(this.metals[1],false);
@@ -297,7 +323,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                 });
             }
         }
-        ICurioItem.super.curioTick(identifier, index, livingEntity, stack);
+        ICurioItem.super.curioTick(slotContext, stack);
     }
 
     private static String dato;

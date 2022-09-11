@@ -74,8 +74,7 @@ public abstract class Vial extends Item {
 
         ItemStack itemStackIn = player.getItemInHand(hand);
         player.startUsingItem(hand);
-        return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemStackIn);
-        /*InteractionResultHolder<ItemStack> res = player.getCapability(InvestedCapability.PLAYER_CAP).map(data -> {
+        InteractionResultHolder<ItemStack> res = player.getCapability(InvestedCapability.PLAYER_CAP).map(data -> {
             //If all the ones being filled are full, don't allow
             if (itemStackIn.hasTag()) {
                 for (MetalsNBTData metal : MetalsNBTData.values()) {
@@ -87,7 +86,7 @@ public abstract class Vial extends Item {
             }
             return new InteractionResultHolder<>(InteractionResult.FAIL, itemStackIn);
         }).orElse(new InteractionResultHolder<>(InteractionResult.FAIL, itemStackIn));
-        return res;*/
+        return res;
     }
 
     @Override
@@ -97,11 +96,8 @@ public abstract class Vial extends Item {
         }
         livingEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
             for (MetalsNBTData metal : MetalsNBTData.values()) {
-                if (itemStack.getTag().contains(metal.getNameLower()) && itemStack.getTag().getInt(metal.getNameLower())==0) {
-
-                    data.setAllomanticMetalsAmount(metal,metal.getMaxAllomanticTicksStorage());
-                //if (itemStack.getTag().contains(metal.getNameLower()) && itemStack.getTag().getInt(metal.getNameLower())>0) {
-                    //data.setAllomanticMetalsAmount(metal,itemStack.getTag().getInt(metal.getNameLower()) + data.getAllomanticAmount(metal));
+                if (itemStack.getTag().contains(metal.getNameLower()) && itemStack.getTag().getInt(metal.getNameLower())>0) {
+                    data.setAllomanticMetalsAmount(metal,itemStack.getTag().getInt(metal.getNameLower()) + data.getAllomanticAmount(metal));
                 }
             }
         });

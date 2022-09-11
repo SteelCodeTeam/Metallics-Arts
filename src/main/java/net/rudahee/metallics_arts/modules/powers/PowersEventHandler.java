@@ -285,8 +285,6 @@ public class PowersEventHandler {
             return;
         }
         Level world = event.level;
-
-
         List<? extends Player> playerList = world.players();
             ticks++;
             for (int playerIndex = playerList.size() - 1; playerIndex >= 0; playerIndex--) {
