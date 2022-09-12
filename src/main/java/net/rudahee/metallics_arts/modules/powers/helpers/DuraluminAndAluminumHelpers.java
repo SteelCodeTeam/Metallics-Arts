@@ -4,10 +4,17 @@ package net.rudahee.metallics_arts.modules.powers.helpers;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraftforge.common.Tags;
+
 public class DuraluminAndAluminumHelpers {
 
 
     public static void duraluminDecantingMobEffects(Player player, Biomes biome) {
+
+        //Tags.Biomes.IS_WATER
+        //Biomes.SPARSE_JUNGLE
+
+
 /*
         //player.level.getBiome(player.blockPosition())
         //if(biome.getBiomeCategory().equals(Biome.Category.EXTREME_HILLS)) {
