@@ -16,6 +16,7 @@ public class CopperAndBronzeHelpers {
 
     public static void BronzeAiEntityManipulation(AABB axisAlignedBB, Player player, Level world) {
         world.getEntitiesOfClass(Mob.class, axisAlignedBB).forEach(entity -> {
+
             entity.goalSelector.removeGoal(entity.goalSelector.getRunningGoals().findFirst().orElse(null));
             entity.getLookControl().setLookAt(player.position().x, player.position().y, player.position().z);
             entity.getMoveControl().setWantedPosition(player.position().x-0.5F, player.position().y, player.position().z-0.5F, 1.2f);

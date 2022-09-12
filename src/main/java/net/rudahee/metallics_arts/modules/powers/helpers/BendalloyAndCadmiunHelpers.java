@@ -11,6 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.TickingBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
@@ -27,14 +28,13 @@ public class BendalloyAndCadmiunHelpers {
             BlockEntity tileEntity = world.getBlockEntity(blockPos);
 
             for (int i = 0; i < 12 * 4 / (tileEntity == null ? 10 : 1); i++) {
-                /*if (tileEntity instanceof TickableTileEntity) {
+                if (tileEntity instanceof TickingBlockEntity) {
                     if (Math.random() > 0.70) {
-                        ((ITickableTileEntity) tileEntity).tick();
+                        ((TickingBlockEntity) tileEntity).tick();
                     }
-                } else*/ if (block.isRandomlyTicking()) {
+                } else if (block.isRandomlyTicking()) {
                     if (Math.random() > 0.70) {
                         block.randomTick((ServerLevel) world, blockPos, world.random);
-
                     }
                 }
             }
@@ -54,13 +54,13 @@ public class BendalloyAndCadmiunHelpers {
             BlockEntity tileEntity = world.getBlockEntity(blockPos);
 
             for (int i = 0; i < 12 * 4 / (tileEntity == null ? 10 : 1); i++) {
-                /*if (tileEntity instanceof ITickableTileEntity) {
+                if (tileEntity instanceof TickingBlockEntity) {
                     if (Math.random() > 0.20) {
-                        ((ITickableTileEntity) tileEntity).tick();
-                        ((ITickableTileEntity) tileEntity).tick();
-                        ((ITickableTileEntity) tileEntity).tick();
+                        ((TickingBlockEntity) tileEntity).tick();
+                        ((TickingBlockEntity) tileEntity).tick();
+                        ((TickingBlockEntity) tileEntity).tick();
                     }
-                } else */if (block.isRandomlyTicking()) {
+                } else if (block.isRandomlyTicking()) {
                     if (Math.random() > 0.20) {
                         block.randomTick((ServerLevel) world, blockPos, world.random);
                         block.randomTick((ServerLevel) world, blockPos, world.random);

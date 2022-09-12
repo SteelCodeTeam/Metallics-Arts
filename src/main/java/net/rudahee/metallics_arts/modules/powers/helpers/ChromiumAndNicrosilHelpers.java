@@ -24,7 +24,6 @@ public class ChromiumAndNicrosilHelpers {
 
 
     public static void goodLuck(Player player) {
-
         player.addEffect(new MobEffectInstance(MobEffects.LUCK,40,15,true, true));
     }
 

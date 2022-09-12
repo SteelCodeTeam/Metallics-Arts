@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
 
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
@@ -12,9 +13,11 @@ public class LerasiumAndEttmetalHelpers {
     public static void ettmetalExplotion(Level world, Player player) {
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability ->{
             if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
-                world.explode(player,player.position().x,player.position().y,player.position().z,((playerCapability.getAllomanticAmount(MetalsNBTData.ETTMETAL)+1)/1600), Explosion.BlockInteraction.BREAK);
+                world.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalsNBTData.ETTMETAL)) /1600, Explosion.BlockInteraction.BREAK);
+                //player.hurt(DamageSource.MAGIC,((float) playerCapability.getAllomanticAmount(MetalsNBTData.ETTMETAL))/1600);
             }else {
-                world.explode(player,player.position().x,player.position().y,player.position().z,((playerCapability.getAllomanticAmount(MetalsNBTData.ETTMETAL)+1)/1600),Explosion.BlockInteraction.NONE);
+                world.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalsNBTData.ETTMETAL)) /1600,Explosion.BlockInteraction.NONE);
+                //player.hurt(DamageSource.MAGIC,(((float) playerCapability.getAllomanticAmount(MetalsNBTData.ETTMETAL))/1600)/2);
             }
             playerCapability.drainMetals(MetalsNBTData.ETTMETAL, MetalsNBTData.DURALUMIN);
         });

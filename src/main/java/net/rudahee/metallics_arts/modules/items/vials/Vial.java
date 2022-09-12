@@ -57,7 +57,7 @@ public abstract class Vial extends Item {
     public static CompoundTag addFullReserveVialTags() {
         CompoundTag nbt = new CompoundTag();
         for (MetalsNBTData metal : MetalsNBTData.values()){
-            nbt.putInt(metal.getNameLower(), metal.getMaxAllomanticTicksStorage());
+            nbt.putInt(metal.getNameLower(),metal.getMaxAllomanticTicksStorage());
         }
         return nbt;
     }
