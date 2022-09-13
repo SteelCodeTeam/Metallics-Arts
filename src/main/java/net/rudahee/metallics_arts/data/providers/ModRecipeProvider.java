@@ -278,6 +278,53 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(Items.BLAST_FURNACE))
                 .save(recipesConsumer, new ResourceLocation("allomantic_alloy_furnace"));*/
 
+
+        ShapedRecipeBuilder.shaped(ModItems.OBSIDIAN_AXE.get())
+                .define('#',Items.OBSIDIAN)
+                .define('x',Items.STICK)
+                .pattern(" ##")
+                .pattern(" x#")
+                .pattern(" x ")
+                .unlockedBy("has_item",has(ModItems.OBSIDIAN_AXE.get()))
+                .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_obsidian_axe"));
+
+        ShapedRecipeBuilder.shaped(ModItems.OBSIDIAN_DAGGER.get())
+                .define('#',Items.OBSIDIAN)
+                .define('x',Items.STICK)
+                .pattern("  #")
+                .pattern(" # ")
+                .pattern("x  ")
+                .unlockedBy("has_item",has(ModItems.OBSIDIAN_DAGGER.get()))
+                .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_obsidian_dagger"));
+
+
+        ShapedRecipeBuilder.shaped(ModItems.DUELING_STAFF.get())
+                .define('#', ModItems.ITEM_METAL_INGOT.get("aluminum"))
+                .define('x',Items.STICK)
+                .pattern("  #")
+                .pattern(" x ")
+                .pattern("x  ")
+                .unlockedBy("has_item",has(ModItems.DUELING_STAFF.get()))
+                .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_dueling_staff"));
+
+        ShapedRecipeBuilder.shaped(ModItems.CRISTAL_DAGGER.get())
+                .define('#', Items.GLASS_PANE)
+                .define('x', Items.STICK)
+                .pattern("  #")
+                .pattern(" # ")
+                .pattern("x  ")
+                .unlockedBy("has_item",has(ModItems.CRISTAL_DAGGER.get()))
+                .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_cristal_dagger"));
+
+        ShapedRecipeBuilder.shaped(ModItems.KOLOSS_BLADE.get())
+                .define('#', Items.COBBLESTONE)
+                .define('x', Items.STICK)
+                .pattern("## ")
+                .pattern("###")
+                .pattern(" x ")
+                .unlockedBy("has_item",has(ModItems.KOLOSS_BLADE.get()))
+                .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_koloss_blade"));
+
         ShapedRecipeBuilder.shaped(ModItems.SMALL_VIAL.get())
                 .define('#',Items.GLASS)
                 .define('x',Items.GLASS_BOTTLE)
@@ -287,8 +334,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern(" # ")
                 .unlockedBy("has_item",has(ModItems.SMALL_VIAL.get()))
                 .save(recipesConsumer,new ResourceLocation("allomantic_small_vial"));
-
-
 
         ShapedRecipeBuilder.shaped(ModItems.LARGE_VIAL.get())
                 .define('#',Items.GLASS)

@@ -19,7 +19,6 @@ public class ModConfiguredFeatures {
 
     public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES = DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, MetallicsArts.MOD_ID);
 
-
     /** STONE **/
     public static final Supplier<List<OreConfiguration.TargetBlockState>> ZINC_REPLACEMENT_STONE = Suppliers.memoize(() -> List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, ModBlock.BLOCK_METAL_ORES.get("zinc").defaultBlockState())));
     public static final RegistryObject<ConfiguredFeature<?, ?>> ZINC_ORE_GENERATION_STONE = CONFIGURED_FEATURES.register("zinc_ore_generation_stone", () -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(ZINC_REPLACEMENT_STONE.get(), 10, 0.5f)));

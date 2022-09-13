@@ -51,7 +51,6 @@ public class ZincAndBrassHelpers {
         } else if (target instanceof Creeper) {
             target.getMoveControl().setWantedPosition(source.position().x-0.5F, source.position().y, source.position().z-0.5F, 1.3f);
             //target.goalSelector.addGoal(2, new CreeperSwellGoal((Creeper) target));
-
         } else if (target instanceof Rabbit) {
             //target.goalSelector.addGoal(1, new MeleeAttackGoal(target, 1.4f, true));
         } else if (target instanceof AbstractSkeleton) {
@@ -63,6 +62,7 @@ public class ZincAndBrassHelpers {
         } else if (target instanceof IronGolem) {
             target.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 1, true, true));
             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 4, 1, true, true));
+
             //target.goalSelector.addGoal(1, new MeleeAttackGoal(IronGolem.class, 1.4D, true));
 
         } else if (target instanceof Villager) {

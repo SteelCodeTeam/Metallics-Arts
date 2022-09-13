@@ -187,5 +187,11 @@
   "block.metallics_arts.alloy_furnace": "Alloy Furnace",
 
   "screen.metallics_arts.alloy_furnace": "Alloy Furnace",
-  "curios.identifier.ma_metalmind_slot": "MetalMind Slot"
+  "curios.identifier.ma_metalmind_slot": "MetalMind Slot",
+
+  "key.categorymetallics_arts":"Metallics Arts",
+  "key.metallics_arts.allomantic":"Allomantic Metal Selector",
+  "key.metallics_arts.feruchemic":"Feruchemic Metal Selector",
+  "key.metallics_arts.vertical_jump":"Vertical Push"
+
 }

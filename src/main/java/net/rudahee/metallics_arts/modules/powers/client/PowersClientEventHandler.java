@@ -168,8 +168,8 @@ public class PowersClientEventHandler {
 
                                     if (playerCapability.isBurning(MetalsNBTData.STEEL)) {
                                         if (trace !=null){
-                                            if (trace instanceof EntityHitResult) { // IF ITS A BLOCK
-                                                BlockPos blockPosition = ((EntityHitResult) trace).getEntity().blockPosition();
+                                            if (trace instanceof BlockHitResult) { // IF ITS A BLOCK
+                                                BlockPos blockPosition = ((BlockHitResult) trace).getBlockPos();
                                                 if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
                                                     ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
                                                             Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
@@ -199,8 +199,8 @@ public class PowersClientEventHandler {
                                     player.stopFallFlying();
                                 }*/
 
-
-                                if (this.mc.options.keyJump.isDown() && this.mc.options.keyShift.isDown() && playerCapability.isBurning(MetalsNBTData.STEEL)) {
+                                //if (this.mc.options.keyJump.isDown() && this.mc.options.keyShift.isDown() && playerCapability.isBurning(MetalsNBTData.STEEL)) {
+                                if (this.mc.options.keyJump.isDown() && KeyInit.VERTICAL_JUMP.isDown() && playerCapability.isBurning(MetalsNBTData.STEEL)) {
 
                                     double x = player.getX();
                                     double y = player.getY();
