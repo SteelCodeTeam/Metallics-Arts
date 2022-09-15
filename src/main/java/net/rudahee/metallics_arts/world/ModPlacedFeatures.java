@@ -61,9 +61,17 @@ public class ModPlacedFeatures {
 
 
 
-    public static final RegistryObject<PlacedFeature> AMETHYST_GEODE =
+    public static final RegistryObject<PlacedFeature> ATIUM_GEODE =
             PLACED_FEATURES.register("atium_geode",
                     () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) ModConfiguredFeatures.ATIUM_GEODE, algo()));
+
+    public static final RegistryObject<PlacedFeature> LERASIUM_GEODE =
+            PLACED_FEATURES.register("lerasium_geode",
+                    () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) ModConfiguredFeatures.LERASIUM_GEODE, algo()));
+
+    public static final RegistryObject<PlacedFeature> ETTMETAL_GEODE =
+            PLACED_FEATURES.register("ettmetal_geode",
+                    () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) ModConfiguredFeatures.ETTMETAL_GEODE, algo()));
 
     public static List<PlacementModifier> algo(){
         return List.of(

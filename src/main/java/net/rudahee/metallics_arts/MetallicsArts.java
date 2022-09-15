@@ -87,10 +87,10 @@ public class MetallicsArts
         modEventBus.addListener(InvestedCapability::register);
         modEventBus.addListener(this::doClientStuff);
 
-
+        ModBiomeModifier.register(modEventBus);
         ModConfiguredFeatures.register(modEventBus);
         ModPlacedFeatures.register(modEventBus);
-        ModBiomeModifier.register(modEventBus);
+
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

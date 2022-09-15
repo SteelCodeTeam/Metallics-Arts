@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_end",
+  "features": "metallics_arts:ettmetal_geode",
+  "step": "underground_decoration"
+}

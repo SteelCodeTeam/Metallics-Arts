@@ -9,17 +9,17 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ModifiableBiomeInfo;
 
-public record ModGeodeBiomeModifier(HolderSet<Biome> biomes, Holder<PlacedFeature> feature) implements BiomeModifier {
+public record ModGeodeBiomeModifier (HolderSet<Biome> biomes, Holder<PlacedFeature> feature) implements BiomeModifier {
     @Override
     public void modify(Holder<Biome> biome, Phase phase, ModifiableBiomeInfo.BiomeInfo.Builder builder) {
-        if (phase == Phase.ADD && biomes.contains(biome)) {
-            builder.getGenerationSettings().addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, feature);
-                                                            //ModPlacedFeatures.AMETHYST_GEODE.getHolder().get()
+        // add a feature to all specified biomes
+        if (phase == Phase.ADD) {
+            builder.getGenerationSettings().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, feature);
         }
     }
 
     @Override
     public Codec<? extends BiomeModifier> codec() {
-        return ModBiomeModifier.GEODE_MODIFIER.get();
+        return ModBiomeModifier.GEODE_CODEC.get();
     }
 }

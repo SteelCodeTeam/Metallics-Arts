@@ -12,18 +12,19 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 
 public class ModBiomeModifier {
-
-    public static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIERS =
+    public static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIER =
             DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, MetallicsArts.MOD_ID);
 
-    public static RegistryObject<Codec<ModGeodeBiomeModifier>> GEODE_MODIFIER = BIOME_MODIFIERS.register("geode", () ->
+    public static RegistryObject<Codec<ModGeodeBiomeModifier>> GEODE_CODEC = BIOME_MODIFIER.register("geode_aa", () ->
             RecordCodecBuilder.create(builder -> builder.group(
+                    // declare fields
                     Biome.LIST_CODEC.fieldOf("biomes").forGetter(ModGeodeBiomeModifier::biomes),
                     PlacedFeature.CODEC.fieldOf("feature").forGetter(ModGeodeBiomeModifier::feature)
+                    // declare constructor
             ).apply(builder, ModGeodeBiomeModifier::new)));
 
 
     public static void register(IEventBus eventBus) {
-        BIOME_MODIFIERS.register(eventBus);
+        BIOME_MODIFIER.register(eventBus);
     }
 }

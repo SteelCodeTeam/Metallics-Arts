@@ -63,15 +63,14 @@ public class ModConfiguredFeatures {
     public static final Supplier<List<OreConfiguration.TargetBlockState>> SILVER_REPLACEMENT_DEEPSLATE  = Suppliers.memoize(() -> List.of(OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlock.BLOCK_METAL_DEEPSLATE_ORES.get("silver").defaultBlockState())));
     public static final RegistryObject<ConfiguredFeature<?, ?>> SILVER_ORE_GENERATION_DEEPSLATE = CONFIGURED_FEATURES.register("silver_ore_generation_deepslate", () -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(SILVER_REPLACEMENT_DEEPSLATE.get(), 10, 0.5f)));
 
-    public static final Supplier<List<OreConfiguration.TargetBlockState>> NICKEL_REPLACEMENT_DEEPSLATE  = Suppliers.memoize(() -> List.of(OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlock.BLOCK_METAL_DEEPSLATE_ORES.get("nickel").defaultBlockState())));
+    public static final Supplier<List<OreConfiguration.TargetBlockState>> NICKEL_REPLACEMENT_DEEPSLATE = Suppliers.memoize(() -> List.of(OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlock.BLOCK_METAL_DEEPSLATE_ORES.get("nickel").defaultBlockState())));
     public static final RegistryObject<ConfiguredFeature<?, ?>> NICKEL_ORE_GENERATION_DEEPSLATE = CONFIGURED_FEATURES.register("nickel_ore_generation_deepslate", () -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(NICKEL_REPLACEMENT_DEEPSLATE.get(), 10, 0.5f)));
 
-    public static final Supplier<List<OreConfiguration.TargetBlockState>> LEAD_REPLACEMENT_DEEPSLATE  = Suppliers.memoize(() -> List.of(OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlock.BLOCK_METAL_DEEPSLATE_ORES.get("lead").defaultBlockState())));
-    public static final RegistryObject<ConfiguredFeature<?, ?>> LEAD_ORE_GENERATION_DEEPSLATE = CONFIGURED_FEATURES.register("lead_ore_generation_deepslate", () -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(LEAD_REPLACEMENT_DEEPSLATE.get(), 10, 0.5f)));
-
-
-
-
+    public static final Supplier<List<OreConfiguration.TargetBlockState>> LEAD_REPLACEMENT_DEEPSLATE  =
+            Suppliers.memoize(() -> List.of(OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlock.BLOCK_METAL_DEEPSLATE_ORES.get("lead").defaultBlockState())));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> LEAD_ORE_GENERATION_DEEPSLATE =
+            CONFIGURED_FEATURES.register("lead_ore_generation_deepslate",
+                    () -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(LEAD_REPLACEMENT_DEEPSLATE.get(), 10, 0.5f)));
 
     public static final Holder<ConfiguredFeature<GeodeConfiguration, ?>> ATIUM_GEODE
             = FeatureUtils.register("atium_geode", Feature.GEODE,
@@ -91,14 +90,44 @@ public class ModConfiguredFeatures {
                     0.35D, 0.083D, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1));
 
 
+    public static final Holder<ConfiguredFeature<GeodeConfiguration, ?>> LERASIUM_GEODE
+            = FeatureUtils.register("lerasium_geode", Feature.GEODE,
+            new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
+                    BlockStateProvider.simple(Blocks.GOLD_BLOCK),
+                    BlockStateProvider.simple(Blocks.BUDDING_AMETHYST),//acaVaElBudding
+                    BlockStateProvider.simple(Blocks.CALCITE),
+                    BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
+                    List.of(Blocks.SMALL_AMETHYST_BUD.defaultBlockState(),
+                            Blocks.MEDIUM_AMETHYST_BUD.defaultBlockState(),
+                            Blocks.LARGE_AMETHYST_BUD.defaultBlockState(),
+                            Blocks.AMETHYST_CLUSTER.defaultBlockState()),
+                    BlockTags.FEATURES_CANNOT_REPLACE,
+                    BlockTags.GEODE_INVALID_BLOCKS),
+                    new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D),
+                    new GeodeCrackSettings(0.95D, 2.0D, 2),
+                    0.35D, 0.083D, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1));
+
+
+    public static final Holder<ConfiguredFeature<GeodeConfiguration, ?>> ETTMETAL_GEODE
+            = FeatureUtils.register("ettmetal_geode", Feature.GEODE,
+            new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
+                    BlockStateProvider.simple(Blocks.GLOWSTONE),
+                    BlockStateProvider.simple(Blocks.BUDDING_AMETHYST),//acaVaElBudding
+                    BlockStateProvider.simple(Blocks.CALCITE),
+                    BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
+                    List.of(Blocks.SMALL_AMETHYST_BUD.defaultBlockState(),
+                            Blocks.MEDIUM_AMETHYST_BUD.defaultBlockState(),
+                            Blocks.LARGE_AMETHYST_BUD.defaultBlockState(),
+                            Blocks.AMETHYST_CLUSTER.defaultBlockState()),
+                    BlockTags.FEATURES_CANNOT_REPLACE,
+                    BlockTags.GEODE_INVALID_BLOCKS),
+                    new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D),
+                    new GeodeCrackSettings(0.95D, 2.0D, 2),
+                    0.35D, 0.083D, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1));
+
 
     public static void register(IEventBus eventBus) {
         CONFIGURED_FEATURES.register(eventBus);
     }
-    private static <FC extends FeatureConfiguration> ConfiguredFeature<FC, ?> register(String key,
-                                                                                       ConfiguredFeature<FC, ?> configuredFeature) {
-        return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, key, configuredFeature);
-    }
-
 
 }
