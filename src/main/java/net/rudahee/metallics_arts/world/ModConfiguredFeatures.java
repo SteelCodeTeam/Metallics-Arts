@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.world.feature;
+package net.rudahee.metallics_arts.world;
 
 import com.google.common.base.Suppliers;
 import net.minecraft.core.Holder;
@@ -19,6 +19,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfigurat
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
@@ -50,7 +51,10 @@ public class ModConfiguredFeatures {
     public static final Supplier<List<OreConfiguration.TargetBlockState>> CADMIUM_REPLACEMENT_DEEPSLATE = Suppliers.memoize(() -> List.of(OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlock.BLOCK_METAL_DEEPSLATE_ORES.get("cadmium").defaultBlockState())));
     public static final RegistryObject<ConfiguredFeature<?, ?>> CADMIUM_ORE_GENERATION_DEEPSLATE = CONFIGURED_FEATURES.register("cadmium_ore_generation_deepslate", () -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(CADMIUM_REPLACEMENT_DEEPSLATE.get(), 10, 0.5f)));
 
-    public static final Supplier<List<OreConfiguration.TargetBlockState>> ALUMINUM_REPLACEMENT_DEEPSLATE  = Suppliers.memoize(() -> List.of(OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlock.BLOCK_METAL_DEEPSLATE_ORES.get("aluminum").defaultBlockState())));
+    public static final Supplier<List<OreConfiguration.TargetBlockState>> ALUMINUM_REPLACEMENT_DEEPSLATE  =
+            Suppliers.memoize(
+                    () -> List.of(OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES,
+                            ModBlock.BLOCK_METAL_DEEPSLATE_ORES.get("aluminum").defaultBlockState())));
     public static final RegistryObject<ConfiguredFeature<?, ?>> ALUMINUM_ORE_GENERATION_DEEPSLATE = CONFIGURED_FEATURES.register("aluminum_ore_generation_deepslate", () -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(ALUMINUM_REPLACEMENT_DEEPSLATE.get(), 10, 0.5f)));
 
     public static final Supplier<List<OreConfiguration.TargetBlockState>> CHROMIUM_REPLACEMENT_DEEPSLATE  = Suppliers.memoize(() -> List.of(OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlock.BLOCK_METAL_DEEPSLATE_ORES.get("chromium").defaultBlockState())));
@@ -67,52 +71,34 @@ public class ModConfiguredFeatures {
 
 
 
-    public static final Holder<ConfiguredFeature<GeodeConfiguration, ?>> ATIUM_GEODE =
-            FeatureUtils.register("atium_geode", Feature.GEODE,
-                    new GeodeConfiguration(
-                            new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
-                                    BlockStateProvider.simple(Blocks.COBBLESTONE),
-                                    BlockStateProvider.simple(ModBlock.BUDDING_ATIUM.get()),
-                                    BlockStateProvider.simple(Blocks.CALCITE),
-                                    BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
-                                    List.of(ModBlock.SMALL_ATIUM_BUD.get().defaultBlockState(),
-                                            ModBlock.MEDIUM_ATIUM_BUD.get().defaultBlockState(),
-                                            ModBlock.LARGE_ATIUM_BUD.get().defaultBlockState(),
-                                            ModBlock.ATIUM_CLUSTER.get().defaultBlockState()),
-                                    BlockTags.FEATURES_CANNOT_REPLACE,
-                                    BlockTags.GEODE_INVALID_BLOCKS),
-                            new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D),
-                            new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1));;
 
 
-
-
-        /*public static final ConfiguredFeature<GeodeConfiguration, ?> ATIUM_GEODE =
-            register("atium_geode", new ConfiguredFeature<> (Feature.GEODE, new GeodeConfiguration (
-                    new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
-                            BlockStateProvider.simple(Blocks.COBBLESTONE),
-                            BlockStateProvider.simple(ModBlock.BUDDING_ATIUM.get()),
-                            BlockStateProvider.simple(Blocks.CALCITE),
-                            BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
-                            List.of(ModBlock.SMALL_ATIUM_BUD.get().defaultBlockState(),
-                                    ModBlock.MEDIUM_ATIUM_BUD.get().defaultBlockState(),
-                                    ModBlock.LARGE_ATIUM_BUD.get().defaultBlockState(),
-                                    ModBlock.ATIUM_CLUSTER.get().defaultBlockState()),
-                            BlockTags.FEATURES_CANNOT_REPLACE,
-                            BlockTags.GEODE_INVALID_BLOCKS),
+    public static final Holder<ConfiguredFeature<GeodeConfiguration, ?>> ATIUM_GEODE
+            = FeatureUtils.register("atium_geode", Feature.GEODE,
+            new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
+                    BlockStateProvider.simple(Blocks.DIAMOND_BLOCK),
+                    BlockStateProvider.simple(Blocks.BUDDING_AMETHYST),
+                    BlockStateProvider.simple(Blocks.CALCITE),
+                    BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
+                    List.of(Blocks.SMALL_AMETHYST_BUD.defaultBlockState(),
+                            Blocks.MEDIUM_AMETHYST_BUD.defaultBlockState(),
+                            Blocks.LARGE_AMETHYST_BUD.defaultBlockState(),
+                            Blocks.AMETHYST_CLUSTER.defaultBlockState()),
+                    BlockTags.FEATURES_CANNOT_REPLACE,
+                    BlockTags.GEODE_INVALID_BLOCKS),
                     new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D),
-                    new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D, true,
-                    UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2),
-                    -16, 16, 0.05D, 1)));*/
+                    new GeodeCrackSettings(0.95D, 2.0D, 2),
+                    0.35D, 0.083D, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1));
+
 
 
     public static void register(IEventBus eventBus) {
         CONFIGURED_FEATURES.register(eventBus);
     }
-    /*private static <FC extends FeatureConfiguration> ConfiguredFeature<FC, ?> register(String key,
+    private static <FC extends FeatureConfiguration> ConfiguredFeature<FC, ?> register(String key,
                                                                                        ConfiguredFeature<FC, ?> configuredFeature) {
         return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, key, configuredFeature);
-    }*/
+    }
 
 
 }

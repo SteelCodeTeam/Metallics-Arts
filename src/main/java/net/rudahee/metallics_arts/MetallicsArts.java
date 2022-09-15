@@ -30,8 +30,9 @@ import net.rudahee.metallics_arts.modules.powers.client.PowersClientEventHandler
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.commands.MetallicArtsCommand;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.world.OreGeneration;
-import net.rudahee.metallics_arts.world.feature.ModConfiguredFeatures;
+import net.rudahee.metallics_arts.world.ModPlacedFeatures;
+import net.rudahee.metallics_arts.world.ModConfiguredFeatures;
+import net.rudahee.metallics_arts.world.biomemod.ModBiomeModifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
@@ -69,7 +70,7 @@ public class MetallicsArts
         ITEMS.register(modEventBus);
         Registration.register();
 
-        OreGeneration.register(modEventBus);
+
 
         modEventBus.addListener(this::clientInit);
 
@@ -86,7 +87,10 @@ public class MetallicsArts
         modEventBus.addListener(InvestedCapability::register);
         modEventBus.addListener(this::doClientStuff);
 
+
         ModConfiguredFeatures.register(modEventBus);
+        ModPlacedFeatures.register(modEventBus);
+        ModBiomeModifier.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

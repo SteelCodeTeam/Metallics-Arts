@@ -1,17 +1,19 @@
 package net.rudahee.metallics_arts.world;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.world.feature.ModConfiguredFeatures;
 
 import java.util.List;
 
-public class OreGeneration {
+public class ModPlacedFeatures {
     public static final DeferredRegister<PlacedFeature> PLACED_FEATURES =
             DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, MetallicsArts.MOD_ID);
 
@@ -58,6 +60,23 @@ public class OreGeneration {
                     commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.absolute(-60), VerticalAnchor.absolute(120)))));
 
 
+
+    public static final RegistryObject<PlacedFeature> AMETHYST_GEODE =
+            PLACED_FEATURES.register("atium_geode",
+                    () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) ModConfiguredFeatures.ATIUM_GEODE, algo()));
+
+    public static List<PlacementModifier> algo(){
+        return List.of(
+                RarityFilter.onAverageOnceEvery(12),
+                InSquarePlacement.spread(),
+                HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(30)),
+                BiomeFilter.biome()
+        );
+
+    }
+
+
+
     private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {
         return List.of(p_195347_, InSquarePlacement.spread(), p_195348_, BiomeFilter.biome());
     }
@@ -65,7 +84,6 @@ public class OreGeneration {
     private static List<PlacementModifier> commonOrePlacement(int p_195344_, PlacementModifier p_195345_) {
         return orePlacement(CountPlacement.of(p_195344_), p_195345_);
     }
-
 
 
     public static void register(IEventBus eventBus) {
