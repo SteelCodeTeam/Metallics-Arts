@@ -1,9 +1,11 @@
 package net.rudahee.metallics_arts.setup.registries;
 
 
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.RegistryObject;
@@ -79,7 +81,6 @@ public class ModBlock {
                         .strength(5, 15)
                         .sound(SoundType.METAL)
                         .requiresCorrectToolForDrops());
-
                 BLOCK_METAL_BLOCKS.put(metal.getMetalNameLower(), block);
                 return block;
             });
@@ -92,7 +93,6 @@ public class ModBlock {
                             .strength(5, 15)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
-
                     RAW_METAL_BLOCKS.put(metal.getMetalNameLower(), block);
                     return block;
                 });
@@ -139,7 +139,7 @@ public class ModBlock {
     }
 
 
-    public static final RegistryObject<AmethystBlock> BUDDING_ATIUM = registerBlock("budding_atium",
+    public static final RegistryObject<AmethystBlock> BUDDING_ATIUM = registerBlock ("budding_atium",
             () -> new AtiumBuddingBlock(BlockBehaviour.Properties.of(Material.AMETHYST).randomTicks().strength(1.0F).sound(SoundType.AMETHYST).noOcclusion()));
 
     public static final RegistryObject<AmethystBlock> ATIUM_CLUSTER = registerBlock("atium_cluster",
@@ -214,13 +214,6 @@ public class ModBlock {
             () -> new AmethystClusterBlock(3, 4, BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).sound(SoundType.SMALL_AMETHYST_BUD).noOcclusion().lightLevel((p_187409_) -> {
                 return 1;
             })));
-
-
-
-
-
-
-
 
 
     private static ToIntFunction<BlockState> litBlockEmission(int value) {

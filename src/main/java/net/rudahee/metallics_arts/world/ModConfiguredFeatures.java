@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.world;
 
 import com.google.common.base.Suppliers;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
@@ -8,7 +9,11 @@ import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.GeodeBlockSettings;
 import net.minecraft.world.level.levelgen.GeodeCrackSettings;
 import net.minecraft.world.level.levelgen.GeodeLayerSettings;
@@ -88,7 +93,6 @@ public class ModConfiguredFeatures {
                     new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D),
                     new GeodeCrackSettings(0.95D, 2.0D, 2),
                     0.35D, 0.083D, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1));
-
 
     public static final Holder<ConfiguredFeature<GeodeConfiguration, ?>> LERASIUM_GEODE
             = FeatureUtils.register("lerasium_geode", Feature.GEODE,
