@@ -1,10 +1,8 @@
 package net.rudahee.metallics_arts.modules.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.blaze3d.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.Matrix4f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -63,7 +61,24 @@ public class ClientUtils {
         return objectMouseOver;
     }
 
-    public static void drawMetalLine(Vec3 player, Vec3 dest, float width, float r, float g, float b) {
+
+
+    public static void drawMetalLine(PoseStack stack, Vec3 player, Vec3 dest, float width, float r, float g, float b) {
+
+        //        RenderSystem.lineWidth(width);
+        Tesselator tessellator = Tesselator.getInstance();
+        BufferBuilder builder = tessellator.getBuilder();
+
+        builder.begin(VertexFormat.Mode.LINES, DefaultVertexFormat.POSITION_COLOR);
+        Matrix4f matrix4f = stack.last().pose();
+        builder.vertex(matrix4f, (float) player.x, (float) player.y, (float) player.z).color(r, g, b, 0.6f).endVertex();
+        builder.vertex(matrix4f, (float) dest.x, (float) dest.y, (float) dest.z).color(r, g, b, 0.6f).endVertex();
+        RenderSystem.lineWidth(width);
+
+        tessellator.end();
+}
+
+    /*public static void drawMetalLine(Vec3 player, Vec3 dest, float width, float r, float g, float b) {
         RenderSystem.lineWidth(width);
 
         Tesselator tessellator = Tesselator.getInstance();
@@ -74,7 +89,7 @@ public class ClientUtils {
         buffer.vertex(dest.x(), dest.y(), dest.z()).color(r, g, b, 0.8f).endVertex();
         tessellator.end();
 
-    }
+    }*/
 
     public static void toggleBurn(MetalsNBTData  metal, IDefaultInvestedPlayerData capability) {
         if (!capability.hasAllomanticPower(metal)) {
