@@ -65,7 +65,6 @@ public class ChangeEmotionPacket {
             if (this.make_aggressive) {
                 if (isEnhanced) {
                     ZincAndBrassHelpers.angryEntitiesEnhanced(target, allomancer);
-
                 } else {
                     ZincAndBrassHelpers.angryEntities(target, allomancer);
                 }

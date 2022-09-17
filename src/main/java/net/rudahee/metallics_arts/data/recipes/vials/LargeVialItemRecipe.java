@@ -1,8 +1,6 @@
 package net.rudahee.metallics_arts.data.recipes.vials;
 
-import com.google.gson.JsonObject;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.Item;
@@ -18,7 +16,6 @@ import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

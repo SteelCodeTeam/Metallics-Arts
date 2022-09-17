@@ -78,26 +78,11 @@ public class ClientUtils {
         tessellator.end();
 }
 
-    /*public static void drawMetalLine(Vec3 player, Vec3 dest, float width, float r, float g, float b) {
-        RenderSystem.lineWidth(width);
-
-        Tesselator tessellator = Tesselator.getInstance();
-        BufferBuilder buffer = tessellator.getBuilder();
-
-        buffer.begin(VertexFormat.Mode.LINES, DefaultVertexFormat.POSITION_COLOR);
-        buffer.vertex(player.x(), player.y(), player.z()).color(r, g, b, 0.8f).endVertex();
-        buffer.vertex(dest.x(), dest.y(), dest.z()).color(r, g, b, 0.8f).endVertex();
-        tessellator.end();
-
-    }*/
-
     public static void toggleBurn(MetalsNBTData  metal, IDefaultInvestedPlayerData capability) {
         if (!capability.hasAllomanticPower(metal)) {
             return;
         }
-
         ModNetwork.sendToServer(new UpdateBurnPacket(metal, !capability.isBurning(metal)));
-
         if (capability.getAllomanticAmount(metal) > 0) {
             capability.setBurning(metal, !capability.isBurning(metal));
         }
@@ -158,7 +143,6 @@ public class ClientUtils {
         }
 
     }
-
     public static void toggleStorage(MetalsNBTData metal, IDefaultInvestedPlayerData capability, Player player){
         if (!capability.hasFeruchemicPower(metal)||!capability.getMetalMindEquiped(metal.getGroup())){
             return;
@@ -179,8 +163,6 @@ public class ClientUtils {
                 }
             }
         });
-
-
         if (isBand) {
             if (actualFeruchemicReserve >= metal.getMaxReserveBand()) {
                 ModNetwork.sendToServer(new UpdateStoragePacket(metal, false));
@@ -200,10 +182,5 @@ public class ClientUtils {
                 ModNetwork.sendToServer(new UpdateStoragePacket(metal, !capability.isStoring(metal)));
             }
         }
-
-
-
-
-
     }
 }

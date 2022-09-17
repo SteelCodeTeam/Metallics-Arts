@@ -1,28 +1,5 @@
 package net.rudahee.metallics_arts.data.recipes.alloy_furnace;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.mojang.realmsclient.util.JsonUtils;
-import net.minecraft.core.NonNullList;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.CraftingContainer;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistry;
-import net.rudahee.metallics_arts.setup.registries.ModBlock;
-import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
-
-import javax.annotation.Nullable;
-import java.util.List;
-
-
-
 public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
 /*
     private final ResourceLocation id;

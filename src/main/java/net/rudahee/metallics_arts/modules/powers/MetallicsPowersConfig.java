@@ -6,11 +6,13 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.registries.ModBlock;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.util.MetalicsArtsConfig;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class MetallicsPowersConfig {
 

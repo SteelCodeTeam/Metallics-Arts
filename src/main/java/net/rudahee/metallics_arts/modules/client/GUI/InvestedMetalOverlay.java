@@ -6,17 +6,13 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
-import net.minecraft.client.gui.screens.Overlay;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.texture.SimpleTexture;
-import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import org.lwjgl.opengl.GL11;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.awt.*;

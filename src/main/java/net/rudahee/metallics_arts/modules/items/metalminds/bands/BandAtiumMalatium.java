@@ -15,7 +15,6 @@ import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.SlotContext;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 import java.util.List;

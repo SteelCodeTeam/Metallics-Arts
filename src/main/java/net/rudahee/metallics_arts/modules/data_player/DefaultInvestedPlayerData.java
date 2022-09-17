@@ -1,9 +1,7 @@
 package net.rudahee.metallics_arts.modules.data_player;
 
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.common.capabilities.Capability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 

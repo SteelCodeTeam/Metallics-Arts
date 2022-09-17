@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.modules.items.metal_spike;
 
-import com.mojang.math.Vector3d;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;

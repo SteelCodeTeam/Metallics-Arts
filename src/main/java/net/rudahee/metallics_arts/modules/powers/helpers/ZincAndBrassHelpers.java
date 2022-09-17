@@ -1,17 +1,13 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
 
-import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.ai.village.ReputationEventType;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.entity.animal.Sheep;
@@ -28,7 +24,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
 import java.util.Collection;
-import java.util.function.Predicate;
 
 public class ZincAndBrassHelpers {
 

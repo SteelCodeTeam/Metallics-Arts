@@ -6,9 +6,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
-import net.minecraftforge.common.Tags;
-
-import javax.swing.text.html.HTML;
 
 public class DuraluminAndAluminumHelpers {
 

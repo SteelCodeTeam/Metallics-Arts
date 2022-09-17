@@ -30,8 +30,8 @@ import net.rudahee.metallics_arts.modules.powers.client.PowersClientEventHandler
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.commands.MetallicArtsCommand;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.world.ModPlacedFeatures;
 import net.rudahee.metallics_arts.world.ModConfiguredFeatures;
+import net.rudahee.metallics_arts.world.ModPlacedFeatures;
 import net.rudahee.metallics_arts.world.biomemod.ModBiomeModifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

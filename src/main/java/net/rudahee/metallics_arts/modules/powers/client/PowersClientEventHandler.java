@@ -2,9 +2,7 @@ package net.rudahee.metallics_arts.modules.powers.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
@@ -43,7 +41,10 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import org.lwjgl.glfw.GLFW;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -629,8 +630,38 @@ public class PowersClientEventHandler {
             }
 
             /*********************************************
-             * GOLD AND ELECTRUM LINES                   *
+             * GOLD AND ELECTRUM AND MALATIUM LINES                   *
              *********************************************/
+            if (data.isBurning(MetalsNBTData.GOLD)) {
+                if(player.level.dimension().toString().equals(data.getDeathDimension())) { /** NO FUNCIONA EL IF */
+                    Vec3 vector = new Vec3(data.getDeathPos()[0], data.getDeathPos()[1], data.getDeathPos()[2]);
+                    ClientUtils.drawMetalLine(stack,playervec,vector, 2f, 0.6f, 0.6f, 0.1f);
+                } /*else {
+                    ClientUtils.drawMetalLine(stack,playervec,playervec, 2f, 0.6f, 0.6f, 0.1f);
+                }*/
+            }
+
+            if (data.isBurning(MetalsNBTData.ELECTRUM)) {
+                Vec3 vector = new Vec3(data.getSpawnPos()[0], data.getSpawnPos()[1], data.getSpawnPos()[2]);
+
+                if(player.level.dimension().toString().equals(data.getSpawnDimension())) { /** NO FUNCIONA EL IF */
+                    ClientUtils.drawMetalLine(stack,playervec,vector, 2f, 0.6f, 0.6f, 0.1f);
+                } /*else {
+                  ClientUtils.drawMetalLine(stack,playervec, playervec, 0,0,0,0);
+                }*/
+            }
+
+            if (data.isBurning(MetalsNBTData.MALATIUM) && otherPlayerDeathPos != null) {
+                Vec3 vector = new Vec3(otherPlayerDeathPos.getX(), otherPlayerDeathPos.getY(), otherPlayerDeathPos.getZ());
+
+                if(player.level.dimension().equals(otherPlayerDimension)) { /** NO FUNCIONA EL IF */
+                    ClientUtils.drawMetalLine(stack, playervec,vector, 2.3f, 0.2f, 0.6f, 0.7f);
+                } /*else {
+                    ClientUtils.drawMetalLine(stack, playervec, playervec, 0,0,0,0);
+                }*/
+            }
+
+
             /*if (data.isBurning(MetalsNBTData.GOLD)) {
                 ResourceKey<Level> deathDim = data.getDeathDim();
                 if (deathDim != null && player.level.dimension() == deathDim) {
