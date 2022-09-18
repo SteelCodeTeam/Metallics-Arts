@@ -12,7 +12,7 @@ public class DuraluminAndAluminumHelpers {
 
     public static void duraluminDecantingMobEffects(Player player, Biomes biome) {
 
-        if (biome.equals(Biomes.JUNGLE) || biome.equals(Biomes.BAMBOO_JUNGLE) ||biome.equals(Biomes.SPARSE_JUNGLE)) {
+        /*if (biome.equals(Biomes.JUNGLE) || biome.equals(Biomes.BAMBOO_JUNGLE) ||biome.equals(Biomes.SPARSE_JUNGLE)) {
 
             player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 3, true, false));
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 40, 1, true, false));
@@ -105,7 +105,8 @@ public class DuraluminAndAluminumHelpers {
 
         } else {
             System.out.println("Bioma no registrado");
-        }
+        }*/
+
 
 
         /*
