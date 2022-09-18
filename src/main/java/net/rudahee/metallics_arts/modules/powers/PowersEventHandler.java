@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.powers;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -9,6 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -415,14 +417,16 @@ public class PowersEventHandler {
                             /************************
                              * DURALUMIN FERUCHEMIC
                              ************************/
-                            Biome biome = world.getBiome(player.getOnPos()).get();
+                            ResourceKey<Biome> biome = world.getBiome(player.getOnPos()).unwrapKey().get();
+
                             if (playerCapability.isDecanting(MetalsNBTData.DURALUMIN)) {
                                 if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
-                                    //DuraluminAndAluminumHelpers.duraluminDecantingMobEffects(player, biome);
+                                    DuraluminAndAluminumHelpers.duraluminDecantingMobEffects(player,biome);
                                 }
                             } else if (playerCapability.isStoring(MetalsNBTData.DURALUMIN)) {
                                 if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
-                                    //DuraluminAndAluminumHelpers.duraluminStoringMobEffects(player, biome);
+                                    DuraluminAndAluminumHelpers.duraluminStoringMobEffects(player, biome);
+
                                 }
                             }
                             /************************
