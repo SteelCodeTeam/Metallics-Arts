@@ -30,7 +30,6 @@ public class DuraluminAndAluminumHelpers {
 
         } else if (biome.equals(Biomes.SWAMP) || biome.equals(Biomes.MANGROVE_SWAMP)) {
             /** PANTANOS */
-            //player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 40, 1, true, false));
             player.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 40, 3, true, false));
             player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 2, true, false));
 
@@ -124,7 +123,6 @@ public class DuraluminAndAluminumHelpers {
     public static void duraluminStoringMobEffects(Player player, ResourceKey<Biome>  biome) {
         if (biome.equals(Biomes.JUNGLE) || biome.equals(Biomes.BAMBOO_JUNGLE) ||biome.equals(Biomes.SPARSE_JUNGLE)) {
             /** JUNGLAS */
-            //player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 3, true, false));
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 1, true, false));
 
         } else if (biome.equals(Biomes.DESERT)) {
@@ -142,7 +140,6 @@ public class DuraluminAndAluminumHelpers {
 
         } else if (biome.equals(Biomes.SWAMP) || biome.equals(Biomes.MANGROVE_SWAMP)) {
             /** PANTANOS */
-            //player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 40, 1, true, false));
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 2, true, false));
             player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 128, true, false));
 
@@ -162,27 +159,23 @@ public class DuraluminAndAluminumHelpers {
                 biome.equals(Biomes.OLD_GROWTH_PINE_TAIGA)) {
 
             /** TAIGAS */
-            //player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 1, true, false));
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 2, true, false));
 
         } else if (biome.equals(Biomes.BADLANDS) || biome.equals(Biomes.ERODED_BADLANDS) || biome.equals(Biomes.WOODED_BADLANDS)) {
 
             /** PARAMOS */
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 1, true, false));
-            //player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 2, true, false));
 
         } else if (biome.equals(Biomes.FROZEN_PEAKS) || biome.equals(Biomes.JAGGED_PEAKS) || biome.equals(Biomes.STONY_PEAKS)) {
 
             /** PICOS */
             player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 128, true, false));
-            //player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 40, 1, true, false));
 
         } else if (biome.equals(Biomes.RIVER) || biome.equals(Biomes.WARM_OCEAN) || biome.equals(Biomes.LUKEWARM_OCEAN) ||
                 biome.equals(Biomes.DEEP_LUKEWARM_OCEAN) || biome.equals(Biomes.OCEAN) || biome.equals(Biomes.DEEP_COLD_OCEAN) ||
                 biome.equals(Biomes.DEEP_OCEAN) || biome.equals(Biomes.COLD_OCEAN)) {
 
             /** MASAS DE SIN HIELO */
-            //player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 40, 1, true, false));
             player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 40, 2, true, false));
 
         } else if (biome.equals(Biomes.FROZEN_OCEAN) || biome.equals(Biomes.DEEP_FROZEN_OCEAN) || biome.equals(Biomes.FROZEN_RIVER) ||
@@ -202,7 +195,6 @@ public class DuraluminAndAluminumHelpers {
 
             /** PLAYAS */
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 2, true, false));
-           // player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 1, true, false));
 
         }  else if (biome.equals(Biomes.DRIPSTONE_CAVES) || biome.equals(Biomes.LUSH_CAVES) || biome.equals(Biomes.DEEP_DARK)) {
             /** CAVERNAS */
@@ -214,7 +206,6 @@ public class DuraluminAndAluminumHelpers {
         } else if (biome.equals(Biomes.NETHER_WASTES) || biome.equals(Biomes.SOUL_SAND_VALLEY) || biome.equals(Biomes.BASALT_DELTAS)) {
             /** BIOMAS DEL NETHER*/
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 2, true, false));
-            //player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 1, true, false));
 
         } else if (biome.equals(Biomes.THE_END)) {
             /** ZONA DEL DRAGON */
@@ -223,7 +214,6 @@ public class DuraluminAndAluminumHelpers {
 
         } else if (biome.equals(Biomes.END_BARRENS) || biome.equals(Biomes.SMALL_END_ISLANDS) || biome.equals(Biomes.END_HIGHLANDS) || biome.equals(Biomes.END_MIDLANDS)) {
             /** ISLAS DEL END */
-            //player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 40, 1, true, true));
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 2, true, true));
             player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 128, true, true));
         } else {

@@ -35,6 +35,26 @@ public class AllomanticMetalSelector extends Screen {
     int list =-1;
     int timeIn = 8;
 
+    static int[] noPowerImpar = new int[] {70, 70, 80, 255};
+    static int[] noPowerPar = new int[]{50, 50, 60, 255};
+
+    static int[] noPowerParDivine = new int[] {60, 60, 70, 255};
+    static int[] noPowerImparDivine = new int[]{25, 35, 50, 255};
+
+    static int[] burningPar = new int[]{235, 190, 68, 255};
+    static int[] burningImpar = new int[]{206, 160, 32, 255};
+
+    static int[] burningParDivine = new int[]{235, 190, 45, 255};
+
+    static int[] burningImparDivine = new int[]{220, 165, 40, 255};
+
+    static int[] normalPar = new int[]{125, 125, 125, 255};
+    static int[] normalImpar = new int[]{109, 109, 109, 255};
+
+
+    static int[] normalParDivine = new int[]{140, 140, 140, 255};
+    static int[] normalImparDivine = new int[]{100, 100, 100, 255};
+
     public AllomanticMetalSelector() {
         super(Component.translatable("metallic_arts_allomantic_selector"));
         this.mc = Minecraft.getInstance();
@@ -89,7 +109,6 @@ public class AllomanticMetalSelector extends Screen {
                 MetalsNBTData metal = divineMetals.get(actualSegment);
                 boolean mouseInSector = data.hasAllomanticPower(metal) &&
                         (degreesDivinePerSegment*actualSegment < angle && angle < degreesDivinePerSegment*(actualSegment  + 1))
-
                         && (mediumRadio<distance && distance<externalRadio);
 
                 /*
@@ -110,24 +129,27 @@ public class AllomanticMetalSelector extends Screen {
 
 
                 int actualColor[];
-                actualColor = new int[]{200, 200, 200, 255};
-
                 if (actualSegment % 2 == 0) {
-                    actualColor = new int[]{225, 225, 225, 255};
-                }
-
-                if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
-                    actualColor = new int[]{100, 100, 100, 255};
-                }
-
-                if (data.isBurning(metal)) {
-                    actualColor = new int[]{133, 207, 221, 255};
+                    if (!data.hasAllomanticPower(metal)) {
+                        actualColor = noPowerParDivine;
+                    } else if (data.isBurning(metal)) {
+                        actualColor = burningParDivine;
+                    } else {
+                        actualColor = normalParDivine;
+                    }
+                } else{
+                    if (!data.hasAllomanticPower(metal)) {
+                        actualColor = noPowerImparDivine;
+                    } else if (data.isBurning(metal)) {
+                        actualColor = burningImparDivine;
+                    } else {
+                        actualColor = normalImparDivine;
+                    }
                 }
 
                 if (actualSegment  == 0) {
                     buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1], actualColor[2], actualColor[3]).endVertex();
                 }
-
 
                 for (float v = 0; v < degreesDivinePerSegment  + step/2; v += step) {
                     float rad = (v + actualSegment  * degreesDivinePerSegment) ; // (*2) DUPLICA EL TAMAÑO DE LOS ULTIMOS SELECTORES, VISUALMENTE
@@ -140,9 +162,6 @@ public class AllomanticMetalSelector extends Screen {
                     buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1], actualColor[2], actualColor[3]).endVertex();
                 }
             }
-
-
-
 
             //circulo intermedio
             for (int actualSegment  = 0; actualSegment  < internalSegments; actualSegment++) {
@@ -161,21 +180,20 @@ public class AllomanticMetalSelector extends Screen {
                 int actualColor[];
 
                 if (actualSegment % 2 == 0) {
-                    actualColor = new int[]{109, 109, 109, 255};
-                    if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
-                        actualColor = new int[]{103, 110, 140, 255};
+                    if (!data.hasAllomanticPower(metal)) {
+                        actualColor = noPowerPar;
+                    } else if (data.isBurning(metal)) {
+                        actualColor = burningPar;
+                    } else {
+                        actualColor = normalPar;
                     }
-                    if (data.isBurning(metal)) {
-                        actualColor = new int[]{103, 195, 211, 255};
-                    }
-                }else{
-                    actualColor = new int[]{125, 125, 125, 255};
-
-                    if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
-                        actualColor = new int[]{84, 91, 120, 255};
-                    }
-                    if (data.isBurning(metal)) {
-                        actualColor = new int[]{73, 180, 199, 255};
+                } else{
+                    if (!data.hasAllomanticPower(metal)) {
+                        actualColor = noPowerImpar;
+                    } else if (data.isBurning(metal)) {
+                        actualColor = burningImpar;
+                    } else {
+                        actualColor = normalImpar;
                     }
                 }
 
@@ -211,26 +229,50 @@ public class AllomanticMetalSelector extends Screen {
 
                 int actualColor[];
 
+                /*
+                if(paridad) {
+            if (!data.hasFeruchemicPower(metal)) {
+                actualColor = noPowerPar;
+            } else if (!data.getMetalMindEquiped(metal.getGroup())){
+                actualColor = noMetalMIndPar;
+            } else if(data.isStoring(metal)){
+                actualColor = isStoragePar;
+            } else if (data.isDecanting(metal)){
+                actualColor = isDecantingPar;
+            } else {
+                actualColor = normalPar;
+            }
+        } else{
+            if (!data.hasFeruchemicPower(metal)) {
+                actualColor = noPowerImpar;
+            } else if (!data.getMetalMindEquiped(metal.getGroup())) {
+                actualColor = noMetalMIndImpar;
+            } else if(data.isStoring(metal)){
+                actualColor = isStorageImpar;
+            } else if (data.isDecanting(metal)){
+                actualColor = isDecantingImpar;
+            } else {
+                actualColor = normalImpar;
+            }
+                 */
+
                 if (actualSegment % 2 == 0) {
-                    actualColor = new int[]{125, 125, 125, 255};
-
-                    if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
-                        actualColor = new int[]{84, 91, 120, 255};
+                    if (!data.hasAllomanticPower(metal)) {
+                        actualColor = noPowerPar;
+                    } else if (data.isBurning(metal)) {
+                        actualColor = burningPar;
+                    } else {
+                        actualColor = normalPar;
                     }
-                    if (data.isBurning(metal)) {
-                        actualColor = new int[]{73, 180, 199, 255};
-                    }
-
-                }else{
-                    actualColor = new int[]{109, 109, 109, 255};
-                    if (!data.hasAllomanticPower(metal) || data.getAllomanticPowerCount() <= 0) {
-                        actualColor = new int[]{103, 110, 140, 255};
-                    }
-                    if (data.isBurning(metal)) {
-                        actualColor = new int[]{103, 195, 211, 255};
+                } else{
+                    if (!data.hasAllomanticPower(metal)) {
+                        actualColor = noPowerImpar;
+                    } else if (data.isBurning(metal)) {
+                        actualColor = burningImpar;
+                    } else {
+                        actualColor = normalImpar;
                     }
                 }
-
                 if (actualSegment  == 0) {
                     buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
                 }

@@ -55,8 +55,10 @@ public class FeruchemyMetalSelector extends Screen {
     }
 
 
-    static int[] noPowerPar = new int[] {84, 91, 120, 255};
-    static int[] noPowerImpar = new int[]{103, 110, 140, 255};
+    static int[] noPowerPar = new int[] {70, 70, 80, 255};
+    static int[] noPowerImpar = new int[]{50, 50, 60, 255};
+    static int[] noMetalMIndPar = new int[] {84, 91, 120, 255};
+    static int[] noMetalMIndImpar = new int[]{103, 110, 140, 255};
 
     static int[] isDecantingPar = new int[]{119, 173, 131, 255};
     static int[] isDecantingImpar = new int[]{84, 142, 96, 255};
@@ -310,9 +312,11 @@ public class FeruchemyMetalSelector extends Screen {
         }
 
         int actualColor[];
-        if(paridad){
-            if (!data.hasFeruchemicPower(metal)||!data.getMetalMindEquiped(metal.getGroup())){
+        if(paridad) {
+            if (!data.hasFeruchemicPower(metal)) {
                 actualColor = noPowerPar;
+            } else if (!data.getMetalMindEquiped(metal.getGroup())){
+                actualColor = noMetalMIndPar;
             } else if(data.isStoring(metal)){
                 actualColor = isStoragePar;
             } else if (data.isDecanting(metal)){
@@ -320,9 +324,11 @@ public class FeruchemyMetalSelector extends Screen {
             } else {
                 actualColor = normalPar;
             }
-        }else{
-            if (!data.hasFeruchemicPower(metal)||!data.getMetalMindEquiped(metal.getGroup())) {
+        } else{
+            if (!data.hasFeruchemicPower(metal)) {
                 actualColor = noPowerImpar;
+            } else if (!data.getMetalMindEquiped(metal.getGroup())) {
+                actualColor = noMetalMIndImpar;
             } else if(data.isStoring(metal)){
                 actualColor = isStorageImpar;
             } else if (data.isDecanting(metal)){
@@ -352,8 +358,10 @@ public class FeruchemyMetalSelector extends Screen {
 
         int actualColor[];
         if(paridad){
-            if (!data.hasFeruchemicPower(metal)||!data.getMetalMindEquiped(metal.getGroup())) { // || si no tiene equipada la mente de ese metal
+            if (!data.hasFeruchemicPower(metal)) {
                 actualColor = noPowerPar;
+            } else if (!data.getMetalMindEquiped(metal.getGroup())) { // || si no tiene equipada la mente de ese metal
+                actualColor = noMetalMIndPar;
             }else if(data.isStoring(metal)){
                 actualColor = isStoragePar;
             }else if (data.isDecanting(metal)){
@@ -363,8 +371,10 @@ public class FeruchemyMetalSelector extends Screen {
             }
 
         }else{
-            if (!data.hasFeruchemicPower(metal)||!data.getMetalMindEquiped(metal.getGroup())) { // || si no tiene equipada la mente de ese metal
+            if (!data.hasFeruchemicPower(metal)) {
                 actualColor = noPowerImpar;
+            } else if (!data.getMetalMindEquiped(metal.getGroup())) { // || si no tiene equipada la mente de ese metal
+                actualColor = noMetalMIndImpar;
             }else if(data.isStoring(metal)){
                 actualColor = isStorageImpar;
             }else if (data.isDecanting(metal)){

@@ -6,7 +6,7 @@ import org.antlr.runtime.misc.IntArray;
 
 //implemente IIntArray
 public class AlloyFurnaceData extends IntArray {
-
+/*
     public int actualFuelBurning;
     public int maxFuelBurning;
     public int isCrafting; // 0 = false, 1 = true;
@@ -31,7 +31,7 @@ public class AlloyFurnaceData extends IntArray {
     }
 
 
-    /*@Override
+    @Override
     public int get(int key) {
         if (key == 1) {
             return actualFuelBurning;

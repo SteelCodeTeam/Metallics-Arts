@@ -2,7 +2,10 @@ package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.Containers;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.FurnaceBlock;
@@ -34,10 +37,8 @@ public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
         return null;
     }
 
+/*
 
-
-
-    /*
 
 
     @Override
@@ -57,7 +58,7 @@ public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
         super.onRemove(state, world, pos, newState, bool);
     }
 
-    /*@Deprecated
+@Deprecated
     @Override
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos,
                                              PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {

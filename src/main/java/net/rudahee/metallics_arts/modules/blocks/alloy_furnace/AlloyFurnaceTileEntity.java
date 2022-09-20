@@ -1,5 +1,32 @@
 package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
+import net.rudahee.metallics_arts.data.recipes.alloy_furnace.AlloyFurnaceRecipe;
+import net.rudahee.metallics_arts.setup.enums.extras.FuelsTime;
+import net.rudahee.metallics_arts.setup.registries.ModItems;
+import net.rudahee.metallics_arts.setup.registries.ModTileEntities;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.awt.*;
+import java.util.Arrays;
+import java.util.Optional;
+
 public class AlloyFurnaceTileEntity  {
 /*
     private static final int[] SLOTS_FOR_UP = new int[]{0,1,2,3};
