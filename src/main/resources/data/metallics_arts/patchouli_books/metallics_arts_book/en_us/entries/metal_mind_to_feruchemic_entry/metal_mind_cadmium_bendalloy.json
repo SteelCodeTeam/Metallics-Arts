@@ -1,0 +1,16 @@
+{
+  "name": "Cadmium and Bendalloy",
+  "icon": "metallics_arts:textures/item/metal_mind/cadmium_bendalloy_band.png",
+  "category": "metallics_arts:metal_mind_to_feruchemic_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "burning bendalloy creates a bubble around you, which makes everything go faster inside it"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:alomantic_arts_ring_cadmium_bendalloy",
+      "recipe2": "minecraft:alomantic_arts_band_cadmium_bendalloy"
+    }
+  ]
+}

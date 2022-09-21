@@ -1,0 +1,15 @@
+{
+  "name": "Koloss Blade",
+  "icon": "metallics_arts:textures/item/combat/koloss_blade.png",
+  "category": "metallics_arts:weapons_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "burning bendalloy creates a bubble around you, which makes everything go faster inside it"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:koloss_blade"
+    }
+  ]
+}
