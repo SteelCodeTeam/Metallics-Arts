@@ -1,0 +1,11 @@
+{
+  "name": "Allomantic Tin",
+  "icon": "metallics_arts:textures/gui/allomantic_symbols/tin_symbol.png",
+  "category": "metallics_arts:allomantic_powers_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "burning tin widens your senses!"
+    }
+  ]
+}

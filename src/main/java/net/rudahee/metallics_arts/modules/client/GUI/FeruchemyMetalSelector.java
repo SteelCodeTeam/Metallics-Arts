@@ -265,9 +265,9 @@ public class FeruchemyMetalSelector extends Screen {
         if (inSelector){
             renderTooltip(matrixStack, Component.translatable(metal.getNameLower()),mouse.x,mouse.y);
         }
-
+//metallic_arts:textures/gui/feruchemic_symbols/tin_symbol.png
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png") );
+        RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png"));
 
         //this.mc.getEntityRenderDispatcher().textureManager.bindForSetup(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png"));
         //RenderSystem.setShaderColor(1, 1, 1, 1);

@@ -1,0 +1,11 @@
+{
+  "name": "Feruchemic Tin",
+  "icon": "metallics_arts:textures/gui/feruchemic_symbols/tin_symbol.png",
+  "category": "metallics_arts:feruchemic_powers_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "- Store: Store reservation of senses \n - Decant: Decant reservation of senses"
+    }
+  ]
+}

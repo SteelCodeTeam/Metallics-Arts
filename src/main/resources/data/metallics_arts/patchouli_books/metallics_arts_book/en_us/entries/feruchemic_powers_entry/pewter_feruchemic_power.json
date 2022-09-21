@@ -1,0 +1,11 @@
+{
+  "name": "Feruchemic Pewter",
+  "icon": "metallics_arts:textures/gui/feruchemic_symbols/pewter_symbol.png",
+  "category": "metallics_arts:feruchemic_powers_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "- Store: Store force reserves \n - Decant: Decant force reserves"
+    }
+  ]
+}
