@@ -21,6 +21,9 @@ minecraft {
     // These can be tweaked, removed, or duplicated as needed.
     runs {
         client {
+
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             workingDirectory project.file('run')
 
             // Recommended logging data for a userdev environment
@@ -43,6 +46,7 @@ minecraft {
                     source sourceSets.main
                 }
             }
+
         }
 
         server {
@@ -53,6 +57,9 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             property 'forge.enabledGameTestNamespaces', 'metallics_arts'
+
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
                 metallics_arts {
@@ -82,6 +89,8 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             property 'forge.logging.markers', 'REGISTRIES'
 
@@ -110,6 +119,9 @@ repositories {
     maven {
         url = "https://maven.tehnut.info/"
     }
+    maven {
+        url = "https://maven.blamejared.com"
+    }
 }
 
 repositories {
@@ -136,6 +148,9 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-1.19.2-common-api:11.2.0.246")
     compileOnly fg.deobf("mezz.jei:jei-1.19.2-forge-api:11.2.0.246")
     compileOnly fg.deobf("mezz.jei:jei-1.19.2-forge:11.2.0.246")
+
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.19-75:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.19-75")
 
     
 }
