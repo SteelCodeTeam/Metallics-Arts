@@ -70,6 +70,7 @@
   "block.metallics_arts.lead_ore": "Lead Ore",
 
   "block.metallics_arts.deepslate_chromium_ore": "Deepslate Chromium Ore",
+  "block.metallics_arts.deepslate_cadmium_ore": "Deepslate Cadmium Ore",
   "block.metallics_arts.deepslate_aluminum_ore": "Deepslate Aluminum Ore",
   "block.metallics_arts.deepslate_silver_ore": "Deepslate Silver Ore",
   "block.metallics_arts.deepslate_lead_ore": "Deepslate Lead Ore",
@@ -192,6 +193,51 @@
   "key.categorymetallics_arts":"Metallics Arts",
   "key.metallics_arts.allomantic":"Allomantic Metal Selector",
   "key.metallics_arts.feruchemic":"Feruchemic Metal Selector",
-  "key.metallics_arts.vertical_jump":"Vertical Push"
+  "key.metallics_arts.vertical_jump":"Vertical Push",
 
+
+  "item.metallics_arts.steel_allomantic_icon": "Allomantic Steel",
+  "item.metallics_arts.tin_allomantic_icon": "Allomantic Tin",
+  "item.metallics_arts.pewter_allomantic_icon": "Allomantic Pewter",
+  "item.metallics_arts.bronze_allomantic_icon": "Allomantic Bronze",
+  "item.metallics_arts.zinc_allomantic_icon": "Allomantic Zinc",
+  "item.metallics_arts.brass_allomantic_icon": "Allomantic Brass",
+  "item.metallics_arts.electrum_allomantic_icon": "Allomantic Electrum",
+  "item.metallics_arts.cadmium_allomantic_icon": "Allomantic Cadmium",
+  "item.metallics_arts.bendalloy_allomantic_icon": "Allomantic Bendalloy",
+  "item.metallics_arts.aluminum_allomantic_icon": "Allomantic Aluminum",
+  "item.metallics_arts.duralumin_allomantic_icon": "Allomantic Duralumin",
+  "item.metallics_arts.chromium_allomantic_icon": "Allomantic Chromium",
+  "item.metallics_arts.nicrosil_allomantic_icon": "Allomantic Nicrosil",
+  "item.metallics_arts.gold_allomantic_icon": "Allomantic Gold",
+  "item.metallics_arts.iron_allomantic_icon": "Allomantic Iron",
+  "item.metallics_arts.copper_allomantic_icon": "Allomantic Copper",
+  "item.metallics_arts.atium_allomantic_icon": "Allomantic Atium",
+  "item.metallics_arts.malatium_allomantic_icon": "Allomantic Malatium",
+  "item.metallics_arts.lerasium_allomantic_icon": "Allomantic Lerasium",
+  "item.metallics_arts.ettmetal_allomantic_icon": "Allomantic Ettmetal",
+
+
+  "item.metallics_arts.steel_feruchemic_icon": "Feruchemic Steel",
+  "item.metallics_arts.tin_feruchemic_icon": "Feruchemic Tin",
+  "item.metallics_arts.pewter_feruchemic_icon": "Feruchemic Pewter",
+  "item.metallics_arts.bronze_feruchemic_icon": "Feruchemic Bronze",
+  "item.metallics_arts.zinc_feruchemic_icon": "Feruchemic Zinc",
+  "item.metallics_arts.brass_feruchemic_icon": "Feruchemic Brass",
+  "item.metallics_arts.electrum_feruchemic_icon": "Feruchemic Electrum",
+  "item.metallics_arts.cadmium_feruchemic_icon": "Feruchemic Cadmium",
+  "item.metallics_arts.bendalloy_feruchemic_icon": "Feruchemic Bendalloy",
+  "item.metallics_arts.aluminum_feruchemic_icon": "Feruchemic Aluminum",
+  "item.metallics_arts.duralumin_feruchemic_icon": "Feruchemic Duralumin",
+  "item.metallics_arts.chromium_feruchemic_icon": "Feruchemic Chromium",
+  "item.metallics_arts.nicrosil_feruchemic_icon": "Feruchemic Nicrosil",
+
+  "item.metallics_arts.gold_feruchemic_icon": "Feruchemic Gold",
+  "item.metallics_arts.iron_feruchemic_icon": "Feruchemic Iron",
+  "item.metallics_arts.copper_feruchemic_icon": "Feruchemic Copper",
+
+  "item.metallics_arts.atium_feruchemic_icon": "Feruchemic Atium",
+  "item.metallics_arts.malatium_feruchemic_icon": "Feruchemic Malatium",
+  "item.metallics_arts.lerasium_feruchemic_icon": "Feruchemic Lerasium",
+  "item.metallics_arts.ettmetal_feruchemic_icon": "Feruchemic Ettmetal"
 }

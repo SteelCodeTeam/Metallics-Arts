@@ -1,11 +1,13 @@
 package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.enums.gems.Gems;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 
@@ -118,6 +120,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 
 
+
+        for (MetalsNBTData metal: MetalsNBTData.values()) {
+            builder(itemGenerated,"item/"+metal.getNameLower()+"_allomantic_icon","gui/allomantic_symbols/"+metal.getNameLower()+"_symbol");
+            builder(itemGenerated,"item/"+metal.getNameLower()+"_feruchemic_icon","gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol");
+        }
     }
     private ItemModelBuilder builder (ModelFile itemGenerated, String outPath, String texturePath){
         return  getBuilder(outPath).parent(itemGenerated).texture("layer0",texturePath);

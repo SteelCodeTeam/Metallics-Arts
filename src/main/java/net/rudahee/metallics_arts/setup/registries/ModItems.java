@@ -13,6 +13,7 @@ import net.rudahee.metallics_arts.modules.items.vials.large_vial.LargeVial;
 import net.rudahee.metallics_arts.modules.items.vials.small_vial.SmallVial;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalSpikesData;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.enums.gems.Gems;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.enums.metals.MetalBurningRecipeData;
@@ -90,6 +91,16 @@ public class ModItems {
                         return item;
                     });
         });
+
+        for (MetalsNBTData metal: MetalsNBTData.values()) {
+            MetallicsArts.registerItem(metal.getNameLower()+"_allomantic_icon",
+                    ()-> new Item(new Item.Properties().tab(MetallicsArts.MA_TAB)));
+            MetallicsArts.registerItem(metal.getNameLower()+"_feruchemic_icon",
+                    ()-> new Item(new Item.Properties().tab(MetallicsArts.MA_TAB)));
+        }
+
+
+
 
     }
 

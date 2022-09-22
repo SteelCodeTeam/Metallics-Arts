@@ -5,6 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
+      "title": "Obsidian Dagger",
       "text": "burning bendalloy creates a bubble around you, which makes everything go faster inside it"
     },
     {

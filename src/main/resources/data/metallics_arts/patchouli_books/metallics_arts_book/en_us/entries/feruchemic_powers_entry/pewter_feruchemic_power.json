@@ -4,8 +4,13 @@
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
+      "type": "patchouli:spotlight",
+      "item": "metallics_arts:pewter_feruchemic_icon",
+      "text": "$(br)Almacenar:$(br2) - Almacena en la mente de metal capacidades fisica del jugador, para poder usarla mas tarde"
+    },
+    {
       "type": "patchouli:text",
-      "text": "- Store: Store force reserves \n - Decant: Decant force reserves"
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Decanta de la mente de metal las capacidades fisica del jugador, aumentando las actuales"
     }
   ]
 }

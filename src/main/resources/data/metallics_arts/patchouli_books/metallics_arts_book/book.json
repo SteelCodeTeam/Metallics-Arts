@@ -1,5 +1,9 @@
 {
   "name": "METALLICS ARTS BOOK",
   "landing_text": "LANDING TEXT",
-  "version": 1
+  "version": 1,
+  "book_texture": "patchouli:textures/gui/book_red.png",
+  "show_progress": "false",
+  "creative_tab": "tools",
+  "model": "patchouli:book_cyan"
 }
