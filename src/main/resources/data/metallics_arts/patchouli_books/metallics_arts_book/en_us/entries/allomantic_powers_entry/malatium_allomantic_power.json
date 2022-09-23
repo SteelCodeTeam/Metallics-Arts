@@ -1,11 +1,11 @@
 {
-  "name": "Allomantic Bendalloy",
-  "icon": "metallics_arts:textures/gui/allomantic_symbols/bendalloy_symbol.png",
+  "name": "Allomantic Malatium",
+  "icon": "metallics_arts:textures/gui/allomantic_symbols/malatium_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "item": "metallics_arts:bendalloy_allomantic_icon",
+      "item": "metallics_arts:malatium_allomantic_icon",
       "text": "$(br)Incrementa capacidades fisicas del jugador $(br)"
     },
     {

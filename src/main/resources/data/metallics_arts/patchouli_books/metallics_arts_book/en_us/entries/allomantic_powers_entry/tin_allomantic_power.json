@@ -4,8 +4,14 @@
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
+      "type": "patchouli:spotlight",
+      "item": "metallics_arts:tin_allomantic_icon",
+      "text": "$(br)Incrementa capacidades fisicas del jugador $(br)"
+    },
+    {
       "type": "patchouli:text",
-      "text": "burning tin widens your senses!"
+      "title": "Interacciones",
+      "text": "$(br) + Duralumin: Potencia en gran medida el poder por unos segundos $(br2) + Lerasium: Potencia levemente el poder $(br2) + Ambos: Potencia al maximo el poder por unos segundos"
     }
   ]
 }
