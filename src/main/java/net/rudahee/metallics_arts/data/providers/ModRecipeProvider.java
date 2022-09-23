@@ -261,7 +261,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .pattern("xx#")
                     .pattern("   ")
                     .unlockedBy("has_item", has(object.getSpike()))
-                    .save(recipesConsumer, new ResourceLocation("allomantic_arts_spike" + object.getName()));
+                    .save(recipesConsumer, new ResourceLocation("allomantic_arts_spike_" + object.getName()));
         });
 
 

@@ -1,0 +1,37 @@
+{
+  "name": "Feruchemic Bands",
+  "icon": "metallics_arts:textures/item/metal_mind/gold_electrum_band.png",
+  "category": "metallics_arts:crafting_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "burning bendalloy creates a bubble around you, which makes everything go faster inside it"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:alomantic_arts_band_steel_iron",
+      "recipe2": "minecraft:alomantic_arts_band_tin_pewter"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:alomantic_arts_band_zinc_brass",
+      "recipe2": "minecraft:alomantic_arts_band_bronze_copper"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:alomantic_arts_band_chromium_nicrosil",
+      "recipe2": "minecraft:alomantic_arts_band_aluminum_duralumin"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:alomantic_arts_band_cadmium_bendalloy",
+      "recipe2": "minecraft:alomantic_arts_band_electrum_gold"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:alomantic_arts_band_atium_malatium",
+      "recipe2": "minecraft:alomantic_arts_band_lerasium_ettmetal"
+    }
+  ]
+}

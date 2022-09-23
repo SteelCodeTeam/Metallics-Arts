@@ -1,0 +1,63 @@
+{
+  "name": "Metal Spikes",
+  "icon": "metallics_arts:textures/item/spikes/gold_spike.png",
+  "category": "metallics_arts:crafting_category",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "burning bendalloy creates a bubble around you, which makes everything go faster inside it"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:allomantic_arts_spike_iron",
+      "recipe2": "minecraft:allomantic_arts_spike_steel"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:allomantic_arts_spike_tin",
+      "recipe2": "minecraft:allomantic_arts_spike_pewter"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:allomantic_arts_spike_zinc",
+      "recipe2": "minecraft:allomantic_arts_spike_brass"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:allomantic_arts_spike_bronze",
+      "recipe2": "minecraft:allomantic_arts_spike_copper"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:allomantic_arts_spike_chromium",
+      "recipe2": "minecraft:allomantic_arts_spike_nicrosil"
+    },
+    {
+      "type": "patchouli:crafting",
+
+      "recipe": "minecraft:allomantic_arts_spike_aluminum",
+      "recipe2": "minecraft:allomantic_arts_spike_duralumin"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:allomantic_arts_spike_cadmium",
+      "recipe2": "minecraft:allomantic_arts_spike_bendalloy"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:allomantic_arts_spike_gold",
+      "recipe2": "minecraft:allomantic_arts_spike_electrum"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:allomantic_arts_spike_atium",
+      "recipe2": "minecraft:allomantic_arts_spike_malatium"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecraft:allomantic_arts_spike_lerasium",
+      "recipe2": "minecraft:allomantic_arts_spike_ettmetal"
+    }
+  ]
+}

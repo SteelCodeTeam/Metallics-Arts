@@ -1,7 +1,8 @@
 {
   "name": "Vials",
   "icon": "metallics_arts:textures/item/consumables/large_vial_fill.png",
-  "category": "metallics_arts:vials_category",
+  "category": "metallics_arts:crafting_category",
+  "sortnum": 0,
   "pages": [
     {
       "type": "patchouli:text",
