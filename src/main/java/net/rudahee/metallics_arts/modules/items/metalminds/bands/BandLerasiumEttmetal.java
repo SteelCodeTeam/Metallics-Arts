@@ -5,8 +5,10 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -68,7 +70,8 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                         if (nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve") > 0) {
 
                             if (nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve") > 10) {
-                                player.level.explode(player, player.position().x, player.position().y, player.position().z, nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve") / 10, Explosion.BlockInteraction.NONE);
+                                player.level.explode(player,player.position().x,player.position().y,player.position().z,(float) nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve")/410,Explosion.BlockInteraction.NONE);
+                                player.hurt(DamageSource.MAGIC,(float) nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve")/205); // 410 hace medio corazon por carga, por lo que la 10 serian 5 corazones
                                 nbtLocal.putInt(getMetals(1).getNameLower() + "_feruchemic_reserve", 0);
                                 stack.setTag(nbtLocal);
                             } else {
@@ -87,10 +90,8 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                             if (player.getLastDamageSource() != null){
                                 if ((player.getLastDamageSource().isExplosion())){
                                     nbtLocal.putString("key",changeOwner(player,nbtLocal,true));
-                                    player.addEffect(new MobEffectInstance(MobEffects.REGENERATION,20,3,true,true));
+                                    //player.addEffect(new MobEffectInstance(MobEffects.REGENERATION,20,3,true,true));
                                     nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
-
-
                                 }
                             }
                             stack.setTag(nbtLocal);
@@ -193,8 +194,9 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
             } else {
                 toolTips.add(Component.translatable(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": Has not Reserve" ));
             }
+
             if (!Screen.hasControlDown()){
-                toolTips.add(Component.translatable(getMetals(1).getNameLower().substring(0,1).toUpperCase()+getMetals(1).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")));
+                toolTips.add(Component.translatable(getMetals(1).getNameLower().substring(0,1).toUpperCase()+getMetals(1).getNameLower().substring(1)+": "+ (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")/41) ));
                 toolTips.add(Component.translatable("Owner: "+ (stack.getTag().getString("key"))));
             } else {
                 toolTips.add(Component.translatable(getMetals(1).getNameLower().substring(0,1).toUpperCase()+getMetals(1).getNameLower().substring(1)+": "+ ((stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity"))+"%"));

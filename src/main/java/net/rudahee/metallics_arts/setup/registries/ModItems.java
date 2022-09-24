@@ -108,6 +108,7 @@ public class ModItems {
 
     private static final Item.Properties PROPERTY_METALMINDS = new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1);
 
+
     public static  RegistryObject<Item> BAND_ALUMINUM_DURALUMIN = MetallicsArts.registerItem("band_aluminum_duralumin",
             () -> {
                 Item item = new BandAluminumDuralumin(PROPERTY_METALMINDS);
@@ -253,7 +254,7 @@ public class ModItems {
 
 //spikes
 
-    private static Item.Properties PROPERTY_SPIKE = new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1);
+    private static final Item.Properties PROPERTY_SPIKE = new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1);
 
     public static RegistryObject<Item> IRON_SPIKE = MetallicsArts.registerItem("iron_spike",
             () -> {

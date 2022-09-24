@@ -98,57 +98,6 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
     }
 
     @Override
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-        ItemStack resultItem;
-
-        switch (this.metals[0].getGroup()) {
-            case 0:
-                resultItem = new ItemStack(ModItems.RING_STEEL_IRON.get(),1);
-                break;
-            case 1:
-                resultItem = new ItemStack(ModItems.RING_PEWTER_TIN.get(),1);
-                break;
-            case 2:
-                resultItem = new ItemStack(ModItems.RING_COPPER_BRONZE.get(),1);
-                break;
-            case 3:
-                resultItem = new ItemStack(ModItems.RING_ZINC_BRASS.get(),1);
-                break;
-            case 4:
-                resultItem = new ItemStack(ModItems.RING_CHROMIUM_NICROSIL.get(),1);
-                break;
-            case 5:
-                resultItem = new ItemStack(ModItems.RING_ALUMINUM_DURALUMIN.get(),1);
-                break;
-            case 6:
-                resultItem = new ItemStack(ModItems.RING_CADMIUM_BENDALLOY.get(),1);
-                break;
-            case 7:
-                resultItem = new ItemStack(ModItems.RING_ELECTRUM_GOLD.get(),1);
-                break;
-            case 8:
-                resultItem = new ItemStack(ModItems.RING_ATIUM_MALATIUM.get(),1);
-                break;
-            case 9:
-                resultItem = new ItemStack(ModItems.RING_LERASIUM_ETTMETAL.get(),1);
-                break;
-            default:
-                resultItem = null;
-        }
-
-        CompoundTag nbt = new CompoundTag();
-        nbt.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",0);
-        nbt.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",0);
-        nbt.putInt(this.metals[0].getNameLower()+"_feruchemic_max_capacity",this.metalsMaxReserve[0]);
-        nbt.putInt(this.metals[1].getNameLower()+"_feruchemic_max_capacity",this.metalsMaxReserve[1]);
-        nbt.putString("key",unkeyedString);
-        resultItem.setTag(nbt);
-        /*if (this.allowdedIn(group)) {
-            items.add(resultItem);
-        }*/
-    }
-
-    @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
         if(!stack.hasTag()) {
             stack.setTag(addRingTags());
