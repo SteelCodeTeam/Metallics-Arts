@@ -28,10 +28,7 @@ public class AtiumAndMalatiumHelpers {
     }
 
     private float internalDamageWhenUseAtium(Player source, Player target, float receivedQty) {
-
         qty = receivedQty;
-
-
         source.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(sourceCap -> {
 
             target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(targetCap -> {
@@ -101,11 +98,9 @@ public class AtiumAndMalatiumHelpers {
                         }
                     }
                 }
-
                 if (Math.random() <= percetage) {
                     qty = 0;
                 }
-
             });
 
         });

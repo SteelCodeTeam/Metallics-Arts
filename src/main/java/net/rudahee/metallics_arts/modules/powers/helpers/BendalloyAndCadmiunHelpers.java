@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.TickingBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.rudahee.metallics_arts.setup.registries.ModBlock;
 
 
 public class BendalloyAndCadmiunHelpers {
@@ -24,17 +25,20 @@ public class BendalloyAndCadmiunHelpers {
         });
 
         BlockPos.betweenClosedStream(negative, positive).forEach(blockPos -> {
+
             BlockState block = world.getBlockState(blockPos);
             BlockEntity tileEntity = world.getBlockEntity(blockPos);
 
             for (int i = 0; i < 12 * 4 / (tileEntity == null ? 10 : 1); i++) {
-                if (tileEntity instanceof TickingBlockEntity) {
-                    if (Math.random() > 0.70) {
-                        ((TickingBlockEntity) tileEntity).tick();
-                    }
-                } else if (block.isRandomlyTicking()) {
-                    if (Math.random() > 0.70) {
-                        block.randomTick((ServerLevel) world, blockPos, world.random);
+                if (!block.is(ModBlock.BUDDING_ATIUM.get()) && !block.is(ModBlock.BUDDING_LERASIUM.get()) && !block.is(ModBlock.BUDDING_ETTMETAL.get()) ){
+                    if (tileEntity instanceof TickingBlockEntity) {
+                        if (Math.random() > 0.70) {
+                            ((TickingBlockEntity) tileEntity).tick();
+                        }
+                    } else if (block.isRandomlyTicking()) {
+                        if (Math.random() > 0.70) {
+                            block.randomTick((ServerLevel) world, blockPos, world.random);
+                        }
                     }
                 }
             }
@@ -70,8 +74,6 @@ public class BendalloyAndCadmiunHelpers {
             }
         });
     }
-
-
 
     public static void CadmiumEffectSelfPlayer(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 10, 4, true, false));
@@ -110,14 +112,11 @@ public class BendalloyAndCadmiunHelpers {
         player.aiStep();
     }
 
-    //
 
     public static void addFoodLevel(Player player, int qty){
-
         if (player.getFoodData().getFoodLevel()<20){
             player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()+qty);
         }
-
     }
 
     public static void removeFoodLevel(Player player, int qty){
@@ -143,6 +142,7 @@ public class BendalloyAndCadmiunHelpers {
             } else {
                 if (player.getAirSupply() <= 0) {
                     player.setAirSupply(0);
+                    player.hurt(DamageSource.DROWN,2);
                 }else {
                     player.setAirSupply(player.getAirSupply()-1);
                 }
@@ -152,9 +152,9 @@ public class BendalloyAndCadmiunHelpers {
 
     public static void throwBreathEffect(Player player, int effectLevel) {
 
-        if (!player.isEyeInFluid(FluidTags.WATER) && !player.isEyeInFluid(FluidTags.LAVA)) {
+        /*if (!player.isEyeInFluid(FluidTags.WATER) && !player.isEyeInFluid(FluidTags.LAVA)) {
             player.hurt(DamageSource.DROWN, 2);
-        }
+        }*/
 
         if (player.isEyeInFluid(FluidTags.WATER)) {
             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 40, effectLevel, true, false));

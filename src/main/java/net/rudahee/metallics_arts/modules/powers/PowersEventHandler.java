@@ -338,6 +338,7 @@ public class PowersEventHandler {
                                 if (playerCapability.isStoring(MetalsNBTData.ELECTRUM)) {
                                     playerCapability.setStoring(MetalsNBTData.ELECTRUM, false);
                                 }
+
                                 if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
                                     GoldAndElectrumHelpers.removeHealth(player,1);
                                 }

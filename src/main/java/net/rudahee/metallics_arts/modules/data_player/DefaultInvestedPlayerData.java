@@ -174,11 +174,8 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
 
     public void drainMetals(MetalsNBTData... metals) {
         for (MetalsNBTData metal : metals) {
-
             setAllomanticMetalsAmount(metal, 1);
             setBurning(metal, false);
-
-
         }
     }
 
