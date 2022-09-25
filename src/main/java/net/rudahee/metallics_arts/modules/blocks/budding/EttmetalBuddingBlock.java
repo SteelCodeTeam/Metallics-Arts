@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.blocks;
+package net.rudahee.metallics_arts.modules.blocks.budding;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,13 +13,11 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.PushReaction;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 
-public class AtiumBuddingBlock extends AmethystBlock {
-
+public class EttmetalBuddingBlock extends AmethystBlock {
     public static final int GROWTH_CHANCE = 5;
     private static final Direction[] DIRECTIONS = Direction.values();
 
-
-    public AtiumBuddingBlock(Properties properties) {
+    public EttmetalBuddingBlock(Properties properties) {
         super(properties);
     }
 
@@ -34,13 +32,13 @@ public class AtiumBuddingBlock extends AmethystBlock {
             BlockState blockstate = serverLevel.getBlockState(blockpos);
             Block block = null;
             if (canClusterGrowAtState(blockstate)) {
-                block = ModBlock.SMALL_ATIUM_BUD.get();
-            } else if (blockstate.is(ModBlock.SMALL_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = ModBlock.MEDIUM_ATIUM_BUD.get();
-            } else if (blockstate.is(ModBlock.MEDIUM_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = ModBlock.LARGE_ATIUM_BUD.get();
-            } else if (blockstate.is(ModBlock.LARGE_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = ModBlock.ATIUM_CLUSTER.get();
+                block = ModBlock.SMALL_ETTMETAL_BUD.get();
+            } else if (blockstate.is(ModBlock.SMALL_ETTMETAL_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlock.MEDIUM_ETTMETAL_BUD.get();
+            } else if (blockstate.is(ModBlock.MEDIUM_ETTMETAL_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlock.LARGE_ETTMETAL_BUD.get();
+            } else if (blockstate.is(ModBlock.LARGE_ETTMETAL_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlock.ETTMETAL_CLUSTER.get();
             }
 
             if (block != null) {

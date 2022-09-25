@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.blocks;
+package net.rudahee.metallics_arts.modules.blocks.budding;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

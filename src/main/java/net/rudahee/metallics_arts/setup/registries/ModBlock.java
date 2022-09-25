@@ -7,10 +7,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.blocks.AtiumBuddingBlock;
+import net.rudahee.metallics_arts.modules.blocks.BrokenCristalBlock;
+import net.rudahee.metallics_arts.modules.blocks.budding.AtiumBuddingBlock;
 import net.rudahee.metallics_arts.modules.blocks.EttmetalBlock;
-import net.rudahee.metallics_arts.modules.blocks.EttmetalBuddingBlock;
-import net.rudahee.metallics_arts.modules.blocks.LerasiumBuddingBlock;
+import net.rudahee.metallics_arts.modules.blocks.budding.EttmetalBuddingBlock;
+import net.rudahee.metallics_arts.modules.blocks.budding.LerasiumBuddingBlock;
 import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceBlock;
 import net.rudahee.metallics_arts.setup.enums.gems.Gems;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
@@ -19,6 +20,7 @@ import net.rudahee.metallics_arts.setup.enums.metals.MetalGenerationData;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 import java.util.function.ToIntFunction;
 
 import static net.rudahee.metallics_arts.MetallicsArts.registerBlock;
@@ -37,6 +39,8 @@ public class ModBlock {
     public static RegistryObject<Block> ALLOY_FURNACE_BLOCK = null;
 
     public static RegistryObject<Block> ETTMETAL_BLOCK = null;
+
+    public static RegistryObject<Block> BROKEN_CRISTAL_BLOCK = null;
 
     public static void register() {
         /*
@@ -126,6 +130,9 @@ public class ModBlock {
                     return block;
                 });
 
+
+        ModBlock.BROKEN_CRISTAL_BLOCK = MetallicsArts.registerBlock("broken_cristal_block",
+                () -> new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN)));
 
         ModBlock.ALLOY_FURNACE_BLOCK = MetallicsArts.registerBlock("alloy_furnace",
                 () -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE)
