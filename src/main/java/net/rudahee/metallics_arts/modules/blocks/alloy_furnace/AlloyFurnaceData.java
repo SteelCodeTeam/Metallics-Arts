@@ -6,7 +6,7 @@ import org.antlr.runtime.misc.IntArray;
 
 //implemente IIntArray
 public class AlloyFurnaceData extends IntArray {
-/*
+
     public int actualFuelBurning;
     public int maxFuelBurning;
     public int isCrafting; // 0 = false, 1 = true;
@@ -30,8 +30,6 @@ public class AlloyFurnaceData extends IntArray {
         maxTimeToActualRecipe = nbt.getInt("max_time_to_recipe");
     }
 
-
-    @Override
     public int get(int key) {
         if (key == 1) {
             return actualFuelBurning;
@@ -47,8 +45,6 @@ public class AlloyFurnaceData extends IntArray {
             return -1;
         }
     }
-
-    @Override
     public void set(int key, int value) {
         if (key == 1) {
              actualFuelBurning = value;
@@ -62,9 +58,7 @@ public class AlloyFurnaceData extends IntArray {
              maxTimeToActualRecipe = value;
         }
     }
-
-    @Override
     public int getCount() {
         return 5;
-    }*/
+    }
 }

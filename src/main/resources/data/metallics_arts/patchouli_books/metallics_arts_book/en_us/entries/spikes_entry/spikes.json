@@ -2,7 +2,7 @@
   "name": "Metal Spikes",
   "icon": "metallics_arts:textures/item/spikes/gold_spike.png",
   "category": "metallics_arts:crafting_category",
-  "sortnum": 3,
+  "sortnum": 4,
   "pages": [
     {
       "type": "patchouli:text",

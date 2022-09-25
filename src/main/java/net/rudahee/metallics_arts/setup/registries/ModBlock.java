@@ -36,7 +36,7 @@ public class ModBlock {
     public static final HashMap<String, Block> RAW_METAL_BLOCKS = new HashMap<String, Block>();
     public static final HashMap<String, Block> BLOCK_GEMS_BLOCKS = new HashMap<String, Block>();
 
-    public static RegistryObject<Block> ALLOY_FURNACE_BLOCK = null;
+    //public static RegistryObject<Block> ALLOY_FURNACE_BLOCK = null;
 
     public static RegistryObject<Block> ETTMETAL_BLOCK = null;
 
@@ -134,10 +134,7 @@ public class ModBlock {
         ModBlock.BROKEN_CRISTAL_BLOCK = MetallicsArts.registerBlock("broken_cristal_block",
                 () -> new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN)));
 
-        ModBlock.ALLOY_FURNACE_BLOCK = MetallicsArts.registerBlock("alloy_furnace",
-                () -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE)
-                        .strength(3.5F)
-                        .requiresCorrectToolForDrops()));
+        //ModBlock.ALLOY_FURNACE_BLOCK = MetallicsArts.registerBlock("alloy_furnace",() -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE).strength(3.5F).requiresCorrectToolForDrops()));
 
 
     }

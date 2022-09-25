@@ -2,7 +2,7 @@
   "name": "Feruchemic Rings",
   "icon": "metallics_arts:textures/item/metal_mind/gold_electrum_ring.png",
   "category": "metallics_arts:crafting_category",
-  "sortnum": 1,
+  "sortnum": 2,
   "pages": [
     {
       "type": "patchouli:text",

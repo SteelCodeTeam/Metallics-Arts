@@ -84,10 +84,7 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
         super.curioTick(slotContext, stack);
     }
 
-
-
     private static String dato;
-
     public String localChangeOwner(Player player, CompoundTag compoundNBT,boolean iStoreMetal) {
 
         boolean isSecondReserveZero = compoundNBT.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") == 0;

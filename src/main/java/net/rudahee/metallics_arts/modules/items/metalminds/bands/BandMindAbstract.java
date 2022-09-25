@@ -103,10 +103,10 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         if(!stack.hasTag()) {
             stack.setTag(addBandTags());
         }
-        if (this instanceof BandLerasiumEttmetal || this instanceof BandAtiumMalatium || this instanceof BandZincBrass || this instanceof BandCopperBronze || this instanceof BandChromiumNicrosil){
+        if (this instanceof BandLerasiumEttmetal || this instanceof BandAtiumMalatium
+                || this instanceof BandCopperBronze || this instanceof BandChromiumNicrosil){
             return;
         }
-
 
         if (stack.hasTag()) {
             if (!Screen.hasControlDown()){
@@ -115,7 +115,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             } else {
                 toolTips.add(Component.translatable(metals[0].getNameLower().substring(0,1).toUpperCase()+metals[0].getNameLower().substring(1)+": "+ ((stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_max_capacity"))+"%"));
                 toolTips.add(Component.translatable(metals[1].getNameLower().substring(0,1).toUpperCase()+metals[1].getNameLower().substring(1)+": "+ ((stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_max_capacity"))+"%"));
-
             }
             toolTips.add(Component.translatable("Owner: "+ (stack.getTag().getString("key"))));
         }

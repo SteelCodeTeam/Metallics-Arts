@@ -206,7 +206,6 @@ public class BandAtiumMalatium extends BandMindAbstract {
 
     public String convertTierToMaterial (int tier) {
         if (tier == 0){
-
             return Tiers.GOLD.name()+" "+ArmorMaterials.LEATHER.getName().toUpperCase();
         } else if (tier == 1){
             ArmorMaterials.TURTLE.getName();
@@ -242,10 +241,4 @@ public class BandAtiumMalatium extends BandMindAbstract {
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
     }
-
-
-
-
-
-
 }

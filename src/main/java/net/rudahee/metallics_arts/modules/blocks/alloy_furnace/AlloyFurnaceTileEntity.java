@@ -1,25 +1,6 @@
 package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.rudahee.metallics_arts.data.recipes.alloy_furnace.AlloyFurnaceRecipe;
-import net.rudahee.metallics_arts.setup.enums.extras.FuelsTime;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
-import net.rudahee.metallics_arts.setup.registries.ModTileEntities;
+
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -41,35 +22,21 @@ public class AlloyFurnaceTileEntity  {
 
     private static ItemStack[] itemInSlot = new ItemStack[6];
 
-
-    public AlloyFurnaceTileEntity(BlockEntityType<?> type) {
-        super(type);
-        Arrays.fill(AlloyFurnaceTileEntity.itemInSlot,null);
-    }
-
-    public AlloyFurnaceTileEntity() {
-        this(ModTileEntities.ALLOY_FURNACE_TILE_ENTITY.get());
-        Arrays.fill(AlloyFurnaceTileEntity.itemInSlot,null);
-    }
-
-    public AlloyFurnaceTileEntity(BlockPos blockPos, BlockState blockState) {
-
+    public AlloyFurnaceTileEntity(BlockEntityType<?> p_155228_, BlockPos p_155229_, BlockState p_155230_) {
+        super(p_155228_, p_155229_, p_155230_);
     }
 
     @Override
-    public void load(BlockState state, CompoundTag nbt) {
-        super.load(state, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
         data.readNBTData(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inv"));
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
-        data.updateNBTData(compound);
-        compound.put("inv", itemHandler.serializeNBT());
-
-        return compound;
+    protected void saveAdditional(CompoundTag nbt) {
+        super.saveAdditional(nbt);
+        data.updateNBTData(nbt);
     }
 
     private ItemStackHandler createHandler() {
@@ -157,7 +124,6 @@ public class AlloyFurnaceTileEntity  {
 
 
     }
-
     private boolean checkFuel() {
         Inventory inventoryFuel = new Inventory(1);
         inventoryFuel.setItem(0, itemHandler.getStackInSlot(4));
@@ -175,7 +141,6 @@ public class AlloyFurnaceTileEntity  {
                 containAir = true;
             }
         }
-
         return  containAir;
 
     }

@@ -37,7 +37,23 @@ public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
         return null;
     }
 
-/*
+    /*public void onRemove(BlockState state, Level level, BlockPos blockPos, BlockState newState, boolean bool) {
+
+        if (!state.is(newState.getBlock())) {
+            BlockEntity tileentity = level.getBlockEntity(blockPos);
+            if (tileentity instanceof  AlloyFurnaceTileEntity) {
+                AlloyFurnaceTileEntity furnaceTE = (AlloyFurnaceTileEntity)tileentity;
+                ItemStack stack;
+                for (int i=0; i<=5; i++) {
+                    stack = furnaceTE.itemHandler.getStackInSlot(i);
+                    Containers.dropContents(level, blockPos, NonNullList.of(stack));
+                }
+            }
+        }
+        super.onRemove(state, level, blockPos, newState, bool);
+    }*/
+
+    /*
 
 
 
