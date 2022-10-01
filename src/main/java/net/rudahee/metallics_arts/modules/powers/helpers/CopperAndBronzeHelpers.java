@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.modules.powers.helpers;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -20,6 +21,7 @@ public class CopperAndBronzeHelpers {
             entity.goalSelector.removeGoal(entity.goalSelector.getRunningGoals().findFirst().orElse(null));
             entity.getLookControl().setLookAt(player.position().x, player.position().y, player.position().z);
             entity.getMoveControl().setWantedPosition(player.position().x-0.5F, player.position().y, player.position().z-0.5F, 1.2f);
+
         });
     }
 

@@ -15,6 +15,8 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraftforge.fml.common.Mod;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 
 import java.util.List;
@@ -26,7 +28,7 @@ public class ModCustomGeodeFeatures {
                     "atium_geode",
                     Feature.GEODE,
                     new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
-                            BlockStateProvider.simple(ModBlock.BROKEN_CRISTAL_BLOCK.get()),
+                            BlockStateProvider.simple(ModBlock.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ATIUM.getGemNameLower())),
                             BlockStateProvider.simple(ModBlock.BUDDING_ATIUM.get()),
                             BlockStateProvider.simple(Blocks.CALCITE),
                             BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
@@ -47,7 +49,7 @@ public class ModCustomGeodeFeatures {
                     "lerasium_geode",
                     Feature.GEODE,
                     new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
-                            BlockStateProvider.simple(ModBlock.BROKEN_CRISTAL_BLOCK.get()),
+                            BlockStateProvider.simple(ModBlock.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.LERASIUM.getGemNameLower())),
                             BlockStateProvider.simple(ModBlock.BUDDING_LERASIUM.get()),
                             BlockStateProvider.simple(Blocks.CALCITE),
                             BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
@@ -67,10 +69,10 @@ public class ModCustomGeodeFeatures {
 
     public static final Holder<ConfiguredFeature<GeodeConfiguration, ?>> ETTMETAL_GEODE =
             register(
-                    "lerasium_geode",
+                    "ettmetal_geode",
                     Feature.GEODE,
                     new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
-                            BlockStateProvider.simple(ModBlock.BROKEN_CRISTAL_BLOCK.get()),
+                            BlockStateProvider.simple(ModBlock.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ETTMETAL.getGemNameLower())),
                             BlockStateProvider.simple(ModBlock.BUDDING_ETTMETAL.get()),
                             BlockStateProvider.simple(Blocks.CALCITE),
                             BlockStateProvider.simple(Blocks.SMOOTH_BASALT),

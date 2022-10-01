@@ -13,6 +13,7 @@ import net.rudahee.metallics_arts.modules.blocks.EttmetalBlock;
 import net.rudahee.metallics_arts.modules.blocks.budding.EttmetalBuddingBlock;
 import net.rudahee.metallics_arts.modules.blocks.budding.LerasiumBuddingBlock;
 import net.rudahee.metallics_arts.modules.blocks.alloy_furnace.AlloyFurnaceBlock;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.enums.gems.Gems;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.enums.metals.MetalGenerationData;
@@ -40,7 +41,8 @@ public class ModBlock {
 
     public static RegistryObject<Block> ETTMETAL_BLOCK = null;
 
-    public static RegistryObject<Block> BROKEN_CRISTAL_BLOCK = null;
+
+    public static final HashMap<String, Block> DIVINE_CRISTAL_BLOCKS = new HashMap<String, Block>();
 
     public static void register() {
         /*
@@ -131,8 +133,28 @@ public class ModBlock {
                 });
 
 
-        ModBlock.BROKEN_CRISTAL_BLOCK = MetallicsArts.registerBlock("broken_cristal_block",
-                () -> new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN)));
+        MetallicsArts.registerBlock("atium_cristal_block",
+                () -> {
+                    Block block = new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN).lightLevel(value -> 5));
+                    DIVINE_CRISTAL_BLOCKS.put(MetalsNBTData.ATIUM.getGemNameLower(),block);
+                    return block;
+                });
+        MetallicsArts.registerBlock("lerasium_cristal_block",
+                () -> {
+                    Block block = new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN).lightLevel(value -> 5));
+                    DIVINE_CRISTAL_BLOCKS.put(MetalsNBTData.LERASIUM.getGemNameLower(),block);
+                    return block;
+                });
+        MetallicsArts.registerBlock("ettmetal_cristal_block",
+                () -> {
+                    Block block = new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN).lightLevel(value -> 5));
+                    DIVINE_CRISTAL_BLOCKS.put(MetalsNBTData.ETTMETAL.getGemNameLower(),block);
+                    return block;
+                });
+
+        /*ModBlock.BROKEN_CRISTAL_BLOCK = MetallicsArts.registerBlock("",
+                () -> new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN).lightLevel(value -> 5)));*/
+
 
         //ModBlock.ALLOY_FURNACE_BLOCK = MetallicsArts.registerBlock("alloy_furnace",() -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE).strength(3.5F).requiresCorrectToolForDrops()));
 

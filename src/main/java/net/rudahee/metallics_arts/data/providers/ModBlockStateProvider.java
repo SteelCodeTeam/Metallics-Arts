@@ -4,7 +4,9 @@ import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 
 public class ModBlockStateProvider extends BlockStateProvider {
@@ -80,6 +82,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         simpleBlock(ModBlock.BUDDING_ETTMETAL.get());
         simpleBlockItem(ModBlock.BUDDING_ETTMETAL.get(),model);
+
+
+        model = new ModelFile.UncheckedModelFile(modLoc("block/atium_cristal_block"));
+        simpleBlock(ModBlock.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ATIUM.getGemNameLower()));
+        simpleBlockItem(ModBlock.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ATIUM.getGemNameLower()),model);
+
+        model = new ModelFile.UncheckedModelFile(modLoc("block/lerasium_cristal_block"));
+        simpleBlock(ModBlock.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.LERASIUM.getGemNameLower()));
+        simpleBlockItem(ModBlock.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.LERASIUM.getGemNameLower()),model);
+
+
+        //simpleBlock(ModBlock.BROKEN_CRISTAL_BLOCK.get());
+        //simpleBlockItem(ModBlock.BROKEN_CRISTAL_BLOCK.get(), model);
 
     }
 }

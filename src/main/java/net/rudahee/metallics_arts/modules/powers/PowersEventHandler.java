@@ -30,8 +30,6 @@ import java.util.List;
 
 @Mod.EventBusSubscriber
 public class PowersEventHandler {
-
-
     @SubscribeEvent
     public static void onJoinWorld(final PlayerEvent.PlayerLoggedInEvent event) {
         if (!event.getEntity().level.isClientSide) {
@@ -53,11 +51,9 @@ public class PowersEventHandler {
                         data.setDeathPos(pos);
                         data.setDeathDimension(dim);
                     }
-
                     if (data.getAllomanticPowerCount() + data.getFeruchemicPowerCount() == 0) {
                         List<MetalsNBTData> metals = Arrays.asList(MetalsNBTData.values());
                         Collections.shuffle(metals);
-
                         List<Integer> typeOfPower = Arrays.asList(new Integer[]{0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2}); // Leras footjob
 
                         Collections.shuffle(typeOfPower);

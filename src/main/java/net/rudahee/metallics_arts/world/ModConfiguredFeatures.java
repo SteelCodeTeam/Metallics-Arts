@@ -35,7 +35,10 @@ public class ModConfiguredFeatures {
 
     /** STONE **/
     public static final Supplier<List<OreConfiguration.TargetBlockState>> ZINC_REPLACEMENT_STONE = Suppliers.memoize(() -> List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, ModBlock.BLOCK_METAL_ORES.get("zinc").defaultBlockState())));
-    public static final RegistryObject<ConfiguredFeature<?, ?>> ZINC_ORE_GENERATION_STONE = CONFIGURED_FEATURES.register("zinc_ore_generation_stone", () -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(ZINC_REPLACEMENT_STONE.get(), 10, 0.5f)));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> ZINC_ORE_GENERATION_STONE =
+            CONFIGURED_FEATURES.register("zinc_ore_generation_stone",
+                    () -> new ConfiguredFeature<>(Feature.ORE,
+                            new OreConfiguration(ZINC_REPLACEMENT_STONE.get(), 10, 0.5f)));
 
     public static final Supplier<List<OreConfiguration.TargetBlockState>> TIN_REPLACEMENT_STONE = Suppliers.memoize(() -> List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, ModBlock.BLOCK_METAL_ORES.get("tin").defaultBlockState())));
     public static final RegistryObject<ConfiguredFeature<?, ?>> TIN_ORE_GENERATION_STONE = CONFIGURED_FEATURES.register("tin_ore_generation_stone", () -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(TIN_REPLACEMENT_STONE.get(), 10, 0.5f)));
