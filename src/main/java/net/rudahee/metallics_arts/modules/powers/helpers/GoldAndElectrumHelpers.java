@@ -82,6 +82,7 @@ public class GoldAndElectrumHelpers {
             player.setHealth(20);
         }
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
+
     }
 
     public static void addHearts(Player player, int qtyHearth) { //electrum

@@ -225,8 +225,10 @@ public class PowersEventHandler {
                      *   DAMAGE IF PLAYER IS BURN ATIUM
                      *******************************/
 
-                    if (event.getEntity() instanceof Player) {
-                        event.setAmount(AtiumAndMalatiumHelpers.getDamageWhenUseAtium(playerEntity, (Player) event.getEntity(), event.getAmount()));
+                    if (playerCapability.isBurning(MetalsNBTData.ATIUM)) {
+                        if (event.getEntity() instanceof Player) {
+                            event.setAmount(AtiumAndMalatiumHelpers.getDamageWhenUseAtium(playerEntity, (Player) event.getEntity(), event.getAmount()));
+                        }
                     }
 
                     /*******************************
@@ -267,15 +269,10 @@ public class PowersEventHandler {
     }
 
     public static int ticks = 0;
-
     public static int x = 8;
     public static int y = 8;
     public static int z = 8;
-
     public static int actualTick = 0;
-
-    public static boolean restoreHealth = false;
-
     private static Player newPlayer = null;
     @SubscribeEvent
     public static void onWorldTickEvent(final TickEvent.LevelTickEvent event) {
@@ -292,11 +289,9 @@ public class PowersEventHandler {
                 } else {
                     newPlayer = null;
                 }
-
                 if (newPlayer == null) {
                     return;
                 }
-
                 Player player = newPlayer;
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                     playerCapability -> {
@@ -344,16 +339,11 @@ public class PowersEventHandler {
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.ELECTRUM)) {
                                 GoldAndElectrumHelpers.addHearts(player,30);
-                                restoreHealth = true;
                             } else if (playerCapability.isStoring(MetalsNBTData.ELECTRUM)) {
                                 if (playerCapability.isStoring(MetalsNBTData.GOLD)) {
                                     playerCapability.setStoring(MetalsNBTData.GOLD, false);
                                 }
                                 GoldAndElectrumHelpers.removeHearts(player,10);
-                                restoreHealth = true;
-                            } else if (restoreHealth) {
-                                GoldAndElectrumHelpers.restoreHearts(player);
-                                restoreHealth = false;
                             }
                             /************************
                              * TIN FERUCHEMIC

@@ -92,6 +92,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(ModBlock.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.LERASIUM.getGemNameLower()));
         simpleBlockItem(ModBlock.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.LERASIUM.getGemNameLower()),model);
 
+        model = new ModelFile.UncheckedModelFile(modLoc("block/ettmetal_cristal_block"));
+        simpleBlock(ModBlock.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ETTMETAL.getGemNameLower()));
+        simpleBlockItem(ModBlock.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ETTMETAL.getGemNameLower()),model);
+
 
         //simpleBlock(ModBlock.BROKEN_CRISTAL_BLOCK.get());
         //simpleBlockItem(ModBlock.BROKEN_CRISTAL_BLOCK.get(), model);

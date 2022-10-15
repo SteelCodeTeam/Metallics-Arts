@@ -54,6 +54,10 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
+        if (this instanceof BandElectrumGold) {
+            System.out.println("a");
+            return;
+        }
         Player player = (Player) slotContext.getWearer();
         if (stack.getItem() != newStack.getItem()) {
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
@@ -68,9 +72,6 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         }
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
     }
-
-
-
     private static IDefaultInvestedPlayerData cap = null;
 
 
@@ -146,7 +147,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
         if (this instanceof BandZincBrass || this instanceof BandCopperBronze
                 || this instanceof BandLerasiumEttmetal ||this instanceof BandAtiumMalatium
-                ||this instanceof BandChromiumNicrosil || this instanceof BandAluminumDuralumin) {
+                ||this instanceof BandChromiumNicrosil || this instanceof BandAluminumDuralumin || this instanceof BandElectrumGold) {
             return;
         }
 

@@ -66,7 +66,6 @@ public class FeruchemyMetalSelector extends Screen {
     static int[] isStoragePar = new int[]{206, 160, 32, 255};
     static int[] isStorageImpar = new int[]{235, 190, 68, 255};
 
-
     static int[] normalPar = new int[]{125, 125, 125, 255};
     static int[] normalImpar = new int[]{109, 109, 109, 255};
 

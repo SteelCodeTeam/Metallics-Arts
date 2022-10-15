@@ -120,7 +120,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 
 
-
         for (MetalsNBTData metal: MetalsNBTData.values()) {
             builder(itemGenerated,"item/"+metal.getNameLower()+"_allomantic_icon","gui/allomantic_symbols/"+metal.getNameLower()+"_symbol");
             builder(itemGenerated,"item/"+metal.getNameLower()+"_feruchemic_icon","gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol");

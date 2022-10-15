@@ -26,7 +26,6 @@ public enum MetalsNBTData implements IMetal, IGems {
     LERASIUM("lerasium", "LERASIUM",9, 6000, false, true, 2,1,1),
     ETTMETAL("ettmetal", "ETTMETAL",9, 16000, false, true, 3,4100,1640);
 
-
     private final String nameLower;
     private final String nameUpper;
     private final int group;
