@@ -39,15 +39,14 @@ public class PowersEventHandler {
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
                     if (data.getSpawnDimension() == null) {
                         int[] pos = {player.level.getLevelData().getXSpawn(),player.level.getLevelData().getYSpawn(),player.level.getLevelData().getZSpawn()};
-                        String dim = player.level.dimension().registry().getNamespace();
+                        String dim = player.level.dimension().toString();
 
                         data.setSpawnPos(pos);
                         data.setSpawnDimension(dim);
                     }
                     if (data.getDeathDimension() == null) {
                         int[] pos = {player.level.getLevelData().getXSpawn(),player.level.getLevelData().getYSpawn(),player.level.getLevelData().getZSpawn()};
-                        String dim = player.level.dimension().registry().getNamespace();
-
+                        String dim = player.level.dimension().toString();
                         data.setDeathPos(pos);
                         data.setDeathDimension(dim);
                     }
@@ -86,7 +85,7 @@ public class PowersEventHandler {
             playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                 capabilities -> {
                     int[] pos = {(int) playerEntity.position().x,(int) playerEntity.position().y, (int) playerEntity.position().z};
-                    String dim = playerEntity.level.dimension().registry().getNamespace();
+                    String dim = playerEntity.level.dimension().toString();
                     if (capabilities.getSpawnPos() != null) {
                         capabilities.setSpawnDimension(dim);
                         capabilities.setSpawnPos(pos);
@@ -102,7 +101,7 @@ public class PowersEventHandler {
             ServerPlayer player = (ServerPlayer) event.getEntity();
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability -> {
                 int[] pos = {(int) player.position().x,(int) player.position().y, (int) player.position().z};
-                String dim = player.level.dimension().registry().getNamespace();
+                String dim = player.level.dimension().toString();
                 playerCapability.setDeathDimension(dim);
                 playerCapability.setDeathPos(pos);
                 for (MetalsNBTData metal:MetalsNBTData.values()) {

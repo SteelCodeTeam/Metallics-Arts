@@ -507,16 +507,16 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
 
         try {
             if (this.getDeathDimension() != null) {
-                death_dimension.putString("death_dimension",this.getDeathDimension());
+                death_dimension.putString("death_dim",this.getDeathDimension());
             } else {
-                death_dimension.putString("death_dimension", this.getSpawnDimension());
+                death_dimension.putString("death_dim", this.getSpawnDimension());
             }
         } catch (Exception ex) {
             System.out.println("TREMENDO PELOTUDO TOBIAS.");
         }
 
         spawn_pos.putIntArray("spawn_position", this.getSpawnPos());
-        spawn_dimension.putString("spawn_dimension",this.getSpawnDimension());
+        spawn_dimension.putString("spawn_dim",this.getSpawnDimension());
 
         invested_data.put("death_pos", death_pos);
         invested_data.put("death_dim", death_dimension);
@@ -585,13 +585,13 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
         }
 
         try {
-            if (death_pos.getIntArray("death_position") != null && death_dimension.getString("death_dimension") != null) {
+            if (death_pos.getIntArray("death_position") != null && death_dimension.getString("death_dim") != null) {
                 this.setDeathPos(death_pos.getIntArray("death_position"));
-                this.setDeathDimension(death_dimension.getString("death_dimensions"));
+                this.setDeathDimension(death_dimension.getString("death_dim"));
             }
-            if (spawn_pos.getIntArray("spawn_position") != null && spawn_dimension.getString("spawn_dimension") != null) {
+            if (spawn_pos.getIntArray("spawn_position") != null && spawn_dimension.getString("spawn_dim") != null) {
                 this.setSpawnPos(spawn_pos.getIntArray("spawn_position"));
-                this.setSpawnDimension(spawn_dimension.getString("spawn_dimension"));
+                this.setSpawnDimension(spawn_dimension.getString("spawn_dim"));
             }
         } catch(Exception ex) {
             System.out.println("SIGUE SIENDO UNA COSTRA DE NULL EL DEATH O SPAWN POS :D");

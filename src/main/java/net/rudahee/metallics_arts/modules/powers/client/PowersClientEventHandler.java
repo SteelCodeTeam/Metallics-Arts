@@ -608,7 +608,7 @@ public class PowersClientEventHandler {
             }
 
             /*********************************************
-             * BRONZE LINES                              *
+             * BRONZE LINES *
              *********************************************/
             if (data.isBurning(MetalsNBTData.BRONZE)) {
                 BlockPos playerPos = player.blockPosition();
@@ -627,15 +627,15 @@ public class PowersClientEventHandler {
             }
 
             /*********************************************
-             * GOLD AND ELECTRUM AND MALATIUM LINES                   *
+             * GOLD AND ELECTRUM AND MALATIUM LINES *
              *********************************************/
             if (data.isBurning(MetalsNBTData.GOLD)) {
                 if(player.level.dimension().toString().equals(data.getDeathDimension())) { /** NO FUNCIONA EL IF */
                     Vec3 vector = new Vec3(data.getDeathPos()[0], data.getDeathPos()[1], data.getDeathPos()[2]);
                     ClientUtils.drawMetalLine(stack,playervec,vector, 2f, 0.6f, 0.6f, 0.1f);
-                } /*else {
+                } else {
                     ClientUtils.drawMetalLine(stack,playervec,playervec, 2f, 0.6f, 0.6f, 0.1f);
-                }*/
+                }
             }
 
             if (data.isBurning(MetalsNBTData.ELECTRUM)) {
@@ -643,9 +643,9 @@ public class PowersClientEventHandler {
 
                 if(player.level.dimension().toString().equals(data.getSpawnDimension())) { /** NO FUNCIONA EL IF */
                     ClientUtils.drawMetalLine(stack,playervec,vector, 2f, 0.6f, 0.6f, 0.1f);
-                } /*else {
+                } else {
                   ClientUtils.drawMetalLine(stack,playervec, playervec, 0,0,0,0);
-                }*/
+                }
             }
 
             if (data.isBurning(MetalsNBTData.MALATIUM) && otherPlayerDeathPos != null) {
@@ -653,9 +653,9 @@ public class PowersClientEventHandler {
 
                 if(player.level.dimension().equals(otherPlayerDimension)) { /** NO FUNCIONA EL IF */
                     ClientUtils.drawMetalLine(stack, playervec,vector, 2.3f, 0.2f, 0.6f, 0.7f);
-                } /*else {
+                } else {
                     ClientUtils.drawMetalLine(stack, playervec, playervec, 0,0,0,0);
-                }*/
+                }
             }
 
 

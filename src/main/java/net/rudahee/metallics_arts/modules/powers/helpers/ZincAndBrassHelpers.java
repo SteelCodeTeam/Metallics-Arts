@@ -5,8 +5,10 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.ai.village.ReputationEventType;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.animal.Rabbit;
@@ -24,6 +26,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
 import java.util.Collection;
+import java.util.function.Predicate;
 
 public class ZincAndBrassHelpers {
 
@@ -45,9 +48,9 @@ public class ZincAndBrassHelpers {
           tameable.resetLove();
         } else if (target instanceof Creeper) {
             target.getMoveControl().setWantedPosition(source.position().x-0.5F, source.position().y, source.position().z-0.5F, 1.3f);
-            //target.goalSelector.addGoal(2, new CreeperSwellGoal((Creeper) target));
+            target.goalSelector.addGoal(2, new SwellGoal((Creeper) target));
         } else if (target instanceof Rabbit) {
-            //target.goalSelector.addGoal(1, new MeleeAttackGoal(target, 1.4f, true));
+            target.goalSelector.addGoal(1, new MeleeAttackGoal((Rabbit) target, 1.4f, true));
         } else if (target instanceof AbstractSkeleton) {
             target.goalSelector.addGoal(1, new RangedBowAttackGoal<>((AbstractSkeleton) target, 1.3D, 10, 32.0F));
         } else if (target instanceof Illusioner) {
@@ -57,8 +60,7 @@ public class ZincAndBrassHelpers {
         } else if (target instanceof IronGolem) {
             target.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 1, true, true));
             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 4, 1, true, true));
-
-            //target.goalSelector.addGoal(1, new MeleeAttackGoal(IronGolem.class, 1.4D, true));
+            target.goalSelector.addGoal(1, new MeleeAttackGoal((IronGolem) target, 1.4D, true));
 
         } else if (target instanceof Villager) {
             Villager villager = (Villager) target;
@@ -75,10 +77,8 @@ public class ZincAndBrassHelpers {
         target.setTarget(source);
         target.setLastHurtByMob(source);
         target.setAggressive(true);
-
         target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 2, true, true, true));
         target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2, true, true, true));
-
 
         if (target instanceof TamableAnimal) {
             TamableAnimal tameable = (TamableAnimal) target;
@@ -86,9 +86,9 @@ public class ZincAndBrassHelpers {
             tameable.resetLove();
         } else if (target instanceof Creeper) {
             target.getMoveControl().setWantedPosition(source.position().x-0.5F, source.position().y, source.position().z-0.5F, 1.3f);
-            //target.goalSelector.addGoal(2, new CreeperSwellGoal((Creeper) target));
+            target.goalSelector.addGoal(2, new SwellGoal((Creeper) target));
         } else if (target instanceof Rabbit) {
-           // target.goalSelector.addGoal(1, new MeleeAttackGoal(target, 1.6f, true));
+            target.goalSelector.addGoal(1, new MeleeAttackGoal((Rabbit) target, 1.4f, true));
         } else if (target instanceof AbstractSkeleton) {
             target.goalSelector.addGoal(1, new RangedBowAttackGoal<>((AbstractSkeleton) target, 1.6D, 15, 48.0F));
         } else if (target instanceof Illusioner) {
@@ -98,7 +98,7 @@ public class ZincAndBrassHelpers {
         } else if (target instanceof IronGolem) {
             target.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 80, 2, true, true));
             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 6, 1, true, true));
-           // target.goalSelector.addGoal(1, new MeleeAttackGoal(target, 1.8D, true));
+            target.goalSelector.addGoal(1, new MeleeAttackGoal((IronGolem) target, 1.8D, true));
 
         } else if (target instanceof Villager) {
             Villager villager = (Villager) target;
@@ -132,9 +132,9 @@ public class ZincAndBrassHelpers {
                     tameable.resetLove();
                 } else if (target instanceof Creeper) {
                     target.getMoveControl().setWantedPosition(source.position().x-0.5F, source.position().y, source.position().z-0.5F, 1.3f);
-                   // target.goalSelector.addGoal(2, new CreeperSwellGoal((Creeper) target));
+                    target.goalSelector.addGoal(2, new SwellGoal((Creeper) target));
                 } else if (target instanceof Rabbit) {
-                    //target.goalSelector.addGoal(1, new MeleeAttackGoal(target, 1.6f, true));
+                    target.goalSelector.addGoal(1, new MeleeAttackGoal((Rabbit) target, 1.6f, true));
                 } else if (target instanceof AbstractSkeleton) {
                     target.goalSelector.addGoal(1, new RangedBowAttackGoal<>((AbstractSkeleton) target, 1.6D, 15, 48.0F));
                 } else if (target instanceof Illusioner) {
@@ -144,7 +144,7 @@ public class ZincAndBrassHelpers {
                 } else if (target instanceof IronGolem) {
                     target.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 80, 2, true, true));
                     target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 6, 1, true, true));
-                   //target.goalSelector.addGoal(1, new MeleeAttackGoal(target, 1.8D, true));
+                   target.goalSelector.addGoal(1, new MeleeAttackGoal((IronGolem) target, 1.8D, true));
 
                 } else if (target instanceof Villager) {
                     Villager villager = (Villager) target;
@@ -157,16 +157,17 @@ public class ZincAndBrassHelpers {
         });
     }
 
-   /* private static final Predicate<Goal> isAggroGoal = (goal) -> goal instanceof CreeperSwellGoal || goal instanceof MeleeAttackGoal ||
+    private static final Predicate<Goal> isAggroGoal = (goal) -> goal instanceof SwellGoal || goal instanceof MeleeAttackGoal ||
             goal instanceof TargetGoal || goal instanceof PanicGoal || goal.getClass().getName().contains("Fireball") ||
             goal.getClass().getName().contains("Attack") || goal.getClass().getName().contains("Anger") || goal instanceof AvoidEntityGoal;
-*/
+
     public static void happyEntities(Mob target, Player source) {
         target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
 
         target.setAggressive(false);
-  //      target.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(PrioritizedGoal::stop);
-    //    target.targetSelector.getRunningGoals().filter(isAggroGoal).forEach(PrioritizedGoal::stop);
+
+        target.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop );
+        target.targetSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop);
 
         target.setTarget(null);
         target.setLastHurtByMob(null);
@@ -190,9 +191,9 @@ public class ZincAndBrassHelpers {
         } else if (target instanceof Villager) {
             Villager villager = (Villager) target;
             villager.onReputationEventFrom(ReputationEventType.ZOMBIE_VILLAGER_CURED, source);
-            /*villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(goal -> {
+            villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(goal -> {
                 villager.goalSelector.removeGoal(goal);
-            });*/
+            });
             villager.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 2, true, true));
         }
     }
@@ -201,8 +202,8 @@ public class ZincAndBrassHelpers {
         target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
 
         target.setAggressive(false);
-        /*target.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(PrioritizedGoal::stop);
-        target.targetSelector.getRunningGoals().filter(isAggroGoal).forEach(PrioritizedGoal::stop);*/
+        target.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop);
+        target.targetSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop);
 
         target.setTarget(null);
         target.setLastHurtByMob(null);
@@ -223,9 +224,9 @@ public class ZincAndBrassHelpers {
         } else if (target instanceof Villager) {
             Villager villager = (Villager) target;
             villager.onReputationEventFrom(ReputationEventType.ZOMBIE_VILLAGER_CURED, source);
-            /*villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(goal -> {
+            villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(goal -> {
                 villager.goalSelector.removeGoal(goal);
-            });*/
+            });
             villager.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 80, 2, true, true));
         }
     }
@@ -235,8 +236,8 @@ public class ZincAndBrassHelpers {
             target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
 
             target.setAggressive(false);
-            //target.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(PrioritizedGoal::stop);
-            //target.targetSelector.getRunningGoals().filter(isAggroGoal).forEach(PrioritizedGoal::stop);
+            target.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop);
+            target.targetSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop);
 
             target.setTarget(null);
             target.setLastHurtByMob(null);
@@ -256,9 +257,9 @@ public class ZincAndBrassHelpers {
             } else if (target instanceof Villager) {
                 Villager villager = (Villager) target;
                 villager.onReputationEventFrom(ReputationEventType.ZOMBIE_VILLAGER_CURED, source);
-                /*villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(goal -> {
+                villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(goal -> {
                     villager.goalSelector.removeGoal(goal);
-                });*/
+                });
                 villager.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 80, 2, true, true));
             }
         });
