@@ -7,6 +7,8 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
+import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 public class DuraluminAndAluminumHelpers {
     public static void duraluminDecantingMobEffects(Player player, ResourceKey<Biome>  biome) {
@@ -218,6 +220,15 @@ public class DuraluminAndAluminumHelpers {
             player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 128, true, true));
         } else {
             System.out.println("Bioma no registrado");
+        }
+    }
+    public static void drainAndCleanEffects(Player player, IDefaultInvestedPlayerData playerCapability) {
+        for (MetalsNBTData metalsNBTData: playerCapability.getAllomanticPowers()) {
+            playerCapability.drainMetals(metalsNBTData);
+        }
+
+        if (Math.random()< ((float) playerCapability.getAllomanticAmount(MetalsNBTData.ALUMINUM)/10)){
+            player.removeAllEffects();
         }
     }
 }

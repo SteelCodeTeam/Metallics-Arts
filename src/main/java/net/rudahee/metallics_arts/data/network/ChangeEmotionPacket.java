@@ -46,30 +46,18 @@ public class ChangeEmotionPacket {
             if (target == null) {
                 return;
             }
-            boolean isEnhanced = false;
-
             allomancer.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
                 enhanced = data.isBurning(MetalsNBTData.DURALUMIN);
-                if (enhanced) {
-                    if (data.isBurning(MetalsNBTData.ZINC)) {
-                        data.drainMetals(MetalsNBTData.DURALUMIN, MetalsNBTData.ZINC);
-                    }
-                    if (data.isBurning(MetalsNBTData.BRASS)) {
-                        data.drainMetals(MetalsNBTData.DURALUMIN, MetalsNBTData.BRASS);
-                    }
-                    ModNetwork.sync(data, allomancer);
-
-                }
             });
 
             if (this.make_aggressive) {
-                if (isEnhanced) {
+                if (enhanced) {
                     ZincAndBrassHelpers.angryEntitiesEnhanced(target, allomancer);
                 } else {
                     ZincAndBrassHelpers.angryEntities(target, allomancer);
                 }
             } else {
-                if (isEnhanced) {
+                if (enhanced) {
                     ZincAndBrassHelpers.happyEntitiesEnhanced(target, allomancer);
                 } else {
                     ZincAndBrassHelpers.happyEntities(target, allomancer);

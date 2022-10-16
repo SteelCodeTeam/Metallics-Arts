@@ -41,20 +41,6 @@ public class PullAndPushNuggetPacket {
         ctx.get().enqueueWork(() -> {
             ServerPlayer player = ctx.get().getSender();
             BlockPos pos = this.blockPos;
-
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(capability -> {
-
-                if (capability.isBurning(MetalsNBTData.DURALUMIN)) {
-                    if (capability.isBurning(MetalsNBTData.IRON)) {
-                        capability.drainMetals(MetalsNBTData.DURALUMIN, MetalsNBTData.IRON);
-                    }
-                    if (capability.isBurning(MetalsNBTData.STEEL)) {
-                        capability.drainMetals(MetalsNBTData.DURALUMIN, MetalsNBTData.STEEL);
-                    }
-                    ModNetwork.sync(capability, player);
-
-                }
-            });
             // Sanity check to make sure  the block is loaded in the server
             if (player.level.isLoaded(pos)) {
                 IronAndSteelHelpers.move(this.direction, player, pos);

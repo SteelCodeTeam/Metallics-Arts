@@ -186,9 +186,6 @@ public class PowersClientEventHandler {
                                                                         playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                             }
                                         }
-                                        if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
-                                            playerCapability.drainMetals(MetalsNBTData.STEEL, MetalsNBTData.DURALUMIN);
-                                        }
                                     }
                                 }
 

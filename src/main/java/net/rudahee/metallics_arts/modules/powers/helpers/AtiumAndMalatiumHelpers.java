@@ -1,8 +1,10 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
+import com.mojang.authlib.minecraft.TelemetrySession;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
@@ -25,6 +27,96 @@ public class AtiumAndMalatiumHelpers {
 
     public static float getDamageWhenUseAtium(Player source, Player target, float qty) {
         return new AtiumAndMalatiumHelpers().internalDamageWhenUseAtium(source, target, qty);
+    }
+
+    public static float getCalculateComplexDamage(IDefaultInvestedPlayerData targetCapability, IDefaultInvestedPlayerData sourceCapability, float damage) {
+
+        int tar = 0;
+        int sour = 0;
+        if (targetCapability.isBurning(MetalsNBTData.ATIUM))
+            tar =+1;
+        if (targetCapability.isBurning(MetalsNBTData.LERASIUM))
+            tar =+2;
+        if (targetCapability.isBurning(MetalsNBTData.DURALUMIN))
+            tar = +3;
+
+        if (sourceCapability.isBurning(MetalsNBTData.ATIUM)){
+            sour =+1;
+            if (sourceCapability.isBurning(MetalsNBTData.LERASIUM))
+                sour =+2;
+            if (sourceCapability.isBurning(MetalsNBTData.DURALUMIN))
+                sour = +3;
+        }
+        if (tar <= sour) {
+            return damage;
+        }
+        else { //mayor probabilidad de evitar
+            if (sour == 0) {
+                return getCalculateSimpleDamage(targetCapability,damage);
+            } else {
+                return getCalculateDobleBurn(tar, sour, damage);
+            }
+
+        }
+        /*
+        atium = 1                           nada
+        atium + lerasium = 3                atium = 1
+        atium + duralumin = 4               atium || atium + lerasium = 3
+        atium + lerasium + duralumin = 6    atium + lerasium = 3 || atium + duralumin = 4
+         */
+    }
+
+    private static float getCalculateDobleBurn(int tar, int sour, float damage) {
+        if (tar == 3) {                     //target = atium + lerasium
+            if (Math.random()<0.5) {        //source = atium
+                return 0;
+            }
+        } else if (tar == 4) {              //target = atium + duralumin
+            if (sour == 1) {
+                if (Math.random()<0.65) {   //source = atium
+                    return 0;
+                }
+            } else {
+                if (Math.random()<0.55) {    //source = atium + lerasium
+                    return 0;
+                }
+            }
+        } else {                            //target quema atium + lerasium + duralumin
+            if (sour == 1) {
+                if (Math.random()<0.9) {   //source = atium
+                    return 0;
+                }
+            } else if (sour == 3) {
+                if (Math.random()<0.75) {   //source = atium + lerasium
+                    return 0;
+                }
+            } else {
+                if (Math.random()<0.65) {   //source = atium + duralumin
+                    return 0;
+                }
+            }
+        }
+        return damage;
+    }
+
+    public static float getCalculateSimpleDamage(IDefaultInvestedPlayerData targetCapability, float damage) {
+        System.out.println("a");
+        if (targetCapability.isBurning(MetalsNBTData.LERASIUM) && targetCapability.isBurning(MetalsNBTData.DURALUMIN)) { //lerasium + duralumin
+            return 0;
+        } else if (targetCapability.isBurning(MetalsNBTData.LERASIUM)) { //solo lerasium
+            if (Math.random()<0.6) {
+                return 0;
+            }
+        } else if (targetCapability.isBurning(MetalsNBTData.DURALUMIN)) { //solo duralumin
+            if (Math.random()<0.8) {
+                return 0;
+            }
+        } else { //solo atium
+            if (Math.random()<0.4) {
+                return 0;
+            }
+        }
+        return damage;
     }
 
     private float internalDamageWhenUseAtium(Player source, Player target, float receivedQty) {
