@@ -8,7 +8,6 @@ import net.minecraftforge.network.NetworkEvent;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.ZincAndBrassHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.function.Supplier;
 

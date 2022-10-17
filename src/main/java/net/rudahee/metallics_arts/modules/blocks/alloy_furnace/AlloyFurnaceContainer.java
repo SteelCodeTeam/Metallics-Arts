@@ -1,21 +1,6 @@
 package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
-import net.rudahee.metallics_arts.setup.registries.ModBlock;
-import net.rudahee.metallics_arts.setup.registries.ModContainers;
-
-import javax.annotation.Nonnull;
-
 public class AlloyFurnaceContainer {
     /*private final BlockEntity tileEntity;
     private final Player playerEntity;

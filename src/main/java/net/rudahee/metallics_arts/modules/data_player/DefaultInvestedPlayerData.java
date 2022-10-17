@@ -10,34 +10,26 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
-
     private final boolean[] allomantic_powers;
     private final boolean[] feruchemic_powers;
-
     private final int[] allomantic_reseve;
     private final int[] lerasium_reseve;
     private final boolean[] burning_metals;
-
     private final boolean[] decanting_metals;
-
     private final boolean[] storing_metals;
-
     private final int[] max_burning_time;
-
     private boolean invested;
     private boolean mistborn;
     private boolean fullFeruchemic;
     private boolean fullInvested;
-
     private int[] death_pos;
     private int[] spawn_pos;
-
     private final boolean[] metal_mind_equiped;
-
     private String death_dimension;
     private String spawn_dimension;
-
     private boolean external_enhanced;
+    private ArrayList<MetalsNBTData> list_external_enhanced_drain;
+    private ArrayList<MetalsNBTData> list_duralumin_drain;
 
 
     public DefaultInvestedPlayerData() {
@@ -85,6 +77,9 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
 
         this.external_enhanced = false;
 
+        list_duralumin_drain = new ArrayList<>();
+        list_external_enhanced_drain = new ArrayList<>();
+
     }
 
 
@@ -114,6 +109,44 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
 
         }
     }
+
+    @Override
+    public void clearListDuraluminDrain() {
+        this.list_duralumin_drain.clear();
+    }
+    @Override
+    public void addListDuraluminDrain(MetalsNBTData metalsNBTData) {
+        this.list_duralumin_drain.add(metalsNBTData);
+    }
+    @Override
+    public ArrayList<MetalsNBTData> getListDuraluminDrain() {
+        return this.list_duralumin_drain;
+    }
+    @Override
+    public boolean containsInListDuraluminDrain(MetalsNBTData metalsNBTData) {
+        return this.list_duralumin_drain.contains(metalsNBTData);
+    }
+
+    @Override
+    public void clearListExternalEnhancedDrain() {
+        this.list_external_enhanced_drain.clear();
+    }
+
+    @Override
+    public void addListExternalEnhancedDrain(MetalsNBTData metalsNBTData) {
+        this.list_external_enhanced_drain.add(metalsNBTData);
+    }
+
+    @Override
+    public ArrayList<MetalsNBTData> getListExternalEnhancedDrain() {
+        return this.list_external_enhanced_drain;
+    }
+
+    @Override
+    public boolean containsInListExternalEnhancedDrain(MetalsNBTData metalsNBTData) {
+        return this.list_external_enhanced_drain.contains(metalsNBTData);
+    }
+
     @Override
     public void tickFeruchemyStorageMetals(ServerPlayer player){
 

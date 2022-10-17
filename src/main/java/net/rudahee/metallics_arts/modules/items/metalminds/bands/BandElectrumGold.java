@@ -11,16 +11,16 @@ import net.rudahee.metallics_arts.modules.powers.helpers.GoldAndElectrumHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.SlotContext;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class BandElectrumGold extends BandMindAbstract {
 
     public BandElectrumGold(Item.Properties properties) {
         super(properties, MetalsNBTData.GOLD, MetalsNBTData.ELECTRUM,MetalsNBTData.GOLD.getMaxReserveBand(),MetalsNBTData.ELECTRUM.getMaxReserveBand());
     }
+    private boolean nicConsumeMet0 = false;
+    private boolean nicConsumeMet1 = false;
 
-    private static boolean nicConsumeMet0 = false;
-    private static boolean nicConsumeMet1 = false;
+    private boolean restoreHearts = false;
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         LivingEntity livingEntity = slotContext.entity();
@@ -55,7 +55,6 @@ public class BandElectrumGold extends BandMindAbstract {
                         }
                     } else if (data.isStoring(getMetals(0))) {
                         if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_max_capacity")) {
-
                             if (data.isStoring(MetalsNBTData.NICROSIL)) {
                                 if (!nicConsumeMet0){
                                     stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
@@ -70,15 +69,13 @@ public class BandElectrumGold extends BandMindAbstract {
                                 nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")+1));
                                 stack.setTag(nbtLocal);
                             }
-
-
                         } else {
-
                             data.setStoring(getMetals(0),false);
                         }
                     }
 
                     if (data.isDecanting(getMetals(1))) {
+                        restoreHearts = true;
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")>0) {
                             if (data.isDecanting(MetalsNBTData.NICROSIL)){
                                 if (!nicConsumeMet1){
@@ -94,11 +91,12 @@ public class BandElectrumGold extends BandMindAbstract {
 
                         } else {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
-                            GoldAndElectrumHelpers.restoreHearts(player);
+                            //GoldAndElectrumHelpers.restoreHearts(player);
                             data.setDecanting(getMetals(1),false);
                         }
 
                     } else if (data.isStoring(getMetals(1))) {
+                        restoreHearts = true;
                         if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
 
                             if (data.isStoring(MetalsNBTData.NICROSIL)) {
@@ -115,9 +113,11 @@ public class BandElectrumGold extends BandMindAbstract {
                                 stack.setTag(nbtLocal);
                             }
                         } else {
-                            GoldAndElectrumHelpers.restoreHearts(player);
+                            //GoldAndElectrumHelpers.restoreHearts(player);
                             data.setStoring(getMetals(1),false);
                         }
+                    } else if (restoreHearts) {
+                        GoldAndElectrumHelpers.restoreHearts(player);
                     }
                     ModNetwork.sync(data, player);
                 });
@@ -138,6 +138,7 @@ public class BandElectrumGold extends BandMindAbstract {
                 data.setDecanting(getMetals(0),false);
                 data.setDecanting(getMetals(1),false);
                 GoldAndElectrumHelpers.restoreHearts(player);
+                restoreHearts = false;
                 ModNetwork.sync(data, player);
             });
         }

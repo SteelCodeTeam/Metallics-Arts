@@ -1,13 +1,6 @@
 package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 
 
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.awt.*;
-import java.util.Arrays;
-import java.util.Optional;
-
 public class AlloyFurnaceTileEntity  {
 /*
     private static final int[] SLOTS_FOR_UP = new int[]{0,1,2,3};

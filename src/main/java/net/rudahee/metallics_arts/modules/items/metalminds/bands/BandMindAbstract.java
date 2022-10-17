@@ -2,13 +2,11 @@ package net.rudahee.metallics_arts.modules.items.metalminds.bands;
 
 
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -17,7 +15,6 @@ import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -72,8 +69,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         }
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
     }
-    private static IDefaultInvestedPlayerData cap = null;
-
+    private IDefaultInvestedPlayerData cap = null;
 
     @Override
     public boolean canEquip(SlotContext slotContext, ItemStack stack) {
@@ -133,8 +129,8 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         return nbt;
     }
 
-    private static boolean nicConsumeMet0 = false;
-    private static boolean nicConsumeMet1 = false;
+    private boolean nicConsumeMet0 = false;
+    private boolean nicConsumeMet1 = false;
 
 
     @Override
@@ -249,7 +245,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         ICurioItem.super.curioTick(slotContext, stack);
     }
 
-    private static String dato;
+    private String dato;
 
     public String changeOwner(Player player, CompoundTag compoundNBT,boolean iStoreMetal) {
 

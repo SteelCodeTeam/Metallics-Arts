@@ -1,14 +1,6 @@
 package net.rudahee.metallics_arts.modules.blocks.alloy_furnace;
 
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.texture.SimpleTexture;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Inventory;
-import net.rudahee.metallics_arts.MetallicsArts;
-
-import java.awt.*;
-
 public class AlloyFurnaceScreen {
     /*
     private AlloyFurnaceContainer alloyContainer;

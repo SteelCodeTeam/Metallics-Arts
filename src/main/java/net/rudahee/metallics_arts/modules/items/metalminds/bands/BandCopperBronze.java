@@ -25,7 +25,7 @@ public class BandCopperBronze extends BandMindAbstract {
         super(properties, MetalsNBTData.COPPER,MetalsNBTData.BRONZE,MetalsNBTData.COPPER.getMaxReserveBand(),MetalsNBTData.BRONZE.getMaxReserveBand());
     }
 
-    private static boolean nicConsume = false;
+    private boolean nicConsume = false;
 
 
     @Override

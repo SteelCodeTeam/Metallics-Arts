@@ -25,7 +25,7 @@ public class BandAtiumMalatium extends BandMindAbstract {
         super(properties, MetalsNBTData.ATIUM,MetalsNBTData.MALATIUM,MetalsNBTData.ATIUM.getMaxReserveBand(),MetalsNBTData.MALATIUM.getMaxReserveBand());
     }
 
-    private static boolean nicConsume = false;
+    private boolean nicConsume = false;
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         LivingEntity livingEntity = slotContext.entity();

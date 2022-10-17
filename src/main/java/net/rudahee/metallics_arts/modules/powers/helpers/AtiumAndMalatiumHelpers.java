@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
-import com.mojang.authlib.minecraft.TelemetrySession;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
@@ -47,6 +46,7 @@ public class AtiumAndMalatiumHelpers {
             if (sourceCapability.isBurning(MetalsNBTData.DURALUMIN))
                 sour = +3;
         }
+
         if (tar <= sour) {
             return damage;
         }
@@ -100,7 +100,6 @@ public class AtiumAndMalatiumHelpers {
     }
 
     public static float getCalculateSimpleDamage(IDefaultInvestedPlayerData targetCapability, float damage) {
-        System.out.println("a");
         if (targetCapability.isBurning(MetalsNBTData.LERASIUM) && targetCapability.isBurning(MetalsNBTData.DURALUMIN)) { //lerasium + duralumin
             return 0;
         } else if (targetCapability.isBurning(MetalsNBTData.LERASIUM)) { //solo lerasium

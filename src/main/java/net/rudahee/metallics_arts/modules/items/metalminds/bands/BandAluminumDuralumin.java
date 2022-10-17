@@ -19,7 +19,7 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
         super(properties, MetalsNBTData.ALUMINUM,MetalsNBTData.DURALUMIN,MetalsNBTData.ALUMINUM.getMaxReserveBand(),MetalsNBTData.DURALUMIN.getMaxReserveBand());
     }
 
-    public static boolean nicConsumeMet1 = false;
+    public boolean nicConsumeMet1 = false;
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
@@ -84,7 +84,7 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
         super.curioTick(slotContext, stack);
     }
 
-    private static String dato;
+    private String dato;
     public String localChangeOwner(Player player, CompoundTag compoundNBT,boolean iStoreMetal) {
 
         boolean isSecondReserveZero = compoundNBT.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") == 0;

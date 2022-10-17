@@ -1,7 +1,6 @@
 package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;

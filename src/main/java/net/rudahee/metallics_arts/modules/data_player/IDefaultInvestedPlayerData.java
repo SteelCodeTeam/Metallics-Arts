@@ -10,6 +10,19 @@ public interface IDefaultInvestedPlayerData {
 
     void tickAllomancyBurningMetals(ServerPlayer player);
 
+    void clearListDuraluminDrain();
+    void addListDuraluminDrain(MetalsNBTData metalsNBTData);
+    ArrayList<MetalsNBTData> getListDuraluminDrain();
+
+    boolean containsInListDuraluminDrain(MetalsNBTData metalsNBTData);
+
+    void clearListExternalEnhancedDrain();
+    void addListExternalEnhancedDrain(MetalsNBTData metalsNBTData);
+    ArrayList<MetalsNBTData> getListExternalEnhancedDrain();
+
+    boolean containsInListExternalEnhancedDrain(MetalsNBTData metalsNBTData);
+
+
     void tickFeruchemyStorageMetals(ServerPlayer player);
 
     void tickFeruchemyDecantMetals(ServerPlayer player);

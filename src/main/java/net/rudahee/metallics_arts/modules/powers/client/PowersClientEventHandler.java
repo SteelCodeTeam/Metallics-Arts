@@ -652,29 +652,11 @@ public class PowersClientEventHandler {
                 Vec3 vector = new Vec3(otherPlayerDeathPos.getX(), otherPlayerDeathPos.getY(), otherPlayerDeathPos.getZ());
 
                 if(player.level.dimension().equals(otherPlayerDimension)) { /** NO FUNCIONA EL IF */
-                    ClientUtils.drawMetalLine(stack, playervec,vector, 2.3f, 0.2f, 0.6f, 0.7f);
+                    ClientUtils.drawMetalLine(stack, playervec,vector, 2f, 0.6f, 0.6f, 0.1f);
                 } else {
                     ClientUtils.drawMetalLine(stack, playervec, playervec, 0,0,0,0);
                 }
             }
-
-
-            /*if (data.isBurning(MetalsNBTData.GOLD)) {
-                ResourceKey<Level> deathDim = data.getDeathDim();
-                if (deathDim != null && player.level.dimension() == deathDim) {
-                    ClientUtils.drawMetalLine(stack, playervec, Vec3.atCenterOf(data.getDeathLoc()), 3.0F, 0.9F, 0.85F, 0.0F);
-                }
-            }
-            if (data.isBurning(Metal.ELECTRUM)) {
-                ResourceKey<Level> spawnDim = data.getSpawnDim();
-                if (spawnDim == null && player.level.dimension() == Level.OVERWORLD) { // overworld, no spawn --> use world spawn
-                    BlockPos spawnLoc = new BlockPos(player.level.getLevelData().getXSpawn(), player.level.getLevelData().getYSpawn(), player.level.getLevelData().getZSpawn());
-                    ClientUtils.drawMetalLine(stack, playervec, Vec3.atCenterOf(spawnLoc), 3.0F, 0.7F, 0.8F, 0.2F);
-
-                } else if (spawnDim != null && player.level.dimension() == spawnDim) {
-                    ClientUtils.drawMetalLine(stack, playervec, Vec3.atCenterOf(data.getSpawnLoc()), 3.0F, 0.7F, 0.8F, 0.2F);
-                }
-            }*/
             teardownPoseStack(stack);
         });
     }

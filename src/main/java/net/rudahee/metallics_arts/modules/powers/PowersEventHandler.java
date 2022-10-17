@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -12,7 +11,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -26,7 +24,9 @@ import net.rudahee.metallics_arts.modules.powers.helpers.*;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @Mod.EventBusSubscriber
 public class PowersEventHandler {
@@ -262,7 +262,7 @@ public class PowersEventHandler {
             target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(targetCapability -> {
                 if (targetCapability.isBurning(MetalsNBTData.ATIUM) ){
                     if (source instanceof Player) {
-                        target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(sourceCapability -> {
+                        source.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(sourceCapability -> {
                             event.setAmount(AtiumAndMalatiumHelpers.getCalculateComplexDamage(targetCapability,sourceCapability,event.getAmount()));
                         });//evasion jugador jugador
                     } else {
@@ -279,8 +279,6 @@ public class PowersEventHandler {
     public static int z = 8;
     public static int actualTick = 0;
     private static Player newPlayer = null;
-    private static HashMap <Integer, MetalsNBTData> listForDuralumin = new HashMap();
-    private static HashMap <Integer, MetalsNBTData> listForNicrosil = new HashMap();
     private static int externalEnhanced = -1;
 
     @SubscribeEvent
@@ -309,18 +307,18 @@ public class PowersEventHandler {
                                 playerCapability.tickAllomancyBurningMetals((ServerPlayer) player);
                             }
 
-
                             if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
                                 for (MetalsNBTData m : MetalsNBTData.values()) {
-                                    if (playerCapability.isBurning(m) && !listForDuralumin.containsKey(m.getIndex()))
-                                        listForDuralumin.put(m.getIndex(),m);
+                                    if (playerCapability.isBurning(m) && !playerCapability.containsInListDuraluminDrain(m)){
+                                        playerCapability.addListDuraluminDrain(m);
+                                    }
                                 }
                             } else {
-                                if (!listForDuralumin.isEmpty()) {
-                                    for (MetalsNBTData m: listForDuralumin.values()) {
+                                if (!playerCapability.getListDuraluminDrain().isEmpty()) {
+                                    for (MetalsNBTData m: playerCapability.getListDuraluminDrain()) {
                                         playerCapability.drainMetals(m);
                                     }
-                                    listForDuralumin.clear();
+                                    playerCapability.clearListDuraluminDrain();
                                 }
                             }
 
@@ -329,15 +327,16 @@ public class PowersEventHandler {
                                     externalEnhanced = MetalsNBTData.DURALUMIN.getMaxAllomanticTicksStorage();
                                 }
                                 for (MetalsNBTData m : MetalsNBTData.values()) {
-                                    if (playerCapability.isBurning(m) && !listForNicrosil.containsKey(m.getIndex()))
-                                        listForNicrosil.put(m.getIndex(), m);
+                                    if (playerCapability.isBurning(m) && !playerCapability.containsInListExternalEnhancedDrain(m)){
+                                        playerCapability.addListExternalEnhancedDrain(m);
+                                    }
                                 }
                             } else {
-                                if (!listForNicrosil.isEmpty()) {
-                                    for (MetalsNBTData m: listForNicrosil.values()) {
+                                if (!playerCapability.getListExternalEnhancedDrain().isEmpty()) {
+                                    for (MetalsNBTData m: playerCapability.getListExternalEnhancedDrain()) {
                                         playerCapability.drainMetals(m);
                                     }
-                                    listForNicrosil.clear();
+                                    playerCapability.clearListExternalEnhancedDrain();
                                 }
                             }
 
@@ -760,8 +759,13 @@ public class PowersEventHandler {
                                 negative = new BlockPos(player.position()).offset(-x - 3, -y - 3, -z - 3);
                                 positive = new BlockPos(player.position()).offset(x + 3, y + 3, z + 3);
                                 GoldAndElectrumHelpers.multiTeleport(player, new AABB(negative, positive), event.level, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension),block);
+                                playerCapability.drainMetals(MetalsNBTData.LERASIUM);
                             } else {
                                 GoldAndElectrumHelpers.teleport(player, event.level, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension), block);
+                            }
+                            playerCapability.drainMetals(MetalsNBTData.ELECTRUM);
+                            if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)){
+                                playerCapability.drainMetals(MetalsNBTData.DURALUMIN);
                             }
                         }
                         /************************
@@ -783,8 +787,13 @@ public class PowersEventHandler {
                                 negative = new BlockPos(player.position()).offset(-x - 3, -y - 3, -z - 3);
                                 positive = new BlockPos(player.position()).offset(x + 3, y + 3, z + 3);
                                 GoldAndElectrumHelpers.multiTeleport(player, new AABB(negative, positive), event.level, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension),block);
+                                playerCapability.drainMetals(MetalsNBTData.LERASIUM);
                             } else {
                                 GoldAndElectrumHelpers.teleport(player, event.level, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension), block);
+                            }
+                            playerCapability.drainMetals(MetalsNBTData.GOLD);
+                            if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)){
+                                playerCapability.drainMetals(MetalsNBTData.DURALUMIN);
                             }
                         }
                         /************************
@@ -802,8 +811,14 @@ public class PowersEventHandler {
                                     negative = new BlockPos(player.position()).offset(-x - 3, -y - 3, -z - 3);
                                     positive = new BlockPos(player.position()).offset(x + 3, y + 3, z + 3);
                                     GoldAndElectrumHelpers.multiTeleport(player, new AABB(negative, positive), event.level, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension),block);
+                                    playerCapability.drainMetals(MetalsNBTData.LERASIUM);
                                 } else {
                                     GoldAndElectrumHelpers.teleport(player, event.level, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension), block);
+                                }
+                                playerCapability.drainMetals(MetalsNBTData.MALATIUM);
+
+                                if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)){
+                                    playerCapability.drainMetals(MetalsNBTData.DURALUMIN);
                                 }
                                 GoldAndElectrumHelpers.setBlock(null);
                                 GoldAndElectrumHelpers.setDimension(null);

@@ -30,7 +30,7 @@ public class BendalloyAndCadmiunHelpers {
             BlockEntity tileEntity = world.getBlockEntity(blockPos);
 
             for (int i = 0; i < 12 * 4 / (tileEntity == null ? 10 : 1); i++) {
-                //if (!block.is(ModBlock.BUDDING_ATIUM.get()) && !block.is(ModBlock.BUDDING_LERASIUM.get()) && !block.is(ModBlock.BUDDING_ETTMETAL.get()) ){
+                if (!block.is(ModBlock.BUDDING_ATIUM.get()) && !block.is(ModBlock.BUDDING_LERASIUM.get()) && !block.is(ModBlock.BUDDING_ETTMETAL.get()) ){
                     if (tileEntity instanceof TickingBlockEntity) {
                         if (Math.random() > 0.70) {
                             ((TickingBlockEntity) tileEntity).tick();
@@ -40,7 +40,7 @@ public class BendalloyAndCadmiunHelpers {
                             block.randomTick((ServerLevel) world, blockPos, world.random);
                         }
                     }
-                //}
+                }
             }
         });
     }
