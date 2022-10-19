@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -11,7 +12,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.block.PowderSnowBlock;
+import net.minecraft.world.level.storage.loot.predicates.DamageSourceCondition;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -272,6 +277,15 @@ public class PowersEventHandler {
                 }
             });
         }
+
+        target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
+                targetCapability -> {
+                    if (targetCapability.isDecanting(MetalsNBTData.BRASS)) {
+                        if (event.getSource().equals(DamageSource.FREEZE)) {
+                            event.setCanceled(true);
+                        }
+                    }
+                });
     }
     public static int ticks = 0;
     public static int x = 8;
@@ -358,6 +372,11 @@ public class PowersEventHandler {
                              ************************/
                             if (playerCapability.isStoring(MetalsNBTData.BRASS)) {
                                 player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40, 1, true, false));
+
+                                if (world.getBiome(player.getOnPos()).is(Tags.Biomes.IS_COLD)) {
+                                    ZincAndBrassHelpers.addFrozenTIcks(player);
+                                }
+
                             }
                             /************************
                              * GOLD FERUCHEMIC

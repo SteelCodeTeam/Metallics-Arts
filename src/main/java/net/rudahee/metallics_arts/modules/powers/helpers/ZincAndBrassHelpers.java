@@ -294,4 +294,9 @@ public class ZincAndBrassHelpers {
             //si matas a un pj
         }
     }
+
+    public static void addFrozenTIcks(Player player) {
+
+        player.setTicksFrozen(player.getTicksFrozen() + 3);
+    }
 }
