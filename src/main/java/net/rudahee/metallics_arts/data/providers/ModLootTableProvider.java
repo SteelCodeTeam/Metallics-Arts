@@ -64,7 +64,7 @@ public class ModLootTableProvider extends LootTableProvider {
             addSimpleBlock(ModBlock.BLOCK_GEMS_BLOCKS.get(key));
         }
 
-        (ModBlock.ATIUM_CLUSTER.get().getLootTable().getPath(),ModBlock.ATIUM_CLUSTER.get(),ModItems.ITEM_GEMS_BASE.get("atium"),1,1);
+        addSilkTouchBlock(ModBlock.ATIUM_CLUSTER.get().getLootTable().getPath(),ModBlock.ATIUM_CLUSTER.get(),ModItems.ITEM_GEMS_BASE.get("atium"),1,1);
         addSilkTouchBlock(ModBlock.LERASIUM_CLUSTER.get().getLootTable().getPath(),ModBlock.LERASIUM_CLUSTER.get(),ModItems.ITEM_GEMS_BASE.get("lerasium"),1,1);
         addSilkTouchBlock(ModBlock.ETTMETAL_CLUSTER.get().getLootTable().getPath(),ModBlock.ETTMETAL_CLUSTER.get(),ModItems.ITEM_GEMS_BASE.get("ettmetal"),1,1);
         //addSilkTouchBlock()
