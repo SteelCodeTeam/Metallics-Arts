@@ -112,11 +112,7 @@ public class ClientUtils {
                     if (curioData.getStackInSlot(i).hasTag()) {
                         actualFeruchemicReserve = curioData.getStackInSlot(i).getTag().getInt(metal.getNameLower() + "_feruchemic_reserve");
                     }
-                    if (curioData.getStackInSlot(i).getDisplayName().getString().toLowerCase().contains("band")) {
-                        isBand = true;
-                    } else {
-                        isBand = false;
-                    }
+                    isBand = curioData.getStackInSlot(i).getDisplayName().getString().toLowerCase().contains("band");
 
                 }
             }
@@ -154,11 +150,7 @@ public class ClientUtils {
                     if (curioData.getStackInSlot(i).hasTag()) {
                         actualFeruchemicReserve = curioData.getStackInSlot(i).getTag().getInt(metal.getNameLower() + "_feruchemic_reserve");
                     }
-                    if (curioData.getStackInSlot(i).getDisplayName().getString().toLowerCase().contains("band")) {
-                        isBand = true;
-                    } else {
-                        isBand = false;
-                    }
+                    isBand = curioData.getStackInSlot(i).getDisplayName().getString().toLowerCase().contains("band");
 
                 }
             }

@@ -22,14 +22,14 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     private boolean mistborn;
     private boolean fullFeruchemic;
     private boolean fullInvested;
-    private int[] death_pos;
-    private int[] spawn_pos;
+    private final int[] death_pos;
+    private final int[] spawn_pos;
     private final boolean[] metal_mind_equiped;
     private String death_dimension;
     private String spawn_dimension;
     private boolean external_enhanced;
-    private ArrayList<MetalsNBTData> list_external_enhanced_drain;
-    private ArrayList<MetalsNBTData> list_duralumin_drain;
+    private final ArrayList<MetalsNBTData> list_external_enhanced_drain;
+    private final ArrayList<MetalsNBTData> list_duralumin_drain;
 
 
     public DefaultInvestedPlayerData() {
@@ -573,7 +573,7 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
 
     @Override
     public void load(CompoundTag nbt) {
-        CompoundTag invested_data = (CompoundTag) nbt;
+        CompoundTag invested_data = nbt;
 
         this.setExternalEnhanced(invested_data.getBoolean("external_enhanced"));
 

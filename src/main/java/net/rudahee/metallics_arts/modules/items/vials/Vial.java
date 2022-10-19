@@ -23,7 +23,7 @@ import java.util.List;
 
 public abstract class Vial extends Item {
 
-    private int maxNuggets;
+    private final int maxNuggets;
 
     public Vial(Properties properties,int maxNuggets) {
         super(properties);

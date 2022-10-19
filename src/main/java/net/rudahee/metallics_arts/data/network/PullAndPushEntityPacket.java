@@ -90,17 +90,12 @@ public class PullAndPushEntityPacket {
                             IronAndSteelHelpers.move(this.direction / 2.0, source, target.blockPosition());
                         } else {
                             if (sourceCapability.isDecanting(MetalsNBTData.IRON)) { // is decanting, so more weight
-                                if (targetCapability.isStoring(MetalsNBTData.IRON)) { // is storing, so less weight
-                                    IronAndSteelHelpers.move(this.direction, target, target.blockPosition(), true);
-                                } else { // Not storing and decanting.
-                                    IronAndSteelHelpers.move(this.direction, target, target.blockPosition(), false);
-                                }
+                                // is storing, so less weight
+                                // Not storing and decanting.
+                                IronAndSteelHelpers.move(this.direction, target, target.blockPosition(), targetCapability.isStoring(MetalsNBTData.IRON));
                             } else if (sourceCapability.isStoring(MetalsNBTData.IRON)) {
-                                if (targetCapability.isDecanting(MetalsNBTData.IRON)) {
-                                    IronAndSteelHelpers.move(this.direction, source, source.blockPosition(), true);
-                                } else { // Not storing and decanting.
-                                    IronAndSteelHelpers.move(this.direction, source, source.blockPosition(), false);
-                                }
+                                // Not storing and decanting.
+                                IronAndSteelHelpers.move(this.direction, source, source.blockPosition(), targetCapability.isDecanting(MetalsNBTData.IRON));
                             } else if (!sourceCapability.isStoring(MetalsNBTData.IRON) && !sourceCapability.isDecanting(MetalsNBTData.IRON)) {
                                 if (targetCapability.isDecanting(MetalsNBTData.IRON)) {
                                     IronAndSteelHelpers.move(this.direction, source, source.blockPosition(), true);

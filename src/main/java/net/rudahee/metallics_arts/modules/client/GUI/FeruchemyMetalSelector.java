@@ -32,7 +32,7 @@ public class FeruchemyMetalSelector extends Screen {
     private static final java.util.List<MetalsNBTData> externalMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> metal.isExternal() && !metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
     private static final List<MetalsNBTData> divineMetals = Arrays.asList(MetalsNBTData.values()).stream().filter(metal -> metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
 
-    private Minecraft mc;
+    private final Minecraft mc;
 
     private Player player;
     int slotSelected = -1;
@@ -310,7 +310,7 @@ public class FeruchemyMetalSelector extends Screen {
             this.metalTemp = metal;
         }
 
-        int actualColor[];
+        int[] actualColor;
         if(paridad) {
             if (!data.hasFeruchemicPower(metal)) {
                 actualColor = noPowerPar;
@@ -355,7 +355,7 @@ public class FeruchemyMetalSelector extends Screen {
             this.slotSelected = metal.getIndex();
         }
 
-        int actualColor[];
+        int[] actualColor;
         if(paridad){
             if (!data.hasFeruchemicPower(metal)) {
                 actualColor = noPowerPar;

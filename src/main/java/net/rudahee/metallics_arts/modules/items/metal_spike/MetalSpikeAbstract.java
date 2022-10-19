@@ -26,7 +26,7 @@ public abstract class MetalSpikeAbstract extends SwordItem {
     private static final int ATTACK_DAMAGE = 1;
     private static final float ATTACK_SPEED = -3f;
 
-    private MetalsNBTData metalSpike;
+    private final MetalsNBTData metalSpike;
 
     public MetalSpikeAbstract(Item.Properties properties, MetalsNBTData metalsNBTData) {
         super(tier, ATTACK_DAMAGE, ATTACK_SPEED, properties);
@@ -69,14 +69,11 @@ public abstract class MetalSpikeAbstract extends SwordItem {
 
     @Override
     public boolean isFoil(ItemStack stack) {
-        return stack.getTag().getBoolean("feruchemic_power") || stack.getTag().getBoolean("allomantic_power") ? true : false;
+        return stack.getTag().getBoolean("feruchemic_power") || stack.getTag().getBoolean("allomantic_power");
     }
 
     public boolean hasPlayerBothPowers(MetalsNBTData metal, IDefaultInvestedPlayerData cap) {
-        if (cap.hasAllomanticPower(metal) && cap.hasFeruchemicPower(metal)) {
-            return true;
-        }
-        return false;
+        return cap.hasAllomanticPower(metal) && cap.hasFeruchemicPower(metal);
     }
 
 

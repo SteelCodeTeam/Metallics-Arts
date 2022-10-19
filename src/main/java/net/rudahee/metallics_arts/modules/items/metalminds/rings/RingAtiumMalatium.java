@@ -22,7 +22,7 @@ public class RingAtiumMalatium extends RingsMindAbstract {
     public RingAtiumMalatium (Properties properties){
         super(properties, MetalsNBTData.ATIUM,MetalsNBTData.MALATIUM,MetalsNBTData.ATIUM.getMaxReserveRing(),MetalsNBTData.MALATIUM.getMaxReserveRing());
     }
-    private static boolean needUpdate = false;
+    private static final boolean needUpdate = false;
 
     private static boolean nicConsume = false;
     @Override
@@ -118,12 +118,12 @@ public class RingAtiumMalatium extends RingsMindAbstract {
         if (player.getMainHandItem().getItem() instanceof TieredItem) {
             TieredItem tiered = (TieredItem) player.getMainHandItem().getItem();
             if (tiered.getTier().getLevel() == stack.getTag().getInt("tier_malatium_storage")){
-                if (player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).getDamageValue() == player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).getMaxDamage()){
-                    player.setItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND,ItemStack.EMPTY);
+                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == player.getItemInHand(InteractionHand.MAIN_HAND).getMaxDamage()){
+                    player.setItemInHand(InteractionHand.MAIN_HAND,ItemStack.EMPTY);
                     player.level.playLocalSound(player.getX(),player.getY(),player.getZ(), SoundEvents.ITEM_BREAK, SoundSource.NEUTRAL,1.0f, 2.0f, true);
                     return false;
                 }
-                player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).setDamageValue(player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).getDamageValue()+1);
+                player.getItemInHand(InteractionHand.MAIN_HAND).setDamageValue(player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue()+1);
                 return true;
             }
             return false; //el item no es del tier de la primer carga de la mente
@@ -131,11 +131,11 @@ public class RingAtiumMalatium extends RingsMindAbstract {
             ArmorItem armorItem = (ArmorItem) player.getMainHandItem().getItem();
             int tier = convertMaterialToTier(armorItem.getMaterial().getName());
             if (tier == stack.getTag().getInt("tier_malatium_storage")){
-                if (player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).getDamageValue() == player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).getMaxDamage()){
-                    player.setItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND,ItemStack.EMPTY);
+                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == player.getItemInHand(InteractionHand.MAIN_HAND).getMaxDamage()){
+                    player.setItemInHand(InteractionHand.MAIN_HAND,ItemStack.EMPTY);
                     return false;
                 }
-                player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).setDamageValue(player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).getDamageValue()+1);
+                player.getItemInHand(InteractionHand.MAIN_HAND).setDamageValue(player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue()+1);
                 return true;
             }
         }
@@ -147,10 +147,10 @@ public class RingAtiumMalatium extends RingsMindAbstract {
         if (player.getMainHandItem().getItem() instanceof TieredItem) {
             TieredItem tiered = (TieredItem) player.getMainHandItem().getItem();
             if (tiered.getTier().getLevel() == stack.getTag().getInt("tier_malatium_storage")){
-                if (player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).getDamageValue() == 0){
+                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == 0){
                     return false;
                 }
-                player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).setDamageValue(player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).getDamageValue()-1);
+                player.getItemInHand(InteractionHand.MAIN_HAND).setDamageValue(player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue()-1);
                 return true;
             }
             return false; //el item no es del tier de la primer carga de la mente
@@ -158,10 +158,10 @@ public class RingAtiumMalatium extends RingsMindAbstract {
             ArmorItem armorItem = (ArmorItem) player.getMainHandItem().getItem();
             int tier = convertMaterialToTier(armorItem.getMaterial().getName());
             if (tier == stack.getTag().getInt("tier_malatium_storage")){
-                if (player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).getDamageValue() == 0){
+                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == 0){
                     return false;
                 }
-                player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).setDamageValue(player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).getDamageValue()-1);
+                player.getItemInHand(InteractionHand.MAIN_HAND).setDamageValue(player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue()-1);
                 return true;
             }
             return false;

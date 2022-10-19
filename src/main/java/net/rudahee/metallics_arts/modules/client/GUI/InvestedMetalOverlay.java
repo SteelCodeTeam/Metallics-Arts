@@ -200,7 +200,7 @@ public class InvestedMetalOverlay implements IGuiOverlay {
                 }
 
                 if (actualIsBandOrRing != "") {
-                    isBandOrRing = (actualIsBandOrRing.equals("band")) ? true : false;
+                    isBandOrRing = actualIsBandOrRing.equals("band");
                     actualIsBandOrRing = "";
                 }
 
@@ -209,7 +209,7 @@ public class InvestedMetalOverlay implements IGuiOverlay {
                 float divisionFeruchemic = (float)feruchemicReserve / (float)maxReserve;
                 int modifierFeruchemic = Math.round(divisionFeruchemic * feruchemicHeightBar);
 
-                boolean fixOffset = ((feruchemicHeightBar - modifierFeruchemic) < (float)feruchemicHeightBar / 2f) ? true : false;
+                boolean fixOffset = (feruchemicHeightBar - modifierFeruchemic) < (float) feruchemicHeightBar / 2f;
 
                 if (data.hasFeruchemicPower(metal)) {
                     blit(matrix, gui, feruchemicActualOffSetX, feruchemicOffsetY + offSetTop, 0, 17, feruchemicWidthVial, feruchemicHeightVial);

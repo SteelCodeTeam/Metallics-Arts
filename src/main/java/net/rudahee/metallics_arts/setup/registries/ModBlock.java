@@ -133,19 +133,19 @@ public class ModBlock {
 
         MetallicsArts.registerBlock("atium_cristal_block",
                 () -> {
-                    Block block = new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN).lightLevel(value -> 5));
+                    Block block = new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN).lightLevel(value -> 5).requiresCorrectToolForDrops().strength(5f, 10f));
                     DIVINE_CRISTAL_BLOCKS.put(MetalsNBTData.ATIUM.getGemNameLower(),block);
                     return block;
                 });
         MetallicsArts.registerBlock("lerasium_cristal_block",
                 () -> {
-                    Block block = new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN).lightLevel(value -> 5));
+                    Block block = new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN).lightLevel(value -> 5).requiresCorrectToolForDrops().strength(5f, 10f));
                     DIVINE_CRISTAL_BLOCKS.put(MetalsNBTData.LERASIUM.getGemNameLower(),block);
                     return block;
                 });
         MetallicsArts.registerBlock("ettmetal_cristal_block",
                 () -> {
-                    Block block = new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN).lightLevel(value -> 5));
+                    Block block = new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN).lightLevel(value -> 5).requiresCorrectToolForDrops().strength(5f, 10f));
                     DIVINE_CRISTAL_BLOCKS.put(MetalsNBTData.ETTMETAL.getGemNameLower(),block);
                     return block;
                 });
