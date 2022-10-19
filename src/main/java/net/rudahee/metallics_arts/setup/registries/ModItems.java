@@ -32,6 +32,10 @@ public class ModItems {
     public static final HashMap<String, Item> ITEM_GEMS_BASE = new HashMap<String, Item>();
     public static final HashMap<String, Item> ITEM_GEMS_NUGGET = new HashMap<String, Item>();
 
+    public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY = new HashMap<String, Item>();
+
+    public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC = new HashMap<String, Item>();
+
 
     //ingots an nuggets
     public static void register() {
@@ -94,9 +98,17 @@ public class ModItems {
 
         for (MetalsNBTData metal: MetalsNBTData.values()) {
             MetallicsArts.registerItem(metal.getNameLower()+"_allomantic_icon",
-                    ()-> new Item(new Item.Properties().tab(MetallicsArts.MA_TAB)));
+                    ()-> {
+                        Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB));
+                        ITEM_ICONS_ALLOMANCY.put(metal.getNameLower(),item);
+                        return item;
+                    });
             MetallicsArts.registerItem(metal.getNameLower()+"_feruchemic_icon",
-                    ()-> new Item(new Item.Properties().tab(MetallicsArts.MA_TAB)));
+                    ()-> {
+                        Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB));
+                        ITEM_ICONS_FERUCHEMIC.put(metal.getNameLower(),item);
+                        return item;
+                    });
         }
 
 
