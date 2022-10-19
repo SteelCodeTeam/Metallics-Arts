@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.powers.client;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -40,6 +41,7 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import org.lwjgl.glfw.GLFW;
+import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -89,7 +91,7 @@ public class PowersClientEventHandler {
                                 /** LEFT CLICK (ATTACK) */
 
                                 if (this.mc.options.keyAttack.isDown()) {
-                                    HitResult trace = ClientUtils.getMouseOverExtended(20F * 1.5F);
+                                    HitResult trace = ClientUtils.getMouseOverExtended(11F * 1.5F);
 
                                     /***********************************
                                      * DO CLICK AN ENTITY WITH  - ZINC -
@@ -113,14 +115,14 @@ public class PowersClientEventHandler {
                                                 BlockPos blockPosition = ((BlockHitResult) trace).getBlockPos();
                                                 if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
                                                     ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
-                                                            Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                            Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player, playerCapability.isBurning(MetalsNBTData.DURALUMIN) || playerCapability.getExternalEnhanced(),
                                                                     playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                                 }
                                             }
                                             if (trace instanceof EntityHitResult) {
                                                 ModNetwork.sendToServer(
                                                         new PullAndPushEntityPacket(((EntityHitResult) trace).getEntity().getId(),
-                                                                Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                                Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN) || playerCapability.getExternalEnhanced(),
                                                                         playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                             }
                                         }
@@ -144,13 +146,16 @@ public class PowersClientEventHandler {
                                     } else if (!playerCapability.isBurning(MetalsNBTData.MALATIUM) && otherPlayerDeathPos != null) {
                                         otherPlayerDeathPos = null;
                                         otherPlayerDimension = null;
+                                    } else {
+                                        otherPlayerDeathPos = null;
+                                        otherPlayerDimension = null;
                                     }
                                 }
 
                                 /** RIGHT CLICK (USE) */
 
                                 if (this.mc.options.keyUse.isDown()) {
-                                    HitResult trace = ClientUtils.getMouseOverExtended(20F * 1.5F);
+                                    HitResult trace = ClientUtils.getMouseOverExtended(11F * 1.5F);
 
                                     /***********************************
                                      * DO CLICK AN ENTITY WITH  - BRASS -
@@ -175,14 +180,14 @@ public class PowersClientEventHandler {
                                                 BlockPos blockPosition = ((BlockHitResult) trace).getBlockPos();
                                                 if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
                                                     ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
-                                                            Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                            Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN) || playerCapability.getExternalEnhanced(),
                                                                     playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                                 }
                                             }
                                             if (trace instanceof EntityHitResult) {
                                                 ModNetwork.sendToServer(
                                                         new PullAndPushEntityPacket(((EntityHitResult) trace).getEntity().getId(),
-                                                                Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                                Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN) || playerCapability.getExternalEnhanced(),
                                                                         playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                             }
                                         }
@@ -294,7 +299,7 @@ public class PowersClientEventHandler {
             this.metal_entities.clear();
             this.metal_blobs.clear();
             if (playerCapability.isBurning(MetalsNBTData.IRON) || playerCapability.isBurning(MetalsNBTData.STEEL)) {
-                int max = 8;
+                int max = 12;
                 BlockPos negative = player.blockPosition().offset(-max, -max, -max);
                 BlockPos positive = player.blockPosition().offset(max, max, max);
 
@@ -584,6 +589,8 @@ public class PowersClientEventHandler {
                 return;
             }
             PoseStack stack = setupPoseStack(event);
+            stack.pushPose();
+
 
             double rho = 1;
             float theta = (float) ((this.mc.player.getViewYRot(event.getPartialTick()) + 90) * Math.PI / 180);
@@ -593,6 +600,12 @@ public class PowersClientEventHandler {
                     .getEyePosition(event.getPartialTick())
                     .add(rho * Mth.sin(phi) * Mth.cos(theta), rho * Mth.cos(phi) - 0.35F, rho * Mth.sin(phi) * Mth.sin(theta));
 
+            RenderSystem.disableTexture();
+            RenderSystem.disableDepthTest();
+            RenderSystem.depthMask(false);
+            RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
+            RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+            RenderSystem.enableBlend();
             /*********************************************
              * IRON AND STEEL LINES                      *
              *********************************************/
@@ -658,6 +671,14 @@ public class PowersClientEventHandler {
                 }
             }
             teardownPoseStack(stack);
+
+
+            RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
+            RenderSystem.disableBlend();
+            RenderSystem.enableDepthTest();
+            RenderSystem.depthMask(true);
+            RenderSystem.enableTexture();
+            stack.popPose();
         });
     }
 

@@ -24,6 +24,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
@@ -64,12 +65,18 @@ public class ModLootTableProvider extends LootTableProvider {
             addSimpleBlock(ModBlock.BLOCK_GEMS_BLOCKS.get(key));
         }
 
+        for (String key: ModBlock.DIVINE_CRISTAL_BLOCKS.keySet()) {
+            this.lootTables.put(ModBlock.DIVINE_CRISTAL_BLOCKS.get(key), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(ModBlock.DIVINE_CRISTAL_BLOCKS.get(key)).when(MatchTool.toolMatches(ItemPredicate.Builder
+                    .item()
+                    .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH,
+                            MinMaxBounds.Ints.atLeast(1))))))));
+        }
+
+
         addSilkTouchBlock(ModBlock.ATIUM_CLUSTER.get().getLootTable().getPath(),ModBlock.ATIUM_CLUSTER.get(),ModItems.ITEM_GEMS_BASE.get("atium"),1,1);
         addSilkTouchBlock(ModBlock.LERASIUM_CLUSTER.get().getLootTable().getPath(),ModBlock.LERASIUM_CLUSTER.get(),ModItems.ITEM_GEMS_BASE.get("lerasium"),1,1);
         addSilkTouchBlock(ModBlock.ETTMETAL_CLUSTER.get().getLootTable().getPath(),ModBlock.ETTMETAL_CLUSTER.get(),ModItems.ITEM_GEMS_BASE.get("ettmetal"),1,1);
-        //addSilkTouchBlock()
-        //addSilkTouchBlock()
-        //addSilkTouchBlock() lo que te pincha
+
     }
 
     @Override

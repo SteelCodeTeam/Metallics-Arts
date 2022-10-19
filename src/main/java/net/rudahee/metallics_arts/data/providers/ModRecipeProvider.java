@@ -422,21 +422,25 @@ public class ModRecipeProvider extends RecipeProvider {
         SpecialRecipeBuilder.special(ModRecipeTypes.SMALL_VIAL_ITEM_RECIPE_SERIALIZER.get()).save(recipesConsumer, MetallicsArts.MOD_ID+":small_vial_filling_recipe");
 
         ModItems.ITEM_ICONS_ALLOMANCY.forEach((key, value) -> {
-            ShapedRecipeBuilder.shaped(value)
-                    .define('#',Items.GLASS_PANE)
-                    .define('x',ModItems.ITEM_METAL_INGOT.get(key))
-                    .pattern(" # ")
-                    .pattern("#x#")
-                    .pattern(" # ")
-                    .unlockedBy("has_item", has(value))
-                    .save(recipesConsumer,new ResourceLocation(key+"_allomantic_icon"));
+
+
+                ShapedRecipeBuilder.shaped(value)
+                        .define('#',Items.GLASS_PANE)
+                        .define('x',(key.contains("gold")) ? Items.GOLD_INGOT : (key.contains("copper")) ? Items.COPPER_INGOT : (key.contains("iron")) ? Items.IRON_INGOT: ModItems.ITEM_METAL_INGOT.get(key))
+                        .pattern(" # ")
+                        .pattern("#x#")
+                        .pattern(" # ")
+                        .unlockedBy("has_item", has(value))
+                        .save(recipesConsumer,new ResourceLocation(key+"_allomantic_icon"));
+
+
         });
 
 
         ModItems.ITEM_ICONS_FERUCHEMIC.forEach((key, value) -> {
             ShapedRecipeBuilder.shaped(value)
                     .define('#',Items.GLASS_PANE)
-                    .define('x',ModItems.ITEM_METAL_INGOT.get(key))
+                    .define('x',(key.contains("gold")) ? Items.GOLD_INGOT : (key.contains("copper")) ? Items.COPPER_INGOT : (key.contains("iron")) ? Items.IRON_INGOT: ModItems.ITEM_METAL_INGOT.get(key))
                     .pattern("# #")
                     .pattern(" x ")
                     .pattern("# #")

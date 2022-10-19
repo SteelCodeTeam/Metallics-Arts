@@ -97,16 +97,22 @@ public class ModItems {
         });
 
         for (MetalsNBTData metal: MetalsNBTData.values()) {
+
+
             MetallicsArts.registerItem(metal.getNameLower()+"_allomantic_icon",
                     ()-> {
                         Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB));
-                        ITEM_ICONS_ALLOMANCY.put(metal.getNameLower(),item);
+                        if (!metal.isDivine()) {
+                            ITEM_ICONS_ALLOMANCY.put(metal.getNameLower(),item);
+                        }
                         return item;
                     });
             MetallicsArts.registerItem(metal.getNameLower()+"_feruchemic_icon",
                     ()-> {
                         Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB));
-                        ITEM_ICONS_FERUCHEMIC.put(metal.getNameLower(),item);
+                        if (!metal.isDivine()) {
+                            ITEM_ICONS_FERUCHEMIC.put(metal.getNameLower(), item);
+                        }
                         return item;
                     });
         }

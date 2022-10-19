@@ -23,8 +23,8 @@ import java.util.List;
 
 public abstract class BandMindAbstract extends Item implements ICurioItem {
 
-    private MetalsNBTData[] metals = new MetalsNBTData[2];
-    private int[] metalsMaxReserve = new int[2];
+    private final MetalsNBTData[] metals = new MetalsNBTData[2];
+    private final int[] metalsMaxReserve = new int[2];
     public String unkeyedString = "Nobody";
 
     public BandMindAbstract(Properties properties,MetalsNBTData metal1, MetalsNBTData metal2,int maxReserve1,int maxReserve2) {

@@ -25,6 +25,7 @@ import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.modules.powers.client.PowersClientEventHandler;
 import net.rudahee.metallics_arts.modules.powers.helpers.*;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
@@ -58,7 +59,7 @@ public class PowersEventHandler {
                     if (data.getAllomanticPowerCount() + data.getFeruchemicPowerCount() == 0) {
                         List<MetalsNBTData> metals = Arrays.asList(MetalsNBTData.values());
                         Collections.shuffle(metals);
-                        List<Integer> typeOfPower = Arrays.asList(new Integer[]{0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2}); // Leras footjob
+                        List<Integer> typeOfPower = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2); // Leras footjob
 
                         Collections.shuffle(typeOfPower);
 
@@ -483,10 +484,7 @@ public class PowersEventHandler {
                                 ChromiumAndNicrosilHelpers.goodLuck(player);
                                 //player.getLuck()
                             } else if (playerCapability.isStoring(MetalsNBTData.CHROMIUM)){
-                                if (actualTick==80 || actualTick == 160 || actualTick == 240)
-                                    ChromiumAndNicrosilHelpers.badLuck(player,true);
-                                else
-                                    ChromiumAndNicrosilHelpers.badLuck(player,false);
+                                ChromiumAndNicrosilHelpers.badLuck(player, actualTick == 80 || actualTick == 160 || actualTick == 240);
                             }
                             /************************
                              * ATIUM FERUCHEMIC
@@ -841,6 +839,9 @@ public class PowersEventHandler {
                                 }
                                 GoldAndElectrumHelpers.setBlock(null);
                                 GoldAndElectrumHelpers.setDimension(null);
+
+
+
                             }
                         }
 
@@ -851,6 +852,9 @@ public class PowersEventHandler {
                                 externalEnhanced = -1;
                             }
                         }
+
+
+
                         ModNetwork.sync(playerCapability, player);
                  });
         }

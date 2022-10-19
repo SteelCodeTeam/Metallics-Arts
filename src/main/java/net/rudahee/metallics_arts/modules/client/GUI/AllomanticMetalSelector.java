@@ -129,7 +129,7 @@ public class AllomanticMetalSelector extends Screen {
                 //desde aqui es dibujado de parte del circulo
 
 
-                int actualColor[];
+                int[] actualColor;
                 if (actualSegment % 2 == 0) {
                     if (!data.hasAllomanticPower(metal)) {
                         actualColor = noPowerParDivine;
@@ -178,7 +178,7 @@ public class AllomanticMetalSelector extends Screen {
                     radius *= 1.025f;
                 }
 
-                int actualColor[];
+                int[] actualColor;
 
                 if (actualSegment % 2 == 0) {
                     if (!data.hasAllomanticPower(metal)) {
@@ -228,7 +228,7 @@ public class AllomanticMetalSelector extends Screen {
                     radius *= 1.025f;
                 }
 
-                int actualColor[];
+                int[] actualColor;
 
                 /*
                 if(paridad) {

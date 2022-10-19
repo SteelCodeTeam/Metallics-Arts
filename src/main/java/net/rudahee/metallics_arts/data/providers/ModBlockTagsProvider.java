@@ -41,6 +41,11 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             makePickaxeMineable(ModBlock.BLOCK_GEMS_BLOCKS.get(key));
         }
 
+        for (String key : ModBlock.DIVINE_CRISTAL_BLOCKS.keySet()) {
+            addForgeTag("block/" + key, ModBlock.DIVINE_CRISTAL_BLOCKS.get(key));
+            makePickaxeMineable(ModBlock.DIVINE_CRISTAL_BLOCKS.get(key));
+        }
+
     }
 
     private void addForgeTag(String name, Block... items) {
