@@ -62,7 +62,6 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         MetallicsArts.LOGGER.debug("Creating block tag for minecraft:" + name);
         tag(net.minecraft.tags.BlockTags.create(new ResourceLocation("minecraft", name))).replace(false).add(items);
     }
-
     @Override
     public String getName() {
         return "Metallic Arts Block Tags";
