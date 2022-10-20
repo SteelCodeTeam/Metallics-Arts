@@ -3,20 +3,29 @@
     "icon": {
       "item": "metallics_arts:steel_ingot"
     },
-    "title": "Metallics Arts",
-    "description": "First steeps in Scadrial.",
+    "title": {
+      "text": "Metallics Arts"
+    },
+    "description": {
+      "text": "First steeps in Scadrial."
+    },
+    "background": "metallics_arts:textures/advancements/atium_covered_block.png",
     "frame": "task",
-    "annouce_to_chat": true,
-    "show_toast": true,
-    "background": "metallics_arts:textures/advancements/atium_covered_block.png"
+    "show_toast": true
   },
   "criteria": {
-    "requirements": {
+    "start": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:iron_ore"
+            "items": [
+              "minecraft:iron_ingot"
+            ],
+            "count": {
+              "min": 1,
+              "max": 64
+            }
           }
         ]
       }
