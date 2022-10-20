@@ -52,14 +52,11 @@ import java.util.stream.Stream;
 
 public class PowersClientEventHandler {
 
-
     private final Minecraft mc = Minecraft.getInstance();
 
     private final Set<Entity> metal_entities = new HashSet<>();
     private final Set<Player> nearby_allomancers = new HashSet<>();
     private final Set<MetalBlockHelpers> metal_blobs = new HashSet<>();
-
-
     private int tickOffset = 0;
 
     BlockPos otherPlayerDeathPos = null;
@@ -136,7 +133,6 @@ public class PowersClientEventHandler {
                                             entity = ((EntityHitResult) trace).getEntity();
                                             if (entity instanceof Player) {
                                                 Player otherPlayer = (Player) entity;
-
                                                 otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> {
                                                     otherPlayerDeathPos = new BlockPos(cap.getDeathPos()[0],cap.getDeathPos()[1],cap.getDeathPos()[2]);
                                                     otherPlayerDimension = GoldAndElectrumHelpers.getRegistryKeyFromString(cap.getDeathDimension());
@@ -672,7 +668,6 @@ public class PowersClientEventHandler {
             }
             teardownPoseStack(stack);
 
-
             RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
             RenderSystem.disableBlend();
             RenderSystem.enableDepthTest();
@@ -681,8 +676,6 @@ public class PowersClientEventHandler {
             stack.popPose();
         });
     }
-
-
     private static void teardownPoseStack(PoseStack stack) {
         stack.popPose();
         RenderSystem.applyModelViewMatrix();
