@@ -99,7 +99,6 @@ public class ClientUtils {
     private static int actualFeruchemicReserve = -1;
     private static boolean isBand = false;
 
-
     public static void toggleDecant(MetalsNBTData metal, IDefaultInvestedPlayerData capability, Player player){
         if (!capability.hasFeruchemicPower(metal)||!capability.getMetalMindEquiped(metal.getGroup())){
             return;
@@ -108,12 +107,11 @@ public class ClientUtils {
         CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curioData -> {
             for (int i=0; i < curioData.getSlots(); i++) {
 
-                if (curioData.getStackInSlot(i).getDisplayName().getString().toLowerCase().contains(metal.getNameLower())) {
+                if (curioData.getStackInSlot(i).getItem().getDescriptionId().toLowerCase().contains(metal.getNameLower())){
                     if (curioData.getStackInSlot(i).hasTag()) {
                         actualFeruchemicReserve = curioData.getStackInSlot(i).getTag().getInt(metal.getNameLower() + "_feruchemic_reserve");
                     }
-                    isBand = curioData.getStackInSlot(i).getDisplayName().getString().toLowerCase().contains("band");
-
+                    isBand = curioData.getStackInSlot(i).getItem().toString().toLowerCase().contains("band");
                 }
             }
         });
@@ -146,11 +144,11 @@ public class ClientUtils {
         CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curioData -> {
             for (int i=0; i < curioData.getSlots(); i++) {
 
-                if (curioData.getStackInSlot(i).getDisplayName().getString().toLowerCase().contains(metal.getNameLower())) {
+                if (curioData.getStackInSlot(i).getItem().getDescriptionId().toLowerCase().contains(metal.getNameLower())){
                     if (curioData.getStackInSlot(i).hasTag()) {
                         actualFeruchemicReserve = curioData.getStackInSlot(i).getTag().getInt(metal.getNameLower() + "_feruchemic_reserve");
                     }
-                    isBand = curioData.getStackInSlot(i).getDisplayName().getString().toLowerCase().contains("band");
+                    isBand = curioData.getStackInSlot(i).getItem().toString().toLowerCase().contains("band");
 
                 }
             }

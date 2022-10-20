@@ -139,14 +139,13 @@ public class PowersClientEventHandler {
                                                 });
                                             }
                                         }
-                                    } else if (!playerCapability.isBurning(MetalsNBTData.MALATIUM) && otherPlayerDeathPos != null) {
-                                        otherPlayerDeathPos = null;
-                                        otherPlayerDimension = null;
-                                    } else {
-                                        otherPlayerDeathPos = null;
-                                        otherPlayerDimension = null;
                                     }
                                 }
+                                if (!playerCapability.isBurning(MetalsNBTData.MALATIUM) && otherPlayerDeathPos != null) {
+                                    otherPlayerDeathPos = null;
+                                    otherPlayerDimension = null;
+                                }
+
 
                                 /** RIGHT CLICK (USE) */
 
