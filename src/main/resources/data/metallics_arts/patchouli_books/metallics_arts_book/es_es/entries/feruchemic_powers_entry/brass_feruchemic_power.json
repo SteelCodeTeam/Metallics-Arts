@@ -1,11 +1,11 @@
 {
-  "name": "Feruchemic Tin",
-  "icon": "metallics_arts:textures/gui/feruchemic_symbols/tin_symbol.png",
+  "name": "Latón Feruquimico",
+  "icon": "metallics_arts:textures/gui/feruchemic_symbols/brass_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "item": "metallics_arts:tin_feruchemic_icon",
+      "item": "metallics_arts:brass_feruchemic_icon",
       "text": "$(br)Almacenar:$(br2) - Almacena en la mente de metal capacidades fisica del jugador, para poder usarla mas tarde"
     },
     {

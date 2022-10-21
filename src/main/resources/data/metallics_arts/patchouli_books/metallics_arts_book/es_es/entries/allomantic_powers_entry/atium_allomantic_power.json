@@ -1,0 +1,17 @@
+{
+  "name": "Atium Alomantico",
+  "icon": "metallics_arts:textures/gui/allomantic_symbols/atium_symbol.png",
+  "category": "metallics_arts:allomantic_powers_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "metallics_arts:atium_allomantic_icon",
+      "text": "$(br)Te otorga probabilidad de evasión de daño  $(br)$(br)$(br)$(br)$(br) Extra: $(br) - Si tu atacante quema atium puede cancelar los efectos"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Interacciones",
+      "text": "$(br) + Duralumin: Aumenta mucho la probabilidad $(br2) + Lerasium: Aumenta un poco la probabilidad $(br2) + Ambos: Aumenta al máximo la probabilidad"
+    }
+  ]
+}

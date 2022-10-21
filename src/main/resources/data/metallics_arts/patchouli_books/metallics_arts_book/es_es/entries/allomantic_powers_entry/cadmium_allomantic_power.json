@@ -1,0 +1,17 @@
+{
+  "name": "Cadmio Alomantico",
+  "icon": "metallics_arts:textures/gui/allomantic_symbols/cadmium_symbol.png",
+  "category": "metallics_arts:allomantic_powers_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "metallics_arts:cadmium_allomantic_icon",
+      "text": "$(br)Disminuye los tick a tu alrededor $(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Interacciones",
+      "text": "$(br) + Duralumin: Duplica el efecto y aumenta el área $(br2) + Lerasium: Aumenta el área $(br2) + Ambos: Duplica el efecto y aumenta el área en gran medida"
+    }
+  ]
+}

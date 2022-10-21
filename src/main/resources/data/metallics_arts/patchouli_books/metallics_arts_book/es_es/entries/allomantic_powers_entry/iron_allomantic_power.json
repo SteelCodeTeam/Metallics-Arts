@@ -1,0 +1,17 @@
+{
+  "name": "Hierro Alomantico",
+  "icon": "metallics_arts:textures/gui/allomantic_symbols/iron_symbol.png",
+  "category": "metallics_arts:allomantic_powers_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "metallics_arts:iron_allomantic_icon",
+      "text": "$(br)Tira de la fuente de metal que estés observando$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Interacciones",
+      "text": "$(br) + Duralumin: Aumenta en gran medida el tirón $(br2) + Lerasium: Aumenta levemente el tirón $(br2) + Ambos: Aumenta al maximo el tiron"
+    }
+  ]
+}
