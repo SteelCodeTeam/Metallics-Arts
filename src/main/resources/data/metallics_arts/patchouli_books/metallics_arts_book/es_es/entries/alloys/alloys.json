@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "aqui estan los metales de aleacion"
+      "text": "Aleaciones de los metales que puedes encontrar por el mundo."
     },
     {
       "type": "patchouli:crafting",

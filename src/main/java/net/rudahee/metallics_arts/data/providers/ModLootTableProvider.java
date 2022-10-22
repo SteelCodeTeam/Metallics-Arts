@@ -21,10 +21,10 @@ import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
@@ -34,7 +34,10 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class ModLootTableProvider extends LootTableProvider {
+
+    private static final LootItemCondition.Builder HAS_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))));
 
     protected final Map<Block, LootTable.Builder> lootTables = new HashMap<>();
     private final DataGenerator generator;
@@ -48,12 +51,12 @@ public class ModLootTableProvider extends LootTableProvider {
         for (String key: ModBlock.BLOCK_METAL_ORES.keySet()) {
             Block ore = ModBlock.BLOCK_METAL_ORES.get(key);
             Item raw = ModItems.ITEM_RAW_METAL.get(key);
-            addSilkTouchBlock(ore.getLootTable().getPath(),ore,raw,1,1);
+            createOreDrops(ore,raw,1,2);
         }
         for (String key: ModBlock.BLOCK_METAL_DEEPSLATE_ORES.keySet()) {
-            Block ds = ModBlock.BLOCK_METAL_DEEPSLATE_ORES.get(key);
+            Block block = ModBlock.BLOCK_METAL_DEEPSLATE_ORES.get(key);
             Item raw = ModItems.ITEM_RAW_METAL.get(key);
-            addSilkTouchBlock(ds.getLootTable().getPath(),ds,raw,1,1);
+            createOreDrops(block,raw,1,3);
         }
         for (String key: ModBlock.RAW_METAL_BLOCKS.keySet()) {
             addSimpleBlock(ModBlock.RAW_METAL_BLOCKS.get(key));
@@ -110,6 +113,18 @@ public class ModLootTableProvider extends LootTableProvider {
         this.lootTables.put(block, LootTable.lootTable().withPool(builder));
     }
 
+    protected void createOreDrops(Block block, Item item, float minBase, float maxBase) {
+        LootPool.Builder builder = LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1.0F))
+                .add(LootItem.lootTableItem(block)
+                        .when(HAS_SILK_TOUCH)
+                        .otherwise(LootItem.lootTableItem(item)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(minBase, maxBase)))
+                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE,0.5f, 2))));
+
+        this.lootTables.put(block, LootTable.lootTable().withPool(builder));
+    }
+
     protected void addSilkTouchBlock(String name, Block block, Item lootItem, float min, float max) {
         LootPool.Builder builder = LootPool
                 .lootPool()
@@ -123,7 +138,7 @@ public class ModLootTableProvider extends LootTableProvider {
                                         MinMaxBounds.Ints.atLeast(1))))), LootItem
                         .lootTableItem(lootItem)
                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max)))
-                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE, 1))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE, 0))
                         .apply(ApplyExplosionDecay.explosionDecay())));
         this.lootTables.put(block, LootTable.lootTable().withPool(builder));
     }

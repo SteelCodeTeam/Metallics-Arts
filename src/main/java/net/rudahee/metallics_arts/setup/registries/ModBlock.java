@@ -77,7 +77,7 @@ public class ModBlock {
         });
         metalList.forEach(metal -> {
             // Always create block.
-            registerBlock(metal.getMetalNameLower() + "_block", () -> {
+            MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_block", () -> {
                 Block block = new Block(Block.Properties.of(Material.METAL)
                         .strength(5, 15)
                         .sound(SoundType.METAL)
@@ -89,7 +89,7 @@ public class ModBlock {
         metalList.forEach(metal -> {
             // Always create block.
             if (!metal.isAlloy()) {
-                registerBlock("raw_" + metal.getMetalNameLower() + "_block", () -> {
+                MetallicsArts.registerBlockDecoration("raw_" + metal.getMetalNameLower() + "_block", () -> {
                     Block block = new Block(Block.Properties.of(Material.METAL)
                             .strength(5, 15)
                             .sound(SoundType.METAL)
@@ -105,7 +105,7 @@ public class ModBlock {
 
         gemsList.forEach(gem -> {
             if (!gem.getGemNameLower().equals(Gems.ETTMETAL.getGemNameLower())) {
-                MetallicsArts.registerBlock(gem.getGemNameLower() + "_block", () -> {
+                MetallicsArts.registerBlockDecoration(gem.getGemNameLower() + "_block", () -> {
                     Block block = new Block(Block.Properties.of(Material.METAL)
                             .strength(10, 25)
                             .sound(SoundType.METAL)
@@ -118,7 +118,7 @@ public class ModBlock {
             }
         });
 
-        ModBlock.ETTMETAL_BLOCK = MetallicsArts.registerBlock(Gems.ETTMETAL.getGemNameLower() + "_block",
+        ModBlock.ETTMETAL_BLOCK = MetallicsArts.registerBlockDecoration(Gems.ETTMETAL.getGemNameLower() + "_block",
                 () -> {
                     Block block = new EttmetalBlock(Block.Properties.of(Material.HEAVY_METAL)
                             .strength(10f, 10f)
@@ -131,19 +131,19 @@ public class ModBlock {
                 });
 
 
-        MetallicsArts.registerBlock("atium_cristal_block",
+        MetallicsArts.registerBlockDecoration("atium_cristal_block",
                 () -> {
                     Block block = new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN).lightLevel(value -> 5).requiresCorrectToolForDrops().strength(5f, 10f));
                     DIVINE_CRISTAL_BLOCKS.put(MetalsNBTData.ATIUM.getGemNameLower(),block);
                     return block;
                 });
-        MetallicsArts.registerBlock("lerasium_cristal_block",
+        MetallicsArts.registerBlockDecoration("lerasium_cristal_block",
                 () -> {
                     Block block = new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN).lightLevel(value -> 5).requiresCorrectToolForDrops().strength(5f, 10f));
                     DIVINE_CRISTAL_BLOCKS.put(MetalsNBTData.LERASIUM.getGemNameLower(),block);
                     return block;
                 });
-        MetallicsArts.registerBlock("ettmetal_cristal_block",
+        MetallicsArts.registerBlockDecoration("ettmetal_cristal_block",
                 () -> {
                     Block block = new BrokenCristalBlock(Block.Properties.of(Material.STONE).sound(SoundType.CHAIN).lightLevel(value -> 5).requiresCorrectToolForDrops().strength(5f, 10f));
                     DIVINE_CRISTAL_BLOCKS.put(MetalsNBTData.ETTMETAL.getGemNameLower(),block);

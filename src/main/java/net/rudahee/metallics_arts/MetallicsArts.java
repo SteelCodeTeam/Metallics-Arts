@@ -29,7 +29,10 @@ import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
 import net.rudahee.metallics_arts.modules.powers.client.PowersClientEventHandler;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.commands.MetallicArtsCommand;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModBlock;
+import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.world.ModConfiguredFeatures;
 import net.rudahee.metallics_arts.world.ModPlacedFeatures;
 import net.rudahee.metallics_arts.world.biomemod.ModBiomeModifier;
@@ -51,10 +54,17 @@ public class MetallicsArts
 
     // creative tab
 
-    public static final CreativeModeTab MA_TAB = new CreativeModeTab(MOD_ID) {
+    public static CreativeModeTab MA_TAB = new CreativeModeTab(MOD_ID) {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(Items.IRON_INGOT);
+        }
+    };
+
+    public static CreativeModeTab MA_TAB_DECORATION = new CreativeModeTab(-1, MOD_ID + ".decorations") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(Items.IRON_BLOCK);
         }
     };
 
@@ -174,6 +184,13 @@ public class MetallicsArts
 
         RegistryObject<T> blockRegistered = registerBlockNoItem(name, blockSupplier);
         ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().tab(MA_TAB).stacksTo(64))));
+        return blockRegistered;
+    }
+
+    public static <T extends Block> RegistryObject<T> registerBlockDecoration(String name, Supplier<T> blockSupplier) {
+
+        RegistryObject<T> blockRegistered = registerBlockNoItem(name, blockSupplier);
+        ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().tab(MA_TAB_DECORATION).stacksTo(64))));
         return blockRegistered;
     }
 

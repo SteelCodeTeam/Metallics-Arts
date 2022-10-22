@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:chromium_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Almacena en la mente de metal capacidades fisica del jugador, para poder usarla mas tarde"
+      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, parece que la suerte no esté de tu lado, casi parece que te vayas a enfermar."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Decanta de la mente de metal las capacidades fisica del jugador, aumentando las actuales"
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras lo decantas, tienes una suerte extraordinaria, ¿Sera momento de ir a explorar?"
     }
   ]
 }

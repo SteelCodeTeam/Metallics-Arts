@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:copper_allomantic_icon",
-      "text": "$(br)Hace que las entidades cercanas te ignoren $(br)$(br)$(br)$(br)$(br) Extra: $(br) - Evita que otros jugadores vean que quemas metales"
+      "text": "$(br)Hace que las entidades cercanas te ignoren $(br)$(br)$(br)$(br)$(br) Extra: $(br) - Evita que otros jugadores vean que estas quemando metales"
     },
     {
       "type": "patchouli:text",

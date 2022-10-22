@@ -101,7 +101,7 @@ public class ModItems {
 
             MetallicsArts.registerItem(metal.getNameLower()+"_allomantic_icon",
                     ()-> {
-                        Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB));
+                        Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB_DECORATION));
                         if (!metal.isDivine()) {
                             ITEM_ICONS_ALLOMANCY.put(metal.getNameLower(),item);
                         }
@@ -109,7 +109,7 @@ public class ModItems {
                     });
             MetallicsArts.registerItem(metal.getNameLower()+"_feruchemic_icon",
                     ()-> {
-                        Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB));
+                        Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB_DECORATION));
                         if (!metal.isDivine()) {
                             ITEM_ICONS_FERUCHEMIC.put(metal.getNameLower(), item);
                         }

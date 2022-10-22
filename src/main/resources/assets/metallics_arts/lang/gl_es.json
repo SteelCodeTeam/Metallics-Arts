@@ -184,6 +184,8 @@
 
 
   "itemGroup.metallics_arts": "Artes Metálicas",
+  "itemGroup.metallics_arts.decorations": "Artes Metálicas: Decoració",
+
   "block.metallics_arts.alloy_furnace": "Forno de Aliaxe",
 
   "screen.metallics_arts.alloy_furnace": "Forno de Aliaxe",
@@ -192,6 +194,53 @@
   "key.categorymetallics_arts":"Artes Metálicas",
   "key.metallics_arts.allomantic":"Selector de Metal Alomántico",
   "key.metallics_arts.feruchemic":"Selector de Metal Ferruquímico",
-  "key.metallics_arts.vertical_jump":"Empuxe Vertical"
+  "key.metallics_arts.vertical_jump":"Empuxe Vertical",
+
+  "item.metallics_arts.aluminum_allomantic_icon": "Aluminio Alomantico",
+  "item.metallics_arts.duralumin_allomantic_icon": "Duraluminio Alomantico",
+  "item.metallics_arts.steel_allomantic_icon": "Aceiro Alomantico",
+  "item.metallics_arts.iron_allomantic_icon": "Ferro Alomantico",
+  "item.metallics_arts.tin_allomantic_icon": "Estaño Alomantico",
+
+  "item.metallics_arts.pewter_allomantic_icon": "Peltre Alomantico",
+  "item.metallics_arts.bronze_allomantic_icon": "Bronce Alomantico",
+  "item.metallics_arts.copper_allomantic_icon": "Cobre Alomantico",
+  "item.metallics_arts.zinc_allomantic_icon": "Cinc Alomantico",
+  "item.metallics_arts.brass_allomantic_icon": "Latón Alomantico",
+
+  "item.metallics_arts.gold_allomantic_icon": "Ouro Alomantico",
+  "item.metallics_arts.electrum_allomantic_icon": "Ouro Branco Alomantico",
+  "item.metallics_arts.cadmium_allomantic_icon": "Cadmio Alomantico",
+  "item.metallics_arts.bendalloy_allomantic_icon": "Bendaleo Alomantico",
+  "item.metallics_arts.chromium_allomantic_icon": "Cromo Alomantico",
+
+  "item.metallics_arts.nicrosil_allomantic_icon": "Nicrosil Alomantico",
+  "item.metallics_arts.atium_allomantic_icon": "Atio Alomantico",
+  "item.metallics_arts.malatium_allomantic_icon": "Malatio Alomantico",
+  "item.metallics_arts.lerasium_allomantic_icon": "Lerasio Alomantico",
+  "item.metallics_arts.ettmetal_allomantic_icon": "Ettmetal Alomantico",
+  "item.metallics_arts.aluminum_feruchemic_icon": "Aluminio Feruquimico",
+  "item.metallics_arts.duralumin_feruchemic_icon": "Duraluminio Feruquimico",
+  "item.metallics_arts.steel_feruchemic_icon": "Aceiro Feruquimico",
+  "item.metallics_arts.iron_feruchemic_icon": "Ferro Feruquimico",
+  "item.metallics_arts.tin_feruchemic_icon": "Estaño Feruquimico",
+
+  "item.metallics_arts.pewter_feruchemic_icon": "Peltre Feruquimico",
+  "item.metallics_arts.bronze_feruchemic_icon": "Bronce Feruquimico",
+  "item.metallics_arts.copper_feruchemic_icon": "Cobre Feruquimico",
+  "item.metallics_arts.zinc_feruchemic_icon": "Cinc Feruquimico",
+  "item.metallics_arts.brass_feruchemic_icon": "Latón Feruquimico",
+
+  "item.metallics_arts.gold_feruchemic_icon": "Ouro Feruquimico",
+  "item.metallics_arts.electrum_feruchemic_icon": "Ouro Branco Feruquimico",
+  "item.metallics_arts.cadmium_feruchemic_icon": "Cadmio Feruquimico",
+  "item.metallics_arts.bendalloy_feruchemic_icon": "Bendaleo Feruquimico",
+  "item.metallics_arts.chromium_feruchemic_icon": "Cromo Feruquimico",
+
+  "item.metallics_arts.nicrosil_feruchemic_icon": "Nicrosil Feruquimico",
+  "item.metallics_arts.atium_feruchemic_icon": "Atiuo Feruquimico",
+  "item.metallics_arts.malatium_feruchemic_icon": "Malatio Feruquimico",
+  "item.metallics_arts.lerasium_feruchemic_icon": "Lerasio Feruquimico",
+  "item.metallics_arts.ettmetal_feruchemic_icon": "Ettmetal Feruquimico"
 
 }

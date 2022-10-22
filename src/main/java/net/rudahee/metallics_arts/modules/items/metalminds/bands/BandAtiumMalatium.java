@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.modules.items.metalminds.bands;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -12,6 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.modules.items.combat.tiers.ObsidianCustomTier;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.SlotContext;
@@ -188,6 +190,8 @@ public class BandAtiumMalatium extends BandMindAbstract {
         return false;
     }
 
+
+
     public int convertMaterialToTier (String material) {
 
         if (material.equals(ArmorMaterials.GOLD.getName()) || material.equals(ArmorMaterials.LEATHER.getName())) {
@@ -200,6 +204,8 @@ public class BandAtiumMalatium extends BandMindAbstract {
             return 3;
         } else if (material.equals(ArmorMaterials.NETHERITE.getName())) {
             return 4;
+        } else if (material.equals("Obsidian")) {
+            return 6;
         }
         return -1;
     }
@@ -215,6 +221,8 @@ public class BandAtiumMalatium extends BandMindAbstract {
             return Tiers.DIAMOND.name();
         } else if (tier == 4){
             return Tiers.NETHERITE.name();
+        } else if (tier == 6) {
+            return "Obsidian";
         }
         return "";
     }

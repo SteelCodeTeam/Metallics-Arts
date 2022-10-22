@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:tin_allomantic_icon",
-      "text": "$(br)Aumenta tus sentidos $(br)"
+      "text": "$(br)Aumenta tus sentidos. $(br)"
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Ceguera y nauseas $(br2) + Lerasium: Nada $(br2) + Ambos: Ceguera y nauseas"
+      "text": "$(br) + Duralumin: Te aturde unos momentos. $(br2) + Lerasium: Nada. $(br2) + Ambos: Te aturde unos momentos."
     }
   ]
 }

@@ -184,6 +184,7 @@
 
 
   "itemGroup.metallics_arts": "Arts metàl·liques",
+  "itemGroup.metallics_arts.decorations": "Arts metàl·liques: Decoració",
   "block.metallics_arts.alloy_furnace": "Forn d'aliatges",
 
   "screen.metallics_arts.alloy_furnace": "Forn d'aliatges",
@@ -192,6 +193,53 @@
   "key.categorymetallics_arts":"Arts metàl·liques",
   "key.metallics_arts.allomantic":"Selector de metalls alomàntics",
   "key.metallics_arts.feruchemic":"Selector de metalls feruquímics",
-  "key.metallics_arts.vertical_jump":"Espenta vertical"
+  "key.metallics_arts.vertical_jump":"Espenta vertical",
 
+  "item.metallics_arts.aluminum_allomantic_icon": "Alumini Alomàntic",
+  "item.metallics_arts.duralumin_allomantic_icon": "Duralumini Alomàntic",
+  "item.metallics_arts.steel_allomantic_icon": "Acer Alomàntic",
+  "item.metallics_arts.iron_allomantic_icon": "Ferro Alomàntic",
+  "item.metallics_arts.tin_allomantic_icon": "Estany Alomàntic",
+
+  "item.metallics_arts.pewter_allomantic_icon": "Peltre Alomàntic",
+  "item.metallics_arts.bronze_allomantic_icon": "Bronze Alomàntic",
+  "item.metallics_arts.copper_allomantic_icon": "Coure Alomàntic",
+  "item.metallics_arts.zinc_allomantic_icon": "Zenc Alomàntic",
+  "item.metallics_arts.brass_allomantic_icon": "Llautó Alomàntic",
+
+  "item.metallics_arts.gold_allomantic_icon": "Or Alomàntic",
+  "item.metallics_arts.electrum_allomantic_icon": "Electre Alomàntic",
+  "item.metallics_arts.cadmium_allomantic_icon": "Cadmi Alomàntic",
+  "item.metallics_arts.bendalloy_allomantic_icon": "Bendaleu Alomàntic",
+  "item.metallics_arts.chromium_allomantic_icon": "Crom Alomàntic",
+
+  "item.metallics_arts.nicrosil_allomantic_icon": "Nicrosil Alomàntic",
+  "item.metallics_arts.atium_allomantic_icon": "Atium Alomàntic",
+  "item.metallics_arts.malatium_allomantic_icon": "Malatium Alomàntic",
+  "item.metallics_arts.lerasium_allomantic_icon": "Lerasi Alomàntic",
+  "item.metallics_arts.ettmetal_allomantic_icon": "Ettmetall Alomàntic",
+
+  "item.metallics_arts.aluminum_feruchemic_icon": "Alumini Feruquímic",
+  "item.metallics_arts.duralumin_feruchemic_icon": "Duralumini Feruquímic",
+  "item.metallics_arts.steel_feruchemic_icon": "Acer Feruquímic",
+  "item.metallics_arts.iron_feruchemic_icon": "Ferro Feruquímic",
+  "item.metallics_arts.tin_feruchemic_icon": "Estany Feruquímic",
+
+  "item.metallics_arts.pewter_feruchemic_icon": "Peltre Feruquímic",
+  "item.metallics_arts.bronze_feruchemic_icon": "Bronze Feruquímic",
+  "item.metallics_arts.copper_feruchemic_icon": "Coure Feruquímic",
+  "item.metallics_arts.zinc_feruchemic_icon": "Zenc Feruquímic",
+  "item.metallics_arts.brass_feruchemic_icon": "Llautó Feruquímic",
+
+  "item.metallics_arts.gold_feruchemic_icon": "Or Feruquímic",
+  "item.metallics_arts.electrum_feruchemic_icon": "Electre Feruquímic",
+  "item.metallics_arts.cadmium_feruchemic_icon": "Cadmi Feruquímic",
+  "item.metallics_arts.bendalloy_feruchemic_icon": "Bendaleu Feruquímic",
+  "item.metallics_arts.chromium_feruchemic_icon": "Crom Feruquímic",
+
+  "item.metallics_arts.nicrosil_feruchemic_icon": "Nicrosil Feruquímic",
+  "item.metallics_arts.atium_feruchemic_icon": "Atium Feruquímic",
+  "item.metallics_arts.malatium_feruchemic_icon": "Malatium Feruquímic",
+  "item.metallics_arts.lerasium_feruchemic_icon": "Lerasi Feruquímic",
+  "item.metallics_arts.ettmetal_feruchemic_icon": "Ettmetall Feruquímic"
 }

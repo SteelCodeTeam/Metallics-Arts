@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:cadmium_allomantic_icon",
-      "text": "$(br)Disminuye los tick a tu alrededor $(br)"
+      "text": "$(br)Recibes caida lenta, el juego se ralentiza a tu alrededor. $(br)"
     },
     {
       "type": "patchouli:text",

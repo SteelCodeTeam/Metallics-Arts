@@ -184,6 +184,8 @@
 
 
   "itemGroup.metallics_arts": "Artes Metálicas",
+  "itemGroup.metallics_arts.decorations": "Artes Metálicas: Decoración",
+
   "block.metallics_arts.alloy_furnace": "Horno de fusión",
 
   "screen.metallics_arts.alloy_furnace": "Horno de fusión",
