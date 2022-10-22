@@ -281,16 +281,18 @@ public class ZincAndBrassHelpers {
         }
     }
 
-    public static void removeLootToEnemy(LivingEntity livingEntity, double percentaje) {
-        if(!(livingEntity instanceof Player)){
+    public static void removeLootToEnemy(LivingEntity livingEntity, double percentage) {
+
+
+        if (!(livingEntity instanceof Player)) {
             if (!livingEntity.isAlive()){
-                if(Math.random()<percentaje){
+                if(Math.random()<percentage){
                     //evitar drops
                     Collection<ItemEntity> drops = livingEntity.captureDrops();
                     drops.removeAll(drops);
                 }
             }
-        }else {
+        } else {
             //si matas a un pj
         }
     }

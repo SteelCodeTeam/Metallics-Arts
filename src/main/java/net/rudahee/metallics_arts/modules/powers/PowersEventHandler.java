@@ -9,7 +9,10 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
@@ -19,6 +22,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
@@ -31,11 +35,37 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber
 public class PowersEventHandler {
+
+
+    @SubscribeEvent
+    public static void onLivingEntityDrop(final LivingDropsEvent event) {
+
+        /**
+         * ZINC FERUQUIMICO
+         */
+        if (event.getSource().getEntity() instanceof Player && !(event.getEntity() instanceof Player)) {
+            event.getSource().getEntity().getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
+                    capability -> {
+                        if (capability.isDecanting(MetalsNBTData.ZINC)) {
+                            Collection<ItemEntity> drops = event.getDrops();
+                            List<ItemEntity> filteredDrops = drops.stream().filter(e -> e.getItem().getItem()!=Items.NETHER_STAR).collect(Collectors.toList());
+                            event.getDrops().addAll(filteredDrops);
+
+                        } else if (capability.isStoring(MetalsNBTData.ZINC)) {
+                            event.setCanceled(true);
+                        }
+                    }
+            );
+        }
+    }
+
     @SubscribeEvent
     public static void onJoinWorld(final PlayerEvent.PlayerLoggedInEvent event) {
         if (!event.getEntity().level.isClientSide) {
@@ -245,11 +275,11 @@ public class PowersEventHandler {
                     /*******************************
                      *   DAMAGE WITH - ZINC - FERUCHEMIC
                      *******************************/
-                    if (playerCapability.isDecanting(MetalsNBTData.ZINC)) {
-                        ZincAndBrassHelpers.addLootToEnemy(event.getEntity(),0.6);
-                    } else if (playerCapability.isStoring(MetalsNBTData.ZINC)) {
-                        ZincAndBrassHelpers.removeLootToEnemy(event.getEntity(),0.6);
-                    }
+                    //if (playerCapability.isDecanting(MetalsNBTData.ZINC)) {
+                   //     ZincAndBrassHelpers.addLootToEnemy(event.getEntity(),0.6);
+                   // } else if (playerCapability.isStoring(MetalsNBTData.ZINC)) {
+                    //    ZincAndBrassHelpers.removeLootToEnemy(event.getEntity(),0.6);
+                   // }
                     /********************************
                      * DAMAGE WITH NICROSIL
                      *******************************/
