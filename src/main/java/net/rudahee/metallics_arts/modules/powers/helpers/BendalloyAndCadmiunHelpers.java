@@ -129,23 +129,16 @@ public class BendalloyAndCadmiunHelpers {
     }
 
     public static void drowningEffect(Player player,int actualtick) {
+        System.out.println("nivel de oxigeno: "+player.getAirSupply()+"\n");
         if (!player.isCreative()){
             if (!player.isEyeInFluid(FluidTags.WATER)) {
-                if (player.getAirSupply()<=-10) {
-                    player.setAirSupply(-10);
-                    if (actualtick % 10 == 0) {
-                        player.hurt(DamageSource.DROWN,1);
-                    }
-                } else {
-                    player.setAirSupply(player.getAirSupply()-6);
+                player.setAirSupply(player.getAirSupply()-5);
+                if (player.getAirSupply()<=-29) {
+                    player.hurt(DamageSource.DROWN,1);
+                    player.setAirSupply(-9);
                 }
             } else {
-                if (player.getAirSupply() <= 0) {
-                    player.setAirSupply(0);
-                    player.hurt(DamageSource.DROWN,2);
-                }else {
-                    player.setAirSupply(player.getAirSupply()-1);
-                }
+                player.setAirSupply(player.getAirSupply()-1);
             }
         }
     }
