@@ -1,6 +1,6 @@
 {
   "name": "metallic_arts.patchouli.name_book",
-  "landing_text": "landing_text",
+  "landing_text": "metallic_arts.patchouli.landing_text",
   "version": 1,
   "book_texture": "patchouli:textures/gui/book_red.png",
   "show_progress": "false",

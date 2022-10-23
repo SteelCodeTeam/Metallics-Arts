@@ -18,7 +18,7 @@ public class LerasiumAndEttmetalHelpers {
                 world.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalsNBTData.ETTMETAL)) /1600,Explosion.BlockInteraction.NONE);
                 player.setHealth((player.getHealth() - ((float) playerCapability.getAllomanticAmount(MetalsNBTData.ETTMETAL)/1600)));
             }
-            playerCapability.drainMetals(MetalsNBTData.ETTMETAL);
+            playerCapability.drainMetals(MetalsNBTData.ETTMETAL,MetalsNBTData.DURALUMIN);
         });
     }
 
