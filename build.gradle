@@ -160,11 +160,11 @@ jar {
     manifest {
         attributes([
                 "Specification-Title"     : "Metallics Arts",
-                "Specification-Vendor"    : "RuDaHee",
-                "Specification-Version"   : "a3.3", // We are version 1 of ourselves
+                "Specification-Vendor"    : "RuDaHee & TobibusFate",
+                "Specification-Version"   : "v1.0", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "RuDaHee",
+                "Implementation-Vendor"   : "RuDaHee & TobibusFate",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
