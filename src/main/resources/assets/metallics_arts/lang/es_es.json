@@ -242,5 +242,9 @@
   "item.metallics_arts.atium_feruchemic_icon": "Atium Feruquimico",
   "item.metallics_arts.malatium_feruchemic_icon": "Malatium Feruquimico",
   "item.metallics_arts.lerasium_feruchemic_icon": "Lerasium Feruquimico",
-  "item.metallics_arts.ettmetal_feruchemic_icon": "Ettmetal Feruquimico"
+  "item.metallics_arts.ettmetal_feruchemic_icon": "Ettmetal Feruquimico",
+
+  "metallic_arts.patchouli.name_book" : "Artes Metalicas",
+
+  "metallic_arts.patchouli.landing_text" : "Soy, por desgracia, el Héroe de las Eras, y tengo una pregunta que hacerte: ¿acaso un hombre no tiene derecho a poseer sus propios metales? No, dice el hombre del Imperio. Pertenece al \\\"dios\\\". No, dice el superviviente. Pertenece a todos. No, dice el hombre de Elendel. Pertenece a los pobres. Yo rechacé esas propuestas. En vez de eso elegí algo distinto. Elegi mi propio camino, elegí... Artes Metalicas Mod."
 }

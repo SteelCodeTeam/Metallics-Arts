@@ -241,5 +241,7 @@
   "item.metallics_arts.atium_feruchemic_icon": "Feruchemic Atium",
   "item.metallics_arts.malatium_feruchemic_icon": "Feruchemic Malatium",
   "item.metallics_arts.lerasium_feruchemic_icon": "Feruchemic Lerasium",
-  "item.metallics_arts.ettmetal_feruchemic_icon": "Feruchemic Ettmetal"
+  "item.metallics_arts.ettmetal_feruchemic_icon": "Feruchemic Ettmetal",
+
+  "metallic_arts.patchouli.name_book": "Metallics Arts"
 }
