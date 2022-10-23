@@ -18,7 +18,6 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
     public BandAluminumDuralumin (Item.Properties properties){
         super(properties, MetalsNBTData.ALUMINUM,MetalsNBTData.DURALUMIN,MetalsNBTData.ALUMINUM.getMaxReserveBand(),MetalsNBTData.DURALUMIN.getMaxReserveBand());
     }
-
     public boolean nicConsumeMet1 = false;
 
     @Override

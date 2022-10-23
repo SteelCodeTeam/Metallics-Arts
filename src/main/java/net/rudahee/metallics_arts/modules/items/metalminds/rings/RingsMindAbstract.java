@@ -13,6 +13,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.modules.items.metalminds.bands.*;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.SlotContext;
@@ -25,19 +26,18 @@ import java.util.UUID;
 
 
 public abstract class RingsMindAbstract extends Item implements ICurioItem {
-
-
     private final MetalsNBTData[] metals = new MetalsNBTData[2];
     private final int[] metalsMaxReserve = new int[2];
     public String unkeyedString = "Nobody";
 
     public RingsMindAbstract(Properties properties,MetalsNBTData metal1, MetalsNBTData metal2,int maxReserve1,int maxReserve2) {
-            super(properties);
-            metals[0]=metal1;
-            metals[1]=metal2;
-            metalsMaxReserve[0]=maxReserve1;
-            metalsMaxReserve[1]=maxReserve2;
-        }
+        super(properties);
+        metals[0]=metal1;
+        metals[1]=metal2;
+
+        metalsMaxReserve[0]=maxReserve1;
+        metalsMaxReserve[1]=maxReserve2;
+    }
 
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
@@ -46,13 +46,16 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             data.setMetalMindEquiped(this.metals[0].getGroup(),true);
             data.setMetalMindEquiped(this.metals[1].getGroup(),true);
-            ModNetwork.sync(data,player);
+            ModNetwork.sync(data, player);
         });
         ICurioItem.super.onEquip(slotContext, prevStack, stack);
     }
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
+        if (this instanceof RingElectrumGold) {
+            return;
+        }
         Player player = (Player) slotContext.getWearer();
         if (stack.getItem() != newStack.getItem()) {
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
@@ -62,28 +65,26 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
                 data.setStoring(this.metals[1],false);
                 data.setDecanting(this.metals[0],false);
                 data.setDecanting(this.metals[1],false);
-                ModNetwork.sync(data,player);
+                ModNetwork.sync(data, player);
             });
         }
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
     }
-
-
-
-    private static IDefaultInvestedPlayerData cap = null;
+    private IDefaultInvestedPlayerData cap = null;
 
     @Override
-    public boolean canEquip(String identifier, LivingEntity livingEntity, ItemStack stack) {
+    public boolean canEquip(SlotContext slotContext, ItemStack stack) {
         if(!stack.hasTag()) {
             stack.setTag(addRingTags());
         }
-        Player player = (Player) livingEntity;
+        Player player = (Player) slotContext.entity();
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
             cap = data;
         });
         boolean canEquip = false;
+
         if (cap != null) {
-            canEquip = (!(cap.getMetalMindEquiped(this.metals[0].getGroup()) && cap.getMetalMindEquiped(this.metals[1].getGroup())));
+            canEquip = (!(cap.getMetalMindEquiped(this.metals[0].getGroup()) && !cap.getMetalMindEquiped(this.metals[1].getGroup())));
         }
 
         if (canEquip){
@@ -92,8 +93,8 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
                 canEquip = false;
             }
         }
-
-        return canEquip;
+        ICurioItem.super.canEquip(slotContext, stack);
+        return canEquip ;
     }
 
     @Override
@@ -101,22 +102,20 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
         if(!stack.hasTag()) {
             stack.setTag(addRingTags());
         }
-        if (this instanceof RingLerasiumEttmetal || this instanceof RingAtiumMalatium || this instanceof RingZincBrass || this instanceof RingCopperBronze || this instanceof RingChromiumNicrosil){
+        if (this instanceof RingLerasiumEttmetal || this instanceof RingAtiumMalatium
+                || this instanceof RingCopperBronze){
             return;
         }
-
-
         if (stack.hasTag()) {
             if (!Screen.hasControlDown()){
-                toolTips.add(Component.translatable(metals[0].getNameLower().substring(0,1).toUpperCase()+metals[0].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
-                toolTips.add(Component.translatable(metals[1].getNameLower().substring(0,1).toUpperCase()+metals[1].getNameLower().substring(1)+": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
+                toolTips.add(Component.translatable("metallics_arts.metal_translate."+metals[0].getNameLower()).append(": "+ stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
+                toolTips.add(Component.translatable("metallics_arts.metal_translate."+metals[1].getNameLower()).append(": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") / 40 + "s"));
             } else {
-                toolTips.add(Component.translatable(metals[0].getNameLower().substring(0,1).toUpperCase()+metals[0].getNameLower().substring(1)+": "+ ((stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_max_capacity"))+"%"));
-                toolTips.add(Component.translatable(metals[1].getNameLower().substring(0,1).toUpperCase()+metals[1].getNameLower().substring(1)+": "+ ((stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_max_capacity"))+"%"));
-
+                toolTips.add(Component.translatable("metallics_arts.metal_translate."+metals[0].getNameLower()).append(": "+ ((stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_max_capacity"))+"%"));
+                toolTips.add(Component.translatable("metallics_arts.metal_translate."+metals[1].getNameLower()).append(": "+ ((stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_max_capacity"))+"%"));
             }
             if (world != null) {
-                toolTips.add(Component.translatable("Owner: "+ ((stack.getTag().getString("key").equals("Nobody")) ? "Nobody" : world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
+                toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
             }
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
@@ -133,18 +132,20 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
         return nbt;
     }
 
-    private static boolean nicConsumeMet0 = false;
-    private static boolean nicConsumeMet1 = false;
+    private boolean nicConsumeMet0 = false;
+    private boolean nicConsumeMet1 = false;
 
     @Override
-    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        LivingEntity livingEntity = slotContext.entity();
+
         if(!stack.hasTag()) {
             stack.setTag(addRingTags());
         }
 
         if (this instanceof RingZincBrass || this instanceof RingCopperBronze
                 || this instanceof RingLerasiumEttmetal ||this instanceof RingAtiumMalatium
-                ||this instanceof RingChromiumNicrosil || this instanceof RingAluminumDuralumin) {
+                ||this instanceof RingChromiumNicrosil || this instanceof RingAluminumDuralumin || this instanceof RingElectrumGold) {
             return;
         }
 
@@ -213,6 +214,7 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
                                 nbtLocal.putInt(this.metals[1].getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(this.metals[1].getNameLower()+"_feruchemic_reserve")-1));
                                 stack.setTag(nbtLocal);
                             }
+
                         } else {
                             stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                             data.setDecanting(this.metals[1],false);
@@ -242,10 +244,10 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
                 });
             }
         }
-        ICurioItem.super.curioTick(identifier, index, livingEntity, stack);
+        ICurioItem.super.curioTick(slotContext, stack);
     }
 
-    private static String dato;
+    private String dato;
 
     public String changeOwner(Player player, CompoundTag compoundNBT,boolean iStoreMetal) {
 

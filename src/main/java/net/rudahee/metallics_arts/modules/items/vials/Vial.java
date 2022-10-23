@@ -39,7 +39,8 @@ public abstract class Vial extends Item {
         if (Screen.hasControlDown()){
             for (MetalsNBTData metal : MetalsNBTData.values()){
                 if(stack.getTag().getInt(metal.getGemNameLower())>0){
-                    toolTips.add(Component.translatable(metal.getNameLower()+": "+stack.getTag().getInt(metal.getGemNameLower())));
+
+                    toolTips.add(Component.translatable(" * ").append(Component.translatable("metallics_arts.metal_translate."+metal.getNameLower())).append(": "+stack.getTag().getInt(metal.getGemNameLower())));
                 }
             }
         }

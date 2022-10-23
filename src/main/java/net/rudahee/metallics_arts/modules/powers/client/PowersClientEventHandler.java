@@ -206,56 +206,39 @@ public class PowersClientEventHandler {
                                     double y = player.getY();
                                     double z = player.getZ();
 
-                                    BlockPos blockPos;
+                                    BlockPos blockPos = new BlockPos(x,y,z);
                                     Vec3 vector = player.getViewVector(1.0F);
 
                                     double pushX;
                                     double pushZ;
 
-
+                                    int maxAltitude = 10;
+                                    int range = 7;
 
                                     if (this.mc.options.keyUp.isDown()) {
-                                        pushX = x - (vector.x); //vector.x * range (range=7)
-                                        pushZ = z - (vector.z);
+                                        pushX = x - (vector.x*range);
+                                        pushZ = z - (vector.z*range);
                                     } else if (this.mc.options.keyDown.isDown()) {
-                                        pushX = x + (vector.x);
-                                        pushZ = z + (vector.z);
+                                        pushX = x + (vector.x*range);
+                                        pushZ = z + (vector.z*range);
 
                                    /* } else if (this.mc.options.keyRight.isDown()) { // <--------- revisar aqui
                                         pushX = vector.x() >= 0 ? x - (vector.x*range) : x + (vector.x*range);
                                         pushZ = vector.z() >= 0 ? z + (vector.z*range) : z - (vector.z*range);
-
                                     } else if (this.mc.options.keyLeft.isDown()) {
                                         pushX = vector.x() >= 0 ? x + (vector.x*range) : x - (vector.x*range);
                                         pushZ = vector.z() >= 0 ? z - (vector.z*range) : z + (vector.z*range);*/
                                     }  else {
-                                        pushX = x - (vector.x);
-                                        pushZ = z - (vector.z);
+                                        pushX = x - (vector.x*range);
+                                        pushZ = z - (vector.z*range);
                                     }
                                     blockPos = new BlockPos(pushX, y, pushZ);
 
-                                    int vertical = 7;
-                                    //int horizontal = 7;
-                                    for (int i = 1; i<vertical;i++) {
-                                        for (int j = i;0<j;j--){
-                                            if (player.level.getBlockState(blockPos).is(Blocks.AIR) || !IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPos))){
-                                                blockPos = new BlockPos(blockPos.getX() - (vector.x * j),blockPos.getY(),blockPos.getZ()- (vector.z * j));
-                                                System.out.println("new:"+player.level.getBlockState(blockPos).getBlock().toString());
-                                            } else {
-                                                break;
-                                            }
-                                        }
-                                        blockPos = new BlockPos(blockPos.getX(),blockPos.getY()-i, blockPos.getZ()); //nueva fila
-                                    }
-
-                                    /*for (int i=0;i<vertical;i++){
-
-
+                                    for (int i=0;i<maxAltitude;i++){
                                         if (player.level.getBlockState(blockPos).is(Blocks.AIR)){
                                             blockPos = new BlockPos(blockPos.getX(),blockPos.getY()-1,blockPos.getZ());
-                                            break;
                                         }
-                                    }*/
+                                    }
 
                                     if (!player.level.getBlockState(blockPos).is(Blocks.AIR)){
                                         // IF ITS A BLOCK

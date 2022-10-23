@@ -241,6 +241,39 @@
   "item.metallics_arts.atium_feruchemic_icon": "Atiuo Feruquimico",
   "item.metallics_arts.malatium_feruchemic_icon": "Malatio Feruquimico",
   "item.metallics_arts.lerasium_feruchemic_icon": "Lerasio Feruquimico",
-  "item.metallics_arts.ettmetal_feruchemic_icon": "Ettmetal Feruquimico"
+  "item.metallics_arts.ettmetal_feruchemic_icon": "Ettmetal Feruquimico",
+
+
+  "metallics_arts.mental_mind.owner": "Dono",
+  "metallics_arts.mental_mind.nobody": "Ninguén",
+
+  "metallics_arts.metal_translate.iron": "Hierro",
+  "metallics_arts.metal_translate.steel": "Aceiro",
+  "metallics_arts.metal_translate.tin": "Estaño",
+  "metallics_arts.metal_translate.pewter": "Peltre",
+  "metallics_arts.metal_translate.zinc": "Zinc",
+  "metallics_arts.metal_translate.brass": "Latón",
+  "metallics_arts.metal_translate.copper": "Coubre",
+  "metallics_arts.metal_translate.bronze": "Bronce",
+  "metallics_arts.metal_translate.aluminum": "Aluminio",
+  "metallics_arts.metal_translate.duralumin": "Duraluminio",
+  "metallics_arts.metal_translate.chromium": "Cromo",
+  "metallics_arts.metal_translate.nicrosil": "Nicrosil",
+  "metallics_arts.metal_translate.gold": "Ouro",
+  "metallics_arts.metal_translate.electrum": "Ouro Branco",
+  "metallics_arts.metal_translate.bendalloy": "Bendaleo",
+  "metallics_arts.metal_translate.cadmium": "Cadmio",
+  "metallics_arts.metal_translate.atium": "Atio",
+  "metallics_arts.metal_translate.malatium": "Malatio",
+  "metallics_arts.metal_translate.lerasium": "Lerasio",
+  "metallics_arts.metal_translate.ettmetal": "Ettmetal",
+
+  "metallics_arts.mental_mind_translate.has_reserve": "Ten Reservas Alomanticas",
+  "metallics_arts.mental_mind_translate.not_has_reserve": "Non Ten Reservas Alomanticas",
+
+  "metallics_arts.mental_mind_translate.uses": "Usos",
+
+  "metallics_arts.spike_feruchemic_power": "Enerxía Almacenada: Ferruquímico",
+  "metallics_arts.spike_allomantic_power": "Enerxía Almacenada: Alomántico"
 
 }

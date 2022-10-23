@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class RingAluminumDuralumin extends RingsMindAbstract implements ICurioItem{
@@ -17,10 +18,11 @@ public class RingAluminumDuralumin extends RingsMindAbstract implements ICurioIt
         super(properties, MetalsNBTData.ALUMINUM,MetalsNBTData.DURALUMIN,MetalsNBTData.ALUMINUM.getMaxReserveRing(),MetalsNBTData.DURALUMIN.getMaxReserveRing());
     }
 
-    public static boolean nicConsumeMet1 = false;
+    public boolean nicConsumeMet1 = false;
 
     @Override
-    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        LivingEntity livingEntity = slotContext.entity();
 
         CompoundTag nbtLocal = stack.getTag();
 
@@ -34,7 +36,6 @@ public class RingAluminumDuralumin extends RingsMindAbstract implements ICurioIt
                     }
 
                     nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",1);
-
 
                     ///////DURALUMINUM
                     if (data.isDecanting(getMetals(1))) {
@@ -79,13 +80,10 @@ public class RingAluminumDuralumin extends RingsMindAbstract implements ICurioIt
                 });
             }
         }
-        super.curioTick(identifier, index, livingEntity, stack);
+        super.curioTick(slotContext, stack);
     }
 
-
-
-    private static String dato;
-
+    private String dato;
     public String localChangeOwner(Player player, CompoundTag compoundNBT,boolean iStoreMetal) {
 
         boolean isSecondReserveZero = compoundNBT.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") == 0;
@@ -108,7 +106,5 @@ public class RingAluminumDuralumin extends RingsMindAbstract implements ICurioIt
         });
         return dato;
     }
-
-
 
 }

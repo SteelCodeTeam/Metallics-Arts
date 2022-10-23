@@ -7,6 +7,4 @@ public class LargeVial extends Vial {
     public LargeVial(Item.Properties properties) {
         super(properties,10);
     }
-
-
 }

@@ -241,5 +241,42 @@
   "item.metallics_arts.atium_feruchemic_icon": "Atium Feruquímic",
   "item.metallics_arts.malatium_feruchemic_icon": "Malatium Feruquímic",
   "item.metallics_arts.lerasium_feruchemic_icon": "Lerasi Feruquímic",
-  "item.metallics_arts.ettmetal_feruchemic_icon": "Ettmetall Feruquímic"
+  "item.metallics_arts.ettmetal_feruchemic_icon": "Ettmetall Feruquímic",
+
+  "metallics_arts.mental_mind.owner": "Dono",
+
+  "metallics_arts.mental_mind.nobody": "Ninguén",
+
+  "metallics_arts.metal_translate.iron": "Ferro",
+  "metallics_arts.metal_translate.steel": "Acer",
+  "metallics_arts.metal_translate.tin": "Estany",
+  "metallics_arts.metal_translate.pewter": "Peltre",
+  "metallics_arts.metal_translate.zinc": "Zinc",
+  "metallics_arts.metal_translate.brass": "Llautó",
+  "metallics_arts.metal_translate.copper": "Coure",
+  "metallics_arts.metal_translate.bronze": "Bronze",
+  "metallics_arts.metal_translate.aluminum": "Alumini",
+  "metallics_arts.metal_translate.duralumin": "Duralumin",
+  "metallics_arts.metal_translate.chromium": "Crom",
+  "metallics_arts.metal_translate.nicrosil": "Nicrosil",
+  "metallics_arts.metal_translate.gold": "Oro",
+  "metallics_arts.metal_translate.electrum": "Electrum",
+  "metallics_arts.metal_translate.bendalloy": "Bendaleu",
+  "metallics_arts.metal_translate.cadmium": "Cadmi",
+  "metallics_arts.metal_translate.atium": "Atium",
+  "metallics_arts.metal_translate.malatium": "Malatium",
+  "metallics_arts.metal_translate.lerasium": "Lerasi",
+  "metallics_arts.metal_translate.ettmetal": "Ettmetall",
+
+  "metallics_arts.mental_mind_translate.has_reserve": "Tens reserves alomàntiques",
+  "metallics_arts.mental_mind_translate.not_has_reserve": "No tens reserves alomàntiques",
+
+  "metallics_arts.mental_mind_translate.uses": "Usos",
+
+  "metallics_arts.spike_feruchemic_power": "Potència Emmagatzemada: Feruquímic",
+  "metallics_arts.spike_allomantic_power": "Potència Emmagatzemada: Alomàntic"
+
+
+
+
 }

@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import top.theillusivec4.curios.api.SlotContext;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -20,11 +21,11 @@ public class RingZincBrass extends RingsMindAbstract{
     public RingZincBrass (Properties properties){
         super(properties, MetalsNBTData.ZINC,MetalsNBTData.BRASS,MetalsNBTData.ZINC.getMaxReserveRing(),MetalsNBTData.BRASS.getMaxReserveRing());
     }
-    private static boolean nicConsumeMet0 = false;
-    private static boolean nicConsumeMet1 = false;
-
+    private boolean nicConsumeMet0 = false;
+    private boolean nicConsumeMet1 = false;
     @Override
-    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        LivingEntity livingEntity = slotContext.entity();
 
         CompoundTag nbtLocal = stack.getTag();
 
@@ -122,21 +123,6 @@ public class RingZincBrass extends RingsMindAbstract{
                 });
             }
         }
-        super.curioTick(identifier, index, livingEntity, stack);
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
-        if (stack.hasTag()) {
-            if (!Screen.hasControlDown()){
-                toolTips.add(Component.translatable(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
-                toolTips.add(Component.translatable(getMetals(1).getNameLower().substring(0,1).toUpperCase()+getMetals(1).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
-            } else {
-                toolTips.add(Component.translatable(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": "+ ((stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_max_capacity"))+"%"));
-                toolTips.add(Component.translatable(getMetals(1).getNameLower().substring(0,1).toUpperCase()+getMetals(1).getNameLower().substring(1)+": "+ ((stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity"))+"%"));
-            }
-            toolTips.add(Component.translatable("Owner: "+ (stack.getTag().getString("key"))));
-        }
-        super.appendHoverText(stack, world, toolTips, flagIn);
+        super.curioTick(slotContext, stack);
     }
 }

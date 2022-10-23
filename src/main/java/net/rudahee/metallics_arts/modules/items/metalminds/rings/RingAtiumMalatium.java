@@ -14,19 +14,21 @@ import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import top.theillusivec4.curios.api.SlotContext;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.UUID;
 
 public class RingAtiumMalatium extends RingsMindAbstract {
     public RingAtiumMalatium (Properties properties){
         super(properties, MetalsNBTData.ATIUM,MetalsNBTData.MALATIUM,MetalsNBTData.ATIUM.getMaxReserveRing(),MetalsNBTData.MALATIUM.getMaxReserveRing());
     }
-    private static final boolean needUpdate = false;
-
-    private static boolean nicConsume = false;
+    private boolean nicConsume = false;
     @Override
-    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        LivingEntity livingEntity = slotContext.entity();
+
         CompoundTag nbtLocal = stack.getTag();
 
         if (livingEntity.level instanceof ServerLevel) {
@@ -103,12 +105,14 @@ public class RingAtiumMalatium extends RingsMindAbstract {
                 });
             }
         }
-        super.curioTick(identifier, index, livingEntity, stack);
+        super.curioTick(slotContext, stack);
     }
 
 
     public boolean isStoring (Player player, ItemStack stack){
-
+        if (!stack.getTag().contains("tier_malatium_storage")){
+            stack.getTag().putInt("tier_malatium_storage",-1);
+        }
         if (stack.getTag().getInt("tier_malatium_storage") == -1){
             if (!generateIternalReserve(player, stack)){
                 return false;
@@ -143,7 +147,6 @@ public class RingAtiumMalatium extends RingsMindAbstract {
     }
 
     public boolean isDecanting(Player player, ItemStack stack) {
-
         if (player.getMainHandItem().getItem() instanceof TieredItem) {
             TieredItem tiered = (TieredItem) player.getMainHandItem().getItem();
             if (tiered.getTier().getLevel() == stack.getTag().getInt("tier_malatium_storage")){
@@ -183,7 +186,10 @@ public class RingAtiumMalatium extends RingsMindAbstract {
         return false;
     }
 
+
+
     public int convertMaterialToTier (String material) {
+
         if (material.equals(ArmorMaterials.GOLD.getName()) || material.equals(ArmorMaterials.LEATHER.getName())) {
             return 0;
         }else  if (material.equals(ArmorMaterials.TURTLE.getName())){
@@ -194,6 +200,8 @@ public class RingAtiumMalatium extends RingsMindAbstract {
             return 3;
         } else if (material.equals(ArmorMaterials.NETHERITE.getName())) {
             return 4;
+        } else if (material.equals("Obsidian")) {
+            return 6;
         }
         return -1;
     }
@@ -209,6 +217,8 @@ public class RingAtiumMalatium extends RingsMindAbstract {
             return Tiers.DIAMOND.name();
         } else if (tier == 4){
             return Tiers.NETHERITE.name();
+        } else if (tier == 6) {
+            return "Obsidian";
         }
         return "";
     }
@@ -216,17 +226,20 @@ public class RingAtiumMalatium extends RingsMindAbstract {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
         if (stack.hasTag()) {
-            if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")== 0){
+            if (!stack.getTag().contains("tier_malatium_storage") || stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") == 0){
                 stack.getTag().putInt("tier_malatium_storage",-1);
             }
             if (!Screen.hasControlDown()){
-                toolTips.add(Component.translatable(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
-                toolTips.add(Component.translatable(getMetals(1).getNameLower().substring(0,1).toUpperCase()+getMetals(1).getNameLower().substring(1)+": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+" Uses"));
+                toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
+                toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(1).getNameLower()).append(": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+" ").append(Component.translatable("metallics_arts.mental_mind_translate.uses")));
+
             } else {
-                toolTips.add(Component.translatable(getMetals(0).getNameLower().substring(0,1).toUpperCase()+getMetals(0).getNameLower().substring(1)+": "+ ((stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_max_capacity"))+"%"));
-                toolTips.add(Component.translatable(getMetals(1).getNameLower().substring(0,1).toUpperCase()+getMetals(1).getNameLower().substring(1)+": "+ ((stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity"))+"%"));
+                toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": "+ ((stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_max_capacity"))+"%"));
+                toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(1).getNameLower()).append(": "+ ((stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity"))+"%"));
             }
-            toolTips.add(Component.translatable("Owner: "+ (stack.getTag().getString("key"))));
+            if (world != null) {
+                toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
+            }
             if (stack.getTag().getInt("tier_malatium_storage")!=-1){
                 toolTips.add(Component.translatable("-------------------"));
                 toolTips.add(Component.translatable("Tier: "+convertTierToMaterial(stack.getTag().getInt("tier_malatium_storage"))));
@@ -234,7 +247,4 @@ public class RingAtiumMalatium extends RingsMindAbstract {
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
     }
-
-
-
 }

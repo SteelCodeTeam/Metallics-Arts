@@ -86,11 +86,10 @@ public abstract class MetalSpikeAbstract extends SwordItem {
         }
         if (stack.hasTag()){
             if (stack.getTag().getBoolean("feruchemic_power")) {
-
-                toolTips.add(Component.translatable("Power stored: Feruchemic"));
+                toolTips.add(Component.translatable("metallics_arts.spike_feruchemic_power"));
             }
             if (stack.getTag().getBoolean("allomantic_power")) {
-                toolTips.add(Component.translatable("Power stored: Allomantic"));
+                toolTips.add(Component.translatable("metallics_arts.spike_allomantic_power"));
             }
         }
         super.appendHoverText(stack, world, toolTips, flag);

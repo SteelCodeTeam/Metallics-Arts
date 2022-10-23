@@ -243,9 +243,39 @@
   "item.metallics_arts.lerasium_feruchemic_icon": "Feruchemic Lerasium",
   "item.metallics_arts.ettmetal_feruchemic_icon": "Feruchemic Ettmetal",
 
-  "metallic_arts.patchouli.name_book": "Metallics Arts",
-  "metallic_arts.patchouli.landing_text": "I am, unfortunately, The Hero of Ages and I have a question for you: does not a man have the right to posses his own metals? No, says the man from the empire. It belongs to \\\"god\\\". No, says the survivor. It belongs to everyone. No, says the man from Elendel. It belongs to the poor ones. I rejected those proposals. Instead of that I chose something different. I chose my own path, I chose… Artes Metalicas Mod."
+  "metallics_arts.patchouli.name_book": "Metallics Arts",
+  "metallics_arts.patchouli.landing_text": "I am, unfortunately, The Hero of Ages and I have a question for you: does not a man have the right to posses his own metals? No, says the man from the empire. It belongs to \\\"god\\\". No, says the survivor. It belongs to everyone. No, says the man from Elendel. It belongs to the poor ones. I rejected those proposals. Instead of that I chose something different. I chose my own path, I chose… Artes Metalicas Mod.",
 
+  "metallics_arts.mental_mind.owner": "Owner",
 
+  "metallics_arts.mental_mind.nobody": "Nobody",
 
+  "metallics_arts.metal_translate.iron": "Iron",
+  "metallics_arts.metal_translate.steel": "Steel",
+  "metallics_arts.metal_translate.tin": "Tin",
+  "metallics_arts.metal_translate.pewter": "Pewter",
+  "metallics_arts.metal_translate.zinc": "Zinc",
+  "metallics_arts.metal_translate.brass": "Brass",
+  "metallics_arts.metal_translate.copper": "Copper",
+  "metallics_arts.metal_translate.bronze": "Bronze",
+  "metallics_arts.metal_translate.aluminum": "Aluminum",
+  "metallics_arts.metal_translate.duralumin": "Duralumin",
+  "metallics_arts.metal_translate.chromium": "Chromium",
+  "metallics_arts.metal_translate.nicrosil": "Nicrosil",
+  "metallics_arts.metal_translate.gold": "Gold",
+  "metallics_arts.metal_translate.electrum": "Electrum",
+  "metallics_arts.metal_translate.bendalloy": "Bendalloy",
+  "metallics_arts.metal_translate.cadmium": "Cadmium",
+  "metallics_arts.metal_translate.atium": "Atium",
+  "metallics_arts.metal_translate.malatium": "Malatium",
+  "metallics_arts.metal_translate.lerasium": "Lerasium",
+  "metallics_arts.metal_translate.ettmetal": "Ettmetal",
+
+  "metallics_arts.mental_mind_translate.has_reserve": "Has Allomantic Reserves",
+  "metallics_arts.mental_mind_translate.not_has_reserve": "Hasn´t Allomantic Reserves",
+
+  "metallics_arts.mental_mind_translate.uses": "Uses",
+
+  "metallics_arts.spike_feruchemic_power": "Power stored: Feruchemic",
+  "metallics_arts.spike_allomantic_power": "Power stored: Allomantic"
 }
