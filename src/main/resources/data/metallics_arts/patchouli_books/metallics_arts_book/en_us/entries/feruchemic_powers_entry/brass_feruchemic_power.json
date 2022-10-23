@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:brass_feruchemic_icon",
-      "text": "Almacenar:$(br2) - Almacena calor $(br2)$(br2) *Solo cuando te quemas$(br2) *Cuidado con los biomas frios "
+      "text": "$(br)Store:$(br2) - While you store, it allows you to store your heat, making you less vulnerable to heat sources."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)Decantar:$(br2) - Decanta calor $(br2)$(br2) *Tus golpes queman a otros jugadores$(br2) *Evita congelarte en la nieve"
+      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - As you decant, you expel heat, causing you to set other entities on fire on hit."
     }
   ]
 }

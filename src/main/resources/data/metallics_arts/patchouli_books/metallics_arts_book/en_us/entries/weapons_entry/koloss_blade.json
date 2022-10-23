@@ -1,11 +1,12 @@
 {
-  "name": "Koloss Blade",
+  "name": "Espada Koloss",
   "icon": "metallics_arts:textures/item/combat/koloss_blade.png",
   "category": "metallics_arts:weapons_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "burning bendalloy creates a bubble around you, which makes everything go faster inside it"
+      "title": "Koloss Blade",
+      "text": "Giant stone sword, of rudimentary elaboration. It's a really heavy weapon, but with the right push it can do extraordinary damage."
     },
     {
       "type": "patchouli:crafting",

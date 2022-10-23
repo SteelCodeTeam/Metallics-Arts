@@ -1,17 +1,17 @@
 {
-  "name": "Allomantic Chromium",
+  "name": "Cromo Alomantico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/chromium_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:chromium_allomantic_icon",
-      "text": "$(br)Incrementa capacidades fisicas del jugador $(br)"
+      "text": "$(br)Drains the allomantic reserves of the player you hit. $(br)"
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Potencia en gran medida el poder por unos segundos $(br2) + Lerasium: Potencia levemente el poder $(br2) + Ambos: Potencia al maximo el poder por unos segundos"
+      "text": "$(br) + Duralumin: Eliminate reservations in a considerable area. $(br2) + Lerasium: Remove reservations in a small area  $(br2) + Both: Delete reservations in a large area around you"
     }
   ]
 }

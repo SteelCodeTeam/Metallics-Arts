@@ -1,17 +1,17 @@
 {
-  "name": "Allomantic Copper",
+  "name": "Cobre Alomantico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/copper_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:copper_allomantic_icon",
-      "text": "$(br)Incrementa capacidades fisicas del jugador $(br)"
+      "text": "$(br)Makes nearby entities ignore you. $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - Prevent other players from seeing that you're burning metal."
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Potencia en gran medida el poder por unos segundos $(br2) + Lerasium: Potencia levemente el poder $(br2) + Ambos: Potencia al maximo el poder por unos segundos"
+      "text": "$(br) + Duralumin: stop the entities. $(br2) + Lerasium: Apply the effect in area. $(br2) + Ambos: Stop entities in area."
     }
   ]
 }

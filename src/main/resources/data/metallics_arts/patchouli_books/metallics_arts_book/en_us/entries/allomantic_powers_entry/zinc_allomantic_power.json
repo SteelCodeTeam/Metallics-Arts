@@ -1,17 +1,17 @@
 {
-  "name": "Allomantic Zinc",
+  "name": "Zinc Alomantico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/zinc_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:zinc_allomantic_icon",
-      "text": "$(br)Incrementa capacidades fisicas del jugador $(br)"
+      "text": "$(br)Makes entities aggressive. $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - You can free pets from their owner."
     },
     {
       "type": "patchouli:text",
-      "title": "Interacciones",
-      "text": "$(br) + Duralumin: Potencia en gran medida el poder por unos segundos $(br2) + Lerasium: Potencia levemente el poder $(br2) + Ambos: Potencia al maximo el poder por unos segundos"
+      "title": "Interactions",
+      "text": "$(br) + Duralumin: Strengthens the entity. $(br2) + Lerasium: Apply the effect in area. $(br2) + Ambos: Strengthens entities in area."
     }
   ]
 }

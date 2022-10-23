@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:bendalloy_allomantic_icon",
-      "text": "$(br)Incrementa capacidades fisicas del jugador $(br)"
+      "text": "$(br)Speed up the game around you. $(br)"
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Potencia en gran medida el poder por unos segundos $(br2) + Lerasium: Potencia levemente el poder $(br2) + Ambos: Potencia al maximo el poder por unos segundos"
+      "text": "$(br) + Duralumin: Duplicate the effect and increase the area. $(br2) + Lerasium: Increase the area $(br2) + Both: Duplicates the effect and increases the area greatly"
     }
   ]
 }

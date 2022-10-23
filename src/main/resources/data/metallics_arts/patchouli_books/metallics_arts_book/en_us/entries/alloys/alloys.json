@@ -1,12 +1,12 @@
 {
-  "name": "Alloys",
+  "name": "Aleaciones",
   "icon": "metallics_arts:textures/item/metal/ingot/cadmium_ingot.png",
   "category": "metallics_arts:crafting_category",
   "sortnum": 0,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "aqui estan los metales de aleacion"
+      "text": "Alloys of metals that you can find around the world."
     },
     {
       "type": "patchouli:crafting",

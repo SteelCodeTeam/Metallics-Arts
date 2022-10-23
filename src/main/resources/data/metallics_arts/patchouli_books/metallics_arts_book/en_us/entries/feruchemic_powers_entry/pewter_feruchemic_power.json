@@ -1,16 +1,16 @@
 {
-  "name": "Feruchemic Pewter",
+  "name": "Peltre Feruquimico",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/pewter_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:pewter_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Almacena en la mente de metal capacidades fisica del jugador, para poder usarla mas tarde"
+      "text": "$(br)Store:$(br2) - While you decant, you feel weaker, I could almost win you a chicken."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Decanta de la mente de metal las capacidades fisica del jugador, aumentando las actuales"
+      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - While you store, you feel much stronger, you could kill the Wither boss with your fists."
     }
   ]
 }

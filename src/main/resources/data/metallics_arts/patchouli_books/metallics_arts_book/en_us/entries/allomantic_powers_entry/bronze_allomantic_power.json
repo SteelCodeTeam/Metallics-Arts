@@ -1,17 +1,17 @@
 {
-  "name": "Allomantic Bronze",
+  "name": "Bronce Alomantico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/bronze_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:bronze_allomantic_icon",
-      "text": "$(br)Incrementa capacidades fisicas del jugador $(br)"
+      "text": "$(br)Makes nearby entities follow you around. $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - Mark players burning metals around you."
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Potencia en gran medida el poder por unos segundos $(br2) + Lerasium: Potencia levemente el poder $(br2) + Ambos: Potencia al maximo el poder por unos segundos"
+      "text": "$(br) + Duralumin: Increases damage and speed of entities. $(br2) + Lerasium: Apply the effect in area. $(br2) + Bonus: Increases the damage and speed of the entities in the area."
     }
   ]
 }

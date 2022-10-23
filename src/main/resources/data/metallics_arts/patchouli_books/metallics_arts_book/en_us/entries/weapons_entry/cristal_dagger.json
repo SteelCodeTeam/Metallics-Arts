@@ -1,11 +1,12 @@
 {
-  "name": "Cristal Dagger",
+  "name": "Daga de Cristal",
   "icon": "metallics_arts:textures/item/combat/cristal_dagger.png",
   "category": "metallics_arts:weapons_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "burning bendalloy creates a bubble around you, which makes everything go faster inside it"
+      "title": "Glass Dagger",
+      "text": "Extremely fast dagger, which deals little damage, is very fragile. You can hit critical."
     },
     {
       "type": "patchouli:crafting",

@@ -1,17 +1,17 @@
 {
-  "name": "Allomantic Brass",
+  "name": "Latón Alomantico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/brass_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:brass_allomantic_icon",
-      "text": "$(br)Incrementa capacidades fisicas del jugador $(br)"
+      "text": "$(br)Hostile entities will ignore you. $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - You have a chance to tame pets."
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Potencia en gran medida el poder por unos segundos $(br2) + Lerasium: Potencia levemente el poder $(br2) + Ambos: Potencia al maximo el poder por unos segundos"
+      "text": "$(br) + Duralumin: Stops and debilitates the entity. $(br2) + Lerasium: Apply the effect in area. $(br2) + Both: Stops and weakens entities in the area."
     }
   ]
 }

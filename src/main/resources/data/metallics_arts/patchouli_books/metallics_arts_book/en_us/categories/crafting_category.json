@@ -1,6 +1,6 @@
 {
-  "name": "Crafteos",
-  "description": "aqui lo que puedes craftear",
+  "name": "Craftings",
+  "description": "Here you can consult how to create the items of the mod. You can also use JEI!",
   "icon": "minecraft:crafting_table"
 
 }
