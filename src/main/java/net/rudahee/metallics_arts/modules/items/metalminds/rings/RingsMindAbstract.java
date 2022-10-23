@@ -20,6 +20,8 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 
 public abstract class RingsMindAbstract extends Item implements ICurioItem {
@@ -113,7 +115,9 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
                 toolTips.add(Component.translatable(metals[1].getNameLower().substring(0,1).toUpperCase()+metals[1].getNameLower().substring(1)+": "+ ((stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_max_capacity"))+"%"));
 
             }
-            toolTips.add(Component.translatable("Owner: "+ (stack.getTag().getString("key"))));
+            if (world != null) {
+                toolTips.add(Component.translatable("Owner: "+ ((stack.getTag().getString("key").equals("Nobody")) ? "Nobody" : world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
+            }
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
     }

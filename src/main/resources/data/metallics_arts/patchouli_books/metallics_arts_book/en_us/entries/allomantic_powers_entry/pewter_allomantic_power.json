@@ -1,17 +1,17 @@
 {
-  "name": "Allomantic Pewter",
+  "name": "Peltre Alomantico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/pewter_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:pewter_allomantic_icon",
-      "text": "$(br)Incrementa capacidades fisicas del jugador $(br)"
+      "text": "$(br)Increase your physical capabilities. $(br)$(br)$(br)$(br)$(br)"
     },
     {
       "type": "patchouli:text",
-      "title": "Interacciones",
-      "text": "$(br) + Duralumin: Potencia en gran medida el poder por unos segundos $(br2) + Lerasium: Potencia levemente el poder $(br2) + Ambos: Potencia al maximo el poder por unos segundos"
+      "title": "Interactions",
+      "text": "$(br) + Duralumin: Greatly increases upgrades. $(br2) + Lerasium: Slightly increases buffs. $(br2) + Both: Max out upgrades."
     }
   ]
 }

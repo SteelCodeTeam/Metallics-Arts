@@ -1,12 +1,12 @@
 {
-  "name": "Obsidian Dagger",
+  "name": "Daga de Obsidiana",
   "icon": "metallics_arts:textures/item/combat/obsidian_dagger.png",
   "category": "metallics_arts:weapons_category",
   "pages": [
     {
       "type": "patchouli:text",
       "title": "Obsidian Dagger",
-      "text": "burning bendalloy creates a bubble around you, which makes everything go faster inside it"
+      "text": "Durable and fast dagger, with moderate damage. Can produce bleed."
     },
     {
       "type": "patchouli:crafting",

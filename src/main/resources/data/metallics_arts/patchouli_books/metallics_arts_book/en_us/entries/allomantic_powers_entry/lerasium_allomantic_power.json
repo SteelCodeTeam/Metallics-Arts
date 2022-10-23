@@ -1,17 +1,17 @@
 {
-  "name": "Allomantic Lerasium",
+  "name": "Lerasium Alomantico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/lerasium_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:lerasium_allomantic_icon",
-      "text": "$(br)Incrementa capacidades fisicas del jugador $(br)"
+      "text": "$(br)Increases the potency of the metals you are burning. $(br)"
     },
     {
       "type": "patchouli:text",
-      "title": "Interacciones",
-      "text": "$(br) + Duralumin: Potencia en gran medida el poder por unos segundos $(br2) + Lerasium: Potencia levemente el poder $(br2) + Ambos: Potencia al maximo el poder por unos segundos"
+      "title": "Interactions",
+      "text": "$(br) + Duralumin: Nothing. $(br2) + Lerasium: Nothing. $(br2) + Both: Nothing."
     }
   ]
 }

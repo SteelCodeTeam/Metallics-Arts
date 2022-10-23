@@ -1,11 +1,12 @@
 {
-  "name": "Dueling Staff",
+  "name": "Baston de Duelos",
   "icon": "metallics_arts:textures/item/combat/dueling_staff.png",
   "category": "metallics_arts:weapons_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "burning bendalloy creates a bubble around you, which makes everything go faster inside it"
+      "title": "Dueling Staff",
+      "text": "Wooden cane with a very hard metallic piece of decoration on the pommel. Seems like it does more damage the more you use it."
     },
     {
       "type": "patchouli:crafting",

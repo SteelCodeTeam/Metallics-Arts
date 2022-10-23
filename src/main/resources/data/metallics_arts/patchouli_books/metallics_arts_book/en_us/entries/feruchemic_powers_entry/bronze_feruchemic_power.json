@@ -1,16 +1,16 @@
 {
-  "name": "Feruchemic Bronze",
+  "name": "Bronce Feruquimico",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/bronze_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:bronze_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Almacena en la mente de metal capacidades fisica del jugador, para poder usarla mas tarde"
+      "text": "$(br)Store:$(br2) - While you store, it allows you to keep vigil, preventing Phantoms from spawning."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Decanta de la mente de metal las capacidades fisica del jugador, aumentando las actuales"
+      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - While decanting, you will feel tired at all times, and therefore Phantoms will appear near you."
     }
   ]
 }

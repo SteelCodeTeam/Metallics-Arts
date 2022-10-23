@@ -1,17 +1,17 @@
 {
-  "name": "Allomantic Ettmetal",
+  "name": "Ettmetal Alomantico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/ettmetal_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:ettmetal_allomantic_icon",
-      "text": "$(br)Incrementa capacidades fisicas del jugador $(br)"
+      "text": "$(br)You explode $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - By default, it does not break blocks."
     },
     {
       "type": "patchouli:text",
-      "title": "Interacciones",
-      "text": "$(br) + Duralumin: Potencia en gran medida el poder por unos segundos $(br2) + Lerasium: Potencia levemente el poder $(br2) + Ambos: Potencia al maximo el poder por unos segundos"
+      "title": "Interactions",
+      "text": "$(br) + Duralumin: The explosion breaks blocks. $(br2) + Lerasium: Nothing. $(br2) + Both: The explosion breaks blocks."
     }
   ]
 }

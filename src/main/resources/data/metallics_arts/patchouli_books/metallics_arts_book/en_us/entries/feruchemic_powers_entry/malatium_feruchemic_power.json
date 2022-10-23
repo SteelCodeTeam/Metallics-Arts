@@ -1,16 +1,16 @@
 {
-  "name": "Feruchemic Malatium",
+  "name": "Malatium Feruquimico",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/malatium_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:malatium_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Almacena en la mente de metal capacidades fisica del jugador, para poder usarla mas tarde"
+      "text": "$(br)Store:$(br2) - While you store, you store the item's durability in your hand, so you can use it later."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Decanta de la mente de metal las capacidades fisica del jugador, aumentando las actuales"
+      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - While you decant, the durability of the item in hand increases, thanks to your reserves."
     }
   ]
 }

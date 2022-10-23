@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:aluminum_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Almacena en la mente de metal capacidades fisica del jugador, para poder usarla mas tarde"
+      "text": "$(br)Store:$(br2) - By storing, you remove the identity of a metal mind."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Decanta de la mente de metal las capacidades fisica del jugador, aumentando las actuales"
+      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - By decanting, you seal your identity in a metal mind."
     }
   ]
 }

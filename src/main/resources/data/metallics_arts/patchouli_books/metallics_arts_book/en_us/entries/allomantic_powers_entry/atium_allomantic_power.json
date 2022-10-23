@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:atium_allomantic_icon",
-      "text": "$(br)Incrementa capacidades fisicas del jugador $(br)"
+      "text": "$(br)Gives you chance to avoid incoming damage.  $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - If your attacker burns Atium he can cancel a part of the effects."
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Potencia en gran medida el poder por unos segundos $(br2) + Lerasium: Potencia levemente el poder $(br2) + Ambos: Potencia al maximo el poder por unos segundos"
+      "text": "$(br) + Duralumin: Greatly increases evasion chance. $(br2) + Lerasium: Slightly increases evasion chance. $(br2) + Both: Maximizes Evasion Chance."
     }
   ]
 }

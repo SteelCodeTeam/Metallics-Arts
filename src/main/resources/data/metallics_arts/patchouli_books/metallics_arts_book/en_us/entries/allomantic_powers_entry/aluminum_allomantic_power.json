@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:aluminum_allomantic_icon",
-      "text": "$(br)Incrementa capacidades fisicas del jugador $(br)"
+      "text": "$(br)Drain your Allomantic reserves. $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - The greater the reserve you consume, the greater the probability of removing other adverse effects."
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Potencia en gran medida el poder por unos segundos $(br2) + Lerasium: Potencia levemente el poder $(br2) + Ambos: Potencia al maximo el poder por unos segundos"
+      "text": "$(br) + Duralumin: Nothing $(br2) + Lerasium: Nothing $(br2) + Both: Nothing"
     }
   ]
 }

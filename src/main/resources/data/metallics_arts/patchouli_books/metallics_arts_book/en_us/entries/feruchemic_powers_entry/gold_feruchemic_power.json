@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:gold_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Almacena en la mente de metal capacidades fisica del jugador, para poder usarla mas tarde"
+      "text": "$(br)Store:$(br2) - While you store, you seem to feel unwell, it almost seems that you are going to die."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Decanta de la mente de metal las capacidades fisica del jugador, aumentando las actuales"
+      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - As you decant, it looks like you could take on any disease."
     }
   ]
 }

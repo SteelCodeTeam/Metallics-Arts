@@ -1,11 +1,12 @@
 {
-  "name": "Obsidian Axe",
+  "name": "Hacha de Obsidiana",
   "icon": "metallics_arts:textures/item/combat/obsidian_axe.png",
   "category": "metallics_arts:weapons_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "burning bendalloy creates a bubble around you, which makes everything go faster inside it"
+      "title": "Obsidian Axe",
+      "text": "Heavy weapon, and slow to handle. causes great damage. You can disarm the target."
     },
     {
       "type": "patchouli:crafting",

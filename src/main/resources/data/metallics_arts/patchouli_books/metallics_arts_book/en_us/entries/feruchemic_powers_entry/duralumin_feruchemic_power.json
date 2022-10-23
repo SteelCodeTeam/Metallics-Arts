@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:duralumin_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Almacena en la mente de metal capacidades fisica del jugador, para poder usarla mas tarde"
+      "text": "$(br)Store:$(br2) - While you store, you seem disconnected from the world, it almost seems like it is rejecting you."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Decanta de la mente de metal las capacidades fisica del jugador, aumentando las actuales"
+      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - While you decant, it seems that you find the paths with your eyes closed, it seems as if it were your land."
     }
   ]
 }

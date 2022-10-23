@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.powers;
 
+import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
@@ -33,6 +34,8 @@ import net.rudahee.metallics_arts.modules.powers.client.PowersClientEventHandler
 import net.rudahee.metallics_arts.modules.powers.helpers.*;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModItems;
+import org.openjdk.nashorn.internal.ir.annotations.Ignore;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -222,18 +225,47 @@ public class PowersEventHandler {
             playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                 playerCapability -> {
 
+
                     /*******************************
                      *   DAMAGE WITH - PEWTER -
                      *******************************/
                     if (playerCapability.isBurning(MetalsNBTData.PEWTER)) {
                         float amountDamage = event.getAmount();
 
-                        /* PEWTER + DURALUMIN */
+                        ItemStack itemInHand = playerEntity.getMainHandItem();
+
+                        if (itemInHand.getItem() == ModItems.DUELING_STAFF.get()) {
+
+                            amountDamage = amountDamage * (((float) itemInHand.getDamageValue() / (float) itemInHand.getMaxDamage()) * 3.2f);
+                        }
+
+                        if (itemInHand.getItem() == ModItems.CRISTAL_DAGGER.get()) {
+                            if (Math.random() < 0.10d) {
+                                amountDamage = amountDamage * 2;
+                            }
+                        }
+
+                        if (itemInHand.getItem() == ModItems.OBSIDIAN_DAGGER.get()) {
+                            if (Math.random() < 0.30d) {
+                                event.getEntity().addEffect(new MobEffectInstance(MobEffects.WITHER, 20, 1, true, true, false));
+                            }
+                        }
+
+                        if (itemInHand.getItem() == ModItems.OBSIDIAN_AXE.get()) {
+                            if (Math.random() < 0.50d) {
+                                event.getEntity().addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 20, 1, true, true, false));
+                                event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
+                                event.getEntity().addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 20, 1, true, true, false));
+                                event.getEntity().addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 2, true, true, false));
+
+                            }
+                        }
+
                         if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
-                            amountDamage = PewterAndTinHelpers.getDamageWithIncrement(amountDamage);
-                            amountDamage = PewterAndTinHelpers.getDamageWithMultiplier(amountDamage);
-                        } else {
-                            amountDamage = PewterAndTinHelpers.getDamageWithIncrement(amountDamage);
+                            if (itemInHand.getItem() == ModItems.KOLOSS_BLADE.get()) {
+                                event.getEntity().setHealth(2f);
+                                amountDamage = 0;
+                            }
                         }
                         event.setAmount(amountDamage);
                     }
@@ -383,6 +415,15 @@ public class PowersEventHandler {
                                     }
                                     playerCapability.clearListExternalEnhancedDrain();
                                 }
+                            }
+
+                            if (!playerCapability.isBurning(MetalsNBTData.PEWTER)
+                                    && (player.getMainHandItem().getItem() == ModItems.KOLOSS_BLADE.get() || player.getOffhandItem().getItem() == ModItems.KOLOSS_BLADE.get())) {
+
+                                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 2, true, true, false));
+                                player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 10, 2, true, true, false));
+                                player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 10, 2, true, true, false));
+
                             }
 
                             /************************

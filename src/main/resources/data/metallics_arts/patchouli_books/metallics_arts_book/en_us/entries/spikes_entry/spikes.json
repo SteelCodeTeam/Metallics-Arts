@@ -1,12 +1,12 @@
 {
-  "name": "Metal Spikes",
+  "name": "Clavos Hemalúrgicos",
   "icon": "metallics_arts:textures/item/spikes/gold_spike.png",
   "category": "metallics_arts:crafting_category",
   "sortnum": 4,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "burning bendalloy creates a bubble around you, which makes everything go faster inside it"
+      "text": "Really sharp metal nails. What will be its use?"
     },
     {
       "type": "patchouli:crafting",
