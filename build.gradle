@@ -5,7 +5,7 @@ plugins {
 }
 
 
-version = 'v1.1.0-mc1.19.2'
+version = '1.19.2-1.1.0'
 group = 'net.rudahee.metallics_arts' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'metallics_arts'
 
@@ -161,7 +161,7 @@ jar {
         attributes([
                 "Specification-Title"     : "Metallics Arts",
                 "Specification-Vendor"    : "RuDaHee & TobibusFate",
-                "Specification-Version"   : "v1.0", // We are version 1 of ourselves
+                "Specification-Version"   : project.version,
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "RuDaHee & TobibusFate",
