@@ -74,6 +74,7 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
 
     @Override
     public boolean canEquip(SlotContext slotContext, ItemStack stack) {
+        ICurioItem.super.canEquip(slotContext, stack);
         if(!stack.hasTag()) {
             stack.setTag(addRingTags());
         }
@@ -84,17 +85,15 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
         boolean canEquip = false;
 
         if (cap != null) {
-            canEquip = (!(cap.getMetalMindEquiped(this.metals[0].getGroup()) && !cap.getMetalMindEquiped(this.metals[1].getGroup())));
+            canEquip = !(cap.getMetalMindEquiped(this.metals[0].getGroup()));
         }
-
         if (canEquip){
             if (!stack.getTag().getString("key").equals(unkeyedString)
                     && !player.getStringUUID().equals(stack.getTag().getString("key"))){
                 canEquip = false;
             }
         }
-        ICurioItem.super.canEquip(slotContext, stack);
-        return canEquip ;
+        return canEquip;
     }
 
     @Override

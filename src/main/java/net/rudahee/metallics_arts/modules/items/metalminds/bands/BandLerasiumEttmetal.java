@@ -68,8 +68,9 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                         if (nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve") > 0) {
 
                             if (nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve") > 10) {
-                                player.level.explode(player,player.position().x,player.position().y,player.position().z,(float) nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve")/410,Explosion.BlockInteraction.NONE);
-                                player.hurt(DamageSource.MAGIC,(float) nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve")/205); // 410 hace medio corazon por carga, por lo que la 10 serian 5 corazones
+                                generateExplosion(player,nbtLocal);
+                                //player.level.explode(player,player.position().x,player.position().y,player.position().z,(float) nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve")/410,Explosion.BlockInteraction.NONE);
+                                //player.hurt(DamageSource.MAGIC,(float) nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve")/205); // 410 hace medio corazon por carga, por lo que la 10 serian 5 corazones
                                 nbtLocal.putInt(getMetals(1).getNameLower() + "_feruchemic_reserve", 0);
                                 stack.setTag(nbtLocal);
                             } else {
@@ -103,6 +104,13 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
         }
 
         super.curioTick(slotContext, stack);
+    }
+
+    public void generateExplosion(Player player,CompoundTag nbtLocal) {
+        player.level.explode(player,player.position().x,player.position().y,player.position().z,(float) nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve")/410,Explosion.BlockInteraction.NONE);
+        player.setHealth((player.getHealth() - ((float) nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve")/205)));
+
+        //player.hurt(DamageSource.MAGIC,(float) ); // 410 hace medio corazon por carga, por lo que la 10 serian 5 corazones
     }
 
 
@@ -144,7 +152,6 @@ public class BandLerasiumEttmetal extends BandMindAbstract {
                         stack.getTag().putInt(metal.getNameLower()+"inLerasiumBand",metal.getMaxAllomanticTicksStorage());
                         continueSaving = false;
                     }
-
                 }
             }
         }

@@ -61,8 +61,6 @@ public class ClientUtils {
         return objectMouseOver;
     }
 
-
-
     public static void drawMetalLine(PoseStack stack, Vec3 player, Vec3 dest, float width, float r, float g, float b) {
 
         //        RenderSystem.lineWidth(width);
@@ -107,7 +105,7 @@ public class ClientUtils {
         CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curioData -> {
             for (int i=0; i < curioData.getSlots(); i++) {
 
-                if (curioData.getStackInSlot(i).getItem().toString().toLowerCase().contains(metal.getNameLower())){
+                if (curioData.getStackInSlot(i).getItem().getDescriptionId().toLowerCase().contains(metal.getNameLower())){
                     if (curioData.getStackInSlot(i).hasTag()) {
                         actualFeruchemicReserve = curioData.getStackInSlot(i).getTag().getInt(metal.getNameLower() + "_feruchemic_reserve");
                     }
@@ -116,14 +114,15 @@ public class ClientUtils {
             }
         });
 
-            if (actualFeruchemicReserve <= 0) {
-                ModNetwork.sendToServer(new UpdateDecantPacket(metal, false));
-            } else {
-                if (capability.isStoring(metal)) {
-                    ModNetwork.sendToServer(new UpdateStoragePacket(metal, false));
-                }
-                ModNetwork.sendToServer(new UpdateDecantPacket(metal, !capability.isDecanting(metal)));
+
+        if (actualFeruchemicReserve <= 0) {
+            ModNetwork.sendToServer(new UpdateDecantPacket(metal, false));
+        } else {
+            if (capability.isStoring(metal)) {
+                ModNetwork.sendToServer(new UpdateStoragePacket(metal, false));
             }
+            ModNetwork.sendToServer(new UpdateDecantPacket(metal, !capability.isDecanting(metal)));
+        }
 
     }
     public static void toggleStorage(MetalsNBTData metal, IDefaultInvestedPlayerData capability, Player player){
@@ -133,12 +132,12 @@ public class ClientUtils {
         CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curioData -> {
             for (int i=0; i < curioData.getSlots(); i++) {
 
-                if (curioData.getStackInSlot(i).getItem().toString().toLowerCase().contains(metal.getNameLower())){
+                if (curioData.getStackInSlot(i).getItem().getDescriptionId().toLowerCase().contains(metal.getNameLower())){
+
                     if (curioData.getStackInSlot(i).hasTag()) {
                         actualFeruchemicReserve = curioData.getStackInSlot(i).getTag().getInt(metal.getNameLower() + "_feruchemic_reserve");
                     }
                     isBand = curioData.getStackInSlot(i).getItem().toString().toLowerCase().contains("band");
-
                 }
             }
         });
@@ -152,7 +151,7 @@ public class ClientUtils {
                 ModNetwork.sendToServer(new UpdateStoragePacket(metal, !capability.isStoring(metal)));
             }
         } else {
-            if (actualFeruchemicReserve <= 0) {
+            if (actualFeruchemicReserve >= metal.getMaxReserveRing()) {
                 ModNetwork.sendToServer(new UpdateStoragePacket(metal, false));
             } else {
                 if (capability.isDecanting(metal)) {
