@@ -84,7 +84,8 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         boolean canEquip = false;
 
         if (cap != null) {
-            canEquip = (!(cap.getMetalMindEquiped(this.metals[0].getGroup()) && !cap.getMetalMindEquiped(this.metals[1].getGroup())));
+            canEquip = !(cap.getMetalMindEquiped(this.metals[0].getGroup()));
+            //canEquip = (!(cap.getMetalMindEquiped(this.metals[0].getGroup()) && !cap.getMetalMindEquiped(this.metals[1].getGroup())));
         }
 
         if (canEquip){
