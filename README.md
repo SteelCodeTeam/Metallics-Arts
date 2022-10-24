@@ -15,9 +15,9 @@
 ## **Description 📝**
 **This mod is based on "Mistborn" Brandon Sanderson books saga**, therefore we recommend having read some books of the saga before playing with the mod. Obviously we recommend all the author's works.
 
-Metallics Arts is a mod for Minecraft 1.16.5, designed to work with the Forge API.
+Metallics Arts is a mod for Minecraft 1.19.2, designed to work with the Forge API.
 
-This mod is a fork of Lego's Allomancy mod, so we recommend you check out his work, as his mod has a lot to offer and without a doubt: It's at least twice as cool as ours!
+This mod is a pseudo-fork of Lego's Allomancy mod, so we recommend you check out his work, as his mod has a lot to offer and without a doubt: It's at least twice as cool as ours!
 
 Our mod adds all three metal arts (Allomancy, Feruchemy and Hemalurgy) to Minecraft.
 
@@ -46,12 +46,9 @@ So we really hope you enjoy it!
 
 ## **Requirements 📦**
 We have two mandatory dependencies:
-- **Forge 1.16.5-36.2.26** or superior
-- **Curios 1.16.5-4.0.6.8** or superior
-
-We also implement integration with 2 other mods, optionally:
-- **Hwyla**
-- **JEI**
+- **Forge 1.19.2-43.1.15** or superior
+- **Curios 1.19.2-5.1.1.0** or superior
+- **Patchouli 1.19-75** or superior
 
 <br>
 
@@ -61,7 +58,8 @@ We also implement integration with 2 other mods, optionally:
 
 ## **Changelog ✒️**
 
-We are going to start modifying the changelog from beta 1.0.
+- Released first version. [v1.0.0]
+- Add special effects to weapon when you are using pewter [v1.0.0]
 
 <br>
 
@@ -71,7 +69,22 @@ We are going to start modifying the changelog from beta 1.0.
 
 ## **Future Improvements ⬆️**
 
-We are going to start modifying the future improvements from beta 1.0.
+**Known Issues**
+- Its possible use two metalminds with the same metals.
+- Feruchemic selector can have problems with non-english location.
+- Selectors dont have location defined correctly
+- In some computers, allomantic lines doesnt work, we dont have idea whats its going on.
+- Patchouli its not redimensioning title for any reason.
+
+**Improvements**
+- ~~Add special effects to weapons if you are burning pewter.~~ [v1.0.0]
+- Implements Ettmetal damage in explosion. 
+- Do steel flying more comfortable. (Its not a priority)
+- Choose better colors to selectors.
+- Banners with metals symbols.
+- Some commands to get metalminds charged.
+- Add sound effects.
+- Add some advancements.
 
 <br>
 

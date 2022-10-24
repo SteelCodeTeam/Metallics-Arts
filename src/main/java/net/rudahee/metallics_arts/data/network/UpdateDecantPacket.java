@@ -10,6 +10,7 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import java.util.function.Supplier;
 
 public class UpdateDecantPacket {
+
     private final MetalsNBTData metal;
     private final boolean value;
 
@@ -42,5 +43,13 @@ public class UpdateDecantPacket {
         });
 
         context.get().setPacketHandled(true);
+    }
+
+    public MetalsNBTData getMetal() {
+        return metal;
+    }
+
+    public boolean isValue() {
+        return value;
     }
 }

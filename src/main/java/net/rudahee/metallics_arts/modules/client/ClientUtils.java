@@ -107,7 +107,7 @@ public class ClientUtils {
         CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curioData -> {
             for (int i=0; i < curioData.getSlots(); i++) {
 
-                if (curioData.getStackInSlot(i).getItem().getDescriptionId().toLowerCase().contains(metal.getNameLower())){
+                if (curioData.getStackInSlot(i).getItem().toString().toLowerCase().contains(metal.getNameLower())){
                     if (curioData.getStackInSlot(i).hasTag()) {
                         actualFeruchemicReserve = curioData.getStackInSlot(i).getTag().getInt(metal.getNameLower() + "_feruchemic_reserve");
                     }
@@ -116,7 +116,6 @@ public class ClientUtils {
             }
         });
 
-        if (isBand) {
             if (actualFeruchemicReserve <= 0) {
                 ModNetwork.sendToServer(new UpdateDecantPacket(metal, false));
             } else {
@@ -125,16 +124,6 @@ public class ClientUtils {
                 }
                 ModNetwork.sendToServer(new UpdateDecantPacket(metal, !capability.isDecanting(metal)));
             }
-        } else {
-            if (actualFeruchemicReserve <= 0) {
-                ModNetwork.sendToServer(new UpdateDecantPacket(metal, false));
-            } else {
-                if (capability.isStoring(metal)) {
-                    ModNetwork.sendToServer(new UpdateStoragePacket(metal, false));
-                }
-                ModNetwork.sendToServer(new UpdateDecantPacket(metal, !capability.isDecanting(metal)));
-            }
-        }
 
     }
     public static void toggleStorage(MetalsNBTData metal, IDefaultInvestedPlayerData capability, Player player){
@@ -144,7 +133,7 @@ public class ClientUtils {
         CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curioData -> {
             for (int i=0; i < curioData.getSlots(); i++) {
 
-                if (curioData.getStackInSlot(i).getItem().getDescriptionId().toLowerCase().contains(metal.getNameLower())){
+                if (curioData.getStackInSlot(i).getItem().toString().toLowerCase().contains(metal.getNameLower())){
                     if (curioData.getStackInSlot(i).hasTag()) {
                         actualFeruchemicReserve = curioData.getStackInSlot(i).getTag().getInt(metal.getNameLower() + "_feruchemic_reserve");
                     }
