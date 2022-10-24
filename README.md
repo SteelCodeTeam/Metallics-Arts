@@ -70,15 +70,17 @@ We have two mandatory dependencies:
 ## **Future Improvements ⬆️**
 
 **Known Issues**
-- Its possible use two metalminds with the same metals.
+- ~~Its possible use two metalminds with the same metals.~~ [v1.1.0]
 - Feruchemic selector can have problems with non-english location.
-- Selectors dont have location defined correctly
+- Selectors dont have location defined correctly.
 - In some computers, allomantic lines doesnt work, we dont have idea whats its going on.
 - Patchouli its not redimensioning title for any reason.
+- Vials GUI, its not drawing correctly how much metal you have.
+- ~~Lerasium rings its not working properly. Its saving double of reserve~~ [v1.1.0]
 
 **Improvements**
 - ~~Add special effects to weapons if you are burning pewter.~~ [v1.0.0]
-- Implements Ettmetal damage in explosion. 
+- ~~Implements Ettmetal damage in explosion.~~ [v1.1.0]
 - Do steel flying more comfortable. (Its not a priority)
 - Choose better colors to selectors.
 - Banners with metals symbols.
