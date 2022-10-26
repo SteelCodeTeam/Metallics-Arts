@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:bronze_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, te permite guardar vigilia, haciendo que no aparezcan Phantoms."
+      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, vas a sentirte cansado en todo momento, y por lo que, aparecerán Phantoms cerca de ti."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, vas a sentirte cansado en todo momento, y por tanto apareceran Phantoms cerca de ti."
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, te sentirás mas descansado, haciendo que los Phantoms te ignoren."
     }
   ]
 }

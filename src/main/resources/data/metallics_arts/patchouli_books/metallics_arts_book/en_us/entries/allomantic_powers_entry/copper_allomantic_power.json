@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Interacciones",
+      "title": "Interactions",
       "text": "$(br) + Duralumin: stop the entities. $(br2) + Lerasium: Apply the effect in area. $(br2) + Ambos: Stop entities in area."
     }
   ]

@@ -311,7 +311,7 @@ public class AllomanticMetalSelector extends Screen {
 
 
                 if (mouseInSector){
-                    renderTooltip(matrixStack, Component.translatable(metal.getNameLower()),mx,my);
+                    renderTooltip(matrixStack, Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mx,my);
                 }
 
                 double mod = 0.8;
@@ -349,7 +349,7 @@ public class AllomanticMetalSelector extends Screen {
                 float ysp = yp;
 
                 if (mouseInSector){
-                    renderTooltip(matrixStack, Component.translatable(metal.getNameLower()),mx,my);
+                    renderTooltip(matrixStack,Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mx,my);
                 }
 
                 double mod = 0.8;
@@ -382,7 +382,7 @@ public class AllomanticMetalSelector extends Screen {
                 float yp = centerY  + Mth.sin(rad) * radius;
 
                 if (mouseInSector){
-                    renderTooltip(matrixStack, Component.translatable(metal.getNameLower()),mx,my);
+                    renderTooltip(matrixStack, Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mx,my);
                 }
 
                 double mod = 0.9;

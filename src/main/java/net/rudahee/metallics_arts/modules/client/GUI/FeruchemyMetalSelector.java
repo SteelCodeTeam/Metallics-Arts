@@ -262,7 +262,7 @@ public class FeruchemyMetalSelector extends Screen {
         boolean inSelector = pointInTriangle(mouse,vertex1,vertex2,vertex3);
 
         if (inSelector){
-            renderTooltip(matrixStack, Component.translatable(metal.getNameLower()),mouse.x,mouse.y);
+            renderTooltip(matrixStack, Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mouse.x,mouse.y);
         }
 //metallic_arts:textures/gui/feruchemic_symbols/tin_symbol.png
         RenderSystem.setShader(GameRenderer::getPositionTexShader);

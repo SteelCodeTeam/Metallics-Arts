@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:brass_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, te permite almacenar tu calor, haciendote menos vulnerable a las fuentes de calor."
+      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, te permite almacenar tu calor, haciendote menos vulnerable a las fuentes de calor.$(br2)$(br2) - Ten cuidado de usarlo en lugares frios."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, expulsas el calor, haciendo que puedas prender en llamas a otras entidades al golpear."
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, expulsas el calor, haciendo que puedas prender en llamas a otras entidades al golpear.$(br2)$(br2) - Reconfortante contra esa fria nieve en polvo."
     }
   ]
 }

@@ -1,16 +1,16 @@
 {
-  "name": "Feruchemic Aluminum",
+  "name": "Feruchemical Aluminum",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/aluminum_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:aluminum_feruchemic_icon",
-      "text": "$(br)Store:$(br2) - By storing, you remove the identity of a metal mind."
+      "text": "$(br)Storing:$(br2) - By storing, you remove the Identity of a metalmind."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - By decanting, you seal your identity in a metal mind."
+      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - By decanting, you seal your Identity in a metalmind."
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Espada Koloss",
+  "name": "Koloss Blade",
   "icon": "metallics_arts:textures/item/combat/koloss_blade.png",
   "category": "metallics_arts:weapons_category",
   "pages": [
@@ -10,7 +10,8 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "minecraft:koloss_blade"
+      "title": " ",
+      "recipe": "minecraft:metallics_arts_koloss_blade"
     }
   ]
 }

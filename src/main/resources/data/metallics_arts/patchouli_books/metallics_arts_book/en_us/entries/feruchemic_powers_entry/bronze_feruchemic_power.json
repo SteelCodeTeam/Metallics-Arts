@@ -1,16 +1,16 @@
 {
-  "name": "Feruchemic Bronze",
+  "name": "Feruchemical Bronze",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/bronze_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:bronze_feruchemic_icon",
-      "text": "$(br)Store:$(br2) - While you store, it allows you to keep vigil, preventing Phantoms from spawning."
+      "text": "$(br)Storing:$(br2) - While storing, you will feel tired at all times, and so Phantoms will appear near you."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - While decanting, you will feel tired at all times, and therefore Phantoms will appear near you."
+      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - As you tapping, you will feel more rested, causing the Phantoms to ignore you."
     }
   ]
 }

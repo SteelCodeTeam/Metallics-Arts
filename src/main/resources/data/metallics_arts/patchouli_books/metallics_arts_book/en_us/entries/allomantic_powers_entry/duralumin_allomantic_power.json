@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Interacciones",
+      "title": "Interactions",
       "text": "$(br) + Duralumin: Nothing $(br2) + Lerasium: Nothing $(br2) + Ambos: Nothing"
     }
   ]

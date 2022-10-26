@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Interacciones",
+      "title": "Interactions",
       "text": "$(br) + Duralumin: Increases damage and speed of entities. $(br2) + Lerasium: Apply the effect in area. $(br2) + Bonus: Increases the damage and speed of the entities in the area."
     }
   ]

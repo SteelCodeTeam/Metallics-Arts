@@ -429,7 +429,7 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     public int cantMetalsDecanting(){
         int cant = 0;
         for (MetalsNBTData metal:MetalsNBTData.values()){
-            if (metal!=MetalsNBTData.ALUMINUM && metal!=MetalsNBTData.LERASIUM && metal!=MetalsNBTData.NICROSIL && metal!=MetalsNBTData.MALATIUM && metal!=MetalsNBTData.COPPER){
+            if (metal!=MetalsNBTData.ALUMINUM && metal!=MetalsNBTData.LERASIUM && metal!=MetalsNBTData.NICROSIL && metal!=MetalsNBTData.MALATIUM && metal!=MetalsNBTData.COPPER && metal!=MetalsNBTData.ETTMETAL && metal!=MetalsNBTData.ZINC){
                 if (isDecanting(metal)){
                     cant++;
                 }
@@ -442,7 +442,7 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     public int cantMetalsStoring() {
         int cant = 0;
         for (MetalsNBTData metal:MetalsNBTData.values()){
-            if (metal!=MetalsNBTData.ALUMINUM && metal!=MetalsNBTData.LERASIUM && metal!=MetalsNBTData.NICROSIL && metal!=MetalsNBTData.MALATIUM && metal!=MetalsNBTData.COPPER ){
+            if (metal!=MetalsNBTData.ALUMINUM && metal!=MetalsNBTData.LERASIUM && metal!=MetalsNBTData.NICROSIL && metal!=MetalsNBTData.MALATIUM && metal!=MetalsNBTData.COPPER && metal!=MetalsNBTData.ETTMETAL && metal!=MetalsNBTData.ZINC){
                 if (isStoring(metal)){
                     cant++;
                 }

@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:ettmetal_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Cuando almacenas, parece que esas explosiones te hacen cosquillas."
+      "text": "$(br)Almacenar:$(br2) - Cuando almacenas, parece que la energía de las explosiones que te golpean van a otro sitio."
     },
     {
       "type": "patchouli:text",

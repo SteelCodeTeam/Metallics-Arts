@@ -1,16 +1,16 @@
 {
-  "name": "Feruchemic Atium",
+  "name": "Feruchemical Atium",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/atium_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:atium_feruchemic_icon",
-      "text": "$(br)Storage:$(br2) - While you store, it allows you to become invisible."
+      "text": "$(br)Storing:$(br2) - As you decant, it allows you to shine for other players."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - As you decant, it allows you to shine for other players."
+      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - While you store, it allows you to become invisible."
     }
   ]
 }

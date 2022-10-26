@@ -71,12 +71,18 @@ We have two mandatory dependencies:
 
 **Known Issues**
 - ~~Its possible use two metalminds with the same metals.~~ [v1.1.0]
-- Feruchemic selector can have problems with non-english location.
-- Selectors dont have location defined correctly.
+- ~~Feruchemic selector can have problems with non-english location.~~ [v1.1.1]
+- ~~Selectors dont have location defined correctly.~~ [v1.1.1]
 - In some computers, allomantic lines doesnt work, we dont have idea whats its going on.
 - Patchouli its not redimensioning title for any reason.
 - Vials GUI, its not drawing correctly how much metal you have.
 - ~~Lerasium rings its not working properly. Its saving double of reserve~~ [v1.1.0]
+- ~~Translation Issues~~ [v1.1.1]
+- ~~The guide book doesn't show koloss blade craft~~ [v1.1.1]
+- ~~Add first steps to use powers for the first time in the book~~ [v1.1.1]
+- Ettmetal does a lot of damage
+- The texture of the weapons is wrong
+- ~~Feruchemic nicrosil, store with ettmetal and zinc, and should not~~ [v1.1.1]
 
 **Improvements**
 - ~~Add special effects to weapons if you are burning pewter.~~ [v1.0.0]
@@ -87,6 +93,7 @@ We have two mandatory dependencies:
 - Some commands to get metalminds charged.
 - Add sound effects.
 - Add some advancements.
+- Change in aluminum and maybe copper metalmind info
 
 <br>
 
