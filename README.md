@@ -56,10 +56,14 @@ We have two mandatory dependencies:
 
 <br>
 
-## **Changelog ✒️**
+## **Changelog ✒ [v1.1.1]️**
 
-- Released first version. [v1.0.0]
-- Add special effects to weapon when you are using pewter [v1.0.0]
+- Feruchemic selector can have problems with non-english location.
+- Selectors dont have location defined correctly.
+- Translation Issues.
+- The guide book doesn't show koloss blade craft
+- Add first steps to use powers for the first time in the book
+- Feruchemic nicrosil, store with ettmetal and zinc, and should not
 
 <br>
 
