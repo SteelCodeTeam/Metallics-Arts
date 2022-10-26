@@ -13,6 +13,9 @@
 <br>
 
 ## **Description 📝**
+
+Now, you can download here: https://www.curseforge.com/minecraft/mc-mods/metallics-arts
+
 **This mod is based on "Mistborn" Brandon Sanderson books saga**, therefore we recommend having read some books of the saga before playing with the mod. Obviously we recommend all the author's works.
 
 Metallics Arts is a mod for Minecraft 1.19.2, designed to work with the Forge API.
