@@ -277,5 +277,11 @@
   "metallics_arts.mental_mind_translate.uses": "Uses",
 
   "metallics_arts.spike_feruchemic_power": "Power stored: Feruchemic",
-  "metallics_arts.spike_allomantic_power": "Power stored: Allomantic"
+  "metallics_arts.spike_allomantic_power": "Power stored: Allomantic",
+
+  "metallics_arts.mental_mind_translate.store_identity": "Storing Identity",
+  "metallics_arts.mental_mind_translate.off_power": "Power Off",
+  "metallics_arts.spike_allomantic_power.tapping_identity": "Tapping Identity",
+
+  "metallics_arts.mental_mind_translate.shift_info": "[Shift] More info"
 }

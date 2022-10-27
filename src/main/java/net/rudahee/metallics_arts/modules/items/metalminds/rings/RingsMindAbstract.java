@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.items.metalminds.rings;
 
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -102,7 +103,7 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
             stack.setTag(addRingTags());
         }
         if (this instanceof RingLerasiumEttmetal || this instanceof RingAtiumMalatium
-                || this instanceof RingCopperBronze){
+                || this instanceof RingCopperBronze || this instanceof RingAluminumDuralumin){
             return;
         }
         if (stack.hasTag()) {
@@ -115,6 +116,10 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
             }
             if (world != null) {
                 toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
+            }
+            if (!Screen.hasShiftDown()){
+                toolTips.add(Component.translatable(" "));
+                toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             }
         }
         super.appendHoverText(stack, world, toolTips, flagIn);

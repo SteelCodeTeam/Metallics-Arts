@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.items.metalminds.rings;
 
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -106,10 +107,8 @@ public class RingLerasiumEttmetal extends RingsMindAbstract{
     }
 
     public void generateExplosion(Player player,CompoundTag nbtLocal) {
-        player.level.explode(player,player.position().x,player.position().y,player.position().z,(float) nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve")/410,Explosion.BlockInteraction.NONE);
+        player.level.explode(player,player.position().x,player.position().y,player.position().z,(float) nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve")/683,Explosion.BlockInteraction.NONE);
         player.setHealth((player.getHealth() - ((float) nbtLocal.getInt(getMetals(1).getNameLower() + "_feruchemic_reserve")/205)));
-
-        //player.hurt(DamageSource.MAGIC,(float) ); // 410 hace medio corazon por carga, por lo que la 10 serian 5 corazones
     }
 
 
@@ -198,11 +197,13 @@ public class RingLerasiumEttmetal extends RingsMindAbstract{
             } else {
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": ").append(Component.translatable("metallics_arts.mental_mind_translate.not_has_reserve")));
             }
-            if (!Screen.hasControlDown()){
+            if (!Screen.hasShiftDown()){
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(1).getNameLower()).append(": "+(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")/41)));
                 if (world != null) {
                     toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
                 }
+                toolTips.add(Component.translatable(" "));
+                toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             } else {
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(1).getNameLower()).append(": "+ ((stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity"))+"%"));
                 if (world != null) {

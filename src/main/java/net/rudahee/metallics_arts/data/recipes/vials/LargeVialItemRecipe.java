@@ -64,6 +64,21 @@ public class LargeVialItemRecipe extends CustomRecipe {
 
         boolean[] ingredients = {false, false};
 
+        boolean hasVial = false;
+
+        for(int i = 0; i < inv.getContainerSize();i++) {
+            actualIngredient = inv.getItem(i);
+            if (!actualIngredient.isEmpty()) {
+                if (INGREDIENT_VIAL.test(actualIngredient)) {
+                    if (!hasVial) {
+                        hasVial = true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+
         int cantMaxPep = 10;
 
         for(int i = 0; i < inv.getContainerSize(); i++) {

@@ -35,25 +35,24 @@ public class AllomanticMetalSelector extends Screen {
     int list =-1;
     int timeIn = 8;
 
-    static int[] noPowerImpar = new int[] {70, 70, 80, 255};
-    static int[] noPowerPar = new int[]{50, 50, 60, 255};
+    static int[] noPowerImpar = new int[] {125, 125, 125, 255};     // Grises = No tienes poder
+    static int[] noPowerPar = new int[]{109, 109, 109, 255};
 
-    static int[] noPowerParDivine = new int[] {60, 60, 70, 255};
-    static int[] noPowerImparDivine = new int[]{25, 35, 50, 255};
+    static int[] normalPar = new int[]{84, 91, 120, 255};           //azules = Tiene poder inactivo y se expande si llevas la mente
+    static int[] normalImpar = new int[]{103, 110, 140, 255};
 
     static int[] burningPar = new int[]{235, 190, 68, 255};
     static int[] burningImpar = new int[]{206, 160, 32, 255};
 
     static int[] burningParDivine = new int[]{235, 190, 45, 255};
-
     static int[] burningImparDivine = new int[]{220, 165, 40, 255};
 
-    static int[] normalPar = new int[]{125, 125, 125, 255};
-    static int[] normalImpar = new int[]{109, 109, 109, 255};
+    static int[] normalParDivine = new int[]{105, 105, 120, 255};
+    static int[] normalImparDivine = new int[]{88, 92, 110, 255};
 
+    static int[] noPowerParDivine = new int[] {140, 140, 140, 255};
+    static int[] noPowerImparDivine = new int[]{123, 123, 123, 255};
 
-    static int[] normalParDivine = new int[]{140, 140, 140, 255};
-    static int[] normalImparDivine = new int[]{100, 100, 100, 255};
 
     public AllomanticMetalSelector() {
         super(Component.translatable("metallic_arts_allomantic_selector"));
@@ -122,7 +121,9 @@ public class AllomanticMetalSelector extends Screen {
                 if (mouseInSector) {
                     this.slotSelected = actualSegment;
                     this.list=3;
-                    radius *= 1.025f;
+                    if (data.getAllomanticAmount(metal)>0){
+                        radius *= 1.025f;
+                    }
                 }
 
 
@@ -175,12 +176,14 @@ public class AllomanticMetalSelector extends Screen {
                 if (mouseInSector) {
                     this.slotSelected = actualSegment;
                     this.list=2;
-                    radius *= 1.025f;
+                    if (data.getAllomanticAmount(metal)>0){
+                        radius *= 1.025f;
+                    }
                 }
 
                 int[] actualColor;
 
-                if (actualSegment % 2 == 0) {
+                if (actualSegment % 2 != 0) {
                     if (!data.hasAllomanticPower(metal)) {
                         actualColor = noPowerPar;
                     } else if (data.isBurning(metal)) {
@@ -201,7 +204,6 @@ public class AllomanticMetalSelector extends Screen {
                 if (actualSegment  == 0) {
                     buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
                 }
-
 
                 for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
                     float rad = v + actualSegment  * degreesPerSegment ;
@@ -225,38 +227,12 @@ public class AllomanticMetalSelector extends Screen {
                 if (mouseInSector) {
                     this.slotSelected = actualSegment;
                     this.list=1;
-                    radius *= 1.025f;
+                    if (data.getAllomanticAmount(metal)>0){
+                        radius *= 1.025f;
+                    }
                 }
 
                 int[] actualColor;
-
-                /*
-                if(paridad) {
-            if (!data.hasFeruchemicPower(metal)) {
-                actualColor = noPowerPar;
-            } else if (!data.getMetalMindEquiped(metal.getGroup())){
-                actualColor = noMetalMIndPar;
-            } else if(data.isStoring(metal)){
-                actualColor = isStoragePar;
-            } else if (data.isDecanting(metal)){
-                actualColor = isDecantingPar;
-            } else {
-                actualColor = normalPar;
-            }
-        } else{
-            if (!data.hasFeruchemicPower(metal)) {
-                actualColor = noPowerImpar;
-            } else if (!data.getMetalMindEquiped(metal.getGroup())) {
-                actualColor = noMetalMIndImpar;
-            } else if(data.isStoring(metal)){
-                actualColor = isStorageImpar;
-            } else if (data.isDecanting(metal)){
-                actualColor = isDecantingImpar;
-            } else {
-                actualColor = normalImpar;
-            }
-                 */
-
                 if (actualSegment % 2 == 0) {
                     if (!data.hasAllomanticPower(metal)) {
                         actualColor = noPowerPar;
@@ -277,8 +253,6 @@ public class AllomanticMetalSelector extends Screen {
                 if (actualSegment  == 0) {
                     buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
                 }
-
-
                 for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
                     float rad = v + actualSegment  * degreesPerSegment ;
                     float xp = centerX  + Mth.cos(rad) * radius;
@@ -290,10 +264,7 @@ public class AllomanticMetalSelector extends Screen {
                     buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
                 }
             }
-
-
             tess.end();
-
             RenderSystem.enableTexture();
 
             //pintado interno
@@ -302,7 +273,9 @@ public class AllomanticMetalSelector extends Screen {
                 boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment*(actualSegment  + 1)) && (distance<internalRadio);
                 float radius = internalRadio;
                 if (mouseInSector) {
-                    radius *= 1.025f;
+                    if (data.getAllomanticAmount(metal)>0){
+                        radius *= 1.025f;
+                    }
                 }
 
                 float rad = (actualSegment  + 0.5f) * degreesPerSegment;
@@ -322,7 +295,7 @@ public class AllomanticMetalSelector extends Screen {
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
                //this.mc.getEntityRenderDispatcher().textureManager.bindForSetup(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
-                //RenderSystem.setShaderColor(1, 1, 1, 1);
+                RenderSystem.setShaderColor(1, 1, 1, 1);
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
             }
@@ -337,7 +310,9 @@ public class AllomanticMetalSelector extends Screen {
 
                 float radius = mediumRadio;
                 if (mouseInSector) {
-                    radius *= 1.025f;
+                    if (data.getAllomanticAmount(metal)>0){
+                        radius *= 1.025f;
+                    }
                 }
 
 
@@ -374,7 +349,9 @@ public class AllomanticMetalSelector extends Screen {
                 float radius = externalRadio;
 
                 if (mouseInSector) {
-                    radius *= 1.025f;
+                    if (data.getAllomanticAmount(metal)>0){
+                        radius *= 1.025f;
+                    }
                 }
 
                 float rad = (actualSegment + 0.5f) * degreesExternal;
@@ -391,8 +368,6 @@ public class AllomanticMetalSelector extends Screen {
 
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
-                //this.mc.getEntityRenderDispatcher().textureManager.bindForSetup( new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
-                //RenderSystem.setShaderColor(1, 1, 1, 1);
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
             }
@@ -426,7 +401,6 @@ public class AllomanticMetalSelector extends Screen {
         }
         return super.keyReleased(keysym, scancode, modifiers);
     }
-
 
     @Override
     public boolean mouseReleased(double mouseX, double mouseY, int button) {

@@ -13,7 +13,7 @@ public enum MetalsNBTData implements IMetal, IGems {
     BRASS("brass", "BRASS",3, 6000, true, false, 0,6000,2800),
     COPPER("copper", "COPPER",2, 8400, false, false, 1,5345,315),
     BRONZE("bronze", "BRONZE",2, 4800, false, false, 0,7200,2200),
-    ALUMINUM("aluminum", "ALUMINUM",5, 10, false, false, 5,2,2),
+    ALUMINUM("aluminum", "ALUMINUM",5, 10, false, false, 5,4,4),
     DURALUMIN("duralumin", "DURALUMIN",5, 100, false, false, 4,9600,3600),
     CHROMIUM("chromium", "CHROMIUM",4, 600, true, false, 5,6000,2400),
     NICROSIL("nicrosil", "NICROSIL",4, 600, true, false, 4,6000,3000),
@@ -24,7 +24,7 @@ public enum MetalsNBTData implements IMetal, IGems {
     ATIUM("atium", "ATIUM", 8,500, false, true, 0,1800,400),
     MALATIUM("malatium", "MALATIUM",8, 12000, false, true, 1,2100,300),
     LERASIUM("lerasium", "LERASIUM",9, 6000, false, true, 2,1,1),
-    ETTMETAL("ettmetal", "ETTMETAL",9, 16000, false, true, 3,4100,1640);
+    ETTMETAL("ettmetal", "ETTMETAL",9, 100, false, true, 3,4100,1640);
 
     private final String nameLower;
     private final String nameUpper;
