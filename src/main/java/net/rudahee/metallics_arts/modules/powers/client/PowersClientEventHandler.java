@@ -85,9 +85,9 @@ public class PowersClientEventHandler {
 
                                 this.tickOffset = (tickOffset + 1) % 2;
 
-                                /** LEFT CLICK (ATTACK) */
+                                /** ALLOMANTIC PULL BUTTON (K by default, bindable) */
 
-                                if (this.mc.options.keyAttack.isDown()) {
+                                if (KeyInit.ALLOMANTIC_PULL.isDown()) {
                                     HitResult trace = ClientUtils.getMouseOverExtended(11F * 1.5F);
 
                                     /***********************************
@@ -149,7 +149,7 @@ public class PowersClientEventHandler {
 
                                 /** RIGHT CLICK (USE) */
 
-                                if (this.mc.options.keyUse.isDown()) {
+                                if (KeyInit.ALLOMANTIC_PUSH.isDown()) {
                                     HitResult trace = ClientUtils.getMouseOverExtended(11F * 1.5F);
 
                                     /***********************************

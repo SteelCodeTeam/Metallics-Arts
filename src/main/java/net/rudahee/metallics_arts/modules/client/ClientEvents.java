@@ -18,6 +18,8 @@ public class ClientEvents {
                 event.register(KeyInit.ALLOMANTIC_POWER_SELECTOR);
                 event.register(KeyInit.FERUCHEMIC_POWER_SELECTOR);
                 event.register(KeyInit.VERTICAL_JUMP);
+                event.register(KeyInit.ALLOMANTIC_PUSH);
+                event.register(KeyInit.ALLOMANTIC_PULL);
             }
 
         }

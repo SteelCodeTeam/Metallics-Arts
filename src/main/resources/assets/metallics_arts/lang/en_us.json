@@ -196,6 +196,8 @@
   "key.metallics_arts.allomantic":"Allomantic Metal Selector",
   "key.metallics_arts.feruchemic":"Feruchemic Metal Selector",
   "key.metallics_arts.vertical_jump":"Vertical Push",
+  "key.metallics_arts.allomantic_push":"Allomantic Push",
+  "key.metallics_arts.allomantic_pull":"Allomantic Pull",
 
 
   "item.metallics_arts.steel_allomantic_icon": "Allomantic Steel",
