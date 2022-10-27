@@ -91,7 +91,7 @@ public class PowersClientEventHandler {
                                     HitResult trace = ClientUtils.getMouseOverExtended(11F * 1.5F);
 
                                     /***********************************
-                                     * DO CLICK AN ENTITY WITH  - ZINC -
+                                     * PULL ON AN ENTITY WITH  - ZINC -
                                      ***********************************/
                                     if (playerCapability.isBurning(MetalsNBTData.ZINC)) {
                                         Entity entity;
@@ -104,7 +104,7 @@ public class PowersClientEventHandler {
                                     }
 
                                     /***********************************
-                                     * DO CLICK AN SOMETHING WITH  - IRON -
+                                     * PULL ON SOMETHING WITH  - IRON -
                                      ***********************************/
                                     if (playerCapability.isBurning(MetalsNBTData.IRON)) {
                                         if (trace !=null){
@@ -125,7 +125,7 @@ public class PowersClientEventHandler {
                                         }
                                     }
                                     /***********************************
-                                     * DO CLICK AN ENTITY WITH  - MALATIUM -
+                                     * PULL ON AN ENTITY WITH  - MALATIUM -
                                      ***********************************/
                                     if (playerCapability.isBurning(MetalsNBTData.MALATIUM)) {
                                         Entity entity;
@@ -147,13 +147,13 @@ public class PowersClientEventHandler {
                                 }
 
 
-                                /** RIGHT CLICK (USE) */
+                                /** ALLOMANTIC PULL BUTTON (J by default, bindable) */
 
                                 if (KeyInit.ALLOMANTIC_PUSH.isDown()) {
                                     HitResult trace = ClientUtils.getMouseOverExtended(11F * 1.5F);
 
                                     /***********************************
-                                     * DO CLICK AN ENTITY WITH  - BRASS -
+                                     * PUSH ON AN ENTITY WITH  - BRASS -
                                      ***********************************/
                                     if (playerCapability.isBurning(MetalsNBTData.BRASS)) {
                                         Entity entity;
@@ -166,7 +166,7 @@ public class PowersClientEventHandler {
                                     }
 
                                     /***********************************
-                                     * DO CLICK AN ENTITY WITH  - STEEL -
+                                     * PUSH ON AN ENTITY WITH  - STEEL -
                                      ***********************************/
 
                                     if (playerCapability.isBurning(MetalsNBTData.STEEL)) {
