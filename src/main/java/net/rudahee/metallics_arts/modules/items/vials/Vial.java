@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.items.vials;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -32,16 +33,19 @@ public abstract class Vial extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
-
         if(!stack.hasTag()){
             stack.setTag(addVialTags());
         }
-        if (Screen.hasControlDown()){
+        if (Screen.hasShiftDown()){
             for (MetalsNBTData metal : MetalsNBTData.values()){
                 if(stack.getTag().getInt(metal.getGemNameLower())>0){
-
-                    toolTips.add(Component.translatable(" * ").append(Component.translatable("metallics_arts.metal_translate."+metal.getNameLower())).append(": "+stack.getTag().getInt(metal.getGemNameLower())));
+                    toolTips.add(Component.translatable(" * ").append(Component.translatable("metallics_arts.metal_translate."+metal.getNameLower())).append(": "+(stack.getTag().getInt(metal.getGemNameLower())/(metal.getMaxAllomanticTicksStorage()/10) +"/"+ this.maxNuggets)));
                 }
+            }
+        } else {
+            if (haveAnyReserve(stack)) {
+                toolTips.add(Component.translatable(" "));
+                toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             }
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
@@ -68,12 +72,25 @@ public abstract class Vial extends Item {
         super.releaseUsing(itemStack, world, livingEntity, number);
     }
 
-
+    public boolean haveAnyReserve (ItemStack itemStack) {
+        boolean have = false;
+        if (itemStack.hasTag()) {
+            for (MetalsNBTData metal : MetalsNBTData.values()) {
+                if (itemStack.getTag().contains(metal.getNameLower()) && itemStack.getTag().getInt(metal.getNameLower())>0) {
+                    have = true;
+                    break;
+                }
+            }
+        }
+        return have;
+    }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-
         ItemStack itemStackIn = player.getItemInHand(hand);
+        if (!haveAnyReserve(itemStackIn)) {
+            return new InteractionResultHolder<>(InteractionResult.FAIL, itemStackIn);
+        }
         player.startUsingItem(hand);
         InteractionResultHolder<ItemStack> res = player.getCapability(InvestedCapability.PLAYER_CAP).map(data -> {
             //If all the ones being filled are full, don't allow

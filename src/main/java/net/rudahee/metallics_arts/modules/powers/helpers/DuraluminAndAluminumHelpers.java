@@ -223,12 +223,12 @@ public class DuraluminAndAluminumHelpers {
         }
     }
     public static void drainAndCleanEffects(Player player, IDefaultInvestedPlayerData playerCapability) {
+
+        if (Math.random()<((double) (playerCapability.getAllomanticAmount(MetalsNBTData.ALUMINUM)+1)/10)){
+            player.removeAllEffects();
+        }
         for (MetalsNBTData metalsNBTData: playerCapability.getAllomanticPowers()) {
             playerCapability.drainMetals(metalsNBTData);
-        }
-
-        if (Math.random()< ((float) playerCapability.getAllomanticAmount(MetalsNBTData.ALUMINUM)/10)){
-            player.removeAllEffects();
         }
     }
 }

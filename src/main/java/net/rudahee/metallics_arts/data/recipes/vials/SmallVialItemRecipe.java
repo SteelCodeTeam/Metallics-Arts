@@ -63,8 +63,24 @@ public class SmallVialItemRecipe extends CustomRecipe {
         boolean[] ingredients = {false, false};
 
         int cantMaxPep = 5;
-
         ItemStack actualIngredient = null;
+
+        boolean hasVial = false;
+
+        for(int i = 0; i < inv.getContainerSize();i++) {
+            actualIngredient = inv.getItem(i);
+            if (!actualIngredient.isEmpty()) {
+                if (INGREDIENT_VIAL.test(actualIngredient)) {
+                    if (!hasVial) {
+                        hasVial = true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+
+
         for(int i = 0; i < inv.getContainerSize();i++) {
             actualIngredient = inv.getItem(i);
             if (!actualIngredient.isEmpty()) {

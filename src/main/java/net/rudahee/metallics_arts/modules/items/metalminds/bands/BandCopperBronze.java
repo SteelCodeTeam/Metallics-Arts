@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.items.metalminds.bands;
 
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -115,7 +116,7 @@ public class BandCopperBronze extends BandMindAbstract {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
         if (stack.hasTag()) {
-            if (!Screen.hasControlDown()){
+            if (!Screen.hasShiftDown()){
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") +" pts xp"));
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(1).getNameLower()).append(": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
             } else {
@@ -124,6 +125,10 @@ public class BandCopperBronze extends BandMindAbstract {
             }
             if (world != null) {
                 toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": " + ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
+            }
+            if (!Screen.hasShiftDown()){
+                toolTips.add(Component.translatable(" "));
+                toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             }
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
