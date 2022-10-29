@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:chromium_allomantic_icon",
-      "text": "$(br)Vacía las reservas alomanticas del jugador al que golpees $(br)"
+      "text": "$(br) Vacía las reservas alomanticas del jugador al que golpees. $(br)"
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Elimina reservas en un área considerable $(br2) + Lerasium: Elimina reservas en una pequeña área  $(br2) + Ambos: Elimina reservas en un gran area a tu alrededor"
+      "text": "$(br) + Duralumin: Elimina reservas en un área considerable. $(br2) + Lerasium: Elimina reservas en una pequeña área.  $(br2) + Ambos: Elimina reservas en un gran área a tu alrededor."
     }
   ]
 }

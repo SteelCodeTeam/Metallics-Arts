@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:steel_allomantic_icon",
-      "text": "$(br)Empuja la fuente de metal que estés señalando. $(br)$(br) Extra: $(br) - Puedes utilizar Ctrl + Barra espaciadora para empujar hacia el bloque que tengas a tus pies. $(br) - En caso de que no haya bloques validos, consume pepitas de metales"
+      "text": "$(br) Empuja la fuente de metal que estés señalando. $(br) Para usar este poder, debes hacer clic derecho mientras miras a la fuente de metal.$(br) Extra: $(br) - Puedes utilizar Ctrl + Barra espaciadora para empujar hacia el bloque que tengas a tus pies. $(br) - En caso de que no haya bloques válidos, consume pepitas de metales."
     },
     {
       "type": "patchouli:text",

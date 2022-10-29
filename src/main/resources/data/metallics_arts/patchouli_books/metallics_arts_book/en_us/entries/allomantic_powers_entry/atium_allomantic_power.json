@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:atium_allomantic_icon",
-      "text": "$(br)Gives you chance to avoid incoming damage.  $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - If your attacker burns Atium he can cancel a part of the effects."
+      "text": "$(br) Gives you chance to avoid incoming damage.  $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - If your attacker burns Atium he can cancel a part of the effects."
     },
     {
       "type": "patchouli:text",

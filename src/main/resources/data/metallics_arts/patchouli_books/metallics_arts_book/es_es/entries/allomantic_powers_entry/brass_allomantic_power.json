@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:brass_allomantic_icon",
-      "text": "$(br)Las entidades hostiles te ignoraran $(br)$(br)$(br)$(br)$(br)$(br) Extra: $(br) - Tienes una probabilidad de domesticar mascotas"
+      "text": "$(br) Las entidades hostiles te ignoraran. $(br) Para usar este poder, debes hacer clic derecho mientras miras a la entidad.$(br)$(br)$(br) Extra: $(br) - Tienes una probabilidad de domesticar mascotas."
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Detiene y debilita a la entidad $(br2) + Lerasium: Aplica el efecto en área $(br2) + Ambos: Detiene y debilita a las entidades en área"
+      "text": "$(br) + Duralumin: Detiene y debilita a la entidad $(br2) + Lerasium: Aplica el efecto en área $(br2) + Ambos: Detiene y debilita a las entidades en área."
     }
   ]
 }

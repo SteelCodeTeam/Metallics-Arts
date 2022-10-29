@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:iron_allomantic_icon",
-      "text": "$(br)Pull the metal fountain you are aiming at.$(br)"
+      "text": "$(br) Pull the metal fountain you are aiming at.$(br) To use this power, you need to left-click while looking at the metal fountain."
     },
     {
       "type": "patchouli:text",
       "title": "Interactions",
-      "text": "$(br) + Duralumin: Greatly increases the pull $(br2) + Lerasium: Slightly increases pull $(br2) + Both: Maximizes pull"
+      "text": "$(br) + Duralumin: Greatly increases the pull. $(br2) + Lerasium: Slightly increases pull. $(br2) + Both: Maximizes pull."
     }
   ]
 }
