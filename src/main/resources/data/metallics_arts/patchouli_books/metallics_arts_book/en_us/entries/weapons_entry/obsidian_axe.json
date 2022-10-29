@@ -1,5 +1,5 @@
 {
-  "name": "Hacha de Obsidiana",
+  "name": "Obsidian Axe",
   "icon": "metallics_arts:textures/item/combat/obsidian_axe.png",
   "category": "metallics_arts:weapons_category",
   "pages": [
@@ -10,6 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
+      "title": " ",
       "recipe": "minecraft:metallics_arts_obsidian_axe"
     }
   ]

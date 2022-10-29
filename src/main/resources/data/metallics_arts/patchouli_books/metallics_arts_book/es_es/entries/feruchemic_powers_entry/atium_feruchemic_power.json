@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:atium_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, te permite volverte invisible."
+      "text": "$(br)Almacenar:$(br2) - Mientras decantas, te permite brillar para el resto de jugadores."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, te permite brillar para el resto de jugadores."
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras almacenas, te permite volverte invisible."
     }
   ]
 }

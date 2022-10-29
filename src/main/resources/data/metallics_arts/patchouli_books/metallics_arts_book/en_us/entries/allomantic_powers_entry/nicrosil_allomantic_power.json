@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:nicrosil_allomantic_icon",
-      "text": "$(br)Greatly increases the potency of the metals you are burning for the player you hit. $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - Works for a short time and drains all Allomantic reserves the target player was burning."
+      "text": "$(br)Greatly increases the potency of the metals you are burning for the player you hit. $(br)$(br)$(br)$(br) Bonus: $(br) - Works for a short time and drains all Allomantic reserves the target player was burning."
     },
     {
       "type": "patchouli:text",
-      "title": "Interacciones",
+      "title": "Interactions",
       "text": "$(br) + Duralumin: Apply the effect in medium area. $(br2) + Lerasium: Apply the effect to a small area. $(br2) + Both: Apply the effect to a large area."
     }
   ]

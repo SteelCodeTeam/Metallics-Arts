@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.items.metalminds.bands;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -233,7 +234,7 @@ public class BandAtiumMalatium extends BandMindAbstract {
             if (!stack.getTag().contains("tier_malatium_storage") || stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") == 0){
                 stack.getTag().putInt("tier_malatium_storage",-1);
             }
-            if (!Screen.hasControlDown()){
+            if (!Screen.hasShiftDown()){
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") / 40 + "s"));
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(1).getNameLower()).append(": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+" ").append(Component.translatable("metallics_arts.mental_mind_translate.uses")));
 
@@ -247,6 +248,10 @@ public class BandAtiumMalatium extends BandMindAbstract {
             if (stack.getTag().getInt("tier_malatium_storage")!=-1){
                 toolTips.add(Component.translatable("-------------------"));
                 toolTips.add(Component.translatable("Tier: "+convertTierToMaterial(stack.getTag().getInt("tier_malatium_storage"))));
+            }
+            if (!Screen.hasShiftDown()){
+                toolTips.add(Component.translatable(" "));
+                toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             }
         }
         super.appendHoverText(stack, world, toolTips, flagIn);

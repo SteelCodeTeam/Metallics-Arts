@@ -1,0 +1,18 @@
+{
+  "name": "Primer poder",
+  "icon": "minecraft:paper",
+  "category": "metallics_arts:tutorial_category",
+  "sortnum": 1,
+  "pages": [
+    {
+      "title": "Identificar tu poder",
+      "type": "patchouli:text",
+      "text": "Apenas entras al mundo, aparecerás con un poder básico, alomantico o feruquimico decidido por tu suerte, y si tienes realmente mucha, podrías tener uno de cada tipo."
+    },
+    {
+      "title": " ",
+      "type": "patchouli:text",
+      "text": "$(br) Para identificar rápido tu poder, puedes presionar la tecla \"M\" (selector de poderes alomanticos) o \"N\"(selector de poderes feruqimicos), una vez desplegado alguno de estos selectores, fácilmente podrás identificar el poder de que metal posees."
+    }
+  ]
+}

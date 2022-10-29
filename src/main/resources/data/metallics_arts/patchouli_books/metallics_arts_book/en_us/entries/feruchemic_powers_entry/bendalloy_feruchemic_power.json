@@ -1,16 +1,16 @@
 {
-  "name": "Feruchemic Bendalloy",
+  "name": "Feruchemical Bendalloy",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/bendalloy_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:bendalloy_feruchemic_icon",
-      "text": "$(br)Store:$(br2) - While you store, you constantly increase your hunger"
+      "text": "$(br)Storing:$(br2) - While you store, you constantly increase your hunger"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - As you decant, you constantly reduce your hunger"
+      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - As you decant, you constantly reduce your hunger"
     }
   ]
 }

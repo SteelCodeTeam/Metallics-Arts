@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Interacciones",
+      "title": "Interactions",
       "text": "$(br) + Duralumin: stuns you for a few moments. $(br2) + Lerasium: Nothing. $(br2) + Both: stuns you for a few moments."
     }
   ]

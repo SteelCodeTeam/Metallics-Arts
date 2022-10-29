@@ -274,7 +274,11 @@
   "metallics_arts.mental_mind_translate.uses": "Usos",
 
   "metallics_arts.spike_feruchemic_power": "Potència Emmagatzemada: Feruquímic",
-  "metallics_arts.spike_allomantic_power": "Potència Emmagatzemada: Alomàntic"
+  "metallics_arts.spike_allomantic_power": "Potència Emmagatzemada: Alomàntic",
+
+  "metallics_arts.mental_mind_translate.store_identity": "Almacenant Identitat",
+  "metallics_arts.mental_mind_translate.off_power": "Poder Apagat",
+  "metallics_arts.spike_allomantic_power.tapping_identity": "Decantant Identitat"
 
 
 

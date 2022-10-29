@@ -10,8 +10,8 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Interacciones",
-      "text": "$(br) + Duralumin: Duplicate the effect and increase the area. $(br2) + Lerasium: Increase the area $(br2) + Both: Duplicates the effect and increases the area greatly"
+      "title": "Interactions",
+      "text": "$(br) + Duralumin: Duplicate the effect and increase the area. $(br2) + Lerasium: Increase the area. $(br2) + Both: Duplicates the effect and increases the area greatly."
     }
   ]
 }

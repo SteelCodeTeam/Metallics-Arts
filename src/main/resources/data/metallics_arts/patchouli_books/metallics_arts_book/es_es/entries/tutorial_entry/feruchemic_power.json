@@ -1,0 +1,18 @@
+{
+  "name": "Poder Feruquimico",
+  "icon": "metallics_arts:textures/item/metal_mind/gold_electrum_ring.png",
+  "category": "metallics_arts:tutorial_category",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": " En caso de que tu poder sea feruqimico, tendrás que conseguir un $(l:metal_mind_entry/rings)Anillo$() o un $(l:metal_mind_entry/bands)Brazal$() que contengan el metal de tu correspondiente poder (te recomiendo comenzar con un anillo, que costara menos recursos), y equiparlo en algún slot de los que tendrás a los costados de tu armadura."
+    },
+    {
+      "title": "¿Como utilizarlo?",
+      "type": "patchouli:text",
+      "text": "$(br) Una vez equipada el brazal o el anillo, deberás presionar la tecla \"N\" y seleccionar tu poder para comenzar a almacenarlo (el almacenamiento te dará efectos negativos dependiendo de tu poder, pero no te preocupes, luego podrás utilizar estas reservas a tu favor)."
+
+    }
+  ]
+}

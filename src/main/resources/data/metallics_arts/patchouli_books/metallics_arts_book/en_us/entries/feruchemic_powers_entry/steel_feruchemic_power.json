@@ -1,16 +1,16 @@
 {
-  "name": "Feruchemic Steel",
+  "name": "Feruchemical Steel",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/steel_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:steel_feruchemic_icon",
-      "text": "$(br)Store:$(br2) - While you store you feel really sluggish."
+      "text": "$(br)Storing:$(br2) - While you store you feel really sluggish."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - As you decant, you feel really fast."
+      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - As you decant, you feel really fast."
     }
   ]
 }

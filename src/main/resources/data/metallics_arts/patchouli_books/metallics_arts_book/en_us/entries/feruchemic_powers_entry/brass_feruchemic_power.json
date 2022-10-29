@@ -1,16 +1,16 @@
 {
-  "name": "Feruchemic Brass",
+  "name": "Feruchemical Brass",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/brass_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:brass_feruchemic_icon",
-      "text": "$(br)Store:$(br2) - While you store, it allows you to store your heat, making you less vulnerable to heat sources."
+      "text": "$(br)Storing:$(br2) - While you store, it allows you to store your heat, making you less vulnerable to heat sources.$(br2) - Be careful to use it in cold places."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - As you decant, you expel heat, causing you to set other entities on fire on hit."
+      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - As you decant, you expel heat, causing you to set other entities on fire on hit.$(br2) - Comforting against that cold powder snow."
     }
   ]
 }

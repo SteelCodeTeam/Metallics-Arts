@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:bronze_allomantic_icon",
-      "text": "$(br)Hace que las entidades cercanas te sigan. $(br)$(br)$(br)$(br)$(br) Extra: $(br) - Marca a los jugadores que quemen metales a tu alrededor."
+      "text": "$(br)Hace que las entidades cercanas te sigan. $(br)$(br)$(br)$(br)$(br)$(br) Extra: $(br) - Marca a los jugadores que quemen metales a tu alrededor."
     },
     {
       "type": "patchouli:text",

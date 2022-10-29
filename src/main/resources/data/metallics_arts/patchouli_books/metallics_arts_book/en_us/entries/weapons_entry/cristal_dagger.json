@@ -1,5 +1,5 @@
 {
-  "name": "Daga de Cristal",
+  "name": "Glass Dagger",
   "icon": "metallics_arts:textures/item/combat/cristal_dagger.png",
   "category": "metallics_arts:weapons_category",
   "pages": [
@@ -10,6 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
+      "title": " ",
       "recipe": "minecraft:metallics_arts_cristal_dagger"
     }
   ]

@@ -13,6 +13,9 @@
 <br>
 
 ## **Description 📝**
+
+Now, you can download here: https://www.curseforge.com/minecraft/mc-mods/metallics-arts
+
 **This mod is based on "Mistborn" Brandon Sanderson books saga**, therefore we recommend having read some books of the saga before playing with the mod. Obviously we recommend all the author's works.
 
 Metallics Arts is a mod for Minecraft 1.19.2, designed to work with the Forge API.
@@ -56,10 +59,14 @@ We have two mandatory dependencies:
 
 <br>
 
-## **Changelog ✒️**
+## **Changelog ✒ [v1.1.1]️**
 
-- Released first version. [v1.0.0]
-- Add special effects to weapon when you are using pewter [v1.0.0]
+- Feruchemic selector can have problems with non-english location.
+- Selectors dont have location defined correctly.
+- Translation Issues.
+- The guide book doesn't show koloss blade craft
+- Add first steps to use powers for the first time in the book
+- Feruchemic nicrosil, store with ettmetal and zinc, and should not
 
 <br>
 
@@ -71,22 +78,36 @@ We have two mandatory dependencies:
 
 **Known Issues**
 - ~~Its possible use two metalminds with the same metals.~~ [v1.1.0]
-- Feruchemic selector can have problems with non-english location.
-- Selectors dont have location defined correctly.
+- - ~~Lerasium rings its not working properly. Its saving double of reserve.~~ [v1.1.0]
+- ~~Feruchemic selector can have problems with non-english location.~~ [v1.1.3]
+- ~~Selectors dont have location defined correctly.~~ [v1.1.3]
+- ~~Translation Issues.~~ [v1.1.3]
+- ~~The guide book doesn't show koloss blade craft.~~ [v1.1.3]
+- ~~Add first steps to use powers for the first time in the book.~~ [v1.1.3]
+- ~~Feruchemic nicrosil, store with ettmetal and zinc, and should not.~~ [v1.1.3]
+- ~~Ettmetal does a lot of damage.~~ [v1.1.4]
+- ~~vials can be crafted together with other vials and one disappears as a result.~~ [v1.1.4]
+- ~~The vials can be consumed empty.~~ [v1.1.4]
+- The texture of the weapons is wrong.
+- Obsidian axe does a lot of damage.
 - In some computers, allomantic lines doesnt work, we dont have idea whats its going on.
 - Patchouli its not redimensioning title for any reason.
 - Vials GUI, its not drawing correctly how much metal you have.
-- ~~Lerasium rings its not working properly. Its saving double of reserve~~ [v1.1.0]
+
 
 **Improvements**
 - ~~Add special effects to weapons if you are burning pewter.~~ [v1.0.0]
 - ~~Implements Ettmetal damage in explosion.~~ [v1.1.0]
+- ~~Change in aluminum and maybe copper metalmind info.~~ [v1.1.4]
+- ~~Choose better colors to selectors.~~ [v1.1.4]
+- ~~Tooltips to vials.~~ [v1.1.4]
+- Banners with metals symbols. 
 - Do steel flying more comfortable. (Its not a priority)
-- Choose better colors to selectors.
-- Banners with metals symbols.
 - Some commands to get metalminds charged.
 - Add sound effects.
 - Add some advancements.
+
+
 
 <br>
 

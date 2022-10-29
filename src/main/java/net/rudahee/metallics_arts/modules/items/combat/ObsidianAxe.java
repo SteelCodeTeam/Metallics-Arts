@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.modules.items.combat;
 
-
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;

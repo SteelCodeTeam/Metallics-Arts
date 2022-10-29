@@ -1,16 +1,16 @@
 {
-  "name": "Feruchemic Chromium",
+  "name": "Feruchemical Chromium",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/chromium_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:chromium_feruchemic_icon",
-      "text": "$(br)Store:$(br2) - While you store, it seems that luck is not on your side, it almost seems that you are going to get sick."
+      "text": "$(br)Storing:$(br2) - While you store, it seems that luck is not on your side, it almost seems that you are going to get sick."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - While you decant it, you have extraordinary luck, is it time to go exploring?"
+      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - While you decant it, you have extraordinary luck, is it time to go exploring?"
     }
   ]
 }

@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Interacciones",
+      "title": "Interactions",
       "text": "$(br) + Duralumin: Teleports you to the marked point. $(br2) + Lerasium: Nothing. $(br2) + Both: Teleports in area to the marked point."
     }
   ]

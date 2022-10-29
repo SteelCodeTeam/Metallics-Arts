@@ -1,16 +1,16 @@
 {
-  "name": "Feruchemic Cadmium",
+  "name": "Feruchemical Cadmium",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/cadmium_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:cadmium_feruchemic_icon",
-      "text": "$(br)Store:$(br2) - While storing, you will have difficulty breathing even out of the water."
+      "text": "$(br)Storing:$(br2) - While storing, you will have difficulty breathing even out of the water."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decant:$(br2) - While you decant, you will feel like a fish in water, it almost seems that you can breathe at the bottom of the ocean."
+      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - While you decant, you will feel like a fish in water, it almost seems that you can breathe at the bottom of the ocean."
     }
   ]
 }

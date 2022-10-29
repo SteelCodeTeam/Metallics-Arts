@@ -55,38 +55,22 @@ public class FeruchemyMetalSelector extends Screen {
     }
 
 
-    static int[] noPowerPar = new int[] {70, 70, 80, 255};
-    static int[] noPowerImpar = new int[]{50, 50, 60, 255};
-    static int[] noMetalMIndPar = new int[] {84, 91, 120, 255};
-    static int[] noMetalMIndImpar = new int[]{103, 110, 140, 255};
+    //static int[] noPowerPar = new int[] {70, 70, 80, 255};
+    //static int[] noPowerImpar = new int[]{50, 50, 60, 255};
 
-    static int[] isDecantingPar = new int[]{119, 173, 131, 255};
+    static int[] normalPar = new int[]{84, 91, 120, 255};           //azules = Tiene poder inactivo y se expande si llevas la mente
+    static int[] normalImpar = new int[]{103, 110, 140, 255};
+    static int[] noMetalMIndPar = new int[] {125, 125, 125, 255};   // Grises = No tienes poder
+    static int[] noMetalMIndImpar = new int[]{109, 109, 109, 255};
+    static int[] isDecantingPar = new int[]{119, 173, 131, 255};    //Verde = ventaja/decantar
     static int[] isDecantingImpar = new int[]{84, 142, 96, 255};
-
-    static int[] isStoragePar = new int[]{206, 160, 32, 255};
+    static int[] isStoragePar = new int[]{206, 160, 32, 255};       //Amarillo = desventaja/almacenar
     static int[] isStorageImpar = new int[]{235, 190, 68, 255};
 
-    static int[] normalPar = new int[]{125, 125, 125, 255};
-    static int[] normalImpar = new int[]{109, 109, 109, 255};
-
-/*
- static int[] gris1 = new int[]{109, 109, 109, 100};
-    static int[] gris2 = new int[]{127, 127, 127, 100};
-    static int[] gris3 = new int[]{143, 143, 143, 100};
-
-    static int[] celeste1 = new int[]{73, 180, 199, 100};
-    static int[] celeste2 = new int[]{103, 195, 211, 100};
-    static int[] celeste3 = new int[]{133, 207, 221, 100};
-
-    static int[] verdiAzul1 = new int[]{108, 165, 155, 100};
-    static int[] verdiAzul2 = new int[]{112, 187, 174, 100};
-    static int[] verdiAzul3 = new int[]{128, 206, 196, 100};
- */
 
     @Override
     public void render(PoseStack matrixStack, int mx, int my, float partialTicks) {
         super.render(matrixStack, mx, my, partialTicks);
-
 
         this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
 
@@ -159,7 +143,9 @@ public class FeruchemyMetalSelector extends Screen {
 
             if(this.point1!=null&&this.point2!=null&&this.point3!=null&&this.tipoTemp!=-1){
                 if(pointInTriangle(mouse,this.point1,this.point2,this.point3)) {
-                    pintadoUnico(buf,this.point1,this.point2,this.point3,this.metalTemp,mouse,this.tipoTemp,this.paridadTemp,data);
+                    if (data.getMetalMindEquiped(this.metalTemp.getGroup())) {
+                        pintadoUnico(buf,this.point1,this.point2,this.point3,this.metalTemp,mouse,this.paridadTemp,data);
+                    }
                 }else {
                      this.point1 = null;
                      this.point2 = null;
@@ -175,75 +161,75 @@ public class FeruchemyMetalSelector extends Screen {
             //pintado
 
             if (this.metalTemp != MetalsNBTData.BRASS) {
-                addpintado(matrixStack, xPositivo, intermedioXPosYNeg, xPositivoExterno, MetalsNBTData.BRASS, mouse);
+                addpintado(matrixStack, xPositivo, intermedioXPosYNeg, xPositivoExterno, MetalsNBTData.BRASS, mouse,data.hasFeruchemicPower(MetalsNBTData.BRASS));
             }
             if (this.metalTemp != MetalsNBTData.ZINC) {
-                addpintado(matrixStack, xPositivo, intermedioXPosYPos, xPositivoExterno, MetalsNBTData.ZINC, mouse);
+                addpintado(matrixStack, xPositivo, intermedioXPosYPos, xPositivoExterno, MetalsNBTData.ZINC, mouse,data.hasFeruchemicPower(MetalsNBTData.ZINC));
             }
             if (this.metalTemp != MetalsNBTData.IRON) {
-                addpintado(matrixStack, yPositivo, yPositivoExterno, intermedioXPosYPos, MetalsNBTData.IRON, mouse);
+                addpintado(matrixStack, yPositivo, yPositivoExterno, intermedioXPosYPos, MetalsNBTData.IRON, mouse,data.hasFeruchemicPower(MetalsNBTData.IRON));
             }
             if (this.metalTemp != MetalsNBTData.STEEL) {
-                addpintado(matrixStack, yPositivo, yPositivoExterno, intermedioXNegYPos, MetalsNBTData.STEEL, mouse);
+                addpintado(matrixStack, yPositivo, yPositivoExterno, intermedioXNegYPos, MetalsNBTData.STEEL, mouse,data.hasFeruchemicPower(MetalsNBTData.STEEL));
             }
             if (this.metalTemp != MetalsNBTData.CHROMIUM) {
-                addpintado(matrixStack, xNegativo, intermedioXNegYPos, xNegativoExterno, MetalsNBTData.CHROMIUM, mouse);
+                addpintado(matrixStack, xNegativo, intermedioXNegYPos, xNegativoExterno, MetalsNBTData.CHROMIUM, mouse,data.hasFeruchemicPower(MetalsNBTData.CHROMIUM));
             }
             if (this.metalTemp != MetalsNBTData.NICROSIL) {
-                addpintado(matrixStack, xNegativo, intermedioXNegYNeg, xNegativoExterno, MetalsNBTData.NICROSIL, mouse);
+                addpintado(matrixStack, xNegativo, intermedioXNegYNeg, xNegativoExterno, MetalsNBTData.NICROSIL, mouse,data.hasFeruchemicPower(MetalsNBTData.NICROSIL));
             }
             if (this.metalTemp != MetalsNBTData.CADMIUM) {
-                addpintado(matrixStack, yNegativo, yNegativoExterno, intermedioXNegYNeg, MetalsNBTData.CADMIUM, mouse);
+                addpintado(matrixStack, yNegativo, yNegativoExterno, intermedioXNegYNeg, MetalsNBTData.CADMIUM, mouse,data.hasFeruchemicPower(MetalsNBTData.CADMIUM));
             }
             if (this.metalTemp != MetalsNBTData.BENDALLOY) {
-                addpintado(matrixStack, yNegativo, yNegativoExterno, intermedioXPosYNeg, MetalsNBTData.BENDALLOY, mouse);
+                addpintado(matrixStack, yNegativo, yNegativoExterno, intermedioXPosYNeg, MetalsNBTData.BENDALLOY, mouse,data.hasFeruchemicPower(MetalsNBTData.BENDALLOY));
             }
             if (this.metalTemp != MetalsNBTData.BRONZE) {
-                addpintado(matrixStack, xPositivo, intermedioXPosYNeg, center, MetalsNBTData.BRONZE, mouse);
+                addpintado(matrixStack, xPositivo, intermedioXPosYNeg, center, MetalsNBTData.BRONZE, mouse,data.hasFeruchemicPower(MetalsNBTData.BRONZE));
             }
             if (this.metalTemp != MetalsNBTData.COPPER) {
-                addpintado(matrixStack, xPositivo, intermedioXPosYPos, center, MetalsNBTData.COPPER, mouse);
+                addpintado(matrixStack, xPositivo, intermedioXPosYPos, center, MetalsNBTData.COPPER, mouse,data.hasFeruchemicPower(MetalsNBTData.COPPER));
             }
             if (this.metalTemp != MetalsNBTData.TIN) {
-                addpintado(matrixStack, yPositivo, center, intermedioXPosYPos, MetalsNBTData.TIN, mouse);
+                addpintado(matrixStack, yPositivo, center, intermedioXPosYPos, MetalsNBTData.TIN, mouse,data.hasFeruchemicPower(MetalsNBTData.TIN));
             }
             if (this.metalTemp != MetalsNBTData.PEWTER) {
-                addpintado(matrixStack, yPositivo, center, intermedioXNegYPos, MetalsNBTData.PEWTER, mouse);
+                addpintado(matrixStack, yPositivo, center, intermedioXNegYPos, MetalsNBTData.PEWTER, mouse,data.hasFeruchemicPower(MetalsNBTData.PEWTER));
             }
             if (this.metalTemp != MetalsNBTData.DURALUMIN) {
-                addpintado(matrixStack, xNegativo, intermedioXNegYPos, center, MetalsNBTData.DURALUMIN, mouse);
+                addpintado(matrixStack, xNegativo, intermedioXNegYPos, center, MetalsNBTData.DURALUMIN, mouse,data.hasFeruchemicPower(MetalsNBTData.DURALUMIN));
             }
             if (this.metalTemp != MetalsNBTData.ALUMINUM) {
-                addpintado(matrixStack, xNegativo, intermedioXNegYNeg, center, MetalsNBTData.ALUMINUM, mouse);
+                addpintado(matrixStack, xNegativo, intermedioXNegYNeg, center, MetalsNBTData.ALUMINUM, mouse,data.hasFeruchemicPower(MetalsNBTData.ALUMINUM));
             }
             if (this.metalTemp != MetalsNBTData.GOLD) {
-                addpintado(matrixStack, yNegativo, center, intermedioXNegYNeg, MetalsNBTData.GOLD, mouse);
+                addpintado(matrixStack, yNegativo, center, intermedioXNegYNeg, MetalsNBTData.GOLD, mouse,data.hasFeruchemicPower(MetalsNBTData.GOLD));
             }
             if (this.metalTemp != MetalsNBTData.ELECTRUM) {
-                addpintado(matrixStack, yNegativo, center, intermedioXPosYNeg, MetalsNBTData.ELECTRUM, mouse);
+                addpintado(matrixStack, yNegativo, center, intermedioXPosYNeg, MetalsNBTData.ELECTRUM, mouse,data.hasFeruchemicPower(MetalsNBTData.ELECTRUM));
             }
             if (this.metalTemp != MetalsNBTData.ATIUM) {
                 addpintado(matrixStack, intermedioXPosYNegExterno,
                         new Point(intermedioXPosYNegExterno.x, intermedioXPosYNegExterno.y - large),
-                        new Point(intermedioXPosYNegExterno.x - large, intermedioXPosYNegExterno.y), MetalsNBTData.ATIUM, mouse);
+                        new Point(intermedioXPosYNegExterno.x - large, intermedioXPosYNegExterno.y), MetalsNBTData.ATIUM, mouse,data.hasFeruchemicPower(MetalsNBTData.ATIUM));
             }
             if (this.metalTemp != MetalsNBTData.MALATIUM) {
                 addpintado(matrixStack, intermedioXPosYPosExterno,
                         new Point(intermedioXPosYPosExterno.x, intermedioXPosYPosExterno.y + large),
-                        new Point(intermedioXPosYPosExterno.x - large, intermedioXPosYPosExterno.y), MetalsNBTData.MALATIUM, mouse);
+                        new Point(intermedioXPosYPosExterno.x - large, intermedioXPosYPosExterno.y), MetalsNBTData.MALATIUM, mouse,data.hasFeruchemicPower(MetalsNBTData.MALATIUM));
             }
             if (this.metalTemp != MetalsNBTData.ETTMETAL) {
                 addpintado(matrixStack, intermedioXNegYNegExterno,
                         new Point(intermedioXNegYNegExterno.x, intermedioXNegYNegExterno.y - large),
-                        new Point(intermedioXNegYNegExterno.x + large, intermedioXNegYNegExterno.y), MetalsNBTData.ETTMETAL, mouse);
+                        new Point(intermedioXNegYNegExterno.x + large, intermedioXNegYNegExterno.y), MetalsNBTData.ETTMETAL, mouse,data.hasFeruchemicPower(MetalsNBTData.ETTMETAL));
             }
             if (this.metalTemp != MetalsNBTData.LERASIUM) {
                 addpintado(matrixStack, intermedioXNegYPosExterno,
                         new Point(intermedioXNegYPosExterno.x, intermedioXNegYPosExterno.y + large),
-                        new Point(intermedioXNegYPosExterno.x + large, intermedioXNegYPosExterno.y), MetalsNBTData.LERASIUM, mouse);
+                        new Point(intermedioXNegYPosExterno.x + large, intermedioXNegYPosExterno.y), MetalsNBTData.LERASIUM, mouse,data.hasFeruchemicPower(MetalsNBTData.LERASIUM));
             }
             if (this.point1 != null && this.point2 != null && this.point3 != null) {
-                addpintado(matrixStack, this.point1, this.point2, this.point3, this.metalTemp, mouse);
+                addpintado(matrixStack, this.point1, this.point2, this.point3, this.metalTemp, mouse,data.hasFeruchemicPower(this.metalTemp));
             }
 
             RenderSystem.enableBlend();
@@ -252,7 +238,7 @@ public class FeruchemyMetalSelector extends Screen {
         });
     }
 
-    public void addpintado(PoseStack matrixStack, Point a,Point b,Point c,MetalsNBTData metal, Point mouse){
+    public void addpintado(PoseStack matrixStack, Point a,Point b,Point c,MetalsNBTData metal, Point mouse, boolean hasPower){
 
         Point vertex1 = new Point(a.x,a.y);
         Point vertex2 = new Point(b.x,b.y);
@@ -261,9 +247,12 @@ public class FeruchemyMetalSelector extends Screen {
         Point baticenter = baticentro(vertex1,vertex2,vertex3);
         boolean inSelector = pointInTriangle(mouse,vertex1,vertex2,vertex3);
 
-        if (inSelector){
-            renderTooltip(matrixStack, Component.translatable(metal.getNameLower()),mouse.x,mouse.y);
+        if (hasPower) {
+            if (inSelector){
+                renderTooltip(matrixStack, Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mouse.x,mouse.y);
+            }
         }
+
 //metallic_arts:textures/gui/feruchemic_symbols/tin_symbol.png
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png"));
@@ -278,7 +267,6 @@ public class FeruchemyMetalSelector extends Screen {
         return new Point(((vertex1.x+vertex2.x+vertex3.x)/3),((vertex1.y+vertex2.y+vertex3.y)/3));
     }
 
-
     public void pintar(BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse,int tipo, boolean paridad, IDefaultInvestedPlayerData data){
 
         Point vertex1 = new Point(a.x,a.y);
@@ -286,9 +274,9 @@ public class FeruchemyMetalSelector extends Screen {
         Point vertex3 = new Point(c.x,c.y);
 
         boolean inSelector = pointInTriangle(mouse,vertex1,vertex2,vertex3);
+        this.slotSelected = metal.getIndex();
 
-        if (inSelector) {
-            this.slotSelected = metal.getIndex();
+        if (inSelector && data.getMetalMindEquiped(metal.getGroup()) && data.hasFeruchemicPower(metal)) {
             if (tipo == 0) {
                 vertex2.y = vertex2.y - 4;
                 vertex3.x = vertex3.x - 4;
@@ -311,29 +299,26 @@ public class FeruchemyMetalSelector extends Screen {
         }
 
         int[] actualColor;
+
         if(paridad) {
             if (!data.hasFeruchemicPower(metal)) {
-                actualColor = noPowerPar;
-            } else if (!data.getMetalMindEquiped(metal.getGroup())){
                 actualColor = noMetalMIndPar;
             } else if(data.isStoring(metal)){
                 actualColor = isStoragePar;
             } else if (data.isDecanting(metal)){
                 actualColor = isDecantingPar;
             } else {
-                actualColor = normalPar;
+                actualColor = normalPar;    //Tiene poder, pero no lo esta usando
             }
         } else{
             if (!data.hasFeruchemicPower(metal)) {
-                actualColor = noPowerImpar;
-            } else if (!data.getMetalMindEquiped(metal.getGroup())) {
                 actualColor = noMetalMIndImpar;
             } else if(data.isStoring(metal)){
                 actualColor = isStorageImpar;
             } else if (data.isDecanting(metal)){
                 actualColor = isDecantingImpar;
             } else {
-                actualColor = normalImpar;
+                actualColor = normalImpar;  //Tiene poder, pero no lo esta usando
             }
         }
 
@@ -343,7 +328,7 @@ public class FeruchemyMetalSelector extends Screen {
 
 
     }
-    public void pintadoUnico (BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse,int tipo, boolean paridad, IDefaultInvestedPlayerData data){
+    public void pintadoUnico (BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse, boolean paridad, IDefaultInvestedPlayerData data){
 
         Point vertex1 = new Point(a.x,a.y);
         Point vertex2 = new Point(b.x,b.y);
@@ -358,8 +343,6 @@ public class FeruchemyMetalSelector extends Screen {
         int[] actualColor;
         if(paridad){
             if (!data.hasFeruchemicPower(metal)) {
-                actualColor = noPowerPar;
-            } else if (!data.getMetalMindEquiped(metal.getGroup())) { // || si no tiene equipada la mente de ese metal
                 actualColor = noMetalMIndPar;
             }else if(data.isStoring(metal)){
                 actualColor = isStoragePar;
@@ -371,8 +354,6 @@ public class FeruchemyMetalSelector extends Screen {
 
         }else{
             if (!data.hasFeruchemicPower(metal)) {
-                actualColor = noPowerImpar;
-            } else if (!data.getMetalMindEquiped(metal.getGroup())) { // || si no tiene equipada la mente de ese metal
                 actualColor = noMetalMIndImpar;
             }else if(data.isStoring(metal)){
                 actualColor = isStorageImpar;
@@ -389,8 +370,6 @@ public class FeruchemyMetalSelector extends Screen {
 
         this.timeIn++;
     }
-
-
 
 
     public float sign(Point p1, Point p2, Point p3) {

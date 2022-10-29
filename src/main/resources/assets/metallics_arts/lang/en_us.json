@@ -243,8 +243,8 @@
   "item.metallics_arts.lerasium_feruchemic_icon": "Feruchemic Lerasium",
   "item.metallics_arts.ettmetal_feruchemic_icon": "Feruchemic Ettmetal",
 
-  "metallics_arts.patchouli.name_book": "Metallics Arts",
-  "metallics_arts.patchouli.landing_text": "I am, unfortunately, The Hero of Ages and I have a question for you: does not a man have the right to posses his own metals? No, says the man from the empire. It belongs to \\\"god\\\". No, says the survivor. It belongs to everyone. No, says the man from Elendel. It belongs to the poor ones. I rejected those proposals. Instead of that I chose something different. I chose my own path, I chose… Artes Metalicas Mod.",
+  "metallics_arts.patchouli.name_book": "Metallics Arts: Guide",
+  "metallics_arts.patchouli.landing_text": "I am, unfortunately, The Hero of Ages and I have a question for you: does not a man have the right to posses his own metals? No, says the man from the empire. It belongs to \"god\". No, says the survivor. It belongs to everyone. No, says the man from Elendel. It belongs to the poor ones. I rejected those proposals. Instead of that I chose something different. I chose my own path, I chose… Metallics Arts Mod.",
 
   "metallics_arts.mental_mind.owner": "Owner",
 
@@ -277,5 +277,11 @@
   "metallics_arts.mental_mind_translate.uses": "Uses",
 
   "metallics_arts.spike_feruchemic_power": "Power stored: Feruchemic",
-  "metallics_arts.spike_allomantic_power": "Power stored: Allomantic"
+  "metallics_arts.spike_allomantic_power": "Power stored: Allomantic",
+
+  "metallics_arts.mental_mind_translate.store_identity": "Storing Identity",
+  "metallics_arts.mental_mind_translate.off_power": "Power Off",
+  "metallics_arts.spike_allomantic_power.tapping_identity": "Tapping Identity",
+
+  "metallics_arts.mental_mind_translate.shift_info": "[Shift] More info"
 }

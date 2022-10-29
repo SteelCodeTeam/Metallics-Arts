@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Interacciones",
+      "title": "Interactions",
       "text": "$(br) + Duralumin: Stops and debilitates the entity. $(br2) + Lerasium: Apply the effect in area. $(br2) + Both: Stops and weakens entities in the area."
     }
   ]

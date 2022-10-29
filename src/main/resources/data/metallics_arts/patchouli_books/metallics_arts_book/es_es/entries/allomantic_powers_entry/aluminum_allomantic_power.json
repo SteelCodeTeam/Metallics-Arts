@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:aluminum_allomantic_icon",
-      "text": "$(br)Vacía tus reservas alomanticas. $(br)$(br)$(br)$(br)$(br) Extra: $(br) - Cuanto mayor sea la reserva que consumas, es mayor la probabilidad de remover otros efectos adversos"
+      "text": "$(br)Vacía tus reservas alomanticas. $(br)$(br)$(br) Extra: $(br) - Cuanto mayor sea la reserva que consumas, es mayor la probabilidad de remover otros efectos adversos"
     },
     {
       "type": "patchouli:text",

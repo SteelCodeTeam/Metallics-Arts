@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Interacciones",
+      "title": "Interactions",
       "text": "$(br) + Duralumin: Eliminate reservations in a considerable area. $(br2) + Lerasium: Remove reservations in a small area  $(br2) + Both: Delete reservations in a large area around you"
     }
   ]

@@ -274,6 +274,9 @@
   "metallics_arts.mental_mind_translate.uses": "Usos",
 
   "metallics_arts.spike_feruchemic_power": "Enerxía Almacenada: Ferruquímico",
-  "metallics_arts.spike_allomantic_power": "Enerxía Almacenada: Alomántico"
+  "metallics_arts.spike_allomantic_power": "Enerxía Almacenada: Alomántico",
 
+  "metallics_arts.mental_mind_translate.store_identity": "Almaceando Identidade",
+  "metallics_arts.mental_mind_translate.off_power": "Poder Apagado",
+  "metallics_arts.spike_allomantic_power.tapping_identity": "Decantando Identidade"
 }
