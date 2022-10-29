@@ -1,4 +1,4 @@
-# Metallics Arts 1.19.2-1.1.6
+# Metallics Arts 1.19.2-1.2.0
 
 
 ## Index 📋
@@ -59,7 +59,7 @@ We have two mandatory dependencies:
 
 <br>
 
-## **Changelog ✒ [v1.2.0]️**
+## **Changelog ✒ [v1.2.0]️** 
 
 Problems solved:
 - Feruchemic selector can have problems with non-english location.
