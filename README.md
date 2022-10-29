@@ -107,6 +107,12 @@ We have two mandatory dependencies:
 - Add sound effects.
 - Add some advancements.
 - New interactions with feruchemical brass
+- Make the book appear in the creative tab of the mod
+- Add a crafting for the book (Make sure it doesn't crash in game if you don't have the patchouli and you craft it)
+- Make it give you the book when you enter the world (in the wiki it says how to do it with an advancement, but you also have to check that the game doesn't crash when you don't have the mod)
+- Add in the description of the curse forge page, that if there is anyone interested in translating the mod into their language, contact us
+- When the crafting of the book is added, mention in the description that the user guide is in the book
+- Put the requirements below the description of the mod
 
 
 
