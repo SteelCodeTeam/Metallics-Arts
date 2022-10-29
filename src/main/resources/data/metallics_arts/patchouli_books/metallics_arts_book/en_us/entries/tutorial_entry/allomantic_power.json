@@ -1,17 +1,17 @@
 {
-  "name": "Poder Alomantico",
+  "name": "Allomantic Power",
   "icon": "metallics_arts:textures/item/consumables/large_vial.png",
   "category": "metallics_arts:tutorial_category",
   "sortnum": 2,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": " En caso de que tu poder sea alomantico, sera necesario que recargues tus reservas del para poder comenzar a quemarlo.$(br) Esto se hace colocando en un $(l:vials_entry/vials)Viales$() las pepitas del metal que quiras cargar, o de varios metales, si tienes mas de un poder que utilizar."
+      "text": "In case your power is allomantic, you will need to recharge your power reserves in order to start burning it.$(br) This is done by placing in a $(l:vials_entry/vials)Vials$() the Nuggets of the metal you wish to charge, or of various metals, if you have more than one power to use"
     },
     {
-      "title": "¿Como utilizarlos?",
+      "title": "How to use?",
       "type": "patchouli:text",
-      "text": "$(br) Una vez cargado el vial, debes ingerirlo y veras como tus reservas se cargan.$(br) Por ultimo, deberas presionar la tecla \"M\" y seleccionar tu poder para activarlo."
+      "text": "once the vial is loaded, you must ingest it and you will see how your reserves are loaded.$(br) Finally, you must press the \"M\" key and select your power to activate it"
     }
   ]
 }

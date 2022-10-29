@@ -5,10 +5,12 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.enums.gems.Gems;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
+import net.rudahee.metallics_arts.setup.registries.ModItems;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +24,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels(){
 
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
+        ModelFile itemHandHeld = getExistingFile(mcLoc("item/handheld"));
+        //ModelFile itemHandHeldLarge = ItemModelBuilder getExistingFile(mcLoc("item/handheld_large"));
         List<Metal> metalList = Arrays.asList(Metal.values());
         List<Gems> gemList = Arrays.asList(Gems.values());
 
@@ -69,32 +73,32 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         /** All textures for spikes **/
 
-        builder(itemGenerated,"item/iron_spike","item/spikes/iron_spike");
-        builder(itemGenerated,"item/steel_spike","item/spikes/steel_spike");
-        builder(itemGenerated,"item/tin_spike","item/spikes/tin_spike");
-        builder(itemGenerated,"item/pewter_spike","item/spikes/pewter_spike");
-        builder(itemGenerated,"item/copper_spike","item/spikes/copper_spike");
-        builder(itemGenerated,"item/bronze_spike","item/spikes/bronze_spike");
-        builder(itemGenerated,"item/zinc_spike","item/spikes/zinc_spike");
-        builder(itemGenerated,"item/brass_spike","item/spikes/brass_spike");
-        builder(itemGenerated,"item/chromium_spike","item/spikes/chromium_spike");
-        builder(itemGenerated,"item/nicrosil_spike","item/spikes/nicrosil_spike");
-        builder(itemGenerated,"item/aluminum_spike","item/spikes/aluminum_spike");
-        builder(itemGenerated,"item/duralumin_spike","item/spikes/duralumin_spike");
-        builder(itemGenerated,"item/cadmium_spike","item/spikes/cadmium_spike");
-        builder(itemGenerated,"item/bendalloy_spike","item/spikes/bendalloy_spike");
-        builder(itemGenerated,"item/electrum_spike","item/spikes/electrum_spike");
-        builder(itemGenerated,"item/gold_spike","item/spikes/gold_spike");
-        builder(itemGenerated,"item/atium_spike","item/spikes/atium_spike");
-        builder(itemGenerated,"item/malatium_spike","item/spikes/malatium_spike");
-        builder(itemGenerated,"item/lerasium_spike","item/spikes/lerasium_spike");
-        builder(itemGenerated,"item/ettmetal_spike","item/spikes/ettmetal_spike");
+        builder(itemHandHeld,"item/iron_spike","item/spikes/iron_spike");
+        builder(itemHandHeld,"item/steel_spike","item/spikes/steel_spike");
+        builder(itemHandHeld,"item/tin_spike","item/spikes/tin_spike");
+        builder(itemHandHeld,"item/pewter_spike","item/spikes/pewter_spike");
+        builder(itemHandHeld,"item/copper_spike","item/spikes/copper_spike");
+        builder(itemHandHeld,"item/bronze_spike","item/spikes/bronze_spike");
+        builder(itemHandHeld,"item/zinc_spike","item/spikes/zinc_spike");
+        builder(itemHandHeld,"item/brass_spike","item/spikes/brass_spike");
+        builder(itemHandHeld,"item/chromium_spike","item/spikes/chromium_spike");
+        builder(itemHandHeld,"item/nicrosil_spike","item/spikes/nicrosil_spike");
+        builder(itemHandHeld,"item/aluminum_spike","item/spikes/aluminum_spike");
+        builder(itemHandHeld,"item/duralumin_spike","item/spikes/duralumin_spike");
+        builder(itemHandHeld,"item/cadmium_spike","item/spikes/cadmium_spike");
+        builder(itemHandHeld,"item/bendalloy_spike","item/spikes/bendalloy_spike");
+        builder(itemHandHeld,"item/electrum_spike","item/spikes/electrum_spike");
+        builder(itemHandHeld,"item/gold_spike","item/spikes/gold_spike");
+        builder(itemHandHeld,"item/atium_spike","item/spikes/atium_spike");
+        builder(itemHandHeld,"item/malatium_spike","item/spikes/malatium_spike");
+        builder(itemHandHeld,"item/lerasium_spike","item/spikes/lerasium_spike");
+        builder(itemHandHeld,"item/ettmetal_spike","item/spikes/ettmetal_spike");
 
-        builder(itemGenerated,"item/koloss_blade","item/combat/koloss_blade");
-        builder(itemGenerated,"item/cristal_dagger","item/combat/cristal_dagger");
-        builder(itemGenerated,"item/obsidian_dagger","item/combat/obsidian_dagger");
-        builder(itemGenerated,"item/dueling_staff","item/combat/dueling_staff");
-        builder(itemGenerated,"item/obsidian_axe","item/combat/obsidian_axe");
+        builder(itemHandHeld,"item/koloss_blade","item/combat/koloss_blade");
+        builder(itemHandHeld,"item/cristal_dagger","item/combat/cristal_dagger");
+        builder(itemHandHeld,"item/obsidian_dagger","item/combat/obsidian_dagger");
+        builder(itemHandHeld,"item/dueling_staff","item/combat/dueling_staff");
+        builder(itemHandHeld,"item/obsidian_axe","item/combat/obsidian_axe");
 
 
         ModelFile mf_small = builder(itemGenerated,"item/small_vial_fill","item/consumables/small_vial_fill");

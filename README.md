@@ -1,4 +1,4 @@
-# Metallics Arts alpha-1.0
+# Metallics Arts 1.19.2-1.1.6
 
 
 ## Index 📋
@@ -59,14 +59,22 @@ We have two mandatory dependencies:
 
 <br>
 
-## **Changelog ✒ [v1.1.1]️**
+## **Changelog ✒ [v1.2.0]️**
 
+Problems solved:
 - Feruchemic selector can have problems with non-english location.
 - Selectors dont have location defined correctly.
-- Translation Issues.
+- Translation Issues. Added first steps guide.
 - The guide book doesn't show koloss blade craft
 - Add first steps to use powers for the first time in the book
-- Feruchemic nicrosil, store with ettmetal and zinc, and should not
+- Feruchemic nicrosil, store with ettmetal and zinc, and should not store.
+- The texture of the weapons is wrong
+- Obsidian axe does a lot of damage
+- Make it give you the book when you enter the world. Game can crash if you dont have installed Patchouli.
+
+CurseForge page:
+- Added in the description, that if there is anyone interested in translating the mod into their language, they can contact us
+- Put the requirements below the description of the mod
 
 <br>
 
@@ -77,44 +85,33 @@ We have two mandatory dependencies:
 ## **Future Improvements ⬆️**
 
 **Known Issues**
-- ~~Its possible use two metalminds with the same metals.~~ [v1.1.0]
-- ~~Lerasium rings its not working properly. Its saving double of reserve.~~ [v1.1.0]
-- ~~Feruchemic selector can have problems with non-english location.~~ [v1.1.3]
-- ~~Selectors dont have location defined correctly.~~ [v1.1.3]
-- ~~Translation Issues.~~ [v1.1.3] and [v1.1.5]
-- ~~The guide book doesn't show koloss blade craft.~~ [v1.1.3]
-- ~~Add first steps to use powers for the first time in the book.~~ [v1.1.3]
-- ~~Feruchemic nicrosil, store with ettmetal and zinc, and should not.~~ [v1.1.3]
+- ~~Translation Issues.~~ [v1.1.3], [v1.1.5] and [v.1.1.6]
 - ~~Ettmetal does a lot of damage.~~ [v1.1.4]
 - ~~vials can be crafted together with other vials and one disappears as a result.~~ [v1.1.4]
 - ~~The vials can be consumed empty.~~ [v1.1.4]
-- The texture of the weapons is wrong.
-- Obsidian axe does a lot of damage.
+- ~~The texture of the weapons is wrong.~~ [v1.1.6]
+- ~~Obsidian axe does a lot of damage~~ [v1.1.6].
 - In some computers, allomantic lines doesnt work, we dont have idea whats its going on.
 - Patchouli its not redimensioning title for any reason.
 - Vials GUI, its not drawing correctly how much metal you have.
 
 
 **Improvements**
-- ~~Add special effects to weapons if you are burning pewter.~~ [v1.0.0]
-- ~~Implements Ettmetal damage in explosion.~~ [v1.1.0]
 - ~~Change in aluminum and maybe copper metalmind info.~~ [v1.1.4]
 - ~~Choose better colors to selectors.~~ [v1.1.4]
 - ~~Tooltips to vials.~~ [v1.1.4]
 - Banners with metals symbols. 
 - Do steel flying more comfortable. (Its not a priority)
-- Some commands to get metalminds charged.
+- Add some commands to get metalminds charged.
 - Add sound effects.
 - Add some advancements.
 - New interactions with feruchemical brass
 - Make the book appear in the creative tab of the mod
 - Add a crafting for the book (Make sure it doesn't crash in game if you don't have the patchouli and you craft it)
-- Make it give you the book when you enter the world (in the wiki it says how to do it with an advancement, but you also have to check that the game doesn't crash when you don't have the mod)
-- Add in the description of the curse forge page, that if there is anyone interested in translating the mod into their language, contact us
+- ~~Make it give you the book when you enter the world (in the wiki it says how to do it with an advancement, but you also have to check that the game doesn't crash when you don't have the mod)~~ [v1.1.6]
+- ~~Add in the description of the curse forge page, that if there is anyone interested in translating the mod into their language, contact us~~ [v.1.1.6]
 - When the crafting of the book is added, mention in the description that the user guide is in the book
-- Put the requirements below the description of the mod
-
-
+- ~~Put the requirements below the description of the mod~~ [v1.1.6]
 
 <br>
 

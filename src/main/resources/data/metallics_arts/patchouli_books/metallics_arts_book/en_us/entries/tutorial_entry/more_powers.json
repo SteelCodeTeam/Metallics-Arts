@@ -1,17 +1,17 @@
 {
-  "name": "Conseguir mas Poderes",
+  "name": "Obtainig more powers",
   "icon": "metallics_arts:textures/item/spikes/gold_spike.png",
   "category": "metallics_arts:tutorial_category",
   "sortnum": 4,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": " Los poderes pueden conseguirse de 2 formas."
+      "text": " Powers can be obtained in 2 ways:"
     },
     {
       "title": " ",
       "type": "patchouli:text",
-      "text": "$(br) Si juegas en solitario, actualmente solo pueden conseguirse por medio de comandos, iniciando con $(br)$(br) /ma-powers add  . . .$(br)$(br)$(br) En multijugador, podrás tomar los poderes de otros jugadores que los tengan, utilizando $(l:spikes_entry/spikes)Metal Spikes$()."
+      "text": "$(br) If playing solo, they can currently only be obtained via commands, starting with $(br)$(br) /ma-powers add . . .$(br)$(br)$(br) In multiplayer, you can take powers from other players who have them, using $(l:spikes_entry/spikes)Metal Spikes$()."
     }
   ]
 }
