@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:duralumin_allomantic_icon",
-      "text": "$(br)Greatly increases the power of the metals you are burning. $(br)$(br)$(br)$(br) Bonus: $(br) - It works for a short period of time and empties all reserves that are active at the time of activation."
+      "text": "$(br) Greatly increases the power of the metals you are burning. $(br)$(br)$(br)$(br) Bonus: $(br) - It works for a short period of time and empties all reserves that are active at the time of activation."
     },
     {
       "type": "patchouli:text",
       "title": "Interactions",
-      "text": "$(br) + Duralumin: Nothing $(br2) + Lerasium: Nothing $(br2) + Ambos: Nothing"
+      "text": "$(br) + Duralumin: Nothing. $(br2) + Lerasium: Nothing. $(br2) + Ambos: Nothing."
     }
   ]
 }

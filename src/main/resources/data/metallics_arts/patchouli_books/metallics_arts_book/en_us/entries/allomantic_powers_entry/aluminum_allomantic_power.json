@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:aluminum_allomantic_icon",
-      "text": "$(br)Drain your Allomantic reserves. $(br)$(br)$(br)$(br) Bonus: $(br) - The greater the reserve you consume, the greater the probability of removing other adverse effects."
+      "text": "$(br) Drain your Allomantic reserves. $(br)$(br)$(br)$(br) Bonus: $(br) - The greater the reserve you consume, the greater the probability of removing other adverse effects."
     },
     {
       "type": "patchouli:text",
       "title": "Interactions",
-      "text": "$(br) + Duralumin: Nothing $(br2) + Lerasium: Nothing $(br2) + Both: Nothing"
+      "text": "$(br) + Duralumin: Nothing. $(br2) + Lerasium: Nothing. $(br2) + Both: Nothing."
     }
   ]
 }

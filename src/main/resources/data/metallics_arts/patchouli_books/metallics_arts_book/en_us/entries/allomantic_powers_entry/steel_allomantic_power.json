@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:steel_allomantic_icon",
-      "text": "$(br)Push the metal fountain you are pointing at. $(br)$(br)$(br) Bonus: $(br) - You can use Ctrl + Spacebar to push towards the block at your feet. $(br) - In case there are no valid blocks, consume metal nuggets."
+      "text": "$(br) Push the metal fountain you are pointing at. $(br) To use this power, you must right-click while looking at the metal fountain.$(br)$(br) Bonus: $(br) - You can use Ctrl + Spacebar to push towards the block at your feet. $(br) - In case there are no valid blocks, consume metal nuggets."
     },
     {
       "type": "patchouli:text",

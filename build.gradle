@@ -5,8 +5,8 @@ plugins {
 }
 
 
+version = '1.19.2-1.1.5'
 
-version = '1.19.2-1.1.4'
 group = 'net.rudahee.metallics_arts' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'metallics_arts'
 

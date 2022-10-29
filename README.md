@@ -78,10 +78,10 @@ We have two mandatory dependencies:
 
 **Known Issues**
 - ~~Its possible use two metalminds with the same metals.~~ [v1.1.0]
-- - ~~Lerasium rings its not working properly. Its saving double of reserve.~~ [v1.1.0]
+- ~~Lerasium rings its not working properly. Its saving double of reserve.~~ [v1.1.0]
 - ~~Feruchemic selector can have problems with non-english location.~~ [v1.1.3]
 - ~~Selectors dont have location defined correctly.~~ [v1.1.3]
-- ~~Translation Issues.~~ [v1.1.3]
+- ~~Translation Issues.~~ [v1.1.3] and [v1.1.5]
 - ~~The guide book doesn't show koloss blade craft.~~ [v1.1.3]
 - ~~Add first steps to use powers for the first time in the book.~~ [v1.1.3]
 - ~~Feruchemic nicrosil, store with ettmetal and zinc, and should not.~~ [v1.1.3]
@@ -106,6 +106,13 @@ We have two mandatory dependencies:
 - Some commands to get metalminds charged.
 - Add sound effects.
 - Add some advancements.
+- New interactions with feruchemical brass
+- Make the book appear in the creative tab of the mod
+- Add a crafting for the book (Make sure it doesn't crash in game if you don't have the patchouli and you craft it)
+- Make it give you the book when you enter the world (in the wiki it says how to do it with an advancement, but you also have to check that the game doesn't crash when you don't have the mod)
+- Add in the description of the curse forge page, that if there is anyone interested in translating the mod into their language, contact us
+- When the crafting of the book is added, mention in the description that the user guide is in the book
+- Put the requirements below the description of the mod
 
 
 

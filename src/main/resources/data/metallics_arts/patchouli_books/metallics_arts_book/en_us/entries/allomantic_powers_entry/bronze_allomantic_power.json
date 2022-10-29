@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:bronze_allomantic_icon",
-      "text": "$(br)Makes nearby entities follow you around. $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - Mark players burning metals around you."
+      "text": "$(br) Makes nearby entities follow you around. $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - Mark players burning metals around you."
     },
     {
       "type": "patchouli:text",
