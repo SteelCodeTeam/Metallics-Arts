@@ -57,14 +57,14 @@ public class MetallicsArts
     public static CreativeModeTab MA_TAB = new CreativeModeTab(MOD_ID) {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(Items.IRON_INGOT);
+            return new ItemStack(Items.GOLD_INGOT);
         }
     };
 
     public static CreativeModeTab MA_TAB_DECORATION = new CreativeModeTab(-1, MOD_ID + ".decorations") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(Items.IRON_BLOCK);
+            return new ItemStack(Items.GOLD_BLOCK);
         }
     };
 
@@ -116,8 +116,8 @@ public class MetallicsArts
     private void setup(final FMLCommonSetupEvent event)
     {
         // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getDescriptionId());
+        LOGGER.info("Starting Metallics Arts Setup.");
+
         MetallicsPowersSetup.register(event);
         ModNetwork.registerPackets();
     }
