@@ -138,7 +138,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         return nbt;
     }
 
-    public static CompoundTag addBandTags(MetalsNBTData metal1, MetalsNBTData metal2) {
+    /**public static CompoundTag addBandTags(MetalsNBTData metal1, MetalsNBTData metal2) {
         CompoundTag nbt = new CompoundTag();
 
         nbt.putInt(metal1.getNameLower()+"_feruchemic_reserve",0);
@@ -146,6 +146,29 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         nbt.putInt(metal1.getNameLower()+"_feruchemic_max_capacity", metal1.getMaxReserveBand());
         nbt.putInt(metal2.getNameLower()+"_feruchemic_max_capacity", metal2.getMaxReserveBand());
         nbt.putString("key","Nobody");
+        return nbt;
+    }*/
+
+    public static CompoundTag addBandTagsFull(MetalsNBTData metal1, MetalsNBTData metal2) {
+        CompoundTag nbt = new CompoundTag();
+
+        if(metal1.equals(MetalsNBTData.ALUMINUM)){
+
+            nbt.putInt(metal1.getNameLower()+"_feruchemic_reserve",3);
+
+        }else if(metal1.equals(MetalsNBTData.LERASIUM)){
+
+
+        }else {
+            nbt.putInt(metal1.getNameLower()+"_feruchemic_reserve",metal1.getMaxReserveBand());
+            nbt.putInt(metal1.getNameLower()+"_feruchemic_max_capacity", metal1.getMaxReserveBand());
+
+        }
+
+        nbt.putInt(metal2.getNameLower()+"_feruchemic_reserve",metal2.getMaxReserveBand());
+        nbt.putInt(metal2.getNameLower()+"_feruchemic_max_capacity", metal2.getMaxReserveBand());
+        nbt.putString("key","Nobody");
+
         return nbt;
     }
 
