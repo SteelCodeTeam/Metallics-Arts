@@ -11,10 +11,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.modules.items.metalminds.bands.BandMindAbstract;
+import net.rudahee.metallics_arts.modules.items.metalminds.bands.BandSteelIron;
 import net.rudahee.metallics_arts.modules.items.vials.Vial;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,7 +41,11 @@ public class MetallicArtsCommand {
                 .then(Commands.literal("get")
                         .then(Commands.literal("large_vial")
                                 .then(Commands.argument("target", EntityArgument.player())
-                                        .executes(context -> getLargeVial(context, EntityArgument.getPlayer(context, "target")))))));
+                                        .executes(context -> getLargeVial(context, EntityArgument.getPlayer(context, "target")))))
+
+                        .then(Commands.literal("band_steel_iron")
+                                .then(Commands.argument("target", EntityArgument.player())
+                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target", "band_steel_iron")))))));
 
         dispatcher.register(Commands.literal("ma-powers").requires(commandSource -> commandSource.hasPermission(2))
                 .then(Commands.literal("get")
@@ -588,6 +596,25 @@ public class MetallicArtsCommand {
         vial.setTag(nbt);
         target.getInventory().add(vial);
         target.sendSystemMessage(Component.translatable("Added 1 Vial with all metals to " + target.getScoreboardName()));
+        return  1;
+    }
+
+    private static int getMetalmind(CommandContext<CommandSourceStack> context, ServerPlayer target, String band) {
+        ItemStack metalmind;
+        CompoundTag nbt = new CompoundTag();
+        if (band.equals("band_steel_iron")) {
+            metalmind = new ItemStack(ModItems.BAND_STEEL_IRON.get());
+            nbt = BandMindAbstract.addBandTags(MetalsNBTData.IRON, MetalsNBTData.STEEL);
+        }
+        // Sucesion de else-ifs
+        else {
+            metalmind = new ItemStack(ModItems.BAND_STEEL_IRON.get());
+            nbt = BandMindAbstract.addBandTags(MetalsNBTData.IRON, MetalsNBTData.STEEL);
+        }
+        metalmind.setTag(nbt);
+        target.getInventory().add(metalmind);
+        target.sendSystemMessage(Component.translatable("Added 1 " + band + " to " + target.getScoreboardName()));
+
         return  1;
     }
 

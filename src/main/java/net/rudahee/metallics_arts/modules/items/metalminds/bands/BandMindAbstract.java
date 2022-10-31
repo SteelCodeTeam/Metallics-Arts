@@ -138,6 +138,17 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         return nbt;
     }
 
+    public static CompoundTag addBandTags(MetalsNBTData metal1, MetalsNBTData metal2) {
+        CompoundTag nbt = new CompoundTag();
+
+        nbt.putInt(metal1.getNameLower()+"_feruchemic_reserve",0);
+        nbt.putInt(metal2.getNameLower()+"_feruchemic_reserve",0);
+        nbt.putInt(metal1.getNameLower()+"_feruchemic_max_capacity", metal1.getMaxReserveBand());
+        nbt.putInt(metal2.getNameLower()+"_feruchemic_max_capacity", metal2.getMaxReserveBand());
+        nbt.putString("key","Nobody");
+        return nbt;
+    }
+
     private boolean nicConsumeMet0 = false;
     private boolean nicConsumeMet1 = false;
     @Override
