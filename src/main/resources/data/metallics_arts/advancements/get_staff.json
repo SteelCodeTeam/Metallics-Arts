@@ -1,10 +1,10 @@
 {
   "display": {
     "icon": {
-      "item": "metallics_arts:large_vial"
+      "item": "metallics_arts:dueling_staff"
     },
-    "title": "Starting with Allomancy",
-    "description": "Do you want to start a rebellion?",
+    "title": "Hazekiller",
+    "description": "Trying to survive!",
     "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true
@@ -17,7 +17,7 @@
         "items": [
           {
             "items": [
-              "metallics_arts:small_vial","metallics_arts:large_vial"
+              "metallics_arts:dueling_staff"
             ]
           }
         ]
