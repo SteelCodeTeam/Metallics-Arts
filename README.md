@@ -100,18 +100,20 @@ CurseForge page:
 - ~~Change in aluminum and maybe copper metalmind info.~~ [v1.1.4]
 - ~~Choose better colors to selectors.~~ [v1.1.4]
 - ~~Tooltips to vials.~~ [v1.1.4]
+- ~~Put the requirements below the description of the mod~~ [v1.1.6]
+- ~~Make it give you the book when you enter the world (in the wiki it says how to do it with an advancement, but you also have to check that the game doesn't crash when you don't have the mod)~~ [v1.1.6]
+- ~~Add in the description of the curse forge page, that if there is anyone interested in translating the mod into their language, contact us~~ [v.1.1.6]
+- ~~Add some commands to get metalminds charged. [v1.2.1]~~
 - Banners with metals symbols. 
 - Do steel flying more comfortable. (Its not a priority)
-- Add some commands to get metalminds charged.
 - Add sound effects.
 - Add some advancements.
 - New interactions with feruchemical brass
 - Make the book appear in the creative tab of the mod
 - Add a crafting for the book (Make sure it doesn't crash in game if you don't have the patchouli and you craft it)
-- ~~Make it give you the book when you enter the world (in the wiki it says how to do it with an advancement, but you also have to check that the game doesn't crash when you don't have the mod)~~ [v1.1.6]
-- ~~Add in the description of the curse forge page, that if there is anyone interested in translating the mod into their language, contact us~~ [v.1.1.6]
+
 - When the crafting of the book is added, mention in the description that the user guide is in the book
-- ~~Put the requirements below the description of the mod~~ [v1.1.6]
+
 
 <br>
 
