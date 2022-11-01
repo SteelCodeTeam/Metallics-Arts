@@ -24,7 +24,7 @@ This mod is a pseudo-fork of Lego's Allomancy mod, so we recommend you check out
 
 Our mod adds all three metal arts (Allomancy, Feruchemy and Hemalurgy) to Minecraft.
 
-We add new blocks, recipes, items and a new alloy furnace! All this to be able to access the incredible powers of the metallics arts.
+We add new blocks, recipes and items! All this to be able to access the incredible powers of the metallics arts.
 
 <br>
 
@@ -48,8 +48,10 @@ So we really hope you enjoy it!
 <br>
 
 ## **Requirements 📦**
-We have two mandatory dependencies:
+
 - **Forge 1.19.2-43.1.15** or superior
+
+And we have two mandatory dependencies:
 - **Curios 1.19.2-5.1.1.0** or superior
 - **Patchouli 1.19-75** or superior
 
