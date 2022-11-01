@@ -29,12 +29,17 @@ public abstract class Vial extends Item {
     public Vial(Properties properties,int maxNuggets) {
         super(properties);
         this.maxNuggets = maxNuggets;
+
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
         if(!stack.hasTag()){
             stack.setTag(addVialTags());
+        } else {
+            if (!hasAllTags(stack.getTag())){
+                stack.setTag(addVialTags());
+            }
         }
         if (Screen.hasShiftDown()){
             for (MetalsNBTData metal : MetalsNBTData.values()){
@@ -50,7 +55,16 @@ public abstract class Vial extends Item {
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
     }
-
+    private static boolean hasAllTags(CompoundTag tag) {
+        boolean value = true;
+        for (MetalsNBTData metal: MetalsNBTData.values()) {
+            if (!tag.contains(metal.getNameLower())) {
+                value = false;
+                break;
+            }
+        }
+        return value;
+    }
     private static CompoundTag addVialTags() {
         CompoundTag nbt = new CompoundTag();
         for (MetalsNBTData metal : MetalsNBTData.values()){

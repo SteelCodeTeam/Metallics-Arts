@@ -11,6 +11,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fml.common.Mod;
+import net.rudahee.metallics_arts.modules.items.vials.large_vial.LargeVial;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
@@ -21,9 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LargeVialItemRecipe extends CustomRecipe {
-
     private ItemStack final_result = ItemStack.EMPTY;
-
     private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItems.LARGE_VIAL.get());
 
     private static final List<Ingredient> INGREDIENT_NUGGET = new ArrayList<Ingredient>() {{
@@ -44,47 +44,30 @@ public class LargeVialItemRecipe extends CustomRecipe {
     public LargeVialItemRecipe(ResourceLocation location) {
         super(location);
     }
-
     public ItemStack auxiliar = null;
-
-
 
     @Override
     public boolean matches(CraftingContainer inv, Level world) {
         ItemStack actualIngredient = null;
-
         int[] metalsEnVial = new int[MetalsNBTData.values().length];
         Arrays.fill(metalsEnVial,0);
-
         int[] cantStorage = new int[MetalsNBTData.values().length];
         Arrays.fill(cantStorage,0);
-
         boolean[] addMetal = new boolean[MetalsNBTData.values().length];
         Arrays.fill(addMetal,false);
-
         boolean[] ingredients = {false, false};
-
         boolean hasVial = false;
-
-        for(int i = 0; i < inv.getContainerSize();i++) {
-            actualIngredient = inv.getItem(i);
-            if (!actualIngredient.isEmpty()) {
-                if (INGREDIENT_VIAL.test(actualIngredient)) {
-                    if (!hasVial) {
-                        hasVial = true;
-                    } else {
-                        return false;
-                    }
-                }
-            }
-        }
-
         int cantMaxPep = 10;
 
         for(int i = 0; i < inv.getContainerSize(); i++) {
             actualIngredient = inv.getItem(i);
             if (actualIngredient != null && !actualIngredient.isEmpty()) {
                 if (INGREDIENT_VIAL.test(inv.getItem(i))) {
+                    if (hasVial) {
+                        return false;
+                    } else {
+                        hasVial = true;
+                    }
                     if (actualIngredient.hasTag()){
                         for (MetalsNBTData metal : MetalsNBTData.values()) {
                             if (actualIngredient.getTag().contains(metal.getGemNameLower())){
