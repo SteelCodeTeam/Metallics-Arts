@@ -33,11 +33,12 @@ public class MetallicsPowersConfig {
         add("hook");
         add("cauldron");
         add("minecart");
-        add("chain");
         add("hopper");
         add("bucket");
         add("netherite");
         add("lantern");
+
+
 
         add(ModItems.BAND_PEWTER_TIN.get().getDescriptionId());
         add(ModItems.BAND_PEWTER_TIN.get().getDescription().toString());
@@ -77,9 +78,25 @@ public class MetallicsPowersConfig {
         add(Items.CLOCK.getDescription().toString());
         add(Items.COMPASS.getDescription().toString());
         add(Items.SHEARS.getDescription().toString());
+        add(Items.CHAIN.getDescription().toString());
 
 
         //TODO insertar cosas hechas de metal a mano.
+
+        //Suplementaries Integration
+        add("cage");
+        add("safe");
+        add("globe");
+        add("candle_holder");
+        add("wind_vane");
+        add("faucet");
+        add("wired_");
+        add("railing_");
+        add("brazier");
+
+
+
+
 
 
     }};

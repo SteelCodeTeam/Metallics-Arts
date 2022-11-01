@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:lectern_books"
+    },
+    "title": "Metallic arts",
+    "description": "From the biginning",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "background": "metallics_arts:textures/block/raw_cadmium_block.png"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "patchouli:guide_book"
+           ]
+          }
+        ]
+      }
+    }
+  }
+}
