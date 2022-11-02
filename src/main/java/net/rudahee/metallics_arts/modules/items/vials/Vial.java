@@ -36,10 +36,6 @@ public abstract class Vial extends Item {
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
         if(!stack.hasTag()){
             stack.setTag(addVialTags());
-        } else {
-            if (!hasAllTags(stack.getTag())){
-                stack.setTag(addVialTags());
-            }
         }
         if (Screen.hasShiftDown()){
             for (MetalsNBTData metal : MetalsNBTData.values()){

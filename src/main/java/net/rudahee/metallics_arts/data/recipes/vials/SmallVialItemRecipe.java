@@ -67,24 +67,16 @@ public class SmallVialItemRecipe extends CustomRecipe {
 
         boolean hasVial = false;
 
-        for(int i = 0; i < inv.getContainerSize();i++) {
+        for(int i = 0; i < inv.getContainerSize(); i++) {
             actualIngredient = inv.getItem(i);
-            if (!actualIngredient.isEmpty()) {
-                if (INGREDIENT_VIAL.test(actualIngredient)) {
-                    if (!hasVial) {
-                        hasVial = true;
-                    } else {
+            if (actualIngredient != null && !actualIngredient.isEmpty()) {
+                if (INGREDIENT_VIAL.test(inv.getItem(i))) {
+                    System.out.println("algo");
+                    if (hasVial) {
                         return false;
+                    } else {
+                        hasVial = true;
                     }
-                }
-            }
-        }
-
-
-        for(int i = 0; i < inv.getContainerSize();i++) {
-            actualIngredient = inv.getItem(i);
-            if (!actualIngredient.isEmpty()) {
-                if (INGREDIENT_VIAL.test(actualIngredient)) {
                     if (actualIngredient.hasTag()){
                         for (MetalsNBTData metal : MetalsNBTData.values()) {
                             if (actualIngredient.getTag().contains(metal.getGemNameLower())){
@@ -137,64 +129,6 @@ public class SmallVialItemRecipe extends CustomRecipe {
         }
     }
 
-
-    /*
-    @Override
-    public boolean matches(CraftingContainer inv, Level worldIn) {
-        this.item_result = ItemStack.EMPTY;
-
-        boolean[] metals = new boolean[Metal.values().length];
-        Arrays.fill(metals, false);
-        boolean[] ingredients = {false, false};
-
-        for (int i = 0; i < inv.getContainerSize(); ++i) {
-            ItemStack itemstack = inv.getItem(i);
-            if (!itemstack.isEmpty()) {
-                if (INGREDIENT_FLAKES.test(itemstack)) {
-                    for (Metal mt : Metal.values()) {
-                        if (itemstack.getItem() == MaterialsSetup.FLAKES.get(mt.getIndex()).get()) {
-                            if (metals[mt.getIndex()]) {
-                                return false;
-                            }
-
-                            metals[mt.getIndex()] = true;
-                            ingredients[1] = true;
-                        }
-                    }
-                } else if (INGREDIENT_VIAL.test(itemstack)) {
-                    if (itemstack.getTag() != null) {
-                        for (Metal mt : Metal.values()) {
-                            if (itemstack.getTag().contains(mt.getName())) {
-                                boolean hasMetalAlready = itemstack.getTag().getBoolean(mt.getName());
-                                if (metals[mt.getIndex()] && hasMetalAlready) {
-                                    return false;
-                                } else {
-                                    metals[mt.getIndex()] = metals[mt.getIndex()] || hasMetalAlready;
-                                }
-                            }
-                        }
-                    }
-                    ingredients[0] = true;
-                } else {
-                    return false;
-                }
-
-            }
-        }
-        if (ingredients[0] && ingredients[1]) {
-            this.item_result = new ItemStack(ConsumeSetup.VIAL.get(), 1);
-            CompoundTag nbt = new CompoundTag();
-            for (Metal mt : Metal.values()) {
-                nbt.putBoolean(mt.getName(), metals[mt.getIndex()]);
-            }
-            nbt.putInt("CustomModelData", 1);
-            this.item_result.setTag(nbt);
-            return true;
-        } else {
-            return false;
-        }
-    }
-     */
 
     @Override
     public ItemStack assemble(CraftingContainer inv) { //getCraftingResult
