@@ -48,16 +48,21 @@ public class LargeVialItemRecipe extends CustomRecipe {
 
     @Override
     public boolean matches(CraftingContainer inv, Level world) {
-        ItemStack actualIngredient = null;
+        boolean[] ingredients = {false, false};
+        int cantMaxPep = 10;
+        ItemStack actualIngredient;
+        boolean hasVial = false;
+
         int[] metalsEnVial = new int[MetalsNBTData.values().length];
         Arrays.fill(metalsEnVial,0);
         int[] cantStorage = new int[MetalsNBTData.values().length];
         Arrays.fill(cantStorage,0);
         boolean[] addMetal = new boolean[MetalsNBTData.values().length];
         Arrays.fill(addMetal,false);
-        boolean[] ingredients = {false, false};
-        boolean hasVial = false;
-        int cantMaxPep = 10;
+
+        for (MetalsNBTData metal : MetalsNBTData.values()) {
+            cantStorage[metal.getIndex()] = metal.getMaxAllomanticTicksStorage()/cantMaxPep;
+        }
 
         for(int i = 0; i < inv.getContainerSize(); i++) {
             actualIngredient = inv.getItem(i);
@@ -71,12 +76,21 @@ public class LargeVialItemRecipe extends CustomRecipe {
                     if (actualIngredient.hasTag()){
                         for (MetalsNBTData metal : MetalsNBTData.values()) {
                             if (actualIngredient.getTag().contains(metal.getGemNameLower())){
+                                metalsEnVial[metal.getIndex()] = actualIngredient.getTag().getInt(metal.getNameLower());
+                            }
+                        }
+                    }
+                    ingredients[0] = true;
+
+                    /*if (actualIngredient.hasTag()){
+                        for (MetalsNBTData metal : MetalsNBTData.values()) {
+                            if (actualIngredient.getTag().contains(metal.getGemNameLower())){
                                 cantStorage[metal.getIndex()] = metal.getMaxAllomanticTicksStorage()/cantMaxPep;
                                 metalsEnVial[metal.getIndex()] = actualIngredient.getTag().getInt(metal.getNameLower());
                             }
                         }
                         ingredients[0] = true;
-                    }
+                    }*/
                 }
                 auxiliar = actualIngredient;
                 if (INGREDIENT_NUGGET.stream().anyMatch(

@@ -108,7 +108,7 @@ CurseForge page:
 - ~~Add some commands to get metalminds charged.~~ [v1.2.1]
 - ~~Add some advancements.~~ [v1.2.2]
 - ~~Add command for Charged MetalMinds~~ [v1.2.2]
-- ~~Vials in mutiplayer~~ [v1.2.3]
+- ~~Vials in mutiplayer~~ [v1.2.4]
 - Banners with metals symbols. 
 - Do steel flying more comfortable. (Its not a priority)
 - Add sound effects.
