@@ -1,4 +1,4 @@
-# Metallics Arts 1.19.2-1.2.0
+# Metallics Arts 1.19.2-1.2.6
 
 
 ## Index 📋
@@ -93,10 +93,11 @@ CurseForge page:
 - ~~The vials can be consumed empty.~~ [v1.1.4]
 - ~~The texture of the weapons is wrong.~~ [v1.1.6]
 - ~~Obsidian axe does a lot of damage~~ [v1.1.6].
-- In some computers, allomantic lines doesnt work, we dont have idea whats its going on.
+- ~~In some computers, allomantic lines doesnt work, we dont have idea whats its going on.~~[v1.2.6]
 - Patchouli its not redimensioning title for any reason.
 - Vials GUI, its not drawing correctly how much metal you have.
-
+- ~~Koloss Blade doesnt interact correctly with Feruchemical pewter~~ [v1.2.6]
+- ~~Tp with dimesions involucred are bugged, and always tp to overworld~~ [v1.2.6]
 
 **Improvements**
 - ~~Change in aluminum and maybe copper metalmind info.~~ [v1.1.4]
@@ -113,11 +114,6 @@ CurseForge page:
 - Do steel flying more comfortable. (Its not a priority)
 - Add sound effects.
 - New interactions with feruchemical brass
-- Make the book appear in the creative tab of the mod
-- Add a crafting for the book (Make sure it doesn't crash in game if you don't have the patchouli and you craft it)
-
-- When the crafting of the book is added, mention in the description that the user guide is in the book
-
 
 <br>
 

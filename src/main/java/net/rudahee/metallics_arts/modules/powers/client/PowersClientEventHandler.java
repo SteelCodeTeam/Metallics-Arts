@@ -85,7 +85,10 @@ public class PowersClientEventHandler {
 
                                 this.redoLists(player, playerCapability);
 
-                                this.tickOffset = (tickOffset + 1) % 2;
+
+                                if (++this.tickOffset > 9) {
+                                    this.tickOffset = 0;
+                                }
 
                                 /** LEFT CLICK (ATTACK) */
 
@@ -296,7 +299,7 @@ public class PowersClientEventHandler {
             this.metal_entities.clear();
             this.metal_blobs.clear();
             if (playerCapability.isBurning(MetalsNBTData.IRON) || playerCapability.isBurning(MetalsNBTData.STEEL)) {
-                int max = 12;
+                int max = 8;
                 BlockPos negative = player.blockPosition().offset(-max, -max, -max);
                 BlockPos positive = player.blockPosition().offset(max, max, max);
 
@@ -596,14 +599,16 @@ public class PowersClientEventHandler {
             Vec3 playervec = this.mc.cameraEntity
                     .getEyePosition(event.getPartialTick())
                     .add(rho * Mth.sin(phi) * Mth.cos(theta), rho * Mth.cos(phi) - 0.35F, rho * Mth.sin(phi) * Mth.sin(theta));
-             /*
-            RenderSystem.disableTexture();
-            RenderSystem.disableDepthTest();
-            RenderSystem.depthMask(false);
-            RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
-            RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            RenderSystem.enableBlend();
-             */
+
+            if (GL11.glGetString(GL11.GL_VENDOR).contains("ATI")) {
+                RenderSystem.disableTexture();
+                RenderSystem.disableDepthTest();
+                RenderSystem.depthMask(false);
+                RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
+                RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+                RenderSystem.enableBlend();
+            }
+
             /*********************************************
              * IRON AND STEEL LINES                      *
              *********************************************/
@@ -670,14 +675,14 @@ public class PowersClientEventHandler {
             }
             teardownPoseStack(stack);
 
-            /*
-            RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
-            RenderSystem.disableBlend();
-            RenderSystem.enableDepthTest();
-            RenderSystem.depthMask(true);
-            RenderSystem.enableTexture();
-            stack.popPose();
-            */
+            if (GL11.glGetString(GL11.GL_VENDOR).contains("ATI")) {
+                RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
+                RenderSystem.disableBlend();
+                RenderSystem.enableDepthTest();
+                RenderSystem.depthMask(true);
+                RenderSystem.enableTexture();
+                stack.popPose();
+            }
         });
     }
     private static void teardownPoseStack(PoseStack stack) {

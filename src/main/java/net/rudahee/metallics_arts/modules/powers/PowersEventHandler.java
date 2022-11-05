@@ -78,14 +78,14 @@ public class PowersEventHandler {
                 player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
                     if (data.getSpawnDimension() == null) {
                         int[] pos = {player.level.getLevelData().getXSpawn(),player.level.getLevelData().getYSpawn(),player.level.getLevelData().getZSpawn()};
-                        String dim = player.level.dimension().toString();
+                        String dim = player.level.dimension().location().toString();
 
                         data.setSpawnPos(pos);
                         data.setSpawnDimension(dim);
                     }
                     if (data.getDeathDimension() == null) {
                         int[] pos = {player.level.getLevelData().getXSpawn(),player.level.getLevelData().getYSpawn(),player.level.getLevelData().getZSpawn()};
-                        String dim = player.level.dimension().toString();
+                        String dim = player.level.dimension().location().toString();
                         data.setDeathPos(pos);
                         data.setDeathDimension(dim);
                     }
@@ -124,7 +124,7 @@ public class PowersEventHandler {
             playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
                 capabilities -> {
                     int[] pos = {(int) playerEntity.position().x,(int) playerEntity.position().y, (int) playerEntity.position().z};
-                    String dim = playerEntity.level.dimension().toString();
+                    String dim = playerEntity.level.dimension().location().toString();
                     if (capabilities.getSpawnPos() != null) {
                         capabilities.setSpawnDimension(dim);
                         capabilities.setSpawnPos(pos);
@@ -140,7 +140,8 @@ public class PowersEventHandler {
             ServerPlayer player = (ServerPlayer) event.getEntity();
             player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability -> {
                 int[] pos = {(int) player.position().x,(int) player.position().y, (int) player.position().z};
-                String dim = player.level.dimension().toString();
+                String dim = player.level.dimension().location().toString();
+
                 playerCapability.setDeathDimension(dim);
                 playerCapability.setDeathPos(pos);
                 for (MetalsNBTData metal:MetalsNBTData.values()) {
@@ -417,7 +418,7 @@ public class PowersEventHandler {
                                 }
                             }
 
-                            if (!playerCapability.isBurning(MetalsNBTData.PEWTER)
+                            if ( !(playerCapability.isBurning(MetalsNBTData.PEWTER) || playerCapability.isDecanting(MetalsNBTData.PEWTER))
                                     && (player.getMainHandItem().getItem() == ModItems.KOLOSS_BLADE.get() || player.getOffhandItem().getItem() == ModItems.KOLOSS_BLADE.get())) {
 
                                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 2, true, true, false));
@@ -839,7 +840,7 @@ public class PowersEventHandler {
                                 dimension = playerCapability.getSpawnDimension();
                             } else {
                                 block = new BlockPos(world.getLevelData().getXSpawn(),world.getLevelData().getYSpawn(), world.getLevelData().getZSpawn());
-                                dimension = Level.OVERWORLD.registry().getNamespace();
+                                dimension = Level.OVERWORLD.location().toString();
                             }
                             if (playerCapability.isBurning(MetalsNBTData.LERASIUM)){
                                 BlockPos negative;
@@ -867,7 +868,7 @@ public class PowersEventHandler {
                                 dimension = playerCapability.getDeathDimension();
                             } else {
                                 block = new BlockPos(world.getLevelData().getXSpawn(),world.getLevelData().getYSpawn(), world.getLevelData().getZSpawn());
-                                dimension = Level.OVERWORLD.registry().getNamespace();
+                                dimension = Level.OVERWORLD.location().toString();
                             }
                             if (playerCapability.isBurning(MetalsNBTData.LERASIUM)){
                                 BlockPos negative;

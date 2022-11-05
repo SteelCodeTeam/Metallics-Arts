@@ -118,11 +118,13 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+metals[1].getNameLower()).append(": "+ ((stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_max_capacity"))+"%"));
             }
             if (world != null) {
-                toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
+                toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : (world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? "Something" : world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
             }
             if (!Screen.hasShiftDown()){
                 toolTips.add(Component.translatable(" "));
+
                 toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
+
             }
         }
         super.appendHoverText(stack, world, toolTips, flagIn);

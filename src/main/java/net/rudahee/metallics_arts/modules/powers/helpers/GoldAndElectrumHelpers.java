@@ -49,11 +49,11 @@ public class GoldAndElectrumHelpers {
     }
 
     public static ResourceKey<Level> getRegistryKeyFromString(String dim) {
-        if (dim == Level.OVERWORLD.registry().getNamespace()){
+        if (dim.equals(Level.OVERWORLD.location().toString())){
             return Level.OVERWORLD;
-        } else if (dim == Level.NETHER.registry().getNamespace()) {
+        } else if (dim.equals(Level.NETHER.location().toString())) {
             return Level.NETHER;
-        } else if (dim == Level.END.registry().getNamespace()) {
+        } else if (dim.equals(Level.END.location().toString())) {
             return Level.END;
         } else {
             return Level.OVERWORLD;

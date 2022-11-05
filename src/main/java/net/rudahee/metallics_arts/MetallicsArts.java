@@ -40,6 +40,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 
+import java.util.ArrayList;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -185,6 +186,7 @@ public class MetallicsArts
         RegistryObject<T> blockRegistered = registerBlockNoItem(name, blockSupplier);
         ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().tab(MA_TAB).stacksTo(64))));
         return blockRegistered;
+
     }
 
     public static <T extends Block> RegistryObject<T> registerBlockDecoration(String name, Supplier<T> blockSupplier) {
