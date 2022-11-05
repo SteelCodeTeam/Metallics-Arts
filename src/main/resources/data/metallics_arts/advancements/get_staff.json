@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "metallics_arts:dueling_staff"
+    },
+    "title": "Hazekiller",
+    "description": "Trying to survive!",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "metallics_arts:get_all_alloyes",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:dueling_staff"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

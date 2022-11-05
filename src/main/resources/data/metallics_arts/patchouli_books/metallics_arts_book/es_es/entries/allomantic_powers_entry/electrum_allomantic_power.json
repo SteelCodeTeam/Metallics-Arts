@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:electrum_allomantic_icon",
-      "text": "$(br)Señala tu punto de reaparición con una linea$(br)"
+      "text": "$(br) Señala tu punto de reaparición con una línea.$(br)"
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Te teletransporta al punto marcado $(br2) + Lerasium: Nada $(br2) + Ambos: Teletransporta en área al punto marcado"
+      "text": "$(br) + Duralumin: Te teletransporta al punto marcado. $(br2) + Lerasium: Nada. $(br2) + Ambos: Teletransporta en área al punto marcado."
     }
   ]
 }

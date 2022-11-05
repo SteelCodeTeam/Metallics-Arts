@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "metallics_arts:obsidian_axe"
+    },
+    "title": "Get Rect",
+    "description": "Damage Up",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "metallics_arts:get_staff",
+  "criteria": {
+    "ObsidianAxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:obsidian_axe"
+            ]
+          }
+        ]
+      }
+    },
+    "ObsidianDagger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:obsidian_dagger"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [["ObsidianAxe"],["ObsidianDagger"]]
+}

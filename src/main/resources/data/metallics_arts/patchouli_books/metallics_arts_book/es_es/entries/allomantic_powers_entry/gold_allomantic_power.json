@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:gold_allomantic_icon",
-      "text": "$(br)Señala el punto donde moriste por ultima vez $(br)"
+      "text": "$(br) Señala el punto donde moriste por última vez. $(br)"
     },
     {
       "type": "patchouli:text",

@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -135,6 +136,41 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         nbt.putInt(this.metals[0].getNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[0]);
         nbt.putInt(this.metals[1].getNameLower()+"_feruchemic_max_capacity",metalsMaxReserve[1]);
         nbt.putString("key",this.unkeyedString);
+        return nbt;
+    }
+
+    /**public static CompoundTag addBandTags(MetalsNBTData metal1, MetalsNBTData metal2) {
+        CompoundTag nbt = new CompoundTag();
+
+        nbt.putInt(metal1.getNameLower()+"_feruchemic_reserve",0);
+        nbt.putInt(metal2.getNameLower()+"_feruchemic_reserve",0);
+        nbt.putInt(metal1.getNameLower()+"_feruchemic_max_capacity", metal1.getMaxReserveBand());
+        nbt.putInt(metal2.getNameLower()+"_feruchemic_max_capacity", metal2.getMaxReserveBand());
+        nbt.putString("key","Nobody");
+        return nbt;
+    }*/
+
+    public static CompoundTag addBandTagsFull(MetalsNBTData metal1, MetalsNBTData metal2) {
+        CompoundTag nbt = new CompoundTag();
+
+        if(metal1.equals(MetalsNBTData.ALUMINUM)){
+            nbt.putInt(metal1.getNameLower()+"_feruchemic_reserve",3);
+
+        }else if(metal1.equals(MetalsNBTData.LERASIUM)){
+            nbt.putInt(metal1.getNameLower() + "_feruchemic_reserve",1);
+            for (MetalsNBTData metal: MetalsNBTData.values()) {
+                nbt.putInt(metal.getNameLower()+"inLerasiumBand",metal.getMaxAllomanticTicksStorage());
+            }
+        }else {
+            nbt.putInt(metal1.getNameLower()+"_feruchemic_reserve",metal1.getMaxReserveBand());
+            nbt.putInt(metal1.getNameLower()+"_feruchemic_max_capacity", metal1.getMaxReserveBand());
+
+        }
+
+        nbt.putInt(metal2.getNameLower()+"_feruchemic_reserve",metal2.getMaxReserveBand());
+        nbt.putInt(metal2.getNameLower()+"_feruchemic_max_capacity", metal2.getMaxReserveBand());
+        nbt.putString("key","Nobody");
+
         return nbt;
     }
 

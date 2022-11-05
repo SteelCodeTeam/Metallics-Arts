@@ -1,0 +1,112 @@
+{
+  "display": {
+    "icon": {
+      "item": "metallics_arts:nicrosil_ingot"
+    },
+    "title": "Very Hot!!",
+    "description": "Get all the alloys",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "metallics_arts:metallics_arts",
+  "criteria": {
+    "alloy_aluminum_duralumin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:duralumin_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "alloy_cadmium_bendalloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:bendalloy_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "alloy_chromium_nicrosil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:nicrosil_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "alloy_copper_bronze": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:bronze_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "alloy_electrum_gold": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:electrum_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "alloy_pewter_tin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:pewter_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "alloy_steel_iron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:steel_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "alloy_zinc_brass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:brass_ingot"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [["alloy_aluminum_duralumin"],["alloy_cadmium_bendalloy"],["alloy_chromium_nicrosil"],["alloy_copper_bronze"],["alloy_electrum_gold"],["alloy_pewter_tin"],["alloy_steel_iron"],["alloy_zinc_brass"]]
+}

@@ -11,10 +11,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.modules.items.metalminds.bands.BandMindAbstract;
+import net.rudahee.metallics_arts.modules.items.metalminds.bands.BandSteelIron;
 import net.rudahee.metallics_arts.modules.items.vials.Vial;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,7 +41,37 @@ public class MetallicArtsCommand {
                 .then(Commands.literal("get")
                         .then(Commands.literal("large_vial")
                                 .then(Commands.argument("target", EntityArgument.player())
-                                        .executes(context -> getLargeVial(context, EntityArgument.getPlayer(context, "target")))))));
+                                        .executes(context -> getLargeVial(context, EntityArgument.getPlayer(context, "target")))))
+                        .then(Commands.literal("band_steel_iron")
+                                .then(Commands.argument("target", EntityArgument.player())
+                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_steel_iron"))))
+                        .then(Commands.literal("band_zinc_brass")
+                                .then(Commands.argument("target", EntityArgument.player())
+                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_zinc_brass"))))
+                        .then(Commands.literal("band_aluminium_duralumin")
+                                .then(Commands.argument("target", EntityArgument.player())
+                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_aluminium_duralumin"))))
+                        .then(Commands.literal("band_atium_malatium")
+                                .then(Commands.argument("target", EntityArgument.player())
+                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_atium_malatium"))))
+                        .then(Commands.literal("band_cadmium_bendalloy")
+                                .then(Commands.argument("target", EntityArgument.player())
+                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_cadmium_bendalloy"))))
+                        .then(Commands.literal("band_chromium_nicrosil")
+                                .then(Commands.argument("target", EntityArgument.player())
+                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_chromium_nicrosil"))))
+                        .then(Commands.literal("band_copper_bronze")
+                                .then(Commands.argument("target", EntityArgument.player())
+                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_copper_bronze"))))
+                        .then(Commands.literal("band_electrum_gold")
+                                .then(Commands.argument("target", EntityArgument.player())
+                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_electrum_gold"))))
+                        .then(Commands.literal("band_lerasium_ettmetal")
+                                .then(Commands.argument("target", EntityArgument.player())
+                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_lerasium_ettmetal"))))
+                        .then(Commands.literal("band_pewter_tin")
+                                .then(Commands.argument("target", EntityArgument.player())
+                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_pewter_tin"))))));
 
         dispatcher.register(Commands.literal("ma-powers").requires(commandSource -> commandSource.hasPermission(2))
                 .then(Commands.literal("get")
@@ -588,6 +622,74 @@ public class MetallicArtsCommand {
         vial.setTag(nbt);
         target.getInventory().add(vial);
         target.sendSystemMessage(Component.translatable("Added 1 Vial with all metals to " + target.getScoreboardName()));
+        return  1;
+    }
+
+    // Metodo para adquirir por comando mentes de metal
+    private static int getMetalmind(CommandContext<CommandSourceStack> context, ServerPlayer target, String band) {
+        ItemStack metalmind;
+        CompoundTag nbt = new CompoundTag();
+        if (band.equals("band_steel_iron")) {
+
+            metalmind = new ItemStack(ModItems.BAND_STEEL_IRON.get());
+            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.IRON, MetalsNBTData.STEEL);
+
+        }else if(band.equals("band_zinc_brass")) {
+
+            metalmind = new ItemStack(ModItems.BAND_ZINC_BRASS.get());
+            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.ZINC, MetalsNBTData.BRASS);
+
+        }else if(band.equals("band_aluminium_duralumin")) {
+
+            metalmind = new ItemStack(ModItems.BAND_ALUMINUM_DURALUMIN.get());
+            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.ALUMINUM, MetalsNBTData.DURALUMIN);
+
+        }else if(band.equals("band_atium_malatium")) {
+
+            metalmind = new ItemStack(ModItems.BAND_ATIUM_MALATIUM.get());
+            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.ATIUM, MetalsNBTData.MALATIUM);
+
+        }else if(band.equals("band_cadmium_bendalloy")) {
+
+            metalmind = new ItemStack(ModItems.BAND_CADMIUM_BENDALLOY.get());
+            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.CADMIUM, MetalsNBTData.BENDALLOY);
+
+        }else if(band.equals("band_chromium_nicrosil")) {
+
+            metalmind = new ItemStack(ModItems.BAND_CHROMIUM_NICROSIL.get());
+            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.CHROMIUM, MetalsNBTData.NICROSIL);
+
+        }else if(band.equals("band_copper_bronze")) {
+
+            metalmind = new ItemStack(ModItems.BAND_COPPER_BRONZE.get());
+            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.COPPER, MetalsNBTData.BRONZE);
+
+        }else if(band.equals("band_electrum_gold")) {
+
+            metalmind = new ItemStack(ModItems.BAND_ELECTRUM_GOLD.get());
+            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.GOLD, MetalsNBTData.ELECTRUM);
+
+        }else if(band.equals("band_lerasium_ettmetal")) {
+
+            metalmind = new ItemStack(ModItems.BAND_LERASIUM_ETTMETAL.get());
+            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.LERASIUM, MetalsNBTData.ETTMETAL);
+
+        }else if(band.equals("band_pewter_tin")) {
+
+            metalmind = new ItemStack(ModItems.BAND_PEWTER_TIN.get());
+            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.TIN, MetalsNBTData.PEWTER);
+
+        }
+        else{
+
+            metalmind = new ItemStack(ModItems.BAND_PEWTER_TIN.get());
+            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.TIN, MetalsNBTData.PEWTER);
+
+        }
+        metalmind.setTag(nbt);
+        target.getInventory().add(metalmind);
+        target.sendSystemMessage(Component.translatable("Added 1 " + band + " to " + target.getScoreboardName()));
+
         return  1;
     }
 

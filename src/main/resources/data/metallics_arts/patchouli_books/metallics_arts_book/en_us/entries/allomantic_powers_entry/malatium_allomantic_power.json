@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:malatium_allomantic_icon",
-      "text": "$(br)Marks the last kill point of the player you hit. $(br)"
+      "text": "$(br) Marks the last kill point of the player you hit."
     },
     {
       "type": "patchouli:text",

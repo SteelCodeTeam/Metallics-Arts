@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:brass_allomantic_icon",
-      "text": "$(br)Hostile entities will ignore you. $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - You have a chance to tame pets."
+      "text": "$(br) Hostile entities will ignore you. $(br) To use this power, you must push allomantically while looking at the entity.$(br)$(br)$(br) Bonus: $(br) - You have a chance to tame pets."
     },
     {
       "type": "patchouli:text",

@@ -1,43 +1,27 @@
 {
-  "parent": "metallics_arts:metallics_arts",
   "display": {
     "icon": {
-      "item": "metallics_arts:large_vial",
-      "nbt": "{CustomModelData: 1}"
+      "item": "metallics_arts:large_vial"
     },
     "title": "Starting with Allomancy",
     "description": "Do you want to start a rebellion?",
-    "frame": "normal",
-    "announce_to_chat": true,
+    "frame": "goal",
     "show_toast": true,
-    "hidden": false
+    "announce_to_chat": true
   },
+  "parent": "metallics_arts:get_all_alloyes",
   "criteria": {
-    "small_vial": {
+    "requirement": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "items": [{
-          "item": "metallics_arts:small_vial"
+        "items": [
+          {
+            "items": [
+              "metallics_arts:small_vial","metallics_arts:large_vial"
+            ]
           }
         ]
       }
-    },
-    "large_vial": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [{
-          "item": "metallics_arts:large_vial"
-        }
-        ]
-      }
     }
-  },
-  "requirements": [
-    [
-      "small_vial"
-    ],
-    [
-      "large_vial"
-    ]
-  ]
+  }
 }

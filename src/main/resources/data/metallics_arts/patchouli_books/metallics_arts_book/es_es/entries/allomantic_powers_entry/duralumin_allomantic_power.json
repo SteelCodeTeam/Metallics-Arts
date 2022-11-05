@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:duralumin_allomantic_icon",
-      "text": "$(br)Aumenta en gran medida la potencia de los metales que estés quemando $(br)$(br)$(br) Extra: $(br) - Funciona un corto periodo de tiempo y vacía todas las reservas que estan activas en el momento de la activacion"
+      "text": "$(br) Aumenta en gran medida la potencia de los metales que estés quemando $(br)$(br)$(br) Extra: $(br) - Funciona un corto periodo de tiempo y vacía todas las reservas que están activas en el momento de la activación"
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Nada $(br2) + Lerasium: Nada $(br2) + Ambos: Nada"
+      "text": "$(br) + Duralumin: Nada. $(br2) + Lerasium: Nada. $(br2) + Ambos: Nada."
     }
   ]
 }

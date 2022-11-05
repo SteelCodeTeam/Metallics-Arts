@@ -9,8 +9,10 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.decoration.ItemFrame;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -76,6 +78,13 @@ public class IronAndSteelHelpers {
             if (ent instanceof IronGolem) {
                 return true;
             }
+
+            if (ent instanceof Horse) {
+                    if (isItemMetal(((Horse) ent).getArmor())) {
+                        return true;
+                    }
+            }
+
             if (isItemMetal(ent.getItemInHand(InteractionHand.MAIN_HAND)) || isItemMetal(ent.getItemInHand(InteractionHand.MAIN_HAND))) {
                 return true;
             }

@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:lerasium_allomantic_icon",
-      "text": "$(br)Increases the potency of the metals you are burning. $(br)"
+      "text": "$(br) Increases the potency of the metals you are burning."
     },
     {
       "type": "patchouli:text",

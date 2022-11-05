@@ -36,12 +36,16 @@ import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.world.ModConfiguredFeatures;
 import net.rudahee.metallics_arts.world.ModPlacedFeatures;
 import net.rudahee.metallics_arts.world.biomemod.ModBiomeModifier;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.opengl.GLDebugMessageCallback;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import org.lwjgl.glfw.GLFW;
+import org.lwjgl.opengl.GL11;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MetallicsArts.MOD_ID)
@@ -52,19 +56,20 @@ public class MetallicsArts
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
 
+
     // creative tab
 
     public static CreativeModeTab MA_TAB = new CreativeModeTab(MOD_ID) {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(Items.IRON_INGOT);
+            return new ItemStack(Items.GOLD_INGOT);
         }
     };
 
     public static CreativeModeTab MA_TAB_DECORATION = new CreativeModeTab(-1, MOD_ID + ".decorations") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(Items.IRON_BLOCK);
+            return new ItemStack(Items.GOLD_BLOCK);
         }
     };
 
@@ -116,10 +121,13 @@ public class MetallicsArts
     private void setup(final FMLCommonSetupEvent event)
     {
         // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getDescriptionId());
+        LOGGER.info("Starting Metallics Arts Setup.");
+
         MetallicsPowersSetup.register(event);
         ModNetwork.registerPackets();
+
+        //String vendor = GL11.glGetString(GL11.GL_VENDOR);
+        //LOGGER.log(Level.INFO, "Vendor: {0}", vendor);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

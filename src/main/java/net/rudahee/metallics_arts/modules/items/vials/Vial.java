@@ -29,6 +29,7 @@ public abstract class Vial extends Item {
     public Vial(Properties properties,int maxNuggets) {
         super(properties);
         this.maxNuggets = maxNuggets;
+
     }
 
     @Override
@@ -50,7 +51,16 @@ public abstract class Vial extends Item {
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
     }
-
+    private static boolean hasAllTags(CompoundTag tag) {
+        boolean value = true;
+        for (MetalsNBTData metal: MetalsNBTData.values()) {
+            if (!tag.contains(metal.getNameLower())) {
+                value = false;
+                break;
+            }
+        }
+        return value;
+    }
     private static CompoundTag addVialTags() {
         CompoundTag nbt = new CompoundTag();
         for (MetalsNBTData metal : MetalsNBTData.values()){

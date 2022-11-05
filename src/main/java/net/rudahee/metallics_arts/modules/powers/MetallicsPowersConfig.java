@@ -26,6 +26,7 @@ public class MetallicsPowersConfig {
 
         add("lead");
         add("nickel");
+        add("tin_");
         add("shield");
         add("anvil");
         add("rail");
@@ -39,12 +40,13 @@ public class MetallicsPowersConfig {
         add("netherite");
         add("lantern");
 
+
         add(ModItems.BAND_PEWTER_TIN.get().getDescriptionId());
         add(ModItems.BAND_PEWTER_TIN.get().getDescription().toString());
         add(ModItems.RING_PEWTER_TIN.get().getDescriptionId());
         add(ModItems.RING_PEWTER_TIN.get().getDescription().toString());
 
-        add("tin_");
+
 
         add(Items.CROSSBOW.getDescriptionId());
         add(Items.CROSSBOW.getDescription().toString());
@@ -65,21 +67,56 @@ public class MetallicsPowersConfig {
 
         add(Items.LODESTONE.getDescriptionId());
         add(Items.LODESTONE.getDescription().toString());
+
         add(Items.STONECUTTER.getDescriptionId());
         add(Items.STONECUTTER.getDescription().toString());
 
+        add(Items.LIGHTNING_ROD.getDescriptionId());
+        add(Items.LIGHTNING_ROD.getDescription().toString());
+
+        add(Items.TRIDENT.getDescriptionId());
+        add(Items.TRIDENT.getDescription().toString());
+
+        add(Items.SOUL_LANTERN.getDescriptionId());
+        add(Items.SOUL_LANTERN.getDescription().toString());
+
         //add(ModBlock.ALLOY_FURNACE_BLOCK.get().getDescriptionId());
-        add(Items.STONECUTTER.getDescription().toString());
 
         add(Items.BLAST_FURNACE.getDescriptionId());
-        add(Items.STONECUTTER.getDescription().toString());
+        add(Items.BLAST_FURNACE.getDescription().toString());
 
         add(Items.CLOCK.getDescription().toString());
         add(Items.COMPASS.getDescription().toString());
         add(Items.SHEARS.getDescription().toString());
+        add(Items.SPYGLASS.getDescription().toString());
+        add(Items.GLISTERING_MELON_SLICE.getDescription().toString());
+        add(Items.NAME_TAG.getDescription().toString());
 
+        add(Items.ARROW.getDescriptionId());
+        add(Items.ARROW.getDescription().toString());
+
+        add(Items.TIPPED_ARROW.getDescriptionId());
+        add(Items.TIPPED_ARROW.getDescription().toString());
+
+        add(Items.SPECTRAL_ARROW.getDescriptionId());
+        add(Items.SPECTRAL_ARROW.getDescription().toString());
 
         //TODO insertar cosas hechas de metal a mano.
+
+        //Suplementaries Integration
+        add("cage");
+        add("safe");
+        add("globe");
+        add("candle_holder");
+        add("wind_vane");
+        add("faucet");
+        add("wired_");
+        add("railing_");
+        add("brazier");
+
+
+
+
 
 
     }};

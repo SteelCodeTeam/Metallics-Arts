@@ -417,9 +417,8 @@ public class PowersEventHandler {
                                 }
                             }
 
-                            if (!playerCapability.isBurning(MetalsNBTData.PEWTER)
+                            if ((!playerCapability.isBurning(MetalsNBTData.PEWTER) && !playerCapability.isDecanting(MetalsNBTData.PEWTER))
                                     && (player.getMainHandItem().getItem() == ModItems.KOLOSS_BLADE.get() || player.getOffhandItem().getItem() == ModItems.KOLOSS_BLADE.get())) {
-
                                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 2, true, true, false));
                                 player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 10, 2, true, true, false));
                                 player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 10, 2, true, true, false));

@@ -43,7 +43,7 @@ public class PewterAndTinHelpers {
 
     public static void addTinEffects(Player player) {
         if(player.tickCount % 20 == 0) {
-            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 320, 1, true, false, false));
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 320, 2, true, false, false));
         }
     }
 
@@ -77,12 +77,10 @@ public class PewterAndTinHelpers {
             player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 240, 1, true, false, false));
         }
     }
-    public static void addFecruchemicVision(Player player){
-        player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 1, true, false, false));
-    }
-
-    public static void removeFeruchemicVision(Player player){
-        player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60, 1, true, false, false));
-    }
-
+    public static void addFecruchemicVision(Player player) {
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 205, 1, true, false, false));
+        }
+    public static void removeFeruchemicVision(Player player) {
+            player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60, 1, true, false, false));
+        }
 }

@@ -5,6 +5,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.decoration.ItemFrame;
 import net.minecraft.world.entity.item.FallingBlockEntity;
@@ -57,6 +58,12 @@ public class PullAndPushEntityPacket {
                     // The source moves
                     if (target instanceof IronGolem || target instanceof ItemFrame) {
                         IronAndSteelHelpers.move(this.direction, source, target.blockPosition());
+                    }
+                    if (target instanceof Horse) {
+                        IronAndSteelHelpers.move(this.direction / 2.0, target, source.blockPosition());
+                        IronAndSteelHelpers.move(this.direction, source, target.blockPosition());
+
+                        // Aplico provisoriamente weightModified porque LOS CABALLOS SON PESADOS//
 
                     } else if (target instanceof ItemEntity || target instanceof FallingBlockEntity || target instanceof ArmorStand ||
                             (target instanceof AbstractMinecart && !target.isVehicle())) {

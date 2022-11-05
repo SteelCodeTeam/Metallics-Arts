@@ -11,7 +11,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.items.combat.tiers.ObsidianCustomTier;
 
 public class ObsidianAxe extends SwordItem {
-    private static final Tier OBSIDIAN_TIER = new ObsidianCustomTier(2500,0.8F,24,6,3);
+    private static final Tier OBSIDIAN_TIER = new ObsidianCustomTier(2500,0.8F,19,6,3);
 
     public ObsidianAxe (Item.Properties properties) {
         super(OBSIDIAN_TIER, -1, -3.2F, properties.durability(2500).tab(MetallicsArts.MA_TAB));

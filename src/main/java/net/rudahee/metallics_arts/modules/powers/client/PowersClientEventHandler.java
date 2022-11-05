@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.commands.ScoreboardCommand;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
@@ -17,6 +18,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.*;
+import net.minecraft.world.scores.Scoreboard;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
@@ -594,13 +596,14 @@ public class PowersClientEventHandler {
             Vec3 playervec = this.mc.cameraEntity
                     .getEyePosition(event.getPartialTick())
                     .add(rho * Mth.sin(phi) * Mth.cos(theta), rho * Mth.cos(phi) - 0.35F, rho * Mth.sin(phi) * Mth.sin(theta));
-
-            /*RenderSystem.disableTexture();
+             /*
+            RenderSystem.disableTexture();
             RenderSystem.disableDepthTest();
             RenderSystem.depthMask(false);
             RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
             RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            RenderSystem.enableBlend();*/
+            RenderSystem.enableBlend();
+             */
             /*********************************************
              * IRON AND STEEL LINES                      *
              *********************************************/
@@ -667,12 +670,14 @@ public class PowersClientEventHandler {
             }
             teardownPoseStack(stack);
 
-            /*RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
+            /*
+            RenderSystem.polygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
             RenderSystem.disableBlend();
             RenderSystem.enableDepthTest();
             RenderSystem.depthMask(true);
             RenderSystem.enableTexture();
-            stack.popPose();*/
+            stack.popPose();
+            */
         });
     }
     private static void teardownPoseStack(PoseStack stack) {
