@@ -7,7 +7,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.commands.ScoreboardCommand;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
@@ -18,7 +17,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.*;
-import net.minecraft.world.scores.Scoreboard;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
@@ -117,14 +115,14 @@ public class PowersClientEventHandler {
                                                 BlockPos blockPosition = ((BlockHitResult) trace).getBlockPos();
                                                 if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
                                                     ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
-                                                            Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player, playerCapability.isBurning(MetalsNBTData.DURALUMIN) || playerCapability.getExternalEnhanced(),
+                                                            Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player, playerCapability.getEnhanced() || playerCapability.getEnhanced(),
                                                                     playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                                 }
                                             }
                                             if (trace instanceof EntityHitResult) {
                                                 ModNetwork.sendToServer(
                                                         new PullAndPushEntityPacket(((EntityHitResult) trace).getEntity().getId(),
-                                                                Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN) || playerCapability.getExternalEnhanced(),
+                                                                Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player,playerCapability.getEnhanced() || playerCapability.getEnhanced(),
                                                                         playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                             }
                                         }
@@ -180,14 +178,14 @@ public class PowersClientEventHandler {
                                                 BlockPos blockPosition = ((BlockHitResult) trace).getBlockPos();
                                                 if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
                                                     ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
-                                                            Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN) || playerCapability.getExternalEnhanced(),
+                                                            Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.getEnhanced() || playerCapability.getEnhanced(),
                                                                     playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                                 }
                                             }
                                             if (trace instanceof EntityHitResult) {
                                                 ModNetwork.sendToServer(
                                                         new PullAndPushEntityPacket(((EntityHitResult) trace).getEntity().getId(),
-                                                                Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN) || playerCapability.getExternalEnhanced(),
+                                                                Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.getEnhanced() || playerCapability.getEnhanced(),
                                                                         playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                             }
                                         }
@@ -251,11 +249,11 @@ public class PowersClientEventHandler {
 
                                         if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
                                             ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
-                                                    Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                    Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.getEnhanced(),
                                                             playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                         } else if (haveNuggets(player) != -1) {
                                             ModNetwork.sendToServer(new PullAndPushNuggetPacket(blockPosition,
-                                                    Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.isBurning(MetalsNBTData.DURALUMIN),
+                                                    Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.getEnhanced(),
                                                             playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                             if (controlTick == 0 ){
                                                 player.getInventory().removeItem(haveNuggets(player),1);

@@ -27,9 +27,8 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     private final boolean[] metal_mind_equiped;
     private String death_dimension;
     private String spawn_dimension;
-    private boolean external_enhanced;
-    private final ArrayList<MetalsNBTData> list_external_enhanced_drain;
-    private final ArrayList<MetalsNBTData> list_duralumin_drain;
+    private boolean enhanced;
+    private final ArrayList<MetalsNBTData> list_metal_buff_drain;
 
 
     public DefaultInvestedPlayerData() {
@@ -75,10 +74,9 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
         this.burning_metals = new boolean[powers];
         Arrays.fill(this.burning_metals, false);
 
-        this.external_enhanced = false;
+        this.enhanced = false;
 
-        list_duralumin_drain = new ArrayList<>();
-        list_external_enhanced_drain = new ArrayList<>();
+        list_metal_buff_drain = new ArrayList<>();
 
     }
 
@@ -111,40 +109,20 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     }
 
     @Override
-    public void clearListDuraluminDrain() {
-        this.list_duralumin_drain.clear();
+    public void clearListMetalBuff() {
+        this.list_metal_buff_drain.clear();
     }
     @Override
-    public void addListDuraluminDrain(MetalsNBTData metalsNBTData) {
-        this.list_duralumin_drain.add(metalsNBTData);
+    public void addListMetalBuff(MetalsNBTData metalsNBTData) {
+        this.list_metal_buff_drain.add(metalsNBTData);
     }
     @Override
-    public ArrayList<MetalsNBTData> getListDuraluminDrain() {
-        return this.list_duralumin_drain;
+    public ArrayList<MetalsNBTData> getListMetalBuff() {
+        return this.list_metal_buff_drain;
     }
     @Override
-    public boolean containsInListDuraluminDrain(MetalsNBTData metalsNBTData) {
-        return this.list_duralumin_drain.contains(metalsNBTData);
-    }
-
-    @Override
-    public void clearListExternalEnhancedDrain() {
-        this.list_external_enhanced_drain.clear();
-    }
-
-    @Override
-    public void addListExternalEnhancedDrain(MetalsNBTData metalsNBTData) {
-        this.list_external_enhanced_drain.add(metalsNBTData);
-    }
-
-    @Override
-    public ArrayList<MetalsNBTData> getListExternalEnhancedDrain() {
-        return this.list_external_enhanced_drain;
-    }
-
-    @Override
-    public boolean containsInListExternalEnhancedDrain(MetalsNBTData metalsNBTData) {
-        return this.list_external_enhanced_drain.contains(metalsNBTData);
+    public boolean containsInListMetalBuff(MetalsNBTData metalsNBTData) {
+        return this.list_metal_buff_drain.contains(metalsNBTData);
     }
 
     @Override
@@ -269,13 +247,13 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     }
 
     @Override
-    public boolean getExternalEnhanced() {
-        return this.external_enhanced;
+    public boolean getEnhanced() {
+        return this.enhanced;
     }
 
     @Override
-    public void setExternalEnhanced(boolean isExternalEnhanced) {
-        this.external_enhanced = isExternalEnhanced;
+    public void setEnhanced(boolean isEnhanced) {
+        this.enhanced = isEnhanced;
     }
 
     @Override
@@ -566,7 +544,7 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
         invested_data.put("decanting_metals", decanting_metals);
         invested_data.put("storing_metals", storing_metals);
 
-        invested_data.putBoolean("external_enhanced", this.getExternalEnhanced());
+        invested_data.putBoolean("is_enhanced", this.getEnhanced());
 
         return invested_data;
     }
@@ -575,7 +553,7 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     public void load(CompoundTag nbt) {
         CompoundTag invested_data = nbt;
 
-        this.setExternalEnhanced(invested_data.getBoolean("external_enhanced"));
+        this.setEnhanced(invested_data.getBoolean("is_enhanced"));
 
         CompoundTag allomantic_powers = (CompoundTag) invested_data.get("allomantic_powers");
         CompoundTag feruchemic_powers = (CompoundTag) invested_data.get("feruchemic_powers");

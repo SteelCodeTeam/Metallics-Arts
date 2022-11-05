@@ -93,6 +93,7 @@ CurseForge page:
 - ~~The vials can be consumed empty.~~ [v1.1.4]
 - ~~The texture of the weapons is wrong.~~ [v1.1.6]
 - ~~Obsidian axe does a lot of damage~~ [v1.1.6].
+-  ~~duralumin that burns with a single nugget~~ [v1.2.5]
 - ~~In some computers, allomantic lines doesnt work, we dont have idea whats its going on.~~[v1.2.6]
 - Patchouli its not redimensioning title for any reason.
 - Vials GUI, its not drawing correctly how much metal you have.
@@ -155,5 +156,7 @@ When the mod is finished, we will update de mod to 1.18.x and 1.19.x, but we can
   - **Twitter:** @RuDaHee
 - **TobibusFate:**
   - **Discord:** TobibusFate#1234
+- **Sregio03:**
+  - **Discord:** Sregio03#3270
 - **Farck:** <- *The art guy*
   - **Discord:** Farck#1234

@@ -36,14 +36,14 @@ public class AtiumAndMalatiumHelpers {
             tar =+1;
         if (targetCapability.isBurning(MetalsNBTData.LERASIUM))
             tar =+2;
-        if (targetCapability.isBurning(MetalsNBTData.DURALUMIN))
+        if (targetCapability.getEnhanced())
             tar = +3;
 
         if (sourceCapability.isBurning(MetalsNBTData.ATIUM)){
             sour =+1;
             if (sourceCapability.isBurning(MetalsNBTData.LERASIUM))
                 sour =+2;
-            if (sourceCapability.isBurning(MetalsNBTData.DURALUMIN))
+            if (sourceCapability.getEnhanced())
                 sour = +3;
         }
 
@@ -100,13 +100,13 @@ public class AtiumAndMalatiumHelpers {
     }
 
     public static float getCalculateSimpleDamage(IDefaultInvestedPlayerData targetCapability, float damage) {
-        if (targetCapability.isBurning(MetalsNBTData.LERASIUM) && targetCapability.isBurning(MetalsNBTData.DURALUMIN)) { //lerasium + duralumin
+        if (targetCapability.isBurning(MetalsNBTData.LERASIUM) && targetCapability.getEnhanced()) { //lerasium + duralumin
             return 0;
         } else if (targetCapability.isBurning(MetalsNBTData.LERASIUM)) { //solo lerasium
             if (Math.random()<0.6) {
                 return 0;
             }
-        } else if (targetCapability.isBurning(MetalsNBTData.DURALUMIN)) { //solo duralumin
+        } else if (targetCapability.getEnhanced()) { //solo duralumin
             if (Math.random()<0.8) {
                 return 0;
             }
@@ -129,11 +129,11 @@ public class AtiumAndMalatiumHelpers {
                 double percetage = 0d;
 
                 if (sourceCap.isBurning(MetalsNBTData.ATIUM)) {
-                    if (sourceCap.isBurning(MetalsNBTData.LERASIUM) && !sourceCap.isBurning(MetalsNBTData.DURALUMIN)) {
+                    if (sourceCap.isBurning(MetalsNBTData.LERASIUM) && !sourceCap.getEnhanced()) {
                         sourceState = 2;
-                    } else if (sourceCap.isBurning(MetalsNBTData.DURALUMIN) && !sourceCap.isBurning(MetalsNBTData.LERASIUM)) {
+                    } else if (sourceCap.getEnhanced() && !sourceCap.isBurning(MetalsNBTData.LERASIUM)) {
                         sourceState = 3;
-                    } else if (sourceCap.isBurning(MetalsNBTData.LERASIUM) && sourceCap.isBurning(MetalsNBTData.DURALUMIN)) {
+                    } else if (sourceCap.isBurning(MetalsNBTData.LERASIUM) && sourceCap.getEnhanced()) {
                         sourceState = 4;
                     } else {
                         sourceState = 1;
@@ -143,11 +143,11 @@ public class AtiumAndMalatiumHelpers {
                 }
 
                 if (targetCap.isBurning(MetalsNBTData.ATIUM)) {
-                    if (targetCap.isBurning(MetalsNBTData.LERASIUM) && !targetCap.isBurning(MetalsNBTData.DURALUMIN)) {
+                    if (targetCap.isBurning(MetalsNBTData.LERASIUM) && !targetCap.getEnhanced()) {
                         targetState = 2;
-                    } else if (targetCap.isBurning(MetalsNBTData.DURALUMIN) && !targetCap.isBurning(MetalsNBTData.LERASIUM)) {
+                    } else if (targetCap.getEnhanced() && !targetCap.isBurning(MetalsNBTData.LERASIUM)) {
                         targetState = 3;
-                    } else if (targetCap.isBurning(MetalsNBTData.LERASIUM) && targetCap.isBurning(MetalsNBTData.DURALUMIN)) {
+                    } else if (targetCap.isBurning(MetalsNBTData.LERASIUM) && targetCap.getEnhanced()) {
                         targetState = 4;
                     } else {
                         targetState = 1;
