@@ -10,18 +10,11 @@ public interface IDefaultInvestedPlayerData {
 
     void tickAllomancyBurningMetals(ServerPlayer player);
 
-    void clearListDuraluminDrain();
-    void addListDuraluminDrain(MetalsNBTData metalsNBTData);
-    ArrayList<MetalsNBTData> getListDuraluminDrain();
+    void clearListMetalBuff();
+    void addListMetalBuff(MetalsNBTData metalsNBTData);
+    ArrayList<MetalsNBTData> getListMetalBuff();
 
-    boolean containsInListDuraluminDrain(MetalsNBTData metalsNBTData);
-
-    void clearListExternalEnhancedDrain();
-    void addListExternalEnhancedDrain(MetalsNBTData metalsNBTData);
-    ArrayList<MetalsNBTData> getListExternalEnhancedDrain();
-
-    boolean containsInListExternalEnhancedDrain(MetalsNBTData metalsNBTData);
-
+    boolean containsInListMetalBuff(MetalsNBTData metalsNBTData);
 
     void tickFeruchemyStorageMetals(ServerPlayer player);
 
@@ -127,9 +120,9 @@ public interface IDefaultInvestedPlayerData {
 
     void setMetalMindEquipedList (boolean [] list);
 
-    boolean getExternalEnhanced();
+    boolean getEnhanced();
 
-    void setExternalEnhanced(boolean isExternalEnhanced);
+    void setEnhanced(boolean isExternalEnhanced);
 
 
     CompoundTag save();

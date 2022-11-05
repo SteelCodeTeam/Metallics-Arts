@@ -11,7 +11,7 @@ public class LerasiumAndEttmetalHelpers {
 
     public static void ettmetalExplotion(Level world, Player player) {
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability ->{
-            if (playerCapability.isBurning(MetalsNBTData.DURALUMIN)) {
+            if (playerCapability.getEnhanced()) {
                 //max reserve = 100/20 = 5
                 //min reserve = 10/20 = 0*5
                 world.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalsNBTData.ETTMETAL))/20, Explosion.BlockInteraction.BREAK);

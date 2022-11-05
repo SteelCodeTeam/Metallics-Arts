@@ -87,7 +87,7 @@ public class ChromiumAndNicrosilHelpers {
 
     public static void changeNBTinTargetForEnhanced(Player target) {
         target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> {
-            cap.setExternalEnhanced(true);
+            cap.setEnhanced(true);
 
             ModNetwork.sync(cap, target);
         });

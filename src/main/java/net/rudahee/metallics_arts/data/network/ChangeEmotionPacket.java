@@ -7,7 +7,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.ZincAndBrassHelpers;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 import java.util.function.Supplier;
 
@@ -46,7 +45,7 @@ public class ChangeEmotionPacket {
                 return;
             }
             allomancer.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
-                enhanced = data.isBurning(MetalsNBTData.DURALUMIN);
+                enhanced = data.getEnhanced();
             });
 
             if (this.make_aggressive) {
