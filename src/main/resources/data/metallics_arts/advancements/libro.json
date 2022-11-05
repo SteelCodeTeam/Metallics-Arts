@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:lectern_books"
+      "item": "minecraft:gold_ingot"
     },
     "title": "Metallic arts",
     "description": "From the biginning",
@@ -12,12 +12,12 @@
   },
   "criteria": {
     "requirement": {
-      "trigger": "minecraft:inventory_changed",
+      "trigger": "minecraft:tick",
       "conditions": {
         "items": [
           {
             "items": [
-              "patchouli:guide_book"
+              "metallics_arts:metallics_arts_book"
            ]
           }
         ]

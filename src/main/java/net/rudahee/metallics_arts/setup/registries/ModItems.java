@@ -5,6 +5,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.modules.items.banners.IronBanner;
 import net.rudahee.metallics_arts.modules.items.combat.*;
 import net.rudahee.metallics_arts.modules.items.metal_spike.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.bands.*;
@@ -35,6 +36,9 @@ public class ModItems {
     public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY = new HashMap<String, Item>();
 
     public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC = new HashMap<String, Item>();
+
+    public static final HashMap<String, Item> ITEM_PATTER_ALLOMANCY = new HashMap<String, Item>();
+    public static final HashMap<String, Item> ITEM_PATTER_FERUCHEMIC = new HashMap<String, Item>();
 
 
     //ingots an nuggets
@@ -442,6 +446,8 @@ public class ModItems {
                 return new ObsidianAxe(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT));
             }
     );
+
+
 
 
 

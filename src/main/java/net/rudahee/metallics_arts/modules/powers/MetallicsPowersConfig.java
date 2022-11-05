@@ -24,11 +24,16 @@ public class MetallicsPowersConfig {
             }
         }
 
+        //Things that can interact whith iron and steel in Metallics Arts
+
+        //Metalls Arts Integrations on hand
         add("lead");
         add("nickel");
+        add("tin_");
+
+        //Minecraft Integrations on hand
         add("shield");
         add("anvil");
-        add("rail");
         add("piston");
         add("hook");
         add("cauldron");
@@ -38,6 +43,18 @@ public class MetallicsPowersConfig {
         add("netherite");
         add("lantern");
 
+        //Suplementaries Integration on hand
+        add("_railing");
+        add("cage");
+        add("safe");
+        add("globe");
+        add("candle_holder");
+        add("wind_vane");
+        add("faucet");
+        add("wired_");
+        add("railing_");
+        add("brazier");
+        add("dpring_launcher");
 
 
         add(ModItems.BAND_PEWTER_TIN.get().getDescriptionId());
@@ -45,7 +62,6 @@ public class MetallicsPowersConfig {
         add(ModItems.RING_PEWTER_TIN.get().getDescriptionId());
         add(ModItems.RING_PEWTER_TIN.get().getDescription().toString());
 
-        add("tin_");
 
         add(Items.CROSSBOW.getDescriptionId());
         add(Items.CROSSBOW.getDescription().toString());
@@ -56,10 +72,10 @@ public class MetallicsPowersConfig {
         add(Items.LIGHT_WEIGHTED_PRESSURE_PLATE.getDescriptionId());
         add(Items.LIGHT_WEIGHTED_PRESSURE_PLATE.getDescription().toString());
 
+        add(Items.LIGHTNING_ROD.getDescription().toString());
 
         add(Items.BELL.getDescriptionId());
         add(Items.BELL.getDescription().toString());
-
 
         add(Items.SMITHING_TABLE.getDescriptionId());
         add(Items.SMITHING_TABLE.getDescription().toString());
@@ -75,30 +91,17 @@ public class MetallicsPowersConfig {
         add(Items.BLAST_FURNACE.getDescriptionId());
         add(Items.STONECUTTER.getDescription().toString());
 
+        add(Items.RAIL.getDescription().getString());
+        add(Items.DETECTOR_RAIL.getDescription().getString());
+        add(Items.POWERED_RAIL.getDescription().getString());
+        add(Items.ACTIVATOR_RAIL.getDescription().getString());
+
         add(Items.CLOCK.getDescription().toString());
         add(Items.COMPASS.getDescription().toString());
         add(Items.SHEARS.getDescription().toString());
         add(Items.CHAIN.getDescription().toString());
 
-
         //TODO insertar cosas hechas de metal a mano.
-
-        //Suplementaries Integration
-        add("cage");
-        add("safe");
-        add("globe");
-        add("candle_holder");
-        add("wind_vane");
-        add("faucet");
-        add("wired_");
-        add("railing_");
-        add("brazier");
-
-
-
-
-
-
     }};
 
 
