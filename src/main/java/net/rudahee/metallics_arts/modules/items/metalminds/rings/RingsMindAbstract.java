@@ -52,7 +52,7 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        if (this instanceof RingGoldElectrum) {
+        if (this instanceof RingElectrumGold) {
             return;
         }
         Player player = (Player) slotContext.getWearer();
@@ -147,7 +147,7 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
 
         if (this instanceof RingZincBrass || this instanceof RingCopperBronze
                 || this instanceof RingLerasiumEttmetal ||this instanceof RingAtiumMalatium
-                ||this instanceof RingChromiumNicrosil || this instanceof RingAluminumDuralumin || this instanceof RingGoldElectrum) {
+                ||this instanceof RingChromiumNicrosil || this instanceof RingAluminumDuralumin || this instanceof RingElectrumGold) {
             return;
         }
 

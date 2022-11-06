@@ -53,7 +53,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        if (this instanceof BandGoldElectrum) {
+        if (this instanceof BandElectrumGold) {
             return;
         }
         Player player = (Player) slotContext.getWearer();
@@ -185,7 +185,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
         if (this instanceof BandZincBrass || this instanceof BandCopperBronze
                 || this instanceof BandLerasiumEttmetal ||this instanceof BandAtiumMalatium
-                ||this instanceof BandChromiumNicrosil || this instanceof BandAluminumDuralumin || this instanceof BandGoldElectrum) {
+                ||this instanceof BandChromiumNicrosil || this instanceof BandAluminumDuralumin || this instanceof BandElectrumGold) {
             return;
         }
 

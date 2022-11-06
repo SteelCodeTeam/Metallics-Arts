@@ -10,7 +10,7 @@ import net.minecraft.world.level.biome.Biomes;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
-public class AluminumAndDuraluminHelpers {
+public class DuraluminAndAluminumHelpers {
     public static void duraluminDecantingMobEffects(Player player, ResourceKey<Biome>  biome) {
 
         if (biome.equals(Biomes.JUNGLE) || biome.equals(Biomes.BAMBOO_JUNGLE) ||biome.equals(Biomes.SPARSE_JUNGLE)) {

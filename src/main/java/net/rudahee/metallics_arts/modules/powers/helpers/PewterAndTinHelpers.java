@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
-public class TinAndPewterHelpers {
+public class PewterAndTinHelpers {
 
 
     public static float getExtraDamageWithItemInHand(Item itemInHand) {

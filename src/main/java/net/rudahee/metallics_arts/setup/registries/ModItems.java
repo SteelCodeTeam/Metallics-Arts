@@ -168,9 +168,9 @@ public class ModItems {
                 return item;
             }
     );
-    public static RegistryObject<Item> BAND_ELECTRUM_GOLD = MetallicsArts.registerItem("band_gold_electrum",
+    public static RegistryObject<Item> BAND_ELECTRUM_GOLD = MetallicsArts.registerItem("band_electrum_gold",
             () -> {
-                Item item = new BandGoldElectrum(PROPERTY_METALMINDS);
+                Item item = new BandElectrumGold(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("ELECTRUM_GOLD").setBand(item);
                 return item;
             }
@@ -182,16 +182,16 @@ public class ModItems {
                 return item;
             }
     );
-    public static RegistryObject<Item> BAND_PEWTER_TIN = MetallicsArts.registerItem("band_tin_pewter",
+    public static RegistryObject<Item> BAND_PEWTER_TIN = MetallicsArts.registerItem("band_pewter_tin",
             () -> {
-                Item item = new BandTinPewter(PROPERTY_METALMINDS);
+                Item item = new BandPewterTin(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("TIN_PEWTER").setBand(item);
                 return item;
             }
     );
-    public static RegistryObject<Item> BAND_STEEL_IRON = MetallicsArts.registerItem("band_iron_steel",
+    public static RegistryObject<Item> BAND_STEEL_IRON = MetallicsArts.registerItem("band_steel_iron",
             () -> {
-                Item item = new BandIronSteel(PROPERTY_METALMINDS);
+                Item item = new BandSteelIron(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("STEEL_IRON").setBand(item);
                 return item;
             }
@@ -239,9 +239,9 @@ public class ModItems {
                 return item;
             }
     );
-    public static RegistryObject<Item> RING_ELECTRUM_GOLD = MetallicsArts.registerItem("ring_gold_electrum",
+    public static RegistryObject<Item> RING_ELECTRUM_GOLD = MetallicsArts.registerItem("ring_electrum_gold",
             () -> {
-                Item item = new RingGoldElectrum(PROPERTY_METALMINDS);
+                Item item = new RingElectrumGold(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("ELECTRUM_GOLD").setRing(item);
                 return item;
             }
@@ -253,16 +253,16 @@ public class ModItems {
                 return item;
             }
     );
-    public static RegistryObject<Item> RING_PEWTER_TIN = MetallicsArts.registerItem("ring_tin_pewter",
+    public static RegistryObject<Item> RING_PEWTER_TIN = MetallicsArts.registerItem("ring_pewter_tin",
             () -> {
-                Item item = new RingTinPewter(PROPERTY_METALMINDS);
+                Item item = new RingPewterTin(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("TIN_PEWTER").setRing(item);
                 return item;
             }
     );
-    public static RegistryObject<Item> RING_STEEL_IRON = MetallicsArts.registerItem("ring_iron_steel",
+    public static RegistryObject<Item> RING_STEEL_IRON = MetallicsArts.registerItem("ring_steel_iron",
             () -> {
-                Item item = new RingIronSteel(PROPERTY_METALMINDS);
+                Item item = new RingSteelIron(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("STEEL_IRON").setRing(item);
                 return item;
             }

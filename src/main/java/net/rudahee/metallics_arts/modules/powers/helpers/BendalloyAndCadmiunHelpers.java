@@ -17,7 +17,7 @@ import net.minecraft.world.phys.AABB;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 
 
-public class CadmiumAndBendalloyHelpers {
+public class BendalloyAndCadmiunHelpers {
 
     public static void BendalloyMobEffects(Player player, Level world, AABB axisAlignedBB, BlockPos negative, BlockPos positive) {
         world.getEntitiesOfClass(LivingEntity.class, axisAlignedBB).forEach(entity -> {
