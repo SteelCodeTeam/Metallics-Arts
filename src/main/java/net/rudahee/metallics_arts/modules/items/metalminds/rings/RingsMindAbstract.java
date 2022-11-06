@@ -14,7 +14,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.modules.items.metalminds.bands.*;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.SlotContext;
@@ -22,7 +21,6 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 
@@ -54,7 +52,7 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        if (this instanceof RingElectrumGold) {
+        if (this instanceof RingGoldElectrum) {
             return;
         }
         Player player = (Player) slotContext.getWearer();
@@ -115,7 +113,7 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+metals[1].getNameLower()).append(": "+ ((stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_max_capacity"))+"%"));
             }
             if (world != null) {
-                toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
+                toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : (world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? Component.translatable("metallics_arts.mental_mind.owner_someone") : world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
             }
             if (!Screen.hasShiftDown()){
                 toolTips.add(Component.translatable(" "));
@@ -149,7 +147,7 @@ public abstract class RingsMindAbstract extends Item implements ICurioItem {
 
         if (this instanceof RingZincBrass || this instanceof RingCopperBronze
                 || this instanceof RingLerasiumEttmetal ||this instanceof RingAtiumMalatium
-                ||this instanceof RingChromiumNicrosil || this instanceof RingAluminumDuralumin || this instanceof RingElectrumGold) {
+                ||this instanceof RingChromiumNicrosil || this instanceof RingAluminumDuralumin || this instanceof RingGoldElectrum) {
             return;
         }
 

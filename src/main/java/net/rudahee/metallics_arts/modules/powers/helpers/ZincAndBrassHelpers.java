@@ -14,7 +14,6 @@ import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Illusioner;
@@ -24,7 +23,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
-import java.util.Collection;
 import java.util.function.Predicate;
 
 public class ZincAndBrassHelpers {
@@ -268,37 +266,11 @@ public class ZincAndBrassHelpers {
         livingEntity.setSecondsOnFire(secondsFire);
     }
 
-    public static void addLootToEnemy(LivingEntity livingEntity, double percentaje) {
-        if(!(livingEntity instanceof Player)){
-            if (!livingEntity.isAlive()){
-                if(Math.random()<percentaje){
-                    Collection<ItemEntity> drops = livingEntity.captureDrops();
-                    drops.addAll(drops);
-                }
-            }
-        }else {
-            //si matas a un pj
-        }
-    }
-
-    public static void removeLootToEnemy(LivingEntity livingEntity, double percentage) {
-
-
-        if (!(livingEntity instanceof Player)) {
-            if (!livingEntity.isAlive()){
-                if(Math.random()<percentage){
-                    //evitar drops
-                    Collection<ItemEntity> drops = livingEntity.captureDrops();
-                    drops.removeAll(drops);
-                }
-            }
-        } else {
-            //si matas a un pj
-        }
-    }
-
-    public static void addFrozenTIcks(Player player) {
-
+    public static void addFrozenTicks(Player player) {
         player.setTicksFrozen(player.getTicksFrozen() + 3);
+    }
+
+    public static void addBurnBodyTicks(Player player) {
+        player.setSecondsOnFire(1);
     }
 }

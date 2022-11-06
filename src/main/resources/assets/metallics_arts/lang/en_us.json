@@ -115,22 +115,22 @@
   "item.metallics_arts.band_cadmium_bendalloy": "Band Cadmium-Bendalloy",
   "item.metallics_arts.band_chromium_nicrosil": "Band Chromium-Nicrosil",
   "item.metallics_arts.band_copper_bronze": "Band Copper-Bronze",
-  "item.metallics_arts.band_electrum_gold": "Band Gold-Electrum",
+  "item.metallics_arts.band_gold_electrum": "Band Gold-Electrum",
   "item.metallics_arts.band_lerasium_ettmetal": "Band Lerasium-Ettmetal",
-  "item.metallics_arts.band_pewter_tin": "Band Tin-Pewter",
+  "item.metallics_arts.band_tin_pewter": "Band Tin-Pewter",
   "item.metallics_arts.band_zinc_brass": "Band Zinc-Brass",
-  "item.metallics_arts.band_steel_iron": "Band Iron-Steel",
+  "item.metallics_arts.band_iron_steel": "Band Iron-Steel",
 
   "item.metallics_arts.ring_aluminum_duralumin": "Ring Aluminum-Duralumin",
   "item.metallics_arts.ring_atium_malatium": "Ring Atium-Malatium",
   "item.metallics_arts.ring_cadmium_bendalloy": "Ring Cadmium-Bendalloy",
   "item.metallics_arts.ring_chromium_nicrosil": "Ring Chromium-Nicrosil",
   "item.metallics_arts.ring_copper_bronze": "Ring Copper-Bronze",
-  "item.metallics_arts.ring_electrum_gold": "Ring Gold-Electrum",
+  "item.metallics_arts.ring_gold_electrum": "Ring Gold-Electrum",
   "item.metallics_arts.ring_lerasium_ettmetal": "Ring Lerasium-Ettmetal",
-  "item.metallics_arts.ring_pewter_tin": "Ring Tin-Pewter",
+  "item.metallics_arts.ring_tin_pewter": "Ring Tin-Pewter",
   "item.metallics_arts.ring_zinc_brass": "Ring Zinc-Brass",
-  "item.metallics_arts.ring_steel_iron": "Ring Iron-Steel",
+  "item.metallics_arts.ring_iron_steel": "Ring Iron-Steel",
 
   "item.metallics_arts.iron_spike": "Iron Spike",
   "item.metallics_arts.steel_spike": "Steel Spike",
@@ -283,5 +283,7 @@
   "metallics_arts.mental_mind_translate.off_power": "Power Off",
   "metallics_arts.spike_allomantic_power.tapping_identity": "Tapping Identity",
 
-  "metallics_arts.mental_mind_translate.shift_info": "[Shift] More info"
+  "metallics_arts.mental_mind_translate.shift_info": "[Shift] More info",
+
+  "metallics_arts.mental_mind.owner_someone": "Someone"
 }

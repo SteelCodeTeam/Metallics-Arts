@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.TickEvent;
@@ -443,10 +444,16 @@ public class PowersEventHandler {
                             if (playerCapability.isStoring(MetalsNBTData.BRASS)) {
                                 player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40, 1, true, false));
 
-                                if (world.getBiome(player.getOnPos()).is(Tags.Biomes.IS_COLD)) {
-                                    ZincAndBrassHelpers.addFrozenTIcks(player);
+                                if (world.getBiome(player.getOnPos()).is(Tags.Biomes.IS_COLD) || (world.getBiome(player.getOnPos()).is(Biomes.DESERT) && world.isNight())) {
+                                    ZincAndBrassHelpers.addFrozenTicks(player);
                                 }
 
+                            } else if (playerCapability.isDecanting(MetalsNBTData.BRASS)) {
+                                if (world.getBiome(player.getOnPos()).is(Biomes.DESERT) && world.isDay()) {
+                                    ZincAndBrassHelpers.addBurnBodyTicks(player);
+                                } else if (world.getBiome(player.getOnPos()).is(Tags.Biomes.IS_HOT)) {
+                                    ZincAndBrassHelpers.addBurnBodyTicks(player);
+                                }
                             }
                             /************************
                              * GOLD FERUCHEMIC
@@ -479,17 +486,17 @@ public class PowersEventHandler {
                              * TIN FERUCHEMIC
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.TIN)) {
-                                PewterAndTinHelpers.addFecruchemicVision(player);
+                                TinAndPewterHelpers.addFecruchemicVision(player);
                             } else if (playerCapability.isStoring(MetalsNBTData.TIN)) {
-                                PewterAndTinHelpers.removeFeruchemicVision(player);
+                                TinAndPewterHelpers.removeFeruchemicVision(player);
                             }
                             /************************
                              * PEWTER FERUCHEMIC
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.PEWTER)) {
-                                PewterAndTinHelpers.decantPewterEffectsFeruchemic(player);
+                                TinAndPewterHelpers.decantPewterEffectsFeruchemic(player);
                             } else if (playerCapability.isStoring(MetalsNBTData.PEWTER)) {
-                                PewterAndTinHelpers.storePewterEffectsFeruchemic(player);
+                                TinAndPewterHelpers.storePewterEffectsFeruchemic(player);
                             }
                             /************************
                              * STEEL FERUCHEMIC
@@ -512,11 +519,11 @@ public class PowersEventHandler {
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.CADMIUM)) {
                                 if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
-                                    BendalloyAndCadmiunHelpers.throwBreathEffect(player, 10);
+                                    CadmiumAndBendalloyHelpers.throwBreathEffect(player, 10);
                                 }
                             } else if (playerCapability.isStoring(MetalsNBTData.CADMIUM)) {
                                 //if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
-                                    BendalloyAndCadmiunHelpers.drowningEffect(player,actualTick);
+                                    CadmiumAndBendalloyHelpers.drowningEffect(player,actualTick);
                                 //}
                             }
                             /************************
@@ -524,11 +531,11 @@ public class PowersEventHandler {
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.BENDALLOY)) {
                                 if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
-                                    BendalloyAndCadmiunHelpers.addFoodLevel(player,1);
+                                    CadmiumAndBendalloyHelpers.addFoodLevel(player,1);
                                 }
                             } else if (playerCapability.isStoring(MetalsNBTData.BENDALLOY)) {
                                 if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
-                                    BendalloyAndCadmiunHelpers.removeFoodLevel(player,1);
+                                    CadmiumAndBendalloyHelpers.removeFoodLevel(player,1);
                                 }
                             }
                             /************************
@@ -538,11 +545,11 @@ public class PowersEventHandler {
 
                             if (playerCapability.isDecanting(MetalsNBTData.DURALUMIN)) {
                                 if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
-                                    DuraluminAndAluminumHelpers.duraluminDecantingMobEffects(player,biome);
+                                    AluminumAndDuraluminHelpers.duraluminDecantingMobEffects(player,biome);
                                 }
                             } else if (playerCapability.isStoring(MetalsNBTData.DURALUMIN)) {
                                 if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
-                                    DuraluminAndAluminumHelpers.duraluminStoringMobEffects(player, biome);
+                                    AluminumAndDuraluminHelpers.duraluminStoringMobEffects(player, biome);
 
                                 }
                             }
@@ -613,7 +620,7 @@ public class PowersEventHandler {
                                     BlockPos positive;
                                     /** ENHANCED */
                                     if (playerCapability.getEnhanced()) {
-                                        BendalloyAndCadmiunHelpers.AddAiSteeps(player);
+                                        CadmiumAndBendalloyHelpers.AddAiSteeps(player);
                                         if (event.level instanceof ServerLevel) {
                                             if (playerCapability.isBurning(MetalsNBTData.LERASIUM)) {
                                                 negative = new BlockPos(player.position()).offset(-x - 9, -y - 9, -z - 9);
@@ -623,12 +630,12 @@ public class PowersEventHandler {
                                                 positive = new BlockPos(player.position()).offset(x + 6, y + 6 , z + 6);
                                             }
                                             // Ticks extra in random blocks, tile entities and entities.
-                                            BendalloyAndCadmiunHelpers.BendalloyMobEffectsEnhanced(player, event.level,new AABB(negative, positive), negative, positive);
+                                            CadmiumAndBendalloyHelpers.BendalloyMobEffectsEnhanced(player, event.level,new AABB(negative, positive), negative, positive);
                                         }
                                     }
                                     /** NORMAL */
                                     else {
-                                        BendalloyAndCadmiunHelpers.AddAiSteepsEnhanced(player);
+                                        CadmiumAndBendalloyHelpers.AddAiSteepsEnhanced(player);
                                         if (event.level instanceof ServerLevel) {
                                             if (playerCapability.isBurning(MetalsNBTData.LERASIUM)) {
                                                 negative = new BlockPos(player.position()).offset(-x - 4, -y - 4, -z - 4);
@@ -638,7 +645,7 @@ public class PowersEventHandler {
                                                 positive = new BlockPos(player.position()).offset(x + 2, y + 2 , z + 2);
                                             }
                                             // Ticks extra in random blocks, tile entities and entities.
-                                            BendalloyAndCadmiunHelpers.BendalloyMobEffects(player, event.level,new AABB(negative, positive), negative, positive);
+                                            CadmiumAndBendalloyHelpers.BendalloyMobEffects(player, event.level,new AABB(negative, positive), negative, positive);
                                         }
                                     }
                                 }
@@ -683,12 +690,12 @@ public class PowersEventHandler {
                                             amplifier = 2;
                                             time = 40;
                                         }
-                                        BendalloyAndCadmiunHelpers.CadmiumEffectSelfPlayerEnhanced(player);
+                                        CadmiumAndBendalloyHelpers.CadmiumEffectSelfPlayerEnhanced(player);
                                         if (event.level instanceof ServerLevel) {
                                             event.level.getEntitiesOfClass(LivingEntity.class, new AABB(negative, positive)).forEach(entity -> {
                                                 if (entity != player) {
                                                     //Do others in de cloud my powers.
-                                                    BendalloyAndCadmiunHelpers.CadmiumMobEffectsOtherPlayersEnhanced(entity, time, amplifier);
+                                                    CadmiumAndBendalloyHelpers.CadmiumMobEffectsOtherPlayersEnhanced(entity, time, amplifier);
                                                 }
                                             });
                                         }
@@ -707,13 +714,13 @@ public class PowersEventHandler {
                                             time = 10;
                                         }
                                         // Do myself my own powers
-                                        BendalloyAndCadmiunHelpers.CadmiumEffectSelfPlayer(player);
+                                        CadmiumAndBendalloyHelpers.CadmiumEffectSelfPlayer(player);
                                         if (event.level instanceof ServerLevel) {
 
                                             event.level.getEntitiesOfClass(LivingEntity.class, new AABB(negative, positive)).forEach(entity -> {
                                                 if (entity != player) {
                                                     //Do others in de cloud my powers.
-                                                    BendalloyAndCadmiunHelpers.CadmiumMobEffectsOtherPlayers(entity, time, amplifier);
+                                                    CadmiumAndBendalloyHelpers.CadmiumMobEffectsOtherPlayers(entity, time, amplifier);
                                                 }
                                             });
                                         }
@@ -731,7 +738,7 @@ public class PowersEventHandler {
                          * PEWTER POWERS
                          ************************/
                         if (playerCapability.isBurning(MetalsNBTData.PEWTER)) {
-                            PewterAndTinHelpers.addPewterEffects(player,
+                            TinAndPewterHelpers.addPewterEffects(player,
                                     playerCapability.isBurning(MetalsNBTData.LERASIUM),
                                     playerCapability.getEnhanced());
                         }
@@ -740,9 +747,9 @@ public class PowersEventHandler {
                          ************************/
                         if (playerCapability.isBurning(MetalsNBTData.TIN)) {
                             if (playerCapability.getEnhanced()) {
-                                PewterAndTinHelpers.addTinEffectsEnhanced(player);
+                                TinAndPewterHelpers.addTinEffectsEnhanced(player);
                             } else {
-                                PewterAndTinHelpers.addTinEffects(player);
+                                TinAndPewterHelpers.addTinEffects(player);
                             }
                         }
                         /************************
@@ -821,7 +828,7 @@ public class PowersEventHandler {
                          * ALUMINUM POWER
                          ************************/
                         if (playerCapability.isBurning(MetalsNBTData.ALUMINUM)) {
-                            DuraluminAndAluminumHelpers.drainAndCleanEffects(player,playerCapability);
+                            AluminumAndDuraluminHelpers.drainAndCleanEffects(player,playerCapability);
 
                         }
                         /************************

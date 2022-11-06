@@ -12,9 +12,9 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.SlotContext;
 
-public class BandElectrumGold extends BandMindAbstract {
+public class BandGoldElectrum extends BandMindAbstract {
 
-    public BandElectrumGold(Item.Properties properties) {
+    public BandGoldElectrum(Item.Properties properties) {
         super(properties, MetalsNBTData.GOLD, MetalsNBTData.ELECTRUM,MetalsNBTData.GOLD.getMaxReserveBand(),MetalsNBTData.ELECTRUM.getMaxReserveBand());
     }
     private boolean nicConsumeMet0 = false;
