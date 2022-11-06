@@ -26,6 +26,7 @@ import java.util.List;
 
 public class ModItems {
 
+    //Lists where we can store the items for a later usage
     public static final HashMap<String, Item> ITEM_METAL_INGOT = new HashMap<String, Item>();
 
     public static final HashMap<String, Item> ITEM_RAW_METAL = new HashMap<String, Item>();
@@ -37,6 +38,7 @@ public class ModItems {
 
     public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC = new HashMap<String, Item>();
 
+    //Lists for store the patterns of allomancy and feruchemic
     public static final HashMap<String, Item> ITEM_PATTER_ALLOMANCY = new HashMap<String, Item>();
     public static final HashMap<String, Item> ITEM_PATTER_FERUCHEMIC = new HashMap<String, Item>();
 
@@ -78,7 +80,7 @@ public class ModItems {
             return item;
         });
 
-
+        //Generating gems and derivatives
         List<Gems> gemList = Arrays.asList(Gems.values());
 
         gemList.forEach(gem -> {
@@ -100,6 +102,7 @@ public class ModItems {
                     });
         });
 
+        //Generate icons for alomancy and feruchemic
         for (MetalsNBTData metal: MetalsNBTData.values()) {
 
 
@@ -450,7 +453,7 @@ public class ModItems {
 
 
 
-
+//Vials
    public static RegistryObject<Item> LARGE_VIAL= MetallicsArts.registerItem("large_vial",
             () -> new LargeVial(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1).food(new FoodProperties.Builder().nutrition(0).build())));
 
