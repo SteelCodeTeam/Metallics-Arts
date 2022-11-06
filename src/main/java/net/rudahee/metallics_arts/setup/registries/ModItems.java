@@ -5,7 +5,6 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.items.banners.IronBanner;
 import net.rudahee.metallics_arts.modules.items.combat.*;
 import net.rudahee.metallics_arts.modules.items.metal_spike.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.bands.*;
@@ -166,9 +165,9 @@ public class ModItems {
                 return item;
             }
     );
-    public static RegistryObject<Item> BAND_ELECTRUM_GOLD = MetallicsArts.registerItem("band_electrum_gold",
+    public static RegistryObject<Item> BAND_ELECTRUM_GOLD = MetallicsArts.registerItem("band_gold_electrum",
             () -> {
-                Item item = new BandElectrumGold(PROPERTY_METALMINDS);
+                Item item = new BandGoldElectrum(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("ELECTRUM_GOLD").setBand(item);
                 return item;
             }
@@ -180,16 +179,16 @@ public class ModItems {
                 return item;
             }
     );
-    public static RegistryObject<Item> BAND_PEWTER_TIN = MetallicsArts.registerItem("band_pewter_tin",
+    public static RegistryObject<Item> BAND_PEWTER_TIN = MetallicsArts.registerItem("band_tin_pewter",
             () -> {
-                Item item = new BandPewterTin(PROPERTY_METALMINDS);
+                Item item = new BandTinPewter(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("TIN_PEWTER").setBand(item);
                 return item;
             }
     );
-    public static RegistryObject<Item> BAND_STEEL_IRON = MetallicsArts.registerItem("band_steel_iron",
+    public static RegistryObject<Item> BAND_STEEL_IRON = MetallicsArts.registerItem("band_iron_steel",
             () -> {
-                Item item = new BandSteelIron(PROPERTY_METALMINDS);
+                Item item = new BandIronSteel(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("STEEL_IRON").setBand(item);
                 return item;
             }
@@ -237,9 +236,9 @@ public class ModItems {
                 return item;
             }
     );
-    public static RegistryObject<Item> RING_ELECTRUM_GOLD = MetallicsArts.registerItem("ring_electrum_gold",
+    public static RegistryObject<Item> RING_ELECTRUM_GOLD = MetallicsArts.registerItem("ring_gold_electrum",
             () -> {
-                Item item = new RingElectrumGold(PROPERTY_METALMINDS);
+                Item item = new RingGoldElectrum(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("ELECTRUM_GOLD").setRing(item);
                 return item;
             }
@@ -251,16 +250,16 @@ public class ModItems {
                 return item;
             }
     );
-    public static RegistryObject<Item> RING_PEWTER_TIN = MetallicsArts.registerItem("ring_pewter_tin",
+    public static RegistryObject<Item> RING_PEWTER_TIN = MetallicsArts.registerItem("ring_tin_pewter",
             () -> {
-                Item item = new RingPewterTin(PROPERTY_METALMINDS);
+                Item item = new RingTinPewter(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("TIN_PEWTER").setRing(item);
                 return item;
             }
     );
-    public static RegistryObject<Item> RING_STEEL_IRON = MetallicsArts.registerItem("ring_steel_iron",
+    public static RegistryObject<Item> RING_STEEL_IRON = MetallicsArts.registerItem("ring_iron_steel",
             () -> {
-                Item item = new RingSteelIron(PROPERTY_METALMINDS);
+                Item item = new RingIronSteel(PROPERTY_METALMINDS);
                 MetalMindData.valueOf("STEEL_IRON").setRing(item);
                 return item;
             }

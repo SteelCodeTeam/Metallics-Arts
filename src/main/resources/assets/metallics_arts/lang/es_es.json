@@ -114,22 +114,22 @@
   "item.metallics_arts.band_cadmium_bendalloy": "Brazal de cadmio-bendaleo",
   "item.metallics_arts.band_chromium_nicrosil": "Brazal de cromo-nicrosil",
   "item.metallics_arts.band_copper_bronze": "Brazal de cobre-bronce",
-  "item.metallics_arts.band_electrum_gold": "Brazal de oro-electrum",
+  "item.metallics_arts.band_gold_electrum": "Brazal de oro-electrum",
   "item.metallics_arts.band_lerasium_ettmetal": "Brazal de lerasium-ettmetal",
-  "item.metallics_arts.band_pewter_tin": "Brazal de estaño-peltre",
+  "item.metallics_arts.band_tin_pewter": "Brazal de estaño-peltre",
   "item.metallics_arts.band_zinc_brass": "Brazal de zinc-latón",
-  "item.metallics_arts.band_steel_iron": "Brazal de hierro-acero",
+  "item.metallics_arts.band_iron_steel": "Brazal de hierro-acero",
 
   "item.metallics_arts.ring_aluminum_duralumin": "Anillo de aluminio-duralumín",
   "item.metallics_arts.ring_atium_malatium": "Anillo de atium-malatium",
   "item.metallics_arts.ring_cadmium_bendalloy": "Anillo de cadmio-bendaleo",
   "item.metallics_arts.ring_chromium_nicrosil": "Anillo de cromo-nicrosil",
   "item.metallics_arts.ring_copper_bronze": "Anillo de cobre-bronce",
-  "item.metallics_arts.ring_electrum_gold": "Anillo de oro-electrum",
+  "item.metallics_arts.ring_gold_electrum": "Anillo de oro-electrum",
   "item.metallics_arts.ring_lerasium_ettmetal": "Anillo de lerasium-ettmetal",
-  "item.metallics_arts.ring_pewter_tin": "Anillo de estaño-peltre",
+  "item.metallics_arts.ring_tin_pewter": "Anillo de estaño-peltre",
   "item.metallics_arts.ring_zinc_brass": "Anillo de zinc-latón",
-  "item.metallics_arts.ring_steel_iron": "Anillo de hierro-acero",
+  "item.metallics_arts.ring_iron_steel": "Anillo de hierro-acero",
 
   "item.metallics_arts.iron_spike": "Clavo de hierro",
   "item.metallics_arts.steel_spike": "Clavo de acero",
@@ -283,5 +283,7 @@
 
   "metallics_arts.mental_mind_translate.store_identity": "Almacenando Identidad",
   "metallics_arts.mental_mind_translate.off_power": "Poder Apagado",
-  "metallics_arts.spike_allomantic_power.tapping_identity": "Decantado Identidad"
+  "metallics_arts.spike_allomantic_power.tapping_identity": "Decantado Identidad",
+
+  "metallics_arts.mental_mind.owner_someone": "Alguien"
 }

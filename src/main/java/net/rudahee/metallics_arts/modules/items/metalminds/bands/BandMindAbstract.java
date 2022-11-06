@@ -15,14 +15,12 @@ import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 public abstract class BandMindAbstract extends Item implements ICurioItem {
@@ -55,7 +53,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        if (this instanceof BandElectrumGold) {
+        if (this instanceof BandGoldElectrum) {
             return;
         }
         Player player = (Player) slotContext.getWearer();
@@ -118,11 +116,10 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+metals[1].getNameLower()).append(": "+ ((stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_max_capacity"))+"%"));
             }
             if (world != null) {
-                toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : (world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? "Something" : world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
+                toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : (world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? Component.translatable("metallics_arts.mental_mind.owner_someone") : world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
             }
             if (!Screen.hasShiftDown()){
                 toolTips.add(Component.translatable(" "));
-
                 toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
 
             }
@@ -188,7 +185,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
         if (this instanceof BandZincBrass || this instanceof BandCopperBronze
                 || this instanceof BandLerasiumEttmetal ||this instanceof BandAtiumMalatium
-                ||this instanceof BandChromiumNicrosil || this instanceof BandAluminumDuralumin || this instanceof BandElectrumGold) {
+                ||this instanceof BandChromiumNicrosil || this instanceof BandAluminumDuralumin || this instanceof BandGoldElectrum) {
             return;
         }
 

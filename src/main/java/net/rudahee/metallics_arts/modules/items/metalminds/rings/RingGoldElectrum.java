@@ -11,8 +11,8 @@ import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.SlotContext;
 
-public class RingElectrumGold extends RingsMindAbstract{
-    public RingElectrumGold (Properties properties){
+public class RingGoldElectrum extends RingsMindAbstract{
+    public RingGoldElectrum(Properties properties){
         super(properties, MetalsNBTData.GOLD, MetalsNBTData.ELECTRUM,MetalsNBTData.GOLD.getMaxReserveRing(),MetalsNBTData.ELECTRUM.getMaxReserveRing());
     }
     private boolean nicConsumeMet0 = false;
