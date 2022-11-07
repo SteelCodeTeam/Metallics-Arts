@@ -61,7 +61,7 @@ And we have two mandatory dependencies:
 
 <br>
 
-## **Changelog ✒ [v1.2.0]️** 
+## **Changelog ✒ [v1.3.0]️** 
 
 Problems solved:
 - Feruchemic selector can have problems with non-english location.
