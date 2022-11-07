@@ -87,35 +87,23 @@ CurseForge page:
 ## **Future Improvements ⬆️**
 
 **Known Issues**
-- ~~Translation Issues.~~ [v1.1.3], [v1.1.5] and [v.1.1.6]
-- ~~Ettmetal does a lot of damage.~~ [v1.1.4]
-- ~~vials can be crafted together with other vials and one disappears as a result.~~ [v1.1.4]
-- ~~The vials can be consumed empty.~~ [v1.1.4]
-- ~~The texture of the weapons is wrong.~~ [v1.1.6]
-- ~~Obsidian axe does a lot of damage~~ [v1.1.6].
-- ~~Vials cannot be loaded in multiplayer~~ [v1.2.4]
-- ~~Duralumin that burns with a single nugget~~ [v1.2.5]
 - ~~In some computers, allomantic lines doesnt work, we dont have idea whats its going on.~~[v1.2.6]
 - ~~Koloss Blade doesnt interact correctly with Feruchemical pewter~~ [v1.2.6]
 - ~~Tp with dimesions involucred are bugged, and always tp to overworld~~ [v1.2.6]
 - ~~Error when hovering over another player's metal mind when they are dead or not on the server (multiplayer only)~~ [v1.2.6]
 - Vials GUI, its not drawing correctly how much metal you have.
 - Patchouli its not redimensioning title for any reason.
+- Bronze allomantic is not drawing lines in multiplayer.
+- Names consistency are bad.
 
 **Improvements**
-- ~~Change in aluminum and maybe copper metalmind info.~~ [v1.1.4]
-- ~~Choose better colors to selectors.~~ [v1.1.4]
-- ~~Tooltips to vials.~~ [v1.1.4]
-- ~~Put the requirements below the description of the mod~~ [v1.1.6]
-- ~~Make it give you the book when you enter the world (in the wiki it says how to do it with an advancement, but you also have to check that the game doesn't crash when you don't have the mod)~~ [v1.1.6]
-- ~~Add in the description of the curse forge page, that if there is anyone interested in translating the mod into their language, contact us~~ [v.1.1.6]
-- ~~Add some commands to get metalminds charged.~~ [v1.2.1]
-- ~~Add some advancements.~~ [v1.2.2]
-- ~~Add command for Charged MetalMinds~~ [v1.2.2]
-- New interactions with feruchemical brass [v1.2.7]
+- ~~New interactions with feruchemical brass~~ [v1.2.7]
 - Banners with metals symbols. 
 - Do steel flying more comfortable. (Its not a priority)
 - Add sound effects.
+- We need to do a really hard refactor.
+- Add some entities like special zombies, specials archers, they must use allomancy or feruchemy.
+- Maybe, implements new structures with loot from the mod.
 
 <br>
 
