@@ -345,8 +345,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItems.LARGE_VIAL.get()))
                 .save(recipesConsumer,new ResourceLocation("allomantic_large_vial"));
 
-
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("steel")).
+        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("steel"),2).
                 requires(Items.IRON_INGOT)
                 .requires(Items.COAL)
                 .requires(Items.COAL)
@@ -354,7 +353,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("steel")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_steel_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("pewter"))
+        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("pewter"),2)
                 .requires(ModItems.ITEM_METAL_INGOT.get("lead"))
                 .requires(ModItems.ITEM_METAL_INGOT.get("tin"))
                 .requires(ModItems.ITEM_METAL_INGOT.get("tin"))
@@ -362,7 +361,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("pewter")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_pewter_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("bronze"))
+        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("bronze"),2)
                 .requires(ModItems.ITEM_METAL_INGOT.get("tin"))
                 .requires(Items.COPPER_INGOT)
                 .requires(Items.COPPER_INGOT)
@@ -370,7 +369,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("bronze")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_bronze_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("brass"))
+        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("brass"),2)
                 .requires(ModItems.ITEM_METAL_INGOT.get("zinc"))
                 .requires(ModItems.ITEM_METAL_INGOT.get("zinc"))
                 .requires(Items.COPPER_INGOT)
@@ -378,7 +377,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("brass")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_brass_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("electrum"))
+        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("electrum"),2)
                 .requires(ModItems.ITEM_METAL_INGOT.get("silver"))
                 .requires(ModItems.ITEM_METAL_INGOT.get("silver"))
                 .requires(ModItems.ITEM_METAL_INGOT.get("silver"))
@@ -386,7 +385,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("electrum")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_electrum_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("bendalloy"))
+        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("bendalloy"),2)
                 .requires(ModItems.ITEM_METAL_INGOT.get("lead"))
                 .requires(ModItems.ITEM_METAL_INGOT.get("lead"))
                 .requires(ModItems.ITEM_METAL_INGOT.get("cadmium"))
@@ -394,7 +393,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("bendalloy")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_bendalloy_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("duralumin"))
+        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("duralumin"),2)
                 .requires(ModItems.ITEM_METAL_INGOT.get("aluminum"))
                 .requires(ModItems.ITEM_METAL_INGOT.get("aluminum"))
                 .requires(ModItems.ITEM_METAL_INGOT.get("aluminum"))
@@ -402,7 +401,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("duralumin")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_duralumin_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("nicrosil"))
+        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("nicrosil"),2)
                 .requires(ModItems.ITEM_METAL_INGOT.get("nickel"))
                 .requires(ModItems.ITEM_METAL_INGOT.get("nickel"))
                 .requires(ModItems.ITEM_METAL_INGOT.get("nickel"))
@@ -410,7 +409,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("nicrosil")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_nicrosil_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_GEMS_BASE.get("malatium"))
+        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_GEMS_BASE.get("malatium"),2)
                 .requires(ModItems.ITEM_GEMS_BASE.get("atium"))
                 .requires(ModItems.ITEM_GEMS_BASE.get("atium"))
                 .requires(Items.GOLD_INGOT)

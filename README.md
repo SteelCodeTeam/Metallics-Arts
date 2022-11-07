@@ -93,12 +93,14 @@ CurseForge page:
 - ~~The vials can be consumed empty.~~ [v1.1.4]
 - ~~The texture of the weapons is wrong.~~ [v1.1.6]
 - ~~Obsidian axe does a lot of damage~~ [v1.1.6].
--  ~~duralumin that burns with a single nugget~~ [v1.2.5]
+- ~~Vials cannot be loaded in multiplayer~~ [v1.2.4]
+- ~~Duralumin that burns with a single nugget~~ [v1.2.5]
 - ~~In some computers, allomantic lines doesnt work, we dont have idea whats its going on.~~[v1.2.6]
-- Patchouli its not redimensioning title for any reason.
-- Vials GUI, its not drawing correctly how much metal you have.
 - ~~Koloss Blade doesnt interact correctly with Feruchemical pewter~~ [v1.2.6]
 - ~~Tp with dimesions involucred are bugged, and always tp to overworld~~ [v1.2.6]
+- ~~Error when hovering over another player's metal mind when they are dead or not on the server (multiplayer only)~~ [v1.2.6]
+- Vials GUI, its not drawing correctly how much metal you have.
+- Patchouli its not redimensioning title for any reason.
 
 **Improvements**
 - ~~Change in aluminum and maybe copper metalmind info.~~ [v1.1.4]
@@ -110,11 +112,10 @@ CurseForge page:
 - ~~Add some commands to get metalminds charged.~~ [v1.2.1]
 - ~~Add some advancements.~~ [v1.2.2]
 - ~~Add command for Charged MetalMinds~~ [v1.2.2]
-- ~~Vials in mutiplayer~~ [v1.2.4]
+- New interactions with feruchemical brass [v1.2.7]
 - Banners with metals symbols. 
 - Do steel flying more comfortable. (Its not a priority)
 - Add sound effects.
-- New interactions with feruchemical brass
 
 <br>
 
