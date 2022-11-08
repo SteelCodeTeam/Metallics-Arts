@@ -27,6 +27,7 @@ import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.data_player.InvestedDataProvider;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
 import net.rudahee.metallics_arts.modules.powers.client.PowersClientEventHandler;
+import net.rudahee.metallics_arts.painting.ModPaintings;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.commands.MetallicArtsCommand;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
@@ -92,6 +93,7 @@ public class MetallicsArts
         // Register the processIMC method for modloading
         modEventBus.addListener(this::processIMC);
 
+
         modEventBus.addListener(this::onGuOveirlayEvent);
 
         // Register the doClientStuff method for modloading
@@ -101,6 +103,8 @@ public class MetallicsArts
         ModBiomeModifier.register(modEventBus);
         ModConfiguredFeatures.register(modEventBus);
         ModPlacedFeatures.register(modEventBus);
+        //Register for the paintings
+        ModPaintings.register(modEventBus);
 
 
         // Register ourselves for server and other game events we are interested in
