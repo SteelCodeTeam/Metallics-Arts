@@ -1,4 +1,4 @@
-# Metallics Arts 1.19.2-1.2.6
+# Metallics Arts 1.19.2-1.3.0
 
 
 ## Index 📋
@@ -139,13 +139,4 @@ Obviously read all Brandon Sanderson's books. All Brandon books are really good.
 
 When the mod is finished, we will update de mod to 1.18.x and 1.19.x, but we cannot ensure the continuity of the project later.
 
-**Our social media:**
-- **RuDaHee:**
-  - **Discord:** RuDaHee#3048
-  - **Twitter:** @RuDaHee
-- **TobibusFate:**
-  - **Discord:** TobibusFate#1234
-- **Sregio03:**
-  - **Discord:** Sregio03#3270
-- **Farck:** <- *The art guy*
-  - **Discord:** Farck#1234
+### You can find us in our discord guild: https://discord.gg/YHqMTRYAMT
