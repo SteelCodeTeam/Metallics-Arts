@@ -164,18 +164,21 @@
 
   "curios.identifier.metalmind_slot": "Ranura de ment de metall",
 
+  "block.metallics_arts.atium_cristal_block": "Atium Cristal·litzat",
   "block.metallics_arts.budding_atium": "Brotador d'atium",
   "block.metallics_arts.atium_cluster": "Cúmul d'atium",
   "block.metallics_arts.small_atium_bud": "Brot petit d'atium",
   "block.metallics_arts.medium_atium_bud": "Brot mitjà d'atium",
   "block.metallics_arts.large_atium_bud": "Brot gran d'atium",
 
+  "block.metallics_arts.lerasium_cristal_block":"Lerasi Cristal·litzat",
   "block.metallics_arts.budding_lerasium": "Brotador de Lerasi",
   "block.metallics_arts.lerasium_cluster": "Cúmul de lerasi",
   "block.metallics_arts.small_lerasium_bud": "Brot petit de larasi",
   "block.metallics_arts.medium_lerasium_bud": "Brot mitjà de lerasi",
   "block.metallics_arts.large_lerasium_bud": "Brot gran de lerasi",
 
+  "block.metallics_arts.ettmetal_cristal_block":"Ettmetall Cristal·litzat",
   "block.metallics_arts.budding_ettmetal": "Brotador d'ettmetall",
   "block.metallics_arts.ettmetal_cluster": "Cúmul d'ettmetall",
   "block.metallics_arts.small_ettmetal_bud": "Brot petit d'ettmetall",

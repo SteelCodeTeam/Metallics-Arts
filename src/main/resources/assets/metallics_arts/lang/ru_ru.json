@@ -165,18 +165,21 @@
 
   "curios.identifier.metalmind_slot": "Слот MetalMind",
 
+  "block.metallics_arts.atium_cristal_block":"Kристаллизованный Aтиум",
   "block.metallics_arts.budding_atium": "Расцветающий Атиум",
   "block.metallics_arts.atium_cluster": "Кластер Атиум",
   "block.metallics_arts.small_atium_bud": "Маленький бутон атиума",
   "block.metallics_arts.medium_atium_bud": "Средний бутон атиума",
   "block.metallics_arts.large_atium_bud": "Большой бутон атиума",
 
+  "block.metallics_arts.lerasium_cristal_block":"Kристаллизованный Леразиум",
   "block.metallics_arts.budding_lerasium": "Расцветающий Леразиум",
   "block.metallics_arts.lerasium_cluster": "Кластер Леразиума",
   "block.metallics_arts.small_lerasium_bud": "Маленький бутон леразиума",
   "block.metallics_arts.medium_lerasium_bud": "Средний бутон леразиума",
   "block.metallics_arts.large_lerasium_bud": "Большой бутон леразиума",
 
+  "block.metallics_arts.ettmetal_cristal_block":"Kристаллизованный Эттметал",
   "block.metallics_arts.budding_ettmetal": "Подающий надежды Эттметал",
   "block.metallics_arts.ettmetal_cluster": "Кластер Эттметал",
   "block.metallics_arts.small_ettmetal_bud": "Маленький бутон эттметалла",

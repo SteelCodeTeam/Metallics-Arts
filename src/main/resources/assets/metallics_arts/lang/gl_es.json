@@ -164,18 +164,21 @@
 
   "curios.identifier.metalmind_slot": "Espazo de mente de metal",
 
+  "block.metallics_arts.atium_cristal_block":"Atio Cristalizado",
   "block.metallics_arts.budding_atium": "Atio Emerxente",
   "block.metallics_arts.atium_cluster": "Acio de Atio",
   "block.metallics_arts.small_atium_bud": " Brote de Atio Pequeno",
   "block.metallics_arts.medium_atium_bud": "Brote de Atio Mediano",
   "block.metallics_arts.large_atium_bud": "Gran Brote de Atio",
 
+  "block.metallics_arts.lerasium_cristal_block":"Lerasio Cristalizado",
   "block.metallics_arts.budding_lerasium": "Lerasio Emerxente",
   "block.metallics_arts.lerasium_cluster": "Acio de Lerasio",
   "block.metallics_arts.small_lerasium_bud": "Brote de Lerasio Pequeno",
   "block.metallics_arts.medium_lerasium_bud": "Brote de Lerasio Mediano",
   "block.metallics_arts.large_lerasium_bud": "Gran Brote de Lerasio",
 
+  "block.metallics_arts.ettmetal_cristal_block":"Ettmetal Cristalizado",
   "block.metallics_arts.budding_ettmetal": "Ettmetal Emerxente",
   "block.metallics_arts.ettmetal_cluster": "Acio de Ettmetal",
   "block.metallics_arts.small_ettmetal_bud": "Brote de Ettmetal Pequeno",

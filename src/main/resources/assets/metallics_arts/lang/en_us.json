@@ -165,18 +165,21 @@
 
   "curios.identifier.metalmind_slot": "MetalMind Slot",
 
+  "block.metallics_arts.atium_cristal_block": "Crystallized Atium",
   "block.metallics_arts.budding_atium": "Budding Atium",
   "block.metallics_arts.atium_cluster": "Atium Cluster",
   "block.metallics_arts.small_atium_bud": "Small Atium Bud",
   "block.metallics_arts.medium_atium_bud": "Medium Atium Bud",
   "block.metallics_arts.large_atium_bud": "Large Atium Bud",
 
+  "block.metallics_arts.lerasium_cristal_block": "Crystallized Lerasium",
   "block.metallics_arts.budding_lerasium": "Budding Lerasium",
   "block.metallics_arts.lerasium_cluster": "Lerasium Cluster",
   "block.metallics_arts.small_lerasium_bud": "Small Lerasium Bud",
   "block.metallics_arts.medium_lerasium_bud": "Medium Lerasium Bud",
   "block.metallics_arts.large_lerasium_bud": "Large Lerasium Bud",
 
+  "block.metallics_arts.ettmetal_cristal_block": "Crystallized Ettmetal",
   "block.metallics_arts.budding_ettmetal": "Budding Ettmetal",
   "block.metallics_arts.ettmetal_cluster": "Ettmetal Cluster",
   "block.metallics_arts.small_ettmetal_bud": "Small Ettmetal Bud",
