@@ -38,6 +38,7 @@ import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.GoldAndElectrumHelpers;
 import net.rudahee.metallics_arts.modules.powers.helpers.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import org.lwjgl.glfw.GLFW;
@@ -272,12 +273,16 @@ public class PowersClientEventHandler {
     }
     public int haveNuggets (Player player){
 
-        ArrayList <Item> list = new ArrayList<>();
+        List <Item> list = new ArrayList<>();
 
         list.addAll(ModItems.ITEM_METAL_NUGGET.values());
         list.addAll(ModItems.ITEM_GEMS_NUGGET.values());
 
-        list.add(Items.IRON_NUGGET);
+        /**Get a list of nuggets of every metal except, ALUMINIUM and SILVER*/
+        list = list.stream()
+                .filter(item -> !item.equals(ModItems.ITEM_METAL_NUGGET.get(MetalsNBTData.ALUMINUM.getGemNameLower())))
+                .filter(item -> !item.equals(ModItems.ITEM_METAL_NUGGET.get(Metal.SILVER.getMetalNameLower())))
+                .collect(Collectors.toList());list.add(Items.IRON_NUGGET);
         list.add(Items.GOLD_NUGGET);
 
         for (ItemStack stack: player.getInventory().items){
