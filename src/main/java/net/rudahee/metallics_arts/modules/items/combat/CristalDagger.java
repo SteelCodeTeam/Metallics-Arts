@@ -1,10 +1,7 @@
 package net.rudahee.metallics_arts.modules.items.combat;
 
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.block.Blocks;
 import net.rudahee.metallics_arts.MetallicsArts;
 
 public class CristalDagger extends SwordItem {

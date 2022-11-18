@@ -285,5 +285,31 @@
   "metallics_arts.mental_mind_translate.off_power": "Poder Apagado",
   "metallics_arts.spike_allomantic_power.tapping_identity": "Decantado Identidad",
 
-  "metallics_arts.mental_mind.owner_someone": "Alguien"
+  "metallics_arts.mental_mind.owner_someone": "Alguien",
+
+
+  "key.category_powers_metallics_arts":"Artes Metalicas: Poderes",
+  "key.metallics_arts.feruchemic_decant":"Decante Feruquimico",
+  "key.metallics_arts.feruchemic_store":"Almacenaje Feruqimico",
+
+  "key.metallics_arts.iron_power": "Poder de Hierro",
+  "key.metallics_arts.steel_power": "Poder de Acero",
+  "key.metallics_arts.tin_power": "Poder de Estaño",
+  "key.metallics_arts.pewter_power": "Poder de Peltre",
+  "key.metallics_arts.copper_power": "Poder de Cobre",
+  "key.metallics_arts.bronze_power": "Poder de Bronce",
+  "key.metallics_arts.zinc_power": "Poder de Zinc",
+  "key.metallics_arts.brass_power": "Poder de Laton",
+  "key.metallics_arts.chromium_power": "Poder de Cromo",
+  "key.metallics_arts.nicrosil_power": "Poder de Nicrosil",
+  "key.metallics_arts.aluminum_power": "Poder de Aluminio",
+  "key.metallics_arts.duralumin_power": "Poder de Duraluminio",
+  "key.metallics_arts.cadmium_power": "Poder de Cadmio",
+  "key.metallics_arts.bendalloy_power": "Poder de Bendaleo",
+  "key.metallics_arts.electrum_power": "Poder de Electrum",
+  "key.metallics_arts.gold_power": "Poder de Oro",
+  "key.metallics_arts.atium_power": "Poder de Atium",
+  "key.metallics_arts.malatium_power": "Poder de Malatium",
+  "key.metallics_arts.lerasium_power": "Poder de Lerasium",
+  "key.metallics_arts.ettmetal_power": "Poder de Ettmetal"
 }

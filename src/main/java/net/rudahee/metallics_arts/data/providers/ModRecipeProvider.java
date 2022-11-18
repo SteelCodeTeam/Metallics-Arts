@@ -9,8 +9,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.modules.items.banners.Banners;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalSpikesData;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.registries.ModBlock;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
@@ -421,8 +423,6 @@ public class ModRecipeProvider extends RecipeProvider {
         SpecialRecipeBuilder.special(ModRecipeTypes.SMALL_VIAL_ITEM_RECIPE_SERIALIZER.get()).save(recipesConsumer, MetallicsArts.MOD_ID+":small_vial_filling_recipe");
 
         ModItems.ITEM_ICONS_ALLOMANCY.forEach((key, value) -> {
-
-
                 ShapedRecipeBuilder.shaped(value)
                         .define('#',Items.GLASS_PANE)
                         .define('x',(key.contains("gold")) ? Items.GOLD_INGOT : (key.contains("copper")) ? Items.COPPER_INGOT : (key.contains("iron")) ? Items.IRON_INGOT: ModItems.ITEM_METAL_INGOT.get(key))
@@ -431,10 +431,7 @@ public class ModRecipeProvider extends RecipeProvider {
                         .pattern(" # ")
                         .unlockedBy("has_item", has(value))
                         .save(recipesConsumer,new ResourceLocation(key+"_allomantic_icon"));
-
-
         });
-
 
         ModItems.ITEM_ICONS_FERUCHEMIC.forEach((key, value) -> {
             ShapedRecipeBuilder.shaped(value)
@@ -446,6 +443,23 @@ public class ModRecipeProvider extends RecipeProvider {
                     .unlockedBy("has_item", has(value))
                     .save(recipesConsumer,new ResourceLocation(key+"_feruchemic_icon"));
         });
+
+        for (MetalsNBTData metal : MetalsNBTData.values()) {
+
+            ShapelessRecipeBuilder.shapeless(Banners.PATTERN_ITEMS.get("a_"+metal.getNameLower()).get())
+
+                    .requires(!metal.isDivine() ? ModItems.ITEM_ICONS_ALLOMANCY.get(metal.getNameLower()) : ModItems.ITEM_ICONS_ALLOMANCY_DIVINE.get(metal.getNameLower()))
+                    .requires(Items.PAPER)
+                    .unlockedBy("has_item",has(Banners.PATTERN_ITEMS.get("a_"+metal.getNameLower()).get()))
+                    .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+Banners.PATTERN_ITEMS.get("a_"+metal.getNameLower()).get()+"_pattern"));
+
+            ShapelessRecipeBuilder.shapeless(Banners.PATTERN_ITEMS.get("f_"+metal.getNameLower()).get())
+                    .requires(!metal.isDivine() ? ModItems.ITEM_ICONS_FERUCHEMIC.get(metal.getNameLower()) : ModItems.ITEM_ICONS_FERUCHEMIC_DIVINE.get(metal.getNameLower()))
+                    .requires(Items.PAPER)
+                    .unlockedBy("has_item",has(Banners.PATTERN_ITEMS.get("f_"+metal.getNameLower()).get()))
+                    .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+Banners.PATTERN_ITEMS.get("f_"+metal.getNameLower()).get()+"_pattern"));
+
+        }
 
     }
 }

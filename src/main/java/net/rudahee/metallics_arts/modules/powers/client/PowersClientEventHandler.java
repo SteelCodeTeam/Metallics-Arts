@@ -407,9 +407,9 @@ public class PowersClientEventHandler {
      */
     private void acceptInput() {
 
-        if (!KeyInit.ALLOMANTIC_POWER_SELECTOR.isDown() && !KeyInit.FERUCHEMIC_POWER_SELECTOR.isDown()) {
+        /*if (!KeyInit.ALLOMANTIC_POWER_SELECTOR.isDown() && !KeyInit.FERUCHEMIC_POWER_SELECTOR.isDown()) {
             return;
-        }
+        }*/
         if (this.mc.screen != null) {
             return;
         }
@@ -417,21 +417,17 @@ public class PowersClientEventHandler {
         if (player == null || !this.mc.isWindowActive()) {
             return;
         }
+        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
 
-        if (KeyInit.ALLOMANTIC_POWER_SELECTOR.isDown()){
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
-
+            if (KeyInit.ALLOMANTIC_POWER_SELECTOR.isDown()) {
                 int num_powers = data.getAllomanticPowerCount();
-                if (num_powers == 0){
+                if (num_powers == 0) {
                     return;
-                }
-                else {
+                } else {
                     mc.setScreen(new AllomanticMetalSelector());
                 }
-            });
-        }
-        if (KeyInit.FERUCHEMIC_POWER_SELECTOR.isDown()){
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+            }
+            if (KeyInit.FERUCHEMIC_POWER_SELECTOR.isDown()){
                 int num_powers = data.getFeruchemicPowerCount();
                 if (num_powers == 0){
                     return;
@@ -439,8 +435,20 @@ public class PowersClientEventHandler {
                 else {
                     mc.setScreen(new FeruchemyMetalSelector());
                 }
-            });
-        }
+            }
+
+            for (int i = 0;i< MetalsNBTData.values().length; i++){
+                if (KeyInit.powers[i].isDown()) {
+                    if (KeyInit.FERUCHEMIC_DECANT.isDown()) {
+                        ClientUtils.toggleDecant(MetalsNBTData.getMetal(i),data,player);
+                    } else if (KeyInit.FERUCHEMIC_STORAGE.isDown()) {
+                        ClientUtils.toggleStorage(MetalsNBTData.getMetal(i),data,player);
+                    } else {
+                        ClientUtils.toggleBurn(MetalsNBTData.getMetal(i),data);
+                    }
+                }
+            }
+        });
     }
 
 

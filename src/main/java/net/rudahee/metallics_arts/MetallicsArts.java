@@ -5,13 +5,14 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -23,17 +24,16 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.modules.client.GUI.InvestedMetalOverlay;
+import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.data_player.InvestedDataProvider;
+import net.rudahee.metallics_arts.modules.items.banners.Banners;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
 import net.rudahee.metallics_arts.modules.powers.client.PowersClientEventHandler;
 import net.rudahee.metallics_arts.painting.ModPaintings;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.commands.MetallicArtsCommand;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.setup.registries.ModBlock;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.world.ModConfiguredFeatures;
 import net.rudahee.metallics_arts.world.ModPlacedFeatures;
 import net.rudahee.metallics_arts.world.biomemod.ModBiomeModifier;
@@ -41,7 +41,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 
-import java.util.ArrayList;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -93,8 +92,11 @@ public class MetallicsArts
         // Register the processIMC method for modloading
         modEventBus.addListener(this::processIMC);
 
-
         modEventBus.addListener(this::onGuOveirlayEvent);
+
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            modEventBus.addListener(KeyInit::initKeys);
+        });
 
         // Register the doClientStuff method for modloading
         modEventBus.addListener(InvestedCapability::register);
@@ -105,6 +107,8 @@ public class MetallicsArts
         ModPlacedFeatures.register(modEventBus);
         //Register for the paintings
         ModPaintings.register(modEventBus);
+
+        Banners.register();
 
 
         // Register ourselves for server and other game events we are interested in

@@ -11,8 +11,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fml.common.Mod;
-import net.rudahee.metallics_arts.modules.items.vials.large_vial.LargeVial;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;

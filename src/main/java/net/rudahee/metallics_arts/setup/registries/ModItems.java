@@ -34,8 +34,10 @@ public class ModItems {
     public static final HashMap<String, Item> ITEM_GEMS_NUGGET = new HashMap<String, Item>();
 
     public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY = new HashMap<String, Item>();
-
     public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC = new HashMap<String, Item>();
+
+    public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY_DIVINE = new HashMap<String, Item>();
+    public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC_DIVINE = new HashMap<String, Item>();
 
     //Lists for store the patterns of allomancy and feruchemic
     public static final HashMap<String, Item> ITEM_PATTER_ALLOMANCY = new HashMap<String, Item>();
@@ -103,13 +105,13 @@ public class ModItems {
 
         //Generate icons for alomancy and feruchemic
         for (MetalsNBTData metal: MetalsNBTData.values()) {
-
-
             MetallicsArts.registerItem(metal.getNameLower()+"_allomantic_icon",
                     ()-> {
                         Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB_DECORATION));
                         if (!metal.isDivine()) {
                             ITEM_ICONS_ALLOMANCY.put(metal.getNameLower(),item);
+                        } else {
+                            ITEM_ICONS_ALLOMANCY_DIVINE.put(metal.getNameLower(),item);
                         }
                         return item;
                     });
@@ -118,6 +120,8 @@ public class ModItems {
                         Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB_DECORATION));
                         if (!metal.isDivine()) {
                             ITEM_ICONS_FERUCHEMIC.put(metal.getNameLower(), item);
+                        } else {
+                            ITEM_ICONS_FERUCHEMIC_DIVINE.put(metal.getNameLower(),item);
                         }
                         return item;
                     });

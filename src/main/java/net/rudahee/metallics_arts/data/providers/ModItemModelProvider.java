@@ -1,16 +1,17 @@
 package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.modules.items.banners.Banners;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.enums.gems.Gems;
 import net.rudahee.metallics_arts.setup.enums.metals.Metal;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,6 +44,17 @@ public class ModItemModelProvider extends ItemModelProvider {
             builder(itemGenerated,"item/"+ gem.getGemNameLower(), "item/gems/gems/" +gem.getGemNameLower());
             builder(itemGenerated,"item/"+ gem.getGemNameLower()+"_nugget", "item/gems/nugget/" +gem.getGemNameLower()+"_nugget");
         });
+
+        for (MetalsNBTData metals : MetalsNBTData.values()) {
+            Item item = Banners.PATTERN_ITEMS.get("a_"+metals.getNameLower()).get();
+            String model =  "item/pattern/" + ForgeRegistries.ITEMS.getKey(Banners.PATTERN_ITEMS.get("a_"+metals.getNameLower()).get()).getPath();
+            getBuilder(ForgeRegistries.ITEMS.getKey(item).getPath()).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", modLoc(model));
+
+            item = Banners.PATTERN_ITEMS.get("f_"+metals.getNameLower()).get();
+            model =  "item/pattern/" + ForgeRegistries.ITEMS.getKey(Banners.PATTERN_ITEMS.get("f_"+metals.getNameLower()).get()).getPath();
+            getBuilder(ForgeRegistries.ITEMS.getKey(item).getPath()).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", modLoc(model));
+
+        }
 
 
         /** All textures for feruchemic bands **/
