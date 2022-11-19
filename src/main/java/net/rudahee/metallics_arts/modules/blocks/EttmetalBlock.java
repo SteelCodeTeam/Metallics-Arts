@@ -7,6 +7,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -22,6 +23,7 @@ public class EttmetalBlock extends Block {
         return true;
     }
 
+
     @Override
     public void tick(BlockState blockState, ServerLevel serverWorld, BlockPos blockPos, RandomSource random) {
 
@@ -31,6 +33,7 @@ public class EttmetalBlock extends Block {
 
         if (isTouchingWater(serverWorld, area)){
             serverWorld.explode(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 8.0f, true, Explosion.BlockInteraction.DESTROY);
+            serverWorld.setBlock(blockPos, Blocks.AIR.defaultBlockState(), 1);
         }
 
         super.tick(blockState, serverWorld, blockPos, random);

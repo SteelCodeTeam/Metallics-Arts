@@ -91,7 +91,7 @@ public class ModBlock {
             if (!metal.isAlloy()) {
                 MetallicsArts.registerBlockDecoration("raw_" + metal.getMetalNameLower() + "_block", () -> {
                     Block block = new Block(Block.Properties.of(Material.METAL)
-                            .strength(5, 15)
+                            .strength(4, 15)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
                     RAW_METAL_BLOCKS.put(metal.getMetalNameLower(), block);
