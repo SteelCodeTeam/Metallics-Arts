@@ -21,6 +21,9 @@ public class KeyInit {
     public static KeyMapping VERTICAL_JUMP;
 
     @OnlyIn(Dist.CLIENT)
+    public static KeyMapping SWITCH_OVERLAY;
+
+    @OnlyIn(Dist.CLIENT)
     public static KeyMapping[] powers;
 
     @OnlyIn(Dist.CLIENT)
@@ -36,7 +39,8 @@ public class KeyInit {
         evt.register(FERUCHEMIC_POWER_SELECTOR);
         VERTICAL_JUMP = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "vertical_jump", GLFW.GLFW_KEY_LEFT_CONTROL,KEY_CATEGORY);
         evt.register(VERTICAL_JUMP);
-
+        SWITCH_OVERLAY = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "switch_overlay", GLFW.GLFW_KEY_UNKNOWN,KEY_CATEGORY);
+        evt.register(SWITCH_OVERLAY);
         FERUCHEMIC_DECANT = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic_decant", GLFW.GLFW_KEY_LEFT_CONTROL,KEY_CATEGORY);
         evt.register(FERUCHEMIC_DECANT);
         FERUCHEMIC_STORAGE = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic_store", GLFW.GLFW_KEY_LEFT_SHIFT,KEY_CATEGORY);
