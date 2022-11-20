@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
+import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -32,6 +33,11 @@ public class InvestedMetalOverlay implements IGuiOverlay {
     private static int animationCounterFeruchemic = 0;
 
     private static int currentFrameFeruchemic = 0;
+
+    private boolean showGui = true;
+
+    private int keyPressedDelay = 0;
+
 
     static {
         int x = 9;
@@ -86,9 +92,24 @@ public class InvestedMetalOverlay implements IGuiOverlay {
             return;
         }
 
+
+
+        if (KeyInit.SWITCH_OVERLAY.isDown() && keyPressedDelay == 0) {
+            showGui = !showGui;
+            keyPressedDelay++;
+        } else if (keyPressedDelay > 0 && keyPressedDelay <= 20) {
+            keyPressedDelay++;
+        } else {
+            keyPressedDelay = 0;
+        }
+
+        if (!showGui) {
+            return;
+        }
+
+
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, meterLocation);
-
         player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
 
 
@@ -128,9 +149,11 @@ public class InvestedMetalOverlay implements IGuiOverlay {
                 int modifierAllomantic = Math.round(division * allomanticHeightBar);
 
                 if (data.hasAllomanticPower(metal)) {
+                    int actualHeightBarXD = allomanticOffsetY + allomanticPixelOffsetXInVialBar + (allomanticHeightBar - modifierAllomantic);
 
                     blit(matrix, gui, allomanticActualOffSetX,  allomanticOffsetY, 0, 0, allomanticWidthVial, allomanticHeightVial);
-                    blit(matrix, gui, allomanticActualOffSetX + 1, allomanticOffsetY + allomanticPixelOffsetXInVialBar + (allomanticHeightBar - modifierAllomantic), barOffSet, 0, allomanticWidthBar, modifierAllomantic);
+                    int basura2xD = (modifierAllomantic == 13) ? actualHeightBarXD : (modifierAllomantic < 13 && modifierAllomantic >= 6) ? actualHeightBarXD - 1 : actualHeightBarXD - 1;
+                    blit(matrix, gui, allomanticActualOffSetX+1, basura2xD, barOffSet, 0, allomanticWidthBar, modifierAllomantic);
 
 
                     //ForgeIngameGui.drawString(matrix, mc.font, text, allomanticActualOffSetX, allomanticOffsetY + allomanticHeightVial + 1, Integer.parseInt("FF0000", 16));
@@ -138,8 +161,7 @@ public class InvestedMetalOverlay implements IGuiOverlay {
                     // Este calculo mueve el offset 6 pixeles (3 para las barras, y 3 blancos).
 
                     if (data.isBurning(metal)) {
-
-                        blit(matrix, gui, allomanticActualOffSetX, allomanticOffsetY + allomanticPixelOffsetXInVialBar + (allomanticHeightBar - modifierAllomantic), AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, allomanticWidthAnimation, allomanticHeightAnimation);
+                        blit(matrix, gui, allomanticActualOffSetX, basura2xD-1, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, allomanticWidthAnimation, (modifierAllomantic > 4) ? allomanticHeightAnimation: (modifierAllomantic == 3) ? allomanticHeightAnimation -1 : (modifierAllomantic == 2) ? allomanticHeightAnimation -3 : allomanticHeightAnimation - 4);
                     }
                 } else {
                     blit(matrix, gui, allomanticActualOffSetX,  allomanticOffsetY, 102, 102, allomanticWidthVial, allomanticHeightVial);
@@ -210,21 +232,24 @@ public class InvestedMetalOverlay implements IGuiOverlay {
                 int modifierFeruchemic = Math.round(divisionFeruchemic * feruchemicHeightBar);
 
                 boolean fixOffset = (feruchemicHeightBar - modifierFeruchemic) < (float) feruchemicHeightBar / 2f;
+                int feruchemicCalculatedOffset = feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop + (feruchemicHeightBar - modifierFeruchemic);
+
+                int basura3xD = (modifierFeruchemic == 13) ? feruchemicCalculatedOffset : (modifierFeruchemic < 13 && modifierFeruchemic >= 6) ? feruchemicCalculatedOffset - 1 : feruchemicCalculatedOffset - 1;
 
                 if (data.hasFeruchemicPower(metal)) {
                     blit(matrix, gui, feruchemicActualOffSetX, feruchemicOffsetY + offSetTop, 0, 17, feruchemicWidthVial, feruchemicHeightVial);
 
-                    int feruchemicCalculatedOffset = feruchemicOffsetY + feruchemicPixelOffsetXInVialBar + offSetTop + (feruchemicHeightBar - modifierFeruchemic) - ((fixOffset) ? 1 : 0);
+
                     if (data.getMetalMindEquiped(metal.getGroup())) {
-                        blit(matrix, gui, feruchemicActualOffSetX + 1, feruchemicCalculatedOffset, barOffSet, 0, feruchemicWidthBar, modifierFeruchemic);
+                        blit(matrix, gui, feruchemicActualOffSetX + 1, (modifierFeruchemic == 13) ? feruchemicCalculatedOffset: feruchemicCalculatedOffset - 1, barOffSet, 0, feruchemicWidthBar, modifierFeruchemic);
                     }
                     //if decant
                     if (data.isDecanting(metal)) {
-                        blit(matrix, gui, feruchemicActualOffSetX, feruchemicCalculatedOffset, FeruchemicStorageFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation, ((fixOffset) ? feruchemicHeightAnimation : 2));
-                    } else if (data.isStoring(metal)) {
-                        blit(matrix, gui, feruchemicActualOffSetX, feruchemicCalculatedOffset, FeruchemicDecantFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation,  + ((fixOffset) ? feruchemicHeightAnimation : 2));
-                    }
+                        blit(matrix, gui, feruchemicActualOffSetX, (modifierFeruchemic == 13) ? feruchemicCalculatedOffset: feruchemicCalculatedOffset - 1, FeruchemicStorageFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation, ((fixOffset) ? feruchemicHeightAnimation : 2));
                     // else if storage
+                    } else if (data.isStoring(metal)) {
+                        blit(matrix, gui, feruchemicActualOffSetX, (modifierFeruchemic == 13) ? feruchemicCalculatedOffset: feruchemicCalculatedOffset - 1, FeruchemicDecantFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation,  + ((fixOffset) ? feruchemicHeightAnimation : 2));
+                    }
                 } else {
                     blit(matrix, gui, feruchemicActualOffSetX,  feruchemicOffsetY + offSetTop, 109, 103, feruchemicWidthVial, feruchemicHeightVial);
                 }

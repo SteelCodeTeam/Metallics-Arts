@@ -1,4 +1,4 @@
-# Metallics Arts 1.19.2-1.3.0
+# Metallics Arts 1.19.2-1.3.1
 
 
 ## Index 📋
@@ -87,20 +87,21 @@ CurseForge page:
 ## **Future Improvements ⬆️**
 
 **Known Issues**
-- ~~In some computers, allomantic lines doesnt work, we dont have idea whats its going on.~~[v1.2.6]
-- ~~Koloss Blade doesnt interact correctly with Feruchemical pewter~~ [v1.2.6]
-- ~~Tp with dimesions involucred are bugged, and always tp to overworld~~ [v1.2.6]
-- ~~Error when hovering over another player's metal mind when they are dead or not on the server (multiplayer only)~~ [v1.2.6]
-- Vials GUI, its not drawing correctly how much metal you have.
-- Patchouli its not redimensioning title for any reason.
+- ~~Ettmetal explosion doesnt delete itself in server~~ [v1.3.1]
+- ~~Cristallized Metals names are not correctly~~ [v1.3.1]
+- ~~Vials GUI, its not drawing correctly how much metal you have.~~ [v1.3.1]
 - Bronze allomantic is not drawing lines in multiplayer.
+- Beacons its not working with our custom metals.
 - Names consistency are bad.
 
 **Improvements**
-- ~~New interactions with feruchemical brass~~ [v1.2.7]
-- Banners with metals symbols. 
+- ~~Banners with metals symbols.~~ [v1.3.1]
+- ~~Added button to hide gui.~~ [v1.3.1]
+- ~~Added shorcut to active all metals in allomany and feruchemy.~~ [v1.3.1]
 - Do steel flying more comfortable. (Its not a priority)
 - Add sound effects.
+- Do more comfortable (and maybe push and pull through blocks) with iron/steel 
+- Add better resolution in banner printed in shield
 - We need to do a really hard refactor.
 - Add some entities like special zombies, specials archers, they must use allomancy or feruchemy.
 - Maybe, implements new structures with loot from the mod.
@@ -137,6 +138,6 @@ We really love Lego and blits works! PLEASE go to their mod pages and play with 
 
 Obviously read all Brandon Sanderson's books. All Brandon books are really good.
 
-When the mod is finished, we will update de mod to 1.18.x and 1.19.x, but we cannot ensure the continuity of the project later.
+When the mod is finished, we will update to 1.20.x, but we cannot ensure the continuity of the project later.
 
 ### You can find us in our discord guild: https://discord.gg/YHqMTRYAMT
