@@ -22,7 +22,16 @@ public final class DataGenerators {
         gen.addProvider(true, new ModBlockTagsProvider(gen, MetallicsArts.MOD_ID, event.getExistingFileHelper()));
         gen.addProvider(true, new ModLootTableProvider(gen));
         gen.addProvider(true, new ModRecipeProvider(gen));
-        gen.addProvider(true, new ModLanguageProviderES_ES(gen, MetallicsArts.MOD_ID, "es_es"));
+        gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_es"));
+        gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_ar"));
+        gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_mx"));
+        gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_uy"));
+        gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_ve"));
+        gen.addProvider(true, new ModLanguageProviderEN(gen, MetallicsArts.MOD_ID, "en_us"));
+        gen.addProvider(true, new ModLanguageProviderEN(gen, MetallicsArts.MOD_ID, "en_au"));
+        gen.addProvider(true, new ModLanguageProviderEN(gen, MetallicsArts.MOD_ID, "en_ca"));
+        gen.addProvider(true, new ModLanguageProviderEN(gen, MetallicsArts.MOD_ID, "en_gb"));
+
         gen.addProvider(event.includeServer(), new ModBannerTagProvider(gen, event.getExistingFileHelper()));
         gen.addProvider(true,new ModBeaconTagProvider(gen,event.getExistingFileHelper()));
 

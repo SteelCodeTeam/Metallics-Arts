@@ -2,11 +2,13 @@ package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.enums.langs.MetalSpanish;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ModLanguageProviderES_ES extends LanguageProvider {
+public class ModLanguageProviderES extends LanguageProvider {
 
 
     private Map<String, String> base = new HashMap<>() {{
@@ -327,22 +329,35 @@ public class ModLanguageProviderES_ES extends LanguageProvider {
         put("key.metallics_arts.lerasium_power", "Lerasium");
         put("key.metallics_arts.ettmetal_power", "Ettmetal");
     }};
+
     private Map<String, String> symbols = new HashMap<>() {{
-        put("f_ettmetal_1", "Ettmetal sombreado");
-        put("f_ettmetal_2", "Ettmetal solido");
-        put("f_steel_1", "Acero sombreado");
-        put("f_steel_2", "Acero solido");
-        put("f_iron_1", "Hierro sombreado");
-        put("f_iron_2", "Hierro solido");
+        for (MetalsNBTData metal: MetalsNBTData.values()) {
+            put("f_"+metal.getNameLower()+"_1", MetalSpanish.valueOf(metal.name()).getMetalName() + " feruquimico sombreado");
+            put("f_"+metal.getNameLower()+"_2", MetalSpanish.valueOf(metal.name()).getMetalName() + " feruquimico solido");
+            put("a_"+metal.getNameLower()+"_1", MetalSpanish.valueOf(metal.name()).getMetalName() + " alomantico sombreado");
+            put("a_"+metal.getNameLower()+"_2", MetalSpanish.valueOf(metal.name()).getMetalName() + " alomantico solido");
+        }
     }};
     private Map<String, String> colors = new HashMap<>() {{
-        put("green", "verde");
-        put("blue", "azul");
+        put("white", "blanco");
+        put("orange", "naranja");
+        put("magenta", "magenta");
         put("light_blue", "celeste");
-        put("light_green", "verde claro");
+        put("yellow", "amarillo");
+        put("lime", "verde lima");
+        put("pink", "rosa");
+        put("gray", "gris");
+        put("light_gray", "gris claro");
+        put("cyan", "cian");
+        put("purple", "morado");
+        put("blue", "azul");
+        put("brown", "marron");
+        put("green", "verde");
+        put("red", "rojo");
+        put("black", "negro");
     }};
 
-    public ModLanguageProviderES_ES(DataGenerator gen, String modid, String locale) {
+    public ModLanguageProviderES(DataGenerator gen, String modid, String locale) {
         super(gen, modid, locale);
 
     }
