@@ -56,6 +56,7 @@ public class PowersClientEventHandler {
     private final Set<Player> nearby_allomancers = new HashSet<>();
     private final Set<MetalBlockHelpers> metal_blobs = new HashSet<>();
     private int tickOffset = 0;
+    boolean count = true;
 
     BlockPos otherPlayerDeathPos = null;
 
@@ -241,11 +242,12 @@ public class PowersClientEventHandler {
                                         }
                                     }
 
-                                    if (!player.level.getBlockState(blockPos).is(Blocks.AIR) && controlTick == 0) {
+                                    if (!player.level.getBlockState(blockPos).is(Blocks.AIR)) {
                                         // IF ITS A BLOCK
                                         BlockPos blockPosition = blockPos;
 
                                         int slot = IronAndSteelHelpers.haveNuggets(player);
+
 
                                         if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
                                             ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
@@ -254,13 +256,13 @@ public class PowersClientEventHandler {
 
                                         } else if (slot != -1) {
                                             //player.getInventory().removeItem(slot, 1);
-                                            ModNetwork.sendToServer(new RemoveNuggetPacket(slot, player));
                                             ModNetwork.sendToServer(new PullAndPushNuggetPacket(blockPosition,
                                                     Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.getEnhanced(),
                                                             playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
-                                            if (controlTick == 0 ){
 
-                                                controlTick = 10;
+                                            if (controlTick == 0 ){
+                                                ModNetwork.sendToServer(new RemoveNuggetPacket(slot, player));
+                                                controlTick = 18;
                                             }
                                         }
                                     }
