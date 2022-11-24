@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "metallics_arts:steel_ingot"
+    },
+    "title": "Prueba de segunda pestaña!",
+    "description": "uwu",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "background": "metallics_arts:textures/advancements/mist_block.png"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:steel_nugget"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

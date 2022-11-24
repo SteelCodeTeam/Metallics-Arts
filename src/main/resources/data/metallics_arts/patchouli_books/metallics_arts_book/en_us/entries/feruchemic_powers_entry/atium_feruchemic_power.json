@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:atium_feruchemic_icon",
-      "text": "$(br)Storing:$(br2) - As you decant, it allows you to shine for other players."
+      "text": "$(br)Storing:$(br2) - While you store, it allows you to become invisible."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - While you store, it allows you to become invisible."
+      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - As you decant, it allows you to shine for other players."
     }
   ]
 }
