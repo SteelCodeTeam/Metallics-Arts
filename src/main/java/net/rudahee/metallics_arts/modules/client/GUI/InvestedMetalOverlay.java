@@ -97,7 +97,7 @@ public class InvestedMetalOverlay implements IGuiOverlay {
         if (KeyInit.SWITCH_OVERLAY.isDown() && keyPressedDelay == 0) {
             showGui = !showGui;
             keyPressedDelay++;
-        } else if (keyPressedDelay > 0 && keyPressedDelay <= 20) {
+        } else if (keyPressedDelay > 0 && keyPressedDelay <= 40) {
             keyPressedDelay++;
         } else {
             keyPressedDelay = 0;

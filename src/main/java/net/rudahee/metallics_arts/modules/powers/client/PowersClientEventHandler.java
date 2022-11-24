@@ -241,7 +241,7 @@ public class PowersClientEventHandler {
                                         }
                                     }
 
-                                    if (!player.level.getBlockState(blockPos).is(Blocks.AIR)){
+                                    if (!player.level.getBlockState(blockPos).is(Blocks.AIR) && controlTick == 0) {
                                         // IF ITS A BLOCK
                                         BlockPos blockPosition = blockPos;
 
@@ -260,7 +260,7 @@ public class PowersClientEventHandler {
                                                             playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                             if (controlTick == 0 ){
 
-                                                controlTick = 18;
+                                                controlTick = 20;
                                             }
                                         }
                                     }
