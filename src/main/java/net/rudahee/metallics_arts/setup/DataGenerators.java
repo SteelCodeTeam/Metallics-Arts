@@ -22,6 +22,7 @@ public final class DataGenerators {
         gen.addProvider(true, new ModBlockTagsProvider(gen, MetallicsArts.MOD_ID, event.getExistingFileHelper()));
         gen.addProvider(true, new ModLootTableProvider(gen));
         gen.addProvider(true, new ModRecipeProvider(gen));
-        gen.addProvider(event.includeServer(), new BannerTag(gen, event.getExistingFileHelper()));
+        gen.addProvider(event.includeServer(), new ModBannerTagProvider(gen, event.getExistingFileHelper()));
+        gen.addProvider(true,new ModBeaconTagProvider(gen,event.getExistingFileHelper()));
     }
 }

@@ -1,4 +1,4 @@
-# Metallics Arts 1.19.2-1.3.3
+# Metallics Arts 1.19.2-1.3.4
 
 
 ## Index 📋
@@ -92,8 +92,8 @@ CurseForge page:
 - ~~Vials GUI, its not drawing correctly how much metal you have.~~ [v1.3.1]
 - ~~Bug with ctrl+space steel flying, nuggets drops doesnt sinchronyze with server~~[v1.3.2]
 - ~~Bendalloy do weird things in server~~[v1.3.2]
-- Bronze allomantic is not drawing lines in multiplayer.
-- Beacons its not working with our custom metals.
+- ~~Bronze allomantic is not drawing lines in multiplayer.~~ [v1.3.2]
+- ~~Beacons its not working with our custom metals.~~ [v1.3.4]
 - Names consistency are bad.
 
 **Improvements**
