@@ -30,6 +30,9 @@ public class Banners {
             TagKey<BannerPattern> bannerPatternTagKey;
             RegistryObject<BannerPatternItem> bannerPatternItem;
 
+            if(metal.getNameLower().contains("a_alum")) {
+                System.out.println("az");
+            }
             //Drawing patterns
             pattern = BANNER_PATTERN.register("a_"+metal.getNameLower()+"_1", () -> new BannerPattern(MetallicsArts.MOD_ID + "_a_" + metal.getNameLower()+"_1"));
             PATTERNS.put("a_"+metal.getNameLower(),pattern);
