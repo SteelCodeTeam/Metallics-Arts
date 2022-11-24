@@ -201,7 +201,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
 
 
             put(  "itemGroup.metallics_arts", "Metallics Arts");
-            put("itemGroup.metallics_arts.decorations", "Metallics Arts, Decorations");
+            put("itemGroup.metallics_arts.decorations", "Metallics Arts: Decorations");
 
             put( "block.metallics_arts.alloy_furnace", "Alloy Furnace");
 
