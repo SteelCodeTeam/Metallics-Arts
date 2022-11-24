@@ -8,9 +8,9 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.items.banners.Banners;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
-public class BannerTag extends TagsProvider<BannerPattern> {
+public class ModBannerTagProvider extends TagsProvider<BannerPattern> {
 
-    public BannerTag(DataGenerator pGenerator, net.minecraftforge.common.data.ExistingFileHelper existingFileHelper) {
+    public ModBannerTagProvider(DataGenerator pGenerator, net.minecraftforge.common.data.ExistingFileHelper existingFileHelper) {
         super(pGenerator, Registry.BANNER_PATTERN, MetallicsArts.MOD_ID, existingFileHelper);
     }
 

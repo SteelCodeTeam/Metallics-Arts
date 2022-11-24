@@ -25,7 +25,6 @@ public class RemoveNuggetPacket {
     public RemoveNuggetPacket(int slot, Player player) {
         this.uuid = player.getUUID();
         this.slot = slot;
-
     }
 
     private RemoveNuggetPacket(UUID uuid, int slot) {
