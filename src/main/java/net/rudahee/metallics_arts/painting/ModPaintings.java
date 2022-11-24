@@ -95,6 +95,10 @@ public class ModPaintings {
     public static final RegistryObject<PaintingVariant> ZINC_FERUCHEMIC_PAINTING = PAINTING_VARIANTS.register("zinc_feruchemic_painting",
             () -> new PaintingVariant(32,32));
 
+    //Other paintingd
+    public static final RegistryObject<PaintingVariant> FUN_COBBER_PAINTING = PAINTING_VARIANTS.register("fun_cobber_painting",
+            () -> new PaintingVariant(16,32));
+
 
     public static void register(IEventBus eventBus){
 
