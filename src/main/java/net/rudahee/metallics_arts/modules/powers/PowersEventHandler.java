@@ -620,7 +620,7 @@ public class PowersEventHandler {
                                     BlockPos positive;
                                     /** ENHANCED */
                                     if (playerCapability.getEnhanced()) {
-                                        BendalloyAndCadmiunHelpers.AddAiSteeps(player);
+                                        BendalloyAndCadmiunHelpers.AddAiSteepsEnhanced(player);
                                         if (event.level instanceof ServerLevel) {
                                             if (playerCapability.isBurning(MetalsNBTData.LERASIUM)) {
                                                 negative = new BlockPos(player.position()).offset(-x - 9, -y - 9, -z - 9);
@@ -630,22 +630,22 @@ public class PowersEventHandler {
                                                 positive = new BlockPos(player.position()).offset(x + 6, y + 6 , z + 6);
                                             }
                                             // Ticks extra in random blocks, tile entities and entities.
-                                            BendalloyAndCadmiunHelpers.BendalloyMobEffectsEnhanced(player, event.level,new AABB(negative, positive), negative, positive);
+                                            BendalloyAndCadmiunHelpers.BendalloyMobEffects(player, event.level, new AABB(negative, positive), negative, positive, true);
                                         }
                                     }
                                     /** NORMAL */
                                     else {
-                                        BendalloyAndCadmiunHelpers.AddAiSteepsEnhanced(player);
+                                        BendalloyAndCadmiunHelpers.AddAiSteeps(player);
                                         if (event.level instanceof ServerLevel) {
                                             if (playerCapability.isBurning(MetalsNBTData.LERASIUM)) {
-                                                negative = new BlockPos(player.position()).offset(-x - 4, -y - 4, -z - 4);
-                                                positive = new BlockPos(player.position()).offset(x + 4, y + 4 , z + 4);
+                                                negative = new BlockPos(player.position()).offset(-x - 5, -y - 5, -z - 5);
+                                                positive = new BlockPos(player.position()).offset(x + 5, y + 5 , z + 5);
                                             } else {
-                                                negative = new BlockPos(player.position()).offset(-x - 2, -y - 2, -z - 2);
-                                                positive = new BlockPos(player.position()).offset(x + 2, y + 2 , z + 2);
+                                                negative = new BlockPos(player.position()).offset(-x - 3, -y - 3, -z - 3);
+                                                positive = new BlockPos(player.position()).offset(x + 3, y + 3 , z + 3);
                                             }
                                             // Ticks extra in random blocks, tile entities and entities.
-                                            BendalloyAndCadmiunHelpers.BendalloyMobEffects(player, event.level,new AABB(negative, positive), negative, positive);
+                                            BendalloyAndCadmiunHelpers.BendalloyMobEffects(player, event.level, new AABB(negative, positive), negative, positive, false);
                                         }
                                     }
                                 }

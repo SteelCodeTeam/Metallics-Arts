@@ -25,10 +25,7 @@ import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.rudahee.metallics_arts.data.network.ChangeEmotionPacket;
-import net.rudahee.metallics_arts.data.network.PullAndPushBlockPacket;
-import net.rudahee.metallics_arts.data.network.PullAndPushEntityPacket;
-import net.rudahee.metallics_arts.data.network.PullAndPushNuggetPacket;
+import net.rudahee.metallics_arts.data.network.*;
 import net.rudahee.metallics_arts.modules.client.ClientUtils;
 import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalSelector;
 import net.rudahee.metallics_arts.modules.client.GUI.FeruchemyMetalSelector;
@@ -248,16 +245,21 @@ public class PowersClientEventHandler {
                                         // IF ITS A BLOCK
                                         BlockPos blockPosition = blockPos;
 
+                                        int slot = IronAndSteelHelpers.haveNuggets(player);
+
                                         if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
                                             ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
                                                     Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.getEnhanced(),
                                                             playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
-                                        } else if (haveNuggets(player) != -1) {
+
+                                        } else if (slot != -1) {
+                                            //player.getInventory().removeItem(slot, 1);
+                                            ModNetwork.sendToServer(new RemoveNuggetPacket(slot, player));
                                             ModNetwork.sendToServer(new PullAndPushNuggetPacket(blockPosition,
                                                     Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.getEnhanced(),
                                                             playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                             if (controlTick == 0 ){
-                                                player.getInventory().removeItem(haveNuggets(player),1);
+
                                                 controlTick = 18;
                                             }
                                         }
@@ -270,27 +272,6 @@ public class PowersClientEventHandler {
                         });
             }
         }
-    }
-    public int haveNuggets (Player player){
-
-        List <Item> list = new ArrayList<>();
-
-        list.addAll(ModItems.ITEM_METAL_NUGGET.values());
-        list.addAll(ModItems.ITEM_GEMS_NUGGET.values());
-
-        /**Get a list of nuggets of every metal except, ALUMINIUM and SILVER*/
-        list = list.stream()
-                .filter(item -> !item.equals(ModItems.ITEM_METAL_NUGGET.get(MetalsNBTData.ALUMINUM.getGemNameLower())))
-                .filter(item -> !item.equals(ModItems.ITEM_METAL_NUGGET.get(Metal.SILVER.getMetalNameLower())))
-                .collect(Collectors.toList());list.add(Items.IRON_NUGGET);
-        list.add(Items.GOLD_NUGGET);
-
-        for (ItemStack stack: player.getInventory().items){
-            if (list.contains(stack.getItem())){
-                return player.getInventory().findSlotMatchingItem(stack);
-            }
-        }
-        return -1;
     }
 
     int radius = 8;

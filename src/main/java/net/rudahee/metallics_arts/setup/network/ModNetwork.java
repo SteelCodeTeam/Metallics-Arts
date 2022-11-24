@@ -37,7 +37,7 @@ public class ModNetwork {
         INSTANCE.registerMessage(nextIndex(), PullAndPushEntityPacket.class, PullAndPushEntityPacket::encode, PullAndPushEntityPacket::decode, PullAndPushEntityPacket::handle);
         INSTANCE.registerMessage(nextIndex(), UpdateDecantPacket.class, UpdateDecantPacket::encode, UpdateDecantPacket::decode, UpdateDecantPacket::handle);
         INSTANCE.registerMessage(nextIndex(), UpdateStoragePacket.class, UpdateStoragePacket::encode, UpdateStoragePacket::decode, UpdateStoragePacket::handle);
-
+        INSTANCE.registerMessage(nextIndex(), RemoveNuggetPacket.class, RemoveNuggetPacket::encode, RemoveNuggetPacket::decode, RemoveNuggetPacket::handle);
     }
 
     public static void sendToServer(Object msg) {

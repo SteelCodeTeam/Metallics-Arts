@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.modules.powers.helpers;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -11,6 +12,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.TickingBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -19,18 +21,42 @@ import net.rudahee.metallics_arts.setup.registries.ModBlock;
 
 public class BendalloyAndCadmiunHelpers {
 
-    public static void BendalloyMobEffects(Player player, Level world, AABB axisAlignedBB, BlockPos negative, BlockPos positive) {
-        world.getEntitiesOfClass(LivingEntity.class, axisAlignedBB).forEach(entity -> {
-            entity.aiStep();
-        });
+    public static void BendalloyMobEffects(Player player, Level world, AABB axisAlignedBB, BlockPos negative, BlockPos positive, boolean enhanced) {
+
+        if (world instanceof ServerLevel) {
+            world.getEntitiesOfClass(LivingEntity.class, axisAlignedBB).forEach(entity -> {
+                if (!(entity instanceof Player)) {
+                    entity.aiStep();
+                    if (enhanced) {
+                        entity.aiStep();
+                        entity.aiStep();
+                    }
+                }
+            });
+        }
 
         BlockPos.betweenClosedStream(negative, positive).forEach(blockPos -> {
 
             BlockState block = world.getBlockState(blockPos);
             BlockEntity tileEntity = world.getBlockEntity(blockPos);
 
-            for (int i = 0; i < 12 * 4 / (tileEntity == null ? 10 : 1); i++) {
-                if (!block.is(ModBlock.BUDDING_ATIUM.get()) && !block.is(ModBlock.BUDDING_LERASIUM.get()) && !block.is(ModBlock.BUDDING_ETTMETAL.get()) ){
+            if (block.is(ModBlock.BUDDING_ATIUM.get()) || block.is(ModBlock.BUDDING_LERASIUM.get()) || block.is(ModBlock.BUDDING_ETTMETAL.get()) ) {
+                return;
+            }
+
+            if (Math.random() > 0.5) {
+                if (tileEntity == null && block.isRandomlyTicking()) {
+                    block.randomTick((ServerLevel) world, blockPos, ((ServerLevel) world).random);
+                }
+
+                else if (tileEntity instanceof TickingBlockEntity) {
+                    BlockEntityTicker ticker = block.getTicker(world, tileEntity.getType());
+                    ticker.tick(world, blockPos, block, tileEntity);
+
+                }
+            }
+
+                /*for (int i = 0; i < 12 * 4 / (tileEntity == null ? 10 : 1); i++) {
                     if (tileEntity instanceof TickingBlockEntity) {
                         if (Math.random() > 0.70) {
                             ((TickingBlockEntity) tileEntity).tick();
@@ -41,7 +67,7 @@ public class BendalloyAndCadmiunHelpers {
                         }
                     }
                 }
-            }
+            }*/
         });
     }
 
@@ -98,16 +124,13 @@ public class BendalloyAndCadmiunHelpers {
     }
 
     public static void AddAiSteeps(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 3, 2, true, false));
+        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 2, 0, true, false));
         player.aiStep();
         player.aiStep();
     }
 
     public static void AddAiSteepsEnhanced(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 10, 10, true, false));
-        player.aiStep();
-        player.aiStep();
-        player.aiStep();
+        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 2, 0, true, false));
         player.aiStep();
         player.aiStep();
     }

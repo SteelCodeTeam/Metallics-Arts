@@ -1,8 +1,10 @@
 package net.rudahee.metallics_arts.modules.powers.helpers;
 
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -16,14 +18,28 @@ import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersConfig;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.enums.metals.Metal;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModItems;
+import org.apache.logging.log4j.Level;
+import org.checkerframework.checker.units.qual.min;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class IronAndSteelHelpers {
 
@@ -35,6 +51,28 @@ public class IronAndSteelHelpers {
 
     public static boolean doesResourceContainsMetal(ResourceLocation input) {
         return ACTIVE_METAL_REGEX.matcher(input.getPath()).matches();
+    }
+
+    public static int haveNuggets(Player player){
+
+        List <Item> list = new ArrayList<>();
+
+        list.addAll(ModItems.ITEM_METAL_NUGGET.values());
+        list.addAll(ModItems.ITEM_GEMS_NUGGET.values());
+
+        /**Get a list of nuggets of every metal except, ALUMINIUM and SILVER*/
+        list = list.stream()
+                .filter(item -> !item.equals(ModItems.ITEM_METAL_NUGGET.get(MetalsNBTData.ALUMINUM.getGemNameLower())))
+                .filter(item -> !item.equals(ModItems.ITEM_METAL_NUGGET.get(Metal.SILVER.getMetalNameLower())))
+                .collect(Collectors.toList());list.add(Items.IRON_NUGGET);
+        list.add(Items.GOLD_NUGGET);
+
+        for (ItemStack stack: player.getInventory().items){
+            if (list.contains(stack.getItem())){
+                return player.getInventory().findSlotMatchingItem(stack);
+            }
+        }
+        return -1;
     }
 
     public static boolean isBlockStateMetal(BlockState state) {
