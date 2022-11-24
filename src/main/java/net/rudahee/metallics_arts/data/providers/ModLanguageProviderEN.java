@@ -341,6 +341,20 @@ public class ModLanguageProviderEN extends LanguageProvider {
             put("a_" + metal.getNameLower() + "_2", "Allomantical " + metal.getNameLower() + " solid");
         }
     }};
+
+    private Map<String, String> patterns = new HashMap<>(){{
+
+            for (MetalsNBTData metal : MetalsNBTData.values()) {
+
+                    put("item.metallics_arts.f_"+metal.getNameLower()+"_pattern", "Feruchemical " + metal.getNameLower() + " pattern");
+                    put("item.metallics_arts.f_"+metal.getNameLower()+"_pattern.desc", "Feruchemical " + metal.getNameLower() + " pattern");
+                    put("item.metallics_arts.a_"+metal.getNameLower()+"_pattern", "Allomantic " + metal.getNameLower() + " pattern");
+                    put("item.metallics_arts.a_"+metal.getNameLower()+"_pattern.desc", "Allomantic " + metal.getNameLower() + " pattern");
+
+            }
+
+    }};
+
     private Map<String, String> colors = new HashMap<>() {{
         put("white", "blanco");
         put("orange", "naranja");
@@ -370,6 +384,10 @@ public class ModLanguageProviderEN extends LanguageProvider {
 
         for(String key: base.keySet()) {
             add(key, base.get(key));
+        }
+
+        for(String key: patterns.keySet()){
+                add(key, patterns.get(key));
         }
 
         for (String keySymbol : symbols.keySet()) {

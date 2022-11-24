@@ -338,6 +338,16 @@ public class ModLanguageProviderES extends LanguageProvider {
             put("a_"+metal.getNameLower()+"_2", MetalSpanish.valueOf(metal.name()).getMetalName() + " alomantico solido");
         }
     }};
+
+    private Map<String, String> patterns = new HashMap<>() {{
+        for (MetalsNBTData metal: MetalsNBTData.values()) {
+            put("item.metallics_arts.f_"+metal.getNameLower()+"_pattern","Patrón ferruquimico de " + MetalSpanish.valueOf(metal.name()).getMetalName());
+            put("item.metallics_arts.f_"+metal.getNameLower()+"_pattern.desc", "Patrón ferruquimico de " + MetalSpanish.valueOf(metal.name()).getMetalName());
+            put("item.metallics_arts.a_"+metal.getNameLower()+"_pattern", "Patrón alomántico de " + MetalSpanish.valueOf(metal.name()).getMetalName());
+            put("item.metallics_arts.a_"+metal.getNameLower()+"_pattern.desc", "Patrón alomántico de " + MetalSpanish.valueOf(metal.name()).getMetalName());
+        }
+    }};
+
     private Map<String, String> colors = new HashMap<>() {{
         put("white", "blanco");
         put("orange", "naranja");
@@ -367,6 +377,10 @@ public class ModLanguageProviderES extends LanguageProvider {
 
         for(String key: base.keySet()) {
             add(key, base.get(key));
+        }
+
+        for(String key: patterns.keySet()){
+            add(key, patterns.get(key));
         }
 
         for (String keySymbol : symbols.keySet()) {
