@@ -1,4 +1,4 @@
-# Metallics Arts 1.19.2-1.3.1
+# Metallics Arts 1.19.2-1.3.2
 
 
 ## Index 📋
@@ -90,8 +90,8 @@ CurseForge page:
 - ~~Ettmetal explosion doesnt delete itself in server~~ [v1.3.1]
 - ~~Cristallized Metals names are not correctly~~ [v1.3.1]
 - ~~Vials GUI, its not drawing correctly how much metal you have.~~ [v1.3.1]
-- ~~Bug with ctrl+space steel flying, nuggets drops doesnt sinchronyze with server~~
-- ~~Bendalloy do weird things in server~~
+- ~~Bug with ctrl+space steel flying, nuggets drops doesnt sinchronyze with server~~[v1.3.2]
+- ~~Bendalloy do weird things in server~~[v1.3.2]
 - Bronze allomantic is not drawing lines in multiplayer.
 - Beacons its not working with our custom metals.
 - Names consistency are bad.
