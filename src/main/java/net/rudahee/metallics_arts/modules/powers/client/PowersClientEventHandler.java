@@ -260,7 +260,7 @@ public class PowersClientEventHandler {
                                                             playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
                                             if (controlTick == 0 ){
 
-                                                controlTick = 20;
+                                                controlTick = 10;
                                             }
                                         }
                                     }
@@ -623,12 +623,12 @@ public class PowersClientEventHandler {
                 BlockPos negative = new BlockPos(player.position()).offset(playerPos.getX() - 12,playerPos.getX() - 12,playerPos.getX() - 12);
                 BlockPos positive = new BlockPos(player.position()).offset(playerPos.getX() + 12, playerPos.getX() + 12, playerPos.getX() + 12);
 
-                List<Player> players = player.level.getEntitiesOfClass(Player.class, new AABB(negative, positive)).stream().collect(Collectors.toList());
+                List<Player> players = player.level.getEntitiesOfClass(Player.class, new AABB(negative, positive)).stream().filter(playerTarget -> player.getUUID()!= playerTarget.getUUID()).collect(Collectors.toList());
 
                 for (Player otherPlayer: players) {
                     IDefaultInvestedPlayerData cap = otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).orElse(null);
 
-                    if (cap.isBurningSomething() && !cap.isBurning(MetalsNBTData.COPPER)) {
+                    if (cap != null && (cap.isBurningSomething() && !cap.isBurning(MetalsNBTData.COPPER))) {
                         ClientUtils.drawMetalLine(stack, playervec, otherPlayer.position(), 5.0F, 1F, 0.6F, 0.6F);
                    }
                 }
