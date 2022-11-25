@@ -1,4 +1,4 @@
-# Metallics Arts 1.19.2-1.3.6
+# Metallics Arts 1.19.2-1.4.0
 
 
 ## Index 📋
@@ -61,7 +61,7 @@ And we have two mandatory dependencies:
 
 <br>
 
-## **Changelog ✒ [v1.3.0]️** 
+## **Changelog ✒ [v1.4.0]️** 
 
 Problems solved:
 - Feruchemic selector can have problems with non-english location.
@@ -73,10 +73,17 @@ Problems solved:
 - The texture of the weapons is wrong
 - Obsidian axe does a lot of damage
 - Make it give you the book when you enter the world. Game can crash if you dont have installed Patchouli.
+- Ettmetal explosion does delete itself in server
+- Corrected Cristallized Metals names 
+- Bug with ctrl+space steel flying, corrected
+- Bendalloy fixed
+- Bronze allomantic is drawing lines in multiplayer.
+- Beacons its working with our custom metals
+
 
 CurseForge page:
-- Added in the description, that if there is anyone interested in translating the mod into their language, they can contact us
-- Put the requirements below the description of the mod
+- Added video showcase
+- Added more images
 
 <br>
 
@@ -87,19 +94,9 @@ CurseForge page:
 ## **Future Improvements ⬆️**
 
 **Known Issues**
-- ~~Ettmetal explosion doesnt delete itself in server~~ [v1.3.1]
-- ~~Cristallized Metals names are not correctly~~ [v1.3.1]
-- ~~Vials GUI, its not drawing correctly how much metal you have.~~ [v1.3.1]
-- ~~Bug with ctrl+space steel flying, nuggets drops doesnt sinchronyze with server~~[v1.3.2]
-- ~~Bendalloy do weird things in server~~[v1.3.2]
-- ~~Bronze allomantic is not drawing lines in multiplayer.~~ [v1.3.2]
-- ~~Beacons its not working with our custom metals.~~ [v1.3.4]
 - Names consistency are bad.
 
 **Improvements**
-- ~~Banners with metals symbols.~~ [v1.3.1]
-- ~~Added button to hide gui.~~ [v1.3.1]
-- ~~Added shorcut to active all metals in allomany and feruchemy.~~ [v1.3.1]
 - Do steel flying more comfortable. (Its not a priority)
 - Add sound effects.
 - Do more comfortable (and maybe push and pull through blocks) with iron/steel 
