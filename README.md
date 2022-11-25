@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Metallics Arts 1.19.2-1.4.0
+=======
+# Metallics Arts 1.19.2-1.3.5
+>>>>>>> 718b7eca9e6a05f02931a71b9510d9df878465bf
 
 
 ## Index 📋
@@ -95,6 +99,8 @@ CurseForge page:
 
 **Known Issues**
 - Names consistency are bad.
+- Decant iron and burn bendalloy while you fall result in a bug.
+- Shield whith our banners are not getting the right texture.
 
 **Improvements**
 - Do steel flying more comfortable. (Its not a priority)
@@ -104,6 +110,7 @@ CurseForge page:
 - We need to do a really hard refactor.
 - Add some entities like special zombies, specials archers, they must use allomancy or feruchemy.
 - Maybe, implements new structures with loot from the mod.
+- New kind of allomantic beacons whith his respective powers.
 
 <br>
 
