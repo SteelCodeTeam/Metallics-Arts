@@ -1,4 +1,4 @@
-# Metallics Arts 1.19.2-1.3.6
+# Metallics Arts 1.19.2-1.3.5
 
 
 ## Index 📋
@@ -100,6 +100,7 @@ CurseForge page:
 - ~~Banners with metals symbols.~~ [v1.3.1]
 - ~~Added button to hide gui.~~ [v1.3.1]
 - ~~Added shorcut to active all metals in allomany and feruchemy.~~ [v1.3.1]
+- ~~Shields with metals symbols.~~ [v1.3.5]
 - Do steel flying more comfortable. (Its not a priority)
 - Add sound effects.
 - Do more comfortable (and maybe push and pull through blocks) with iron/steel 
