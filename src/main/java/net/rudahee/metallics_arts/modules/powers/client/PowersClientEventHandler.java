@@ -15,6 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.*;
 import net.minecraftforge.api.distmarker.Dist;
@@ -629,10 +630,11 @@ public class PowersClientEventHandler {
 
                 for (Player otherPlayer: players) {
                     IDefaultInvestedPlayerData cap = otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).orElse(null);
-
-                    if (cap != null && (cap.isBurningSomething() && !cap.isBurning(MetalsNBTData.COPPER))) {
-                        ClientUtils.drawMetalLine(stack, playervec, otherPlayer.position(), 5.0F, 1F, 0.6F, 0.6F);
-                   }
+                    if  (cap!= null) {
+                        if ((cap.isBurningSomething() && !cap.isBurning(MetalsNBTData.COPPER))) {
+                            ClientUtils.drawMetalLine(stack, playervec, otherPlayer.position(), 5.0F, 1F, 0.6F, 0.6F);
+                        }
+                    }
                 }
             }
 
@@ -640,7 +642,7 @@ public class PowersClientEventHandler {
              * GOLD AND ELECTRUM AND MALATIUM LINES *
              *********************************************/
             if (data.isBurning(MetalsNBTData.GOLD)) {
-                if(player.level.dimension().toString().equals(data.getDeathDimension())) {
+                if(player.level.dimension().location().toString().equals(data.getDeathDimension())) {
                     Vec3 vector = new Vec3(data.getDeathPos()[0], data.getDeathPos()[1], data.getDeathPos()[2]);
                     ClientUtils.drawMetalLine(stack,playervec,vector, 2.5f, 0.6f, 0.6f, 0.1f);
                 } else {
@@ -649,9 +651,8 @@ public class PowersClientEventHandler {
             }
 
             if (data.isBurning(MetalsNBTData.ELECTRUM)) {
-                Vec3 vector = new Vec3(data.getSpawnPos()[0], data.getSpawnPos()[1], data.getSpawnPos()[2]);
-
-                if(player.level.dimension().toString().equals(data.getSpawnDimension())) {
+                if(player.level.dimension().location().toString().equals(data.getSpawnDimension())) {
+                    Vec3 vector = new Vec3(data.getSpawnPos()[0], data.getSpawnPos()[1], data.getSpawnPos()[2]);
                     ClientUtils.drawMetalLine(stack,playervec,vector, 2.5f, 0.6f, 0.6f, 0.1f);
                 } else {
                   ClientUtils.drawMetalLine(stack,playervec, playervec, 0,0,0,0);
