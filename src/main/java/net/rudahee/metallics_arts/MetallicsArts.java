@@ -127,8 +127,9 @@ public class MetallicsArts
         // some preinit code
         LOGGER.info("Starting Metallics Arts Setup.");
 
-        MetallicsPowersSetup.register(event);
         ModNetwork.registerPackets();
+        MetallicsPowersSetup.register(event);
+
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

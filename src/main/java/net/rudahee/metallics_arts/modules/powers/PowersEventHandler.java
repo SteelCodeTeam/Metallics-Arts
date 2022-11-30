@@ -26,6 +26,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.rudahee.metallics_arts.modules.data_player.DefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.*;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
@@ -79,11 +80,12 @@ public class PowersEventHandler {
                         data.setSpawnDimension(dim);
                     }
                     if (data.getDeathDimension() == null) {
-                        int[] pos = {player.level.getLevelData().getXSpawn(),player.level.getLevelData().getYSpawn(),player.level.getLevelData().getZSpawn()};
+                        int[] pos = {player.level.getLevelData().getXSpawn(), player.level.getLevelData().getYSpawn(),player.level.getLevelData().getZSpawn()};
                         String dim = player.level.dimension().location().toString();
                         data.setDeathPos(pos);
                         data.setDeathDimension(dim);
                     }
+
                     //Se necesita hacer que cargue la date del player antes de ejecutar el onjoin world, o no funciona bien
                     if ((data.getAllomanticPowerCount() + data.getFeruchemicPowerCount() == 0) && !data.isInvested()) {
                         List<MetalsNBTData> metals = Arrays.asList(MetalsNBTData.values());
@@ -155,7 +157,6 @@ public class PowersEventHandler {
     @SubscribeEvent
     public static void onRespawn(final PlayerEvent.PlayerRespawnEvent event) {
         if (!event.getEntity().getCommandSenderWorld().isClientSide()) {
-
             ModNetwork.sync(event.getEntity());
         }
     }
