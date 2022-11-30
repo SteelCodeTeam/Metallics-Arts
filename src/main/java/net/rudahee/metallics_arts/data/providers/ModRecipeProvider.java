@@ -56,6 +56,14 @@ public class ModRecipeProvider extends RecipeProvider {
                     .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItems.ITEM_RAW_METAL.get(name).getDescriptionId()));
         });
 
+        ModItems.ITEM_RAW_METAL.forEach((name, item) -> {
+            ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
+                    .requires(ModBlock.RAW_METAL_BLOCKS.get(name))
+                    .unlockedBy("has_item", has(item))
+                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlock.RAW_METAL_BLOCKS.get(name).getDescriptionId()));
+        });
+
+
 
         ModItems.ITEM_GEMS_BASE.forEach((name, item) -> {
             ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
