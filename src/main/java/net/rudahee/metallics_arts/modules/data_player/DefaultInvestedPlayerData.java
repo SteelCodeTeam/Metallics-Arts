@@ -591,6 +591,17 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
             }
         }
 
+        this.setInvested(invested_data.getBoolean("invested"));
+        this.setMistborn(invested_data.getBoolean("mistborn"));
+        this.setFullFeruchemic(invested_data.getBoolean("fullFeruchemic"));
+        this.setFullInvested(invested_data.getBoolean("fullInvested"));
+
+        //invested_data.putBoolean("invested",this.isInvested());
+        //invested_data.putBoolean("",this.isMistborn());
+        //invested_data.putBoolean("",this.isFullFeruchemic());
+        //invested_data.putBoolean("",this.isFullInvested());
+
+
         for (int i=0;i<10;i++){
             this.setMetalMindEquiped(i,metal_mind_equiped.getBoolean("group"+i));
         }
