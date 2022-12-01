@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-# Metallics Arts 1.19.2-1.4.0
 =======
-# Metallics Arts 1.19.2-1.3.5
+# Metallics Arts 1.19.2-1.4.1
 >>>>>>> 718b7eca9e6a05f02931a71b9510d9df878465bf
 
 
