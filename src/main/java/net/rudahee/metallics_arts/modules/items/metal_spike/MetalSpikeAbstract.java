@@ -120,8 +120,8 @@ public abstract class MetalSpikeAbstract extends SwordItem {
                 boolean hasAllomanticPower = targetData.hasAllomanticPower(MetalsNBTData.getMetal(stack.getTag().getInt("metal_spike")));
                 boolean hasFeruchemicPower = targetData.hasFeruchemicPower(MetalsNBTData.getMetal(stack.getTag().getInt("metal_spike")));
 
-                boolean couldStealPower = Math.random()>0.90;
-                boolean couldRemovePower = Math.random()>0.50;
+                boolean couldStealPower = Math.random()>0.50;
+                boolean couldRemovePower = Math.random()<0.75;
                 boolean isAllomantic = Math.random()>0.50;
 
                 MetalsNBTData localMetal = MetalsNBTData.getMetal(stack.getTag().getInt("metal_spike"));
@@ -135,19 +135,11 @@ public abstract class MetalSpikeAbstract extends SwordItem {
                     if (!targetData.hasAllomanticPower(localMetal)){
                         targetData.addAllomanticPower(localMetal);
                         doEffects(rng, world, pos);
-
-
-
                     }
-
-
                 } else if (stack.getTag().getBoolean("feruchemic_power")){
                     if (!targetData.hasFeruchemicPower(localMetal)){
                         targetData.addFeruchemicPower(localMetal);
-
                         doEffects(rng, world, pos);
-
-
                     }
 
                 //SI EL CLAVO NO TIENE PODERES -> intenta robar
@@ -196,6 +188,8 @@ public abstract class MetalSpikeAbstract extends SwordItem {
                 } else if (hasFeruchemicPower){
                     if (Math.random()>0.50){
                         if (Math.random()<0.75) {
+
+
                             targetData.removeFeruchemicPower(localMetal);
 
                             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));

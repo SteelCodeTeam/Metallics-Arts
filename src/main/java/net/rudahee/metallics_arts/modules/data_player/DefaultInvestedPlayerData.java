@@ -8,6 +8,7 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     private final boolean[] allomantic_powers;
@@ -591,6 +592,11 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
             }
         }
 
+        this.setInvested(invested_data.getBoolean("invested"));
+        this.setMistborn(invested_data.getBoolean("mistborn"));
+        this.setFullFeruchemic(invested_data.getBoolean("fullFeruchemic"));
+        this.setFullInvested(invested_data.getBoolean("fullInvested"));
+
         for (int i=0;i<10;i++){
             this.setMetalMindEquiped(i,metal_mind_equiped.getBoolean("group"+i));
         }
@@ -607,7 +613,6 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
         } catch(Exception ex) {
             System.out.println("SIGUE SIENDO UNA COSTRA DE NULL EL DEATH O SPAWN POS :D");
         }
+
     }
-
-
 }

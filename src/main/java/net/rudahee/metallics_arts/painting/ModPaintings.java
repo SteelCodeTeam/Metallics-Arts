@@ -10,7 +10,7 @@ public class ModPaintings {
 
     public static final DeferredRegister<PaintingVariant>PAINTING_VARIANTS =
             DeferredRegister.create(ForgeRegistries.PAINTING_VARIANTS, MetallicsArts.MOD_ID);
-
+/**
     //ALOMANTIC METALLS
     public static final RegistryObject<PaintingVariant> ALUMINIUM_ALOMANTIC_PAINTING = PAINTING_VARIANTS.register("aluminium_alomantic_painting",
             () -> new PaintingVariant(32,32));
@@ -95,10 +95,39 @@ public class ModPaintings {
     public static final RegistryObject<PaintingVariant> ZINC_FERUCHEMIC_PAINTING = PAINTING_VARIANTS.register("zinc_feruchemic_painting",
             () -> new PaintingVariant(32,32));
 
+ JSON textr
+    "metallics_arts:aluminium_alomantic_painting","metallics_arts:atium_alomantic_painting","metallics_arts:bendalloy_alomantic_painting",
+            "metallics_arts:brass_alomantic_painting","metallics_arts:bronze_alomantic_painting","metallics_arts:cadmium_alomantic_painting",
+            "metallics_arts:chromium_alomantic_painting","metallics_arts:copper_alomantic_painting","metallics_arts:duralumin_alomantic_painting",
+            "metallics_arts:electrum_alomantic_painting","metallics_arts:ettmetal_alomantic_painting","metallics_arts:gold_alomantic_painting",
+            "metallics_arts:iron_alomantic_painting","metallics_arts:lerasium_alomantic_painting","metallics_arts:malatium_alomantic_painting",
+            "metallics_arts:nicrosil_alomantic_painting","metallics_arts:pewter_alomantic_painting","metallics_arts:steel_alomantic_painting",
+            "metallics_arts:tin_alomantic_painting","metallics_arts:zinc_alomantic_painting",
+
+            "metallics_arts:aluminium_feruchemic_painting","metallics_arts:atium_feruchemic_painting","metallics_arts:bendalloy_feruchemic_painting",
+            "metallics_arts:brass_feruchemic_painting","metallics_arts:bronze_feruchemic_painting","metallics_arts:cadmium_feruchemic_painting",
+            "metallics_arts:chromium_feruchemic_painting","metallics_arts:copper_feruchemic_painting","metallics_arts:duralumin_feruchemic_painting",
+            "metallics_arts:electrum_feruchemic_painting","metallics_arts:ettmetal_feruchemic_painting","metallics_arts:gold_feruchemic_painting",
+            "metallics_arts:iron_feruchemic_painting","metallics_arts:lerasium_feruchemic_painting","metallics_arts:malatium_feruchemic_painting",
+            "metallics_arts:nicrosil_feruchemic_painting","metallics_arts:pewter_feruchemic_painting","metallics_arts:steel_feruchemic_painting",
+            "metallics_arts:tin_feruchemic_painting","metallics_arts:zinc_feruchemic_painting",
+    */
+
     //Other paintingd
+
+    public static final RegistryObject<PaintingVariant> INQUISITOR_PAINTING = PAINTING_VARIANTS.register("inquisitor_painting",
+            () -> new PaintingVariant(16,16));
+
     public static final RegistryObject<PaintingVariant> FUN_COBBER_PAINTING = PAINTING_VARIANTS.register("fun_cobber_painting",
             () -> new PaintingVariant(16,32));
 
+     public static final RegistryObject<PaintingVariant> SANFRE_PAINTING = PAINTING_VARIANTS.register("sanfre_painting",
+     () -> new PaintingVariant(64,64));
+
+
+
+
+    //TO MAKE THE PAINTINGS WORK WE HAVE TO ADD THIS LINES TO DE placeable.json :  , "metallics_arts:fun_cobber_painting","metallics_arts:inquisitor_painting"
 
     public static void register(IEventBus eventBus){
 

@@ -26,6 +26,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.rudahee.metallics_arts.modules.data_player.DefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.*;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
@@ -79,12 +80,14 @@ public class PowersEventHandler {
                         data.setSpawnDimension(dim);
                     }
                     if (data.getDeathDimension() == null) {
-                        int[] pos = {player.level.getLevelData().getXSpawn(),player.level.getLevelData().getYSpawn(),player.level.getLevelData().getZSpawn()};
+                        int[] pos = {player.level.getLevelData().getXSpawn(), player.level.getLevelData().getYSpawn(),player.level.getLevelData().getZSpawn()};
                         String dim = player.level.dimension().location().toString();
                         data.setDeathPos(pos);
                         data.setDeathDimension(dim);
                     }
-                    if (data.getAllomanticPowerCount() + data.getFeruchemicPowerCount() == 0) {
+
+                    //Se necesita hacer que cargue la date del player antes de ejecutar el onjoin world, o no funciona bien
+                    if ((data.getAllomanticPowerCount() + data.getFeruchemicPowerCount() == 0) && !data.isInvested()) {
                         List<MetalsNBTData> metals = Arrays.asList(MetalsNBTData.values());
                         Collections.shuffle(metals);
                         List<Integer> typeOfPower = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2); // Leras footjob
@@ -103,11 +106,12 @@ public class PowersEventHandler {
                             Collections.shuffle(metals);
                             data.addFeruchemicPower(metals.get(0));
                         }
-                    }
                         data.setInvested(true);
+                    }
+
                 });
                 //Sync cap to client
-                ModNetwork.sync(event.getEntity());
+                ModNetwork.sync(player);
             }
         }
     }
@@ -153,7 +157,6 @@ public class PowersEventHandler {
     @SubscribeEvent
     public static void onRespawn(final PlayerEvent.PlayerRespawnEvent event) {
         if (!event.getEntity().getCommandSenderWorld().isClientSide()) {
-
             ModNetwork.sync(event.getEntity());
         }
     }
