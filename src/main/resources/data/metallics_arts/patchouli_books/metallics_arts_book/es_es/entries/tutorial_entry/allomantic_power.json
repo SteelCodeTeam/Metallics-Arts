@@ -1,17 +1,17 @@
 {
-  "name": "Poder Alomantico",
+  "name": "Poder alomántico",
   "icon": "metallics_arts:textures/item/consumables/large_vial.png",
   "category": "metallics_arts:tutorial_category",
   "sortnum": 2,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": " En caso de que tu poder sea alomantico, sera necesario que recargues tus reservas del para poder comenzar a quemarlo.$(br) Esto se hace colocando en un $(l:vials_entry/vials)Viales$() las pepitas del metal que quiras cargar, o de varios metales, si tienes mas de un poder que utilizar."
+      "text": " En caso de que tu poder sea alomántico, sera necesario que recargues tus reservas del metal que te ha tocado para poder quemarlo.$(br) Esto se hace colocando en un $(l:vials_entry/vials)Viales$() las pepitas del metal que quieres quemar (o de varios metales, si tienes más de un poder alomántico)."
     },
     {
-      "title": "¿Como utilizarlos?",
+      "title": "¿Cómo utilizarlo?",
       "type": "patchouli:text",
-      "text": "$(br) Una vez cargado el vial, debes ingerirlo y veras como tus reservas se cargan.$(br) Por ultimo, deberas presionar la tecla \"M\" y seleccionar tu poder para activarlo."
+      "text": "$(br) Una vez cargado el vial, debes ingerirlo y verás como tus reservas se llenan.$(br) Por último, deberás presionar la tecla \"M\" y seleccionar tu poder para activarlo."
     }
   ]
 }

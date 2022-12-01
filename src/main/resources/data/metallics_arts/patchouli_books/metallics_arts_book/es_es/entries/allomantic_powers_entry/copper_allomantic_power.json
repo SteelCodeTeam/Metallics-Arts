@@ -1,17 +1,17 @@
 {
-  "name": "Cobre Alomantico",
+  "name": "Cobre alomántico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/copper_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:copper_allomantic_icon",
-      "text": "$(br) Hace que las entidades cercanas te ignoren. $(br)$(br)$(br)$(br)$(br) Extra: $(br) - Evita que otros jugadores vean que estas quemando metales."
+      "text": "$(br) Hace que las entidades cercanas te ignoren. $(br)$(br)$(br)$(br)$(br) Extra: $(br) - Evita que otros jugadores vean que estás quemando metales."
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Detiene a las entidades. $(br2) + Lerasium: Aplica el efecto en área. $(br2) + Ambos: Detiene a las entidades en área."
+      "text": "$(br) + Duralumín: detiene a las entidades. $(br2) + Lerasium: aplica el efecto en área. $(br2) + Ambos: detiene a las entidades en área."
     }
   ]
 }

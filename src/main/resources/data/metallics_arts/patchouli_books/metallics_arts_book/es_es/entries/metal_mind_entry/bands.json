@@ -1,12 +1,12 @@
 {
-  "name": "Brazales Feruquimicos",
+  "name": "Brazales feruquímicos",
   "icon": "metallics_arts:textures/item/metal_mind/gold_electrum_band.png",
   "category": "metallics_arts:crafting_category",
   "sortnum": 3,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Brazales de metal que llevan algunas personas, ¿Son solo decoracion?"
+      "text": "Brazales de metal que llevan algunas personas. No parece que sea solo bisutería..."
     },
     {
       "type": "patchouli:crafting",

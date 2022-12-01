@@ -1,11 +1,11 @@
 {
-  "name": "Hacha de Obsidiana",
+  "name": "Hacha de obsidiana",
   "icon": "metallics_arts:textures/item/combat/obsidian_axe.png",
   "category": "metallics_arts:weapons_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Arma pesada, y lenta de manejar. Causa grandes daños."
+      "text": "Arma pesada y lenta de manejar. Pero como te pille... bueno, no hace falta entrar en detalles desagradables."
     },
     {
       "type": "patchouli:crafting",

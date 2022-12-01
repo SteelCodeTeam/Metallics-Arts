@@ -1,17 +1,17 @@
 {
-  "name": "Duraluminio Alomantico",
+  "name": "Duralumín alomántico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/duralumin_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:duralumin_allomantic_icon",
-      "text": "$(br) Aumenta en gran medida la potencia de los metales que estés quemando $(br)$(br)$(br) Extra: $(br) - Funciona un corto periodo de tiempo y vacía todas las reservas que están activas en el momento de la activación"
+      "text": "$(br) Aumenta en gran medida la potencia de los metales que estés quemando $(br)$(br)$(br) Extra: $(br) - Funciona un corto periodo de tiempo y vacía las reservas del metal que hayas activado junto al duralumín"
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Nada. $(br2) + Lerasium: Nada. $(br2) + Ambos: Nada."
+      "text": "$(br) + Duralumín: nada. $(br2) + Lerasium: nada. $(br2) + Ambos: nada."
     }
   ]
 }

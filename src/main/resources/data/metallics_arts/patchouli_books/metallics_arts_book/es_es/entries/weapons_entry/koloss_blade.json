@@ -1,11 +1,11 @@
 {
-  "name": "Espada Koloss",
+  "name": "Espada de koloss",
   "icon": "metallics_arts:textures/item/combat/koloss_blade.png",
   "category": "metallics_arts:weapons_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Espada gigante de piedra, de elaboracion rudimentaria. Es un arma realmente pesada, pero con el empuje correcto puede hacer un daño extraordinario"
+      "text": "Espada gigante de piedra de elaboración rudimentaria. Es un arma realmente pesada, pero con la fuerza adecuada puede llegar a hacer un daño extraordinario."
     },
     {
       "type": "patchouli:crafting",

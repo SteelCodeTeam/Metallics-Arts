@@ -1,16 +1,16 @@
 {
-  "name": "Nicrosil Feruquimico",
+  "name": "Nicrosil feruquímico",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/nicrosil_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:nicrosil_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Para almacenar, parece que tus otras mentes de metal nunca se van a llenar. Es necesario usarla junto a otros poderes."
+      "text": "$(br)Almacenar:$(br2) - Para almacenar, requieres el sacrificio de los atributos que haya en otras mentes de metal que lleves encima. Es necesario usarla junto a otros poderes."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Al decantar, parece que tus otras mentes de metal nunca se van a acabar. Es necesario usarla junto a otros poderes."
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Al decantar, logras estirar la duración de otras mentes de metal que estés decantando. Es necesario usarla junto a otros poderes."
     }
   ]
 }

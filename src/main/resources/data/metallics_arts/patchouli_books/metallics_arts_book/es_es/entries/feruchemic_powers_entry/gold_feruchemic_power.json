@@ -1,16 +1,16 @@
 {
-  "name": "Oro Feruquimico",
+  "name": "Oro feruquímico",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/gold_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:gold_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, pareces encontrarte mal, casi parece que fueras a morir."
+      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, parece que te vuelves un contenedor de malestar y náuseas. Vigila tus huesos, quizá se rompen más rápido de lo que deberían."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, parece que pudieras enfrentarte a cualquier enfermedad."
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, sientes que no hay bicho en el mundo que pueda dañarte. Tu cuerpo está hecho para absorber el dolor."
     }
   ]
 }

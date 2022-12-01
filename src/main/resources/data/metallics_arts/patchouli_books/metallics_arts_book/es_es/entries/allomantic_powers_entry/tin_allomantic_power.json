@@ -1,5 +1,5 @@
 {
-  "name": "Estaño Alomantico",
+  "name": "Estaño alomántico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/tin_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
@@ -11,7 +11,7 @@
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Te aturde unos momentos. $(br2) + Lerasium: Nada. $(br2) + Ambos: Te aturde unos momentos."
+      "text": "$(br) + Duralumín: te aturde unos momentos. $(br2) + Lerasium: nada. $(br2) + Ambos: te aturde unos momentos."
     }
   ]
 }

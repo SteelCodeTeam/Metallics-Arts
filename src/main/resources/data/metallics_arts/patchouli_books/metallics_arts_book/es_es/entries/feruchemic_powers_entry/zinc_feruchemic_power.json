@@ -1,16 +1,16 @@
 {
-  "name": "Zinc Feruquimico",
+  "name": "Zinc feruquímico",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/zinc_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:zinc_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, No puedes obtener loot de entidades."
+      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, te cuesta muchísimo encontrar objetos de los seres a los que aniquilas."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, tienes probabilidad de duplicar el loot."
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, sientes que todos los seres están a rebosar de objetos que puedes (y quieres) obtener."
     }
   ]
 }

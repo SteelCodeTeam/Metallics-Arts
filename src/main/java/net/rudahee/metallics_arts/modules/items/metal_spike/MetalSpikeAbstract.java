@@ -3,6 +3,8 @@ package net.rudahee.metallics_arts.modules.items.metal_spike;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
@@ -152,34 +154,54 @@ public abstract class MetalSpikeAbstract extends SwordItem {
                 } else if (hasPlayerBothPowers(localMetal, targetData)) {
                     //SI EL OBJETIVO TIENE AMBOS PODERES
                     if (isAllomantic) {
-                        if (couldStealPower){
-                            if (couldRemovePower){
+                        if (Math.random()>0.50){
+                            if (Math.random()<0.75){
                                 targetData.removeAllomanticPower(localMetal);
+
+                                target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
+
+                                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
+
                             }
                             stack.getTag().putBoolean("allomantic_power",true);
                             addItemToPlayer((Player) attacker, stack);
                         }
                     } else {
-                        if (couldStealPower){
-                            if (couldRemovePower){
+                        if (Math.random()>0.50){
+                            if (Math.random()<0.75){
                                 targetData.removeFeruchemicPower(localMetal);
+
+                                target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
+
+                                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
+
                             }
                             stack.getTag().putBoolean("feruchemic_power",true);
                             addItemToPlayer((Player) attacker, stack);
                         }
                     }
                 } else if (hasAllomanticPower){
-                    if (Math.random()>0.90){
-                        if (Math.random()>0.49){
+                    if (Math.random()>0.50){
+                        if (Math.random()<0.75){
                             targetData.removeAllomanticPower(localMetal);
+
+                            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
+
+                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
+
                         }
                         stack.getTag().putBoolean("allomantic_power",true);
                         addItemToPlayer((Player) attacker, stack);
                     }
                 } else if (hasFeruchemicPower){
-                    if (Math.random()>0.90){
-                        if (Math.random()>0.49){
+                    if (Math.random()>0.50){
+                        if (Math.random()<0.75) {
                             targetData.removeFeruchemicPower(localMetal);
+
+                            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
+
+                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
+
                         }
                         stack.getTag().putBoolean("feruchemic_power",true);
                         addItemToPlayer((Player) attacker, stack);
@@ -203,6 +225,10 @@ public abstract class MetalSpikeAbstract extends SwordItem {
 
     public void addItemToPlayer(Player attacker,ItemStack stack) {
         ItemStack itemStack = stack.copy();
-        attacker.addItem(itemStack);
+        if (attacker.getInventory().getFreeSlot() == -1) {
+            attacker.drop(itemStack, true, true);
+        } else {
+            attacker.addItem(itemStack);
+        }
     }
 }

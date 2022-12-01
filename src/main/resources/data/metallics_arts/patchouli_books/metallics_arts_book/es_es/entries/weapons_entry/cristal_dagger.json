@@ -1,11 +1,11 @@
 {
-  "name": "Daga de Cristal",
+  "name": "Daga de cristal",
   "icon": "metallics_arts:textures/item/combat/cristal_dagger.png",
   "category": "metallics_arts:weapons_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Daga extremadamente rapida, que ocasiona poco daño, es muy fragil."
+      "text": "Daga extremadamente ligera y veloz. Desgraciadamente, es muy fragil y no resulta tan peligrosa como algunos podrían pensar."
     },
     {
       "type": "patchouli:crafting",

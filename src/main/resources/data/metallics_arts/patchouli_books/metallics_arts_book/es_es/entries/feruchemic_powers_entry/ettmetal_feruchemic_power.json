@@ -1,16 +1,16 @@
 {
-  "name": "Ettmetal Feruquimico",
+  "name": "Ettmetal feruquímico",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/ettmetal_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:ettmetal_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Cuando almacenas, parece que la energía de las explosiones que te golpean van a otro sitio."
+      "text": "$(br)Almacenar:$(br2) - Cuando almacenas, la energía de las explosiones no solo rompe tu cuerpo, sino que se guarda en la mente de metal."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Cuando decantas, pareces que vas a liberar toda tu energia interior de golpe."
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Cuando decantas, sientes como si tu interior fuera a, literalmente, explotar."
     }
   ]
 }

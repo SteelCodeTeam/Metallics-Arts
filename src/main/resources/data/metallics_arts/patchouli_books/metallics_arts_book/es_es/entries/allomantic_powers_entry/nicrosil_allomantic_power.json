@@ -1,17 +1,17 @@
 {
-  "name": "Nicrosil Alomantico",
+  "name": "Nicrosil alomántico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/nicrosil_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:nicrosil_allomantic_icon",
-      "text": "$(br) Aumenta en gran medida la potencia de los metales que estés quemando el jugador al que golpees. $(br)$(br) Extra: $(br) - Funciona un corto periodo de tiempo y vacía todas las reservas alomanticas que estaba quemando el jugador objetivo."
+      "text": "$(br) Aumenta en gran medida la potencia de los metales que esté quemando el jugador al que golpees. $(br)$(br) Extra: $(br) - Funciona un corto periodo de tiempo y vacía las reservas alomanticas del metal que estaba quemando el jugador objetivo."
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Aplica el efecto en área mediana. $(br2) + Lerasium: Aplica el efecto en un área pequeña $(br2) + Ambos: Aplica el efecto en un gran área."
+      "text": "$(br) + Duralumín: aplica el efecto en un área mediana. $(br2) + Lerasium: aplica el efecto en un área pequeña $(br2) + Ambos: aplica el efecto en un gran área."
     }
   ]
 }

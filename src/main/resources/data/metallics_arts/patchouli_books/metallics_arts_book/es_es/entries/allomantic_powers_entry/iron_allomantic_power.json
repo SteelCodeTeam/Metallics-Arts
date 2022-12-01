@@ -1,17 +1,17 @@
 {
-  "name": "Hierro Alomantico",
+  "name": "Hierro alomántico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/iron_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:iron_allomantic_icon",
-      "text": "$(br) Tira de la fuente de metal que estés apuntando.$(br) Para usar este poder, debes hacer clic izquierdo mientras miras a la fuente de metal."
+      "text": "$(br) Tira de la fuente de metal a la que estés apuntando.$(br) Para usar este poder, debes hacer clic izquierdo mientras miras a dicha fuente de metal."
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Aumenta en gran medida el tirón. $(br2) + Lerasium: Aumenta levemente el tirón. $(br2) + Ambos: Aumenta al máximo el tirón."
+      "text": "$(br) + Duralumín: aumenta en gran medida el tirón. $(br2) + Lerasium: aumenta levemente el tirón. $(br2) + Ambos: aumenta al máximo el tirón."
     }
   ]
 }

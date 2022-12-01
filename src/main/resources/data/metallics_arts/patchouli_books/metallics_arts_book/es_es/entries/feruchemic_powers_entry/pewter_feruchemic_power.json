@@ -1,16 +1,16 @@
 {
-  "name": "Peltre Feruquimico",
+  "name": "Peltre feruquímico",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/pewter_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:pewter_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras decantas, te sientes mas debil, casi te podria ganar un pollo."
+      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, te sientes más debil, casi te podria ganar una gallina."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras almacenas, te sientes mucho mas fuerte, podrias matar al Wither boss a puñetazos."
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, te sientes mucho más fuerte, como si pudieras matar al Wither a puñetazos."
     }
   ]
 }

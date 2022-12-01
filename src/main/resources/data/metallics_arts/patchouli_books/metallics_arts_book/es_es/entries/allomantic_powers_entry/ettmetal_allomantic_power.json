@@ -1,5 +1,5 @@
 {
-  "name": "Ettmetal Alomantico",
+  "name": "Ettmetal alomántico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/ettmetal_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
@@ -11,7 +11,7 @@
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: La explosión rompe bloques. $(br2) + Lerasium: Nada. $(br2) + Ambos: La explosión rompe bloques."
+      "text": "$(br) + Duralumín: la explosión rompe bloques. $(br2) + Lerasium: nada. $(br2) + Ambos: la explosión rompe bloques."
     }
   ]
 }

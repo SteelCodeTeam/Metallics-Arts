@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # Metallics Arts 1.19.2-1.4.0
-=======
-# Metallics Arts 1.19.2-1.3.5
->>>>>>> 718b7eca9e6a05f02931a71b9510d9df878465bf
 
 
 ## Index 📋
@@ -65,7 +61,7 @@ And we have two mandatory dependencies:
 
 <br>
 
-## **Changelog ✒ [v1.4.0]️** 
+## **Changelog ✒ [v1.4.1]️** 
 
 Problems solved:
 - Feruchemic selector can have problems with non-english location.
@@ -83,11 +79,6 @@ Problems solved:
 - Bendalloy fixed
 - Bronze allomantic is drawing lines in multiplayer.
 - Beacons its working with our custom metals
-
-
-CurseForge page:
-- Added video showcase
-- Added more images
 
 <br>
 

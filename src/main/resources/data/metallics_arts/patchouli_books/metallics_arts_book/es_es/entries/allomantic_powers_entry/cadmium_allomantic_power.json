@@ -1,17 +1,17 @@
 {
-  "name": "Cadmio Alomantico",
+  "name": "Cadmio alomántico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/cadmium_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:cadmium_allomantic_icon",
-      "text": "$(br) Recibes caída lenta, el juego se ralentiza a tu alrededor. $(br)"
+      "text": "$(br) Experimentas caída lenta, el tiempo se ralentiza a tu alrededor. $(br)"
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Duplica el efecto y aumenta el área. $(br2) + Lerasium: Aumenta el área. $(br2) + Ambos: Duplica el efecto y aumenta el área en gran medida."
+      "text": "$(br) + Duralumín: duplica el efecto y aumenta el área de efecto. $(br2) + Lerasium: aumenta el área de efecto. $(br2) + Ambos: duplica el efecto y aumenta el área en gran medida."
     }
   ]
 }

@@ -1,16 +1,16 @@
 {
-  "name": "Extaño Feruquimico",
+  "name": "Estaño feruquímico",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/tin_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:tin_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, aumenta tus sentidos."
+      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, disminuye tus sentidos."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, disminuye tus sentidos."
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, aumenta tus sentidos."
     }
   ]
 }

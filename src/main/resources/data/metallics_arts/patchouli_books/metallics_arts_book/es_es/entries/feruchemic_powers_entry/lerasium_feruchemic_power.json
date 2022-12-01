@@ -1,16 +1,16 @@
 {
-  "name": "Lerasium Feruquimico",
+  "name": "Lerasium feruquímico",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/lerasium_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:lerasium_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Cuando almacenas, guardaras tus reservas alomanticas actuales."
+      "text": "$(br)Almacenar:$(br2) - Cuando almacenas, guardaras las reservas alománticas que hubieras ingerido."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Cuando decantas, obtienes las reservas alomanticas que habias almacenado previamente."
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Cuando decantas, obtienes las reservas alománticas que hubiera en la mente de metal."
     }
   ]
 }

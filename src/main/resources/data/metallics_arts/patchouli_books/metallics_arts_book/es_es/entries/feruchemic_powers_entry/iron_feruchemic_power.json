@@ -1,16 +1,16 @@
 {
-  "name": "Hierro Feruquimico",
+  "name": "Hierro feruquímico",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/iron_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:iron_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, pareces volverte mas ligero."
+      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, notas como el mundo tira de ti con menos fuerza."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, pareces volverte mucho mas pesado."
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, sientes como te vuelves mucho más pesado. Esperemos que no lo hagas en los dos sentidos de la expresión."
     }
   ]
 }

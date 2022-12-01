@@ -1,16 +1,16 @@
 {
-  "name": "Acero Feruquimico",
+  "name": "Acero feruquímico",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/steel_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:steel_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, te sientes realmente lento."
+      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, notas como tu cuerpo responde más lentamente de lo que debería. ¿Ese caracol te acaba de avanzar?"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, te sientes realmente veloz."
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, sientes que puedes dejar atrás el viento."
     }
   ]
 }

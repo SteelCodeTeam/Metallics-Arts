@@ -1,12 +1,12 @@
 {
-  "name": "Anillos Feruquimicos",
+  "name": "Anillos feruquímicos",
   "icon": "metallics_arts:textures/item/metal_mind/gold_electrum_ring.png",
   "category": "metallics_arts:crafting_category",
   "sortnum": 2,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Anillos de metales que suelen llevar los terrisanos. Lucen realmente bien"
+      "text": "Anillos de metal que suelen llevar los terrisanos. No parece que los lleven como un simple adorno..."
     },
     {
       "type": "patchouli:crafting",

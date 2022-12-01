@@ -1,12 +1,12 @@
 {
-  "name": "Clavos Hemalúrgicos",
+  "name": "Clavos hemalúrgicos",
   "icon": "metallics_arts:textures/item/spikes/gold_spike.png",
   "category": "metallics_arts:crafting_category",
   "sortnum": 4,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Clavos de metales realmente afilados. ¿Cual será su uso?"
+      "text": "Clavos de metales realmente afilados. Nadie los parece usar para construir edificios o algo por el estilo..."
     },
     {
       "type": "patchouli:crafting",

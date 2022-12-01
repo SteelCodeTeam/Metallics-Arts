@@ -1,12 +1,12 @@
 {
-  "name": "Daga de Obsidiana",
+  "name": "Daga de obsidiana",
   "icon": "metallics_arts:textures/item/combat/obsidian_dagger.png",
   "category": "metallics_arts:weapons_category",
   "pages": [
     {
       "type": "patchouli:text",
       "title": "Obsidian Dagger",
-      "text": "Daga resistente y rapida, con un daño moderado"
+      "text": "Daga más resistente y rápida que su hermana de cristal, y más peligrosa. Conviene ir con cautela ante alguien que porta una de estas."
     },
     {
       "type": "patchouli:crafting",

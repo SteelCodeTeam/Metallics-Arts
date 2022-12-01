@@ -1,17 +1,17 @@
 {
-  "name": "Zinc Alomantico",
+  "name": "Zinc alomántico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/zinc_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:zinc_allomantic_icon",
-      "text": "$(br) Vuelve agresivas a las entidades. $(br) Para usar este poder, debes hacer clic izquierdo mientras miras a la entidad.$(br)$(br)$(br) Extra: $(br) - Puedes liberar a las mascotas de su dueño."
+      "text": "$(br) Vuelve agresivas a las entidades. $(br) Para usar este poder, debes hacer clic izquierdo mientras miras a dicha entidad.$(br)$(br)$(br) Extra: $(br) - Puedes liberar a las mascotas de su dueño."
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Fortalece a la entidad. $(br2) + Lerasium: Aplica el efecto en área. $(br2) + Ambos: Fortalece a las entidades en área."
+      "text": "$(br) + Duralumín: fortalece a la entidad. $(br2) + Lerasium: aplica el efecto en área. $(br2) + Ambos: fortalece a las entidades en área."
     }
   ]
 }

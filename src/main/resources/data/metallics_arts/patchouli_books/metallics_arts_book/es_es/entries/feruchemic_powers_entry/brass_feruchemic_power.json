@@ -1,16 +1,16 @@
 {
-  "name": "Latón Feruquimico",
+  "name": "Latón feruquímico",
   "icon": "metallics_arts:textures/gui/feruchemic_symbols/brass_symbol.png",
   "category": "metallics_arts:feruchemic_powers_category",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:brass_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, te permite almacenar tu calor, haciendote menos vulnerable a las fuentes de calor.$(br2)$(br2) - Ten cuidado de usarlo en lugares frios."
+      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, te permite guardar tu calor corporal, haciéndote más resistente a las fuentes de calor.$(br2)$(br2) - Poco recomendable almacenar en lugares fríos por... obvios motivos."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, expulsas el calor, haciendo que puedas prender en llamas a otras entidades al golpear.$(br2)$(br2) - Reconfortante contra esa fria nieve en polvo."
+      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, expulsas el calor corporal acumulado, haciendo que puedas prender en llamas a otras entidades al golpearlas.$(br2)$(br2) - Útil para combatir el frío, además."
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Oro Alomantico",
+  "name": "Oro alomántico",
   "icon": "metallics_arts:textures/gui/allomantic_symbols/gold_symbol.png",
   "category": "metallics_arts:allomantic_powers_category",
   "pages": [
@@ -11,7 +11,7 @@
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumin: Te teletransporta al punto marcado. $(br2) + Lerasium: Nada. $(br2) + Ambos: Teletransporta en área al punto marcado."
+      "text": "$(br) + Duralumín: te teletransporta al punto donde moriste por última vez. $(br2) + Lerasium: nada. $(br2) + Ambos: teletransporta en área al punto marcado."
     }
   ]
 }
