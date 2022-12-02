@@ -170,6 +170,9 @@ public class ModLanguageProviderES extends LanguageProvider {
                 cont++;
             }
         }
+        put("item.metallics_arts.silver_ingot", "Lingote de plata");
+        put("item.metallics_arts.lead_ingot", "Lingote de plomo");
+        put("item.metallics_arts.nickel_ingot", "Lingote de níquel");
 
     }};
 
@@ -179,12 +182,20 @@ public class ModLanguageProviderES extends LanguageProvider {
             put("item.metallics_arts."+ metal.getNameLower() +"_nugget","Pepita de "+ MetalSpanish.valueOf(metal.name()).getMetalNameLower());
         }
 
+        put("item.metallics_arts.silver_nugget", "Pepita de plata");
+        put("item.metallics_arts.lead_nugget", "Pepita de plomo");
+        put("item.metallics_arts.nickel_nugget", "Pepita de níquel");
+
     }};
     private Map<String, String> blocks = new HashMap<>() {{
 
         for (MetalsNBTData metal: MetalsNBTData.values()) {
             put("block.metallics_arts."+ metal.getNameLower() +"_block","Bloque de "+ MetalSpanish.valueOf(metal.name()).getMetalNameLower());
         }
+
+        put("block.metallics_arts.silver_block", "Bloque de plata");
+        put("block.metallics_arts.lead_block", "Bloque de plomo");
+        put("block.metallics_arts.nickel_block", "Bloque de níquel");
 
     }};
 
