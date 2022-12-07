@@ -246,7 +246,7 @@ public class PowersEventHandler {
 
                         if (itemInHand.getItem() == ModItems.OBSIDIAN_DAGGER.get()) {
                             if (Math.random() < 0.30d) {
-                                event.getEntity().addEffect(new MobEffectInstance(MobEffects.WITHER, 20, 1, true, true, false));
+                                event.getEntity().addEffect(new MobEffectInstance(MobEffects.WITHER, 41, 1, true, true, false));
                             }
                         }
 
