@@ -115,7 +115,9 @@ public class DuraluminAndAluminumHelpers {
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 40, 2, true, true));
             player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 1, true, true));
         } else {
-            System.out.println("Bioma no registrado");
+
+             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 40, 2, true, false));
+           /* System.out.println("Bioma no registrado");*/
         }
 
         /** (Biomes.END_BARRENS) -> limite de islas*/
@@ -219,7 +221,8 @@ public class DuraluminAndAluminumHelpers {
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 2, true, true));
             player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 128, true, true));
         } else {
-            System.out.println("Bioma no registrado");
+              player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 2, true, true));
+           /* System.out.println("Bioma no registrado");*/
         }
     }
     public static void drainAndCleanEffects(Player player, IDefaultInvestedPlayerData playerCapability) {
