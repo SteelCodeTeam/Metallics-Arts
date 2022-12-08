@@ -847,15 +847,25 @@ public class PowersEventHandler {
                                 block = new BlockPos(world.getLevelData().getXSpawn(),world.getLevelData().getYSpawn(), world.getLevelData().getZSpawn());
                                 dimension = Level.OVERWORLD.location().toString();
                             }
-                            if (playerCapability.isBurning(MetalsNBTData.LERASIUM)){
+                            if (playerCapability.isBurning(MetalsNBTData.ELECTRUM) && playerCapability.isBurning(MetalsNBTData.LERASIUM) && playerCapability.isBurning(MetalsNBTData.DURALUMIN)){
+
                                 BlockPos negative;
                                 BlockPos positive;
                                 negative = new BlockPos(player.position()).offset(-x - 3, -y - 3, -z - 3);
                                 positive = new BlockPos(player.position()).offset(x + 3, y + 3, z + 3);
                                 GoldAndElectrumHelpers.multiTeleport(player, new AABB(negative, positive), event.level, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension),block);
                                 playerCapability.drainMetals(MetalsNBTData.LERASIUM);
-                            } else {
+                                playerCapability.drainMetals(MetalsNBTData.DURALUMIN);
+
+                            }else if(playerCapability.isBurning(MetalsNBTData.ELECTRUM) && playerCapability.isBurning(MetalsNBTData.DURALUMIN)){
+
                                 GoldAndElectrumHelpers.teleport(player, event.level, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension), block);
+                                playerCapability.drainMetals(MetalsNBTData.DURALUMIN);
+
+                            }else{
+
+                                //GoldAndElectrumHelpers.teleport(player, event.level, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension), block);
+
                             }
                             playerCapability.drainMetals(MetalsNBTData.ELECTRUM);
                         }
@@ -872,15 +882,26 @@ public class PowersEventHandler {
                                 block = new BlockPos(world.getLevelData().getXSpawn(),world.getLevelData().getYSpawn(), world.getLevelData().getZSpawn());
                                 dimension = Level.OVERWORLD.location().toString();
                             }
-                            if (playerCapability.isBurning(MetalsNBTData.LERASIUM)){
+
+                            if (playerCapability.isBurning(MetalsNBTData.GOLD) && playerCapability.isBurning(MetalsNBTData.LERASIUM) && playerCapability.isBurning(MetalsNBTData.DURALUMIN)){
+
                                 BlockPos negative;
                                 BlockPos positive;
                                 negative = new BlockPos(player.position()).offset(-x - 3, -y - 3, -z - 3);
                                 positive = new BlockPos(player.position()).offset(x + 3, y + 3, z + 3);
                                 GoldAndElectrumHelpers.multiTeleport(player, new AABB(negative, positive), event.level, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension),block);
                                 playerCapability.drainMetals(MetalsNBTData.LERASIUM);
-                            } else {
+                                playerCapability.drainMetals(MetalsNBTData.DURALUMIN);
+
+                            }else if(playerCapability.isBurning(MetalsNBTData.GOLD) && playerCapability.isBurning(MetalsNBTData.DURALUMIN)){
+
                                 GoldAndElectrumHelpers.teleport(player, event.level, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension), block);
+                                playerCapability.drainMetals(MetalsNBTData.DURALUMIN);
+
+                            }else{
+
+                                //.teleport(player, event.level, GoldAndElectrumHelpers.getRegistryKeyFromString(dimension), block);
+
                             }
                             playerCapability.drainMetals(MetalsNBTData.GOLD);
                         }
