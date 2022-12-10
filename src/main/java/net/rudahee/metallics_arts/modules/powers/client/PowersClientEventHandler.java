@@ -11,11 +11,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.*;
 import net.minecraftforge.api.distmarker.Dist;
@@ -36,13 +32,10 @@ import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.GoldAndElectrumHelpers;
 import net.rudahee.metallics_arts.modules.powers.helpers.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.enums.metals.Metal;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -631,7 +624,7 @@ public class PowersClientEventHandler {
                 for (Player otherPlayer: players) {
                     IDefaultInvestedPlayerData cap = otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).orElse(null);
                     if  (cap!= null) {
-                        if ((cap.isBurningSomething() && !cap.isBurning(MetalsNBTData.COPPER))) {
+                        if ((cap.isUsingPowers() && !cap.isBurning(MetalsNBTData.COPPER))) {
                             ClientUtils.drawMetalLine(stack, playervec, otherPlayer.position(), 5.0F, 1F, 0.6F, 0.6F);
                         }
                     }

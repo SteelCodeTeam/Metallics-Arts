@@ -68,7 +68,7 @@ public interface IDefaultInvestedPlayerData {
 
     boolean isBurning(MetalsNBTData metal);
 
-    boolean isBurningSomething();
+    boolean isUsingPowers();
 
     MetalsNBTData getRandomBurningMetal();
 

@@ -368,14 +368,14 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     }
 
     @Override
-    public boolean isBurningSomething() {
+    public boolean isUsingPowers() {
         boolean burning = false;
         for(MetalsNBTData metal: MetalsNBTData.values()) {
-            if (isBurning(metal)) {
+            if (isBurning(metal) || isDecanting(metal) || isStoring(metal)) {
                 burning = true;
+                break;
             }
         }
-
         return burning;
     }
 

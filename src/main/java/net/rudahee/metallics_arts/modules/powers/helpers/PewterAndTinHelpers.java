@@ -78,7 +78,7 @@ public class PewterAndTinHelpers {
         }
     }
     public static void addFecruchemicVision(Player player){
-        player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 1, true, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 320, 1, true, false, false));
     }
 
     public static void removeFeruchemicVision(Player player){
