@@ -193,7 +193,6 @@ public class AtiumAndMalatiumHelpers {
                     qty = 0;
                 }
             });
-
         });
 
         return qty;

@@ -81,23 +81,8 @@ public class PowersClientEventHandler {
                                     this.tickOffset = 0;
                                 }
 
-                                /** LEFT CLICK (ATTACK) */
-
-                                if (this.mc.options.keyAttack.isDown()) {
+                                if (KeyInit.ALLOMANTIC_PULL.isDown()) {
                                     HitResult trace = ClientUtils.getMouseOverExtended(11F * 1.5F);
-
-                                    /***********************************
-                                     * DO CLICK AN ENTITY WITH  - ZINC -
-                                     ***********************************/
-                                    if (playerCapability.isBurning(MetalsNBTData.ZINC)) {
-                                        Entity entity;
-                                        if ((trace != null) && (trace.getType() == HitResult.Type.ENTITY)) {
-                                            entity = ((EntityHitResult) trace).getEntity();
-                                            if (entity instanceof Mob) {
-                                                ModNetwork.sendToServer(new ChangeEmotionPacket(entity.getId(), true));
-                                            }
-                                        }
-                                    }
 
                                     /***********************************
                                      * DO CLICK AN SOMETHING WITH  - IRON -
@@ -120,6 +105,24 @@ public class PowersClientEventHandler {
                                             }
                                         }
                                     }
+                                }
+
+                                /** LEFT CLICK (ATTACK) */
+
+                                if (this.mc.options.keyAttack.isDown()) {
+                                    HitResult trace = ClientUtils.getMouseOverExtended(11F * 1.5F);
+                                    /***********************************
+                                     * DO CLICK AN ENTITY WITH  - ZINC -
+                                     ***********************************/
+                                    if (playerCapability.isBurning(MetalsNBTData.ZINC)) {
+                                        Entity entity;
+                                        if ((trace != null) && (trace.getType() == HitResult.Type.ENTITY)) {
+                                            entity = ((EntityHitResult) trace).getEntity();
+                                            if (entity instanceof Mob) {
+                                                ModNetwork.sendToServer(new ChangeEmotionPacket(entity.getId(), true));
+                                            }
+                                        }
+                                    }
                                     /***********************************
                                      * DO CLICK AN ENTITY WITH  - MALATIUM -
                                      ***********************************/
@@ -137,11 +140,37 @@ public class PowersClientEventHandler {
                                         }
                                     }
                                 }
+
                                 if (!playerCapability.isBurning(MetalsNBTData.MALATIUM) && otherPlayerDeathPos != null) {
                                     otherPlayerDeathPos = null;
                                     otherPlayerDimension = null;
                                 }
 
+                                /***********************************
+                                 * DO CLICK AN ENTITY WITH  - STEEL -
+                                 ***********************************/
+                                if (KeyInit.ALLOMANTIC_PUSH.isDown()) {
+
+                                    HitResult trace = ClientUtils.getMouseOverExtended(11F * 1.5F);
+                                    if (playerCapability.isBurning(MetalsNBTData.STEEL)) {
+                                        if (trace !=null){
+                                            if (trace instanceof BlockHitResult) { // IF ITS A BLOCK
+                                                BlockPos blockPosition = ((BlockHitResult) trace).getBlockPos();
+                                                if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
+                                                    ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
+                                                            Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.getEnhanced() || playerCapability.getEnhanced(),
+                                                                    playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+                                                }
+                                            }
+                                            if (trace instanceof EntityHitResult) {
+                                                ModNetwork.sendToServer(
+                                                        new PullAndPushEntityPacket(((EntityHitResult) trace).getEntity().getId(),
+                                                                Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.getEnhanced() || playerCapability.getEnhanced(),
+                                                                        playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
+                                            }
+                                        }
+                                    }
+                                }
 
                                 /** RIGHT CLICK (USE) */
 
@@ -161,28 +190,6 @@ public class PowersClientEventHandler {
                                         }
                                     }
 
-                                    /***********************************
-                                     * DO CLICK AN ENTITY WITH  - STEEL -
-                                     ***********************************/
-
-                                    if (playerCapability.isBurning(MetalsNBTData.STEEL)) {
-                                        if (trace !=null){
-                                            if (trace instanceof BlockHitResult) { // IF ITS A BLOCK
-                                                BlockPos blockPosition = ((BlockHitResult) trace).getBlockPos();
-                                                if (IronAndSteelHelpers.isBlockStateMetal(this.mc.level.getBlockState(blockPosition))) {
-                                                    ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
-                                                            Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.getEnhanced() || playerCapability.getEnhanced(),
-                                                                    playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
-                                                }
-                                            }
-                                            if (trace instanceof EntityHitResult) {
-                                                ModNetwork.sendToServer(
-                                                        new PullAndPushEntityPacket(((EntityHitResult) trace).getEntity().getId(),
-                                                                Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player,playerCapability.getEnhanced() || playerCapability.getEnhanced(),
-                                                                        playerCapability.isBurning(MetalsNBTData.LERASIUM)))));
-                                            }
-                                        }
-                                    }
                                 }
 
                                 /*if (player.isFallFlying() && playerCapability.isBurning(MetalsNBTData.STEEL)) {

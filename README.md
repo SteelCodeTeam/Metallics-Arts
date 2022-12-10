@@ -95,8 +95,10 @@ Problems solved:
 - Shield whith our banners are not getting the right texture.
 
 **Improvements**
-- ~~Feruchemical tin flicker~~ v[1.4.3]
-- ~~Detect feruchemists with allomantic bronze~~ v[1.4.3]
+- ~~Delete visual effect of atium~~[v1.4.3]
+- ~~Feruchemical tin flicker~~ v[1.4.4]
+- ~~Detect feruchemists with allomantic bronze~~ v[1.4.4]
+- ~~New custom keys for allomancitac pull and push~~ v[1.4.4]
 - Do steel flying more comfortable. (Its not a priority)
 - Add sound effects.
 - Do more comfortable (and maybe push and pull through blocks) with iron/steel 
@@ -105,7 +107,7 @@ Problems solved:
 - Add some entities like special zombies, specials archers, they must use allomancy or feruchemy.
 - Maybe, implements new structures with loot from the mod.
 - New kind of allomantic beacons whith his respective powers.
-- ~~Delete visual effect of atium~~[v1.4.3]
+
 
 <br>
 

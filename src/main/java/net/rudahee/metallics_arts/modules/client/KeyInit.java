@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.client;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -32,7 +33,13 @@ public class KeyInit {
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping FERUCHEMIC_STORAGE;
 
+    @OnlyIn(Dist.CLIENT)
+    public static KeyMapping ALLOMANTIC_PUSH;
+    @OnlyIn(Dist.CLIENT)
+    public static KeyMapping ALLOMANTIC_PULL;
+
     public static void initKeys(final RegisterKeyMappingsEvent evt){
+
         ALLOMANTIC_POWER_SELECTOR =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomantic", GLFW.GLFW_KEY_M,KEY_CATEGORY);
         evt.register(ALLOMANTIC_POWER_SELECTOR);
         FERUCHEMIC_POWER_SELECTOR =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic", GLFW.GLFW_KEY_N,KEY_CATEGORY);
@@ -45,6 +52,12 @@ public class KeyInit {
         evt.register(FERUCHEMIC_DECANT);
         FERUCHEMIC_STORAGE = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic_store", GLFW.GLFW_KEY_LEFT_SHIFT,KEY_CATEGORY);
         evt.register(FERUCHEMIC_STORAGE);
+
+        ALLOMANTIC_PUSH = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomantic_push", GLFW.GLFW_MOUSE_BUTTON_RIGHT, KEY_CATEGORY);
+        evt.register(ALLOMANTIC_PUSH);
+
+        ALLOMANTIC_PULL = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomantic_pull", GLFW.GLFW_MOUSE_BUTTON_LEFT,KEY_CATEGORY);
+        evt.register(ALLOMANTIC_PULL);
 
         powers = new KeyMapping[MetalsNBTData.values().length];
         for (int i = 0; i<MetalsNBTData.values().length; i++) {
