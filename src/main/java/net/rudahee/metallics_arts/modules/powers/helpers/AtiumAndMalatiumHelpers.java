@@ -15,7 +15,7 @@ public class AtiumAndMalatiumHelpers {
 
 
     public static void decantAtium(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 5, 1, true, true));
+        player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 5, 1, true, false));
     }
 
     public static void storageAtium(Player player) {

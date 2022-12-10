@@ -103,6 +103,7 @@ Problems solved:
 - Add some entities like special zombies, specials archers, they must use allomancy or feruchemy.
 - Maybe, implements new structures with loot from the mod.
 - New kind of allomantic beacons whith his respective powers.
+- ~~Delete visual effect of atium~~[v1.4.3]
 
 <br>
 
