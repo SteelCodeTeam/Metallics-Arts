@@ -53,10 +53,10 @@ public class KeyInit {
         FERUCHEMIC_STORAGE = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic_store", GLFW.GLFW_KEY_LEFT_SHIFT,KEY_CATEGORY);
         evt.register(FERUCHEMIC_STORAGE);
 
-        ALLOMANTIC_PUSH = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomantic_push", GLFW.GLFW_MOUSE_BUTTON_RIGHT, KEY_CATEGORY);
+        ALLOMANTIC_PUSH = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomantic_push", InputConstants.Type.MOUSE, 1, KEY_CATEGORY);
         evt.register(ALLOMANTIC_PUSH);
 
-        ALLOMANTIC_PULL = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomantic_pull", GLFW.GLFW_MOUSE_BUTTON_LEFT,KEY_CATEGORY);
+        ALLOMANTIC_PULL = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomantic_pull", InputConstants.Type.MOUSE, 0,KEY_CATEGORY);
         evt.register(ALLOMANTIC_PULL);
 
         powers = new KeyMapping[MetalsNBTData.values().length];

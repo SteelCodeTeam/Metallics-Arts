@@ -11,16 +11,28 @@ import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
 
 public class CopperAndBronzeHelpers {
 
+    /*public static boolean checkIfPlayerUsePowers (Player otherPlayer) {
+        boolean value = false;
+        otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
+                cap -> {
+                   if (cap.isUsingPowers() && !cap.isBurning(MetalsNBTData.COPPER)){
+                       value = true;
+                   }
+                });
+
+        return value;
+    }*/
+
     public static void BronzeAiEntityManipulation(AABB axisAlignedBB, Player player, Level world) {
         world.getEntitiesOfClass(Mob.class, axisAlignedBB).forEach(entity -> {
-
             entity.goalSelector.removeGoal(entity.goalSelector.getRunningGoals().findFirst().orElse(null));
             entity.getLookControl().setLookAt(player.position().x, player.position().y, player.position().z);
             entity.getMoveControl().setWantedPosition(player.position().x-0.5F, player.position().y, player.position().z-0.5F, 1.2f);
-
         });
     }
 

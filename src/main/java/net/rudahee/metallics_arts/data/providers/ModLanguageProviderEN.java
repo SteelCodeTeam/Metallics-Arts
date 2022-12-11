@@ -208,9 +208,11 @@ public class ModLanguageProviderEN extends LanguageProvider {
             put( "screen.metallics_arts.alloy_furnace", "Alloy Furnace");
             put("curios.identifier.ma_metalmind_slot", "MetalMind Slot");
 
-            put( "key.category_metallics_arts","Metallics Arts");
+            put("key.category_metallics_arts","Metallics Arts");
             put("key.metallics_arts.allomantic","Allomantic Metal Selector");
             put("key.metallics_arts.feruchemic","Feruchemic Metal Selector");
+            put("key.metallics_arts.allomantic_push", "Allomantic Push");
+            put("key.metallics_arts.allomantic_pull", "Allomantic Pull");
             put("key.metallics_arts.vertical_jump","Vertical Push");
 
 

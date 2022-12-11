@@ -8,6 +8,8 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
@@ -29,6 +31,7 @@ import net.rudahee.metallics_arts.modules.client.GUI.FeruchemyMetalSelector;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.modules.powers.helpers.CopperAndBronzeHelpers;
 import net.rudahee.metallics_arts.modules.powers.helpers.GoldAndElectrumHelpers;
 import net.rudahee.metallics_arts.modules.powers.helpers.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
@@ -278,7 +281,7 @@ public class PowersClientEventHandler {
     }
 
     int radius = 8;
-
+    boolean copper;
     private void redoLists(Player player, IDefaultInvestedPlayerData playerCapability) {
 
         if (this.tickOffset == 0) {
@@ -293,6 +296,29 @@ public class PowersClientEventHandler {
                 // Add metal entities to metal list
                 this.metal_entities.addAll(
                         player.level.getEntitiesOfClass(Entity.class, new AABB(negative, positive), e -> IronAndSteelHelpers.isEntityMetal(e) && !e.equals(player)));
+
+
+
+                /** intento de arreglo*/
+                max = 12;
+                negative = player.blockPosition().offset(-max, -max, -max);
+                positive = player.blockPosition().offset(max, max, max);
+
+                this.nearby_allomancers.addAll(player.level.getEntitiesOfClass(Player.class, new AABB(negative, positive), entity -> entity != null && entity != player));
+
+                copper = false;
+                for (Player otherPlayer : nearby_allomancers) {
+                    otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
+                            cap -> {
+                                if (cap.isBurning(MetalsNBTData.COPPER)){
+                                    copper = true;
+                                }
+                            });
+                }
+                if (!copper) {
+                    nearby_allomancers.clear();
+                }
+                /** intento de arreglo*/
 
                 // Add metal blobs to metal list
                 Stream<BlockPos> blocks = BlockPos.betweenClosedStream(negative, positive);
@@ -622,19 +648,27 @@ public class PowersClientEventHandler {
              * BRONZE LINES *
              *********************************************/
             if (data.isBurning(MetalsNBTData.BRONZE)) {
-                BlockPos playerPos = player.blockPosition();
-                BlockPos negative = new BlockPos(player.position()).offset(playerPos.getX() - 12,playerPos.getX() - 12,playerPos.getX() - 12);
-                BlockPos positive = new BlockPos(player.position()).offset(playerPos.getX() + 12, playerPos.getX() + 12, playerPos.getX() + 12);
+                //BlockPos playerPos = player.blockPosition();
+                //BlockPos negative = new BlockPos(player.position()).offset(playerPos.getX() - 12,playerPos.getX() - 12,playerPos.getX() - 12);
+                //BlockPos positive = new BlockPos(player.position()).offset(playerPos.getX() + 12, playerPos.getX() + 12, playerPos.getX() + 12);
 
-                List<Player> players = player.level.getEntitiesOfClass(Player.class, new AABB(negative, positive)).stream().filter(playerTarget -> player.getUUID()!= playerTarget.getUUID()).collect(Collectors.toList());
+                //List<Player> players = player.level.getEntitiesOfClass(Player.class, new AABB(negative, positive)).stream().filter(playerTarget -> player.getUUID()!= playerTarget.getUUID()).collect(Collectors.toList());
 
-                for (Player otherPlayer: players) {
-                    IDefaultInvestedPlayerData cap = otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).orElse(null);
+                for (Player otherPlayer: nearby_allomancers) {
+                    otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
+                            capabilities -> {
+                                if (capabilities.isUsingPowers()) {
+                                    ClientUtils.drawMetalLine(stack, playervec, otherPlayer.position(), 5.0F, 1F, 0.6F, 0.6F);
+                                    otherPlayer.addEffect(new MobEffectInstance(MobEffects.GLOWING, 5, 1, true, true));
+                                }
+                            });
+
+                    /*IDefaultInvestedPlayerData cap = otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).orElse(null);
                     if  (cap!= null) {
                         if ((cap.isUsingPowers() && !cap.isBurning(MetalsNBTData.COPPER))) {
                             ClientUtils.drawMetalLine(stack, playervec, otherPlayer.position(), 5.0F, 1F, 0.6F, 0.6F);
                         }
-                    }
+                    }*/
                 }
             }
 

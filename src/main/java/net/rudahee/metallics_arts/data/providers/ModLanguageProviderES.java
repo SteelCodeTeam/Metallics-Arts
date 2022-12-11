@@ -124,8 +124,10 @@ public class ModLanguageProviderES extends LanguageProvider {
         put("curios.identifier.ma_metalmind_slot", "Ranura de mente de metal");
 
         put("key.categorymetallics_arts", "Artes Metálicas");
-        put("key.metallics_arts.allomantic", "Selector de metal alomántico");
-        put("key.metallics_arts.feruchemic", "Selector de metal feruquímico");
+        put("key.metallics_arts.allomantic", "Selector de metal Alomántico");
+        put("key.metallics_arts.feruchemic", "Selector de metal Feruquímico");
+        put("key.metallics_arts.allomantic_push", "Empuje Alomántico");
+        put("key.metallics_arts.allomantic_pull", "Tiron Alomántico");
         put("key.metallics_arts.vertical_jump", "Empuje vertical");
 
 
