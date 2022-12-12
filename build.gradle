@@ -5,7 +5,7 @@ plugins {
 }
 
 
-version = '1.19.2-1.4.4'
+version = '1.19.2-1.5.0'
 
 group = 'net.rudahee.metallics_arts' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'metallics_arts'
@@ -161,11 +161,11 @@ jar {
     manifest {
         attributes([
                 "Specification-Title"     : "Metallics Arts",
-                "Specification-Vendor"    : "RuDaHee & TobibusFate",
+                "Specification-Vendor"    : "SteelCode Team",
                 "Specification-Version"   : project.version,
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "RuDaHee & TobibusFate",
+                "Implementation-Vendor"   : "SteelCode Team",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }

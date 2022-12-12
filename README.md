@@ -1,4 +1,4 @@
-# Metallics Arts 1.19.2-1.4.2
+# Metallics Arts 1.19.2-1.5.0
 
 
 
@@ -62,26 +62,16 @@ And we have two mandatory dependencies:
 
 <br>
 
-## **Changelog ✒ [v1.4.1]️** 
+## **Changelog ✒ [v1.5.0]️** 
 
 Problems solved:
-- Feruchemic selector can have problems with non-english location.
-- Selectors dont have location defined correctly.
-- Translation Issues. Added first steps guide.
-- The guide book doesn't show koloss blade craft
-- Add first steps to use powers for the first time in the book
-- Feruchemic nicrosil, store with ettmetal and zinc, and should not store.
-- The texture of the weapons is wrong
-- Obsidian axe does a lot of damage
-- Make it give you the book when you enter the world. Game can crash if you dont have installed Patchouli.
-- Ettmetal explosion does delete itself in server
-- Corrected Cristallized Metals names 
-- Bug with ctrl+space steel flying, corrected
-- Bendalloy fixed
-- Bronze allomantic is drawing lines in multiplayer.
-- Beacons its working with our custom metals
-
-<br>
+- Delete visual effect of atium
+- Feruchemical tin flicker
+- Detect feruchemists with allomantic bronze
+- New custom keys for allomancitac pull and push
+- Times of metallic arts are unbalanced
+- Minor bugs fixed!
+  <br>
 
 ------
 
@@ -92,13 +82,9 @@ Problems solved:
 **Known Issues**
 - Names consistency are bad.
 - Decant iron and burn bendalloy while you fall result in a bug.
-- Shield whith our banners are not getting the right texture.
+- Shield with our banners are not getting the right texture.
 
 **Improvements**
-- ~~Delete visual effect of atium~~[v1.4.3]
-- ~~Feruchemical tin flicker~~ v[1.4.4]
-- ~~Detect feruchemists with allomantic bronze~~ v[1.4.4]
-- ~~New custom keys for allomancitac pull and push~~ v[1.4.4]
 - Do steel flying more comfortable. (Its not a priority)
 - Add sound effects.
 - Do more comfortable (and maybe push and pull through blocks) with iron/steel 
@@ -106,8 +92,7 @@ Problems solved:
 - We need to do a really hard refactor.
 - Add some entities like special zombies, specials archers, they must use allomancy or feruchemy.
 - Maybe, implements new structures with loot from the mod.
-- New kind of allomantic beacons whith his respective powers.
-
+- New kind of allomantic beacons with his respective powers.
 
 <br>
 
