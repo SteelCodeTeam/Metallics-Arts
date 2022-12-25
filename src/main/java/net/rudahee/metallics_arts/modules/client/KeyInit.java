@@ -6,7 +6,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import org.lwjgl.glfw.GLFW;
 
 public class KeyInit {

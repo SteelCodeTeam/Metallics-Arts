@@ -14,9 +14,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
-import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.modules.tags_player.IDefaultInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import javax.annotation.Nullable;
@@ -82,7 +82,7 @@ public abstract class MetalSpikeAbstract extends SwordItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flag) {
-        if  (!stack.getTag().contains("metal_spike")||!stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
+        if  (!stack.getTag().contains("me")||!stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
             stack.setTag(generateTags(stack));
         }
         if (stack.hasTag()){

@@ -25,14 +25,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.modules.client.GUI.InvestedMetalOverlay;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
-import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.modules.data_player.InvestedDataProvider;
+import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
+import net.rudahee.metallics_arts.modules.tags_player.InvestedDataProvider;
 import net.rudahee.metallics_arts.modules.items.banners.Banners;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
 import net.rudahee.metallics_arts.modules.powers.client.PowersClientEventHandler;
-import net.rudahee.metallics_arts.painting.ModPaintings;
+import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
 import net.rudahee.metallics_arts.setup.Registration;
-import net.rudahee.metallics_arts.setup.commands.MetallicArtsCommand;
+import net.rudahee.metallics_arts.setup.registries.ModCommands;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.world.ModConfiguredFeatures;
 import net.rudahee.metallics_arts.world.ModPlacedFeatures;
@@ -106,7 +106,7 @@ public class MetallicsArts
         ModConfiguredFeatures.register(modEventBus);
         ModPlacedFeatures.register(modEventBus);
         //Register for the paintings
-        ModPaintings.register(modEventBus);
+        ModPaintingProvider.register(modEventBus);
 
         Banners.register();
 
@@ -171,7 +171,7 @@ public class MetallicsArts
 
     @SubscribeEvent
     public void onCommandsRegister(RegisterCommandsEvent event){
-        MetallicArtsCommand.register(event.getDispatcher());
+        ModCommands.register(event.getDispatcher());
     }
 
     public void clientInit(final FMLClientSetupEvent e){

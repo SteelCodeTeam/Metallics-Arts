@@ -14,8 +14,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 
 import javax.annotation.Nullable;

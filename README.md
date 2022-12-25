@@ -34,9 +34,9 @@ We add new blocks, recipes and items! All this to be able to access the incredib
 <br>
 
 ## **About us 🙋**
-We are a small team of 3 people: 2 developers and 1 designer. We did all the code and all the textures. We also got help from the community of "El Club De Las Tormentas". We recommend his YT and Twitch channel!
+We are a small team of 3 people: 3 developers and 1 designer. We did all the code and all the textures. We also got help from the community of "El Club De Las Tormentas". We recommend his YT and Twitch channel!
 
-We are RuDaHee, TobibusFate and Farck! You can get our contact in the final notes section.
+We are RuDaHee, TobibusFate, Sregio03 and Farck! You can get our contact in the final notes section.
 
 We made the mod for the community's mistborn-oriented server (of which we are moderators haha), and also  contribute our work to anyone who wants to enjoy the mod.
 
@@ -62,15 +62,10 @@ And we have two mandatory dependencies:
 
 <br>
 
-## **Changelog ✒ [v1.5.0]️** 
+## **Changelog ✒ [v1.5.1]️** 
 
 Problems solved:
-- Delete visual effect of atium
-- Feruchemical tin flicker
-- Detect feruchemists with allomantic bronze
-- New custom keys for allomancitac pull and push
-- Times of metallic arts are unbalanced
-- Minor bugs fixed!
+- Refactor started!
   <br>
 
 ------
@@ -89,7 +84,7 @@ Problems solved:
 - Add sound effects.
 - Do more comfortable (and maybe push and pull through blocks) with iron/steel 
 - Add better resolution in banner printed in shield
-- We need to do a really hard refactor.
+- **We need to do a really hard refactor** - IN PROGRESS.
 - Add some entities like special zombies, specials archers, they must use allomancy or feruchemy.
 - Maybe, implements new structures with loot from the mod.
 - New kind of allomantic beacons with his respective powers.

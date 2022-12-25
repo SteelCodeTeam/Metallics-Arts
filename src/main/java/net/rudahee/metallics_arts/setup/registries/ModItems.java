@@ -11,12 +11,12 @@ import net.rudahee.metallics_arts.modules.items.metalminds.bands.*;
 import net.rudahee.metallics_arts.modules.items.metalminds.rings.*;
 import net.rudahee.metallics_arts.modules.items.vials.large_vial.LargeVial;
 import net.rudahee.metallics_arts.modules.items.vials.small_vial.SmallVial;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalSpikesData;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.enums.gems.Gems;
-import net.rudahee.metallics_arts.setup.enums.metals.Metal;
-import net.rudahee.metallics_arts.setup.enums.metals.MetalBurningRecipeData;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalMindData;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalSpikesData;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.enums.interfaces.gems.Gems;
+import net.rudahee.metallics_arts.data.enums.interfaces.metals.Metal;
+import net.rudahee.metallics_arts.data.enums.interfaces.metals.MetalBurningRecipeData;
 
 import java.util.Arrays;
 import java.util.HashMap;

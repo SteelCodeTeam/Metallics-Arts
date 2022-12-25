@@ -9,9 +9,9 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.items.banners.Banners;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.enums.gems.Gems;
-import net.rudahee.metallics_arts.setup.enums.metals.Metal;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.enums.interfaces.gems.Gems;
+import net.rudahee.metallics_arts.data.enums.interfaces.metals.Metal;
 
 import java.util.Arrays;
 import java.util.List;

@@ -10,11 +10,11 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.items.banners.Banners;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalMindData;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalSpikesData;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.enums.metals.Metal;
-import net.rudahee.metallics_arts.setup.registries.ModBlock;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalMindData;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalSpikesData;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.enums.interfaces.metals.Metal;
+import net.rudahee.metallics_arts.setup.registries.ModBlocks;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
 
@@ -31,12 +31,12 @@ public class ModRecipeProvider extends RecipeProvider {
 
         ModItems.ITEM_METAL_INGOT.forEach((name, item) -> {
             ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
-                    .requires(ModBlock.BLOCK_METAL_BLOCKS.get(name))
+                    .requires(ModBlocks.BLOCK_METAL_BLOCKS.get(name))
                     .unlockedBy("has_item", has(item))
-                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlock.BLOCK_METAL_BLOCKS.get(name).getDescriptionId()));
+                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlocks.BLOCK_METAL_BLOCKS.get(name).getDescriptionId()));
         });
 
-        ModBlock.BLOCK_METAL_BLOCKS.forEach((name, block) -> {
+        ModBlocks.BLOCK_METAL_BLOCKS.forEach((name, block) -> {
             ShapedRecipeBuilder.shaped(block)
                     .define('#', ModItems.ITEM_METAL_INGOT.get(name))
                     .pattern("###")
@@ -46,7 +46,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItems.ITEM_METAL_INGOT.get(name).getDescriptionId()));
         });
 
-        ModBlock.RAW_METAL_BLOCKS.forEach((name, block) -> {
+        ModBlocks.RAW_METAL_BLOCKS.forEach((name, block) -> {
             ShapedRecipeBuilder.shaped(block)
                     .define('#', ModItems.ITEM_RAW_METAL.get(name))
                     .pattern("###")
@@ -58,21 +58,21 @@ public class ModRecipeProvider extends RecipeProvider {
 
         ModItems.ITEM_RAW_METAL.forEach((name, item) -> {
             ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
-                    .requires(ModBlock.RAW_METAL_BLOCKS.get(name))
+                    .requires(ModBlocks.RAW_METAL_BLOCKS.get(name))
                     .unlockedBy("has_item", has(item))
-                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlock.RAW_METAL_BLOCKS.get(name).getDescriptionId()));
+                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlocks.RAW_METAL_BLOCKS.get(name).getDescriptionId()));
         });
 
 
 
         ModItems.ITEM_GEMS_BASE.forEach((name, item) -> {
             ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
-                    .requires(ModBlock.BLOCK_GEMS_BLOCKS.get(name))
+                    .requires(ModBlocks.BLOCK_GEMS_BLOCKS.get(name))
                     .unlockedBy("has_item", has(item))
-                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlock.BLOCK_GEMS_BLOCKS.get(name).getDescriptionId()));
+                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlocks.BLOCK_GEMS_BLOCKS.get(name).getDescriptionId()));
         });
 
-        ModBlock.BLOCK_GEMS_BLOCKS.forEach((name, block) -> {
+        ModBlocks.BLOCK_GEMS_BLOCKS.forEach((name, block) -> {
             ShapedRecipeBuilder.shaped(block)
                     .define('#', ModItems.ITEM_GEMS_BASE.get(name))
                     .pattern("###")
@@ -169,8 +169,8 @@ public class ModRecipeProvider extends RecipeProvider {
 
             //BLOCKS
             if (object.isGems()) {
-                item1 = ModBlock.BLOCK_GEMS_BLOCKS.get(object.getFirstMetal()).asItem();
-                item2 = ModBlock.BLOCK_GEMS_BLOCKS.get(object.getSecondMetal()).asItem();
+                item1 = ModBlocks.BLOCK_GEMS_BLOCKS.get(object.getFirstMetal()).asItem();
+                item2 = ModBlocks.BLOCK_GEMS_BLOCKS.get(object.getSecondMetal()).asItem();
             } else if (object.isVanilla()) {
                 if (object.getSecondMetal() == "iron") {
                     item1 = Items.IRON_BLOCK;
@@ -181,10 +181,10 @@ public class ModRecipeProvider extends RecipeProvider {
                 else {
                     item1 = Items.COPPER_BLOCK;
                 }
-                item2 = ModBlock.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
+                item2 = ModBlocks.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
             } else {
-                item1 = ModBlock.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
-                item2 = ModBlock.BLOCK_METAL_BLOCKS.get(object.getSecondMetal()).asItem();
+                item1 = ModBlocks.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
+                item2 = ModBlocks.BLOCK_METAL_BLOCKS.get(object.getSecondMetal()).asItem();
             }
             //BANDS
             ShapedRecipeBuilder.shaped(object.getBand())
@@ -246,7 +246,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
             Item head, body;
             if (object.isGems()) {
-                head = ModBlock.BLOCK_GEMS_BLOCKS.get(object.getName()).asItem();
+                head = ModBlocks.BLOCK_GEMS_BLOCKS.get(object.getName()).asItem();
                 body = ModItems.ITEM_GEMS_BASE.get(object.getName()).asItem();
             } else if (object.isVanilla()) {
                 if (object.getName() == "iron") {
@@ -260,7 +260,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     body = Items.COPPER_INGOT;
                 }
             } else {
-                head = ModBlock.BLOCK_METAL_BLOCKS.get(object.getName()).asItem();
+                head = ModBlocks.BLOCK_METAL_BLOCKS.get(object.getName()).asItem();
                 body = ModItems.ITEM_METAL_INGOT.get(object.getName()).asItem();
             }
 

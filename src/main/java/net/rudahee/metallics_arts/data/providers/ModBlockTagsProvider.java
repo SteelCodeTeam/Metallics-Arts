@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.setup.registries.ModBlock;
+import net.rudahee.metallics_arts.setup.registries.ModBlocks;
 
 public class ModBlockTagsProvider extends BlockTagsProvider {
 
@@ -17,33 +17,33 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
-        for (String key: ModBlock.BLOCK_METAL_BLOCKS.keySet()) {
-            if (ModBlock.BLOCK_METAL_ORES.containsKey(key)) {
-                Block ore = ModBlock.BLOCK_METAL_ORES.get(key);
+        for (String key: ModBlocks.BLOCK_METAL_BLOCKS.keySet()) {
+            if (ModBlocks.BLOCK_METAL_ORES.containsKey(key)) {
+                Block ore = ModBlocks.BLOCK_METAL_ORES.get(key);
                 addForgeTag("ores/"+key,ore);
                 makePickaxeMineable(ore);
             }
-            if (ModBlock.BLOCK_METAL_DEEPSLATE_ORES.containsKey(key)) {
-                Block ds = ModBlock.BLOCK_METAL_DEEPSLATE_ORES.get(key);
+            if (ModBlocks.BLOCK_METAL_DEEPSLATE_ORES.containsKey(key)) {
+                Block ds = ModBlocks.BLOCK_METAL_DEEPSLATE_ORES.get(key);
                 addForgeTag("deepslate_ores/"+key,ds);
                 makePickaxeMineable(ds);
             }
-            if (ModBlock.RAW_METAL_BLOCKS.containsKey(key)) {
-                Block raw = ModBlock.RAW_METAL_BLOCKS.get(key);
+            if (ModBlocks.RAW_METAL_BLOCKS.containsKey(key)) {
+                Block raw = ModBlocks.RAW_METAL_BLOCKS.get(key);
                 addForgeTag("raw_block/"+key,raw);
                 makePickaxeMineable(raw);
             }
-            addForgeTag("block/"+key,ModBlock.BLOCK_METAL_BLOCKS.get(key));
-            makePickaxeMineable(ModBlock.BLOCK_METAL_BLOCKS.get(key));
+            addForgeTag("block/"+key, ModBlocks.BLOCK_METAL_BLOCKS.get(key));
+            makePickaxeMineable(ModBlocks.BLOCK_METAL_BLOCKS.get(key));
         }
-        for (String key : ModBlock.BLOCK_GEMS_BLOCKS.keySet()) {
-            addForgeTag("block/" + key, ModBlock.BLOCK_GEMS_BLOCKS.get(key));
-            makePickaxeMineable(ModBlock.BLOCK_GEMS_BLOCKS.get(key));
+        for (String key : ModBlocks.BLOCK_GEMS_BLOCKS.keySet()) {
+            addForgeTag("block/" + key, ModBlocks.BLOCK_GEMS_BLOCKS.get(key));
+            makePickaxeMineable(ModBlocks.BLOCK_GEMS_BLOCKS.get(key));
         }
 
-        for (String key : ModBlock.DIVINE_CRISTAL_BLOCKS.keySet()) {
-            addForgeTag("block/" + key, ModBlock.DIVINE_CRISTAL_BLOCKS.get(key));
-            makePickaxeMineable(ModBlock.DIVINE_CRISTAL_BLOCKS.get(key));
+        for (String key : ModBlocks.DIVINE_CRISTAL_BLOCKS.keySet()) {
+            addForgeTag("block/" + key, ModBlocks.DIVINE_CRISTAL_BLOCKS.get(key));
+            makePickaxeMineable(ModBlocks.DIVINE_CRISTAL_BLOCKS.get(key));
         }
 
     }

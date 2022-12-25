@@ -12,9 +12,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.modules.tags_player.IDefaultInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.SlotContext;
 

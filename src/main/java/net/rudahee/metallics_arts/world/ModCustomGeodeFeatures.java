@@ -13,8 +13,8 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.registries.ModBlock;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.registries.ModBlocks;
 
 import java.util.List;
 
@@ -25,14 +25,14 @@ public class ModCustomGeodeFeatures {
                     "atium_geode",
                     Feature.GEODE,
                     new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
-                            BlockStateProvider.simple(ModBlock.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ATIUM.getGemNameLower())),
-                            BlockStateProvider.simple(ModBlock.BUDDING_ATIUM.get()),
+                            BlockStateProvider.simple(ModBlocks.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ATIUM.getGemNameLower())),
+                            BlockStateProvider.simple(ModBlocks.BUDDING_ATIUM.get()),
                             BlockStateProvider.simple(Blocks.CALCITE),
                             BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
-                            List.of(ModBlock.SMALL_ATIUM_BUD.get().defaultBlockState(),
-                                    ModBlock.MEDIUM_ATIUM_BUD.get().defaultBlockState(),
-                                    ModBlock.LARGE_ATIUM_BUD.get().defaultBlockState(),
-                                    ModBlock.ATIUM_CLUSTER.get().defaultBlockState()),
+                            List.of(ModBlocks.SMALL_ATIUM_BUD.get().defaultBlockState(),
+                                    ModBlocks.MEDIUM_ATIUM_BUD.get().defaultBlockState(),
+                                    ModBlocks.LARGE_ATIUM_BUD.get().defaultBlockState(),
+                                    ModBlocks.ATIUM_CLUSTER.get().defaultBlockState()),
                             BlockTags.FEATURES_CANNOT_REPLACE,
                             BlockTags.GEODE_INVALID_BLOCKS),
                             new GeodeLayerSettings(1.4D, 1.6D, 3.2D, 4.2D),
@@ -48,14 +48,14 @@ public class ModCustomGeodeFeatures {
                     "lerasium_geode",
                     Feature.GEODE,
                     new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
-                            BlockStateProvider.simple(ModBlock.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.LERASIUM.getGemNameLower())),
-                            BlockStateProvider.simple(ModBlock.BUDDING_LERASIUM.get()),
+                            BlockStateProvider.simple(ModBlocks.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.LERASIUM.getGemNameLower())),
+                            BlockStateProvider.simple(ModBlocks.BUDDING_LERASIUM.get()),
                             BlockStateProvider.simple(Blocks.CALCITE),
                             BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
-                            List.of(ModBlock.SMALL_LERASIUM_BUD.get().defaultBlockState(),
-                                    ModBlock.MEDIUM_LERASIUM_BUD.get().defaultBlockState(),
-                                    ModBlock.LARGE_LERASIUM_BUD.get().defaultBlockState(),
-                                    ModBlock.LERASIUM_CLUSTER.get().defaultBlockState()),
+                            List.of(ModBlocks.SMALL_LERASIUM_BUD.get().defaultBlockState(),
+                                    ModBlocks.MEDIUM_LERASIUM_BUD.get().defaultBlockState(),
+                                    ModBlocks.LARGE_LERASIUM_BUD.get().defaultBlockState(),
+                                    ModBlocks.LERASIUM_CLUSTER.get().defaultBlockState()),
                             BlockTags.FEATURES_CANNOT_REPLACE,
                             BlockTags.GEODE_INVALID_BLOCKS),
                             new GeodeLayerSettings(1.4D, 2D, 3.2D, 4.2D),
@@ -69,14 +69,14 @@ public class ModCustomGeodeFeatures {
                     "ettmetal_geode",
                     Feature.GEODE,
                     new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
-                            BlockStateProvider.simple(ModBlock.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ETTMETAL.getGemNameLower())),
-                            BlockStateProvider.simple(ModBlock.BUDDING_ETTMETAL.get()),
+                            BlockStateProvider.simple(ModBlocks.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ETTMETAL.getGemNameLower())),
+                            BlockStateProvider.simple(ModBlocks.BUDDING_ETTMETAL.get()),
                             BlockStateProvider.simple(Blocks.CALCITE),
                             BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
-                            List.of(ModBlock.SMALL_ETTMETAL_BUD.get().defaultBlockState(),
-                                    ModBlock.MEDIUM_ETTMETAL_BUD.get().defaultBlockState(),
-                                    ModBlock.LARGE_ETTMETAL_BUD.get().defaultBlockState(),
-                                    ModBlock.ETTMETAL_CLUSTER.get().defaultBlockState()),
+                            List.of(ModBlocks.SMALL_ETTMETAL_BUD.get().defaultBlockState(),
+                                    ModBlocks.MEDIUM_ETTMETAL_BUD.get().defaultBlockState(),
+                                    ModBlocks.LARGE_ETTMETAL_BUD.get().defaultBlockState(),
+                                    ModBlocks.ETTMETAL_CLUSTER.get().defaultBlockState()),
                             BlockTags.FEATURES_CANNOT_REPLACE,
                             BlockTags.GEODE_INVALID_BLOCKS),
                             new GeodeLayerSettings(1.2D, 1.4D, 3.2D, 4.2D),

@@ -1,7 +1,7 @@
 package net.rudahee.metallics_arts.modules.items.metalminds.bands;
 
 import net.minecraft.world.item.Item;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 
 public class BandPewterTin extends BandMindAbstract {
     public BandPewterTin(Item.Properties properties){

@@ -4,14 +4,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
@@ -26,10 +23,10 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.rudahee.metallics_arts.modules.data_player.DefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.modules.powers.helpers.*;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.modules.powers.helpers.common_helpers.OnDamagePowers;
+import net.rudahee.metallics_arts.modules.powers.helpers.metal_helpers.*;
+import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModItems;
 
@@ -168,15 +165,7 @@ public class PowersEventHandler {
 
             if (event.getEntity() instanceof ServerPlayer) {
                 ServerPlayer entity = (ServerPlayer) event.getEntity();
-                /*entity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
-                    if (data.isBurning(MetalsNBTData.ELECTRUM)) {
-                        ClientUtils.toggleBurn(MetalsNBTData.ELECTRUM, data);
-                    }
 
-                    if (data.isBurning(MetalsNBTData.GOLD)) {
-                        ClientUtils.toggleBurn(MetalsNBTData.GOLD, data);
-                    }
-                });*/
             }
             ModNetwork.sync(event.getEntity());
         }
@@ -220,134 +209,11 @@ public class PowersEventHandler {
     @SubscribeEvent
     public static void onDamageEvent(final LivingHurtEvent event) {
         if (event.getSource().getDirectEntity() instanceof ServerPlayer) {
-            ServerPlayer playerEntity = (ServerPlayer) event.getSource().getEntity();
-            playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
-                    playerCapability -> {
 
+            OnDamagePowers.onDamageFeruchemical(event, (ServerPlayer) event.getSource().getEntity(), (ServerPlayer) event.getEntity());
+            OnDamagePowers.onDamageAllomantic(event, (ServerPlayer) event.getSource().getEntity(), (ServerPlayer) event.getEntity());
 
-                        /*******************************
-                         *   DAMAGE WITH - PEWTER -
-                         *******************************/
-                        if (playerCapability.isBurning(MetalsNBTData.PEWTER)) {
-                            float amountDamage = event.getAmount();
-
-                            ItemStack itemInHand = playerEntity.getMainHandItem();
-
-                            if (itemInHand.getItem() == ModItems.DUELING_STAFF.get()) {
-
-                                amountDamage = amountDamage * (((float) itemInHand.getDamageValue() / (float) itemInHand.getMaxDamage()) * 3.2f);
-                            }
-
-                            if (itemInHand.getItem() == ModItems.CRISTAL_DAGGER.get()) {
-                                if (Math.random() < 0.10d) {
-                                    amountDamage = amountDamage * 2;
-                                }
-                            }
-
-                            if (itemInHand.getItem() == ModItems.OBSIDIAN_DAGGER.get()) {
-                                if (Math.random() < 0.30d) {
-                                    event.getEntity().addEffect(new MobEffectInstance(MobEffects.WITHER, 41, 1, true, true, false));
-                                }
-                            }
-
-                            if (itemInHand.getItem() == ModItems.OBSIDIAN_AXE.get()) {
-                                if (Math.random() < 0.50d) {
-                                    event.getEntity().addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 20, 1, true, true, false));
-                                    event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
-                                    event.getEntity().addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 20, 1, true, true, false));
-                                    event.getEntity().addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 2, true, true, false));
-
-                                }
-                            }
-
-                            if (playerCapability.getEnhanced()) {
-                                if (itemInHand.getItem() == ModItems.KOLOSS_BLADE.get()) {
-                                    event.getEntity().setHealth(2f);
-                                    amountDamage = 0;
-                                }
-                            }
-                            event.setAmount(amountDamage);
-                        }
-
-                        /*******************************
-                         *   DAMAGE WITH - CHROMIUM -
-                         *******************************/
-                        if (playerCapability.isBurning(MetalsNBTData.CHROMIUM)) {
-                            if (event.getEntity() instanceof Player) {
-                                ChromiumAndNicrosilHelpers.drainMetalChromium((Player) event.getEntity());
-                            }
-                        }
-
-                        /*******************************
-                         *   DAMAGE WITH - ZINC -
-                         *******************************/
-                        if (playerCapability.isBurning(MetalsNBTData.ZINC)) {
-                            if (event.getEntity() instanceof Player) {
-                                //ZincAndBrassHelpers.drawSaturatedScreen((Player) event.getEntity());
-                            }
-                        }
-
-                        /*******************************
-                         *   DAMAGE WITH - MALATIUM -
-                         *******************************/
-                        if (playerCapability.isBurning(MetalsNBTData.MALATIUM)) {
-                            if (event.getEntity() instanceof Player) {
-                                GoldAndElectrumHelpers.takeDeathPosToObjetive((Player) event.getEntity());
-                            }
-                        }
-
-                        /*******************************
-                         *   DAMAGE WITH - BRASS - FERUCHEMIC
-                         *******************************/
-                        if (playerCapability.isDecanting(MetalsNBTData.BRASS)) {
-                            ZincAndBrassHelpers.addFireAspectToPlayer(event.getEntity(),4);
-                        }
-
-                        /*******************************
-                         *   DAMAGE WITH - ZINC - FERUCHEMIC
-                         *******************************/
-                        //if (playerCapability.isDecanting(MetalsNBTData.ZINC)) {
-                        //     ZincAndBrassHelpers.addLootToEnemy(event.getEntity(),0.6);
-                        // } else if (playerCapability.isStoring(MetalsNBTData.ZINC)) {
-                        //    ZincAndBrassHelpers.removeLootToEnemy(event.getEntity(),0.6);
-                        // }
-                        /********************************
-                         * DAMAGE WITH NICROSIL
-                         *******************************/
-                        if (playerCapability.isBurning(MetalsNBTData.NICROSIL)) {
-                            if (event.getEntity() instanceof Player) {
-                                ChromiumAndNicrosilHelpers.changeNBTinTargetForEnhanced((Player) event.getEntity());
-                            }
-                        }
-                    });
         }
-
-        Entity source = event.getSource().getEntity(); //fuente
-        Entity target = event.getEntity(); //target
-
-        if (target instanceof Player) {
-            target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(targetCapability -> {
-                if (targetCapability.isBurning(MetalsNBTData.ATIUM) ){
-                    if (source instanceof Player) {
-                        source.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(sourceCapability -> {
-                            event.setAmount(AtiumAndMalatiumHelpers.getCalculateComplexDamage(targetCapability,sourceCapability,event.getAmount()));
-                        });//evasion jugador jugador
-                    } else {
-                        event.setAmount(AtiumAndMalatiumHelpers.getCalculateSimpleDamage(targetCapability,event.getAmount()));
-                        //evasion a otras fuentes de daño
-                    }
-                }
-            });
-        }
-
-        target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
-                targetCapability -> {
-                    if (targetCapability.isDecanting(MetalsNBTData.BRASS)) {
-                        if (event.getSource().equals(DamageSource.FREEZE)) {
-                            event.setCanceled(true);
-                        }
-                    }
-                });
     }
     public static int ticks = 0;
     public static int x = 8;

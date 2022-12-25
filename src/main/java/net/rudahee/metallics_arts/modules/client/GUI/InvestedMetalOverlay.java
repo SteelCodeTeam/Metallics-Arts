@@ -12,8 +12,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 import net.rudahee.metallics_arts.modules.client.KeyInit;
-import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.awt.*;

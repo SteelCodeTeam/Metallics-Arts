@@ -6,7 +6,7 @@ import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.world.level.block.entity.BannerPattern;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.items.banners.Banners;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 
 public class ModBannerTagProvider extends TagsProvider<BannerPattern> {
 

@@ -13,11 +13,11 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.rudahee.metallics_arts.data.network.UpdateBurnPacket;
-import net.rudahee.metallics_arts.data.network.UpdateDecantPacket;
-import net.rudahee.metallics_arts.data.network.UpdateStoragePacket;
-import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.setup.enums.extras.MetalsNBTData;
+import net.rudahee.metallics_arts.setup.network.packets.UpdateBurnPacket;
+import net.rudahee.metallics_arts.setup.network.packets.UpdateDecantPacket;
+import net.rudahee.metallics_arts.setup.network.packets.UpdateStoragePacket;
+import net.rudahee.metallics_arts.modules.tags_player.IDefaultInvestedPlayerData;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.CuriosApi;
 

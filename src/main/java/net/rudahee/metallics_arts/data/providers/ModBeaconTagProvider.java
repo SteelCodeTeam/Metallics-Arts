@@ -6,7 +6,7 @@ import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.setup.registries.ModBlock;
+import net.rudahee.metallics_arts.setup.registries.ModBlocks;
 
 public class ModBeaconTagProvider extends TagsProvider<Block> {
     public ModBeaconTagProvider(DataGenerator gen, net.minecraftforge.common.data.ExistingFileHelper existingFileHelper) {
@@ -15,10 +15,10 @@ public class ModBeaconTagProvider extends TagsProvider<Block> {
 
     @Override
     protected void addTags() {
-        for (Block block: ModBlock.BLOCK_METAL_BLOCKS.values()) {
+        for (Block block: ModBlocks.BLOCK_METAL_BLOCKS.values()) {
             this.tag(BlockTags.BEACON_BASE_BLOCKS).add(block);
         }
-        for (Block block: ModBlock.BLOCK_GEMS_BLOCKS.values()) {
+        for (Block block: ModBlocks.BLOCK_GEMS_BLOCKS.values()) {
             this.tag(BlockTags.BEACON_BASE_BLOCKS).add(block);
         }
 

@@ -10,9 +10,10 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.network.*;
-import net.rudahee.metallics_arts.modules.data_player.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.data_player.InvestedCapability;
+import net.rudahee.metallics_arts.data.packets.*;
+import net.rudahee.metallics_arts.modules.tags_player.IDefaultInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
+import net.rudahee.metallics_arts.setup.network.packets.*;
 
 public class ModNetwork {
     private static final String VERSION = "1.1";
