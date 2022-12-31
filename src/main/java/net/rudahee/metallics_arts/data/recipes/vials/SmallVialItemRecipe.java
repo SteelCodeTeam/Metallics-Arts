@@ -84,16 +84,6 @@ public class SmallVialItemRecipe extends CustomRecipe {
                         }
                     }
                     ingredients[0] = true;
-                    /*if (actualIngredient.hasTag()){
-                        for (MetalsNBTData metal : MetalsNBTData.values()) {
-                            if (actualIngredient.getTag().contains(metal.getGemNameLower())){
-                                cantStorage[metal.getIndex()] = (metal.getMaxAllomanticTicksStorage()/2)/cantMaxPep;
-                                metalsEnVial[metal.getIndex()] = actualIngredient.getTag().getInt(metal.getNameLower());
-                            }
-                        }
-                        ingredients[0] = true;
-                    }
-                    */
                 }
                 auxiliar = actualIngredient;
 

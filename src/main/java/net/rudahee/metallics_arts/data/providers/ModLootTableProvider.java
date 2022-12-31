@@ -109,7 +109,7 @@ public class ModLootTableProvider extends LootTableProvider {
     protected void addSimpleBlock(Block block) {
         MetallicsArts.LOGGER.debug("Creating Loot Table for block " + block.getDescriptionId());
         LootPool.Builder builder = LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(block));
-        //LootPool.Builder builder = LootPool.lootPool().name(name).setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(block));
+
         this.lootTables.put(block, LootTable.lootTable().withPool(builder));
     }
 

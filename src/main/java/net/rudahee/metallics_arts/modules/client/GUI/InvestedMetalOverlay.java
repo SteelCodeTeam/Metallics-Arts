@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.final_client.GUI;
+package net.rudahee.metallics_arts.modules.client.GUI;
 
 
 import com.mojang.blaze3d.platform.Window;
@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
-import net.rudahee.metallics_arts.modules.final_client.KeyInit;
+import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import top.theillusivec4.curios.api.CuriosApi;
 

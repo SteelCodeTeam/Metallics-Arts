@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.final_client.GUI;
+package net.rudahee.metallics_arts.modules.client.GUI;
 
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 

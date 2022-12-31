@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.final_client;
+package net.rudahee.metallics_arts.modules.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;

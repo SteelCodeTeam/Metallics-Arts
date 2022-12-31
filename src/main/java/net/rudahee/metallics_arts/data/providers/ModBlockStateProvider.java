@@ -96,8 +96,5 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ETTMETAL.getGemNameLower()),model);
 
 
-        //simpleBlock(ModBlock.BROKEN_CRISTAL_BLOCK.get());
-        //simpleBlockItem(ModBlock.BROKEN_CRISTAL_BLOCK.get(), model);
-
     }
 }

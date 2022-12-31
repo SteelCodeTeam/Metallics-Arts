@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.final_client.GUI;
+package net.rudahee.metallics_arts.modules.client.GUI;
 
 
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -15,8 +15,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.final_client.ClientUtils;
-import net.rudahee.metallics_arts.modules.final_client.KeyInit;
+import net.rudahee.metallics_arts.modules.client.ClientUtils;
+import net.rudahee.metallics_arts.modules.client.KeyInit;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import org.lwjgl.opengl.GL11;
 

@@ -33,13 +33,13 @@ import static net.rudahee.metallics_arts.MetallicsArts.registerBlock;
 
 public class ModBlocksRegister {
 
-    public static final HashMap<String, Block> BLOCK_METAL_ORES = new HashMap<String, Block>();
+    public static final HashMap<String, Block> BLOCK_METAL_ORES = new HashMap<>();
 
-    public static final HashMap<String, Block> BLOCK_METAL_DEEPSLATE_ORES = new HashMap<String, Block>();
-    public static final HashMap<String, Block> BLOCK_METAL_BLOCKS = new HashMap<String, Block>();
+    public static final HashMap<String, Block> BLOCK_METAL_DEEPSLATE_ORES = new HashMap<>();
+    public static final HashMap<String, Block> BLOCK_METAL_BLOCKS = new HashMap<>();
 
-    public static final HashMap<String, Block> RAW_METAL_BLOCKS = new HashMap<String, Block>();
-    public static final HashMap<String, Block> BLOCK_GEMS_BLOCKS = new HashMap<String, Block>();
+    public static final HashMap<String, Block> RAW_METAL_BLOCKS = new HashMap<>();
+    public static final HashMap<String, Block> BLOCK_GEMS_BLOCKS = new HashMap<>();
 
     //public static RegistryObject<Block> ALLOY_FURNACE_BLOCK = null;
 
@@ -188,10 +188,6 @@ public class ModBlocksRegister {
             () -> new AmethystClusterBlock(3, 4, BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).sound(SoundType.SMALL_AMETHYST_BUD).noOcclusion().lightLevel((p_187409_) -> {
                 return 1;
             })));
-
-
-
-
 
     public static final RegistryObject<AmethystBlock> BUDDING_LERASIUM = registerBlock("budding_lerasium",
             () -> new LerasiumBuddingBlock(BlockBehaviour.Properties.of(Material.AMETHYST).randomTicks().strength(1.0F).sound(SoundType.AMETHYST).noOcclusion()));

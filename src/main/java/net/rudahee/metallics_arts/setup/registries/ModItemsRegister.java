@@ -26,22 +26,19 @@ import java.util.List;
 public class ModItemsRegister {
 
     //Lists where we can store the items for a later usage
-    public static final HashMap<String, Item> ITEM_METAL_INGOT = new HashMap<String, Item>();
+    public static final HashMap<String, Item> ITEM_METAL_INGOT = new HashMap<>();
 
-    public static final HashMap<String, Item> ITEM_RAW_METAL = new HashMap<String, Item>();
-    public static final HashMap<String, Item> ITEM_METAL_NUGGET = new HashMap<String, Item>();
-    public static final HashMap<String, Item> ITEM_GEMS_BASE = new HashMap<String, Item>();
-    public static final HashMap<String, Item> ITEM_GEMS_NUGGET = new HashMap<String, Item>();
+    public static final HashMap<String, Item> ITEM_RAW_METAL = new HashMap<>();
+    public static final HashMap<String, Item> ITEM_METAL_NUGGET = new HashMap<>();
+    public static final HashMap<String, Item> ITEM_GEMS_BASE = new HashMap<>();
+    public static final HashMap<String, Item> ITEM_GEMS_NUGGET = new HashMap<>();
 
-    public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY = new HashMap<String, Item>();
-    public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC = new HashMap<String, Item>();
+    public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY = new HashMap<>();
+    public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC = new HashMap<>();
 
-    public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY_DIVINE = new HashMap<String, Item>();
-    public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC_DIVINE = new HashMap<String, Item>();
+    public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY_DIVINE = new HashMap<>();
+    public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC_DIVINE = new HashMap<>();
 
-    //Lists for store the patterns of allomancy and feruchemic
-    public static final HashMap<String, Item> ITEM_PATTER_ALLOMANCY = new HashMap<String, Item>();
-    public static final HashMap<String, Item> ITEM_PATTER_FERUCHEMIC = new HashMap<String, Item>();
 
 
     //ingots an nuggets
@@ -428,29 +425,19 @@ public class ModItemsRegister {
 //weapons
 
     public static RegistryObject<Item> OBSIDIAN_DAGGER = MetallicsArts.registerItem("obsidian_dagger",
-            () -> {
-                return new ObsidianDagger(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT));
-            }
+            () -> new ObsidianDagger(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT))
     );
     public static RegistryObject<Item> CRISTAL_DAGGER = MetallicsArts.registerItem("cristal_dagger",
-            () -> {
-                return new CristalDagger(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT));
-            }
+            () -> new CristalDagger(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT))
     );
     public static RegistryObject<Item> KOLOSS_BLADE = MetallicsArts.registerItem("koloss_blade",
-            () -> {
-                return new KolossBlade(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT));
-            }
+            () -> new KolossBlade(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT))
     );
     public static RegistryObject<Item> DUELING_STAFF = MetallicsArts.registerItem("dueling_staff",
-            () -> {
-                return new DuelingStaff(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT));
-            }
+            () -> new DuelingStaff(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT))
     );
     public static RegistryObject<Item> OBSIDIAN_AXE = MetallicsArts.registerItem("obsidian_axe",
-            () -> {
-                return new ObsidianAxe(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT));
-            }
+            () -> new ObsidianAxe(new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT))
     );
 
 

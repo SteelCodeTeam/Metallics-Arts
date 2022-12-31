@@ -389,9 +389,7 @@ public class PowersEventHandler {
                                     BendalloyAndCadmiunHelpers.throwBreathEffect(player, 10);
                                 }
                             } else if (playerCapability.isStoring(MetalsNBTData.CADMIUM)) {
-                                //if (actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 actualTick == 150 || actualTick == 180 || actualTick == 210 || actualTick == 240) {
                                 BendalloyAndCadmiunHelpers.drowningEffect(player,actualTick);
-                                //}
                             }
                             /************************
                              * BENDALLOY FERUCHEMIC
@@ -425,7 +423,6 @@ public class PowersEventHandler {
                              ************************/
                             if (playerCapability.isDecanting(MetalsNBTData.CHROMIUM)){
                                 ChromiumAndNicrosilHelpers.goodLuck(player);
-                                //player.getLuck()
                             } else if (playerCapability.isStoring(MetalsNBTData.CHROMIUM)){
                                 ChromiumAndNicrosilHelpers.badLuck(player, actualTick == 80 || actualTick == 160 || actualTick == 240);
                             }
