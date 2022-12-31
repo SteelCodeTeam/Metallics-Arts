@@ -5,25 +5,25 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.items.combat.*;
-import net.rudahee.metallics_arts.modules.items.metal_spike.*;
-import net.rudahee.metallics_arts.modules.items.metalminds.bands.*;
-import net.rudahee.metallics_arts.modules.items.metalminds.rings.*;
-import net.rudahee.metallics_arts.modules.items.vials.large_vial.LargeVial;
-import net.rudahee.metallics_arts.modules.items.vials.small_vial.SmallVial;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalMindData;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalSpikesData;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.data.enums.interfaces.gems.Gems;
 import net.rudahee.metallics_arts.data.enums.interfaces.metals.Metal;
 import net.rudahee.metallics_arts.data.enums.interfaces.metals.MetalBurningRecipeData;
+import net.rudahee.metallics_arts.modules.items.combat.*;
+import net.rudahee.metallics_arts.modules.items.metal_spike.*;
+import net.rudahee.metallics_arts.modules.items.metalminds.bands.*;
+import net.rudahee.metallics_arts.modules.items.metalminds.rings.*;
+import net.rudahee.metallics_arts.modules.items.vials.large_vial.LargeVial;
+import net.rudahee.metallics_arts.modules.items.vials.small_vial.SmallVial;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 
-public class ModItems {
+public class ModItemsRegister {
 
     //Lists where we can store the items for a later usage
     public static final HashMap<String, Item> ITEM_METAL_INGOT = new HashMap<String, Item>();

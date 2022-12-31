@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.PushReaction;
-import net.rudahee.metallics_arts.setup.registries.ModBlocks;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class LerasiumBuddingBlock extends AmethystBlock {
 
@@ -35,13 +35,13 @@ public class LerasiumBuddingBlock extends AmethystBlock {
             BlockState blockstate = serverLevel.getBlockState(blockpos);
             Block block = null;
             if (canClusterGrowAtState(blockstate)) {
-                block = ModBlocks.SMALL_LERASIUM_BUD.get();
-            } else if (blockstate.is(ModBlocks.SMALL_LERASIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = ModBlocks.MEDIUM_LERASIUM_BUD.get();
-            } else if (blockstate.is(ModBlocks.MEDIUM_LERASIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = ModBlocks.LARGE_LERASIUM_BUD.get();
-            } else if (blockstate.is(ModBlocks.LARGE_LERASIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = ModBlocks.LERASIUM_CLUSTER.get();
+                block = ModBlocksRegister.SMALL_LERASIUM_BUD.get();
+            } else if (blockstate.is(ModBlocksRegister.SMALL_LERASIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlocksRegister.MEDIUM_LERASIUM_BUD.get();
+            } else if (blockstate.is(ModBlocksRegister.MEDIUM_LERASIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlocksRegister.LARGE_LERASIUM_BUD.get();
+            } else if (blockstate.is(ModBlocksRegister.LARGE_LERASIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlocksRegister.LERASIUM_CLUSTER.get();
             }
 
             if (block != null) {

@@ -23,17 +23,16 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import net.rudahee.metallics_arts.modules.client.GUI.InvestedMetalOverlay;
-import net.rudahee.metallics_arts.modules.client.KeyInit;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedDataProvider;
-import net.rudahee.metallics_arts.modules.items.banners.Banners;
+import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
+import net.rudahee.metallics_arts.modules.final_client.GUI.InvestedMetalOverlay;
+import net.rudahee.metallics_arts.modules.final_client.KeyInit;
+import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
 import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
 import net.rudahee.metallics_arts.modules.powers.client.PowersClientEventHandler;
-import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
 import net.rudahee.metallics_arts.setup.Registration;
-import net.rudahee.metallics_arts.setup.registries.ModCommands;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.commands.ModCommands;
 import net.rudahee.metallics_arts.world.ModConfiguredFeatures;
 import net.rudahee.metallics_arts.world.ModPlacedFeatures;
 import net.rudahee.metallics_arts.world.biomemod.ModBiomeModifier;
@@ -99,7 +98,7 @@ public class MetallicsArts
         });
 
         // Register the doClientStuff method for modloading
-        modEventBus.addListener(InvestedCapability::register);
+        modEventBus.addListener(ModBlocksRegister.InvestedCapabilityRegister::register);
         modEventBus.addListener(this::doClientStuff);
 
         ModBiomeModifier.register(modEventBus);
@@ -108,7 +107,7 @@ public class MetallicsArts
         //Register for the paintings
         ModPaintingProvider.register(modEventBus);
 
-        Banners.register();
+        ModBannersRegister.register();
 
 
         // Register ourselves for server and other game events we are interested in
@@ -118,7 +117,7 @@ public class MetallicsArts
     @SubscribeEvent
     public void attachCapabilitiesEntity(final AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof Player) {
-            event.addCapability(InvestedCapability.IDENTIFIER, new InvestedDataProvider());
+            event.addCapability(ModBlocksRegister.InvestedCapabilityRegister.IDENTIFIER, new ModPaintingProvider.ModInvestedDataProvider());
         }
     }
 

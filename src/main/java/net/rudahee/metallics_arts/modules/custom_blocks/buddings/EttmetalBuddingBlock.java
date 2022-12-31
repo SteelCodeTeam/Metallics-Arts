@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.PushReaction;
-import net.rudahee.metallics_arts.setup.registries.ModBlocks;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class EttmetalBuddingBlock extends AmethystBlock {
     public static final int GROWTH_CHANCE = 5;
@@ -32,13 +32,13 @@ public class EttmetalBuddingBlock extends AmethystBlock {
             BlockState blockstate = serverLevel.getBlockState(blockpos);
             Block block = null;
             if (canClusterGrowAtState(blockstate)) {
-                block = ModBlocks.SMALL_ETTMETAL_BUD.get();
-            } else if (blockstate.is(ModBlocks.SMALL_ETTMETAL_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = ModBlocks.MEDIUM_ETTMETAL_BUD.get();
-            } else if (blockstate.is(ModBlocks.MEDIUM_ETTMETAL_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = ModBlocks.LARGE_ETTMETAL_BUD.get();
-            } else if (blockstate.is(ModBlocks.LARGE_ETTMETAL_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = ModBlocks.ETTMETAL_CLUSTER.get();
+                block = ModBlocksRegister.SMALL_ETTMETAL_BUD.get();
+            } else if (blockstate.is(ModBlocksRegister.SMALL_ETTMETAL_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlocksRegister.MEDIUM_ETTMETAL_BUD.get();
+            } else if (blockstate.is(ModBlocksRegister.MEDIUM_ETTMETAL_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlocksRegister.LARGE_ETTMETAL_BUD.get();
+            } else if (blockstate.is(ModBlocksRegister.LARGE_ETTMETAL_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlocksRegister.ETTMETAL_CLUSTER.get();
             }
 
             if (block != null) {

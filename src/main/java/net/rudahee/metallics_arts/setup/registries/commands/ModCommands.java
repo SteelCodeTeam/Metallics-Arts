@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.setup.registries;
+package net.rudahee.metallics_arts.setup.registries.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
@@ -10,11 +10,12 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.modules.items.metalminds.bands.BandMindAbstract;
 import net.rudahee.metallics_arts.modules.items.vials.Vial;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +35,7 @@ public class ModCommands {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
 
         dispatcher.register(Commands.literal("ma-items").requires(commandSource -> commandSource.hasPermission(2))
-                .then(Commands.literal("get")
+                .then(Commands.literal("give")
                         .then(Commands.literal("large_vial")
                                 .then(Commands.argument("target", EntityArgument.player())
                                         .executes(context -> getLargeVial(context, EntityArgument.getPlayer(context, "target")))))
@@ -612,7 +613,7 @@ public class ModCommands {
     }
 
     private static int getLargeVial(CommandContext<CommandSourceStack> context, ServerPlayer target) {
-        ItemStack vial = new ItemStack(ModItems.LARGE_VIAL.get());
+        ItemStack vial = new ItemStack(ModItemsRegister.LARGE_VIAL.get());
         CompoundTag nbt = Vial.addFullReserveVialTags();
         nbt.putInt("CustomModelData", 1);
         vial.setTag(nbt);
@@ -627,58 +628,58 @@ public class ModCommands {
         CompoundTag nbt = new CompoundTag();
         if (band.equals("band_steel_iron")) {
 
-            metalmind = new ItemStack(ModItems.BAND_STEEL_IRON.get());
+            metalmind = new ItemStack(ModItemsRegister.BAND_STEEL_IRON.get());
             nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.IRON, MetalsNBTData.STEEL);
 
         }else if(band.equals("band_zinc_brass")) {
 
-            metalmind = new ItemStack(ModItems.BAND_ZINC_BRASS.get());
+            metalmind = new ItemStack(ModItemsRegister.BAND_ZINC_BRASS.get());
             nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.ZINC, MetalsNBTData.BRASS);
 
         }else if(band.equals("band_aluminium_duralumin")) {
 
-            metalmind = new ItemStack(ModItems.BAND_ALUMINUM_DURALUMIN.get());
+            metalmind = new ItemStack(ModItemsRegister.BAND_ALUMINUM_DURALUMIN.get());
             nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.ALUMINUM, MetalsNBTData.DURALUMIN);
 
         }else if(band.equals("band_atium_malatium")) {
 
-            metalmind = new ItemStack(ModItems.BAND_ATIUM_MALATIUM.get());
+            metalmind = new ItemStack(ModItemsRegister.BAND_ATIUM_MALATIUM.get());
             nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.ATIUM, MetalsNBTData.MALATIUM);
 
         }else if(band.equals("band_cadmium_bendalloy")) {
 
-            metalmind = new ItemStack(ModItems.BAND_CADMIUM_BENDALLOY.get());
+            metalmind = new ItemStack(ModItemsRegister.BAND_CADMIUM_BENDALLOY.get());
             nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.CADMIUM, MetalsNBTData.BENDALLOY);
 
         }else if(band.equals("band_chromium_nicrosil")) {
 
-            metalmind = new ItemStack(ModItems.BAND_CHROMIUM_NICROSIL.get());
+            metalmind = new ItemStack(ModItemsRegister.BAND_CHROMIUM_NICROSIL.get());
             nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.CHROMIUM, MetalsNBTData.NICROSIL);
 
         }else if(band.equals("band_copper_bronze")) {
 
-            metalmind = new ItemStack(ModItems.BAND_COPPER_BRONZE.get());
+            metalmind = new ItemStack(ModItemsRegister.BAND_COPPER_BRONZE.get());
             nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.COPPER, MetalsNBTData.BRONZE);
 
         }else if(band.equals("band_electrum_gold")) {
 
-            metalmind = new ItemStack(ModItems.BAND_ELECTRUM_GOLD.get());
+            metalmind = new ItemStack(ModItemsRegister.BAND_ELECTRUM_GOLD.get());
             nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.GOLD, MetalsNBTData.ELECTRUM);
 
         }else if(band.equals("band_lerasium_ettmetal")) {
 
-            metalmind = new ItemStack(ModItems.BAND_LERASIUM_ETTMETAL.get());
+            metalmind = new ItemStack(ModItemsRegister.BAND_LERASIUM_ETTMETAL.get());
             nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.LERASIUM, MetalsNBTData.ETTMETAL);
 
         }else if(band.equals("band_pewter_tin")) {
 
-            metalmind = new ItemStack(ModItems.BAND_PEWTER_TIN.get());
+            metalmind = new ItemStack(ModItemsRegister.BAND_PEWTER_TIN.get());
             nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.TIN, MetalsNBTData.PEWTER);
 
         }
         else{
 
-            metalmind = new ItemStack(ModItems.BAND_PEWTER_TIN.get());
+            metalmind = new ItemStack(ModItemsRegister.BAND_PEWTER_TIN.get());
             nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.TIN, MetalsNBTData.PEWTER);
 
         }
@@ -691,7 +692,7 @@ public class ModCommands {
 
     public static int addAllomanticPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
             p.addAllomanticPower(metalsNBTData);
                 }
         );
@@ -702,7 +703,7 @@ public class ModCommands {
     }
     public static int addFeruchemicPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
                     p.addFeruchemicPower(metalsNBTData);
                 }
         );
@@ -714,7 +715,7 @@ public class ModCommands {
     public static int addAllAllomanticPower (CommandContext<CommandSourceStack> context, ServerPlayer player){
         ServerPlayer playerEntity = null;
 
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
+            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
                         p.addAllAllomantic();
                     }
             );
@@ -725,7 +726,7 @@ public class ModCommands {
     }
     public static int addAllFeruchemicPower (CommandContext<CommandSourceStack> context, ServerPlayer player){
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
                     p.addAllFeruchemic();
                 }
         );
@@ -737,7 +738,7 @@ public class ModCommands {
     }
     public static int addAllPower(CommandContext<CommandSourceStack> context, ServerPlayer player){
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
                     p.addAllAllomantic();
                     p.addAllFeruchemic();
                 }
@@ -766,7 +767,7 @@ public class ModCommands {
 
     public static int removeAllomanticPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
                     p.removeAllomanticPower(metalsNBTData);
                 });
 
@@ -777,7 +778,7 @@ public class ModCommands {
     }
     public static int removeFeruchemicPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
                     p.removeFeruchemicPower(metalsNBTData);
                 }
         );
@@ -788,7 +789,7 @@ public class ModCommands {
     }
     public static int removeAllAllomanticPower (CommandContext<CommandSourceStack> context, ServerPlayer player){
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
                     p.removeAllAllomanticPower();
                 }
         );
@@ -800,7 +801,7 @@ public class ModCommands {
     }
     public static int removeAllFeruchemicPower (CommandContext<CommandSourceStack> context, ServerPlayer player){
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
                     p.removeAllFeruchemicPower();
                 }
         );
@@ -811,7 +812,7 @@ public class ModCommands {
     }
     public static int removeAllPower(CommandContext<CommandSourceStack> context, ServerPlayer player){
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(p ->{
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
                     p.removeAllAllomanticPower();
                     p.removeAllFeruchemicPower();
                 }
@@ -823,25 +824,25 @@ public class ModCommands {
     }
     public static int getAllomanticPower (CommandContext<CommandSourceStack> context, MetalsNBTData metalsNBTData, ServerPlayer player){
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> sendSimpleMessage(player, cap.hasAllomanticPower(metalsNBTData), metalsNBTData, "allomantic"));
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendSimpleMessage(player, cap.hasAllomanticPower(metalsNBTData), metalsNBTData, "allomantic"));
 
         return 1;
     }
     public static int getFeruchemicPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
 
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> sendSimpleMessage(player, cap.hasFeruchemicPower(metalsNBTData), metalsNBTData, "feruchemic"));
+            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendSimpleMessage(player, cap.hasFeruchemicPower(metalsNBTData), metalsNBTData, "feruchemic"));
 
         return 1;
     }
     public static int getAllPower (CommandContext<CommandSourceStack> context, String type, ServerPlayer player){
 
         if(type.equals("allomantic")){
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> sendAllMessage(player, cap.getAllomanticPowers(), type));
+            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendAllMessage(player, cap.getAllomanticPowers(), type));
         }else if(type.equals("feruchemic")){
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> sendAllMessage(player, cap.getFeruchemicPowers(), type));
+            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendAllMessage(player, cap.getFeruchemicPowers(), type));
         }else{
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> sendAllMessage(player, cap.getFeruchemicPowers(), type));
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> sendAllMessage(player, cap.getAllomanticPowers(), type));
+            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendAllMessage(player, cap.getFeruchemicPowers(), type));
+            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendAllMessage(player, cap.getAllomanticPowers(), type));
         }
 
 

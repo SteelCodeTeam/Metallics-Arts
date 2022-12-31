@@ -14,10 +14,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
-import net.rudahee.metallics_arts.modules.tags_player.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -74,7 +74,7 @@ public abstract class MetalSpikeAbstract extends SwordItem {
         return stack.getTag().getBoolean("feruchemic_power") || stack.getTag().getBoolean("allomantic_power");
     }
 
-    public boolean hasPlayerBothPowers(MetalsNBTData metal, IDefaultInvestedPlayerData cap) {
+    public boolean hasPlayerBothPowers(MetalsNBTData metal, IInvestedPlayerData cap) {
         return cap.hasAllomanticPower(metal) && cap.hasFeruchemicPower(metal);
     }
 
@@ -115,7 +115,7 @@ public abstract class MetalSpikeAbstract extends SwordItem {
         if ((target instanceof Player) && (attacker instanceof Player)){
 
 
-            target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(targetData -> {
+            target.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(targetData -> {
 
                 boolean hasAllomanticPower = targetData.hasAllomanticPower(MetalsNBTData.getMetal(stack.getTag().getInt("metal_spike")));
                 boolean hasFeruchemicPower = targetData.hasFeruchemicPower(MetalsNBTData.getMetal(stack.getTag().getInt("metal_spike")));

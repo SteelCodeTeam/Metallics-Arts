@@ -11,9 +11,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -38,7 +38,7 @@ public class RingAluminumDuralumin extends RingsMindAbstract implements ICurioIt
         if (livingEntity.level instanceof ServerLevel) {
             if (livingEntity instanceof Player) {
                 Player player = (Player) livingEntity;
-                player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+                player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
 
                     if (data.isDecanting(MetalsNBTData.ALUMINUM) || data.isStoring(MetalsNBTData.ALUMINUM)){
                         if (!this.isEquiped) {
@@ -118,7 +118,7 @@ public class RingAluminumDuralumin extends RingsMindAbstract implements ICurioIt
 
         dato = compoundNBT.getString("key");
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
             if (isSecondReserveZero && !data.isStoring(MetalsNBTData.ALUMINUM) &&
                     !data.isDecanting(MetalsNBTData.ALUMINUM) && iStoreMetal){
                 dato = player.getStringUUID();

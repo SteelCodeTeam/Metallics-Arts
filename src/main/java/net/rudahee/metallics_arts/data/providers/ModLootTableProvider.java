@@ -26,8 +26,8 @@ import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.setup.registries.ModBlocks;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -48,37 +48,37 @@ public class ModLootTableProvider extends LootTableProvider {
     }
 
     private void addBlockTables() {
-        for (String key: ModBlocks.BLOCK_METAL_ORES.keySet()) {
-            Block ore = ModBlocks.BLOCK_METAL_ORES.get(key);
-            Item raw = ModItems.ITEM_RAW_METAL.get(key);
+        for (String key: ModBlocksRegister.BLOCK_METAL_ORES.keySet()) {
+            Block ore = ModBlocksRegister.BLOCK_METAL_ORES.get(key);
+            Item raw = ModItemsRegister.ITEM_RAW_METAL.get(key);
             createOreDrops(ore,raw,1,2);
         }
-        for (String key: ModBlocks.BLOCK_METAL_DEEPSLATE_ORES.keySet()) {
-            Block block = ModBlocks.BLOCK_METAL_DEEPSLATE_ORES.get(key);
-            Item raw = ModItems.ITEM_RAW_METAL.get(key);
+        for (String key: ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.keySet()) {
+            Block block = ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(key);
+            Item raw = ModItemsRegister.ITEM_RAW_METAL.get(key);
             createOreDrops(block,raw,1,3);
         }
-        for (String key: ModBlocks.RAW_METAL_BLOCKS.keySet()) {
-            addSimpleBlock(ModBlocks.RAW_METAL_BLOCKS.get(key));
+        for (String key: ModBlocksRegister.RAW_METAL_BLOCKS.keySet()) {
+            addSimpleBlock(ModBlocksRegister.RAW_METAL_BLOCKS.get(key));
         }
-        for (String key : ModBlocks.BLOCK_METAL_BLOCKS.keySet()) {
-            addSimpleBlock(ModBlocks.BLOCK_METAL_BLOCKS.get(key));
+        for (String key : ModBlocksRegister.BLOCK_METAL_BLOCKS.keySet()) {
+            addSimpleBlock(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(key));
         }
-        for (String key : ModBlocks.BLOCK_GEMS_BLOCKS.keySet()) {
-            addSimpleBlock(ModBlocks.BLOCK_GEMS_BLOCKS.get(key));
+        for (String key : ModBlocksRegister.BLOCK_GEMS_BLOCKS.keySet()) {
+            addSimpleBlock(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(key));
         }
 
-        for (String key: ModBlocks.DIVINE_CRISTAL_BLOCKS.keySet()) {
-            this.lootTables.put(ModBlocks.DIVINE_CRISTAL_BLOCKS.get(key), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(ModBlocks.DIVINE_CRISTAL_BLOCKS.get(key)).when(MatchTool.toolMatches(ItemPredicate.Builder
+        for (String key: ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.keySet()) {
+            this.lootTables.put(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key)).when(MatchTool.toolMatches(ItemPredicate.Builder
                     .item()
                     .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH,
                             MinMaxBounds.Ints.atLeast(1))))))));
         }
 
 
-        addSilkTouchBlock(ModBlocks.ATIUM_CLUSTER.get().getLootTable().getPath(), ModBlocks.ATIUM_CLUSTER.get(),ModItems.ITEM_GEMS_BASE.get("atium"),1,1);
-        addSilkTouchBlock(ModBlocks.LERASIUM_CLUSTER.get().getLootTable().getPath(), ModBlocks.LERASIUM_CLUSTER.get(),ModItems.ITEM_GEMS_BASE.get("lerasium"),1,1);
-        addSilkTouchBlock(ModBlocks.ETTMETAL_CLUSTER.get().getLootTable().getPath(), ModBlocks.ETTMETAL_CLUSTER.get(),ModItems.ITEM_GEMS_BASE.get("ettmetal"),1,1);
+        addSilkTouchBlock(ModBlocksRegister.ATIUM_CLUSTER.get().getLootTable().getPath(), ModBlocksRegister.ATIUM_CLUSTER.get(), ModItemsRegister.ITEM_GEMS_BASE.get("atium"),1,1);
+        addSilkTouchBlock(ModBlocksRegister.LERASIUM_CLUSTER.get().getLootTable().getPath(), ModBlocksRegister.LERASIUM_CLUSTER.get(), ModItemsRegister.ITEM_GEMS_BASE.get("lerasium"),1,1);
+        addSilkTouchBlock(ModBlocksRegister.ETTMETAL_CLUSTER.get().getLootTable().getPath(), ModBlocksRegister.ETTMETAL_CLUSTER.get(), ModItemsRegister.ITEM_GEMS_BASE.get("ettmetal"),1,1);
 
     }
 

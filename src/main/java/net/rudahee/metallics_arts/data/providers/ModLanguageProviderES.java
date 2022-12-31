@@ -2,8 +2,8 @@ package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalSpanish;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 
 import java.util.HashMap;
 import java.util.Map;

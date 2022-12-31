@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.client.GUI;
+package net.rudahee.metallics_arts.modules.final_client.GUI;
 
 
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -13,10 +13,10 @@ import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.client.ClientUtils;
-import net.rudahee.metallics_arts.modules.client.KeyInit;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.modules.final_client.ClientUtils;
+import net.rudahee.metallics_arts.modules.final_client.KeyInit;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Arrays;
@@ -72,7 +72,7 @@ public class AllomanticMetalSelector extends Screen {
     public void render(PoseStack matrixStack, int mx, int my, float partialTicks) {
         super.render(matrixStack, mx, my, partialTicks);
 
-        this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+        this.mc.player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
             int centerX  = this.width / 2;
             int centerY  = this.height / 2;
             float internalRadio = this.height/5;
@@ -429,7 +429,7 @@ public class AllomanticMetalSelector extends Screen {
                 mt = null;
             }
 
-            this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+            this.mc.player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
                 ClientUtils.toggleBurn(mt, data);
                 this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK, 0.1F, 2.0F);
             });

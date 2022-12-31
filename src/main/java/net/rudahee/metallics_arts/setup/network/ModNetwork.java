@@ -10,10 +10,9 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.packets.*;
-import net.rudahee.metallics_arts.modules.tags_player.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.network.packets.*;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class ModNetwork {
     private static final String VERSION = "1.1";
@@ -56,10 +55,10 @@ public class ModNetwork {
     }
 
     public static void sync(Player player) {
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> sync(data, player));
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> sync(data, player));
     }
 
-    public static void sync(IDefaultInvestedPlayerData cap, Player player) {
+    public static void sync(IInvestedPlayerData cap, Player player) {
         sync(new InvestedDataPacket(cap, player), player);
     }
 

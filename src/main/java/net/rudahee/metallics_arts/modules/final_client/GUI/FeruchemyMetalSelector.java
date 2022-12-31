@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.client.GUI;
+package net.rudahee.metallics_arts.modules.final_client.GUI;
 
 
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -13,11 +13,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.client.ClientUtils;
-import net.rudahee.metallics_arts.modules.client.KeyInit;
-import net.rudahee.metallics_arts.modules.tags_player.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.final_client.ClientUtils;
+import net.rudahee.metallics_arts.modules.final_client.KeyInit;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -72,7 +72,7 @@ public class FeruchemyMetalSelector extends Screen {
     public void render(PoseStack matrixStack, int mx, int my, float partialTicks) {
         super.render(matrixStack, mx, my, partialTicks);
 
-        this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+        this.mc.player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
 
             Point center = new Point(this.width / 2,this.height / 2);
             Point mouse = new Point(mx,my);
@@ -267,7 +267,7 @@ public class FeruchemyMetalSelector extends Screen {
         return new Point(((vertex1.x+vertex2.x+vertex3.x)/3),((vertex1.y+vertex2.y+vertex3.y)/3));
     }
 
-    public void pintar(BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse,int tipo, boolean paridad, IDefaultInvestedPlayerData data){
+    public void pintar(BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse,int tipo, boolean paridad, IInvestedPlayerData data){
 
         Point vertex1 = new Point(a.x,a.y);
         Point vertex2 = new Point(b.x,b.y);
@@ -328,7 +328,7 @@ public class FeruchemyMetalSelector extends Screen {
 
 
     }
-    public void pintadoUnico (BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse, boolean paridad, IDefaultInvestedPlayerData data){
+    public void pintadoUnico (BufferBuilder buf, Point a,Point b,Point c,MetalsNBTData metal, Point mouse, boolean paridad, IInvestedPlayerData data){
 
         Point vertex1 = new Point(a.x,a.y);
         Point vertex2 = new Point(b.x,b.y);
@@ -420,7 +420,7 @@ public class FeruchemyMetalSelector extends Screen {
     private void toggleSelectedRight() {
         if (this.slotSelected != -1) {
             MetalsNBTData metal = MetalsNBTData.getMetal(this.slotSelected);
-            this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+            this.mc.player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
                 ClientUtils.toggleStorage(metal, data, this.mc.player);
                 this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK, 0.1F, 2.0F);
             });
@@ -430,7 +430,7 @@ public class FeruchemyMetalSelector extends Screen {
     private void toggleSelectedLeft() {
         if (this.slotSelected != -1) {
             MetalsNBTData metal = MetalsNBTData.getMetal(this.slotSelected);
-            this.mc.player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+            this.mc.player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
                 ClientUtils.toggleDecant(metal, data,this.mc.player);
                 this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK, 0.1F, 2.0F);
             });

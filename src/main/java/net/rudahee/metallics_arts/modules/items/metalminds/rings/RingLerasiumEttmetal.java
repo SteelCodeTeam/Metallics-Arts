@@ -12,10 +12,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.rudahee.metallics_arts.modules.tags_player.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import top.theillusivec4.curios.api.SlotContext;
 
 import javax.annotation.Nullable;
@@ -35,7 +35,7 @@ public class RingLerasiumEttmetal extends RingsMindAbstract{
         if (livingEntity.level instanceof ServerLevel) {
             if (livingEntity instanceof Player) {
                 Player player = (Player) livingEntity;
-                player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+                player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
 
                     if (data.isDecanting(MetalsNBTData.ALUMINUM) || data.isStoring(MetalsNBTData.ALUMINUM)) {
                         stack.getTag().putString("key", changeOwner(player, stack.getTag(), false));
@@ -109,7 +109,7 @@ public class RingLerasiumEttmetal extends RingsMindAbstract{
     }
 
 
-    public boolean havePlayerAnyReserve (IDefaultInvestedPlayerData playerCapability) {
+    public boolean havePlayerAnyReserve (IInvestedPlayerData playerCapability) {
         for (MetalsNBTData metal: MetalsNBTData.values()){
             if (playerCapability.getAllomanticAmount(metal)>0) {
                 return true;
@@ -118,7 +118,7 @@ public class RingLerasiumEttmetal extends RingsMindAbstract{
         return false;
     }
 
-    public boolean saveAllomanticReserve(IDefaultInvestedPlayerData playerCapability, ItemStack stack) {
+    public boolean saveAllomanticReserve(IInvestedPlayerData playerCapability, ItemStack stack) {
         boolean itsDone = false;
         ArrayList<MetalsNBTData> metals = playerCapability.getAllomanticPowers();
         int firstQty = 0;
@@ -154,7 +154,7 @@ public class RingLerasiumEttmetal extends RingsMindAbstract{
         return itsDone;
     }
 
-    public boolean loadAllomanticReserve(IDefaultInvestedPlayerData playerCapability, ItemStack stack) {
+    public boolean loadAllomanticReserve(IInvestedPlayerData playerCapability, ItemStack stack) {
         boolean itsDone = false;
         ArrayList<MetalsNBTData> metals = playerCapability.getAllomanticPowers();
         int firstQty = 0;

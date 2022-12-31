@@ -6,15 +6,15 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.Random;
 
 public class ChromiumAndNicrosilHelpers {
     public static void drainMetalChromium(Player entityLiving) {
-        entityLiving.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+        entityLiving.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
             for (MetalsNBTData metalsNBTData : data.getAllomanticPowers()){
                 data.drainMetals(metalsNBTData);
                 ModNetwork.sync(data, entityLiving);
@@ -73,7 +73,7 @@ public class ChromiumAndNicrosilHelpers {
         world.getEntitiesOfClass(Player.class, axisAlignedBB).forEach(entity -> {
 
             if (entity != null) {
-                entity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(capability -> {
+                entity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(capability -> {
                     capability.drainMetals(MetalsNBTData.values());
 
                     ModNetwork.sync(capability, entity);
@@ -86,7 +86,7 @@ public class ChromiumAndNicrosilHelpers {
     }
 
     public static void changeNBTinTargetForEnhanced(Player target) {
-        target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> {
+        target.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> {
             cap.setEnhanced(true);
 
             ModNetwork.sync(cap, target);

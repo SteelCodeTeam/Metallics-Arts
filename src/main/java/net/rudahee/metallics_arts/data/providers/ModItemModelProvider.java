@@ -8,10 +8,10 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.items.banners.Banners;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.data.enums.interfaces.gems.Gems;
 import net.rudahee.metallics_arts.data.enums.interfaces.metals.Metal;
+import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
 
 import java.util.Arrays;
 import java.util.List;
@@ -46,12 +46,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         });
 
         for (MetalsNBTData metals : MetalsNBTData.values()) {
-            Item item = Banners.PATTERN_ITEMS.get("a_"+metals.getNameLower()).get();
-            String model =  "item/pattern/" + ForgeRegistries.ITEMS.getKey(Banners.PATTERN_ITEMS.get("a_"+metals.getNameLower()).get()).getPath();
+            Item item = ModBannersRegister.PATTERN_ITEMS.get("a_"+metals.getNameLower()).get();
+            String model =  "item/pattern/" + ForgeRegistries.ITEMS.getKey(ModBannersRegister.PATTERN_ITEMS.get("a_"+metals.getNameLower()).get()).getPath();
             getBuilder(ForgeRegistries.ITEMS.getKey(item).getPath()).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", modLoc(model));
 
-            item = Banners.PATTERN_ITEMS.get("f_"+metals.getNameLower()).get();
-            model =  "item/pattern/" + ForgeRegistries.ITEMS.getKey(Banners.PATTERN_ITEMS.get("f_"+metals.getNameLower()).get()).getPath();
+            item = ModBannersRegister.PATTERN_ITEMS.get("f_"+metals.getNameLower()).get();
+            model =  "item/pattern/" + ForgeRegistries.ITEMS.getKey(ModBannersRegister.PATTERN_ITEMS.get("f_"+metals.getNameLower()).get()).getPath();
             getBuilder(ForgeRegistries.ITEMS.getKey(item).getPath()).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", modLoc(model));
 
         }

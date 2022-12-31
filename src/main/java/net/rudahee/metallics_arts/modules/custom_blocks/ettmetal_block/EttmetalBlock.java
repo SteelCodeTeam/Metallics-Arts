@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_blocks;
+package net.rudahee.metallics_arts.modules.custom_blocks.ettmetal_block;
 
 
 import net.minecraft.core.BlockPos;

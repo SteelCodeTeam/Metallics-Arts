@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.client;
+package net.rudahee.metallics_arts.modules.final_client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
@@ -13,12 +13,12 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.network.packets.UpdateBurnPacket;
 import net.rudahee.metallics_arts.setup.network.packets.UpdateDecantPacket;
 import net.rudahee.metallics_arts.setup.network.packets.UpdateStoragePacket;
-import net.rudahee.metallics_arts.modules.tags_player.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import javax.annotation.Nullable;
@@ -76,7 +76,7 @@ public class ClientUtils {
         tessellator.end();
 }
 
-    public static void toggleBurn(MetalsNBTData  metal, IDefaultInvestedPlayerData capability) {
+    public static void toggleBurn(MetalsNBTData  metal, IInvestedPlayerData capability) {
         if (!capability.hasAllomanticPower(metal)) {
             return;
         }
@@ -97,7 +97,7 @@ public class ClientUtils {
     private static int actualFeruchemicReserve = -1;
     private static boolean isBand = false;
 
-    public static void toggleDecant(MetalsNBTData metal, IDefaultInvestedPlayerData capability, Player player){
+    public static void toggleDecant(MetalsNBTData metal, IInvestedPlayerData capability, Player player){
         if (!capability.hasFeruchemicPower(metal)||!capability.getMetalMindEquiped(metal.getGroup())){
             return;
         }
@@ -125,7 +125,7 @@ public class ClientUtils {
         }
 
     }
-    public static void toggleStorage(MetalsNBTData metal, IDefaultInvestedPlayerData capability, Player player){
+    public static void toggleStorage(MetalsNBTData metal, IInvestedPlayerData capability, Player player){
         if (!capability.hasFeruchemicPower(metal)||!capability.getMetalMindEquiped(metal.getGroup())){
             return;
         }

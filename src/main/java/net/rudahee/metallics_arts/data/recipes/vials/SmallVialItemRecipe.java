@@ -13,8 +13,8 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
-import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
+import net.rudahee.metallics_arts.setup.registries.ModRecipeTypesRegister;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,16 +24,16 @@ public class SmallVialItemRecipe extends CustomRecipe {
 
     private ItemStack final_result = ItemStack.EMPTY;
 
-    private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItems.SMALL_VIAL.get());
+    private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItemsRegister.SMALL_VIAL.get());
 
     private static final List<Ingredient> INGREDIENT_NUGGET = new ArrayList<Ingredient>() {{
-        for (Item metal: ModItems.ITEM_GEMS_NUGGET.values()) {
+        for (Item metal: ModItemsRegister.ITEM_GEMS_NUGGET.values()) {
             add(Ingredient.of(metal.asItem()));
         }
-        for (Item metal: ModItems.ITEM_METAL_NUGGET.values()) {
-            if (!ModItems.ITEM_METAL_NUGGET.get("lead").getDescriptionId().equals(metal.getDescriptionId())
-                    && !ModItems.ITEM_METAL_NUGGET.get("silver").getDescriptionId().equals(metal.getDescriptionId())
-                    && !ModItems.ITEM_METAL_NUGGET.get("nickel").getDescriptionId().equals(metal.getDescriptionId())) {
+        for (Item metal: ModItemsRegister.ITEM_METAL_NUGGET.values()) {
+            if (!ModItemsRegister.ITEM_METAL_NUGGET.get("lead").getDescriptionId().equals(metal.getDescriptionId())
+                    && !ModItemsRegister.ITEM_METAL_NUGGET.get("silver").getDescriptionId().equals(metal.getDescriptionId())
+                    && !ModItemsRegister.ITEM_METAL_NUGGET.get("nickel").getDescriptionId().equals(metal.getDescriptionId())) {
                 add(Ingredient.of(metal.asItem()));
             }
             add(Ingredient.of(Items.IRON_NUGGET.asItem()));
@@ -119,7 +119,7 @@ public class SmallVialItemRecipe extends CustomRecipe {
         //INTENTAR QUE SE PUEDAN CARGAR MAS DE UNA PEPITA DE UN METAL A LA VEZ
 
         if (ingredients[0] && ingredients[1]){
-            this.final_result = new ItemStack(ModItems.SMALL_VIAL.get(),1);
+            this.final_result = new ItemStack(ModItemsRegister.SMALL_VIAL.get(),1);
             CompoundTag compoundNBT = new CompoundTag();
             for (MetalsNBTData metal : MetalsNBTData.values()){
                 if (addMetal[metal.getIndex()]){
@@ -160,7 +160,7 @@ public class SmallVialItemRecipe extends CustomRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return ModRecipeTypes.SMALL_VIAL_ITEM_RECIPE_SERIALIZER.get();
+        return ModRecipeTypesRegister.SMALL_VIAL_ITEM_RECIPE_SERIALIZER.get();
     }
 
     public static class Serializer extends SimpleRecipeSerializer<SmallVialItemRecipe> {

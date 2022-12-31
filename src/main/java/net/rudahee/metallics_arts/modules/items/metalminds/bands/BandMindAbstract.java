@@ -12,10 +12,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.rudahee.metallics_arts.modules.tags_player.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -43,7 +43,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
         Player player = (Player) slotContext.getWearer();
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
             data.setMetalMindEquiped(this.metals[0].getGroup(),true);
             data.setMetalMindEquiped(this.metals[1].getGroup(),true);
             ModNetwork.sync(data, player);
@@ -58,7 +58,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         }
         Player player = (Player) slotContext.getWearer();
         if (stack.getItem() != newStack.getItem()) {
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
                 data.setMetalMindEquiped(this.metals[0].getGroup(),false);
                 data.setMetalMindEquiped(this.metals[1].getGroup(),false);
                 data.setStoring(this.metals[0],false);
@@ -70,7 +70,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         }
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
     }
-    private IDefaultInvestedPlayerData cap = null;
+    private IInvestedPlayerData cap = null;
 
     @Override
     public boolean canEquip(SlotContext slotContext, ItemStack stack) {
@@ -78,7 +78,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
             stack.setTag(addBandTags());
         }
         Player player = (Player) slotContext.entity();
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
             cap = data;
         });
         boolean canEquip = false;
@@ -194,7 +194,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
         if (livingEntity.level instanceof ServerLevel) {
             if (livingEntity instanceof Player) {
                 Player player = (Player) livingEntity;
-                player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+                player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
 
                     if (data.isDecanting(MetalsNBTData.ALUMINUM)||data.isStoring(MetalsNBTData.ALUMINUM)){
                         stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
@@ -296,7 +296,7 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
 
         dato = compoundNBT.getString("key");
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
             if (isFirstReserveZero && isSecondReserveZero && !data.isStoring(MetalsNBTData.ALUMINUM) &&
                     !data.isDecanting(MetalsNBTData.ALUMINUM) && iStoreMetal){
                 dato = player.getStringUUID();

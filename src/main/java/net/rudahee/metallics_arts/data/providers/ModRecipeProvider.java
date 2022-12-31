@@ -9,14 +9,14 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.items.banners.Banners;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalMindData;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalSpikesData;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.data.enums.interfaces.metals.Metal;
-import net.rudahee.metallics_arts.setup.registries.ModBlocks;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
-import net.rudahee.metallics_arts.setup.registries.ModRecipeTypes;
+import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
+import net.rudahee.metallics_arts.setup.registries.ModRecipeTypesRegister;
 
 import java.util.Arrays;
 import java.util.function.Consumer;
@@ -29,86 +29,86 @@ public class ModRecipeProvider extends RecipeProvider {
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> recipesConsumer) {
 
-        ModItems.ITEM_METAL_INGOT.forEach((name, item) -> {
+        ModItemsRegister.ITEM_METAL_INGOT.forEach((name, item) -> {
             ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
-                    .requires(ModBlocks.BLOCK_METAL_BLOCKS.get(name))
+                    .requires(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(name))
                     .unlockedBy("has_item", has(item))
-                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlocks.BLOCK_METAL_BLOCKS.get(name).getDescriptionId()));
+                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlocksRegister.BLOCK_METAL_BLOCKS.get(name).getDescriptionId()));
         });
 
-        ModBlocks.BLOCK_METAL_BLOCKS.forEach((name, block) -> {
+        ModBlocksRegister.BLOCK_METAL_BLOCKS.forEach((name, block) -> {
             ShapedRecipeBuilder.shaped(block)
-                    .define('#', ModItems.ITEM_METAL_INGOT.get(name))
+                    .define('#', ModItemsRegister.ITEM_METAL_INGOT.get(name))
                     .pattern("###")
                     .pattern("###")
                     .pattern("###")
                     .unlockedBy("has_block", has(block))
-                    .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItems.ITEM_METAL_INGOT.get(name).getDescriptionId()));
+                    .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItemsRegister.ITEM_METAL_INGOT.get(name).getDescriptionId()));
         });
 
-        ModBlocks.RAW_METAL_BLOCKS.forEach((name, block) -> {
+        ModBlocksRegister.RAW_METAL_BLOCKS.forEach((name, block) -> {
             ShapedRecipeBuilder.shaped(block)
-                    .define('#', ModItems.ITEM_RAW_METAL.get(name))
+                    .define('#', ModItemsRegister.ITEM_RAW_METAL.get(name))
                     .pattern("###")
                     .pattern("###")
                     .pattern("###")
                     .unlockedBy("has_block", has(block))
-                    .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItems.ITEM_RAW_METAL.get(name).getDescriptionId()));
+                    .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItemsRegister.ITEM_RAW_METAL.get(name).getDescriptionId()));
         });
 
-        ModItems.ITEM_RAW_METAL.forEach((name, item) -> {
+        ModItemsRegister.ITEM_RAW_METAL.forEach((name, item) -> {
             ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
-                    .requires(ModBlocks.RAW_METAL_BLOCKS.get(name))
+                    .requires(ModBlocksRegister.RAW_METAL_BLOCKS.get(name))
                     .unlockedBy("has_item", has(item))
-                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlocks.RAW_METAL_BLOCKS.get(name).getDescriptionId()));
+                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlocksRegister.RAW_METAL_BLOCKS.get(name).getDescriptionId()));
         });
 
 
 
-        ModItems.ITEM_GEMS_BASE.forEach((name, item) -> {
+        ModItemsRegister.ITEM_GEMS_BASE.forEach((name, item) -> {
             ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
-                    .requires(ModBlocks.BLOCK_GEMS_BLOCKS.get(name))
+                    .requires(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(name))
                     .unlockedBy("has_item", has(item))
-                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlocks.BLOCK_GEMS_BLOCKS.get(name).getDescriptionId()));
+                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(name).getDescriptionId()));
         });
 
-        ModBlocks.BLOCK_GEMS_BLOCKS.forEach((name, block) -> {
+        ModBlocksRegister.BLOCK_GEMS_BLOCKS.forEach((name, block) -> {
             ShapedRecipeBuilder.shaped(block)
-                    .define('#', ModItems.ITEM_GEMS_BASE.get(name))
+                    .define('#', ModItemsRegister.ITEM_GEMS_BASE.get(name))
                     .pattern("###")
                     .pattern("###")
                     .pattern("###")
                     .unlockedBy("has_block", has(block))
-                    .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItems.ITEM_GEMS_BASE.get(name).getDescriptionId()));
+                    .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItemsRegister.ITEM_GEMS_BASE.get(name).getDescriptionId()));
         });
-        ModItems.ITEM_METAL_INGOT.forEach((name, item) -> {
-            ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_NUGGET.get(name), 9)
+        ModItemsRegister.ITEM_METAL_INGOT.forEach((name, item) -> {
+            ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_METAL_NUGGET.get(name), 9)
                     .requires(item)
                     .unlockedBy("has_block", has(item))
-                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModItems.ITEM_METAL_NUGGET.get(name).getDescriptionId()));
+                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModItemsRegister.ITEM_METAL_NUGGET.get(name).getDescriptionId()));
 
 
         });
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_NUGGET.get("copper_nugget"), 9)
+        ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_METAL_NUGGET.get("copper_nugget"), 9)
                 .requires(Items.COPPER_INGOT)
                 .unlockedBy("has_block", has(Items.COPPER_INGOT))
-                .save(recipesConsumer, new ResourceLocation(Items.COPPER_INGOT.getDescriptionId() + "_to_" + ModItems.ITEM_METAL_NUGGET.get("copper_nugget").getDescriptionId()));
+                .save(recipesConsumer, new ResourceLocation(Items.COPPER_INGOT.getDescriptionId() + "_to_" + ModItemsRegister.ITEM_METAL_NUGGET.get("copper_nugget").getDescriptionId()));
 
 
-        ModItems.ITEM_METAL_NUGGET.forEach((name, item) -> {
+        ModItemsRegister.ITEM_METAL_NUGGET.forEach((name, item) -> {
             if (!name.equals("copper_nugget")) {
-                ShapedRecipeBuilder.shaped(ModItems.ITEM_METAL_INGOT.get(name))
-                        .define('#', ModItems.ITEM_METAL_NUGGET.get(name))
+                ShapedRecipeBuilder.shaped(ModItemsRegister.ITEM_METAL_INGOT.get(name))
+                        .define('#', ModItemsRegister.ITEM_METAL_NUGGET.get(name))
                         .pattern("###")
                         .pattern("###")
                         .pattern("###")
                         .unlockedBy("has_block", has(item))
-                        .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModItems.ITEM_METAL_INGOT.get(name).getDescriptionId()));
+                        .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModItemsRegister.ITEM_METAL_INGOT.get(name).getDescriptionId()));
             } else {
 
                 ShapedRecipeBuilder.shaped(Items.COPPER_INGOT)
-                        .define('#', ModItems.ITEM_METAL_NUGGET.get(name))
+                        .define('#', ModItemsRegister.ITEM_METAL_NUGGET.get(name))
                         .pattern("###")
                         .pattern("###")
                         .pattern("###")
@@ -118,36 +118,36 @@ public class ModRecipeProvider extends RecipeProvider {
 
         });
 
-        ModItems.ITEM_GEMS_BASE.forEach((name, item) -> {
-            ShapelessRecipeBuilder.shapeless(ModItems.ITEM_GEMS_NUGGET.get(name), 9)
+        ModItemsRegister.ITEM_GEMS_BASE.forEach((name, item) -> {
+            ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_GEMS_NUGGET.get(name), 9)
                     .requires(item)
                     .unlockedBy("has_block", has(item))
-                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModItems.ITEM_GEMS_NUGGET.get(name).getDescriptionId()));
+                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModItemsRegister.ITEM_GEMS_NUGGET.get(name).getDescriptionId()));
         });
 
-        ModItems.ITEM_GEMS_NUGGET.forEach((name, item) -> {
-            ShapedRecipeBuilder.shaped(ModItems.ITEM_GEMS_BASE.get(name))
-                    .define('#', ModItems.ITEM_GEMS_NUGGET.get(name))
+        ModItemsRegister.ITEM_GEMS_NUGGET.forEach((name, item) -> {
+            ShapedRecipeBuilder.shaped(ModItemsRegister.ITEM_GEMS_BASE.get(name))
+                    .define('#', ModItemsRegister.ITEM_GEMS_NUGGET.get(name))
                     .pattern("###")
                     .pattern("###")
                     .pattern("###")
                     .unlockedBy("has_block", has(item))
-                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModItems.ITEM_GEMS_BASE.get(name).getDescriptionId()));
+                    .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModItemsRegister.ITEM_GEMS_BASE.get(name).getDescriptionId()));
         });
 
         Arrays.asList(Metal.values()).forEach(metal -> {
             if (!metal.isAlloy()){
-                SimpleCookingRecipeBuilder.cooking(Ingredient.of(ModItems.ITEM_RAW_METAL.get(metal.getMetalNameLower())), ModItems.ITEM_METAL_INGOT.get(metal.getMetalNameLower()), 0.5f, 250, RecipeSerializer.SMELTING_RECIPE)
-                        .unlockedBy("has_block", has(ModItems.ITEM_RAW_METAL.get(metal.getMetalNameLower())))
-                        .save(recipesConsumer, new ResourceLocation(ModItems.ITEM_RAW_METAL.get(metal.getMetalNameLower()).getDescriptionId() + "_to_" + ModItems.ITEM_METAL_INGOT.get(metal.getMetalNameLower()).getDescriptionId() + "_furnace"));
+                SimpleCookingRecipeBuilder.cooking(Ingredient.of(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())), ModItemsRegister.ITEM_METAL_INGOT.get(metal.getMetalNameLower()), 0.5f, 250, RecipeSerializer.SMELTING_RECIPE)
+                        .unlockedBy("has_block", has(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())))
+                        .save(recipesConsumer, new ResourceLocation(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower()).getDescriptionId() + "_to_" + ModItemsRegister.ITEM_METAL_INGOT.get(metal.getMetalNameLower()).getDescriptionId() + "_furnace"));
             }
         });
 
         Arrays.asList(Metal.values()).forEach(metal -> {
             if (!metal.isAlloy()){
-                SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModItems.ITEM_RAW_METAL.get(metal.getMetalNameLower())), ModItems.ITEM_METAL_INGOT.get(metal.getMetalNameLower()), 0.8f, 100)
-                        .unlockedBy("has_block", has(ModItems.ITEM_RAW_METAL.get(metal.getMetalNameLower())))
-                        .save(recipesConsumer, new ResourceLocation(ModItems.ITEM_RAW_METAL.get(metal.getMetalNameLower()).getDescriptionId() + "_to_" + ModItems.ITEM_METAL_INGOT.get(metal.getMetalNameLower()).getDescriptionId() + "_blast"));
+                SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())), ModItemsRegister.ITEM_METAL_INGOT.get(metal.getMetalNameLower()), 0.8f, 100)
+                        .unlockedBy("has_block", has(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())))
+                        .save(recipesConsumer, new ResourceLocation(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower()).getDescriptionId() + "_to_" + ModItemsRegister.ITEM_METAL_INGOT.get(metal.getMetalNameLower()).getDescriptionId() + "_blast"));
             }
         });
 
@@ -169,8 +169,8 @@ public class ModRecipeProvider extends RecipeProvider {
 
             //BLOCKS
             if (object.isGems()) {
-                item1 = ModBlocks.BLOCK_GEMS_BLOCKS.get(object.getFirstMetal()).asItem();
-                item2 = ModBlocks.BLOCK_GEMS_BLOCKS.get(object.getSecondMetal()).asItem();
+                item1 = ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(object.getFirstMetal()).asItem();
+                item2 = ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(object.getSecondMetal()).asItem();
             } else if (object.isVanilla()) {
                 if (object.getSecondMetal() == "iron") {
                     item1 = Items.IRON_BLOCK;
@@ -181,10 +181,10 @@ public class ModRecipeProvider extends RecipeProvider {
                 else {
                     item1 = Items.COPPER_BLOCK;
                 }
-                item2 = ModBlocks.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
+                item2 = ModBlocksRegister.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
             } else {
-                item1 = ModBlocks.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
-                item2 = ModBlocks.BLOCK_METAL_BLOCKS.get(object.getSecondMetal()).asItem();
+                item1 = ModBlocksRegister.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
+                item2 = ModBlocksRegister.BLOCK_METAL_BLOCKS.get(object.getSecondMetal()).asItem();
             }
             //BANDS
             ShapedRecipeBuilder.shaped(object.getBand())
@@ -208,17 +208,17 @@ public class ModRecipeProvider extends RecipeProvider {
 
             //INGOTS
             if (object.isGems()) {
-                item1 = ModItems.ITEM_GEMS_BASE.get(object.getFirstMetal()).asItem();
-                item2 = ModItems.ITEM_GEMS_BASE.get(object.getSecondMetal()).asItem();
+                item1 = ModItemsRegister.ITEM_GEMS_BASE.get(object.getFirstMetal()).asItem();
+                item2 = ModItemsRegister.ITEM_GEMS_BASE.get(object.getSecondMetal()).asItem();
             } else if (object.isVanilla()) {
                 if (object.getSecondMetal() == "iron") {item1 = Items.IRON_INGOT;}
                 else if (object.getSecondMetal() == "gold") {item1 = Items.GOLD_INGOT;}
                 else {item1 = Items.COPPER_INGOT;}
 
-                item2 = ModItems.ITEM_METAL_INGOT.get(object.getFirstMetal()).asItem();
+                item2 = ModItemsRegister.ITEM_METAL_INGOT.get(object.getFirstMetal()).asItem();
             } else {
-                item1 = ModItems.ITEM_METAL_INGOT.get(object.getFirstMetal()).asItem();
-                item2 = ModItems.ITEM_METAL_INGOT.get(object.getSecondMetal()).asItem();
+                item1 = ModItemsRegister.ITEM_METAL_INGOT.get(object.getFirstMetal()).asItem();
+                item2 = ModItemsRegister.ITEM_METAL_INGOT.get(object.getSecondMetal()).asItem();
             }
 
             //RINGS
@@ -246,8 +246,8 @@ public class ModRecipeProvider extends RecipeProvider {
 
             Item head, body;
             if (object.isGems()) {
-                head = ModBlocks.BLOCK_GEMS_BLOCKS.get(object.getName()).asItem();
-                body = ModItems.ITEM_GEMS_BASE.get(object.getName()).asItem();
+                head = ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(object.getName()).asItem();
+                body = ModItemsRegister.ITEM_GEMS_BASE.get(object.getName()).asItem();
             } else if (object.isVanilla()) {
                 if (object.getName() == "iron") {
                     head = Items.IRON_BLOCK;
@@ -260,8 +260,8 @@ public class ModRecipeProvider extends RecipeProvider {
                     body = Items.COPPER_INGOT;
                 }
             } else {
-                head = ModBlocks.BLOCK_METAL_BLOCKS.get(object.getName()).asItem();
-                body = ModItems.ITEM_METAL_INGOT.get(object.getName()).asItem();
+                head = ModBlocksRegister.BLOCK_METAL_BLOCKS.get(object.getName()).asItem();
+                body = ModItemsRegister.ITEM_METAL_INGOT.get(object.getName()).asItem();
             }
 
             ShapedRecipeBuilder.shaped(object.getSpike())
@@ -287,153 +287,153 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(recipesConsumer, new ResourceLocation("allomantic_alloy_furnace"));*/
 
 
-        ShapedRecipeBuilder.shaped(ModItems.OBSIDIAN_AXE.get())
+        ShapedRecipeBuilder.shaped(ModItemsRegister.OBSIDIAN_AXE.get())
                 .define('#',Items.OBSIDIAN)
                 .define('x',Items.STICK)
                 .pattern(" ##")
                 .pattern(" x#")
                 .pattern(" x ")
-                .unlockedBy("has_item",has(ModItems.OBSIDIAN_AXE.get()))
+                .unlockedBy("has_item",has(ModItemsRegister.OBSIDIAN_AXE.get()))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_obsidian_axe"));
 
-        ShapedRecipeBuilder.shaped(ModItems.OBSIDIAN_DAGGER.get())
+        ShapedRecipeBuilder.shaped(ModItemsRegister.OBSIDIAN_DAGGER.get())
                 .define('#',Items.OBSIDIAN)
                 .define('x',Items.STICK)
                 .pattern("  #")
                 .pattern(" # ")
                 .pattern("x  ")
-                .unlockedBy("has_item",has(ModItems.OBSIDIAN_DAGGER.get()))
+                .unlockedBy("has_item",has(ModItemsRegister.OBSIDIAN_DAGGER.get()))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_obsidian_dagger"));
 
 
-        ShapedRecipeBuilder.shaped(ModItems.DUELING_STAFF.get())
-                .define('#', ModItems.ITEM_METAL_INGOT.get("aluminum"))
+        ShapedRecipeBuilder.shaped(ModItemsRegister.DUELING_STAFF.get())
+                .define('#', ModItemsRegister.ITEM_METAL_INGOT.get("aluminum"))
                 .define('x',Items.STICK)
                 .pattern("  #")
                 .pattern(" x ")
                 .pattern("x  ")
-                .unlockedBy("has_item",has(ModItems.DUELING_STAFF.get()))
+                .unlockedBy("has_item",has(ModItemsRegister.DUELING_STAFF.get()))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_dueling_staff"));
 
-        ShapedRecipeBuilder.shaped(ModItems.CRISTAL_DAGGER.get())
+        ShapedRecipeBuilder.shaped(ModItemsRegister.CRISTAL_DAGGER.get())
                 .define('#', Items.GLASS_PANE)
                 .define('x', Items.STICK)
                 .pattern("  #")
                 .pattern(" # ")
                 .pattern("x  ")
-                .unlockedBy("has_item",has(ModItems.CRISTAL_DAGGER.get()))
+                .unlockedBy("has_item",has(ModItemsRegister.CRISTAL_DAGGER.get()))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_cristal_dagger"));
 
-        ShapedRecipeBuilder.shaped(ModItems.KOLOSS_BLADE.get())
+        ShapedRecipeBuilder.shaped(ModItemsRegister.KOLOSS_BLADE.get())
                 .define('#', Items.COBBLESTONE)
                 .define('x', Items.STICK)
                 .pattern("## ")
                 .pattern("###")
                 .pattern(" x ")
-                .unlockedBy("has_item",has(ModItems.KOLOSS_BLADE.get()))
+                .unlockedBy("has_item",has(ModItemsRegister.KOLOSS_BLADE.get()))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_koloss_blade"));
 
 
 
-        ShapedRecipeBuilder.shaped(ModItems.SMALL_VIAL.get())
+        ShapedRecipeBuilder.shaped(ModItemsRegister.SMALL_VIAL.get())
                 .define('#',Items.GLASS)
                 .define('x',Items.GLASS_BOTTLE)
                 .define('+',ItemTags.PLANKS)
                 .pattern(" + ")
                 .pattern("#x#")
                 .pattern(" # ")
-                .unlockedBy("has_item",has(ModItems.SMALL_VIAL.get()))
+                .unlockedBy("has_item",has(ModItemsRegister.SMALL_VIAL.get()))
                 .save(recipesConsumer,new ResourceLocation("allomantic_small_vial"));
 
-        ShapedRecipeBuilder.shaped(ModItems.LARGE_VIAL.get())
+        ShapedRecipeBuilder.shaped(ModItemsRegister.LARGE_VIAL.get())
                 .define('#',Items.GLASS)
-                .define('x',ModItems.SMALL_VIAL.get())
+                .define('x', ModItemsRegister.SMALL_VIAL.get())
                 .define('+',ItemTags.PLANKS)
                 .pattern(" + ")
                 .pattern("#x#")
                 .pattern(" # ")
-                .unlockedBy("has_item",has(ModItems.LARGE_VIAL.get()))
+                .unlockedBy("has_item",has(ModItemsRegister.LARGE_VIAL.get()))
                 .save(recipesConsumer,new ResourceLocation("allomantic_large_vial"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("steel"),2).
+        ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_METAL_INGOT.get("steel"),2).
                 requires(Items.IRON_INGOT)
                 .requires(Items.COAL)
                 .requires(Items.COAL)
                 .requires(Items.COAL)
-                .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("steel")))
+                .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("steel")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_steel_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("pewter"),2)
-                .requires(ModItems.ITEM_METAL_INGOT.get("lead"))
-                .requires(ModItems.ITEM_METAL_INGOT.get("tin"))
-                .requires(ModItems.ITEM_METAL_INGOT.get("tin"))
-                .requires(ModItems.ITEM_METAL_INGOT.get("tin"))
-                .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("pewter")))
+        ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_METAL_INGOT.get("pewter"),2)
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("lead"))
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("tin"))
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("tin"))
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("tin"))
+                .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("pewter")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_pewter_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("bronze"),2)
-                .requires(ModItems.ITEM_METAL_INGOT.get("tin"))
+        ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_METAL_INGOT.get("bronze"),2)
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("tin"))
                 .requires(Items.COPPER_INGOT)
                 .requires(Items.COPPER_INGOT)
                 .requires(Items.COPPER_INGOT)
-                .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("bronze")))
+                .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("bronze")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_bronze_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("brass"),2)
-                .requires(ModItems.ITEM_METAL_INGOT.get("zinc"))
-                .requires(ModItems.ITEM_METAL_INGOT.get("zinc"))
+        ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_METAL_INGOT.get("brass"),2)
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("zinc"))
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("zinc"))
                 .requires(Items.COPPER_INGOT)
                 .requires(Items.COPPER_INGOT)
-                .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("brass")))
+                .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("brass")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_brass_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("electrum"),2)
-                .requires(ModItems.ITEM_METAL_INGOT.get("silver"))
-                .requires(ModItems.ITEM_METAL_INGOT.get("silver"))
-                .requires(ModItems.ITEM_METAL_INGOT.get("silver"))
+        ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_METAL_INGOT.get("electrum"),2)
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("silver"))
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("silver"))
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("silver"))
                 .requires(Items.GOLD_INGOT)
-                .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("electrum")))
+                .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("electrum")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_electrum_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("bendalloy"),2)
-                .requires(ModItems.ITEM_METAL_INGOT.get("lead"))
-                .requires(ModItems.ITEM_METAL_INGOT.get("lead"))
-                .requires(ModItems.ITEM_METAL_INGOT.get("cadmium"))
-                .requires(ModItems.ITEM_METAL_INGOT.get("cadmium"))
-                .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("bendalloy")))
+        ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_METAL_INGOT.get("bendalloy"),2)
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("lead"))
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("lead"))
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("cadmium"))
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("cadmium"))
+                .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("bendalloy")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_bendalloy_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("duralumin"),2)
-                .requires(ModItems.ITEM_METAL_INGOT.get("aluminum"))
-                .requires(ModItems.ITEM_METAL_INGOT.get("aluminum"))
-                .requires(ModItems.ITEM_METAL_INGOT.get("aluminum"))
+        ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_METAL_INGOT.get("duralumin"),2)
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("aluminum"))
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("aluminum"))
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("aluminum"))
                 .requires(Items.COPPER_INGOT)
-                .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("duralumin")))
+                .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("duralumin")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_duralumin_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_METAL_INGOT.get("nicrosil"),2)
-                .requires(ModItems.ITEM_METAL_INGOT.get("nickel"))
-                .requires(ModItems.ITEM_METAL_INGOT.get("nickel"))
-                .requires(ModItems.ITEM_METAL_INGOT.get("nickel"))
-                .requires(ModItems.ITEM_METAL_INGOT.get("chromium"))
-                .unlockedBy("has_item",has(ModItems.ITEM_METAL_INGOT.get("nicrosil")))
+        ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_METAL_INGOT.get("nicrosil"),2)
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("nickel"))
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("nickel"))
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("nickel"))
+                .requires(ModItemsRegister.ITEM_METAL_INGOT.get("chromium"))
+                .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("nicrosil")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_nicrosil_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.ITEM_GEMS_BASE.get("malatium"),2)
-                .requires(ModItems.ITEM_GEMS_BASE.get("atium"))
-                .requires(ModItems.ITEM_GEMS_BASE.get("atium"))
+        ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_GEMS_BASE.get("malatium"),2)
+                .requires(ModItemsRegister.ITEM_GEMS_BASE.get("atium"))
+                .requires(ModItemsRegister.ITEM_GEMS_BASE.get("atium"))
                 .requires(Items.GOLD_INGOT)
                 .requires(Items.GOLD_INGOT)
-                .unlockedBy("has_item",has(ModItems.ITEM_GEMS_BASE.get("malatium")))
+                .unlockedBy("has_item",has(ModItemsRegister.ITEM_GEMS_BASE.get("malatium")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_malatium_alloy_craft"));
 
-        SpecialRecipeBuilder.special(ModRecipeTypes.LARGE_VIAL_ITEM_RECIPE_SERIALIZER.get()).save(recipesConsumer, MetallicsArts.MOD_ID+":large_vial_filling_recipe");
-        SpecialRecipeBuilder.special(ModRecipeTypes.SMALL_VIAL_ITEM_RECIPE_SERIALIZER.get()).save(recipesConsumer, MetallicsArts.MOD_ID+":small_vial_filling_recipe");
+        SpecialRecipeBuilder.special(ModRecipeTypesRegister.LARGE_VIAL_ITEM_RECIPE_SERIALIZER.get()).save(recipesConsumer, MetallicsArts.MOD_ID+":large_vial_filling_recipe");
+        SpecialRecipeBuilder.special(ModRecipeTypesRegister.SMALL_VIAL_ITEM_RECIPE_SERIALIZER.get()).save(recipesConsumer, MetallicsArts.MOD_ID+":small_vial_filling_recipe");
 
-        ModItems.ITEM_ICONS_ALLOMANCY.forEach((key, value) -> {
+        ModItemsRegister.ITEM_ICONS_ALLOMANCY.forEach((key, value) -> {
                 ShapedRecipeBuilder.shaped(value)
                         .define('#',Items.GLASS_PANE)
-                        .define('x',(key.contains("gold")) ? Items.GOLD_INGOT : (key.contains("copper")) ? Items.COPPER_INGOT : (key.contains("iron")) ? Items.IRON_INGOT: ModItems.ITEM_METAL_INGOT.get(key))
+                        .define('x',(key.contains("gold")) ? Items.GOLD_INGOT : (key.contains("copper")) ? Items.COPPER_INGOT : (key.contains("iron")) ? Items.IRON_INGOT: ModItemsRegister.ITEM_METAL_INGOT.get(key))
                         .pattern(" # ")
                         .pattern("#x#")
                         .pattern(" # ")
@@ -441,10 +441,10 @@ public class ModRecipeProvider extends RecipeProvider {
                         .save(recipesConsumer,new ResourceLocation(key+"_allomantic_icon"));
         });
 
-        ModItems.ITEM_ICONS_FERUCHEMIC.forEach((key, value) -> {
+        ModItemsRegister.ITEM_ICONS_FERUCHEMIC.forEach((key, value) -> {
             ShapedRecipeBuilder.shaped(value)
                     .define('#',Items.GLASS_PANE)
-                    .define('x',(key.contains("gold")) ? Items.GOLD_INGOT : (key.contains("copper")) ? Items.COPPER_INGOT : (key.contains("iron")) ? Items.IRON_INGOT: ModItems.ITEM_METAL_INGOT.get(key))
+                    .define('x',(key.contains("gold")) ? Items.GOLD_INGOT : (key.contains("copper")) ? Items.COPPER_INGOT : (key.contains("iron")) ? Items.IRON_INGOT: ModItemsRegister.ITEM_METAL_INGOT.get(key))
                     .pattern("# #")
                     .pattern(" x ")
                     .pattern("# #")
@@ -454,18 +454,18 @@ public class ModRecipeProvider extends RecipeProvider {
 
         for (MetalsNBTData metal : MetalsNBTData.values()) {
 
-            ShapelessRecipeBuilder.shapeless(Banners.PATTERN_ITEMS.get("a_"+metal.getNameLower()).get())
+            ShapelessRecipeBuilder.shapeless(ModBannersRegister.PATTERN_ITEMS.get("a_"+metal.getNameLower()).get())
 
-                    .requires(!metal.isDivine() ? ModItems.ITEM_ICONS_ALLOMANCY.get(metal.getNameLower()) : ModItems.ITEM_ICONS_ALLOMANCY_DIVINE.get(metal.getNameLower()))
+                    .requires(!metal.isDivine() ? ModItemsRegister.ITEM_ICONS_ALLOMANCY.get(metal.getNameLower()) : ModItemsRegister.ITEM_ICONS_ALLOMANCY_DIVINE.get(metal.getNameLower()))
                     .requires(Items.PAPER)
-                    .unlockedBy("has_item",has(Banners.PATTERN_ITEMS.get("a_"+metal.getNameLower()).get()))
-                    .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+Banners.PATTERN_ITEMS.get("a_"+metal.getNameLower()).get()+"_pattern"));
+                    .unlockedBy("has_item",has(ModBannersRegister.PATTERN_ITEMS.get("a_"+metal.getNameLower()).get()))
+                    .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+ ModBannersRegister.PATTERN_ITEMS.get("a_"+metal.getNameLower()).get()+"_pattern"));
 
-            ShapelessRecipeBuilder.shapeless(Banners.PATTERN_ITEMS.get("f_"+metal.getNameLower()).get())
-                    .requires(!metal.isDivine() ? ModItems.ITEM_ICONS_FERUCHEMIC.get(metal.getNameLower()) : ModItems.ITEM_ICONS_FERUCHEMIC_DIVINE.get(metal.getNameLower()))
+            ShapelessRecipeBuilder.shapeless(ModBannersRegister.PATTERN_ITEMS.get("f_"+metal.getNameLower()).get())
+                    .requires(!metal.isDivine() ? ModItemsRegister.ITEM_ICONS_FERUCHEMIC.get(metal.getNameLower()) : ModItemsRegister.ITEM_ICONS_FERUCHEMIC_DIVINE.get(metal.getNameLower()))
                     .requires(Items.PAPER)
-                    .unlockedBy("has_item",has(Banners.PATTERN_ITEMS.get("f_"+metal.getNameLower()).get()))
-                    .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+Banners.PATTERN_ITEMS.get("f_"+metal.getNameLower()).get()+"_pattern"));
+                    .unlockedBy("has_item",has(ModBannersRegister.PATTERN_ITEMS.get("f_"+metal.getNameLower()).get()))
+                    .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+ ModBannersRegister.PATTERN_ITEMS.get("f_"+metal.getNameLower()).get()+"_pattern"));
 
         }
 

@@ -11,7 +11,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.recipes.vials.LargeVialItemRecipe;
 import net.rudahee.metallics_arts.data.recipes.vials.SmallVialItemRecipe;
 
-public class ModRecipeTypes {
+public class ModRecipeTypesRegister {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZER =
             DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, MetallicsArts.MOD_ID);
 

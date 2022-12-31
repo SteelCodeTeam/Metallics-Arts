@@ -23,12 +23,12 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.modules.powers.helpers.common_helpers.OnDamagePowers;
 import net.rudahee.metallics_arts.modules.powers.helpers.metal_helpers.*;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,8 +38,6 @@ import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber
 public class PowersEventHandler {
-
-
     @SubscribeEvent
     public static void onLivingEntityDrop(final LivingDropsEvent event) {
 
@@ -47,7 +45,7 @@ public class PowersEventHandler {
          * ZINC FERUQUIMICO
          */
         if (event.getSource().getEntity() instanceof Player && !(event.getEntity() instanceof Player)) {
-            event.getSource().getEntity().getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
+            event.getSource().getEntity().getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(
                     capability -> {
                         if (capability.isDecanting(MetalsNBTData.ZINC)) {
                             Collection<ItemEntity> drops = event.getDrops();
@@ -68,7 +66,7 @@ public class PowersEventHandler {
             if (event.getEntity() instanceof ServerPlayer) {
                 ServerPlayer player = (ServerPlayer) event.getEntity();
 
-                player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+                player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
                     if (data.getSpawnDimension() == null) {
                         int[] pos = {player.level.getLevelData().getXSpawn(),player.level.getLevelData().getYSpawn(),player.level.getLevelData().getZSpawn()};
                         String dim = player.level.dimension().location().toString();
@@ -117,7 +115,7 @@ public class PowersEventHandler {
     public static void onSetSpawn(final PlayerSetSpawnEvent event) {
         Player playerEntity = event.getEntity();
         if (event.getEntity() instanceof ServerPlayer) {
-            playerEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
+            playerEntity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(
                     capabilities -> {
                         int[] pos = {(int) playerEntity.position().x,(int) playerEntity.position().y, (int) playerEntity.position().z};
                         String dim = playerEntity.level.dimension().location().toString();
@@ -134,7 +132,7 @@ public class PowersEventHandler {
     public static void onLivingDeath(final LivingDeathEvent event) {
         if (event.getEntity() instanceof ServerPlayer) {
             ServerPlayer player = (ServerPlayer) event.getEntity();
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(playerCapability -> {
+            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(playerCapability -> {
                 int[] pos = {(int) player.position().x,(int) player.position().y, (int) player.position().z};
                 String dim = player.level.dimension().location().toString();
 
@@ -176,8 +174,8 @@ public class PowersEventHandler {
         if (!event.getEntity().level.isClientSide()) {
             event.getOriginal().revive();
             Player player = event.getEntity();
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
-                event.getOriginal().getCapability(InvestedCapability.PLAYER_CAP).ifPresent(oldData -> {
+            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
+                event.getOriginal().getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(oldData -> {
                     if (oldData.isInvested()) {
                         for (MetalsNBTData mt : MetalsNBTData.values()) {
                             if (oldData.hasAllomanticPower(mt)) {
@@ -199,7 +197,7 @@ public class PowersEventHandler {
                     }
                 });
             });
-            event.getOriginal().getCapability(InvestedCapability.PLAYER_CAP).invalidate();
+            event.getOriginal().getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).invalidate();
             ModNetwork.sync(player);
         }
     }
@@ -242,7 +240,7 @@ public class PowersEventHandler {
                 return;
             }
             Player player = newPlayer;
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
+            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(
                     playerCapability -> {
                         if (playerCapability.isInvested()) {
                             if (player instanceof ServerPlayer) {
@@ -286,7 +284,7 @@ public class PowersEventHandler {
                             }
 
                             if ( !(playerCapability.isBurning(MetalsNBTData.PEWTER) || playerCapability.isDecanting(MetalsNBTData.PEWTER))
-                                    && (player.getMainHandItem().getItem() == ModItems.KOLOSS_BLADE.get() || player.getOffhandItem().getItem() == ModItems.KOLOSS_BLADE.get())) {
+                                    && (player.getMainHandItem().getItem() == ModItemsRegister.KOLOSS_BLADE.get() || player.getOffhandItem().getItem() == ModItemsRegister.KOLOSS_BLADE.get())) {
 
                                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 2, true, true, false));
                                 player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 10, 2, true, true, false));

@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.tags_player;
+package net.rudahee.metallics_arts.data.player;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
+public class InvestedPlayerData implements IInvestedPlayerData {
     private final boolean[] allomantic_powers;
     private final boolean[] feruchemic_powers;
     private final int[] allomantic_reseve;
@@ -31,7 +31,7 @@ public class DefaultInvestedPlayerData implements IDefaultInvestedPlayerData {
     private final ArrayList<MetalsNBTData> list_metal_buff_drain;
 
 
-    public DefaultInvestedPlayerData() {
+    public InvestedPlayerData() {
         int powers = MetalsNBTData.values().length;
         int i = 0;
 

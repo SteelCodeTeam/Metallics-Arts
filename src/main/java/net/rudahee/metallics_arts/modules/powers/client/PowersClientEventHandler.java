@@ -24,18 +24,17 @@ import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.rudahee.metallics_arts.data.packets.*;
-import net.rudahee.metallics_arts.modules.client.ClientUtils;
-import net.rudahee.metallics_arts.modules.client.GUI.AllomanticMetalSelector;
-import net.rudahee.metallics_arts.modules.client.GUI.FeruchemyMetalSelector;
-import net.rudahee.metallics_arts.modules.client.KeyInit;
-import net.rudahee.metallics_arts.modules.tags_player.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.final_client.ClientUtils;
+import net.rudahee.metallics_arts.modules.final_client.GUI.AllomanticMetalSelector;
+import net.rudahee.metallics_arts.modules.final_client.GUI.FeruchemyMetalSelector;
+import net.rudahee.metallics_arts.modules.final_client.KeyInit;
 import net.rudahee.metallics_arts.modules.powers.helpers.metal_helpers.GoldAndElectrumHelpers;
 import net.rudahee.metallics_arts.modules.powers.helpers.metal_helpers.IronAndSteelHelpers;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.network.packets.*;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
@@ -72,7 +71,7 @@ public class PowersClientEventHandler {
             Player player = this.mc.player;
 
             if (player != null && player instanceof Player) {
-                player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
+                player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(
                         playerCapability -> {
                             if (playerCapability.isInvested()) {
 
@@ -134,7 +133,7 @@ public class PowersClientEventHandler {
                                             entity = ((EntityHitResult) trace).getEntity();
                                             if (entity instanceof Player) {
                                                 Player otherPlayer = (Player) entity;
-                                                otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> {
+                                                otherPlayer.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> {
                                                     otherPlayerDeathPos = new BlockPos(cap.getDeathPos()[0],cap.getDeathPos()[1],cap.getDeathPos()[2]);
                                                     otherPlayerDimension = GoldAndElectrumHelpers.getRegistryKeyFromString(cap.getDeathDimension());
                                                 });
@@ -281,7 +280,7 @@ public class PowersClientEventHandler {
 
     int radius = 8;
     boolean copper;
-    private void redoLists(Player player, IDefaultInvestedPlayerData playerCapability) {
+    private void redoLists(Player player, IInvestedPlayerData playerCapability) {
 
         if (this.tickOffset == 0) {
             // Populate the metal lists
@@ -307,7 +306,7 @@ public class PowersClientEventHandler {
 
                 copper = false;
                 for (Player otherPlayer : nearby_allomancers) {
-                    otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
+                    otherPlayer.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(
                             cap -> {
                                 if (cap.isBurning(MetalsNBTData.COPPER)){
                                     copper = true;
@@ -431,7 +430,7 @@ public class PowersClientEventHandler {
         if (player == null || !this.mc.isWindowActive()) {
             return;
         }
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data ->{
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
 
             if (KeyInit.ALLOMANTIC_POWER_SELECTOR.isDown()) {
                 int num_powers = data.getAllomanticPowerCount();
@@ -603,7 +602,7 @@ public class PowersClientEventHandler {
             return;
         }
 
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
 
             if (!data.isInvested()) {
                 return;
@@ -654,7 +653,7 @@ public class PowersClientEventHandler {
                 //List<Player> players = player.level.getEntitiesOfClass(Player.class, new AABB(negative, positive)).stream().filter(playerTarget -> player.getUUID()!= playerTarget.getUUID()).collect(Collectors.toList());
 
                 for (Player otherPlayer: nearby_allomancers) {
-                    otherPlayer.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(
+                    otherPlayer.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(
                             capabilities -> {
                                 if (capabilities.isUsingPowers()) {
                                     ClientUtils.drawMetalLine(stack, playervec, otherPlayer.position(), 5.0F, 1F, 0.6F, 0.6F);

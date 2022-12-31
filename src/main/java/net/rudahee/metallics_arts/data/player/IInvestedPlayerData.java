@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.tags_player;
+package net.rudahee.metallics_arts.data.player;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
@@ -6,7 +6,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 
 import java.util.ArrayList;
 
-public interface IDefaultInvestedPlayerData {
+public interface IInvestedPlayerData {
 
     void tickAllomancyBurningMetals(ServerPlayer player);
 

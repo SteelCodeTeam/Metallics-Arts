@@ -6,9 +6,8 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -56,10 +55,10 @@ public class MetallicsPowersConfig {
         add("dpring_launcher");
 
 
-        add(ModItems.BAND_PEWTER_TIN.get().getDescriptionId());
-        add(ModItems.BAND_PEWTER_TIN.get().getDescription().toString());
-        add(ModItems.RING_PEWTER_TIN.get().getDescriptionId());
-        add(ModItems.RING_PEWTER_TIN.get().getDescription().toString());
+        add(ModItemsRegister.BAND_PEWTER_TIN.get().getDescriptionId());
+        add(ModItemsRegister.BAND_PEWTER_TIN.get().getDescription().toString());
+        add(ModItemsRegister.RING_PEWTER_TIN.get().getDescriptionId());
+        add(ModItemsRegister.RING_PEWTER_TIN.get().getDescription().toString());
 
 
         add(Items.CROSSBOW.getDescriptionId());

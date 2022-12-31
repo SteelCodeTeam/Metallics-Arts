@@ -1,21 +1,27 @@
 package net.rudahee.metallics_arts.setup.registries;
 
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.capabilities.CapabilityToken;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.custom_blocks.BrokenCristalBlock;
-import net.rudahee.metallics_arts.modules.custom_blocks.EttmetalBlock;
-import net.rudahee.metallics_arts.modules.custom_blocks.buddings.AtiumBuddingBlock;
-import net.rudahee.metallics_arts.modules.custom_blocks.buddings.EttmetalBuddingBlock;
-import net.rudahee.metallics_arts.modules.custom_blocks.buddings.LerasiumBuddingBlock;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.data.enums.interfaces.gems.Gems;
 import net.rudahee.metallics_arts.data.enums.interfaces.metals.Metal;
 import net.rudahee.metallics_arts.data.enums.interfaces.metals.MetalGenerationData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.custom_blocks.broken_cristal_block.BrokenCristalBlock;
+import net.rudahee.metallics_arts.modules.custom_blocks.ettmetal_block.EttmetalBlock;
+import net.rudahee.metallics_arts.modules.custom_blocks.buddings.AtiumBuddingBlock;
+import net.rudahee.metallics_arts.modules.custom_blocks.buddings.EttmetalBuddingBlock;
+import net.rudahee.metallics_arts.modules.custom_blocks.buddings.LerasiumBuddingBlock;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,7 +31,7 @@ import java.util.function.ToIntFunction;
 import static net.rudahee.metallics_arts.MetallicsArts.registerBlock;
 
 
-public class ModBlocks {
+public class ModBlocksRegister {
 
     public static final HashMap<String, Block> BLOCK_METAL_ORES = new HashMap<String, Block>();
 
@@ -118,7 +124,7 @@ public class ModBlocks {
             }
         });
 
-        ModBlocks.ETTMETAL_BLOCK = MetallicsArts.registerBlockDecoration(Gems.ETTMETAL.getGemNameLower() + "_block",
+        ModBlocksRegister.ETTMETAL_BLOCK = MetallicsArts.registerBlockDecoration(Gems.ETTMETAL.getGemNameLower() + "_block",
                 () -> {
                     Block block = new EttmetalBlock(Block.Properties.of(Material.HEAVY_METAL)
                             .strength(10f, 10f)
@@ -242,5 +248,22 @@ public class ModBlocks {
             return 12;
             //return funcValue.getValue(BlockStateProperties.LIT) ? value : 0;
         };
+    }
+
+    public static class InvestedCapabilityRegister {
+
+        public static final Capability<IInvestedPlayerData> PLAYER_CAP = CapabilityManager.get(new CapabilityToken<IInvestedPlayerData>(){
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+        });
+
+        public static final ResourceLocation IDENTIFIER = new ResourceLocation(MetallicsArts.MOD_ID, "ma_data");
+
+        public static void register(final RegisterCapabilitiesEvent event) {
+            event.register(IInvestedPlayerData.class);
+        }
+
     }
 }

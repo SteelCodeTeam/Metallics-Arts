@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.PushReaction;
-import net.rudahee.metallics_arts.setup.registries.ModBlocks;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class AtiumBuddingBlock extends AmethystBlock {
 
@@ -34,13 +34,13 @@ public class AtiumBuddingBlock extends AmethystBlock {
             BlockState blockstate = serverLevel.getBlockState(blockpos);
             Block block = null;
             if (canClusterGrowAtState(blockstate)) {
-                block = ModBlocks.SMALL_ATIUM_BUD.get();
-            } else if (blockstate.is(ModBlocks.SMALL_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = ModBlocks.MEDIUM_ATIUM_BUD.get();
-            } else if (blockstate.is(ModBlocks.MEDIUM_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = ModBlocks.LARGE_ATIUM_BUD.get();
-            } else if (blockstate.is(ModBlocks.LARGE_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = ModBlocks.ATIUM_CLUSTER.get();
+                block = ModBlocksRegister.SMALL_ATIUM_BUD.get();
+            } else if (blockstate.is(ModBlocksRegister.SMALL_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlocksRegister.MEDIUM_ATIUM_BUD.get();
+            } else if (blockstate.is(ModBlocksRegister.MEDIUM_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlocksRegister.LARGE_ATIUM_BUD.get();
+            } else if (blockstate.is(ModBlocksRegister.LARGE_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = ModBlocksRegister.ATIUM_CLUSTER.get();
             }
 
             if (block != null) {

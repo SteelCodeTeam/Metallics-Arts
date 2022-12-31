@@ -12,10 +12,10 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraftforge.network.NetworkEvent;
-import net.rudahee.metallics_arts.modules.tags_player.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
-import net.rudahee.metallics_arts.modules.powers.helpers.metal_helpers.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.powers.helpers.metal_helpers.IronAndSteelHelpers;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.Supplier;
 
@@ -67,8 +67,8 @@ public class PullAndPushEntityPacket {
 
                     // If entity are player.
                     if (target instanceof Player || target instanceof ServerPlayer) {
-                        IDefaultInvestedPlayerData sourceCapability = source.getCapability(InvestedCapability.PLAYER_CAP).resolve().get();
-                        IDefaultInvestedPlayerData targetCapability = target.getCapability(InvestedCapability.PLAYER_CAP).resolve().get();
+                        IInvestedPlayerData sourceCapability = source.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).resolve().get();
+                        IInvestedPlayerData targetCapability = target.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).resolve().get();
                         boolean areInSameState = false;
 
                         // if both are decanting or both storing are in same state

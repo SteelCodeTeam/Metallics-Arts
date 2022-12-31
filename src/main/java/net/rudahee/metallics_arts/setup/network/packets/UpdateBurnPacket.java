@@ -4,9 +4,9 @@ package net.rudahee.metallics_arts.setup.network.packets;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.Supplier;
 
@@ -33,7 +33,7 @@ public class UpdateBurnPacket {
         context.get().enqueueWork( () -> {
             ServerPlayer player = context.get().getSender();
 
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> {
+            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> {
                 if (cap.hasAllomanticPower(this.metal) && cap.getAllomanticAmount(this.metal) > 0) {
                         cap.setBurning(this.metal, this.value);
                 } else {

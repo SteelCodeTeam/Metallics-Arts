@@ -14,24 +14,21 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 
 public abstract class Vial extends Item {
-
     private final int maxNuggets;
-
     public Vial(Properties properties,int maxNuggets) {
         super(properties);
         this.maxNuggets = maxNuggets;
 
     }
-
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
         if(!stack.hasTag()){
@@ -102,7 +99,7 @@ public abstract class Vial extends Item {
             return new InteractionResultHolder<>(InteractionResult.FAIL, itemStackIn);
         }
         player.startUsingItem(hand);
-        InteractionResultHolder<ItemStack> res = player.getCapability(InvestedCapability.PLAYER_CAP).map(data -> {
+        InteractionResultHolder<ItemStack> res = player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).map(data -> {
             //If all the ones being filled are full, don't allow
             if (itemStackIn.hasTag()) {
                 for (MetalsNBTData metal : MetalsNBTData.values()) {
@@ -122,7 +119,7 @@ public abstract class Vial extends Item {
         if (!itemStack.hasTag()) {
             return itemStack;
         }
-        livingEntity.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+        livingEntity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
             for (MetalsNBTData metal : MetalsNBTData.values()) {
                 if (itemStack.getTag().contains(metal.getNameLower()) && itemStack.getTag().getInt(metal.getNameLower())>0) {
                     data.setAllomanticMetalsAmount(metal,itemStack.getTag().getInt(metal.getNameLower()) + data.getAllomanticAmount(metal));
@@ -134,9 +131,9 @@ public abstract class Vial extends Item {
             itemStack.shrink(1);
             ItemStack item = null;
             if(this.maxNuggets==5){
-                item = new ItemStack(ModItems.SMALL_VIAL.get());
+                item = new ItemStack(ModItemsRegister.SMALL_VIAL.get());
             }else {
-                item = new ItemStack(ModItems.LARGE_VIAL.get());
+                item = new ItemStack(ModItemsRegister.LARGE_VIAL.get());
             }
 
             CompoundTag data = new CompoundTag();
@@ -147,9 +144,9 @@ public abstract class Vial extends Item {
 
             if (!((Player) livingEntity).getInventory().add(item)) {
                 if(this.maxNuggets==5){
-                    world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItems.SMALL_VIAL.get(), 1)));
+                    world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItemsRegister.SMALL_VIAL.get(), 1)));
                 }else {
-                    world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItems.LARGE_VIAL.get(), 1)));
+                    world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItemsRegister.LARGE_VIAL.get(), 1)));
                 }
             }
         }
@@ -186,9 +183,9 @@ public abstract class Vial extends Item {
 
         if (group == MetallicsArts.MA_TAB){
             if(this.maxNuggets==5){
-                resultItem = new ItemStack(ModItems.SMALL_VIAL.get(),1);
+                resultItem = new ItemStack(ModItemsRegister.SMALL_VIAL.get(),1);
             }else if (this.maxNuggets==10) {
-                resultItem = new ItemStack(ModItems.LARGE_VIAL.get(),1);
+                resultItem = new ItemStack(ModItemsRegister.LARGE_VIAL.get(),1);
             }
             CompoundTag nbt = new CompoundTag();
             for (MetalsNBTData mt : MetalsNBTData.values()) {

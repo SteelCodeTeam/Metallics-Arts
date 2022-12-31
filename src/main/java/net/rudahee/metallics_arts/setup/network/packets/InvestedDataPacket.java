@@ -5,8 +5,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
-import net.rudahee.metallics_arts.modules.tags_player.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -22,9 +22,9 @@ public class InvestedDataPacket {
      * @param data   the AllomancerCapability data for the player
      * @param player the player
      */
-    public InvestedDataPacket(IDefaultInvestedPlayerData data, Player player) {
+    public InvestedDataPacket(IInvestedPlayerData data, Player player) {
         this.uuid = player.getUUID();
-        this.nbt = (data != null && InvestedCapability.PLAYER_CAP != null) ? data.save() : new CompoundTag();
+        this.nbt = (data != null && ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP != null) ? data.save() : new CompoundTag();
 
     }
 
@@ -48,8 +48,8 @@ public class InvestedDataPacket {
         ctx.get().enqueueWork(() -> {
             Player player = Minecraft.getInstance().level.getPlayerByUUID(this.uuid);
 
-            if (player != null && InvestedCapability.PLAYER_CAP != null) {
-                player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> cap.load(this.nbt));
+            if (player != null && ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP != null) {
+                player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> cap.load(this.nbt));
             }
         });
 

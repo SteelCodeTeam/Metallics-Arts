@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.items.banners;
+package net.rudahee.metallics_arts.setup.registries;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -15,7 +15,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 
 import java.util.HashMap;
 
-public class Banners {
+public class ModBannersRegister {
     public static final DeferredRegister<BannerPattern> BANNER_PATTERN =
             DeferredRegister.create(Registry.BANNER_PATTERN_REGISTRY, MetallicsArts.MOD_ID);
 

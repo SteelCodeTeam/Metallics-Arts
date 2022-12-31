@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.TickingBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.rudahee.metallics_arts.setup.registries.ModBlocks;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 
 public class BendalloyAndCadmiunHelpers {
@@ -39,7 +39,7 @@ public class BendalloyAndCadmiunHelpers {
             BlockState block = world.getBlockState(blockPos);
             BlockEntity tileEntity = world.getBlockEntity(blockPos);
 
-            if (block.is(ModBlocks.BUDDING_ATIUM.get()) || block.is(ModBlocks.BUDDING_LERASIUM.get()) || block.is(ModBlocks.BUDDING_ETTMETAL.get()) ) {
+            if (block.is(ModBlocksRegister.BUDDING_ATIUM.get()) || block.is(ModBlocksRegister.BUDDING_LERASIUM.get()) || block.is(ModBlocksRegister.BUDDING_ETTMETAL.get()) ) {
                 return;
             }
 

@@ -1,7 +1,7 @@
 package net.rudahee.metallics_arts.setup.registries;
 
 
-public class ModContainers {
+public class ModContainersRegister {
 
     /*public static DeferredRegister<ContainerType<?>> CONTAINERS
             = DeferredRegister.create(ForgeRegistries.CONTAINERS, MetallicsArts.MOD_ID);

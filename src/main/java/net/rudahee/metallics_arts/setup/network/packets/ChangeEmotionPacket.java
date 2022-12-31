@@ -5,8 +5,8 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
 import net.rudahee.metallics_arts.modules.powers.helpers.metal_helpers.ZincAndBrassHelpers;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.Supplier;
 
@@ -44,7 +44,7 @@ public class ChangeEmotionPacket {
             if (target == null) {
                 return;
             }
-            allomancer.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+            allomancer.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
                 enhanced = data.getEnhanced();
             });
 

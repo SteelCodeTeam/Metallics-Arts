@@ -3,9 +3,9 @@ package net.rudahee.metallics_arts.setup.network.packets;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.Supplier;
 
@@ -31,7 +31,7 @@ public class UpdateStoragePacket {
         context.get().enqueueWork( () -> {
             ServerPlayer player = context.get().getSender();
 
-            player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(cap -> {
+            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> {
 
                 if (cap.hasFeruchemicPower(this.metal)) {
                     cap.setStoring(this.metal, this.value);

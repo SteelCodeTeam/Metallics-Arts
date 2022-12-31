@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.client.GUI;
+package net.rudahee.metallics_arts.modules.final_client.GUI;
 
 
 import com.mojang.blaze3d.platform.Window;
@@ -11,9 +11,9 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
-import net.rudahee.metallics_arts.modules.client.KeyInit;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.modules.final_client.KeyInit;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.awt.*;
@@ -110,7 +110,7 @@ public class InvestedMetalOverlay implements IGuiOverlay {
 
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, meterLocation);
-        player.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(data -> {
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
 
 
 

@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_blocks;
+package net.rudahee.metallics_arts.modules.custom_blocks.broken_cristal_block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.damagesource.DamageSource;

@@ -22,10 +22,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.rudahee.metallics_arts.modules.powers.MetallicsPowersConfig;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
 import net.rudahee.metallics_arts.data.enums.interfaces.metals.Metal;
-import net.rudahee.metallics_arts.setup.registries.ModItems;
+import net.rudahee.metallics_arts.modules.powers.MetallicsPowersConfig;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -49,13 +49,13 @@ public class IronAndSteelHelpers {
 
         List <Item> list = new ArrayList<>();
 
-        list.addAll(ModItems.ITEM_METAL_NUGGET.values());
-        list.addAll(ModItems.ITEM_GEMS_NUGGET.values());
+        list.addAll(ModItemsRegister.ITEM_METAL_NUGGET.values());
+        list.addAll(ModItemsRegister.ITEM_GEMS_NUGGET.values());
 
         /**Get a list of nuggets of every metal except, ALUMINIUM and SILVER*/
         list = list.stream()
-                .filter(item -> !item.equals(ModItems.ITEM_METAL_NUGGET.get(MetalsNBTData.ALUMINUM.getGemNameLower())))
-                .filter(item -> !item.equals(ModItems.ITEM_METAL_NUGGET.get(Metal.SILVER.getMetalNameLower())))
+                .filter(item -> !item.equals(ModItemsRegister.ITEM_METAL_NUGGET.get(MetalsNBTData.ALUMINUM.getGemNameLower())))
+                .filter(item -> !item.equals(ModItemsRegister.ITEM_METAL_NUGGET.get(Metal.SILVER.getMetalNameLower())))
                 .collect(Collectors.toList());list.add(Items.IRON_NUGGET);
         list.add(Items.GOLD_NUGGET);
 

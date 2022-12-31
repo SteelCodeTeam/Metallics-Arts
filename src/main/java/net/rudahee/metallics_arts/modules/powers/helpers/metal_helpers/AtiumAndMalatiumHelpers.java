@@ -3,9 +3,9 @@ package net.rudahee.metallics_arts.modules.powers.helpers.metal_helpers;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
-import net.rudahee.metallics_arts.modules.tags_player.IDefaultInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.tags_player.InvestedCapability;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 
 public class AtiumAndMalatiumHelpers {
@@ -28,7 +28,7 @@ public class AtiumAndMalatiumHelpers {
         return new AtiumAndMalatiumHelpers().internalDamageWhenUseAtium(source, target, qty);
     }
 
-    public static float getCalculateComplexDamage(IDefaultInvestedPlayerData targetCapability, IDefaultInvestedPlayerData sourceCapability, float damage) {
+    public static float getCalculateComplexDamage(IInvestedPlayerData targetCapability, IInvestedPlayerData sourceCapability, float damage) {
 
         int tar = 0;
         int sour = 0;
@@ -99,7 +99,7 @@ public class AtiumAndMalatiumHelpers {
         return damage;
     }
 
-    public static float getCalculateSimpleDamage(IDefaultInvestedPlayerData targetCapability, float damage) {
+    public static float getCalculateSimpleDamage(IInvestedPlayerData targetCapability, float damage) {
         if (targetCapability.isBurning(MetalsNBTData.LERASIUM) && targetCapability.getEnhanced()) { //lerasium + duralumin
             return 0;
         } else if (targetCapability.isBurning(MetalsNBTData.LERASIUM)) { //solo lerasium
@@ -120,9 +120,9 @@ public class AtiumAndMalatiumHelpers {
 
     private float internalDamageWhenUseAtium(Player source, Player target, float receivedQty) {
         qty = receivedQty;
-        source.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(sourceCap -> {
+        source.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(sourceCap -> {
 
-            target.getCapability(InvestedCapability.PLAYER_CAP).ifPresent(targetCap -> {
+            target.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(targetCap -> {
 
                 int sourceState = 0;
                 int targetState = 0;
