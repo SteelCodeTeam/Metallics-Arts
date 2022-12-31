@@ -8,9 +8,9 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
-import net.rudahee.metallics_arts.data.enums.interfaces.gems.Gems;
-import net.rudahee.metallics_arts.data.enums.interfaces.metals.Metal;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
 
 import java.util.Arrays;
@@ -27,10 +27,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
         ModelFile itemHandHeld = getExistingFile(mcLoc("item/handheld"));
         //ModelFile itemHandHeldLarge = ItemModelBuilder getExistingFile(mcLoc("item/handheld_large"));
-        List<Metal> metalList = Arrays.asList(Metal.values());
-        List<Gems> gemList = Arrays.asList(Gems.values());
+        List<MetalEnum> metalEnumList = Arrays.asList(MetalEnum.values());
+        List<GemsEnum> gemList = Arrays.asList(GemsEnum.values());
 
-        metalList.forEach(metal -> {
+        metalEnumList.forEach(metal -> {
             builder(itemGenerated,"item/"+ metal.getMetalNameLower()+"_ingot", "item/metal/ingot/" +metal.getMetalNameLower()+"_ingot");
             builder(itemGenerated,"item/"+ metal.getMetalNameLower()+"_nugget", "item/metal/nugget/" +metal.getMetalNameLower()+"_nugget");
             if (!metal.isAlloy()) {
@@ -45,7 +45,7 @@ public class ModItemModelProvider extends ItemModelProvider {
             builder(itemGenerated,"item/"+ gem.getGemNameLower()+"_nugget", "item/gems/nugget/" +gem.getGemNameLower()+"_nugget");
         });
 
-        for (MetalsNBTData metals : MetalsNBTData.values()) {
+        for (MetalTagEnum metals : MetalTagEnum.values()) {
             Item item = ModBannersRegister.PATTERN_ITEMS.get("a_"+metals.getNameLower()).get();
             String model =  "item/pattern/" + ForgeRegistries.ITEMS.getKey(ModBannersRegister.PATTERN_ITEMS.get("a_"+metals.getNameLower()).get()).getPath();
             getBuilder(ForgeRegistries.ITEMS.getKey(item).getPath()).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", modLoc(model));
@@ -136,7 +136,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 
 
-        for (MetalsNBTData metal: MetalsNBTData.values()) {
+        for (MetalTagEnum metal: MetalTagEnum.values()) {
             builder(itemGenerated,"item/"+metal.getNameLower()+"_allomantic_icon","gui/allomantic_symbols/"+metal.getNameLower()+"_symbol");
             builder(itemGenerated,"item/"+metal.getNameLower()+"_feruchemic_icon","gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol");
         }

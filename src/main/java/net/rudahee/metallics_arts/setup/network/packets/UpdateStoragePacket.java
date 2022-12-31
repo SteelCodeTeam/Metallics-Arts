@@ -3,23 +3,23 @@ package net.rudahee.metallics_arts.setup.network.packets;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.Supplier;
 
 public class UpdateStoragePacket {
-    private final MetalsNBTData metal;
+    private final MetalTagEnum metal;
     private final boolean value;
 
-    public UpdateStoragePacket(MetalsNBTData metal, boolean value) {
+    public UpdateStoragePacket(MetalTagEnum metal, boolean value) {
         this.metal = metal;
         this.value = value;
     }
 
     public static UpdateStoragePacket decode(FriendlyByteBuf buffer) {
-        return new UpdateStoragePacket(buffer.readEnum(MetalsNBTData.class), buffer.readBoolean());
+        return new UpdateStoragePacket(buffer.readEnum(MetalTagEnum.class), buffer.readBoolean());
     }
 
     public void encode(FriendlyByteBuf buffer) {

@@ -5,7 +5,7 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class ModBlockStateProvider extends BlockStateProvider {
@@ -84,16 +84,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 
         model = new ModelFile.UncheckedModelFile(modLoc("block/atium_cristal_block"));
-        simpleBlock(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ATIUM.getGemNameLower()));
-        simpleBlockItem(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ATIUM.getGemNameLower()),model);
+        simpleBlock(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(MetalTagEnum.ATIUM.getGemNameLower()));
+        simpleBlockItem(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(MetalTagEnum.ATIUM.getGemNameLower()),model);
 
         model = new ModelFile.UncheckedModelFile(modLoc("block/lerasium_cristal_block"));
-        simpleBlock(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.LERASIUM.getGemNameLower()));
-        simpleBlockItem(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.LERASIUM.getGemNameLower()),model);
+        simpleBlock(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(MetalTagEnum.LERASIUM.getGemNameLower()));
+        simpleBlockItem(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(MetalTagEnum.LERASIUM.getGemNameLower()),model);
 
         model = new ModelFile.UncheckedModelFile(modLoc("block/ettmetal_cristal_block"));
-        simpleBlock(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ETTMETAL.getGemNameLower()));
-        simpleBlockItem(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(MetalsNBTData.ETTMETAL.getGemNameLower()),model);
+        simpleBlock(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(MetalTagEnum.ETTMETAL.getGemNameLower()));
+        simpleBlockItem(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(MetalTagEnum.ETTMETAL.getGemNameLower()),model);
 
 
     }

@@ -5,7 +5,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
-import net.rudahee.metallics_arts.modules.powers.helpers.metal_helpers.ZincAndBrassHelpers;
+import net.rudahee.metallics_arts.modules.logic.server.powers.ZincAndBrassHelpers;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.Supplier;

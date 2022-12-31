@@ -9,10 +9,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalMindData;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalSpikesData;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
-import net.rudahee.metallics_arts.data.enums.interfaces.metals.Metal;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
@@ -135,7 +135,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .save(recipesConsumer, new ResourceLocation(item.getDescriptionId() + "_to_" + ModItemsRegister.ITEM_GEMS_BASE.get(name).getDescriptionId()));
         });
 
-        Arrays.asList(Metal.values()).forEach(metal -> {
+        Arrays.asList(MetalEnum.values()).forEach(metal -> {
             if (!metal.isAlloy()){
                 SimpleCookingRecipeBuilder.cooking(Ingredient.of(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())), ModItemsRegister.ITEM_METAL_INGOT.get(metal.getMetalNameLower()), 0.5f, 250, RecipeSerializer.SMELTING_RECIPE)
                         .unlockedBy("has_block", has(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())))
@@ -143,7 +143,7 @@ public class ModRecipeProvider extends RecipeProvider {
             }
         });
 
-        Arrays.asList(Metal.values()).forEach(metal -> {
+        Arrays.asList(MetalEnum.values()).forEach(metal -> {
             if (!metal.isAlloy()){
                 SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())), ModItemsRegister.ITEM_METAL_INGOT.get(metal.getMetalNameLower()), 0.8f, 100)
                         .unlockedBy("has_block", has(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())))
@@ -164,7 +164,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         });*/
 
-        Arrays.asList(MetalMindData.values()).forEach(object -> {
+        Arrays.asList(MetalMindEnum.values()).forEach(object -> {
             Item item1, item2;
 
             //BLOCKS
@@ -242,7 +242,7 @@ public class ModRecipeProvider extends RecipeProvider {
         });
 
         //SPIKES
-        Arrays.asList(MetalSpikesData.values()).forEach(object -> {
+        Arrays.asList(SpikeEnum.values()).forEach(object -> {
 
             Item head, body;
             if (object.isGems()) {
@@ -452,7 +452,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .save(recipesConsumer,new ResourceLocation(key+"_feruchemic_icon"));
         });
 
-        for (MetalsNBTData metal : MetalsNBTData.values()) {
+        for (MetalTagEnum metal : MetalTagEnum.values()) {
 
             ShapelessRecipeBuilder.shapeless(ModBannersRegister.PATTERN_ITEMS.get("a_"+metal.getNameLower()).get())
 

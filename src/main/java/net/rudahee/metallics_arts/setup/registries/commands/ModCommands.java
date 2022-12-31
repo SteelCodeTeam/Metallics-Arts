@@ -10,9 +10,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
-import net.rudahee.metallics_arts.modules.items.metalminds.bands.BandMindAbstract;
-import net.rudahee.metallics_arts.modules.items.vials.Vial;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.modules.custom_items.metal_minds.BandMindAbstract;
+import net.rudahee.metallics_arts.modules.custom_items.vials.Vial;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
@@ -83,83 +83,83 @@ public class ModCommands {
                                 )
                                 .then(Commands.literal("steel")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.STEEL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.STEEL, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("iron")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.IRON, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.IRON, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("tin")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.TIN, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.TIN, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("pewter")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.PEWTER, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.PEWTER, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("copper")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.COPPER, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.COPPER, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("bronze")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.BRONZE, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.BRONZE, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("zinc")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.ZINC, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.ZINC, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("brass")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.BRASS, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.BRASS, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("chromium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.CHROMIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.CHROMIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("nicrosil")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.NICROSIL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.NICROSIL, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("aluminum")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.ALUMINUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.ALUMINUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("duralumin")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.DURALUMIN, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.DURALUMIN, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("cadmium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.CADMIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.CADMIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("bendalloy")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.BENDALLOY, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.BENDALLOY, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("electrum")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.ELECTRUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.ELECTRUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("gold")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.GOLD, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.GOLD, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("atium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.ATIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.ATIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("malatium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.MALATIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.MALATIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("lerasium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.LERASIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.LERASIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("ettmetal")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context,MetalsNBTData.ETTMETAL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.ETTMETAL, EntityArgument.getPlayer(context, "target"))))
                                 )
                         )
                         .then(Commands.literal("feruchemic")
@@ -169,83 +169,83 @@ public class ModCommands {
                                 )
                                 .then(Commands.literal("steel")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.STEEL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.STEEL, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("iron")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.IRON, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.IRON, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("tin")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.TIN, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.TIN, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("pewter")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.PEWTER, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.PEWTER, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("copper")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.COPPER, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.COPPER, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("bronze")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.BRONZE, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.BRONZE, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("zinc")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.ZINC, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.ZINC, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("brass")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.BRASS, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.BRASS, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("chromium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.CHROMIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.CHROMIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("nicrosil")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.NICROSIL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.NICROSIL, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("aluminum")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.ALUMINUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.ALUMINUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("duralumin")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.DURALUMIN, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.DURALUMIN, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("cadmium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.CADMIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.CADMIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("bendalloy")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.BENDALLOY, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.BENDALLOY, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("electrum")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.ELECTRUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.ELECTRUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("gold")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.GOLD, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.GOLD, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("atium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.ATIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.ATIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("malatium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.MALATIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.MALATIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("lerasium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.LERASIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.LERASIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("ettmetal")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context,MetalsNBTData.ETTMETAL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.ETTMETAL, EntityArgument.getPlayer(context, "target"))))
                                 )
                         )
                 )
@@ -264,83 +264,83 @@ public class ModCommands {
                                 )
                                 .then(Commands.literal("steel")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.STEEL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.STEEL, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("iron")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.IRON, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.IRON, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("tin")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.TIN, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.TIN, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("pewter")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.PEWTER, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.PEWTER, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("copper")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.COPPER, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.COPPER, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("bronze")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.BRONZE, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.BRONZE, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("zinc")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.ZINC, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.ZINC, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("brass")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.BRASS, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.BRASS, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("chromium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.CHROMIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.CHROMIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("nicrosil")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.NICROSIL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.NICROSIL, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("aluminum")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.ALUMINUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.ALUMINUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("duralumin")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.DURALUMIN, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.DURALUMIN, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("cadmium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.CADMIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.CADMIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("bendalloy")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.BENDALLOY, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.BENDALLOY, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("electrum")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.ELECTRUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.ELECTRUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("gold")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.GOLD, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.GOLD, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("atium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.ATIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.ATIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("malatium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.MALATIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.MALATIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("lerasium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.LERASIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.LERASIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("ettmetal")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addAllomanticPower(context,MetalsNBTData.ETTMETAL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addAllomanticPower(context, MetalTagEnum.ETTMETAL, EntityArgument.getPlayer(context, "target"))))
                                 )
                         )
                         .then(Commands.literal("feruchemic")
@@ -350,83 +350,83 @@ public class ModCommands {
                                 )
                                 .then(Commands.literal("steel")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.STEEL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.STEEL, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("iron")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.IRON, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.IRON, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("tin")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.TIN, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.TIN, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("pewter")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.PEWTER, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.PEWTER, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("copper")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.COPPER, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.COPPER, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("bronze")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.BRONZE, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.BRONZE, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("zinc")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.ZINC, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.ZINC, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("brass")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.BRASS, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.BRASS, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("chromium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.CHROMIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.CHROMIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("nicrosil")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.NICROSIL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.NICROSIL, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("aluminum")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.ALUMINUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.ALUMINUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("duralumin")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.DURALUMIN, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.DURALUMIN, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("cadmium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.CADMIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.CADMIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("bendalloy")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.BENDALLOY, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.BENDALLOY, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("electrum")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.ELECTRUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.ELECTRUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("gold")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.GOLD, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.GOLD, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("atium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.ATIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.ATIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("malatium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.MALATIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.MALATIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("lerasium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.LERASIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.LERASIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("ettmetal")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> addFeruchemicPower(context,MetalsNBTData.ETTMETAL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> addFeruchemicPower(context, MetalTagEnum.ETTMETAL, EntityArgument.getPlayer(context, "target"))))
                                 )
                         )
                 )
@@ -442,83 +442,83 @@ public class ModCommands {
                                 )
                                 .then(Commands.literal("steel")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.STEEL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.STEEL, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("iron")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.IRON, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.IRON, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("tin")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.TIN, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.TIN, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("pewter")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.PEWTER, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.PEWTER, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("copper")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.COPPER, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.COPPER, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("bronze")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.BRONZE, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.BRONZE, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("zinc")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.ZINC, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.ZINC, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("brass")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.BRASS, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.BRASS, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("chromium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.CHROMIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.CHROMIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("nicrosil")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.NICROSIL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.NICROSIL, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("aluminum")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.ALUMINUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.ALUMINUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("duralumin")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.DURALUMIN, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.DURALUMIN, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("cadmium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.CADMIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.CADMIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("bendalloy")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.BENDALLOY, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.BENDALLOY, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("electrum")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.ELECTRUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.ELECTRUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("gold")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.GOLD, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.GOLD, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("atium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.ATIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.ATIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("malatium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.MALATIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.MALATIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("lerasium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.LERASIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.LERASIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("ettmetal")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeAllomanticPower(context,MetalsNBTData.ETTMETAL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeAllomanticPower(context, MetalTagEnum.ETTMETAL, EntityArgument.getPlayer(context, "target"))))
                                 )
                         )
                         .then(Commands.literal("feruchemic")
@@ -528,83 +528,83 @@ public class ModCommands {
                                 )
                                 .then(Commands.literal("steel")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.STEEL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.STEEL, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("iron")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.IRON, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.IRON, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("tin")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.TIN, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.TIN, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("pewter")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.PEWTER, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.PEWTER, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("copper")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.COPPER, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.COPPER, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("bronze")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.BRONZE, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.BRONZE, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("zinc")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.ZINC, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.ZINC, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("brass")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.BRASS, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.BRASS, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("chromium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.CHROMIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.CHROMIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("nicrosil")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.NICROSIL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.NICROSIL, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("aluminum")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.ALUMINUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.ALUMINUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("duralumin")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.DURALUMIN, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.DURALUMIN, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("cadmium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.CADMIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.CADMIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("bendalloy")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.BENDALLOY, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.BENDALLOY, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("electrum")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.ELECTRUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.ELECTRUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("gold")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.GOLD, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.GOLD, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("atium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.ATIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.ATIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("malatium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.MALATIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.MALATIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("lerasium")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.LERASIUM, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.LERASIUM, EntityArgument.getPlayer(context, "target"))))
                                 )
                                 .then(Commands.literal("ettmetal")
                                         .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> removeFeruchemicPower(context,MetalsNBTData.ETTMETAL, EntityArgument.getPlayer(context, "target"))))
+                                                .executes(context -> removeFeruchemicPower(context, MetalTagEnum.ETTMETAL, EntityArgument.getPlayer(context, "target"))))
                                 )
                         )
                 )
@@ -629,58 +629,58 @@ public class ModCommands {
         if (band.equals("band_steel_iron")) {
 
             metalmind = new ItemStack(ModItemsRegister.BAND_STEEL_IRON.get());
-            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.IRON, MetalsNBTData.STEEL);
+            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.IRON, MetalTagEnum.STEEL);
 
         }else if(band.equals("band_zinc_brass")) {
 
             metalmind = new ItemStack(ModItemsRegister.BAND_ZINC_BRASS.get());
-            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.ZINC, MetalsNBTData.BRASS);
+            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.ZINC, MetalTagEnum.BRASS);
 
         }else if(band.equals("band_aluminium_duralumin")) {
 
             metalmind = new ItemStack(ModItemsRegister.BAND_ALUMINUM_DURALUMIN.get());
-            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.ALUMINUM, MetalsNBTData.DURALUMIN);
+            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.ALUMINUM, MetalTagEnum.DURALUMIN);
 
         }else if(band.equals("band_atium_malatium")) {
 
             metalmind = new ItemStack(ModItemsRegister.BAND_ATIUM_MALATIUM.get());
-            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.ATIUM, MetalsNBTData.MALATIUM);
+            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.ATIUM, MetalTagEnum.MALATIUM);
 
         }else if(band.equals("band_cadmium_bendalloy")) {
 
             metalmind = new ItemStack(ModItemsRegister.BAND_CADMIUM_BENDALLOY.get());
-            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.CADMIUM, MetalsNBTData.BENDALLOY);
+            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.CADMIUM, MetalTagEnum.BENDALLOY);
 
         }else if(band.equals("band_chromium_nicrosil")) {
 
             metalmind = new ItemStack(ModItemsRegister.BAND_CHROMIUM_NICROSIL.get());
-            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.CHROMIUM, MetalsNBTData.NICROSIL);
+            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.CHROMIUM, MetalTagEnum.NICROSIL);
 
         }else if(band.equals("band_copper_bronze")) {
 
             metalmind = new ItemStack(ModItemsRegister.BAND_COPPER_BRONZE.get());
-            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.COPPER, MetalsNBTData.BRONZE);
+            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.COPPER, MetalTagEnum.BRONZE);
 
         }else if(band.equals("band_electrum_gold")) {
 
             metalmind = new ItemStack(ModItemsRegister.BAND_ELECTRUM_GOLD.get());
-            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.GOLD, MetalsNBTData.ELECTRUM);
+            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.GOLD, MetalTagEnum.ELECTRUM);
 
         }else if(band.equals("band_lerasium_ettmetal")) {
 
             metalmind = new ItemStack(ModItemsRegister.BAND_LERASIUM_ETTMETAL.get());
-            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.LERASIUM, MetalsNBTData.ETTMETAL);
+            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.LERASIUM, MetalTagEnum.ETTMETAL);
 
         }else if(band.equals("band_pewter_tin")) {
 
             metalmind = new ItemStack(ModItemsRegister.BAND_PEWTER_TIN.get());
-            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.TIN, MetalsNBTData.PEWTER);
+            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.TIN, MetalTagEnum.PEWTER);
 
         }
         else{
 
             metalmind = new ItemStack(ModItemsRegister.BAND_PEWTER_TIN.get());
-            nbt = BandMindAbstract.addBandTagsFull(MetalsNBTData.TIN, MetalsNBTData.PEWTER);
+            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.TIN, MetalTagEnum.PEWTER);
 
         }
         metalmind.setTag(nbt);
@@ -690,25 +690,25 @@ public class ModCommands {
         return  1;
     }
 
-    public static int addAllomanticPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
+    public static int addAllomanticPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, ServerPlayer player){
 
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
-            p.addAllomanticPower(metalsNBTData);
+            p.addAllomanticPower(metalTagEnum);
                 }
         );
         ModNetwork.sync(player);
-        player.sendSystemMessage(Component.translatable("Added " + metalsNBTData.getNameLower() + " allomantic power to " + player.getScoreboardName()));
+        player.sendSystemMessage(Component.translatable("Added " + metalTagEnum.getNameLower() + " allomantic power to " + player.getScoreboardName()));
 
         return 1;
     }
-    public static int addFeruchemicPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
+    public static int addFeruchemicPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, ServerPlayer player){
 
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
-                    p.addFeruchemicPower(metalsNBTData);
+                    p.addFeruchemicPower(metalTagEnum);
                 }
         );
         ModNetwork.sync(player);
-        player.sendSystemMessage(Component.translatable("Added " + metalsNBTData.getNameLower() + " feruchemic power to " + player.getScoreboardName()));
+        player.sendSystemMessage(Component.translatable("Added " + metalTagEnum.getNameLower() + " feruchemic power to " + player.getScoreboardName()));
 
         return 1;
     }
@@ -752,9 +752,9 @@ public class ModCommands {
     public static int addRandomPower(CommandContext<CommandSourceStack> context, ServerPlayer player){
 
         Random random = new Random();
-        MetalsNBTData metal;
+        MetalTagEnum metal;
         if (player != null){
-            metal = MetalsNBTData.values()[random.nextInt(MetalsNBTData.values().length)];
+            metal = MetalTagEnum.values()[random.nextInt(MetalTagEnum.values().length)];
             if (Math.random()>0.5){
                 addFeruchemicPower(context,metal, player);
             }else{
@@ -765,25 +765,25 @@ public class ModCommands {
         return 1;
     }
 
-    public static int removeAllomanticPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
+    public static int removeAllomanticPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, ServerPlayer player){
 
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
-                    p.removeAllomanticPower(metalsNBTData);
+                    p.removeAllomanticPower(metalTagEnum);
                 });
 
         ModNetwork.sync(player);
-        player.sendSystemMessage(Component.translatable("Revoke " + metalsNBTData.getNameLower() + " allomantic power to " + player.getScoreboardName()));
+        player.sendSystemMessage(Component.translatable("Revoke " + metalTagEnum.getNameLower() + " allomantic power to " + player.getScoreboardName()));
 
         return 1;
     }
-    public static int removeFeruchemicPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
+    public static int removeFeruchemicPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, ServerPlayer player){
 
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
-                    p.removeFeruchemicPower(metalsNBTData);
+                    p.removeFeruchemicPower(metalTagEnum);
                 }
         );
         ModNetwork.sync(player);
-        player.sendSystemMessage(Component.translatable("Revoke " + metalsNBTData.getNameLower() + " feruchemic power to " + player.getScoreboardName()));
+        player.sendSystemMessage(Component.translatable("Revoke " + metalTagEnum.getNameLower() + " feruchemic power to " + player.getScoreboardName()));
 
         return 1;
     }
@@ -822,15 +822,15 @@ public class ModCommands {
 
         return 1;
     }
-    public static int getAllomanticPower (CommandContext<CommandSourceStack> context, MetalsNBTData metalsNBTData, ServerPlayer player){
+    public static int getAllomanticPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, ServerPlayer player){
 
-        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendSimpleMessage(player, cap.hasAllomanticPower(metalsNBTData), metalsNBTData, "allomantic"));
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendSimpleMessage(player, cap.hasAllomanticPower(metalTagEnum), metalTagEnum, "allomantic"));
 
         return 1;
     }
-    public static int getFeruchemicPower (CommandContext<CommandSourceStack> context,MetalsNBTData metalsNBTData, ServerPlayer player){
+    public static int getFeruchemicPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, ServerPlayer player){
 
-            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendSimpleMessage(player, cap.hasFeruchemicPower(metalsNBTData), metalsNBTData, "feruchemic"));
+            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendSimpleMessage(player, cap.hasFeruchemicPower(metalTagEnum), metalTagEnum, "feruchemic"));
 
         return 1;
     }
@@ -848,24 +848,24 @@ public class ModCommands {
 
         return 1;
     }
-    private static void sendAllMessage(ServerPlayer finalPlayerEntity, ArrayList<MetalsNBTData> result, String type) {
+    private static void sendAllMessage(ServerPlayer finalPlayerEntity, ArrayList<MetalTagEnum> result, String type) {
 
-        ArrayList<MetalsNBTData> allMetals = new ArrayList<>(Arrays.asList(MetalsNBTData.values()));
+        ArrayList<MetalTagEnum> allMetals = new ArrayList<>(Arrays.asList(MetalTagEnum.values()));
 
 
         if (type.equals("all") || type.equals("allomantic")) {
 
             StringBuilder allAlomanticMetalsHave = new StringBuilder();
 
-            for (MetalsNBTData metal: result) {
+            for (MetalTagEnum metal: result) {
                 allAlomanticMetalsHave.append(metal.getNameLower() + " ");
             }
 
             StringBuilder allAllomanticMetalsDontHave = new StringBuilder();
 
-            ArrayList<MetalsNBTData> resultAllomanticDontHave = new ArrayList<>(allMetals.stream().filter(f-> !result.contains(f)).collect(Collectors.toList()));
+            ArrayList<MetalTagEnum> resultAllomanticDontHave = new ArrayList<>(allMetals.stream().filter(f-> !result.contains(f)).collect(Collectors.toList()));
 
-            for (MetalsNBTData metal: resultAllomanticDontHave) {
+            for (MetalTagEnum metal: resultAllomanticDontHave) {
                 allAllomanticMetalsDontHave.append(metal.getNameLower() + " ");
             }
 
@@ -875,15 +875,15 @@ public class ModCommands {
         } else if (type.equals("all") || type.equals("feruchemic")) {
             StringBuilder allFeruchemicMetalsHave = new StringBuilder();
 
-            for (MetalsNBTData metal: result) {
+            for (MetalTagEnum metal: result) {
                 allFeruchemicMetalsHave.append(metal.getNameLower() + " ");
             }
 
             StringBuilder allFeruchemicMetalsDontHave = new StringBuilder();
 
-            ArrayList<MetalsNBTData> resultFeruchemicDontHave = new ArrayList<>(allMetals.stream().filter(f-> !result.contains(f)).collect(Collectors.toList()));
+            ArrayList<MetalTagEnum> resultFeruchemicDontHave = new ArrayList<>(allMetals.stream().filter(f-> !result.contains(f)).collect(Collectors.toList()));
 
-            for (MetalsNBTData metal: resultFeruchemicDontHave) {
+            for (MetalTagEnum metal: resultFeruchemicDontHave) {
                 allFeruchemicMetalsDontHave.append(metal.getNameLower() + " ");
             }
 
@@ -892,7 +892,7 @@ public class ModCommands {
 
         }
     }
-    private static void sendSimpleMessage(ServerPlayer finalPlayerEntity, boolean result, MetalsNBTData metal, String type) {
+    private static void sendSimpleMessage(ServerPlayer finalPlayerEntity, boolean result, MetalTagEnum metal, String type) {
 
         String have = (result) ?  "have " : "have not ";
 

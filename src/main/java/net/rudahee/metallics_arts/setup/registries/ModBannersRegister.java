@@ -11,7 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 
 import java.util.HashMap;
 
@@ -25,7 +25,7 @@ public class ModBannersRegister {
     public static final HashMap <String, RegistryObject<BannerPatternItem>> PATTERN_ITEMS = new HashMap<>();
 
     static {
-        for (MetalsNBTData metal : MetalsNBTData.values()) {
+        for (MetalTagEnum metal : MetalTagEnum.values()) {
             RegistryObject<BannerPattern> pattern;
             TagKey<BannerPattern> bannerPatternTagKey;
             RegistryObject<BannerPatternItem> bannerPatternItem;

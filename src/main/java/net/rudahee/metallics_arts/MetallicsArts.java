@@ -24,18 +24,18 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
-import net.rudahee.metallics_arts.modules.client.GUI.InvestedMetalOverlay;
-import net.rudahee.metallics_arts.modules.client.KeyInit;
+import net.rudahee.metallics_arts.modules.custom_guis.overlays.MetalsOverlay;
+import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
-import net.rudahee.metallics_arts.modules.powers.MetallicsPowersSetup;
-import net.rudahee.metallics_arts.modules.powers.client.PowersClientEventHandler;
+import net.rudahee.metallics_arts.setup.registries.ModEventsRegister;
+import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.commands.ModCommands;
-import net.rudahee.metallics_arts.world.ModConfiguredFeatures;
-import net.rudahee.metallics_arts.world.ModPlacedFeatures;
-import net.rudahee.metallics_arts.world.biomemod.ModBiomeModifier;
+import net.rudahee.metallics_arts.setup.registries.generation.ModOreGenerationRegister;
+import net.rudahee.metallics_arts.setup.registries.generation.ModStructureRegister;
+import net.rudahee.metallics_arts.setup.registries.generation.ModGeodeGenerationRegister;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
@@ -94,16 +94,16 @@ public class MetallicsArts
         modEventBus.addListener(this::onGuOveirlayEvent);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-            modEventBus.addListener(KeyInit::initKeys);
+            modEventBus.addListener(ModKeyRegister::initKeys);
         });
 
         // Register the doClientStuff method for modloading
         modEventBus.addListener(ModBlocksRegister.InvestedCapabilityRegister::register);
         modEventBus.addListener(this::doClientStuff);
 
-        ModBiomeModifier.register(modEventBus);
-        ModConfiguredFeatures.register(modEventBus);
-        ModPlacedFeatures.register(modEventBus);
+        ModGeodeGenerationRegister.register(modEventBus);
+        ModOreGenerationRegister.register(modEventBus);
+        ModStructureRegister.register(modEventBus);
         //Register for the paintings
         ModPaintingProvider.register(modEventBus);
 
@@ -127,7 +127,7 @@ public class MetallicsArts
         LOGGER.info("Starting Metallics Arts Setup.");
 
         ModNetwork.registerPackets();
-        MetallicsPowersSetup.register(event);
+        ModEventsRegister.register(event);
 
     }
 
@@ -162,9 +162,9 @@ public class MetallicsArts
 
     @SubscribeEvent
     public void onGuOveirlayEvent(final RegisterGuiOverlaysEvent event) {
-        event.registerBelowAll("invested_overlay", new InvestedMetalOverlay());
+        event.registerBelowAll("invested_overlay", new MetalsOverlay());
 
-        PowersClientEventHandler.onRenderGameOverlay(event);
+        ClientEventHandler.onRenderGameOverlay(event);
     }
 
 
@@ -174,7 +174,7 @@ public class MetallicsArts
     }
 
     public void clientInit(final FMLClientSetupEvent e){
-        MetallicsPowersSetup.clientInit(e);
+        ModEventsRegister.clientInit(e);
     }
 
 

@@ -12,9 +12,9 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraftforge.network.NetworkEvent;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
-import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.powers.helpers.metal_helpers.IronAndSteelHelpers;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.logic.server.powers.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.Supplier;
@@ -72,13 +72,13 @@ public class PullAndPushEntityPacket {
                         boolean areInSameState = false;
 
                         // if both are decanting or both storing are in same state
-                        if ((sourceCapability.isDecanting(MetalsNBTData.IRON) && targetCapability.isDecanting(MetalsNBTData.IRON))
-                                || (sourceCapability.isStoring(MetalsNBTData.IRON) && targetCapability.isStoring(MetalsNBTData.IRON))) {
+                        if ((sourceCapability.isDecanting(MetalTagEnum.IRON) && targetCapability.isDecanting(MetalTagEnum.IRON))
+                                || (sourceCapability.isStoring(MetalTagEnum.IRON) && targetCapability.isStoring(MetalTagEnum.IRON))) {
                             areInSameState = true;
 
                             // otherwise, if both are NOT decanting, o both are not storing, both its doing nothing, also = same state.
-                        } else if ((!sourceCapability.isDecanting(MetalsNBTData.IRON) && !targetCapability.isDecanting(MetalsNBTData.IRON))
-                                || (!sourceCapability.isStoring(MetalsNBTData.IRON) && !targetCapability.isStoring(MetalsNBTData.IRON))) {
+                        } else if ((!sourceCapability.isDecanting(MetalTagEnum.IRON) && !targetCapability.isDecanting(MetalTagEnum.IRON))
+                                || (!sourceCapability.isStoring(MetalTagEnum.IRON) && !targetCapability.isStoring(MetalTagEnum.IRON))) {
                             areInSameState = true;
                         }
 
@@ -89,17 +89,17 @@ public class PullAndPushEntityPacket {
                             IronAndSteelHelpers.move(this.direction / 2.0, target, source.blockPosition());
                             IronAndSteelHelpers.move(this.direction / 2.0, source, target.blockPosition());
                         } else {
-                            if (sourceCapability.isDecanting(MetalsNBTData.IRON)) { // is decanting, so more weight
+                            if (sourceCapability.isDecanting(MetalTagEnum.IRON)) { // is decanting, so more weight
                                 // is storing, so less weight
                                 // Not storing and decanting.
-                                IronAndSteelHelpers.move(this.direction, target, target.blockPosition(), targetCapability.isStoring(MetalsNBTData.IRON));
-                            } else if (sourceCapability.isStoring(MetalsNBTData.IRON)) {
+                                IronAndSteelHelpers.move(this.direction, target, target.blockPosition(), targetCapability.isStoring(MetalTagEnum.IRON));
+                            } else if (sourceCapability.isStoring(MetalTagEnum.IRON)) {
                                 // Not storing and decanting.
-                                IronAndSteelHelpers.move(this.direction, source, source.blockPosition(), targetCapability.isDecanting(MetalsNBTData.IRON));
-                            } else if (!sourceCapability.isStoring(MetalsNBTData.IRON) && !sourceCapability.isDecanting(MetalsNBTData.IRON)) {
-                                if (targetCapability.isDecanting(MetalsNBTData.IRON)) {
+                                IronAndSteelHelpers.move(this.direction, source, source.blockPosition(), targetCapability.isDecanting(MetalTagEnum.IRON));
+                            } else if (!sourceCapability.isStoring(MetalTagEnum.IRON) && !sourceCapability.isDecanting(MetalTagEnum.IRON)) {
+                                if (targetCapability.isDecanting(MetalTagEnum.IRON)) {
                                     IronAndSteelHelpers.move(this.direction, source, source.blockPosition(), true);
-                                } else if (targetCapability.isStoring(MetalsNBTData.IRON)) {
+                                } else if (targetCapability.isStoring(MetalTagEnum.IRON)) {
                                     IronAndSteelHelpers.move(this.direction, target, target.blockPosition(), false);
                                 }
                             }

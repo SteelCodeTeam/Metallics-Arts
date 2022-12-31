@@ -8,8 +8,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.recipes.vials.LargeVialItemRecipe;
-import net.rudahee.metallics_arts.data.recipes.vials.SmallVialItemRecipe;
+import net.rudahee.metallics_arts.data.custom_recipes.vials.LargeVialItemRecipe;
+import net.rudahee.metallics_arts.data.custom_recipes.vials.SmallVialItemRecipe;
 
 public class ModRecipeTypesRegister {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZER =

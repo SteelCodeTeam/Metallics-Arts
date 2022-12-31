@@ -4,7 +4,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
-import net.rudahee.metallics_arts.modules.powers.helpers.metal_helpers.IronAndSteelHelpers;
+import net.rudahee.metallics_arts.modules.logic.server.powers.IronAndSteelHelpers;
 
 import java.util.UUID;
 import java.util.function.Supplier;

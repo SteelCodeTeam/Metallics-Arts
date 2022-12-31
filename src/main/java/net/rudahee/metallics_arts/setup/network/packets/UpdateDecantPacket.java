@@ -3,7 +3,7 @@ package net.rudahee.metallics_arts.setup.network.packets;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalsNBTData;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
@@ -11,16 +11,16 @@ import java.util.function.Supplier;
 
 public class UpdateDecantPacket {
 
-    private final MetalsNBTData metal;
+    private final MetalTagEnum metal;
     private final boolean value;
 
-    public UpdateDecantPacket(MetalsNBTData metal, boolean value) {
+    public UpdateDecantPacket(MetalTagEnum metal, boolean value) {
         this.metal = metal;
         this.value = value;
     }
 
     public static UpdateDecantPacket decode(FriendlyByteBuf buffer) {
-        return new UpdateDecantPacket(buffer.readEnum(MetalsNBTData.class), buffer.readBoolean());
+        return new UpdateDecantPacket(buffer.readEnum(MetalTagEnum.class), buffer.readBoolean());
     }
 
     public void encode(FriendlyByteBuf buffer) {
@@ -45,7 +45,7 @@ public class UpdateDecantPacket {
         context.get().setPacketHandled(true);
     }
 
-    public MetalsNBTData getMetal() {
+    public MetalTagEnum getMetal() {
         return metal;
     }
 
