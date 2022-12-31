@@ -10,7 +10,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.BandMindAbstract;
 import net.rudahee.metallics_arts.modules.custom_items.vials.Vial;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
@@ -628,58 +630,58 @@ public class ModCommands {
         CompoundTag nbt = new CompoundTag();
         if (band.equals("band_steel_iron")) {
 
-            metalmind = new ItemStack(ModItemsRegister.BAND_STEEL_IRON.get());
+            metalmind = new ItemStack(MetalMindEnum.STEEL_IRON.getBand());
             nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.IRON, MetalTagEnum.STEEL);
 
         }else if(band.equals("band_zinc_brass")) {
 
-            metalmind = new ItemStack(ModItemsRegister.BAND_ZINC_BRASS.get());
+            metalmind = new ItemStack(MetalMindEnum.ZINC_BRASS.getBand());
             nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.ZINC, MetalTagEnum.BRASS);
 
         }else if(band.equals("band_aluminium_duralumin")) {
 
-            metalmind = new ItemStack(ModItemsRegister.BAND_ALUMINUM_DURALUMIN.get());
+            metalmind = new ItemStack(MetalMindEnum.ALUMINUM_DURALUMIN.getBand());
             nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.ALUMINUM, MetalTagEnum.DURALUMIN);
 
         }else if(band.equals("band_atium_malatium")) {
 
-            metalmind = new ItemStack(ModItemsRegister.BAND_ATIUM_MALATIUM.get());
+            metalmind = new ItemStack(MetalMindEnum.ATIUM_MALTIUM.getBand());
             nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.ATIUM, MetalTagEnum.MALATIUM);
 
         }else if(band.equals("band_cadmium_bendalloy")) {
 
-            metalmind = new ItemStack(ModItemsRegister.BAND_CADMIUM_BENDALLOY.get());
+            metalmind = new ItemStack(MetalMindEnum.CADMIUM_BENDALLOY.getBand());
             nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.CADMIUM, MetalTagEnum.BENDALLOY);
 
         }else if(band.equals("band_chromium_nicrosil")) {
 
-            metalmind = new ItemStack(ModItemsRegister.BAND_CHROMIUM_NICROSIL.get());
+            metalmind = new ItemStack(MetalMindEnum.CHROMIUM_NICROSIL.getBand());
             nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.CHROMIUM, MetalTagEnum.NICROSIL);
 
         }else if(band.equals("band_copper_bronze")) {
 
-            metalmind = new ItemStack(ModItemsRegister.BAND_COPPER_BRONZE.get());
+            metalmind = new ItemStack(MetalMindEnum.COPPER_BRONZE.getBand());
             nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.COPPER, MetalTagEnum.BRONZE);
 
         }else if(band.equals("band_electrum_gold")) {
 
-            metalmind = new ItemStack(ModItemsRegister.BAND_ELECTRUM_GOLD.get());
+            metalmind = new ItemStack(MetalMindEnum.ELECTRUM_GOLD.getBand());
             nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.GOLD, MetalTagEnum.ELECTRUM);
 
         }else if(band.equals("band_lerasium_ettmetal")) {
 
-            metalmind = new ItemStack(ModItemsRegister.BAND_LERASIUM_ETTMETAL.get());
+            metalmind = new ItemStack(MetalMindEnum.LERASIUM_ETTMETAL.getBand());
             nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.LERASIUM, MetalTagEnum.ETTMETAL);
 
         }else if(band.equals("band_pewter_tin")) {
 
-            metalmind = new ItemStack(ModItemsRegister.BAND_PEWTER_TIN.get());
+            metalmind = new ItemStack(MetalMindEnum.TIN_PEWTER.getBand());
             nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.TIN, MetalTagEnum.PEWTER);
 
         }
         else{
 
-            metalmind = new ItemStack(ModItemsRegister.BAND_PEWTER_TIN.get());
+            metalmind = new ItemStack(MetalMindEnum.TIN_PEWTER.getBand());
             nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.TIN, MetalTagEnum.PEWTER);
 
         }

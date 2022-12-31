@@ -6,6 +6,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.util.HashSet;
@@ -55,10 +56,13 @@ public class MetallicsPowersConfig {
         add("dpring_launcher");
 
 
-        add(ModItemsRegister.BAND_PEWTER_TIN.get().getDescriptionId());
-        add(ModItemsRegister.BAND_PEWTER_TIN.get().getDescription().toString());
-        add(ModItemsRegister.RING_PEWTER_TIN.get().getDescriptionId());
-        add(ModItemsRegister.RING_PEWTER_TIN.get().getDescription().toString());
+        //add(ModItemsRegister.BAND_PEWTER_TIN.get().getDescriptionId());
+        add(MetalMindEnum.TIN_PEWTER.getBand().getDescriptionId());
+        add(MetalMindEnum.TIN_PEWTER.getRing().getDescriptionId());
+
+        //add(ModItemsRegister.BAND_PEWTER_TIN.get().getDescription().toString());
+        //add(ModItemsRegister.RING_PEWTER_TIN.get().getDescriptionId());
+        //add(ModItemsRegister.RING_PEWTER_TIN.get().getDescription().toString());
 
 
         add(Items.CROSSBOW.getDescriptionId());

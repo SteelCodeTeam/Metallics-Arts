@@ -13,7 +13,6 @@ import java.util.List;
 
 public class BasicMetalsRegister {
 
-
     public static void register() {
 
         List<MetalEnum> metalList = Arrays.asList(MetalEnum.values());

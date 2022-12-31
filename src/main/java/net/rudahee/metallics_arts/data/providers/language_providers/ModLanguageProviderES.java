@@ -167,7 +167,7 @@ public class ModLanguageProviderES extends LanguageProvider {
         int cont = 0;
         for (MetalTagEnum metal: MetalTagEnum.values()) {
             if(cont <=16){
-                put("item.metallics_arts."+ metal.getNameLower() +"_ingot","Lingote de "+ MetalNamesEnum.valueOf(metal.name()).getMetalNameLower());
+                put("item.metallics_arts."+ metal.getNameLower() +"_ingot","Lingote de "+ MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
                 cont++;
             }
         }
@@ -180,7 +180,7 @@ public class ModLanguageProviderES extends LanguageProvider {
     private Map<String, String> nuggets = new HashMap<>() {{
 
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("item.metallics_arts."+ metal.getNameLower() +"_nugget","Pepita de "+ MetalNamesEnum.valueOf(metal.name()).getMetalNameLower());
+            put("item.metallics_arts."+ metal.getNameLower() +"_nugget","Pepita de "+ MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
         }
 
         put("item.metallics_arts.silver_nugget", "Pepita de plata");
@@ -191,7 +191,7 @@ public class ModLanguageProviderES extends LanguageProvider {
     private Map<String, String> blocks = new HashMap<>() {{
 
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("block.metallics_arts."+ metal.getNameLower() +"_block","Bloque de "+ MetalNamesEnum.valueOf(metal.name()).getMetalNameLower());
+            put("block.metallics_arts."+ metal.getNameLower() +"_block","Bloque de "+ MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
         }
 
         put("block.metallics_arts.silver_block", "Bloque de plata");
@@ -203,15 +203,15 @@ public class ModLanguageProviderES extends LanguageProvider {
     private Map<String, String> spikes = new HashMap<>() {{
 
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("item.metallics_arts."+ metal.getNameLower() +"_spìke","Clavo de "+ MetalNamesEnum.valueOf(metal.name()).getMetalNameLower());
+            put("item.metallics_arts."+ metal.getNameLower() +"_spìke","Clavo de "+ MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
         }
 
     }};
     private Map<String, String> icons = new HashMap<>() {{
 
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("item.metallics_arts."+ metal.getNameLower()+"_allomantic_icon" , MetalNamesEnum.valueOf(metal.name()).getMetalName()+" Alomantico");
-            put("item.metallics_arts."+ metal.getNameLower()+"_feruchemic_icon" , MetalNamesEnum.valueOf(metal.name()).getMetalName()+" Feruquimico");
+            put("item.metallics_arts."+ metal.getNameLower()+"_allomantic_icon" , MetalNamesEnum.valueOf(metal.name()).getNameInSpanish()+" Alomantico");
+            put("item.metallics_arts."+ metal.getNameLower()+"_feruchemic_icon" , MetalNamesEnum.valueOf(metal.name()).getNameInSpanish()+" Feruquimico");
         }
 
     }};
@@ -219,7 +219,7 @@ public class ModLanguageProviderES extends LanguageProvider {
     private Map<String, String> metalls = new HashMap<>() {{
 
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("metallics_arts.metal_translate."+ metal.getNameLower() , MetalNamesEnum.valueOf(metal.name()).getMetalName());
+            put("metallics_arts.metal_translate."+ metal.getNameLower() , MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
         }
 
     }};
@@ -227,25 +227,25 @@ public class ModLanguageProviderES extends LanguageProvider {
     private Map<String, String> powers = new HashMap<>() {{
 
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("key.metallics_arts."+ metal.getNameLower() +"_power", MetalNamesEnum.valueOf(metal.name()).getMetalName());
+            put("key.metallics_arts."+ metal.getNameLower() +"_power", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
         }
 
     }};
     private Map<String, String> symbols = new HashMap<>() {{
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("f_"+metal.getNameLower()+"_1", MetalNamesEnum.valueOf(metal.name()).getMetalName() + " feruquimico sombreado");
-            put("f_"+metal.getNameLower()+"_2", MetalNamesEnum.valueOf(metal.name()).getMetalName() + " feruquimico solido");
-            put("a_"+metal.getNameLower()+"_1", MetalNamesEnum.valueOf(metal.name()).getMetalName() + " alomantico sombreado");
-            put("a_"+metal.getNameLower()+"_2", MetalNamesEnum.valueOf(metal.name()).getMetalName() + " alomantico solido");
+            put("f_"+metal.getNameLower()+"_1", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " feruquimico sombreado");
+            put("f_"+metal.getNameLower()+"_2", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " feruquimico solido");
+            put("a_"+metal.getNameLower()+"_1", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " alomantico sombreado");
+            put("a_"+metal.getNameLower()+"_2", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " alomantico solido");
         }
     }};
 
     private Map<String, String> patterns = new HashMap<>() {{
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("item.metallics_arts.f_"+metal.getNameLower()+"_pattern","Patrón ferruquimico de " + MetalNamesEnum.valueOf(metal.name()).getMetalName());
-            put("item.metallics_arts.f_"+metal.getNameLower()+"_pattern.desc", "Patrón ferruquimico de " + MetalNamesEnum.valueOf(metal.name()).getMetalName());
-            put("item.metallics_arts.a_"+metal.getNameLower()+"_pattern", "Patrón alomántico de " + MetalNamesEnum.valueOf(metal.name()).getMetalName());
-            put("item.metallics_arts.a_"+metal.getNameLower()+"_pattern.desc", "Patrón alomántico de " + MetalNamesEnum.valueOf(metal.name()).getMetalName());
+            put("item.metallics_arts.f_"+metal.getNameLower()+"_pattern","Patrón ferruquimico de " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+            put("item.metallics_arts.f_"+metal.getNameLower()+"_pattern.desc", "Patrón ferruquimico de " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+            put("item.metallics_arts.a_"+metal.getNameLower()+"_pattern", "Patrón alomántico de " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+            put("item.metallics_arts.a_"+metal.getNameLower()+"_pattern.desc", "Patrón alomántico de " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
         }
     }};
 
