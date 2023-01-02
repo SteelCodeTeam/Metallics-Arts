@@ -5,13 +5,16 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
 
 public class DuraluminAndAluminumHelpers {
-    public static void duraluminDecantingMobEffects(Player player, ResourceKey<Biome>  biome) {
+    public static void duraluminDecantingMobEffects(Player player, Level world) {
+
+        ResourceKey<Biome> biome = world.getBiome(player.getOnPos()).unwrapKey().get();
 
         if (biome.equals(Biomes.JUNGLE) || biome.equals(Biomes.BAMBOO_JUNGLE) ||biome.equals(Biomes.SPARSE_JUNGLE)) {
             /** JUNGLAS */
@@ -124,7 +127,10 @@ public class DuraluminAndAluminumHelpers {
 
     }
 
-    public static void duraluminStoringMobEffects(Player player, ResourceKey<Biome>  biome) {
+    public static void duraluminStoringMobEffects(Player player, Level world) {
+
+        ResourceKey<Biome> biome = world.getBiome(player.getOnPos()).unwrapKey().get();
+
         if (biome.equals(Biomes.JUNGLE) || biome.equals(Biomes.BAMBOO_JUNGLE) ||biome.equals(Biomes.SPARSE_JUNGLE)) {
             /** JUNGLAS */
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 1, true, false));

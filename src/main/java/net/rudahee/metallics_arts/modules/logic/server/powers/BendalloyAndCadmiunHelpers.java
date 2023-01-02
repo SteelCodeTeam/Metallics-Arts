@@ -10,17 +10,26 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.TickingBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 
 public class BendalloyAndCadmiunHelpers {
 
-    public static void BendalloyMobEffects(Player player, Level world, AABB axisAlignedBB, BlockPos negative, BlockPos positive, boolean enhanced) {
+    public static void BendalloyMobEffects(Player player, Level world, AABB axisAlignedBB, int radius, boolean enhanced) {
+
+        BlockPos negative = new BlockPos(player.position()).offset(- radius, - radius, - radius);
+        BlockPos positive = new BlockPos(player.position()).offset(radius, radius , radius);
+
 
         if (world instanceof ServerLevel) {
             world.getEntitiesOfClass(LivingEntity.class, axisAlignedBB).forEach(entity -> {
@@ -108,18 +117,24 @@ public class BendalloyAndCadmiunHelpers {
         player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 20, 100, true, false));
     }
 
-    public static void CadmiumMobEffectsOtherPlayers(LivingEntity player, int duration, int amplifier) {
-
-        if (player instanceof Player) {
-            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, amplifier, true, false));
+    public static void CadmiumMobEffectsOtherPlayers(Player player, IInvestedPlayerData playerCapability) {
+        if (playerCapability.isBurning(MetalTagEnum.LERASIUM)) {
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 2, true, false));
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 20, 2, true, false));
+        } else {
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 1, true, false));
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 10, 1, true, false));
         }
-        player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, duration, amplifier, true, false));
     }
 
-    public static void CadmiumMobEffectsOtherPlayersEnhanced(LivingEntity player, int duration, int amplifier) {
-
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, amplifier, true, false));
-        player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, duration, amplifier, true, false));
+    public static void CadmiumMobEffectsOtherPlayersEnhanced(Player player, IInvestedPlayerData playerCapability) {
+        if (playerCapability.isBurning(MetalTagEnum.LERASIUM)) {
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 100, true, false));
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60, 100, true, false));
+        } else {
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 2, true, false));
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 40, 2, true, false));
+        }
     }
 
     public static void AddAiSteeps(Player player) {

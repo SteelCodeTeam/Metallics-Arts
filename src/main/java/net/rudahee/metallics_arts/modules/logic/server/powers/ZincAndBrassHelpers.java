@@ -21,7 +21,9 @@ import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.common.Tags;
 
 import java.util.function.Predicate;
 
@@ -229,6 +231,7 @@ public class ZincAndBrassHelpers {
     }
 
     public static void happyEntitiesWithLerasium(Player source, Level world, AABB axisAlignedBB,boolean duralumin){
+
         world.getEntitiesOfClass(Mob.class, axisAlignedBB).forEach(target -> {
             target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
 
@@ -266,11 +269,27 @@ public class ZincAndBrassHelpers {
         livingEntity.setSecondsOnFire(secondsFire);
     }
 
-    public static void addFrozenTicks(Player player) {
-        player.setTicksFrozen(player.getTicksFrozen() + 3);
+    public static void addFrozenTicks(Player player, Level world) {
+        if (world.getBiome(player.getOnPos()).is(Tags.Biomes.IS_COLD) || (world.getBiome(player.getOnPos()).is(Biomes.DESERT) && world.isNight())) {
+            player.setTicksFrozen(player.getTicksFrozen() + 3);
+        }
+
     }
 
     public static void addBurnBodyTicks(Player player) {
         player.setSecondsOnFire(1);
+    }
+
+    public static void addFireResistance(Player player) {
+        player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40, 1, true, false));
+    }
+
+    public static void ambientalEffects(Player player, Level world) {
+        if (world.getBiome(player.getOnPos()).is(Biomes.DESERT) && world.isDay()) {
+            addBurnBodyTicks(player);
+        } else if (world.getBiome(player.getOnPos()).is(Tags.Biomes.IS_HOT)) {
+            addBurnBodyTicks(player);
+        }
+
     }
 }
