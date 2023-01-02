@@ -3,8 +3,8 @@ package net.rudahee.metallics_arts.setup.registries;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.rudahee.metallics_arts.modules.logic.server.ServerEventHandler;
 import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
+import net.rudahee.metallics_arts.modules.logic.server.ServerEventHandler;
 
 
 public class ModEventsRegister {

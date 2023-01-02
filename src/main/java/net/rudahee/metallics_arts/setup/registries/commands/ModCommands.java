@@ -10,7 +10,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.BandMindAbstract;

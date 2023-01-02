@@ -28,14 +28,14 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_guis.selectors.AllomanticSelector;
 import net.rudahee.metallics_arts.modules.custom_guis.selectors.FeruchemySelector;
-import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
-import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
-import net.rudahee.metallics_arts.utils.powers_utils.MetalBlockUtils;
 import net.rudahee.metallics_arts.modules.logic.server.powers.GoldAndElectrumHelpers;
 import net.rudahee.metallics_arts.modules.logic.server.powers.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.network.packets.*;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
+import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
+import net.rudahee.metallics_arts.utils.powers_utils.MetalBlockUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 

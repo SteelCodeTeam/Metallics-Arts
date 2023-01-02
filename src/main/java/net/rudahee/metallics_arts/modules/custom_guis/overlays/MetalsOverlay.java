@@ -12,8 +12,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.awt.*;

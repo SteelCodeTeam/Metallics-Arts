@@ -7,7 +7,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
-import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.util.HashSet;
 import java.util.List;

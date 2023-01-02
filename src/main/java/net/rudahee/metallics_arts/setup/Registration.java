@@ -10,9 +10,6 @@ public class Registration {
 
     // In this class we register each TYPE OF OBJECT we add in our mod.
 
-
-
-
     public static void register() {
         // We inject our objects to "Minecraft Bus" to load all of this
 

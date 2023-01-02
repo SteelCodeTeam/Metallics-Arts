@@ -2,8 +2,8 @@ package net.rudahee.metallics_arts.data.providers.language_providers;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalNamesEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalNamesEnum;
 
 import java.util.HashMap;
 import java.util.Map;

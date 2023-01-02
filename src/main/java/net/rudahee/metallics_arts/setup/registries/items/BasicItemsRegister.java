@@ -11,7 +11,7 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import java.util.Arrays;
 import java.util.List;
 
-public class BasicMetalsRegister {
+public class BasicItemsRegister {
 
     public static void register() {
 
@@ -19,12 +19,12 @@ public class BasicMetalsRegister {
         List<GemsEnum> gemList = Arrays.asList(GemsEnum.values());
 
 
-        /*
-            Metals
+        /**
+                Metals
          */
         metalList.forEach(metal -> {
 
-            /*
+            /**
                 Ingots
             */
             MetallicsArts.registerItem(metal.getMetalNameLower() + "_ingot", () -> {
@@ -36,7 +36,7 @@ public class BasicMetalsRegister {
                 return item;
             });
 
-            /*
+            /**
                 Nuggets
              */
             MetallicsArts.registerItem(metal.getMetalNameLower() + "_nugget", () -> {
@@ -45,13 +45,7 @@ public class BasicMetalsRegister {
                 return item;
             });
 
-            MetallicsArts.registerItem("copper_nugget",() -> {
-                Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(64));
-                ModItemsRegister.ITEM_METAL_NUGGET.put("copper_nugget", item);
-                return item;
-            });
-
-             /*
+             /**
                 Raws
              */
             if (!metal.isAlloy()) {
@@ -63,12 +57,19 @@ public class BasicMetalsRegister {
             }
         });
 
-        /*
-            Gems
+
+        MetallicsArts.registerItem("copper_nugget",() -> {
+            Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(64));
+            ModItemsRegister.ITEM_METAL_NUGGET.put("copper_nugget", item);
+            return item;
+        });
+
+        /**
+                Gems
          */
         gemList.forEach(gem -> {
 
-            /*
+            /**
                 Ingot
             */
             MetallicsArts.registerItem(gem.getGemNameLower(),
@@ -82,7 +83,7 @@ public class BasicMetalsRegister {
                 });
 
 
-            /*
+            /**
                 Nuggets
             */
             MetallicsArts.registerItem(gem.getGemNameLower() + "_nugget",

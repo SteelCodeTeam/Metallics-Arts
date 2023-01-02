@@ -8,9 +8,9 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
 
 import java.util.Arrays;

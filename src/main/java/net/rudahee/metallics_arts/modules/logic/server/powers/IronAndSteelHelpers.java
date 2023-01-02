@@ -22,9 +22,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.configs.MetallicsPowersConfig;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import javax.annotation.Nullable;

@@ -15,10 +15,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import net.rudahee.metallics_arts.utils.ComparatorMetals;
 import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
-import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;

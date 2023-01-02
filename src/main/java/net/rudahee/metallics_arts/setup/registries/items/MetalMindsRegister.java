@@ -8,10 +8,7 @@ import net.rudahee.metallics_arts.modules.custom_items.metal_minds.rings.*;
 
 
 public class MetalMindsRegister {
-
     private static final Item.Properties PROPERTY_METALMINDS = new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1);
-
-
     public static void register() {
 
         /*

@@ -23,14 +23,14 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public abstract class MetalSpikeAbstract extends SwordItem {
+public class MetalSpike extends SwordItem {
 
     private static final int ATTACK_DAMAGE = 1;
     private static final float ATTACK_SPEED = -3f;
 
     private final MetalTagEnum metalSpike;
 
-    public MetalSpikeAbstract(Item.Properties properties, MetalTagEnum metalTagEnum) {
+    public MetalSpike(Item.Properties properties, MetalTagEnum metalTagEnum) {
         super(tier, ATTACK_DAMAGE, ATTACK_SPEED, properties);
         this.metalSpike = metalTagEnum;
     }
