@@ -15,6 +15,10 @@ import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.RingsMindAbstract;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.EttmetalFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.LerasiumFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.PewterFeruchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.TinFeruchemicHelper;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import top.theillusivec4.curios.api.SlotContext;
@@ -26,7 +30,7 @@ import java.util.UUID;
 
 public class RingLerasiumEttmetal extends RingsMindAbstract {
     public RingLerasiumEttmetal (Properties properties){
-        super(properties, MetalTagEnum.LERASIUM, MetalTagEnum.ETTMETAL, MetalTagEnum.LERASIUM.getMaxReserveRing(), MetalTagEnum.ETTMETAL.getMaxReserveRing());
+        super(properties, MetalTagEnum.LERASIUM, MetalTagEnum.ETTMETAL, LerasiumFecuchemicHelper.getInstance(), EttmetalFecuchemicHelper.getInstance());
     }
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
@@ -186,7 +190,7 @@ public class RingLerasiumEttmetal extends RingsMindAbstract {
         return itsDone;
     }
 
-    @Override
+    /*@Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
         if (stack.hasTag()) {
             if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve")>0) {
@@ -217,5 +221,5 @@ public class RingLerasiumEttmetal extends RingsMindAbstract {
             }
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
-    }
+    }*/
 }

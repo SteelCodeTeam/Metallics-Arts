@@ -23,6 +23,7 @@ public class OnLivingDeath {
             capability.setStoring(metal,false);
             capability.setMetalMindEquiped(metal.getGroup(),false);
         }
+
         ModNetwork.sync(capability, player);
     }
 }

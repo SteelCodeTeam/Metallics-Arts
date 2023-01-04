@@ -12,7 +12,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.modules.custom_items.metal_minds.MetalMindsUtils;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.RingsMindAbstract;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AluminumFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.DuraluminFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.PewterFeruchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.TinFeruchemicHelper;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import top.theillusivec4.curios.api.SlotContext;
@@ -25,7 +30,7 @@ import java.util.UUID;
 public class RingAluminumDuralumin extends RingsMindAbstract implements ICurioItem{
 
     public RingAluminumDuralumin (Properties properties){
-        super(properties, MetalTagEnum.ALUMINUM, MetalTagEnum.DURALUMIN, MetalTagEnum.ALUMINUM.getMaxReserveRing(), MetalTagEnum.DURALUMIN.getMaxReserveRing());
+        super(properties, MetalTagEnum.ALUMINUM, MetalTagEnum.DURALUMIN, AluminumFecuchemicHelper.getInstance(), DuraluminFecuchemicHelper.getInstance());
     }
 
     public boolean nicConsumeMet1 = false;
@@ -35,6 +40,7 @@ public class RingAluminumDuralumin extends RingsMindAbstract implements ICurioIt
         LivingEntity livingEntity = slotContext.entity();
 
         CompoundTag nbtLocal = stack.getTag();
+
 
         if (livingEntity.level instanceof ServerLevel) {
             if (livingEntity instanceof Player) {
@@ -56,12 +62,11 @@ public class RingAluminumDuralumin extends RingsMindAbstract implements ICurioIt
                             }
 
                         }
-                        stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                        stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,false,getMetals(0), getMetals(1)));
                     } else {
                         if (nbtLocal.getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") != 3) {
                             nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",3);
                         }
-
                     }
 
                     nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",1);
@@ -137,7 +142,7 @@ public class RingAluminumDuralumin extends RingsMindAbstract implements ICurioIt
     }
 
     private boolean isEquiped = false;
-    @Override
+    /*@Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
         if (stack.hasTag()) {
             if (isEquiped) {
@@ -165,7 +170,7 @@ public class RingAluminumDuralumin extends RingsMindAbstract implements ICurioIt
             }
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
-    }
+    }*/
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {

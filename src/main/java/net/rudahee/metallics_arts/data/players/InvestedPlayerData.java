@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.data.players;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.modules.logic.server.powers.GoldAndElectrumHelpers;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.ArrayList;
@@ -29,6 +30,8 @@ public class InvestedPlayerData implements IInvestedPlayerData {
     private String spawn_dimension;
     private boolean enhanced;
     private final ArrayList<MetalTagEnum> list_metal_buff_drain;
+
+    private boolean modifiedHealth;
 
 
     public InvestedPlayerData() {
@@ -77,6 +80,8 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         this.enhanced = false;
 
         list_metal_buff_drain = new ArrayList<>();
+
+        this.modifiedHealth = false;
 
     }
 
@@ -265,6 +270,15 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         return this.spawn_dimension;
     }
 
+    @Override
+    public boolean hasModifiedHealth() {
+        return this.modifiedHealth;
+    }
+
+    @Override
+    public void setModifiedHealth(boolean modified) {
+        this.modifiedHealth = modified;
+    }
 
     @Override
     public void setMistborn(boolean mistborn){
@@ -495,6 +509,8 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         CompoundTag death_dimension = new CompoundTag();
         CompoundTag metal_mind_equiped = new CompoundTag();
 
+        CompoundTag modified_health = new CompoundTag();
+
         for (MetalTagEnum metal : MetalTagEnum.values()) {
             allomantic_powers.putBoolean(metal.getNameLower(), this.hasAllomanticPower(metal));
             feruchemic_powers.putBoolean(metal.getNameLower(), this.hasFeruchemicPower(metal));
@@ -503,6 +519,8 @@ public class InvestedPlayerData implements IInvestedPlayerData {
             decanting_metals.putBoolean(metal.getNameLower(), this.isDecanting(metal));
             storing_metals.putBoolean(metal.getNameLower(), this.isStoring(metal));
         }
+
+        modified_health.putBoolean("modified_health",this.modifiedHealth);
 
         invested_data.put("allomantic_powers", allomantic_powers);
         invested_data.put("feruchemic_powers", feruchemic_powers);
@@ -534,6 +552,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
 
         invested_data.put("spawn_pos", spawn_pos);
         invested_data.put("spawn_dim", spawn_dimension);
+        invested_data.put("modified_health", modified_health);
 
         for (int i=0;i<10;i++){
             metal_mind_equiped.putBoolean("group"+i,this.getMetalMindEquiped(i));
@@ -567,6 +586,8 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         CompoundTag death_dimension = (CompoundTag) invested_data.get("death_dim");
         CompoundTag spawn_dimension = (CompoundTag) invested_data.get("spawn_dim");
 
+        CompoundTag modified_health = (CompoundTag) invested_data.get("modified_health");
+
         CompoundTag metal_mind_equiped = (CompoundTag) invested_data.get("metal_mind_equiped");
 
         for (MetalTagEnum metal : MetalTagEnum.values()) {
@@ -590,6 +611,8 @@ public class InvestedPlayerData implements IInvestedPlayerData {
                 this.setBurning(metal,burning_metals.getBoolean(metal.getNameLower()));
             }
         }
+
+        this.setModifiedHealth(modified_health.getBoolean("modified_health"));
 
         this.setInvested(invested_data.getBoolean("invested"));
         this.setMistborn(invested_data.getBoolean("mistborn"));

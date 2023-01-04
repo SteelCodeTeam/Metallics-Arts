@@ -28,6 +28,10 @@ public interface IInvestedPlayerData {
 
     int getFeruchemicPowerCount();
 
+    boolean hasModifiedHealth();
+
+    void setModifiedHealth(boolean modified);
+
     ArrayList<MetalTagEnum> getAllomanticPowers();
 
     ArrayList<MetalTagEnum> getFeruchemicPowers();

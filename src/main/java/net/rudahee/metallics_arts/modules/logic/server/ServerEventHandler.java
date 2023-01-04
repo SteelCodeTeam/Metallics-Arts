@@ -89,7 +89,16 @@ public class ServerEventHandler {
     public static int x = 8;
     public static int y = 8;
     public static int z = 8;
-    public static int actualTick = 0;
+    private static int actualTick = 0;
+
+    public static int getActualTick() {
+        return actualTick;
+    }
+
+    public static void setActualTick(int actualTick) {
+        ServerEventHandler.actualTick = actualTick;
+    }
+
     private static Player newPlayer = null;
     public static int radius;
     @SubscribeEvent
@@ -128,7 +137,7 @@ public class ServerEventHandler {
                 /**
                      BRONZE FERUCHEMIC
                  */
-                if (playerCapability.isDecanting(MetalTagEnum.BRONZE)) {
+                /*if (playerCapability.isDecanting(MetalTagEnum.BRONZE)) {
                     CopperAndBronzeHelpers.DontSpawnPhantoms(player, CapabilityUtils.getBubble(player,12), event.level);
                 } else if (playerCapability.isStoring(MetalTagEnum.BRONZE)) {
                     if (actualTick == 240) {
@@ -138,7 +147,7 @@ public class ServerEventHandler {
                 /**
                      BRASS FERUCHEMIC
                  */
-                if (playerCapability.isStoring(MetalTagEnum.BRASS)) {
+                /*if (playerCapability.isStoring(MetalTagEnum.BRASS)) {
                     ZincAndBrassHelpers.addFireResistance(player);
                     ZincAndBrassHelpers.addFrozenTicks(player, world);
                 } else if (playerCapability.isDecanting(MetalTagEnum.BRASS)) {
@@ -147,7 +156,7 @@ public class ServerEventHandler {
                 /**
                      GOLD FERUCHEMIC
                  */
-                if (playerCapability.isDecanting(MetalTagEnum.GOLD)) {
+                /*if (playerCapability.isDecanting(MetalTagEnum.GOLD)) {
                     if (OnWorldTickEvent.activationEvery30Tick(actualTick)) {
                         GoldAndElectrumHelpers.addHealth(player,1);
                     }
@@ -162,7 +171,7 @@ public class ServerEventHandler {
                 /**
                      ELECTRUM FERUCHEMIC
                  */
-                if (playerCapability.isDecanting(MetalTagEnum.ELECTRUM)) {
+                /*if (playerCapability.isDecanting(MetalTagEnum.ELECTRUM)) {
                     GoldAndElectrumHelpers.addHearts(player,30);
                 } else if (playerCapability.isStoring(MetalTagEnum.ELECTRUM)) {
                     if (playerCapability.isStoring(MetalTagEnum.GOLD)) {
@@ -173,7 +182,7 @@ public class ServerEventHandler {
                 /**
                      TIN FERUCHEMIC
                  */
-                if (playerCapability.isDecanting(MetalTagEnum.TIN)) {
+                /*if (playerCapability.isDecanting(MetalTagEnum.TIN)) {
                     PewterAndTinHelpers.addFecruchemicVision(player);
                 } else if (playerCapability.isStoring(MetalTagEnum.TIN)) {
                     PewterAndTinHelpers.removeFeruchemicVision(player);
@@ -181,7 +190,7 @@ public class ServerEventHandler {
                 /**
                      PEWTER FERUCHEMIC
                  */
-                if (playerCapability.isDecanting(MetalTagEnum.PEWTER)) {
+                /*if (playerCapability.isDecanting(MetalTagEnum.PEWTER)) {
                     PewterAndTinHelpers.decantPewterEffectsFeruchemic(player);
                 } else if (playerCapability.isStoring(MetalTagEnum.PEWTER)) {
                     PewterAndTinHelpers.storePewterEffectsFeruchemic(player);
@@ -189,7 +198,7 @@ public class ServerEventHandler {
                 /**
                      STEEL FERUCHEMIC
                  */
-                if (playerCapability.isDecanting(MetalTagEnum.STEEL)) {
+                /*if (playerCapability.isDecanting(MetalTagEnum.STEEL)) {
                     IronAndSteelHelpers.addSpeed(player,3);
                 } else if (playerCapability.isStoring(MetalTagEnum.STEEL)) {
                     IronAndSteelHelpers.removeSpeed(player,3);
@@ -197,7 +206,7 @@ public class ServerEventHandler {
                 /**
                  * IRON FERUCHEMIC
                  */
-                if (playerCapability.isDecanting(MetalTagEnum.IRON)) {
+                /*if (playerCapability.isDecanting(MetalTagEnum.IRON)) {
                     IronAndSteelHelpers.increaseWeight(player);
                 } else if (playerCapability.isStoring(MetalTagEnum.IRON)) {
                     IronAndSteelHelpers.reduceWeight(player);
@@ -205,7 +214,7 @@ public class ServerEventHandler {
                 /**
                  * CADMIUM FERUCHEMIC
                  */
-                if (playerCapability.isDecanting(MetalTagEnum.CADMIUM)) {
+                /*if (playerCapability.isDecanting(MetalTagEnum.CADMIUM)) {
                     if (OnWorldTickEvent.activationEvery30Tick(actualTick)) {
                         BendalloyAndCadmiunHelpers.throwBreathEffect(player, 10);
                     }
@@ -215,7 +224,7 @@ public class ServerEventHandler {
                 /**
                  * BENDALLOY FERUCHEMIC
                  */
-                if (playerCapability.isDecanting(MetalTagEnum.BENDALLOY)) {
+                /*if (playerCapability.isDecanting(MetalTagEnum.BENDALLOY)) {
                     if (OnWorldTickEvent.activationEvery30Tick(actualTick)) {
                         BendalloyAndCadmiunHelpers.addFoodLevel(player,1);
                     }
@@ -227,7 +236,7 @@ public class ServerEventHandler {
                 /**
                  * DURALUMIN FERUCHEMIC
                  */
-                if (playerCapability.isDecanting(MetalTagEnum.DURALUMIN)) {
+                /*if (playerCapability.isDecanting(MetalTagEnum.DURALUMIN)) {
                     if (OnWorldTickEvent.activationEvery30Tick(actualTick)) {
                         DuraluminAndAluminumHelpers.duraluminDecantingMobEffects(player,world);
                     }
@@ -239,7 +248,7 @@ public class ServerEventHandler {
                 /**
                  * CHROMIUM FERUCHEMIC
                  */
-                if (playerCapability.isDecanting(MetalTagEnum.CHROMIUM)){
+                /*if (playerCapability.isDecanting(MetalTagEnum.CHROMIUM)){
                     ChromiumAndNicrosilHelpers.goodLuck(player);
                 } else if (playerCapability.isStoring(MetalTagEnum.CHROMIUM)){
                     ChromiumAndNicrosilHelpers.badLuck(player,
@@ -248,11 +257,11 @@ public class ServerEventHandler {
                 /**
                  * ATIUM FERUCHEMIC
                  */
-                if (playerCapability.isDecanting(MetalTagEnum.ATIUM)){
+                /*if (playerCapability.isDecanting(MetalTagEnum.ATIUM)){
                     AtiumAndMalatiumHelpers.decantAtium(player);
                 } else if (playerCapability.isStoring(MetalTagEnum.ATIUM)){
                     AtiumAndMalatiumHelpers.storageAtium(player);
-                }
+                }*/
 
                 if (actualTick >= 240) {
                     actualTick = 0;

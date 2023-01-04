@@ -15,6 +15,11 @@ public class OnWorldTickEvent {
     public static boolean activationEvery80Tick(int actualTick) {
         return actualTick == 80 || actualTick == 160 || actualTick == 240;
     }
+
+    public static boolean activationEvery240Tick(int actualTick) {
+        return actualTick == 240;
+    }
+
     public static void equipKolossBlade(Player player, IInvestedPlayerData playerCapability) {
         if (!(playerCapability.isBurning(MetalTagEnum.PEWTER) || playerCapability.isDecanting(MetalTagEnum.PEWTER))
                 && (player.getMainHandItem().getItem() == ModItemsRegister.KOLOSS_BLADE.get() || player.getOffhandItem().getItem() == ModItemsRegister.KOLOSS_BLADE.get())) {

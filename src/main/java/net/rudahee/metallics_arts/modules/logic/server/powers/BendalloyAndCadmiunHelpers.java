@@ -166,7 +166,6 @@ public class BendalloyAndCadmiunHelpers {
     }
 
     public static void drowningEffect(Player player,int actualtick) {
-        System.out.println("nivel de oxigeno: "+player.getAirSupply()+"\n");
         if (!player.isCreative()){
             if (!player.isEyeInFluid(FluidTags.WATER)) {
                 player.setAirSupply(player.getAirSupply()-5);
