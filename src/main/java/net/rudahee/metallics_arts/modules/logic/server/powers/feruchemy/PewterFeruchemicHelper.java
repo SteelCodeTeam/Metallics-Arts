@@ -1,10 +1,8 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy;
 
-import com.google.errorprone.annotations.SuppressPackageLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
 
 import java.util.function.Supplier;
 

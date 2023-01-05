@@ -3,7 +3,6 @@ package net.rudahee.metallics_arts.data.players;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.modules.logic.server.powers.GoldAndElectrumHelpers;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.ArrayList;

@@ -2,7 +2,6 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
 
 import java.util.function.Supplier;
@@ -31,6 +30,11 @@ public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper{
     @Override
     public CompoundTag CalculateCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         compoundTag.putInt(metalKey, 2);
+        return compoundTag;
+    }
+
+    public static CompoundTag turnOffPower(CompoundTag compoundTag, String metalKey) {
+        compoundTag.putInt(metalKey, 3);
         return compoundTag;
     }
 }

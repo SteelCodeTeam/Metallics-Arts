@@ -58,7 +58,7 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        if (this instanceof RingElectrumGold) {
+        if (this instanceof RingGoldElectrum) {
             return;
         }
         Player player = (Player) slotContext.getWearer();
@@ -168,7 +168,7 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
             stack.setTag(addRingTags());
         }
 
-        if (this instanceof RingLerasiumEttmetal ||this instanceof RingAtiumMalatium || this instanceof RingElectrumGold) {
+        if (this instanceof RingLerasiumEttmetal ||this instanceof RingAtiumMalatium || this instanceof RingGoldElectrum) {
             return;
         }
 
@@ -176,25 +176,20 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
 
         if (livingEntity.level instanceof ServerLevel) {
             if (livingEntity instanceof Player) {
-
                 Player player = (Player) livingEntity;
                 IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(player);
-
                 if (playerCapability.isDecanting(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)){
                     stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,false,this.metals[0],this.metals[1]));
                 }
-
-                String metal0Key = this.metals[0].getNameLower()+"_feruchemic_reserve";
-                int metal0ActualReserve = stack.getTag().getInt(metal0Key);
-                int metal0MaxReserve = this.metals[0].getMaxReserveRing();
-
+                String metalKey = this.metals[0].getNameLower()+"_feruchemic_reserve";
+                int actualReserve = stack.getTag().getInt(metalKey);
+                int maxReserve = this.metals[0].getMaxReserveRing();
                 /**
                     DECANT
-                 */
-
+                */
                 if (playerCapability.isDecanting(this.metals[0])) {
-                    if (metal0ActualReserve>0) {
-                        stack.setTag(firstSupplier.calculateDischarge(nbtLocal,player,playerCapability,metal0ActualReserve,metal0Key,nicConsumeMet0));
+                    if (actualReserve>0) {
+                        stack.setTag(firstSupplier.calculateDischarge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet0));
                         if (playerCapability.isDecanting(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet0 = !nicConsumeMet0;
                         }
@@ -203,12 +198,12 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
                         playerCapability.setDecanting(this.metals[0],false);
                     }
                 /**
-                 STORAGE
-                 */
+                    STORAGE
+                */
                 } else if (playerCapability.isStoring(this.metals[0])) {
-                    if (metal0ActualReserve < metal0MaxReserve) {
+                    if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,true,this.metals[0],this.metals[1]));
-                        stack.setTag(firstSupplier.CalculateCharge(nbtLocal,player,playerCapability,metal0ActualReserve,metal0Key,nicConsumeMet0));
+                        stack.setTag(firstSupplier.CalculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet0));
                         if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet0 = !nicConsumeMet0;
                         }
@@ -216,17 +211,15 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
                         playerCapability.setStoring(this.metals[0],false);
                     }
                 }
-
-                String metal1Key = this.metals[1].getNameLower()+"_feruchemic_reserve";
-                int metal1ActualReserve = stack.getTag().getInt(metal1Key);
-                int metal1MaxReserve = this.metals[1].getMaxReserveRing();
-
+                metalKey = this.metals[1].getNameLower()+"_feruchemic_reserve";
+                actualReserve = stack.getTag().getInt(metalKey);
+                maxReserve = this.metals[1].getMaxReserveRing();
+                /**
+                    DECANT
+                */
                 if (playerCapability.isDecanting(this.metals[1])) {
-                    if (metal1ActualReserve>0) {
-
-                        stack.setTag(secondSupplier.calculateDischarge(nbtLocal,player,playerCapability,metal1ActualReserve,metal1Key,nicConsumeMet1));
-
-                        //nbtLocal.putInt(metal1Key,secondSupplier.calculateDischarge(player,playerCapability, metal1ActualReserve, nicConsumeMet1));
+                    if (actualReserve>0) {
+                        stack.setTag(secondSupplier.calculateDischarge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
                         if (playerCapability.isDecanting(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet1 = !nicConsumeMet1;
                         }
@@ -235,12 +228,12 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
                         playerCapability.setDecanting(this.metals[1],false);
                     }
                 /**
-                 STORAGE
-                 */
+                    STORAGE
+                */
                 } else if (playerCapability.isStoring(this.metals[1])) {
-                    if (metal1ActualReserve < metal1MaxReserve) {
+                    if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,true,this.metals[0],this.metals[1]));
-                        stack.setTag(secondSupplier.CalculateCharge(nbtLocal,player,playerCapability,metal1ActualReserve,metal1Key,nicConsumeMet1));
+                        stack.setTag(secondSupplier.CalculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
                         if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet1 = !nicConsumeMet1;
                         }

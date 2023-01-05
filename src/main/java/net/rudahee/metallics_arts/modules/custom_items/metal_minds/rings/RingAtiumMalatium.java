@@ -2,37 +2,26 @@ package net.rudahee.metallics_arts.modules.custom_items.metal_minds.rings;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.RingsMindAbstract;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AluminumFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AtiumFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.DuraluminFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.MalatiumFecuchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.PewterFeruchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.TinFeruchemicHelper;
-import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
-import top.theillusivec4.curios.api.SlotContext;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class RingAtiumMalatium extends RingsMindAbstract {
+public class RingAtiumMalatium extends RingsMindAbstract <AtiumFecuchemicHelper, MalatiumFecuchemicHelper> {
     public RingAtiumMalatium (Properties properties){
         super(properties, MetalTagEnum.ATIUM, MetalTagEnum.MALATIUM, AtiumFecuchemicHelper.getInstance(), MalatiumFecuchemicHelper  .getInstance());
     }
-
-
-    /*@Override
+    @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
         if (stack.hasTag()) {
             if (!stack.getTag().contains("tier_malatium_storage") || stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") == 0){
@@ -51,7 +40,8 @@ public class RingAtiumMalatium extends RingsMindAbstract {
             }
             if (stack.getTag().getInt("tier_malatium_storage")!=-1){
                 toolTips.add(Component.translatable("-------------------"));
-                toolTips.add(Component.translatable("Tier: "+convertTierToMaterial(stack.getTag().getInt("tier_malatium_storage"))));
+                toolTips.add(Component.translatable("Tier: "+ MalatiumFecuchemicHelper.convertTierToMaterial(stack.getTag().getInt("tier_malatium_storage"))));
+
             }
             if (!Screen.hasShiftDown()){
                 toolTips.add(Component.translatable(" "));
@@ -59,5 +49,5 @@ public class RingAtiumMalatium extends RingsMindAbstract {
             }
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
-    }*/
+    }
 }

@@ -119,7 +119,7 @@ public class MetalMindsRegister {
 
         MetallicsArts.registerItem("ring_electrum_gold",
             () -> {
-                Item item = new RingElectrumGold(PROPERTY_METALMINDS);
+                Item item = new RingGoldElectrum(PROPERTY_METALMINDS);
                 MetalMindEnum.valueOf("ELECTRUM_GOLD").setRing(item);
                 return item;
             });
@@ -133,14 +133,14 @@ public class MetalMindsRegister {
 
         MetallicsArts.registerItem("ring_pewter_tin",
             () -> {
-                Item item = new RingPewterTin(PROPERTY_METALMINDS);
+                Item item = new RingTinPewter(PROPERTY_METALMINDS);
                 MetalMindEnum.valueOf("TIN_PEWTER").setRing(item);
                 return item;
             });
 
         MetallicsArts.registerItem("ring_steel_iron",
             () -> {
-                Item item = new RingSteelIron(PROPERTY_METALMINDS);
+                Item item = new RingIronSteel(PROPERTY_METALMINDS);
                 MetalMindEnum.valueOf("STEEL_IRON").setRing(item);
                 return item;
             });

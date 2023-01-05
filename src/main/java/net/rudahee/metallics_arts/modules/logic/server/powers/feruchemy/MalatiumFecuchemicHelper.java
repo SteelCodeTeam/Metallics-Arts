@@ -119,7 +119,7 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper{
         }
         return false;
     }
-    public int convertMaterialToTier (String material) {
+    public static int convertMaterialToTier (String material) {
 
         if (material.equals(ArmorMaterials.GOLD.getName()) || material.equals(ArmorMaterials.LEATHER.getName())) {
             return 0;
@@ -135,6 +135,23 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper{
             return 6;
         }
         return -1;
+    }
+
+    public static String convertTierToMaterial (int tier) {
+        if (tier == 0){
+            return Tiers.GOLD.name()+" "+ArmorMaterials.LEATHER.getName().toUpperCase();
+        } else if (tier == 1){
+            ArmorMaterials.TURTLE.getName();
+        } else if (tier == 2){
+            return Tiers.IRON.name()+" "+ArmorMaterials.CHAIN.getName().toUpperCase();
+        } else if (tier == 3){
+            return Tiers.DIAMOND.name();
+        } else if (tier == 4){
+            return Tiers.NETHERITE.name();
+        } else if (tier == 6) {
+            return "Obsidian";
+        }
+        return "";
     }
 
 }

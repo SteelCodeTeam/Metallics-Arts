@@ -1,13 +1,11 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy;
 
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.modules.logic.server.ServerEventHandler;
-import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.event_utils.OnWorldTickEvent;
 
 import java.util.function.Supplier;

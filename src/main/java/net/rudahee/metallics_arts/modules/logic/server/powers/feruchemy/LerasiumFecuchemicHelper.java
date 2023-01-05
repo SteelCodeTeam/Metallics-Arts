@@ -2,7 +2,6 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
 
@@ -26,12 +25,26 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper{
 
     @Override
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
-        return loadAllomanticReserve(playerCapability,compoundTag);
+        compoundTag.putInt(metalKey,0);
+        return loadAllomanticReserve(playerCapability, compoundTag);
     }
 
     @Override
     public CompoundTag CalculateCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
-        return saveAllomanticReserve(playerCapability,compoundTag);
+        if (havePlayerAnyReserve(playerCapability)) {
+            compoundTag = saveAllomanticReserve(playerCapability, compoundTag);
+            compoundTag.putInt(metalKey,1);
+        }
+        return compoundTag;
+    }
+
+    public boolean havePlayerAnyReserve (IInvestedPlayerData playerCapability) {
+        for (MetalTagEnum metal: MetalTagEnum.values()){
+            if (playerCapability.getAllomanticAmount(metal)>0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public CompoundTag saveAllomanticReserve(IInvestedPlayerData playerCapability, CompoundTag compoundTag) {
