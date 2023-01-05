@@ -35,7 +35,7 @@ public class RingElectrumGold extends RingsMindAbstract {
                 IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(player);
 
                 if (playerCapability.isDecanting(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)){
-                    stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                    //stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                 }
 
                 String metal0Key = this.getMetals(0).getNameLower()+"_feruchemic_reserve";
@@ -51,7 +51,7 @@ public class RingElectrumGold extends RingsMindAbstract {
                             nicConsumeMet0 = !nicConsumeMet0;
                         }
                     } else {
-                        stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                        //stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                         playerCapability.setDecanting(this.getMetals(0),false);
                     }
                 /**
@@ -59,7 +59,7 @@ public class RingElectrumGold extends RingsMindAbstract {
                  */
                 } else if (playerCapability.isStoring(this.getMetals(0))) {
                     if (metal0ActualReserve < metal0MaxReserve) {
-                        stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                        //stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
                         stack.setTag(getFirstSupplier().CalculateCharge(nbtLocal,player,playerCapability,metal0ActualReserve,metal0Key,nicConsumeMet0));
                         if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet0 = !nicConsumeMet0;
@@ -84,7 +84,7 @@ public class RingElectrumGold extends RingsMindAbstract {
                             nicConsumeMet1 = !nicConsumeMet1;
                         }
                     } else {
-                        stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                        //stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
                         playerCapability.setDecanting(this.getMetals(1),false);
                     }
                 /**
@@ -93,7 +93,7 @@ public class RingElectrumGold extends RingsMindAbstract {
                 } else if (playerCapability.isStoring(this.getMetals(1))) {
                     playerCapability.setModifiedHealth(true);
                     if (metal1ActualReserve < metal1MaxReserve) {
-                        stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
+                        //stack.getTag().putString("key",changeOwner(player,stack.getTag(),true));
                         stack.setTag(getSecondSupplier().CalculateCharge(nbtLocal,player,playerCapability,metal1ActualReserve,metal1Key,nicConsumeMet1));
                         if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet1 = !nicConsumeMet1;

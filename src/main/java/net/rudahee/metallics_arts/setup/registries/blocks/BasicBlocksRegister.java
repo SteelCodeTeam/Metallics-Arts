@@ -22,7 +22,7 @@ public class BasicBlocksRegister {
     public static void register() {
 
 
-        /**
+        /*
             INITIALIZING METALS
          */
         List<MetalEnum> metalEnumList = Arrays.asList(MetalEnum.values());
@@ -76,7 +76,7 @@ public class BasicBlocksRegister {
         });
 
 
-        /**
+        /*
             INITIALIZING DIVINE METALS
          */
         List<GemsEnum> gemsEnumList = Arrays.asList(GemsEnum.values());
@@ -96,7 +96,7 @@ public class BasicBlocksRegister {
             }
         });
 
-        /**
+        /*
          INITIALIZING SPECIAL ETTMETAL BLOCK
          */
         ModBlocksRegister.ETTMETAL_BLOCK = MetallicsArts.registerBlockDecoration(GemsEnum.ETTMETAL.getGemNameLower() + "_block",

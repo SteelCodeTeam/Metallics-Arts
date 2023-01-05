@@ -19,12 +19,12 @@ public class BasicItemsRegister {
         List<GemsEnum> gemList = Arrays.asList(GemsEnum.values());
 
 
-        /**
+        /*
                 Metals
          */
         metalList.forEach(metal -> {
 
-            /**
+            /*
                 Ingots
             */
             MetallicsArts.registerItem(metal.getMetalNameLower() + "_ingot", () -> {
@@ -36,7 +36,7 @@ public class BasicItemsRegister {
                 return item;
             });
 
-            /**
+            /*
                 Nuggets
              */
             MetallicsArts.registerItem(metal.getMetalNameLower() + "_nugget", () -> {
@@ -45,7 +45,7 @@ public class BasicItemsRegister {
                 return item;
             });
 
-             /**
+             /*
                 Raws
              */
             if (!metal.isAlloy()) {
@@ -64,12 +64,12 @@ public class BasicItemsRegister {
             return item;
         });
 
-        /**
+        /*
                 Gems
          */
         gemList.forEach(gem -> {
 
-            /**
+            /*
                 Ingot
             */
             MetallicsArts.registerItem(gem.getGemNameLower(),
@@ -83,7 +83,7 @@ public class BasicItemsRegister {
                 });
 
 
-            /**
+            /*
                 Nuggets
             */
             MetallicsArts.registerItem(gem.getGemNameLower() + "_nugget",

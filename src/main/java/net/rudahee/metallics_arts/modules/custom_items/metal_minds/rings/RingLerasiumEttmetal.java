@@ -43,20 +43,20 @@ public class RingLerasiumEttmetal extends RingsMindAbstract {
                 player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
 
                     if (data.isDecanting(MetalTagEnum.ALUMINUM) || data.isStoring(MetalTagEnum.ALUMINUM)) {
-                        stack.getTag().putString("key", changeOwner(player, stack.getTag(), false));
+                       // stack.getTag().putString("key", changeOwner(player, stack.getTag(), false));
                     }
 
                     /////////////LERASIUM///////////////////
                     if (data.isDecanting(MetalTagEnum.LERASIUM)) {
                         loadAllomanticReserve(data, stack);
                         nbtLocal.putInt(getMetals(0).getNameLower() + "_feruchemic_reserve", 0);
-                        nbtLocal.putString("key", changeOwner(player, nbtLocal, false));
+                        //nbtLocal.putString("key", changeOwner(player, nbtLocal, false));
                         data.setDecanting(getMetals(0), false);
                         stack.setTag(nbtLocal);
                     } else if (data.isStoring(MetalTagEnum.LERASIUM)) {
                         if (havePlayerAnyReserve(data)) {
                             saveAllomanticReserve(data, stack);
-                            nbtLocal.putString("key", changeOwner(player, nbtLocal, true));
+                            //nbtLocal.putString("key", changeOwner(player, nbtLocal, true));
                             nbtLocal.putInt(getMetals(0).getNameLower() + "_feruchemic_reserve",1);
                             data.setStoring(getMetals(0), false);
                         } else {
@@ -77,12 +77,12 @@ public class RingLerasiumEttmetal extends RingsMindAbstract {
                                 stack.setTag(nbtLocal);
                             } else {
                                 nbtLocal.putInt(getMetals(1).getNameLower() + "_feruchemic_reserve", 0);
-                                nbtLocal.putString("key",changeOwner(player,nbtLocal,false));
+                               // nbtLocal.putString("key",changeOwner(player,nbtLocal,false));
                                 data.setDecanting(getMetals(1),false);
                             }
 
                         } else {
-                            nbtLocal.putString("key",changeOwner(player,nbtLocal,false));
+                           // nbtLocal.putString("key",changeOwner(player,nbtLocal,false));
                             data.setDecanting(getMetals(1),false);
                         }
                     } else if (data.isStoring(getMetals(1))) {
@@ -90,7 +90,7 @@ public class RingLerasiumEttmetal extends RingsMindAbstract {
 
                             if (player.getLastDamageSource() != null){
                                 if ((player.getLastDamageSource().isExplosion())){
-                                    nbtLocal.putString("key",changeOwner(player,nbtLocal,true));
+                               //     nbtLocal.putString("key",changeOwner(player,nbtLocal,true));
                                     //player.addEffect(new MobEffectInstance(MobEffects.REGENERATION,20,3,true,true));
                                     nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(nbtLocal.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
                                 }

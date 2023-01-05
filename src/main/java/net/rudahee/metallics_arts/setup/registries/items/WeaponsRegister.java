@@ -15,11 +15,9 @@ public class WeaponsRegister {
         ModItemsRegister.OBSIDIAN_DAGGER = MetallicsArts.registerItem("obsidian_dagger",
                 () -> new ObsidianDagger(PROPERTY_WEAPONS)
         );
-
         ModItemsRegister.CRISTAL_DAGGER = MetallicsArts.registerItem("cristal_dagger",
                 () -> new CristalDagger(PROPERTY_WEAPONS)
         );
-
         ModItemsRegister.KOLOSS_BLADE = MetallicsArts.registerItem("koloss_blade",
                 () -> new KolossBlade(PROPERTY_WEAPONS)
         );

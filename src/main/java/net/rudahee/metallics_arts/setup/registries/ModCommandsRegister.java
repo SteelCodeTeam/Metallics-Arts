@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.setup.registries.commands;
+package net.rudahee.metallics_arts.setup.registries;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
@@ -17,6 +17,8 @@ import net.rudahee.metallics_arts.modules.custom_items.vials.Vial;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
+import net.rudahee.metallics_arts.setup.registries.commands.ItemsCommandRegister;
+import net.rudahee.metallics_arts.setup.registries.commands.PowersGetRegister;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +26,7 @@ import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class ModCommands {
+public class ModCommandsRegister {
 
     private static final DynamicCommandExceptionType ERROR_CANT_ADD = new DynamicCommandExceptionType(s -> Component.translatable("commands.metallic_arts.err_add", s));
     private static final DynamicCommandExceptionType ERROR_CANT_REMOVE = new DynamicCommandExceptionType(s -> Component.translatable("commands.metallic_arts.err_remove", s));
@@ -34,222 +36,10 @@ public class ModCommands {
     }
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-
-        dispatcher.register(Commands.literal("ma-items").requires(commandSource -> commandSource.hasPermission(2))
-                .then(Commands.literal("give")
-                        .then(Commands.literal("large_vial")
-                                .then(Commands.argument("target", EntityArgument.player())
-                                        .executes(context -> getLargeVial(context, EntityArgument.getPlayer(context, "target")))))
-                        .then(Commands.literal("band_steel_iron")
-                                .then(Commands.argument("target", EntityArgument.player())
-                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_steel_iron"))))
-                        .then(Commands.literal("band_zinc_brass")
-                                .then(Commands.argument("target", EntityArgument.player())
-                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_zinc_brass"))))
-                        .then(Commands.literal("band_aluminium_duralumin")
-                                .then(Commands.argument("target", EntityArgument.player())
-                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_aluminium_duralumin"))))
-                        .then(Commands.literal("band_atium_malatium")
-                                .then(Commands.argument("target", EntityArgument.player())
-                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_atium_malatium"))))
-                        .then(Commands.literal("band_cadmium_bendalloy")
-                                .then(Commands.argument("target", EntityArgument.player())
-                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_cadmium_bendalloy"))))
-                        .then(Commands.literal("band_chromium_nicrosil")
-                                .then(Commands.argument("target", EntityArgument.player())
-                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_chromium_nicrosil"))))
-                        .then(Commands.literal("band_copper_bronze")
-                                .then(Commands.argument("target", EntityArgument.player())
-                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_copper_bronze"))))
-                        .then(Commands.literal("band_electrum_gold")
-                                .then(Commands.argument("target", EntityArgument.player())
-                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_electrum_gold"))))
-                        .then(Commands.literal("band_lerasium_ettmetal")
-                                .then(Commands.argument("target", EntityArgument.player())
-                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_lerasium_ettmetal"))))
-                        .then(Commands.literal("band_pewter_tin")
-                                .then(Commands.argument("target", EntityArgument.player())
-                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayer(context, "target"), "band_pewter_tin"))))));
+        ItemsCommandRegister.register(dispatcher);
+        PowersGetRegister.register(dispatcher);
 
         dispatcher.register(Commands.literal("ma-powers").requires(commandSource -> commandSource.hasPermission(2))
-                .then(Commands.literal("get")
-                        .then(Commands.literal("all")
-                                .then(Commands.argument("target",EntityArgument.player())
-                                        .executes(context -> getAllPower(context,"all", EntityArgument.getPlayer(context, "target")))))
-
-                        .then(Commands.literal("allomantic")
-                                .then(Commands.literal("all")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllPower(context,"allomantic", EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("steel")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.STEEL, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("iron")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.IRON, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("tin")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.TIN, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("pewter")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.PEWTER, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("copper")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.COPPER, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("bronze")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.BRONZE, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("zinc")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.ZINC, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("brass")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.BRASS, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("chromium")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.CHROMIUM, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("nicrosil")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.NICROSIL, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("aluminum")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.ALUMINUM, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("duralumin")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.DURALUMIN, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("cadmium")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.CADMIUM, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("bendalloy")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.BENDALLOY, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("electrum")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.ELECTRUM, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("gold")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.GOLD, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("atium")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.ATIUM, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("malatium")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.MALATIUM, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("lerasium")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.LERASIUM, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("ettmetal")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllomanticPower(context, MetalTagEnum.ETTMETAL, EntityArgument.getPlayer(context, "target"))))
-                                )
-                        )
-                        .then(Commands.literal("feruchemic")
-                                .then(Commands.literal("all")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getAllPower(context,"feruchemic", EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("steel")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.STEEL, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("iron")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.IRON, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("tin")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.TIN, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("pewter")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.PEWTER, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("copper")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.COPPER, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("bronze")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.BRONZE, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("zinc")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.ZINC, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("brass")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.BRASS, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("chromium")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.CHROMIUM, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("nicrosil")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.NICROSIL, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("aluminum")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.ALUMINUM, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("duralumin")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.DURALUMIN, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("cadmium")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.CADMIUM, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("bendalloy")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.BENDALLOY, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("electrum")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.ELECTRUM, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("gold")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.GOLD, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("atium")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.ATIUM, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("malatium")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.MALATIUM, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("lerasium")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.LERASIUM, EntityArgument.getPlayer(context, "target"))))
-                                )
-                                .then(Commands.literal("ettmetal")
-                                        .then(Commands.argument("target",EntityArgument.player())
-                                                .executes(context -> getFeruchemicPower(context, MetalTagEnum.ETTMETAL, EntityArgument.getPlayer(context, "target"))))
-                                )
-                        )
-                )
                 .then(Commands.literal("add")
                         .then(Commands.literal("all")
                                 .then(Commands.argument("target",EntityArgument.player())
@@ -613,83 +403,10 @@ public class ModCommands {
 
     }
 
-    private static int getLargeVial(CommandContext<CommandSourceStack> context, ServerPlayer target) {
-        ItemStack vial = new ItemStack(ModItemsRegister.LARGE_VIAL.get());
-        CompoundTag nbt = Vial.addFullReserveVialTags();
-        nbt.putInt("CustomModelData", 1);
-        vial.setTag(nbt);
-        target.getInventory().add(vial);
-        target.sendSystemMessage(Component.translatable("Added 1 Vial with all metals to " + target.getScoreboardName()));
-        return  1;
-    }
+
 
     // Metodo para adquirir por comando mentes de metal
-    private static int getMetalmind(CommandContext<CommandSourceStack> context, ServerPlayer target, String band) {
-        ItemStack metalmind;
-        CompoundTag nbt = new CompoundTag();
-        if (band.equals("band_steel_iron")) {
 
-            metalmind = new ItemStack(MetalMindEnum.STEEL_IRON.getBand());
-            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.IRON, MetalTagEnum.STEEL);
-
-        }else if(band.equals("band_zinc_brass")) {
-
-            metalmind = new ItemStack(MetalMindEnum.ZINC_BRASS.getBand());
-            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.ZINC, MetalTagEnum.BRASS);
-
-        }else if(band.equals("band_aluminium_duralumin")) {
-
-            metalmind = new ItemStack(MetalMindEnum.ALUMINUM_DURALUMIN.getBand());
-            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.ALUMINUM, MetalTagEnum.DURALUMIN);
-
-        }else if(band.equals("band_atium_malatium")) {
-
-            metalmind = new ItemStack(MetalMindEnum.ATIUM_MALTIUM.getBand());
-            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.ATIUM, MetalTagEnum.MALATIUM);
-
-        }else if(band.equals("band_cadmium_bendalloy")) {
-
-            metalmind = new ItemStack(MetalMindEnum.CADMIUM_BENDALLOY.getBand());
-            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.CADMIUM, MetalTagEnum.BENDALLOY);
-
-        }else if(band.equals("band_chromium_nicrosil")) {
-
-            metalmind = new ItemStack(MetalMindEnum.CHROMIUM_NICROSIL.getBand());
-            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.CHROMIUM, MetalTagEnum.NICROSIL);
-
-        }else if(band.equals("band_copper_bronze")) {
-
-            metalmind = new ItemStack(MetalMindEnum.COPPER_BRONZE.getBand());
-            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.COPPER, MetalTagEnum.BRONZE);
-
-        }else if(band.equals("band_electrum_gold")) {
-
-            metalmind = new ItemStack(MetalMindEnum.ELECTRUM_GOLD.getBand());
-            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.GOLD, MetalTagEnum.ELECTRUM);
-
-        }else if(band.equals("band_lerasium_ettmetal")) {
-
-            metalmind = new ItemStack(MetalMindEnum.LERASIUM_ETTMETAL.getBand());
-            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.LERASIUM, MetalTagEnum.ETTMETAL);
-
-        }else if(band.equals("band_pewter_tin")) {
-
-            metalmind = new ItemStack(MetalMindEnum.TIN_PEWTER.getBand());
-            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.TIN, MetalTagEnum.PEWTER);
-
-        }
-        else{
-
-            metalmind = new ItemStack(MetalMindEnum.TIN_PEWTER.getBand());
-            nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.TIN, MetalTagEnum.PEWTER);
-
-        }
-        metalmind.setTag(nbt);
-        target.getInventory().add(metalmind);
-        target.sendSystemMessage(Component.translatable("Added 1 " + band + " to " + target.getScoreboardName()));
-
-        return  1;
-    }
 
     public static int addAllomanticPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, ServerPlayer player){
 
@@ -823,32 +540,7 @@ public class ModCommands {
 
         return 1;
     }
-    public static int getAllomanticPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, ServerPlayer player){
 
-        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendSimpleMessage(player, cap.hasAllomanticPower(metalTagEnum), metalTagEnum, "allomantic"));
-
-        return 1;
-    }
-    public static int getFeruchemicPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, ServerPlayer player){
-
-            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendSimpleMessage(player, cap.hasFeruchemicPower(metalTagEnum), metalTagEnum, "feruchemic"));
-
-        return 1;
-    }
-    public static int getAllPower (CommandContext<CommandSourceStack> context, String type, ServerPlayer player){
-
-        if(type.equals("allomantic")){
-            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendAllMessage(player, cap.getAllomanticPowers(), type));
-        }else if(type.equals("feruchemic")){
-            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendAllMessage(player, cap.getFeruchemicPowers(), type));
-        }else{
-            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendAllMessage(player, cap.getFeruchemicPowers(), type));
-            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> sendAllMessage(player, cap.getAllomanticPowers(), type));
-        }
-
-
-        return 1;
-    }
     private static void sendAllMessage(ServerPlayer finalPlayerEntity, ArrayList<MetalTagEnum> result, String type) {
 
         ArrayList<MetalTagEnum> allMetals = new ArrayList<>(Arrays.asList(MetalTagEnum.values()));

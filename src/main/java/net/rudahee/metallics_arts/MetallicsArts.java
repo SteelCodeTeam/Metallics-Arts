@@ -32,7 +32,7 @@ import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModEventsRegister;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
-import net.rudahee.metallics_arts.setup.registries.commands.ModCommands;
+import net.rudahee.metallics_arts.setup.registries.ModCommandsRegister;
 import net.rudahee.metallics_arts.setup.registries.generation.ModGeodeGenerationRegister;
 import net.rudahee.metallics_arts.setup.registries.generation.ModOreGenerationRegister;
 import net.rudahee.metallics_arts.setup.registries.generation.ModStructureRegister;
@@ -170,7 +170,7 @@ public class MetallicsArts
 
     @SubscribeEvent
     public void onCommandsRegister(RegisterCommandsEvent event){
-        ModCommands.register(event.getDispatcher());
+        ModCommandsRegister.register(event.getDispatcher());
     }
 
     public void clientInit(final FMLClientSetupEvent e){
