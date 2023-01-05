@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_items.metal_minds;
+package net.rudahee.metallics_arts.utils;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;

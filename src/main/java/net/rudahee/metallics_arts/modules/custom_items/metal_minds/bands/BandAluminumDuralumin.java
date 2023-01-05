@@ -13,9 +13,16 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.BandMindAbstract;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AluminumFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AtiumFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.DuraluminFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.MalatiumFecuchemicHelper;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.utils.CapabilityUtils;
+import net.rudahee.metallics_arts.utils.MetalMindsUtils;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -23,12 +30,13 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class BandAluminumDuralumin extends BandMindAbstract implements ICurioItem {
+public class BandAluminumDuralumin extends BandMindAbstract <AluminumFecuchemicHelper, DuraluminFecuchemicHelper>{
 
     public BandAluminumDuralumin (Item.Properties properties){
-        super(properties, MetalTagEnum.ALUMINUM, MetalTagEnum.DURALUMIN, MetalTagEnum.ALUMINUM.getMaxReserveBand(), MetalTagEnum.DURALUMIN.getMaxReserveBand());
+        super(properties, MetalTagEnum.ALUMINUM, MetalTagEnum.DURALUMIN, AluminumFecuchemicHelper.getInstance(), DuraluminFecuchemicHelper.getInstance());
     }
-    public boolean nicConsumeMet1 = false;
+
+    private boolean nicConsumeMet1 = false;
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
@@ -36,106 +44,82 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
 
         CompoundTag nbtLocal = stack.getTag();
 
+
         if (livingEntity.level instanceof ServerLevel) {
             if (livingEntity instanceof Player) {
                 Player player = (Player) livingEntity;
-                player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
+                IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(player);
 
-                    if (data.isDecanting(MetalTagEnum.ALUMINUM) || data.isStoring(MetalTagEnum.ALUMINUM)){
-                        if (!this.isEquiped) {
-                            this.isEquiped = true;
-                        }
+                if (playerCapability.isDecanting(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)){
+                    stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,false,this.getMetals(0),this.getMetals(1)));
+                }
 
-                        if (data.isDecanting(MetalTagEnum.ALUMINUM)) {
-                            if (nbtLocal.getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") != 1) {
-                                nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",1);
-                            }
-                        } else {
-                            if (nbtLocal.getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") != 2) {
-                                nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",2);
-                            }
+                String metalKey = this.getMetals(0).getNameLower()+"_feruchemic_reserve";
+                int actualReserve = stack.getTag().getInt(metalKey);
+                int maxReserve = this.getMetals(0).getMaxReserveRing();
 
-                        }
-                        stack.getTag().putString("key",changeOwner(player,stack.getTag(),false));
+                /**
+                 DECANT
+                 */
+                if (playerCapability.isDecanting(this.getMetals(0))) {
+                    if (actualReserve>0) {
+                        stack.setTag(getFirstSupplier().calculateDischarge(nbtLocal,player,playerCapability,actualReserve,metalKey,false));
+
                     } else {
-                        if (nbtLocal.getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") != 3) {
-                            nbtLocal.putInt(getMetals(0).getNameLower()+"_feruchemic_reserve",3);
-                        }
-
+                        stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,false,this.getMetals(0),this.getMetals(1)));
+                        playerCapability.setDecanting(this.getMetals(0),false);
                     }
+                    /**
+                     STORAGE
+                     */
+                } else if (playerCapability.isStoring(this.getMetals(0))) {
+                    if (actualReserve < maxReserve) {
+                        stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,true,this.getMetals(0),this.getMetals(1)));
+                        stack.setTag(getFirstSupplier().CalculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,false));
 
-                    ///////DURALUMINUM/////
-                    if (data.isDecanting(getMetals(1))) {
-                        if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")>0) {
-                            if (data.isDecanting(MetalTagEnum.NICROSIL)){
-                                if (!nicConsumeMet1){
-                                    nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")-1));
-                                    stack.setTag(nbtLocal);
-                                }
-                                nicConsumeMet1 = !nicConsumeMet1;
-                            } else {
-                                //las dos lineas de abajo van sin el nicrosil
-                                nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")-1));
-                                stack.setTag(nbtLocal);
-                            }
-                        } else {
-                            stack.getTag().putString("key",localChangeOwner(player,stack.getTag(),false));
-                            data.setDecanting(getMetals(1),false);
-                        }
-
-                    } else if (data.isStoring(getMetals(1))) {
-                        if (stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") < stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity")) {
-
-                            if (data.isStoring(MetalTagEnum.NICROSIL)) {
-                                if (!nicConsumeMet1){
-                                    stack.getTag().putString("key",localChangeOwner(player,stack.getTag(),true));
-                                    nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
-                                    stack.setTag(nbtLocal);
-                                }
-                                nicConsumeMet1 = !nicConsumeMet1;
-
-                            } else {
-                                stack.getTag().putString("key",localChangeOwner(player,stack.getTag(),true));
-                                nbtLocal.putInt(getMetals(1).getNameLower()+"_feruchemic_reserve",(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+1));
-                                stack.setTag(nbtLocal);
-                            }
-                        } else {
-                            data.setStoring(getMetals(1),false);
-                        }
+                    } else {
+                        playerCapability.setStoring(this.getMetals(0),false);
                     }
-                    ModNetwork.sync(data, player);
-                });
+                } else if (actualReserve != 3){
+                    AluminumFecuchemicHelper.turnOffPower(nbtLocal,metalKey);
+                }
+
+                metalKey = this.getMetals(1).getNameLower()+"_feruchemic_reserve";
+                actualReserve = stack.getTag().getInt(metalKey);
+                maxReserve = this.getMetals(1).getMaxReserveRing();
+                /**
+                 DECANT
+                 */
+                if (playerCapability.isDecanting(this.getMetals(1))) {
+                    if (actualReserve>0) {
+                        stack.setTag(getSecondSupplier().calculateDischarge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
+                        if (playerCapability.isDecanting(MetalTagEnum.NICROSIL)) {
+                            nicConsumeMet1 = !nicConsumeMet1;
+                        }
+                    } else {
+                        stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,false,this.getMetals(1)));
+                        playerCapability.setDecanting(this.getMetals(1),false);
+                    }
+                    /**
+                     STORAGE
+                     */
+                } else if (playerCapability.isStoring(this.getMetals(1))) {
+                    if (actualReserve < maxReserve) {
+                        stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,true,this.getMetals(1)));
+                        stack.setTag(getSecondSupplier().CalculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
+                        if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
+                            nicConsumeMet1 = !nicConsumeMet1;
+                        }
+                    } else {
+                        playerCapability.setStoring(this.getMetals(1),false);
+                    }
+                }
+                ModNetwork.sync(playerCapability, player);
             }
         }
         super.curioTick(slotContext, stack);
     }
-
-    private String dato;
-    public String localChangeOwner(Player player, CompoundTag compoundNBT,boolean iStoreMetal) {
-
-        boolean isSecondReserveZero = compoundNBT.getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") == 0;
-        dato = compoundNBT.getString("key");
-
-        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
-            if (isSecondReserveZero && !data.isStoring(MetalTagEnum.ALUMINUM) &&
-                    !data.isDecanting(MetalTagEnum.ALUMINUM) && iStoreMetal){
-                dato = player.getStringUUID();
-            } else if (isSecondReserveZero && !data.isStoring(MetalTagEnum.ALUMINUM) &&
-                    !data.isDecanting(MetalTagEnum.ALUMINUM) && !iStoreMetal){
-                dato = unkeyedString;
-            }
-            else if (data.isStoring(MetalTagEnum.ALUMINUM)) {
-                dato = unkeyedString;
-            } else if (data.isDecanting(MetalTagEnum.ALUMINUM)){
-                dato = player.getStringUUID();
-            }
-        });
-        return dato;
-    }
-
-    private boolean isEquiped = false;
-
-    @Override
+    /*@Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
         if (stack.hasTag()) {
             if (isEquiped) {
@@ -163,13 +147,6 @@ public class BandAluminumDuralumin extends BandMindAbstract implements ICurioIte
             }
         }
         super.appendHoverText(stack, world, toolTips, flagIn);
-    }
+    }*/
 
-    @Override
-    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        if (stack.getItem() != newStack.getItem()) {
-            this.isEquiped = false;
-        }
-        super.onUnequip(slotContext, newStack, stack);
-    }
 }

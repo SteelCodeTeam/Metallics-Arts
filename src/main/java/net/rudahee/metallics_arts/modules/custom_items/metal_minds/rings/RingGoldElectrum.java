@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.custom_items.metal_minds.MetalMindsUtils;
+import net.rudahee.metallics_arts.utils.MetalMindsUtils;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.RingsMindAbstract;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.ElectrumFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.GoldFecuchemicHelper;

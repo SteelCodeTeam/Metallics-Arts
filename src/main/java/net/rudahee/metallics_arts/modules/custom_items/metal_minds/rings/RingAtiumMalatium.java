@@ -19,7 +19,7 @@ import java.util.UUID;
 
 public class RingAtiumMalatium extends RingsMindAbstract <AtiumFecuchemicHelper, MalatiumFecuchemicHelper> {
     public RingAtiumMalatium (Properties properties){
-        super(properties, MetalTagEnum.ATIUM, MetalTagEnum.MALATIUM, AtiumFecuchemicHelper.getInstance(), MalatiumFecuchemicHelper  .getInstance());
+        super(properties, MetalTagEnum.ATIUM, MetalTagEnum.MALATIUM, AtiumFecuchemicHelper.getInstance(), MalatiumFecuchemicHelper.getInstance());
     }
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
