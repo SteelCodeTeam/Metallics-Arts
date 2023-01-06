@@ -5,7 +5,8 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
-import net.rudahee.metallics_arts.modules.logic.server.powers.ZincAndBrassHelpers;
+import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.ZincAllomanticHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.BrassAllomanticHelper;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.Supplier;
@@ -50,15 +51,15 @@ public class ChangeEmotionPacket {
 
             if (this.make_aggressive) {
                 if (enhanced) {
-                    ZincAndBrassHelpers.angryEntitiesEnhanced(target, allomancer);
+                    BrassAllomanticHelper.angryEntitiesEnhanced(target, allomancer);
                 } else {
-                    ZincAndBrassHelpers.angryEntities(target, allomancer);
+                    BrassAllomanticHelper.angryEntities(target, allomancer);
                 }
             } else {
                 if (enhanced) {
-                    ZincAndBrassHelpers.happyEntitiesEnhanced(target, allomancer);
+                    ZincAllomanticHelper.happyEntitiesEnhanced(target, allomancer);
                 } else {
-                    ZincAndBrassHelpers.happyEntities(target, allomancer);
+                    ZincAllomanticHelper.happyEntities(target, allomancer);
                 }
             }
         });

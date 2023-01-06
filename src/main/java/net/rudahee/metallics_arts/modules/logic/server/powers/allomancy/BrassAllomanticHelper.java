@@ -1,18 +1,13 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers;
-
+package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.ai.village.ReputationEventType;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.animal.Rabbit;
-import net.minecraft.world.entity.animal.Sheep;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Creeper;
@@ -21,19 +16,9 @@ import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.common.Tags;
 
-import java.util.function.Predicate;
-
-public class ZincAndBrassHelpers {
-
-
-    public static void drawSaturatedScreen(Player entityLiving) {
-
-    }
-
+public class BrassAllomanticHelper {
     public static void angryEntities(Mob target, Player source) {
         target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
 
@@ -43,8 +28,8 @@ public class ZincAndBrassHelpers {
 
         if (target instanceof TamableAnimal) {
             TamableAnimal tameable = (TamableAnimal) target;
-          tameable.setTame(false);
-          tameable.resetLove();
+            tameable.setTame(false);
+            tameable.resetLove();
         } else if (target instanceof Creeper) {
             target.getMoveControl().setWantedPosition(source.position().x-0.5F, source.position().y, source.position().z-0.5F, 1.3f);
             target.goalSelector.addGoal(2, new SwellGoal((Creeper) target));
@@ -143,7 +128,7 @@ public class ZincAndBrassHelpers {
                 } else if (target instanceof IronGolem) {
                     target.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 80, 2, true, true));
                     target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 6, 1, true, true));
-                   target.goalSelector.addGoal(1, new MeleeAttackGoal((IronGolem) target, 1.8D, true));
+                    target.goalSelector.addGoal(1, new MeleeAttackGoal((IronGolem) target, 1.8D, true));
 
                 } else if (target instanceof Villager) {
                     Villager villager = (Villager) target;
@@ -154,142 +139,5 @@ public class ZincAndBrassHelpers {
                 }
             }
         });
-    }
-
-    private static final Predicate<Goal> isAggroGoal = (goal) -> goal instanceof SwellGoal || goal instanceof MeleeAttackGoal ||
-            goal instanceof TargetGoal || goal instanceof PanicGoal || goal.getClass().getName().contains("Fireball") ||
-            goal.getClass().getName().contains("Attack") || goal.getClass().getName().contains("Anger") || goal instanceof AvoidEntityGoal;
-
-    public static void happyEntities(Mob target, Player source) {
-        target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
-
-        target.setAggressive(false);
-
-        target.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop );
-        target.targetSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop);
-
-        target.setTarget(null);
-        target.setLastHurtByMob(null);
-        //Disable targeting as a whole
-        target.targetSelector.disableControlFlag(Goal.Flag.TARGET);
-        target.setAggressive(false);
-        //Add new goals
-        target.goalSelector.addGoal(2, new LookAtPlayerGoal(target, source.getClass(), 6.0F));
-
-
-        if (target instanceof TamableAnimal) {
-            if (Math.random() > 0.9) {
-                ((TamableAnimal) target).tame(source);
-            }
-        } else if (target instanceof AbstractHorse) {
-            if (Math.random() > 0.9) {
-                ((AbstractHorse) target).tameWithName(source);
-            }
-        } else if (target instanceof Sheep) {
-            target.goalSelector.addGoal(1, new EatBlockGoal(target));
-        } else if (target instanceof Villager) {
-            Villager villager = (Villager) target;
-            villager.onReputationEventFrom(ReputationEventType.ZOMBIE_VILLAGER_CURED, source);
-            villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(goal -> {
-                villager.goalSelector.removeGoal(goal);
-            });
-            villager.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 2, true, true));
-        }
-    }
-
-    public static void happyEntitiesEnhanced(Mob target, Player source) {
-        target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
-
-        target.setAggressive(false);
-        target.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop);
-        target.targetSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop);
-
-        target.setTarget(null);
-        target.setLastHurtByMob(null);
-        //Disable targeting as a whole
-        target.targetSelector.disableControlFlag(Goal.Flag.TARGET);
-        target.setAggressive(false);
-        //Add new goals
-        target.goalSelector.addGoal(2, new LookAtPlayerGoal(target, Player.class, 12.0F));
-
-
-        if (target instanceof TamableAnimal) {
-            ((TamableAnimal) target).tame(source);
-
-        } else if (target instanceof AbstractHorse) {
-            ((AbstractHorse) target).tameWithName(source);
-        } else if (target instanceof Sheep) {
-            target.goalSelector.addGoal(1, new EatBlockGoal(target));
-        } else if (target instanceof Villager) {
-            Villager villager = (Villager) target;
-            villager.onReputationEventFrom(ReputationEventType.ZOMBIE_VILLAGER_CURED, source);
-            villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(goal -> {
-                villager.goalSelector.removeGoal(goal);
-            });
-            villager.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 80, 2, true, true));
-        }
-    }
-
-    public static void happyEntitiesWithLerasium(Player source, Level world, AABB axisAlignedBB,boolean duralumin){
-
-        world.getEntitiesOfClass(Mob.class, axisAlignedBB).forEach(target -> {
-            target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
-
-            target.setAggressive(false);
-            target.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop);
-            target.targetSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop);
-
-            target.setTarget(null);
-            target.setLastHurtByMob(null);
-            //Disable targeting as a whole
-            target.targetSelector.disableControlFlag(Goal.Flag.TARGET);
-            target.setAggressive(false);
-            //Add new goals
-            target.goalSelector.addGoal(2, new LookAtPlayerGoal(target, Player.class, 12.0F));
-
-            if (target instanceof TamableAnimal) {
-                ((TamableAnimal) target).tame(source);
-
-            } else if (target instanceof AbstractHorse) {
-                ((AbstractHorse) target).tameWithName(source);
-            } else if (target instanceof Sheep) {
-                target.goalSelector.addGoal(1, new EatBlockGoal(target));
-            } else if (target instanceof Villager) {
-                Villager villager = (Villager) target;
-                villager.onReputationEventFrom(ReputationEventType.ZOMBIE_VILLAGER_CURED, source);
-                villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(goal -> {
-                    villager.goalSelector.removeGoal(goal);
-                });
-                villager.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 80, 2, true, true));
-            }
-        });
-    }
-
-    public static void addFireAspectToPlayer(LivingEntity livingEntity, int secondsFire){
-        livingEntity.setSecondsOnFire(secondsFire);
-    }
-
-    public static void addFrozenTicks(Player player, Level world) {
-        if (world.getBiome(player.getOnPos()).is(Tags.Biomes.IS_COLD) || (world.getBiome(player.getOnPos()).is(Biomes.DESERT) && world.isNight())) {
-            player.setTicksFrozen(player.getTicksFrozen() + 3);
-        }
-
-    }
-
-    public static void addBurnBodyTicks(Player player) {
-        player.setSecondsOnFire(1);
-    }
-
-    public static void addFireResistance(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40, 1, true, false));
-    }
-
-    public static void ambientalEffects(Player player, Level world) {
-        if (world.getBiome(player.getOnPos()).is(Biomes.DESERT) && world.isDay()) {
-            addBurnBodyTicks(player);
-        } else if (world.getBiome(player.getOnPos()).is(Tags.Biomes.IS_HOT)) {
-            addBurnBodyTicks(player);
-        }
-
     }
 }

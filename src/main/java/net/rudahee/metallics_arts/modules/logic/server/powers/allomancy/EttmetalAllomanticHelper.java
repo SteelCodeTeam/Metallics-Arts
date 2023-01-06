@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers;
+package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy;
 
 
 import net.minecraft.world.entity.player.Player;
@@ -7,7 +7,7 @@ import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
-public class LerasiumAndEttmetalHelpers {
+public class EttmetalAllomanticHelper {
 
     public static void ettmetalExplotion(Level world, Player player) {
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(playerCapability ->{

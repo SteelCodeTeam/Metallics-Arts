@@ -9,10 +9,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.logic.server.powers.AtiumAndMalatiumHelpers;
-import net.rudahee.metallics_arts.modules.logic.server.powers.ChromiumAndNicrosilHelpers;
+import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.AtiumAllomanticHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.ChromiumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.GoldAndElectrumHelpers;
-import net.rudahee.metallics_arts.modules.logic.server.powers.ZincAndBrassHelpers;
+import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.NicrosilAllomanticHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.BrassFecuchemicHelper;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
@@ -69,7 +70,7 @@ public class OnDamagePowers {
          *******************************/
         if (sourceCapability.isBurning(MetalTagEnum.CHROMIUM)) {
             if (target instanceof Player) {
-                ChromiumAndNicrosilHelpers.drainMetalChromium((Player) event.getEntity());
+                ChromiumAllomanticHelper.drainMetalChromium((Player) event.getEntity());
             }
         }
         /*******************************
@@ -86,7 +87,7 @@ public class OnDamagePowers {
          *******************************/
         if (sourceCapability.isBurning(MetalTagEnum.NICROSIL)) {
             if (target instanceof Player) {
-                ChromiumAndNicrosilHelpers.changeNBTinTargetForEnhanced((Player) event.getEntity());
+                NicrosilAllomanticHelper.changeNBTinTargetForEnhanced((Player) event.getEntity());
             }
         }
 
@@ -96,9 +97,9 @@ public class OnDamagePowers {
         if (target instanceof Player) {
             if (targetCapability.isBurning(MetalTagEnum.ATIUM) ){
                 if (source instanceof Player) {
-                    event.setAmount(AtiumAndMalatiumHelpers.getCalculateComplexDamage(targetCapability,sourceCapability,event.getAmount()));
+                    event.setAmount(AtiumAllomanticHelper.getCalculateComplexDamage(targetCapability,sourceCapability,event.getAmount()));
                 } else {
-                    event.setAmount(AtiumAndMalatiumHelpers.getCalculateSimpleDamage(targetCapability,event.getAmount()));
+                    event.setAmount(AtiumAllomanticHelper.getCalculateSimpleDamage(targetCapability,event.getAmount()));
                 }
             }
         }
@@ -113,7 +114,7 @@ public class OnDamagePowers {
          *   DAMAGE WITH - BRASS
          *******************************/
         if (sourceCapability.isDecanting(MetalTagEnum.BRASS)) {
-            ZincAndBrassHelpers.addFireAspectToPlayer(event.getEntity(), 4);
+            BrassFecuchemicHelper.addFireAspectToPlayer(event.getEntity(), 4);
         }
 
         //cancel Freeze damage

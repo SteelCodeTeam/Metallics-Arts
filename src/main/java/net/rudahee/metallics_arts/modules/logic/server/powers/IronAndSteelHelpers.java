@@ -168,23 +168,4 @@ public class IronAndSteelHelpers {
         }
     }
 
-    public static void addSpeed(Player player, int effectLevel){
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, effectLevel, true, false));
-    }
-
-    public static void removeSpeed(Player player, int effectLevel){
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, effectLevel, true, false));
-    }
-
-    public static void reduceWeight(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 20, 1, true, false));
-        player.addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 2, true, false));
-        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 20, 1, true, false));
-    }
-
-    public static void increaseWeight(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 5, true, false));
-        player.addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 128, true, false));
-        //128de amplificador de jump deshabilita el salto, no me preguntes, solo funciona
-    }
 }

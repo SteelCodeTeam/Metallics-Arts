@@ -59,36 +59,6 @@ public class GoldAndElectrumHelpers {
             return Level.OVERWORLD;
         }
     }
-
-    public static void addHealth(Player player,int qtyHealth){ //gold
-        player.setHealth(player.getHealth()+qtyHealth);
-    }
-
-    public static void removeHealth(Player player, int qtyHealth){ //gold
-        if (!player.isCreative()){
-            player.hurt(DamageSource.GENERIC, qtyHealth);
-        }
-    }
-
-    public static void removeHearts(Player player, int qtyHearth){ //electrum
-        if (player.getHealth()>qtyHearth) {
-            player.setHealth(qtyHearth);
-        }
-        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(qtyHearth);
-    }
-
-    public static void restoreHearts(Player player){    //electrum
-        if (player.getHealth()>20) {
-            player.setHealth(20);
-        }
-        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
-
-    }
-
-    public static void addHearts(Player player, int qtyHearth) { //electrum
-        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(qtyHearth);
-    }
-
     private static BlockPos block = null;
     private static String dimension = null;
 
