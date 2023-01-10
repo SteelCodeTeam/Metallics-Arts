@@ -20,7 +20,7 @@ public class ComparatorMetals implements Comparator<MetalTagEnum> {
      * @param metal1 the first MetalTagEnum to be compared.
      * @param metal2 the second MetalTagEnum to be compared.
      *
-     * @return int. returns -1 if the first metal passed by parameter comes before the second, otherwise returns 1.
+     * @return int returns -1 if the first metal passed by parameter comes before the second, otherwise returns 1.
      *
      * @see MetalTagEnum
      */

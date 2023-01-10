@@ -29,9 +29,10 @@ public class CapabilityUtils {
      * @see IInvestedPlayerData
      */
     public static IInvestedPlayerData getCapability(ServerPlayer player) {
+
         playerData = null;
 
-        // if player is present we return player, else, return null.
+        // if player is present and has capabilities, we return capabilities, else, return null.
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(playerCapability -> playerData = playerCapability);
 
         return playerData;
@@ -51,7 +52,7 @@ public class CapabilityUtils {
     public static IInvestedPlayerData getCapability (Player player) throws Exception {
         playerData = null;
 
-        // if player is present we return player, else, return null.
+        // if player is present and has capabilities, we return capabilities, else, return null.
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(playerCapability -> playerData = playerCapability);
 
         if (playerData == null) {
