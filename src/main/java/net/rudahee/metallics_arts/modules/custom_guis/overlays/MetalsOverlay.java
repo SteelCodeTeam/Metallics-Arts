@@ -18,7 +18,14 @@ import top.theillusivec4.curios.api.CuriosApi;
 
 import java.awt.*;
 
-
+/**
+ * Class that implements IGui Overlay. This class control the drawing of the overlays in the game. We need to completely redo it.
+ *
+ * @author SteelCode Team
+ * @since 1.6
+ *
+ * @deprecated
+ */
 public class MetalsOverlay implements IGuiOverlay {
     private static final Point[] AllomanticFrames = new Point[6];
     private static final Point[] FeruchemicDecantFrames = new Point[6];

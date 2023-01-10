@@ -128,7 +128,6 @@ public class ItemsCommandRegister {
                 nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.IRON, MetalTagEnum.STEEL);
 
             } else if (band.equals("band_zinc_brass")) {
-
                 metalmind = new ItemStack(MetalMindEnum.ZINC_BRASS.getBand());
                 nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.ZINC, MetalTagEnum.BRASS);
 
