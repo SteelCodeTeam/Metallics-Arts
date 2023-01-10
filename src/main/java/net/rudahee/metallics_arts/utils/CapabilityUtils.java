@@ -44,20 +44,13 @@ public class CapabilityUtils {
      *
      * @return IInvestedPlayerData data extracted from target Player.
      *
-     * @exception Exception raised when player doesn't contain capabilities.
-     *
      * @see IInvestedPlayerData
      */
-    public static IInvestedPlayerData getCapability (Player player) throws Exception {
+    public static IInvestedPlayerData getCapability (Player player) {
         playerData = null;
 
         // if player is present and has capabilities, we return capabilities, else, return null.
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(playerCapability -> playerData = playerCapability);
-
-        if (playerData == null) {
-            throw new Exception("Player doesnt exists");
-        }
-
         return playerData;
     }
 

@@ -5,10 +5,14 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeEnum;
 import net.rudahee.metallics_arts.modules.custom_items.metal_spikes.MetalSpike;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
+/**
+ * Registration of the metal spikes items.
+ *
+ * @see ModItemsRegister
+ */
 public class SpikesRegister {
-
-
     private static final Item.Properties PROPERTY_SPIKE = new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1);
 
     public static void register() {
@@ -153,10 +157,5 @@ public class SpikesRegister {
                     return item;
                 }
         );
-
     }
-
-
-
-
 }

@@ -5,11 +5,11 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class NicrosilAllomanticHelper {
-    public static void changeNBTinTargetForEnhanced(Player target) {
-        target.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> {
+    public static void changeNBTinTargetForEnhanced(Player playerTarget) {
+        playerTarget.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> {
             cap.setEnhanced(true);
 
-            ModNetwork.sync(cap, target);
+            ModNetwork.sync(cap, playerTarget);
         });
     }
 }

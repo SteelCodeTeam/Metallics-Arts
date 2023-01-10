@@ -103,7 +103,7 @@ public class ServerEventHandler {
     private static Player newPlayer = null;
     public static int radius;
     @SubscribeEvent
-    public static void onWorldTickEvent(final TickEvent.LevelTickEvent event) {
+    public static void onWorldTickEvent(final TickEvent.LevelTickEvent event) throws Exception {
         if (event.phase != TickEvent.Phase.END) {
             return;
         }
@@ -129,15 +129,13 @@ public class ServerEventHandler {
                 }
 
                 OnWorldTickEvent.duraluminAndExternalNicrosilEffect(playerCapability);
-                /**
-                     KOLLOSS BLADE EQUIP
-                 */
+
+                // KOLLOSS BLADE EQUIP
                 OnWorldTickEvent.equipKolossBlade(player,playerCapability);
 
 
-                /**
-                 * ZINC POWERS
-                 */
+                // ZINC POWERS
+
                 if (playerCapability.isBurning(MetalTagEnum.ZINC) && playerCapability.isBurning(MetalTagEnum.LERASIUM)){
                     if (event.level instanceof ServerLevel) {
                         radius = (playerCapability.getEnhanced()) ? 14 : 12;
@@ -145,21 +143,19 @@ public class ServerEventHandler {
                                 (player,event.level,CapabilityUtils.getBubble(player,radius),playerCapability.getEnhanced());
                     }
                 }
-                /**
-                 * ZINC POWERS
-                 */
+                // BRASS POWERS
+
                 if (playerCapability.isBurning(MetalTagEnum.BRASS)&&playerCapability.isBurning(MetalTagEnum.LERASIUM)){
                     if (event.level instanceof ServerLevel) {
                         radius = (playerCapability.getEnhanced()) ? 14 : 12;
                         ZincAllomanticHelper.happyEntitiesWithLerasium(player, event.level,CapabilityUtils.getBubble(player,radius),playerCapability.getEnhanced());
                     }
                 }
-                /**
-                 * BENDALLOY POWERS
-                 */
+                // BENDALLOY POWERS
+
                 if (playerCapability.isBurning(MetalTagEnum.BENDALLOY)) {
                     if (!playerCapability.isBurning(MetalTagEnum.CADMIUM)) {
-                        /** ENHANCED */
+                        // ENHANCED
                         if (playerCapability.getEnhanced()) {
                             BendalloyAllomanticHelper.AddAiSteepsEnhanced(player);
                             if (event.level instanceof ServerLevel) {
@@ -168,7 +164,7 @@ public class ServerEventHandler {
                                 BendalloyAllomanticHelper.BendalloyMobEffects(player, event.level, CapabilityUtils.getBubble(player,radius), radius, true);
                             }
                         }
-                        /** NORMAL */
+                        // NORMAL
                         else {
                             BendalloyAllomanticHelper.AddAiSteeps(player);
                             if (event.level instanceof ServerLevel) {
@@ -179,9 +175,8 @@ public class ServerEventHandler {
                         }
                     }
                 }
-                /**
-                 * CHROMIUM ENHANCED
-                 */
+                // CHROMIUM ENHANCED
+
                 if (playerCapability.isBurning(MetalTagEnum.CHROMIUM) && playerCapability.getEnhanced()) {
                     if (event.level instanceof ServerLevel) {
                         radius = (playerCapability.isBurning(MetalTagEnum.LERASIUM)) ? 14 : 11;
@@ -189,12 +184,11 @@ public class ServerEventHandler {
                         ChromiumAllomanticHelper.drainMetalCloudChromium((ServerLevel) event.level, CapabilityUtils.getBubble(player,radius));
                     }
                 }
-                /**
-                 * CADMIUM POWERS
-                 */
+                // CADMIUM POWERS
+
                 if (playerCapability.isBurning(MetalTagEnum.CADMIUM)) {
                     if (!playerCapability.isBurning(MetalTagEnum.BENDALLOY)) {
-                        /** ENHANCED */
+                        // ENHANCED
                         if (playerCapability.getEnhanced()) {
                             radius = (playerCapability.isBurning(MetalTagEnum.LERASIUM)) ? 16 : 13;
                             CadmiumAllomanticHelper.CadmiumEffectSelfPlayerEnhanced(player);
@@ -207,13 +201,12 @@ public class ServerEventHandler {
                                 });
                             }
                         }
-                        /** NORMAL */
+                        // NORMAL
                         else {
                             radius = (playerCapability.isBurning(MetalTagEnum.LERASIUM)) ? 11 : 8;
                             // Do myself my own powers
                             CadmiumAllomanticHelper.CadmiumEffectSelfPlayer(player);
                             if (event.level instanceof ServerLevel) {
-
                                 event.level.getEntitiesOfClass(LivingEntity.class,CapabilityUtils.getBubble(player,radius)).forEach(entity -> {
                                     if (entity != player) {
                                         //Do others in de cloud my powers.
@@ -236,15 +229,13 @@ public class ServerEventHandler {
                     playerCapability.drainMetals(MetalTagEnum.LERASIUM);
                 }
             }
-            /**
-             * PEWTER POWERS
-             */
+            // PEWTER POWERS
+
             if (playerCapability.isBurning(MetalTagEnum.PEWTER)) {
                 PewterAllomanticHelper.addPewterEffects(player, playerCapability.isBurning(MetalTagEnum.LERASIUM), playerCapability.getEnhanced());
             }
-            /**
-             * TIN POWERS
-             */
+            // TIN POWERS
+
             if (playerCapability.isBurning(MetalTagEnum.TIN)) {
                 if (playerCapability.getEnhanced()) {
                     TinAllomanticHelper.addTinEffectsEnhanced(player);
@@ -252,55 +243,47 @@ public class ServerEventHandler {
                     TinAllomanticHelper.addTinEffects(player);
                 }
             }
-            /**
-             * BRONZE POWERS
-             */
+            // BRONZE POWERS
+
             if (playerCapability.isBurning(MetalTagEnum.BRONZE) && !playerCapability.getEnhanced()) {
                 if (event.level instanceof ServerLevel) {
                     radius = (playerCapability.isBurning(MetalTagEnum.LERASIUM)) ? 14 : 12;
                     BronzeAllomanticHelper.BronzeAiEntityManipulation(CapabilityUtils.getBubble(player,radius), player, event.level);
                 }
-                /**
-                 * BRONZE ENHANCED POWERS
-                 */
+                // BRONZE ENHANCED POWERS
+
             } else if (playerCapability.isBurning(MetalTagEnum.BRONZE) && playerCapability.getEnhanced()) {
                 if (event.level instanceof ServerLevel) {
                     radius = (playerCapability.isBurning(MetalTagEnum.LERASIUM)) ? 18 : 16;
                     BronzeAllomanticHelper.BronzeEnhancedAiEntityManipulation(CapabilityUtils.getBubble(player,radius), player, event.level);
                 }
             }
-            /**
-             * COPPER POWERS
-             */
+            // COPPER POWERS
+
             if (playerCapability.isBurning(MetalTagEnum.COPPER) && !playerCapability.getEnhanced()) {
                 if (event.level instanceof ServerLevel) {
                     radius = (playerCapability.isBurning(MetalTagEnum.LERASIUM)) ? 14 : 12;
                     CopperAllomanticHelper.CopperAiEntityManipulation(CapabilityUtils.getBubble(player,radius), player, event.level);
                 }
-                /**
-                 * COPPER ENHANCED POWERS
-                 */
+            // COPPER ENHANCED POWERS
             } else if (playerCapability.isBurning(MetalTagEnum.COPPER) && playerCapability.getEnhanced()) {
                 if (event.level instanceof ServerLevel) {
                     radius = (playerCapability.isBurning(MetalTagEnum.LERASIUM)) ? 18 : 16;
                     CopperAllomanticHelper.CopperEnhancedAiEntityManipulation(CapabilityUtils.getBubble(player,radius), player, event.level);
                 }
             }
-            /**
-             * ETTMETAL
-             */
+            // ETTMETAL
+
             if (playerCapability.isBurning(MetalTagEnum.ETTMETAL)){
                 EttmetalAllomanticHelper.ettmetalExplotion(event.level,player);
             }
-            /**
-             * ALUMINUM POWER
-             */
+            // ALUMINUM POWER
+
             if (playerCapability.isBurning(MetalTagEnum.ALUMINUM)) {
                 AluminumAllomanticHelper.drainAndCleanEffects(player,playerCapability);
             }
-            /**
-             * ELECTRUM POWER (ENHANCED)
-             */
+            // ELECTRUM POWER (ENHANCED)
+
             if (playerCapability.isBurning(MetalTagEnum.ELECTRUM) &&  playerCapability.getEnhanced()) {
                 BlockPos block;
                 String dimension;
@@ -324,9 +307,8 @@ public class ServerEventHandler {
                 }
                 playerCapability.drainMetals(MetalTagEnum.ELECTRUM);
             }
-            /**
-             * GOLD POWER (ENHANCED)
-             */
+            // GOLD POWER (ENHANCED)
+
             if (playerCapability.isBurning(MetalTagEnum.GOLD) && playerCapability.getEnhanced()) {
                 BlockPos block;
                 String dimension;
@@ -350,9 +332,8 @@ public class ServerEventHandler {
                 }
                 playerCapability.drainMetals(MetalTagEnum.GOLD);
             }
-            /**
-             * MALATIUM POWER (ENHANCED)
-             */
+            // MALATIUM POWER (ENHANCED)
+
             if (playerCapability.isBurning(MetalTagEnum.MALATIUM) && playerCapability.getEnhanced()) {
                 BlockPos block;
                 String dimension;

@@ -5,15 +5,15 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
+/**
+ * Registration of the metal icons items.
+ *
+ * @see ModItemsRegister
+ */
 public class IconsRegister {
-
-
     public static void register() {
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-
-            /*
-                Allomantic Icons
-             */
+            // Allomantic Icons
             MetallicsArts.registerItem(metal.getNameLower()+"_allomantic_icon",
                 ()-> {
                     Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB_DECORATION));
@@ -24,10 +24,7 @@ public class IconsRegister {
                     }
                     return item;
                 });
-
-            /*
-                Feruchemic Icons
-             */
+            // Feruchemic Icons
             MetallicsArts.registerItem(metal.getNameLower()+"_feruchemic_icon",
                 ()-> {
                     Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB_DECORATION));

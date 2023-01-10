@@ -5,15 +5,17 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.bands.*;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.rings.*;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
-
+/**
+ * Registration of the metalminds items.
+ *
+ * @see ModItemsRegister
+ */
 public class MetalMindsRegister {
     private static final Item.Properties PROPERTY_METALMINDS = new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1);
     public static void register() {
-
-        /*
-            Bands
-         */
+        // Bands
         MetallicsArts.registerItem("band_aluminum_duralumin",
             () -> {
                 Item item = new BandAluminumDuralumin(PROPERTY_METALMINDS);
@@ -77,11 +79,7 @@ public class MetalMindsRegister {
                 MetalMindEnum.valueOf("ZINC_BRASS").setBand(item);
                 return item;
             });
-
-
-        /*
-            Rings
-         */
+        // Rings
         MetallicsArts.registerItem("ring_aluminum_duralumin",
             () -> {
                 Item item = new RingAluminumDuralumin(PROPERTY_METALMINDS);

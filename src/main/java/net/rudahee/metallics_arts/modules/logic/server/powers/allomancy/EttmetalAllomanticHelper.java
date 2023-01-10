@@ -9,16 +9,21 @@ import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class EttmetalAllomanticHelper {
 
-    public static void ettmetalExplotion(Level world, Player player) {
+    /**
+     *
+     * @param level
+     * @param player
+     */
+    public static void ettmetalExplotion(Level level, Player player) {
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(playerCapability ->{
             if (playerCapability.getEnhanced()) {
                 //max reserve = 100/20 = 5
                 //min reserve = 10/20 = 0*5
-                world.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL))/20, Explosion.BlockInteraction.BREAK);
+                level.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL))/20, Explosion.BlockInteraction.BREAK);
                 player.setHealth((player.getHealth() - ((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL)/5)));
                 playerCapability.drainMetals(MetalTagEnum.DURALUMIN);
             }else {
-                world.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL))/20,Explosion.BlockInteraction.NONE);
+                level.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL))/20,Explosion.BlockInteraction.NONE);
                 player.setHealth((player.getHealth() - ((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL)/10)));
             }
             playerCapability.drainMetals(MetalTagEnum.ETTMETAL);

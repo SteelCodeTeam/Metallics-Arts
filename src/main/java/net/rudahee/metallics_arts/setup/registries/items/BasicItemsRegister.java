@@ -6,11 +6,18 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.alloy_furnace.AlloyRecipeEnum;
+import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.util.Arrays;
 import java.util.List;
 
+
+/**
+ * Registration of the simple items.
+ *
+ * @see ModItemsRegister
+ */
 public class BasicItemsRegister {
 
     public static void register() {
@@ -18,15 +25,9 @@ public class BasicItemsRegister {
         List<MetalEnum> metalList = Arrays.asList(MetalEnum.values());
         List<GemsEnum> gemList = Arrays.asList(GemsEnum.values());
 
-
-        /*
-                Metals
-         */
+       // Metals
         metalList.forEach(metal -> {
-
-            /*
-                Ingots
-            */
+            //Ingots
             MetallicsArts.registerItem(metal.getMetalNameLower() + "_ingot", () -> {
                 Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(64));
                 ModItemsRegister.ITEM_METAL_INGOT.put(metal.getMetalNameLower(), item);
@@ -35,19 +36,13 @@ public class BasicItemsRegister {
                 }
                 return item;
             });
-
-            /*
-                Nuggets
-             */
+            // Nuggets
             MetallicsArts.registerItem(metal.getMetalNameLower() + "_nugget", () -> {
                 Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(64));
                 ModItemsRegister.ITEM_METAL_NUGGET.put(metal.getMetalNameLower(), item);
                 return item;
             });
-
-             /*
-                Raws
-             */
+            // Raws
             if (!metal.isAlloy()) {
                 MetallicsArts.registerItem("raw_" + metal.getMetalNameLower(), () -> {
                     Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(64));
@@ -63,15 +58,9 @@ public class BasicItemsRegister {
             ModItemsRegister.ITEM_METAL_NUGGET.put("copper_nugget", item);
             return item;
         });
-
-        /*
-                Gems
-         */
+        // Gems
         gemList.forEach(gem -> {
-
-            /*
-                Ingot
-            */
+            // Ingot
             MetallicsArts.registerItem(gem.getGemNameLower(),
                 () -> {
                     Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB));
@@ -82,10 +71,7 @@ public class BasicItemsRegister {
                     return item;
                 });
 
-
-            /*
-                Nuggets
-            */
+            // Nuggets
             MetallicsArts.registerItem(gem.getGemNameLower() + "_nugget",
                 () -> {
                     Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB));

@@ -5,6 +5,12 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 
 public class PewterAllomanticHelper {
+    /**
+     *
+     * @param player to whom the effect will be applied.
+     * @param lerasium if player is burning lerasium
+     * @param duralumin if player is burning duralumin
+     */
     public static void addPewterEffects(Player player, boolean lerasium, boolean duralumin) {
         int damage, resistence, digSpeed;
         if (!duralumin && !lerasium) {

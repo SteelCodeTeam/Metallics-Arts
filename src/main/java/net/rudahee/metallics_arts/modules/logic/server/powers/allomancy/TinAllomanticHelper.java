@@ -7,6 +7,10 @@ import net.minecraft.world.entity.player.Player;
 
 public class TinAllomanticHelper {
 
+    /**
+     *
+     * @param player to whom the effect will be applied.
+     */
     public static void addTinEffects(Player player) {
         if(player.tickCount % 20 == 0) {
             player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 320, 1, true, false, false));

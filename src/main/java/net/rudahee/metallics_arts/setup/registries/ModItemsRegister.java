@@ -7,6 +7,16 @@ import net.rudahee.metallics_arts.setup.registries.items.*;
 import java.util.HashMap;
 
 
+/**
+ * Main registration of all items.
+ *
+ * @see BasicItemsRegister
+ * @see IconsRegister
+ * @see MetalMindsRegister
+ * @see SpikesRegister
+ * @see VialsRegister
+ * @see WeaponsRegister
+ */
 public class ModItemsRegister {
 
     //Lists where we can store the items for a later usage
@@ -20,7 +30,7 @@ public class ModItemsRegister {
     public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY_DIVINE = new HashMap<>();
     public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC_DIVINE = new HashMap<>();
 
-    //weapons
+    // Weapons
     public static RegistryObject<Item> OBSIDIAN_DAGGER;
     public static RegistryObject<Item> CRISTAL_DAGGER;
     public static RegistryObject<Item> KOLOSS_BLADE;

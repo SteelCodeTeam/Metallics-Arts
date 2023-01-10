@@ -18,14 +18,22 @@ import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class BendalloyAllomanticHelper {
 
-    public static void BendalloyMobEffects(Player player, Level world, AABB axisAlignedBB, int radius, boolean enhanced) {
+    /**
+     *
+     * @param player to whom the effect will be applied.
+     * @param level in which the player is located (world)
+     * @param axisAlignedBB
+     * @param radius of effect of power
+     * @param enhanced if player is burning Duralumin or the player was hit with nicrosil
+     */
+    public static void BendalloyMobEffects(Player player, Level level, AABB axisAlignedBB, int radius, boolean enhanced) {
 
         BlockPos negative = new BlockPos(player.position()).offset(- radius, - radius, - radius);
         BlockPos positive = new BlockPos(player.position()).offset(radius, radius , radius);
 
 
-        if (world instanceof ServerLevel) {
-            world.getEntitiesOfClass(LivingEntity.class, axisAlignedBB).forEach(entity -> {
+        if (level instanceof ServerLevel) {
+            level.getEntitiesOfClass(LivingEntity.class, axisAlignedBB).forEach(entity -> {
                 if (!(entity instanceof Player)) {
                     entity.aiStep();
                     if (enhanced) {
@@ -38,8 +46,8 @@ public class BendalloyAllomanticHelper {
 
         BlockPos.betweenClosedStream(negative, positive).forEach(blockPos -> {
 
-            BlockState block = world.getBlockState(blockPos);
-            BlockEntity tileEntity = world.getBlockEntity(blockPos);
+            BlockState block = level.getBlockState(blockPos);
+            BlockEntity tileEntity = level.getBlockEntity(blockPos);
 
             if (block.is(ModBlocksRegister.BUDDING_ATIUM.get()) || block.is(ModBlocksRegister.BUDDING_LERASIUM.get()) || block.is(ModBlocksRegister.BUDDING_ETTMETAL.get()) ) {
                 return;
@@ -47,25 +55,33 @@ public class BendalloyAllomanticHelper {
 
             if (Math.random() > 0.5) {
                 if (tileEntity == null && block.isRandomlyTicking()) {
-                    block.randomTick((ServerLevel) world, blockPos, ((ServerLevel) world).random);
+                    block.randomTick((ServerLevel) level, blockPos, ((ServerLevel) level).random);
                 }
 
                 else if (tileEntity instanceof TickingBlockEntity) {
-                    BlockEntityTicker ticker = block.getTicker(world, tileEntity.getType());
-                    ticker.tick(world, blockPos, block, tileEntity);
+                    BlockEntityTicker ticker = block.getTicker(level, tileEntity.getType());
+                    ticker.tick(level, blockPos, block, tileEntity);
 
                 }
             }
         });
     }
 
-
+    /**
+     *
+     * @param player to whom the effect will be applied.
+     */
 
     public static void AddAiSteeps(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 2, 0, true, false));
         player.aiStep();
         player.aiStep();
     }
+
+    /**
+     *
+     * @param player to whom the effect will be applied.
+     */
 
     public static void AddAiSteepsEnhanced(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 2, 0, true, false));

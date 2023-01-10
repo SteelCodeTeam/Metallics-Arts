@@ -10,17 +10,27 @@ import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class ChromiumAllomanticHelper {
 
-    public static void drainMetalChromium(Player entityLiving) {
-        entityLiving.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
+    /**
+     *
+     * @param player
+     */
+    public static void drainMetalChromium(Player player) {
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
             for (MetalTagEnum metalTagEnum : data.getAllomanticPowers()){
                 data.drainMetals(metalTagEnum);
-                ModNetwork.sync(data, entityLiving);
+                ModNetwork.sync(data, player);
             }
         });
     }
 
-    public static void drainMetalCloudChromium(ServerLevel world, AABB axisAlignedBB) {
-        world.getEntitiesOfClass(Player.class, axisAlignedBB).forEach(entity -> {
+    /**
+     *
+     * @param serverLevel
+     * @param axisAlignedBB
+     */
+
+    public static void drainMetalCloudChromium(ServerLevel serverLevel, AABB axisAlignedBB) {
+        serverLevel.getEntitiesOfClass(Player.class, axisAlignedBB).forEach(entity -> {
             if (entity != null) {
                 entity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(capability -> {
                     capability.drainMetals(MetalTagEnum.values());

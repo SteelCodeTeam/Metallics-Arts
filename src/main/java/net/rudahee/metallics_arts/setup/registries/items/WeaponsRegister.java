@@ -6,12 +6,16 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.*;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
+/**
+ * Registration of the weapons items.
+ *
+ * @see ModItemsRegister
+ */
 public class WeaponsRegister {
 
     private static final Item.Properties PROPERTY_WEAPONS = new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT);
 
     public static void register (){
-
         ModItemsRegister.OBSIDIAN_DAGGER = MetallicsArts.registerItem("obsidian_dagger",
                 () -> new ObsidianDagger(PROPERTY_WEAPONS)
         );

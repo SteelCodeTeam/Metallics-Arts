@@ -7,6 +7,16 @@ import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class MetalMindsUtils {
     public static String unkeyedString = "Nobody";
+
+    /**
+     *
+     * @param player to whom the effect will be applied.
+     * @param compoundNBT
+     * @param iStoreMetal
+     * @param metal0
+     * @param metal1
+     * @return
+     */
     public static CompoundTag changeOwner(Player player, CompoundTag compoundNBT, boolean iStoreMetal, MetalTagEnum metal0, MetalTagEnum metal1) {
         boolean isFirstReserveZero = compoundNBT.getInt(metal0.getNameLower()+"_feruchemic_reserve") == 0;
         boolean isSecondReserveZero = compoundNBT.getInt(metal1.getNameLower()+"_feruchemic_reserve") == 0;
