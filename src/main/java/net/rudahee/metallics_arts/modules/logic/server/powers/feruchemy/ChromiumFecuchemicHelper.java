@@ -11,13 +11,27 @@ import java.util.function.Supplier;
 
 public class ChromiumFecuchemicHelper extends AbstractFechuchemicHelper{
 
-    //LUCK FOR CHEST
+    /**
+     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
+     * In this specific case, for the power of the Chromium: Luck will be applied to the target player.
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AbstractFechuchemicHelper#decantPower(Player)
+     */
     @Override
     public void decantPower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.LUCK,40,15,true, true));
     }
 
-    //REMOVE LUCK AND GIVE RANDOM BAD EFFECTS
+    /**
+     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
+     * In this specific case, for the power of the Chromium: Bad luck will be applied to the target player and will be given random negative effects.
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AbstractFechuchemicHelper#decantPower(Player)
+     */
     @Override
     public void storagePower(Player player) {
 
@@ -55,8 +69,6 @@ public class ChromiumFecuchemicHelper extends AbstractFechuchemicHelper{
                             player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN,50,2,true, true));
                             break;
                     }
-
-                    //SE PUEDE AGREGAR DAÑO INSTANTANEO
                 }
             }
         }

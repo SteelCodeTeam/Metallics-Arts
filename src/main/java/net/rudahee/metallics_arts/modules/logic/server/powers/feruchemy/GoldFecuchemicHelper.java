@@ -8,13 +8,28 @@ import net.rudahee.metallics_arts.utils.event_utils.OnWorldTickEvent;
 import java.util.function.Supplier;
 
 public class GoldFecuchemicHelper extends AbstractFechuchemicHelper{
+    /**
+     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
+     * In this specific case, for the power of the Gold: increases the current life of the player.
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AbstractFechuchemicHelper#decantPower(Player)
+     */
     @Override
     public void decantPower(Player player) {
         if (OnWorldTickEvent.activationEvery30Tick(ServerEventHandler.getActualTick())) {
             player.setHealth(player.getHealth()+1);
         }
     }
-
+    /**
+     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
+     * In this specific case, for the power of the Gold: decreases the current life of the player.
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AbstractFechuchemicHelper#storagePower(Player) 
+     */
     @Override
     public void storagePower(Player player) {
         if (OnWorldTickEvent.activationEvery30Tick(ServerEventHandler.getActualTick())) {

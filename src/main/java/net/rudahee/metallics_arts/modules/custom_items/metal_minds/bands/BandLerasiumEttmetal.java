@@ -3,29 +3,17 @@ package net.rudahee.metallics_arts.modules.custom_items.metal_minds.bands;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.BandMindAbstract;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AtiumFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.EttmetalFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.LerasiumFecuchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.MalatiumFecuchemicHelper;
-import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
-import top.theillusivec4.curios.api.SlotContext;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 

@@ -6,14 +6,10 @@ import java.util.function.Supplier;
 
 public class ZincFecuchemicHelper extends AbstractFechuchemicHelper{
     @Override
-    public void decantPower(Player player) {
-
-    }
+    public void decantPower(Player player) {}
 
     @Override
-    public void storagePower(Player player) {
-
-    }
+    public void storagePower(Player player) {}
 
     public static Supplier<? extends ZincFecuchemicHelper> getInstance() {
         return ZincFecuchemicHelper::new;

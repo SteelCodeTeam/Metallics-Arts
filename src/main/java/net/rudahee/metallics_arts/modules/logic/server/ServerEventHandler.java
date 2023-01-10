@@ -16,7 +16,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.logic.server.powers.*;
+import net.rudahee.metallics_arts.modules.logic.server.powers.GoldAndElectrumHelpers;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.*;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;

@@ -12,8 +12,15 @@ import net.rudahee.metallics_arts.utils.event_utils.OnWorldTickEvent;
 
 import java.util.function.Supplier;
 
-
 public class BronzeFecuchemicHelper extends AbstractFechuchemicHelper{
+    /**
+     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
+     * In this specific case, for the power of the Bronze: Eliminate the target of the phantoms that chase you.
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AbstractFechuchemicHelper#decantPower(Player)
+     */
     @Override
     public void decantPower(Player player) {
         player.getLevel().getEntitiesOfClass(Phantom.class, CapabilityUtils.getBubble(player,12)).forEach(entity -> {
@@ -25,12 +32,17 @@ public class BronzeFecuchemicHelper extends AbstractFechuchemicHelper{
             }
         });
     }
-
+    /**
+     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
+     * In this specific case, for the power of the Bronze: Spawns phantoms with fire resistance with the target in the player.
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AbstractFechuchemicHelper#storagePower(Player)
+     */
     @Override
     public void storagePower(Player player) {
-
         Level level = player.getLevel();
-
         if (OnWorldTickEvent.activationEvery240Tick(ServerEventHandler.getActualTick())) {
             Phantom phantom = new Phantom(EntityType.PHANTOM, level);
             phantom.setPos(player.position().x,player.position().y + 4, player.position().z);
@@ -39,8 +51,6 @@ public class BronzeFecuchemicHelper extends AbstractFechuchemicHelper{
             phantom.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 240, 2, true, true, true));
             level.addFreshEntity(phantom);
         }
-
-
     }
 
     public static Supplier<? extends BronzeFecuchemicHelper> getInstance() {

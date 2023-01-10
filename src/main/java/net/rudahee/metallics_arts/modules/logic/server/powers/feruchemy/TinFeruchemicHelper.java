@@ -7,12 +7,26 @@ import net.minecraft.world.entity.player.Player;
 import java.util.function.Supplier;
 
 public class TinFeruchemicHelper extends AbstractFechuchemicHelper{
-
+    /**
+     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
+     * In this specific case, for the power of the Pewter: night vision will be applied to the target player.
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AbstractFechuchemicHelper#decantPower(Player)
+     */
     @Override
     public void decantPower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 320, 1, true, false, false));
     }
-
+    /**
+     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
+     * In this specific case, for the power of the Pewter: blindness will be applied to the target player.
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AbstractFechuchemicHelper#storagePower(Player)
+     */
     @Override
     public void storagePower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60, 1, true, false, false));

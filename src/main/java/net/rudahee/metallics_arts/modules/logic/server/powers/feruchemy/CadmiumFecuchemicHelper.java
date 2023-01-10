@@ -12,8 +12,14 @@ import java.util.function.Supplier;
 
 public class CadmiumFecuchemicHelper extends AbstractFechuchemicHelper{
 
-
-    //WEATHER BREATHING
+    /**
+     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
+     * In this specific case, for the power of the Cadmium: Water breathing will be applied to the target player.
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AbstractFechuchemicHelper#decantPower(Player)
+     */
     @Override
     public void decantPower(Player player) {
         if (player.isEyeInFluid(FluidTags.WATER)) {
@@ -25,7 +31,14 @@ public class CadmiumFecuchemicHelper extends AbstractFechuchemicHelper{
         }
     }
 
-    //REMOVE OXYGEN
+    /**
+     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
+     * In this specific case, for the power of the Cadmium: Decreases the target player's amount of oxygen out of the water, and even faster underwater.
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AbstractFechuchemicHelper#storagePower(Player)
+     */
     @Override
     public void storagePower(Player player) {
         if (!player.isCreative()){

@@ -29,23 +29,19 @@ public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper{
             value = 0;
         }
         compoundTag.putInt(metalKey, metalReserve - value);
-
         return compoundTag;
     }
 
     @Override
-    public CompoundTag CalculateCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
+    public CompoundTag calculateCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         int value = playerCapability.cantMetalsStoring();
-
         if (playerCapability.isStoring(MetalTagEnum.BRASS) && !player.isOnFire()){
             value = value - 1;
         }
-
         if (nicConsume) {
             value = 0;
         }
         compoundTag.putInt(metalKey, metalReserve + value);
-
         return compoundTag;
     }
 }

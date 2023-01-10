@@ -11,11 +11,12 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
-import net.rudahee.metallics_arts.utils.MetalMindsUtils;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.RingsMindAbstract;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.*;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AluminumFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.DuraluminFecuchemicHelper;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
+import net.rudahee.metallics_arts.utils.MetalMindsUtils;
 import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.SlotContext;
 
@@ -66,7 +67,7 @@ public class RingAluminumDuralumin extends RingsMindAbstract <AluminumFecuchemic
                 } else if (playerCapability.isStoring(this.getMetals(0))) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,true,this.getMetals(0),this.getMetals(1)));
-                        stack.setTag(getFirstSupplier().CalculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,false));
+                        stack.setTag(getFirstSupplier().calculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,false));
 
                     } else {
                         playerCapability.setStoring(this.getMetals(0),false);
@@ -97,7 +98,7 @@ public class RingAluminumDuralumin extends RingsMindAbstract <AluminumFecuchemic
                 } else if (playerCapability.isStoring(this.getMetals(1))) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,true,this.getMetals(1)));
-                        stack.setTag(getSecondSupplier().CalculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
+                        stack.setTag(getSecondSupplier().calculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
                         if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet1 = !nicConsumeMet1;
                         }

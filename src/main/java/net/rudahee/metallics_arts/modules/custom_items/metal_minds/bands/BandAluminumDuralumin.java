@@ -1,34 +1,21 @@
 package net.rudahee.metallics_arts.modules.custom_items.metal_minds.bands;
 
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.BandMindAbstract;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AluminumFecuchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AtiumFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.DuraluminFecuchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.MalatiumFecuchemicHelper;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.MetalMindsUtils;
 import top.theillusivec4.curios.api.SlotContext;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
-
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.UUID;
 
 public class BandAluminumDuralumin extends BandMindAbstract <AluminumFecuchemicHelper, DuraluminFecuchemicHelper>{
 
@@ -75,7 +62,7 @@ public class BandAluminumDuralumin extends BandMindAbstract <AluminumFecuchemicH
                 } else if (playerCapability.isStoring(this.getMetals(0))) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,true,this.getMetals(0),this.getMetals(1)));
-                        stack.setTag(getFirstSupplier().CalculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,false));
+                        stack.setTag(getFirstSupplier().calculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,false));
 
                     } else {
                         playerCapability.setStoring(this.getMetals(0),false);
@@ -106,7 +93,7 @@ public class BandAluminumDuralumin extends BandMindAbstract <AluminumFecuchemicH
                 } else if (playerCapability.isStoring(this.getMetals(1))) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,true,this.getMetals(1)));
-                        stack.setTag(getSecondSupplier().CalculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
+                        stack.setTag(getSecondSupplier().calculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
                         if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet1 = !nicConsumeMet1;
                         }

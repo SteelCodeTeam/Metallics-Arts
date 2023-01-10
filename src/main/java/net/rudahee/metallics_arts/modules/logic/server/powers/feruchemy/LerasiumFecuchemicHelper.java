@@ -9,28 +9,61 @@ import java.util.ArrayList;
 import java.util.function.Supplier;
 
 public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper{
+    /**
+     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
+     * This method is not used, because the power logic is applied in the discharge methods of this class.
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AtiumFecuchemicHelper#calculateDischarge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
+     */
     @Override
-    public void decantPower(Player player) {
-
-    }
-
+    public void decantPower(Player player) {}
+    /**
+     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
+     * This method is not used, because the power logic is applied in the discharge methods of this class.
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AtiumFecuchemicHelper#calculateDischarge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
+     */
     @Override
-    public void storagePower(Player player) {
-
-    }
+    public void storagePower(Player player) {}
 
     public static Supplier<? extends LerasiumFecuchemicHelper> getInstance() {
         return LerasiumFecuchemicHelper::new;
     }
 
+    /**
+     * Redefine of the method of the AbstractFechuchemicHelper class.
+     * In this specific case, removes the basic interaction of nicrosil.
+     * @param compoundTag the inside information of the metalmind.
+     * @param player with the mindmetal equipped.
+     * @param playerCapability capabilities (data) of the player.
+     * @param metalReserve present value of the metal reserve.
+     * @param metalKey metal key to be modified.
+     * @param nicConsume control value of whether it is necessary to store charge or not.
+     * @return CompoundTag metalmind information update.
+     */
     @Override
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         compoundTag.putInt(metalKey,0);
         return loadAllomanticReserve(playerCapability, compoundTag);
     }
 
+    /**
+     * Redefine of the method of the AbstractFechuchemicHelper class.
+     * In this specific case, removes the basic interaction of nicrosil.
+     * @param compoundTag the inside information of the metalmind.
+     * @param player with the mindmetal equipped.
+     * @param playerCapability capabilities (data) of the player.
+     * @param metalReserve present value of the metal reserve.
+     * @param metalKey metal key to be modified.
+     * @param nicConsume control value of whether it is necessary to store charge or not.
+     * @return CompoundTag metalmind information update.
+     */
     @Override
-    public CompoundTag CalculateCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
+    public CompoundTag calculateCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         if (havePlayerAnyReserve(playerCapability)) {
             compoundTag = saveAllomanticReserve(playerCapability, compoundTag);
             compoundTag.putInt(metalKey,1);
@@ -38,6 +71,12 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper{
         return compoundTag;
     }
 
+    /**
+     * Returns if target player has any allomantic reserves
+     *
+     * @param playerCapability capabilities (data) of the player.
+     * @return Boolean
+     */
     public boolean havePlayerAnyReserve (IInvestedPlayerData playerCapability) {
         for (MetalTagEnum metal: MetalTagEnum.values()){
             if (playerCapability.getAllomanticAmount(metal)>0) {
@@ -47,6 +86,13 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper{
         return false;
     }
 
+    /**
+     * This is a unique method in the helpers, that is in charge of storing allomantic reserves in the metalmind and eliminating them from the target player.
+     *
+     * @param playerCapability capabilities (data) of the player.
+     * @param compoundTag the inside information of the metalmind.
+     * @return CompoundTag metalmind information update.
+     */
     public CompoundTag saveAllomanticReserve(IInvestedPlayerData playerCapability, CompoundTag compoundTag) {
         ArrayList<MetalTagEnum> metals = playerCapability.getAllomanticPowers();
         int firstQty = 0;
@@ -81,6 +127,13 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper{
         return compoundTag;
     }
 
+    /**
+     * This is a unique method in the helpers, which is in charge of recover allomantic reserves the metalmind and return them to the target player.
+     *
+     * @param playerCapability capabilities (data) of the player.
+     * @param compoundTag the inside information of the metalmind.
+     * @return CompoundTag metalmind information update.
+     */
     public CompoundTag loadAllomanticReserve(IInvestedPlayerData playerCapability, CompoundTag compoundTag) {
         ArrayList<MetalTagEnum> metals = playerCapability.getAllomanticPowers();
         int firstQty = 0;

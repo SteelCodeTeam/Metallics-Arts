@@ -9,11 +9,8 @@ import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.BandMindAbstract;
-import net.rudahee.metallics_arts.modules.logic.server.powers.GoldAndElectrumHelpers;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AtiumFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.ElectrumFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.GoldFecuchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.MalatiumFecuchemicHelper;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
@@ -62,7 +59,7 @@ public class BandElectrumGold extends BandMindAbstract <GoldFecuchemicHelper, El
                 } else if (playerCapability.isStoring(this.getMetals(0))) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,true,this.getMetals(0),this.getMetals(1)));
-                        stack.setTag(getFirstSupplier().CalculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet0));
+                        stack.setTag(getFirstSupplier().calculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet0));
                         if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet0 = !nicConsumeMet0;
                         }
@@ -92,7 +89,7 @@ public class BandElectrumGold extends BandMindAbstract <GoldFecuchemicHelper, El
                 } else if (playerCapability.isStoring(this.getMetals(1))) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,true,this.getMetals(0),this.getMetals(1)));
-                        stack.setTag(getSecondSupplier().CalculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
+                        stack.setTag(getSecondSupplier().calculateCharge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
                         if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet1 = !nicConsumeMet1;
                         }

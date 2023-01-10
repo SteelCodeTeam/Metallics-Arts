@@ -204,7 +204,7 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
                 } else if (playerCapability.isStoring(this.metals[0])) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag,true,this.metals[0],this.metals[1]));
-                        stack.setTag(firstSupplier.CalculateCharge(compoundTag,player,playerCapability,actualReserve,metalKey,nicConsumeMet0));
+                        stack.setTag(firstSupplier.calculateCharge(compoundTag,player,playerCapability,actualReserve,metalKey,nicConsumeMet0));
                         if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet0 = !nicConsumeMet0;
                         }
@@ -234,7 +234,7 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
                 } else if (playerCapability.isStoring(this.metals[1])) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag,true,this.metals[0],this.metals[1]));
-                        stack.setTag(secondSupplier.CalculateCharge(compoundTag,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
+                        stack.setTag(secondSupplier.calculateCharge(compoundTag,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
                         if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet1 = !nicConsumeMet1;
                         }

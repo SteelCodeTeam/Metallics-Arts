@@ -13,7 +13,14 @@ import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
 import java.util.function.Supplier;
 
 public class BrassFecuchemicHelper extends AbstractFechuchemicHelper{
-
+    /**
+     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
+     * In this specific case, for the power of the Brass: Burns the player if they are in the desert by day, or in a hot biome.
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AbstractFechuchemicHelper#decantPower(Player)
+     */
     @Override
     public void decantPower(Player player) {
         if (player.getLevel().getBiome(player.getOnPos()).is(Biomes.DESERT) && player.getLevel().isDay()) {
@@ -22,8 +29,14 @@ public class BrassFecuchemicHelper extends AbstractFechuchemicHelper{
             player.setSecondsOnFire(1);
         }
     }
-
-    //GIVE FIRE RESISTANCE OR FROZEN TICKS
+    /**
+     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
+     * In this specific case, for the power of the Brass: Add frozen ticks to the player in case they are in the desert at night, or in a cold biome
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AbstractFechuchemicHelper#storagePower(Player)
+     */
     @Override
     public void storagePower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40, 1, true, false));
@@ -38,9 +51,16 @@ public class BrassFecuchemicHelper extends AbstractFechuchemicHelper{
         return BrassFecuchemicHelper::new;
     }
 
-    //CUSTOM CHARGE: IF PLAYER IS ON FIRE
+    /**
+     * Redefine of the method of the AbstractFechuchemicHelper class.
+     * In this specific case, metalmind only charges when player is burning.
+     *
+     * @param player to whom the effect will be applied.
+     *
+     * @see AtiumFecuchemicHelper#calculateCharge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
+     */
     @Override
-    public CompoundTag CalculateCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
+    public CompoundTag calculateCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         if (player.isOnFire()) {
             if (!playerCapability.isStoring(MetalTagEnum.NICROSIL) || !nicConsume) {
                 compoundTag.putInt(metalKey, metalReserve + 1);
@@ -48,7 +68,12 @@ public class BrassFecuchemicHelper extends AbstractFechuchemicHelper{
         }
         return compoundTag;
     }
-
+    /**
+     * This is a unique method in the helpers, which is responsible for adding a few seconds of fire to the given livingEntity
+     *
+     * @param livingEntity to whom the seconds of fire will be applied.
+     * @param secondsFire seconds the entity will be on fire.
+     */
     public static void addFireAspectToPlayer(LivingEntity livingEntity, int secondsFire){
         livingEntity.setSecondsOnFire(secondsFire);
     }
