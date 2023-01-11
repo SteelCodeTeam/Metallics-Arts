@@ -9,49 +9,60 @@ public class MetalMindsUtils {
     public static String unkeyedString = "Nobody";
 
     /**
+     * Modify the internal information of the metalmind with the player as owner if necessary.
      *
      * @param player to whom the effect will be applied.
-     * @param compoundNBT
-     * @param iStoreMetal
-     * @param metal0
-     * @param metal1
-     * @return
+     * @param compoundTag the inside information of the metalmind.
+     * @param iStoreMetal if the player is storing
+     * @param metal0 first metal of the metalmind
+     * @param metal1 second metal of the metalmind
+     * @return CompoundTag metalmind information update.
      */
-    public static CompoundTag changeOwner(Player player, CompoundTag compoundNBT, boolean iStoreMetal, MetalTagEnum metal0, MetalTagEnum metal1) {
-        boolean isFirstReserveZero = compoundNBT.getInt(metal0.getNameLower()+"_feruchemic_reserve") == 0;
-        boolean isSecondReserveZero = compoundNBT.getInt(metal1.getNameLower()+"_feruchemic_reserve") == 0;
+    public static CompoundTag changeOwner(Player player, CompoundTag compoundTag, boolean iStoreMetal, MetalTagEnum metal0, MetalTagEnum metal1) {
+        boolean isFirstReserveZero = compoundTag.getInt(metal0.getNameLower()+"_feruchemic_reserve") == 0;
+        boolean isSecondReserveZero = compoundTag.getInt(metal1.getNameLower()+"_feruchemic_reserve") == 0;
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
             if (isFirstReserveZero && isSecondReserveZero && !data.isStoring(MetalTagEnum.ALUMINUM) &&
                     !data.isDecanting(MetalTagEnum.ALUMINUM) && iStoreMetal){
-                compoundNBT.putString("key", player.getStringUUID());
+                compoundTag.putString("key", player.getStringUUID());
             } else if (isFirstReserveZero && isSecondReserveZero && !data.isStoring(MetalTagEnum.ALUMINUM) &&
                     !data.isDecanting(MetalTagEnum.ALUMINUM) && !iStoreMetal){
-                compoundNBT.putString("key", unkeyedString);
+                compoundTag.putString("key", unkeyedString);
             }
             else if (data.isStoring(MetalTagEnum.ALUMINUM)) {
-                compoundNBT.putString("key", unkeyedString);
+                compoundTag.putString("key", unkeyedString);
             } else if (data.isDecanting(MetalTagEnum.ALUMINUM)){
-                compoundNBT.putString("key", player.getStringUUID());
+                compoundTag.putString("key", player.getStringUUID());
             }
         });
-        return compoundNBT;
+        return compoundTag;
     }
-    public static CompoundTag changeOwner(Player player, CompoundTag compoundNBT,boolean iStoreMetal, MetalTagEnum metal1) {
-        boolean isSecondReserveZero = compoundNBT.getInt(metal1.getNameLower()+"_feruchemic_reserve") == 0;
+
+    /**
+     * Modify the internal information of the metalmind with the player as owner if necessary, using only the second metal.
+     *
+     * @param player to whom the effect will be applied.
+     * @param compoundTag the inside information of the metalmind.
+     * @param iStoreMetal if the player is storing
+     * @param metal1 second metal of the metalmind
+     * @return CompoundTag metalmind information update.
+     */
+    public static CompoundTag changeOwner(Player player, CompoundTag compoundTag,boolean iStoreMetal, MetalTagEnum metal1) {
+        boolean isSecondReserveZero = compoundTag.getInt(metal1.getNameLower()+"_feruchemic_reserve") == 0;
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
             if (isSecondReserveZero && !data.isStoring(MetalTagEnum.ALUMINUM) &&
                     !data.isDecanting(MetalTagEnum.ALUMINUM) && iStoreMetal){
-                compoundNBT.putString("key", player.getStringUUID());
+                compoundTag.putString("key", player.getStringUUID());
             } else if (isSecondReserveZero && !data.isStoring(MetalTagEnum.ALUMINUM) &&
                     !data.isDecanting(MetalTagEnum.ALUMINUM) && !iStoreMetal){
-                compoundNBT.putString("key", unkeyedString);
+                compoundTag.putString("key", unkeyedString);
             }
             else if (data.isStoring(MetalTagEnum.ALUMINUM)) {
-                compoundNBT.putString("key", unkeyedString);
+                compoundTag.putString("key", unkeyedString);
             } else if (data.isDecanting(MetalTagEnum.ALUMINUM)){
-                compoundNBT.putString("key", player.getStringUUID());
+                compoundTag.putString("key", player.getStringUUID());
             }
         });
-        return compoundNBT;
+        return compoundTag;
     }
 }

@@ -40,7 +40,7 @@ public class CapabilityUtils {
     /**
      * Useful method to extract capabilities (data) from target local Player passed by parameter.
      *
-     * @param player Player local from whom we are going to extract the capabilities.
+     * @param player local from whom we are going to extract the capabilities.
      *
      * @return IInvestedPlayerData data extracted from target Player.
      *

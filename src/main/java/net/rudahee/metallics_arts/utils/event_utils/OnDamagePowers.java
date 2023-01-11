@@ -19,14 +19,18 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 public class OnDamagePowers {
 
+    /**
+     * Brings out the damage effects of Allomantic powers
+     *
+     * @param event to damage,
+     * @param source of damage.
+     * @param target of damage.
+     */
     public static void onDamageAllomantic(final LivingHurtEvent event, ServerPlayer source, ServerPlayer target) {
-
         IInvestedPlayerData sourceCapability = CapabilityUtils.getCapability(source);
         IInvestedPlayerData targetCapability = CapabilityUtils.getCapability(target);
 
-        /*******************************
-         *   DAMAGE WITH - PEWTER -
-         *******************************/
+        // Pewter
         if (sourceCapability.isBurning(MetalTagEnum.PEWTER)) {
             float amountDamage = event.getAmount();
 
@@ -65,35 +69,27 @@ public class OnDamagePowers {
             event.setAmount(amountDamage);
         }
 
-        /*******************************
-         *   DAMAGE WITH - CHROMIUM -
-         *******************************/
+        // Chromium
         if (sourceCapability.isBurning(MetalTagEnum.CHROMIUM)) {
             if (target instanceof Player) {
                 ChromiumAllomanticHelper.drainMetalChromium((Player) event.getEntity());
             }
         }
-        /*******************************
-         *   DAMAGE WITH - MALATIUM -
-         *******************************/
+        // Malatium
         if (sourceCapability.isBurning(MetalTagEnum.MALATIUM)) {
             if (event.getEntity() instanceof Player) {
                 GoldAndElectrumHelpers.takeDeathPosToObjetive((Player) event.getEntity());
             }
         }
 
-        /********************************
-         * DAMAGE WITH NICROSIL
-         *******************************/
+        // Nicrosil
         if (sourceCapability.isBurning(MetalTagEnum.NICROSIL)) {
             if (target instanceof Player) {
                 NicrosilAllomanticHelper.changeNBTinTargetForEnhanced((Player) event.getEntity());
             }
         }
 
-        /********************************
-         * DAMAGE WITH ATIUM
-         *******************************/
+        // Atium
         if (target instanceof Player) {
             if (targetCapability.isBurning(MetalTagEnum.ATIUM) ){
                 if (source instanceof Player) {
@@ -103,21 +99,26 @@ public class OnDamagePowers {
                 }
             }
         }
-}
+    }
 
+    /**
+     * Brings out the damage effects of Feruchemical powers.
+     *
+     * @param event to damage,
+     * @param source of damage.
+     * @param target of damage.
+     */
     public static void onDamageFeruchemical(final LivingHurtEvent event, ServerPlayer source, ServerPlayer target) {
 
         IInvestedPlayerData sourceCapability = CapabilityUtils.getCapability(source);
         IInvestedPlayerData targetCapability = CapabilityUtils.getCapability(target);
 
-        /*******************************
-         *   DAMAGE WITH - BRASS
-         *******************************/
+        // Brass
         if (sourceCapability.isDecanting(MetalTagEnum.BRASS)) {
             BrassFecuchemicHelper.addFireAspectToPlayer(event.getEntity(), 4);
         }
 
-        //cancel Freeze damage
+        //Cancel freeze damage
         if (targetCapability.isDecanting(MetalTagEnum.BRASS)) {
             if (event.getSource().equals(DamageSource.FREEZE)) {
                 event.setCanceled(true);

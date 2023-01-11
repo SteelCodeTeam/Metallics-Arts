@@ -47,16 +47,13 @@ public class MetallicsArts
     public static final String MOD_ID = "metallics_arts";
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
-
     // creative tab
-
     public static CreativeModeTab MA_TAB = new CreativeModeTab(MOD_ID) {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(Items.GOLD_INGOT);
         }
     };
-
     public static CreativeModeTab MA_TAB_DECORATION = new CreativeModeTab(-1, MOD_ID + ".decorations") {
         @Override
         public ItemStack makeIcon() {
