@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy;
+package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.mental_metals;
 
 
 import net.minecraft.world.effect.MobEffectInstance;
@@ -14,10 +14,11 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.function.Predicate;
 
-public class ZincAllomanticHelper {
+public class BrassAllomanticHelper {
 
 
     private static final Predicate<Goal> isAggroGoal = (goal) -> goal instanceof SwellGoal || goal instanceof MeleeAttackGoal ||
@@ -94,9 +95,10 @@ public class ZincAllomanticHelper {
         }
     }
 
-    public static void happyEntitiesWithLerasium(Player source, Level world, AABB axisAlignedBB,boolean duralumin){
+    public static void happyEntitiesWithLerasium(Player source, Level world, boolean enhanced) {
 
-        world.getEntitiesOfClass(Mob.class, axisAlignedBB).forEach(target -> {
+        world.getEntitiesOfClass(Mob.class,
+                (enhanced) ? CapabilityUtils.getBubble(source, 12) : CapabilityUtils.getBubble(source, 8)).forEach(target -> {
             target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
 
             target.setAggressive(false);

@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy;
+package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

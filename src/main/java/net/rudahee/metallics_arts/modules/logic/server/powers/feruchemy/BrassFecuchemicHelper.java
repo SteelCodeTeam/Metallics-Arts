@@ -8,7 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraftforge.common.Tags;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 
 import java.util.function.Supplier;
 

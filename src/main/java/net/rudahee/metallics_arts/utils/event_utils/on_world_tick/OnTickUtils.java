@@ -1,13 +1,13 @@
-package net.rudahee.metallics_arts.utils.event_utils;
+package net.rudahee.metallics_arts.utils.event_utils.on_world_tick;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
-public class OnWorldTickEvent {
+public class OnTickUtils {
     public static boolean activationEvery30Tick(int actualTick) {
         return actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150
                 || actualTick == 180 || actualTick == 210 || actualTick == 240;
@@ -21,7 +21,7 @@ public class OnWorldTickEvent {
     }
 
     public static void equipKolossBlade(Player player, IInvestedPlayerData playerCapability) {
-        if (!(playerCapability.isBurning(MetalTagEnum.PEWTER) || playerCapability.isDecanting(MetalTagEnum.PEWTER))
+        if (!(playerCapability.isBurning(MetalTagEnum.PEWTER) || playerCapability.isTapping(MetalTagEnum.PEWTER))
                 && (player.getMainHandItem().getItem() == ModItemsRegister.KOLOSS_BLADE.get() || player.getOffhandItem().getItem() == ModItemsRegister.KOLOSS_BLADE.get())) {
 
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 2, true, true, false));
@@ -38,8 +38,8 @@ public class OnWorldTickEvent {
                     buffNicrosilDuralumin = MetalTagEnum.DURALUMIN.getMaxAllomanticTicksStorage();
                 }
                 for (MetalTagEnum metal : MetalTagEnum.values()) {
-                    if (playerCapability.isBurning(metal) && !playerCapability.containsInListMetalBuff(metal)){
-                        playerCapability.addListMetalBuff(metal);
+                    if (playerCapability.isBurning(metal) && !playerCapability.containsMetalsEnhanced(metal)){
+                        playerCapability.addMetalsEnhanced(metal);
                     }
                 }
             } else {
@@ -50,16 +50,16 @@ public class OnWorldTickEvent {
                 buffNicrosilDuralumin = MetalTagEnum.DURALUMIN.getMaxAllomanticTicksStorage();
             }
             for (MetalTagEnum metal : MetalTagEnum.values()) {
-                if (playerCapability.isBurning(metal) && !playerCapability.containsInListMetalBuff(metal)){
-                    playerCapability.addListMetalBuff(metal);
+                if (playerCapability.isBurning(metal) && !playerCapability.containsMetalsEnhanced(metal)){
+                    playerCapability.addMetalsEnhanced(metal);
                 }
             }
         } else {
-            if (!playerCapability.getListMetalBuff().isEmpty()) {
-                for (MetalTagEnum metal: playerCapability.getListMetalBuff()) {
+            if (!playerCapability.getMetalsEnhanced().isEmpty()) {
+                for (MetalTagEnum metal: playerCapability.getMetalsEnhanced()) {
                     playerCapability.drainMetals(metal);
                 }
-                playerCapability.clearListMetalBuff();
+                playerCapability.clearMetalsEnhanced();
             }
         }
         if (playerCapability.getEnhanced()){

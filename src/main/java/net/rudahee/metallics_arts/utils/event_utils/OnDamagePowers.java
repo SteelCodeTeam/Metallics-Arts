@@ -8,11 +8,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.logic.server.powers.GoldAndElectrumHelpers;
-import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.AtiumAllomanticHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.ChromiumAllomanticHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.NicrosilAllomanticHelper;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_metals.AtiumAllomanticHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritual_metals.ChromiumAllomanticHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritual_metals.NicrosilAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.BrassFecuchemicHelper;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
@@ -78,7 +77,7 @@ public class OnDamagePowers {
         // Malatium
         if (sourceCapability.isBurning(MetalTagEnum.MALATIUM)) {
             if (event.getEntity() instanceof Player) {
-                GoldAndElectrumHelpers.takeDeathPosToObjetive((Player) event.getEntity());
+                //GoldAndElectrumHelpers.takeDeathPosToObjetive((Player) event.getEntity());
             }
         }
 
@@ -114,12 +113,12 @@ public class OnDamagePowers {
         IInvestedPlayerData targetCapability = CapabilityUtils.getCapability(target);
 
         // Brass
-        if (sourceCapability.isDecanting(MetalTagEnum.BRASS)) {
+        if (sourceCapability.isTapping(MetalTagEnum.BRASS)) {
             BrassFecuchemicHelper.addFireAspectToPlayer(event.getEntity(), 4);
         }
 
         //Cancel freeze damage
-        if (targetCapability.isDecanting(MetalTagEnum.BRASS)) {
+        if (targetCapability.isTapping(MetalTagEnum.BRASS)) {
             if (event.getSource().equals(DamageSource.FREEZE)) {
                 event.setCanceled(true);
             }

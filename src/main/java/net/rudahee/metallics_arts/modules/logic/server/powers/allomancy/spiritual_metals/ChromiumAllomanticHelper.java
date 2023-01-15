@@ -1,12 +1,14 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy;
+package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritual_metals;
 
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 public class ChromiumAllomanticHelper {
 
@@ -23,14 +25,8 @@ public class ChromiumAllomanticHelper {
         });
     }
 
-    /**
-     *
-     * @param serverLevel
-     * @param axisAlignedBB
-     */
-
-    public static void drainMetalCloudChromium(ServerLevel serverLevel, AABB axisAlignedBB) {
-        serverLevel.getEntitiesOfClass(Player.class, axisAlignedBB).forEach(entity -> {
+    public static void drainMetalCloudChromium(ServerPlayer player, ServerLevel serverLevel, boolean lerasium) {
+        serverLevel.getEntitiesOfClass(Player.class, CapabilityUtils.getBubble(player, (lerasium) ? 10 : 8)).forEach(entity -> {
             if (entity != null) {
                 entity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(capability -> {
                     capability.drainMetals(MetalTagEnum.values());

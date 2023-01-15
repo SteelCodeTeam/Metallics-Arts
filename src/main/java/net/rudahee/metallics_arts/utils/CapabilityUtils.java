@@ -5,8 +5,13 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Collection of useful statics methods to manage our player capabilities.
@@ -14,7 +19,7 @@ import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
  * @author SteelCode Team
  * @since 1.6
  */
-public class CapabilityUtils {
+public class CapabilityUtils<T> {
 
     private static IInvestedPlayerData playerData;
 
@@ -65,5 +70,24 @@ public class CapabilityUtils {
         return new AABB(
                 new BlockPos(player.position()).offset(-radius, -radius, -radius),
                 new BlockPos(player.position()).offset(radius, radius, radius));
+    }
+
+    public HashMap<MetalTagEnum, T> fillMetalTagMap(T defaultValue) {
+        HashMap<MetalTagEnum, T> map = new HashMap<>();
+
+        for (MetalTagEnum metal: MetalTagEnum.values()) {
+            map.put(metal, defaultValue);
+        }
+
+        return map;
+    }
+
+    public ArrayList<T> fillListWithDefaultValue(T defaultValue, int qty) {
+        ArrayList<T> list = new ArrayList<>();
+        for (int i = 0; i<qty; i++) {
+            list.add(defaultValue);
+        }
+
+        return list;
     }
 }

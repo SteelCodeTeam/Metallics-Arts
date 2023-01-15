@@ -25,11 +25,10 @@ import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_guis.selectors.AllomanticSelector;
 import net.rudahee.metallics_arts.modules.custom_guis.selectors.FeruchemySelector;
-import net.rudahee.metallics_arts.modules.logic.server.powers.GoldAndElectrumHelpers;
-import net.rudahee.metallics_arts.modules.logic.server.powers.IronAndSteelHelpers;
+import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.network.packets.*;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
@@ -135,8 +134,8 @@ public class ClientEventHandler {
                                             if (entity instanceof Player) {
                                                 Player otherPlayer = (Player) entity;
                                                 otherPlayer.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> {
-                                                    otherPlayerDeathPos = new BlockPos(cap.getDeathPos()[0],cap.getDeathPos()[1],cap.getDeathPos()[2]);
-                                                    otherPlayerDimension = GoldAndElectrumHelpers.getRegistryKeyFromString(cap.getDeathDimension());
+                                                    //otherPlayerDeathPos = new BlockPos(cap.getDeathPos()[0],cap.getDeathPos()[1],cap.getDeathPos()[2]);
+                                                    //otherPlayerDimension = GoldAndElectrumHelpers.getRegistryKeyFromString(cap.getDeathDimension());
                                                 });
                                             }
                                         }
@@ -549,21 +548,21 @@ public class ClientEventHandler {
              * GOLD AND ELECTRUM AND MALATIUM LINES *
              *********************************************/
             if (data.isBurning(MetalTagEnum.GOLD)) {
-                if(player.level.dimension().location().toString().equals(data.getDeathDimension())) {
-                    Vec3 vector = new Vec3(data.getDeathPos()[0], data.getDeathPos()[1], data.getDeathPos()[2]);
-                    ClientUtils.drawMetalLine(stack,playervec,vector, 2.5f, 0.6f, 0.6f, 0.1f);
-                } else {
-                    ClientUtils.drawMetalLine(stack,playervec,playervec, 2.5f, 0.6f, 0.6f, 0.1f);
-                }
+                //if(player.level.dimension().location().toString().equals(data.getDeathDimension())) {
+                    //Vec3 vector = new Vec3(data.getDeathPos()[0], data.getDeathPos()[1], data.getDeathPos()[2]);
+                    //ClientUtils.drawMetalLine(stack,playervec,vector, 2.5f, 0.6f, 0.6f, 0.1f);
+                //} else {
+                //    ClientUtils.drawMetalLine(stack,playervec,playervec, 2.5f, 0.6f, 0.6f, 0.1f);
+                //}
             }
 
             if (data.isBurning(MetalTagEnum.ELECTRUM)) {
-                if(player.level.dimension().location().toString().equals(data.getSpawnDimension())) {
-                    Vec3 vector = new Vec3(data.getSpawnPos()[0], data.getSpawnPos()[1], data.getSpawnPos()[2]);
-                    ClientUtils.drawMetalLine(stack,playervec,vector, 2.5f, 0.6f, 0.6f, 0.1f);
-                } else {
-                  ClientUtils.drawMetalLine(stack,playervec, playervec, 0,0,0,0);
-                }
+                //if(player.level.dimension().location().toString().equals(data.getSpawnDimension())) {
+                    //Vec3 vector = new Vec3(data.getSpawnPos()[0], data.getSpawnPos()[1], data.getSpawnPos()[2]);
+                    //ClientUtils.drawMetalLine(stack,playervec,vector, 2.5f, 0.6f, 0.6f, 0.1f);
+                //} else {
+                  //ClientUtils.drawMetalLine(stack,playervec, playervec, 0,0,0,0);
+                //}
             }
 
             if (data.isBurning(MetalTagEnum.MALATIUM) && otherPlayerDeathPos != null) {

@@ -250,7 +250,7 @@ public class MetalsOverlay implements IGuiOverlay {
                         blit(matrix, gui, feruchemicActualOffSetX + 1, (modifierFeruchemic == 13) ? feruchemicCalculatedOffset: feruchemicCalculatedOffset - 1, barOffSet, 0, feruchemicWidthBar, modifierFeruchemic);
                     }
                     //if decant
-                    if (data.isDecanting(metal)) {
+                    if (data.isTapping(metal)) {
                         blit(matrix, gui, feruchemicActualOffSetX, (modifierFeruchemic == 13) ? feruchemicCalculatedOffset: feruchemicCalculatedOffset - 1, FeruchemicStorageFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation, ((fixOffset) ? feruchemicHeightAnimation : 2));
                     // else if storage
                     } else if (data.isStoring(metal)) {

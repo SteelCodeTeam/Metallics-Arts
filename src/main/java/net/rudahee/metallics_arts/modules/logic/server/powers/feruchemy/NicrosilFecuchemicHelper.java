@@ -3,11 +3,11 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 
 import java.util.function.Supplier;
 
-public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper{
+public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void decantPower(Player player) {
 
@@ -24,7 +24,7 @@ public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper{
 
     @Override
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
-        int value = playerCapability.cantMetalsDecanting();
+        int value = playerCapability.cantMetalsTapping();
         if (nicConsume) {
             value = 0;
         }

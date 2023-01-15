@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy;
+package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_metals;
 
 
 import net.minecraft.world.entity.player.Player;
@@ -8,6 +8,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class EttmetalAllomanticHelper {
+
 
     /**
      *

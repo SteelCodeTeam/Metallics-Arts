@@ -14,10 +14,10 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.network.packets.UpdateBurnPacket;
-import net.rudahee.metallics_arts.setup.network.packets.UpdateDecantPacket;
+import net.rudahee.metallics_arts.setup.network.packets.UpdateTapPacket;
 import net.rudahee.metallics_arts.setup.network.packets.UpdateStoragePacket;
 import top.theillusivec4.curios.api.CuriosApi;
 
@@ -84,14 +84,6 @@ public class ClientUtils {
         if (capability.getAllomanticAmount(metal) > 0) {
             capability.setBurning(metal, !capability.isBurning(metal));
         }
-
-        // play a sound effect
-
-        /*if (capability.isBurning(metal)) {
-            player.playSound(new SoundEvent(new ResourceLocation("item.flintandsteel.use")), 1, 5);
-        } else {
-            player.playSound(new SoundEvent(new ResourceLocation("block.fire.extinguish")), 1, 4);
-        }*/
     }
 
     private static int actualFeruchemicReserve = -1;
@@ -116,12 +108,12 @@ public class ClientUtils {
 
 
         if (actualFeruchemicReserve <= 0) {
-            ModNetwork.sendToServer(new UpdateDecantPacket(metal, false));
+            ModNetwork.sendToServer(new UpdateTapPacket(metal, false));
         } else {
             if (capability.isStoring(metal)) {
                 ModNetwork.sendToServer(new UpdateStoragePacket(metal, false));
             }
-            ModNetwork.sendToServer(new UpdateDecantPacket(metal, !capability.isDecanting(metal)));
+            ModNetwork.sendToServer(new UpdateTapPacket(metal, !capability.isTapping(metal)));
         }
 
     }
@@ -145,8 +137,8 @@ public class ClientUtils {
             if (actualFeruchemicReserve >= metal.getMaxReserveBand()) {
                 ModNetwork.sendToServer(new UpdateStoragePacket(metal, false));
             } else {
-                if (capability.isDecanting(metal)) {
-                    ModNetwork.sendToServer(new UpdateDecantPacket(metal, false));
+                if (capability.isTapping(metal)) {
+                    ModNetwork.sendToServer(new UpdateTapPacket(metal, false));
                 }
                 ModNetwork.sendToServer(new UpdateStoragePacket(metal, !capability.isStoring(metal)));
             }
@@ -154,8 +146,8 @@ public class ClientUtils {
             if (actualFeruchemicReserve >= metal.getMaxReserveRing()) {
                 ModNetwork.sendToServer(new UpdateStoragePacket(metal, false));
             } else {
-                if (capability.isDecanting(metal)) {
-                    ModNetwork.sendToServer(new UpdateDecantPacket(metal, false));
+                if (capability.isTapping(metal)) {
+                    ModNetwork.sendToServer(new UpdateTapPacket(metal, false));
                 }
                 ModNetwork.sendToServer(new UpdateStoragePacket(metal, !capability.isStoring(metal)));
             }

@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers;
+package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals;
 
 
 import net.minecraft.core.BlockPos;

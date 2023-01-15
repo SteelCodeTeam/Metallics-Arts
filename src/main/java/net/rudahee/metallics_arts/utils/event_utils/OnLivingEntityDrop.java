@@ -5,7 +5,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.Collection;
@@ -21,7 +21,7 @@ public class OnLivingEntityDrop {
 
             IInvestedPlayerData capability = CapabilityUtils.getCapability(event.getSource().getEntity());
 
-            if (capability.isDecanting(MetalTagEnum.ZINC)) {
+            if (capability.isTapping(MetalTagEnum.ZINC)) {
                 Collection<ItemEntity> drops = event.getDrops();
                 List<ItemEntity> filteredDrops = drops.stream().filter(e -> e.getItem().getItem()!= Items.NETHER_STAR).collect(Collectors.toList());
                 event.getDrops().addAll(filteredDrops);

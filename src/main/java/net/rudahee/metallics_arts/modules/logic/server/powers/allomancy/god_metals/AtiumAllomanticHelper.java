@@ -1,7 +1,7 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy;
+package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_metals;
 
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 
 
 public class AtiumAllomanticHelper {

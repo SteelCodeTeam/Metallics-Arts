@@ -3,7 +3,7 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 
 
 /**
@@ -30,7 +30,7 @@ public abstract class AbstractFechuchemicHelper {
      * @return CompoundTag metalmind information update.
      */
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
-        if (!playerCapability.isDecanting(MetalTagEnum.NICROSIL) || !nicConsume) {
+        if (!playerCapability.isTapping(MetalTagEnum.NICROSIL) || !nicConsume) {
             compoundTag.putInt(metalKey, metalReserve - 1);
         }
         decantPower(player);

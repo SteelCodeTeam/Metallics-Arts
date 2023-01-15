@@ -13,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.rings.*;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
@@ -69,8 +69,8 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
                 data.setMetalMindEquiped(this.metals[1].getGroup(),false);
                 data.setStoring(this.metals[0],false);
                 data.setStoring(this.metals[1],false);
-                data.setDecanting(this.metals[0],false);
-                data.setDecanting(this.metals[1],false);
+                data.setTapping(this.metals[0],false);
+                data.setTapping(this.metals[1],false);
                 ModNetwork.sync(data, player);
             });
         }
@@ -179,7 +179,7 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
             if (livingEntity instanceof Player) {
                 Player player = (Player) livingEntity;
                 IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(player);
-                if (playerCapability.isDecanting(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)){
+                if (playerCapability.isTapping(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)){
                     stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag,false,this.metals[0],this.metals[1]));
                 }
                 String metalKey = this.metals[0].getNameLower()+"_feruchemic_reserve";
@@ -188,15 +188,15 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
                 /**
                     DECANT
                 */
-                if (playerCapability.isDecanting(this.metals[0])) {
+                if (playerCapability.isTapping(this.metals[0])) {
                     if (actualReserve>0) {
                         stack.setTag(firstSupplier.calculateDischarge(compoundTag,player,playerCapability,actualReserve,metalKey,nicConsumeMet0));
-                        if (playerCapability.isDecanting(MetalTagEnum.NICROSIL)) {
+                        if (playerCapability.isTapping(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet0 = !nicConsumeMet0;
                         }
                     } else {
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag,false,this.metals[0],this.metals[1]));
-                        playerCapability.setDecanting(this.metals[0],false);
+                        playerCapability.setTapping(this.metals[0],false);
                     }
                 /**
                     STORAGE
@@ -218,15 +218,15 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
                 /**
                     DECANT
                 */
-                if (playerCapability.isDecanting(this.metals[1])) {
+                if (playerCapability.isTapping(this.metals[1])) {
                     if (actualReserve>0) {
                         stack.setTag(secondSupplier.calculateDischarge(compoundTag,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
-                        if (playerCapability.isDecanting(MetalTagEnum.NICROSIL)) {
+                        if (playerCapability.isTapping(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet1 = !nicConsumeMet1;
                         }
                     } else {
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag,false,this.metals[0],this.metals[1]));
-                        playerCapability.setDecanting(this.metals[1],false);
+                        playerCapability.setTapping(this.metals[1],false);
                     }
                 /**
                     STORAGE

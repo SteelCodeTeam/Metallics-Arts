@@ -23,15 +23,15 @@ public class MetalMindsUtils {
         boolean isSecondReserveZero = compoundTag.getInt(metal1.getNameLower()+"_feruchemic_reserve") == 0;
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
             if (isFirstReserveZero && isSecondReserveZero && !data.isStoring(MetalTagEnum.ALUMINUM) &&
-                    !data.isDecanting(MetalTagEnum.ALUMINUM) && iStoreMetal){
+                    !data.isTapping(MetalTagEnum.ALUMINUM) && iStoreMetal){
                 compoundTag.putString("key", player.getStringUUID());
             } else if (isFirstReserveZero && isSecondReserveZero && !data.isStoring(MetalTagEnum.ALUMINUM) &&
-                    !data.isDecanting(MetalTagEnum.ALUMINUM) && !iStoreMetal){
+                    !data.isTapping(MetalTagEnum.ALUMINUM) && !iStoreMetal){
                 compoundTag.putString("key", unkeyedString);
             }
             else if (data.isStoring(MetalTagEnum.ALUMINUM)) {
                 compoundTag.putString("key", unkeyedString);
-            } else if (data.isDecanting(MetalTagEnum.ALUMINUM)){
+            } else if (data.isTapping(MetalTagEnum.ALUMINUM)){
                 compoundTag.putString("key", player.getStringUUID());
             }
         });
@@ -51,15 +51,15 @@ public class MetalMindsUtils {
         boolean isSecondReserveZero = compoundTag.getInt(metal1.getNameLower()+"_feruchemic_reserve") == 0;
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
             if (isSecondReserveZero && !data.isStoring(MetalTagEnum.ALUMINUM) &&
-                    !data.isDecanting(MetalTagEnum.ALUMINUM) && iStoreMetal){
+                    !data.isTapping(MetalTagEnum.ALUMINUM) && iStoreMetal){
                 compoundTag.putString("key", player.getStringUUID());
             } else if (isSecondReserveZero && !data.isStoring(MetalTagEnum.ALUMINUM) &&
-                    !data.isDecanting(MetalTagEnum.ALUMINUM) && !iStoreMetal){
+                    !data.isTapping(MetalTagEnum.ALUMINUM) && !iStoreMetal){
                 compoundTag.putString("key", unkeyedString);
             }
             else if (data.isStoring(MetalTagEnum.ALUMINUM)) {
                 compoundTag.putString("key", unkeyedString);
-            } else if (data.isDecanting(MetalTagEnum.ALUMINUM)){
+            } else if (data.isTapping(MetalTagEnum.ALUMINUM)){
                 compoundTag.putString("key", player.getStringUUID());
             }
         });

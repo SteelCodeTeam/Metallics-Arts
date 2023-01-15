@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers;
+package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals;
 
 
 import net.minecraft.core.BlockPos;
@@ -9,7 +9,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.util.ITeleporter;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.Function;
 
@@ -60,14 +59,6 @@ public class GoldAndElectrumHelpers {
     private static BlockPos block = null;
     private static String dimension = null;
 
-    public static void takeDeathPosToObjetive(Player playerEntity) {
-        playerEntity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap ->{
-            if (cap.getDeathPos() != null && cap.getDeathDimension() != null) {
-                block = new BlockPos(cap.getDeathPos()[0], cap.getDeathPos()[1], cap.getDeathPos()[2]);
-                dimension = cap.getDeathDimension();
-            }
-        });
-    }
 
     public static BlockPos getBlock() {
         return block;

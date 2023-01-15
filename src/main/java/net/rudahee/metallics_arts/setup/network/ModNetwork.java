@@ -10,7 +10,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.network.packets.*;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
@@ -35,7 +35,7 @@ public class ModNetwork {
         INSTANCE.registerMessage(nextIndex(), PullAndPushNuggetPacket.class, PullAndPushNuggetPacket::encode, PullAndPushNuggetPacket::decode, PullAndPushNuggetPacket::handle);
 
         INSTANCE.registerMessage(nextIndex(), PullAndPushEntityPacket.class, PullAndPushEntityPacket::encode, PullAndPushEntityPacket::decode, PullAndPushEntityPacket::handle);
-        INSTANCE.registerMessage(nextIndex(), UpdateDecantPacket.class, UpdateDecantPacket::encode, UpdateDecantPacket::decode, UpdateDecantPacket::handle);
+        INSTANCE.registerMessage(nextIndex(), UpdateTapPacket.class, UpdateTapPacket::encode, UpdateTapPacket::decode, UpdateTapPacket::handle);
         INSTANCE.registerMessage(nextIndex(), UpdateStoragePacket.class, UpdateStoragePacket::encode, UpdateStoragePacket::decode, UpdateStoragePacket::handle);
         INSTANCE.registerMessage(nextIndex(), RemoveNuggetPacket.class, RemoveNuggetPacket::encode, RemoveNuggetPacket::decode, RemoveNuggetPacket::handle);
     }

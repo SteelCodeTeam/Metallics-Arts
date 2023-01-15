@@ -6,16 +6,21 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 
 import java.util.function.Supplier;
 
 
 /**
- * Puede que haya problemas con lso metodos de almacenamiento, revisarlo
+ * Puede que haya problemas con los metodos de almacenamiento, revisarlo
+ *
  * @deprecated
+ *
+ * @author SteelCodeTeam
+ * @since 1.6
  */
-public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper{
+public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * This method is not used, because the power logic is applied in the discharge methods of this class.

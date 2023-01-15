@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import net.rudahee.metallics_arts.utils.ComparatorMetals;
@@ -306,7 +306,7 @@ public class FeruchemySelector extends Screen {
                 actualColor = noMetalMIndPar;
             } else if(data.isStoring(metal)){
                 actualColor = isStoragePar;
-            } else if (data.isDecanting(metal)){
+            } else if (data.isTapping(metal)){
                 actualColor = isDecantingPar;
             } else {
                 actualColor = normalPar;    //Tiene poder, pero no lo esta usando
@@ -316,7 +316,7 @@ public class FeruchemySelector extends Screen {
                 actualColor = noMetalMIndImpar;
             } else if(data.isStoring(metal)){
                 actualColor = isStorageImpar;
-            } else if (data.isDecanting(metal)){
+            } else if (data.isTapping(metal)){
                 actualColor = isDecantingImpar;
             } else {
                 actualColor = normalImpar;  //Tiene poder, pero no lo esta usando
@@ -347,7 +347,7 @@ public class FeruchemySelector extends Screen {
                 actualColor = noMetalMIndPar;
             }else if(data.isStoring(metal)){
                 actualColor = isStoragePar;
-            }else if (data.isDecanting(metal)){
+            }else if (data.isTapping(metal)){
                 actualColor = isDecantingPar;
             }else {
                 actualColor = normalPar;
@@ -358,7 +358,7 @@ public class FeruchemySelector extends Screen {
                 actualColor = noMetalMIndImpar;
             }else if(data.isStoring(metal)){
                 actualColor = isStorageImpar;
-            }else if (data.isDecanting(metal)){
+            }else if (data.isTapping(metal)){
                 actualColor = isDecantingImpar;
             }else {
                 actualColor = normalImpar;

@@ -9,18 +9,18 @@ import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.Supplier;
 
-public class UpdateDecantPacket {
+public class UpdateTapPacket {
 
     private final MetalTagEnum metal;
     private final boolean value;
 
-    public UpdateDecantPacket(MetalTagEnum metal, boolean value) {
+    public UpdateTapPacket(MetalTagEnum metal, boolean value) {
         this.metal = metal;
         this.value = value;
     }
 
-    public static UpdateDecantPacket decode(FriendlyByteBuf buffer) {
-        return new UpdateDecantPacket(buffer.readEnum(MetalTagEnum.class), buffer.readBoolean());
+    public static UpdateTapPacket decode(FriendlyByteBuf buffer) {
+        return new UpdateTapPacket(buffer.readEnum(MetalTagEnum.class), buffer.readBoolean());
     }
 
     public void encode(FriendlyByteBuf buffer) {
@@ -34,9 +34,9 @@ public class UpdateDecantPacket {
 
             player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> {
                 if (cap.hasFeruchemicPower(this.metal)) {
-                    cap.setDecanting(this.metal, this.value);
+                    cap.setTapping(this.metal, this.value);
                 } else {
-                    cap.setDecanting(this.metal, false);
+                    cap.setTapping(this.metal, false);
                 }
                 ModNetwork.sync(cap, player);
             });

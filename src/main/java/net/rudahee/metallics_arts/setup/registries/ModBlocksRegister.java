@@ -10,7 +10,7 @@ import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.registries.blocks.BasicBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.AtiumBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.EttmetalBlocksRegister;

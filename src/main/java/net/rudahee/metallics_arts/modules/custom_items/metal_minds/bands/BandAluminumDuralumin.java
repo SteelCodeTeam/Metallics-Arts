@@ -8,7 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.players.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.BandMindAbstract;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AluminumFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.DuraluminFecuchemicHelper;
@@ -37,7 +37,7 @@ public class BandAluminumDuralumin extends BandMindAbstract <AluminumFecuchemicH
                 Player player = (Player) livingEntity;
                 IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(player);
 
-                if (playerCapability.isDecanting(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)){
+                if (playerCapability.isTapping(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)){
                     stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,false,this.getMetals(0),this.getMetals(1)));
                 }
 
@@ -48,13 +48,13 @@ public class BandAluminumDuralumin extends BandMindAbstract <AluminumFecuchemicH
                 /**
                  DECANT
                  */
-                if (playerCapability.isDecanting(this.getMetals(0))) {
+                if (playerCapability.isTapping(this.getMetals(0))) {
                     if (actualReserve>0) {
                         stack.setTag(getFirstSupplier().calculateDischarge(nbtLocal,player,playerCapability,actualReserve,metalKey,false));
 
                     } else {
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,false,this.getMetals(0),this.getMetals(1)));
-                        playerCapability.setDecanting(this.getMetals(0),false);
+                        playerCapability.setTapping(this.getMetals(0),false);
                     }
                     /**
                      STORAGE
@@ -77,15 +77,15 @@ public class BandAluminumDuralumin extends BandMindAbstract <AluminumFecuchemicH
                 /**
                  DECANT
                  */
-                if (playerCapability.isDecanting(this.getMetals(1))) {
+                if (playerCapability.isTapping(this.getMetals(1))) {
                     if (actualReserve>0) {
                         stack.setTag(getSecondSupplier().calculateDischarge(nbtLocal,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
-                        if (playerCapability.isDecanting(MetalTagEnum.NICROSIL)) {
+                        if (playerCapability.isTapping(MetalTagEnum.NICROSIL)) {
                             nicConsumeMet1 = !nicConsumeMet1;
                         }
                     } else {
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal,false,this.getMetals(1)));
-                        playerCapability.setDecanting(this.getMetals(1),false);
+                        playerCapability.setTapping(this.getMetals(1),false);
                     }
                     /**
                      STORAGE

@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy;
+package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.mental_metals;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -16,9 +16,9 @@ import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
+import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
-public class BrassAllomanticHelper {
+public class ZincAllomanticHelper {
     public static void angryEntities(Mob target, Player source) {
         target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
 
@@ -93,16 +93,19 @@ public class BrassAllomanticHelper {
         }
     }
 
-    public static void angryEntitiesWithLerasium(Player source, Level world, AABB axisAlignedBB, boolean duralumin) {
-        world.getEntitiesOfClass(Mob.class, axisAlignedBB).forEach(target -> {
-            if (!(target instanceof WitherBoss)) {
+    public static void angryEntitiesWithLerasium(Player source, Level world, boolean enhanced) {
+
+        world.getEntitiesOfClass(Mob.class,
+            (enhanced) ? CapabilityUtils.getBubble(source, 12) : CapabilityUtils.getBubble(source, 8)).forEach(target -> {
+
+                if (!(target instanceof WitherBoss)) {
                 target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
 
                 target.setTarget(source);
                 target.setLastHurtByMob(source);
                 target.setAggressive(true);
 
-                if (duralumin){
+                if (enhanced){
                     target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 4, true, true, true));
                     target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 4, true, true, true));
                 } else {
