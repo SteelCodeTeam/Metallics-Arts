@@ -13,18 +13,15 @@ public class OnWorldTick {
 
     public static void onWorldTick(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level) {
 
-        tick++;
-
         capability.tickAllomancyBurningMetals(player);
-
         OnTickUtils.equipKolossBlade(player, capability);
-
         if (MathUtils.isDivisibleBy3(tick)) {
             if (capability.isBurningAnything()) {
                 AllomaticTick.allomanticTick(capability, player, level);
             }
         }
 
+        tick++;
         if (tick == 4800) {
             tick = 0;
         }

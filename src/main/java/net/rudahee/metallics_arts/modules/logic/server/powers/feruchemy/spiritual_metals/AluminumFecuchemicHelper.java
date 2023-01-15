@@ -1,12 +1,14 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy;
+package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.AtiumFecuchemicHelper;
 
 import java.util.function.Supplier;
 
-public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper{
+public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper {
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * This method is not used, because the power logic is applied in the discharge methods of this class.
@@ -16,7 +18,7 @@ public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper{
      * @see AtiumFecuchemicHelper#calculateDischarge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
      */
     @Override
-    public void decantPower(Player player) {}
+    public void tappingPower(Player player) {}
 
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.

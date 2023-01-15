@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy;
+package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -9,20 +9,22 @@ import net.minecraft.world.level.biome.Biomes;
 import net.minecraftforge.common.Tags;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.AtiumFecuchemicHelper;
 
 import java.util.function.Supplier;
 
-public class BrassFecuchemicHelper extends AbstractFechuchemicHelper{
+public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Brass: Burns the player if they are in the desert by day, or in a hot biome.
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#decantPower(Player)
+     * @see AbstractFechuchemicHelper#tappingPower(Player)
      */
     @Override
-    public void decantPower(Player player) {
+    public void tappingPower(Player player) {
         if (player.getLevel().getBiome(player.getOnPos()).is(Biomes.DESERT) && player.getLevel().isDay()) {
             player.setSecondsOnFire(1);
         } else if (player.getLevel().getBiome(player.getOnPos()).is(Tags.Biomes.IS_HOT)) {

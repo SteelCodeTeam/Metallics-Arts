@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals;
+package net.rudahee.metallics_arts.utils.powers_utils;
 
 
 import net.minecraft.core.BlockPos;
@@ -13,7 +13,7 @@ import net.minecraftforge.common.util.ITeleporter;
 import java.util.function.Function;
 
 
-public class GoldAndElectrumHelpers {
+public class TeleportsUtils {
 
     public static void teleport(Player player, Level world, ResourceKey<Level> dimension, BlockPos pos) {
         if (!world.isClientSide) {
@@ -45,34 +45,4 @@ public class GoldAndElectrumHelpers {
         teleport(player,world,dimension,pos);
     }
 
-    public static ResourceKey<Level> getRegistryKeyFromString(String dim) {
-        if (dim.equals(Level.OVERWORLD.location().toString())){
-            return Level.OVERWORLD;
-        } else if (dim.equals(Level.NETHER.location().toString())) {
-            return Level.NETHER;
-        } else if (dim.equals(Level.END.location().toString())) {
-            return Level.END;
-        } else {
-            return Level.OVERWORLD;
-        }
-    }
-    private static BlockPos block = null;
-    private static String dimension = null;
-
-
-    public static BlockPos getBlock() {
-        return block;
-    }
-
-    public static void setBlock(BlockPos block) {
-        GoldAndElectrumHelpers.block = block;
-    }
-
-    public static String getDimension() {
-        return dimension;
-    }
-
-    public static void setDimension(String dimension) {
-        GoldAndElectrumHelpers.dimension = dimension;
-    }
 }

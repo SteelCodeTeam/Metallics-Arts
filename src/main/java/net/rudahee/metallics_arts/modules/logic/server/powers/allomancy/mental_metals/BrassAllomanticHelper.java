@@ -13,7 +13,6 @@ import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.function.Predicate;
@@ -52,12 +51,9 @@ public class BrassAllomanticHelper {
             }
         } else if (target instanceof Sheep) {
             target.goalSelector.addGoal(1, new EatBlockGoal(target));
-        } else if (target instanceof Villager) {
-            Villager villager = (Villager) target;
+        } else if (target instanceof Villager villager) {
             villager.onReputationEventFrom(ReputationEventType.ZOMBIE_VILLAGER_CURED, source);
-            villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(goal -> {
-                villager.goalSelector.removeGoal(goal);
-            });
+            villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(villager.goalSelector::removeGoal);
             villager.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 2, true, true));
         }
     }
@@ -85,12 +81,9 @@ public class BrassAllomanticHelper {
             ((AbstractHorse) target).tameWithName(source);
         } else if (target instanceof Sheep) {
             target.goalSelector.addGoal(1, new EatBlockGoal(target));
-        } else if (target instanceof Villager) {
-            Villager villager = (Villager) target;
+        } else if (target instanceof Villager villager) {
             villager.onReputationEventFrom(ReputationEventType.ZOMBIE_VILLAGER_CURED, source);
-            villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(goal -> {
-                villager.goalSelector.removeGoal(goal);
-            });
+            villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(villager.goalSelector::removeGoal);
             villager.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 80, 2, true, true));
         }
     }
@@ -120,12 +113,9 @@ public class BrassAllomanticHelper {
                 ((AbstractHorse) target).tameWithName(source);
             } else if (target instanceof Sheep) {
                 target.goalSelector.addGoal(1, new EatBlockGoal(target));
-            } else if (target instanceof Villager) {
-                Villager villager = (Villager) target;
+            } else if (target instanceof Villager villager) {
                 villager.onReputationEventFrom(ReputationEventType.ZOMBIE_VILLAGER_CURED, source);
-                villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(goal -> {
-                    villager.goalSelector.removeGoal(goal);
-                });
+                villager.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(villager.goalSelector::removeGoal);
                 villager.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 80, 2, true, true));
             }
         });

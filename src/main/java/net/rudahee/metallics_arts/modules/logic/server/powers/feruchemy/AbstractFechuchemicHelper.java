@@ -14,7 +14,7 @@ import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
  *
  */
 public abstract class AbstractFechuchemicHelper {
-    public abstract void decantPower(Player player);
+    public abstract void tappingPower(Player player);
     public abstract void storagePower(Player player);
 
     //charge = storing
@@ -33,7 +33,7 @@ public abstract class AbstractFechuchemicHelper {
         if (!playerCapability.isTapping(MetalTagEnum.NICROSIL) || !nicConsume) {
             compoundTag.putInt(metalKey, metalReserve - 1);
         }
-        decantPower(player);
+        tappingPower(player);
         return compoundTag;
     }
     /**

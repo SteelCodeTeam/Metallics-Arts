@@ -1,12 +1,13 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy;
+package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals;
 
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 
 import java.util.function.Supplier;
 
-public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper{
+public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper {
 
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -14,10 +15,10 @@ public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper{
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#decantPower(Player)
+     * @see AbstractFechuchemicHelper#tappingPower(Player)
      */
     @Override
-    public void decantPower(Player player) {
+    public void tappingPower(Player player) {
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30);
     }
 
@@ -41,7 +42,6 @@ public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper{
      *
      * @param player to whom the effect will be applied.
      * @param playerCapability capabilities (data) to the player.
-     * @return CompoundTag metalmind information update.
      */
     public static void restoreHearts(Player player, IInvestedPlayerData playerCapability ){
         if (player.getHealth()>20) {

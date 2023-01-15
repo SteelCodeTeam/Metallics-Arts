@@ -10,9 +10,10 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_metals.AtiumAllomanticHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_metals.MalatiumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritual_metals.ChromiumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritual_metals.NicrosilAllomanticHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.BrassFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals.BrassFecuchemicHelper;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
@@ -70,22 +71,19 @@ public class OnDamagePowers {
 
         // Chromium
         if (sourceCapability.isBurning(MetalTagEnum.CHROMIUM)) {
-            if (target instanceof Player) {
-                ChromiumAllomanticHelper.drainMetalChromium((Player) event.getEntity());
-            }
+            ChromiumAllomanticHelper.drainMetalChromium((Player) event.getEntity());
         }
         // Malatium
         if (sourceCapability.isBurning(MetalTagEnum.MALATIUM)) {
             if (event.getEntity() instanceof Player) {
-                //GoldAndElectrumHelpers.takeDeathPosToObjetive((Player) event.getEntity());
+                MalatiumAllomanticHelper.setBlock(((Player) event.getEntity()).getLastDeathLocation().get().pos());
+                MalatiumAllomanticHelper.setDimension(((Player) event.getEntity()).getLastDeathLocation().get().dimension());
             }
         }
 
         // Nicrosil
         if (sourceCapability.isBurning(MetalTagEnum.NICROSIL)) {
-            if (target instanceof Player) {
-                NicrosilAllomanticHelper.changeNBTinTargetForEnhanced((Player) event.getEntity());
-            }
+            NicrosilAllomanticHelper.changeTargetEnhancedToTrue((Player) event.getEntity());
         }
 
         // Atium

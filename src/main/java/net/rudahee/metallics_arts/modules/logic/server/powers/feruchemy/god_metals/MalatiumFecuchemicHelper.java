@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy;
+package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
@@ -7,14 +7,13 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 
 import java.util.function.Supplier;
 
 
 /**
- * Puede que haya problemas con los metodos de almacenamiento, revisarlo
  *
- * @deprecated
  *
  * @author SteelCodeTeam
  * @since 1.6
@@ -30,7 +29,7 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
      * @see AtiumFecuchemicHelper#calculateDischarge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
      */
     @Override
-    public void decantPower(Player player) {}
+    public void tappingPower(Player player) {}
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * This method is not used, because the power logic is applied in the discharge methods of this class.
@@ -51,6 +50,9 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
         if (isDecanting(player,compoundTag)) {
             compoundTag.putInt(metalKey, metalReserve - 1);
         }
+        if (compoundTag.getInt(metalKey) == 0) {
+            compoundTag.putInt("tier_malatium_storage",-1);
+        }
         return compoundTag;
     }
 
@@ -63,14 +65,14 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
     }
 
     /**
+     * Repairs the durability of weapons and armor that target player has in hand
      *
      * @param player to whom the effect will be applied.
      * @param compoundTag metalmind information update.
-     * @return
+     * @return If the weapon or armor was repaired it returns true, otherwise false
      */
     public boolean isDecanting(Player player, CompoundTag compoundTag) {
-        if (player.getMainHandItem().getItem() instanceof TieredItem) {
-            TieredItem tiered = (TieredItem) player.getMainHandItem().getItem();
+        if (player.getMainHandItem().getItem() instanceof TieredItem tiered) {
             if (tiered.getTier().getLevel() == compoundTag.getInt("tier_malatium_storage")){
                 if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == 0){
                     return false;
@@ -79,8 +81,7 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
                 return true;
             }
             return false; //el item no es del tier de la primer carga de la mente
-        } else if ( player.getMainHandItem().getItem() instanceof ArmorItem) {
-            ArmorItem armorItem = (ArmorItem) player.getMainHandItem().getItem();
+        } else if (player.getMainHandItem().getItem() instanceof ArmorItem armorItem) {
             int tier = convertMaterialToTier(armorItem.getMaterial().getName());
             if (tier == compoundTag.getInt("tier_malatium_storage")){
                 if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == 0){
@@ -95,23 +96,21 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
     }
 
     /**
+     * Removes the durability of weapons and armor the target player has in hand.
      *
      * @param player to whom the effect will be applied.
      * @param compoundTag metalmind information update.
-     * @return
+     * @return If durability was consumed from the weapon or armor returns true, otherwise false
      */
     public boolean isStoring (Player player, CompoundTag compoundTag){
         if (!compoundTag.contains("tier_malatium_storage")){
             compoundTag.putInt("tier_malatium_storage",-1);
         }
         if (compoundTag.getInt("tier_malatium_storage") == -1){
-            if (!generateIternalReserve(player, compoundTag)){
-                return false;
-            }
+            compoundTag = generateIternalReserve(player, compoundTag);
         }
 
-        if (player.getMainHandItem().getItem() instanceof TieredItem) {
-            TieredItem tiered = (TieredItem) player.getMainHandItem().getItem();
+        if (player.getMainHandItem().getItem() instanceof TieredItem tiered) {
             if (tiered.getTier().getLevel() == compoundTag.getInt("tier_malatium_storage")){
                 if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == player.getItemInHand(InteractionHand.MAIN_HAND).getMaxDamage()){
                     player.setItemInHand(InteractionHand.MAIN_HAND,ItemStack.EMPTY);
@@ -122,8 +121,7 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
                 return true;
             }
             return false; //el item no es del tier de la primer carga de la mente
-        } else if ( player.getMainHandItem().getItem() instanceof ArmorItem) {
-            ArmorItem armorItem = (ArmorItem) player.getMainHandItem().getItem();
+        } else if (player.getMainHandItem().getItem() instanceof ArmorItem armorItem) {
             int tier = convertMaterialToTier(armorItem.getMaterial().getName());
             if (tier == compoundTag.getInt("tier_malatium_storage")){
                 if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == player.getItemInHand(InteractionHand.MAIN_HAND).getMaxDamage()){
@@ -138,24 +136,20 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
     }
 
     /**
-     *
+     * Modify the information of the metal mind to assign it the corresponding tier
      *
      * @param player to whom the effect will be applied.
      * @param compoundTag metalmind information update.
-     * @return
+     * @return CompoundTag metalmind information update.
      */
-    public boolean generateIternalReserve (Player player, CompoundTag compoundTag){
-        if (player.getMainHandItem().getItem() instanceof TieredItem) {
-            TieredItem tiered = (TieredItem) player.getMainHandItem().getItem();
+    public CompoundTag generateIternalReserve (Player player, CompoundTag compoundTag){
+        if (player.getMainHandItem().getItem() instanceof TieredItem tiered) {
             compoundTag.putInt("tier_malatium_storage",tiered.getTier().getLevel());
-            return true;
         }
-        if (player.getMainHandItem().getItem() instanceof ArmorItem){
-            ArmorItem armorItem = (ArmorItem) player.getMainHandItem().getItem();
+        if (player.getMainHandItem().getItem() instanceof ArmorItem armorItem){
             compoundTag.putInt("tier_malatium_storage",convertMaterialToTier(armorItem.getMaterial().getName()));
-            return true;
         }
-        return false;
+        return  compoundTag;
     }
 
     /**
@@ -168,7 +162,7 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
 
         if (material.equals(ArmorMaterials.GOLD.getName()) || material.equals(ArmorMaterials.LEATHER.getName())) {
             return 0;
-        }else  if (material.equals(ArmorMaterials.TURTLE.getName())){
+        } else if (material.equals(ArmorMaterials.TURTLE.getName())){
             return 1;
         } else if (material.equals(ArmorMaterials.IRON.getName()) || material.equals(ArmorMaterials.CHAIN.getName())) {
             return 2;
@@ -192,7 +186,7 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
         if (tier == 0){
             return Tiers.GOLD.name()+" "+ArmorMaterials.LEATHER.getName().toUpperCase();
         } else if (tier == 1){
-            ArmorMaterials.TURTLE.getName();
+            return ArmorMaterials.TURTLE.getName();
         } else if (tier == 2){
             return Tiers.IRON.name()+" "+ArmorMaterials.CHAIN.getName().toUpperCase();
         } else if (tier == 3){

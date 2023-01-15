@@ -9,8 +9,8 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.RingsMindAbstract;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.EttmetalFecuchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.LerasiumFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.EttmetalFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.LerasiumFecuchemicHelper;
 
 import javax.annotation.Nullable;
 import java.util.List;

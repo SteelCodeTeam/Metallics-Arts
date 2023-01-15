@@ -19,18 +19,18 @@ public class AtiumAllomanticHelper {
         int tar = 0;
         int sour = 0;
         if (targetCapability.isBurning(MetalTagEnum.ATIUM))
-            tar =+1;
+            tar = tar + 1;
         if (targetCapability.isBurning(MetalTagEnum.LERASIUM))
-            tar =+2;
+            tar =tar + 2;
         if (targetCapability.getEnhanced())
-            tar = +3;
+            tar = tar + 3;
 
         if (sourceCapability.isBurning(MetalTagEnum.ATIUM)){
-            sour =+1;
+            sour = sour + 1;
             if (sourceCapability.isBurning(MetalTagEnum.LERASIUM))
-                sour =+2;
+                sour =sour + 2;
             if (sourceCapability.getEnhanced())
-                sour = +3;
+                sour = sour + 3;
         }
 
         if (tar <= sour) {

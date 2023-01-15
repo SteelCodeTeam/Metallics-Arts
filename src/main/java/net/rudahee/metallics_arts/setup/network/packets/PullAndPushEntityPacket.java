@@ -44,8 +44,6 @@ public class PullAndPushEntityPacket {
         buf.writeInt(this.direction);
     }
 
-    private int sourceFeruchemicIron;
-    private int targetFeruchemicIron;
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {

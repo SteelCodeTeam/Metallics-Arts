@@ -1,22 +1,23 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy;
+package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.physical_metals;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 
 import java.util.function.Supplier;
 
-public class TinFeruchemicHelper extends AbstractFechuchemicHelper{
+public class TinFeruchemicHelper extends AbstractFechuchemicHelper {
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Pewter: night vision will be applied to the target player.
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#decantPower(Player)
+     * @see AbstractFechuchemicHelper#tappingPower(Player)
      */
     @Override
-    public void decantPower(Player player) {
+    public void tappingPower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 320, 1, true, false, false));
     }
     /**

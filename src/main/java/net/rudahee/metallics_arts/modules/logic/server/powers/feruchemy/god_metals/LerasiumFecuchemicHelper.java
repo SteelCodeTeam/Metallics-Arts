@@ -1,14 +1,15 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy;
+package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
-public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper{
+public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper {
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * This method is not used, because the power logic is applied in the discharge methods of this class.
@@ -18,7 +19,7 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper{
      * @see AtiumFecuchemicHelper#calculateDischarge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
      */
     @Override
-    public void decantPower(Player player) {}
+    public void tappingPower(Player player) {}
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * This method is not used, because the power logic is applied in the discharge methods of this class.
@@ -138,7 +139,7 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper{
         ArrayList<MetalTagEnum> metals = playerCapability.getAllomanticPowers();
         int firstQty = 0;
         int qtyToAdd = 0;
-        boolean continueLoading = true;
+        boolean continueLoading;
 
         for (MetalTagEnum metal: metals) {
             continueLoading = true;
@@ -147,7 +148,7 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper{
                     firstQty = compoundTag.getInt(metal.getNameLower()+"inLerasiumBand");
                     qtyToAdd = Math.toIntExact(Math.round(firstQty * 0.1));
                 }
-                if (!continueLoading || compoundTag.getInt(metal.getNameLower()+"inLerasiumBand") == 0) {
+                if (compoundTag.getInt(metal.getNameLower()+"inLerasiumBand") == 0) {
                     firstQty = 0;
                     qtyToAdd = 0;
                     continueLoading = false;

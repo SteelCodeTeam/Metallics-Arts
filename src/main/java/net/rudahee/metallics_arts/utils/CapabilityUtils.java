@@ -11,7 +11,6 @@ import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Collection of useful statics methods to manage our player capabilities.

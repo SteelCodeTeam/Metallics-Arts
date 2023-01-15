@@ -21,7 +21,7 @@ public class PewterAllomanticHelper {
             damage = 1;
             resistence = 2;
             digSpeed = 2;
-        } else if(!duralumin && lerasium) {
+        } else if(!duralumin) {
             damage = 1;
             resistence = 1;
             digSpeed = 2;

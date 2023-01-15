@@ -26,8 +26,7 @@ public class ZincAllomanticHelper {
         target.setLastHurtByMob(source);
         target.setAggressive(true);
 
-        if (target instanceof TamableAnimal) {
-            TamableAnimal tameable = (TamableAnimal) target;
+        if (target instanceof TamableAnimal tameable) {
             tameable.setTame(false);
             tameable.resetLove();
         } else if (target instanceof Creeper) {
@@ -46,8 +45,7 @@ public class ZincAllomanticHelper {
             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 4, 1, true, true));
             target.goalSelector.addGoal(1, new MeleeAttackGoal((IronGolem) target, 1.4D, true));
 
-        } else if (target instanceof Villager) {
-            Villager villager = (Villager) target;
+        } else if (target instanceof Villager villager) {
             villager.onReputationEventFrom(ReputationEventType.VILLAGER_KILLED, source);
             villager.setUnhappyCounter(50);
             villager.goalSelector.addGoal(1, new PanicGoal(villager, 1.3D));
@@ -64,8 +62,7 @@ public class ZincAllomanticHelper {
         target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 2, true, true, true));
         target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2, true, true, true));
 
-        if (target instanceof TamableAnimal) {
-            TamableAnimal tameable = (TamableAnimal) target;
+        if (target instanceof TamableAnimal tameable) {
             tameable.setTame(false);
             tameable.resetLove();
         } else if (target instanceof Creeper) {
@@ -84,8 +81,7 @@ public class ZincAllomanticHelper {
             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 6, 1, true, true));
             target.goalSelector.addGoal(1, new MeleeAttackGoal((IronGolem) target, 1.8D, true));
 
-        } else if (target instanceof Villager) {
-            Villager villager = (Villager) target;
+        } else if (target instanceof Villager villager) {
             villager.onReputationEventFrom(ReputationEventType.VILLAGER_KILLED, source);
             villager.setUnhappyCounter(100);
             villager.goalSelector.addGoal(1, new PanicGoal(villager, 1.6D));
@@ -113,8 +109,7 @@ public class ZincAllomanticHelper {
                     target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2, true, true, true));
                 }
 
-                if (target instanceof TamableAnimal) {
-                    TamableAnimal tameable = (TamableAnimal) target;
+                if (target instanceof TamableAnimal tameable) {
                     tameable.setTame(false);
                     tameable.resetLove();
                 } else if (target instanceof Creeper) {
@@ -133,8 +128,7 @@ public class ZincAllomanticHelper {
                     target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 6, 1, true, true));
                     target.goalSelector.addGoal(1, new MeleeAttackGoal((IronGolem) target, 1.8D, true));
 
-                } else if (target instanceof Villager) {
-                    Villager villager = (Villager) target;
+                } else if (target instanceof Villager villager) {
                     villager.onReputationEventFrom(ReputationEventType.VILLAGER_KILLED, source);
                     villager.setUnhappyCounter(100);
                     villager.goalSelector.addGoal(1, new PanicGoal(villager, 1.6D));

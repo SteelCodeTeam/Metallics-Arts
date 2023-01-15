@@ -10,11 +10,6 @@ public class OnSetSpawn {
     public static void setSpawn(PlayerSetSpawnEvent event) {
         Player player = event.getEntity();
         IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
-
-        int[] pos = {(int) player.position().x,(int) player.position().y, (int) player.position().z};
-        String dim = player.level.dimension().location().toString();
-
-
         ModNetwork.sync(capability, player);
 
     }

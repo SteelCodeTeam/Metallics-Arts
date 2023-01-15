@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy;
+package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -6,7 +6,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
-import net.rudahee.metallics_arts.modules.logic.server.ServerEventHandler;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.utils.event_utils.OnWorldTick;
 import net.rudahee.metallics_arts.utils.event_utils.on_world_tick.OnTickUtils;
 
@@ -20,10 +20,10 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#decantPower(Player)
+     * @see AbstractFechuchemicHelper#tappingPower(Player)
      */
     @Override
-    public void decantPower(Player player) {
+    public void tappingPower(Player player) {
         if (OnTickUtils.activationEvery30Tick(OnWorldTick.getActualTick())) {
             ResourceKey<Biome> biome = player.getLevel().getBiome(player.getOnPos()).unwrapKey().get();
             // if biome is jungle
@@ -85,6 +85,8 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
                 player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 1, true, false));
             // if biome is caves
             }  else if (biome.equals(Biomes.DRIPSTONE_CAVES) || biome.equals(Biomes.LUSH_CAVES) || biome.equals(Biomes.DEEP_DARK)) {
+                player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 1, true, false));
+                player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 40, 1, true, false));
             // if biome is nether forest
             } else if (biome.equals(Biomes.WARPED_FOREST) || biome.equals(Biomes.CRIMSON_FOREST)) {
                 player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 40, 3, true, false));
@@ -174,6 +176,8 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 2, true, false));
             // if biome is caves
             }  else if (biome.equals(Biomes.DRIPSTONE_CAVES) || biome.equals(Biomes.LUSH_CAVES) || biome.equals(Biomes.DEEP_DARK)) {
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 1, true, false));
+                player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 40, 1, true, false));
             // if biome is nether forest
             } else if (biome.equals(Biomes.WARPED_FOREST) || biome.equals(Biomes.CRIMSON_FOREST)) {
                 player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 40, 3, true, false));

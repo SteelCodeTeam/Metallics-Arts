@@ -16,21 +16,6 @@ public class OnJoinWorld {
         ServerPlayer player = (ServerPlayer) event.getEntity();
         IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
 
-        /*if (capability.getSpawnDimension() == null) {
-            int[] pos = {player.level.getLevelData().getXSpawn(),player.level.getLevelData().getYSpawn(),player.level.getLevelData().getZSpawn()};
-            String dim = player.level.dimension().location().toString();
-
-            capability.setSpawnPos(pos);
-            capability.setSpawnDimension(dim);
-        }
-        if (capability.getDeathDimension() == null) {
-            int[] pos = {player.level.getLevelData().getXSpawn(), player.level.getLevelData().getYSpawn(),player.level.getLevelData().getZSpawn()};
-            String dim = player.level.dimension().location().toString();
-            capability.setDeathPos(pos);
-            capability.setDeathDimension(dim);
-        }*/
-
-        //Se necesita hacer que cargue la date del player antes de ejecutar el onjoin world, o no funciona bien
         if ((capability.getAllomanticPowerCount() + capability.getFeruchemicPowerCount() == 0) && !capability.isInvested()) {
             List<MetalTagEnum> metals = Arrays.asList(MetalTagEnum.values());
             Collections.shuffle(metals);

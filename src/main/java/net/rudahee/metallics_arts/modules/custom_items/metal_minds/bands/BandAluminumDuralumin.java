@@ -10,8 +10,8 @@ import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.BandMindAbstract;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AluminumFecuchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.DuraluminFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals.AluminumFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals.DuraluminFecuchemicHelper;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.MetalMindsUtils;
@@ -68,7 +68,7 @@ public class BandAluminumDuralumin extends BandMindAbstract <AluminumFecuchemicH
                         playerCapability.setStoring(this.getMetals(0),false);
                     }
                 } else if (actualReserve != 3){
-                    AluminumFecuchemicHelper.turnOffPower(nbtLocal,metalKey);
+                    stack.setTag(AluminumFecuchemicHelper.turnOffPower(nbtLocal,metalKey));
                 }
 
                 metalKey = this.getMetals(1).getNameLower()+"_feruchemic_reserve";

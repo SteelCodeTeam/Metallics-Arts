@@ -9,15 +9,17 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 public class OnTickUtils {
     public static boolean activationEvery30Tick(int actualTick) {
-        return actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150
-                || actualTick == 180 || actualTick == 210 || actualTick == 240;
+        return (actualTick % 30) == 0;
+        //return actualTick == 30 || actualTick == 60 || actualTick == 90 || actualTick == 120 || actualTick == 150
+          //      || actualTick == 180 || actualTick == 210 || actualTick == 240;
     }
-    public static boolean activationEvery80Tick(int actualTick) {
-        return actualTick == 80 || actualTick == 160 || actualTick == 240;
+    public static boolean activationEvery90Tick(int actualTick) {
+        return (actualTick % 90) == 0;
+        //return actualTick == 80 || actualTick == 160 || actualTick == 240;
     }
 
     public static boolean activationEvery240Tick(int actualTick) {
-        return actualTick == 240;
+        return (actualTick % 240) == 0;
     }
 
     public static void equipKolossBlade(Player player, IInvestedPlayerData playerCapability) {

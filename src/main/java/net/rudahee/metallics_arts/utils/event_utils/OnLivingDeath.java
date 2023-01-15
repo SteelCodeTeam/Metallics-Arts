@@ -12,10 +12,6 @@ public class OnLivingDeath {
         ServerPlayer player = (ServerPlayer) event.getEntity();
         IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
 
-        int[] pos = {(int) player.position().x,(int) player.position().y, (int) player.position().z};
-        String dim = player.level.dimension().location().toString();
-
-
         for (MetalTagEnum metal: MetalTagEnum.values()) {
             capability.setBurning(metal,false);
             capability.setTapping(metal,false);

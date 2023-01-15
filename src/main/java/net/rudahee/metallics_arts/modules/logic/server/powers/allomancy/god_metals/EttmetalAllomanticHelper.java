@@ -9,12 +9,6 @@ import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class EttmetalAllomanticHelper {
 
-
-    /**
-     *
-     * @param level
-     * @param player
-     */
     public static void ettmetalExplotion(Level level, Player player) {
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(playerCapability ->{
             if (playerCapability.getEnhanced()) {
