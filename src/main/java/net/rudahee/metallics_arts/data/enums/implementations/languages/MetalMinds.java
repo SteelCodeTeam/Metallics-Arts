@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages;
 
-import mezz.jei.common.gui.overlay.bookmarks.ILeftAreaContent;
 import net.rudahee.metallics_arts.data.enums.interfaces.ILanguage;
 
 public enum MetalMinds implements ILanguage {

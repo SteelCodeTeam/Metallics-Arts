@@ -3,9 +3,9 @@ package net.rudahee.metallics_arts.modules.logic.server.server_events;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
 import net.rudahee.metallics_arts.utils.MathUtils;
-import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 
 
 public class OnWorldTickEvent {

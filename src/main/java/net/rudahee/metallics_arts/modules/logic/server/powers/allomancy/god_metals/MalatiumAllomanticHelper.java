@@ -7,10 +7,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
-import net.rudahee.metallics_arts.utils.powers_utils.TeleportsUtils;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
-
-import java.awt.*;
+import net.rudahee.metallics_arts.utils.powers_utils.TeleportsUtils;
 
 public class MalatiumAllomanticHelper {
     private static GlobalPos pos = null;

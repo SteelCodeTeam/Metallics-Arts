@@ -1,7 +1,5 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages;
 
-import net.rudahee.metallics_arts.data.enums.interfaces.ILanguage;
-
 public enum GemsAuxiliaryInfo {
     ATIUM("atium",false),
     MALATIUM("malatium", true),

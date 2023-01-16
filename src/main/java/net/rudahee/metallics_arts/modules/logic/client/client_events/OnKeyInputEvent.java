@@ -6,10 +6,10 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.logic.client.custom_guis.selectors.AllomanticSelector;
-import net.rudahee.metallics_arts.modules.logic.client.custom_guis.selectors.FeruchemySelector;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
+import net.rudahee.metallics_arts.modules.logic.client.custom_guis.selectors.AllomanticSelector;
+import net.rudahee.metallics_arts.modules.logic.client.custom_guis.selectors.FeruchemySelector;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import org.lwjgl.glfw.GLFW;
 

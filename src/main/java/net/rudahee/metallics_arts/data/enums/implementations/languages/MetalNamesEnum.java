@@ -1,7 +1,6 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages;
 
 
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.interfaces.ILanguage;
 
 public enum MetalNamesEnum implements ILanguage {

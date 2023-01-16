@@ -1,26 +1,26 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages;
 
 public enum MetalAuxiliaryInfo {
-    IRON("iron",false,true,false,false,false),
+    IRON("iron",false,true,false,true,false),
     STEEL("steel",true,false,false,false,false),
-    TIN("tin",false,false,false,false,false),
+    TIN("tin",false,false,false,true,true),
     PEWTER("pewter",true,false,false,false,false),
-    ZINC("zinc",false,false,false,false,false),
+    ZINC("zinc",false,false,false,true,true),
     BRASS("brass",true,false,false,false,false),
-    COPPER("copper",false,true,false,false,false),
+    COPPER("copper",false,true,false,true,false),
     BRONZE("bronze",true,false,false,false,false),
-    ALUMINUM("aluminum",false,false,false,false,false),
+    ALUMINUM("aluminum",false,false,false,true,true),
     DURALUMIN("duralumin",true,false,false,false,false),
-    CHROMIUM("chromium",false,false,false,false,false),
+    CHROMIUM("chromium",false,false,false,true,true),
     NICROSIL("nicrosil",true,false,false,false,false),
     GOLD("Gold",false,true,false,false,false),
     ELECTRUM("electrum",true,false,false,false,false),
-    CADMIUM("cadmium",false,false,false,false,false),
+    CADMIUM("cadmium",false,false,false,true,true),
     BENDALLOY("bendalloy",true,false,false,false,false),
 
-    SILVER( "silver",false,false, true,false,false),
-    LEAD("lead",false,false, true,false,false),
-    NICKEL("nickel",false,false, true,false,false);
+    SILVER( "silver",false,false, true,true,true),
+    LEAD("lead",false,false, true,true,true),
+    NICKEL("nickel",false,false, true,true,true);
 
     private final String id;
     private final boolean isAlloy;

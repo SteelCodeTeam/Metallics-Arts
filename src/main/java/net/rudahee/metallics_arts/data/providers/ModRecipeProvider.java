@@ -172,16 +172,16 @@ public class ModRecipeProvider extends RecipeProvider {
                 item1 = ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(object.getFirstMetal()).asItem();
                 item2 = ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(object.getSecondMetal()).asItem();
             } else if (object.isVanilla()) {
-                if (object.getSecondMetal() == "iron") {
+                if (object.getFirstMetal() == "iron") {
                     item1 = Items.IRON_BLOCK;
                 }
-                else if (object.getSecondMetal() == "gold") {
+                else if (object.getFirstMetal() == "gold") {
                     item1 = Items.GOLD_BLOCK;
                 }
                 else {
                     item1 = Items.COPPER_BLOCK;
                 }
-                item2 = ModBlocksRegister.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
+                item2 = ModBlocksRegister.BLOCK_METAL_BLOCKS.get(object.getSecondMetal()).asItem();
             } else {
                 item1 = ModBlocksRegister.BLOCK_METAL_BLOCKS.get(object.getFirstMetal()).asItem();
                 item2 = ModBlocksRegister.BLOCK_METAL_BLOCKS.get(object.getSecondMetal()).asItem();
@@ -194,7 +194,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .pattern("# x")
                     .pattern("###")
                     .unlockedBy("has_item", has(object.getBand()))
-                    .save(recipesConsumer, new ResourceLocation("alomantic_arts_band_" + object.getFirstMetal() + "_" + object.getSecondMetal()));
+                    .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_band_" + object.getFirstMetal() + "_" + object.getSecondMetal()));
 
             ShapedRecipeBuilder.shaped(object.getBand())
                     .define('#', item2)
@@ -203,7 +203,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .pattern("# x")
                     .pattern("###")
                     .unlockedBy("has_item", has(object.getBand()))
-                    .save(recipesConsumer, new ResourceLocation("alomantic_arts_band_" + object.getFirstMetal() + "_" + object.getSecondMetal() + "2"));
+                    .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_band_" + object.getFirstMetal() + "_" + object.getSecondMetal() + "_2"));
 
 
             //INGOTS
@@ -211,25 +211,29 @@ public class ModRecipeProvider extends RecipeProvider {
                 item1 = ModItemsRegister.ITEM_GEMS_BASE.get(object.getFirstMetal()).asItem();
                 item2 = ModItemsRegister.ITEM_GEMS_BASE.get(object.getSecondMetal()).asItem();
             } else if (object.isVanilla()) {
-                if (object.getSecondMetal() == "iron") {item1 = Items.IRON_INGOT;}
-                else if (object.getSecondMetal() == "gold") {item1 = Items.GOLD_INGOT;}
-                else {item1 = Items.COPPER_INGOT;}
-
-                item2 = ModItemsRegister.ITEM_METAL_INGOT.get(object.getFirstMetal()).asItem();
+                if (object.getFirstMetal() == "iron") {
+                    item1 = Items.IRON_INGOT;
+                }
+                else if (object.getFirstMetal() == "gold") {
+                    item1 = Items.GOLD_INGOT;
+                }
+                else {
+                    item1 = Items.COPPER_INGOT;
+                }
+                item2 = ModItemsRegister.ITEM_METAL_INGOT.get(object.getSecondMetal()).asItem();
             } else {
                 item1 = ModItemsRegister.ITEM_METAL_INGOT.get(object.getFirstMetal()).asItem();
                 item2 = ModItemsRegister.ITEM_METAL_INGOT.get(object.getSecondMetal()).asItem();
             }
-
             //RINGS
-            ShapedRecipeBuilder.shaped(object.getRing())
+            /*ShapedRecipeBuilder.shaped(object.getRing())
                     .define('#', item1)
                     .define('x', item2)
                     .pattern("xxx")
                     .pattern("# x")
                     .pattern("###")
                     .unlockedBy("has_item", has(object.getRing()))
-                    .save(recipesConsumer, new ResourceLocation("alomantic_arts_ring_" + object.getFirstMetal() + "_" + object.getSecondMetal()));
+                    .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_ring_" + object.getFirstMetal() + "_" + object.getSecondMetal()));
 
             ShapedRecipeBuilder.shaped(object.getRing())
                     .define('#', item2)
@@ -238,7 +242,8 @@ public class ModRecipeProvider extends RecipeProvider {
                     .pattern("# x")
                     .pattern("###")
                     .unlockedBy("has_item", has(object.getRing()))
-                    .save(recipesConsumer, new ResourceLocation("alomantic_arts_ring_" + object.getFirstMetal() + "_" + object.getSecondMetal() + "2"));
+                    .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_ring_" + object.getFirstMetal() + "_" + object.getSecondMetal() + "_2"));
+*/
         });
 
         //SPIKES
@@ -271,7 +276,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .pattern("xx#")
                     .pattern("   ")
                     .unlockedBy("has_item", has(object.getSpike()))
-                    .save(recipesConsumer, new ResourceLocation("allomantic_arts_spike_" + object.getName()));
+                    .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_spike_" + object.getName()));
         });
 
 
@@ -294,7 +299,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern(" x#")
                 .pattern(" x ")
                 .unlockedBy("has_item",has(ModItemsRegister.OBSIDIAN_AXE.get()))
-                .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_obsidian_axe"));
+                .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID + "_obsidian_axe"));
 
         ShapedRecipeBuilder.shaped(ModItemsRegister.OBSIDIAN_DAGGER.get())
                 .define('#',Items.OBSIDIAN)

@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 public class OnMouseInputEvent {
 
     @OnlyIn(Dist.CLIENT)
-    public static void OnMouseInputEvent(@Nullable Player player, @Nullable IInvestedPlayerData capability) throws PlayerException {
+    public static void OnMouseInputEvent(Player player,IInvestedPlayerData capability) throws PlayerException {
 
         if (player == null) {
             throw new PlayerException(ErrorTypes.PLAYER_ERROR);

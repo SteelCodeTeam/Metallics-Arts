@@ -5,6 +5,7 @@ import net.minecraftforge.common.data.LanguageProvider;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,16 +64,21 @@ public class ModLanguageProviderES extends LanguageProvider {
 
 
     private Map<String, String> ingots = new HashMap<>() {{
-        for (MetalNamesEnum metal: MetalNamesEnum.values()) {
-            if (!MetalAuxiliaryInfo.valueOf(metal.getId()).isVanilla()){
-                put("item.metallics_arts.ingot_" + metal.getId(), CTW.INGOT.getNameInSpanish() + metal.getNameInSpanish());
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+
+            if (!metal.isVanilla()) {
+                put("item.metallics_arts.ingot_" + metal.getId(), CTW.INGOT.getNameInSpanish() + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
             }
+
+            /*if (!MetalAuxiliaryInfo.valueOf(metal.getId()).isVanilla()){
+                put("item.metallics_arts.ingot_" + metal.getId(), CTW.INGOT.getNameInSpanish() + metal.getNameInSpanish());
+            }*/
         }
     }};
     private Map<String, String> rawItems = new HashMap<>() {{
-        for (MetalNamesEnum metal: MetalNamesEnum.values()) {
-            if (!MetalAuxiliaryInfo.valueOf(metal.getId()).isVanilla()){
-                put("item.metallics_arts.raw_" + metal.getId(), metal.getNameInSpanish() + " " + CTW.RAW.getNameInSpanish());
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+            if (!metal.isVanilla()) {
+                put("item.metallics_arts.raw_" + metal.getId(), MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.RAW.getNameInSpanish());
             }
         }
     }};
@@ -82,9 +88,9 @@ public class ModLanguageProviderES extends LanguageProvider {
         }
     }};
     private Map<String, String> nuggets = new HashMap<>() {{
-        for (MetalNamesEnum metal: MetalNamesEnum.values()) {
-            if (!MetalAuxiliaryInfo.valueOf(metal.getId()).isVanilla()){
-                put("item.metallics_arts."+ metal.getId()+"_nugget", CTW.NUGGET.getNameInSpanish() + " " + metal.getNameInSpanish());
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+            if (!metal.isVanilla()) {
+                put("item.metallics_arts."+ metal.getId()+"_nugget", CTW.NUGGET.getNameInSpanish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
             }
         }
         for (GemNames gem: GemNames.values()) {
@@ -92,9 +98,9 @@ public class ModLanguageProviderES extends LanguageProvider {
         }
     }};
     private Map<String, String> blocks = new HashMap<>() {{
-        for (MetalNamesEnum metal: MetalNamesEnum.values()) {
-            if (!MetalAuxiliaryInfo.valueOf(metal.getId()).isVanilla()){
-                put("blocks.metallics_arts.block_" + metal.getId(), CTW.BLOCK.getNameInSpanish()+ " " + metal.getNameInSpanish());
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+            if (!metal.isVanilla()) {
+                put("blocks.metallics_arts.block_" + metal.getId(), CTW.BLOCK.getNameInSpanish()+ " " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
             }
         }
         for (GemNames gem: GemNames.values()) {
@@ -102,55 +108,53 @@ public class ModLanguageProviderES extends LanguageProvider {
         }
     }};
     private Map<String, String> rawBlocks = new HashMap<>() {{
-        for (MetalNamesEnum metal: MetalNamesEnum.values()) {
-            if (!MetalAuxiliaryInfo.valueOf(metal.getId()).isVanilla()){
-                put("block.metallics_arts.raw_"+metal.getId()+"_block", CTW.BLOCK.getNameInSpanish()+ " " + metal.getNameInSpanish() + " " +
-                        CTW.RAW.getNameInSpanish());
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+            if (!metal.isVanilla()) {
+                put("block.metallics_arts.raw_"+metal.getId()+"_block", CTW.BLOCK.getNameInSpanish()+ " " +
+                        MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.RAW.getNameInSpanish());
             }
         }
     }};
     private Map<String, String> ores = new HashMap<>() {{
-        for (MetalNamesEnum metal: MetalNamesEnum.values()) {
-            if (!MetalAuxiliaryInfo.valueOf(metal.getId()).isVanilla()){
-                if (!MetalAuxiliaryInfo.valueOf(metal.getId()).isAlloy()) {
-                    if (!MetalAuxiliaryInfo.valueOf(metal.getId()).isAppearsInStone()) {
-                        put("blocks.metallics_arts." + metal.getId()+"_ore", CTW.ORE.getNameInSpanish() + " " + metal.getNameInSpanish());
-                    }
-                }
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+            if (!metal.isVanilla() && !metal.isAlloy() && metal.isAppearsInStone()) {
+                    put("blocks.metallics_arts." + metal.getId()+"_ore", CTW.ORE.getNameInSpanish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+
             }
         }
 
     }};
     private Map<String, String> deepslateOres = new HashMap<>() {{
-        for (MetalNamesEnum metal: MetalNamesEnum.values()) {
-            if (!MetalAuxiliaryInfo.valueOf(metal.getId()).isVanilla()){
-                if (!MetalAuxiliaryInfo.valueOf(metal.getId()).isAlloy()) {
-                    if (!MetalAuxiliaryInfo.valueOf(metal.getId()).isAppearsInDeepslate()) {
-                        put("blocks.metallics_arts.deepslate_" + metal.getId()+"_ore", CTW.ORE + " " + metal.getNameInSpanish() + " " +
-                                CTW.DEEPSLATE.getNameInSpanish());
-                    }
-                }
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+            if (!metal.isVanilla() && !metal.isAlloy() && metal.isAppearsInDeepslate()) {
+                    put("blocks.metallics_arts.deepslate_" + metal.getId()+"_ore", CTW.ORE + " " +
+                            MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.DEEPSLATE.getNameInSpanish());
             }
         }
     }};
     private Map<String, String> geodeBlocks = new HashMap<>() {{
-        for (GemNames gem: GemNames.values()) {
-            if (!GemsAuxiliaryInfo.valueOf(gem.getId()).isAlloy()) {
-                put("block.metallics_arts." + gem.getId() + "_cristal_block", gem.getNameInSpanish() + " " + CTW.CRISTAL);
-                put("block.metallics_arts.budding_" + gem.getId(), CTW.BUDDING.getNameInSpanish() + " " + gem.getNameInSpanish());
-                put("block.metallics_arts." + gem.getId() + "_cluster", CTW.CLUSTER.getNameInSpanish() + " " + gem.getNameInSpanish());
-                put("block.metallics_arts.small_" + gem.getId() + "_bud", CTW.BUD.getNameInSpanish() + " " + gem.getNameInSpanish() + " " +
+        for (GemsAuxiliaryInfo gem: GemsAuxiliaryInfo.values()) {
+            if (!gem.isAlloy()) {
+                put("block.metallics_arts." + gem.getId() + "_cristal_block", GemNames.valueOf(gem.name()).getNameInSpanish() + " " + CTW.CRISTAL);
+                put("block.metallics_arts.budding_" + gem.getId(), CTW.BUDDING.getNameInSpanish() + " " + GemNames.valueOf(gem.name()).getNameInSpanish());
+                put("block.metallics_arts." + gem.getId() + "_cluster", CTW.CLUSTER.getNameInSpanish() + " " + GemNames.valueOf(gem.name()).getNameInSpanish());
+                put("block.metallics_arts.small_" + gem.getId() + "_bud", CTW.BUD.getNameInSpanish() + " " + GemNames.valueOf(gem.name()).getNameInSpanish() + " " +
                         CTW.SMALL.getNameInSpanish());
-                put("block.metallics_arts.medium_" + gem.getId() + "_bud", CTW.BUD.getNameInSpanish() + " " + gem.getNameInSpanish() + " " +
+                put("block.metallics_arts.medium_" + gem.getId() + "_bud", CTW.BUD.getNameInSpanish() + " " + GemNames.valueOf(gem.name()).getNameInSpanish() + " " +
                         CTW.MEDIUM.getNameInSpanish());
-                put("block.metallics_arts.large_" + gem.getId() + "_bud", CTW.BUD.getNameInSpanish() + " " + gem.getNameInSpanish() + " " +
+                put("block.metallics_arts.large_" + gem.getId() + "_bud", CTW.BUD.getNameInSpanish() + " " + GemNames.valueOf(gem.name()).getNameInSpanish() + " " +
                         CTW.LARGE.getNameInSpanish());
             }
         }
     }};
     private Map<String, String> spikes = new HashMap<>() {{
-        for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("item.metallics_arts."+ metal.getNameLower() +"_spike", CTW.SPIKE.getNameInSpanish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+            if (!metal.isOnlyForAlloys()) {
+                put("item.metallics_arts."+ metal.getId() +"_spike", CTW.SPIKE.getNameInSpanish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+            }
+        }
+        for (GemNames metal: GemNames.values()) {
+            put("item.metallics_arts."+ metal.getId() +"_spike", CTW.SPIKE.getNameInSpanish() + " " + GemNames.valueOf(metal.name()).getNameInSpanish());
         }
     }};
     private Map<String, String> metalMinds = new HashMap<>() {{
@@ -160,39 +164,71 @@ public class ModLanguageProviderES extends LanguageProvider {
         }
     }};
     private Map<String, String> icons = new HashMap<>() {{
-        for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("item.metallics_arts."+ metal.getNameLower()+"_allomantic_icon" , MetalNamesEnum.valueOf(metal.name()).getNameInSpanish()+" Alomantico");
-            put("item.metallics_arts."+ metal.getNameLower()+"_feruchemic_icon" , MetalNamesEnum.valueOf(metal.name()).getNameInSpanish()+" Feruquimico");
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+            if (!metal.isOnlyForAlloys()) {
+                put("item.metallics_arts."+ metal.getId()+"_allomantic_icon" , MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.ALLOMANTIC.getNameInSpanish());
+                put("item.metallics_arts."+ metal.getId()+"_feruchemic_icon" , MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.FERUCHEMICAL.getNameInSpanish());
+            }
         }
+        for (GemNames metal: GemNames.values()) {
+            put("item.metallics_arts."+ metal.getId()+"_allomantic_icon" , GemNames.valueOf(metal.name()).getNameInSpanish() + " " + CTW.ALLOMANTIC.getNameInSpanish());
+            put("item.metallics_arts."+ metal.getId()+"_feruchemic_icon" , GemNames.valueOf(metal.name()).getNameInSpanish() + " " + CTW.FERUCHEMICAL.getNameInSpanish());
+        }
+
 
     }};
     private Map<String, String> metals = new HashMap<>() {{
-
-        for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("metallics_arts.metal_translate."+ metal.getNameLower() , MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+            if (!metal.isOnlyForAlloys()) {
+                put("metallics_arts.metal_translate."+ metal.getId() , MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+            }
         }
-
+        for (GemNames metal: GemNames.values()) {
+            put("metallics_arts.metal_translate."+ metal.getId() , GemNames.valueOf(metal.name()).getNameInSpanish());
+        }
     }};
     private Map<String, String> powers = new HashMap<>() {{
-        for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("key.metallics_arts."+ metal.getNameLower() +"_power", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+            if (!metal.isOnlyForAlloys()) {
+                put("key.metallics_arts."+ metal.getId() +"_power", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+            }
+        }
+        for (GemNames metal: GemNames.values()) {
+            put("key.metallics_arts."+ metal.getId() +"_power", GemNames.valueOf(metal.name()).getNameInSpanish());
         }
     }};
     private Map<String, String> symbols = new HashMap<>() {{
-        for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("f_"+metal.getNameLower()+"_1", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.FERUCHEMICAL_SHADING.getNameInSpanish());
-            put("f_"+metal.getNameLower()+"_2", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.FERUCHEMICAL_SOLID.getNameInSpanish());
-            put("a_"+metal.getNameLower()+"_1", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.ALLOMANTIC_SHADING.getNameInSpanish());
-            put("a_"+metal.getNameLower()+"_2", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.ALLOMANTIC_SOLID.getNameInSpanish());
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+            if (!metal.isOnlyForAlloys()) {
+                put("f_"+metal.getId()+"_1", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.FERUCHEMICAL_SHADING.getNameInSpanish());
+                put("f_"+metal.getId()+"_2", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.FERUCHEMICAL_SOLID.getNameInSpanish());
+                put("a_"+metal.getId()+"_1", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.ALLOMANTIC_SHADING.getNameInSpanish());
+                put("a_"+metal.getId()+"_2", MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.ALLOMANTIC_SOLID.getNameInSpanish());
+            }
+        }
+        for (GemNames metal: GemNames.values()) {
+            put("f_"+metal.getId()+"_1", GemNames.valueOf(metal.name()).getNameInSpanish() + " " + CTW.FERUCHEMICAL_SHADING.getNameInSpanish());
+            put("f_"+metal.getId()+"_2", GemNames.valueOf(metal.name()).getNameInSpanish() + " " + CTW.FERUCHEMICAL_SOLID.getNameInSpanish());
+            put("a_"+metal.getId()+"_1", GemNames.valueOf(metal.name()).getNameInSpanish() + " " + CTW.ALLOMANTIC_SHADING.getNameInSpanish());
+            put("a_"+metal.getId()+"_2", GemNames.valueOf(metal.name()).getNameInSpanish() + " " + CTW.ALLOMANTIC_SOLID.getNameInSpanish());
         }
     }};
     private Map<String, String> patterns = new HashMap<>() {{
-        for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("item.metallics_arts.f_"+metal.getNameLower()+"_pattern", CTW.FERUCHEMICAL_PATTERN.getNameInSpanish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
-            put("item.metallics_arts.f_"+metal.getNameLower()+"_pattern.desc", CTW.FERUCHEMICAL_PATTERN.getNameInSpanish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
-            put("item.metallics_arts.a_"+metal.getNameLower()+"_pattern", CTW.ALLOMANTIC_PATTERN.getNameInSpanish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
-            put("item.metallics_arts.a_"+metal.getNameLower()+"_pattern.desc", CTW.ALLOMANTIC_PATTERN.getNameInSpanish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+            if (!metal.isOnlyForAlloys()) {
+                put("item.metallics_arts.f_"+metal.getId()+"_pattern", CTW.FERUCHEMICAL_PATTERN.getNameInSpanish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+                put("item.metallics_arts.f_"+metal.getId()+"_pattern.desc", CTW.FERUCHEMICAL_PATTERN.getNameInSpanish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+                put("item.metallics_arts.a_"+metal.getId()+"_pattern", CTW.ALLOMANTIC_PATTERN.getNameInSpanish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+                put("item.metallics_arts.a_"+metal.getId()+"_pattern.desc", CTW.ALLOMANTIC_PATTERN.getNameInSpanish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
+            }
         }
+        for (GemNames metal: GemNames.values()) {
+            put("item.metallics_arts.f_"+metal.getId()+"_pattern", CTW.FERUCHEMICAL_PATTERN.getNameInSpanish() + " " + GemNames.valueOf(metal.name()).getNameInSpanish());
+            put("item.metallics_arts.f_"+metal.getId()+"_pattern.desc", CTW.FERUCHEMICAL_PATTERN.getNameInSpanish() + " " + GemNames.valueOf(metal.name()).getNameInSpanish());
+            put("item.metallics_arts.a_"+metal.getId()+"_pattern", CTW.ALLOMANTIC_PATTERN.getNameInSpanish() + " " + GemNames.valueOf(metal.name()).getNameInSpanish());
+            put("item.metallics_arts.a_"+metal.getId()+"_pattern.desc", CTW.ALLOMANTIC_PATTERN.getNameInSpanish() + " " + GemNames.valueOf(metal.name()).getNameInSpanish());
+        }
+
     }};
     private Map<String, String> colors = new HashMap<>() {{
         for (ColorsNames color : ColorsNames.values()) {

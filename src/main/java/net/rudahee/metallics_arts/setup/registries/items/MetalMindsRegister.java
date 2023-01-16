@@ -19,134 +19,134 @@ public class MetalMindsRegister {
         MetallicsArts.registerItem("band_aluminum_duralumin",
             () -> {
                 Item item = new BandAluminumDuralumin(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("ALUMINUM_DURALUMIN").setBand(item);
+                MetalMindEnum.ALUMINUM_DURALUMIN.setBand(item);
                 return item;
             });
 
         MetallicsArts.registerItem("band_atium_malatium",
             () -> {
                Item item = new BandAtiumMalatium(PROPERTY_METALMINDS);
-               MetalMindEnum.valueOf("ATIUM_MALTIUM").setBand(item);
+               MetalMindEnum.ATIUM_MALTIUM.setBand(item);
                return item;
             });
 
         MetallicsArts.registerItem("band_cadmium_bendalloy",
             () -> {
                 Item item = new BandCadmiumBendalloy(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("CADMIUM_BENDALLOY").setBand(item);
+                MetalMindEnum.CADMIUM_BENDALLOY.setBand(item);
                 return item;
             });
 
         MetallicsArts.registerItem("band_chromium_nicrosil",
             () -> {
                 Item item = new BandChromiumNicrosil(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("CHROMIUM_NICROSIL").setBand(item);
+                MetalMindEnum.CHROMIUM_NICROSIL.setBand(item);
                 return item;
             });
         MetallicsArts.registerItem("band_copper_bronze",
             () -> {
                 Item item = new BandCopperBronze(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("COPPER_BRONZE").setBand(item);
+                MetalMindEnum.COPPER_BRONZE.setBand(item);
                 return item;
             });
-        MetallicsArts.registerItem("band_electrum_gold",
+        MetallicsArts.registerItem("band_gold_electrum",
             () -> {
                 Item item = new BandElectrumGold(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("ELECTRUM_GOLD").setBand(item);
+                MetalMindEnum.GOLD_ELECTRUM.setBand(item);
                 return item;
             });
         MetallicsArts.registerItem("band_lerasium_ettmetal",
             () -> {
                 Item item = new BandLerasiumEttmetal(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("LERASIUM_ETTMETAL").setBand(item);
+                MetalMindEnum.LERASIUM_ETTMETAL.setBand(item);
                 return item;
             });
-        MetallicsArts.registerItem("band_pewter_tin",
+        MetallicsArts.registerItem("band_tin_pewter",
             () -> {
                 Item item = new BandPewterTin(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("TIN_PEWTER").setBand(item);
+                MetalMindEnum.TIN_PEWTER.setBand(item);
                 return item;
             });
-        MetallicsArts.registerItem("band_steel_iron",
+        MetallicsArts.registerItem("band_iron_steel",
             () -> {
                 Item item = new BandSteelIron(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("STEEL_IRON").setBand(item);
+                MetalMindEnum.IRON_STEEL.setBand(item);
                 return item;
             });
         MetallicsArts.registerItem("band_zinc_brass",
             () -> {
                 Item item = new BandZincBrass(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("ZINC_BRASS").setBand(item);
+                MetalMindEnum.ZINC_BRASS.setBand(item);
                 return item;
             });
         // Rings
         MetallicsArts.registerItem("ring_aluminum_duralumin",
             () -> {
                 Item item = new RingAluminumDuralumin(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("ALUMINUM_DURALUMIN").setRing(item);
+                MetalMindEnum.GOLD_ELECTRUM.setRing(item);
                 return item;
             });
 
         MetallicsArts.registerItem("ring_atium_malatium",
             () -> {
                 Item item = new RingAtiumMalatium(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("ATIUM_MALTIUM").setRing(item);
+                MetalMindEnum.ATIUM_MALTIUM.setRing(item);
                 return item;
             });
 
         MetallicsArts.registerItem("ring_cadmium_bendalloy",
             () -> {
                 Item item = new RingCadmiumBendalloy(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("CADMIUM_BENDALLOY").setRing(item);
+                MetalMindEnum.CADMIUM_BENDALLOY.setRing(item);
                 return item;
             });
 
         MetallicsArts.registerItem("ring_chromium_nicrosil",
             () -> {
                 Item item = new RingChromiumNicrosil(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("CHROMIUM_NICROSIL").setRing(item);
+                MetalMindEnum.CHROMIUM_NICROSIL.setRing(item);
                 return item;
             });
 
         MetallicsArts.registerItem("ring_copper_bronze",
             () -> {
                 Item item = new RingCopperBronze(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("COPPER_BRONZE").setRing(item);
+                MetalMindEnum.COPPER_BRONZE.setRing(item);
                 return item;
             });
 
-        MetallicsArts.registerItem("ring_electrum_gold",
+        MetallicsArts.registerItem("ring_gold_electrum",
             () -> {
                 Item item = new RingGoldElectrum(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("ELECTRUM_GOLD").setRing(item);
+                MetalMindEnum.GOLD_ELECTRUM.setRing(item);
                 return item;
             });
 
         MetallicsArts.registerItem("ring_lerasium_ettmetal",
             () -> {
                 Item item = new RingLerasiumEttmetal(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("LERASIUM_ETTMETAL").setRing(item);
+                MetalMindEnum.LERASIUM_ETTMETAL.setRing(item);
                 return item;
             });
 
-        MetallicsArts.registerItem("ring_pewter_tin",
+        MetallicsArts.registerItem("ring_tin_pewter",
             () -> {
                 Item item = new RingTinPewter(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("TIN_PEWTER").setRing(item);
+                MetalMindEnum.TIN_PEWTER.setRing(item);
                 return item;
             });
 
-        MetallicsArts.registerItem("ring_steel_iron",
+        MetallicsArts.registerItem("ring_iron_steel",
             () -> {
                 Item item = new RingIronSteel(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("STEEL_IRON").setRing(item);
+                MetalMindEnum.IRON_STEEL.setRing(item);
                 return item;
             });
 
         MetallicsArts.registerItem("ring_zinc_brass",
             () -> {
                 Item item = new RingZincBrass(PROPERTY_METALMINDS);
-                MetalMindEnum.valueOf("ZINC_BRASS").setRing(item);
+                MetalMindEnum.ZINC_BRASS.setRing(item);
                 return item;
             });
 
