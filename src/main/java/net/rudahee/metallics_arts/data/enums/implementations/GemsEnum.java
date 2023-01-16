@@ -8,14 +8,11 @@ public enum GemsEnum implements IGems {
     MALATIUM("malatium", "MALATIUM", true, true, true),
     LERASIUM("lerasium", "LERASIUM", true, true, true),
     ETTMETAL("ettmetal", "ETTMETAL", true, true, true);
-
-
     private final String gemNameLower;
     private final String gemNameUpper;
     private final Boolean allomantic;
     private final Boolean feruchemic;
     private final Boolean hemalurgic;
-
     GemsEnum(String gemNameLower, String gemNameUpper, Boolean allomantic, Boolean feruchemic, Boolean hemalurgic) {
         this.gemNameLower = gemNameLower;
         this.gemNameUpper = gemNameUpper;
@@ -23,19 +20,14 @@ public enum GemsEnum implements IGems {
         this.feruchemic = feruchemic;
         this.hemalurgic = hemalurgic;
     }
-
     public String getGemNameLower() {
         return gemNameLower;
     }
-
     public String getGemNameUpper() {
         return gemNameUpper;
     }
-
     public Boolean isAllomantic() { return allomantic; }
-
     public Boolean isFeruchemic() { return feruchemic; }
-
     public Boolean isHemalurgic() { return hemalurgic; }
 
 }

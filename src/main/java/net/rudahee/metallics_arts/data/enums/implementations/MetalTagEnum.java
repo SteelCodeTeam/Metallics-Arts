@@ -35,8 +35,6 @@ public enum MetalTagEnum implements IMetal, IGems {
     private final int order;
     private final int maxReserveBand;
     private final int maxReserveRing;
-
-
     MetalTagEnum(String nameLower, String nameUpper, int group, int maxAllomanticTicksStorage, boolean external, boolean divine, int order, int maxReserveBand, int maxReserveRing) {
         this.nameLower = nameLower;
         this.nameUpper = nameUpper;
@@ -48,47 +46,37 @@ public enum MetalTagEnum implements IMetal, IGems {
         this.maxReserveBand = maxReserveBand;
         this.maxReserveRing = maxReserveRing;
     }
-
     public String getNameLower() {
         return nameLower;
     }
-
     public String getNameUpper() {
         return nameUpper;
     }
-
     public int getGroup() {
         return group;
     }
-
     @Override
     public String getGemNameLower() {
         return nameLower;
     }
-
     @Override
     public String getGemNameUpper() {
         return nameUpper;
     }
-
     @Override
     public String getMetalNameLower() {
         return null;
     }
-
     @Override
     public String getMetalNameUpper() {
         return null;
     }
-
     public int getMaxAllomanticTicksStorage() {
         return maxAllomanticTicksStorage;
     }
-
     public int getIndex() {
         return ordinal();
     }
-
     public static MetalTagEnum getMetal(int index) {
         for (MetalTagEnum metal : values()) {
             if (metal.getIndex() == index) {
@@ -97,23 +85,18 @@ public enum MetalTagEnum implements IMetal, IGems {
         }
         throw new IllegalArgumentException("Allomancy: Bad Metal Index");
     }
-
     public boolean isDivine() {
         return divine;
     }
-
     public boolean isExternal() {
         return external;
     }
-
     public int getOrder() {
         return order;
     }
-
     public int getMaxReserveBand() {
         return maxReserveBand;
     }
-
     public int getMaxReserveRing() {
         return maxReserveRing;
     }

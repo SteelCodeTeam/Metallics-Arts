@@ -124,7 +124,7 @@ public class ItemsCommandRegister {
 
             if (band.equals("band_steel_iron")) {
 
-                metalmind = new ItemStack(MetalMindEnum.STEEL_IRON.getBand());
+                metalmind = new ItemStack(MetalMindEnum.IRON_STEEL.getBand());
                 nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.IRON, MetalTagEnum.STEEL);
 
             } else if (band.equals("band_zinc_brass")) {
@@ -158,7 +158,7 @@ public class ItemsCommandRegister {
 
             } else if (band.equals("band_electrum_gold")) {
 
-                metalmind = new ItemStack(MetalMindEnum.ELECTRUM_GOLD.getBand());
+                metalmind = new ItemStack(MetalMindEnum.GOLD_ELECTRUM.getBand());
                 nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.GOLD, MetalTagEnum.ELECTRUM);
 
             } else if (band.equals("band_lerasium_ettmetal")) {

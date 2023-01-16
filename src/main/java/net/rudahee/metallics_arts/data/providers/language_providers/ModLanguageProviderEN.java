@@ -30,7 +30,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
             put("item.metallics_arts.lead_ingot", "Lead Ingot");
             put("item.metallics_arts.nickel_ingot", "Nickel Ingot");
 
-            put( "item.metallics_arts.atium", "Atium");
+            put("item.metallics_arts.atium", "Atium");
             put("item.metallics_arts.malatium", "Malatium");
             put("item.metallics_arts.lerasium", "Lerasium");
             put("item.metallics_arts.ettmetal", "Ettmetal");

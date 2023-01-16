@@ -4,14 +4,14 @@ package net.rudahee.metallics_arts.data.enums.implementations.custom_items;
 import net.minecraft.world.item.Item;
 
 public enum MetalMindEnum {
-    STEEL_IRON("steel", "iron",null,null,true,false),
+    IRON_STEEL("iron","steel", null,null,true,false),
     TIN_PEWTER("tin", "pewter",null,null,false,false),
-    COPPER_BRONZE("bronze", "copper",null,null,true,false),
+    COPPER_BRONZE("copper","bronze", null,null,true,false),
     ZINC_BRASS("zinc", "brass",null,null,false,false),
     CHROMIUM_NICROSIL("chromium", "nicrosil",null,null,false,false),
     ALUMINUM_DURALUMIN("aluminum", "duralumin",null,null,false,false),
     CADMIUM_BENDALLOY("cadmium", "bendalloy",null,null,false,false),
-    ELECTRUM_GOLD("electrum", "gold",null,null,true,false),
+    GOLD_ELECTRUM( "gold","electrum",null,null,true,false),
     ATIUM_MALTIUM("atium", "malatium",null,null,false,true),
     LERASIUM_ETTMETAL("lerasium", "ettmetal",null,null,false,true);
 
