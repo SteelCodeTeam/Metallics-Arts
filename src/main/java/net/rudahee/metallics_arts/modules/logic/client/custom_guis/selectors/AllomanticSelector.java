@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_guis.selectors;
+package net.rudahee.metallics_arts.modules.logic.client.custom_guis.selectors;
 
 
 import com.mojang.blaze3d.systems.RenderSystem;

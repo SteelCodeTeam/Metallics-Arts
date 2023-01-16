@@ -8,8 +8,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
-import net.rudahee.metallics_arts.utils.event_utils.OnWorldTick;
-import net.rudahee.metallics_arts.utils.event_utils.on_world_tick.OnTickUtils;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
 
 import java.util.function.Supplier;
 
@@ -44,7 +44,7 @@ public class BronzeFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {
         Level level = player.getLevel();
-        if (OnTickUtils.activationEvery240Tick(OnWorldTick.getActualTick())) {
+        if (OnTickUtils.activationEvery240Tick(OnWorldTickEvent.getActualTick())) {
             Phantom phantom = new Phantom(EntityType.PHANTOM, level);
             phantom.setPos(player.position().x,player.position().y + 4, player.position().z);
             phantom.setTarget(player);

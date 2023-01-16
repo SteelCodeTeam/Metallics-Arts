@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.setup.network;
 
 
+import net.minecraft.core.GlobalPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -15,7 +16,7 @@ import net.rudahee.metallics_arts.setup.network.packets.*;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class ModNetwork {
-    private static final String VERSION = "1.1";
+    private static final String VERSION = "1.6";
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(new ResourceLocation(MetallicsArts.MOD_ID, "networking"), () -> VERSION, VERSION::equals,
             VERSION::equals);
 
@@ -38,6 +39,7 @@ public class ModNetwork {
         INSTANCE.registerMessage(nextIndex(), UpdateTapPacket.class, UpdateTapPacket::encode, UpdateTapPacket::decode, UpdateTapPacket::handle);
         INSTANCE.registerMessage(nextIndex(), UpdateStoragePacket.class, UpdateStoragePacket::encode, UpdateStoragePacket::decode, UpdateStoragePacket::handle);
         INSTANCE.registerMessage(nextIndex(), RemoveNuggetPacket.class, RemoveNuggetPacket::encode, RemoveNuggetPacket::decode, RemoveNuggetPacket::handle);
+        INSTANCE.registerMessage(nextIndex(), RespawnPositionPacket.class, RespawnPositionPacket::encode, RespawnPositionPacket::decode, RespawnPositionPacket::handle);
     }
 
     public static void sendToServer(Object msg) {
@@ -54,12 +56,16 @@ public class ModNetwork {
         INSTANCE.send(target, msg);
     }
 
-    public static void sync(Player player) {
-        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> sync(data, player));
+    public static void syncInvestedDataPacket(Player player) {
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> syncInvestedDataPacket(data, player));
     }
 
-    public static void sync(IInvestedPlayerData cap, Player player) {
+    public static void syncInvestedDataPacket(IInvestedPlayerData cap, Player player) {
         sync(new InvestedDataPacket(cap, player), player);
+    }
+
+    public static void syncRespawnPosPacket(GlobalPos pos, Player player) {
+        sync(new RespawnPositionPacket(player, pos), player);
     }
 
     public static void sync(Object msg, Player player) {

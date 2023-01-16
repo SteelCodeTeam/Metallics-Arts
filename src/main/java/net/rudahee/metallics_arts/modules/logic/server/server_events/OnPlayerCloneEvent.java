@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.utils.event_utils;
+package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -8,7 +8,7 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
-public class OnPlayerClone {
+public class OnPlayerCloneEvent {
     public static void playerClone(PlayerEvent.Clone event) {
         event.getOriginal().revive();
         Player player = event.getEntity();
@@ -29,6 +29,6 @@ public class OnPlayerClone {
         }
 
         event.getOriginal().getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).invalidate();
-        ModNetwork.sync(player);
+        ModNetwork.syncInvestedDataPacket(player);
     }
 }

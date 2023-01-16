@@ -4,6 +4,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalNamesEnum;
+import net.rudahee.metallics_arts.utils.TranslatableUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +14,24 @@ public class ModLanguageProviderES extends LanguageProvider {
 
     private Map<String, String> base = new HashMap<>() {{
 
+        /*
+        for (MetalNamesEnum metal: MetalNamesEnum.values()) {
+            put ("item.metallics_arts." + metal.getId(), metal.getNameInSpanish());
+        }
+
+        put("translatable.metallics_arts.raw", "en bruto");
+        put("translatable.metallics_arts.ore", "Mena de");
+
+        put("translatable.metallics_arts.block", "Bloque de");
+        put("translatable.metallics_arts.deepslate", "de pizarra profunda");
+
+        put("metallics_arts.name", "Metallics Arts")
+
+        put("metallics_arts.utils.separator", "/")
+        put("metallics_arts.utils.percentage", "%")
+        put("metallics_arts.utils.and", "y")
+
+        */
         put("item.metallics_arts.atium", "Atium");
         put("item.metallics_arts.malatium", "Malatium");
         put("item.metallics_arts.lerasium", "Lerasium");

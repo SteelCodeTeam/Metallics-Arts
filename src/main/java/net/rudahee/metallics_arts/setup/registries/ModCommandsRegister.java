@@ -407,7 +407,7 @@ public class ModCommandsRegister {
             p.addAllomanticPower(metalTagEnum);
                 }
         );
-        ModNetwork.sync(player);
+        ModNetwork.syncInvestedDataPacket(player);
         player.sendSystemMessage(Component.translatable("Added " + metalTagEnum.getNameLower() + " allomantic power to " + player.getScoreboardName()));
 
         return 1;
@@ -418,7 +418,7 @@ public class ModCommandsRegister {
                     p.addFeruchemicPower(metalTagEnum);
                 }
         );
-        ModNetwork.sync(player);
+        ModNetwork.syncInvestedDataPacket(player);
         player.sendSystemMessage(Component.translatable("Added " + metalTagEnum.getNameLower() + " feruchemic power to " + player.getScoreboardName()));
 
         return 1;
@@ -430,7 +430,7 @@ public class ModCommandsRegister {
                         p.addAllAllomantic();
                     }
             );
-            ModNetwork.sync(player);
+            ModNetwork.syncInvestedDataPacket(player);
             player.sendSystemMessage(Component.translatable("Added all allomantics powers to " + player.getScoreboardName()));
 
         return 1;
@@ -441,7 +441,7 @@ public class ModCommandsRegister {
                     p.addAllFeruchemic();
                 }
         );
-        ModNetwork.sync(player);
+        ModNetwork.syncInvestedDataPacket(player);
         player.sendSystemMessage(Component.translatable("Added all feruchemics powers to " + player.getScoreboardName()));
 
 
@@ -454,7 +454,7 @@ public class ModCommandsRegister {
                     p.addAllFeruchemic();
                 }
         );
-        ModNetwork.sync(player);
+        ModNetwork.syncInvestedDataPacket(player);
         player.sendSystemMessage(Component.translatable("Added all powers to " + player.getScoreboardName()));
 
 
@@ -472,7 +472,7 @@ public class ModCommandsRegister {
                 addAllomanticPower(context,metal, player);
             }
         }
-        ModNetwork.sync(player);
+        ModNetwork.syncInvestedDataPacket(player);
         return 1;
     }
 
@@ -482,7 +482,7 @@ public class ModCommandsRegister {
                     p.removeAllomanticPower(metalTagEnum);
                 });
 
-        ModNetwork.sync(player);
+        ModNetwork.syncInvestedDataPacket(player);
         player.sendSystemMessage(Component.translatable("Revoke " + metalTagEnum.getNameLower() + " allomantic power to " + player.getScoreboardName()));
 
         return 1;
@@ -493,7 +493,7 @@ public class ModCommandsRegister {
                     p.removeFeruchemicPower(metalTagEnum);
                 }
         );
-        ModNetwork.sync(player);
+        ModNetwork.syncInvestedDataPacket(player);
         player.sendSystemMessage(Component.translatable("Revoke " + metalTagEnum.getNameLower() + " feruchemic power to " + player.getScoreboardName()));
 
         return 1;
@@ -504,7 +504,7 @@ public class ModCommandsRegister {
                     p.removeAllAllomanticPower();
                 }
         );
-        ModNetwork.sync(player);
+        ModNetwork.syncInvestedDataPacket(player);
         player.sendSystemMessage(Component.translatable("Revoke all allomantics powers to " + player.getScoreboardName()));
 
 
@@ -516,7 +516,7 @@ public class ModCommandsRegister {
                     p.removeAllFeruchemicPower();
                 }
         );
-        ModNetwork.sync(player);
+        ModNetwork.syncInvestedDataPacket(player);
         player.sendSystemMessage(Component.translatable("Revoke all feruchemics powers to " + player.getScoreboardName()));
 
         return 1;
@@ -528,7 +528,7 @@ public class ModCommandsRegister {
                     p.removeAllFeruchemicPower();
                 }
         );
-        ModNetwork.sync(player);
+        ModNetwork.syncInvestedDataPacket(player);
         player.sendSystemMessage(Component.translatable("Revoke all powers to " + player.getScoreboardName()));
 
         return 1;

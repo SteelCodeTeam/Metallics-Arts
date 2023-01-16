@@ -4,8 +4,8 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
-import net.rudahee.metallics_arts.utils.event_utils.OnWorldTick;
-import net.rudahee.metallics_arts.utils.event_utils.on_world_tick.OnTickUtils;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
 
 import java.util.Random;
 import java.util.function.Supplier;
@@ -36,7 +36,7 @@ public class ChromiumFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.UNLUCK,40,15,true, true));
-        if (OnTickUtils.activationEvery90Tick(OnWorldTick.getActualTick())){
+        if (OnTickUtils.activationEvery90Tick(OnWorldTickEvent.getActualTick())){
             if (Math.random()<0.5) {
                 Random a = new Random();
                 switch (a.nextInt(9)) {

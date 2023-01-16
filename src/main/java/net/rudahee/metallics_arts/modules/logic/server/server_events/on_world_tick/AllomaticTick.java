@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.utils.event_utils.on_world_tick;
+package net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -38,23 +38,25 @@ public class AllomaticTick {
         if (capability.isBurning(MetalTagEnum.CHROMIUM) || capability.isBurning(MetalTagEnum.ALUMINUM)) {
             spiritualMetals(capability, player, level);
         }
-        if (capability.isBurning(MetalTagEnum.ETTMETAL)) {
+        if (capability.isBurning(MetalTagEnum.ETTMETAL) || capability.isBurning(MetalTagEnum.MALATIUM)) {
             godMetals(capability, player, level);
+        }
+
+        if (MalatiumAllomanticHelper.isPosRegistered() && !capability.isBurning(MetalTagEnum.MALATIUM)) {
+            MalatiumAllomanticHelper.setPos(null, null);
+
         }
 
     }
 
     private static void godMetals(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level) {
-        if (capability.isBurning(MetalTagEnum.ETTMETAL)){
+        if (capability.isBurning(MetalTagEnum.ETTMETAL)) {
             EttmetalAllomanticHelper.ettmetalExplotion(level, player);
         }
 
-        if (capability.isBurning(MetalTagEnum.MALATIUM)){
+        if (capability.isBurning(MetalTagEnum.MALATIUM)) {
             MalatiumAllomanticHelper.teleportToDeathPosFromAnotherPlayer(level, capability, player, capability.isBurning(MetalTagEnum.LERASIUM));
-        } /*else if (MalatiumAllomanticHelper.getBlock() != null || MalatiumAllomanticHelper.getDimension() != null) {
-            MalatiumAllomanticHelper.setBlock(null);
-            MalatiumAllomanticHelper.setDimension(null);
-        }*/
+        }
     }
 
     private static void spiritualMetals(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level) {

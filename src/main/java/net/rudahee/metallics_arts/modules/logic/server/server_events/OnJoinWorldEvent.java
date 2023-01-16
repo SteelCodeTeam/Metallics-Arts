@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.utils.event_utils;
+package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class OnJoinWorld {
+public class OnJoinWorldEvent {
     public static void joinWorld(PlayerEvent.PlayerLoggedInEvent event) {
         ServerPlayer player = (ServerPlayer) event.getEntity();
         IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
@@ -38,6 +38,6 @@ public class OnJoinWorld {
             capability.setInvested(true);
         }
         //Sync cap to client
-        ModNetwork.sync(player);
+        ModNetwork.syncInvestedDataPacket(player);
     }
 }

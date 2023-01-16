@@ -31,6 +31,10 @@ public interface IInvestedPlayerData {
 
     int getFeruchemicPowerCount();
 
+    boolean hasAnyAllomanticPower();
+
+    boolean hasAnyFeruchemicPower();
+
     ArrayList<MetalTagEnum> getAllomanticPowers();
 
     ArrayList<MetalTagEnum> getFeruchemicPowers();

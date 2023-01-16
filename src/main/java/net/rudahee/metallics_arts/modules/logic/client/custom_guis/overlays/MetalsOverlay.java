@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_guis.overlays;
+package net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays;
 
 
 import com.mojang.blaze3d.platform.Window;

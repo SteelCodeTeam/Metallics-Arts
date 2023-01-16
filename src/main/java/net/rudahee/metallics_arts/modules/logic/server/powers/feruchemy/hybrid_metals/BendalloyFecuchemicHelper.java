@@ -2,8 +2,8 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_
 
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
-import net.rudahee.metallics_arts.utils.event_utils.OnWorldTick;
-import net.rudahee.metallics_arts.utils.event_utils.on_world_tick.OnTickUtils;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
 
 import java.util.function.Supplier;
 
@@ -19,7 +19,7 @@ public class BendalloyFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tappingPower(Player player) {
-        if (OnTickUtils.activationEvery30Tick(OnWorldTick.getActualTick())) {
+        if (OnTickUtils.activationEvery30Tick(OnWorldTickEvent.getActualTick())) {
             if (player.getFoodData().getFoodLevel()<20){
                 player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()+1);
             }
@@ -36,7 +36,7 @@ public class BendalloyFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        if (OnTickUtils.activationEvery30Tick(OnWorldTick.getActualTick())) {
+        if (OnTickUtils.activationEvery30Tick(OnWorldTickEvent.getActualTick())) {
             if (!player.isCreative()){
                 if (player.getFoodData().getFoodLevel()>0){
                     player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()-1);

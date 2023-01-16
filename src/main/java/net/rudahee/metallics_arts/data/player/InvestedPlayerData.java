@@ -129,6 +129,16 @@ public class InvestedPlayerData implements IInvestedPlayerData {
     }
 
     @Override
+    public boolean hasAnyAllomanticPower() {
+        return (getAllomanticPowerCount()) != 0;
+    }
+
+    @Override
+    public boolean hasAnyFeruchemicPower() {
+        return (getFeruchemicPowerCount()) != 0;
+    }
+
+    @Override
     public ArrayList<MetalTagEnum> getAllomanticPowers() {
         ArrayList<MetalTagEnum> powers = new ArrayList<>();
         for(MetalTagEnum metals: MetalTagEnum.values()){

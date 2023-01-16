@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.utils.event_utils;
+package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -7,7 +7,7 @@ import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
-public class OnLivingDeath {
+public class OnLivingDeathEvent {
     public static void livingDeath(LivingDeathEvent event) {
         ServerPlayer player = (ServerPlayer) event.getEntity();
         IInvestedPlayerData capability = CapabilityUtils.getCapability(player);

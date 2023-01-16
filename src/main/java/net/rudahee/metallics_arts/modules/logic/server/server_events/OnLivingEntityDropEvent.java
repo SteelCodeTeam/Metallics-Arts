@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.utils.event_utils;
+package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OnLivingEntityDrop {
+public class OnLivingEntityDropEvent {
     public static void livingEntityDrop(LivingDropsEvent event) {
         /**
             ZINC FERUQUIMICO

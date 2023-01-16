@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.utils.event_utils.on_world_tick;
+package net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

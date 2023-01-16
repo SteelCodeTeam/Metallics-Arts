@@ -61,20 +61,7 @@ public class ClientUtils {
         return objectMouseOver;
     }
 
-    public static void drawMetalLine(PoseStack stack, Vec3 player, Vec3 dest, float width, float r, float g, float b) {
 
-        //        RenderSystem.lineWidth(width);
-        Tesselator tessellator = Tesselator.getInstance();
-        BufferBuilder builder = tessellator.getBuilder();
-
-        builder.begin(VertexFormat.Mode.LINES, DefaultVertexFormat.POSITION_COLOR);
-        Matrix4f matrix4f = stack.last().pose();
-        builder.vertex(matrix4f, (float) player.x, (float) player.y, (float) player.z).color(r, g, b, 0.6f).endVertex();
-        builder.vertex(matrix4f, (float) dest.x, (float) dest.y, (float) dest.z).color(r, g, b, 0.6f).endVertex();
-        RenderSystem.lineWidth(width);
-
-        tessellator.end();
-}
 
     public static void toggleBurn(MetalTagEnum metal, IInvestedPlayerData capability) {
         if (!capability.hasAllomanticPower(metal)) {

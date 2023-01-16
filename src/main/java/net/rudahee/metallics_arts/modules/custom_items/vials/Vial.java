@@ -17,6 +17,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
+import net.rudahee.metallics_arts.utils.TranslatableUtils;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -31,13 +32,20 @@ public abstract class Vial extends Item {
     }
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
-        if(!stack.hasTag()){
+        if (!stack.hasTag()) {
             stack.setTag(addVialTags());
         }
-        if (Screen.hasShiftDown()){
-            for (MetalTagEnum metal : MetalTagEnum.values()){
-                if(stack.getTag().getInt(metal.getGemNameLower())>0){
-                    toolTips.add(Component.translatable(" * ").append(Component.translatable("metallics_arts.metal_translate."+metal.getNameLower())).append(": "+(stack.getTag().getInt(metal.getGemNameLower())/(metal.getMaxAllomanticTicksStorage()/10) +"/"+ this.maxNuggets)));
+        if (Screen.hasShiftDown()) {
+            for (MetalTagEnum metal : MetalTagEnum.values()) {
+                if (stack.getTag().getInt(metal.getGemNameLower()) > 0) {
+                    toolTips.add(
+                            Component.translatable(" * ")
+                                    .append(
+                                            Component.translatable("metallics_arts.metal_translate."
+                                                    +metal.getNameLower()))
+                                    .append(": "
+                                            +(stack.getTag().getInt(metal.getGemNameLower())/(metal.getMaxAllomanticTicksStorage()/10)
+                                            +"/"+ this.maxNuggets)));
                 }
             }
         } else {

@@ -7,8 +7,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
-import net.rudahee.metallics_arts.utils.event_utils.OnWorldTick;
-import net.rudahee.metallics_arts.utils.event_utils.on_world_tick.OnTickUtils;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
 
 import java.util.function.Supplier;
 
@@ -24,7 +24,7 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tappingPower(Player player) {
-        if (OnTickUtils.activationEvery30Tick(OnWorldTick.getActualTick())) {
+        if (OnTickUtils.activationEvery30Tick(OnWorldTickEvent.getActualTick())) {
             ResourceKey<Biome> biome = player.getLevel().getBiome(player.getOnPos()).unwrapKey().get();
             // if biome is jungle
             if (biome.equals(Biomes.JUNGLE) || biome.equals(Biomes.BAMBOO_JUNGLE) ||biome.equals(Biomes.SPARSE_JUNGLE)) {
@@ -120,7 +120,7 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        if (OnTickUtils.activationEvery30Tick(OnWorldTick.getActualTick())) {
+        if (OnTickUtils.activationEvery30Tick(OnWorldTickEvent.getActualTick())) {
             ResourceKey<Biome> biome = player.getLevel().getBiome(player.getOnPos()).unwrapKey().get();
             // if biome is jungle
             if (biome.equals(Biomes.JUNGLE) || biome.equals(Biomes.BAMBOO_JUNGLE) ||biome.equals(Biomes.SPARSE_JUNGLE)) {
