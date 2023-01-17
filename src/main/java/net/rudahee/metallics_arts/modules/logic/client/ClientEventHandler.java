@@ -282,7 +282,7 @@ public class ClientEventHandler {
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
+    /*@OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onMouseInput(final InputEvent.MouseButton event) {
         try {
@@ -290,7 +290,7 @@ public class ClientEventHandler {
         } catch (PlayerException ex) {
             ex.printCompleteLog();
         }
-    }
+    }*/
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent

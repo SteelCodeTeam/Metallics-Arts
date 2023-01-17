@@ -23,7 +23,7 @@ public enum CTW implements ILanguage {
     SPIKE("spike", "Spike", "Clavo de"),
     ALLOMANTIC("allomantic", "Allomantic", "Alomántico"),
     FERUCHEMICAL("feruchemical", "Feruchemical", "Feruqumico"),
-    METAL_SELECTOR("metal_selector", "Metal Selector", "Selector de metal"),
+    POWER_SELECTOR("metal_selector", "Power Selector", "Selector de poder"),
     STORAGE("storage", "Storage", "Almacenaje"),
     TAPPING("tapping", "Tapping", "Decante"),
     PUSH("push", "Push", "Empuje"),

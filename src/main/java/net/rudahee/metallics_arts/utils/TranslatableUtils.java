@@ -32,5 +32,4 @@ public class TranslatableUtils {
         return Component.translatable(stylizedString.toString());
     }
 
-
 }

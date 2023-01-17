@@ -64,10 +64,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/band_cadmium_bendalloy","item/metal_mind/cadmium_bendalloy_band");
         builder(itemGenerated,"item/band_chromium_nicrosil","item/metal_mind/chromium_nicrosil_band");
         builder(itemGenerated,"item/band_copper_bronze","item/metal_mind/copper_bronze_band");
-        builder(itemGenerated,"item/band_electrum_gold","item/metal_mind/gold_electrum_band");
+        builder(itemGenerated,"item/band_gold_electrum","item/metal_mind/gold_electrum_band");
         builder(itemGenerated,"item/band_lerasium_ettmetal","item/metal_mind/lerasium_ettmetal_band");
-        builder(itemGenerated,"item/band_pewter_tin","item/metal_mind/tin_pewter_band");
-        builder(itemGenerated,"item/band_steel_iron","item/metal_mind/iron_steel_band");
+        builder(itemGenerated,"item/band_tin_pewter","item/metal_mind/tin_pewter_band");
+        builder(itemGenerated,"item/band_iron_steel","item/metal_mind/iron_steel_band");
         builder(itemGenerated,"item/band_zinc_brass","item/metal_mind/zinc_brass_band");
 
         /** All textures for feruchemic rings **/
@@ -77,11 +77,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/ring_cadmium_bendalloy","item/metal_mind/cadmium_bendalloy_ring");
         builder(itemGenerated,"item/ring_chromium_nicrosil","item/metal_mind/chromium_nicrosil_ring");
         builder(itemGenerated,"item/ring_copper_bronze","item/metal_mind/copper_bronze_ring");
-        builder(itemGenerated,"item/ring_electrum_gold","item/metal_mind/gold_electrum_ring");
+        builder(itemGenerated,"item/ring_gold_electrum","item/metal_mind/gold_electrum_ring");
         builder(itemGenerated,"item/ring_lerasium_ettmetal","item/metal_mind/lerasium_ettmetal_ring");
-        builder(itemGenerated,"item/ring_pewter_tin","item/metal_mind/tin_pewter_ring");
-        builder(itemGenerated,"item/ring_steel_iron","item/metal_mind/iron_steel_ring");
-        builder(itemGenerated,"item/ring_steel_iron","item/metal_mind/iron_steel_ring");
+        builder(itemGenerated,"item/ring_tin_pewter","item/metal_mind/tin_pewter_ring");
+        builder(itemGenerated,"item/ring_iron_steel","item/metal_mind/iron_steel_ring");
         builder(itemGenerated,"item/ring_zinc_brass","item/metal_mind/zinc_brass_ring");
 
         /** All textures for spikes **/

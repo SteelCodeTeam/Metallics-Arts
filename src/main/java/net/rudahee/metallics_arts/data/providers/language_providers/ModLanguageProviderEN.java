@@ -73,7 +73,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
             put("item.metallics_arts.raw_nickel", "Raw Nickel");
 
 
-            put(  "block.metallics_arts.tin_ore", "Tin Ore");
+            put("block.metallics_arts.tin_ore", "Tin Ore");
             put("block.metallics_arts.bronze_ore", "Bronze Ore");
             put("block.metallics_arts.zinc_ore", "Zinc Ore");
             put("block.metallics_arts.brass_ore", "Brass Ore");
@@ -82,7 +82,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
             put("block.metallics_arts.chromium_ore", "Chromium Ore");
             put("block.metallics_arts.lead_ore", "Lead Ore");
 
-            put( "block.metallics_arts.deepslate_chromium_ore", "Deepslate Chromium Ore");
+            put("block.metallics_arts.deepslate_chromium_ore", "Deepslate Chromium Ore");
             put("block.metallics_arts.deepslate_cadmium_ore", "Deepslate Cadmium Ore");
             put("block.metallics_arts.deepslate_aluminum_ore", "Deepslate Aluminum Ore");
             put("block.metallics_arts.deepslate_silver_ore", "Deepslate Silver Ore");
@@ -100,7 +100,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
             put("block.metallics_arts.raw_nickel_block", "Raw Nickel Block");
 
 
-            put(  "block.metallics_arts.steel_block", "Block of Steel");
+            put("block.metallics_arts.steel_block", "Block of Steel");
             put("block.metallics_arts.tin_block", "Block of Tin");
             put("block.metallics_arts.pewter_block", "Block of Pewter");
             put("block.metallics_arts.bronze_block", "Block of Bronze");

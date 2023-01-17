@@ -31,4 +31,10 @@ public enum GemNames implements ILanguage {
     public String getNameInEnglish() {
         return this.english;
     }
+    public String getNameInLowerSpanish() {
+        return this.spanish.toLowerCase();
+    }
+    public String getNameInLowerEnglish() {
+        return this.english.toLowerCase();
+    }
 }

@@ -16,7 +16,7 @@ public enum MetalNamesEnum implements ILanguage {
     DURALUMIN("duralumin","Duralumin", "Duralumin"),
     CHROMIUM("chromium", "Chromium", "Cromo"),
     NICROSIL("nicrosil","Nicrosil", "Nicrosil"),
-    GOLD("Gold", "Gold", "Oro"),
+    GOLD("gold", "Gold", "Oro"),
     ELECTRUM("electrum", "Electrum", "Electrum"),
     CADMIUM("cadmium", "Cadmium", "Cadmio"),
     BENDALLOY("bendalloy","Bendalloy", "Bendaleo"),
@@ -42,4 +42,12 @@ public enum MetalNamesEnum implements ILanguage {
     public String getNameInEnglish() {
         return this.english;
     }
+
+    public String getNameInLowerSpanish() {
+        return this.spanish.toLowerCase();
+    }
+    public String getNameInLowerEnglish() {
+        return this.english.toLowerCase();
+    }
+
 }
