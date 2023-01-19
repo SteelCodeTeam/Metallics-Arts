@@ -123,6 +123,10 @@ repositories {
     maven {
         url = "https://maven.blamejared.com"
     }
+    maven {
+        name = "KliKli Dev Repsy Maven"
+        url = "https://repo.repsy.io/mvn/klikli-dev/mods"
+    }
 }
 
 repositories {
@@ -150,10 +154,16 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-1.19.2-forge-api:11.2.0.246")
     compileOnly fg.deobf("mezz.jei:jei-1.19.2-forge:11.2.0.246")
 
-
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.19-75:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.19-75")
 
+
+
+    compileOnly fg.deobf("com.klikli_dev:modonomicon:1.19.2-1.23.2")
+    runtimeOnly fg.deobf("com.klikli_dev:modonomicon:1.19.2-1.23.2")
+
+    //compileOnly fg.deobf("com.klikli_dev:modonomicon:1.19.2-1.23.2:api")
+    //runtimeOnly fg.deobf("com.klikli_dev:modonomicon:1.19.2-1.23.2")
     
 }
 

@@ -15,6 +15,8 @@ import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageP
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBannerTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBeaconTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBlockTagProvider;
+import net.rudahee.metallics_arts.modules.book.DemoBookProvider;
+import net.rudahee.metallics_arts.modules.book.lang.EnUsProvider;
 
 @Mod.EventBusSubscriber (modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {
@@ -41,7 +43,12 @@ public final class DataGenerators {
         gen.addProvider(true, new ModLanguageProviderEN(gen, MetallicsArts.MOD_ID, "en_gb"));
 
         gen.addProvider(event.includeServer(), new ModBannerTagProvider(gen, event.getExistingFileHelper()));
-        gen.addProvider(true,new ModBeaconTagProvider(gen,event.getExistingFileHelper()));
+        gen.addProvider(true, new ModBeaconTagProvider(gen,event.getExistingFileHelper()));
+
+
+        var langProvider = new EnUsProvider(gen, MetallicsArts.MOD_ID);
+        gen.addProvider(event.includeServer(), new DemoBookProvider(gen, MetallicsArts.MOD_ID,langProvider));
+        gen.addProvider(event.includeClient(), langProvider);
 
     }
 }

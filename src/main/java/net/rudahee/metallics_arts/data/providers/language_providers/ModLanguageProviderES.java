@@ -31,17 +31,23 @@ public class ModLanguageProviderES extends LanguageProvider {
         put("key.metallics_arts.switch_overlay", CTW.SWITCH_OVERLAY.getNameInSpanish());
 
         put("metallics_arts.patchouli.name_book", CTW.METALLICS_ARTS.getNameInSpanish() + ": " + CTW.GUIDE.getNameInSpanish());
-        put("metallics_arts.mental_mind.owner", CTW.OWNER.getNameInSpanish());
-        put("metallics_arts.mental_mind.nobody", CTW.NOBODY.getNameInSpanish());
+
         put("metallics_arts.mental_mind_translate.has_reserve", CTW.HAS_RESERVE.getNameInSpanish());
         put("metallics_arts.mental_mind_translate.not_has_reserve", CTW.NOT_HAS_RESERVE.getNameInSpanish());
         put("metallics_arts.spike_feruchemic_power", CTW.STORAGE_POWER.getNameInSpanish() + ": " + CTW.FERUCHEMICAL.getNameInSpanish());
         put("metallics_arts.spike_allomantic_power", CTW.STORAGE_POWER.getNameInSpanish() + ": " + CTW.ALLOMANTIC.getNameInSpanish());
+
+        //ver porque usa "spike"
+        put("metallics_arts.spike_allomantic_power.tapping_identity", CTW.TAPPING.getNameInSpanish());
+
+        //arreglar estos de aca abajo
         put("metallics_arts.mental_mind_translate.store_identity", CTW.STORE_IDENTITY.getNameInSpanish());
         put("metallics_arts.mental_mind_translate.off_power", CTW.POWER_OFF.getNameInSpanish());
-        put("metallics_arts.spike_allomantic_power.tapping_identity", CTW.TAPPING.getNameInSpanish());
+        put("metallics_arts.mental_mind.owner", CTW.OWNER.getNameInSpanish());
+        put("metallics_arts.mental_mind.nobody", CTW.NOBODY.getNameInSpanish());
         put("metallics_arts.mental_mind.owner_someone", CTW.OWNER_SOMEONE.getNameInSpanish());
         put("metallics_arts.mental_mind_translate.uses", CTW.USES.getNameInSpanish());
+
 
         put("metallics_arts.patchouli.landing_text", "Soy, por desgracia, el Héroe de las Eras, y tengo una pregunta que hacerte, ¿acaso un hombre no tiene derecho a poseer sus propios metales? No, dice el hombre del Imperio. Pertenece al \"dios\". No, dice el superviviente. Pertenece a todos. No, dice el hombre de Elendel. Pertenece a los pobres. Yo rechacé esas propuestas. En vez de eso elegí algo distinto. Elegi mi propio camino, elegí... Artes Metalicas Mod.");
         put("item.metallics_arts.obsidian_dagger", "Daga de obsidiana");
@@ -237,7 +243,6 @@ public class ModLanguageProviderES extends LanguageProvider {
 
     public ModLanguageProviderES(DataGenerator gen, String modid, String locale) {
         super(gen, modid, locale);
-
     }
 
     @Override
