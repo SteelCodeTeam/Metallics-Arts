@@ -136,8 +136,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-            builder(itemGenerated,"item/"+metal.getNameLower()+"_allomantic_icon","gui/allomantic_symbols/"+metal.getNameLower()+"_symbol");
-            builder(itemGenerated,"item/"+metal.getNameLower()+"_feruchemic_icon","gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol");
+            builder(itemGenerated,"item/"+metal.getNameLower()+"_allomantic_icon","item/symbols/allomantic_symbols/"+metal.getNameLower()+"_symbol");
+            builder(itemGenerated,"item/"+metal.getNameLower()+"_feruchemic_icon","item/symbols/feruchemic_symbols/"+metal.getNameLower()+"_symbol");
         }
     }
     private ItemModelBuilder builder (ModelFile itemGenerated, String outPath, String texturePath){

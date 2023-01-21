@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.data.enums.implementations.languages;
+package net.rudahee.metallics_arts.data.enums.implementations.languages.book;
 
 public enum FeruchemicalEntry {
     IRON("Pull the metal fountain you are aiming at.\n To use this power, you need to left-click while looking at the metal fountain.",

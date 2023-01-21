@@ -54,7 +54,12 @@ public enum CTW implements ILanguage {
     ALLOMANTIC_SHADING ("feruchemical_shading","shading","alomantico sombreado"),
     ALLOMANTIC_SOLID ("allomantical_solid","solid","alomantico solido"),
     FERUCHEMICAL_PATTERN ("feruchemical_pattern","pattern","Patrón feruquimico de"),
-    ALLOMANTIC_PATTERN ("allomantical_pattern","pattern","Patrón alomántico de");
+    ALLOMANTIC_PATTERN ("allomantical_pattern","pattern","Patrón alomántico de"),
+    KOLOSS_BLADE ("koloss_blade","Koloss Blade","Espada Koloss"),
+    CRISTAL_DAGGER ("cristal_dagger","cristal Dagger","Daga de Cristal"),
+    OBSIDIAN_DAGGER ("obsidian_dagger","Obsidian Dagger","Daga de Obsidiana"),
+    OBSIDIAN_AXE ("obsidian_axe","Obsidian Axe","Hacha de Obsidiana"),
+    DUELING_STAFF ("dueling_staff","Dueling_Staff","Baston de Duelos");
 
     private final String id;
     private final String english;
@@ -64,6 +69,10 @@ public enum CTW implements ILanguage {
         this.id = id;
         this.english = english;
         this.spanish = spanish;
+    }
+
+    public String getId() {
+        return id;
     }
 
     @Override

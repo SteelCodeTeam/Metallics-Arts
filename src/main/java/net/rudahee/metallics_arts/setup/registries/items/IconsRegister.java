@@ -14,7 +14,7 @@ public class IconsRegister {
     public static void register() {
         for (MetalTagEnum metal: MetalTagEnum.values()) {
             // Allomantic Icons
-            MetallicsArts.registerItem(metal.getNameLower()+"_allomantic_icon",
+            MetallicsArts.registerItem(metal.getNameLower() + "_allomantic_icon",
                 ()-> {
                     Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB_DECORATION));
                     if (!metal.isDivine()) {

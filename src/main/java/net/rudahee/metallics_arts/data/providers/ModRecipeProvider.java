@@ -207,7 +207,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
 
             //INGOTS
-            if (object.isGems()) {
+            /*if (object.isGems()) {
                 item1 = ModItemsRegister.ITEM_GEMS_BASE.get(object.getFirstMetal()).asItem();
                 item2 = ModItemsRegister.ITEM_GEMS_BASE.get(object.getSecondMetal()).asItem();
             } else if (object.isVanilla()) {
@@ -225,8 +225,8 @@ public class ModRecipeProvider extends RecipeProvider {
                 item1 = ModItemsRegister.ITEM_METAL_INGOT.get(object.getFirstMetal()).asItem();
                 item2 = ModItemsRegister.ITEM_METAL_INGOT.get(object.getSecondMetal()).asItem();
             }
-            //RINGS
-            /*ShapedRecipeBuilder.shaped(object.getRing())
+            //RING
+            ShapedRecipeBuilder.shaped(object.getRing())
                     .define('#', item1)
                     .define('x', item2)
                     .pattern("xxx")
@@ -443,7 +443,7 @@ public class ModRecipeProvider extends RecipeProvider {
                         .pattern("#x#")
                         .pattern(" # ")
                         .unlockedBy("has_item", has(value))
-                        .save(recipesConsumer,new ResourceLocation(key+"_allomantic_icon"));
+                        .save(recipesConsumer,new ResourceLocation(key + "_allomantic_icon"));
         });
 
         ModItemsRegister.ITEM_ICONS_FERUCHEMIC.forEach((key, value) -> {
@@ -464,13 +464,13 @@ public class ModRecipeProvider extends RecipeProvider {
                     .requires(!metal.isDivine() ? ModItemsRegister.ITEM_ICONS_ALLOMANCY.get(metal.getNameLower()) : ModItemsRegister.ITEM_ICONS_ALLOMANCY_DIVINE.get(metal.getNameLower()))
                     .requires(Items.PAPER)
                     .unlockedBy("has_item",has(ModBannersRegister.PATTERN_ITEMS.get("a_"+metal.getNameLower()).get()))
-                    .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+ ModBannersRegister.PATTERN_ITEMS.get("a_"+metal.getNameLower()).get()+"_pattern"));
+                    .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID + "_" + ModBannersRegister.PATTERN_ITEMS.get("a_"+metal.getNameLower()).get()));
 
             ShapelessRecipeBuilder.shapeless(ModBannersRegister.PATTERN_ITEMS.get("f_"+metal.getNameLower()).get())
                     .requires(!metal.isDivine() ? ModItemsRegister.ITEM_ICONS_FERUCHEMIC.get(metal.getNameLower()) : ModItemsRegister.ITEM_ICONS_FERUCHEMIC_DIVINE.get(metal.getNameLower()))
                     .requires(Items.PAPER)
                     .unlockedBy("has_item",has(ModBannersRegister.PATTERN_ITEMS.get("f_"+metal.getNameLower()).get()))
-                    .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+ ModBannersRegister.PATTERN_ITEMS.get("f_"+metal.getNameLower()).get()+"_pattern"));
+                    .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID + "_" + ModBannersRegister.PATTERN_ITEMS.get("f_"+metal.getNameLower()).get()));
 
         }
 
