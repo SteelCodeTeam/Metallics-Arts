@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.setup.registries.items;
 
 
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SwordItem;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;

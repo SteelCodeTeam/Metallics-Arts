@@ -23,7 +23,11 @@ public enum FeruchemicalEntry {
     GOLD( "Gold", "Oro"),
     ELECTRUM( "Electrum", "Electrum"),
     CADMIUM( "Cadmium", "Cadmio"),
-    BENDALLOY("Bendalloy", "Bendaleo");
+    BENDALLOY("Bendalloy", "Bendaleo"),
+    ATIUM("atium", "Atium"),
+    MALATIUM("malatium", "Malatium"),
+    LERASIUM("lerasium", "Lerasium"),
+    ETTMETAL("ettmetal", "Ettmetal");
     private final String storage;
     private final String tap;
     FeruchemicalEntry(String storage, String tap) {

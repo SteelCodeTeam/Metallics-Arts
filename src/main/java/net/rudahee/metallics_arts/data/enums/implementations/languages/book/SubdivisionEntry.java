@@ -5,8 +5,8 @@ import net.rudahee.metallics_arts.MetallicsArts;
 
 public enum SubdivisionEntry {
     WEAPONS("weapon","Weapons", "minecraft:textures/item/netherite_sword.png",false,false,"","Sirve para"),
-    CAFTING("crafting","Crafting","minecraft:textures/item/crafting.png",false,false,"","Sirve para"),
-    ALLOY_FURNACE("alloy_furnace","Alloy Furnace","minecraft:textures/item/netherite_sword.png",false,false,"","Sirver para"),
+    CAFTING("crafting","Crafting","minecraft:crafting_table",false,false,"","Sirve para"),
+    ALLOY_FURNACE("alloy_furnace","Alloy Furnace","minecraft:blast_furnace",false,false,"","Sirver para"),
 
     PHYSICAL("physical","Physical",MetallicsArts.MOD_ID + ":textures/icons/physical.png",true,true,"","Sirve para"),
     SPIRITUAL("spiritual","Spiritual",MetallicsArts.MOD_ID + ":textures/icons/spiritual.png",true,false,"","Sirve para"),
@@ -22,8 +22,6 @@ public enum SubdivisionEntry {
     private final String textPage;
     private final boolean feruchemical;
     private final boolean allomantic;
-
-
 
     SubdivisionEntry(String id, String title, String icon, boolean feruchemical, boolean allomantic, String description, String textPage) {
         this.id = id;

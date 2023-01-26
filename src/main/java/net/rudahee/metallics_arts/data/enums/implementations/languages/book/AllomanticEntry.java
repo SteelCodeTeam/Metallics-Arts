@@ -20,7 +20,11 @@ public enum AllomanticEntry {
     GOLD("gold", "Gold", "Oro"),
     ELECTRUM("electrum", "Electrum", "Electrum"),
     CADMIUM("cadmium", "Cadmium", "Cadmio"),
-    BENDALLOY("bendalloy","Bendalloy", "Bendaleo");
+    BENDALLOY("bendalloy","Bendalloy", "Bendaleo"),
+    ATIUM("atium", "Atium", "Atium"),
+    MALATIUM("malatium", "Malatium", "Malatium"),
+    LERASIUM("lerasium", "Lerasium", "Lerasium"),
+    ETTMETAL("ettmetal", "Ettmetal", "Ettmetal");
     private final String id;
     private final String description;
     private final String interactions;

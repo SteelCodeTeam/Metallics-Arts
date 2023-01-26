@@ -5,6 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
@@ -28,7 +29,6 @@ public class MetalSpike extends SwordItem {
 
     private static final int ATTACK_DAMAGE = 1;
     private static final float ATTACK_SPEED = -3f;
-
     private final MetalTagEnum metalSpike;
 
     public MetalSpike(Item.Properties properties, MetalTagEnum metalTagEnum) {
@@ -79,8 +79,6 @@ public class MetalSpike extends SwordItem {
         return cap.hasAllomanticPower(metal) && cap.hasFeruchemicPower(metal);
     }
 
-
-
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flag) {
         if  (!stack.getTag().contains("me")||!stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
@@ -111,10 +109,7 @@ public class MetalSpike extends SwordItem {
         if  (!stack.getTag().contains("metal_spike")||!stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
             stack.setTag(generateTags(stack));
         }
-
-
         if ((target instanceof Player) && (attacker instanceof Player)){
-
 
             target.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(targetData -> {
 

@@ -20,6 +20,10 @@ public enum MetalNamesEnum implements ILanguage {
     ELECTRUM("electrum", "Electrum", "Electrum"),
     CADMIUM("cadmium", "Cadmium", "Cadmio"),
     BENDALLOY("bendalloy","Bendalloy", "Bendaleo"),
+    ATIUM("atium", "Atium", "Atium"),
+    MALATIUM("malatium", "Malatium", "Malatium"),
+    LERASIUM("lerasium", "Lerasium", "Lerasium"),
+    ETTMETAL("ettmetal", "Ettmetal", "Ettmetal"),
     SILVER( "silver", "Silver", "Plata"),
     LEAD("lead", "Lead", "Plomo"),
     NICKEL("nickel", "Nickel", "Níquel");

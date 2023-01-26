@@ -74,10 +74,7 @@ public class MetallicsArts
         ITEMS.register(modEventBus);
         Registration.register();
 
-
-
         modEventBus.addListener(this::clientInit);
-
         // Register the setup method for modloading
         modEventBus.addListener(this::setup);
         // Register the enqueueIMC method for modloading

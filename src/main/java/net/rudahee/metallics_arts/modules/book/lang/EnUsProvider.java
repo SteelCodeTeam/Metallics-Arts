@@ -94,9 +94,7 @@ public class EnUsProvider extends LanguageProvider {
             }
         }
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-            if (metal != MetalTagEnum.ETTMETAL && metal != MetalTagEnum.ATIUM && metal != MetalTagEnum.LERASIUM && metal != MetalTagEnum.MALATIUM) {
-                this.addAllomancyEntry(helper, metal);
-            }
+            this.addAllomancyEntry(helper, metal);
         }
 
     }
@@ -110,14 +108,14 @@ public class EnUsProvider extends LanguageProvider {
             }
         }
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-            if (metal != MetalTagEnum.ETTMETAL && metal != MetalTagEnum.ATIUM && metal != MetalTagEnum.LERASIUM && metal != MetalTagEnum.MALATIUM) {
-                this.addFeruchemyEntry(helper, metal);
-            }
+            this.addFeruchemyEntry(helper, metal);
         }
     }
 
     private void addAllomancyEntry(BookLangHelper helper, MetalTagEnum metal) {
-        helper.entry(metal.getNameLower() + "_entry");                                          //tell the helper the entry we are in
+        helper.entry(metal.getNameLower() + "_entry"); //tell the helper the entry we are in
+
+        //(metal != MetalTagEnum.ETTMETAL && metal != MetalTagEnum.ATIUM && metal != MetalTagEnum.LERASIUM && metal != MetalTagEnum.MALATIUM) ? (MetalNamesEnum.valueOf(metal.name()).getNameInEnglish()) : (GemNames.valueOf(metal.name()).getNameInEnglish())
         this.add(helper.entryName(), MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());  //provide the entry name
         this.add(helper.entryDescription(), "Texto de descripcion de pagina ");                 //and description
 

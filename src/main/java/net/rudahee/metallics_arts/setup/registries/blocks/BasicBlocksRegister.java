@@ -18,7 +18,6 @@ import java.util.function.ToIntFunction;
 import static net.rudahee.metallics_arts.MetallicsArts.registerBlock;
 
 public class BasicBlocksRegister {
-
     public static void register() {
 
 

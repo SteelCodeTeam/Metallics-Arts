@@ -27,12 +27,12 @@ public enum MetalMinds implements ILanguage {
     GOLD_ELECTRUM(MetalNamesEnum.GOLD.getId() + "_" + MetalNamesEnum.ELECTRUM.getId(),
             MetalNamesEnum.GOLD.getNameInEnglish()+ "-" + MetalNamesEnum.ELECTRUM.getNameInEnglish(),
             MetalNamesEnum.GOLD.getNameInSpanish()+ "-" + MetalNamesEnum.ELECTRUM.getNameInSpanish()),
-    ATIUM_MALTIUM(GemNames.ATIUM.getId() + "_" + GemNames.MALATIUM.getId(),
-            GemNames.ATIUM.getNameInEnglish()+ "-" + GemNames.MALATIUM.getNameInEnglish(),
-            GemNames.ATIUM.getNameInSpanish()+ "-" + GemNames.MALATIUM.getNameInSpanish()),
-    LERASIUM_ETTMETAL(GemNames.LERASIUM.getId() + "_" + GemNames.ETTMETAL.getId(),
-            GemNames.LERASIUM.getNameInEnglish()+ "-" + GemNames.ETTMETAL.getNameInEnglish(),
-            GemNames.LERASIUM.getNameInSpanish()+ "-" + GemNames.ETTMETAL.getNameInSpanish());
+    ATIUM_MALTIUM(MetalNamesEnum.ATIUM.getId() + "_" + MetalNamesEnum.MALATIUM.getId(),
+            MetalNamesEnum.ATIUM.getNameInEnglish()+ "-" + MetalNamesEnum.MALATIUM.getNameInEnglish(),
+            MetalNamesEnum.ATIUM.getNameInSpanish()+ "-" + MetalNamesEnum.MALATIUM.getNameInSpanish()),
+    LERASIUM_ETTMETAL(MetalNamesEnum.LERASIUM.getId() + "_" + MetalNamesEnum.ETTMETAL.getId(),
+            MetalNamesEnum.LERASIUM.getNameInEnglish()+ "-" + MetalNamesEnum.ETTMETAL.getNameInEnglish(),
+            MetalNamesEnum.LERASIUM.getNameInSpanish()+ "-" + MetalNamesEnum.ETTMETAL.getNameInSpanish());
     private final String id;
     private final String english;
     private final String spanish;
