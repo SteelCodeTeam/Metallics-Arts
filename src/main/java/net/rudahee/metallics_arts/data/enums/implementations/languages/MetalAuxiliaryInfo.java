@@ -72,4 +72,6 @@ public enum MetalAuxiliaryInfo {
     public boolean isDivine() {
         return isDivine;
     }
+
+
 }
