@@ -97,7 +97,7 @@ public class ServerEventHandler {
             try {
                 IInvestedPlayerData capabilities = CapabilityUtils.getCapability(serverPlayer);
 
-                if (capabilities.isInvested()) {
+                if (capabilities != null && capabilities.isInvested()) {
                     OnWorldTickEvent.onWorldTick(capabilities, serverPlayer, (ServerLevel) event.level);
                 }
             } catch (PlayerException ex) {
