@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages;
 
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.interfaces.ILanguage;
 
 //CommonTranslationWords
@@ -59,7 +60,27 @@ public enum CTW implements ILanguage {
     CRISTAL_DAGGER ("cristal_dagger","cristal Dagger","Daga de Cristal"),
     OBSIDIAN_DAGGER ("obsidian_dagger","Obsidian Dagger","Daga de Obsidiana"),
     OBSIDIAN_AXE ("obsidian_axe","Obsidian Axe","Hacha de Obsidiana"),
-    DUELING_STAFF ("dueling_staff","Dueling_Staff","Baston de Duelos");
+    DUELING_STAFF ("dueling_staff","Dueling_Staff","Baston de Duelos"),
+
+    WEAPONS("weapon","Weapons", "Armas"),
+    CAFTING("crafting","Crafting","Crafteos"),
+    ALLOY_FURNACE("alloy_furnace","Alloy Furnace","Horno de fundicion"),
+
+    PHYSICAL("physical","Physical", "Fisico"),
+    SPIRITUAL("spiritual","Spiritual","Espiritual"),
+    COGNITIVE("cognitive","Cognitive","Cognitivo"),
+    TEMPORAL("temporal","Temporal","Temporal"),
+    DIVINE("divine","Divine", "Divino"),
+    HYBRID("hybrid","Hybrid","Hibrido"),
+    ENHANCEMENT("enhancement","Enhancement","Mejora"),
+
+    VIALS("vials","Vials", "Viales"),
+    RINGS("rings","Rings","Anillos"),
+    BANDS("bands","Bands","Bandas"),
+    SPIKES("spikes","Spikes","Clavos"),
+    ICONS("icons","Icons","Iconos"),
+    ALLOYS("alloys","Alloys","Aleaciones"),
+    PATTERNS("patterns","Patterns","Patrones");
 
     private final String id;
     private final String english;

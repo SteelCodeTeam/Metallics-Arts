@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:malatium_feruchemic_icon",
-      "text": "$(br)Storing:$(br2) - While you store, you store the item's durability in your hand, so you can use it later."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - While you decant, the durability of the item in hand increases, thanks to your reserves."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

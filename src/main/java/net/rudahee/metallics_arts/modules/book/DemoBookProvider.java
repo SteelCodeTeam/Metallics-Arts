@@ -17,11 +17,10 @@ import com.klikli_dev.modonomicon.api.datagen.book.page.BookTextPageModel;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.data.LanguageProvider;
-import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.MultiCraftEntry;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.SubdivisionEntry;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.WeaponsEntry;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft.MultiCraftData;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionData;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponsData;
 import net.rudahee.metallics_arts.utils.GetItemsUtils;
 
 import java.util.ArrayList;
@@ -80,40 +79,39 @@ public class DemoBookProvider extends BookProvider {
         );
 
         BookEntryModel s = this.welcomePowerEntry(helper, entryHelper, 's', "presentacion");
-        BookEntryModel a = this.subDivisionEntry(helper, entryHelper, 'a', SubdivisionEntry.WEAPONS, s);
+        BookEntryModel a = this.subDivisionEntry(helper, entryHelper, 'a', SubdivisionData.WEAPONS, s);
 
-        BookEntryModel b = this.subDivisionEntry(helper, entryHelper, 'b', SubdivisionEntry.CAFTING, s);
+        BookEntryModel b = this.subDivisionEntry(helper, entryHelper, 'b', SubdivisionData.CAFTING, s);
         BookEntryParentModel bParent = BookEntryParentModel.builder().withEntryId(b.getId()).build();
-        BookEntryModel c = this.subDivisionEntry(helper, entryHelper, 'c', SubdivisionEntry.ALLOY_FURNACE, s);
+        BookEntryModel c = this.subDivisionEntry(helper, entryHelper, 'c', SubdivisionData.ALLOY_FURNACE, s);
         BookEntryParentModel cParent = BookEntryParentModel.builder().withEntryId(c.getId()).build();
 
-        BookEntryModel d = this.weaponsEntry(helper, entryHelper, 'd', a, WeaponsEntry.CRISTAL_DAGGER);
-        BookEntryModel e = this.weaponsEntry(helper, entryHelper, 'e', a, WeaponsEntry.OBSIDIAN_DAGGER);
-        BookEntryModel f = this.weaponsEntry(helper, entryHelper, 'f', a, WeaponsEntry.OBSIDIAN_AXE);
-        BookEntryModel g = this.weaponsEntry(helper, entryHelper, 'g', a, WeaponsEntry.KOLOSS_BLADE);
-        BookEntryModel h = this.weaponsEntry(helper, entryHelper, 'h', a, WeaponsEntry.DUELING_STAFF);
+        BookEntryModel d = this.weaponsEntry(helper, entryHelper, 'd', a, WeaponsData.CRISTAL_DAGGER);
+        BookEntryModel e = this.weaponsEntry(helper, entryHelper, 'e', a, WeaponsData.OBSIDIAN_DAGGER);
+        BookEntryModel f = this.weaponsEntry(helper, entryHelper, 'f', a, WeaponsData.OBSIDIAN_AXE);
+        BookEntryModel g = this.weaponsEntry(helper, entryHelper, 'g', a, WeaponsData.KOLOSS_BLADE);
+        BookEntryModel h = this.weaponsEntry(helper, entryHelper, 'h', a, WeaponsData.DUELING_STAFF);
 
 
-        BookEntryModel j = this.multiCraftsItemsEntry(helper, entryHelper, 'j', MultiCraftEntry.VIALS, GetItemsUtils.getVialsList(), bParent);
-        //BookEntryModel k = this.multiCraftsItemsEntry(helper, entryHelper, 'l',
-          //     etRingList());
-        BookEntryModel l = this.multiCraftsItemsEntry(helper, entryHelper, 'l', MultiCraftEntry.BANDS, GetItemsUtils.getBandList(), bParent);
-        BookEntryModel m = this.multiCraftsItemsEntry(helper, entryHelper, 'm', MultiCraftEntry.SPIKES, GetItemsUtils.getSpikesList(), bParent);
-        BookEntryModel n = this.multiCraftsItemsEntry(helper, entryHelper, 'n', MultiCraftEntry.ICONS, GetItemsUtils.getIconsList(), bParent);
-        BookEntryModel i = this.multiCraftsItemsEntry(helper, entryHelper, 'i', MultiCraftEntry.ALLOYS, GetItemsUtils.getAlloysList(), bParent, cParent);
+        BookEntryModel j = this.multiCraftsItemsEntry(helper, entryHelper, 'j', MultiCraftData.VIALS, GetItemsUtils.getVialsList(), bParent);
+        BookEntryModel k = this.multiCraftsItemsEntry(helper, entryHelper, 'k', MultiCraftData.RINGS, GetItemsUtils.getVialsList(), bParent);
+        BookEntryModel l = this.multiCraftsItemsEntry(helper, entryHelper, 'l', MultiCraftData.BANDS, GetItemsUtils.getBandList(), bParent);
+        BookEntryModel m = this.multiCraftsItemsEntry(helper, entryHelper, 'm', MultiCraftData.SPIKES, GetItemsUtils.getSpikesList(), bParent);
+        BookEntryModel n = this.multiCraftsItemsEntry(helper, entryHelper, 'n', MultiCraftData.ICONS, GetItemsUtils.getIconsList(), bParent);
+        BookEntryModel i = this.multiCraftsItemsEntry(helper, entryHelper, 'i', MultiCraftData.ALLOYS, GetItemsUtils.getAlloysList(), bParent, cParent);
 
         BookEntryParentModel nParent = BookEntryParentModel.builder().withEntryId(n.getId()).build();
-        BookEntryModel o = this.multiCraftsItemsEntry(helper, entryHelper, 'o', MultiCraftEntry.PATTERNS, GetItemsUtils.getPatterns(), nParent);
+        BookEntryModel o = this.multiCraftsItemsEntry(helper, entryHelper, 'o', MultiCraftData.PATTERNS, GetItemsUtils.getPatterns(), nParent);
 
         return BookCategoryModel.builder()
                 .withId(this.modLoc(helper.category)) //the id of the category, as stored in the lang helper. modLoc() prepends the mod id.
                 .withName(helper.categoryName()) //the name of the category. The lang helper gives us the correct translation key.
                 .withIcon("minecraft:book") //the icon for the category. In this case we simply use an existing item.
-                .withEntries(a,b,c,d,e,f,g,h,i,j,l,m,n,o,s)
+                .withEntries(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,s)
                 .build();
     }
 
-    private BookEntryModel multiCraftsItemsEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, MultiCraftEntry multiCraftEntry, ArrayList<String> recipeList, BookEntryParentModel... parents) {
+    private BookEntryModel multiCraftsItemsEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, MultiCraftData multiCraftEntry, ArrayList<String> recipeList, BookEntryParentModel... parents) {
         helper.entry(multiCraftEntry.getId() + "_entry"); //tell our lang helper the entry we are in
         ArrayList<BookPageModel> list = new ArrayList<>();
         // PAGINA
@@ -144,7 +142,7 @@ public class DemoBookProvider extends BookProvider {
                 .build();
     }
 
-    private BookEntryModel weaponsEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, BookEntryModel parent, WeaponsEntry weaponsEntry) {
+    private BookEntryModel weaponsEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, BookEntryModel parent, WeaponsData weaponsEntry) {
         helper.entry(weaponsEntry.getId() + "_entry"); //tell our lang helper the entry we are in
 
         // PAGINA
@@ -174,7 +172,7 @@ public class DemoBookProvider extends BookProvider {
                 .build();
     }
 
-    private BookEntryModel subDivisionEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, SubdivisionEntry subdivisionEntry, BookEntryModel parent) {
+    private BookEntryModel subDivisionEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, SubdivisionData subdivisionEntry, BookEntryModel parent) {
         helper.entry(subdivisionEntry.getId() + "_entry"); //tell our lang helper the entry we are in
 
         // PAGINA
@@ -218,11 +216,11 @@ public class DemoBookProvider extends BookProvider {
 
         BookEntryModel s = this.welcomePowerEntry(helper, entryHelper, 's', "welcome");
 
-        BookEntryModel r = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionEntry.PHYSICAL, s);
-        BookEntryModel t = this.subDivisionEntry(helper, entryHelper, 't', SubdivisionEntry.ENHANCEMENT, s);
-        BookEntryModel v = this.subDivisionEntry(helper, entryHelper, 'v', SubdivisionEntry.TEMPORAL, s);
-        BookEntryModel q = this.subDivisionEntry(helper, entryHelper, 'q', SubdivisionEntry.COGNITIVE, s);
-        BookEntryModel aA = this.subDivisionEntry(helper, entryHelper, 'A', SubdivisionEntry.DIVINE, s);
+        BookEntryModel r = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionData.PHYSICAL, s);
+        BookEntryModel t = this.subDivisionEntry(helper, entryHelper, 't', SubdivisionData.ENHANCEMENT, s);
+        BookEntryModel v = this.subDivisionEntry(helper, entryHelper, 'v', SubdivisionData.TEMPORAL, s);
+        BookEntryModel q = this.subDivisionEntry(helper, entryHelper, 'q', SubdivisionData.COGNITIVE, s);
+        BookEntryModel aA = this.subDivisionEntry(helper, entryHelper, 'A', SubdivisionData.DIVINE, s);
 
         BookEntryModel a = this.allomancyPowerEntry(helper, entryHelper, 'a',MetalTagEnum.IRON, r);
         BookEntryModel b = this.allomancyPowerEntry(helper, entryHelper, 'b',MetalTagEnum.STEEL, r);
@@ -284,11 +282,11 @@ public class DemoBookProvider extends BookProvider {
 
         BookEntryModel s = this.welcomePowerEntry(helper, entryHelper, 's', "welcome");
 
-        BookEntryModel r = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionEntry.PHYSICAL, s);
-        BookEntryModel t = this.subDivisionEntry(helper, entryHelper, 't', SubdivisionEntry.SPIRITUAL, s);
-        BookEntryModel v = this.subDivisionEntry(helper, entryHelper, 'v', SubdivisionEntry.HYBRID, s);
-        BookEntryModel q = this.subDivisionEntry(helper, entryHelper, 'q', SubdivisionEntry.COGNITIVE, s);
-        BookEntryModel aA = this.subDivisionEntry(helper, entryHelper, 'A', SubdivisionEntry.DIVINE, s);
+        BookEntryModel r = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionData.PHYSICAL, s);
+        BookEntryModel t = this.subDivisionEntry(helper, entryHelper, 't', SubdivisionData.SPIRITUAL, s);
+        BookEntryModel v = this.subDivisionEntry(helper, entryHelper, 'v', SubdivisionData.HYBRID, s);
+        BookEntryModel q = this.subDivisionEntry(helper, entryHelper, 'q', SubdivisionData.COGNITIVE, s);
+        BookEntryModel aA = this.subDivisionEntry(helper, entryHelper, 'A', SubdivisionData.DIVINE, s);
 
         BookEntryModel a = this.feruchemyPowerEntry(helper, entryHelper, 'a',MetalTagEnum.IRON, r);  //ENTRADAS : CADA ICONO DEL MAPA
         BookEntryModel b = this.feruchemyPowerEntry(helper, entryHelper, 'b',MetalTagEnum.STEEL, r);

@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:nicrosil_feruchemic_icon",
-      "text": "$(br)Storing:$(br2) - To store, it seems like your other metal minds are never going to fill up. It is necessary to use it together with other powers."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - When decanting, it seems like your other metal minds are never going to run out. It is necessary to use it together with other powers."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:pewter_allomantic_icon",
-      "text": "$(br) Increase your physical capabilities."
+      "text": "$(br) "
     },
     {
       "type": "patchouli:text",
       "title": "Interactions",
-      "text": "$(br) + Duralumin: Greatly increases upgrades. $(br2) + Lerasium: Slightly increases buffs. $(br2) + Both: Max out upgrades."
+      "text": "$(br) "
     }
   ]
 }

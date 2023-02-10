@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:lerasium_feruchemic_icon",
-      "text": "$(br)Storing:$(br2) - When you store, you will save your current Allomantic reserves."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - When you decant, you gain the Allomantic reserves you previously stored."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

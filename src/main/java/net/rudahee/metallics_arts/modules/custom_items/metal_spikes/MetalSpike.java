@@ -3,12 +3,16 @@ package net.rudahee.metallics_arts.modules.custom_items.metal_spikes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Evoker;
+import net.minecraft.world.entity.monster.Witch;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -155,8 +159,8 @@ public class MetalSpike extends SwordItem {
                             addItemToPlayer((Player) attacker, stack);
                         }
                     } else {
-                        if (Math.random()>0.50){
-                            if (Math.random()<0.75){
+                        if (Math.random()>0.50) {
+                            if (Math.random()<0.75) {
                                 targetData.removeFeruchemicPower(localMetal);
 
                                 target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
@@ -168,13 +172,12 @@ public class MetalSpike extends SwordItem {
                             addItemToPlayer((Player) attacker, stack);
                         }
                     }
-                } else if (hasAllomanticPower){
+                } else if (hasAllomanticPower) {
                     if (Math.random()>0.50){
                         if (Math.random()<0.75){
                             targetData.removeAllomanticPower(localMetal);
 
                             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
-
                             target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
 
                         }
@@ -184,14 +187,9 @@ public class MetalSpike extends SwordItem {
                 } else if (hasFeruchemicPower){
                     if (Math.random()>0.50){
                         if (Math.random()<0.75) {
-
-
                             targetData.removeFeruchemicPower(localMetal);
-
                             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
-
                             target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
-
                         }
                         stack.getTag().putBoolean("feruchemic_power",true);
                         addItemToPlayer((Player) attacker, stack);
@@ -199,7 +197,23 @@ public class MetalSpike extends SwordItem {
                 }
                 ModNetwork.sync(targetData,(Player) target);
             });
-        }
+        } /*else if ((target instanceof Witch) && (attacker instanceof Player)) {
+            if (!stack.getTag().getBoolean("allomantic_power") && !stack.getTag().getBoolean("feruchemic_power")) {
+                if (Math.random()<0.9){
+                    target.kill();
+                    stack.getTag().putBoolean("allomantic_power",true);
+                    addItemToPlayer((Player) attacker, stack);
+                }
+            }
+        } else if ((target instanceof Evoker) && (attacker instanceof Player)) {
+            if (!stack.getTag().getBoolean("allomantic_power") && !stack.getTag().getBoolean("feruchemic_power")) {
+                if (Math.random()<0.9){
+                    target.kill();
+                    stack.getTag().putBoolean("feruchemic_power",true);
+                    addItemToPlayer((Player) attacker, stack);
+                }
+            }
+        }*/
         return super.hurtEnemy(stack, target, attacker);
     }
 
@@ -212,8 +226,12 @@ public class MetalSpike extends SwordItem {
         world.addFreshEntity(lightning);
     }
 
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level p_41432_, Player p_41433_, InteractionHand p_41434_) {
+        return super.use(p_41432_, p_41433_, p_41434_);
+    }
 
-    public void addItemToPlayer(Player attacker,ItemStack stack) {
+    public void addItemToPlayer(Player attacker, ItemStack stack) {
         ItemStack itemStack = stack.copy();
         if (attacker.getInventory().getFreeSlot() == -1) {
             attacker.drop(itemStack, true, true);

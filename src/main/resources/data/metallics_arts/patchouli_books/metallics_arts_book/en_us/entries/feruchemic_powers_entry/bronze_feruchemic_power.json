@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:bronze_feruchemic_icon",
-      "text": "$(br)Storing:$(br2) - While storing, you will feel tired at all times, and so Phantoms will appear near you."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - As you tapping, you will feel more rested, causing the Phantoms to ignore you."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

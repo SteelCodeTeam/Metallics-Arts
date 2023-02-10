@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:electrum_feruchemic_icon",
-      "text": "$(br)Storing:$(br2) - While you store, it seems that your life is drastically reduced."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - As you decant, it seems that your life is increased drastically."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

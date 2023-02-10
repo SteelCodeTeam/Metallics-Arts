@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:ettmetal_feruchemic_icon",
-      "text": "$(br)Storing:$(br2) - When you store, it seems that the energy from the explosions that hit you goes somewhere else."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - When decanting, it seems that you are going to release all your inner energy at once."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

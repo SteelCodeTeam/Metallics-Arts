@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:gold_feruchemic_icon",
-      "text": "$(br)Storing:$(br2) - While you store, you seem to feel unwell, it almost seems that you are going to die."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - As you decant, it looks like you could take on any disease."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

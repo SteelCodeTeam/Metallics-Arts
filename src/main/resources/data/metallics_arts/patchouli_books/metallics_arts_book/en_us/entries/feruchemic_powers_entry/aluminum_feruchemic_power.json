@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:aluminum_feruchemic_icon",
-      "text": "$(br)Storing:$(br2) - By storing, you remove the Identity of a metalmind."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - By decanting, you seal your Identity in a metalmind."
+      "text": ""
     }
   ]
 }

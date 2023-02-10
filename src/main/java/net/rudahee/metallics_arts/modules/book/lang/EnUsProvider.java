@@ -13,7 +13,16 @@ import net.minecraftforge.common.data.LanguageProvider;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.*;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.allomancy.PowerDescriptions;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.allomancy.Interactions;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.feruchemic.Storage;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.feruchemic.Tap;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft.MultiCaftDescriptions;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft.MultiCraftData;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionData;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionDescription;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponDescriptions;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponsData;
 
 public class EnUsProvider extends LanguageProvider {
 
@@ -35,60 +44,57 @@ public class EnUsProvider extends LanguageProvider {
 
     }
 
-
     public void addIntroCategory(BookLangHelper helper){
         helper.category("intro");
         this.add(helper.categoryName(), "Intro");
-        for (SubdivisionEntry entry: SubdivisionEntry.values()) {
+        for (SubdivisionData entry: SubdivisionData.values()) {
             if (!entry.isAllomantic() && !entry.isFeruchemical()){
                 addIntroEntry(helper,entry);
             }
         }
-        for (WeaponsEntry entry : WeaponsEntry.values()) {
+        for (WeaponsData entry : WeaponsData.values()) {
             addWeaponsEntry(helper, entry);
         }
-        for (MultiCraftEntry entry: MultiCraftEntry.values()) {
+        for (MultiCraftData entry: MultiCraftData.values()) {
             addMultiCraftEntry(helper,entry);
         }
     }
 
-    private void addIntroEntry(BookLangHelper helper, SubdivisionEntry subdivisionEntry) {
+    private void addIntroEntry(BookLangHelper helper, SubdivisionData subdivisionEntry) {
         helper.entry(subdivisionEntry.getId() + "_entry");
-        this.add(helper.entryName(), subdivisionEntry.getTitle());
-        this.add(helper.entryDescription(), subdivisionEntry.getDescription());
+        this.add(helper.entryName(), CTW.valueOf(subdivisionEntry.name()).getNameInEnglish());
+        this.add(helper.entryDescription(), "");
 
         helper.page("page"); //now we configure the intro page
-        this.add(helper.pageTitle(), subdivisionEntry.getTitle());  //page title
-        this.add(helper.pageText(), subdivisionEntry.getTextPage());
+        this.add(helper.pageTitle(), CTW.valueOf(subdivisionEntry.name()).getNameInEnglish());  //page title
+        this.add(helper.pageText(), SubdivisionDescription.valueOf(subdivisionEntry.name()).getEnglish());
 
     }
-    private void addWeaponsEntry(BookLangHelper helper, WeaponsEntry weaponsEntry) {
+    private void addWeaponsEntry(BookLangHelper helper, WeaponsData weaponsEntry) {
         helper.entry(weaponsEntry.getId() + "_entry");
-        this.add(helper.entryName(), weaponsEntry.getTitle());
+        this.add(helper.entryName(), CTW.valueOf(weaponsEntry.name()).getNameInEnglish());
         this.add(helper.entryDescription(), "");
 
         helper.page("weapon_description"); //now we configure the intro page
-        this.add(helper.pageTitle(), weaponsEntry.getTitle());  //page title
-        this.add(helper.pageText(), weaponsEntry.getPresentation());
+        this.add(helper.pageTitle(), CTW.valueOf(weaponsEntry.name()).getNameInEnglish());  //page title
+        this.add(helper.pageText(), WeaponDescriptions.valueOf(weaponsEntry.name()).getEnglish());
 
     }
-    private void addMultiCraftEntry(BookLangHelper helper, MultiCraftEntry mce) {
-        helper.entry(mce.getId() + "_entry");
-        this.add(helper.entryName(),mce.getTitle());
+    private void addMultiCraftEntry(BookLangHelper helper, MultiCraftData multiCraftData) {
+        helper.entry(multiCraftData.getId() + "_entry");
+        this.add(helper.entryName(),CTW.valueOf(multiCraftData.name()).getNameInEnglish());
         this.add(helper.entryDescription(), "");
 
         helper.page("items_description"); //now we configure the intro page
-        this.add(helper.pageTitle(), mce.getTitle());  //page title
-        this.add(helper.pageText(), mce.getPresentation());
-
+        this.add(helper.pageTitle(), CTW.valueOf(multiCraftData.name()).getNameInEnglish());  //page title
+        this.add(helper.pageText(), MultiCaftDescriptions.valueOf(multiCraftData.name()).getEnglish());
     }
-
 
     private void addAllomancyCategory(BookLangHelper helper) {
         helper.category("allomancy");                                       //tell the helper the category we are in
         this.add(helper.categoryName(), CTW.ALLOMANCY.getNameInEnglish()); //and provide the category name text
 
-        for (SubdivisionEntry oM: SubdivisionEntry.values()) {
+        for (SubdivisionData oM: SubdivisionData.values()) {
             if (oM.isAllomantic()){
                 addIntroEntry(helper,oM);
             }
@@ -102,7 +108,7 @@ public class EnUsProvider extends LanguageProvider {
         helper.category("feruchemy");                //tell the helper the category we are in
         this.add(helper.categoryName(), CTW.FERUCHEMY.getNameInEnglish()); //and provide the category name text
 
-        for (SubdivisionEntry oM: SubdivisionEntry.values()) {
+        for (SubdivisionData oM: SubdivisionData.values()) {
             if (oM.isFeruchemical()){
                 addIntroEntry(helper,oM);
             }
@@ -117,29 +123,29 @@ public class EnUsProvider extends LanguageProvider {
 
         //(metal != MetalTagEnum.ETTMETAL && metal != MetalTagEnum.ATIUM && metal != MetalTagEnum.LERASIUM && metal != MetalTagEnum.MALATIUM) ? (MetalNamesEnum.valueOf(metal.name()).getNameInEnglish()) : (GemNames.valueOf(metal.name()).getNameInEnglish())
         this.add(helper.entryName(), MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());  //provide the entry name
-        this.add(helper.entryDescription(), "Texto de descripcion de pagina ");                 //and description
+        this.add(helper.entryDescription(), "");                 //and description
 
         helper.page("power_description"); //now we configure the intro page
         this.add(helper.pageTitle(), MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());  //page title
-        this.add(helper.pageText(), AllomanticEntry.valueOf(metal.name()).getDescription());    //page text
+        this.add(helper.pageText(), PowerDescriptions.valueOf(metal.name()).getEnglish());    //page text
 
         helper.page("power_interactions");
         this.add(helper.pageTitle(), "Interactions");                                           //page title
-        this.add(helper.pageText(), AllomanticEntry.valueOf(metal.name()).getInteractions());   //page text
+        this.add(helper.pageText(), Interactions.valueOf(metal.name()).getEnglish());   //page text
     }
 
     private void addFeruchemyEntry(BookLangHelper helper, MetalTagEnum metal) {
         helper.entry(metal.getNameLower() + "_entry");                                          //tell the helper the entry we are in
         this.add(helper.entryName(), MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());  //provide the entry name
-        this.add(helper.entryDescription(), "Texto de descripcion de pagina ");                 //and description
+        this.add(helper.entryDescription(), "");                 //and description
 
         helper.page("power_storage"); //now we configure the intro page
         this.add(helper.pageTitle(), MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());  //page title
-        this.add(helper.pageText(), FeruchemicalEntry.valueOf(metal.name()).getStorage());    //page text
+        this.add(helper.pageText(), Storage.valueOf(metal.name()).getEnglish());    //page text
 
         helper.page("power_tap");
         this.add(helper.pageTitle(), CTW.TAPPING.getNameInEnglish());                           //page title
-        this.add(helper.pageText(), FeruchemicalEntry.valueOf(metal.name()).getTap());   //page text
+        this.add(helper.pageText(), Tap.valueOf(metal.name()).getEnglish());   //page text
     }
 
 

@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:bronze_allomantic_icon",
-      "text": "$(br) Makes nearby entities follow you around. $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - Mark players burning metals around you."
+      "text": "$(br) "
     },
     {
       "type": "patchouli:text",
       "title": "Interactions",
-      "text": "$(br) + Duralumin: Increases damage and speed of entities. $(br2) + Lerasium: Apply the effect in area. $(br2) + Bonus: Increases the damage and speed of the entities in the area."
+      "text": "$(br) "
     }
   ]
 }

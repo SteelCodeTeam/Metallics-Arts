@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:duralumin_feruchemic_icon",
-      "text": "$(br)Storing:$(br2) - While you store, you seem disconnected from the world, it almost seems like it is rejecting you."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - While you decant, it seems that you find the paths with your eyes closed, it seems as if it were your land."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

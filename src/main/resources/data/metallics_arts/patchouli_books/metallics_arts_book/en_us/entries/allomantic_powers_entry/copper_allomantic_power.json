@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:copper_allomantic_icon",
-      "text": "$(br) Makes nearby entities ignore you. $(br)$(br)$(br)$(br)$(br) Bonus: $(br) - Prevent other players from seeing that you're burning metal."
+      "text": "$(br) "
     },
     {
       "type": "patchouli:text",
       "title": "Interactions",
-      "text": "$(br) + Duralumin: stop the entities. $(br2) + Lerasium: Apply the effect in area. $(br2) + Ambos: Stop entities in area."
+      "text": "$(br) "
     }
   ]
 }

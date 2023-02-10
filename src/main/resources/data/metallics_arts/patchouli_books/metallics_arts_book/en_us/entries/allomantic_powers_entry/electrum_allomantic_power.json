@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:electrum_allomantic_icon",
-      "text": "$(br) Mark your respawn point with a line."
+      "text": "$(br) "
     },
     {
       "type": "patchouli:text",
       "title": "Interactions",
-      "text": "$(br) + Duralumin: Teleports you to the marked point. $(br2) + Lerasium: Nothing. $(br2) + Both: Teleports in area to the marked point."
+      "text": "$(br) "
     }
   ]
 }

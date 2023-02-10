@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:bendalloy_allomantic_icon",
-      "text": "$(br) Speed up the game around you."
+      "text": "$(br) "
     },
     {
       "type": "patchouli:text",
       "title": "Interactions",
-      "text": "$(br) + Duralumin: Duplicate the effect and increase the area. $(br2) + Lerasium: Increase the area. $(br2) + Both: Duplicates the effect and increases the area greatly."
+      "text": "$(br) "
     }
   ]
 }

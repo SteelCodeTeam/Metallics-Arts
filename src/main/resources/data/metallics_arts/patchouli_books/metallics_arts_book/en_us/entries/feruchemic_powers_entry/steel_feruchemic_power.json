@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:steel_feruchemic_icon",
-      "text": "$(br)Storing:$(br2) - While you store you feel really sluggish."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - As you decant, you feel really fast."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

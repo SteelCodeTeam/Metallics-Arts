@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:cadmium_feruchemic_icon",
-      "text": "$(br)Storing:$(br2) - While storing, you will have difficulty breathing even out of the water."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - While you decant, you will feel like a fish in water, it almost seems that you can breathe at the bottom of the ocean."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

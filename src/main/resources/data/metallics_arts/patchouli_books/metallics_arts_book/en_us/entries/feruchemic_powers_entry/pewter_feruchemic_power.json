@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:pewter_feruchemic_icon",
-      "text": "$(br)Storing:$(br2) - While you decant, you feel weaker, I could almost win you a chicken."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - While you store, you feel much stronger, you could kill the Wither boss with your fists."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

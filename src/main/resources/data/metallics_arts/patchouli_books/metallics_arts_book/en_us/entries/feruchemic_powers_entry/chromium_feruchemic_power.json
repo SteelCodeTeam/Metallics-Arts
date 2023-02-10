@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:chromium_feruchemic_icon",
-      "text": "$(br)Storing:$(br2) - While you store, it seems that luck is not on your side, it almost seems that you are going to get sick."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Tapping:$(br2) - While you decant it, you have extraordinary luck, is it time to go exploring?"
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }
