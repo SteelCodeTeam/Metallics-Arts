@@ -5,7 +5,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
-import net.rudahee.metallics_arts.modules.logic.client.client_events.OnRenderGameOverlay;
+import net.rudahee.metallics_arts.modules.logic.client.client_events.OnRenderLevelStage;
 
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -42,7 +42,7 @@ public class RespawnPositionPacket {
                 if (player.getRespawnPosition() != null) {
 
                     GlobalPos pos = GlobalPos.of(player.getRespawnDimension(), player.getRespawnPosition());
-                    OnRenderGameOverlay.setRespawnPos(pos);
+                    OnRenderLevelStage.setRespawnPos(pos);
 
                 }
             }

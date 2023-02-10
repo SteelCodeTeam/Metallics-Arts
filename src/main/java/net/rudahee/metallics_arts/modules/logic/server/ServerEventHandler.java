@@ -12,6 +12,7 @@ import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.*;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
@@ -93,12 +94,15 @@ public class ServerEventHandler {
         for (Player player : playerList) {
 
             ServerPlayer serverPlayer = (ServerPlayer) player;
-            IInvestedPlayerData capabilities = CapabilityUtils.getCapability(serverPlayer);
+            try {
+                IInvestedPlayerData capabilities = CapabilityUtils.getCapability(serverPlayer);
 
-            if (capabilities.isInvested()) {
-                OnWorldTickEvent.onWorldTick(capabilities, serverPlayer, (ServerLevel) event.level);
+                if (capabilities.isInvested()) {
+                    OnWorldTickEvent.onWorldTick(capabilities, serverPlayer, (ServerLevel) event.level);
+                }
+            } catch (PlayerException ex) {
+                ex.printResumeLog();
             }
-
         }
 
     }

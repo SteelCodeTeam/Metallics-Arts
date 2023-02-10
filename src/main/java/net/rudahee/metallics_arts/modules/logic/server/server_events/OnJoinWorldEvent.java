@@ -4,6 +4,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
@@ -14,6 +15,8 @@ import java.util.List;
 public class OnJoinWorldEvent {
     public static void joinWorld(PlayerEvent.PlayerLoggedInEvent event) {
         ServerPlayer player = (ServerPlayer) event.getEntity();
+        try {
+
         IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
 
         if ((capability.getAllomanticPowerCount() + capability.getFeruchemicPowerCount() == 0) && !capability.isInvested()) {
@@ -39,5 +42,8 @@ public class OnJoinWorldEvent {
         }
         //Sync cap to client
         ModNetwork.syncInvestedDataPacket(player);
+        } catch (PlayerException ex) {
+            ex.printCompleteLog();
+        }
     }
 }

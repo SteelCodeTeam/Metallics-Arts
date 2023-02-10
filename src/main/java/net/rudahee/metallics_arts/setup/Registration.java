@@ -15,8 +15,6 @@ public class Registration {
 
         ModBlocksRegister.register();
         ModItemsRegister.register();
-        //BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        //ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         ModTileEntitiesRegister.register(FMLJavaModLoadingContext.get().getModEventBus());
         //ModContainers.register(modEventBus);

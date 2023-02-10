@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.rings.*;
+import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
@@ -178,71 +179,76 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
         if (livingEntity.level instanceof ServerLevel) {
             if (livingEntity instanceof Player) {
                 Player player = (Player) livingEntity;
-                IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(player);
-                if (playerCapability.isTapping(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)){
-                    stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag,false,this.metals[0],this.metals[1]));
-                }
-                String metalKey = this.metals[0].getNameLower()+"_feruchemic_reserve";
-                int actualReserve = stack.getTag().getInt(metalKey);
-                int maxReserve = this.metals[0].getMaxReserveRing();
-                /**
-                    DECANT
-                */
-                if (playerCapability.isTapping(this.metals[0])) {
-                    if (actualReserve>0) {
-                        stack.setTag(firstSupplier.calculateDischarge(compoundTag,player,playerCapability,actualReserve,metalKey,nicConsumeMet0));
-                        if (playerCapability.isTapping(MetalTagEnum.NICROSIL)) {
-                            nicConsumeMet0 = !nicConsumeMet0;
-                        }
-                    } else {
+                try {
+
+                    IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(player);
+                    if (playerCapability.isTapping(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)){
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag,false,this.metals[0],this.metals[1]));
-                        playerCapability.setTapping(this.metals[0],false);
                     }
-                /**
-                    STORAGE
-                */
-                } else if (playerCapability.isStoring(this.metals[0])) {
-                    if (actualReserve < maxReserve) {
-                        stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag,true,this.metals[0],this.metals[1]));
-                        stack.setTag(firstSupplier.calculateCharge(compoundTag,player,playerCapability,actualReserve,metalKey,nicConsumeMet0));
-                        if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
-                            nicConsumeMet0 = !nicConsumeMet0;
+                    String metalKey = this.metals[0].getNameLower()+"_feruchemic_reserve";
+                    int actualReserve = stack.getTag().getInt(metalKey);
+                    int maxReserve = this.metals[0].getMaxReserveRing();
+                    /**
+                        DECANT
+                    */
+                    if (playerCapability.isTapping(this.metals[0])) {
+                        if (actualReserve>0) {
+                            stack.setTag(firstSupplier.calculateDischarge(compoundTag,player,playerCapability,actualReserve,metalKey,nicConsumeMet0));
+                            if (playerCapability.isTapping(MetalTagEnum.NICROSIL)) {
+                                nicConsumeMet0 = !nicConsumeMet0;
+                            }
+                        } else {
+                            stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag,false,this.metals[0],this.metals[1]));
+                            playerCapability.setTapping(this.metals[0],false);
                         }
-                    } else {
-                        playerCapability.setStoring(this.metals[0],false);
+                    /**
+                        STORAGE
+                    */
+                    } else if (playerCapability.isStoring(this.metals[0])) {
+                        if (actualReserve < maxReserve) {
+                            stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag,true,this.metals[0],this.metals[1]));
+                            stack.setTag(firstSupplier.calculateCharge(compoundTag,player,playerCapability,actualReserve,metalKey,nicConsumeMet0));
+                            if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
+                                nicConsumeMet0 = !nicConsumeMet0;
+                            }
+                        } else {
+                            playerCapability.setStoring(this.metals[0],false);
+                        }
                     }
+                    metalKey = this.metals[1].getNameLower()+"_feruchemic_reserve";
+                    actualReserve = stack.getTag().getInt(metalKey);
+                    maxReserve = this.metals[1].getMaxReserveRing();
+                    /**
+                        DECANT
+                    */
+                    if (playerCapability.isTapping(this.metals[1])) {
+                        if (actualReserve>0) {
+                            stack.setTag(secondSupplier.calculateDischarge(compoundTag,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
+                            if (playerCapability.isTapping(MetalTagEnum.NICROSIL)) {
+                                nicConsumeMet1 = !nicConsumeMet1;
+                            }
+                        } else {
+                            stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag,false,this.metals[0],this.metals[1]));
+                            playerCapability.setTapping(this.metals[1],false);
+                        }
+                    /**
+                        STORAGE
+                    */
+                    } else if (playerCapability.isStoring(this.metals[1])) {
+                        if (actualReserve < maxReserve) {
+                            stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag,true,this.metals[0],this.metals[1]));
+                            stack.setTag(secondSupplier.calculateCharge(compoundTag,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
+                            if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
+                                nicConsumeMet1 = !nicConsumeMet1;
+                            }
+                        } else {
+                            playerCapability.setStoring(this.metals[1],false);
+                        }
+                    }
+                    ModNetwork.sync(playerCapability, player);
+                } catch (PlayerException ex) {
+                    ex.printCompleteLog();
                 }
-                metalKey = this.metals[1].getNameLower()+"_feruchemic_reserve";
-                actualReserve = stack.getTag().getInt(metalKey);
-                maxReserve = this.metals[1].getMaxReserveRing();
-                /**
-                    DECANT
-                */
-                if (playerCapability.isTapping(this.metals[1])) {
-                    if (actualReserve>0) {
-                        stack.setTag(secondSupplier.calculateDischarge(compoundTag,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
-                        if (playerCapability.isTapping(MetalTagEnum.NICROSIL)) {
-                            nicConsumeMet1 = !nicConsumeMet1;
-                        }
-                    } else {
-                        stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag,false,this.metals[0],this.metals[1]));
-                        playerCapability.setTapping(this.metals[1],false);
-                    }
-                /**
-                    STORAGE
-                */
-                } else if (playerCapability.isStoring(this.metals[1])) {
-                    if (actualReserve < maxReserve) {
-                        stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag,true,this.metals[0],this.metals[1]));
-                        stack.setTag(secondSupplier.calculateCharge(compoundTag,player,playerCapability,actualReserve,metalKey,nicConsumeMet1));
-                        if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
-                            nicConsumeMet1 = !nicConsumeMet1;
-                        }
-                    } else {
-                        playerCapability.setStoring(this.metals[1],false);
-                    }
-                }
-                ModNetwork.sync(playerCapability, player);
             }
         }
         ICurioItem.super.curioTick(slotContext, stack);

@@ -7,8 +7,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
+import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -31,9 +34,13 @@ public class CapabilityUtils<T> {
      *
      * @see IInvestedPlayerData
      */
-    public static IInvestedPlayerData getCapability(ServerPlayer player) {
+    public static IInvestedPlayerData getCapability(@Nullable ServerPlayer player) throws PlayerException {
 
         playerData = null;
+
+        if (player == null) {
+            throw new PlayerException(ErrorTypes.PLAYER_ERROR);
+        }
 
         // if player is present and has capabilities, we return capabilities, else, return null.
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(playerCapability -> playerData = playerCapability);
@@ -50,16 +57,24 @@ public class CapabilityUtils<T> {
      *
      * @see IInvestedPlayerData
      */
-    public static IInvestedPlayerData getCapability (Player player) {
+    public static IInvestedPlayerData getCapability (@Nullable Player player) throws PlayerException {
         playerData = null;
 
+        if (player == null) {
+            throw new PlayerException(ErrorTypes.PLAYER_ERROR);
+        }
         // if player is present and has capabilities, we return capabilities, else, return null.
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(playerCapability -> playerData = playerCapability);
         return playerData;
     }
 
-    public static IInvestedPlayerData getCapability (Entity entity) {
+    public static IInvestedPlayerData getCapability (@Nullable Entity entity) throws PlayerException {
         playerData = null;
+
+        if (entity == null) {
+            throw new PlayerException(ErrorTypes.PLAYER_ERROR);
+        }
+
         entity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(playerCapability -> playerData = playerCapability);
         return playerData;
     }

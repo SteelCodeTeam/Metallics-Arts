@@ -6,6 +6,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_metals.AtiumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_metals.MalatiumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.PewterAllomanticHelper;
@@ -24,33 +25,36 @@ public class OnDamageEvent {
      * @param target of damage.
      */
     public static void onDamageAllomantic(final LivingHurtEvent event, ServerPlayer source, ServerPlayer target) {
-        IInvestedPlayerData sourceCapability = CapabilityUtils.getCapability(source);
-        IInvestedPlayerData targetCapability = CapabilityUtils.getCapability(target);
+        try {
+            IInvestedPlayerData sourceCapability = CapabilityUtils.getCapability(source);
+            IInvestedPlayerData targetCapability = CapabilityUtils.getCapability(target);
 
-        // Pewter
-       if (sourceCapability.isBurning(MetalTagEnum.PEWTER)) {
-           PewterAllomanticHelper.damageWithPewter(event, target, source, sourceCapability.getEnhanced());
-       }
+            // Pewter
+            if (sourceCapability.isBurning(MetalTagEnum.PEWTER)) {
+                PewterAllomanticHelper.damageWithPewter(event, target, source, sourceCapability.getEnhanced());
+            }
 
-        // Chromium
-        if (sourceCapability.isBurning(MetalTagEnum.CHROMIUM)) {
-            ChromiumAllomanticHelper.drainMetalChromium((Player) event.getEntity());
+            // Chromium
+            if (sourceCapability.isBurning(MetalTagEnum.CHROMIUM)) {
+                ChromiumAllomanticHelper.drainMetalChromium((Player) event.getEntity());
+            }
+            // Malatium
+            if (sourceCapability.isBurning(MetalTagEnum.MALATIUM)) {
+                MalatiumAllomanticHelper.setPos(((Player) event.getEntity()).getLastDeathLocation().get());
+            }
+
+            // Nicrosil
+            if (sourceCapability.isBurning(MetalTagEnum.NICROSIL)) {
+                NicrosilAllomanticHelper.changeTargetEnhancedToTrue((Player) event.getEntity());
+            }
+
+            // Atium
+            if (targetCapability.isBurning(MetalTagEnum.ATIUM)) {
+                event.setAmount(AtiumAllomanticHelper.getCalculateComplexDamage(targetCapability, sourceCapability, event.getAmount()));
+            }
+        } catch (PlayerException ex) {
+            ex.printCompleteLog();
         }
-        // Malatium
-        if (sourceCapability.isBurning(MetalTagEnum.MALATIUM)) {
-            MalatiumAllomanticHelper.setPos(((Player) event.getEntity()).getLastDeathLocation().get());
-        }
-
-        // Nicrosil
-        if (sourceCapability.isBurning(MetalTagEnum.NICROSIL)) {
-            NicrosilAllomanticHelper.changeTargetEnhancedToTrue((Player) event.getEntity());
-        }
-
-        // Atium
-        if (targetCapability.isBurning(MetalTagEnum.ATIUM)) {
-            event.setAmount(AtiumAllomanticHelper.getCalculateComplexDamage(targetCapability, sourceCapability, event.getAmount()));
-        }
-
     }
 
     /**
@@ -61,21 +65,23 @@ public class OnDamageEvent {
      * @param target of damage.
      */
     public static void onDamageFeruchemical(final LivingHurtEvent event, ServerPlayer source, ServerPlayer target) {
+        try {
+            IInvestedPlayerData sourceCapability = CapabilityUtils.getCapability(source);
+            IInvestedPlayerData targetCapability = CapabilityUtils.getCapability(target);
 
-        IInvestedPlayerData sourceCapability = CapabilityUtils.getCapability(source);
-        IInvestedPlayerData targetCapability = CapabilityUtils.getCapability(target);
-
-        // Brass
-        if (sourceCapability.isTapping(MetalTagEnum.BRASS)) {
-            BrassFecuchemicHelper.addFireAspectToPlayer(event.getEntity(), 4);
-        }
-
-        //Cancel freeze damage
-        if (targetCapability.isTapping(MetalTagEnum.BRASS)) {
-            if (event.getSource().equals(DamageSource.FREEZE)) {
-                event.setCanceled(true);
+            // Brass
+            if (sourceCapability.isTapping(MetalTagEnum.BRASS)) {
+                BrassFecuchemicHelper.addFireAspectToPlayer(event.getEntity(), 4);
             }
-        }
 
+            //Cancel freeze damage
+            if (targetCapability.isTapping(MetalTagEnum.BRASS)) {
+                if (event.getSource().equals(DamageSource.FREEZE)) {
+                    event.setCanceled(true);
+                }
+            }
+        } catch (PlayerException ex) {
+            ex.printCompleteLog();
+        }
     }
 }

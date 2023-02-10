@@ -8,6 +8,7 @@ import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.Collection;
@@ -244,11 +245,17 @@ public class PowersGetRegister {
     private static int getAllomanticPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
-            if (CapabilityUtils.getCapability(player).hasAllomanticPower(metalTagEnum)) {
-                context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " has " + metalTagEnum.getNameLower()));
-            } else {
-                context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " doesn't have " + metalTagEnum.getNameLower()));
+
+            try {
+                if (CapabilityUtils.getCapability(player).hasAllomanticPower(metalTagEnum)) {
+                    context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " has " + metalTagEnum.getNameLower()));
+                } else {
+                    context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " doesn't have " + metalTagEnum.getNameLower()));
+                }
+            } catch (PlayerException ex) {
+                ex.printCompleteLog();
             }
+
         }
 
         return 1;
@@ -256,10 +263,15 @@ public class PowersGetRegister {
     private static int getFeruchemicPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
-            if (CapabilityUtils.getCapability(player).hasFeruchemicPower(metalTagEnum)) {
-                context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " has " + metalTagEnum.getNameLower()));
-            } else {
-                context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " doesn't have " + metalTagEnum.getNameLower()));
+            try {
+
+                if (CapabilityUtils.getCapability(player).hasFeruchemicPower(metalTagEnum)) {
+                    context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " has " + metalTagEnum.getNameLower()));
+                } else {
+                    context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " doesn't have " + metalTagEnum.getNameLower()));
+                }
+            } catch (PlayerException ex) {
+                ex.printCompleteLog();
             }
         }
 
@@ -270,39 +282,45 @@ public class PowersGetRegister {
         StringBuilder feruchemicPowersStr;
 
         for (ServerPlayer player: players) {
+            try {
+                if (type.equals("allomantic") || type.equals("all")) {
+                    allomanticPowersStr = new StringBuilder();
+                    boolean firstLoopAllomantic = true;
 
-            if (type.equals("allomantic") || type.equals("all")) {
-                allomanticPowersStr = new StringBuilder();
-                boolean firstLoopAllomantic = true;
-
-                List<MetalTagEnum> allomanticPowers = CapabilityUtils.getCapability(player).getAllomanticPowers();
-                for (MetalTagEnum power: allomanticPowers) {
-                    if (firstLoopAllomantic) {
-                        allomanticPowersStr.append(" ").append(power.getNameLower());
-                        firstLoopAllomantic = false;
-                    } else {
-                        allomanticPowersStr.append(", ").append(power.getNameLower());
+                    List<MetalTagEnum> allomanticPowers = CapabilityUtils.getCapability(player).getAllomanticPowers();
+                    for (MetalTagEnum power : allomanticPowers) {
+                        if (firstLoopAllomantic) {
+                            allomanticPowersStr.append(" ").append(power.getNameLower());
+                            firstLoopAllomantic = false;
+                        } else {
+                            allomanticPowersStr.append(", ").append(power.getNameLower());
+                        }
                     }
-                }
 
-                context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " has  allomantics " + allomanticPowersStr));
+                    context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " has  allomantics " + allomanticPowersStr));
+                }
+            } catch (PlayerException ex) {
+                ex.printCompleteLog();
             }
-
             if (type.equals("feruchemic") || type.equals("all")) {
-                feruchemicPowersStr = new StringBuilder();
-                boolean firstLoopFeruchemic = true;
+                try {
+                    feruchemicPowersStr = new StringBuilder();
+                    boolean firstLoopFeruchemic = true;
 
-                List<MetalTagEnum> feruchemicPowers = CapabilityUtils.getCapability(player).getFeruchemicPowers();
-                for (MetalTagEnum power: feruchemicPowers) {
-                    if (firstLoopFeruchemic) {
-                        feruchemicPowersStr.append(" ").append(power.getNameLower());
-                        firstLoopFeruchemic = false;
-                    } else {
-                        feruchemicPowersStr.append(", ").append(power.getNameLower());
+                    List<MetalTagEnum> feruchemicPowers = CapabilityUtils.getCapability(player).getFeruchemicPowers();
+                    for (MetalTagEnum power : feruchemicPowers) {
+                        if (firstLoopFeruchemic) {
+                            feruchemicPowersStr.append(" ").append(power.getNameLower());
+                            firstLoopFeruchemic = false;
+                        } else {
+                            feruchemicPowersStr.append(", ").append(power.getNameLower());
+                        }
                     }
-                }
 
-                context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " has  feruchemics " + feruchemicPowersStr));
+                    context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " has  feruchemics " + feruchemicPowersStr));
+                } catch (PlayerException ex) {
+                    ex.printCompleteLog();
+                }
             }
         }
 
