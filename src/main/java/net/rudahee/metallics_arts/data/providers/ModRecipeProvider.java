@@ -151,19 +151,6 @@ public class ModRecipeProvider extends RecipeProvider {
             }
         });
 
-        /*ModBlock.BLOCK_METAL_ORES.forEach((name, block) -> {
-            SimpleCookingRecipeBuilder.cooking(Ingredient.of(block), ModItems.ITEM_METAL_INGOT.get(name), 0.5f, 100, RecipeSerializer.SMELTING_RECIPE)
-                    .unlockedBy("has_block", has(block))
-                    .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItems.ITEM_METAL_INGOT.get(name).getDescriptionId() + "_furnace"));
-        });
-
-        ModBlock.BLOCK_METAL_ORES.forEach((name, block) -> {
-            SimpleCookingRecipeBuilder.blasting(Ingredient.of(block), ModItems.ITEM_METAL_INGOT.get(name), 0.5f, 100)
-                    .unlockedBy("has_block", has(block))
-                    .save(recipesConsumer, new ResourceLocation(block.getDescriptionId() + "_to_" + ModItems.ITEM_METAL_INGOT.get(name).getDescriptionId() + "_blasting"));
-
-        });*/
-
         Arrays.asList(MetalMindEnum.values()).forEach(object -> {
             Item item1, item2;
 
@@ -207,7 +194,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
 
             //INGOTS
-            /*if (object.isGems()) {
+            if (object.isGems()) {
                 item1 = ModItemsRegister.ITEM_GEMS_BASE.get(object.getFirstMetal()).asItem();
                 item2 = ModItemsRegister.ITEM_GEMS_BASE.get(object.getSecondMetal()).asItem();
             } else if (object.isVanilla()) {
@@ -243,7 +230,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .pattern("###")
                     .unlockedBy("has_item", has(object.getRing()))
                     .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_ring_" + object.getFirstMetal() + "_" + object.getSecondMetal() + "_2"));
-*/
+
         });
 
         //SPIKES

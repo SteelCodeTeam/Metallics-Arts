@@ -83,7 +83,7 @@ public class MetalMindsRegister {
         MetallicsArts.registerItem("ring_aluminum_duralumin",
             () -> {
                 Item item = new RingAluminumDuralumin(PROPERTY_METALMINDS);
-                MetalMindEnum.GOLD_ELECTRUM.setRing(item);
+                MetalMindEnum.ALUMINUM_DURALUMIN.setRing(item);
                 return item;
             });
 
