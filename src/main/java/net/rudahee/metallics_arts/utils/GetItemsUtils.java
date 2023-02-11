@@ -71,7 +71,6 @@ public class GetItemsUtils {
                 alloyList.add(MetallicsArts.MOD_ID + "_" + metal.getMetalNameLower() + "_alloy_craft");
             }
         }
-        //alloyList.add(MetallicsArts.MOD_ID + "_malatium_alloy_craft");
         return alloyList;
     }
 

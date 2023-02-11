@@ -111,34 +111,6 @@ public class BandAluminumDuralumin extends BandMindAbstract <AluminumFecuchemicH
         }
         super.curioTick(slotContext, stack);
     }
-    /*@Override
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
-        if (stack.hasTag()) {
-            if (isEquiped) {
-                if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") == 2) {
-                    toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": ").append(Component.translatable("metallics_arts.mental_mind_translate.store_identity")));
-                } else if (stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") == 1) {
-                    toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": ").append(Component.translatable("metallics_arts.spike_allomantic_power.tapping_identity")));
-                } else {
-                    toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": ").append(Component.translatable("metallics_arts.mental_mind_translate.off_power")));
-                }
-            } else {
-                toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": ").append(Component.translatable("metallics_arts.mental_mind_translate.off_power")));
-            }
-            if (!Screen.hasShiftDown()){
-                toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(1).getNameLower()).append(": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") / 20 + "s"));
-            } else {
-                toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(1).getNameLower()).append(": "+ ((stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") * 100)/stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_max_capacity"))+"%"));
-            }
-            if (world != null) {
-                toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : (world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? Component.translatable("metallics_arts.mental_mind.owner_someone") : world.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
-            }
-            if (!Screen.hasShiftDown()){
-                toolTips.add(Component.translatable(" "));
-                toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
-            }
-        }
-        super.appendHoverText(stack, world, toolTips, flagIn);
-    }*/
+
 
 }

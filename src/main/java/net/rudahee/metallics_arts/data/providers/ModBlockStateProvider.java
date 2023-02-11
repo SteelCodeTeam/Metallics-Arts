@@ -26,7 +26,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ModBlocksRegister.BLOCK_GEMS_BLOCKS.forEach((name, block) -> {
             ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/" + name + "_block"));
 
-            // later i put texture in block and item.
+            // later I put texture in block and item.
             simpleBlock(block);
             simpleBlockItem(block, model);
 
@@ -36,7 +36,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
             // for each registry block, i get model wih format ("block/name_typeblock")
             ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/" + name + "_ore"));
 
-            // later i put texture in block and item.
+            // later I put texture in block and item.
             simpleBlock(block);
             simpleBlockItem(block, model);
         });
@@ -45,7 +45,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
             // for each registry block, i get model wih format ("block/name_typeblock")
             ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/deepslate_" + name + "_ore"));
 
-            // later i put texture in block and item.
+            // later I put texture in block and item.
             simpleBlock(block);
             simpleBlockItem(block, model);
         });

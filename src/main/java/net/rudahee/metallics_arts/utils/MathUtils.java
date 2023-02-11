@@ -6,4 +6,5 @@ public class MathUtils {
         return (number % 3) == 0;
     }
 
+    public static boolean isDivisibleBy10(int number) { return (number % 10) == 0; }
 }

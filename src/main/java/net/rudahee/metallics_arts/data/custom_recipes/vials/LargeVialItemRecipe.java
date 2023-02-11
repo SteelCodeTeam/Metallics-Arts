@@ -102,8 +102,6 @@ public class LargeVialItemRecipe extends CustomRecipe {
             }
         }
 
-        //INTENTAR QUE SE PUEDAN CARGAR MAS DE UNA PEPITA DE UN METAL A LA VEZ
-
         if (ingredients[0] && ingredients[1]){
             this.final_result = new ItemStack(ModItemsRegister.LARGE_VIAL.get(),1);
             CompoundTag compoundNBT = new CompoundTag();

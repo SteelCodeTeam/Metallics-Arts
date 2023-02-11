@@ -12,6 +12,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Class that extends Screen. This class control the selectors, that you can choose you're active allomantic power.
+ * We need to redo.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @deprecated
+ */
 public class MetallicsPowersConfig {
 
     public static final Set<String> whitelist = new HashSet<String>() {{
@@ -55,14 +64,8 @@ public class MetallicsPowersConfig {
         add("dpring_launcher");
 
 
-        //add(ModItemsRegister.BAND_PEWTER_TIN.get().getDescriptionId());
         add(MetalMindEnum.TIN_PEWTER.getBand().getDescriptionId());
         add(MetalMindEnum.TIN_PEWTER.getRing().getDescriptionId());
-
-        //add(ModItemsRegister.BAND_PEWTER_TIN.get().getDescription().toString());
-        //add(ModItemsRegister.RING_PEWTER_TIN.get().getDescriptionId());
-        //add(ModItemsRegister.RING_PEWTER_TIN.get().getDescription().toString());
-
 
         add(Items.CROSSBOW.getDescriptionId());
         add(Items.CROSSBOW.getDescription().toString());
@@ -86,7 +89,6 @@ public class MetallicsPowersConfig {
         add(Items.STONECUTTER.getDescriptionId());
         add(Items.STONECUTTER.getDescription().toString());
 
-        //add(ModBlock.ALLOY_FURNACE_BLOCK.get().getDescriptionId());
         add(Items.STONECUTTER.getDescription().toString());
 
         add(Items.BLAST_FURNACE.getDescriptionId());
@@ -102,7 +104,6 @@ public class MetallicsPowersConfig {
         add(Items.SHEARS.getDescription().toString());
         add(Items.CHAIN.getDescription().toString());
 
-        //TODO insertar cosas hechas de metal a mano.
     }};
 
 

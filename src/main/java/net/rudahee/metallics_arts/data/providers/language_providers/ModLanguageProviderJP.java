@@ -54,16 +54,6 @@ public class ModLanguageProviderJP extends LanguageProvider {
         put("item.metallics_arts.dueling_staff", CTW.DUELING_STAFF.getNameInJapanese());
         put("item.metallics_arts.obsidian_axe", CTW.OBSIDIAN_AXE.getNameInJapanese());
 
-        /*put("metallics_arts.name", "Metallics Arts");
-
-        put("metallics_arts.utils.separator", "/");
-        put("metallics_arts.utils.percentage", "%");
-        put("metallics_arts.utils.and", "y");*/
-        //put("block.metallics_arts.alloy_furnace", "Horno de fusión");
-
-        //put("screen.metallics_arts.alloy_furnace", "Horno de fusión");
-        //put("curios.identifier.ma_metalmind_slot", "Ranura de mente de metal");
-
     }};
 
 

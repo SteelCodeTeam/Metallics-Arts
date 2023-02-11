@@ -64,7 +64,6 @@ public class DrawUtils {
 
     public static void drawMetalLine(PoseStack stack, Vec3 player, Vec3 dest, float width, float r, float g, float b) {
 
-        //        RenderSystem.lineWidth(width);
         Tesselator tessellator = Tesselator.getInstance();
         BufferBuilder builder = tessellator.getBuilder();
 

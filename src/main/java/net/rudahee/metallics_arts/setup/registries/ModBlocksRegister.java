@@ -43,14 +43,11 @@ public class ModBlocksRegister {
     public static RegistryObject<AmethystBlock> SMALL_ETTMETAL_BUD;
     public static RegistryObject<Block> ETTMETAL_BLOCK = null;
 
-    //public static RegistryObject<Block> ALLOY_FURNACE_BLOCK = null;
-
     public static void register() {
         AtiumBlocksRegister.register();
         LerasiumBlocksRegister.register();
         EttmetalBlocksRegister.register();
         BasicBlocksRegister.register();
-        //ModBlock.ALLOY_FURNACE_BLOCK = MetallicsArts.registerBlock("alloy_furnace",() -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE).strength(3.5F).requiresCorrectToolForDrops()));
     }
 
     public static class InvestedCapabilityRegister {

@@ -48,27 +48,6 @@ public class FoundNearbyMetalUtils {
                     player.level.getEntitiesOfClass(Entity.class, new AABB(negative, positive), e -> IronAndSteelHelpers.isEntityMetal(e) && !e.equals(player)));
 
 
-
-            /** intento de arreglo*/
-
-            //nearby_allomancers.addAll(player.level.getEntitiesOfClass(Player.class, new AABB(negative, positive), entity -> entity != null && entity != player));
-
-            /*
-            copper = false;
-            for (Player otherPlayer : nearby_allomancers) {
-                otherPlayer.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(
-                        cap -> {
-                            if (cap.isBurning(MetalTagEnum.COPPER)){
-                                copper = true;
-                            }
-                        });
-            }
-            if (!copper) {
-                nearby_allomancers.clear();
-            }*/
-            /** intento de arreglo*/
-
-            // Add metal blobs to metal list
             Stream<BlockPos> blocks = BlockPos.betweenClosedStream(negative, positive);
             blocks.filter(bp -> IronAndSteelHelpers.isBlockStateMetal(player.level.getBlockState(bp))).forEach(bp -> {
                 Set<MetalBlockUtils> matches = metalBlobs.stream().filter(mbl -> mbl.isMatch(bp)).collect(Collectors.toSet());

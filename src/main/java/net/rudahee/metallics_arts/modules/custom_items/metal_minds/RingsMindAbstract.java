@@ -143,25 +143,6 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
     private boolean nicConsumeMet0 = false;
     private boolean nicConsumeMet1 = false;
 
-    //public abstract int calculateDischarge(IInvestedPlayerData playerCapability, int metal0ActualReserve, boolean nicConsumeMet0);
-
-
-    /*public void firstDecantingPower(Player player, IInvestedPlayerData playerCapability) {
-        firstSupplier.decantPower(player);
-    }
-
-    public void secondDecantingPower(Player player, IInvestedPlayerData playerCapability) {
-        secondSupplier.decantPower(player);
-    }
-
-    public void firstStoragePower(Player player, IInvestedPlayerData playerCapability) {
-        firstSupplier.storagePower(player);
-    }
-
-    public void secondStoragePower(Player player, IInvestedPlayerData playerCapability) {
-        secondSupplier.storagePower(player);
-    }*/
-
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         LivingEntity livingEntity = slotContext.entity();

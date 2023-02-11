@@ -20,7 +20,6 @@ public class AlloyFurnaceBlock extends AbstractFurnaceBlock {
 
     public AlloyFurnaceBlock(Properties properties) {
         super(properties);
-        //this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false)));
     }
 
     @Override

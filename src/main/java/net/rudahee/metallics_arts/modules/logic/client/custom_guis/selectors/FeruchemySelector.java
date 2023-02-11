@@ -26,6 +26,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class that extends Screen. This class control the selectors, that you can choose you're active allomantic power.
+ * We need to redo.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @deprecated
+ */
 @OnlyIn(Dist.CLIENT)
 public class FeruchemySelector extends Screen {
 
@@ -254,12 +263,10 @@ public class FeruchemySelector extends Screen {
             }
         }
 
-//metallic_arts:textures/gui/feruchemic_symbols/tin_symbol.png
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png"));
 
-        //this.mc.getEntityRenderDispatcher().textureManager.bindForSetup(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png"));
-        //RenderSystem.setShaderColor(1, 1, 1, 1);
+
         blit(matrixStack, baticenter.x-8, baticenter.y-8, 0, 0, 16, 16, 16, 16);
 
     }

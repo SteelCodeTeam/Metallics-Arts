@@ -4,7 +4,6 @@ package net.rudahee.metallics_arts.modules.custom_blocks.alloy_furnace;
 import net.minecraft.nbt.CompoundTag;
 import org.antlr.runtime.misc.IntArray;
 
-//implemente IIntArray
 public class AlloyFurnaceData extends IntArray {
 
     public int actualFuelBurning;

@@ -16,7 +16,7 @@ import net.rudahee.metallics_arts.setup.network.packets.*;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class ModNetwork {
-    private static final String VERSION = "1.6";
+    private static final String VERSION = "1.5.1";
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(new ResourceLocation(MetallicsArts.MOD_ID, "networking"), () -> VERSION, VERSION::equals,
             VERSION::equals);
 

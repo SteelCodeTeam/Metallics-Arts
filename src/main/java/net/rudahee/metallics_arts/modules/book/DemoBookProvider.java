@@ -118,8 +118,6 @@ public class DemoBookProvider extends BookProvider {
         helper.page("items_description"); //and now the page
         BookTextPageModel page =
                 BookTextPageModel.builder()                     //we start with a text page
-                        .withText(helper.pageText())            //lang key for the text         TEXTO
-                        .withTitle(helper.pageTitle())          //and for the title             TITULO
                         .build();
         // PAGINA
 
@@ -149,8 +147,6 @@ public class DemoBookProvider extends BookProvider {
         helper.page("weapon_description"); //and now the page
         BookTextPageModel page =
                 BookTextPageModel.builder()                     //we start with a text page
-                        .withText(helper.pageText())            //lang key for the text         TEXTO
-                        .withTitle(helper.pageTitle())          //and for the title             TITULO
                         .build();
         // PAGINA
         helper.page("weapon_craft"); //and now the page
@@ -179,8 +175,6 @@ public class DemoBookProvider extends BookProvider {
         helper.page("page"); //and now the page
         BookTextPageModel page =
                 BookTextPageModel.builder()                     //we start with a text page
-                        .withText(helper.pageText())            //lang key for the text         TEXTO
-                        .withTitle(helper.pageTitle())          //and for the title             TITULO
                         .build();
 
         return BookEntryModel.builder()
@@ -288,7 +282,6 @@ public class DemoBookProvider extends BookProvider {
         BookEntryModel q = this.subDivisionEntry(helper, entryHelper, 'q', SubdivisionData.COGNITIVE, s);
         BookEntryModel aA = this.subDivisionEntry(helper, entryHelper, 'A', SubdivisionData.DIVINE, s);
 
-        BookEntryModel a = this.feruchemyPowerEntry(helper, entryHelper, 'a',MetalTagEnum.IRON, r);  //ENTRADAS : CADA ICONO DEL MAPA
         BookEntryModel b = this.feruchemyPowerEntry(helper, entryHelper, 'b',MetalTagEnum.STEEL, r);
         BookEntryModel c = this.feruchemyPowerEntry(helper, entryHelper, 'c',MetalTagEnum.TIN, r);
         BookEntryModel d = this.feruchemyPowerEntry(helper, entryHelper, 'd',MetalTagEnum.PEWTER, r);
@@ -320,7 +313,7 @@ public class DemoBookProvider extends BookProvider {
                 .withId(this.modLoc(helper.category)) //the id of the category, as stored in the lang helper. modLoc() prepends the mod id.
                 .withName(helper.categoryName()) //the name of the category. The lang helper gives us the correct translation key.
                 .withIcon("minecraft:gold_ingot") //the icon for the category. In this case we simply use an existing item.
-                .withEntries(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,v,w,x,y,z,aA)
+                .withEntries(b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,v,w,x,y,z,aA)
                 .build();
     }
 
@@ -331,15 +324,11 @@ public class DemoBookProvider extends BookProvider {
         helper.page("power_description"); //and now the page
         BookTextPageModel page =
                 BookTextPageModel.builder()                     //we start with a text page
-                        .withText(helper.pageText())            //lang key for the text         TEXTO
-                        .withTitle(helper.pageTitle())          //and for the title             TITULO
                         .build();
         // PAGINA
         helper.page("power_interactions"); //and now the page
         BookTextPageModel page2 =
                 BookTextPageModel.builder()                     //we start with a text page
-                        .withText(helper.pageText())            //lang key for the text         TEXTO
-                        .withTitle(helper.pageTitle())          //and for the title             TITULO
                         .build();
 
 
@@ -361,15 +350,11 @@ public class DemoBookProvider extends BookProvider {
         helper.page("power_storage");                           //and now the page
         BookTextPageModel page =
                 BookTextPageModel.builder()                     //we start with a text page
-                        .withText(helper.pageText())            //lang key for the text         TEXTO
-                        .withTitle(helper.pageTitle())          //and for the title             TITULO
                         .build();
         // PAGINA
         helper.page("power_tap"); //and now the page
         BookTextPageModel page2 =
                 BookTextPageModel.builder()                     //we start with a text page
-                        .withText(helper.pageText())            //lang key for the text         TEXTO
-                        .withTitle(helper.pageTitle())          //and for the title             TITULO
                         .build();
 
 
@@ -393,15 +378,11 @@ public class DemoBookProvider extends BookProvider {
         helper.page("power_description"); //and now the page
         BookTextPageModel page =
                 BookTextPageModel.builder()                     //we start with a text page
-                        .withText(helper.pageText())            //lang key for the text         TEXTO
-                        .withTitle(helper.pageTitle())          //and for the title             TITULO
                         .build();
         // PAGINA
         helper.page("power_interactions"); //and now the page
         BookTextPageModel page2 =
                 BookTextPageModel.builder()                     //we start with a text page
-                        .withText(helper.pageText())            //lang key for the text         TEXTO
-                        .withTitle(helper.pageTitle())          //and for the title             TITULO
                         .build();
 
 

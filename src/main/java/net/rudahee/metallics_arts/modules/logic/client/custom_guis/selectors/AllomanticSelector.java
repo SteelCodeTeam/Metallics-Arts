@@ -24,6 +24,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/**
+ * Class that extends Screen. This class control the selectors, that you can choose you're active allomantic power.
+ * We need to redo.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @deprecated
+ */
 @OnlyIn(Dist.CLIENT)
 public class AllomanticSelector extends Screen {
 
@@ -112,10 +122,6 @@ public class AllomanticSelector extends Screen {
                         (degreesDivinePerSegment*actualSegment < angle && angle < degreesDivinePerSegment*(actualSegment  + 1))
                         && (mediumRadio<distance && distance<externalRadio);
 
-                /*
-                data.hasAllomanticPower(metal) && (degreesDivinePerSegment*actualSegment<angle && angle < degreesDivinePerSegment  * (actualSegment  + 1)) &&
-                        (internalRadio<distance && distance<mediumRadio);
-                 */
 
                 float radius = externalRadio;
 
@@ -126,10 +132,6 @@ public class AllomanticSelector extends Screen {
                         radius *= 1.025f;
                     }
                 }
-
-
-                //desde aqui es dibujado de parte del circulo
-
 
                 int[] actualColor;
                 if (actualSegment % 2 == 0) {
@@ -295,7 +297,6 @@ public class AllomanticSelector extends Screen {
 
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
-               //this.mc.getEntityRenderDispatcher().textureManager.bindForSetup(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
                 RenderSystem.setShaderColor(1, 1, 1, 1);
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
@@ -303,7 +304,6 @@ public class AllomanticSelector extends Screen {
 
            //pintado intermedio
             for (int actualSegment  = 0; actualSegment  < internalSegments ; actualSegment ++) {
-                //MetalsNBTData metal = MetalsNBTData.getMetal(toMetalIndex(actualSegment));
                 MetalTagEnum metal = externalMetals.get(actualSegment);
                 boolean mouseInSector = data.hasAllomanticPower(metal) &&
                         (degreesPerSegment* actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))  &&
@@ -332,8 +332,6 @@ public class AllomanticSelector extends Screen {
                 int xdp = (int) ((xp - centerX ) * mod + centerX );
                 int ydp = (int) ((yp - centerY ) * mod + centerY );
 
-                //this.mc.getEntityRenderDispatcher().textureManager.bindForSetup(new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
-                //RenderSystem.setShaderColor(1, 1, 1, 1);
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);

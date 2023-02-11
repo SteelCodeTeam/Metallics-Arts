@@ -26,7 +26,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
         ModelFile itemHandHeld = getExistingFile(mcLoc("item/handheld"));
-        //ModelFile itemHandHeldLarge = ItemModelBuilder getExistingFile(mcLoc("item/handheld_large"));
         List<MetalEnum> metalEnumList = Arrays.asList(MetalEnum.values());
         List<GemsEnum> gemList = Arrays.asList(GemsEnum.values());
 

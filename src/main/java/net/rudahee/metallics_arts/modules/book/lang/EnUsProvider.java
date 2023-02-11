@@ -121,7 +121,6 @@ public class EnUsProvider extends LanguageProvider {
     private void addAllomancyEntry(BookLangHelper helper, MetalTagEnum metal) {
         helper.entry(metal.getNameLower() + "_entry"); //tell the helper the entry we are in
 
-        //(metal != MetalTagEnum.ETTMETAL && metal != MetalTagEnum.ATIUM && metal != MetalTagEnum.LERASIUM && metal != MetalTagEnum.MALATIUM) ? (MetalNamesEnum.valueOf(metal.name()).getNameInEnglish()) : (GemNames.valueOf(metal.name()).getNameInEnglish())
         this.add(helper.entryName(), MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());  //provide the entry name
         this.add(helper.entryDescription(), "");                 //and description
 

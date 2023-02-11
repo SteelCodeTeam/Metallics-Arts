@@ -22,7 +22,7 @@ import java.awt.*;
  * Class that implements IGuiOverlay. This class control the drawing of the overlays in the game. We need to completely redo it.
  *
  * @author SteelCode Team
- * @since 1.6
+ * @since 1.5.1
  *
  * @deprecated
  */

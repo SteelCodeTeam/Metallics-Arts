@@ -17,7 +17,6 @@ public class Registration {
         ModItemsRegister.register();
 
         ModTileEntitiesRegister.register(FMLJavaModLoadingContext.get().getModEventBus());
-        //ModContainers.register(modEventBus);
         ModRecipeTypesRegister.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 

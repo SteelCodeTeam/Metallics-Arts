@@ -266,19 +266,6 @@ public class ModRecipeProvider extends RecipeProvider {
                     .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_spike_" + object.getName()));
         });
 
-
-        /*ShapedRecipeBuilder.shaped(ModBlock.ALLOY_FURNACE_BLOCK.get().asItem())
-                .define('#', Items.BLAST_FURNACE)
-                .define('X', Items.STONE_BRICKS)
-                .define('_', Items.STONE_BRICK_SLAB)
-                .define('U', Items.COAL_BLOCK)
-                .pattern("___")
-                .pattern("X#X")
-                .pattern("UUU")
-                .unlockedBy("has_item", has(Items.BLAST_FURNACE))
-                .save(recipesConsumer, new ResourceLocation("allomantic_alloy_furnace"));*/
-
-
         ShapedRecipeBuilder.shaped(ModItemsRegister.OBSIDIAN_AXE.get())
                 .define('#',Items.OBSIDIAN)
                 .define('x',Items.STICK)
