@@ -70,7 +70,6 @@ public class CapabilityUtils<T> {
 
     public static IInvestedPlayerData getCapability (@Nullable Entity entity) throws PlayerException {
         playerData = null;
-
         if (entity == null) {
             throw new PlayerException(ErrorTypes.PLAYER_ERROR);
         }

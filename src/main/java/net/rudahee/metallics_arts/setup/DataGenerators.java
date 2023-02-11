@@ -12,6 +12,7 @@ import net.rudahee.metallics_arts.data.providers.ModLootTableProvider;
 import net.rudahee.metallics_arts.data.providers.ModRecipeProvider;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderEN;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderES;
+import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderJP;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBannerTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBeaconTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBlockTagProvider;
@@ -41,6 +42,8 @@ public final class DataGenerators {
         gen.addProvider(true, new ModLanguageProviderEN(gen, MetallicsArts.MOD_ID, "en_au"));
         gen.addProvider(true, new ModLanguageProviderEN(gen, MetallicsArts.MOD_ID, "en_ca"));
         gen.addProvider(true, new ModLanguageProviderEN(gen, MetallicsArts.MOD_ID, "en_gb"));
+
+        gen.addProvider(true, new ModLanguageProviderJP(gen, MetallicsArts.MOD_ID, "ja_jp"));
 
         gen.addProvider(event.includeServer(), new ModBannerTagProvider(gen, event.getExistingFileHelper()));
         gen.addProvider(true, new ModBeaconTagProvider(gen,event.getExistingFileHelper()));

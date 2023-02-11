@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:aluminum_allomantic_icon",
-      "text": "$(br) Vacía tus reservas alománticas. $(br)$(br)$(br) Extra: $(br) - Cuanto mayor sea la cantidad que quemes, mayor será la probabilidad de remover tus efectos de estado (tanto positivos como negativos)."
+      "text": "$(br) "
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumín: nada. $(br2) + Lerasium: nada. $(br2) + Ambos: nada."
+      "text": "$(br) "
     }
   ]
 }
