@@ -13,15 +13,15 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Class that extends Screen. This class control the selectors, that you can choose you're active allomantic power.
- * We need to redo.
+ * class that controls lists of metals that can be pulled or pushed with iron or steel.
+ * We need to redo it.
  *
  * @author SteelCode Team
  * @since 1.5.1
  *
  * @deprecated
  */
-public class MetallicsPowersConfig {
+public class MetalListConfig {
 
     public static final Set<String> whitelist = new HashSet<String>() {{
 
@@ -31,14 +31,10 @@ public class MetallicsPowersConfig {
             }
         }
 
-        //Things that can interact whith iron and steel in Metallics Arts
-
-        //Metalls Arts Integrations on hand
         add("lead");
         add("nickel");
         add("tin_");
 
-        //Minecraft Integrations on hand
         add("shield");
         add("anvil");
         add("piston");
@@ -49,20 +45,6 @@ public class MetallicsPowersConfig {
         add("bucket");
         add("netherite");
         add("lantern");
-
-        //Suplementaries Integration on hand
-        add("_railing");
-        add("cage");
-        add("safe");
-        add("globe");
-        add("candle_holder");
-        add("wind_vane");
-        add("faucet");
-        add("wired_");
-        add("railing_");
-        add("brazier");
-        add("dpring_launcher");
-
 
         add(MetalMindEnum.TIN_PEWTER.getBand().getDescriptionId());
         add(MetalMindEnum.TIN_PEWTER.getRing().getDescriptionId());
@@ -105,23 +87,5 @@ public class MetallicsPowersConfig {
         add(Items.CHAIN.getDescription().toString());
 
     }};
-
-
-    public static ForgeConfigSpec.ConfigValue<List<? extends String>> cfg_whitelist;
-
-
-
-    public static void refresh(final ModConfigEvent e) {
-        ModConfig cfg = e.getConfig();
-    }
-
-    private static void refresh_whitelist() {
-        whitelist.clear();
-        whitelist.addAll(cfg_whitelist.get());
-    }
-
-    public static void load_whitelist(final ModConfigEvent e) {
-        ModConfig cfg = e.getConfig();
-    }
 
 }

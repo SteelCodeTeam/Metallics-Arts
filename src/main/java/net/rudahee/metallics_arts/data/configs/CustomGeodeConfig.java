@@ -18,7 +18,14 @@ import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.List;
 
-public class ModCustomGeodeConfig {
+/**
+ * Class that defines the basic structure of the geodes implemented by the mod.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
+public class CustomGeodeConfig {
+
 
     public static final Holder<ConfiguredFeature<GeodeConfiguration, ?>> ATIUM_GEODE =
             register(
@@ -85,9 +92,17 @@ public class ModCustomGeodeConfig {
                             -16, 16, 0.05D, 1
                     ));
 
-
-    public static <FC extends FeatureConfiguration, F extends Feature<FC>> Holder<ConfiguredFeature<FC, ?>> register(String p_206489_, F p_206490_, FC p_206491_) {
-        return BuiltinRegistries.registerExact(BuiltinRegistries.CONFIGURED_FEATURE, p_206489_, new ConfiguredFeature<>(p_206490_, p_206491_));
+    /**
+     * This method is used to register the geodes that will be generated in the world.
+     *
+     * @param registerName name that is being registered.
+     * @param feature param of type Feature<FeatureConfiguration>.
+     * @param featureConfiguration param of type FeatureConfiguration.
+     *
+     * @return <FC extends FeatureConfiguration, F extends Feature<FC>>
+     */
+    public static <FC extends FeatureConfiguration, F extends Feature<FC>> Holder<ConfiguredFeature<FC, ?>> register(String registerName, F feature, FC featureConfiguration) {
+        return BuiltinRegistries.registerExact(BuiltinRegistries.CONFIGURED_FEATURE, registerName, new ConfiguredFeature<>(feature, featureConfiguration));
     }
 
 

@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.configs.ModCustomGeodeConfig;
+import net.rudahee.metallics_arts.data.configs.CustomGeodeConfig;
 
 import java.util.List;
 
@@ -62,16 +62,16 @@ public class ModStructureRegister {
 
 
     public static final RegistryObject<PlacedFeature> ATIUM_GEODE =
-            PLACED_FEATURES.register("atium_geode", () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) ModCustomGeodeConfig.ATIUM_GEODE, algo()));
+            PLACED_FEATURES.register("atium_geode", () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) CustomGeodeConfig.ATIUM_GEODE, algo()));
 
     public static final RegistryObject<PlacedFeature> LERASIUM_GEODE =
             PLACED_FEATURES.register("lerasium_geode",
-                    () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) ModCustomGeodeConfig.LERASIUM_GEODE,
+                    () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) CustomGeodeConfig.LERASIUM_GEODE,
                             algo()));
 
     public static final RegistryObject<PlacedFeature> ETTMETAL_GEODE =
             PLACED_FEATURES.register("ettmetal_geode",
-                    () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) ModCustomGeodeConfig.ETTMETAL_GEODE, algo()));
+                    () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) CustomGeodeConfig.ETTMETAL_GEODE, algo()));
 
     public static List<PlacementModifier> algo(){
         return List.of(

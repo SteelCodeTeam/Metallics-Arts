@@ -10,19 +10,19 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.configs.ModGeodeGenerationConfig;
+import net.rudahee.metallics_arts.data.configs.GeodeGenerationConfig;
 
 public class ModGeodeGenerationRegister {
     public static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIER =
             DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, MetallicsArts.MOD_ID);
 
-    public static RegistryObject<Codec<ModGeodeGenerationConfig>> GEODE_CODEC = BIOME_MODIFIER.register("geode_aa", () ->
+    public static RegistryObject<Codec<GeodeGenerationConfig>> GEODE_CODEC = BIOME_MODIFIER.register("geode_aa", () ->
             RecordCodecBuilder.create(builder -> builder.group(
                     // declare fields
-                    Biome.LIST_CODEC.fieldOf("biomes").forGetter(ModGeodeGenerationConfig::biomes),
-                    PlacedFeature.CODEC.fieldOf("feature").forGetter(ModGeodeGenerationConfig::feature)
+                    Biome.LIST_CODEC.fieldOf("biomes").forGetter(GeodeGenerationConfig::biomes),
+                    PlacedFeature.CODEC.fieldOf("feature").forGetter(GeodeGenerationConfig::feature)
                     // declare constructor
-            ).apply(builder, ModGeodeGenerationConfig::new)));
+            ).apply(builder, GeodeGenerationConfig::new)));
 
 
     public static void register(IEventBus eventBus) {

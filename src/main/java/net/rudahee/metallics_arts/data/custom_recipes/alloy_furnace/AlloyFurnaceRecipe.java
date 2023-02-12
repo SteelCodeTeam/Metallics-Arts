@@ -1,5 +1,8 @@
 package net.rudahee.metallics_arts.data.custom_recipes.alloy_furnace;
 
+/**
+ * @deprecated
+ */
 public class AlloyFurnaceRecipe implements IAlloyFurnaceRecipe {
 /*
     private final ResourceLocation id;

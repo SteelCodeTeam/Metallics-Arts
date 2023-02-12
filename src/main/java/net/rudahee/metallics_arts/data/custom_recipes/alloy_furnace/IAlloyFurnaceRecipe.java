@@ -1,6 +1,8 @@
 package net.rudahee.metallics_arts.data.custom_recipes.alloy_furnace;
 
-
+/**
+ * @deprecated
+ */
 public interface IAlloyFurnaceRecipe  {
 /*
     ResourceLocation TYPE_ID = new ResourceLocation(MetallicsArts.MOD_ID, "alloy");

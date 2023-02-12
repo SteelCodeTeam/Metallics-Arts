@@ -20,7 +20,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.rudahee.metallics_arts.data.configs.MetallicsPowersConfig;
+import net.rudahee.metallics_arts.data.configs.MetalListConfig;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
@@ -80,7 +80,7 @@ public class IronAndSteelHelpers {
     }
 
     private static boolean isOnWhitelist(String s) {
-       return MetallicsPowersConfig.whitelist.stream().anyMatch(ws -> s.contains(ws));
+       return MetalListConfig.whitelist.stream().anyMatch(ws -> s.contains(ws));
     }
 
     public static boolean isEntityMetal(Entity entity) {
