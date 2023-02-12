@@ -246,7 +246,7 @@ public class MetalsOverlay implements IGuiOverlay {
                     blit(matrix, gui, feruchemicActualOffSetX, feruchemicOffsetY + offSetTop, 0, 17, feruchemicWidthVial, feruchemicHeightVial);
 
 
-                    if (data.getMetalMindEquiped(metal.getGroup())) {
+                    if (data.hasMetalMindEquiped(metal.getGroup())) {
                         blit(matrix, gui, feruchemicActualOffSetX + 1, (modifierFeruchemic == 13) ? feruchemicCalculatedOffset: feruchemicCalculatedOffset - 1, barOffSet, 0, feruchemicWidthBar, modifierFeruchemic);
                     }
                     //if decant

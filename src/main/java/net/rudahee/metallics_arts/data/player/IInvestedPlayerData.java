@@ -6,6 +6,14 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 
 import java.util.ArrayList;
 
+/**
+ * This interface is used to define the required methods that must exist in the InvestedPlayerData class.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see InvestedPlayerData
+ */
 public interface IInvestedPlayerData {
     void tickAllomancyBurningMetals(ServerPlayer player);
 
@@ -41,7 +49,7 @@ public interface IInvestedPlayerData {
 
     void drainMetals(MetalTagEnum... metals);
 
-    boolean getMetalMindEquiped(int group);
+    boolean hasMetalMindEquiped(int group);
 
     void setMetalMindEquiped(int group, boolean value);
 
@@ -59,13 +67,13 @@ public interface IInvestedPlayerData {
 
     void setMistborn(boolean mistborn);
 
-    void setFullFeruchemic(boolean feruchemic);
+    void setFullFeruchemist(boolean feruchemic);
 
     void setFullInvested(boolean invested);
 
     boolean isMistborn();
 
-    boolean isFullFeruchemic();
+    boolean isFullFeruchemist();
 
     boolean isFullInvested();
 

@@ -74,7 +74,7 @@ public class ClientUtils {
     private static boolean isBand = false;
 
     public static void toggleDecant(MetalTagEnum metal, IInvestedPlayerData capability, Player player){
-        if (!capability.hasFeruchemicPower(metal)||!capability.getMetalMindEquiped(metal.getGroup())){
+        if (!capability.hasFeruchemicPower(metal)||!capability.hasMetalMindEquiped(metal.getGroup())){
             return;
         }
 
@@ -102,7 +102,7 @@ public class ClientUtils {
 
     }
     public static void toggleStorage(MetalTagEnum metal, IInvestedPlayerData capability, Player player){
-        if (!capability.hasFeruchemicPower(metal)||!capability.getMetalMindEquiped(metal.getGroup())){
+        if (!capability.hasFeruchemicPower(metal)||!capability.hasMetalMindEquiped(metal.getGroup())){
             return;
         }
         CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curioData -> {

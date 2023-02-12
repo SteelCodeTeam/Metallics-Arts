@@ -153,7 +153,7 @@ public class FeruchemySelector extends Screen {
 
             if(this.point1!=null&&this.point2!=null&&this.point3!=null&&this.tipoTemp!=-1){
                 if(pointInTriangle(mouse,this.point1,this.point2,this.point3)) {
-                    if (data.getMetalMindEquiped(this.metalTemp.getGroup())) {
+                    if (data.hasMetalMindEquiped(this.metalTemp.getGroup())) {
                         pintadoUnico(buf,this.point1,this.point2,this.point3,this.metalTemp,mouse,this.paridadTemp,data);
                     }
                 }else {
@@ -284,7 +284,7 @@ public class FeruchemySelector extends Screen {
         boolean inSelector = pointInTriangle(mouse,vertex1,vertex2,vertex3);
         this.slotSelected = metal.getIndex();
 
-        if (inSelector && data.getMetalMindEquiped(metal.getGroup()) && data.hasFeruchemicPower(metal)) {
+        if (inSelector && data.hasMetalMindEquiped(metal.getGroup()) && data.hasFeruchemicPower(metal)) {
             if (tipo == 0) {
                 vertex2.y = vertex2.y - 4;
                 vertex3.x = vertex3.x - 4;

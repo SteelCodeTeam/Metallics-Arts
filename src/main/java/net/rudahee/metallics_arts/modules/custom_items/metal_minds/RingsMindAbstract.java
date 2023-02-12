@@ -92,7 +92,7 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
         boolean canEquip = false;
 
         if (cap != null) {
-            canEquip = !(cap.getMetalMindEquiped(this.metals[0].getGroup()));
+            canEquip = !(cap.hasMetalMindEquiped(this.metals[0].getGroup()));
         }
         if (canEquip){
             if (!stack.getTag().getString("key").equals(unkeyedString)

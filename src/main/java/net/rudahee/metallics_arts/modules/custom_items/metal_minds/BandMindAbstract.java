@@ -92,7 +92,7 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
         boolean canEquip = false;
 
         if (cap != null) {
-            canEquip = !(cap.getMetalMindEquiped(this.metals[0].getGroup()));
+            canEquip = !(cap.hasMetalMindEquiped(this.metals[0].getGroup()));
             //canEquip = (!(cap.getMetalMindEquiped(this.metals[0].getGroup()) && !cap.getMetalMindEquiped(this.metals[1].getGroup())));
         }
 
