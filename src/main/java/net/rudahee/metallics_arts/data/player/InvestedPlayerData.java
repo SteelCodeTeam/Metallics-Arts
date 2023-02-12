@@ -16,6 +16,12 @@ import java.util.HashMap;
  * <p>
  * This method has a lot of structures that contain different data necessary for the mod to work.
  * This class is one of the pillars of the mod, so if you are going to modify the mod, you must understand how it works.
+ * <p><p>
+ * If you are going to create new data to store on the user, you need to create the private property,
+ * the getter, the setter, and modify the load and save methods to handle that data across the client and server.
+ * <p>
+ * In addition, you must include it in the interface. Apart from this, you can create your own methods to handle that data.
+ * You must also include these methods in the interface.
  *
  * @author SteelCode Team
  * @since 1.5.1
