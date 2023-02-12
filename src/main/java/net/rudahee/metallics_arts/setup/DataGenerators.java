@@ -33,6 +33,7 @@ public final class DataGenerators {
         gen.addProvider(true, new ModBlockTagProvider(gen, MetallicsArts.MOD_ID, event.getExistingFileHelper()));
         gen.addProvider(true, new ModLootTableProvider(gen));
         gen.addProvider(true, new ModRecipeProvider(gen));
+
         gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_es"));
         gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_ar"));
         gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_mx"));
@@ -48,10 +49,8 @@ public final class DataGenerators {
         gen.addProvider(event.includeServer(), new ModBannerTagProvider(gen, event.getExistingFileHelper()));
         gen.addProvider(true, new ModBeaconTagProvider(gen,event.getExistingFileHelper()));
 
-
-        var langProvider = new EnUsProvider(gen, MetallicsArts.MOD_ID);
-        gen.addProvider(event.includeServer(), new DemoBookProvider(gen, MetallicsArts.MOD_ID,langProvider));
-        gen.addProvider(event.includeClient(), langProvider);
+        gen.addProvider(event.includeServer(), new DemoBookProvider(gen, MetallicsArts.MOD_ID, null));
+        //gen.addProvider(event.includeClient(), null);
 
     }
 }

@@ -1,401 +1,411 @@
 package net.rudahee.metallics_arts.data.providers.language_providers;
 
+import com.klikli_dev.modonomicon.api.ModonomiconAPI;
+import com.klikli_dev.modonomicon.api.datagen.BookLangHelper;
+import com.klikli_dev.modonomicon.datagen.DemoBookProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.allomancy.Interactions;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.allomancy.PowerDescriptions;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.feruchemic.Storage;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.feruchemic.Tap;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft.MultiCaftDescriptions;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft.MultiCraftData;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionData;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionDescription;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponDescriptions;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponsData;
+import net.rudahee.metallics_arts.modules.book.lang.EnUsProvider;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ModLanguageProviderEN extends LanguageProvider {
-
-
-    private Map<String, String> base = new HashMap<>() {{
-
-            put("item.metallics_arts.steel_ingot", "Steel Ingot");
-            put("item.metallics_arts.tin_ingot", "Tin Ingot");
-            put("item.metallics_arts.pewter_ingot", "Pewter Ingot");
-            put("item.metallics_arts.bronze_ingot", "Bronze Ingot");
-            put("item.metallics_arts.zinc_ingot", "Zinc Ingot");
-            put("item.metallics_arts.brass_ingot", "Brass Ingot");
-            put("item.metallics_arts.electrum_ingot", "Electrum Ingot");
-            put("item.metallics_arts.cadmium_ingot", "Cadmium Ingot");
-            put("item.metallics_arts.bendalloy_ingot", "Bendalloy Ingot");
-            put("item.metallics_arts.aluminum_ingot", "Aluminum Ingot");
-            put("item.metallics_arts.duralumin_ingot", "Duralumin Ingot");
-            put("item.metallics_arts.chromium_ingot", "Chromium Ingot");
-            put("item.metallics_arts.nicrosil_ingot", "Nicrosil Ingot");
-
-            put( "item.metallics_arts.silver_ingot", "Silver Ingot");
-            put("item.metallics_arts.lead_ingot", "Lead Ingot");
-            put("item.metallics_arts.nickel_ingot", "Nickel Ingot");
-
-            put("item.metallics_arts.atium", "Atium");
-            put("item.metallics_arts.malatium", "Malatium");
-            put("item.metallics_arts.lerasium", "Lerasium");
-            put("item.metallics_arts.ettmetal", "Ettmetal");
-
-
-            put(  "item.metallics_arts.steel_nugget","Steel Nugget");
-            put("item.metallics_arts.tin_nugget", "Tin Nugget");
-            put("item.metallics_arts.pewter_nugget", "Pewter Nugget");
-            put("item.metallics_arts.bronze_nugget", "Bronze Nugget");
-            put("item.metallics_arts.copper_nugget", "Copper Nugget");
-            put("item.metallics_arts.zinc_nugget", "Zinc Nugget");
-            put("item.metallics_arts.brass_nugget", "Brass Nugget");
-            put("item.metallics_arts.electrum_nugget", "Electrum Nugget");
-            put("item.metallics_arts.cadmium_nugget", "Cadmium Nugget");
-            put("item.metallics_arts.bendalloy_nugget", "Bendalloy Nugget");
-            put("item.metallics_arts.aluminum_nugget", "Aluminum Nugget");
-            put("item.metallics_arts.duralumin_nugget", "Duralumin Nugget");
-            put("item.metallics_arts.chromium_nugget", "Chromium Nugget");
-            put("item.metallics_arts.nicrosil_nugget", "Nicrosil Nugget");
-
-            put( "item.metallics_arts.silver_nugget", "Silver Nugget");
-            put("item.metallics_arts.lead_nugget", "Lead Nugget");
-            put("item.metallics_arts.nickel_nugget", "Nickel Nugget");
-
-            put( "item.metallics_arts.atium_nugget", "Atium Nugget");
-            put("item.metallics_arts.malatium_nugget", "Malatium Nugget");
-            put("item.metallics_arts.lerasium_nugget", "Lerasium Nugget");
-            put("item.metallics_arts.ettmetal_nugget", "Ettmetal Nugget");
-
-
-            put(
-                    "item.metallics_arts.raw_tin", "Raw Tin");
-            put("item.metallics_arts.raw_zinc", "Raw Zinc");
-            put("item.metallics_arts.raw_cadmium", "Raw Cadmium");
-            put("item.metallics_arts.raw_aluminum", "Raw Aluminum");
-
-            put( "item.metallics_arts.raw_chromium", "Raw Chromium");
-            put("item.metallics_arts.raw_silver", "Raw Silver");
-            put("item.metallics_arts.raw_lead", "Raw Lead");
-            put("item.metallics_arts.raw_nickel", "Raw Nickel");
-
-
-            put("block.metallics_arts.tin_ore", "Tin Ore");
-            put("block.metallics_arts.bronze_ore", "Bronze Ore");
-            put("block.metallics_arts.zinc_ore", "Zinc Ore");
-            put("block.metallics_arts.brass_ore", "Brass Ore");
-            put("block.metallics_arts.cadmium_ore", "Cadmium Ore");
-            put("block.metallics_arts.aluminum_ore", "Aluminum Ore");
-            put("block.metallics_arts.chromium_ore", "Chromium Ore");
-            put("block.metallics_arts.lead_ore", "Lead Ore");
-
-            put("block.metallics_arts.deepslate_chromium_ore", "Deepslate Chromium Ore");
-            put("block.metallics_arts.deepslate_cadmium_ore", "Deepslate Cadmium Ore");
-            put("block.metallics_arts.deepslate_aluminum_ore", "Deepslate Aluminum Ore");
-            put("block.metallics_arts.deepslate_silver_ore", "Deepslate Silver Ore");
-            put("block.metallics_arts.deepslate_lead_ore", "Deepslate Lead Ore");
-            put("block.metallics_arts.deepslate_nickel_ore", "Deepslate Nickel Ore");
-
-            put( "block.metallics_arts.raw_tin_block", "Raw Tin Block");
-            put("block.metallics_arts.raw_zinc_block", "Raw Zinc Block");
-            put("block.metallics_arts.raw_cadmium_block", "Raw Cadmium Block");
-            put("block.metallics_arts.raw_aluminum_block", "Raw Aluminum Block");
-
-            put( "block.metallics_arts.raw_chromium_block", "Raw Chromium Block");
-            put("block.metallics_arts.raw_silver_block", "Raw Silver Block");
-            put("block.metallics_arts.raw_lead_block", "Raw Lead Block");
-            put("block.metallics_arts.raw_nickel_block", "Raw Nickel Block");
-
-
-            put("block.metallics_arts.steel_block", "Block of Steel");
-            put("block.metallics_arts.tin_block", "Block of Tin");
-            put("block.metallics_arts.pewter_block", "Block of Pewter");
-            put("block.metallics_arts.bronze_block", "Block of Bronze");
-            put("block.metallics_arts.zinc_block", "Block of Zinc");
-            put("block.metallics_arts.brass_block", "Block of Brass");
-            put("block.metallics_arts.electrum_block", "Block of Electrum");
-            put("block.metallics_arts.cadmium_block", "Block of Cadmium");
-            put("block.metallics_arts.bendalloy_block", "Block of Bendalloy");
-            put("block.metallics_arts.aluminum_block", "Block of Aluminum");
-            put("block.metallics_arts.duralumin_block", "Block of Duralumin");
-            put("block.metallics_arts.chromium_block", "Block of Chromium");
-            put("block.metallics_arts.nicrosil_block", "Block of Nicrosil");
-
-            put( "block.metallics_arts.silver_block", "Block of Silver");
-            put("block.metallics_arts.lead_block", "Block of Lead");
-            put("block.metallics_arts.nickel_block", "Block of Nickel");
-
-            put( "block.metallics_arts.atium_block", "Block of Atium");
-            put("block.metallics_arts.malatium_block", "Block of Malatium");
-            put("block.metallics_arts.lerasium_block", "Block of Lerasium");
-            put("block.metallics_arts.ettmetal_block", "Block of Ettmetal");
-
-            put( "item.metallics_arts.band_aluminum_duralumin", "Band Aluminum-Duralumin");
-            put("item.metallics_arts.band_atium_malatium", "Band Atium-Malatium");
-            put("item.metallics_arts.band_cadmium_bendalloy", "Band Cadmium-Bendalloy");
-            put("item.metallics_arts.band_chromium_nicrosil", "Band Chromium-Nicrosil");
-            put("item.metallics_arts.band_copper_bronze", "Band Copper-Bronze");
-            put("item.metallics_arts.band_electrum_gold", "Band Gold-Electrum");
-            put("item.metallics_arts.band_lerasium_ettmetal", "Band Lerasium-Ettmetal");
-            put("item.metallics_arts.band_pewter_tin", "Band Tin-Pewter");
-            put("item.metallics_arts.band_zinc_brass", "Band Zinc-Brass");
-            put("item.metallics_arts.band_steel_iron", "Band Iron-Steel");
-
-            put( "item.metallics_arts.ring_aluminum_duralumin", "Ring Aluminum-Duralumin");
-            put("item.metallics_arts.ring_atium_malatium", "Ring Atium-Malatium");
-            put("item.metallics_arts.ring_cadmium_bendalloy", "Ring Cadmium-Bendalloy");
-            put("item.metallics_arts.ring_chromium_nicrosil", "Ring Chromium-Nicrosil");
-            put("item.metallics_arts.ring_copper_bronze", "Ring Copper-Bronze");
-            put("item.metallics_arts.ring_electrum_gold", "Ring Gold-Electrum");
-            put("item.metallics_arts.ring_lerasium_ettmetal", "Ring Lerasium-Ettmetal");
-            put("item.metallics_arts.ring_pewter_tin", "Ring Tin-Pewter");
-            put("item.metallics_arts.ring_zinc_brass", "Ring Zinc-Brass");
-            put("item.metallics_arts.ring_steel_iron", "Ring Iron-Steel");
-
-            put( "item.metallics_arts.iron_spike", "Iron Spike");
-            put("item.metallics_arts.steel_spike", "Steel Spike");
-            put("item.metallics_arts.tin_spike", "Tin Spike");
-            put("item.metallics_arts.pewter_spike", "Pewter Spike");
-            put("item.metallics_arts.copper_spike", "Copper Spike");
-            put("item.metallics_arts.bronze_spike", "Bronze Spike");
-            put("item.metallics_arts.zinc_spike", "Zinc Spike");
-            put("item.metallics_arts.brass_spike", "Brass Spike");
-            put("item.metallics_arts.chromium_spike", "Chromium Spike");
-            put("item.metallics_arts.nicrosil_spike", "Nicrosil Spike");
-            put("item.metallics_arts.aluminum_spike", "Aluminum Spike");
-            put("item.metallics_arts.duralumin_spike", "Duralumin Spike");
-            put("item.metallics_arts.cadmium_spike", "Cadmium Spike");
-            put("item.metallics_arts.bendalloy_spike", "Bendalloy Spike");
-            put("item.metallics_arts.electrum_spike", "Electrum Spike");
-            put("item.metallics_arts.gold_spike", "Gold Spike");
-            put("item.metallics_arts.atium_spike", "Atium Spike");
-            put("item.metallics_arts.malatium_spike", "Malatium Spike");
-            put("item.metallics_arts.lerasium_spike", "Lerasium Spike");
-            put("item.metallics_arts.ettmetal_spike", "Ettmetal Spike");
-
-            put( "item.metallics_arts.obsidian_dagger", "Obsidian Dagger");
-            put("item.metallics_arts.cristal_dagger", "Cristal Dagger");
-            put("item.metallics_arts.koloss_blade", "Koloss Blade");
-            put("item.metallics_arts.dueling_staff", "Dueling Staff");
-            put("item.metallics_arts.obsidian_axe", "Obsidian Axe");
-
-            put( "item.metallics_arts.large_vial", "Large Vial");
-            put("item.metallics_arts.small_vial", "Small Vial");
-
-
-            put(  "curios.identifier.metalmind_slot", "MetalMind Slot");
-
-            put( "block.metallics_arts.atium_cristal_block", "Crystallized Atium");
-            put("block.metallics_arts.budding_atium", "Budding Atium");
-            put("block.metallics_arts.atium_cluster", "Atium Cluster");
-            put("block.metallics_arts.small_atium_bud", "Small Atium Bud");
-            put("block.metallics_arts.medium_atium_bud", "Medium Atium Bud");
-            put("block.metallics_arts.large_atium_bud", "Large Atium Bud");
-
-            put( "block.metallics_arts.lerasium_cristal_block", "Crystallized Lerasium");
-            put("block.metallics_arts.budding_lerasium", "Budding Lerasium");
-            put("block.metallics_arts.lerasium_cluster", "Lerasium Cluster");
-            put("block.metallics_arts.small_lerasium_bud", "Small Lerasium Bud");
-            put("block.metallics_arts.medium_lerasium_bud", "Medium Lerasium Bud");
-            put("block.metallics_arts.large_lerasium_bud", "Large Lerasium Bud");
-
-            put( "block.metallics_arts.ettmetal_cristal_block", "Crystallized Ettmetal");
-            put("block.metallics_arts.budding_ettmetal", "Budding Ettmetal");
-            put("block.metallics_arts.ettmetal_cluster", "Ettmetal Cluster");
-            put("block.metallics_arts.small_ettmetal_bud", "Small Ettmetal Bud");
-            put("block.metallics_arts.medium_ettmetal_bud", "Medium Ettmetal Bud");
-            put("block.metallics_arts.large_ettmetal_bud", "Large Ettmetal Bud");
-
-
-            put(  "itemGroup.metallics_arts", "Metallics Arts");
-            put("itemGroup.metallics_arts.decorations", "Metallics Arts: Decorations");
-
-            put( "block.metallics_arts.alloy_furnace", "Alloy Furnace");
-
-            put( "screen.metallics_arts.alloy_furnace", "Alloy Furnace");
-            put("curios.identifier.ma_metalmind_slot", "MetalMind Slot");
-
-            put("key.category_metallics_arts","Metallics Arts");
-            put("key.metallics_arts.allomantic","Allomantic Metal Selector");
-            put("key.metallics_arts.feruchemic","Feruchemic Metal Selector");
-            put("key.metallics_arts.allomantic_push", "Allomantic Push");
-            put("key.metallics_arts.allomantic_pull", "Allomantic Pull");
-            put("key.metallics_arts.vertical_jump","Vertical Push");
-
-
-            put(  "item.metallics_arts.steel_allomantic_icon", "Allomantic Steel");
-            put("item.metallics_arts.tin_allomantic_icon", "Allomantic Tin");
-            put("item.metallics_arts.pewter_allomantic_icon", "Allomantic Pewter");
-            put("item.metallics_arts.bronze_allomantic_icon", "Allomantic Bronze");
-            put("item.metallics_arts.zinc_allomantic_icon", "Allomantic Zinc");
-            put("item.metallics_arts.brass_allomantic_icon", "Allomantic Brass");
-            put("item.metallics_arts.electrum_allomantic_icon", "Allomantic Electrum");
-            put("item.metallics_arts.cadmium_allomantic_icon", "Allomantic Cadmium");
-            put("item.metallics_arts.bendalloy_allomantic_icon", "Allomantic Bendalloy");
-            put("item.metallics_arts.aluminum_allomantic_icon", "Allomantic Aluminum");
-            put("item.metallics_arts.duralumin_allomantic_icon", "Allomantic Duralumin");
-            put("item.metallics_arts.chromium_allomantic_icon", "Allomantic Chromium");
-            put("item.metallics_arts.nicrosil_allomantic_icon", "Allomantic Nicrosil");
-            put("item.metallics_arts.gold_allomantic_icon", "Allomantic Gold");
-            put("item.metallics_arts.iron_allomantic_icon", "Allomantic Iron");
-            put("item.metallics_arts.copper_allomantic_icon", "Allomantic Copper");
-            put("item.metallics_arts.atium_allomantic_icon", "Allomantic Atium");
-            put("item.metallics_arts.malatium_allomantic_icon", "Allomantic Malatium");
-            put("item.metallics_arts.lerasium_allomantic_icon", "Allomantic Lerasium");
-            put("item.metallics_arts.ettmetal_allomantic_icon", "Allomantic Ettmetal");
-
-
-            put(  "item.metallics_arts.steel_feruchemic_icon", "Feruchemic Steel");
-            put("item.metallics_arts.tin_feruchemic_icon", "Feruchemic Tin");
-            put("item.metallics_arts.pewter_feruchemic_icon", "Feruchemic Pewter");
-            put("item.metallics_arts.bronze_feruchemic_icon", "Feruchemic Bronze");
-            put("item.metallics_arts.zinc_feruchemic_icon", "Feruchemic Zinc");
-            put("item.metallics_arts.brass_feruchemic_icon", "Feruchemic Brass");
-            put("item.metallics_arts.electrum_feruchemic_icon", "Feruchemic Electrum");
-            put("item.metallics_arts.cadmium_feruchemic_icon", "Feruchemic Cadmium");
-            put("item.metallics_arts.bendalloy_feruchemic_icon", "Feruchemic Bendalloy");
-            put("item.metallics_arts.aluminum_feruchemic_icon", "Feruchemic Aluminum");
-            put("item.metallics_arts.duralumin_feruchemic_icon", "Feruchemic Duralumin");
-            put("item.metallics_arts.chromium_feruchemic_icon", "Feruchemic Chromium");
-            put("item.metallics_arts.nicrosil_feruchemic_icon", "Feruchemic Nicrosil");
-
-            put( "item.metallics_arts.gold_feruchemic_icon", "Feruchemic Gold");
-            put("item.metallics_arts.iron_feruchemic_icon", "Feruchemic Iron");
-            put("item.metallics_arts.copper_feruchemic_icon", "Feruchemic Copper");
-
-            put( "item.metallics_arts.atium_feruchemic_icon", "Feruchemic Atium");
-            put("item.metallics_arts.malatium_feruchemic_icon", "Feruchemic Malatium");
-            put("item.metallics_arts.lerasium_feruchemic_icon", "Feruchemic Lerasium");
-            put("item.metallics_arts.ettmetal_feruchemic_icon", "Feruchemic Ettmetal");
-
-            put( "metallics_arts.patchouli.name_book", "Metallics Arts, Guide");
-            put("metallics_arts.patchouli.landing_text", "I am); unput(fortunately); Thput(e Hero of Ages and I have a question for you, does not a man have the right to posses his own metals? No); saput(ys the man from the empire. It belongs to \"god\". No); saput(ys the survivor. It belongs to everyone. No); saput(ys the man from Elendel. It belongs to the poor ones. I rejected those proposals. Instead of that I chose something different. I chose my own path); I put(chose… Metallics Arts Mod.");
-
-            put( "metallics_arts.mental_mind.owner", "Owner");
-
-            put( "metallics_arts.mental_mind.nobody", "Nobody");
-
-            put( "metallics_arts.metal_translate.iron", "Iron");
-            put("metallics_arts.metal_translate.steel", "Steel");
-            put("metallics_arts.metal_translate.tin", "Tin");
-            put("metallics_arts.metal_translate.pewter", "Pewter");
-            put("metallics_arts.metal_translate.zinc", "Zinc");
-            put("metallics_arts.metal_translate.brass", "Brass");
-            put("metallics_arts.metal_translate.copper", "Copper");
-            put("metallics_arts.metal_translate.bronze", "Bronze");
-            put("metallics_arts.metal_translate.aluminum", "Aluminum");
-            put("metallics_arts.metal_translate.duralumin", "Duralumin");
-            put("metallics_arts.metal_translate.chromium", "Chromium");
-            put("metallics_arts.metal_translate.nicrosil", "Nicrosil");
-            put("metallics_arts.metal_translate.gold", "Gold");
-            put("metallics_arts.metal_translate.electrum", "Electrum");
-            put("metallics_arts.metal_translate.bendalloy", "Bendalloy");
-            put("metallics_arts.metal_translate.cadmium", "Cadmium");
-            put("metallics_arts.metal_translate.atium", "Atium");
-            put("metallics_arts.metal_translate.malatium", "Malatium");
-            put("metallics_arts.metal_translate.lerasium", "Lerasium");
-            put("metallics_arts.metal_translate.ettmetal", "Ettmetal");
-
-            put( "metallics_arts.mental_mind_translate.has_reserve", "Has Allomantic Reserves");
-            put("metallics_arts.mental_mind_translate.not_has_reserve", "Hasn´t Allomantic Reserves");
-
-            put( "metallics_arts.mental_mind_translate.uses", "Uses");
-
-            put( "metallics_arts.spike_feruchemic_power", "Power stored, Feruchemic");
-            put("metallics_arts.spike_allomantic_power", "Power stored, Allomantic");
-
-            put( "metallics_arts.mental_mind_translate.store_identity", "Storing Identity");
-            put("metallics_arts.mental_mind_translate.off_power", "Power Off");
-            put("metallics_arts.spike_allomantic_power.tapping_identity", "Tapping Identity");
-
-            put( "metallics_arts.mental_mind_translate.shift_info", "[Shift] More info");
-
-            put( "metallics_arts.mental_mind.owner_someone", "Someone");
-
-
-            put(  "key.category_powers_metallics_arts","Metallics Arts, Powers");
-            put("key.metallics_arts.feruchemic_decant","Feruchemical Decant");
-            put("key.metallics_arts.feruchemic_store","Feruchemical Storage");
-            put("key.metallics_arts.switch_overlay"," Switch Overlay");
-
-            put( "key.metallics_arts.iron_power", "Iron");
-            put("key.metallics_arts.steel_power", "Steel");
-            put("key.metallics_arts.tin_power", "Tin");
-            put("key.metallics_arts.pewter_power", "Pewter");
-            put("key.metallics_arts.copper_power", "Copper");
-            put("key.metallics_arts.bronze_power", "Bronze");
-            put("key.metallics_arts.zinc_power", "Zinc");
-            put("key.metallics_arts.brass_power", "Brass");
-            put("key.metallics_arts.chromium_power", "Chromium");
-            put("key.metallics_arts.nicrosil_power", "Nicrosil");
-            put("key.metallics_arts.aluminum_power", "Aluminum");
-            put("key.metallics_arts.duralumin_power", "Duralumin");
-            put("key.metallics_arts.cadmium_power", "Cadmium");
-            put("key.metallics_arts.bendalloy_power", "Bendalloy");
-            put("key.metallics_arts.electrum_power", "Electrum");
-            put("key.metallics_arts.gold_power", "Gold");
-            put("key.metallics_arts.atium_power", "Atium");
-            put("key.metallics_arts.malatium_power", "Malatium");
-            put("key.metallics_arts.lerasium_power", "Lerasium");
-            put("key.metallics_arts.ettmetal_power", "Ettmetal");
-
-
-    }};
-
-    private Map<String, String> symbols = new HashMap<>() {{
-        for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("f_" + metal.getNameLower() + "_1", "Feruchemical " + metal.getNameLower() + " shading");
-            put("f_" + metal.getNameLower() + "_2", "Feruchemical " + metal.getNameLower() + " solid");
-            put("a_" + metal.getNameLower() + "_1", "Allomantical " + metal.getNameLower() + " shading");
-            put("a_" + metal.getNameLower() + "_2", "Allomantical " + metal.getNameLower() + " solid");
-        }
-    }};
-
-    private Map<String, String> patterns = new HashMap<>(){{
-
-            for (MetalTagEnum metal : MetalTagEnum.values()) {
-
-                    put("item.metallics_arts.f_"+metal.getNameLower()+"_pattern", "Feruchemical " + metal.getNameLower() + " pattern");
-                    put("item.metallics_arts.f_"+metal.getNameLower()+"_pattern.desc", "Feruchemical " + metal.getNameLower() + " pattern");
-                    put("item.metallics_arts.a_"+metal.getNameLower()+"_pattern", "Allomantic " + metal.getNameLower() + " pattern");
-                    put("item.metallics_arts.a_"+metal.getNameLower()+"_pattern.desc", "Allomantic " + metal.getNameLower() + " pattern");
-
-            }
-
-    }};
-
-    private Map<String, String> colors = new HashMap<>() {{
-        put("white", "blanco");
-        put("orange", "naranja");
-        put("magenta", "magenta");
-        put("light_blue", "celeste");
-        put("yellow", "amarillo");
-        put("lime", "verde lima");
-        put("pink", "rosa");
-        put("gray", "gris");
-        put("light_gray", "gris claro");
-        put("cyan", "cian");
-        put("purple", "morado");
-        put("blue", "azul");
-        put("brown", "marron");
-        put("green", "verde");
-        put("red", "rojo");
-        put("black", "negro");
-    }};
+        private Map<String, String> base = new HashMap<>() {{
+                put("item.metallics_arts.large_vial",CTW.LARGE.getNameInEnglish() + " " + CTW.VIAL.getNameInEnglish());
+                put("item.metallics_arts.small_vial",CTW.SMALL.getNameInEnglish() + " " + CTW.VIAL.getNameInEnglish());
+                put("curios.identifier.metalmind_slot",CTW.METALMIND + " " + CTW.SLOT.getNameInEnglish());
+
+                put("itemGroup.metallics_arts", CTW.METALLICS_ARTS.getNameInEnglish());
+                put("itemGroup.metallics_arts.decorations", CTW.DECORATIONS.getNameInEnglish() + " " + CTW.METALLICS_ARTS.getNameInEnglish());
+
+                put("key.category_powers_metallics_arts", CTW.POWERS.getNameInEnglish() + " " + CTW.METALLICS_ARTS.getNameInEnglish());
+                put("key.categorymetallics_arts", CTW.METALLICS_ARTS.getNameInEnglish());
+                put("key.metallics_arts.allomantic", CTW.ALLOMANTIC.getNameInEnglish() + " " + CTW.POWER_SELECTOR.getNameInEnglish() );
+                put("key.metallics_arts.feruchemic", CTW.FERUCHEMICAL.getNameInEnglish() + " " + CTW.POWER_SELECTOR.getNameInEnglish());
+                put("key.metallics_arts.allomantic_push",CTW.ALLOMANTIC.getNameInEnglish() + " " + CTW.PUSH.getNameInEnglish());
+                put("key.metallics_arts.allomantic_pull", CTW.ALLOMANTIC.getNameInEnglish() + " " +CTW.PULL.getNameInEnglish());
+                put("key.metallics_arts.vertical_jump", CTW.VERTICAL.getNameInEnglish() + " " +CTW.PUSH.getNameInEnglish());
+                put("key.metallics_arts.feruchemic_decant", CTW.FERUCHEMICAL.getNameInEnglish() + " " + CTW.TAPPING.getNameInEnglish());
+                put("key.metallics_arts.feruchemic_store",CTW.FERUCHEMICAL.getNameInEnglish() + " " +CTW.STORAGE.getNameInEnglish());
+                put("key.metallics_arts.switch_overlay", CTW.SWITCH_OVERLAY.getNameInEnglish());
+
+                put("metallics_arts.patchouli.name_book", CTW.METALLICS_ARTS.getNameInEnglish() + ": " + CTW.GUIDE.getNameInEnglish());
+
+                put("metallics_arts.mental_mind_translate.has_reserve", CTW.HAS_RESERVE.getNameInEnglish());
+                put("metallics_arts.mental_mind_translate.not_has_reserve", CTW.NOT_HAS_RESERVE.getNameInEnglish());
+                put("metallics_arts.spike_feruchemic_power", CTW.STORAGE_POWER.getNameInEnglish() + ": " + CTW.FERUCHEMICAL.getNameInEnglish());
+                put("metallics_arts.spike_allomantic_power", CTW.STORAGE_POWER.getNameInEnglish() + ": " + CTW.ALLOMANTIC.getNameInEnglish());
+
+                //ver porque usa "spike"
+                put("metallics_arts.spike_allomantic_power.tapping_identity", CTW.TAPPING.getNameInEnglish());
+
+                //arreglar estos de aca abajo
+                put("metallics_arts.mental_mind_translate.store_identity", CTW.STORE_IDENTITY.getNameInEnglish());
+                put("metallics_arts.mental_mind_translate.off_power", CTW.POWER_OFF.getNameInEnglish());
+                put("metallics_arts.mental_mind.owner", CTW.OWNER.getNameInEnglish());
+                put("metallics_arts.mental_mind.nobody", CTW.NOBODY.getNameInEnglish());
+                put("metallics_arts.mental_mind.owner_someone", CTW.OWNER_SOMEONE.getNameInEnglish());
+                put("metallics_arts.mental_mind_translate.uses", CTW.USES.getNameInEnglish());
+
+
+                put("metallics_arts.patchouli.landing_text", "Soy, por desgracia, el Héroe de las Eras, y tengo una pregunta que hacerte, ¿acaso un hombre no tiene derecho a poseer sus propios metales? No, dice el hombre del Imperio. Pertenece al \"dios\". No, dice el superviviente. Pertenece a todos. No, dice el hombre de Elendel. Pertenece a los pobres. Yo rechacé esas propuestas. En vez de eso elegí algo distinto. Elegi mi propio camino, elegí... Artes Metalicas Mod.");
+                put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInEnglish());
+                put("item.metallics_arts.cristal_dagger", CTW.CRISTAL_DAGGER.getNameInEnglish());
+                put("item.metallics_arts.koloss_blade", CTW.KOLOSS_BLADE.getNameInEnglish());
+                put("item.metallics_arts.dueling_staff", CTW.DUELING_STAFF.getNameInEnglish());
+                put("item.metallics_arts.obsidian_axe", CTW.OBSIDIAN_AXE.getNameInEnglish());
+
+
+        }};
+
+
+        private Map<String, String> ingots = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (!metal.isVanilla()) {
+                                put("item.metallics_arts." + metal.getId() + "_ingot", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.INGOT.getNameInEnglish());
+                        }
+
+                }
+        }};
+        private Map<String, String> rawItems = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (!metal.isVanilla()) {
+                                put("item.metallics_arts.raw_" + metal.getId(), CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
+                        }
+                }
+        }};
+        private Map<String, String> gems = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (metal.isDivine()) {
+                                put("item.metallics_arts." + metal.getId(), MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.GEM.getNameInEnglish());
+                        }
+                }
+        }};
+        private Map<String, String> nuggets = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (!metal.isVanilla()) {
+                                put("item.metallics_arts."+ metal.getId()+"_nugget",MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.NUGGET.getNameInEnglish() );
+                        }
+                        if (metal.isDivine()) {
+                                put("item.metallics_arts." + metal.getId() + "_nugget", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.NUGGET.getNameInEnglish());
+                        }
+                }
+                put("item.metallics_arts.copper_nugget", MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.NUGGET.getNameInEnglish());
+        }};
+        private Map<String, String> blocks = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (!metal.isVanilla()) {
+                                put("block.metallics_arts." + metal.getId() + "_block", CTW.BLOCK.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
+                        }
+                        if (metal.isDivine()) {
+                                put("block.metallics_arts." + metal.getId() + "_block", CTW.BLOCK.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
+                        }
+                }
+        }};
+        private Map<String, String> rawBlocks = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (!metal.isVanilla()) {
+                                put("block.metallics_arts.raw_"+metal.getId()+"_block", CTW.BLOCK.getNameInEnglish()+ " " +
+                                                CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() );
+                        }
+                }
+        }};
+        private Map<String, String> ores = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (!metal.isVanilla() && !metal.isAlloy() && metal.isAppearsInStone()) {
+                                put("block.metallics_arts." + metal.getId()+"_ore", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.ORE.getNameInEnglish());
+
+                        }
+                }
+
+        }};
+        private Map<String, String> deepslateOres = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (!metal.isVanilla() && !metal.isAlloy() && metal.isAppearsInDeepslate()) {
+                                put("block.metallics_arts.deepslate_" + metal.getId()+"_ore", CTW.ORE.getNameInEnglish() + " " +
+                                        MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.DEEPSLATE.getNameInEnglish());
+                        }
+                }
+        }};
+        private Map<String, String> geodeBlocks = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (metal.isDivine() && !metal.isAlloy()) {
+                                put("block.metallics_arts." + metal.getId() + "_cristal_block", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.CRISTAL.getNameInEnglish());
+                                put("block.metallics_arts.budding_" + metal.getId(), CTW.BUDDING.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
+                                put("block.metallics_arts." + metal.getId() + "_cluster", CTW.CLUSTER.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
+                                put("block.metallics_arts.small_" + metal.getId() + "_bud", CTW.BUD.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " +
+                                        CTW.SMALL.getNameInEnglish());
+                                put("block.metallics_arts.medium_" + metal.getId() + "_bud", CTW.BUD.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " +
+                                        CTW.MEDIUM.getNameInEnglish());
+                                put("block.metallics_arts.large_" + metal.getId() + "_bud", CTW.BUD.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " +
+                                        CTW.LARGE.getNameInEnglish());
+                        }
+                }
+        }};
+        private Map<String, String> spikes = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (!metal.isOnlyForAlloys()) {
+                                put("item.metallics_arts."+ metal.getId() +"_spike", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.SPIKE.getNameInEnglish());
+                        }
+                }
+        }};
+        private Map<String, String> metalMinds = new HashMap<>() {{
+                for (MetalMinds metalMind : MetalMinds.values()) {
+                        put("item.metallics_arts.band_" + metalMind.getId(), metalMind.getNameInEnglish() + " " + CTW.BAND.getNameInEnglish());
+                        put("item.metallics_arts.ring_" + metalMind.getId(), metalMind.getNameInEnglish() + " " + CTW.RING.getNameInEnglish());
+                }
+        }};
+        private Map<String, String> icons = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (!metal.isOnlyForAlloys()) {
+                                put("item.metallics_arts."+ metal.getId()+"_allomantic_icon" , CTW.ALLOMANTIC.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
+                                put("item.metallics_arts."+ metal.getId()+"_feruchemic_icon" , CTW.FERUCHEMICAL.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
+                        }
+                }
+        }};
+        private Map<String, String> metals = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (!metal.isOnlyForAlloys()) {
+                                put("metallics_arts.metal_translate."+ metal.getId() , MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
+                        }
+                }
+        }};
+        private Map<String, String> powers = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (!metal.isOnlyForAlloys()) {
+                                put("key.metallics_arts."+ metal.getId() +"_power", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
+                        }
+                }
+        }};
+        private Map<String, String> symbols = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (!metal.isOnlyForAlloys()) {
+                                put("f_"+metal.getId()+"_1", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FERUCHEMICAL_SHADING.getNameInEnglish());
+                                put("f_"+metal.getId()+"_2", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FERUCHEMICAL_SOLID.getNameInEnglish());
+                                put("a_"+metal.getId()+"_1", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.ALLOMANTIC_SHADING.getNameInEnglish());
+                                put("a_"+metal.getId()+"_2", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.ALLOMANTIC_SOLID.getNameInEnglish());
+                        }
+                }
+        }};
+        private Map<String, String> patterns = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (!metal.isOnlyForAlloys()) {
+                                put("item.metallics_arts.f_"+metal.getId()+"_pattern", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FERUCHEMICAL_PATTERN.getNameInEnglish());
+                                put("item.metallics_arts.f_"+metal.getId()+"_pattern.desc", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FERUCHEMICAL_PATTERN.getNameInEnglish());
+                                put("item.metallics_arts.a_"+metal.getId()+"_pattern", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.ALLOMANTIC_PATTERN.getNameInEnglish());
+                                put("item.metallics_arts.a_"+metal.getId()+"_pattern.desc", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.ALLOMANTIC_PATTERN.getNameInEnglish());
+                        }
+                }
+
+        }};
+        private Map<String, String> colors = new HashMap<>() {{
+                for (ColorsNames color : ColorsNames.values()) {
+                        put(color.getId(),color.getNameInEnglish());
+                }
+        }};
 
     public ModLanguageProviderEN(DataGenerator gen, String modid, String locale) {
         super(gen, modid, locale);
-
     }
 
     @Override
     protected void addTranslations() {
-
-        for(String key: base.keySet()) {
-            add(key, base.get(key));
-        }
-
-        for(String key: patterns.keySet()){
-                add(key, patterns.get(key));
-        }
-
-        for (String keySymbol : symbols.keySet()) {
-            for (String keyColor : colors.keySet()) {
-                add("block.minecraft.banner.metallics_arts." + keySymbol + "." + keyColor, symbols.get(keySymbol) + " " + keyColor);
+            for (String key: ingots.keySet()){
+                    add(key, ingots.get(key));
             }
-        }
+            for (String key: gems.keySet()){
+                    add(key, gems.get(key));
+            }
+            for (String key: rawBlocks.keySet()){
+                    add(key, rawBlocks.get(key));
+            }
+            for (String key: metalMinds.keySet()){
+                    add(key, metalMinds.get(key));
+            }
+
+            for (String key: rawItems.keySet()){
+                    add(key, rawItems.get(key));
+            }
+
+            for (String key: geodeBlocks.keySet()){
+                    add(key, geodeBlocks.get(key));
+            }
+
+            for (String key: ores.keySet()){
+                    add(key, ores.get(key));
+            }
+            for (String key: deepslateOres.keySet()){
+                    add(key, deepslateOres.get(key));
+            }
+
+            for (String key: nuggets.keySet()){
+                    add(key, nuggets.get(key));
+            }
+
+            for (String key: blocks.keySet()){
+                    add(key, blocks.get(key));
+            }
+
+            for (String key: spikes.keySet()){
+                    add(key, spikes.get(key));
+            }
+
+            for (String key: icons.keySet()){
+                    add(key, icons.get(key));
+            }
+
+            for (String key: metals.keySet()){
+                    add(key, metals.get(key));
+            }
+
+            for (String key: powers.keySet()){
+                    add(key, powers.get(key));
+            }
+
+            for(String key: base.keySet()) {
+                    add(key, base.get(key));
+            }
+
+            for(String key: patterns.keySet()){
+                    add(key, patterns.get(key));
+            }
+
+            for (String keySymbol : symbols.keySet()) {
+                    for (String keyColor : colors.keySet()) {
+                            add("block.minecraft.banner.metallics_arts." + keySymbol + "." + keyColor, symbols.get(keySymbol) + " " + colors.get(keyColor));
+                    }
+            }
+
+            this.addDemoBook();
     }
+        private void addDemoBook(){
+                //We again set up a lang helper to keep track of the translation keys for us.
+                //Forge language provider does not give us access to this.modid, so we get it from our main mod class
+                BookLangHelper helper = ModonomiconAPI.get().getLangHelper(MetallicsArts.MOD_ID);
+                helper.book("metallics_arts_book"); //we tell the helper the book we're in.
+                this.add(helper.bookName(), CTW.METALLICS_ARTS.getNameInEnglish() + ": " + CTW.GUIDE.getNameInEnglish()); //and now we add the actual textual book name
+                this.add(helper.bookTooltip(), "Libro de poderes"); //and the tooltip text
+
+                this.addAllomancyCategory(helper);
+                this.feruchemyCategory(helper);
+                this.addIntroCategory(helper);
+
+        }
+
+        public void addIntroCategory(BookLangHelper helper){
+                helper.category("intro");
+                this.add(helper.categoryName(), "Intro");
+                for (SubdivisionData entry: SubdivisionData.values()) {
+                        if (!entry.isAllomantic() && !entry.isFeruchemical()){
+                                addIntroEntry(helper,entry);
+                        }
+                }
+                for (WeaponsData entry : WeaponsData.values()) {
+                        addWeaponsEntry(helper, entry);
+                }
+                for (MultiCraftData entry: MultiCraftData.values()) {
+                        addMultiCraftEntry(helper,entry);
+                }
+        }
+
+        private void addIntroEntry(BookLangHelper helper, SubdivisionData subdivisionEntry) {
+                helper.entry(subdivisionEntry.getId() + "_entry");
+                this.add(helper.entryName(), CTW.valueOf(subdivisionEntry.name()).getNameInEnglish());
+                this.add(helper.entryDescription(), "");
+
+                helper.page("page"); //now we configure the intro page
+                this.add(helper.pageTitle(), CTW.valueOf(subdivisionEntry.name()).getNameInEnglish());  //page title
+                this.add(helper.pageText(), SubdivisionDescription.valueOf(subdivisionEntry.name()).getEnglish());
+
+        }
+        private void addWeaponsEntry(BookLangHelper helper, WeaponsData weaponsEntry) {
+                helper.entry(weaponsEntry.getId() + "_entry");
+                this.add(helper.entryName(), CTW.valueOf(weaponsEntry.name()).getNameInEnglish());
+                this.add(helper.entryDescription(), "");
+
+                helper.page("weapon_description"); //now we configure the intro page
+                this.add(helper.pageTitle(), CTW.valueOf(weaponsEntry.name()).getNameInEnglish());  //page title
+                this.add(helper.pageText(), WeaponDescriptions.valueOf(weaponsEntry.name()).getEnglish());
+
+        }
+        private void addMultiCraftEntry(BookLangHelper helper, MultiCraftData multiCraftData) {
+                helper.entry(multiCraftData.getId() + "_entry");
+                this.add(helper.entryName(),CTW.valueOf(multiCraftData.name()).getNameInEnglish());
+                this.add(helper.entryDescription(), "");
+
+                helper.page("items_description"); //now we configure the intro page
+                this.add(helper.pageTitle(), CTW.valueOf(multiCraftData.name()).getNameInEnglish());  //page title
+                this.add(helper.pageText(), MultiCaftDescriptions.valueOf(multiCraftData.name()).getEnglish());
+        }
+
+        private void addAllomancyCategory(BookLangHelper helper) {
+                helper.category("allomancy");                                       //tell the helper the category we are in
+                this.add(helper.categoryName(), CTW.ALLOMANCY.getNameInEnglish()); //and provide the category name text
+
+                for (SubdivisionData oM: SubdivisionData.values()) {
+                        if (oM.isAllomantic()){
+                                addIntroEntry(helper,oM);
+                        }
+                }
+                for (MetalTagEnum metal: MetalTagEnum.values()) {
+                        this.addAllomancyEntry(helper, metal);
+                }
+
+        }
+        private void feruchemyCategory(BookLangHelper helper) {
+                helper.category("feruchemy");                //tell the helper the category we are in
+                this.add(helper.categoryName(), CTW.FERUCHEMY.getNameInEnglish()); //and provide the category name text
+
+                for (SubdivisionData oM: SubdivisionData.values()) {
+                        if (oM.isFeruchemical()){
+                                addIntroEntry(helper,oM);
+                        }
+                }
+                for (MetalTagEnum metal: MetalTagEnum.values()) {
+                        this.addFeruchemyEntry(helper, metal);
+                }
+        }
+
+        private void addAllomancyEntry(BookLangHelper helper, MetalTagEnum metal) {
+                helper.entry(metal.getNameLower() + "_entry"); //tell the helper the entry we are in
+
+                this.add(helper.entryName(), MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());  //provide the entry name
+                this.add(helper.entryDescription(), "");                 //and description
+
+                helper.page("power_description"); //now we configure the intro page
+                this.add(helper.pageTitle(), MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());  //page title
+                this.add(helper.pageText(), PowerDescriptions.valueOf(metal.name()).getEnglish());    //page text
+
+                helper.page("power_interactions");
+                this.add(helper.pageTitle(), "Interactions");                                           //page title
+                this.add(helper.pageText(), Interactions.valueOf(metal.name()).getEnglish());   //page text
+        }
+
+        private void addFeruchemyEntry(BookLangHelper helper, MetalTagEnum metal) {
+                helper.entry(metal.getNameLower() + "_entry");                                          //tell the helper the entry we are in
+                this.add(helper.entryName(), MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());  //provide the entry name
+                this.add(helper.entryDescription(), "");                 //and description
+
+                helper.page("power_storage"); //now we configure the intro page
+                this.add(helper.pageTitle(), MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());  //page title
+                this.add(helper.pageText(), Storage.valueOf(metal.name()).getEnglish());    //page text
+
+                helper.page("power_tap");
+                this.add(helper.pageTitle(), "");                           //page title
+                this.add(helper.pageText(), Tap.valueOf(metal.name()).getEnglish());   //page text
+        }
 }

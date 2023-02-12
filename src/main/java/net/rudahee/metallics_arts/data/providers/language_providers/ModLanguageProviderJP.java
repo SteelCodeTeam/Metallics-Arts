@@ -10,22 +10,22 @@ import java.util.Map;
 public class ModLanguageProviderJP extends LanguageProvider {
 
     private Map<String, String> base = new HashMap<>() {{
-        put("item.metallics_arts.large_vial", CTW.VIAL.getNameInJapanese() + " " + CTW.LARGE.getNameInJapanese());
-        put("item.metallics_arts.small_vial", CTW.VIAL.getNameInJapanese() + " " + CTW.SMALL.getNameInJapanese());
-        put("curios.identifier.metalmind_slot", CTW.SLOT.getNameInJapanese() + " " + CTW.METALMIND);
+        put("item.metallics_arts.large_vial",CTW.LARGE.getNameInJapanese() + " " + CTW.VIAL.getNameInJapanese());
+        put("item.metallics_arts.small_vial",CTW.SMALL.getNameInJapanese() + " " + CTW.VIAL.getNameInJapanese());
+        put("curios.identifier.metalmind_slot",CTW.METALMIND + " " + CTW.SLOT.getNameInJapanese());
 
         put("itemGroup.metallics_arts", CTW.METALLICS_ARTS.getNameInJapanese());
-        put("itemGroup.metallics_arts.decorations", CTW.METALLICS_ARTS.getNameInJapanese() + " " + CTW.DECORATIONS.getNameInJapanese());
+        put("itemGroup.metallics_arts.decorations", CTW.DECORATIONS.getNameInJapanese() + " " + CTW.METALLICS_ARTS.getNameInJapanese());
 
-        put("key.category_powers_metallics_arts", CTW.METALLICS_ARTS.getNameInJapanese() + ": " + CTW.POWERS.getNameInJapanese());
+        put("key.category_powers_metallics_arts", CTW.POWERS.getNameInJapanese() + " " + CTW.METALLICS_ARTS.getNameInJapanese());
         put("key.categorymetallics_arts", CTW.METALLICS_ARTS.getNameInJapanese());
-        put("key.metallics_arts.allomantic", CTW.POWER_SELECTOR.getNameInJapanese() + " " + CTW.ALLOMANTIC.getNameInJapanese());
-        put("key.metallics_arts.feruchemic", CTW.POWER_SELECTOR.getNameInJapanese() + " " + CTW.FERUCHEMICAL.getNameInJapanese());
-        put("key.metallics_arts.allomantic_push", CTW.PUSH.getNameInJapanese()+ " " + CTW.ALLOMANTIC.getNameInJapanese());
-        put("key.metallics_arts.allomantic_pull", CTW.PULL.getNameInJapanese()+ " " + CTW.ALLOMANTIC.getNameInJapanese());
-        put("key.metallics_arts.vertical_jump", CTW.PUSH.getNameInJapanese()+ " " + CTW.VERTICAL.getNameInJapanese());
-        put("key.metallics_arts.feruchemic_decant", CTW.TAPPING.getNameInJapanese()+ " " + CTW.FERUCHEMICAL.getNameInJapanese());
-        put("key.metallics_arts.feruchemic_store", CTW.STORAGE.getNameInJapanese()+ " " + CTW.FERUCHEMICAL.getNameInJapanese());
+        put("key.metallics_arts.allomantic", CTW.ALLOMANTIC.getNameInJapanese() + " " + CTW.POWER_SELECTOR.getNameInJapanese() );
+        put("key.metallics_arts.feruchemic", CTW.FERUCHEMICAL.getNameInJapanese() + " " + CTW.POWER_SELECTOR.getNameInJapanese());
+        put("key.metallics_arts.allomantic_push",CTW.ALLOMANTIC.getNameInJapanese() + " " + CTW.PUSH.getNameInJapanese());
+        put("key.metallics_arts.allomantic_pull", CTW.ALLOMANTIC.getNameInJapanese() + " " +CTW.PULL.getNameInJapanese());
+        put("key.metallics_arts.vertical_jump", CTW.VERTICAL.getNameInJapanese() + " " +CTW.PUSH.getNameInJapanese());
+        put("key.metallics_arts.feruchemic_decant", CTW.FERUCHEMICAL.getNameInJapanese() + " " + CTW.TAPPING.getNameInJapanese());
+        put("key.metallics_arts.feruchemic_store",CTW.FERUCHEMICAL.getNameInJapanese() + " " +CTW.STORAGE.getNameInJapanese());
         put("key.metallics_arts.switch_overlay", CTW.SWITCH_OVERLAY.getNameInJapanese());
 
         put("metallics_arts.patchouli.name_book", CTW.METALLICS_ARTS.getNameInJapanese() + ": " + CTW.GUIDE.getNameInJapanese());
@@ -54,14 +54,14 @@ public class ModLanguageProviderJP extends LanguageProvider {
         put("item.metallics_arts.dueling_staff", CTW.DUELING_STAFF.getNameInJapanese());
         put("item.metallics_arts.obsidian_axe", CTW.OBSIDIAN_AXE.getNameInJapanese());
 
+
     }};
 
 
     private Map<String, String> ingots = new HashMap<>() {{
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
-
             if (!metal.isVanilla()) {
-                put("item.metallics_arts." + metal.getId() + "_ingot", CTW.INGOT.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
+                put("item.metallics_arts." + metal.getId() + "_ingot", MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.INGOT.getNameInJapanese());
             }
 
         }
@@ -69,36 +69,35 @@ public class ModLanguageProviderJP extends LanguageProvider {
     private Map<String, String> rawItems = new HashMap<>() {{
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (!metal.isVanilla()) {
-                put("item.metallics_arts.raw_" + metal.getId(), MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.RAW.getNameInJapanese());
+                put("item.metallics_arts.raw_" + metal.getId(), CTW.RAW.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInJapanese());
             }
         }
     }};
     private Map<String, String> gems = new HashMap<>() {{
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (metal.isDivine()) {
-                put("item.metallics_arts." + metal.getId(), CTW.GEM.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
+                put("item.metallics_arts." + metal.getId(), MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.GEM.getNameInJapanese());
             }
         }
     }};
     private Map<String, String> nuggets = new HashMap<>() {{
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (!metal.isVanilla()) {
-                put("item.metallics_arts."+ metal.getId()+"_nugget", CTW.NUGGET.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
+                put("item.metallics_arts."+ metal.getId()+"_nugget",MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.NUGGET.getNameInJapanese() );
             }
             if (metal.isDivine()) {
-                put("item.metallics_arts." + metal.getId() + "_nugget", CTW.NUGGET.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
+                put("item.metallics_arts." + metal.getId() + "_nugget", MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.NUGGET.getNameInJapanese());
             }
         }
-        put("item.metallics_arts.copper_nugget", CTW.NUGGET.getNameInJapanese() + " " + MetalNamesEnum.COPPER.getNameInLowerSpanish());
+        put("item.metallics_arts.copper_nugget", MetalNamesEnum.COPPER.getNameInJapanese() + " " + CTW.NUGGET.getNameInJapanese());
     }};
     private Map<String, String> blocks = new HashMap<>() {{
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (!metal.isVanilla()) {
-                put("block.metallics_arts." + metal.getId() + "_block",
-                        CTW.BLOCK.getNameInJapanese()+ " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
+                put("block.metallics_arts." + metal.getId() + "_block", CTW.BLOCK.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInJapanese());
             }
             if (metal.isDivine()) {
-                put("block.metallics_arts." + metal.getId() + "_block", CTW.BLOCK.getNameInJapanese()+ " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
+                put("block.metallics_arts." + metal.getId() + "_block", CTW.BLOCK.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInJapanese());
             }
         }
     }};
@@ -106,14 +105,14 @@ public class ModLanguageProviderJP extends LanguageProvider {
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (!metal.isVanilla()) {
                 put("block.metallics_arts.raw_"+metal.getId()+"_block", CTW.BLOCK.getNameInJapanese()+ " " +
-                        MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish() + " " + CTW.RAW.getNameInJapanese());
+                        CTW.RAW.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() );
             }
         }
     }};
     private Map<String, String> ores = new HashMap<>() {{
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (!metal.isVanilla() && !metal.isAlloy() && metal.isAppearsInStone()) {
-                    put("block.metallics_arts." + metal.getId()+"_ore", CTW.ORE.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
+                put("block.metallics_arts." + metal.getId()+"_ore", MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.ORE.getNameInJapanese());
 
             }
         }
@@ -122,8 +121,8 @@ public class ModLanguageProviderJP extends LanguageProvider {
     private Map<String, String> deepslateOres = new HashMap<>() {{
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (!metal.isVanilla() && !metal.isAlloy() && metal.isAppearsInDeepslate()) {
-                    put("block.metallics_arts.deepslate_" + metal.getId()+"_ore", CTW.ORE.getNameInJapanese() + " " +
-                            MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish() + " " + CTW.DEEPSLATE.getNameInJapanese());
+                put("block.metallics_arts.deepslate_" + metal.getId()+"_ore", CTW.ORE.getNameInJapanese() + " " +
+                        MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.DEEPSLATE.getNameInJapanese());
             }
         }
     }};
@@ -131,13 +130,13 @@ public class ModLanguageProviderJP extends LanguageProvider {
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (metal.isDivine() && !metal.isAlloy()) {
                 put("block.metallics_arts." + metal.getId() + "_cristal_block", MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.CRISTAL.getNameInJapanese());
-                put("block.metallics_arts.budding_" + metal.getId(), CTW.BUDDING.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
-                put("block.metallics_arts." + metal.getId() + "_cluster", CTW.CLUSTER.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
-                put("block.metallics_arts.small_" + metal.getId() + "_bud", CTW.BUD.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish() + " " +
+                put("block.metallics_arts.budding_" + metal.getId(), CTW.BUDDING.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInJapanese());
+                put("block.metallics_arts." + metal.getId() + "_cluster", CTW.CLUSTER.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInJapanese());
+                put("block.metallics_arts.small_" + metal.getId() + "_bud", CTW.BUD.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " +
                         CTW.SMALL.getNameInJapanese());
-                put("block.metallics_arts.medium_" + metal.getId() + "_bud", CTW.BUD.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish() + " " +
+                put("block.metallics_arts.medium_" + metal.getId() + "_bud", CTW.BUD.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " +
                         CTW.MEDIUM.getNameInJapanese());
-                put("block.metallics_arts.large_" + metal.getId() + "_bud", CTW.BUD.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish() + " " +
+                put("block.metallics_arts.large_" + metal.getId() + "_bud", CTW.BUD.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " +
                         CTW.LARGE.getNameInJapanese());
             }
         }
@@ -145,21 +144,21 @@ public class ModLanguageProviderJP extends LanguageProvider {
     private Map<String, String> spikes = new HashMap<>() {{
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (!metal.isOnlyForAlloys()) {
-                put("item.metallics_arts."+ metal.getId() +"_spike", CTW.SPIKE.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
+                put("item.metallics_arts."+ metal.getId() +"_spike", MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.SPIKE.getNameInJapanese());
             }
         }
     }};
     private Map<String, String> metalMinds = new HashMap<>() {{
         for (MetalMinds metalMind : MetalMinds.values()) {
-            put("item.metallics_arts.band_" + metalMind.getId(), CTW.BAND.getNameInJapanese() + " " + metalMind.getNameInEnglish());
-            put("item.metallics_arts.ring_" + metalMind.getId(), CTW.RING.getNameInJapanese() + " " + metalMind.getNameInEnglish());
+            put("item.metallics_arts.band_" + metalMind.getId(), metalMind.getNameInEnglish() + " " + CTW.BAND.getNameInJapanese());
+            put("item.metallics_arts.ring_" + metalMind.getId(), metalMind.getNameInEnglish() + " " + CTW.RING.getNameInJapanese());
         }
     }};
     private Map<String, String> icons = new HashMap<>() {{
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (!metal.isOnlyForAlloys()) {
-                put("item.metallics_arts."+ metal.getId()+"_allomantic_icon" , MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.ALLOMANTIC.getNameInJapanese());
-                put("item.metallics_arts."+ metal.getId()+"_feruchemic_icon" , MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.FERUCHEMICAL.getNameInJapanese());
+                put("item.metallics_arts."+ metal.getId()+"_allomantic_icon" , CTW.ALLOMANTIC.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInJapanese());
+                put("item.metallics_arts."+ metal.getId()+"_feruchemic_icon" , CTW.FERUCHEMICAL.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInJapanese());
             }
         }
     }};
@@ -190,17 +189,17 @@ public class ModLanguageProviderJP extends LanguageProvider {
     private Map<String, String> patterns = new HashMap<>() {{
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (!metal.isOnlyForAlloys()) {
-                put("item.metallics_arts.f_"+metal.getId()+"_pattern", CTW.FERUCHEMICAL_PATTERN.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
-                put("item.metallics_arts.f_"+metal.getId()+"_pattern.desc", CTW.FERUCHEMICAL_PATTERN.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
-                put("item.metallics_arts.a_"+metal.getId()+"_pattern", CTW.ALLOMANTIC_PATTERN.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
-                put("item.metallics_arts.a_"+metal.getId()+"_pattern.desc", CTW.ALLOMANTIC_PATTERN.getNameInJapanese() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
+                put("item.metallics_arts.f_"+metal.getId()+"_pattern", MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.FERUCHEMICAL_PATTERN.getNameInJapanese());
+                put("item.metallics_arts.f_"+metal.getId()+"_pattern.desc", MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.FERUCHEMICAL_PATTERN.getNameInJapanese());
+                put("item.metallics_arts.a_"+metal.getId()+"_pattern", MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.ALLOMANTIC_PATTERN.getNameInJapanese());
+                put("item.metallics_arts.a_"+metal.getId()+"_pattern.desc", MetalNamesEnum.valueOf(metal.name()).getNameInJapanese() + " " + CTW.ALLOMANTIC_PATTERN.getNameInJapanese());
             }
         }
 
     }};
     private Map<String, String> colors = new HashMap<>() {{
         for (ColorsNames color : ColorsNames.values()) {
-            put(color.getId(),color.getNameInSpanish());
+            put(color.getId(),color.getNameInEnglish());
         }
     }};
 
@@ -214,15 +213,12 @@ public class ModLanguageProviderJP extends LanguageProvider {
         for (String key: ingots.keySet()){
             add(key, ingots.get(key));
         }
-
         for (String key: gems.keySet()){
             add(key, gems.get(key));
         }
-
         for (String key: rawBlocks.keySet()){
             add(key, rawBlocks.get(key));
         }
-
         for (String key: metalMinds.keySet()){
             add(key, metalMinds.get(key));
         }

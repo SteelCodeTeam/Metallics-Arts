@@ -143,7 +143,7 @@ public class EnUsProvider extends LanguageProvider {
         this.add(helper.pageText(), Storage.valueOf(metal.name()).getEnglish());    //page text
 
         helper.page("power_tap");
-        this.add(helper.pageTitle(), CTW.TAPPING.getNameInEnglish());                           //page title
+        this.add(helper.pageTitle(), "");                           //page title
         this.add(helper.pageText(), Tap.valueOf(metal.name()).getEnglish());   //page text
     }
 
