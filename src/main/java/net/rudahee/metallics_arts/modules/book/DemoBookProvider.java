@@ -117,7 +117,9 @@ public class DemoBookProvider extends BookProvider {
         // PAGINA
         helper.page("items_description"); //and now the page
         BookTextPageModel page =
-                BookTextPageModel.builder()                     //we start with a text page
+                BookTextPageModel.builder()
+                        .withText(helper.pageText()) //lang key for the text
+                        .withTitle(helper.pageTitle()) //and for the title
                         .build();
         // PAGINA
 
@@ -146,7 +148,9 @@ public class DemoBookProvider extends BookProvider {
         // PAGINA
         helper.page("weapon_description"); //and now the page
         BookTextPageModel page =
-                BookTextPageModel.builder()                     //we start with a text page
+                BookTextPageModel.builder()
+                        .withText(helper.pageText()) //lang key for the text
+                        .withTitle(helper.pageTitle()) //and for the title
                         .build();
         // PAGINA
         helper.page("weapon_craft"); //and now the page
@@ -174,7 +178,9 @@ public class DemoBookProvider extends BookProvider {
         // PAGINA
         helper.page("page"); //and now the page
         BookTextPageModel page =
-                BookTextPageModel.builder()                     //we start with a text page
+                BookTextPageModel.builder()
+                        .withText(helper.pageText()) //lang key for the text
+                        .withTitle(helper.pageTitle()) //and for the title
                         .build();
 
         return BookEntryModel.builder()
@@ -323,13 +329,18 @@ public class DemoBookProvider extends BookProvider {
         // PAGINA
         helper.page("power_description"); //and now the page
         BookTextPageModel page =
-                BookTextPageModel.builder()                     //we start with a text page
+                BookTextPageModel.builder()
+                        .withText(helper.pageText()) //lang key for the text
+                        .withTitle(helper.pageTitle()) //and for the title
                         .build();
         // PAGINA
         helper.page("power_interactions"); //and now the page
         BookTextPageModel page2 =
-                BookTextPageModel.builder()                     //we start with a text page
-                        .build();
+                BookTextPageModel.builder()
+                        .withText(helper.pageText()) //lang key for the text
+                        .withTitle(helper.pageTitle()) //and for the title
+                        .build();              //we start with a text page
+
 
 
         return BookEntryModel.builder()
@@ -349,12 +360,16 @@ public class DemoBookProvider extends BookProvider {
         // PAGINA
         helper.page("power_storage");                           //and now the page
         BookTextPageModel page =
-                BookTextPageModel.builder()                     //we start with a text page
+                BookTextPageModel.builder()
+                        .withText(helper.pageText()) //lang key for the text
+                        .withTitle(helper.pageTitle()) //and for the title
                         .build();
         // PAGINA
         helper.page("power_tap"); //and now the page
         BookTextPageModel page2 =
-                BookTextPageModel.builder()                     //we start with a text page
+                BookTextPageModel.builder()
+                        .withText(helper.pageText()) //lang key for the text
+                        .withTitle(helper.pageTitle()) //and for the title
                         .build();
 
 
@@ -377,12 +392,16 @@ public class DemoBookProvider extends BookProvider {
         // PAGINA
         helper.page("power_description"); //and now the page
         BookTextPageModel page =
-                BookTextPageModel.builder()                     //we start with a text page
+                BookTextPageModel.builder()
+                        .withText(helper.pageText()) //lang key for the text
+                        .withTitle(helper.pageTitle()) //and for the title
                         .build();
         // PAGINA
         helper.page("power_interactions"); //and now the page
         BookTextPageModel page2 =
-                BookTextPageModel.builder()                     //we start with a text page
+                BookTextPageModel.builder()
+                        .withText(helper.pageText()) //lang key for the text
+                        .withTitle(helper.pageTitle()) //and for the title
                         .build();
 
 
