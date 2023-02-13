@@ -22,11 +22,11 @@ public enum MetalNamesEnum implements ILanguage {
     BENDALLOY("bendalloy","Bendalloy", "Bendaleo","ベンダロイ"),
     ATIUM("atium", "Atium", "Atium","アティウム"),
     MALATIUM("malatium", "Malatium", "Malatium","マラアティウム"),
-    LERASIUM("lerasium", "Lerasium", "Lerasium",""),
-    ETTMETAL("ettmetal", "Ettmetal", "Ettmetal",""),
-    SILVER( "silver", "Silver", "Plata",""),
-    LEAD("lead", "Lead", "Plomo",""),
-    NICKEL("nickel", "Nickel", "Níquel","");
+    LERASIUM("lerasium", "Lerasium", "Lerasium","レラシウム"),
+    ETTMETAL("ettmetal", "Ettmetal", "Ettmetal","エットメッタル"),
+    SILVER( "silver", "Silver", "Plata","銀"),
+    LEAD("lead", "Lead", "Plomo","鉛"),
+    NICKEL("nickel", "Nickel", "Níquel","ニッケル");
     private final String id;
     private final String english;
     private final String spanish;
