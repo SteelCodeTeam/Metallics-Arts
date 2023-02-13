@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:brass_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, te permite guardar tu calor corporal, haciéndote más resistente a las fuentes de calor.$(br2)$(br2) - Poco recomendable almacenar en lugares fríos por... obvios motivos."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, expulsas el calor corporal acumulado, haciendo que puedas prender en llamas a otras entidades al golpearlas.$(br2)$(br2) - Útil para combatir el frío, además."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

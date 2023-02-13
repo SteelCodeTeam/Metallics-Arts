@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:bronze_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, vas a sentirte cansado en todo momento, por lo que aparecerán Fantasmas a tu altrededor (incluso de día)."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, te sentirás mas descansado, haciendo que los Fantasmas que pueda haber te ignoren."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

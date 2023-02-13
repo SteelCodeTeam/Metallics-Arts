@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:copper_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, guardas tu experiencia en la mente de metal."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, ganas toda la experiencia que hubiera en la mente de metal."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

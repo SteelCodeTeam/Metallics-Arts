@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:electrum_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, sientes que tu esperanza de vida se reduce drásticamente."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, es como si de repente te vieras capaz de vivir más años que cualquier otro ser humano."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

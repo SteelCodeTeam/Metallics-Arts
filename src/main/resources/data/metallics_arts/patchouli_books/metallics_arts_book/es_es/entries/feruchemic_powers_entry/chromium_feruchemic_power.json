@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:chromium_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, parece que Armonía te ha dado la espalda, porque no paran de sucederte desgracias injustificables."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, casi es como si Dios te hubiera bendecido. ¿Sería ese un momento para salir a explorar?"
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

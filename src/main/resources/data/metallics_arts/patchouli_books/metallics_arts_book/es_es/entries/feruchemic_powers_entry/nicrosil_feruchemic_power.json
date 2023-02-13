@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:nicrosil_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Para almacenar, requieres el sacrificio de los atributos que haya en otras mentes de metal que lleves encima. Es necesario usarla junto a otros poderes."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Al decantar, logras estirar la duración de otras mentes de metal que estés decantando. Es necesario usarla junto a otros poderes."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

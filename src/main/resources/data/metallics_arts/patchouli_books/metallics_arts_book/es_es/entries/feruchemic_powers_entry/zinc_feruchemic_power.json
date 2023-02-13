@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:zinc_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, te cuesta muchísimo encontrar objetos de los seres a los que aniquilas."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, sientes que todos los seres están a rebosar de objetos que puedes (y quieres) obtener."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

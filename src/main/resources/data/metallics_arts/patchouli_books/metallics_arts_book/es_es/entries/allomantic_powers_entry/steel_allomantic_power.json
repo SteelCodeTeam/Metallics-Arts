@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:steel_allomantic_icon",
-      "text": "$(br) Empuja la fuente de metal a la que estés señalando. $(br) Para usar este poder, debes hacer clic derecho mientras miras a dicha fuente de metal.$(br) Extra: $(br) - Puedes utilizar Ctrl + Barra espaciadora para empujar hacia el bloque que tengas a tus pies. $(br) - En caso de que no haya bloques válidos, consume pepitas de metales."
+      "text": ""
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumín: aumenta en gran medida el empuje. $(br2) + Lerasium: aumenta levemente el empuje. $(br2) + Ambos: aumenta al máximo el empuje."
+      "text": ""
     }
   ]
 }

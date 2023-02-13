@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:atium_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, brillas para el resto de jugadores (luminiscencia)."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, te vuelves invisible."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

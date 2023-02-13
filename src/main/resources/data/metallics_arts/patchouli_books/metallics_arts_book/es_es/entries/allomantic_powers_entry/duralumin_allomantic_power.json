@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:duralumin_allomantic_icon",
-      "text": "$(br) Aumenta en gran medida la potencia de los metales que estés quemando $(br)$(br)$(br) Extra: $(br) - Funciona un corto periodo de tiempo y vacía las reservas del metal que hayas activado junto al duralumín"
+      "text": ""
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumín: nada. $(br2) + Lerasium: nada. $(br2) + Ambos: nada."
+      "text": ""
     }
   ]
 }

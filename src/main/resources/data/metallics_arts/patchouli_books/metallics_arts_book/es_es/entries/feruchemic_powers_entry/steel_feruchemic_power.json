@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:steel_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, notas como tu cuerpo responde más lentamente de lo que debería. ¿Ese caracol te acaba de avanzar?"
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, sientes que puedes dejar atrás el viento."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

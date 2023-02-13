@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:tin_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, disminuye tus sentidos."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, aumenta tus sentidos."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

@@ -102,7 +102,6 @@ public class EnUsProvider extends LanguageProvider {
         for (MetalTagEnum metal: MetalTagEnum.values()) {
             this.addAllomancyEntry(helper, metal);
         }
-
     }
     private void feruchemyCategory(BookLangHelper helper) {
         helper.category("feruchemy");                //tell the helper the category we are in

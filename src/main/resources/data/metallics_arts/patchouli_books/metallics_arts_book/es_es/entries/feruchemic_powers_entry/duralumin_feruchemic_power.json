@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:duralumin_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, pareces desconectado del mundo, como si este te estuviera rechazando. Y sí, esa frase tiene sentido."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, parece que encuentras los caminos con los ojos cerrados, justo lo contrario que te sucedía antes. Lo entenderás cuando lo pruebes."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

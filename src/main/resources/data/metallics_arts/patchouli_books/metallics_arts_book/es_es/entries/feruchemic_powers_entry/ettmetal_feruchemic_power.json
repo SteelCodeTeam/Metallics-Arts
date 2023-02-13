@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:ettmetal_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Cuando almacenas, la energía de las explosiones no solo rompe tu cuerpo, sino que se guarda en la mente de metal."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Cuando decantas, sientes como si tu interior fuera a, literalmente, explotar."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:malatium_allomantic_icon",
-      "text": "$(br) Señala el último punto de muerte del jugador al que golpees. $(br)"
+      "text": " $(br)"
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumín: te teletransporta al punto marcado. $(br2) + Lerasium: nada. $(br2) + Ambos: teletransporta en área al punto marcado."
+      "text": ""
     }
   ]
 }

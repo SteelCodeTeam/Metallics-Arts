@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:iron_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, notas como el mundo tira de ti con menos fuerza."
+      "text": ""
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, sientes como te vuelves mucho más pesado. Esperemos que no lo hagas en los dos sentidos de la expresión."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

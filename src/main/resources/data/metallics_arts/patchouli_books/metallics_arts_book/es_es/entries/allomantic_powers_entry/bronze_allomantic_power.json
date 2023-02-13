@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:bronze_allomantic_icon",
-      "text": "$(br) Hace que las entidades cercanas te sigan. $(br)$(br)$(br)$(br)$(br)$(br) Extra: $(br) - Resalta a los jugadores que quemen metales a tu alrededor."
+      "text": ""
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumín: aumenta el daño y velocidad de las entidades. $(br2) + Lerasium: aplica el efecto en área. $(br2) + Ambos: aumenta el daño y velocidad de las entidades en área."
+      "text": ""
     }
   ]
 }

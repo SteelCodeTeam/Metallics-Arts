@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:iron_allomantic_icon",
-      "text": "$(br) Tira de la fuente de metal a la que estés apuntando.$(br) Para usar este poder, debes hacer clic izquierdo mientras miras a dicha fuente de metal."
+      "text": ""
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumín: aumenta en gran medida el tirón. $(br2) + Lerasium: aumenta levemente el tirón. $(br2) + Ambos: aumenta al máximo el tirón."
+      "text": ""
     }
   ]
 }

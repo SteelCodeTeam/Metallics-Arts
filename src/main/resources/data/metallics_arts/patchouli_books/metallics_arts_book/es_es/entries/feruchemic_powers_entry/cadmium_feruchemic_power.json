@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:cadmium_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, tendrás dificultades para respirar... incluso fuera del agua."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, te sentirás como pez en el agua, hasta el punto que casi creerás que no necesitas salir a buscar aire cuando bucees."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

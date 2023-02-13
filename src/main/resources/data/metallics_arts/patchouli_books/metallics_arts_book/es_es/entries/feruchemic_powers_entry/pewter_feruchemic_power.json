@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:pewter_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, te sientes más debil, casi te podria ganar una gallina."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, te sientes mucho más fuerte, como si pudieras matar al Wither a puñetazos."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

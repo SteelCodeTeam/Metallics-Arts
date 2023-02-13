@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:gold_allomantic_icon",
-      "text": "$(br) Señala el punto donde moriste por última vez. $(br)"
+      "text": ""
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumín: te teletransporta al punto donde moriste por última vez. $(br2) + Lerasium: nada. $(br2) + Ambos: teletransporta en área al punto marcado."
+      "text": ""
     }
   ]
 }

@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:malatium_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Mientras almacenas, guardas la durabilidad del objeto que estés sujetando con la mano en ese instante, incluso pudiendo llegar a romperlo."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Mientras decantas, aumenta la durabilidad del objeto que tengas en la mano. Aunque la durabilidad no es universal, aviso."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

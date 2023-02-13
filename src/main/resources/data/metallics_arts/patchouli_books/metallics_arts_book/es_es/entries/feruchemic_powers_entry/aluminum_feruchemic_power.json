@@ -6,11 +6,11 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:aluminum_feruchemic_icon",
-      "text": "$(br)Almacenar:$(br2) - Al almacenar, quitas la Identidad de una mente de metal."
+      "text": "$(br)"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)$(br2)$(br2)Decantar:$(br2) - Al decantar, sellas una mente de metal con tu Identidad."
+      "text": "$(br2)$(br2)$(br2)"
     }
   ]
 }

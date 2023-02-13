@@ -6,12 +6,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "metallics_arts:lerasium_allomantic_icon",
-      "text": "$(br) Aumenta la potencia de los metales que estés quemando. $(br)"
+      "text": " $(br)"
     },
     {
       "type": "patchouli:text",
       "title": "Interacciones",
-      "text": "$(br) + Duralumín: nada. $(br2) + Lerasium: nada. $(br2) + Ambos: nada."
+      "text": ""
     }
   ]
 }
