@@ -15,22 +15,51 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.modules.custom_items.vials.large_vial.LargeVial;
+import net.rudahee.metallics_arts.modules.custom_items.vials.small_vial.SmallVial;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-
+/**
+ * Abstract class that defines new custom Items, This class implements the specific functionality of vials,
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see Item
+ * @see LargeVial
+ * @see SmallVial
+ */
 public abstract class Vial extends Item {
+
     private final int maxNuggets;
-    public Vial(Properties properties,int maxNuggets) {
+
+    /**
+     * Default constructor, its important default the maximum quantity of nuggets of vials,
+     *
+     * @param properties of the item.
+     * @param maxNuggets can be contained in vial.
+     */
+    public Vial(Properties properties, int maxNuggets) {
         super(properties);
         this.maxNuggets = maxNuggets;
 
     }
+
+    /**
+     * This method describes the behavior that will occur when you mouse over the item.
+     *
+     * @param stack specific item to check
+     * @param level for the player.
+     * @param toolTips to show.
+     * @param flag to show.
+     */
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> toolTips, TooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Level level, @NotNull List<Component> toolTips, @NotNull TooltipFlag flag) {
         if (!stack.hasTag()) {
             stack.setTag(addVialTags());
         }
@@ -48,13 +77,21 @@ public abstract class Vial extends Item {
                 }
             }
         } else {
-            if (haveAnyReserve(stack)) {
+            if (hasAnyReserve(stack)) {
                 toolTips.add(Component.translatable(" "));
                 toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             }
         }
-        super.appendHoverText(stack, world, toolTips, flagIn);
+        super.appendHoverText(stack, level, toolTips, flag);
     }
+
+    /**
+     * Auxiliary method for check if it has all tags of the metals.
+     *
+     * @param tag of the item.
+     *
+     * @return boolean
+     */
     private static boolean hasAllTags(CompoundTag tag) {
         boolean value = true;
         for (MetalTagEnum metal: MetalTagEnum.values()) {
@@ -65,6 +102,12 @@ public abstract class Vial extends Item {
         }
         return value;
     }
+
+    /**
+     * Auxiliary method to add tags in a vial, but without reserve.
+     *
+     * @return CompoundTag
+     */
     private static CompoundTag addVialTags() {
         CompoundTag nbt = new CompoundTag();
         for (MetalTagEnum metal : MetalTagEnum.values()){
@@ -73,6 +116,11 @@ public abstract class Vial extends Item {
         return nbt;
     }
 
+    /**
+     * Auxiliary method to add tags in a vial, but with complete reserve.
+     *
+     * @return CompoundTag
+     */
     public static CompoundTag addFullReserveVialTags() {
         CompoundTag nbt = new CompoundTag();
         for (MetalTagEnum metal : MetalTagEnum.values()){
@@ -81,16 +129,31 @@ public abstract class Vial extends Item {
         return nbt;
     }
 
+    /**
+     * This method define the behaviour when using is finished. but we don't do anything special, only call super().
+     *
+     * @param stack specific item.
+     * @param level of the player.
+     * @param livingEntity tht use the vial.
+     * @param status of the using.
+     */
     @Override
-    public void releaseUsing(ItemStack itemStack, Level world, LivingEntity livingEntity, int number) {
-        super.releaseUsing(itemStack, world, livingEntity, number);
+    public void releaseUsing(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity livingEntity, int status) {
+        super.releaseUsing(stack, level, livingEntity, status);
     }
 
-    public boolean haveAnyReserve (ItemStack itemStack) {
+    /**
+     * Auxiliary method for check if it has any tags of the metals.
+     *
+     * @param stack of the item.
+     *
+     * @return boolean
+     */
+    public boolean hasAnyReserve(ItemStack stack) {
         boolean have = false;
-        if (itemStack.hasTag()) {
+        if (stack.hasTag()) {
             for (MetalTagEnum metal : MetalTagEnum.values()) {
-                if (itemStack.getTag().contains(metal.getNameLower()) && itemStack.getTag().getInt(metal.getNameLower())>0) {
+                if (stack.getTag().contains(metal.getNameLower()) && stack.getTag().getInt(metal.getNameLower()) > 0) {
                     have = true;
                     break;
                 }
@@ -99,10 +162,19 @@ public abstract class Vial extends Item {
         return have;
     }
 
+    /**
+     * This method define the behaviour when vial is used.
+     *
+     * @param level of the player when use it.
+     * @param player that use the vial.
+     * @param hand that have the vial.
+     *
+     * @return InteractionResultHolder<ItemStack>
+     */
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack itemStackIn = player.getItemInHand(hand);
-        if (!haveAnyReserve(itemStackIn)) {
+        if (!hasAnyReserve(itemStackIn)) {
             return new InteractionResultHolder<>(InteractionResult.FAIL, itemStackIn);
         }
         player.startUsingItem(hand);
@@ -121,8 +193,17 @@ public abstract class Vial extends Item {
         return res;
     }
 
+    /**
+     * This method define the behaviour when using is finished. Add metals to allomantic reserve for a player and return empty vial
+     *
+     * @param itemStack specific item.
+     * @param level of the player.
+     * @param livingEntity tht use the spike.
+     *
+     * @return ItemStack
+     */
     @Override
-    public ItemStack finishUsingItem(ItemStack itemStack, Level world, LivingEntity livingEntity) {
+    public @NotNull ItemStack finishUsingItem(ItemStack itemStack, @NotNull Level level, @NotNull LivingEntity livingEntity) {
         if (!itemStack.hasTag()) {
             return itemStack;
         }
@@ -151,9 +232,9 @@ public abstract class Vial extends Item {
 
             if (!((Player) livingEntity).getInventory().add(item)) {
                 if(this.maxNuggets==5){
-                    world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItemsRegister.SMALL_VIAL.get(), 1)));
+                    level.addFreshEntity(new ItemEntity(level, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItemsRegister.SMALL_VIAL.get(), 1)));
                 }else {
-                    world.addFreshEntity(new ItemEntity(world, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItemsRegister.LARGE_VIAL.get(), 1)));
+                    level.addFreshEntity(new ItemEntity(level, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItemsRegister.LARGE_VIAL.get(), 1)));
                 }
             }
         }
@@ -161,30 +242,60 @@ public abstract class Vial extends Item {
     }
 
 
-
+    /**
+     * This method return the time needed to finish the using.
+     *
+     * @param itemStack specific item.
+     *
+     * @return int
+     */
     @Override
-    public int getUseDuration(ItemStack itemStack) {
+    public int getUseDuration(@NotNull ItemStack itemStack) {
         return 32;
     }
 
+    /**
+     * This method return if the item can be enchanted.
+     *
+     * @param itemStack specific item.
+     *
+     * @return boolean
+     */
     @Override
-    public boolean isEnchantable(ItemStack itemStack) {
+    public boolean isEnchantable(@NotNull ItemStack itemStack) {
         return false;
     }
 
+    /**
+     * This method return the animation to show.
+     *
+     * @param itemStack specific item.
+     *
+     * @return UseAnim
+     */
     @Override
-    public UseAnim getUseAnimation(ItemStack itemStack) {
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemStack) {
         return UseAnim.DRINK;
     }
 
+    /**
+     * This method specify if it's "eatable".
+     *
+     * @return boolean
+     */
     @Override
     public boolean isEdible() {
         return true;
     }
 
-
+    /**
+     * This method fill the items in the mod tab, 2 are added to the items passed in the list. Large and Small Vial.
+     *
+     * @param group on the creative tab.
+     * @param items list of items to be filled with tags.
+     */
     @Override
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
+    public void fillItemCategory(@NotNull CreativeModeTab group, @NotNull NonNullList<ItemStack> items) {
 
         ItemStack resultItem = null;
 
@@ -194,16 +305,15 @@ public abstract class Vial extends Item {
             }else if (this.maxNuggets==10) {
                 resultItem = new ItemStack(ModItemsRegister.LARGE_VIAL.get(),1);
             }
-            CompoundTag nbt = new CompoundTag();
+            CompoundTag tag = new CompoundTag();
             for (MetalTagEnum mt : MetalTagEnum.values()) {
-                nbt.putInt(mt.getGemNameLower(), 0);
+                tag.putInt(mt.getGemNameLower(), 0);
             }
-            nbt.putInt("CustomModelData", 1);
-            resultItem.setTag(nbt);
+            tag.putInt("CustomModelData", 1);
+            resultItem.setTag(tag);
             items.add(resultItem);
         }
     }
-
 }
 
 

@@ -82,13 +82,23 @@ public class EttmetalBlock extends Block {
         super.tick(blockState, serverLevel, blockPos, random);
     }
 
-    private boolean isTouchingWater(ServerLevel world, AABB area) {
+    /**
+     * Auxiliary method to check if in the area exists water in specific world.
+     *
+     * @param level to check.
+     * @param area to check.
+     *
+     * @return boolean
+     *
+     * @see AABB
+     */
+    private boolean isTouchingWater(ServerLevel level, AABB area) {
         boolean isTouchingWater = false;
         for (double x = area.minX; x <= area.maxX; x++) {
             for (double y = area.minY; y <= area.maxY; y++) {
                 for (double z = area.minZ; z <= area.maxZ; z++) {
 
-                    if (world.getFluidState(new BlockPos(x,y,z)).is(FluidTags.WATER)) {
+                    if (level.getFluidState(new BlockPos(x,y,z)).is(FluidTags.WATER)) {
                         isTouchingWater = true;
                     }
                 }
