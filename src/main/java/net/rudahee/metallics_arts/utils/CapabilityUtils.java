@@ -19,7 +19,7 @@ import java.util.HashMap;
  * Collection of useful statics methods to manage our player capabilities.
  *
  * @author SteelCode Team
- * @since 1.6
+ * @since 1.5.1
  */
 public class CapabilityUtils<T> {
 
@@ -57,7 +57,7 @@ public class CapabilityUtils<T> {
      *
      * @see IInvestedPlayerData
      */
-    public static IInvestedPlayerData getCapability (@Nullable Player player) throws PlayerException {
+    public static IInvestedPlayerData getCapability(@Nullable Player player) throws PlayerException {
         playerData = null;
 
         if (player == null) {
@@ -68,7 +68,7 @@ public class CapabilityUtils<T> {
         return playerData;
     }
 
-    public static IInvestedPlayerData getCapability (@Nullable Entity entity) throws PlayerException {
+    public static IInvestedPlayerData getCapability(@Nullable Entity entity) throws PlayerException {
         playerData = null;
         if (entity == null) {
             throw new PlayerException(ErrorTypes.PLAYER_ERROR);

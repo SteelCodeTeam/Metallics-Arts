@@ -4,10 +4,14 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.network.PacketDistributor;
+import net.minecraftforge.network.simple.SimpleChannel;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;
 
 import java.util.UUID;
 import java.util.function.Supplier;
+
 
 public class BannerPacket {
 
@@ -16,7 +20,7 @@ public class BannerPacket {
 
     /**
      *
-     * @param slot   slot for remove
+     * @param slot slot for remove
      * @param player the player
      */
     public BannerPacket(int slot, Player player) {

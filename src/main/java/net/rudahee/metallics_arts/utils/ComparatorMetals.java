@@ -5,10 +5,10 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import java.util.Comparator;
 
 /**
- * Compartor implementation for MetalTagEnum.
+ * Comparator implementation for MetalTagEnum.
  *
  * @author SteelCode Team
- * @since 1.6
+ * @since 1.5.1
  */
 public class ComparatorMetals implements Comparator<MetalTagEnum> {
 
