@@ -5,6 +5,7 @@ import net.rudahee.metallics_arts.modules.error_handling.messages.SeverityType;
 
 import javax.annotation.Nullable;
 
+
 public class LoggerUtils {
 
     public static void printLog(String code, String message, @Nullable StackTraceElement[] stackTrace, SeverityType severity) {
@@ -24,8 +25,8 @@ public class LoggerUtils {
     }
 
     public static void printLogInfo(String code, String message, @Nullable StackTraceElement[] stackTrace) {
-        String messageBuilded = buildMessage(code, message, stackTrace);
-        MetallicsArts.LOGGER.info(messageBuilded);
+        String messageBuilt = buildMessage(code, message, stackTrace);
+        MetallicsArts.LOGGER.info(messageBuilt);
     }
 
     public static void printLogInfo(String message) {
@@ -33,8 +34,8 @@ public class LoggerUtils {
     }
 
     public static void printLogDebug(String code, String message, @Nullable StackTraceElement[] stackTrace) {
-        String messageBuilded = buildMessage(code, message, stackTrace);
-        MetallicsArts.LOGGER.debug(messageBuilded);
+        String messageBuilt = buildMessage(code, message, stackTrace);
+        MetallicsArts.LOGGER.debug(messageBuilt);
     }
 
     public static void printLogDebug(String message) {
@@ -42,8 +43,8 @@ public class LoggerUtils {
     }
 
     public static void printLogWarn(String code, String message, @Nullable StackTraceElement[] stackTrace) {
-        String messageBuilded = buildMessage(code, message, stackTrace);
-        MetallicsArts.LOGGER.warn(messageBuilded);
+        String messageBuilt = buildMessage(code, message, stackTrace);
+        MetallicsArts.LOGGER.warn(messageBuilt);
     }
 
     public static void printLogWarn(String message) {
@@ -51,8 +52,8 @@ public class LoggerUtils {
     }
 
     public static void printLogError(String code, String message, @Nullable StackTraceElement[] stackTrace) {
-        String messageBuilded = buildMessage(code, message, stackTrace);
-        MetallicsArts.LOGGER.error(messageBuilded);
+        String messageBuilt = buildMessage(code, message, stackTrace);
+        MetallicsArts.LOGGER.error(messageBuilt);
     }
 
     public static void printLogError(String message) {
@@ -60,8 +61,8 @@ public class LoggerUtils {
     }
 
     public static void printLogFatal(String code, String message, @Nullable StackTraceElement[] stackTrace) {
-        String messageBuilded = buildMessage(code, message, stackTrace);
-        MetallicsArts.LOGGER.fatal(messageBuilded);
+        String messageBuilt = buildMessage(code, message, stackTrace);
+        MetallicsArts.LOGGER.fatal(messageBuilt);
     }
 
     public static void printLogFatal(String message) {

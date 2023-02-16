@@ -12,22 +12,38 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.network.NetworkRegistry;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.Supplier;
 
+/**
+ * Class to communicate data between Client game and Server game. This packet it's for send a request
+ * to the server to use iron or steel on an entity
+ * <p>
+ * <b>Encode and decode must be symmetrical!</b>
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see FriendlyByteBuf
+ * @see NetworkRegistry
+ * @see ModNetwork
+ * @see NetworkEvent.Context
+ */
 public class PullAndPushEntityPacket {
     private final int entityIDOther;
     private final int direction;
 
     /**
-     * Send a request to the server to use iron or steel on an entity
+     * Default constructor that receive all mandatory data.
      *
      * @param entityIDOther the entity you are requesting the data of
-     * @param direction     the direction (1 for push, -1 for pull)
+     * @param direction the direction (1 for push, -1 for pull)
      */
     public PullAndPushEntityPacket(int entityIDOther, int direction) {
         this.entityIDOther = entityIDOther;
@@ -35,16 +51,32 @@ public class PullAndPushEntityPacket {
 
     }
 
+    /**
+     * Static method to decode data from buffer.
+     *
+     * @param buf buffer to be decoded.
+     *
+     * @return PullAndPushEntityPacket
+     */
     public static PullAndPushEntityPacket decode(FriendlyByteBuf buf) {
         return new PullAndPushEntityPacket(buf.readInt(), buf.readInt());
     }
 
+    /**
+     * Static method to encode data to buffer.
+     *
+     * @param buf buffer to be decoded.
+     */
     public void encode(FriendlyByteBuf buf) {
         buf.writeInt(this.entityIDOther);
         buf.writeInt(this.direction);
     }
 
-
+    /**
+     * Method to handle and do anything when packet its received and decoded.
+     *
+     * @param ctx Network context with all data of the packet.
+     */
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer source = ctx.get().getSender();

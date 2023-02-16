@@ -4,19 +4,35 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.network.NetworkRegistry;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.function.Supplier;
 
+/**
+ * Class to communicate data between Client game and Server game. This packet it's for send a request
+ * to the server to use iron or steel on a block
+ * <p>
+ * <b>Encode and decode must be symmetrical!</b>
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see FriendlyByteBuf
+ * @see NetworkRegistry
+ * @see ModNetwork
+ * @see NetworkEvent.Context
+ */
 public class PullAndPushBlockPacket {
 
     private final BlockPos blockPos;
     private final int direction;
 
     /**
-     * Send a request to the server to use iron or steel on a block
+     * Default constructor that receive all mandatory data.
      *
-     * @param block     the block
+     * @param block the block
      * @param direction the direction (1 for push, -1 for pull)
      */
     public PullAndPushBlockPacket(BlockPos block, int direction) {
@@ -24,15 +40,32 @@ public class PullAndPushBlockPacket {
         this.direction = direction;
     }
 
+    /**
+     * Static method to decode data from buffer.
+     *
+     * @param buf buffer to be decoded.
+     *
+     * @return PullAndPushBlockPacket
+     */
     public static PullAndPushBlockPacket decode(FriendlyByteBuf buf) {
         return new PullAndPushBlockPacket(buf.readBlockPos(), buf.readInt());
     }
 
+    /**
+     * Static method to encode data to buffer.
+     *
+     * @param buf buffer to be decoded.
+     */
     public void encode(FriendlyByteBuf buf) {
         buf.writeBlockPos(this.blockPos);
         buf.writeInt(this.direction);
     }
 
+    /**
+     * Method to handle and do anything when packet its received and decoded.
+     *
+     * @param ctx Network context with all data of the packet.
+     */
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer player = ctx.get().getSender();
