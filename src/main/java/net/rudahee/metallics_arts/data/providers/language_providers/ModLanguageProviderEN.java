@@ -2,7 +2,6 @@ package net.rudahee.metallics_arts.data.providers.language_providers;
 
 import com.klikli_dev.modonomicon.api.ModonomiconAPI;
 import com.klikli_dev.modonomicon.api.datagen.BookLangHelper;
-import com.klikli_dev.modonomicon.datagen.DemoBookProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.rudahee.metallics_arts.MetallicsArts;
@@ -18,7 +17,6 @@ import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionDescription;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponDescriptions;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponsData;
-import net.rudahee.metallics_arts.modules.book.lang.EnUsProvider;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -61,8 +59,6 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("metallics_arts.mental_mind.owner_someone", CTW.OWNER_SOMEONE.getNameInEnglish());
                 put("metallics_arts.mental_mind_translate.uses", CTW.USES.getNameInEnglish());
 
-
-                put("metallics_arts.patchouli.landing_text", "Soy, por desgracia, el Héroe de las Eras, y tengo una pregunta que hacerte, ¿acaso un hombre no tiene derecho a poseer sus propios metales? No, dice el hombre del Imperio. Pertenece al \"dios\". No, dice el superviviente. Pertenece a todos. No, dice el hombre de Elendel. Pertenece a los pobres. Yo rechacé esas propuestas. En vez de eso elegí algo distinto. Elegi mi propio camino, elegí... Artes Metalicas Mod.");
                 put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInEnglish());
                 put("item.metallics_arts.cristal_dagger", CTW.CRISTAL_DAGGER.getNameInEnglish());
                 put("item.metallics_arts.koloss_blade", CTW.KOLOSS_BLADE.getNameInEnglish());
@@ -309,9 +305,11 @@ public class ModLanguageProviderEN extends LanguageProvider {
         public void addIntroCategory(BookLangHelper helper){
                 helper.category("intro");
                 this.add(helper.categoryName(), "Intro");
+
+                addWelcomeEntry(helper, SubdivisionData.WELCOME);
                 for (SubdivisionData entry: SubdivisionData.values()) {
-                        if (!entry.isAllomantic() && !entry.isFeruchemical()){
-                                addIntroEntry(helper,entry);
+                        if (!entry.isAllomantic() && !entry.isFeruchemical() && !entry.isWelcome()){
+                                addSubDivisionEntry(helper,entry);
                         }
                 }
                 for (WeaponsData entry : WeaponsData.values()) {
@@ -321,8 +319,56 @@ public class ModLanguageProviderEN extends LanguageProvider {
                         addMultiCraftEntry(helper,entry);
                 }
         }
+        private void addAllomancyCategory(BookLangHelper helper) {
+                helper.category("allomancy");                                       //tell the helper the category we are in
+                this.add(helper.categoryName(), CTW.ALLOMANCY.getNameInEnglish()); //and provide the category name text
 
-        private void addIntroEntry(BookLangHelper helper, SubdivisionData subdivisionEntry) {
+                addWelcomeEntry(helper, SubdivisionData.ALLOMANCY);
+
+                for (SubdivisionData oM: SubdivisionData.values()) {
+                        if (oM.isAllomantic()){
+                                addSubDivisionEntry(helper,oM);
+                        }
+                }
+                for (MetalTagEnum metal: MetalTagEnum.values()) {
+                        this.addAllomancyEntry(helper, metal);
+                }
+
+        }
+
+
+
+        private void feruchemyCategory(BookLangHelper helper) {
+                helper.category("feruchemy");                //tell the helper the category we are in
+                this.add(helper.categoryName(), CTW.FERUCHEMY.getNameInEnglish()); //and provide the category name text
+
+                addWelcomeEntry(helper, SubdivisionData.FERUCHEMY);
+
+                for (SubdivisionData oM: SubdivisionData.values()) {
+                        if (oM.isFeruchemical()){
+                                addSubDivisionEntry(helper,oM);
+                        }
+                }
+                for (MetalTagEnum metal: MetalTagEnum.values()) {
+                        this.addFeruchemyEntry(helper, metal);
+                }
+        }
+
+        private void addWelcomeEntry(BookLangHelper helper, SubdivisionData subdivisionEntry) {
+                helper.entry(subdivisionEntry.getId() + "_entry");
+                this.add(helper.entryName(), "nombre");
+                this.add(helper.entryDescription(), "descripcion");
+
+                helper.page("page1"); //now we configure the intro page
+                this.add(helper.pageTitle(), "textito");  //page title
+                this.add(helper.pageText(), SubdivisionDescription.valueOf(subdivisionEntry.name()).getEnglish());
+
+                helper.page("page2"); //now we configure the intro page
+                this.add(helper.pageTitle(), "textito");  //page title
+                this.add(helper.pageText(), SubdivisionDescription.valueOf(subdivisionEntry.name()).getEnglish());
+        }
+
+        private void addSubDivisionEntry(BookLangHelper helper, SubdivisionData subdivisionEntry) {
                 helper.entry(subdivisionEntry.getId() + "_entry");
                 this.add(helper.entryName(), CTW.valueOf(subdivisionEntry.name()).getNameInEnglish());
                 this.add(helper.entryDescription(), "");
@@ -351,35 +397,6 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 this.add(helper.pageTitle(), CTW.valueOf(multiCraftData.name()).getNameInEnglish());  //page title
                 this.add(helper.pageText(), MultiCaftDescriptions.valueOf(multiCraftData.name()).getEnglish());
         }
-
-        private void addAllomancyCategory(BookLangHelper helper) {
-                helper.category("allomancy");                                       //tell the helper the category we are in
-                this.add(helper.categoryName(), CTW.ALLOMANCY.getNameInEnglish()); //and provide the category name text
-
-                for (SubdivisionData oM: SubdivisionData.values()) {
-                        if (oM.isAllomantic()){
-                                addIntroEntry(helper,oM);
-                        }
-                }
-                for (MetalTagEnum metal: MetalTagEnum.values()) {
-                        this.addAllomancyEntry(helper, metal);
-                }
-
-        }
-        private void feruchemyCategory(BookLangHelper helper) {
-                helper.category("feruchemy");                //tell the helper the category we are in
-                this.add(helper.categoryName(), CTW.FERUCHEMY.getNameInEnglish()); //and provide the category name text
-
-                for (SubdivisionData oM: SubdivisionData.values()) {
-                        if (oM.isFeruchemical()){
-                                addIntroEntry(helper,oM);
-                        }
-                }
-                for (MetalTagEnum metal: MetalTagEnum.values()) {
-                        this.addFeruchemyEntry(helper, metal);
-                }
-        }
-
         private void addAllomancyEntry(BookLangHelper helper, MetalTagEnum metal) {
                 helper.entry(metal.getNameLower() + "_entry"); //tell the helper the entry we are in
 
@@ -394,7 +411,6 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 this.add(helper.pageTitle(), "Interactions");                                           //page title
                 this.add(helper.pageText(), Interactions.valueOf(metal.name()).getEnglish());   //page text
         }
-
         private void addFeruchemyEntry(BookLangHelper helper, MetalTagEnum metal) {
                 helper.entry(metal.getNameLower() + "_entry");                                          //tell the helper the entry we are in
                 this.add(helper.entryName(), MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());  //provide the entry name

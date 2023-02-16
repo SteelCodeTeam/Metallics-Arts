@@ -78,7 +78,7 @@ public class DemoBookProvider extends BookProvider {
                 "________________________________"
         );
 
-        BookEntryModel s = this.welcomePowerEntry(helper, entryHelper, 's', "presentacion");
+        BookEntryModel s = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.WELCOME);
         BookEntryModel a = this.subDivisionEntry(helper, entryHelper, 'a', SubdivisionData.WEAPONS, s);
 
         BookEntryModel b = this.subDivisionEntry(helper, entryHelper, 'b', SubdivisionData.CAFTING, s);
@@ -111,89 +111,6 @@ public class DemoBookProvider extends BookProvider {
                 .build();
     }
 
-    private BookEntryModel multiCraftsItemsEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, MultiCraftData multiCraftEntry, ArrayList<String> recipeList, BookEntryParentModel... parents) {
-        helper.entry(multiCraftEntry.getId() + "_entry"); //tell our lang helper the entry we are in
-        ArrayList<BookPageModel> list = new ArrayList<>();
-        // PAGINA
-        helper.page("items_description"); //and now the page
-        BookTextPageModel page =
-                BookTextPageModel.builder()
-                        .withText(helper.pageText()) //lang key for the text
-                        .withTitle(helper.pageTitle()) //and for the title
-                        .build();
-        // PAGINA
-
-        list.add(page);
-        while (!recipeList.isEmpty()) {
-            list.add(BookCraftingRecipePageModel.builder()
-                    .withRecipeId1(recipeList.remove(0))
-                    .withRecipeId2(recipeList.remove(0))
-                    .build());
-        }
-
-        return BookEntryModel.builder()
-                .withId(this.modLoc(helper.category + "/" + helper.entry))    //make entry id from lang helper data
-                .withName(helper.entryName())                                       //entry name lang key
-                .withDescription(helper.entryDescription())                         //entry description lang key
-                .withIcon(multiCraftEntry.getIcon())                    //we use furnace as icon
-                .withLocation(entryHelper.get(location))                            //and we place it at the location we defined earlier in the entry helper mapping
-                .withParents(parents)
-                .withPages(list.toArray(new BookPageModel[0]))                                                //finally we add our pages to the entry
-                .build();
-    }
-
-    private BookEntryModel weaponsEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, BookEntryModel parent, WeaponsData weaponsEntry) {
-        helper.entry(weaponsEntry.getId() + "_entry"); //tell our lang helper the entry we are in
-
-        // PAGINA
-        helper.page("weapon_description"); //and now the page
-        BookTextPageModel page =
-                BookTextPageModel.builder()
-                        .withText(helper.pageText()) //lang key for the text
-                        .withTitle(helper.pageTitle()) //and for the title
-                        .build();
-        // PAGINA
-        helper.page("weapon_craft"); //and now the page
-        BookCraftingRecipePageModel page2 =
-                BookCraftingRecipePageModel.builder()
-                        .withRecipeId1(weaponsEntry.getRecipe())
-                        .build();
-
-
-
-        return BookEntryModel.builder()
-                .withId(this.modLoc(helper.category + "/" + helper.entry))  //make entry id from lang helper data
-                .withName(helper.entryName())                                    //entry name lang key
-                .withDescription(helper.entryDescription())                     //entry description lang key
-                .withIcon(weaponsEntry.getIcon())                                  //we use furnace as icon
-                .withLocation(entryHelper.get(location))                        //and we place it at the location we defined earlier in the entry helper mapping
-                .withParent(parent)
-                .withPages(page,page2)                                                //finally we add our pages to the entry
-                .build();
-    }
-
-    private BookEntryModel subDivisionEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, SubdivisionData subdivisionEntry, BookEntryModel parent) {
-        helper.entry(subdivisionEntry.getId() + "_entry"); //tell our lang helper the entry we are in
-
-        // PAGINA
-        helper.page("page"); //and now the page
-        BookTextPageModel page =
-                BookTextPageModel.builder()
-                        .withText(helper.pageText()) //lang key for the text
-                        .withTitle(helper.pageTitle()) //and for the title
-                        .build();
-
-        return BookEntryModel.builder()
-                .withId(this.modLoc(helper.category + "/" + helper.entry))  //make entry id from lang helper data
-                .withName(helper.entryName())                                    //entry name lang key
-                .withDescription(helper.entryDescription())                     //entry description lang key
-                .withIcon(subdivisionEntry.getIcon())                                  //we use furnace as icon
-                .withLocation(entryHelper.get(location))                        //and we place it at the location we defined earlier in the entry helper mapping
-                .withParent(parent)
-                .withPages(page)                                                //finally we add our pages to the entry
-                .build();
-    }
-
     private BookCategoryModel allomancyCategory(BookLangHelper helper) {
         helper.category("allomancy");
 
@@ -214,7 +131,7 @@ public class DemoBookProvider extends BookProvider {
                 "_____________x___y______________"
         );
 
-        BookEntryModel s = this.welcomePowerEntry(helper, entryHelper, 's', "welcome");
+        BookEntryModel s = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.ALLOMANCY);
 
         BookEntryModel r = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionData.PHYSICAL, s);
         BookEntryModel t = this.subDivisionEntry(helper, entryHelper, 't', SubdivisionData.ENHANCEMENT, s);
@@ -280,7 +197,7 @@ public class DemoBookProvider extends BookProvider {
                 "_____________x___y______________"
         );
 
-        BookEntryModel s = this.welcomePowerEntry(helper, entryHelper, 's', "welcome");
+        BookEntryModel s = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.FERUCHEMY);
 
         BookEntryModel r = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionData.PHYSICAL, s);
         BookEntryModel t = this.subDivisionEntry(helper, entryHelper, 't', SubdivisionData.SPIRITUAL, s);
@@ -320,6 +237,90 @@ public class DemoBookProvider extends BookProvider {
                 .withName(helper.categoryName()) //the name of the category. The lang helper gives us the correct translation key.
                 .withIcon("minecraft:gold_ingot") //the icon for the category. In this case we simply use an existing item.
                 .withEntries(b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,v,w,x,y,z,aA)
+                .build();
+    }
+
+    private BookEntryModel multiCraftsItemsEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, MultiCraftData multiCraftEntry, ArrayList<String> recipeList, BookEntryParentModel... parents) {
+        helper.entry(multiCraftEntry.getId() + "_entry"); //tell our lang helper the entry we are in
+        ArrayList<BookPageModel> list = new ArrayList<>();
+        // PAGINA
+        helper.page("items_description"); //and now the page
+        BookTextPageModel page =
+                BookTextPageModel.builder()
+                        .withText(helper.pageText()) //lang key for the text
+                        .withTitle(helper.pageTitle()) //and for the title
+                        .build();
+        // PAGINA
+
+        list.add(page);
+        while (!recipeList.isEmpty()) {
+            list.add(BookCraftingRecipePageModel.builder()
+                    .withRecipeId1(recipeList.remove(0))
+                    .withRecipeId2(recipeList.remove(0))
+                    .build());
+        }
+
+        return BookEntryModel.builder()
+                .withId(this.modLoc(helper.category + "/" + helper.entry))    //make entry id from lang helper data
+                .withName(helper.entryName())                                       //entry name lang key
+                .withDescription(helper.entryDescription())                         //entry description lang key
+                .withIcon(multiCraftEntry.getIcon())                    //we use furnace as icon
+                .withLocation(entryHelper.get(location))                            //and we place it at the location we defined earlier in the entry helper mapping
+                .withParents(parents)
+                .withPages(list.toArray(new BookPageModel[0]))                                                //finally we add our pages to the entry
+                .build();
+    }
+
+    private BookEntryModel weaponsEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, BookEntryModel parent, WeaponsData weaponsEntry) {
+        helper.entry(weaponsEntry.getId() + "_entry"); //tell our lang helper the entry we are in
+
+        // PAGINA
+        helper.page("weapon_description"); //and now the page
+        BookTextPageModel page =
+                BookTextPageModel.builder()
+                        .withText(helper.pageText()) //lang key for the text
+                        .withTitle(helper.pageTitle()) //and for the title
+                        .build();
+        // PAGINA
+        helper.page("weapon_craft"); //and now the page
+        BookCraftingRecipePageModel page2 =
+                BookCraftingRecipePageModel.builder()
+                        .withRecipeId1(weaponsEntry.getRecipe())
+                        .build();
+
+
+
+        return BookEntryModel.builder()
+                .withId(this.modLoc(helper.category + "/" + helper.entry))  //make entry id from lang helper data
+                .withName(helper.entryName())                                    //entry name lang key
+                .withDescription(helper.entryDescription())                     //entry description lang key
+                .withIcon(weaponsEntry.getIcon())                                  //we use furnace as icon
+                .withLocation(entryHelper.get(location))                        //and we place it at the location we defined earlier in the entry helper mapping
+                .withParent(parent)
+                .withPages(page,page2)                                                //finally we add our pages to the entry
+                .build();
+    }
+
+
+    private BookEntryModel subDivisionEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, SubdivisionData subdivisionEntry, BookEntryModel parent) {
+        helper.entry(subdivisionEntry.getId() + "_entry"); //tell our lang helper the entry we are in
+
+        // PAGINA
+        helper.page("page"); //and now the page
+        BookTextPageModel page =
+                BookTextPageModel.builder()
+                        .withText(helper.pageText()) //lang key for the text
+                        .withTitle(helper.pageTitle()) //and for the title
+                        .build();
+
+        return BookEntryModel.builder()
+                .withId(this.modLoc(helper.category + "/" + helper.entry))  //make entry id from lang helper data
+                .withName(helper.entryName())                                    //entry name lang key
+                .withDescription(helper.entryDescription())                     //entry description lang key
+                .withIcon(subdivisionEntry.getIcon())                                  //we use furnace as icon
+                .withLocation(entryHelper.get(location))                        //and we place it at the location we defined earlier in the entry helper mapping
+                .withParent(parent)
+                .withPages(page)                                                //finally we add our pages to the entry
                 .build();
     }
 
@@ -384,20 +385,18 @@ public class DemoBookProvider extends BookProvider {
                 .build();
     }
 
-
-
-    private BookEntryModel welcomePowerEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, String key) {
-        helper.entry(key + "_entry"); //tell our lang helper the entry we are in
+    private BookEntryModel welcomePowerEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, SubdivisionData subdivisionData) {
+        helper.entry(subdivisionData.getId() + "_entry"); //tell our lang helper the entry we are in
 
         // PAGINA
-        helper.page("power_description"); //and now the page
+        helper.page("page1"); //and now the page
         BookTextPageModel page =
                 BookTextPageModel.builder()
                         .withText(helper.pageText()) //lang key for the text
                         .withTitle(helper.pageTitle()) //and for the title
                         .build();
         // PAGINA
-        helper.page("power_interactions"); //and now the page
+        helper.page("page2"); //and now the page
         BookTextPageModel page2 =
                 BookTextPageModel.builder()
                         .withText(helper.pageText()) //lang key for the text

@@ -76,7 +76,7 @@ public class ServerEventHandler {
 
     @SubscribeEvent
     public static void onDamageEvent(final LivingHurtEvent event) {
-        if (event.getSource().getDirectEntity() instanceof ServerPlayer) {
+        if (event.getSource().getDirectEntity() instanceof ServerPlayer && event.getEntity() instanceof ServerPlayer) {
             OnDamageEvent.onDamageFeruchemical(event, (ServerPlayer) event.getSource().getEntity(), (ServerPlayer) event.getEntity());
             OnDamageEvent.onDamageAllomantic(event, (ServerPlayer) event.getSource().getEntity(), (ServerPlayer) event.getEntity());
         }
