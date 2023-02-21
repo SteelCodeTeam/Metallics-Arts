@@ -86,7 +86,7 @@ public class DemoBookProvider extends BookProvider {
         BookEntryModel c = this.subDivisionEntry(helper, entryHelper, 'c', SubdivisionData.ALLOY_FURNACE, s);
         BookEntryParentModel cParent = BookEntryParentModel.builder().withEntryId(c.getId()).build();
 
-        BookEntryModel d = this.weaponsEntry(helper, entryHelper, 'd', a, WeaponsData.CRISTAL_DAGGER);
+        BookEntryModel d = this.weaponsEntry(helper, entryHelper, 'd', a, WeaponsData.CRYSTAL_DAGGER);
         BookEntryModel e = this.weaponsEntry(helper, entryHelper, 'e', a, WeaponsData.OBSIDIAN_DAGGER);
         BookEntryModel f = this.weaponsEntry(helper, entryHelper, 'f', a, WeaponsData.OBSIDIAN_AXE);
         BookEntryModel g = this.weaponsEntry(helper, entryHelper, 'g', a, WeaponsData.KOLOSS_BLADE);

@@ -1,16 +1,16 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft;
 
 public enum MultiCaftDescriptions {
-    VIALS("It looks like the perfect jar to store metal shards.",
+    VIALS("It looks like the perfect jar to store metal nuggets.",
             "Parece el frasco perfecto para guardar copos de metal en una solución de alcohol.",
             "Idealny zbiornik na odłamki metali."),
-    RINGS("Metal rings commonly worn by Terrisians. they look really good.",
+    RINGS("Metal rings commonly worn by the Terrispeople. They look good, but they don't seem to be just jewelry.",
             "Anillos de metal que suelen llevar los terrisanos. No parece que los lleven como un simple adorno...",
             "Metalowe obręcze typowo noszone przez Terrisan, bardzo stylowe."),
     BANDS("Metal bracers that some people wear, are they just decoration?",
             "Brazales de metal que llevan algunas personas. No parece que sea solo bisutería...",
             "Metalow opaski, czy są tylko dekoracyjne?."),
-    SPIKES("Really sharp metal nails. What will be its use?",
+    SPIKES("Really sharp metal nails. Why is it that no one use them for their DIY projects?",
             "Clavos de metales realmente afilados. Nadie los parece usar para construir edificios o algo por el estilo...",
             "Bardzo ostre metalowe kolce. Ciekawe do czego mogą zostać użyte?"),
     ICONS("",

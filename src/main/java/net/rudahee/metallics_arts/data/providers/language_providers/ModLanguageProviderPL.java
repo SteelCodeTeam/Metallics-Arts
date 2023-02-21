@@ -49,7 +49,7 @@ public class ModLanguageProviderPL extends LanguageProvider {
 
         put("metallics_arts.patchouli.landing_text", "Soy, por desgracia, el Héroe de las Eras, y tengo una pregunta que hacerte, ¿acaso un hombre no tiene derecho a poseer sus propios metales? No, dice el hombre del Imperio. Pertenece al \"dios\". No, dice el superviviente. Pertenece a todos. No, dice el hombre de Elendel. Pertenece a los pobres. Yo rechacé esas propuestas. En vez de eso elegí algo distinto. Elegi mi propio camino, elegí... Artes Metalicas Mod.");
         put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInPolish());
-        put("item.metallics_arts.cristal_dagger", CTW.CRISTAL_DAGGER.getNameInPolish());
+        put("item.metallics_arts.cristal_dagger", CTW.CRYSTAL_DAGGER.getNameInPolish());
         put("item.metallics_arts.koloss_blade", CTW.KOLOSS_BLADE.getNameInPolish());
         put("item.metallics_arts.dueling_staff", CTW.DUELING_STAFF.getNameInPolish());
         put("item.metallics_arts.obsidian_axe", CTW.OBSIDIAN_AXE.getNameInPolish());

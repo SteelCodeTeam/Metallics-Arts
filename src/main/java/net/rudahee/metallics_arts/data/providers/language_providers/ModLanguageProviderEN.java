@@ -60,7 +60,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("metallics_arts.mental_mind_translate.uses", CTW.USES.getNameInEnglish());
 
                 put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInEnglish());
-                put("item.metallics_arts.cristal_dagger", CTW.CRISTAL_DAGGER.getNameInEnglish());
+                put("item.metallics_arts.cristal_dagger", CTW.CRYSTAL_DAGGER.getNameInEnglish());
                 put("item.metallics_arts.koloss_blade", CTW.KOLOSS_BLADE.getNameInEnglish());
                 put("item.metallics_arts.dueling_staff", CTW.DUELING_STAFF.getNameInEnglish());
                 put("item.metallics_arts.obsidian_axe", CTW.OBSIDIAN_AXE.getNameInEnglish());

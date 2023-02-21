@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages;
 
-import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.interfaces.ILanguage;
 
 //CommonTranslationWords
@@ -57,7 +56,7 @@ public enum CTW implements ILanguage {
     FERUCHEMICAL_PATTERN ("feruchemical_pattern","Pattern","Patrón feruquimico de","", "Wzór feruchemiczny"),
     ALLOMANTIC_PATTERN ("allomantical_pattern","Pattern","Patrón alomántico de","", "Wzór allomantyczny"),
     KOLOSS_BLADE ("koloss_blade","Koloss Blade","Espada Koloss","コロスの剣", "Ostrze kolosa"),
-    CRISTAL_DAGGER ("cristal_dagger","Cristal Dagger","Daga de Cristal","", "Kryształowy sztylet"),
+    CRYSTAL_DAGGER("crystal_dagger","Crystal Dagger","Daga de Cristal","", "Kryształowy sztylet"),
     OBSIDIAN_DAGGER ("obsidian_dagger","Obsidian Dagger","Daga de Obsidiana","", "Obsydianowy sztylet"),
     OBSIDIAN_AXE ("obsidian_axe","Obsidian Axe","Hacha de Obsidiana","", "Obsydianowy topór"),
     DUELING_STAFF ("dueling_staff","Dueling Staff","Baston de Duelos","", "Laska pojedynkowa"),

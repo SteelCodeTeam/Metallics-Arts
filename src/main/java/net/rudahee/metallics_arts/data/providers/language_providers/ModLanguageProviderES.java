@@ -2,10 +2,8 @@ package net.rudahee.metallics_arts.data.providers.language_providers;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,7 +49,7 @@ public class ModLanguageProviderES extends LanguageProvider {
 
         put("metallics_arts.patchouli.landing_text", "Soy, por desgracia, el Héroe de las Eras, y tengo una pregunta que hacerte, ¿acaso un hombre no tiene derecho a poseer sus propios metales? No, dice el hombre del Imperio. Pertenece al \"dios\". No, dice el superviviente. Pertenece a todos. No, dice el hombre de Elendel. Pertenece a los pobres. Yo rechacé esas propuestas. En vez de eso elegí algo distinto. Elegi mi propio camino, elegí... Artes Metalicas Mod.");
         put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInSpanish());
-        put("item.metallics_arts.cristal_dagger", CTW.CRISTAL_DAGGER.getNameInSpanish());
+        put("item.metallics_arts.cristal_dagger", CTW.CRYSTAL_DAGGER.getNameInSpanish());
         put("item.metallics_arts.koloss_blade", CTW.KOLOSS_BLADE.getNameInSpanish());
         put("item.metallics_arts.dueling_staff", CTW.DUELING_STAFF.getNameInSpanish());
         put("item.metallics_arts.obsidian_axe", CTW.OBSIDIAN_AXE.getNameInSpanish());
