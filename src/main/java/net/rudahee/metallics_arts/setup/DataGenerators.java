@@ -18,7 +18,6 @@ import net.rudahee.metallics_arts.data.providers.tags_providers.ModBannerTagProv
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBeaconTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBlockTagProvider;
 import net.rudahee.metallics_arts.modules.book.DemoBookProvider;
-import net.rudahee.metallics_arts.modules.book.lang.EnUsProvider;
 
 @Mod.EventBusSubscriber (modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {

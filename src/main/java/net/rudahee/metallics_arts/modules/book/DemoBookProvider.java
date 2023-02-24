@@ -17,6 +17,7 @@ import com.klikli_dev.modonomicon.api.datagen.book.page.BookTextPageModel;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft.MultiCraftData;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionData;
@@ -40,10 +41,8 @@ public class DemoBookProvider extends BookProvider {
         helper.book(bookName);
 
         BookCategoryModel introCategory = this.introCategory(helper);
-
         BookCategoryModel allomancyCategory = this.allomancyCategory(helper);
         BookCategoryModel feruchemyCategory = this.feruchemyCategory(helper);
-
 
         //Now we create the book with settings of our choosing
         BookModel demoBook = BookModel.builder()
@@ -51,8 +50,8 @@ public class DemoBookProvider extends BookProvider {
                 .withName(helper.bookName()) //the name of the book. The lang helper gives us the correct translation key.
                 .withTooltip(helper.bookTooltip()) //the hover tooltip for the book. Again we get a translation key.
                 .withGenerateBookItem(true) //auto-generate a book item for us.
-                .withModel(new ResourceLocation("modonomicon:modonomicon_red")) //use the default red modonomicon icon for the book
-                .withCreativeTab("modonomicon") //and put it in the modonomicon tab
+                .withModel(new ResourceLocation(MetallicsArts.MOD_ID,"textures/icons/book_item.png")) //use the default red modonomicon icon for the book
+                .withCreativeTab(MetallicsArts.MA_TAB.getRecipeFolderName()) //and put it in the modonomicon tab
                 .withCategories(introCategory, allomancyCategory, feruchemyCategory)
                 .build();
         return demoBook;
