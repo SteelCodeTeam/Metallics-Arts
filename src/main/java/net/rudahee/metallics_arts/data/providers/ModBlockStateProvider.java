@@ -1,19 +1,49 @@
 package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.nbt.Tag;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.player.InvestedPlayerData;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
+/**
+ * This provider class control the default state from blocks. We use to define a texture in each block.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see BlockStateProvider
+ * @see Block
+ * @see ModelFile
+ */
 public class ModBlockStateProvider extends BlockStateProvider {
 
+    /**
+     * Default constructor.These will be default parameters to register model textures in each block.
+     * By default, always use "metallics_arts" mod id.
+     *
+     * @param generator class that will be used to generate the json that will contain the information
+     * @param existingFileHelper class to check if path and image are valid in GatherDataEvent
+     *
+     * @see DataGenerator
+     * @see ExistingFileHelper
+     */
     public ModBlockStateProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, MetallicsArts.MOD_ID, existingFileHelper);
     }
 
+    /**
+     * In this override method we define which textures are linked to which blocks,
+     * for this we use of two other auxiliary methods.
+
+     * @see ModBlockStateProvider#simpleBlock
+     * @see ModBlockStateProvider#simpleBlockItem
+     */
     @Override
     protected void registerStatesAndModels() {
 

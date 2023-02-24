@@ -2,6 +2,8 @@ package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -16,11 +18,37 @@ import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * This provider class control the default model from item. We use to define a texture in each item.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see ItemModelProvider
+ * @see Item
+ * @see ModelFile
+ */
 public class ModItemModelProvider extends ItemModelProvider {
+
+    /**
+     * Default constructor.These will be default parameters to register model textures in each item.
+     * By default, always use "metallics_arts" mod id.
+     *
+     * @param generator class that will be used to generate the json that will contain the information
+     * @param existingFileHelper class to check if path and image are valid in GatherDataEvent
+     *
+     * @see DataGenerator
+     * @see ExistingFileHelper
+     */
     public ModItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, MetallicsArts.MOD_ID, existingFileHelper);
     }
 
+
+    /**
+     * In this override method we define which textures are linked to which items,
+     * for this we use a tons of predefined (by super class) methods.
+     */
     @Override
     protected void registerModels(){
 
@@ -56,7 +84,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         }
 
 
-        /** All textures for feruchemic bands **/
+        /* All textures for feruchemic bands **/
 
         builder(itemGenerated,"item/band_aluminum_duralumin","item/metal_mind/aluminium_duralumin_band");
         builder(itemGenerated,"item/band_atium_malatium","item/metal_mind/atium_malatium_band");
@@ -69,7 +97,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/band_iron_steel","item/metal_mind/iron_steel_band");
         builder(itemGenerated,"item/band_zinc_brass","item/metal_mind/zinc_brass_band");
 
-        /** All textures for feruchemic rings **/
+        /* All textures for feruchemic rings **/
 
         builder(itemGenerated,"item/ring_aluminum_duralumin","item/metal_mind/aliminium_duralumin_ring");
         builder(itemGenerated,"item/ring_atium_malatium","item/metal_mind/atium_malatium_ring");
@@ -82,7 +110,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/ring_iron_steel","item/metal_mind/iron_steel_ring");
         builder(itemGenerated,"item/ring_zinc_brass","item/metal_mind/zinc_brass_ring");
 
-        /** All textures for spikes **/
+        /* All textures for spikes **/
 
         builder(itemHandHeld,"item/iron_spike","item/spikes/iron_spike");
         builder(itemHandHeld,"item/steel_spike","item/spikes/steel_spike");
@@ -139,7 +167,19 @@ public class ModItemModelProvider extends ItemModelProvider {
             builder(itemGenerated,"item/"+metal.getNameLower()+"_feruchemic_icon","item/symbols/feruchemic_symbols/"+metal.getNameLower()+"_symbol");
         }
     }
-    private ItemModelBuilder builder (ModelFile itemGenerated, String outPath, String texturePath){
+
+    /**
+     * Auxiliary method to generate a common builder for the item models.
+     *
+     * @param itemGenerated model from specific item.
+     * @param outPath path to output the json.
+     * @param texturePath path to texture.
+     *
+     * @return ItemModelBuilder
+     *
+     * @see ItemModelBuilder
+     */
+    private ItemModelBuilder builder(ModelFile itemGenerated, String outPath, String texturePath){
         return  getBuilder(outPath).parent(itemGenerated).texture("layer0",texturePath);
     }
 

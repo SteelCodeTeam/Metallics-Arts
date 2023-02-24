@@ -75,13 +75,13 @@ Problems solved:
 ## **Future Improvements ⬆️**
 
 **Known Issues**
-- Names consistency are bad.
+- Names consistency is bad.
 - Decant iron and burn bendalloy while you fall result in a bug.
 - Shield with our banners are not getting the right texture.
 
 **Improvements**
-- Do steel flying more comfortable. (Its not a priority)
-- Add sound effects.
+- Do steel flying more comfortable. (It's not a priority)
+- ~~Add sound effects.~~ [v.1.5.2]
 - Do more comfortable (and maybe push and pull through blocks) with iron/steel 
 - Add better resolution in banner printed in shield
 - **We need to do a really hard refactor** - IN PROGRESS.

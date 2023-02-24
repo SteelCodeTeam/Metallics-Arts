@@ -8,6 +8,7 @@ plugins {
 
 group = 'net.rudahee.metallics_arts' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'metallics_arts'
+version = '1.19.2-1.5.2'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
@@ -21,7 +22,6 @@ minecraft {
     // These can be tweaked, removed, or duplicated as needed.
     runs {
         client {
-
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             workingDirectory project.file('run')
