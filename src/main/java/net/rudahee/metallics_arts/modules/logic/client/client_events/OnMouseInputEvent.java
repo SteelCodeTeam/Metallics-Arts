@@ -10,8 +10,6 @@ import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
 
-import javax.annotation.Nullable;
-
 @OnlyIn(Dist.CLIENT)
 public class OnMouseInputEvent {
 

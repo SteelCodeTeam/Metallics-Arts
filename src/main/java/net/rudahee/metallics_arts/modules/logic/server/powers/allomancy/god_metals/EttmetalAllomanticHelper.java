@@ -5,8 +5,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
+/**
+ * Helper class that contains the methods to use the allomantic Ettmetal
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see AllomaticTick
+ */
 public class EttmetalAllomanticHelper {
 
     public static void ettmetalExplotion(Level level, Player player) {

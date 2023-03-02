@@ -11,9 +11,19 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.AtiumFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 
 import java.util.function.Supplier;
 
+/**
+ * Helper class that contains the methods to use the feruchemical Brass
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see AbstractFechuchemicHelper
+ * @see OnDamageEvent
+ */
 public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -49,6 +59,7 @@ public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
         }
     }
 
+    //todo
     public static Supplier<? extends BrassFecuchemicHelper> getInstance() {
         return BrassFecuchemicHelper::new;
     }

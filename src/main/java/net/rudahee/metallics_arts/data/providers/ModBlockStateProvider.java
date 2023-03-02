@@ -1,14 +1,12 @@
 package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.player.InvestedPlayerData;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 /**

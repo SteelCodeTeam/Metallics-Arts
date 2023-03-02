@@ -76,6 +76,10 @@ public enum Interactions {
         return english;
     }
 
+    public String getSpanish() {
+        return spanish;
+    }
+
     public String getPolish() {
         return this.polish;
     }

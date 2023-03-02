@@ -1,13 +1,9 @@
 package net.rudahee.metallics_arts.utils;
 
-import net.minecraft.world.item.Item;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeEnum;
-import net.rudahee.metallics_arts.modules.custom_items.metal_spikes.MetalSpike;
-import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.util.ArrayList;
 

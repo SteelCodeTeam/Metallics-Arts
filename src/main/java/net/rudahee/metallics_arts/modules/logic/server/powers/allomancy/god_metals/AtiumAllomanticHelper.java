@@ -2,7 +2,17 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_met
 
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 
+
+/**
+ * Helper class that contains the methods to use the allomantic Atium
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see OnDamageEvent
+ */
 
 public class AtiumAllomanticHelper {
 

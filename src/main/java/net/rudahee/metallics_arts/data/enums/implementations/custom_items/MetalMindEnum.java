@@ -3,9 +3,6 @@ package net.rudahee.metallics_arts.data.enums.implementations.custom_items;
 
 import net.minecraft.world.item.Item;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 public enum MetalMindEnum {
     IRON_STEEL("iron","steel", null,null,true,false),
     TIN_PEWTER("tin", "pewter",null,null,false,false),

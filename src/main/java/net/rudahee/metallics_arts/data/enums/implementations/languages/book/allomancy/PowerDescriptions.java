@@ -73,6 +73,9 @@ public enum PowerDescriptions {
         this.polish = polish;
     }
 
+    public String getSpanish() {
+        return spanish;
+    }
 
     public String getEnglish() {
         return english;

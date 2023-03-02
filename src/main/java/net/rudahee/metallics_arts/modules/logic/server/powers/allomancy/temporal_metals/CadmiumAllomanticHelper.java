@@ -7,8 +7,17 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
+/**
+ * Helper class that contains the methods to use the allomantic Cadmium
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see AllomaticTick
+ */
 public class CadmiumAllomanticHelper {
     public static void CadmiumEffectSelfPlayer(Player player, boolean enhanced) {
         if (enhanced) {

@@ -9,9 +9,7 @@ import net.rudahee.metallics_arts.utils.MathUtils;
 
 
 public class OnWorldTickEvent {
-
     public static int tick = 0;
-
     public static void onWorldTick(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level)  {
 
 

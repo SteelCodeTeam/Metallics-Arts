@@ -16,4 +16,8 @@ public enum WelcomeExtraDescription {
     public String getEnglish() {
         return english;
     }
+
+    public String getSpanish() {
+        return spanish;
+    }
 }

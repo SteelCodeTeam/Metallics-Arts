@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.data.providers.language_providers;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
+import net.rudahee.metallics_arts.data.providers.language_providers.book.BookHelperES;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -279,6 +280,12 @@ public class ModLanguageProviderES extends LanguageProvider {
             for (String keyColor : colors.keySet()) {
                 add("block.minecraft.banner.metallics_arts." + keySymbol + "." + keyColor, symbols.get(keySymbol) + " " + colors.get(keyColor));
             }
+        }
+
+        HashMap<String, String> bookTraslationsHelper = BookHelperES.addDemoBook();
+
+        for (String key : bookTraslationsHelper.keySet()) {
+            add(key,bookTraslationsHelper.get(key));
         }
     }
 }
