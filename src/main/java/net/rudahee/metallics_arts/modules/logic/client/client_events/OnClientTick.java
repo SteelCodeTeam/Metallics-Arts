@@ -42,6 +42,7 @@ public class OnClientTick {
     @OnlyIn(Dist.CLIENT)
     public static void onClientTick(TickEvent.ClientTickEvent event, Minecraft minecraft, @Nullable Player player, @Nullable IInvestedPlayerData capability) throws PlayerException {
 
+
         if (player == null) {
             throw new PlayerException(ErrorTypes.PLAYER_ERROR);
         } else if (capability == null) {

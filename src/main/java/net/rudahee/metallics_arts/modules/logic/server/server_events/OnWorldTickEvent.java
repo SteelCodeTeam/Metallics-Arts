@@ -15,13 +15,14 @@ public class OnWorldTickEvent {
     public static void onWorldTick(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level)  {
 
 
-        capability.tickAllomancyBurningMetals(player);
-        OnTickUtils.equipKolossBlade(player, capability);
 
-        if (MathUtils.isDivisibleBy3(tick)) {
-            if (capability.isBurningAnything()) {
+
+        if (capability.isBurningAnything()) {
+            if (MathUtils.isDivisibleBy3(tick)) {
+                OnTickUtils.equipKolossBlade(player, capability);
                 AllomaticTick.allomanticTick(capability, player, level);
             }
+            capability.tickAllomancyBurningMetals(player);
         }
 
         tick++;

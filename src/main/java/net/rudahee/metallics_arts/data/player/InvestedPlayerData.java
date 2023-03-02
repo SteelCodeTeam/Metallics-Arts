@@ -102,7 +102,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         }
 
         if (readyToSync) {
-            ModNetwork.sync(this, player);
+            ModNetwork.syncInvestedDataPacket(this, player);
         }
     }
 
