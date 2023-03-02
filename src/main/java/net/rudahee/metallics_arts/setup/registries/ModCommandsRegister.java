@@ -11,6 +11,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.commands.ItemsCommandRegister;
+import net.rudahee.metallics_arts.setup.registries.commands.PowersAddRegister;
 import net.rudahee.metallics_arts.setup.registries.commands.PowersGetRegister;
 
 import java.util.ArrayList;

@@ -97,7 +97,6 @@ public class ModNetwork {
      * @param target specified target.
      */
     public static void sendTo(Object msg, PacketDistributor.PacketTarget target) {
-
         INSTANCE.send(target, msg);
     }
 
