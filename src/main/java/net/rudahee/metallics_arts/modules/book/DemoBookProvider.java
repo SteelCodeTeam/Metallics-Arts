@@ -16,6 +16,8 @@ import com.klikli_dev.modonomicon.api.datagen.book.page.BookPageModel;
 import com.klikli_dev.modonomicon.api.datagen.book.page.BookTextPageModel;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
@@ -44,13 +46,14 @@ public class DemoBookProvider extends BookProvider {
         BookCategoryModel allomancyCategory = this.allomancyCategory(helper);
         BookCategoryModel feruchemyCategory = this.feruchemyCategory(helper);
 
+
         //Now we create the book with settings of our choosing
         BookModel demoBook = BookModel.builder()
                 .withId(this.modLoc(bookName)) //the id of the book. modLoc() prepends the mod id.
                 .withName(helper.bookName()) //the name of the book. The lang helper gives us the correct translation key.
                 .withTooltip(helper.bookTooltip()) //the hover tooltip for the book. Again we get a translation key.
                 .withGenerateBookItem(true) //auto-generate a book item for us.
-                .withModel(new ResourceLocation(MetallicsArts.MOD_ID,"textures/icons/book_item.png")) //use the default red modonomicon icon for the book
+                .withModel(this.modLoc("dummy_book")) //use the default red modonomicon icon for the book
                 .withCreativeTab(MetallicsArts.MA_TAB.getRecipeFolderName()) //and put it in the modonomicon tab
                 .withCategories(introCategory, allomancyCategory, feruchemyCategory)
                 .build();
@@ -66,47 +69,48 @@ public class DemoBookProvider extends BookProvider {
                 "________________________________",
                 "_______________a_________j______",
                 "________________________________",
-                "_______________s__________k_____",
+                "_______________s__________k__l__",
                 "________________________________",
-                "__________c_________b______l____",
+                "__________c_________b______m____",
                 "________________________________",
-                "_______________i__________m_____",
+                "_______________i________________",
                 "________________________________",
                 "_________________________n___o__",
                 "________________________________",
                 "________________________________"
         );
 
-        BookEntryModel s = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.WELCOME);
-        BookEntryModel a = this.subDivisionEntry(helper, entryHelper, 'a', SubdivisionData.WEAPONS, s);
+        BookEntryModel welcome = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.WELCOME);
+        BookEntryModel weapons = this.subDivisionEntry(helper, entryHelper, 'a', SubdivisionData.WEAPONS, welcome);
 
-        BookEntryModel b = this.subDivisionEntry(helper, entryHelper, 'b', SubdivisionData.CAFTING, s);
-        BookEntryParentModel bParent = BookEntryParentModel.builder().withEntryId(b.getId()).build();
-        BookEntryModel c = this.subDivisionEntry(helper, entryHelper, 'c', SubdivisionData.ALLOY_FURNACE, s);
-        BookEntryParentModel cParent = BookEntryParentModel.builder().withEntryId(c.getId()).build();
+        BookEntryModel crafting = this.subDivisionEntry(helper, entryHelper, 'b', SubdivisionData.CAFTING, welcome);
+        BookEntryParentModel craftingParent = BookEntryParentModel.builder().withEntryId(crafting.getId()).build();
+        BookEntryModel alloyFurnace = this.subDivisionEntry(helper, entryHelper, 'c', SubdivisionData.ALLOY_FURNACE, welcome);
+        BookEntryParentModel alloyFurnaceParent = BookEntryParentModel.builder().withEntryId(alloyFurnace.getId()).build();
 
-        BookEntryModel d = this.weaponsEntry(helper, entryHelper, 'd', a, WeaponsData.CRYSTAL_DAGGER);
-        BookEntryModel e = this.weaponsEntry(helper, entryHelper, 'e', a, WeaponsData.OBSIDIAN_DAGGER);
-        BookEntryModel f = this.weaponsEntry(helper, entryHelper, 'f', a, WeaponsData.OBSIDIAN_AXE);
-        BookEntryModel g = this.weaponsEntry(helper, entryHelper, 'g', a, WeaponsData.KOLOSS_BLADE);
-        BookEntryModel h = this.weaponsEntry(helper, entryHelper, 'h', a, WeaponsData.DUELING_STAFF);
+        BookEntryModel crystalDagger = this.weaponsEntry(helper, entryHelper, 'd', weapons, WeaponsData.CRYSTAL_DAGGER);
+        BookEntryModel obsidianDagger = this.weaponsEntry(helper, entryHelper, 'e', weapons, WeaponsData.OBSIDIAN_DAGGER);
+        BookEntryModel obsidianAxe = this.weaponsEntry(helper, entryHelper, 'f', weapons, WeaponsData.OBSIDIAN_AXE);
+        BookEntryModel kolossBlade = this.weaponsEntry(helper, entryHelper, 'g', weapons, WeaponsData.KOLOSS_BLADE);
+        BookEntryModel duelingStaff = this.weaponsEntry(helper, entryHelper, 'h', weapons, WeaponsData.DUELING_STAFF);
 
 
-        BookEntryModel j = this.multiCraftsItemsEntry(helper, entryHelper, 'j', MultiCraftData.VIALS, GetItemsUtils.getVialsList(), bParent);
-        BookEntryModel k = this.multiCraftsItemsEntry(helper, entryHelper, 'k', MultiCraftData.RINGS, GetItemsUtils.getRingList(), bParent);
-        BookEntryModel l = this.multiCraftsItemsEntry(helper, entryHelper, 'l', MultiCraftData.BANDS, GetItemsUtils.getBandList(), bParent);
-        BookEntryModel m = this.multiCraftsItemsEntry(helper, entryHelper, 'm', MultiCraftData.SPIKES, GetItemsUtils.getSpikesList(), bParent);
-        BookEntryModel n = this.multiCraftsItemsEntry(helper, entryHelper, 'n', MultiCraftData.ICONS, GetItemsUtils.getIconsList(), bParent);
-        BookEntryModel i = this.multiCraftsItemsEntry(helper, entryHelper, 'i', MultiCraftData.ALLOYS, GetItemsUtils.getAlloysList(), bParent, cParent);
+        BookEntryModel vials = this.multiCraftsItemsEntry(helper, entryHelper, 'j', MultiCraftData.VIALS, GetItemsUtils.getVialsList(), craftingParent);
+        BookEntryModel rings = this.multiCraftsItemsEntry(helper, entryHelper, 'k', MultiCraftData.RINGS, GetItemsUtils.getRingList(), craftingParent);
+        BookEntryParentModel ringsParent = BookEntryParentModel.builder().withEntryId(rings.getId()).build();
+        BookEntryModel bands = this.multiCraftsItemsEntry(helper, entryHelper, 'l', MultiCraftData.BANDS, GetItemsUtils.getBandList(), ringsParent);
+        BookEntryModel spikes = this.multiCraftsItemsEntry(helper, entryHelper, 'm', MultiCraftData.SPIKES, GetItemsUtils.getSpikesList(), craftingParent);
+        BookEntryModel icons = this.multiCraftsItemsEntry(helper, entryHelper, 'n', MultiCraftData.ICONS, GetItemsUtils.getIconsList(), craftingParent);
+        BookEntryModel alloys = this.multiCraftsItemsEntry(helper, entryHelper, 'i', MultiCraftData.ALLOYS, GetItemsUtils.getAlloysList(), craftingParent, alloyFurnaceParent);
 
-        BookEntryParentModel nParent = BookEntryParentModel.builder().withEntryId(n.getId()).build();
-        BookEntryModel o = this.multiCraftsItemsEntry(helper, entryHelper, 'o', MultiCraftData.PATTERNS, GetItemsUtils.getPatterns(), nParent);
+        BookEntryParentModel iconsParent = BookEntryParentModel.builder().withEntryId(icons.getId()).build();
+        BookEntryModel patterns = this.multiCraftsItemsEntry(helper, entryHelper, 'o', MultiCraftData.PATTERNS, GetItemsUtils.getPatterns(), iconsParent);
 
         return BookCategoryModel.builder()
                 .withId(this.modLoc(helper.category)) //the id of the category, as stored in the lang helper. modLoc() prepends the mod id.
                 .withName(helper.categoryName()) //the name of the category. The lang helper gives us the correct translation key.
                 .withIcon("minecraft:book") //the icon for the category. In this case we simply use an existing item.
-                .withEntries(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,s)
+                .withEntries(weapons,crafting,alloyFurnace,crystalDagger,obsidianDagger,obsidianAxe,kolossBlade,duelingStaff,alloys,vials,rings,bands,spikes,icons,patterns,welcome)
                 .build();
     }
 
@@ -130,38 +134,38 @@ public class DemoBookProvider extends BookProvider {
                 "_____________x___y______________"
         );
 
-        BookEntryModel s = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.ALLOMANCY);
+        BookEntryModel allomancy = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.ALLOMANCY);
 
-        BookEntryModel r = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionData.PHYSICAL, s);
-        BookEntryModel t = this.subDivisionEntry(helper, entryHelper, 't', SubdivisionData.ENHANCEMENT, s);
-        BookEntryModel v = this.subDivisionEntry(helper, entryHelper, 'v', SubdivisionData.TEMPORAL, s);
-        BookEntryModel q = this.subDivisionEntry(helper, entryHelper, 'q', SubdivisionData.COGNITIVE, s);
-        BookEntryModel aA = this.subDivisionEntry(helper, entryHelper, 'A', SubdivisionData.DIVINE, s);
+        BookEntryModel physical = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionData.PHYSICAL, allomancy);
+        BookEntryModel enhancement = this.subDivisionEntry(helper, entryHelper, 't', SubdivisionData.ENHANCEMENT, allomancy);
+        BookEntryModel temporal = this.subDivisionEntry(helper, entryHelper, 'v', SubdivisionData.TEMPORAL, allomancy);
+        BookEntryModel cognitive = this.subDivisionEntry(helper, entryHelper, 'q', SubdivisionData.COGNITIVE, allomancy);
+        BookEntryModel divine = this.subDivisionEntry(helper, entryHelper, 'A', SubdivisionData.DIVINE, allomancy);
 
-        BookEntryModel a = this.allomancyPowerEntry(helper, entryHelper, 'a',MetalTagEnum.IRON, r);
-        BookEntryModel b = this.allomancyPowerEntry(helper, entryHelper, 'b',MetalTagEnum.STEEL, r);
-        BookEntryModel c = this.allomancyPowerEntry(helper, entryHelper, 'c',MetalTagEnum.TIN, r);
-        BookEntryModel d = this.allomancyPowerEntry(helper, entryHelper, 'd',MetalTagEnum.PEWTER, r);
+        BookEntryModel iron = this.allomancyPowerEntry(helper, entryHelper, 'a',MetalTagEnum.IRON, physical);
+        BookEntryModel steel = this.allomancyPowerEntry(helper, entryHelper, 'b',MetalTagEnum.STEEL, physical);
+        BookEntryModel tin = this.allomancyPowerEntry(helper, entryHelper, 'c',MetalTagEnum.TIN, physical);
+        BookEntryModel pewter = this.allomancyPowerEntry(helper, entryHelper, 'd',MetalTagEnum.PEWTER, physical);
 
-        BookEntryModel e = this.allomancyPowerEntry(helper, entryHelper, 'e',MetalTagEnum.GOLD, v);
-        BookEntryModel f = this.allomancyPowerEntry(helper, entryHelper, 'f',MetalTagEnum.ELECTRUM, v);
-        BookEntryModel g = this.allomancyPowerEntry(helper, entryHelper, 'g',MetalTagEnum.CADMIUM, v);
-        BookEntryModel h = this.allomancyPowerEntry(helper, entryHelper, 'h',MetalTagEnum.BENDALLOY, v);
+        BookEntryModel gold = this.allomancyPowerEntry(helper, entryHelper, 'e',MetalTagEnum.GOLD, temporal);
+        BookEntryModel electrum = this.allomancyPowerEntry(helper, entryHelper, 'f',MetalTagEnum.ELECTRUM, temporal);
+        BookEntryModel cadmium = this.allomancyPowerEntry(helper, entryHelper, 'g',MetalTagEnum.CADMIUM, temporal);
+        BookEntryModel bendalloy = this.allomancyPowerEntry(helper, entryHelper, 'h',MetalTagEnum.BENDALLOY, temporal);
 
-        BookEntryModel i = this.allomancyPowerEntry(helper, entryHelper, 'i',MetalTagEnum.COPPER, q);
-        BookEntryModel j = this.allomancyPowerEntry(helper, entryHelper, 'j',MetalTagEnum.BRONZE, q);
-        BookEntryModel k = this.allomancyPowerEntry(helper, entryHelper, 'k',MetalTagEnum.ZINC, q);
-        BookEntryModel l = this.allomancyPowerEntry(helper, entryHelper, 'l',MetalTagEnum.BRASS, q);
+        BookEntryModel copper = this.allomancyPowerEntry(helper, entryHelper, 'i',MetalTagEnum.COPPER, cognitive);
+        BookEntryModel bronze = this.allomancyPowerEntry(helper, entryHelper, 'j',MetalTagEnum.BRONZE, cognitive);
+        BookEntryModel zinc = this.allomancyPowerEntry(helper, entryHelper, 'k',MetalTagEnum.ZINC, cognitive);
+        BookEntryModel brass = this.allomancyPowerEntry(helper, entryHelper, 'l',MetalTagEnum.BRASS, cognitive);
 
-        BookEntryModel m = this.allomancyPowerEntry(helper, entryHelper, 'm',MetalTagEnum.ALUMINUM, t);
-        BookEntryModel n = this.allomancyPowerEntry(helper, entryHelper, 'n',MetalTagEnum.DURALUMIN, t);
-        BookEntryModel o = this.allomancyPowerEntry(helper, entryHelper, 'o',MetalTagEnum.CHROMIUM, t);
-        BookEntryModel p = this.allomancyPowerEntry(helper, entryHelper, 'p',MetalTagEnum.NICROSIL, t);
+        BookEntryModel aluminum = this.allomancyPowerEntry(helper, entryHelper, 'm',MetalTagEnum.ALUMINUM, enhancement);
+        BookEntryModel duralumin = this.allomancyPowerEntry(helper, entryHelper, 'n',MetalTagEnum.DURALUMIN, enhancement);
+        BookEntryModel chromium = this.allomancyPowerEntry(helper, entryHelper, 'o',MetalTagEnum.CHROMIUM, enhancement);
+        BookEntryModel nicrosil = this.allomancyPowerEntry(helper, entryHelper, 'p',MetalTagEnum.NICROSIL, enhancement);
 
-        BookEntryModel w = this.allomancyPowerEntry(helper, entryHelper, 'w',MetalTagEnum.ATIUM, aA);
-        BookEntryModel x = this.allomancyPowerEntry(helper, entryHelper, 'x',MetalTagEnum.MALATIUM, aA);
-        BookEntryModel y = this.allomancyPowerEntry(helper, entryHelper, 'y',MetalTagEnum.LERASIUM, aA);
-        BookEntryModel z = this.allomancyPowerEntry(helper, entryHelper, 'z',MetalTagEnum.ETTMETAL, aA);
+        BookEntryModel atium = this.allomancyPowerEntry(helper, entryHelper, 'w',MetalTagEnum.ATIUM, divine);
+        BookEntryModel malatium = this.allomancyPowerEntry(helper, entryHelper, 'x',MetalTagEnum.MALATIUM, divine);
+        BookEntryModel lerasium = this.allomancyPowerEntry(helper, entryHelper, 'y',MetalTagEnum.LERASIUM, divine);
+        BookEntryModel ettmetal = this.allomancyPowerEntry(helper, entryHelper, 'z',MetalTagEnum.ETTMETAL, divine);
 
 
         //.withBackground(new ResourceLocation(MetallicsArts.MOD_ID + ":textures/icons/background.png"))
@@ -169,7 +173,7 @@ public class DemoBookProvider extends BookProvider {
                 .withId(this.modLoc(helper.category))
                 .withName(helper.categoryName())
                 .withIcon("minecraft:iron_ingot")
-                .withEntries(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,v,w,x,y,z,aA)
+                .withEntries(iron,steel,tin,pewter,gold,electrum,cadmium,bendalloy,copper,bronze,zinc,brass,aluminum,duralumin,chromium,nicrosil,cognitive,physical,allomancy,enhancement,temporal,atium,malatium,lerasium,ettmetal,divine)
                 .build();
     }
 
@@ -196,38 +200,38 @@ public class DemoBookProvider extends BookProvider {
                 "_____________x___y______________"
         );
 
-        BookEntryModel s = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.FERUCHEMY);
+        BookEntryModel feruchemy = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.FERUCHEMY);
 
-        BookEntryModel r = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionData.PHYSICAL, s);
-        BookEntryModel t = this.subDivisionEntry(helper, entryHelper, 't', SubdivisionData.SPIRITUAL, s);
-        BookEntryModel v = this.subDivisionEntry(helper, entryHelper, 'v', SubdivisionData.HYBRID, s);
-        BookEntryModel q = this.subDivisionEntry(helper, entryHelper, 'q', SubdivisionData.COGNITIVE, s);
-        BookEntryModel aA = this.subDivisionEntry(helper, entryHelper, 'A', SubdivisionData.DIVINE, s);
+        BookEntryModel physical = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionData.PHYSICAL, feruchemy);
+        BookEntryModel spiritual = this.subDivisionEntry(helper, entryHelper, 't', SubdivisionData.SPIRITUAL, feruchemy);
+        BookEntryModel hybrid = this.subDivisionEntry(helper, entryHelper, 'v', SubdivisionData.HYBRID, feruchemy);
+        BookEntryModel cognitive = this.subDivisionEntry(helper, entryHelper, 'q', SubdivisionData.COGNITIVE, feruchemy);
+        BookEntryModel divine = this.subDivisionEntry(helper, entryHelper, 'A', SubdivisionData.DIVINE, feruchemy);
 
-        BookEntryModel a = this.feruchemyPowerEntry(helper, entryHelper, 'a',MetalTagEnum.IRON, r);
-        BookEntryModel b = this.feruchemyPowerEntry(helper, entryHelper, 'b',MetalTagEnum.STEEL, r);
-        BookEntryModel c = this.feruchemyPowerEntry(helper, entryHelper, 'c',MetalTagEnum.TIN, r);
-        BookEntryModel d = this.feruchemyPowerEntry(helper, entryHelper, 'd',MetalTagEnum.PEWTER, r);
+        BookEntryModel iron = this.feruchemyPowerEntry(helper, entryHelper, 'a',MetalTagEnum.IRON, physical);
+        BookEntryModel steel = this.feruchemyPowerEntry(helper, entryHelper, 'b',MetalTagEnum.STEEL, physical);
+        BookEntryModel tin = this.feruchemyPowerEntry(helper, entryHelper, 'c',MetalTagEnum.TIN, physical);
+        BookEntryModel pewter = this.feruchemyPowerEntry(helper, entryHelper, 'd',MetalTagEnum.PEWTER, physical);
 
-        BookEntryModel e = this.feruchemyPowerEntry(helper, entryHelper, 'e',MetalTagEnum.GOLD, v);
-        BookEntryModel f = this.feruchemyPowerEntry(helper, entryHelper, 'f',MetalTagEnum.ELECTRUM, v);
-        BookEntryModel g = this.feruchemyPowerEntry(helper, entryHelper, 'g',MetalTagEnum.CADMIUM, v);
-        BookEntryModel h = this.feruchemyPowerEntry(helper, entryHelper, 'h',MetalTagEnum.BENDALLOY, v);
+        BookEntryModel gold = this.feruchemyPowerEntry(helper, entryHelper, 'e',MetalTagEnum.GOLD, hybrid);
+        BookEntryModel electrum = this.feruchemyPowerEntry(helper, entryHelper, 'f',MetalTagEnum.ELECTRUM, hybrid);
+        BookEntryModel cadmium = this.feruchemyPowerEntry(helper, entryHelper, 'g',MetalTagEnum.CADMIUM, hybrid);
+        BookEntryModel bendalloy = this.feruchemyPowerEntry(helper, entryHelper, 'h',MetalTagEnum.BENDALLOY, hybrid);
 
-        BookEntryModel i = this.feruchemyPowerEntry(helper, entryHelper, 'i',MetalTagEnum.COPPER, q);
-        BookEntryModel j = this.feruchemyPowerEntry(helper, entryHelper, 'j',MetalTagEnum.BRONZE, q);
-        BookEntryModel k = this.feruchemyPowerEntry(helper, entryHelper, 'k',MetalTagEnum.ZINC, q);
-        BookEntryModel l = this.feruchemyPowerEntry(helper, entryHelper, 'l',MetalTagEnum.BRASS, q);
+        BookEntryModel copper = this.feruchemyPowerEntry(helper, entryHelper, 'i',MetalTagEnum.COPPER, cognitive);
+        BookEntryModel bronze = this.feruchemyPowerEntry(helper, entryHelper, 'j',MetalTagEnum.BRONZE, cognitive);
+        BookEntryModel zinc = this.feruchemyPowerEntry(helper, entryHelper, 'k',MetalTagEnum.ZINC, cognitive);
+        BookEntryModel brass = this.feruchemyPowerEntry(helper, entryHelper, 'l',MetalTagEnum.BRASS, cognitive);
 
-        BookEntryModel m = this.feruchemyPowerEntry(helper, entryHelper, 'm',MetalTagEnum.ALUMINUM, t);
-        BookEntryModel n = this.feruchemyPowerEntry(helper, entryHelper, 'n',MetalTagEnum.DURALUMIN, t);
-        BookEntryModel o = this.feruchemyPowerEntry(helper, entryHelper, 'o',MetalTagEnum.CHROMIUM, t);
-        BookEntryModel p = this.feruchemyPowerEntry(helper, entryHelper, 'p',MetalTagEnum.NICROSIL, t);
+        BookEntryModel aluminum = this.feruchemyPowerEntry(helper, entryHelper, 'm',MetalTagEnum.ALUMINUM, spiritual);
+        BookEntryModel duralumin = this.feruchemyPowerEntry(helper, entryHelper, 'n',MetalTagEnum.DURALUMIN, spiritual);
+        BookEntryModel chromium = this.feruchemyPowerEntry(helper, entryHelper, 'o',MetalTagEnum.CHROMIUM, spiritual);
+        BookEntryModel nicrosil = this.feruchemyPowerEntry(helper, entryHelper, 'p',MetalTagEnum.NICROSIL, spiritual);
 
-        BookEntryModel w = this.feruchemyPowerEntry(helper, entryHelper, 'w',MetalTagEnum.ATIUM, aA);
-        BookEntryModel x = this.feruchemyPowerEntry(helper, entryHelper, 'x',MetalTagEnum.MALATIUM, aA);
-        BookEntryModel y = this.feruchemyPowerEntry(helper, entryHelper, 'y',MetalTagEnum.LERASIUM, aA);
-        BookEntryModel z = this.feruchemyPowerEntry(helper, entryHelper, 'z',MetalTagEnum.ETTMETAL, aA);
+        BookEntryModel atium = this.feruchemyPowerEntry(helper, entryHelper, 'w',MetalTagEnum.ATIUM, divine);
+        BookEntryModel malatium = this.feruchemyPowerEntry(helper, entryHelper, 'x',MetalTagEnum.MALATIUM, divine);
+        BookEntryModel lerasium = this.feruchemyPowerEntry(helper, entryHelper, 'y',MetalTagEnum.LERASIUM, divine);
+        BookEntryModel ettmetal = this.feruchemyPowerEntry(helper, entryHelper, 'z',MetalTagEnum.ETTMETAL, divine);
 
 
         //lista de entradas
@@ -236,7 +240,7 @@ public class DemoBookProvider extends BookProvider {
                 .withId(this.modLoc(helper.category)) //the id of the category, as stored in the lang helper. modLoc() prepends the mod id.
                 .withName(helper.categoryName()) //the name of the category. The lang helper gives us the correct translation key.
                 .withIcon("minecraft:gold_ingot") //the icon for the category. In this case we simply use an existing item.
-                .withEntries(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,v,w,x,y,z,aA)
+                .withEntries(iron,steel,tin,pewter,gold,electrum,cadmium,bendalloy,copper,bronze,zinc,brass,aluminum,duralumin,chromium,nicrosil,cognitive,physical,feruchemy,spiritual,hybrid,atium,malatium,lerasium,ettmetal,divine)
                 .build();
     }
 

@@ -161,11 +161,13 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .end();
 
 
-
         for (MetalTagEnum metal: MetalTagEnum.values()) {
             builder(itemGenerated,"item/"+metal.getNameLower()+"_allomantic_icon","item/symbols/allomantic_symbols/"+metal.getNameLower()+"_symbol");
             builder(itemGenerated,"item/"+metal.getNameLower()+"_feruchemic_icon","item/symbols/feruchemic_symbols/"+metal.getNameLower()+"_symbol");
         }
+
+        builder(itemHandHeld,"item/dummy_book","item/dummy_book");
+
     }
 
     /**
@@ -180,7 +182,7 @@ public class ModItemModelProvider extends ItemModelProvider {
      * @see ItemModelBuilder
      */
     private ItemModelBuilder builder(ModelFile itemGenerated, String outPath, String texturePath){
-        return  getBuilder(outPath).parent(itemGenerated).texture("layer0",texturePath);
+        return getBuilder(outPath).parent(itemGenerated).texture("layer0",texturePath);
     }
 
 }

@@ -75,6 +75,10 @@ public enum Storage {
         return english;
     }
 
+    public String getSpanish() {
+        return spanish;
+    }
+
     public String getPolish() {
         return polish;
     }

@@ -80,6 +80,8 @@ public class BasicItemsRegister {
                 });
         });
 
+        ModItemsRegister.DUMMY_BOOK =  MetallicsArts.registerItem("dummy_book",() -> new Item(new Item.Properties()));
+
     }
 
 
