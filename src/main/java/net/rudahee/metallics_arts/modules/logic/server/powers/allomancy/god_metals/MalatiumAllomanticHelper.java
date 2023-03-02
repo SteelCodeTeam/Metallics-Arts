@@ -34,9 +34,10 @@ public class MalatiumAllomanticHelper {
                     pos.dimension(), pos.pos());
             capability.drainMetals(MetalTagEnum.LERASIUM);
         } else {
-            TeleportsUtils.teleport(player, level, pos.dimension(), pos.pos());
+            if (pos != null) {
+                TeleportsUtils.teleport(player, level, pos.dimension(), pos.pos());
+            }
         }
-
         pos = GlobalPos.of(null, null);
         capability.drainMetals(MetalTagEnum.DURALUMIN, MetalTagEnum.MALATIUM);
     }

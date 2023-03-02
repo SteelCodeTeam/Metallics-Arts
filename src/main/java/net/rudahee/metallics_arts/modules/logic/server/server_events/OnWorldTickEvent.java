@@ -12,7 +12,6 @@ public class OnWorldTickEvent {
     public static int tick = 0;
     public static void onWorldTick(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level)  {
 
-
         if (capability.isBurningAnything()) {
             if (MathUtils.isDivisibleBy3(tick)) {
                 OnTickUtils.equipKolossBlade(player, capability);
@@ -22,7 +21,7 @@ public class OnWorldTickEvent {
         }
 
         tick++;
-        if (tick == 4800) {
+        if (tick >= 4800) {
             tick = 0;
         }
     }

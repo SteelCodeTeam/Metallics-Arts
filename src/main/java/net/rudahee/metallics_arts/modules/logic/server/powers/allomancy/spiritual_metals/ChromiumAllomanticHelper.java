@@ -27,7 +27,7 @@ public class ChromiumAllomanticHelper {
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
             for (MetalTagEnum metalTagEnum : data.getAllomanticPowers()){
                 data.drainMetals(metalTagEnum);
-                ModNetwork.sync(data, player);
+                ModNetwork.syncInvestedDataPacket(data, player);
             }
         });
     }
@@ -38,7 +38,7 @@ public class ChromiumAllomanticHelper {
                 entity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(capability -> {
                     capability.drainMetals(MetalTagEnum.values());
 
-                    ModNetwork.sync(capability, entity);
+                    ModNetwork.syncInvestedDataPacket(capability, entity);
                 });
             }
         });
