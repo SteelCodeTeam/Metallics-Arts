@@ -4,7 +4,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.custom_items.vials.Vial;
 
 /**
  * Class to create a custom sword item. This item it's a new iron tier item.

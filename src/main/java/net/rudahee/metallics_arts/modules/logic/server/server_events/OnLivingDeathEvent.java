@@ -21,7 +21,7 @@ public class OnLivingDeathEvent {
                 capability.setMetalMindEquiped(metal.getGroup(), false);
             }
 
-            ModNetwork.sync(capability, player);
+            ModNetwork.syncInvestedDataPacket(capability, player);
         } catch (PlayerException ex) {
             ex.printCompleteLog();
         }

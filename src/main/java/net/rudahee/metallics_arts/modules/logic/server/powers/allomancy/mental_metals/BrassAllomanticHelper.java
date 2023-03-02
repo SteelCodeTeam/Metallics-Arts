@@ -13,13 +13,22 @@ import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
+import net.rudahee.metallics_arts.setup.network.packets.ChangeEmotionPacket;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.function.Predicate;
 
+/**
+ * Helper class that contains the methods to use the allomantic Brass
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see AllomaticTick
+ * @see ChangeEmotionPacket
+ */
 public class BrassAllomanticHelper {
-
-
     private static final Predicate<Goal> isAggroGoal = (goal) -> goal instanceof SwellGoal || goal instanceof MeleeAttackGoal ||
             goal instanceof TargetGoal || goal instanceof PanicGoal || goal.getClass().getName().contains("Fireball") ||
             goal.getClass().getName().contains("Attack") || goal.getClass().getName().contains("Anger") || goal instanceof AvoidEntityGoal;

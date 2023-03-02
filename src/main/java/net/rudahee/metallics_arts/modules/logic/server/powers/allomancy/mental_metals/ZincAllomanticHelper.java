@@ -16,8 +16,19 @@ import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
+import net.rudahee.metallics_arts.setup.network.packets.ChangeEmotionPacket;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
+/**
+ * Helper class that contains the methods to use the allomantic Malatium
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see AllomaticTick
+ * @see ChangeEmotionPacket
+ */
 public class ZincAllomanticHelper {
     public static void angryEntities(Mob target, Player source) {
         target.targetSelector.enableControlFlag(Goal.Flag.TARGET);

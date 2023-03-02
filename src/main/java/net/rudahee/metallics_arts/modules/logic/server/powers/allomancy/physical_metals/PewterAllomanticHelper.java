@@ -6,7 +6,19 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
+
+/**
+ * Helper class that contains the methods to use the allomantic Pewter
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see AllomaticTick
+ * @see OnDamageEvent
+ */
 
 public class PewterAllomanticHelper {
     /**

@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.setup.registries.items;
 
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;

@@ -1,22 +1,8 @@
 package net.rudahee.metallics_arts.data.providers.language_providers;
 
-import com.klikli_dev.modonomicon.api.ModonomiconAPI;
-import com.klikli_dev.modonomicon.api.datagen.BookLangHelper;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
-import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.allomancy.Interactions;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.allomancy.PowerDescriptions;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.feruchemic.Storage;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.feruchemic.Tap;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft.MultiCaftDescriptions;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft.MultiCraftData;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionData;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionDescription;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponDescriptions;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponsData;
 import net.rudahee.metallics_arts.data.providers.language_providers.book.BookHelperEN;
 
 import java.util.HashMap;

@@ -9,6 +9,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.RingsMindAbstract;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals.BronzeFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals.CopperFecuchemicHelper;
 
@@ -16,12 +17,39 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Class that specifies the copper and bronze ring, we pass to the abstract class (which has the behavior) the metals that compose it,
+ * in the order: metal and its alloy, along with their corresponding suppliers.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see RingsMindAbstract
+ * @see AbstractFechuchemicHelper
+ */
 public class RingCopperBronze extends RingsMindAbstract <CopperFecuchemicHelper, BronzeFecuchemicHelper> {
+    /**
+     * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
+     *
+     * @param properties of the item.
+     */
     public RingCopperBronze(Properties properties){
         super(properties, MetalTagEnum.COPPER, MetalTagEnum.BRONZE, CopperFecuchemicHelper.getInstance(), BronzeFecuchemicHelper.getInstance());
     }
 
-
+    /**
+     * This method uses the internal information of the item to generate add the own Tooltips of the ring, for example, owner, and amount of current reservations.
+     * <p>
+     * This is a specific specification of the method for this particular item, since it has certain modifications with respect to the generic of the abstract class, it differs in that:
+     * <p>
+     * - The Copper has a reserve storage based on experience points, unlike the generic method that uses time, so this method adapts to that specification, showing experience points instead of seconds
+     *
+     * @param stack item that is being observed with the mouse over it.
+     * @param level minecraft world you are in.
+     * @param toolTips tooltips of the basic item, to which new information will be added.
+     * @param flagIn flag that indicates if the tooltip information is normal or advanced, not used for mod item information.
+     *
+     */
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> toolTips, TooltipFlag flagIn) {
         if (stack.hasTag()) {

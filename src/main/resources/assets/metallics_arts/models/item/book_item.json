@@ -1,0 +1,6 @@
+{
+  "parent": "item/book",
+  "textures": {
+    "layer0": "metallics_arts:item/book/book_item"
+  }
+}

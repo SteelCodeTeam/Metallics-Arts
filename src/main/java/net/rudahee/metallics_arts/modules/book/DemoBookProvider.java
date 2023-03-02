@@ -10,14 +10,14 @@ import com.klikli_dev.modonomicon.api.ModonomiconAPI;
 import com.klikli_dev.modonomicon.api.datagen.BookLangHelper;
 import com.klikli_dev.modonomicon.api.datagen.BookProvider;
 import com.klikli_dev.modonomicon.api.datagen.EntryLocationHelper;
-import com.klikli_dev.modonomicon.api.datagen.book.*;
+import com.klikli_dev.modonomicon.api.datagen.book.BookCategoryModel;
+import com.klikli_dev.modonomicon.api.datagen.book.BookEntryModel;
+import com.klikli_dev.modonomicon.api.datagen.book.BookEntryParentModel;
+import com.klikli_dev.modonomicon.api.datagen.book.BookModel;
 import com.klikli_dev.modonomicon.api.datagen.book.page.BookCraftingRecipePageModel;
 import com.klikli_dev.modonomicon.api.datagen.book.page.BookPageModel;
 import com.klikli_dev.modonomicon.api.datagen.book.page.BookTextPageModel;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
@@ -36,10 +36,10 @@ public class DemoBookProvider extends BookProvider {
     }
 
     private BookModel makeDemoBook(String bookName) {
-        //The lang helper keeps track of the "DescriptionIds", that is, the language keys for translations, for us
+
         BookLangHelper helper = ModonomiconAPI.get().getLangHelper(this.modid);
 
-        //we tell the helper the book we're in.
+
         helper.book(bookName);
 
         BookCategoryModel introCategory = this.introCategory(helper);
@@ -47,14 +47,14 @@ public class DemoBookProvider extends BookProvider {
         BookCategoryModel feruchemyCategory = this.feruchemyCategory(helper);
 
 
-        //Now we create the book with settings of our choosing
+
         BookModel demoBook = BookModel.builder()
-                .withId(this.modLoc(bookName)) //the id of the book. modLoc() prepends the mod id.
-                .withName(helper.bookName()) //the name of the book. The lang helper gives us the correct translation key.
-                .withTooltip(helper.bookTooltip()) //the hover tooltip for the book. Again we get a translation key.
-                .withGenerateBookItem(true) //auto-generate a book item for us.
-                .withModel(this.modLoc("dummy_book")) //use the default red modonomicon icon for the book
-                .withCreativeTab(MetallicsArts.MA_TAB.getRecipeFolderName()) //and put it in the modonomicon tab
+                .withId(this.modLoc(bookName))
+                .withName(helper.bookName())
+                .withTooltip(helper.bookTooltip())
+                .withGenerateBookItem(true)
+                .withModel(this.modLoc("dummy_book"))
+                .withCreativeTab(MetallicsArts.MA_TAB.getRecipeFolderName())
                 .withCategories(introCategory, allomancyCategory, feruchemyCategory)
                 .build();
         return demoBook;
@@ -107,9 +107,9 @@ public class DemoBookProvider extends BookProvider {
         BookEntryModel patterns = this.multiCraftsItemsEntry(helper, entryHelper, 'o', MultiCraftData.PATTERNS, GetItemsUtils.getPatterns(), iconsParent);
 
         return BookCategoryModel.builder()
-                .withId(this.modLoc(helper.category)) //the id of the category, as stored in the lang helper. modLoc() prepends the mod id.
-                .withName(helper.categoryName()) //the name of the category. The lang helper gives us the correct translation key.
-                .withIcon("minecraft:book") //the icon for the category. In this case we simply use an existing item.
+                .withId(this.modLoc(helper.category))
+                .withName(helper.categoryName())
+                .withIcon("minecraft:book")
                 .withEntries(weapons,crafting,alloyFurnace,crystalDagger,obsidianDagger,obsidianAxe,kolossBlade,duelingStaff,alloys,vials,rings,bands,spikes,icons,patterns,welcome)
                 .build();
     }
@@ -390,7 +390,7 @@ public class DemoBookProvider extends BookProvider {
     }
 
     private BookEntryModel welcomePowerEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, SubdivisionData subdivisionData) {
-        helper.entry(subdivisionData.getId() + "_entry"); //tell our lang helper the entry we are in
+        helper.entry(subdivisionData.getId() + "_entry");
 
         // PAGINA
         helper.page("page1"); //and now the page
@@ -409,21 +409,19 @@ public class DemoBookProvider extends BookProvider {
 
 
         return BookEntryModel.builder()
-                .withId(this.modLoc(helper.category + "/" + helper.entry))      //make entry id from lang helper data
-                .withName(helper.entryName())                                       //entry name lang key
-                .withDescription(helper.entryDescription())                         //entry description lang key
-                .withIcon("minecraft:paper")                                        //we use furnace as icon
-                .withLocation(entryHelper.get(location))                            //and we place it at the location we defined earlier in the entry helper mapping
-                .withPages(page,page2)                                              //finally we add our pages to the entry
+                .withId(this.modLoc(helper.category + "/" + helper.entry))
+                .withName(helper.entryName())
+                .withDescription(helper.entryDescription())
+                .withIcon("minecraft:paper")
+                .withLocation(entryHelper.get(location))
+                .withPages(page,page2)
                 .build();
     }
 
     @Override
     protected void generate() {
-        //call our code that generates a book with the id "demo"
         BookModel demoBook = this.makeDemoBook("metallics_arts_book");
 
-        //then add the book to the list of books to generate
         this.add(demoBook);
     }
 }

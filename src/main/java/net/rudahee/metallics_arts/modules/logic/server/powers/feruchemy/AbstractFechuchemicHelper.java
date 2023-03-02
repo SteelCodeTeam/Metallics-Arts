@@ -10,7 +10,7 @@ import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
  * Abstract class that defines the structure of the feruchemical helpers.
  *
  * @author SteelCode Team
- * @since 1.6
+ * @since 1.5.1
  *
  */
 public abstract class AbstractFechuchemicHelper {

@@ -51,7 +51,7 @@ public class MetalMindsRegister {
             });
         MetallicsArts.registerItem("band_gold_electrum",
             () -> {
-                Item item = new BandElectrumGold(PROPERTY_METALMINDS);
+                Item item = new BandGoldElectrum(PROPERTY_METALMINDS);
                 MetalMindEnum.GOLD_ELECTRUM.setBand(item);
                 return item;
             });
@@ -63,13 +63,13 @@ public class MetalMindsRegister {
             });
         MetallicsArts.registerItem("band_tin_pewter",
             () -> {
-                Item item = new BandPewterTin(PROPERTY_METALMINDS);
+                Item item = new BandTinPewter(PROPERTY_METALMINDS);
                 MetalMindEnum.TIN_PEWTER.setBand(item);
                 return item;
             });
         MetallicsArts.registerItem("band_iron_steel",
             () -> {
-                Item item = new BandSteelIron(PROPERTY_METALMINDS);
+                Item item = new BandIronSteel(PROPERTY_METALMINDS);
                 MetalMindEnum.IRON_STEEL.setBand(item);
                 return item;
             });

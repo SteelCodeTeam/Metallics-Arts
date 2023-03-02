@@ -1,41 +1,44 @@
-package net.rudahee.metallics_arts.modules.custom_items.metal_minds.rings;
+package net.rudahee.metallics_arts.modules.custom_items.metal_minds.bands;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.custom_items.metal_minds.RingsMindAbstract;
+import net.rudahee.metallics_arts.modules.custom_items.metal_minds.BandMindAbstract;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals.ElectrumFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals.GoldFecuchemicHelper;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.MetalMindsUtils;
 import top.theillusivec4.curios.api.SlotContext;
 
 /**
- * Class that specifies the gold and electrum ring, we pass to the abstract class (which has the behavior) the metals that compose it,
+ * Class that specifies the gold and electrum band, we pass to the abstract class (which has the behavior) the metals that compose it,
  * in the order: metal and its alloy, along with their corresponding suppliers.
  *
  * @author SteelCode Team
  * @since 1.5.1
  *
- * @see RingsMindAbstract
+ * @see BandMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class RingGoldElectrum extends RingsMindAbstract <GoldFecuchemicHelper, ElectrumFecuchemicHelper> {
+public class BandGoldElectrum extends BandMindAbstract <GoldFecuchemicHelper, ElectrumFecuchemicHelper> {
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
      *
      * @param properties of the item.
      */
-    public RingGoldElectrum(Properties properties){
+    public BandGoldElectrum(Item.Properties properties) {
         super(properties, MetalTagEnum.GOLD, MetalTagEnum.ELECTRUM, GoldFecuchemicHelper.getInstance(), ElectrumFecuchemicHelper.getInstance());
     }
+
     private boolean nicConsumeMet0 = false;
     private boolean nicConsumeMet1 = false;
     /**
@@ -63,11 +66,10 @@ public class RingGoldElectrum extends RingsMindAbstract <GoldFecuchemicHelper, E
                 IInvestedPlayerData playerCapability;
                 try {
                     playerCapability = CapabilityUtils.getCapability(player);
-                } catch (PlayerException ex) {
+                } catch(PlayerException ex) {
                     ex.printCompleteLog();
                     return;
                 }
-
                 if (playerCapability.isTapping(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)) {
                     stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(0), this.getMetals(1)));
                 }
@@ -160,6 +162,7 @@ public class RingGoldElectrum extends RingsMindAbstract <GoldFecuchemicHelper, E
         try {
             playerCapability = CapabilityUtils.getCapability(player);
 
+            super.onUnequip(slotContext, newStack, stack);
         } catch (PlayerException ex) {
             ex.printCompleteLog();
             return;
@@ -175,8 +178,7 @@ public class RingGoldElectrum extends RingsMindAbstract <GoldFecuchemicHelper, E
                 ElectrumFecuchemicHelper.restoreHearts(player, playerCapability);
             }
             ModNetwork.sync(playerCapability, player);
-
         }
-        super.onUnequip(slotContext, newStack, stack);
     }
+
 }

@@ -5,8 +5,6 @@ import net.minecraft.core.GlobalPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
@@ -14,12 +12,9 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.custom_tiers.ObsidianTier;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.network.packets.*;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
-
-import java.util.Properties;
 
 /**
  * Class to control communications between Client game and Server game. That it's done defining packets to realize change
@@ -97,6 +92,7 @@ public class ModNetwork {
      * @param target specified target.
      */
     public static void sendTo(Object msg, PacketDistributor.PacketTarget target) {
+
         INSTANCE.send(target, msg);
     }
 

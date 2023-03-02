@@ -3,16 +3,14 @@ package net.rudahee.metallics_arts.modules.custom_items.metal_spikes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Evoker;
 import net.minecraft.world.entity.monster.Witch;
 import net.minecraft.world.entity.player.Player;
@@ -33,8 +31,6 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
-
-import static net.minecraft.sounds.SoundEvents.ANVIL_FALL;
 
 /**
  * Class that defines new custom SwordItem, This class implements the specific functionality of spikes,

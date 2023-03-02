@@ -4,7 +4,16 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physica
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 
+/**
+ * Helper class that contains the methods to use the allomantic Tin
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see AllomaticTick
+ */
 public class TinAllomanticHelper {
 
 

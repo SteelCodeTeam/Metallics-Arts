@@ -1,7 +1,5 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division;
 
-import net.rudahee.metallics_arts.MetallicsArts;
-
 public enum SubdivisionDescription {
     WEAPONS("",
             "",
