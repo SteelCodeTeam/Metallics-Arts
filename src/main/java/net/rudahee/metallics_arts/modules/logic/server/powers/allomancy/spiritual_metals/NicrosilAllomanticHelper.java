@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritual_metals;
 
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
@@ -14,10 +15,16 @@ import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
  */
 
 public class NicrosilAllomanticHelper {
-    public static void changeTargetEnhancedToTrue(Player playerTarget) {
-        playerTarget.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> {
-            cap.setEnhanced(true);
-            ModNetwork.sync(cap, playerTarget);
-        });
+
+    /**
+     * This method causes the target to enter the enhanced state.
+     *
+     * @param target who is attacked.
+     * @param targetCapability capabilities (data) of the target.
+     */
+
+    public static void changeTargetEnhancedToTrue(Player target, IInvestedPlayerData targetCapability) {
+        targetCapability.setEnhanced(true);
+        ModNetwork.sync(targetCapability, target);
     }
 }

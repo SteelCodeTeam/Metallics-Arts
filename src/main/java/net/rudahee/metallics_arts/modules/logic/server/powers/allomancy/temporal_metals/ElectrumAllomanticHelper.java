@@ -18,15 +18,23 @@ import net.rudahee.metallics_arts.utils.powers_utils.TeleportsUtils;
  */
 public class ElectrumAllomanticHelper {
 
-    public static void teleportToSpawn (Level level,IInvestedPlayerData capability, ServerPlayer player, boolean lerasium) {
+    /**
+     * This method is responsible for teleporting the player to his spawn point, along with nearby players if he is burning Lerasium.
+     *
+     * @param level minecraft world you are in.
+     * @param playerCapability capabilities (data) of the player.
+     * @param player to use the power.
+     * @param lerasium if the player is burning Lerasium.
+     */
+    public static void teleportToSpawn (Level level, IInvestedPlayerData playerCapability, ServerPlayer player, boolean lerasium) {
         if (lerasium) {
             //multi tp
             TeleportsUtils.multiTeleport(player, CapabilityUtils.getBubble(player,5),level,player.getRespawnDimension(),player.getRespawnPosition());
-            capability.drainMetals(MetalTagEnum.LERASIUM);
+            playerCapability.drainMetals(MetalTagEnum.LERASIUM);
         } else {
             //tp simple
             TeleportsUtils.teleport(player, level,player.getRespawnDimension(),player.getRespawnPosition());
         }
-        capability.drainMetals(MetalTagEnum.DURALUMIN, MetalTagEnum.ELECTRUM);
+        playerCapability.drainMetals(MetalTagEnum.DURALUMIN, MetalTagEnum.ELECTRUM);
     }
 }

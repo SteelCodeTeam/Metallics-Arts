@@ -26,10 +26,12 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
 public class BendalloyAllomanticHelper {
 
     /**
+     * This method applies more ticks on the mobs (making them move faster or attack more often).
      *
      * @param player to whom the effect will be applied.
-     * @param level in which the player is located (world)
-     * @param enhanced if player is burning Duralumin or the player was hit with nicrosil
+     * @param level in which the player is located (world).
+     * @param enhanced if player is burning Duralumin or the player was hit with Nicrosil.
+     * @param lerasium if the player is burning Lerasium.
      */
     public static void BendalloyMobEffects(Player player, ServerLevel level, boolean enhanced, boolean lerasium) {
 
@@ -81,7 +83,9 @@ public class BendalloyAllomanticHelper {
 
     /**
      *
+     *
      * @param player to whom the effect will be applied.
+     * @param enhanced if player is burning Duralumin or the player was hit with Nicrosil.
      */
 
     public static void AddAiSteeps(Player player, boolean enhanced) {

@@ -18,7 +18,7 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
 public class OnDamageEvent {
 
     /**
-     * Brings out the damage effects of Allomantic powers
+     * Brings out the damage effects of Allomantic powers.
      *
      * @param event to damage,
      * @param source of damage.
@@ -36,7 +36,7 @@ public class OnDamageEvent {
 
             // Chromium
             if (sourceCapability.isBurning(MetalTagEnum.CHROMIUM)) {
-                ChromiumAllomanticHelper.drainMetalChromium((Player) event.getEntity());
+                ChromiumAllomanticHelper.drainMetalChromium(target, targetCapability);
             }
             // Malatium
             if (sourceCapability.isBurning(MetalTagEnum.MALATIUM)) {
@@ -45,7 +45,7 @@ public class OnDamageEvent {
 
             // Nicrosil
             if (sourceCapability.isBurning(MetalTagEnum.NICROSIL)) {
-                NicrosilAllomanticHelper.changeTargetEnhancedToTrue((Player) event.getEntity());
+                NicrosilAllomanticHelper.changeTargetEnhancedToTrue(target, targetCapability);
             }
 
             // Atium
@@ -60,9 +60,9 @@ public class OnDamageEvent {
     /**
      * Brings out the damage effects of Feruchemical powers.
      *
-     * @param event to damage,
      * @param source of damage.
      * @param target of damage.
+     * @param event to damage,
      */
     public static void onDamageFeruchemical(final LivingHurtEvent event, ServerPlayer source, ServerPlayer target) {
         try {

@@ -16,9 +16,7 @@ public class OnJoinWorldEvent {
     public static void joinWorld(PlayerEvent.PlayerLoggedInEvent event) {
         ServerPlayer player = (ServerPlayer) event.getEntity();
         try {
-
         IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
-
         if ((capability.getAllomanticPowerCount() + capability.getFeruchemicPowerCount() == 0) && !capability.isInvested()) {
             List<MetalTagEnum> metals = Arrays.asList(MetalTagEnum.values());
             Collections.shuffle(metals);

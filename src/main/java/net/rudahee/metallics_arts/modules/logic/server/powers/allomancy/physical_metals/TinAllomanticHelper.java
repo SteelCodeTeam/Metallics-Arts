@@ -18,6 +18,7 @@ public class TinAllomanticHelper {
 
 
     /**
+     * This method gives the player the effects that make up the increased tin senses.
      *
      * @param player to whom the effect will be applied.
      */

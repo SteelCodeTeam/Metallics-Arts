@@ -26,6 +26,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
 import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays.MetalsOverlay;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 import net.rudahee.metallics_arts.setup.DataGenerators;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
@@ -89,6 +90,8 @@ public class MetallicsArts {
         modEventBus.addListener(this::processIMC);
 
         modEventBus.addListener(this::onGuOveirlayEvent);
+
+        ModEffects.register(modEventBus);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             modEventBus.addListener(ModKeyRegister::initKeys);

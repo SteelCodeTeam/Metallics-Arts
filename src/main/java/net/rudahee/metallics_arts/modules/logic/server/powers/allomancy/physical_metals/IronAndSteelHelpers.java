@@ -43,6 +43,13 @@ public class IronAndSteelHelpers {
         return ACTIVE_METAL_REGEX.matcher(input.getPath()).matches();
     }
 
+    /**
+     * This method searches if the player has nuggets of any metal that is not aluminum or silver, and if they do, it returns the first inventory position where they are found.
+     *
+     * @param player who is being checked.
+     *
+     * @return int
+     */
     public static int haveNuggets(Player player){
 
         List <Item> list = new ArrayList<>();
@@ -66,13 +73,11 @@ public class IronAndSteelHelpers {
     }
 
     public static boolean isBlockStateMetal(BlockState state) {
-        boolean a = isBlockMetal(state.getBlock());
-        return a;
+        return isBlockMetal(state.getBlock());
     }
 
     public static boolean isBlockMetal(Block block) {
-        boolean a = isOnWhitelist(block.getDescriptionId());
-        return a;
+        return isOnWhitelist(block.getDescriptionId());
     }
 
     public static boolean isItemMetal(ItemStack item) {

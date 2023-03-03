@@ -28,12 +28,12 @@ public class MalatiumAllomanticHelper {
 
     private static boolean havePosRegistered = false;
     /**
-     *
+     * This method is responsible for teleporting the player to the zone indicated by "pos", which is given the value of the death zone of another player. Along with nearby players if he is burning Lerasium.
      *
      * @param level minecraft world you are in.
      * @param capability capabilities (data) of the player.
      * @param player to use the power.
-     * @param lerasium if it is burning lerasium.
+     * @param lerasium if the player is burning Lerasium.
      */
     public static void teleportToDeathPosFromAnotherPlayer(Level level, IInvestedPlayerData capability, ServerPlayer player, boolean lerasium) {
         if (lerasium) {
@@ -49,21 +49,46 @@ public class MalatiumAllomanticHelper {
         capability.drainMetals(MetalTagEnum.DURALUMIN, MetalTagEnum.MALATIUM);
     }
 
+    /**
+     * Return "Pos"
+     *
+     * @return GlobalPos
+     */
+
     public static GlobalPos getPos() {
         return pos;
     }
 
+    /**
+     * Modify "pos" with the dimension and block where a player died.
+     *
+     * @param blockPos block where a player has died.
+     * @param dimension dimension where a player has died.
+     */
+
     public static void setPos(BlockPos blockPos, ResourceKey<Level> dimension) {
         MalatiumAllomanticHelper.pos = GlobalPos.of(dimension, blockPos);
     }
+
+    /**
+     * Modify "pos" with the dimension and block where a player died.
+     *
+     * @param globalPos where a player has died.
+     */
     public static void setPos(GlobalPos globalPos) {
         MalatiumAllomanticHelper.pos = globalPos;
     }
 
+    /**
+     * Returns a boolean indicating if "pos" contains a valid position.
+     *
+     * @return boolean
+     */
     public static boolean isPosRegistered() {
         return havePosRegistered;
     }
 
+    //todo "esto deberia eliminarse o utilizarse ya que no esta comprobando que tenga la informacion para el tp"
     public static void setPosRegistered(boolean isPosRegistered) {
         havePosRegistered = isPosRegistered;
     }

@@ -243,7 +243,6 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
      * @param stack item being used.
      *
      * @see AbstractFechuchemicHelper
-     *
      */
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {

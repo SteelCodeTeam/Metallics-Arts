@@ -10,6 +10,9 @@ import java.util.Map;
 
 public class ModLanguageProviderEN extends LanguageProvider {
         private Map<String, String> base = new HashMap<>() {{
+
+                put("effect.metallics_arts.pewter_effect", "Pewter");
+
                 put("item.metallics_arts.large_vial",CTW.LARGE.getNameInEnglish() + " " + CTW.VIAL.getNameInEnglish());
                 put("item.metallics_arts.small_vial",CTW.SMALL.getNameInEnglish() + " " + CTW.VIAL.getNameInEnglish());
                 put("curios.identifier.metalmind_slot",CTW.METALMIND + " " + CTW.SLOT.getNameInEnglish());

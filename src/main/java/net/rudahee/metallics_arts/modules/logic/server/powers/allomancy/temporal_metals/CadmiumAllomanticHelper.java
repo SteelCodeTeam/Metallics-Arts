@@ -19,6 +19,13 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
  * @see AllomaticTick
  */
 public class CadmiumAllomanticHelper {
+
+    /**
+     * This method reduces the falling speed of the player.
+     *
+     * @param player to whom the effect will be applied.
+     * @param enhanced if player is burning Duralumin or the player was hit with Nicrosil.
+     */
     public static void CadmiumEffectSelfPlayer(Player player, boolean enhanced) {
         if (enhanced) {
             player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 20, 100, true, false));
@@ -27,7 +34,17 @@ public class CadmiumAllomanticHelper {
         }
     }
 
-    public static void CadmiumMobEffectsOtherPlayers(Player player, IInvestedPlayerData capability, ServerLevel level, boolean enhanced, boolean lerasium) {
+    /**
+     * This method reduces the speeds of nearby mobs and players.
+     *
+     * @param player to whom the effect will be applied.
+     * @param enhanced if player is burning Duralumin or the player was hit with Nicrosil.
+     * @param lerasium if the player is burning Lerasium.
+     * @param level in which the player is located (world).
+     * @param playerCapability capabilities (data) of the player.
+     */
+
+    public static void CadmiumMobEffectsOtherPlayers(Player player, IInvestedPlayerData playerCapability, ServerLevel level, boolean enhanced, boolean lerasium) {
         int radius = 8;
         if (enhanced && lerasium) {
             radius = 13;
@@ -38,8 +55,8 @@ public class CadmiumAllomanticHelper {
         }
 
         level.getEntitiesOfClass(LivingEntity.class, CapabilityUtils.getBubble(player,radius)).forEach(entity -> {
-            if (capability.isBurning(MetalTagEnum.LERASIUM)) {
-                if (capability.getEnhanced()) {
+            if (playerCapability.isBurning(MetalTagEnum.LERASIUM)) {
+                if (playerCapability.getEnhanced()) {
                     player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 100, true, false));
                     player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60, 100, true, false));
                 } else {
@@ -48,7 +65,7 @@ public class CadmiumAllomanticHelper {
                 }
 
             } else {
-                if (capability.getEnhanced()) {
+                if (playerCapability.getEnhanced()) {
                     player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 2, true, false));
                     player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 40, 2, true, false));
                 } else {
