@@ -5,9 +5,16 @@ import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.AtiumFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 
 import java.util.function.Supplier;
 
+/**
+ * Helper class containing the methods and implementations for using feruchemical Copper.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -33,7 +40,7 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
     public void storagePower(Player player) {
         player.giveExperiencePoints(-1);
     }
-
+    //todo
     public static Supplier<? extends CopperFecuchemicHelper> getInstance() {
         return CopperFecuchemicHelper::new;
     }
@@ -50,7 +57,7 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
      * @param nicConsume control value of whether it is necessary to store charge or not.
      * @return CompoundTag metalmind information update.
      *
-     * @see AtiumFecuchemicHelper#calculateDischarge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
+     * @see AbstractFechuchemicHelper#tappingPower(Player)
      */
     @Override
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
@@ -71,7 +78,7 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
      * @param nicConsume control value of whether it is necessary to store charge or not.
      * @return CompoundTag metalmind information update.
      *
-     * @see AtiumFecuchemicHelper#calculateCharge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
+     * @see AbstractFechuchemicHelper#storagePower(Player)
      */
     @Override
     public CompoundTag calculateCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {

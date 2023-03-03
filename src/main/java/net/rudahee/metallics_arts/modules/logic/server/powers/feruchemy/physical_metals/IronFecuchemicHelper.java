@@ -7,6 +7,12 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.Abstract
 
 import java.util.function.Supplier;
 
+/**
+ * Helper class containing the methods and implementations for using feruchemical Iron.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class IronFecuchemicHelper extends AbstractFechuchemicHelper {
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -37,6 +43,7 @@ public class IronFecuchemicHelper extends AbstractFechuchemicHelper {
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 20, 1, true, false));
     }
 
+    //todo
     public static Supplier<? extends IronFecuchemicHelper> getInstance() {
         return IronFecuchemicHelper::new;
     }

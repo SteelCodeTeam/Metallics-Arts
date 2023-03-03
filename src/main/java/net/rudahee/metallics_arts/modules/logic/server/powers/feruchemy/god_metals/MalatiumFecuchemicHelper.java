@@ -13,10 +13,10 @@ import java.util.function.Supplier;
 
 
 /**
+ * Helper class containing the methods and implementations for using feruchemical Malatium.
  *
- *
- * @author SteelCodeTeam
- * @since 1.6
+ * @author SteelCode Team
+ * @since 1.5.1
  */
 public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
 
@@ -26,25 +26,42 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AtiumFecuchemicHelper#calculateDischarge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
+     * @see AbstractFechuchemicHelper#tappingPower(Player)
      */
     @Override
     public void tappingPower(Player player) {}
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
-     * This method is not used, because the power logic is applied in the discharge methods of this class.
+     * This method is not used, because the power logic is applied in the charge methods of this class.
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AtiumFecuchemicHelper#calculateDischarge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
+     * @see AbstractFechuchemicHelper#storagePower(Player)
      */
     @Override
-    public void storagePower(Player player) {}
+    public void storagePower(Player player) {
+    }
 
+    //todo
     public static Supplier<? extends MalatiumFecuchemicHelper> getInstance() {
         return MalatiumFecuchemicHelper::new;
     }
 
+    /**
+     * Redefine of the method of the AbstractFechuchemicHelper class.
+     * <p>
+     * In this specific case, removes interaction with nicrosil and performs the discharge only when the item in the user's hand is of the same tier that the metal mind has in reserve.
+     *
+     * @param compoundTag the inside information of the metalmind.
+     * @param player with the mindmetal equipped.
+     * @param playerCapability capabilities (data) of the player.
+     * @param metalReserve present value of the metal reserve.
+     * @param metalKey metal key to be modified.
+     * @param nicConsume control value of whether it is necessary to store charge or not.
+     * @return CompoundTag metalmind information update.
+     *
+     * @see AbstractFechuchemicHelper#tappingPower(Player)
+     */
     @Override
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         if (isDecanting(player,compoundTag)) {
@@ -56,6 +73,21 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
         return compoundTag;
     }
 
+    /**
+     * Redefine of the method of the AbstractFechuchemicHelper class.
+     * <p>
+     * In this specific case, removes interaction with nicrosil and performs the charge only when the item in the user's hand is of the same tier that the metal mind has in reserve or the metal mind does not have a tier assigned.
+     *
+     * @param compoundTag the inside information of the metalmind.
+     * @param player with the mindmetal equipped.
+     * @param playerCapability capabilities (data) of the player.
+     * @param metalReserve present value of the metal reserve.
+     * @param metalKey metal key to be modified.
+     * @param nicConsume control value of whether it is necessary to store charge or not.
+     * @return CompoundTag metalmind information update.
+     *
+     * @see AbstractFechuchemicHelper#tappingPower(Player)
+     */
     @Override
     public CompoundTag calculateCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         if (isStoring(player,compoundTag)) {
@@ -65,7 +97,7 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
     }
 
     /**
-     * Repairs the durability of weapons and armor that target player has in hand
+     * Repairs the durability of weapons and armor that target player has in hand.
      *
      * @param player to whom the effect will be applied.
      * @param compoundTag metalmind information update.
@@ -136,7 +168,7 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
     }
 
     /**
-     * Modify the information of the metal mind to assign it the corresponding tier
+     * Modify the information of the metal mind to assign it the corresponding tier.
      *
      * @param player to whom the effect will be applied.
      * @param compoundTag metalmind information update.
@@ -153,7 +185,7 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
     }
 
     /**
-     * Recovers the material tier
+     * Recovers the material tier.
      *
      * @param material string name
      * @return int value tier
@@ -177,7 +209,7 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
     }
 
     /**
-     * Retrieve the name of the tier
+     * Retrieve the name of the tier.
      *
      * @param tier value of tier
      * @return String with the name of tier

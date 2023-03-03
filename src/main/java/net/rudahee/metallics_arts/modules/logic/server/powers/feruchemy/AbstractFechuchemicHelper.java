@@ -11,7 +11,6 @@ import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
  *
  * @author SteelCode Team
  * @since 1.5.1
- *
  */
 public abstract class AbstractFechuchemicHelper {
     public abstract void tappingPower(Player player);

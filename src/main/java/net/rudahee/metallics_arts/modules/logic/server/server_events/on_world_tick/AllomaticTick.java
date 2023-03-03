@@ -51,7 +51,7 @@ public class AllomaticTick {
 
     private static void godMetals(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level) {
         if (capability.isBurning(MetalTagEnum.ETTMETAL)) {
-            EttmetalAllomanticHelper.ettmetalExplotion(level, player);
+            EttmetalAllomanticHelper.ettmetalExplotion(level, capability, player);
         }
 
         if (capability.isBurning(MetalTagEnum.MALATIUM)) {

@@ -12,7 +12,6 @@ import org.lwjgl.glfw.GLFW;
 public class ModKeyRegister {
 
     public static final String KEY_CATEGORY = "key.category_" + MetallicsArts.MOD_ID;
-
     public static final String KEY_POWERS_CATEGORY = "key.category_powers_" + MetallicsArts.MOD_ID;
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping ALLOMANTIC_POWER_SELECTOR;
@@ -20,36 +19,34 @@ public class ModKeyRegister {
     public static KeyMapping FERUCHEMIC_POWER_SELECTOR;
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping VERTICAL_JUMP;
-
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping SWITCH_OVERLAY;
-
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping[] powers;
-
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping FERUCHEMIC_DECANT;
-
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping FERUCHEMIC_STORAGE;
-
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping ALLOMANTIC_PUSH;
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping ALLOMANTIC_PULL;
-
     public static void initKeys(final RegisterKeyMappingsEvent evt){
-
         ALLOMANTIC_POWER_SELECTOR =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomantic", GLFW.GLFW_KEY_M,KEY_CATEGORY);
         evt.register(ALLOMANTIC_POWER_SELECTOR);
+
         FERUCHEMIC_POWER_SELECTOR =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic", GLFW.GLFW_KEY_N,KEY_CATEGORY);
         evt.register(FERUCHEMIC_POWER_SELECTOR);
+
         VERTICAL_JUMP = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "vertical_jump", GLFW.GLFW_KEY_LEFT_CONTROL,KEY_CATEGORY);
         evt.register(VERTICAL_JUMP);
+
         SWITCH_OVERLAY = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "switch_overlay", GLFW.GLFW_KEY_UNKNOWN,KEY_CATEGORY);
         evt.register(SWITCH_OVERLAY);
+
         FERUCHEMIC_DECANT = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic_decant", GLFW.GLFW_KEY_LEFT_CONTROL,KEY_CATEGORY);
         evt.register(FERUCHEMIC_DECANT);
+
         FERUCHEMIC_STORAGE = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic_store", GLFW.GLFW_KEY_LEFT_SHIFT,KEY_CATEGORY);
         evt.register(FERUCHEMIC_STORAGE);
 

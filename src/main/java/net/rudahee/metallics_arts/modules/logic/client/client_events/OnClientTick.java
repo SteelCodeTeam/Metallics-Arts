@@ -20,10 +20,7 @@ import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class OnClientTick {
-
     public static int tick = 0;
-
-
     @OnlyIn(Dist.CLIENT)
     public static void onClientTick(TickEvent.ClientTickEvent event, Minecraft minecraft, @Nullable Player player, @Nullable IInvestedPlayerData capability) throws PlayerException {
 

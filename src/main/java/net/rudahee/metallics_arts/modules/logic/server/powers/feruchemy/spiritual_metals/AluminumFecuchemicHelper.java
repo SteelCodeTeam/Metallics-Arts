@@ -8,6 +8,12 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_meta
 
 import java.util.function.Supplier;
 
+/**
+ * Helper class containing the methods and implementations for using feruchemical Aluminum.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper {
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -15,7 +21,7 @@ public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AtiumFecuchemicHelper#calculateDischarge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
+     * @see AbstractFechuchemicHelper#tappingPower(Player)
      */
     @Override
     public void tappingPower(Player player) {}
@@ -26,11 +32,12 @@ public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AtiumFecuchemicHelper#calculateCharge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
+     * @see AbstractFechuchemicHelper#storagePower(Player)
      */
     @Override
     public void storagePower(Player player) {}
 
+    //todo
     public static Supplier<? extends AluminumFecuchemicHelper> getInstance() {
         return AluminumFecuchemicHelper::new;
     }

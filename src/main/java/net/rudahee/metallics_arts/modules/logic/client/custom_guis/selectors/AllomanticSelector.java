@@ -296,7 +296,7 @@ public class AllomanticSelector extends Screen {
 
 
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
-                RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+                RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/item/symbols/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
                 RenderSystem.setShaderColor(1, 1, 1, 1);
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 

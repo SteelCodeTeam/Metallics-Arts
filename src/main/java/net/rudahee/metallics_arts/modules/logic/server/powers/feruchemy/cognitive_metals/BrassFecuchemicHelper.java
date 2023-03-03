@@ -16,13 +16,10 @@ import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEve
 import java.util.function.Supplier;
 
 /**
- * Helper class that contains the methods to use the feruchemical Brass
+ * Helper class containing the methods and implementations for using feruchemical Brass.
  *
  * @author SteelCode Team
  * @since 1.5.1
- *
- * @see AbstractFechuchemicHelper
- * @see OnDamageEvent
  */
 public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
     /**

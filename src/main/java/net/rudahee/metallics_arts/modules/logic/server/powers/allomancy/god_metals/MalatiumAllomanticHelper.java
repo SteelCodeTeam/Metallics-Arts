@@ -27,7 +27,14 @@ public class MalatiumAllomanticHelper {
     private static GlobalPos pos = null;
 
     private static boolean havePosRegistered = false;
-
+    /**
+     *
+     *
+     * @param level minecraft world you are in.
+     * @param capability capabilities (data) of the player.
+     * @param player to use the power.
+     * @param lerasium if it is burning lerasium.
+     */
     public static void teleportToDeathPosFromAnotherPlayer(Level level, IInvestedPlayerData capability, ServerPlayer player, boolean lerasium) {
         if (lerasium) {
             TeleportsUtils.multiTeleport(player, CapabilityUtils.getBubble(player,5), level,

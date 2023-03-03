@@ -11,6 +11,12 @@ import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_ti
 
 import java.util.function.Supplier;
 
+/**
+ * Helper class containing the methods and implementations for using feruchemical Cadmium.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class CadmiumFecuchemicHelper extends AbstractFechuchemicHelper {
 
     /**

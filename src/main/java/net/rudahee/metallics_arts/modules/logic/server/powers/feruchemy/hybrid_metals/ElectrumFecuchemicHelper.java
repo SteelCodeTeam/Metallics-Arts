@@ -7,6 +7,12 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.Abstract
 
 import java.util.function.Supplier;
 
+/**
+ * Helper class containing the methods and implementations for using feruchemical Electrum.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper {
 
     /**

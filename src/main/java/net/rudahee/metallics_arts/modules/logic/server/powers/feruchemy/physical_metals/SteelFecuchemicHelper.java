@@ -7,6 +7,12 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.Abstract
 
 import java.util.function.Supplier;
 
+/**
+ * Helper class containing the methods and implementations for using feruchemical Steel.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class SteelFecuchemicHelper extends AbstractFechuchemicHelper {
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -32,7 +38,7 @@ public class SteelFecuchemicHelper extends AbstractFechuchemicHelper {
     public void storagePower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
     }
-
+    //todo
     public static Supplier<? extends SteelFecuchemicHelper> getInstance() {
         return SteelFecuchemicHelper::new;
     }

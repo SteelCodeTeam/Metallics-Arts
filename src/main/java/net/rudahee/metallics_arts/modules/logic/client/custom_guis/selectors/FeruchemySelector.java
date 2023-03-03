@@ -264,7 +264,7 @@ public class FeruchemySelector extends Screen {
         }
 
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png"));
+        RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/item/symbols/feruchemic_symbols/"+metal.getNameLower()+"_symbol.png"));
 
 
         blit(matrixStack, baticenter.x-8, baticenter.y-8, 0, 0, 16, 16, 16, 16);

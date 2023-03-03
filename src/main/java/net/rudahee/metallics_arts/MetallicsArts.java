@@ -192,7 +192,6 @@ public class MetallicsArts {
     }
 
     public static <T extends Block> RegistryObject<T> registerBlockDecoration(String name, Supplier<T> blockSupplier) {
-
         RegistryObject<T> blockRegistered = registerBlockNoItem(name, blockSupplier);
         ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().tab(MA_TAB_DECORATION).stacksTo(64))));
         return blockRegistered;
