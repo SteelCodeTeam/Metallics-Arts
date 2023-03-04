@@ -130,11 +130,11 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
      */
     @Override
     public boolean canEquip(SlotContext slotContext, ItemStack stack) {
+        Player player = (Player) slotContext.entity();
+        IInvestedPlayerData data;
         if(!stack.hasTag()) {
             stack.setTag(addBandTags());
         }
-        Player player = (Player) slotContext.entity();
-        IInvestedPlayerData data;
         try {
             data = CapabilityUtils.getCapability(player);
         } catch (PlayerException e) {
@@ -153,6 +153,7 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
         }
         ICurioItem.super.canEquip(slotContext, stack);
         return canEquip;
+
     }
 
     /**

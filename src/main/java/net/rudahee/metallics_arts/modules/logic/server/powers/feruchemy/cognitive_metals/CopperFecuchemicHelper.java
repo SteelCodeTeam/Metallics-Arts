@@ -1,11 +1,13 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.AtiumFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.function.Supplier;
 
@@ -27,6 +29,7 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void tappingPower(Player player) {
         player.giveExperiencePoints(1);
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("copper").get(), 1, 1, true, true));
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -39,6 +42,7 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {
         player.giveExperiencePoints(-1);
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("copper").get(), 1, 1, true, true));
     }
     //todo
     public static Supplier<? extends CopperFecuchemicHelper> getInstance() {

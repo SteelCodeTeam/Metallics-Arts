@@ -201,8 +201,6 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
                 toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             }
         }
-        System.out.println(flagIn.isAdvanced());
-
         super.appendHoverText(stack, level, toolTips, flagIn);
     }
 

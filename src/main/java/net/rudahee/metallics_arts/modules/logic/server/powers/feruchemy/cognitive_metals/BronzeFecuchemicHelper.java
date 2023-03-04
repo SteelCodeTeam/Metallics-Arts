@@ -10,6 +10,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.Abstract
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.function.Supplier;
@@ -39,6 +40,7 @@ public class BronzeFecuchemicHelper extends AbstractFechuchemicHelper {
                 }
             }
         });
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("bronze").get(), 1, 1, true, true));
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -59,6 +61,7 @@ public class BronzeFecuchemicHelper extends AbstractFechuchemicHelper {
             phantom.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 240, 2, true, true, true));
             level.addFreshEntity(phantom);
         }
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("bronze").get(), 1, 1, true, true));
     }
     //todo
     public static Supplier<? extends BronzeFecuchemicHelper> getInstance() {
