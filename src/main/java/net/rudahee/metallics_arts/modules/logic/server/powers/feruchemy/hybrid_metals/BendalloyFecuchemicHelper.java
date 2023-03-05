@@ -32,7 +32,7 @@ public class BendalloyFecuchemicHelper extends AbstractFechuchemicHelper {
                 player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()+1);
             }
         }
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("bendalloy").get(), 1, 1, true, true));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_bendalloy").get(), 1, 1, true, true));
     }
 
     /**
@@ -52,7 +52,7 @@ public class BendalloyFecuchemicHelper extends AbstractFechuchemicHelper {
                 }
             }
         }
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("bendalloy").get(), 1, 1, true, true));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_bendalloy").get(), 1, 1, true, true));
     }
 
     public static Supplier<? extends BendalloyFecuchemicHelper> getInstance() {

@@ -40,7 +40,7 @@ public class BronzeFecuchemicHelper extends AbstractFechuchemicHelper {
                 }
             }
         });
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("bronze").get(), 1, 1, true, true));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_bronze").get(), 1, 1, true, true));
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -61,7 +61,7 @@ public class BronzeFecuchemicHelper extends AbstractFechuchemicHelper {
             phantom.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 240, 2, true, true, true));
             level.addFreshEntity(phantom);
         }
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("bronze").get(), 1, 1, true, true));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_bronze").get(), 1, 1, true, true));
     }
     //todo
     public static Supplier<? extends BronzeFecuchemicHelper> getInstance() {

@@ -51,6 +51,10 @@ public class PewterAllomanticHelper {
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 5, digSpeed, true, true));
         player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 5, damage, true, true));
         player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 5, resistence, true, true));
+
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_pewter").get(), 5, 1, true, true));
+
+
     }
 
     /**
