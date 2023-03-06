@@ -16,7 +16,7 @@ import java.util.function.Supplier;
  */
 public class ZincFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
-    public void tappingPower(Player player) {player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_zinc").get(), 1, 1, true, true));}
+    public void tapPower(Player player) {player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_zinc").get(), 1, 1, true, true));}
 
     @Override
     public void storagePower(Player player) {player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_zinc").get(), 1, 1, true, true));}

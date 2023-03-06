@@ -34,11 +34,12 @@ public class ChromiumAllomanticHelper {
      * @param target who is attacked.
      * @param targetCapability capabilities (data) of the target.
      */
-    public static void drainMetalChromium(Player target, IInvestedPlayerData targetCapability) {
+    public static boolean drainMetalChromium(Player target, IInvestedPlayerData targetCapability) {
         for (MetalTagEnum metalTagEnum : targetCapability.getAllomanticPowers()){
             targetCapability.drainMetals(metalTagEnum);
             ModNetwork.syncInvestedDataPacket(targetCapability, target);
         }
+        return true;
     }
 
     /**

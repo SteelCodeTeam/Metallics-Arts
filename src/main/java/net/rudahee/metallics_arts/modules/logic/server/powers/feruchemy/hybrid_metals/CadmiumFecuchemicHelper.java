@@ -25,10 +25,10 @@ public class CadmiumFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#tappingPower(Player)
+     * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     @Override
-    public void tappingPower(Player player) {
+    public void tapPower(Player player) {
         if (player.isEyeInFluid(FluidTags.WATER)) {
             if (OnTickUtils.activationEvery30Tick(OnWorldTickEvent.getActualTick())) {
                 if (player.isEyeInFluid(FluidTags.WATER)) {

@@ -21,10 +21,10 @@ public class GoldFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#tappingPower(Player)
+     * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     @Override
-    public void tappingPower(Player player) {
+    public void tapPower(Player player) {
         if (OnTickUtils.activationEvery30Tick(OnWorldTickEvent.getActualTick())) {
             player.setHealth(player.getHealth()+1);
         }

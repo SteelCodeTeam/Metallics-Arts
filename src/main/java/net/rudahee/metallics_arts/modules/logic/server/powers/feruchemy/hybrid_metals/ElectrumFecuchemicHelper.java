@@ -21,10 +21,10 @@ public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#tappingPower(Player)
+     * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     @Override
-    public void tappingPower(Player player) {
+    public void tapPower(Player player) {
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30);
     }
 

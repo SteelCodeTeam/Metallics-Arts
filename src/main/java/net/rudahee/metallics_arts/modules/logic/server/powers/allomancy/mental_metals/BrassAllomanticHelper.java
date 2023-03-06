@@ -20,7 +20,9 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import java.util.function.Predicate;
 
 /**
- * Helper class that contains the methods to use the allomantic Brass
+ * Esta clase es la encargada de manejar los poderes alomanticos del bronze. El bronze "contenta" a las entidades del juego
+ * Hay 3 metodos principales donde se controlan los distintos modificadores que se pueden dar (con el lerasium y el duralumin)
+ * para que esta clase haga su funcion, el jugador debe hacer click izquierda en la entidad.
  *
  * @author SteelCode Team
  * @since 1.5.1
@@ -33,6 +35,14 @@ public class BrassAllomanticHelper {
             goal instanceof TargetGoal || goal instanceof PanicGoal || goal.getClass().getName().contains("Fireball") ||
             goal.getClass().getName().contains("Attack") || goal.getClass().getName().contains("Anger") || goal instanceof AvoidEntityGoal;
 
+    /**
+     * Metodo base para contentar a una entidad, sin usar modificadores, esta clase hace a la entidad objetivo no agresiva
+     * y cambia su target de ataque a cualquier otro. Si la entidad no puede ser agresiva, esta solo saldra huyendo del personaje.
+     * si la entidad es agresiva, entonces se te quedará mirando fijamente. Tambien puedes tamear a las entidades que lo permitan.
+     *
+     * @param target entity que va a ser alegrada
+     * @param source jugador que alegra a la entidad
+     */
     public static void happyEntities(Mob target, Player source) {
         target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
 
@@ -67,6 +77,16 @@ public class BrassAllomanticHelper {
         }
     }
 
+    /**
+     * Metodo base para contentar a una entidad, con la mejora del duraluminio/nicrosil, esta clase hace a la entidad objetivo no agresiva
+     * y cambia su target de ataque a cualquier otro. Si la entidad no puede ser agresiva, esta solo saldra huyendo del personaje.
+     * si la entidad es agresiva, entonces se te quedará mirando fijamente. Tambien puedes tamear a las entidades que lo permitan.
+     * Ademas, al estar enhanced puedes destransformar zombies aldeanos y curarlos, asi como bajar el precio de los intercambios de los
+     * aldeanos.
+     *
+     * @param target entity que va a ser alegrada
+     * @param source jugador que alegra a la entidad
+     */
     public static void happyEntitiesEnhanced(Mob target, Player source) {
         target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
 
@@ -97,9 +117,20 @@ public class BrassAllomanticHelper {
         }
     }
 
-    public static void happyEntitiesWithLerasium(Player source, Level world, boolean enhanced) {
+    /**
+     * Metodo base para usar los dos metodos de esta clase, en forma de burbuja, en vez de hacer click a una entidad.
+     * Es recomendable la lectura de los otros dos metodos para saber como funcionan.
+     *
+     * @param source jugador que alegra a la entidad
+     * @param level mundo donde se generará la burbuja donde se alegraran las entidades (esto incluye la dimension)
+     * @param enhanced boolean que comprueba si el poder se aplica con los efectos normales o los mejorados.
+     *
+     * @see BrassAllomanticHelper#happyEntities
+     * @see BrassAllomanticHelper#happyEntitiesWithLerasium
+     */
+    public static void happyEntitiesWithLerasium(Player source, Level level, boolean enhanced) {
 
-        world.getEntitiesOfClass(Mob.class,
+        level.getEntitiesOfClass(Mob.class,
                 (enhanced) ? CapabilityUtils.getBubble(source, 12) : CapabilityUtils.getBubble(source, 8)).forEach(target -> {
             target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
 

@@ -28,13 +28,13 @@ import java.util.UUID;
  * @see BandMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class BandCopperBronze extends BandMindAbstract <CopperFecuchemicHelper, BronzeFecuchemicHelper> {
+public class BandCopperBronze extends BandMindAbstract<CopperFecuchemicHelper, BronzeFecuchemicHelper> {
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
      *
      * @param properties of the item.
      */
-    public BandCopperBronze(Item.Properties properties){
+    public BandCopperBronze(Item.Properties properties) {
         super(properties, MetalTagEnum.COPPER, MetalTagEnum.BRONZE, CopperFecuchemicHelper.getInstance(), BronzeFecuchemicHelper.getInstance());
     }
 
@@ -54,7 +54,7 @@ public class BandCopperBronze extends BandMindAbstract <CopperFecuchemicHelper, 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> toolTips, TooltipFlag flagIn) {
         if (stack.hasTag()) {
-            if (!Screen.hasShiftDown()){
+            if (!Screen.hasShiftDown()) {
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") +" pts xp"));
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(1).getNameLower()).append(": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") / 20 + "s"));
             } else {
@@ -64,7 +64,7 @@ public class BandCopperBronze extends BandMindAbstract <CopperFecuchemicHelper, 
             if (level != null) {
                 toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : (level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? Component.translatable("metallics_arts.mental_mind.owner_someone") : level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
             }
-            if (!Screen.hasShiftDown()){
+            if (!Screen.hasShiftDown()) {
                 toolTips.add(Component.translatable(" "));
                 toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             }

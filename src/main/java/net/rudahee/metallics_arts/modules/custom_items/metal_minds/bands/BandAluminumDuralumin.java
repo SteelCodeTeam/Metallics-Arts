@@ -29,7 +29,7 @@ import top.theillusivec4.curios.api.SlotContext;
  * @see BandMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class BandAluminumDuralumin extends BandMindAbstract <AluminumFecuchemicHelper, DuraluminFecuchemicHelper>{
+public class BandAluminumDuralumin extends BandMindAbstract<AluminumFecuchemicHelper, DuraluminFecuchemicHelper>{
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
      *

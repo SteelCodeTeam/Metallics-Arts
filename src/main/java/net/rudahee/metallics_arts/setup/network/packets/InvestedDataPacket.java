@@ -41,7 +41,6 @@ public class InvestedDataPacket {
     public InvestedDataPacket(IInvestedPlayerData data, Player player) {
         this.uuid = player.getUUID();
         this.tag = (data != null && ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP != null) ? data.save() : new CompoundTag();
-
     }
 
     /**

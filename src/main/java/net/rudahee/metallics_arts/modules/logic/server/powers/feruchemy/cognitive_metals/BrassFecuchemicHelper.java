@@ -11,7 +11,6 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.AtiumFecuchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.function.Supplier;
@@ -29,10 +28,10 @@ public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#tappingPower(Player)
+     * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     @Override
-    public void tappingPower(Player player) {
+    public void tapPower(Player player) {
         if (player.getLevel().getBiome(player.getOnPos()).is(Biomes.DESERT) && player.getLevel().isDay()) {
             player.setSecondsOnFire(1);
         } else if (player.getLevel().getBiome(player.getOnPos()).is(Tags.Biomes.IS_HOT)) {

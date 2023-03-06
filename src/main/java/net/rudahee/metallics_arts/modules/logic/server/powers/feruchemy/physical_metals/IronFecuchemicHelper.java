@@ -20,10 +20,10 @@ public class IronFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#tappingPower(Player)
+     * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     @Override
-    public void tappingPower(Player player) {
+    public void tapPower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 5, true, false));
         // apply jump 128 nullifies the target player's ability to jump
         player.addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 128, true, false));

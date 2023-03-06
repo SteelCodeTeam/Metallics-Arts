@@ -21,10 +21,10 @@ public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#tappingPower(Player)
+     * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     @Override
-    public void tappingPower(Player player) {}
+    public void tapPower(Player player) {}
 
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.

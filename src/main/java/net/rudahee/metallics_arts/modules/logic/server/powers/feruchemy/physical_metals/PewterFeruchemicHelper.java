@@ -21,9 +21,9 @@ public class PewterFeruchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#tappingPower(Player)
+     * @see AbstractFechuchemicHelper#tapPower(Player)
      */
-    public void tappingPower(Player player) {
+    public void tapPower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.JUMP, 5, 1, true, true));
         player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 5, 1, true, true));
     }

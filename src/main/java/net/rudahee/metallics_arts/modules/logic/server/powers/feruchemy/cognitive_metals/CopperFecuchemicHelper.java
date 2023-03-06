@@ -5,8 +5,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.AtiumFecuchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.function.Supplier;
@@ -24,10 +22,10 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#tappingPower(Player)
+     * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     @Override
-    public void tappingPower(Player player) {
+    public void tapPower(Player player) {
         player.giveExperiencePoints(1);
         player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_copper").get(), 1, 1, true, true));
     }
@@ -37,7 +35,7 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#tappingPower(Player)
+     * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     @Override
     public void storagePower(Player player) {
@@ -61,11 +59,11 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
      * @param nicConsume control value of whether it is necessary to store charge or not.
      * @return CompoundTag metalmind information update.
      *
-     * @see AbstractFechuchemicHelper#tappingPower(Player)
+     * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     @Override
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
-        tappingPower(player);
+        tapPower(player);
         compoundTag.putInt(metalKey, metalReserve - 1);
         return compoundTag;
     }

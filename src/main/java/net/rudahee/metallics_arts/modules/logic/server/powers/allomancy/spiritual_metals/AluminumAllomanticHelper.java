@@ -1,10 +1,15 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritual_metals;
 
 
+import com.google.common.graph.Network;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
+import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 /**
  * Helper class that contains the methods to use the allomantic Aluminum
@@ -21,13 +26,26 @@ public class AluminumAllomanticHelper {
      *
      * @param player to whom the effect will be applied.
      * @param playerCapability capabilities (data) of the player.
+     *
+     * @return boolean if the player's reserve its empty
      */
-    public static void drainAndCleanEffects(Player player, IInvestedPlayerData playerCapability) {
-        if (Math.random()<((double) (playerCapability.getAllomanticAmount(MetalTagEnum.ALUMINUM)+1)/10)){
+    public static boolean drainAndCleanEffects(Player player, IInvestedPlayerData playerCapability) {
+        if (Math.random()<((double) (playerCapability.getAllomanticAmount(MetalTagEnum.ALUMINUM)+1)/10)) {
             player.removeAllEffects();
         }
         for (MetalTagEnum metalTagEnum : playerCapability.getAllomanticPowers()) {
             playerCapability.drainMetals(metalTagEnum);
+        }
+
+        try {
+            ModNetwork.syncInvestedDataPacket(playerCapability, player);
+            return true;
+        } catch (Exception ex) {
+            LoggerUtils.printLogError(
+                    ErrorTypes.INDETERMINATE_ERROR.getCode(),
+                    ErrorTypes.INDETERMINATE_ERROR.getMessage(),
+                    ex.getStackTrace());
+            return false;
         }
     }
 }

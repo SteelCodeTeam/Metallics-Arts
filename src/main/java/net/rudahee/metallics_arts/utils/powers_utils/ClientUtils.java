@@ -61,7 +61,7 @@ public class ClientUtils {
 
 
     public static void toggleBurn(MetalTagEnum metal, IInvestedPlayerData capability) {
-        if (!capability.hasAllomanticPower(metal)) {
+        if (!capability.hasAllomanticPower(metal) || capability.getAllomanticAmount(metal) == 0) {
             return;
         }
         ModNetwork.sendToServer(new UpdateBurnPacket(metal, !capability.isBurning(metal)));

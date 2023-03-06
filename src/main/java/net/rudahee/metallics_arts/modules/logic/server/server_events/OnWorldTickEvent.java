@@ -12,15 +12,24 @@ public class OnWorldTickEvent {
     public static int tick = 0;
     public static void onWorldTick(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level)  {
 
+        boolean isMetalsDrains = false;
+
         if (capability.isBurningAnything()) {
             if (MathUtils.isDivisibleBy3(tick)) {
                 OnTickUtils.equipKolossBlade(player, capability);
-                AllomaticTick.allomanticTick(capability, player, level);
+                AllomaticTick.each3Ticks(capability, player, level);
             }
-            capability.tickAllomancyBurningMetals(player);
+            AllomaticTick.eachTick(capability, player);
+
+            isMetalsDrains = AllomaticTick.eachTickWithInstantDrain(capability, player, level);
+
+            if (!isMetalsDrains) {
+                capability.tickAllomancyBurningMetals(player);
+            }
         }
 
         tick++;
+
         if (tick >= 4800) {
             tick = 0;
         }

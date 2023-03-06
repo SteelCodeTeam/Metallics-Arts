@@ -2,7 +2,6 @@ package net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_t
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.Item;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_metals.EttmetalAllomanticHelper;
@@ -19,8 +18,6 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.CadmiumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.ElectrumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.GoldAllomanticHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 /**
  * This class contains the methods to execute the Allimantic powers that are carried out passively, in all the ticks of the game.
@@ -37,8 +34,7 @@ public class AllomaticTick {
      * @param player to whom the effect will be applied.
      * @param level in which the player is located (world).
      */
-    public static void allomanticTick(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
-        OnTickUtils.duraluminAndExternalNicrosilEffect(playerCapability);
+    public static void each3Ticks(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
 
         if (playerCapability.isBurning(MetalTagEnum.TIN) || playerCapability.isBurning(MetalTagEnum.PEWTER)) {
             physicalMetals(playerCapability, player, level);
@@ -51,17 +47,23 @@ public class AllomaticTick {
                 || playerCapability.isBurning(MetalTagEnum.GOLD) || playerCapability.isBurning(MetalTagEnum.ELECTRUM)) {
             temporalMetals(playerCapability, player, level);
         }
-        if (playerCapability.isBurning(MetalTagEnum.CHROMIUM) || playerCapability.isBurning(MetalTagEnum.ALUMINUM)) {
-            spiritualMetals(playerCapability, player, level);
-        }
         if (playerCapability.isBurning(MetalTagEnum.ETTMETAL) || playerCapability.isBurning(MetalTagEnum.MALATIUM)) {
             godMetals(playerCapability, player, level);
         }
-
         if (MalatiumAllomanticHelper.isPosRegistered() && !playerCapability.isBurning(MetalTagEnum.MALATIUM)) {
             MalatiumAllomanticHelper.setPos(null, null);
         }
+    }
 
+    public static boolean eachTickWithInstantDrain(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
+
+        boolean isMetalsDrained = false;
+
+        if (playerCapability.isBurning(MetalTagEnum.CHROMIUM) || playerCapability.isBurning(MetalTagEnum.ALUMINUM)) {
+            isMetalsDrained = spiritualMetals(playerCapability, player, level);
+        }
+
+        return isMetalsDrained;
     }
 
     /**
@@ -86,16 +88,21 @@ public class AllomaticTick {
      * @param playerCapability capabilities (data) of the player.
      * @param player to whom the effect will be applied.
      * @param level in which the player is located (world).
+     * @return boolean if metals reserve are empty.
      */
-    private static void spiritualMetals(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
+    private static boolean spiritualMetals(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
+
+        boolean drainedMetals = false;
+
         if (playerCapability.isBurning(MetalTagEnum.CHROMIUM) && playerCapability.getEnhanced()) {
             ChromiumAllomanticHelper.drainMetalCloudChromium(player, level, playerCapability.isBurning(MetalTagEnum.LERASIUM));
         }
 
         if (playerCapability.isBurning(MetalTagEnum.ALUMINUM)) {
-            AluminumAllomanticHelper.drainAndCleanEffects(player,playerCapability);
+            drainedMetals = AluminumAllomanticHelper.drainAndCleanEffects(player,playerCapability);
         }
 
+        return drainedMetals;
     }
 
     /**
@@ -175,4 +182,7 @@ public class AllomaticTick {
     }
 
 
+    public static void eachTick(IInvestedPlayerData capability, ServerPlayer player) {
+        OnTickUtils.duraluminAndExternalNicrosilEffect(capability, player);
+    }
 }

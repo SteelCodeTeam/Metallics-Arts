@@ -1,7 +1,10 @@
 package net.rudahee.metallics_arts.modules.logic.client.client_events;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.TickEvent;
@@ -24,11 +27,8 @@ public class OnClientTick {
     @OnlyIn(Dist.CLIENT)
     public static void onClientTick(TickEvent.ClientTickEvent event, Minecraft minecraft, @Nullable Player player, @Nullable IInvestedPlayerData capability) throws PlayerException {
 
-
-        if (player == null) {
-            throw new PlayerException(ErrorTypes.PLAYER_ERROR);
-        } else if (capability == null) {
-            throw new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR);
+        if (event.side.isServer()) {
+            return;
         }
 
         if (event.phase != TickEvent.Phase.END || minecraft.isPaused() || !player.isAlive()) {

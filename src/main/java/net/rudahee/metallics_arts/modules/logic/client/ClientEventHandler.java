@@ -20,6 +20,9 @@ public class ClientEventHandler {
     @SubscribeEvent
     public void onClientTick(final TickEvent.ClientTickEvent event) {
         try {
+            if (Minecraft.getInstance().player == null) {
+                return;
+            }
             OnClientTick.onClientTick(event, Minecraft.getInstance(), Minecraft.getInstance().player, CapabilityUtils.getCapability(Minecraft.getInstance().player));
         } catch (PlayerException ex) {
             ex.printResumeLog();
@@ -30,6 +33,9 @@ public class ClientEventHandler {
     @SubscribeEvent
     public void onKeyInput(final InputEvent.Key event) {
         try {
+            if (Minecraft.getInstance().player == null) {
+                return;
+            }
             OnKeyInputEvent.onKeyInputEvent(event, Minecraft.getInstance(), Minecraft.getInstance().player, CapabilityUtils.getCapability(Minecraft.getInstance().player));
         } catch (PlayerException ex) {
             ex.printResumeLog();
@@ -40,6 +46,9 @@ public class ClientEventHandler {
     @SubscribeEvent
     public void onMouseInput(final InputEvent.MouseButton event) {
         try {
+            if (Minecraft.getInstance().player == null) {
+                return;
+            }
             OnMouseInputEvent.OnMouseInputEvent(Minecraft.getInstance().player, CapabilityUtils.getCapability(Minecraft.getInstance().player));
         } catch (PlayerException ex) {
             ex.printResumeLog();
@@ -50,6 +59,9 @@ public class ClientEventHandler {
     @SubscribeEvent
     public static void onRenderGameOverlay(final RegisterGuiOverlaysEvent event) {
         try {
+            if (Minecraft.getInstance().player == null) {
+                return;
+            }
             OnRenderGameOverlay.onRenderGameOverlay(event, Minecraft.getInstance(), Minecraft.getInstance().player, CapabilityUtils.getCapability(Minecraft.getInstance().player));
         } catch (PlayerException ex) {
             ex.printResumeLog();
@@ -61,6 +73,9 @@ public class ClientEventHandler {
     @SubscribeEvent
     public void onRenderLevelStage(final RenderLevelStageEvent event) {
         try {
+            if (Minecraft.getInstance().player == null) {
+                return;
+            }
             OnRenderLevelStage.onRenderLevelStage(event, Minecraft.getInstance(), Minecraft.getInstance().player, CapabilityUtils.getCapability(Minecraft.getInstance().player));
         } catch (PlayerException ex) {
             ex.printResumeLog();

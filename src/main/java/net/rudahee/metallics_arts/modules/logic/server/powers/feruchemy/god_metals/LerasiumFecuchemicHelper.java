@@ -25,7 +25,7 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper {
      * @see AtiumFecuchemicHelper#calculateDischarge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
      */
     @Override
-    public void tappingPower(Player player) {}
+    public void tapPower(Player player) {}
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * This method is not used, because the power logic is applied in the discharge methods of this class.
@@ -50,7 +50,7 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper {
      * @param nicConsume control value of whether it is necessary to store charge or not.
      * @return CompoundTag metalmind information update.
      *
-     * @see AbstractFechuchemicHelper#tappingPower(Player)
+     * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     @Override
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {

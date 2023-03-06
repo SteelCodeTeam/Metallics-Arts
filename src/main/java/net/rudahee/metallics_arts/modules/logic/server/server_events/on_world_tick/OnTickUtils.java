@@ -6,6 +6,7 @@ import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritual_metals.NicrosilAllomanticHelper;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 
@@ -65,14 +66,16 @@ public class OnTickUtils {
         }
     }
     private static int buffNicrosilDuralumin = -1;
+
     /**
-     * This method is responsible for calculating the player's enhanced state, having an internal time counter that, when it reaches 0, empties the Allomantic reserves that the player was burning while in this state.
+     * This method is responsible for calculating the player's enhanced state, having an internal time counter that,
+     * when it reaches 0, empties the Allomantic reserves that the player was burning while in this state.
      *
      * @param playerCapability capabilities (data) of the player.
      *
      * @see NicrosilAllomanticHelper
      */
-    public static void duraluminAndExternalNicrosilEffect(IInvestedPlayerData playerCapability) {
+    public static void duraluminAndExternalNicrosilEffect(IInvestedPlayerData playerCapability, Player player) {
         if (playerCapability.isBurning(MetalTagEnum.DURALUMIN)) {
             if ((playerCapability.getAllomanticAmount(MetalTagEnum.DURALUMIN) > (MetalTagEnum.DURALUMIN.getMaxAllomanticTicksStorage()*0.88)) || (buffNicrosilDuralumin != -1)){
                 if (buffNicrosilDuralumin == -1) {
@@ -111,5 +114,7 @@ public class OnTickUtils {
                 buffNicrosilDuralumin = -1;
             }
         }
+
+        ModNetwork.syncInvestedDataPacket(playerCapability, player);
     }
 }

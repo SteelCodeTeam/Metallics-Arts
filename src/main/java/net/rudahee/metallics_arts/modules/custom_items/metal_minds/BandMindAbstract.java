@@ -21,6 +21,7 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.MetalMindsUtils;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -129,7 +130,7 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
      *
      */
     @Override
-    public boolean canEquip(SlotContext slotContext, ItemStack stack) {
+    public boolean canEquip(@NotNull SlotContext slotContext, @NotNull ItemStack stack) {
         Player player = (Player) slotContext.entity();
         IInvestedPlayerData data;
         if(!stack.hasTag()) {
