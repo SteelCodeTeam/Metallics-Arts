@@ -90,7 +90,7 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
         data.setMetalMindEquiped(this.metals[0].getGroup(),true);
         data.setMetalMindEquiped(this.metals[1].getGroup(),true);
 
-        ModNetwork.sync(data, player);
+        ModNetwork.syncInvestedDataPacket(data, player);
         ICurioItem.super.onEquip(slotContext, prevStack, stack);
     }
 
@@ -125,7 +125,7 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
             data.setStoring(this.metals[1],false);
             data.setTapping(this.metals[0],false);
             data.setTapping(this.metals[1],false);
-            ModNetwork.sync(data, player);
+            ModNetwork.syncInvestedDataPacket(data, player);
         }
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
     }
@@ -315,7 +315,7 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
                         playerCapability.setStoring(this.metals[1],false);
                     }
                 }
-                ModNetwork.sync(playerCapability, player);
+                ModNetwork.syncInvestedDataPacket(playerCapability, player);
             }
         }
         ICurioItem.super.curioTick(slotContext, stack);

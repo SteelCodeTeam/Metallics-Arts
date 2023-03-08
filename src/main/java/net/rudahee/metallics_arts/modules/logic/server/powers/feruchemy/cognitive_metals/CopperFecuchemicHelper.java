@@ -27,7 +27,7 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void tapPower(Player player) {
         player.giveExperiencePoints(1);
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_copper").get(), 1, 1, true, true));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_copper").get(), 1, 0, true, true));
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -40,7 +40,7 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {
         player.giveExperiencePoints(-1);
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_copper").get(), 1, 1, true, true));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_copper").get(), 1, 0, true, true));
     }
     //todo
     public static Supplier<? extends CopperFecuchemicHelper> getInstance() {

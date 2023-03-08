@@ -37,7 +37,7 @@ public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
         } else if (player.getLevel().getBiome(player.getOnPos()).is(Tags.Biomes.IS_HOT)) {
             player.setSecondsOnFire(1);
         }
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_brass").get(), 1, 1, true, true));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_brass").get(), 1, 0, true, true));
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -54,7 +54,7 @@ public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
                 (player.getLevel().getBiome(player.getOnPos()).is(Biomes.DESERT) && player.getLevel().isNight())) {
             player.setTicksFrozen(player.getTicksFrozen() + 3);
         }
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_brass").get(), 1, 1, true, true));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_brass").get(), 1, 0, true, true));
     }
 
     //todo

@@ -29,10 +29,10 @@ public class ItemsCommandRegister {
                                 .then(Commands.argument("target", EntityArgument.players())
                                         .executes(context -> getLargeVial(context, EntityArgument.getPlayers(context, "target")))))
 
-                        .then(Commands.literal("band_steel_iron")
-                                .executes(context -> getMetalmind(context, List.of(context.getSource().getPlayerOrException()), "band_steel_iron"))
+                        .then(Commands.literal("band_iron_steel")
+                                .executes(context -> getMetalmind(context, List.of(context.getSource().getPlayerOrException()), "band_iron_steel"))
                                 .then(Commands.argument("target", EntityArgument.players())
-                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayers(context, "target"), "band_steel_iron"))))
+                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayers(context, "target"), "band_iron_steel"))))
 
                         .then(Commands.literal("band_zinc_brass")
                                 .executes(context -> getMetalmind(context, List.of(context.getSource().getPlayerOrException()), "band_zinc_brass"))
@@ -64,27 +64,27 @@ public class ItemsCommandRegister {
                                 .then(Commands.argument("target", EntityArgument.players())
                                         .executes(context -> getMetalmind(context, EntityArgument.getPlayers(context, "target"), "band_copper_bronze"))))
 
-                        .then(Commands.literal("band_electrum_gold")
-                                .executes(context -> getMetalmind(context, List.of(context.getSource().getPlayerOrException()), "band_electrum_gold"))
+                        .then(Commands.literal("band_gold_electrum")
+                                .executes(context -> getMetalmind(context, List.of(context.getSource().getPlayerOrException()), "band_gold_electrum"))
                                 .then(Commands.argument("target", EntityArgument.players())
-                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayers(context, "target"), "band_electrum_gold"))))
+                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayers(context, "target"), "band_gold_electrum"))))
 
                         .then(Commands.literal("band_lerasium_ettmetal")
                                 .executes(context -> getMetalmind(context, List.of(context.getSource().getPlayerOrException()), "band_lerasium_ettmetal"))
                                 .then(Commands.argument("target", EntityArgument.players())
                                         .executes(context -> getMetalmind(context, EntityArgument.getPlayers(context, "target"), "band_lerasium_ettmetal"))))
 
-                        .then(Commands.literal("band_pewter_tin")
-                                .executes(context -> getMetalmind(context, List.of(context.getSource().getPlayerOrException()), "band_pewter_tin"))
+                        .then(Commands.literal("band_tin_pewter")
+                                .executes(context -> getMetalmind(context, List.of(context.getSource().getPlayerOrException()), "band_tin_pewter"))
                                 .then(Commands.argument("target", EntityArgument.players())
-                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayers(context, "target"), "band_pewter_tin"))))));
+                                        .executes(context -> getMetalmind(context, EntityArgument.getPlayers(context, "target"), "band_tin_pewter"))))));
     }
 
     private static int getLargeVial(CommandContext<CommandSourceStack> context, Collection<ServerPlayer> targetsPlayer) {
 
         ItemStack vial = new ItemStack(ModItemsRegister.LARGE_VIAL.get());
         CompoundTag tag = Vial.addFullReserveVialTags();
-        tag.putInt("CustomModelData", 1);
+        tag.putFloat("custom_model_data", 1f);
         vial.setTag(tag);
 
         StringBuilder playersName = new StringBuilder();
@@ -122,7 +122,7 @@ public class ItemsCommandRegister {
                 playersName.append(", ").append(player.getScoreboardName());
             }
 
-            if (band.equals("band_steel_iron")) {
+            if (band.equals("band_iron_steel")) {
 
                 metalmind = new ItemStack(MetalMindEnum.IRON_STEEL.getBand());
                 nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.IRON, MetalTagEnum.STEEL);
@@ -156,7 +156,7 @@ public class ItemsCommandRegister {
                 metalmind = new ItemStack(MetalMindEnum.COPPER_BRONZE.getBand());
                 nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.COPPER, MetalTagEnum.BRONZE);
 
-            } else if (band.equals("band_electrum_gold")) {
+            } else if (band.equals("band_gold_electrum")) {
 
                 metalmind = new ItemStack(MetalMindEnum.GOLD_ELECTRUM.getBand());
                 nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.GOLD, MetalTagEnum.ELECTRUM);
@@ -166,7 +166,7 @@ public class ItemsCommandRegister {
                 metalmind = new ItemStack(MetalMindEnum.LERASIUM_ETTMETAL.getBand());
                 nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.LERASIUM, MetalTagEnum.ETTMETAL);
 
-            } else if (band.equals("band_pewter_tin")) {
+            } else if (band.equals("band_tin_pewter")) {
 
                 metalmind = new ItemStack(MetalMindEnum.TIN_PEWTER.getBand());
                 nbt = BandMindAbstract.addBandTagsFull(MetalTagEnum.TIN, MetalTagEnum.PEWTER);

@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "minecraft:alomantic_arts_band_steel_iron",
+      "recipe": "minecraft:alomantic_arts_band_iron_steel",
       "recipe2": "minecraft:alomantic_arts_band_tin_pewter"
     },
     {
@@ -26,7 +26,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "minecraft:alomantic_arts_band_cadmium_bendalloy",
-      "recipe2": "minecraft:alomantic_arts_band_electrum_gold"
+      "recipe2": "minecraft:alomantic_arts_band_gold_electrum"
     },
     {
       "type": "patchouli:crafting",

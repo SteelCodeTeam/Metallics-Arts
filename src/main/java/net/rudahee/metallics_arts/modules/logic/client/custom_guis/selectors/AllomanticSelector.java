@@ -333,7 +333,7 @@ public class AllomanticSelector extends Screen {
                 int ydp = (int) ((yp - centerY ) * mod + centerY );
 
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
-                RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+                RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/item/symbols/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
             }
@@ -366,7 +366,7 @@ public class AllomanticSelector extends Screen {
                 int ydp = (int) ((yp - centerY ) * mod + centerY );
 
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
-                RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+                RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/item/symbols/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
                 blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
 
             }

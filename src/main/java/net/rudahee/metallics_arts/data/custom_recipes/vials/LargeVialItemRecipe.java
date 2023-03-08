@@ -146,7 +146,7 @@ public class LargeVialItemRecipe extends CustomRecipe {
                     compoundNBT.putInt(metal.getNameLower(),metalsInVial[metal.getIndex()]);
                 }
             }
-            compoundNBT.putInt("CustomModelData", 1);
+            compoundNBT.putInt("custom_model_data", 1);
             this.finalResult.setTag(compoundNBT);
             return true;
         }

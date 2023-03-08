@@ -309,7 +309,6 @@ public abstract class Vial extends Item {
             for (MetalTagEnum mt : MetalTagEnum.values()) {
                 tag.putInt(mt.getGemNameLower(), 0);
             }
-            tag.putInt("CustomModelData", 1);
             resultItem.setTag(tag);
             items.add(resultItem);
         }

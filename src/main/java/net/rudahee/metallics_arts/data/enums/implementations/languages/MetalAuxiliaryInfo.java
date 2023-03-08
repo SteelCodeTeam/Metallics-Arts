@@ -13,7 +13,7 @@ public enum MetalAuxiliaryInfo {
     DURALUMIN("duralumin",true,false,false,false,false, false),
     CHROMIUM("chromium",false,false,false,true,true, false),
     NICROSIL("nicrosil",true,false,false,false,false, false),
-    GOLD("Gold",false,true,false,false,false, false),
+    GOLD("gold",false,true,false,false,false, false),
     ELECTRUM("electrum",true,false,false,false,false, false),
     CADMIUM("cadmium",false,false,false,true,true, false),
     BENDALLOY("bendalloy",true,false,false,false,false, false),

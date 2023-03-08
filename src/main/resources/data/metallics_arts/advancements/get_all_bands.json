@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "metallics_arts:band_steel_iron"
+      "item": "metallics_arts:band_iron_steel"
     },
     "title": "Feruchemist++",
     "description": "All the power in your arms ඞ",
@@ -71,13 +71,13 @@
         ]
       }
     },
-    "band_electrum_gold": {
+    "band_gold_electrum": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "metallics_arts:band_electrum_gold"
+              "metallics_arts:band_gold_electrum"
             ]
           }
         ]
@@ -95,25 +95,25 @@
         ]
       }
     },
-    "band_pewter_tin": {
+    "band_tin_pewter": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "metallics_arts:band_pewter_tin"
+              "metallics_arts:band_tin_pewter"
             ]
           }
         ]
       }
     },
-    "band_steel_iron": {
+    "band_iron_steel": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "metallics_arts:band_steel_iron"
+              "metallics_arts:band_iron_steel"
             ]
           }
         ]
@@ -132,5 +132,5 @@
       }
     }
   },
-  "requirements": [["band_aluminum_duralumin"],["band_atium_malatium"],["band_cadmium_bendalloy"],["band_chromium_nicrosil"],["band_copper_bronze"],["band_electrum_gold"],["band_lerasium_ettmetal"],["band_pewter_tin"],["band_steel_iron"],["band_zinc_brass"]]
+  "requirements": [["band_aluminum_duralumin"],["band_atium_malatium"],["band_cadmium_bendalloy"],["band_chromium_nicrosil"],["band_copper_bronze"],["band_gold_electrum"],["band_lerasium_ettmetal"],["band_tin_pewter"],["band_iron_steel"],["band_zinc_brass"]]
 }

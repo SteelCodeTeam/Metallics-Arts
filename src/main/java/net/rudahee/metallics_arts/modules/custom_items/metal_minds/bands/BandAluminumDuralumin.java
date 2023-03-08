@@ -136,7 +136,7 @@ public class BandAluminumDuralumin extends BandMindAbstract<AluminumFecuchemicHe
                         playerCapability.setStoring(this.getMetals(1), false);
                     }
                 }
-                ModNetwork.sync(playerCapability, player);
+                ModNetwork.syncInvestedDataPacket(playerCapability, player);
             }
         }
         super.curioTick(slotContext, stack);

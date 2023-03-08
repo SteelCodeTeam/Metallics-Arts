@@ -136,7 +136,7 @@ public class BandGoldElectrum extends BandMindAbstract <GoldFecuchemicHelper, El
                 } else if (playerCapability.hasModifiedHealth()) {
                     ElectrumFecuchemicHelper.restoreHearts(player, playerCapability);
                 }
-                ModNetwork.sync(playerCapability, player);
+                ModNetwork.syncInvestedDataPacket(playerCapability, player);
             }
         }
         super.curioTick(slotContext, stack);

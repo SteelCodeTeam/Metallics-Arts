@@ -6,6 +6,8 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -85,11 +87,10 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
             data.setMetalMindEquiped(this.metals[0].getGroup(),true);
             data.setMetalMindEquiped(this.metals[1].getGroup(),true);
-            ModNetwork.sync(data, player);
+            ModNetwork.syncInvestedDataPacket(data, player);
         });
         ICurioItem.super.onEquip(slotContext, prevStack, stack);
     }
-
     /**
      * This method modifies the player's internal information when a ring is unequipped.
      * <p>
@@ -114,7 +115,7 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
                 data.setStoring(this.metals[1],false);
                 data.setTapping(this.metals[0],false);
                 data.setTapping(this.metals[1],false);
-                ModNetwork.sync(data, player);
+                ModNetwork.syncInvestedDataPacket(data, player);
             });
         }
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
@@ -129,8 +130,9 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
      * @return boolean that indicates if the item can be equipped.
      *
      */
+
     @Override
-    public boolean canEquip(@NotNull SlotContext slotContext, @NotNull ItemStack stack) {
+    public boolean canEquip(SlotContext slotContext, ItemStack stack) {
         Player player = (Player) slotContext.entity();
         IInvestedPlayerData data;
         if(!stack.hasTag()) {
@@ -154,7 +156,6 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
         }
         ICurioItem.super.canEquip(slotContext, stack);
         return canEquip;
-
     }
 
     /**
@@ -327,7 +328,7 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
                         playerCapability.setStoring(this.metals[1], false);
                     }
                 }
-                ModNetwork.sync(playerCapability, player);
+                ModNetwork.syncInvestedDataPacket(playerCapability, player);
             }
         }
         ICurioItem.super.curioTick(slotContext, stack);

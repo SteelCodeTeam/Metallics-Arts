@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.data.providers.language_providers;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
 import net.rudahee.metallics_arts.data.providers.language_providers.book.BookHelperEN;
 
@@ -11,11 +12,9 @@ import java.util.Map;
 public class ModLanguageProviderEN extends LanguageProvider {
         private Map<String, String> base = new HashMap<>() {{
 
-                put("effect.metallics_arts.pewter_effect", "Pewter");
-
                 put("item.metallics_arts.large_vial",CTW.LARGE.getNameInEnglish() + " " + CTW.VIAL.getNameInEnglish());
                 put("item.metallics_arts.small_vial",CTW.SMALL.getNameInEnglish() + " " + CTW.VIAL.getNameInEnglish());
-                put("curios.identifier.metalmind_slot",CTW.METALMIND + " " + CTW.SLOT.getNameInEnglish());
+                put("curios.identifier.metalmind_slot",CTW.METALMIND.getNameInEnglish() + " " + CTW.SLOT.getNameInEnglish());
 
                 put("itemGroup.metallics_arts", CTW.METALLICS_ARTS.getNameInEnglish());
                 put("itemGroup.metallics_arts.decorations", CTW.DECORATIONS.getNameInEnglish() + " " + CTW.METALLICS_ARTS.getNameInEnglish());
@@ -66,6 +65,16 @@ public class ModLanguageProviderEN extends LanguageProvider {
                         }
 
                 }
+        }};
+
+        private Map<String, String> effects = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        if (!metal.isOnlyForAlloys()) {
+                                put("effect."+ MetallicsArts.MOD_ID + ".allomantic_" + metal.getId() + "_symbol", CTW.ALLOMANTIC.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
+                                put("effect."+ MetallicsArts.MOD_ID + ".feruchemical_" + metal.getId() + "_symbol", CTW.FERUCHEMICAL.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
+                        }
+                }
+
         }};
         private Map<String, String> rawItems = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
@@ -212,6 +221,9 @@ public class ModLanguageProviderEN extends LanguageProvider {
     protected void addTranslations() {
             for (String key: ingots.keySet()){
                     add(key, ingots.get(key));
+            }
+            for (String key: effects.keySet()){
+                    add(key, effects.get(key));
             }
             for (String key: gems.keySet()){
                     add(key, gems.get(key));

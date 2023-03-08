@@ -134,7 +134,7 @@ public class RingGoldElectrum extends RingsMindAbstract <GoldFecuchemicHelper, E
                 } else if (playerCapability.hasModifiedHealth()) {
                     ElectrumFecuchemicHelper.restoreHearts(player, playerCapability);
                 }
-                ModNetwork.sync(playerCapability, player);
+                ModNetwork.syncInvestedDataPacket(playerCapability, player);
             }
         }
         super.curioTick(slotContext, stack);

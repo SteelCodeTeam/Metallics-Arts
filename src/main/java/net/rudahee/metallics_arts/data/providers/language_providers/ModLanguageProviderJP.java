@@ -12,7 +12,7 @@ public class ModLanguageProviderJP extends LanguageProvider {
     private Map<String, String> base = new HashMap<>() {{
         put("item.metallics_arts.large_vial",CTW.LARGE.getNameInJapanese() + " " + CTW.VIAL.getNameInJapanese());
         put("item.metallics_arts.small_vial",CTW.SMALL.getNameInJapanese() + " " + CTW.VIAL.getNameInJapanese());
-        put("curios.identifier.metalmind_slot",CTW.METALMIND + " " + CTW.SLOT.getNameInJapanese());
+        put("curios.identifier.metalmind_slot",CTW.METALMIND.getNameInJapanese() + " " + CTW.SLOT.getNameInJapanese());
 
         put("itemGroup.metallics_arts", CTW.METALLICS_ARTS.getNameInJapanese());
         put("itemGroup.metallics_arts.decorations", CTW.DECORATIONS.getNameInJapanese() + " " + CTW.METALLICS_ARTS.getNameInJapanese());

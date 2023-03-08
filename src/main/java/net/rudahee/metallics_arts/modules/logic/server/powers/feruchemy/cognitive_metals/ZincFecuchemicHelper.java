@@ -16,10 +16,10 @@ import java.util.function.Supplier;
  */
 public class ZincFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
-    public void tapPower(Player player) {player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_zinc").get(), 1, 1, true, true));}
+    public void tapPower(Player player) {player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_zinc").get(), 1, 0, true, true));}
 
     @Override
-    public void storagePower(Player player) {player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_zinc").get(), 1, 1, true, true));}
+    public void storagePower(Player player) {player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_zinc").get(), 1, 0, true, true));}
 
     public static Supplier<? extends ZincFecuchemicHelper> getInstance() {
         return ZincFecuchemicHelper::new;

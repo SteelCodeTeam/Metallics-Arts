@@ -6,22 +6,22 @@
     "metallics_arts:band_cadmium_bendalloy",
     "metallics_arts:band_chromium_nicrosil",
     "metallics_arts:band_copper_bronze",
-    "metallics_arts:band_electrum_gold",
+    "metallics_arts:band_gold_electrum",
     "metallics_arts:band_lerasium_ettmetal",
-    "metallics_arts:band_pewter_tin",
+    "metallics_arts:band_tin_pewter",
     "metallics_arts:band_zinc_brass",
-    "metallics_arts:band_steel_iron",
+    "metallics_arts:band_iron_steel",
 
     "metallics_arts:ring_aluminum_duralumin",
     "metallics_arts:ring_atium_malatium",
     "metallics_arts:ring_cadmium_bendalloy",
     "metallics_arts:ring_chromium_nicrosil",
     "metallics_arts:ring_copper_bronze",
-    "metallics_arts:ring_electrum_gold",
+    "metallics_arts:ring_gold_electrum",
     "metallics_arts:ring_lerasium_ettmetal",
-    "metallics_arts:ring_pewter_tin",
+    "metallics_arts:ring_tin_pewter",
     "metallics_arts:ring_zinc_brass",
-    "metallics_arts:ring_steel_iron"
+    "metallics_arts:ring_iron_steel"
   ]
 }
 
