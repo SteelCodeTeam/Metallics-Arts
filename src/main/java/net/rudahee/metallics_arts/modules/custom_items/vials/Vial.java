@@ -288,13 +288,14 @@ public abstract class Vial extends Item {
         return true;
     }
 
+
     /**
      * This method fill the items in the mod tab, 2 are added to the items passed in the list. Large and Small Vial.
      *
      * @param group on the creative tab.
      * @param items list of items to be filled with tags.
      */
-    @Override
+   /*@Override
     public void fillItemCategory(@NotNull CreativeModeTab group, @NotNull NonNullList<ItemStack> items) {
 
         ItemStack resultItem = null;
@@ -309,10 +310,11 @@ public abstract class Vial extends Item {
             for (MetalTagEnum mt : MetalTagEnum.values()) {
                 tag.putInt(mt.getGemNameLower(), 0);
             }
+            //tag.putInt("CustomModelData", 1);
             resultItem.setTag(tag);
             items.add(resultItem);
         }
-    }
+    }*/
 }
 
 

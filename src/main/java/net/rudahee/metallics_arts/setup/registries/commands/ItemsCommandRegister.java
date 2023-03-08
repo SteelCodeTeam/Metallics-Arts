@@ -84,7 +84,7 @@ public class ItemsCommandRegister {
 
         ItemStack vial = new ItemStack(ModItemsRegister.LARGE_VIAL.get());
         CompoundTag tag = Vial.addFullReserveVialTags();
-        tag.putFloat("custom_model_data", 1f);
+        tag.putFloat("CustomModelData", 1);
         vial.setTag(tag);
 
         StringBuilder playersName = new StringBuilder();
