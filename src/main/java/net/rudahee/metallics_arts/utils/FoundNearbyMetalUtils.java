@@ -16,22 +16,53 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * The FoundNearbyMetalUtils class provides utility methods for handling metal-related objects,
+ * such as metal blocks and entities. This class is specifically designed for use on the client side.
+ * <p><p>
+ * This class includes methods for retrieving sets of metal blocks and metal entities, which can be
+ * useful for various purposes, such as rendering, interaction, or client-side logic.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class FoundNearbyMetalUtils {
 
     private static final Set<Entity> metalEntities = new HashSet<>();
     private final Set<Player> nearbyAllomancers = new HashSet<>();
     private static final Set<MetalBlockUtils> metalBlobs = new HashSet<>();
 
+    /**
+     * Returns the set of Entity objects representing metal entities.
+     * This method should only be called on the client side.
+     * <p><p>
+     * @return A set of {@link Entity} objects representing metal entities.
+     */
     @OnlyIn(Dist.CLIENT)
     public static Set<Entity> getMetalEntities() {
         return metalEntities;
     }
 
+    /**
+     * Returns the set of MetalBlockUtils objects representing metal blobs.
+     * This method should only be called on the client side.
+     * <p><p>
+     * @return A set of {@link MetalBlockUtils} objects representing metal blobs.
+     */
     @OnlyIn(Dist.CLIENT)
     public static Set<MetalBlockUtils> getMetalBlocks() {
         return metalBlobs;
     }
 
+    /**
+     * Repopulates the metal entities and metal blobs lists based on the current state of the player and their surroundings.
+     * This method would be changed soon, because it's so complex and inefficient.
+     * <p><p>
+     * This method should only be called on the client side.
+     *
+     * @param player The player for whom the lists need to be updated.
+     * @param playerCapability The IInvestedPlayerData object containing the player's invested metal data.
+     */
     @OnlyIn(Dist.CLIENT)
     public static void redoLists(Player player, IInvestedPlayerData playerCapability) {
 

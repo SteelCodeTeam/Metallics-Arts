@@ -16,6 +16,7 @@ public class MetalMindsUtils {
      * @param iStoreMetal if the player is storing
      * @param metal0 first metal of the metalmind
      * @param metal1 second metal of the metalmind
+     *
      * @return CompoundTag metalmind information update.
      */
     public static CompoundTag changeOwner(Player player, CompoundTag compoundTag, boolean iStoreMetal, MetalTagEnum metal0, MetalTagEnum metal1) {
@@ -45,6 +46,7 @@ public class MetalMindsUtils {
      * @param compoundTag the inside information of the metalmind.
      * @param iStoreMetal if the player is storing
      * @param metal1 second metal of the metalmind
+     *
      * @return CompoundTag metalmind information update.
      */
     public static CompoundTag changeOwner(Player player, CompoundTag compoundTag,boolean iStoreMetal, MetalTagEnum metal1) {

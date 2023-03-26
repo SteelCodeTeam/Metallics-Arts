@@ -27,7 +27,7 @@ public class OnMouseInputEvent {
         for (int i = 0; i< MetalTagEnum.values().length; i++) {
             if (ModKeyRegister.powers[i].isDown()) {
                 if (ModKeyRegister.FERUCHEMIC_DECANT.isDown()) {
-                    ClientUtils.toggleDecant(MetalTagEnum.getMetal(i), capability, player);
+                    ClientUtils.toggleTap(MetalTagEnum.getMetal(i), capability, player);
                 } else if (ModKeyRegister.FERUCHEMIC_STORAGE.isDown()) {
                     ClientUtils.toggleStorage(MetalTagEnum.getMetal(i), capability, player);
                 } else {

@@ -439,7 +439,7 @@ public class FeruchemySelector extends Screen {
         if (this.slotSelected != -1) {
             MetalTagEnum metal = MetalTagEnum.getMetal(this.slotSelected);
             this.mc.player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
-                ClientUtils.toggleDecant(metal, data,this.mc.player);
+                ClientUtils.toggleTap(metal, data,this.mc.player);
                 this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK, 0.1F, 2.0F);
             });
         }

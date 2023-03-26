@@ -20,13 +20,36 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.List;
 
+/**
+ * The ServerEventHandler class is responsible for handling server-side events in the mod.
+ * This class subscribes to the mod's event bus and listens for specific events to execute custom actions.
+ * Each method annotated with @SubscribeEvent processes a specific event and performs the desired actions.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 @Mod.EventBusSubscriber
 public class ServerEventHandler {
+
+    /**
+     * Handles the LivingDropsEvent to modify or add custom drops when a living entity dies.
+     * This method delegates the handling of the event to the OnLivingEntityDropEvent class.
+     * This method is triggered by the LivingDropsEvent and only runs on the server-side.
+     *
+     * @param event The LivingDropsEvent instance representing the current living entity drops event.
+     */
     @SubscribeEvent
     public static void onLivingEntityDrop(final LivingDropsEvent event) {
         OnLivingEntityDropEvent.livingEntityDrop(event);
     }
 
+    /**
+     * Handles the PlayerLoggedInEvent to perform custom actions when a player joins the world.
+     * This method is triggered by the PlayerLoggedInEvent and only runs on the server-side.
+     * The method delegates the handling of the event to the OnJoinWorldEvent class if the logged-in entity is a ServerPlayer.
+     *
+     * @param event The PlayerEvent.PlayerLoggedInEvent instance representing the current player logged-in event.
+     */
     @SubscribeEvent
     public static void onJoinWorld(final PlayerEvent.PlayerLoggedInEvent event) {
         if (!event.getEntity().level.isClientSide) {
@@ -36,6 +59,13 @@ public class ServerEventHandler {
         }
     }
 
+    /**
+     * Handles the PlayerSetSpawnEvent to perform custom actions when a player sets their spawn point.
+     * This method is triggered by the PlayerSetSpawnEvent and only runs on the server-side.
+     * The method delegates the handling of the event to the OnSetSpawnEvent class if the player entity is a ServerPlayer.
+     *
+     * @param event The PlayerSetSpawnEvent instance representing the current player set spawn event.
+     */
     @SubscribeEvent
     public static void onSetSpawn(final PlayerSetSpawnEvent event) {
         if (event.getEntity() instanceof ServerPlayer) {
@@ -43,6 +73,13 @@ public class ServerEventHandler {
         }
     }
 
+    /**
+     * Handles the LivingDeathEvent to perform custom actions when a player dies.
+     * This method is triggered by the LivingDeathEvent and only runs on the server-side.
+     * The method delegates the handling of the event to the OnLivingDeathEvent class if the player entity is a ServerPlayer.
+     *
+     * @param event The LivingDeathEvent instance representing the current player death event.
+     */
     @SubscribeEvent
     public static void onLivingDeath(final LivingDeathEvent event) {
         if (event.getEntity() instanceof ServerPlayer) {
@@ -50,6 +87,13 @@ public class ServerEventHandler {
         }
     }
 
+/**
+ * Handles the PlayerRespawnEvent to perform custom actions when a player respawns.
+ * This method is triggered by the PlayerRespawnEvent and only runs on the server-side.
+ * The method syncs invested data when a player respawns, using the ModNetwork class.
+ *
+ * @param event The PlayerEvent.PlayerRespawnEvent instance representing the current player respawn event.
+ */
     @SubscribeEvent
     public static void onRespawn(final PlayerEvent.PlayerRespawnEvent event) {
         if (!event.getEntity().getCommandSenderWorld().isClientSide()) {
@@ -57,6 +101,13 @@ public class ServerEventHandler {
         }
     }
 
+    /**
+     * Handles the PlayerChangedDimensionEvent to perform custom actions when a player changes dimensions.
+     * This method is triggered by the PlayerChangedDimensionEvent and only runs on the server-side.
+     * The method syncs invested data when a player changes dimensions, using the ModNetwork class.
+     *
+     * @param event The PlayerEvent.PlayerChangedDimensionEvent instance representing the current player dimension change event.
+     */
     @SubscribeEvent
     public static void onChangeDimension(final PlayerEvent.PlayerChangedDimensionEvent event) {
         if (!event.getEntity().getCommandSenderWorld().isClientSide()) {
@@ -68,6 +119,13 @@ public class ServerEventHandler {
         }
     }
 
+    /**
+     * Handles the PlayerEvent.Clone to perform custom actions when a player is cloned.
+     * This method is triggered by the PlayerEvent.Clone and only runs on the server-side.
+     * The method delegates the handling of the event to the OnPlayerCloneEvent class.
+     *
+     * @param event The PlayerEvent.Clone instance representing the current player clone event.
+     */
     @SubscribeEvent
     public static void onPlayerClone(final PlayerEvent.Clone event) {
         if (!event.getEntity().level.isClientSide()) {
@@ -75,6 +133,13 @@ public class ServerEventHandler {
         }
     }
 
+    /**
+     * Handles the LivingHurtEvent to perform custom actions when a player is damaged.
+     * This method is triggered by the LivingHurtEvent and only runs on the server-side.
+     * The method delegates the handling of the event to the OnDamageEvent class if both the source and target entities are ServerPlayers.
+     *
+     * @param event The LivingHurtEvent instance representing the current player damage event.
+     */
     @SubscribeEvent
     public static void onDamageEvent(final LivingHurtEvent event) {
         if (event.getSource().getDirectEntity() instanceof ServerPlayer && event.getEntity() instanceof ServerPlayer) {
@@ -83,6 +148,13 @@ public class ServerEventHandler {
         }
     }
 
+    /**
+     * Handles the TickEvent.LevelTickEvent to perform custom actions on each world tick on server-side.
+     * This method is triggered by the TickEvent.LevelTickEvent and only runs during the end phase.
+     * The method iterates through all players in the level to perform custom actions based on their capabilities.
+     *
+     * @param event The TickEvent.LevelTickEvent instance representing the current world tick event.
+     */
     @SubscribeEvent
     public static void onWorldTickEvent(final TickEvent.LevelTickEvent event) {
 
