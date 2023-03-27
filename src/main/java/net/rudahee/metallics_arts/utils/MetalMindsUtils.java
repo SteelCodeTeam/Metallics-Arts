@@ -13,7 +13,7 @@ public class MetalMindsUtils {
      *
      * @param player to whom the effect will be applied.
      * @param compoundTag the inside information of the metalmind.
-     * @param iStoreMetal if the player is storing
+     * @param iStoreMetal if the player is storing any metal.
      * @param metal0 first metal of the metalmind
      * @param metal1 second metal of the metalmind
      * @return CompoundTag metalmind information update.

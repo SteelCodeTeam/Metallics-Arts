@@ -249,10 +249,8 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
         CompoundTag compoundTag = stack.getTag();
 
         if (livingEntity.level instanceof ServerLevel) {
-            if (livingEntity instanceof Player) {
-                Player player = (Player) livingEntity;
+            if (livingEntity instanceof Player player) {
                 IInvestedPlayerData playerCapability;
-
                 try {
                     playerCapability = CapabilityUtils.getCapability(player);
                 } catch (PlayerException ex) {
