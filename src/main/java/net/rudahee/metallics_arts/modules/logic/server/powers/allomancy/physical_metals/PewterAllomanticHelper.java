@@ -20,8 +20,8 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
  * @see AllomaticTick
  * @see OnDamageEvent
  */
-
 public class PewterAllomanticHelper {
+
     /**
      * This method adds the necessary effects to physically unbalance the player.
      *
@@ -31,6 +31,7 @@ public class PewterAllomanticHelper {
      */
     public static void addPewterEffects(Player player, boolean lerasium, boolean enhanced) {
         int damage, resistence, digSpeed;
+
         if (!enhanced && !lerasium) {
             damage = 0;
             resistence = 1;
@@ -48,6 +49,7 @@ public class PewterAllomanticHelper {
             resistence = 4;
             digSpeed = 4;
         }
+
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 5, digSpeed, true, true));
         player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 5, damage, true, true));
         player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 5, resistence, true, true));
@@ -74,16 +76,19 @@ public class PewterAllomanticHelper {
         if (itemInHand.getItem() == ModItemsRegister.DUELING_STAFF.get()) {
             amountDamage = amountDamage * (((float) itemInHand.getDamageValue() / (float) itemInHand.getMaxDamage()) * 3.2f);
         }
+
         if (itemInHand.getItem() == ModItemsRegister.CRISTAL_DAGGER.get()) {
             if (Math.random() < 0.10d) {
                 amountDamage = amountDamage * 2;
             }
         }
+
         if (itemInHand.getItem() == ModItemsRegister.OBSIDIAN_DAGGER.get()) {
             if (Math.random() < 0.30d) {
                 target.addEffect(new MobEffectInstance(MobEffects.WITHER, 41, 1, true, true, false));
             }
         }
+
         if (itemInHand.getItem() == ModItemsRegister.OBSIDIAN_AXE.get()) {
             if (Math.random() < 0.50d) {
                 target.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 20, 1, true, true, false));

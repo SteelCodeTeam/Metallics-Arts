@@ -19,6 +19,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
+import net.rudahee.metallics_arts.data.custom_tiers.SpikeTier;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
@@ -47,41 +48,7 @@ public class MetalSpike extends SwordItem {
 
     private static final float ATTACK_SPEED = -3f;
 
-    private final MetalTagEnum metalSpike;
-
-
-    // TODO: Its mandatory do it in a separate class. like a Custom Tier.
-    private static final Tier tier = new Tier() {
-        @Override
-        public int getUses() {
-            return 1;
-        }
-
-        @Override
-        public float getSpeed() {
-            return 0;
-        }
-
-        @Override
-        public float getAttackDamageBonus() {
-            return 0;
-        }
-
-        @Override
-        public int getLevel() {
-            return 0;
-        }
-
-        @Override
-        public int getEnchantmentValue() {
-            return 0;
-        }
-
-        @Override
-        public @NotNull Ingredient getRepairIngredient() {
-            return Ingredient.of(Blocks.AIR);
-        }
-    };
+    private MetalTagEnum metalSpike;
 
     /**
      * Default constructor, metalTagEnum param going to decide what kind of spike it's going to be.
@@ -90,7 +57,7 @@ public class MetalSpike extends SwordItem {
      * @param metalTagEnum of the spike, will be decided what metal is going to steal.
      */
     public MetalSpike(Item.Properties properties, MetalTagEnum metalTagEnum) {
-        super(tier, ATTACK_DAMAGE, ATTACK_SPEED, properties);
+        super(new SpikeTier(), ATTACK_DAMAGE, ATTACK_SPEED, properties);
         this.metalSpike = metalTagEnum;
     }
 
