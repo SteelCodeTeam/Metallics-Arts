@@ -3,7 +3,7 @@
 
 
 ## Index 📋
-1. Description
+1. Introducing Metallics Arts
 2. About us
 3. Requirements
 4. Changelog
@@ -13,20 +13,19 @@
 ---
 <br>
 
-## **Description 📝**
+## **Introducing Metallics Arts! ✨📘**
 
-Now, you can download here: https://www.curseforge.com/minecraft/mc-mods/metallics-arts
+**Get it now:** https://www.curseforge.com/minecraft/mc-mods/metallics-arts
 
-**This mod is based on "Mistborn" Brandon Sanderson books saga**, therefore we recommend having read some books of the saga before playing with the mod. Obviously we recommend all the author's works.
+**Immerse yourself in the world of "Mistborn" by Brandon Sanderson 💫.** We highly recommend familiarizing yourself with the saga before diving into this mod. And while you're at it, don't miss out on the author's other fantastic works!
 
-Metallics Arts is a mod for Minecraft 1.19.2, designed to work with the Forge API.
+Metallics Arts is a captivating mod for Minecraft 1.19.2, seamlessly integrated with the Forge API.
 
-This mod is a pseudo-fork of Lego's Allomancy mod, so we recommend you check out his work, as his mod has a lot to offer and without a doubt: It's at least twice as cool as ours!
+This mod is inspired by and builds upon Lego's Allomancy mod 🌟. We encourage you to explore his creation, as it offers a multitude of features and undoubtedly doubles the awesomeness!
 
-Our mod adds all three metal arts (Allomancy, Feruchemy and Hemalurgy) to Minecraft.
+Our mod brings the three metal arts (Allomancy, Feruchemy, and Hemalurgy) to life in Minecraft 🌌.
 
-We add new blocks, recipes and items! All this to be able to access the incredible powers of the metallics arts.
-
+Discover new blocks, recipes, and items 💥! Unlock the astounding powers of metallic arts and elevate your gaming experience.
 <br>
 
 ------
@@ -34,14 +33,13 @@ We add new blocks, recipes and items! All this to be able to access the incredib
 <br>
 
 ## **About us 🙋**
-We are a small team of 3 people: 3 developers and 1 designer. We did all the code and all the textures. We also got help from the community of "El Club De Las Tormentas". We recommend his YT and Twitch channel!
+We are SteelCode, a passionate team inspired by the work of Sanderson. With the help of the "Club De Las Tormentas" community, we have brought our vision of the world of Mistborn to minecraft to life. Be sure to check out his YouTube channels and Twitch!
 
-We are RuDaHee, TobibusFate, Sregio03 and Farck! You can get our contact in the final notes section.
+Stay tuned for the latest updates on our new website and upcoming projects by visiting the final notes section.
 
-We made the mod for the community's mistborn-oriented server (of which we are moderators haha), and also  contribute our work to anyone who wants to enjoy the mod.
+we are excited to share our mod with anyone who wants to experience the thrill of being a mistborn.
 
-So we really hope you enjoy it!
-
+We sincerely hope you enjoy your trip with us! 🎉
 <br>
 
 ------
@@ -50,7 +48,7 @@ So we really hope you enjoy it!
 
 ## **Requirements 📦**
 
-- **Forge 1.19.2-43.1.15** or superior
+- **Forge 1.19.2-43.2.3** exactly.
 
 And we have two mandatory dependencies:
 - **Curios 1.19.2-5.1.1.0** or superior
@@ -66,6 +64,15 @@ And we have two mandatory dependencies:
 
 Problems solved:
 - Refactor started!
+- Names consistency are fixed.
+- All code is commented.
+- The powers that draw lines have been tweaked, now the lines are much cooler and more efficient!
+- The way to manage powers both on the server and on the client are now much more efficient.
+- Now when you activate a power up you will see it as a minecraft effect.
+- Now we don't depend on Patchouli, we use Modonomicon.
+- Polish and Japanese translations implemented.
+- We have changed the synchronization and the use of the internal tags of the players.
+- Commands now support selectors (@a, @p...) and support not having a specific target (applied to yourself)
   <br>
 
 ------
@@ -75,16 +82,16 @@ Problems solved:
 ## **Future Improvements ⬆️**
 
 **Known Issues**
-- Names consistency is bad.
+- ~~Names consistency is bad.~~
 - Decant iron and burn bendalloy while you fall result in a bug.
 - Shield with our banners are not getting the right texture.
 
 **Improvements**
-- Do steel flying more comfortable. (It's not a priority)
+- Do steel flying more comfortable. (It's not a priority).
 - ~~Add sound effects.~~ [v.1.5.2]
-- Do more comfortable (and maybe push and pull through blocks) with iron/steel 
-- Add better resolution in banner printed in shield
-- **We need to do a really hard refactor** - IN PROGRESS.
+- Do more comfortable (and maybe push and pull through blocks) with iron/steel. 
+- Add better resolution in banner printed in shield.
+- ~~**We need to do a really hard refactor.**~~
 - Add some entities like special zombies, specials archers, they must use allomancy or feruchemy.
 - Maybe, implements new structures with loot from the mod.
 - New kind of allomantic beacons with his respective powers.
@@ -96,18 +103,21 @@ Problems solved:
 <br>
 
 ## **Fork me! 🛠️**
+We welcome you to take on the challenge of further developing this project on your own.
 
-I challenge you to continue developing this project on your own.
-
-You need to have the following knowledge:
+Before you begin, make sure you're familiar with:
 - IntelliJ Idea or Eclipse IDE
-- Java 8
+- Java 17
 - Gradle
 - Git
 
-To fork the project you just need to click on the fork button and clone the project with git. You can always ask for help to us, if you need it.
+To start, simply click on the fork button and clone the project using git. If you ever need assistance, don't hesitate to reach out to us.
 
-If you think you have found an error or that an improvement could be implemented, you can do it through the issues tab on github. **It is the only way we will have for you to let us know the bugs you have found!**
+If you discover any errors or see potential improvements, please report them through the issues tab on GitHub. **Remember, this is the only way for us to know about the bugs you've found!**
+
+You can always join the project on our discord (As an occasional collaborator or as part of the team). We accept everyone!
+
+Let's collaborate and make this project even better! 🌟
 
 <br>
 
@@ -117,10 +127,15 @@ If you think you have found an error or that an improvement could be implemented
 
 ## **Final Notes 🚀**
 
-We really love Lego and blits works! PLEASE go to their mod pages and play with it!
+We're huge fans of Lego and blits works! We highly encourage you to visit their mod pages and give them a try!
 
-Obviously read all Brandon Sanderson's books. All Brandon books are really good.
+And don't forget to read all of Brandon Sanderson's books. They're truly amazing reads.
 
-When the mod is finished, we will update to 1.20.x, but we cannot ensure the continuity of the project later.
+We have big plans for the mod, but there are only a few people on the project, so bigger updates take a lot of time. 
+We know we're going to port it to version 1.20.x, and we know we'll be adding single player features. **Please be patient!**
 
-### You can find us in our discord guild: https://discord.gg/YHqMTRYAMT
+#### **Stay Connected with Us**
+
+Join our Discord guild to stay in touch and receive updates: https://discord.gg/YHqMTRYAMT
+
+Also you can check our new website: **NOT YET** :)
