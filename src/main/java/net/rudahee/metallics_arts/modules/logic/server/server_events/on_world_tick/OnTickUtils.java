@@ -68,8 +68,11 @@ public class OnTickUtils {
     private static int buffNicrosilDuralumin = -1;
 
     /**
-     * This method is responsible for calculating the player's enhanced state, having an internal time counter that,
-     * when it reaches 0, empties the Allomantic reserves that the player was burning while in this state.
+     * This method is in charge of applying the improved effects of duralumin or nicrosil applied by another player.
+     * For this, it uses an internal counter, which when burning duralumin with more than 88% reserves or being hit by
+     * someone who burns nicrosil, is assigned the maximum time and then counts down tick by tick.
+     * <p>
+     * When it reaches 0, the metal reserves that were in use are emptied, and the counter is placed at -1.
      *
      * @param playerCapability capabilities (data) of the player.
      *

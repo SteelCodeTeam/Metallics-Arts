@@ -59,7 +59,6 @@ public class CapabilityUtils<T> {
      */
     public static IInvestedPlayerData getCapability(@Nullable Player player) throws PlayerException {
         playerData = null;
-
         if (player == null) {
             throw new PlayerException(ErrorTypes.PLAYER_ERROR);
         }
