@@ -41,7 +41,12 @@ public class PewterFeruchemicHelper extends AbstractFechuchemicHelper {
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 5, 1, true, false));
     }
 
-    //todo
+    /**
+     * Returns an instance of PewterFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of PewterFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of PewterFecuchemicHelper when called
+     */
     public static Supplier<? extends PewterFeruchemicHelper> getInstance() {
         return PewterFeruchemicHelper::new;
     }

@@ -42,7 +42,12 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
     public void storagePower(Player player) {
     }
 
-    //todo
+    /**
+     * Returns an instance of MalatiumFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of MalatiumFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of MalatiumFecuchemicHelper when called
+     */
     public static Supplier<? extends MalatiumFecuchemicHelper> getInstance() {
         return MalatiumFecuchemicHelper::new;
     }

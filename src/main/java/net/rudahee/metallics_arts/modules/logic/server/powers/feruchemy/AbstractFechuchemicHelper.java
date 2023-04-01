@@ -13,13 +13,28 @@ import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
  * @since 1.5.1
  */
 public abstract class AbstractFechuchemicHelper {
+
+    /**
+     * An abstract method to be implemented by subclasses, representing the action taken when a player taps a power.
+     * Each subclass should define the specific effect or action to be applied to the player when tapping the power.
+     *
+     * @param player the Player to whom the effect or action is applied
+     */
     public abstract void tapPower(Player player);
+
+    /**
+     * An abstract method to be implemented by subclasses, representing the action taken when a player stores a power.
+     * Each subclass should define the specific effect or action to be applied to the player when storing the power.
+     *
+     * @param player the Player to whom the effect or action is applied
+     */
     public abstract void storagePower(Player player);
 
     //charge = storing
     //discharge = decanting
     /**
      * Basic implementation of discharge metalminds.
+     *
      * @param compoundTag the inside information of the metalmind.
      * @param player with the mindmetal equipped.
      * @param playerCapability capabilities (data) of the player.
@@ -35,8 +50,10 @@ public abstract class AbstractFechuchemicHelper {
         tapPower(player);
         return compoundTag;
     }
+
     /**
      * Basic implementation of charging metalminds.
+     *
      * @param compoundTag the inside information of the metalmind.
      * @param player with the mindmetal equipped.
      * @param playerCapability capabilities (data) of the player.

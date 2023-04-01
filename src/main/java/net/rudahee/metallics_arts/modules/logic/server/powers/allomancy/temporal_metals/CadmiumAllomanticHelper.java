@@ -43,7 +43,6 @@ public class CadmiumAllomanticHelper {
      * @param level in which the player is located (world).
      * @param playerCapability capabilities (data) of the player.
      */
-
     public static void CadmiumMobEffectsOtherPlayers(Player player, IInvestedPlayerData playerCapability, ServerLevel level, boolean enhanced, boolean lerasium) {
         int radius = 8;
         if (enhanced && lerasium) {

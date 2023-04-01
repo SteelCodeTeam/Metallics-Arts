@@ -34,7 +34,12 @@ public class EttmetalFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {}
 
-    //todo
+    /**
+     * Returns an instance of EttmetalFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of EttmetalFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of EttmetalFecuchemicHelper when called
+     */
     public static Supplier<? extends EttmetalFecuchemicHelper> getInstance() {
         return EttmetalFecuchemicHelper::new;
     }

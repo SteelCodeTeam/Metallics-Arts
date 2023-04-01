@@ -46,6 +46,14 @@ public class ClientEventHandler {
         }
     }
 
+    /**
+     * Handles key input events to trigger certain actions in the game, such as tapping or storing powers, when specific keys are pressed.
+     * This method is executed only on the client-side and listens for InputEvent.Key events.
+     *
+     * @param event the InputEvent.Key event that contains information about the key press
+     * @see OnKeyInputEvent
+     * @see CapabilityUtils
+     */
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onKeyInput(final InputEvent.Key event) {

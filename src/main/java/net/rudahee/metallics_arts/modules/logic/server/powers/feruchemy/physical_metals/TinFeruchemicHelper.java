@@ -14,6 +14,7 @@ import java.util.function.Supplier;
  * @since 1.5.1
  */
 public class TinFeruchemicHelper extends AbstractFechuchemicHelper {
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Pewter: night vision will be applied to the target player.
@@ -26,6 +27,7 @@ public class TinFeruchemicHelper extends AbstractFechuchemicHelper {
     public void tapPower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 320, 1, true, false, false));
     }
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Pewter: blindness will be applied to the target player.
@@ -38,7 +40,13 @@ public class TinFeruchemicHelper extends AbstractFechuchemicHelper {
     public void storagePower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60, 1, true, false, false));
     }
-    //todo
+
+    /**
+     * Returns an instance of TinFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of TinFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of TinFecuchemicHelper when called
+     */
     public static Supplier<? extends TinFeruchemicHelper> getInstance() {
         return TinFeruchemicHelper::new;
     }

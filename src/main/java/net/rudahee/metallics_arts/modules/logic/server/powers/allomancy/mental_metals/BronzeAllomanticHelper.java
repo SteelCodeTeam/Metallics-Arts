@@ -9,7 +9,7 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import java.util.Objects;
 
 /**
- * Helper class that contains the methods to use the allomantic Bronze
+ * Helper class for handling the effects of burning Bronze in an Allomantic system.
  *
  * @author SteelCode Team
  * @since 1.5.1
@@ -18,6 +18,14 @@ import java.util.Objects;
  */
 public class BronzeAllomanticHelper {
 
+    /**
+     * Manipulates AI entities based on the player's Bronze Allomantic abilities.
+     *
+     * @param player   The player burning Bronze.
+     * @param world    The level in which the player is located.
+     * @param enhanced A boolean flag indicating if the player's abilities are enhanced.
+     * @param lerasium A boolean flag indicating if the player is burning Lerasium.
+     */
     public static void BronzeAiEntityManipulation(Player player, Level world, boolean enhanced, boolean lerasium) {
         int radius;
 

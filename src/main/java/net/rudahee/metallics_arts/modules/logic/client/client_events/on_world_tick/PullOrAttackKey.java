@@ -19,8 +19,26 @@ import net.rudahee.metallics_arts.setup.network.packets.PullAndPushEntityPacket;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
 
+/**
+ * A utility class that provides methods for handling pull and attack key actions in the game.
+ * These actions are triggered by pressing specific keys, and their effects depend on the player's capabilities
+ * and the type of metal they are currently burning.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class PullOrAttackKey {
 
+    /**
+     * Handles the pull key action, which has different effects based on the type of metal the player is burning.
+     * For example, if the player is burning Iron, it can pull metal blocks or entities towards the player.
+     *
+     * @param capability the IInvestedPlayerData instance representing the player's capabilities
+     * @param minecraft  the Minecraft instance
+     * @param player     the Player instance
+     * @param level      the Level instance
+     * @see IInvestedPlayerData
+     */
     public static void pullKey(IInvestedPlayerData capability, Minecraft minecraft, Player player, Level level) {
         HitResult trace = ClientUtils.getMouseOverExtended(11F * 1.5F);
 
@@ -46,6 +64,17 @@ public class PullOrAttackKey {
 
     }
 
+    /**
+     * Handles the attack key action, which has different effects based on the type of metal the player is burning.
+     * For example, if the player is burning Zinc, it can change the emotion of a Mob, or if the player is burning
+     * Malatium, it can affect other players.
+     *
+     * @param capability the IInvestedPlayerData instance representing the player's capabilities
+     * @param minecraft  the Minecraft instance
+     * @param player     the Player instance
+     * @param level      the Level instance
+     * @see IInvestedPlayerData
+     */
     public static void attackKey(IInvestedPlayerData capability, Minecraft minecraft, Player player, Level level) {
         HitResult trace = ClientUtils.getMouseOverExtended(11F * 1.5F);
 

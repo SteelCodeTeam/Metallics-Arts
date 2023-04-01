@@ -30,6 +30,16 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
  * @see ChangeEmotionPacket
  */
 public class ZincAllomanticHelper {
+
+    /**
+     * Modifies the behavior of various entities to make them aggressive towards the specified player.
+     * Ranged attackers, such as skeletons and pillagers, will have their ranged attack goals added.
+     * Iron golems will gain regeneration and glowing effects, as well as a melee attack goal.
+     * Villagers will panic and avoid the player while reporting their reputation event.
+     *
+     * @param target the Mob object representing the entity to be made aggressive
+     * @param source the Player object representing the player that the entity will target
+     */
     public static void angryEntities(Mob target, Player source) {
         target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
 
@@ -64,6 +74,15 @@ public class ZincAllomanticHelper {
         }
     }
 
+    /**
+     * Enhances the behavior of various entities to make them more aggressive towards the specified player.
+     * The entities are given damage boost and damage resistance effects, and tamable animals are set to untamed.
+     * The method also modifies the behaviors of specific entities, such as creepers, rabbits, skeletons,
+     * illusioners, pillagers, iron golems, and villagers.
+     *
+     * @param target the Mob object representing the entity to be made more aggressive
+     * @param source the Player object representing the player that the entity will target
+     */
     public static void angryEntitiesEnhanced(Mob target, Player source) {
         target.targetSelector.enableControlFlag(Goal.Flag.TARGET);
 
@@ -100,6 +119,16 @@ public class ZincAllomanticHelper {
         }
     }
 
+    /**
+     * Modifies the behavior of various entities to make them aggressive towards the specified player when under the influence of Lerasium.
+     * The entities are given damage boost and damage resistance effects, and tamable animals are set to untamed.
+     * The method also modifies the behaviors of specific entities, such as creepers, rabbits, skeletons,
+     * illusioners, pillagers, iron golems, and villagers, depending on the `enhanced` parameter.
+     *
+     * @param source the Player object representing the player that the entity will target
+     * @param world the Level object representing the world in which the entities reside
+     * @param enhanced a boolean value indicating whether the effects of Lerasium are enhanced or not
+     */
     public static void angryEntitiesWithLerasium(Player source, Level world, boolean enhanced) {
 
         world.getEntitiesOfClass(Mob.class,

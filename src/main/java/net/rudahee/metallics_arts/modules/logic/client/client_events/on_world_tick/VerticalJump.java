@@ -14,7 +14,26 @@ import net.rudahee.metallics_arts.setup.network.packets.PullAndPushBlockPacket;
 import net.rudahee.metallics_arts.setup.network.packets.PullAndPushNuggetPacket;
 import net.rudahee.metallics_arts.setup.network.packets.RemoveNuggetPacket;
 
+/**
+ * This class contains a method to handle the vertical jump or fly action for a player based on their
+ * capabilities and the type of metal they are currently burning.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class VerticalJump {
+
+    /**
+     * Handles the fly action, which allows the player to jump or fly vertically based on the metal
+     * they are burning and the surrounding blocks. The player can move up or down depending on the
+     * key pressed.
+     *
+     * @param capability the IInvestedPlayerData instance representing the player's capabilities
+     * @param minecraft  the Minecraft instance
+     * @param player     the Player instance
+     * @param level      the Level instance
+     * @see IInvestedPlayerData
+     */
     public static void fly(IInvestedPlayerData capability, Minecraft minecraft, Player player, Level level) {
 
         double x = player.getX();

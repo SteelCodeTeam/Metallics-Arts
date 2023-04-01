@@ -62,7 +62,13 @@ public class BronzeFecuchemicHelper extends AbstractFechuchemicHelper {
         }
         player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_bronze").get(), 1, 0, true, true));
     }
-    //todo
+
+    /**
+     * Returns an instance of BronzeFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of BronzeFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of BronzeFecuchemicHelper when called
+     */
     public static Supplier<? extends BronzeFecuchemicHelper> getInstance() {
         return BronzeFecuchemicHelper::new;
     }

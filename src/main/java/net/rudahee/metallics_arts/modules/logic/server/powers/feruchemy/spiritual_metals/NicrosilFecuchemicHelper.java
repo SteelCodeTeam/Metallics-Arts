@@ -15,6 +15,7 @@ import java.util.function.Supplier;
  * @since 1.5.1
  */
 public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper {
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * This method is not used, because the power logic is applied in the discharge methods of this class.
@@ -25,6 +26,7 @@ public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tapPower(Player player) {}
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * This method is not used, because the power logic is applied in the charge methods of this class.
@@ -36,7 +38,12 @@ public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {}
 
-    //todo
+    /**
+     * Returns an instance of NicrosilFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of NicrosilFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of NicrosilFecuchemicHelper when called
+     */
     public static Supplier<? extends NicrosilFecuchemicHelper> getInstance() {
         return NicrosilFecuchemicHelper::new;
     }

@@ -42,7 +42,13 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
         player.giveExperiencePoints(-1);
         player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_copper").get(), 1, 0, true, true));
     }
-    //todo
+
+    /**
+     * Returns an instance of CopperFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of CopperFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of CopperFecuchemicHelper when called
+     */
     public static Supplier<? extends CopperFecuchemicHelper> getInstance() {
         return CopperFecuchemicHelper::new;
     }

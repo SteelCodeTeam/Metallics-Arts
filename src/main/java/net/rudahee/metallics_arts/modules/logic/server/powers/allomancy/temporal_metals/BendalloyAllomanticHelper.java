@@ -82,12 +82,12 @@ public class BendalloyAllomanticHelper {
     }
 
     /**
+     * Adds a digging speed effect to the player and performs AI steps based on the enhanced flag.
+     * If enhanced is true, performs 3 AI steps; otherwise, performs 1 AI step.
      *
-     *
-     * @param player to whom the effect will be applied.
-     * @param enhanced if player is burning Duralumin or the player was hit with Nicrosil.
+     * @param player the Player to whom the effect and AI steps are applied
+     * @param enhanced the boolean flag representing whether the AI steps should be enhanced
      */
-
     public static void AddAiSteeps(Player player, boolean enhanced) {
 
         if (enhanced) {

@@ -114,8 +114,8 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 40, 2, true, false));
             }
         }
-
     }
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Duralumin: will effects depending on the biome the target player
@@ -205,7 +205,12 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
         }
     }
 
-    //todo
+    /**
+     * Returns an instance of DuraluminFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of DuraluminFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of DuraluminFecuchemicHelper when called
+     */
     public static Supplier<? extends DuraluminFecuchemicHelper> getInstance() {
         return DuraluminFecuchemicHelper::new;
     }

@@ -12,7 +12,23 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Handles events related to a player joining the world.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class OnJoinWorldEvent {
+
+    /**
+     * Assigns Allomantic and/or Feruchemical powers to a player when they join the world
+     * if they do not already have any powers.
+     * This method is triggered when a PlayerLoggedInEvent occurs. It checks if the player has
+     * any Allomantic or Feruchemical powers and, if not, randomly assigns them one or both types
+     * of powers. Finally, it syncs the player's capability data with the client.
+     *
+     * @param event The PlayerEvent.PlayerLoggedInEvent that triggered this method.
+     */
     public static void joinWorld(PlayerEvent.PlayerLoggedInEvent event) {
         ServerPlayer player = (ServerPlayer) event.getEntity();
         try {

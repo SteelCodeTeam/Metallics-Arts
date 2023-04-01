@@ -61,6 +61,12 @@ public class CadmiumFecuchemicHelper extends AbstractFechuchemicHelper {
         }
     }
 
+    /**
+     * Returns an instance of CadmiumFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of CadmiumFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of CadmiumFecuchemicHelper when called
+     */
     public static Supplier<? extends CadmiumFecuchemicHelper> getInstance() {
         return CadmiumFecuchemicHelper::new;
     }

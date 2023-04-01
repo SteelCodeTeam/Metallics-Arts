@@ -58,6 +58,12 @@ public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper {
 
     }
 
+    /**
+     * Returns an instance of ElectrumFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of ElectrumFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of ElectrumFecuchemicHelper when called
+     */
     public static Supplier<? extends ElectrumFecuchemicHelper> getInstance() {
         return ElectrumFecuchemicHelper::new;
     }

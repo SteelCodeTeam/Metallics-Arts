@@ -15,6 +15,7 @@ import java.util.function.Supplier;
  * @since 1.5.1
  */
 public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper {
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * This method is not used, because the power logic is applied in the discharge methods of this class.
@@ -37,7 +38,12 @@ public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {}
 
-    //todo
+    /**
+     * Returns an instance of AluminumFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of AluminumFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of AluminumFecuchemicHelper when called
+     */
     public static Supplier<? extends AluminumFecuchemicHelper> getInstance() {
         return AluminumFecuchemicHelper::new;
     }
@@ -61,6 +67,7 @@ public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper {
         compoundTag.putInt(metalKey, 1);
         return compoundTag;
     }
+
     /**
      * Redefine of the method of the AbstractFechuchemicHelper class.
      * In this specific case, because the logic of the charge is proper of the Aluminum.
@@ -75,12 +82,12 @@ public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @see AtiumFecuchemicHelper#calculateCharge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
      */
-
     @Override
     public CompoundTag calculateCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         compoundTag.putInt(metalKey, 2);
         return compoundTag;
     }
+
     /**
      * This is a unique method in the helpers, which is responsible for modifying the internal reserve of the metalmind, to show that the power is off.
      *

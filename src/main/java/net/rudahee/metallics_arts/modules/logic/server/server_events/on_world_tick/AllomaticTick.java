@@ -20,7 +20,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.GoldAllomanticHelper;
 
 /**
- * This class contains the methods to execute the Allimantic powers that are carried out passively, in all the ticks of the game.
+ * Handles the effects and abilities related to Allomantic metals for players.
  *
  * @author SteelCode Team
  * @since 1.5.1
@@ -28,11 +28,12 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal
 public class AllomaticTick {
 
     /**
-     * This method is used to invoke the methods that the helpers execute, distributing them into: physical, mental, temporal, spiritual and divine metals.
+     * Handles the effects of physical, mental, temporal, and god metals that
+     * are activated every 3 ticks.
      *
-     * @param playerCapability capabilities (data) of the player.
-     * @param player to whom the effect will be applied.
-     * @param level in which the player is located (world).
+     * @param playerCapability The player's Allomantic and Feruchemical abilities.
+     * @param player           The player for whom the actions are being performed.
+     * @param level            The server level in which the player is located.
      */
     public static void each3Ticks(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
 
@@ -55,6 +56,15 @@ public class AllomaticTick {
         }
     }
 
+    /**
+     * Handles the effects of spiritual metals that are activated every tick.
+     * Drains metals when the player is burning Chromium or Aluminum.
+     *
+     * @param playerCapability The player's Allomantic and Feruchemical abilities.
+     * @param player           The player for whom the actions are being performed.
+     * @param level            The server level in which the player is located.
+     * @return True if metals have been drained, false otherwise.
+     */
     public static boolean eachTickWithInstantDrain(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
 
         boolean isMetalsDrained = false;
@@ -67,11 +77,11 @@ public class AllomaticTick {
     }
 
     /**
-     * This method is in charge of executing the helpers of the divine metals
+     * Handles the effects of god metals (Ettmetal and Malatium).
      *
-     * @param playerCapability capabilities (data) of the player.
-     * @param player to whom the effect will be applied.
-     * @param level in which the player is located (world).
+     * @param playerCapability The player's Allomantic and Feruchemical abilities.
+     * @param player           The player for whom the actions are being performed.
+     * @param level            The server level in which the player is located.
      */
     private static void godMetals(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
         if (playerCapability.isBurning(MetalTagEnum.ETTMETAL)) {
@@ -83,12 +93,12 @@ public class AllomaticTick {
     }
 
     /**
-     * This method is in charge of executing the helpers of the spiritual metals.
+     * Handles the effects of spiritual metals (Chromium and Aluminum).
      *
-     * @param playerCapability capabilities (data) of the player.
-     * @param player to whom the effect will be applied.
-     * @param level in which the player is located (world).
-     * @return boolean if metals reserve are empty.
+     * @param playerCapability The player's Allomantic and Feruchemical abilities.
+     * @param player           The player for whom the actions are being performed.
+     * @param level            The server level in which the player is located.
+     * @return True if metals have been drained, false otherwise.
      */
     private static boolean spiritualMetals(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
 
@@ -106,11 +116,11 @@ public class AllomaticTick {
     }
 
     /**
-     * This method is responsible for executing the helpers of the temporary metals.
+     * Handles the effects of temporal metals (Bendalloy, Cadmium, Gold, and Electrum).
      *
-     * @param playerCapability capabilities (data) of the player.
-     * @param player to whom the effect will be applied.
-     * @param level in which the player is located (world).
+     * @param playerCapability The player's Allomantic and Feruchemical abilities.
+     * @param player           The player for whom the actions are being performed.
+     * @param level            The server level in which the player is located.
      */
     private static void temporalMetals(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
         if (playerCapability.isBurning(MetalTagEnum.BENDALLOY) && !playerCapability.isBurning(MetalTagEnum.CADMIUM)) {
@@ -136,11 +146,11 @@ public class AllomaticTick {
     }
 
     /**
-     * This method is responsible for executing the helpers of mental metals.
+     * Handles the effects of mental metals (Copper, Bronze, Zinc, and Brass).
      *
-     * @param playerCapability capabilities (data) of the player.
-     * @param player to whom the effect will be applied.
-     * @param level in which the player is located (world).
+     * @param playerCapability The player's Allomantic and Feruchemical abilities.
+     * @param player           The player for whom the actions are being performed.
+     * @param level            The server level in which the player is located.
      */
     private static void mentalMetals(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
 
@@ -164,11 +174,11 @@ public class AllomaticTick {
     }
 
     /**
-     * This method is responsible for executing the helpers of physical metals.
+     * Handles the effects of physical metals (Tin and Pewter).
      *
-     * @param playerCapability capabilities (data) of the player.
-     * @param player to whom the effect will be applied.
-     * @param level in which the player is located (world).
+     * @param playerCapability The player's Allomantic and Feruchemical abilities.
+     * @param player           The player for whom the actions are being performed.
+     * @param level            The server level in which the player is located.
      */
     private static void physicalMetals(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
 
@@ -181,7 +191,12 @@ public class AllomaticTick {
         }
     }
 
-
+    /**
+     * Handles the effects of each tick for Duralumin and external Nicrosil.
+     *
+     * @param capability The player's Allomantic and Feruchemical abilities.
+     * @param player     The player for whom the actions are being performed.
+     */
     public static void eachTick(IInvestedPlayerData capability, ServerPlayer player) {
         OnTickUtils.duraluminAndExternalNicrosilEffect(capability, player);
     }

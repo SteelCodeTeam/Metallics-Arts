@@ -46,7 +46,12 @@ public class GoldFecuchemicHelper extends AbstractFechuchemicHelper {
         }
     }
 
-    //todo
+    /**
+     * Returns an instance of GoldFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of GoldFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of GoldFecuchemicHelper when called
+     */
     public static Supplier<? extends GoldFecuchemicHelper> getInstance() {
         return GoldFecuchemicHelper::new;
     }

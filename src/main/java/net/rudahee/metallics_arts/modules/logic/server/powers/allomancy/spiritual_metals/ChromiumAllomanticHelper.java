@@ -24,7 +24,6 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
  * @see AllomaticTick
  * @see OnDamageEvent
  */
-
 public class ChromiumAllomanticHelper {
 
 
@@ -49,7 +48,6 @@ public class ChromiumAllomanticHelper {
      * @param serverLevel in which the player is located.
      * @param lerasium if the player is burning Lerasium.
      */
-
     public static void drainMetalCloudChromium(ServerPlayer player, ServerLevel serverLevel, boolean lerasium) {
         serverLevel.getEntitiesOfClass(Player.class, CapabilityUtils.getBubble(player, (lerasium) ? 10 : 8)).forEach(entity -> {
             if (entity != null) {

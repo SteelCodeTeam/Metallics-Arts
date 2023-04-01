@@ -20,6 +20,15 @@ import java.util.Objects;
  * @see AllomaticTick
  */
 public class CopperAllomanticHelper {
+
+    /**
+     * Manipulates the AI of entities within a certain radius of the player based on the given conditions.
+     *
+     * @param player   the Player object representing the player in the game world
+     * @param world    the Level object representing the game world
+     * @param enhanced a boolean indicating if the enhanced mode is active
+     * @param lerasium a boolean indicating if lerasium is present
+     */
     public static void CopperAiEntityManipulation(Player player, Level world, boolean enhanced, boolean lerasium) {
         int radius;
 

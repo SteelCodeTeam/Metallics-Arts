@@ -35,6 +35,12 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {}
 
+    /**
+     * Returns an instance of LerasiumFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of LerasiumFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of LerasiumFecuchemicHelper when called
+     */
     public static Supplier<? extends LerasiumFecuchemicHelper> getInstance() {
         return LerasiumFecuchemicHelper::new;
     }

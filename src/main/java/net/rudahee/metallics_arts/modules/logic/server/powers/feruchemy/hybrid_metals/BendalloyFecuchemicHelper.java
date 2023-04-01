@@ -55,6 +55,12 @@ public class BendalloyFecuchemicHelper extends AbstractFechuchemicHelper {
         player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_bendalloy").get(), 1, 0, true, true));
     }
 
+    /**
+     * Returns an instance of BendalloyFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of BendalloyFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of BendalloyFecuchemicHelper when called
+     */
     public static Supplier<? extends BendalloyFecuchemicHelper> getInstance() {
         return BendalloyFecuchemicHelper::new;
     }

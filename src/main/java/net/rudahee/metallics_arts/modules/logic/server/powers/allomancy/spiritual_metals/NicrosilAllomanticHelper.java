@@ -13,7 +13,6 @@ import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
  *
  * @see OnDamageEvent
  */
-
 public class NicrosilAllomanticHelper {
 
     /**
@@ -22,7 +21,6 @@ public class NicrosilAllomanticHelper {
      * @param target who is attacked.
      * @param targetCapability capabilities (data) of the target.
      */
-
     public static void changeTargetEnhancedToTrue(Player target, IInvestedPlayerData targetCapability) {
         targetCapability.setEnhanced(true);
         ModNetwork.sync(targetCapability, target);

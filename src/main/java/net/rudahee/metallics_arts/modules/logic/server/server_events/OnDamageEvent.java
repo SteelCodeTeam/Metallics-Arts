@@ -15,14 +15,24 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritua
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals.BrassFecuchemicHelper;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
+/**
+ * Handles damage events related to Allomantic and Feruchemical powers.
+ * This class contains methods that manage the damage effects of LivingHurtEvents
+ * based on the source and target players' Allomantic and Feruchemical abilities.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class OnDamageEvent {
 
     /**
-     * Brings out the damage effects of Allomantic powers.
+     * Handles the damage effects of Allomantic powers.
+     * This method is triggered when a LivingHurtEvent occurs and manages the damage
+     * effects based on the source and target players' Allomantic abilities.
      *
-     * @param event to damage,
-     * @param source of damage.
-     * @param target of damage.
+     * @param event   The LivingHurtEvent that triggered this method.
+     * @param source  The ServerPlayer who is the source of the damage.
+     * @param target  The ServerPlayer who is the target of the damage.
      */
     public static void onDamageAllomantic(final LivingHurtEvent event, ServerPlayer source, ServerPlayer target) {
         try {
@@ -58,11 +68,13 @@ public class OnDamageEvent {
     }
 
     /**
-     * Brings out the damage effects of Feruchemical powers.
+     * Handles the damage effects of Feruchemical powers.
+     * This method is triggered when a LivingHurtEvent occurs and manages the damage
+     * effects based on the source and target players' Feruchemical abilities.
      *
-     * @param source of damage.
-     * @param target of damage.
-     * @param event to damage,
+     * @param event   The LivingHurtEvent that triggered this method.
+     * @param source  The ServerPlayer who is the source of the damage.
+     * @param target  The ServerPlayer who is the target of the damage.
      */
     public static void onDamageFeruchemical(final LivingHurtEvent event, ServerPlayer source, ServerPlayer target) {
         try {

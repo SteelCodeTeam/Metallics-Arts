@@ -22,6 +22,7 @@ import java.util.function.Supplier;
  * @since 1.5.1
  */
 public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Brass: Burns the player if they are in the desert by day, or in a hot biome.
@@ -39,6 +40,7 @@ public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
         }
         player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_brass").get(), 1, 0, true, true));
     }
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Brass: Add frozen ticks to the player in case they are in the desert at night, or in a cold biome
@@ -57,7 +59,12 @@ public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
         player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_brass").get(), 1, 0, true, true));
     }
 
-    //todo
+    /**
+     * Returns an instance of BrassFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of BrassFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of BrassFecuchemicHelper when called
+     */
     public static Supplier<? extends BrassFecuchemicHelper> getInstance() {
         return BrassFecuchemicHelper::new;
     }

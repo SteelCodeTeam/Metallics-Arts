@@ -18,8 +18,25 @@ import net.rudahee.metallics_arts.setup.network.packets.PullAndPushBlockPacket;
 import net.rudahee.metallics_arts.setup.network.packets.PullAndPushEntityPacket;
 import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
 
+/**
+ * This class contains methods to handle push and use key actions based on the player's capabilities
+ * and the type of metal they are currently burning.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class PushOrUseKey {
 
+    /**
+     * Handles the push key action, which has different effects based on the type of metal the player is burning.
+     * For example, if the player is burning Steel, it can push metal blocks or entities away from the player.
+     *
+     * @param capability the IInvestedPlayerData instance representing the player's capabilities
+     * @param minecraft  the Minecraft instance
+     * @param player     the Player instance
+     * @param level      the Level instance
+     * @see IInvestedPlayerData
+     */
     public static void pushKey(IInvestedPlayerData capability, Minecraft minecraft, Player player, Level level) {
         HitResult trace = ClientUtils.getMouseOverExtended(11F * 1.5F);
 
@@ -44,6 +61,16 @@ public class PushOrUseKey {
         }
     }
 
+    /**
+     * Handles the use key action, which has different effects based on the type of metal the player is burning.
+     * For example, if the player is burning Brass, it can change the emotion of a Mob.
+     *
+     * @param capability the IInvestedPlayerData instance representing the player's capabilities
+     * @param minecraft  the Minecraft instance
+     * @param player     the Player instance
+     * @param level      the Level instance
+     * @see IInvestedPlayerData
+     */
     public static void useKey(IInvestedPlayerData capability, Minecraft minecraft, Player player, Level level) {
         HitResult trace = ClientUtils.getMouseOverExtended(11F * 1.5F);
         

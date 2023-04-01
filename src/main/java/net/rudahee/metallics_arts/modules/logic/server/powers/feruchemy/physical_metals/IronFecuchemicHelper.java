@@ -43,7 +43,12 @@ public class IronFecuchemicHelper extends AbstractFechuchemicHelper {
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 20, 1, true, false));
     }
 
-    //todo
+    /**
+     * Returns an instance of IronFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of IronFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of IronFecuchemicHelper when called
+     */
     public static Supplier<? extends IronFecuchemicHelper> getInstance() {
         return IronFecuchemicHelper::new;
     }

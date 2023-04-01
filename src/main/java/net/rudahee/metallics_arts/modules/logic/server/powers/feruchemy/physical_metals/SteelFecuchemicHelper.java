@@ -14,6 +14,7 @@ import java.util.function.Supplier;
  * @since 1.5.1
  */
 public class SteelFecuchemicHelper extends AbstractFechuchemicHelper {
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Pewter: speed movement will be applied to the target player.
@@ -26,6 +27,7 @@ public class SteelFecuchemicHelper extends AbstractFechuchemicHelper {
     public void tapPower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 3, true, false));
     }
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Pewter: slowdowns movement will be applied to the target player.
@@ -38,7 +40,13 @@ public class SteelFecuchemicHelper extends AbstractFechuchemicHelper {
     public void storagePower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 3, true, false));
     }
-    //todo
+
+    /**
+     * Returns an instance of SteelFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of SteelFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of SteelFecuchemicHelper when called
+     */
     public static Supplier<? extends SteelFecuchemicHelper> getInstance() {
         return SteelFecuchemicHelper::new;
     }

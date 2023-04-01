@@ -13,11 +13,22 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Handles events related to living entity drops.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class OnLivingEntityDropEvent {
+
+    /**
+     * This method is triggered when a LivingDropsEvent occurs. If the player is tapping
+     * Zinc, it duplicates the drops, excluding Nether Stars. If the player is storing
+     * Zinc, it cancels the event, preventing any drops from being spawned.
+     *
+     * @param event The LivingDropsEvent that triggered this method.
+     */
     public static void livingEntityDrop(LivingDropsEvent event) {
-        /**
-            ZINC FERUQUIMICO
-         */
         if (event.getSource().getEntity() instanceof Player && !(event.getEntity() instanceof Player)) {
             try {
                 IInvestedPlayerData capability = CapabilityUtils.getCapability(event.getSource().getEntity());
