@@ -7,6 +7,12 @@ import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A custom class for providing Japanese translations for mod elements.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class ModLanguageProviderJP extends LanguageProvider {
 
     private Map<String, String> base = new HashMap<>() {{
@@ -203,10 +209,20 @@ public class ModLanguageProviderJP extends LanguageProvider {
         }
     }};
 
+    /**
+     * Constructs a new ModLanguageProviderJP instance.
+     *
+     * @param gen               the data generator for language files
+     * @param modid             the mod ID for the target mod
+     * @param locale            the locale for the target language
+     */
     public ModLanguageProviderJP(DataGenerator gen, String modid, String locale) {
         super(gen, modid, locale);
     }
 
+    /**
+     * Adds the Japanese translations for mod elements.
+     */
     @Override
     protected void addTranslations() {
 

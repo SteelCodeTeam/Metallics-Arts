@@ -30,6 +30,7 @@ import top.theillusivec4.curios.api.SlotContext;
  * @see AbstractFechuchemicHelper
  */
 public class BandGoldElectrum extends BandMindAbstract <GoldFecuchemicHelper, ElectrumFecuchemicHelper> {
+
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
      *
@@ -41,6 +42,7 @@ public class BandGoldElectrum extends BandMindAbstract <GoldFecuchemicHelper, El
 
     private boolean nicConsumeMet0 = false;
     private boolean nicConsumeMet1 = false;
+
     /**
      * This method is in charge of loading and unloading the reserves within the mind of metal,
      * as well as granting the corresponding feruchemical powers to the player to whom the slotContext belongs,

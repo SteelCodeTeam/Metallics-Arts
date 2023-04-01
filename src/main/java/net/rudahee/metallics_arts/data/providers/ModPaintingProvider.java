@@ -17,11 +17,17 @@ import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+/**
+ * A provider for custom painting variants in the mod.
+ * It is responsible for registering painting variants and managing invested player data.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class ModPaintingProvider {
 
     public static final DeferredRegister<PaintingVariant>PAINTING_VARIANTS =
             DeferredRegister.create(ForgeRegistries.PAINTING_VARIANTS, MetallicsArts.MOD_ID);
-
 
     public static final RegistryObject<PaintingVariant> INQUISITOR_PAINTING = PAINTING_VARIANTS.register("inquisitor_painting",
             () -> new PaintingVariant(16,16));
@@ -33,24 +39,48 @@ public class ModPaintingProvider {
      () -> new PaintingVariant(64,64));
 
 
+    /**
+     * Registers the painting variants with the given event bus.
+     *
+     * @param eventBus the event bus to register the painting variants
+     */
     public static void register(IEventBus eventBus){
-
         PAINTING_VARIANTS.register(eventBus);
-
     }
 
+    /**
+     * A custom data provider for invested player data.
+     * It implements the ICapabilitySerializable interface to allow serialization and deserialization of the data.
+     */
     public static class ModInvestedDataProvider implements ICapabilitySerializable<CompoundTag> {
 
         private final InvestedPlayerData data = new InvestedPlayerData();
         private final LazyOptional<IInvestedPlayerData> dataOptional = LazyOptional.of(() -> this.data);
 
+        /**
+         * Constructs a new instance of the ModInvestedDataProvider class.
+         */
         public ModInvestedDataProvider() {
         }
+
+        /**
+         * Gets the capability of the invested player data.
+         *
+         * @param cap   the capability instance requested
+         * @param side  the direction to access the capability, can be null
+         * @return LazyOptional containing the capability instance if available, otherwise empty
+         */
         @Nonnull
         @Override
         public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
             return ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP.orEmpty(cap, this.dataOptional.cast());
         }
+
+        /**
+         * Serializes the invested player data into a CompoundTag.
+         *
+         * @return a CompoundTag containing the serialized invested player data
+         */
         @Override
         public CompoundTag serializeNBT() {
             if (ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP == null) {
@@ -60,6 +90,12 @@ public class ModPaintingProvider {
             }
 
         }
+
+        /**
+         * Deserializes the invested player data from a CompoundTag.
+         *
+         * @param nbt the CompoundTag containing the serialized invested player data
+         */
         @Override
         public void deserializeNBT(CompoundTag nbt) {
             if (ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP != null) {
@@ -67,6 +103,9 @@ public class ModPaintingProvider {
             }
         }
 
+        /**
+         * Invalidates the lazy optional data.
+         */
         public void invalidate() {
             this.dataOptional.invalidate();
         }

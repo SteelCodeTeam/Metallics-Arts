@@ -51,7 +51,6 @@ public class EttmetalBlock extends Block {
         return true;
     }
 
-
     /**
      * Method to define the events that be release each X random ticks. In this case, We're going to check if
      * water is touching ettmetal block, to generate an explosion. Also, we call super() too.

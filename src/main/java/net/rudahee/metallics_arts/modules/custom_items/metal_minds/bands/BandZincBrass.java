@@ -18,7 +18,8 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitiv
  * @see BandMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class BandZincBrass extends BandMindAbstract <ZincFecuchemicHelper, BrassFecuchemicHelper>{
+public class BandZincBrass extends BandMindAbstract <ZincFecuchemicHelper, BrassFecuchemicHelper> {
+
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
      *

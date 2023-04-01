@@ -8,6 +8,12 @@ import net.rudahee.metallics_arts.data.providers.language_providers.book.BookHel
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A custom class for providing Spanish translations for mod elements.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class ModLanguageProviderES extends LanguageProvider {
 
     private Map<String, String> base = new HashMap<>() {{
@@ -206,10 +212,20 @@ public class ModLanguageProviderES extends LanguageProvider {
         }
     }};
 
+    /**
+     * Constructs a new ModLanguageProviderES instance.
+     *
+     * @param gen               the data generator for language files
+     * @param modid             the mod ID for the target mod
+     * @param locale            the locale for the target language
+     */
     public ModLanguageProviderES(DataGenerator gen, String modid, String locale) {
         super(gen, modid, locale);
     }
 
+    /**
+     * Adds the Spanish translations for mod elements.
+     */
     @Override
     protected void addTranslations() {
 

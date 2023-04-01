@@ -34,18 +34,34 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * A custom loot table provider for the mod, responsible for generating loot tables
+ * for various mod blocks such as ores, deepslate ores, metal blocks, gem blocks,
+ * and divine crystal blocks.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class ModLootTableProvider extends LootTableProvider {
 
     private static final LootItemCondition.Builder HAS_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))));
     protected final Map<Block, LootTable.Builder> lootTables = new HashMap<>();
     private final DataGenerator generator;
 
+    /**
+     * Constructs a new instance of the ModLootTableProvider class.
+     *
+     * @param generator the data generator to use for generating the loot tables
+     */
     public ModLootTableProvider(DataGenerator generator) {
         super(generator);
         this.generator = generator;
     }
 
+    /**
+     * Adds block-based loot tables for various mod blocks such as ores,
+     * deepslate ores, metal blocks, gem blocks, and divine crystal blocks.
+     */
     private void addBlockTables() {
         for (String key: ModBlocksRegister.BLOCK_METAL_ORES.keySet()) {
             Block ore = ModBlocksRegister.BLOCK_METAL_ORES.get(key);
@@ -81,6 +97,11 @@ public class ModLootTableProvider extends LootTableProvider {
 
     }
 
+    /**
+     * The main method for generating loot tables using the provided CachedOutput.
+     *
+     * @param cachedOutput the cached output for storing the generated loot tables
+     */
     @Override
     public void run(CachedOutput cachedOutput) {
         addBlockTables();
@@ -92,19 +113,29 @@ public class ModLootTableProvider extends LootTableProvider {
         writeTables(cachedOutput, tables);
     }
 
-    private void writeTables(CachedOutput cache, Map<ResourceLocation, LootTable> tables) {
+    /**
+     * Writes the generated loot tables to the cached output.
+     *
+     * @param cachedOutput the cached output for storing the generated loot tables
+     * @param tables       the collection of generated loot tables
+     */
+    private void writeTables(CachedOutput cachedOutput, Map<ResourceLocation, LootTable> tables) {
         Path outputFolder = this.generator.getOutputFolder();
         tables.forEach((key, lootTable) -> {
             Path path = outputFolder.resolve("data/" + key.getNamespace() + "/loot_tables/" + key.getPath() + ".json");
             try {
-                DataProvider.saveStable(cache,net.minecraft.world.level.storage.loot.LootTables.serialize(lootTable),path);
+                DataProvider.saveStable(cachedOutput,net.minecraft.world.level.storage.loot.LootTables.serialize(lootTable),path);
             } catch (IOException e) {
                 MetallicsArts.LOGGER.error("Couldn't write loot table {}", path, e);
             }
         });
     }
 
-//String name,
+    /**
+     * Creates a loot table for a given simple block with no additional conditions.
+     *
+     * @param block the block for which the loot table is created
+     */
     protected void addSimpleBlock(Block block) {
         MetallicsArts.LOGGER.debug("Creating Loot Table for block " + block.getDescriptionId());
         LootPool.Builder builder = LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(block));
@@ -112,6 +143,14 @@ public class ModLootTableProvider extends LootTableProvider {
         this.lootTables.put(block, LootTable.lootTable().withPool(builder));
     }
 
+    /**
+     * Creates a loot table for a given ore block with specific item drops and conditions.
+     *
+     * @param block   the ore block for which the loot table is created
+     * @param item    the item to be dropped when the block is mined
+     * @param minBase the minimum base value for the item drop count
+     * @param maxBase the maximum base value for the item drop count
+     */
     protected void createOreDrops(Block block, Item item, float minBase, float maxBase) {
         LootPool.Builder builder = LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1.0F))
@@ -124,10 +163,19 @@ public class ModLootTableProvider extends LootTableProvider {
         this.lootTables.put(block, LootTable.lootTable().withPool(builder));
     }
 
-    protected void addSilkTouchBlock(String name, Block block, Item lootItem, float min, float max) {
+    /**
+     * Adds a silk touch block to the loot table with a specific block, item, and loot table path.
+     *
+     * @param path        the loot table path
+     * @param block       the block to be included in the loot table
+     * @param item        the item to be included in the loot table
+     * @param min         the minimum quantity of the item
+     * @param max         the maximum quantity of the item
+     */
+    protected void addSilkTouchBlock(String path, Block block, Item item, float min, float max) {
         LootPool.Builder builder = LootPool
                 .lootPool()
-                .name(name)
+                .name(path)
                 .setRolls(ConstantValue.exactly(1))
                 .add(AlternativesEntry.alternatives(LootItem
                         .lootTableItem(block)
@@ -135,13 +183,18 @@ public class ModLootTableProvider extends LootTableProvider {
                                 .item()
                                 .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH,
                                         MinMaxBounds.Ints.atLeast(1))))), LootItem
-                        .lootTableItem(lootItem)
+                        .lootTableItem(item)
                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max)))
                         .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE, 0))
                         .apply(ApplyExplosionDecay.explosionDecay())));
         this.lootTables.put(block, LootTable.lootTable().withPool(builder));
     }
 
+    /**
+     * Returns the name of the loot table provider.
+     *
+     * @return a String representing the name of the loot table provider
+     */
     @Override
     public String getName() {
         return "metallics_arts_loot_table";

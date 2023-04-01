@@ -41,7 +41,6 @@ import java.util.function.Supplier;
  * @see Item
  * @see ICurioItem
  * @see AbstractFechuchemicHelper
- *
  */
 public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T extends AbstractFechuchemicHelper> extends Item implements ICurioItem {
 
@@ -130,7 +129,6 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
      * @return boolean that indicates if the item can be equipped.
      *
      */
-
     @Override
     public boolean canEquip(SlotContext slotContext, ItemStack stack) {
         Player player = (Player) slotContext.entity();
@@ -211,7 +209,17 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
         return nbt;
     }
 
-
+    /**
+     * Creates a CompoundTag with Feruchemic reserve values for the specified metals.
+     * If the first metal is Aluminum, its reserve value is set to 3.
+     * If the first metal is Lerasium, its reserve value is set to 1 and additional values are added for all metals in a Lerasium band.
+     * Otherwise, the reserve values are set to the max reserve band for each metal.
+     * The key "Nobody" is also added to the CompoundTag.
+     *
+     * @param metal1 the first metal (MetalTagEnum)
+     * @param metal2 the second metal (MetalTagEnum)
+     * @return the created CompoundTag with the specified Feruchemic reserve values
+     */
     public static CompoundTag addBandTagsFull(MetalTagEnum metal1, MetalTagEnum metal2) {
         CompoundTag nbt = new CompoundTag();
 
@@ -334,15 +342,30 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
         ICurioItem.super.curioTick(slotContext, stack);
     }
 
-    //todo
+    /**
+     * Returns the first supplier of type E.
+     *
+     * @return the first supplier
+     */
     public E getFirstSupplier() {
         return firstSupplier;
     }
-    //todo
+
+    /**
+     * Returns the second supplier of type T.
+     *
+     * @return the second supplier
+     */
     public T getSecondSupplier() {
         return secondSupplier;
     }
-    //todo
+
+    /**
+     * Returns the MetalTagEnum from the metals array at the specified position.
+     *
+     * @param pos the position of the MetalTagEnum in the metals array
+     * @return the MetalTagEnum at the specified position
+     */
     public MetalTagEnum getMetals(int pos) {
         return this.metals[pos];
     }

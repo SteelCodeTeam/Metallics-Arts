@@ -15,9 +15,38 @@ import org.lwjgl.glfw.GLFW;
 
 import javax.annotation.Nullable;
 
+/**
+ * This class handles the custom key input events on the client side.
+ * It is responsible for displaying the Allomantic or Feruchemic power selector screens
+ * when the respective custom keybinds are pressed, provided that the player has the required powers.
+ * This class should only be used on the client side.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 @OnlyIn(Dist.CLIENT)
 public class OnKeyInputEvent {
 
+    /**
+     * Processes a KeyInputEvent and displays the respective power selector screen
+     * if the custom keybinds are pressed and the player has the required powers.
+     * This method should only be called on the client side.
+     *<p>
+     * Conditions to process the key input event:
+     * - The Minecraft screen should be null.
+     * - The Minecraft window should be active.
+     * - The event action should be GLFW_PRESS.
+     *<p>
+     * The method checks for the following keybinds:
+     * - ALLOMANTIC_POWER_SELECTOR: Displays the AllomanticSelector screen if the player has any Allomantic power.
+     * - FERUCHEMIC_POWER_SELECTOR: Displays the FeruchemySelector screen if the player has any Feruchemic power.
+     *
+     * @param event        The InputEvent.Key to be processed.
+     * @param minecraft    The instance of the Minecraft game.
+     * @param player       The player character, nullable.
+     * @param capability   The IInvestedPlayerData capability of the player, nullable.
+     * @throws PlayerException If any error occurs related to the player or player capability.
+     */
     @OnlyIn(Dist.CLIENT)
     public static void onKeyInputEvent(InputEvent.Key event, Minecraft minecraft, @Nullable Player player, @Nullable IInvestedPlayerData capability) throws PlayerException {
         if (minecraft.screen != null || !minecraft.isWindowActive() || event.getAction() != GLFW.GLFW_PRESS) {
@@ -43,5 +72,4 @@ public class OnKeyInputEvent {
         }
 
     }
-
 }

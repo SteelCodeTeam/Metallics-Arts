@@ -17,17 +17,42 @@ import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypesRegister;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.function.Consumer;
 
+/**
+ * Custom RecipeProvider class that extends the base RecipeProvider class.
+ * It is used to create mod-specific crafting recipes.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class ModRecipeProvider extends RecipeProvider {
+
+    /**
+     * Constructs a new instance of the ModRecipeProvider class.
+     *
+     * @param generator the data generator used to generate crafting recipes
+     */
     public ModRecipeProvider(DataGenerator generator) {
         super(generator);
     }
 
+    /**
+     * Builds the custom crafting recipes for the mod, including ingot-to-block,
+     * raw metal-to-block, gem-to-block, and nugget-to-ingot and other conversions.
+     * This method assumes that mod items and blocks are registered in
+     * ModItemsRegister and ModBlocksRegister classes.
+     *
+     * @param recipesConsumer a consumer to handle the finished recipes
+     *
+     * @see ModItemsRegister
+     * @see ModBlocksRegister
+     */
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> recipesConsumer) {
+    protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> recipesConsumer) {
 
         ModItemsRegister.ITEM_METAL_INGOT.forEach((name, item) -> {
             ShapelessRecipeBuilder.shapeless(item.asItem(), 9)

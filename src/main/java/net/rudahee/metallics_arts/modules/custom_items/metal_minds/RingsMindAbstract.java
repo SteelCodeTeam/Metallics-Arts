@@ -139,7 +139,6 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
      * @return boolean that indicates if the item can be equipped.
      *
      */
-
     @Override
     public boolean canEquip(SlotContext slotContext, ItemStack stack) {
         ICurioItem.super.canEquip(slotContext, stack);
@@ -232,7 +231,6 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
      * @param stack item being used.
      *
      * @see AbstractFechuchemicHelper
-     *
      */
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
@@ -319,17 +317,30 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
         ICurioItem.super.curioTick(slotContext, stack);
     }
 
-    //todo
+    /**
+     * Returns the first supplier of type E.
+     *
+     * @return the first supplier
+     */
     public E getFirstSupplier() {
         return firstSupplier;
     }
 
-    //todo
+    /**
+     * Returns the second supplier of type T.
+     *
+     * @return the second supplier
+     */
     public T getSecondSupplier() {
         return secondSupplier;
     }
 
-    //todo
+    /**
+     * Returns the MetalTagEnum from the metals array at the specified position.
+     *
+     * @param pos the position of the MetalTagEnum in the metals array
+     * @return the MetalTagEnum at the specified position
+     */
     public MetalTagEnum getMetals(int pos) {
         return this.metals[pos];
     }

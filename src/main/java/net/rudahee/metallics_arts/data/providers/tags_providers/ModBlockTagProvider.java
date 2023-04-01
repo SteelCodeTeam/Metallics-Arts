@@ -8,13 +8,28 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
+/**
+ * A custom block tag provider class to create and manage tags for modded blocks.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class ModBlockTagProvider extends BlockTagsProvider {
 
-
+    /**
+     * Constructor for the ModBlockTagProvider class.
+     *
+     * @param gen          the data generator used for creating block tags
+     * @param modid        the mod ID for the mod that's adding the block tags
+     * @param exFileHelper the existing file helper for handling existing files
+     */
     public ModBlockTagProvider(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
         super(gen, modid, exFileHelper);
     }
 
+    /**
+     * Adds tags for all custom blocks in the mod.
+     */
     @Override
     protected void addTags() {
         for (String key: ModBlocksRegister.BLOCK_METAL_BLOCKS.keySet()) {
@@ -48,20 +63,43 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
     }
 
+    /**
+     * Adds a forge tag for a group of blocks.
+     *
+     * @param name  the name of the tag
+     * @param items the blocks to be added to the tag
+     */
     private void addForgeTag(String name, Block... items) {
         MetallicsArts.LOGGER.debug("Creating block tag for forge:" + name);
         tag(net.minecraft.tags.BlockTags.create(new ResourceLocation("forge", name))).replace(false).add(items);
     }
 
+    /**
+     * Makes a group of blocks mineable with a pickaxe.
+     *
+     * @param items the blocks to be made mineable with a pickaxe
+     */
     private void makePickaxeMineable(Block... items) {
         addTag("mineable/pickaxe", items);
         addTag("needs_iron_tool", items);
     }
 
+    /**
+     * Adds a custom tag for a group of blocks.
+     *
+     * @param name  the name of the tag
+     * @param items the blocks to be added to the tag
+     */
     private void addTag(String name, Block... items) {
         MetallicsArts.LOGGER.debug("Creating block tag for minecraft:" + name);
         tag(net.minecraft.tags.BlockTags.create(new ResourceLocation("minecraft", name))).replace(false).add(items);
     }
+
+    /**
+     * Returns the name of the block tag provider.
+     *
+     * @return a String representing the name of the block tag provider
+     */
     @Override
     public String getName() {
         return "Metallic Arts Block Tags";

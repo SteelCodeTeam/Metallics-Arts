@@ -28,6 +28,7 @@ import java.util.UUID;
  * @see AbstractFechuchemicHelper
  */
 public class BandAtiumMalatium extends BandMindAbstract <AtiumFecuchemicHelper, MalatiumFecuchemicHelper> {
+
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
      *

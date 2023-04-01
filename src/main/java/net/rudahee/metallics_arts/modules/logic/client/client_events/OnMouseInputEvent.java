@@ -10,9 +10,40 @@ import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
 
+/**
+ * OnMouseInputEvent is a client-side class responsible for processing
+ * MouseInputEvents and toggling the respective powers based on custom keybinds
+ * and the player's capabilities.
+ *<p>
+ * The class contains a static method, OnMouseInputEvent, which takes a Player
+ * instance and an IInvestedPlayerData capability as arguments. The method
+ * iterates through all MetalTagEnum values and checks for the following
+ * keybinds: FERUCHEMIC_DECANT, FERUCHEMIC_STORAGE, and the default power
+ * keybind.
+ *<p>
+ * If any error occurs related to the player or player capability, a
+ * PlayerException is thrown.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 @OnlyIn(Dist.CLIENT)
 public class OnMouseInputEvent {
 
+    /**
+     * Processes MouseInputEvents and toggles the respective powers
+     * based on custom keybinds and the player's capabilities.
+     * This method should only be called on the client side.
+     *<p>
+     * The method iterates through all the MetalTagEnum values and checks for the following keybinds:
+     * - FERUCHEMIC_DECANT: Toggles the tapping of the metal if the specific power key is down.
+     * - FERUCHEMIC_STORAGE: Toggles the storage of the metal if the specific power key is down.
+     * - Default: Toggles the burning of the metal if the specific power key is down.
+     *
+     * @param player       The player character, nullable.
+     * @param capability   The IInvestedPlayerData capability of the player, nullable.
+     * @throws PlayerException If any error occurs related to the player or player capability.
+     */
     @OnlyIn(Dist.CLIENT)
     public static void OnMouseInputEvent(Player player,IInvestedPlayerData capability) throws PlayerException {
 

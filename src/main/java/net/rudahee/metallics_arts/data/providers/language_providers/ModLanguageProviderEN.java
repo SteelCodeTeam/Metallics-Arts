@@ -9,6 +9,12 @@ import net.rudahee.metallics_arts.data.providers.language_providers.book.BookHel
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A custom class for providing English translations for mod elements.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public class ModLanguageProviderEN extends LanguageProvider {
         private Map<String, String> base = new HashMap<>() {{
 
@@ -213,10 +219,20 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 }
         }};
 
+    /**
+     * Constructs a new ModLanguageProviderEN instance.
+     *
+     * @param gen               the data generator for language files
+     * @param modid             the mod ID for the target mod
+     * @param locale            the locale for the target language
+     */
     public ModLanguageProviderEN(DataGenerator gen, String modid, String locale) {
         super(gen, modid, locale);
     }
 
+    /**
+     * Adds the English translations for mod elements.
+     */
     @Override
     protected void addTranslations() {
             for (String key: ingots.keySet()){

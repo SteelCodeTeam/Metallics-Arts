@@ -29,7 +29,8 @@ import top.theillusivec4.curios.api.SlotContext;
  * @see BandMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class BandAluminumDuralumin extends BandMindAbstract<AluminumFecuchemicHelper, DuraluminFecuchemicHelper>{
+public class BandAluminumDuralumin extends BandMindAbstract<AluminumFecuchemicHelper, DuraluminFecuchemicHelper> {
+
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
      *
@@ -40,7 +41,6 @@ public class BandAluminumDuralumin extends BandMindAbstract<AluminumFecuchemicHe
     }
 
     private boolean nicConsumeMet1 = false;
-
 
     /**
      * This method is in charge of loading and unloading the reserves within the mind of metal,
@@ -80,7 +80,7 @@ public class BandAluminumDuralumin extends BandMindAbstract<AluminumFecuchemicHe
                 int actualReserve = stack.getTag().getInt(metalKey);
                 int maxReserve = this.getMetals(0).getMaxReserveRing();
 
-                /**
+                /*
                  DECANT
                  */
                 if (playerCapability.isTapping(this.getMetals(0))) {
@@ -91,7 +91,7 @@ public class BandAluminumDuralumin extends BandMindAbstract<AluminumFecuchemicHe
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(0), this.getMetals(1)));
                         playerCapability.setTapping(this.getMetals(0), false);
                     }
-                    /**
+                    /*
                      STORAGE
                      */
                 } else if (playerCapability.isStoring(this.getMetals(0))) {
@@ -109,7 +109,7 @@ public class BandAluminumDuralumin extends BandMindAbstract<AluminumFecuchemicHe
                 metalKey = this.getMetals(1).getNameLower() + "_feruchemic_reserve";
                 actualReserve = stack.getTag().getInt(metalKey);
                 maxReserve = this.getMetals(1).getMaxReserveRing();
-                /**
+                /*
                  DECANT
                  */
                 if (playerCapability.isTapping(this.getMetals(1))) {
@@ -122,7 +122,7 @@ public class BandAluminumDuralumin extends BandMindAbstract<AluminumFecuchemicHe
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(1)));
                         playerCapability.setTapping(this.getMetals(1), false);
                     }
-                    /**
+                    /*
                      STORAGE
                      */
                 } else if (playerCapability.isStoring(this.getMetals(1))) {

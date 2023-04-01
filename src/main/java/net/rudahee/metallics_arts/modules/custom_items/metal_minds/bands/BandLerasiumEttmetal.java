@@ -29,6 +29,7 @@ import java.util.UUID;
  * @see AbstractFechuchemicHelper
  */
 public class BandLerasiumEttmetal extends BandMindAbstract <LerasiumFecuchemicHelper, EttmetalFecuchemicHelper> {
+
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
      *

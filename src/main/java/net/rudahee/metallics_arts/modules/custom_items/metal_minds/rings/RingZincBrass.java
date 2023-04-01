@@ -17,6 +17,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitiv
  * @see AbstractFechuchemicHelper
  */
 public class RingZincBrass extends RingsMindAbstract <ZincFecuchemicHelper, BrassFecuchemicHelper> {
+
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
      *

@@ -18,6 +18,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritua
  * @see AbstractFechuchemicHelper
  */
 public class RingChromiumNicrosil extends RingsMindAbstract <ChromiumFecuchemicHelper, NicrosilFecuchemicHelper> {
+
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
      *

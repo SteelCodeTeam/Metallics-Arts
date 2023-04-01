@@ -37,6 +37,7 @@ import java.util.List;
  * @see AbstractFechuchemicHelper
  */
 public class RingAluminumDuralumin extends RingsMindAbstract <AluminumFecuchemicHelper, DuraluminFecuchemicHelper> {
+
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
      *
@@ -88,7 +89,7 @@ public class RingAluminumDuralumin extends RingsMindAbstract <AluminumFecuchemic
                 int actualReserve = stack.getTag().getInt(metalKey);
                 int maxReserve = this.getMetals(0).getMaxReserveRing();
 
-                /**
+                /*
                  DECANT
                  */
                 if (playerCapability.isTapping(this.getMetals(0))) {
@@ -99,7 +100,7 @@ public class RingAluminumDuralumin extends RingsMindAbstract <AluminumFecuchemic
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(0), this.getMetals(1)));
                         playerCapability.setTapping(this.getMetals(0), false);
                     }
-                    /**
+                    /*
                      STORAGE
                      */
                 } else if (playerCapability.isStoring(this.getMetals(0))) {
@@ -117,7 +118,7 @@ public class RingAluminumDuralumin extends RingsMindAbstract <AluminumFecuchemic
                 metalKey = this.getMetals(1).getNameLower() + "_feruchemic_reserve";
                 actualReserve = stack.getTag().getInt(metalKey);
                 maxReserve = this.getMetals(1).getMaxReserveRing();
-                /**
+                /*
                  DECANT
                  */
                 if (playerCapability.isTapping(this.getMetals(1))) {
@@ -130,7 +131,7 @@ public class RingAluminumDuralumin extends RingsMindAbstract <AluminumFecuchemic
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(1)));
                         playerCapability.setTapping(this.getMetals(1), false);
                     }
-                    /**
+                    /*
                      STORAGE
                      */
                 } else if (playerCapability.isStoring(this.getMetals(1))) {
