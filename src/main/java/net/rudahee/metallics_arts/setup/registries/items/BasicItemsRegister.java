@@ -30,7 +30,11 @@ public class BasicItemsRegister {
                 Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(64));
                 ModItemsRegister.ITEM_METAL_INGOT.put(metal.getMetalNameLower(), item);
                 if (metal.isAlloy()) {
+
                     //AlloyRecipeEnum.valueOf(metal.getMetalNameUpper()).setItem(item);
+
+             //       AlloyRecipeEnum.valueOf(metal.getMetalNameUpper()).setItem(item);
+
                 }
                 return item;
             });
@@ -65,6 +69,9 @@ public class BasicItemsRegister {
                     ModItemsRegister.ITEM_GEMS_BASE.put(gem.getGemNameLower(), item);
                     if (gem.getGemNameLower() == "malatium") {
                         //AlloyRecipeEnum.valueOf(gem.getGemNameUpper()).setItem(item);
+
+                  //      AlloyRecipeEnum.valueOf(gem.getGemNameUpper()).setItem(item);
+
                     }
                     return item;
                 });

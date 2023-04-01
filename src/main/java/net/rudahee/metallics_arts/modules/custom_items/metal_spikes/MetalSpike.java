@@ -70,7 +70,7 @@ public class MetalSpike extends SwordItem {
      * @return boolean
      * @deprecated
      */
-/*    @Override
+  @Override
     public boolean isFoil(ItemStack stack) {
         if (stack.hasTag()) {
             if  (!stack.getTag().contains("metal_spike") || !stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
@@ -78,7 +78,7 @@ public class MetalSpike extends SwordItem {
             }
         }
         return stack.getTag().getBoolean("feruchemic_power") || stack.getTag().getBoolean("allomantic_power");
-    }*/
+    }
 
     /**
      * Method to define if the player has both powers of the given metals.

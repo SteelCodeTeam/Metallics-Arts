@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
@@ -30,8 +31,10 @@ public class OnLivingDeathEvent {
         try {
             IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
 
-            if (!capability.isTapping(MetalTagEnum.ETTMETAL) && !capability.isStoring(MetalTagEnum.ETTMETAL)) {
-                //guardar que tengo que hacer algo
+            if (capability.isTapping(MetalTagEnum.ETTMETAL)){
+                capability.setEttmetalState(EttmetalState.KEEP_ITEMS);
+            } else if (capability.isStoring(MetalTagEnum.ETTMETAL)) {
+                capability.setEttmetalState(EttmetalState.DELETE_ITEMS);
             }
             for (MetalTagEnum metal : MetalTagEnum.values()) {
                 capability.setBurning(metal, false);
@@ -39,7 +42,6 @@ public class OnLivingDeathEvent {
                 capability.setStoring(metal, false);
                 capability.setMetalMindEquiped(metal.getGroup(), false);
             }
-
 
             ModNetwork.syncInvestedDataPacket(capability, player);
         } catch (PlayerException ex) {

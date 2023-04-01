@@ -3,6 +3,8 @@ package net.rudahee.metallics_arts.data.player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Inventory;
+import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
@@ -47,6 +49,10 @@ public class InvestedPlayerData implements IInvestedPlayerData {
     private final ArrayList<MetalTagEnum> metalsEnhanced = new ArrayList<>();
     private Boolean modifiedHealth;
 
+    private EttmetalState ettmetalState;
+    private Inventory ettmetalInventory;
+
+
     /**
      * Default constructor.These will be the initial values that a player will have in their tags.
      *
@@ -71,6 +77,9 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         this.allomanticReserve = new CapabilityUtils<Integer>().fillMetalTagMap(0);
 
         this.metalMindEquipped = new CapabilityUtils<Boolean>().fillListWithDefaultValue(false, 10);
+
+        this.ettmetalState = EttmetalState.NOTHING;
+        this.ettmetalInventory = null;
     }
 
     /**
@@ -710,6 +719,26 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         return this.allomanticReserve.get(metal);
     }
 
+    @Override
+    public void setEttmetalState(EttmetalState state) {
+        this.ettmetalState = state;
+    }
+
+    @Override
+    public EttmetalState getEttmetalState() {
+        return this.ettmetalState;
+    }
+
+    @Override
+    public Inventory restoreInventory() {
+        return this.ettmetalInventory;
+    }
+
+    @Override
+    public void keepInventory(Inventory inventory) {
+        this.ettmetalInventory = inventory;
+    }
+
     /**
      * Save the actual data in the CompoundTag
      *
@@ -730,6 +759,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         CompoundTag spawnDimension = new CompoundTag();
         CompoundTag deathDimension = new CompoundTag();
         CompoundTag metalMindEquipped = new CompoundTag();
+
 
         CompoundTag modified_health = new CompoundTag();
 

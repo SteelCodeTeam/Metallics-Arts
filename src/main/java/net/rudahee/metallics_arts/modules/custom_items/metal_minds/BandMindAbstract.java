@@ -270,8 +270,7 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
         CompoundTag compoundTag = stack.getTag();
 
         if (livingEntity.level instanceof ServerLevel) {
-            if (livingEntity instanceof Player) {
-                Player player = (Player) livingEntity;
+            if (livingEntity instanceof Player player) {
                 IInvestedPlayerData playerCapability;
                 try {
                     playerCapability = CapabilityUtils.getCapability(player);

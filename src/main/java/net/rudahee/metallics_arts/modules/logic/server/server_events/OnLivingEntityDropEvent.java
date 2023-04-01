@@ -5,6 +5,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
@@ -50,10 +51,12 @@ public class OnLivingEntityDropEvent {
         if (event.getEntity() instanceof Player || event.getEntity() instanceof ServerPlayer) {
             try {
                 IInvestedPlayerData capability = CapabilityUtils.getCapability(event.getEntity());
-                if (capability.isTapping(MetalTagEnum.ETTMETAL)) {
+                if (capability.getEttmetalState().equals(EttmetalState.KEEP_ITEMS)) {
+                    capability.keepInventory(((Player) event.getEntity()).getInventory());
                     event.setCanceled(true);
-                } else if (capability.isStoring(MetalTagEnum.ETTMETAL)) {
-                    event.getDrops().clear();
+                    capability.setEttmetalState(EttmetalState.KEEP_ITEMS);
+                } else if (capability.getEttmetalState() == EttmetalState.DELETE_ITEMS) {
+                    event.setCanceled(true);
                 }
             } catch (PlayerException ex) {
                 ex.printCompleteLog();

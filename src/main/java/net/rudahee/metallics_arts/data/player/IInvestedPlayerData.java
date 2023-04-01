@@ -2,6 +2,8 @@ package net.rudahee.metallics_arts.data.player;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Inventory;
+import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 
 import java.util.ArrayList;
@@ -16,6 +18,14 @@ import java.util.ArrayList;
  */
 public interface IInvestedPlayerData {
     void tickAllomancyBurningMetals(ServerPlayer player);
+
+    void setEttmetalState(EttmetalState state);
+
+    EttmetalState getEttmetalState();
+
+    Inventory restoreInventory();
+
+    void keepInventory (Inventory inventory);
 
     boolean isBurningAnything();
 
