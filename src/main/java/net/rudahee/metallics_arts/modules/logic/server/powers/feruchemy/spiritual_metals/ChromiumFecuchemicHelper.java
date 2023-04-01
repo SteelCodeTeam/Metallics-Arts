@@ -6,6 +6,7 @@ import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.Random;
 import java.util.function.Supplier;
@@ -29,6 +30,7 @@ public class  ChromiumFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void tapPower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.LUCK,40,15,true, true));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_chromium_tap").get(), 10, 0, true, true));
     }
 
     /**
@@ -59,6 +61,7 @@ public class  ChromiumFecuchemicHelper extends AbstractFechuchemicHelper {
                 }
             }
         }
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_chromium_storage").get(), 10, 0, true, true));
     }
 
     /**

@@ -4,6 +4,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.function.Supplier;
 
@@ -24,8 +25,9 @@ public class PewterFeruchemicHelper extends AbstractFechuchemicHelper {
      * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     public void tapPower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.JUMP, 5, 1, true, true));
-        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 5, 1, true, true));
+        player.addEffect(new MobEffectInstance(MobEffects.JUMP, 5, 1, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 5, 1, false, false));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_pewter_tap").get(), 10, 0, true, true));
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -37,8 +39,9 @@ public class PewterFeruchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 1, true, false));
-        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 5, 1, true, false));
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 1, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 5, 1, false, false));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_pewter_storage").get(), 10, 0, true, true));
     }
 
     /**

@@ -27,7 +27,7 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void tapPower(Player player) {
         player.giveExperiencePoints(1);
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_copper").get(), 1, 0, true, true));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_copper_tap").get(), 10, 0, true, true));
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -40,7 +40,7 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {
         player.giveExperiencePoints(-1);
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_copper").get(), 1, 0, true, true));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_copper_storage").get(), 10, 0, true, true));
     }
 
     /**
@@ -69,8 +69,8 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
-        tapPower(player);
         compoundTag.putInt(metalKey, metalReserve - 1);
+        tapPower(player);
         return compoundTag;
     }
 
@@ -94,6 +94,7 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
             storagePower(player);
             compoundTag.putInt(metalKey, metalReserve + 1);
         }
+        storagePower(player);
         return compoundTag;
     }
 }

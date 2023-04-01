@@ -22,7 +22,8 @@ public class ModEffects {
     public static final Map<String, RegistryObject<MobEffect>> POWER_EFFECTS = new HashMap<>() {{
         for (MetalTagEnum metal: MetalTagEnum.values()) {
             put("allomantic_"+metal.getNameLower(), MOB_EFFECTS.register("allomantic_" + metal.getNameLower() + "_symbol", ()-> new PowerEffect(MobEffectCategory.NEUTRAL,11120)));
-            put("feruchemical_"+metal.getNameLower(), MOB_EFFECTS.register("feruchemical_" + metal.getNameLower() + "_symbol", ()-> new PowerEffect(MobEffectCategory.NEUTRAL,11120)));
+            put("feruchemical_"+metal.getNameLower()+"_storage", MOB_EFFECTS.register("feruchemical_" + metal.getNameLower() + "_storage", ()-> new PowerEffect(MobEffectCategory.NEUTRAL,11120)));
+            put("feruchemical_"+metal.getNameLower()+"_tap", MOB_EFFECTS.register("feruchemical_" + metal.getNameLower() + "_tap", ()-> new PowerEffect(MobEffectCategory.NEUTRAL,11120)));
         }
     }};
 

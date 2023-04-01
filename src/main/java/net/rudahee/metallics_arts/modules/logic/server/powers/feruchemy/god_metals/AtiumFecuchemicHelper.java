@@ -4,6 +4,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.function.Supplier;
 
@@ -25,7 +26,8 @@ public class AtiumFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tapPower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 5, 1, true, false));
+        player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 5, 1, false, false));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_atium_tap").get(), 10, 0, true, true));
     }
 
     /**

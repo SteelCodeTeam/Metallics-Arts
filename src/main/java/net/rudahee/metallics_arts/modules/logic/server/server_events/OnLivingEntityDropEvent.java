@@ -60,6 +60,7 @@ public class OnLivingEntityDropEvent {
 
                 if (capabilityTarget.getEttmetalState().equals(EttmetalState.KEEP_ITEMS)
                         || capabilityTarget.getEttmetalState() == EttmetalState.DELETE_ITEMS) {
+
                     event.setCanceled(true);
                 }
 

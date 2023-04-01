@@ -1,10 +1,12 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Explosion;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.function.Supplier;
 
@@ -23,7 +25,9 @@ public class EttmetalFecuchemicHelper extends AbstractFechuchemicHelper {
      * @param player to whom the effect will be applied.
      */
     @Override
-    public void tapPower(Player player) {}
+    public void tapPower(Player player) {
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_ettmetal_tap").get(), 10, 0, true, true));
+    }
 
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -32,7 +36,9 @@ public class EttmetalFecuchemicHelper extends AbstractFechuchemicHelper {
      * @param player to whom the effect will be applied.
      */
     @Override
-    public void storagePower(Player player) {}
+    public void storagePower(Player player) {
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_ettmetal_storage").get(), 10, 0, true, true));
+    }
 
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.

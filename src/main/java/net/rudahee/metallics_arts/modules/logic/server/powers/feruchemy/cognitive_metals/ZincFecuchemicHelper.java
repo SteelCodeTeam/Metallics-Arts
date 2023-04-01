@@ -23,7 +23,9 @@ public class ZincFecuchemicHelper extends AbstractFechuchemicHelper {
      * @param player the Player to whom the effect is applied
      */
     @Override
-    public void tapPower(Player player) {player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_zinc").get(), 1, 0, true, true));}
+    public void tapPower(Player player) {
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_zinc_tap").get(), 10, 0, true, true));
+    }
 
     /**
      * Applies the Allomantic Zinc power effect to the player when storing the power.
@@ -32,7 +34,9 @@ public class ZincFecuchemicHelper extends AbstractFechuchemicHelper {
      * @param player the Player to whom the effect is applied
      */
     @Override
-    public void storagePower(Player player) {player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_zinc").get(), 1, 0, true, true));}
+    public void storagePower(Player player) {
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_zinc_storage").get(), 10, 0, true, true));
+    }
 
     /**
      * Returns an instance of ZincFecuchemicHelper using a factory method pattern.

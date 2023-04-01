@@ -1,9 +1,11 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals;
 
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.function.Supplier;
 
@@ -26,6 +28,7 @@ public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void tapPower(Player player) {
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30);
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_electrum_tap").get(), 10, 0, true, true));
     }
 
     /**
@@ -42,6 +45,7 @@ public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper {
             player.setHealth(10);
         }
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(10);
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_electrum_storage").get(), 10, 0, true, true));
     }
     /**
      * This is a unique method in the helpers, which is used to restore the max health to the base value (10 hearts), when the electrum powers stop working.

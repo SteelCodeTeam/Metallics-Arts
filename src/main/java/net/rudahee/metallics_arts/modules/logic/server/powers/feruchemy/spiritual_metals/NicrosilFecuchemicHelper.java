@@ -1,10 +1,12 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.function.Supplier;
 
@@ -25,7 +27,9 @@ public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper {
      * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     @Override
-    public void tapPower(Player player) {}
+    public void tapPower(Player player) {
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_nicrosil_tap").get(), 10, 0, true, true));
+    }
 
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -36,7 +40,9 @@ public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper {
      * @see AbstractFechuchemicHelper#storagePower(Player)
      */
     @Override
-    public void storagePower(Player player) {}
+    public void storagePower(Player player) {
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_nicrosil_storage").get(), 10, 0, true, true));
+    }
 
     /**
      * Returns an instance of NicrosilFecuchemicHelper using a factory method pattern.
@@ -70,6 +76,7 @@ public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper {
             value = 0;
         }
         compoundTag.putInt(metalKey, metalReserve - value);
+        tapPower(player);
         return compoundTag;
     }
 
@@ -98,6 +105,7 @@ public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper {
             value = 0;
         }
         compoundTag.putInt(metalKey, metalReserve + value);
+        storagePower(player);
         return compoundTag;
     }
 }

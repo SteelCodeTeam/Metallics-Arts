@@ -8,6 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.function.Supplier;
 
@@ -36,6 +37,7 @@ public class CadmiumFecuchemicHelper extends AbstractFechuchemicHelper {
                 }
             }
         }
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_cadmium_tap").get(), 10, 0, true, true));
     }
 
     /**
@@ -59,6 +61,7 @@ public class CadmiumFecuchemicHelper extends AbstractFechuchemicHelper {
                 player.setAirSupply(player.getAirSupply()-1);
             }
         }
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_cadmium_storage").get(), 10, 0, true, true));
     }
 
     /**

@@ -4,10 +4,12 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.function.Supplier;
 
@@ -29,7 +31,9 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
      * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     @Override
-    public void tapPower(Player player) {}
+    public void tapPower(Player player) {
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_malatium_tap").get(), 10, 0, true, true));
+    }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * This method is not used, because the power logic is applied in the charge methods of this class.
@@ -40,6 +44,7 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_malatium_storage").get(), 10, 0, true, true));
     }
 
     /**
@@ -75,6 +80,7 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
         if (compoundTag.getInt(metalKey) == 0) {
             compoundTag.putInt("tier_malatium_storage",-1);
         }
+        tapPower(player);
         return compoundTag;
     }
 
@@ -98,6 +104,7 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
         if (isStoring(player,compoundTag)) {
             compoundTag.putInt(metalKey, metalReserve + 1);
         }
+        storagePower(player);
         return compoundTag;
     }
 
