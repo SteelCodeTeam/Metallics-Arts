@@ -1,17 +1,13 @@
 package net.rudahee.metallics_arts.modules.logic.client.client_events;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.TickEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
-import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
 import net.rudahee.metallics_arts.modules.logic.client.client_events.on_world_tick.PullOrAttackKey;
 import net.rudahee.metallics_arts.modules.logic.client.client_events.on_world_tick.PushOrUseKey;
 import net.rudahee.metallics_arts.modules.logic.client.client_events.on_world_tick.VerticalJump;
@@ -66,7 +62,7 @@ public class OnClientTick {
             return;
         }
 
-        if (event.phase != TickEvent.Phase.END || minecraft.isPaused() || !player.isAlive()) {
+        if (event.phase != TickEvent.Phase.END || minecraft.isPaused() || !player.isAlive() || capability == null) {
             return;
         }
 
