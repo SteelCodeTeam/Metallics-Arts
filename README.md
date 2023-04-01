@@ -7,7 +7,7 @@
 2. About us
 3. Requirements
 4. Changelog
-5. Futures Improvements
+5. Future Improvements
 6. Fork me!
 7. Final Notes
 ---
