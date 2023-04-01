@@ -50,8 +50,6 @@ public class InvestedPlayerData implements IInvestedPlayerData {
     private Boolean modifiedHealth;
 
     private EttmetalState ettmetalState;
-    private Inventory ettmetalInventory;
-
 
     /**
      * Default constructor.These will be the initial values that a player will have in their tags.
@@ -79,7 +77,6 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         this.metalMindEquipped = new CapabilityUtils<Boolean>().fillListWithDefaultValue(false, 10);
 
         this.ettmetalState = EttmetalState.NOTHING;
-        this.ettmetalInventory = null;
     }
 
     /**
@@ -729,15 +726,6 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         return this.ettmetalState;
     }
 
-    @Override
-    public Inventory restoreInventory() {
-        return this.ettmetalInventory;
-    }
-
-    @Override
-    public void keepInventory(Inventory inventory) {
-        this.ettmetalInventory = inventory;
-    }
 
     /**
      * Save the actual data in the CompoundTag

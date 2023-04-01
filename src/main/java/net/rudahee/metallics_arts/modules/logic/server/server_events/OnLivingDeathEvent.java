@@ -36,6 +36,7 @@ public class OnLivingDeathEvent {
             } else if (capability.isStoring(MetalTagEnum.ETTMETAL)) {
                 capability.setEttmetalState(EttmetalState.DELETE_ITEMS);
             }
+
             for (MetalTagEnum metal : MetalTagEnum.values()) {
                 capability.setBurning(metal, false);
                 capability.setTapping(metal, false);

@@ -23,10 +23,6 @@ public interface IInvestedPlayerData {
 
     EttmetalState getEttmetalState();
 
-    Inventory restoreInventory();
-
-    void keepInventory (Inventory inventory);
-
     boolean isBurningAnything();
 
     boolean isTappingAnything();

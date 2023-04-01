@@ -31,33 +31,38 @@ public class OnLivingEntityDropEvent {
      * @param event The LivingDropsEvent that triggered this method.
      */
     public static void livingEntityDrop(LivingDropsEvent event) {
-        if (event.getSource().getEntity() instanceof Player && !(event.getEntity() instanceof Player)) {
-            try {
-                IInvestedPlayerData capability = CapabilityUtils.getCapability(event.getSource().getEntity());
+        if (event.getSource().getEntity() instanceof ServerPlayer) {
+            if (!(event.getEntity() instanceof ServerPlayer)) {
 
-                if (capability.isTapping(MetalTagEnum.ZINC)) {
-                    Collection<ItemEntity> drops = event.getDrops();
-                    List<ItemEntity> filteredDrops = drops.stream().filter(e -> e.getItem().getItem() != Items.NETHER_STAR).collect(Collectors.toList());
-                    event.getDrops().addAll(filteredDrops);
+                try {
 
-                } else if (capability.isStoring(MetalTagEnum.ZINC)) {
-                    event.setCanceled(true);
+                    IInvestedPlayerData capabilitySource = CapabilityUtils.getCapability(event.getSource().getEntity());
+
+                    if (capabilitySource.isTapping(MetalTagEnum.ZINC)) {
+                        Collection<ItemEntity> drops = event.getDrops();
+                        List<ItemEntity> filteredDrops = drops.stream().filter(e -> e.getItem().getItem() != Items.NETHER_STAR).collect(Collectors.toList());
+                        event.getDrops().addAll(filteredDrops);
+
+                    } else if (capabilitySource.isStoring(MetalTagEnum.ZINC)) {
+                        event.setCanceled(true);
+                    }
+
+                } catch (PlayerException ex) {
+                    ex.printCompleteLog();
                 }
-            } catch (PlayerException ex) {
-                ex.printCompleteLog();
+
             }
-        }
 
-        if (event.getEntity() instanceof Player || event.getEntity() instanceof ServerPlayer) {
+        } else if (event.getEntity() instanceof ServerPlayer) {
+
             try {
-                IInvestedPlayerData capability = CapabilityUtils.getCapability(event.getEntity());
-                if (capability.getEttmetalState().equals(EttmetalState.KEEP_ITEMS)) {
-                    capability.keepInventory(((Player) event.getEntity()).getInventory());
-                    event.setCanceled(true);
-                    capability.setEttmetalState(EttmetalState.KEEP_ITEMS);
-                } else if (capability.getEttmetalState() == EttmetalState.DELETE_ITEMS) {
+                IInvestedPlayerData capabilityTarget = CapabilityUtils.getCapability(event.getEntity());
+
+                if (capabilityTarget.getEttmetalState().equals(EttmetalState.KEEP_ITEMS)
+                        || capabilityTarget.getEttmetalState() == EttmetalState.DELETE_ITEMS) {
                     event.setCanceled(true);
                 }
+
             } catch (PlayerException ex) {
                 ex.printCompleteLog();
             }

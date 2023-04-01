@@ -93,22 +93,6 @@ public class ServerEventHandler {
         }
     }
 
-/**
- * Handles the PlayerRespawnEvent to perform custom actions when a player respawns.
- * This method is triggered by the PlayerRespawnEvent and only runs on the server-side.
- * The method syncs invested data when a player respawns, using the ModNetwork class.
- *
- * @param event The PlayerEvent.PlayerRespawnEvent instance representing the current player respawn event.
- */
-    @SubscribeEvent
-    public static void onRespawn(final PlayerEvent.PlayerRespawnEvent event) {
-        if (!event.getEntity().getCommandSenderWorld().isClientSide()) {
-            ModNetwork.syncInvestedDataPacket(event.getEntity());
-        }
-        OnRespawn.respawn(event);
-
-    }
-
     /**
      * Handles the PlayerChangedDimensionEvent to perform custom actions when a player changes dimensions.
      * This method is triggered by the PlayerChangedDimensionEvent and only runs on the server-side.

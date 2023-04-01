@@ -1,6 +1,10 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
+import net.minecraft.util.Tuple;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
@@ -8,6 +12,11 @@ import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerExcept
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.type.capability.ICurio;
+
+import java.util.function.Predicate;
 
 /**
  * Handles events related to player cloning, e.g., when a player is resurrected.
@@ -30,25 +39,40 @@ public class OnPlayerCloneEvent {
      */
     public static void playerClone(PlayerEvent.Clone event) {
         event.getOriginal().revive();
+        Player original = event.getOriginal();
         Player player = event.getEntity();
 
         try {
             IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
-            IInvestedPlayerData oldCapability = CapabilityUtils.getCapability(event.getOriginal());
+            IInvestedPlayerData originalCapability = CapabilityUtils.getCapability(original);
 
-            if (oldCapability.isInvested()) {
+            if (originalCapability.isInvested()) {
                 for (MetalTagEnum mt : MetalTagEnum.values()) {
-                    if (oldCapability.hasAllomanticPower(mt)) {
+                    if (originalCapability.hasAllomanticPower(mt)) {
                         capability.addAllomanticPower(mt);
                     }
-                    if (oldCapability.hasFeruchemicPower(mt)) {
+                    if (originalCapability.hasFeruchemicPower(mt)) {
                         capability.addFeruchemicPower(mt);
                     }
                 }
-
             }
 
-            event.getOriginal().getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).invalidate();
+            if (originalCapability.isTapping(MetalTagEnum.ETTMETAL)) {
+
+                Inventory originalInventory = original.getInventory();
+
+                for (int i = 0; i < originalInventory.getContainerSize(); i++) {
+                    ItemStack stack = originalInventory.getItem(i);
+
+                    if (stack.isEmpty()) {
+                        player.getInventory().setItem(i, ItemStack.EMPTY);
+                    } else {
+                        player.getInventory().setItem(i, stack);
+                    }
+                }
+            }
+
+            original.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).invalidate();
             ModNetwork.syncInvestedDataPacket(player);
         } catch (PlayerException ex) {
             ex.printCompleteLog();

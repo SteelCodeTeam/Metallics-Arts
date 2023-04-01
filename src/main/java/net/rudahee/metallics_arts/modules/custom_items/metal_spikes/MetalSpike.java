@@ -72,12 +72,23 @@ public class MetalSpike extends SwordItem {
      */
   @Override
     public boolean isFoil(ItemStack stack) {
-        if (stack.hasTag()) {
-            if  (!stack.getTag().contains("metal_spike") || !stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
-                stack.setTag(generateTags(stack));
+
+        try {
+
+            if (stack.hasTag()) {
+                if (!stack.getTag().contains("metal_spike") || !stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power")) {
+                    stack.setTag(generateTags(stack));
+                }
             }
+
+            return stack.getTag().getBoolean("feruchemic_power") || stack.getTag().getBoolean("allomantic_power");
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return false;
+
         }
-        return stack.getTag().getBoolean("feruchemic_power") || stack.getTag().getBoolean("allomantic_power");
     }
 
     /**

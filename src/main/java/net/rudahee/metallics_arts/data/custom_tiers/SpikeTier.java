@@ -30,9 +30,9 @@ public class SpikeTier implements Tier {
         private int level;
         private int enchantmentValue;
 
-        /**
-         * Default constructor. All parameters are fixed for all spikes.
-         */
+    /**
+     * Default constructor. All parameters are fixed for all spikes.
+     */
     public void ObsidianTier() {
             this.uses = 1;
             this.speed = 1.2F;
