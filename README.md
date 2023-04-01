@@ -33,7 +33,7 @@ Discover new blocks, recipes, and items 💥! Unlock the astounding powers of me
 <br>
 
 ## **About us 🙋**
-We are SteelCode, a passionate team inspired by the work of Sanderson. With the help of the "Club De Las Tormentas" community, we have brought our vision of the world of Mistborn to minecraft to life. Be sure to check out his YouTube channels and Twitch!
+We are SteelCode, a passionate team inspired by the work of Sanderson. With the help of the "Club De Las Tormentas" community, we have brought our vision of the world of Mistborn to Minecraft. Be sure to check out his YouTube channels and Twitch!
 
 Stay tuned for the latest updates on our new website and upcoming projects by visiting the final notes section.
 
@@ -82,16 +82,16 @@ Problems solved:
 ## **Future Improvements ⬆️**
 
 **Known Issues**
-- ~~Names consistency is bad.~~
+- ~~Names consistency is bad.~~ [v.1.5.1]
 - Decant iron and burn bendalloy while you fall result in a bug.
 - Shield with our banners are not getting the right texture.
 
 **Improvements**
 - Do steel flying more comfortable. (It's not a priority).
-- ~~Add sound effects.~~ [v.1.5.2]
+- ~~Add sound effects.~~ [v.1.5.1]
 - Do more comfortable (and maybe push and pull through blocks) with iron/steel. 
 - Add better resolution in banner printed in shield.
-- ~~**We need to do a really hard refactor.**~~
+- ~~**We need to do a really hard refactor.**~~ [v.1.5.1]
 - Add some entities like special zombies, specials archers, they must use allomancy or feruchemy.
 - Maybe, implements new structures with loot from the mod.
 - New kind of allomantic beacons with his respective powers.
