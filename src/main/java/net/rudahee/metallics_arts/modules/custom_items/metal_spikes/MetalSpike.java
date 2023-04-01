@@ -59,6 +59,7 @@ public class MetalSpike extends SwordItem {
     public MetalSpike(Item.Properties properties, MetalTagEnum metalTagEnum) {
         super(new SpikeTier(), ATTACK_DAMAGE, ATTACK_SPEED, properties);
         this.metalSpike = metalTagEnum;
+
     }
 
     /**
@@ -67,11 +68,17 @@ public class MetalSpike extends SwordItem {
      * @param stack specific item to foil.
      *
      * @return boolean
+     * @deprecated
      */
-    @Override
+/*    @Override
     public boolean isFoil(ItemStack stack) {
+        if (stack.hasTag()) {
+            if  (!stack.getTag().contains("metal_spike") || !stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
+                stack.setTag(generateTags(stack));
+            }
+        }
         return stack.getTag().getBoolean("feruchemic_power") || stack.getTag().getBoolean("allomantic_power");
-    }
+    }*/
 
     /**
      * Method to define if the player has both powers of the given metals.
@@ -96,10 +103,11 @@ public class MetalSpike extends SwordItem {
      */
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, @NotNull List<Component> toolTips, @NotNull TooltipFlag flag) {
-        if  (!stack.getTag().contains("metal_spike") || !stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
-            stack.setTag(generateTags(stack));
-        }
+
         if (stack.hasTag()){
+            if  (!stack.getTag().contains("metal_spike") || !stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
+                stack.setTag(generateTags(stack));
+            }
             if (stack.getTag().getBoolean("feruchemic_power")) {
                 toolTips.add(TranslatableUtils.generateComponent("metallics_arts.spike_feruchemic_power"));
             }
@@ -138,9 +146,12 @@ public class MetalSpike extends SwordItem {
     @Override
     public boolean hurtEnemy(ItemStack stack, @NotNull LivingEntity target, @NotNull LivingEntity source) {
 
-        if  (!stack.getTag().contains("metal_spike") || !stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
-            stack.setTag(generateTags(stack));
+        if (stack.hasTag()){
+            if  (!stack.getTag().contains("metal_spike") || !stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
+                stack.setTag(generateTags(stack));
+            }
         }
+
         if ((target instanceof Player) && (source instanceof Player)){
 
             target.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(targetData -> {

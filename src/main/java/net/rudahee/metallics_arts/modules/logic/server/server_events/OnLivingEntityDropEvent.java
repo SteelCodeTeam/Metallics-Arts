@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
@@ -40,6 +41,19 @@ public class OnLivingEntityDropEvent {
 
                 } else if (capability.isStoring(MetalTagEnum.ZINC)) {
                     event.setCanceled(true);
+                }
+            } catch (PlayerException ex) {
+                ex.printCompleteLog();
+            }
+        }
+
+        if (event.getEntity() instanceof Player || event.getEntity() instanceof ServerPlayer) {
+            try {
+                IInvestedPlayerData capability = CapabilityUtils.getCapability(event.getEntity());
+                if (capability.isTapping(MetalTagEnum.ETTMETAL)) {
+                    event.setCanceled(true);
+                } else if (capability.isStoring(MetalTagEnum.ETTMETAL)) {
+                    event.getDrops().clear();
                 }
             } catch (PlayerException ex) {
                 ex.printCompleteLog();

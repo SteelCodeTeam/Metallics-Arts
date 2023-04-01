@@ -35,16 +35,6 @@ public class EttmetalFecuchemicHelper extends AbstractFechuchemicHelper {
     public void storagePower(Player player) {}
 
     /**
-     * Returns an instance of EttmetalFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of EttmetalFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of EttmetalFecuchemicHelper when called
-     */
-    public static Supplier<? extends EttmetalFecuchemicHelper> getInstance() {
-        return EttmetalFecuchemicHelper::new;
-    }
-
-    /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, it generates the explosion based on the charge values.
      *
@@ -58,13 +48,13 @@ public class EttmetalFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @see AbstractFechuchemicHelper#tapPower(Player)
      */
-    @Override
+    /*@Override
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         player.level.explode(player,player.position().x,player.position().y,player.position().z,(float) compoundTag.getInt(metalKey)/683, Explosion.BlockInteraction.NONE);
         player.setHealth((player.getHealth() - ((float) compoundTag.getInt(metalKey)/205)));
         compoundTag.putInt(metalKey,0);
         return compoundTag;
-    }
+    }*/
 
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -80,7 +70,7 @@ public class EttmetalFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @see AbstractFechuchemicHelper#storagePower(Player)
      */
-    @Override
+    /*@Override
     public CompoundTag calculateCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         if (player.getLastDamageSource() != null){
             if ((player.getLastDamageSource().isExplosion())){
@@ -88,5 +78,15 @@ public class EttmetalFecuchemicHelper extends AbstractFechuchemicHelper {
             }
         }
         return compoundTag;
+    }*/
+
+    /**
+     * Returns an instance of EttmetalFecuchemicHelper using a factory method pattern.
+     * This method allows you to create instances of EttmetalFecuchemicHelper with a consistent interface.
+     *
+     * @return a Supplier that returns a new instance of EttmetalFecuchemicHelper when called
+     */
+    public static Supplier<? extends EttmetalFecuchemicHelper> getInstance() {
+        return EttmetalFecuchemicHelper::new;
     }
 }

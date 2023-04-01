@@ -30,12 +30,16 @@ public class OnLivingDeathEvent {
         try {
             IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
 
+            if (!capability.isTapping(MetalTagEnum.ETTMETAL) && !capability.isStoring(MetalTagEnum.ETTMETAL)) {
+                //guardar que tengo que hacer algo
+            }
             for (MetalTagEnum metal : MetalTagEnum.values()) {
                 capability.setBurning(metal, false);
                 capability.setTapping(metal, false);
                 capability.setStoring(metal, false);
                 capability.setMetalMindEquiped(metal.getGroup(), false);
             }
+
 
             ModNetwork.syncInvestedDataPacket(capability, player);
         } catch (PlayerException ex) {

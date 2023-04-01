@@ -5,7 +5,6 @@ import net.minecraft.world.item.Item;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.custom_items.alloy_furnace.AlloyRecipeEnum;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.util.Arrays;
@@ -31,7 +30,7 @@ public class BasicItemsRegister {
                 Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(64));
                 ModItemsRegister.ITEM_METAL_INGOT.put(metal.getMetalNameLower(), item);
                 if (metal.isAlloy()) {
-                    AlloyRecipeEnum.valueOf(metal.getMetalNameUpper()).setItem(item);
+                    //AlloyRecipeEnum.valueOf(metal.getMetalNameUpper()).setItem(item);
                 }
                 return item;
             });
@@ -65,7 +64,7 @@ public class BasicItemsRegister {
                     Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB));
                     ModItemsRegister.ITEM_GEMS_BASE.put(gem.getGemNameLower(), item);
                     if (gem.getGemNameLower() == "malatium") {
-                        AlloyRecipeEnum.valueOf(gem.getGemNameUpper()).setItem(item);
+                        //AlloyRecipeEnum.valueOf(gem.getGemNameUpper()).setItem(item);
                     }
                     return item;
                 });
