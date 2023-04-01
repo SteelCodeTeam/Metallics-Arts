@@ -8,14 +8,14 @@
 3. Requirements
 4. Changelog
 5. Futures Improvements
-6. ¡Fork me!
+6. Fork me!
 7. Final Notes
 ---
 <br>
 
 ## **Introducing Metallics Arts! ✨📘**
 
-**Get it now:** https://www.curseforge.com/minecraft/mc-mods/metallics-arts
+**You can download it here:** https://www.curseforge.com/minecraft/mc-mods/metallics-arts
 
 **Immerse yourself in the world of "Mistborn" by Brandon Sanderson 💫.** We highly recommend familiarizing yourself with the saga before diving into this mod. And while you're at it, don't miss out on the author's other fantastic works!
 
