@@ -25,6 +25,8 @@ import java.util.stream.Stream;
  *
  * @author SteelCode Team
  * @since 1.5.1
+ *
+ * @deprecated
  */
 public class FoundNearbyMetalUtils {
 
