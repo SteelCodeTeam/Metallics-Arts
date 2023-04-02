@@ -6,6 +6,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
@@ -39,7 +40,7 @@ public class BronzeFecuchemicHelper extends AbstractFechuchemicHelper {
                 }
             }
         });
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_bronze").get(), 1, 0, true, true));
+        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.BRONZE);
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -60,7 +61,7 @@ public class BronzeFecuchemicHelper extends AbstractFechuchemicHelper {
             phantom.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 240, 2, true, true, true));
             level.addFreshEntity(phantom);
         }
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_bronze").get(), 1, 0, true, true));
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.BRONZE);
     }
 
     /**

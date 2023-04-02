@@ -12,6 +12,7 @@ import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.AtiumFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.test.ModEffects;
+import net.rudahee.metallics_arts.modules.test.PowerEffect;
 
 import java.util.function.Supplier;
 
@@ -38,7 +39,7 @@ public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
         } else if (player.getLevel().getBiome(player.getOnPos()).is(Tags.Biomes.IS_HOT)) {
             player.setSecondsOnFire(1);
         }
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_brass").get(), 1, 0, true, true));
+        ModEffects.giveFeruchemicalTapEffect(player,MetalTagEnum.BRASS);
     }
 
     /**
@@ -51,12 +52,12 @@ public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40, 1, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40, 1, true, false));
         if (player.getLevel().getBiome(player.getOnPos()).is(Tags.Biomes.IS_COLD) ||
                 (player.getLevel().getBiome(player.getOnPos()).is(Biomes.DESERT) && player.getLevel().isNight())) {
             player.setTicksFrozen(player.getTicksFrozen() + 3);
         }
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_brass").get(), 1, 0, true, true));
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.BRASS);
     }
 
     /**
@@ -84,6 +85,7 @@ public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
                 compoundTag.putInt(metalKey, metalReserve + 1);
             }
         }
+        storagePower(player);
         return compoundTag;
     }
     /**

@@ -1,10 +1,12 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.function.Supplier;
 
@@ -25,7 +27,9 @@ public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper {
      * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     @Override
-    public void tapPower(Player player) {}
+    public void tapPower(Player player) {
+        ModEffects.giveFeruchemicalTapEffect(player,MetalTagEnum.BRASS);
+    }
 
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -36,7 +40,9 @@ public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper {
      * @see AbstractFechuchemicHelper#storagePower(Player)
      */
     @Override
-    public void storagePower(Player player) {}
+    public void storagePower(Player player) {
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.NICROSIL);
+    }
 
     /**
      * Returns an instance of NicrosilFecuchemicHelper using a factory method pattern.
@@ -70,6 +76,7 @@ public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper {
             value = 0;
         }
         compoundTag.putInt(metalKey, metalReserve - value);
+        tapPower(player);
         return compoundTag;
     }
 
@@ -98,6 +105,7 @@ public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper {
             value = 0;
         }
         compoundTag.putInt(metalKey, metalReserve + value);
+        storagePower(player);
         return compoundTag;
     }
 }

@@ -6,6 +6,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
@@ -57,7 +58,7 @@ public class OnPlayerCloneEvent {
                 }
             }
 
-            if (originalCapability.isTapping(MetalTagEnum.ETTMETAL)) {
+            if (originalCapability.getEttmetalState().equals(EttmetalState.KEEP_ITEMS)) {
 
                 Inventory originalInventory = original.getInventory();
 
@@ -70,6 +71,7 @@ public class OnPlayerCloneEvent {
                         player.getInventory().setItem(i, stack);
                     }
                 }
+                capability.setEttmetalState(EttmetalState.NOTHING);
             }
 
             original.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).invalidate();

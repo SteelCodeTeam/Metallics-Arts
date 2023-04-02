@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
@@ -32,7 +33,7 @@ public class BendalloyFecuchemicHelper extends AbstractFechuchemicHelper {
                 player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()+1);
             }
         }
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_bendalloy").get(), 1, 0, true, true));
+        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.BENDALLOY);
     }
 
     /**
@@ -52,7 +53,7 @@ public class BendalloyFecuchemicHelper extends AbstractFechuchemicHelper {
                 }
             }
         }
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_bendalloy").get(), 1, 0, true, true));
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.BENDALLOY);
     }
 
     /**

@@ -1,10 +1,12 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.ArrayList;
 import java.util.function.Supplier;
@@ -25,7 +27,9 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper {
      * @see AtiumFecuchemicHelper#calculateDischarge(CompoundTag, Player, IInvestedPlayerData, int, String, boolean)
      */
     @Override
-    public void tapPower(Player player) {}
+    public void tapPower(Player player) {
+        ModEffects.giveFeruchemicalTapEffect(player,MetalTagEnum.BRASS);
+    }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * This method is not used, because the power logic is applied in the discharge methods of this class.
@@ -33,7 +37,9 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper {
      * @param player to whom the effect will be applied.
      */
     @Override
-    public void storagePower(Player player) {}
+    public void storagePower(Player player) {
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.LERASIUM);
+    }
 
     /**
      * Returns an instance of LerasiumFecuchemicHelper using a factory method pattern.
@@ -61,6 +67,7 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         compoundTag.putInt(metalKey,0);
+        tapPower(player);
         return loadAllomanticReserve(playerCapability, compoundTag);
     }
 
@@ -83,6 +90,7 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper {
             compoundTag = saveAllomanticReserve(playerCapability, compoundTag);
             compoundTag.putInt(metalKey,1);
         }
+        storagePower(player);
         return compoundTag;
     }
 

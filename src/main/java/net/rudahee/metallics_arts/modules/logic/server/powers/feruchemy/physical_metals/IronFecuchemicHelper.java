@@ -3,7 +3,9 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.physica
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.function.Supplier;
 
@@ -24,9 +26,10 @@ public class IronFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tapPower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 5, true, false));
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 5, false, false));
         // apply jump 128 nullifies the target player's ability to jump
-        player.addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 128, true, false));
+        player.addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 128, false, false));
+        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.IRON);
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -38,9 +41,10 @@ public class IronFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 20, 1, true, false));
-        player.addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 2, true, false));
-        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 20, 1, true, false));
+        player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 20, 1, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 2, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 20, 1, false, false));
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.IRON);
     }
 
     /**

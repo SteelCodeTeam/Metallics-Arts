@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cogniti
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.test.ModEffects;
@@ -27,7 +28,7 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void tapPower(Player player) {
         player.giveExperiencePoints(1);
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_copper").get(), 1, 0, true, true));
+        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.COPPER);
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -40,7 +41,7 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {
         player.giveExperiencePoints(-1);
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_copper").get(), 1, 0, true, true));
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.COPPER);
     }
 
     /**
@@ -69,8 +70,8 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
-        tapPower(player);
         compoundTag.putInt(metalKey, metalReserve - 1);
+        tapPower(player);
         return compoundTag;
     }
 
@@ -94,6 +95,7 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
             storagePower(player);
             compoundTag.putInt(metalKey, metalReserve + 1);
         }
+        storagePower(player);
         return compoundTag;
     }
 }

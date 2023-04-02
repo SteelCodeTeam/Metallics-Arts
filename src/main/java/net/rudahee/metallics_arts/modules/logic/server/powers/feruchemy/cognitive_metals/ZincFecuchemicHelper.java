@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cogniti
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 import net.rudahee.metallics_arts.modules.test.ModEffects;
@@ -23,7 +24,9 @@ public class ZincFecuchemicHelper extends AbstractFechuchemicHelper {
      * @param player the Player to whom the effect is applied
      */
     @Override
-    public void tapPower(Player player) {player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_zinc").get(), 1, 0, true, true));}
+    public void tapPower(Player player) {
+        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.ZINC);
+    }
 
     /**
      * Applies the Allomantic Zinc power effect to the player when storing the power.
@@ -32,7 +35,9 @@ public class ZincFecuchemicHelper extends AbstractFechuchemicHelper {
      * @param player the Player to whom the effect is applied
      */
     @Override
-    public void storagePower(Player player) {player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_zinc").get(), 1, 0, true, true));}
+    public void storagePower(Player player) {
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.ZINC);
+    }
 
     /**
      * Returns an instance of ZincFecuchemicHelper using a factory method pattern.

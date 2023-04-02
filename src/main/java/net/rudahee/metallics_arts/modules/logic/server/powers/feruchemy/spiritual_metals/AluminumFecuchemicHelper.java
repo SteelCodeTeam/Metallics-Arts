@@ -1,10 +1,13 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.AtiumFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.function.Supplier;
 
@@ -25,7 +28,9 @@ public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper {
      * @see AbstractFechuchemicHelper#tapPower(Player)
      */
     @Override
-    public void tapPower(Player player) {}
+    public void tapPower(Player player) {
+        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.ALUMINUM);
+    }
 
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -36,7 +41,9 @@ public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper {
      * @see AbstractFechuchemicHelper#storagePower(Player)
      */
     @Override
-    public void storagePower(Player player) {}
+    public void storagePower(Player player) {
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.ALUMINUM);
+    }
 
     /**
      * Returns an instance of AluminumFecuchemicHelper using a factory method pattern.
@@ -65,6 +72,7 @@ public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         compoundTag.putInt(metalKey, 1);
+        tapPower(player);
         return compoundTag;
     }
 
@@ -85,6 +93,7 @@ public class AluminumFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public CompoundTag calculateCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         compoundTag.putInt(metalKey, 2);
+        storagePower(player);
         return compoundTag;
     }
 

@@ -18,6 +18,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.CadmiumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.ElectrumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.GoldAllomanticHelper;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 /**
  * Handles the effects and abilities related to Allomantic metals for players.
@@ -199,5 +200,10 @@ public class AllomaticTick {
      */
     public static void eachTick(IInvestedPlayerData capability, ServerPlayer player) {
         OnTickUtils.duraluminAndExternalNicrosilEffect(capability, player);
+        for (MetalTagEnum metal : MetalTagEnum.values()) {
+            if (capability.isBurning(metal)) {
+                ModEffects.giveAllomanticEffect(player, metal);
+            }
+        }
     }
 }

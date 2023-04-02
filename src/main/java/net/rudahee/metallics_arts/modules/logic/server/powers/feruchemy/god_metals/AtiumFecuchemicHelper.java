@@ -3,7 +3,9 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_met
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
+import net.rudahee.metallics_arts.modules.test.ModEffects;
 
 import java.util.function.Supplier;
 
@@ -25,7 +27,8 @@ public class AtiumFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tapPower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 5, 1, true, false));
+        player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 5, 1, false, false));
+        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.ATIUM);
     }
 
     /**
