@@ -8,7 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
-import net.rudahee.metallics_arts.modules.test.ModEffects;
+import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 /**

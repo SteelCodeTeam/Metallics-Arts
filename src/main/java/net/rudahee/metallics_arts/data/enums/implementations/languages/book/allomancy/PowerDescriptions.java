@@ -1,6 +1,11 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages.book.allomancy;
 
-
+/**
+ * This enum contains the description for the book of allomantic powers in different languages.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public enum PowerDescriptions {
     IRON("Pulls the metal source you are aiming at.\\\n\\\n++To use this power, you need to left click while looking at the metal source.++",
             "\\\n Tira de la fuente de metal a la que estés apuntando.\\\n Para usar este poder, debes hacer clic izquierdo mientras miras a dicha fuente de metal.",
@@ -67,19 +72,40 @@ public enum PowerDescriptions {
     private final String spanish;
     private final String polish;
 
+    /**
+     * Creates a new PowerDescriptions object with the provided English, Spanish, and Polish translations.
+     *
+     * @param english the English translation for the interaction.
+     * @param spanish the Spanish translation for the interaction.
+     * @param polish the Polish translation for the interaction.
+     */
     PowerDescriptions(String english, String spanish, String polish) {
         this.english = english;
         this.spanish = spanish;
         this.polish = polish;
     }
 
+    /**
+     * Returns the Spanish translation for the interaction.
+     *
+     * @return the Spanish translation for the interaction
+     */
     public String getSpanish() {
         return spanish;
     }
-
+    /**
+     * Returns the English translation for the interaction.
+     *
+     * @return the English translation for the interaction
+     */
     public String getEnglish() {
         return english;
     }
+    /**
+     * Returns the Polish translation for the interaction.
+     *
+     * @return the Polish translation for the interaction
+     */
     public String getPolish() {
         return polish;
     }

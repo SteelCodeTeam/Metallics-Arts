@@ -19,8 +19,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     /**
      * Constructor for the ModBlockTagProvider class.
      *
-     * @param gen          the data generator used for creating block tags
-     * @param modid        the mod ID for the mod that's adding the block tags
+     * @param gen the data generator used for creating block tags
+     * @param modid the mod ID for the mod that's adding the block tags
      * @param exFileHelper the existing file helper for handling existing files
      */
     public ModBlockTagProvider(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {

@@ -26,16 +26,21 @@ import javax.annotation.Nullable;
  */
 public class ModPaintingProvider {
 
-    public static final DeferredRegister<PaintingVariant>PAINTING_VARIANTS =
+
+    // The DeferredRegister for registering custom PaintingVariants.
+    public static final DeferredRegister<PaintingVariant> PAINTING_VARIANTS =
             DeferredRegister.create(ForgeRegistries.PAINTING_VARIANTS, MetallicsArts.MOD_ID);
 
+    // The RegistryObject for the Inquisitor Painting variant.
     public static final RegistryObject<PaintingVariant> INQUISITOR_PAINTING = PAINTING_VARIANTS.register("inquisitor_painting",
             () -> new PaintingVariant(16,16));
 
+    // The RegistryObject for the Fun Cobber Painting variant.
     public static final RegistryObject<PaintingVariant> FUN_COBBER_PAINTING = PAINTING_VARIANTS.register("fun_cobber_painting",
             () -> new PaintingVariant(16,32));
 
-     public static final RegistryObject<PaintingVariant> SANFRE_PAINTING = PAINTING_VARIANTS.register("sanfre_painting",
+    // The RegistryObject for the Sanfre Painting variant.
+    public static final RegistryObject<PaintingVariant> SANFRE_PAINTING = PAINTING_VARIANTS.register("sanfre_painting",
      () -> new PaintingVariant(64,64));
 
 

@@ -19,7 +19,7 @@ public class ModBannerTagProvider extends TagsProvider<BannerPattern> {
     /**
      * Constructs a new ModBannerTagProvider instance.
      *
-     * @param pGenerator        the data generator for tag generation
+     * @param pGenerator the data generator for tag generation
      * @param existingFileHelper the existing file helper to assist with data generation
      */
     public ModBannerTagProvider(DataGenerator pGenerator, net.minecraftforge.common.data.ExistingFileHelper existingFileHelper) {

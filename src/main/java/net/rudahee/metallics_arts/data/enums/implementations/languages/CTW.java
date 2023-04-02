@@ -3,6 +3,16 @@ package net.rudahee.metallics_arts.data.enums.implementations.languages;
 import net.rudahee.metallics_arts.data.enums.interfaces.ILanguage;
 
 //CommonTranslationWords
+
+/**
+ * CommonTranslationWords is an enum that implements the ILanguage interface.
+ * It contains common translation words for different languages related to items and objects in a game.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see ILanguage
+ */
 public enum CTW implements ILanguage {
     RAW("raw", "Raw", "en bruto","の原石", "Surowy"),
     ORE("ore", "Ore", "Mena de","の鉱石", "Ruda"),
@@ -87,6 +97,15 @@ public enum CTW implements ILanguage {
     private final String japanese;
     private final String polish;
 
+    /**
+     * Creates a new CTW object with the given ID and language names.
+     *
+     * @param id the ID of the CTW object.
+     * @param english the name of the word in English.
+     * @param spanish the name of the word in Spanish.
+     * @param japanese the name of the word in Japanese.
+     * @param polish the name of the word in Polish.
+     */
     CTW(String id, String english, String spanish, String japanese, String polish) {
         this.id = id;
         this.english = english;
@@ -94,24 +113,45 @@ public enum CTW implements ILanguage {
         this.japanese = japanese;
         this.polish = polish;
     }
-
+    /**
+     * Returns the ID of the CTW object.
+     *
+     * @return the ID of the CTW object
+     */
     public String getId() {
         return id;
     }
-
+    /**
+     * Returns the name of the word in Spanish.
+     *
+     * @return the name of the word in Spanish
+     */
     @Override
     public String getNameInSpanish() {
         return this.spanish;
     }
-
+    /**
+     * Returns the name of the word in English.
+     *
+     * @return the name of the word in English
+     */
     @Override
     public String getNameInEnglish() {
         return this.english;
     }
-
+    /**
+     * Returns the name of the word in Japanese.
+     *
+     * @return the name of the word in Japanese
+     */
     public String getNameInJapanese() {
         return this.japanese;
     }
+    /**
+     * Returns the name of the word in Polish.
+     *
+     * @return the name of the word in Polish
+     */
     public String getNameInPolish() {
         return this.polish;
     }

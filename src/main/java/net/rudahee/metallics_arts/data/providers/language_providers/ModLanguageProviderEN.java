@@ -16,7 +16,7 @@ import java.util.Map;
  * @since 1.5.1
  */
 public class ModLanguageProviderEN extends LanguageProvider {
-        private Map<String, String> base = new HashMap<>() {{
+        private final Map<String, String> base = new HashMap<>() {{
 
                 put("item.metallics_arts.large_vial",CTW.LARGE.getNameInEnglish() + " " + CTW.VIAL.getNameInEnglish());
                 put("item.metallics_arts.small_vial",CTW.SMALL.getNameInEnglish() + " " + CTW.VIAL.getNameInEnglish());
@@ -59,12 +59,10 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("item.metallics_arts.koloss_blade", CTW.KOLOSS_BLADE.getNameInEnglish());
                 put("item.metallics_arts.dueling_staff", CTW.DUELING_STAFF.getNameInEnglish());
                 put("item.metallics_arts.obsidian_axe", CTW.OBSIDIAN_AXE.getNameInEnglish());
-
-
         }};
 
 
-        private Map<String, String> ingots = new HashMap<>() {{
+        private final Map<String, String> ingots = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isVanilla()) {
                                 put("item.metallics_arts." + metal.getId() + "_ingot", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.INGOT.getNameInEnglish());
@@ -73,7 +71,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 }
         }};
 
-        private Map<String, String> effects = new HashMap<>() {{
+        private final Map<String, String> effects = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isOnlyForAlloys()) {
                                 put("effect."+ MetallicsArts.MOD_ID + ".allomantic_" + metal.getId() + "_symbol", CTW.ALLOMANTIC.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
@@ -83,21 +81,21 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 }
 
         }};
-        private Map<String, String> rawItems = new HashMap<>() {{
+        private final Map<String, String> rawItems = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isVanilla()) {
                                 put("item.metallics_arts.raw_" + metal.getId(), CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
                         }
                 }
         }};
-        private Map<String, String> gems = new HashMap<>() {{
+        private final Map<String, String> gems = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (metal.isDivine()) {
                                 put("item.metallics_arts." + metal.getId(), MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.GEM.getNameInEnglish());
                         }
                 }
         }};
-        private Map<String, String> nuggets = new HashMap<>() {{
+        private final Map<String, String> nuggets = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isVanilla()) {
                                 put("item.metallics_arts."+ metal.getId()+"_nugget",MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.NUGGET.getNameInEnglish() );
@@ -108,7 +106,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 }
                 put("item.metallics_arts.copper_nugget", MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.NUGGET.getNameInEnglish());
         }};
-        private Map<String, String> blocks = new HashMap<>() {{
+        private final Map<String, String> blocks = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isVanilla()) {
                                 put("block.metallics_arts." + metal.getId() + "_block", CTW.BLOCK.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
@@ -118,7 +116,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
                         }
                 }
         }};
-        private Map<String, String> rawBlocks = new HashMap<>() {{
+        private final Map<String, String> rawBlocks = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isVanilla()) {
                                 put("block.metallics_arts.raw_"+metal.getId()+"_block", CTW.BLOCK.getNameInEnglish()+ " " +
@@ -126,16 +124,15 @@ public class ModLanguageProviderEN extends LanguageProvider {
                         }
                 }
         }};
-        private Map<String, String> ores = new HashMap<>() {{
+        private final Map<String, String> ores = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isVanilla() && !metal.isAlloy() && metal.isAppearsInStone()) {
                                 put("block.metallics_arts." + metal.getId()+"_ore", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.ORE.getNameInEnglish());
-
                         }
                 }
 
         }};
-        private Map<String, String> deepslateOres = new HashMap<>() {{
+        private final Map<String, String> deepslateOres = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isVanilla() && !metal.isAlloy() && metal.isAppearsInDeepslate()) {
                                 put("block.metallics_arts.deepslate_" + metal.getId()+"_ore", CTW.ORE.getNameInEnglish() + " " +
@@ -143,7 +140,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
                         }
                 }
         }};
-        private Map<String, String> geodeBlocks = new HashMap<>() {{
+        private final Map<String, String> geodeBlocks = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (metal.isDivine() && !metal.isAlloy()) {
                                 put("block.metallics_arts." + metal.getId() + "_cristal_block", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.CRISTAL.getNameInEnglish());
@@ -158,20 +155,20 @@ public class ModLanguageProviderEN extends LanguageProvider {
                         }
                 }
         }};
-        private Map<String, String> spikes = new HashMap<>() {{
+        private final Map<String, String> spikes = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isOnlyForAlloys()) {
                                 put("item.metallics_arts."+ metal.getId() +"_spike", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.SPIKE.getNameInEnglish());
                         }
                 }
         }};
-        private Map<String, String> metalMinds = new HashMap<>() {{
+        private final Map<String, String> metalMinds = new HashMap<>() {{
                 for (MetalMinds metalMind : MetalMinds.values()) {
                         put("item.metallics_arts.band_" + metalMind.getId(), metalMind.getNameInEnglish() + " " + CTW.BAND.getNameInEnglish());
                         put("item.metallics_arts.ring_" + metalMind.getId(), metalMind.getNameInEnglish() + " " + CTW.RING.getNameInEnglish());
                 }
         }};
-        private Map<String, String> icons = new HashMap<>() {{
+        private final Map<String, String> icons = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isOnlyForAlloys()) {
                                 put("item.metallics_arts."+ metal.getId()+"_allomantic_icon" , CTW.ALLOMANTIC.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
@@ -179,21 +176,21 @@ public class ModLanguageProviderEN extends LanguageProvider {
                         }
                 }
         }};
-        private Map<String, String> metals = new HashMap<>() {{
+        private final Map<String, String> metals = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isOnlyForAlloys()) {
                                 put("metallics_arts.metal_translate."+ metal.getId() , MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
                         }
                 }
         }};
-        private Map<String, String> powers = new HashMap<>() {{
+        private final Map<String, String> powers = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isOnlyForAlloys()) {
                                 put("key.metallics_arts."+ metal.getId() +"_power", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
                         }
                 }
         }};
-        private Map<String, String> symbols = new HashMap<>() {{
+        private final Map<String, String> symbols = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isOnlyForAlloys()) {
                                 put("f_"+metal.getId()+"_1", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FERUCHEMICAL_SHADING.getNameInEnglish());
@@ -203,7 +200,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
                         }
                 }
         }};
-        private Map<String, String> patterns = new HashMap<>() {{
+        private final Map<String, String> patterns = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isOnlyForAlloys()) {
                                 put("item.metallics_arts.f_"+metal.getId()+"_pattern", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FERUCHEMICAL_PATTERN.getNameInEnglish());
@@ -214,7 +211,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 }
 
         }};
-        private Map<String, String> colors = new HashMap<>() {{
+        private final Map<String, String> colors = new HashMap<>() {{
                 for (ColorsNames color : ColorsNames.values()) {
                         put(color.getId(),color.getNameInEnglish());
                 }

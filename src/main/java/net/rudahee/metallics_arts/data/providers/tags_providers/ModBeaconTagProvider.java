@@ -19,7 +19,7 @@ public class ModBeaconTagProvider extends TagsProvider<Block> {
     /**
      * Constructs a new ModBeaconTagProvider instance.
      *
-     * @param gen               the data generator for tag generation
+     * @param gen the data generator for tag generation
      * @param existingFileHelper the existing file helper to assist with data generation
      */
     public ModBeaconTagProvider(DataGenerator gen, net.minecraftforge.common.data.ExistingFileHelper existingFileHelper) {

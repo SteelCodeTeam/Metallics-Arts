@@ -1,8 +1,15 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages;
 
-
 import net.rudahee.metallics_arts.data.enums.interfaces.ILanguage;
 
+/**
+ * This enum represents a list of metal names with their corresponding IDs and translations in different languages.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see ILanguage
+ */
 public enum MetalNamesEnum implements ILanguage {
     IRON("iron","Iron", "Hierro","鉄", "Żelazo"),
     STEEL("steel","Steel", "Acero","鋼", "Stal"),
@@ -33,6 +40,16 @@ public enum MetalNamesEnum implements ILanguage {
     private final String japanese;
     private final String polish;
 
+
+    /**
+     * Constructor for MetalNamesEnum.
+     *
+     * @param id the ID of the metal.
+     * @param english the name of the metal in English.
+     * @param spanish the name of the metal in Spanish.
+     * @param japanese the name of the metal in Japanese.
+     * @param polish the name of the metal in Polish.
+     */
     MetalNamesEnum(String id, String english, String spanish, String japanese, String polish) {
         this.id = id;
         this.english = english;
@@ -41,28 +58,62 @@ public enum MetalNamesEnum implements ILanguage {
         this.polish = polish;
     }
 
+    /**
+     * Returns the id of the MetalNamesEnum instance.
+     *
+     * @return the id of the MetalNamesEnum instance.
+     */
     public String getId() {
         return this.id;
     }
+    /**
+     * Returns the name of the MetalNamesEnum instance in Spanish.
+     *
+     * @return the name of the MetalNamesEnum instance in Spanish
+     */
     @Override
     public String getNameInSpanish() {
         return this.spanish;
     }
+    /**
+     * Returns the name of the MetalNamesEnum instance in English.
+     *
+     * @return the name of the MetalNamesEnum instance in English
+     */
     @Override
     public String getNameInEnglish() {
         return this.english;
     }
-
+    /**
+     * Returns the name of the MetalNamesEnum instance in lower case Spanish.
+     *
+     * @return the name of the MetalNamesEnum instance in lower case Spanish
+     */
     public String getNameInLowerSpanish() {
         return this.spanish.toLowerCase();
     }
+    /**
+     * Returns the name of the MetalNamesEnum instance in lower case English
+     *
+     * @return the name of the MetalNamesEnum instance in lower case English
+     */
     public String getNameInLowerEnglish() {
         return this.english.toLowerCase();
     }
 
+    /**
+     * Returns the name of the MetalNamesEnum instance in Japanese.
+     *
+     * @return the name of the MetalNamesEnum instance in Japanese
+     */
     public String getNameInJapanese() {
         return this.japanese;
     }
+    /**
+     * Returns the name of the MetalNamesEnum instance in Polish.
+     *
+     * @return the name of the MetalNamesEnum instance in Polish
+     */
     public String getNameInPolish(){
         return this.polish;
     }

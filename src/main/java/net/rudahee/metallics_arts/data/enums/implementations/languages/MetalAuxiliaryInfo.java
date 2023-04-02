@@ -1,5 +1,17 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages;
 
+
+import net.rudahee.metallics_arts.data.enums.interfaces.ILanguage;
+
+/**
+ * Enum class for auxiliary information about metals.
+ * It contains information about metal types, such as their id, whether they are alloys or not,
+ * whether they are vanilla metals, only for alloys, appears in stone, appears in deepslate, or is divine.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ */
 public enum MetalAuxiliaryInfo {
     IRON("iron",false,true,false,true,false, false),
     STEEL("steel",true,false,false,false,false, false),
@@ -35,6 +47,17 @@ public enum MetalAuxiliaryInfo {
     private final boolean appearsInDeepslate;
     private final boolean isDivine;
 
+    /**
+     * Constructs a new metal with the given id and properties.
+     *
+     * @param id the id of the metal
+     * @param isAlloy whether the metal is an alloy or not
+     * @param isVanilla whether the metal is a vanilla metal or not
+     * @param isOnlyForAlloys whether the metal is only used for alloys or not
+     * @param appearsInStone whether the metal appears in stone or not
+     * @param appearsInDeepslate whether the metal appears in deepslate or not
+     * @param isDivine whether the metal is a divine metal or not
+     */
     MetalAuxiliaryInfo(String id, boolean isAlloy, boolean isVanilla, boolean isOnlyForAlloys, boolean appearsInStone, boolean appearsInDeepslate, boolean isDivine) {
         this.id = id;
         this.isAlloy = isAlloy;
@@ -45,30 +68,59 @@ public enum MetalAuxiliaryInfo {
         this.isDivine = isDivine;
     }
 
+    /**
+     * Returns the identifier of the metal auxiliary information.
+     *
+     * @return The identifier of the metal auxiliary information.
+     */
     public String getId() {
         return this.id;
     }
-
+    /**
+     * Returns true if the metal auxiliary information is an alloy, false otherwise.
+     *
+     * @return True if the metal auxiliary information is an alloy, false otherwise.
+     */
     public boolean isAlloy() {
         return isAlloy;
     }
-
+    /**
+     * Returns true if the metal auxiliary information is a vanilla metal, false otherwise.
+     *
+     * @return True if the metal auxiliary information is a vanilla metal, false otherwise.
+     */
     public boolean isVanilla() {
         return isVanilla;
     }
-
+    /**
+     * Returns true if the metal auxiliary information is only used for alloys, false otherwise.
+     *
+     * @return True if the metal auxiliary information is only used for alloys, false otherwise.
+     */
     public boolean isOnlyForAlloys() {
         return isOnlyForAlloys;
     }
-
+    /**
+     * Returns true if the metal auxiliary information appears in stone, false otherwise.
+     *
+     * @return True if the metal auxiliary information appears in stone, false otherwise.
+     */
     public boolean isAppearsInStone() {
         return appearsInStone;
     }
-
+    /**
+     * Returns true if the metal auxiliary information appears in deepslate, false otherwise.
+     *
+     * @return True if the metal auxiliary information appears in deepslate, false otherwise.
+     */
     public boolean isAppearsInDeepslate() {
         return appearsInDeepslate;
     }
-
+    /**
+     * Returns true if the metal auxiliary information is divine, false otherwise.
+     *
+     * @return True if the metal auxiliary information is divine, false otherwise.
+     */
     public boolean isDivine() {
         return isDivine;
     }

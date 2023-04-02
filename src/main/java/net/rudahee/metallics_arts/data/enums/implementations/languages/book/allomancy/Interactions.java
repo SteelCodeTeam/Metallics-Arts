@@ -1,5 +1,11 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages.book.allomancy;
 
+/**
+ * This enum contains the description for the book of the interactions of the Allomantic powers in different languages.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public enum Interactions {
     IRON("x Duralumin: Greatly increases the pull.\\\n\\\n x Lerasium: Slightly increases pull.\\\n\\\nx Both: Maximizes pull.",
             "x Duralumín: aumenta en gran medida el tirón. \\\n x Lerasium: aumenta levemente el tirón. \\\n x Ambos: aumenta al máximo el tirón.",
@@ -65,21 +71,42 @@ public enum Interactions {
     private final String spanish;
     private  final String polish;
 
-
+    /**
+     * Creates a new Interactions object with the provided English, Spanish, and Polish translations.
+     *
+     * @param english the English translation for the interaction.
+     * @param spanish the Spanish translation for the interaction.
+     * @param polish the Polish translation for the interaction.
+     */
     Interactions(String english, String spanish, String polish) {
         this.english = english;
         this.spanish = spanish;
         this.polish = polish;
     }
 
+    /**
+     * Returns the English translation for the interaction.
+     *
+     * @return the English translation for the interaction
+     */
     public String getEnglish() {
         return english;
     }
 
+    /**
+     * Returns the Spanish translation for the interaction.
+     *
+     * @return the Spanish translation for the interaction
+     */
     public String getSpanish() {
         return spanish;
     }
 
+    /**
+     * Returns the Polish translation for the interaction.
+     *
+     * @return the Polish translation for the interaction
+     */
     public String getPolish() {
         return this.polish;
     }

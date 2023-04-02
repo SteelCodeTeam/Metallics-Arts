@@ -3,6 +3,12 @@ package net.rudahee.metallics_arts.data.enums.implementations.languages.book.wea
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.CTW;
 
+/**
+ * This enum contains the auxiliary information about the weapons for the book.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public enum WeaponsData {
     OBSIDIAN_DAGGER(CTW.OBSIDIAN_DAGGER.getId(),MetallicsArts.MOD_ID + "_obsidian_dagger",MetallicsArts.MOD_ID + ":textures/item/combat/obsidian_dagger.png"),
     CRYSTAL_DAGGER(CTW.CRYSTAL_DAGGER.getId(),MetallicsArts.MOD_ID + "_cristal_dagger",MetallicsArts.MOD_ID + ":textures/item/combat/cristal_dagger.png"),
@@ -18,10 +24,20 @@ public enum WeaponsData {
         this.icon = icon;
     }
 
+    /**
+     * Returns the icon path of the crafting material.
+     *
+     * @return the icon path of the crafting material.
+     */
     public String getIcon() {
         return icon;
     }
 
+    /**
+     * Returns the id of the crafting material.
+     *
+     * @return the id of the crafting material.
+     */
     public String getId() {
         return id;
     }

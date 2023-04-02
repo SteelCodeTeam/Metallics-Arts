@@ -2,6 +2,16 @@ package net.rudahee.metallics_arts.data.enums.implementations.languages;
 
 import net.rudahee.metallics_arts.data.enums.interfaces.ILanguage;
 
+
+/**
+ * Enum that represents a set of colors with their names in English, Spanish and Polish.
+ * Implements the ILanguage interface.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ *
+ * @see ILanguage
+ */
 public enum ColorsNames implements ILanguage {
     WHITE("white","white", "blanco", "biały"),
     ORANGE("orange","orange","naranja", "pomarańczowy"),
@@ -25,6 +35,14 @@ public enum ColorsNames implements ILanguage {
     private final String spanish;
     private final String polish;
 
+    /**
+     * Constructor for ColorsNames object.
+     *
+     * @param id The id of the color.
+     * @param english The name of the color in English.
+     * @param spanish The name of the color in Spanish.
+     * @param polish The name of the color in Polish.
+     */
     ColorsNames(String id, String english, String spanish, String polish) {
         this.id = id;
         this.english = english;
@@ -32,20 +50,40 @@ public enum ColorsNames implements ILanguage {
         this.polish = polish;
     }
 
+    /**
+     * Gets the identifier of the color.
+     *
+     * @return the identifier of the color
+     */
     public String getId() {
         return this.id;
     }
 
+    /**
+     * Gets the name of the color in Spanish.
+     *
+     * @return the name of the color in Spanish
+     */
     @Override
     public String getNameInSpanish() {
         return this.spanish;
     }
 
+    /**
+     * Gets the name of the color in English.
+     *
+     * @return the name of the color in English
+     */
     @Override
     public String getNameInEnglish() {
         return this.english;
     }
 
+    /**
+     * Gets the name of the color in Polish.
+     *
+     * @return the name of the color in Polish
+     */
     public String getNameInPolish(){
         return this.polish;
     }

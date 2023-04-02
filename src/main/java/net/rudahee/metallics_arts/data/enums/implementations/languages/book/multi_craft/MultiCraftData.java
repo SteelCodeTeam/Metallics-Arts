@@ -2,6 +2,12 @@ package net.rudahee.metallics_arts.data.enums.implementations.languages.book.mul
 
 import net.rudahee.metallics_arts.MetallicsArts;
 
+/**
+ * This enum contains auxiliary information about the crafting of the book entries.
+ *
+ * @author SteelCode Team
+ * @since 1.5.1
+ */
 public enum MultiCraftData {
     VIALS("vials", MetallicsArts.MOD_ID + ":textures/item/consumables/large_vial_fill.png"),
     RINGS("rings",MetallicsArts.MOD_ID + ":textures/item/metal_mind/gold_electrum_ring.png"),
@@ -14,16 +20,31 @@ public enum MultiCraftData {
     private final String id;
     private final String icon;
 
+    /**
+     * Constructs a new MultiCraftData object with the given id and icon.
+     *
+     * @param id the id of the crafting material.
+     * @param icon the icon path of the crafting material.
+     */
     MultiCraftData(String id, String icon) {
         this.id = id;
         this.icon = icon;
     }
 
+    /**
+     * Returns the id of the crafting material.
+     *
+     * @return the id of the crafting material.
+     */
     public String getId() {
         return id;
     }
 
-
+    /**
+     * Returns the icon path of the crafting material.
+     *
+     * @return the icon path of the crafting material.
+     */
     public String getIcon() {
         return icon;
     }

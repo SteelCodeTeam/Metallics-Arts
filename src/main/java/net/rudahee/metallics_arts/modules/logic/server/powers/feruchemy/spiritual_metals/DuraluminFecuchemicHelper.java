@@ -10,7 +10,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
-import net.rudahee.metallics_arts.modules.test.ModEffects;
+import net.rudahee.metallics_arts.modules.effects.ModEffects;
 
 import java.util.function.Supplier;
 

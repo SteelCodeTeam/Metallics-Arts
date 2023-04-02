@@ -65,7 +65,6 @@ public class OnTickUtils {
             player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 10, 2, true, true, false));
         }
     }
-    private static int buffNicrosilDuralumin = -1;
 
     /**
      * This method is in charge of applying the improved effects of duralumin or nicrosil applied by another player.
@@ -78,6 +77,8 @@ public class OnTickUtils {
      *
      * @see NicrosilAllomanticHelper
      */
+
+    private static int buffNicrosilDuralumin = -1;
     public static void duraluminAndExternalNicrosilEffect(IInvestedPlayerData playerCapability, Player player) {
         if (playerCapability.isBurning(MetalTagEnum.DURALUMIN)) {
             if ((playerCapability.getAllomanticAmount(MetalTagEnum.DURALUMIN) > (MetalTagEnum.DURALUMIN.getMaxAllomanticTicksStorage()*0.88)) || (buffNicrosilDuralumin != -1)){

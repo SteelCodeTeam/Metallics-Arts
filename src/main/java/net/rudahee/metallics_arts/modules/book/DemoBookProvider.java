@@ -31,14 +31,28 @@ import java.util.ArrayList;
 
 public class DemoBookProvider extends BookProvider {
 
+    /**
+     * Constructs a new DemoBookProvider.
+     *
+     * @param generator The DataGenerator object used to generate the book data.
+     * @param modid The ID of the mod that the book belongs to.
+     * @param lang The LanguageProvider object used to provide translations for the book.
+     */
     public DemoBookProvider(DataGenerator generator, String modid, LanguageProvider lang) {
         super(generator, modid, lang);
     }
 
+    /**
+     * Creates a demo book with the given book name using the language helper of the mod.
+     * This book includes categories for introductions, allomancy, and feruchemy.
+     *
+     * @param bookName the name of the book to be created.
+     *
+     * @return a {@link BookModel} object representing the demo book.
+     */
     private BookModel makeDemoBook(String bookName) {
 
         BookLangHelper helper = ModonomiconAPI.get().getLangHelper(this.modid);
-
 
         helper.book(bookName);
 
@@ -46,9 +60,7 @@ public class DemoBookProvider extends BookProvider {
         BookCategoryModel allomancyCategory = this.allomancyCategory(helper);
         BookCategoryModel feruchemyCategory = this.feruchemyCategory(helper);
 
-
-
-        BookModel demoBook = BookModel.builder()
+        return BookModel.builder()
                 .withId(this.modLoc(bookName))
                 .withName(helper.bookName())
                 .withTooltip(helper.bookTooltip())
@@ -57,11 +69,19 @@ public class DemoBookProvider extends BookProvider {
                 .withCreativeTab(MetallicsArts.MA_TAB.getRecipeFolderName())
                 .withCategories(introCategory, allomancyCategory, feruchemyCategory)
                 .build();
-        return demoBook;
     }
 
+    /**
+     * Creates a BookCategoryModel instance for the "Intro" category, containing various entries related to weapons, crafting, and items.
+     *
+     * @param helper The BookLangHelper instance used to create language keys.
+     *
+     * @return A BookCategoryModel instance representing the "Intro" category.
+     */
     private BookCategoryModel introCategory(BookLangHelper helper) {
+        // Sets the category name
         helper.category("intro");
+        // Define a map used to determine the position of entries in the book.
         EntryLocationHelper entryHelper = ModonomiconAPI.get().getEntryLocationHelper();
         entryHelper.setMap(
                 "________________________________",
@@ -80,6 +100,7 @@ public class DemoBookProvider extends BookProvider {
                 "________________________________"
         );
 
+        // Create various entries and entry parents.
         BookEntryModel welcome = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.WELCOME);
         BookEntryModel weapons = this.subDivisionEntry(helper, entryHelper, 'a', SubdivisionData.WEAPONS, welcome);
 
@@ -93,7 +114,6 @@ public class DemoBookProvider extends BookProvider {
         BookEntryModel obsidianAxe = this.weaponsEntry(helper, entryHelper, 'f', weapons, WeaponsData.OBSIDIAN_AXE);
         BookEntryModel kolossBlade = this.weaponsEntry(helper, entryHelper, 'g', weapons, WeaponsData.KOLOSS_BLADE);
         BookEntryModel duelingStaff = this.weaponsEntry(helper, entryHelper, 'h', weapons, WeaponsData.DUELING_STAFF);
-
 
         BookEntryModel vials = this.multiCraftsItemsEntry(helper, entryHelper, 'j', MultiCraftData.VIALS, GetItemsUtils.getVialsList(), craftingParent);
         BookEntryModel rings = this.multiCraftsItemsEntry(helper, entryHelper, 'k', MultiCraftData.RINGS, GetItemsUtils.getRingList(), craftingParent);
@@ -114,9 +134,19 @@ public class DemoBookProvider extends BookProvider {
                 .build();
     }
 
+    /**
+     * Generates a BookCategoryModel for the "Allomancy" category using the provided BookLangHelper.
+     * The category contains entries for each Allomantic power, divided into subdivisions based on metal type.
+     *
+     * @param helper The BookLangHelper to use for generating the category and entry names.
+     *
+     * @return A BookCategoryModel for the "Allomancy" category.
+     */
     private BookCategoryModel allomancyCategory(BookLangHelper helper) {
+        // Sets the category name
         helper.category("allomancy");
 
+        // Set up the entry location helper with a map of positions for the entries.
         EntryLocationHelper entryHelper = ModonomiconAPI.get().getEntryLocationHelper();
         entryHelper.setMap(
                 "________i_____________a________",
@@ -134,6 +164,7 @@ public class DemoBookProvider extends BookProvider {
                 "_____________x___y______________"
         );
 
+        // Generate entries for each subdivision and Allomantic powers.
         BookEntryModel allomancy = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.ALLOMANCY);
 
         BookEntryModel physical = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionData.PHYSICAL, allomancy);
@@ -167,7 +198,6 @@ public class DemoBookProvider extends BookProvider {
         BookEntryModel lerasium = this.allomancyPowerEntry(helper, entryHelper, 'y',MetalTagEnum.LERASIUM, divine);
         BookEntryModel ettmetal = this.allomancyPowerEntry(helper, entryHelper, 'z',MetalTagEnum.ETTMETAL, divine);
 
-
         //.withBackground(new ResourceLocation(MetallicsArts.MOD_ID + ":textures/icons/background.png"))
         return BookCategoryModel.builder()
                 .withId(this.modLoc(helper.category))
@@ -177,12 +207,18 @@ public class DemoBookProvider extends BookProvider {
                 .build();
     }
 
+    /**
+     * Generates a BookCategoryModel for the Feruchemy category with all its corresponding entries and sub-entries.
+     *
+     * @param helper A BookLangHelper to assist with generating the category name.
+     *
+     * @return A BookCategoryModel containing all the entries and sub-entries for the Feruchemy category.
+     */
     private BookCategoryModel feruchemyCategory(BookLangHelper helper) {
-        helper.category("feruchemy"); //tell our lang helper the category we are in
+        // Sets the category name
+        helper.category("feruchemy");
 
-        //the entry helper is the second helper for book datagen
-        //it allows us to place entries in the category without manually defining the coordinates.
-        //each letter can be used to represent an entry
+        // Set up the entry location helper with a map of positions for the entries.
         EntryLocationHelper entryHelper = ModonomiconAPI.get().getEntryLocationHelper();
         entryHelper.setMap(
                 "________i_____________a________",
@@ -200,6 +236,7 @@ public class DemoBookProvider extends BookProvider {
                 "_____________x___y______________"
         );
 
+        // Generates all the entries and sub-entries for the Feruchemy category
         BookEntryModel feruchemy = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.FERUCHEMY);
 
         BookEntryModel physical = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionData.PHYSICAL, feruchemy);
@@ -237,26 +274,39 @@ public class DemoBookProvider extends BookProvider {
         //lista de entradas
 
         return BookCategoryModel.builder()
-                .withId(this.modLoc(helper.category)) //the id of the category, as stored in the lang helper. modLoc() prepends the mod id.
-                .withName(helper.categoryName()) //the name of the category. The lang helper gives us the correct translation key.
-                .withIcon("minecraft:gold_ingot") //the icon for the category. In this case we simply use an existing item.
+                .withId(this.modLoc(helper.category))
+                .withName(helper.categoryName())
+                .withIcon("minecraft:gold_ingot")
                 .withEntries(iron,steel,tin,pewter,gold,electrum,cadmium,bendalloy,copper,bronze,zinc,brass,aluminum,duralumin,chromium,nicrosil,cognitive,physical,feruchemy,spiritual,hybrid,atium,malatium,lerasium,ettmetal,divine)
                 .build();
     }
 
+    /**
+     * Creates a BookEntryModel for a multi-crafts item entry.
+     *
+     * @param helper the BookLangHelper used to get the entry's text and title.
+     * @param entryHelper the EntryLocationHelper used to map the entry's location.
+     * @param location the location where the entry will be placed.
+     * @param multiCraftEntry the MultiCraftData for the item.
+     * @param recipeList the ArrayList of recipe IDs.
+     * @param parents the parent BookEntryParentModels of the entry (optional).
+     *
+     * @return the BookEntryModel for the multi-crafts item entry
+     */
     private BookEntryModel multiCraftsItemsEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, MultiCraftData multiCraftEntry, ArrayList<String> recipeList, BookEntryParentModel... parents) {
-        helper.entry(multiCraftEntry.getId() + "_entry"); //tell our lang helper the entry we are in
+        helper.entry(multiCraftEntry.getId() + "_entry");
         ArrayList<BookPageModel> list = new ArrayList<>();
-        // PAGINA
-        helper.page("items_description"); //and now the page
+
+        // Add item description page
+        helper.page("items_description");
         BookTextPageModel page =
                 BookTextPageModel.builder()
-                        .withText(helper.pageText()) //lang key for the text
-                        .withTitle(helper.pageTitle()) //and for the title
+                        .withText(helper.pageText())
+                        .withTitle(helper.pageTitle())
                         .build();
-        // PAGINA
 
         list.add(page);
+        // Add recipe pages
         while (!recipeList.isEmpty()) {
             list.add(BookCraftingRecipePageModel.builder()
                     .withRecipeId1(recipeList.remove(0))
@@ -265,149 +315,205 @@ public class DemoBookProvider extends BookProvider {
         }
 
         return BookEntryModel.builder()
-                .withId(this.modLoc(helper.category + "/" + helper.entry))    //make entry id from lang helper data
-                .withName(helper.entryName())                                       //entry name lang key
-                .withDescription(helper.entryDescription())                         //entry description lang key
-                .withIcon(multiCraftEntry.getIcon())                    //we use furnace as icon
-                .withLocation(entryHelper.get(location))                            //and we place it at the location we defined earlier in the entry helper mapping
+                .withId(this.modLoc(helper.category + "/" + helper.entry))
+                .withName(helper.entryName())
+                .withDescription(helper.entryDescription())
+                .withIcon(multiCraftEntry.getIcon())
+                .withLocation(entryHelper.get(location))
                 .withParents(parents)
-                .withPages(list.toArray(new BookPageModel[0]))                                                //finally we add our pages to the entry
-                .build();
-    }
-
-    private BookEntryModel weaponsEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, BookEntryModel parent, WeaponsData weaponsEntry) {
-        helper.entry(weaponsEntry.getId() + "_entry"); //tell our lang helper the entry we are in
-
-        // PAGINA
-        helper.page("weapon_description"); //and now the page
-        BookTextPageModel page =
-                BookTextPageModel.builder()
-                        .withText(helper.pageText()) //lang key for the text
-                        .withTitle(helper.pageTitle()) //and for the title
-                        .build();
-        // PAGINA
-        helper.page("weapon_craft"); //and now the page
-        BookCraftingRecipePageModel page2 =
-                BookCraftingRecipePageModel.builder()
-                        .withRecipeId1(weaponsEntry.getRecipe())
-                        .build();
-
-
-
-        return BookEntryModel.builder()
-                .withId(this.modLoc(helper.category + "/" + helper.entry))  //make entry id from lang helper data
-                .withName(helper.entryName())                                    //entry name lang key
-                .withDescription(helper.entryDescription())                     //entry description lang key
-                .withIcon(weaponsEntry.getIcon())                                  //we use furnace as icon
-                .withLocation(entryHelper.get(location))                        //and we place it at the location we defined earlier in the entry helper mapping
-                .withParent(parent)
-                .withPages(page,page2)                                                //finally we add our pages to the entry
+                .withPages(list.toArray(new BookPageModel[0]))
                 .build();
     }
 
 
+    /**
+     * Generates a BookEntryModel object for a weapons entry based on the given WeaponsData object.
+     *
+     * @param helper The BookLangHelper used to generate the entry's name, description, and pages.
+     * @param entryHelper The EntryLocationHelper used to determine the entry's location within the book.
+     * @param location The character representing the location of the entry within the book.
+     * @param parent The parent BookEntryModel object for the entry.
+     * @param weaponsEntry The WeaponsData object containing information about the weapons entry.
+     *
+     * @return A BookEntryModel object representing the weapons entry.
+     */
+     private BookEntryModel weaponsEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, BookEntryModel parent, WeaponsData weaponsEntry) {
+         // Set the entry name and ID using the WeaponsData object.
+         helper.entry(weaponsEntry.getId() + "_entry");
+         // Create the first page for the entry.
+         helper.page("weapon_description");
+         BookTextPageModel page =
+                 BookTextPageModel.builder()
+                         .withText(helper.pageText())
+                         .withTitle(helper.pageTitle())
+                         .build();
+         // Create the second page for the entry, containing the crafting recipe.
+         helper.page("weapon_craft");
+         BookCraftingRecipePageModel page2 =
+                 BookCraftingRecipePageModel.builder()
+                         .withRecipeId1(weaponsEntry.getRecipe())
+                         .build();
+
+         // Create and return the BookEntryModel object for the weapons entry.
+         return BookEntryModel.builder()
+                 .withId(this.modLoc(helper.category + "/" + helper.entry))
+                 .withName(helper.entryName())
+                 .withDescription(helper.entryDescription())
+                 .withIcon(weaponsEntry.getIcon())
+                 .withLocation(entryHelper.get(location))
+                 .withParent(parent)
+                 .withPages(page,page2)
+                 .build();
+     }
+
+    /**
+     * Generates a new BookEntryModel object for a subdivision entry in the book.
+     *
+     * @param helper BookLangHelper object containing the necessary language keys and data for the entry.
+     * @param entryHelper EntryLocationHelper object containing the necessary location mapping data for the entry.
+     * @param location char indicating the location in the book where the entry will be placed.
+     * @param subdivisionEntry SubdivisionData object containing the necessary data for the subdivision entry.
+     * @param parent BookEntryModel object indicating the parent entry of the subdivision entry.
+     *
+     * @return a new BookEntryModel object representing the subdivision entry.
+     */
     private BookEntryModel subDivisionEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, SubdivisionData subdivisionEntry, BookEntryModel parent) {
-        helper.entry(subdivisionEntry.getId() + "_entry"); //tell our lang helper the entry we are in
+        helper.entry(subdivisionEntry.getId() + "_entry");
 
-        // PAGINA
-        helper.page("page"); //and now the page
+        helper.page("page");
         BookTextPageModel page =
                 BookTextPageModel.builder()
-                        .withText(helper.pageText()) //lang key for the text
-                        .withTitle(helper.pageTitle()) //and for the title
+                        .withText(helper.pageText())
+                        .withTitle(helper.pageTitle())
                         .build();
 
         return BookEntryModel.builder()
-                .withId(this.modLoc(helper.category + "/" + helper.entry))  //make entry id from lang helper data
-                .withName(helper.entryName())                                    //entry name lang key
-                .withDescription(helper.entryDescription())                     //entry description lang key
-                .withIcon(subdivisionEntry.getIcon())                                  //we use furnace as icon
-                .withLocation(entryHelper.get(location))                        //and we place it at the location we defined earlier in the entry helper mapping
+                .withId(this.modLoc(helper.category + "/" + helper.entry))
+                .withName(helper.entryName())
+                .withDescription(helper.entryDescription())
+                .withIcon(subdivisionEntry.getIcon())
+                .withLocation(entryHelper.get(location))
                 .withParent(parent)
-                .withPages(page)                                                //finally we add our pages to the entry
+                .withPages(page)
                 .build();
     }
 
+
+    /**
+     * Generates a book entry for an Allomancy power associated with a metal. The entry includes a description page and a page
+     * about the interactions of the power with other elements in the game.
+     *
+     * @param helper The language helper object that contains the necessary strings for the entry.
+     * @param entryHelper The helper object for determining the location of the entry in the book.
+     * @param location The location in the book where the entry should be placed.
+     * @param metal The metal associated with the power.
+     * @param parent The parent entry for the new entry.
+     *
+     * @return A BookEntryModel object representing the new entry.
+     */
     private BookEntryModel allomancyPowerEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, MetalTagEnum metal, BookEntryModel parent) {
-        helper.entry(metal.getNameLower() + "_entry"); //tell our lang helper the entry we are in
+        // Generate entry id based on metal name
+        helper.entry(metal.getNameLower() + "_entry");
 
-        // PAGINA
-        helper.page("power_description"); //and now the page
+        // Add description page
+        helper.page("power_description");
         BookTextPageModel page =
                 BookTextPageModel.builder()
-                        .withText(helper.pageText()) //lang key for the text
-                        .withTitle(helper.pageTitle()) //and for the title
+                        .withText(helper.pageText())
+                        .withTitle(helper.pageTitle())
                         .build();
-        // PAGINA
-        helper.page("power_interactions"); //and now the page
+
+        // Add page about power interactions
+        helper.page("power_interactions");
         BookTextPageModel page2 =
                 BookTextPageModel.builder()
-                        .withText(helper.pageText()) //lang key for the text
-                        .withTitle(helper.pageTitle()) //and for the title
-                        .build();              //we start with a text page
+                        .withText(helper.pageText())
+                        .withTitle(helper.pageTitle())
+                        .build();
 
-
-
+        // Create and return new entry
         return BookEntryModel.builder()
-                .withId(this.modLoc(helper.category + "/" + helper.entry))  //make entry id from lang helper data
-                .withName(helper.entryName())                                     //entry name lang key
-                .withDescription(helper.entryDescription())                     //entry description lang key
-                .withIcon("metallics_arts:" + metal.getNameLower() + "_allomantic_icon")                                  //we use furnace as icon
-                .withLocation(entryHelper.get(location))                        //and we place it at the location we defined earlier in the entry helper mapping
+                .withId(this.modLoc(helper.category + "/" + helper.entry))
+                .withName(helper.entryName())
+                .withDescription(helper.entryDescription())
+                .withIcon("metallics_arts:" + metal.getNameLower() + "_allomantic_icon")
+                .withLocation(entryHelper.get(location))
                 .withParent(parent)
-                .withPages(page,page2)                                                //finally we add our pages to the entry
+                .withPages(page,page2)
                 .build();
     }
 
+
+    /**
+     * Creates a BookEntryModel object for a Feruchemy Power entry in the Metallic Arts book.
+     *
+     * @param helper The BookLangHelper object used for generating language-related content for the entry.
+     * @param entryHelper The EntryLocationHelper object used for specifying the location of the entry in the book.
+     * @param location The location of the entry in the book.
+     * @param metal The MetalTagEnum corresponding to the metal that the Feruchemy power is associated with.
+     * @param parent The parent BookEntryModel object of this entry.
+     *
+     * @return A BookEntryModel object for a Feruchemy Power entry in the Metallic Arts book.
+     */
     private BookEntryModel feruchemyPowerEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, MetalTagEnum metal, BookEntryModel parent) {
-        helper.entry(metal.getNameLower() + "_entry"); //tell our lang helper the entry we are in
 
-        // PAGINA
-        helper.page("power_storage");                           //and now the page
+        helper.entry(metal.getNameLower() + "_entry");
+
+        helper.page("power_storage");
         BookTextPageModel page =
                 BookTextPageModel.builder()
-                        .withText(helper.pageText()) //lang key for the text
-                        .withTitle(helper.pageTitle()) //and for the title
+                        .withText(helper.pageText())
+                        .withTitle(helper.pageTitle())
                         .build();
-        // PAGINA
-        helper.page("power_tap"); //and now the page
+
+        helper.page("power_tap");
         BookTextPageModel page2 =
                 BookTextPageModel.builder()
-                        .withText(helper.pageText()) //lang key for the text
-                        .withTitle(helper.pageTitle()) //and for the title
+                        .withText(helper.pageText())
+                        .withTitle(helper.pageTitle())
                         .build();
 
-
         return BookEntryModel.builder()
-                .withId(this.modLoc(helper.category + "/" + helper.entry))  //make entry id from lang helper data
-                .withName(helper.entryName())                                    //entry name lang key
-                .withDescription(helper.entryDescription())                     //entry description lang key
-                .withIcon("metallics_arts:" + metal.getNameLower() + "_feruchemic_icon")                                  //we use furnace as icon
-                .withLocation(entryHelper.get(location))                        //and we place it at the location we defined earlier in the entry helper mapping
+                .withId(this.modLoc(helper.category + "/" + helper.entry))
+                .withName(helper.entryName())
+                .withDescription(helper.entryDescription())
+                .withIcon("metallics_arts:" + metal.getNameLower() + "_feruchemic_icon")
+                .withLocation(entryHelper.get(location))
                 .withParent(parent)
-                .withPages(page,page2)                                           //finally we add our pages to the entry
+                .withPages(page,page2)
                 .build();
     }
 
+    /**
+     * Generates a book entry for a welcome power, which introduces the player to the mod.
+     *
+     * @param helper the BookLangHelper object used to generate the entry's name, description, and pages.
+     * @param entryHelper the EntryLocationHelper object used to determine the entry's location.
+     * @param location the location of the entry within the book.
+     * @param subdivisionData the data for the subdivision associated with the entry.
+     *
+     * @return a BookEntryModel representing the welcome power entry.
+     */
     private BookEntryModel welcomePowerEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, SubdivisionData subdivisionData) {
         helper.entry(subdivisionData.getId() + "_entry");
 
-        // PAGINA
-        helper.page("page1"); //and now the page
+        // Generate the first page of the entry
+        helper.page("page1");
         BookTextPageModel page =
                 BookTextPageModel.builder()
-                        .withText(helper.pageText()) //lang key for the text
-                        .withTitle(helper.pageTitle()) //and for the title
+                        .withText(helper.pageText())
+                        .withTitle(helper.pageTitle())
                         .build();
-        // PAGINA
-        helper.page("page2"); //and now the page
+
+        // Generate the second page of the entry
+        helper.page("page2");
         BookTextPageModel page2 =
                 BookTextPageModel.builder()
-                        .withText(helper.pageText()) //lang key for the text
-                        .withTitle(helper.pageTitle()) //and for the title
+                        .withText(helper.pageText())
+                        .withTitle(helper.pageTitle())
                         .build();
 
-
+        // Build and return the book entry model
         return BookEntryModel.builder()
                 .withId(this.modLoc(helper.category + "/" + helper.entry))
                 .withName(helper.entryName())
@@ -418,10 +524,13 @@ public class DemoBookProvider extends BookProvider {
                 .build();
     }
 
+
+    /**
+     * Generates a demo book called "metallics_arts_book" and adds it to the registry.
+     */
     @Override
     protected void generate() {
         BookModel demoBook = this.makeDemoBook("metallics_arts_book");
-
         this.add(demoBook);
     }
 }

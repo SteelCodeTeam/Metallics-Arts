@@ -11,8 +11,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.AtiumFecuchemicHelper;
-import net.rudahee.metallics_arts.modules.test.ModEffects;
-import net.rudahee.metallics_arts.modules.test.PowerEffect;
+import net.rudahee.metallics_arts.modules.effects.ModEffects;
 
 import java.util.function.Supplier;
 
