@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
@@ -30,7 +31,7 @@ public class GoldFecuchemicHelper extends AbstractFechuchemicHelper {
         if (OnTickUtils.activationEvery30Tick(OnWorldTickEvent.getActualTick())) {
             player.setHealth(player.getHealth()+1);
         }
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_gold_tap").get(), 10, 0, true, true));
+        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.GOLD);
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -47,7 +48,7 @@ public class GoldFecuchemicHelper extends AbstractFechuchemicHelper {
                 player.hurt(DamageSource.GENERIC, 1);
             }
         }
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_gold_storage").get(), 10, 0, true, true));
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.GOLD);
     }
 
     /**

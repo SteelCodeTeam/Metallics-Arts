@@ -9,7 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
 public class PowerEffect extends MobEffect {
 
     public PowerEffect(MobEffectCategory mobEffectCategory, int color) {
-        super(mobEffectCategory,color);
+        super(mobEffectCategory, color);
     }
     @Override
     public boolean isDurationEffectTick(int pDuration, int pAmplificador) {

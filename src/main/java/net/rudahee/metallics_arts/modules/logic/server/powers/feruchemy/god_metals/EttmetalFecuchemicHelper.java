@@ -4,6 +4,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Explosion;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.test.ModEffects;
@@ -26,7 +27,7 @@ public class EttmetalFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tapPower(Player player) {
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_ettmetal_tap").get(), 10, 0, true, true));
+        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.ETTMETAL);
     }
 
     /**
@@ -37,7 +38,7 @@ public class EttmetalFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_ettmetal_storage").get(), 10, 0, true, true));
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.ETTMETAL);
     }
 
     /**

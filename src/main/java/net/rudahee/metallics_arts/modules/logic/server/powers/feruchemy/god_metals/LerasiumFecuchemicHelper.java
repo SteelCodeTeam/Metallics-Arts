@@ -28,7 +28,7 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tapPower(Player player) {
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_lerasium_tap").get(), 10, 0, true, true));
+        ModEffects.giveFeruchemicalTapEffect(player,MetalTagEnum.BRASS);
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -38,7 +38,7 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_lerasium_storage").get(), 10, 0, true, true));
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.LERASIUM);
     }
 
     /**

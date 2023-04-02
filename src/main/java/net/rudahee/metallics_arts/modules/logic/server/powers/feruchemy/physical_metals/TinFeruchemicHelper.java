@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.physica
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.test.ModEffects;
 
@@ -27,7 +28,7 @@ public class TinFeruchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void tapPower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 320, 1, true, false, false));
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_tin_tap").get(), 10, 0, true, true));
+        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.TIN);
     }
 
     /**
@@ -41,7 +42,7 @@ public class TinFeruchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60, 1, true, false, false));
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_tin_storage").get(), 10, 0, true, true));
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.TIN);
     }
 
     /**

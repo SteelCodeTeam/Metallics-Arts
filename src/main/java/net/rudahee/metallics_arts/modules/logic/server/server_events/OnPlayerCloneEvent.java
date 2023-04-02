@@ -71,6 +71,7 @@ public class OnPlayerCloneEvent {
                         player.getInventory().setItem(i, stack);
                     }
                 }
+                capability.setEttmetalState(EttmetalState.NOTHING);
             }
 
             original.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).invalidate();

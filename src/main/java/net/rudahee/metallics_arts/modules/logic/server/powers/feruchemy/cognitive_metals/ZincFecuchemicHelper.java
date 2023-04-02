@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cogniti
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 import net.rudahee.metallics_arts.modules.test.ModEffects;
@@ -24,7 +25,7 @@ public class ZincFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tapPower(Player player) {
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_zinc_tap").get(), 10, 0, true, true));
+        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.ZINC);
     }
 
     /**
@@ -35,7 +36,7 @@ public class ZincFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_zinc_storage").get(), 10, 0, true, true));
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.ZINC);
     }
 
     /**
