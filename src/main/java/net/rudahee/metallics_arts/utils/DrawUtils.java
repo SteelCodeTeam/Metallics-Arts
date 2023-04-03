@@ -92,6 +92,8 @@ public class DrawUtils {
      * This method modifies the rendering pipeline by disabling textures and depth testing,
      * setting the depth mask to false, setting the polygon mode to render lines,
      * and enabling blending with a specified blend function.
+     *
+     * @deprecated
      */
     @OnlyIn(Dist.CLIENT)
     public static void patchPoseForATIGraphicCards() {
@@ -113,6 +115,8 @@ public class DrawUtils {
      * @param r      The red component of the line color (0.0f to 1.0f).
      * @param g      The green component of the line color (0.0f to 1.0f).
      * @param b      The blue component of the line color (0.0f to 1.0f).
+     *
+     * @deprecated
      */
     public static void drawMetalLine(PoseStack stack, Vec3 player, Vec3 dest, float width, float r, float g, float b) {
 

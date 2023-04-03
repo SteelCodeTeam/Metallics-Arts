@@ -71,6 +71,7 @@ public class TeleportsUtils {
      */
     public static void multiTeleport (Player player, AABB axisAlignedBB, Level level, ResourceKey<Level> dimension, BlockPos pos) {
         level.getEntitiesOfClass(Player.class, axisAlignedBB).forEach(entity -> {
+
             teleport(entity, level, dimension, pos);
         });
         teleport(player, level, dimension, pos);

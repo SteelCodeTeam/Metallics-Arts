@@ -72,8 +72,6 @@ public class OnRenderLevelStage {
                     FoundNearbyMetalUtils.getMetalBlocks().stream().sorted(Comparator.comparingDouble(e -> -1*(playerPos.subtract(e.getCenter()).normalize().dot(sourceCameraVector.normalize())))).toList());
         }
 
-        PoseStack stack = DrawUtils.setupPoseStack(event, minecraft);
-
         double rho = 1;
         float theta = (float) ((player.getViewYRot(event.getPartialTick()) + 90) * Math.PI / 180);
         float phi = Mth.clamp((float) ((player.getViewXRot(event.getPartialTick()) + 90) * Math.PI / 180), 0.0001F, 3.14F);
@@ -82,9 +80,6 @@ public class OnRenderLevelStage {
                 .getEyePosition(event.getPartialTick())
                 .add(rho * Mth.sin(phi) * Mth.cos(theta), rho * Mth.cos(phi) - 0.35F, rho * Mth.sin(phi) * Mth.sin(theta));
 
-        if (DrawUtils.haveATIGraphicCard()) {
-            DrawUtils.patchPoseForATIGraphicCards();
-        }
 
 //        if (capability.isBurning(MetalTagEnum.IRON)) {
 //            IronMetalLines(stack, playerCameraVector, FoundNearbyMetalUtils.getMetalEntities(), FoundNearbyMetalUtils.getMetalBlocks());
@@ -96,7 +91,7 @@ public class OnRenderLevelStage {
             // /!\ REDO LOGIC /!\
         }
 
-        if (capability.isBurning(MetalTagEnum.GOLD)) {
+       /* if (capability.isBurning(MetalTagEnum.GOLD)) {
             GoldMetalLines(stack, playerCameraVector, player.getLastDeathLocation());
         }
 
@@ -104,12 +99,14 @@ public class OnRenderLevelStage {
             ElectrumMetalLines(stack, playerCameraVector, getRespawnPos());
         }
 
-        if (capability.isBurning(MetalTagEnum.MALATIUM) /*&& otherPlayerDeathPos != null*/) {
+        if (capability.isBurning(MetalTagEnum.MALATIUM) /*&& otherPlayerDeathPos != null) {
             //Vec3 vector = new Vec3(otherPlayerDeathPos.getX(), otherPlayerDeathPos.getY(), otherPlayerDeathPos.getZ());
-            MalatiumMetalLines(stack, playerCameraVector, getRespawnPos() /*Must be changed*/);
+            MalatiumMetalLines(stack, playerCameraVector, getRespawnPos() );
         }
 
         DrawUtils.teardownPoseStack(stack);
+        */
+
     }
 
     private static void metalLines(int tick, float partialTick, Vec3 viewPosition, Matrix4f translationMatrix, Vec3 source, double scale, ResourceLocation texture, int numberOfFrames, int columnWidth, int columnHeight, List<Entity> entities, List<MetalBlockUtils> blocks){

@@ -32,8 +32,9 @@ public class ElectrumAllomanticHelper {
             TeleportsUtils.multiTeleport(player, CapabilityUtils.getBubble(player,5),level,player.getRespawnDimension(),player.getRespawnPosition());
             playerCapability.drainMetals(MetalTagEnum.LERASIUM);
         } else {
-            //tp simple
-            TeleportsUtils.teleport(player, level,player.getRespawnDimension(),player.getRespawnPosition());
+            if (player.getRespawnPosition() != null) {
+                TeleportsUtils.teleport(player, level, player.getRespawnDimension(), player.getRespawnPosition());
+            }
         }
         playerCapability.drainMetals(MetalTagEnum.DURALUMIN, MetalTagEnum.ELECTRUM);
     }

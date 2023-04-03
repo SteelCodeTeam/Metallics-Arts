@@ -35,10 +35,10 @@ public class GoldAllomanticHelper {
                     player.getLastDeathLocation().get().dimension(), player.getLastDeathLocation().get().pos());
             playerCapability.drainMetals(MetalTagEnum.LERASIUM);
         } else {
-            //tp simple
-            TeleportsUtils.teleport(player, level, player.getLastDeathLocation().get().dimension(), player.getLastDeathLocation().get().pos());
+            if (player.getLastDeathLocation().isPresent()) {
+                TeleportsUtils.teleport(player, level, player.getLastDeathLocation().get().dimension(), player.getLastDeathLocation().get().pos());
+            }
         }
-
         playerCapability.drainMetals(MetalTagEnum.DURALUMIN, MetalTagEnum.GOLD);
     }
 }

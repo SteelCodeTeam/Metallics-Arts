@@ -100,16 +100,16 @@ public class FeruchemySelector extends Screen {
             Point yPositivoExterno = new Point(center.x,yPositivo.y-(xPositivo.x- center.x));
 
             //diagonales internos
-            Point intermedioXPosYNeg = new Point(xPositivo.x,yNegativo.y);
-            Point intermedioXPosYPos = new Point(xPositivo.x,yPositivo.y);
-            Point intermedioXNegYNeg = new Point(xNegativo.x,yNegativo.y);
-            Point intermedioXNegYPos = new Point(xNegativo.x,yPositivo.y);
+            Point intermedioXPosYNeg = new Point(xPositivo.x, yNegativo.y);
+            Point intermedioXPosYPos = new Point(xPositivo.x, yPositivo.y);
+            Point intermedioXNegYNeg = new Point(xNegativo.x, yNegativo.y);
+            Point intermedioXNegYPos = new Point(xNegativo.x, yPositivo.y);
 
             //diagonales
-            Point intermedioXPosYNegExterno = new Point(xPositivoExterno.x,yNegativoExterno.y);
-            Point intermedioXPosYPosExterno = new Point(xPositivoExterno.x,yPositivoExterno.y);
-            Point intermedioXNegYNegExterno = new Point(xNegativoExterno.x,yNegativoExterno.y);
-            Point intermedioXNegYPosExterno = new Point(xNegativoExterno.x,yPositivoExterno.y);
+            Point intermedioXPosYNegExterno = new Point(xPositivoExterno.x, yNegativoExterno.y);
+            Point intermedioXPosYPosExterno = new Point(xPositivoExterno.x, yPositivoExterno.y);
+            Point intermedioXNegYNegExterno = new Point(xNegativoExterno.x, yNegativoExterno.y);
+            Point intermedioXNegYPosExterno = new Point(xNegativoExterno.x, yPositivoExterno.y);
 
 
             int large = xPositivo.x-center.x;
