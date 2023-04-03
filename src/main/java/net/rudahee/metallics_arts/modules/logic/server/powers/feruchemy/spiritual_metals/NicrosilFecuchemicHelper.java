@@ -27,7 +27,7 @@ public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tapPower(Player player) {
-        ModEffects.giveFeruchemicalTapEffect(player,MetalTagEnum.BRASS);
+        ModEffects.giveFeruchemicalTapEffect(player,MetalTagEnum.NICROSIL);
     }
 
     /**

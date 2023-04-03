@@ -6,7 +6,12 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,6 +25,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.Abstract
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.MetalMindsUtils;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -142,6 +148,42 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
     @Override
     public boolean canEquip(SlotContext slotContext, ItemStack stack) {
         ICurioItem.super.canEquip(slotContext, stack);
+        if(!stack.hasTag()) {
+            stack.setTag(addRingTags());
+        }
+        Player player = (Player) slotContext.entity();
+        IInvestedPlayerData data;
+        try {
+            data = CapabilityUtils.getCapability(player);
+        } catch (PlayerException e) {
+            e.printResumeLog();
+            return false;
+        }
+        boolean canEquip = false;
+        if (data != null) {
+            canEquip = !(data.hasMetalMindEquiped(this.metals[0].getGroup()));
+        }
+        if (canEquip){
+            if (!stack.getTag().getString("key").equals(unkeyedString)
+                    && !player.getStringUUID().equals(stack.getTag().getString("key"))){
+                canEquip = false;
+            }
+        }
+        return canEquip;
+    }
+
+    /**
+     * This method checks the player's internal information, to verify that they do not have a Metal Mind of the type they wish to auto-equip equipped.
+     *
+     * @param slotContext slot in which the item tries to be placed.
+     * @param stack item that is currently in the slot.
+     *
+     * @return boolean that indicates if the item can auto-equip.
+     *
+     */
+    @Override
+    public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
+        ICurioItem.super.canEquipFromUse(slotContext, stack);
         if(!stack.hasTag()) {
             stack.setTag(addRingTags());
         }
@@ -316,6 +358,8 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
         }
         ICurioItem.super.curioTick(slotContext, stack);
     }
+
+
 
     /**
      * Returns the first supplier of type E.

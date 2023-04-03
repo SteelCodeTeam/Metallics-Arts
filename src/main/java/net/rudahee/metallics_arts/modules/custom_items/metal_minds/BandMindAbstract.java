@@ -155,6 +155,41 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
         ICurioItem.super.canEquip(slotContext, stack);
         return canEquip;
     }
+    /**
+     * This method checks the player's internal information, to verify that they do not have a Metal Mind of the type they wish to auto-equip equipped.
+     *
+     * @param slotContext slot in which the item tries to be placed.
+     * @param stack item that is currently in the slot.
+     *
+     * @return boolean that indicates if the item can auto-equip.
+     *
+     */
+    @Override
+    public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
+        ICurioItem.super.canEquipFromUse(slotContext, stack);
+        Player player = (Player) slotContext.entity();
+        IInvestedPlayerData data;
+        if(!stack.hasTag()) {
+            stack.setTag(addBandTags());
+        }
+        try {
+            data = CapabilityUtils.getCapability(player);
+        } catch (PlayerException e) {
+            e.printResumeLog();
+            return false;
+        }
+        boolean canEquip = false;
+        if (data != null) {
+            canEquip = !(data.hasMetalMindEquiped(this.metals[0].getGroup()));
+        }
+        if (canEquip){
+            if (!stack.getTag().getString("key").equals(unkeyedString)
+                    && !player.getStringUUID().equals(stack.getTag().getString("key"))){
+                canEquip = false;
+            }
+        }
+        return canEquip;
+    }
 
     /**
      * This method uses the internal information of the item to generate add the own Tooltips of the band, for example, owner, and amount of current reservations.
@@ -198,7 +233,6 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
      * Auxiliary method to add tags in a metal mind, in case you didn't have them.
      *
      * @return CompoundTag
-     *
      */
     private CompoundTag addBandTags() {
         CompoundTag nbt = new CompoundTag();
@@ -340,6 +374,8 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
         }
         ICurioItem.super.curioTick(slotContext, stack);
     }
+
+
 
     /**
      * Returns the first supplier of type E.

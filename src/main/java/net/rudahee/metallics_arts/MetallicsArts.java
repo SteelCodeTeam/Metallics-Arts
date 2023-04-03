@@ -146,7 +146,8 @@ public class MetallicsArts {
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
                 ()-> new SlotTypeMessage.Builder("metalmind_slot")
                         .priority(1)
-                        .size(4)
+                        .size(4).
+                        cosmetic()
                         .icon(new ResourceLocation("curios:slot/metal_mind_slot"))
                         .build());
     }
