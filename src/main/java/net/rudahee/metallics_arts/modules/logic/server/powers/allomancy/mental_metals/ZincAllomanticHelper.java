@@ -62,8 +62,8 @@ public class ZincAllomanticHelper {
         } else if (target instanceof Pillager) {
             target.goalSelector.addGoal(2, new RangedCrossbowAttackGoal<>((Pillager) target, 2.0D, 64.0F));
         } else if (target instanceof IronGolem) {
-            target.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 1, true, true));
-            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 4, 1, true, true));
+            target.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 1, false, false));
+            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 4, 1, false, false));
             target.goalSelector.addGoal(1, new MeleeAttackGoal((IronGolem) target, 1.4D, true));
 
         } else if (target instanceof Villager villager) {
@@ -89,8 +89,8 @@ public class ZincAllomanticHelper {
         target.setTarget(source);
         target.setLastHurtByMob(source);
         target.setAggressive(true);
-        target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 2, true, true, true));
-        target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2, true, true, true));
+        target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 2, false, false));
+        target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2, false, false));
 
         if (target instanceof TamableAnimal tameable) {
             tameable.setTame(false);
@@ -107,8 +107,8 @@ public class ZincAllomanticHelper {
         } else if (target instanceof Pillager) {
             target.goalSelector.addGoal(2, new RangedCrossbowAttackGoal<>((Pillager) target, 2.0D, 64.0F));
         } else if (target instanceof IronGolem) {
-            target.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 80, 2, true, true));
-            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 6, 1, true, true));
+            target.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 80, 2, false, false));
+            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 6, 1, false, false));
             target.goalSelector.addGoal(1, new MeleeAttackGoal((IronGolem) target, 1.8D, true));
 
         } else if (target instanceof Villager villager) {

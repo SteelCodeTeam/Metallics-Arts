@@ -60,9 +60,9 @@ public class OnTickUtils {
         if (!(playerCapability.isBurning(MetalTagEnum.PEWTER) || playerCapability.isTapping(MetalTagEnum.PEWTER))
                 && (player.getMainHandItem().getItem() == ModItemsRegister.KOLOSS_BLADE.get() || player.getOffhandItem().getItem() == ModItemsRegister.KOLOSS_BLADE.get())) {
 
-            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 2, true, true, false));
-            player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 10, 2, true, true, false));
-            player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 10, 2, true, true, false));
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 2, false, false));
+            player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 10, 2, false, false));
+            player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 10, 2, false, false));
         }
     }
 

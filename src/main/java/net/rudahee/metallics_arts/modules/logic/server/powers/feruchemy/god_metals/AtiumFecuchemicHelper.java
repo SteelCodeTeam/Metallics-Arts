@@ -41,7 +41,7 @@ public class AtiumFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.GLOWING, 5, 1, true, true));
+        player.addEffect(new MobEffectInstance(MobEffects.GLOWING, 5, 1, false, false));
     }
 
     /**

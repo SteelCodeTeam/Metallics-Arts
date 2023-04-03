@@ -194,9 +194,9 @@ public class MetalSpike extends SwordItem {
                             if (Math.random()<0.75){
                                 targetData.removeAllomanticPower(localMetal);
 
-                                target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
+                                target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, false, false));
 
-                                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
+                                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, false, false));
 
                             }
                             stack.getTag().putBoolean("allomantic_power",true);
@@ -207,9 +207,9 @@ public class MetalSpike extends SwordItem {
                             if (Math.random()<0.75) {
                                 targetData.removeFeruchemicPower(localMetal);
 
-                                target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
+                                target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, false, false));
 
-                                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
+                                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, false, false));
 
                             }
                             stack.getTag().putBoolean("feruchemic_power",true);
@@ -221,8 +221,8 @@ public class MetalSpike extends SwordItem {
                         if (Math.random()<0.75){
                             targetData.removeAllomanticPower(localMetal);
 
-                            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
-                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
+                            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, false, false));
+                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, false, false));
 
                         }
                         stack.getTag().putBoolean("allomantic_power",true);
@@ -232,8 +232,8 @@ public class MetalSpike extends SwordItem {
                     if (Math.random()>0.50){
                         if (Math.random()<0.75) {
                             targetData.removeFeruchemicPower(localMetal);
-                            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
-                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
+                            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, false, false));
+                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, false, false));
                         }
                         stack.getTag().putBoolean("feruchemic_power",true);
                         addItemToPlayer((Player) source, stack);

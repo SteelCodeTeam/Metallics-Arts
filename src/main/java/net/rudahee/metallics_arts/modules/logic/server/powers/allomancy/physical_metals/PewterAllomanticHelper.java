@@ -50,11 +50,10 @@ public class PewterAllomanticHelper {
             digSpeed = 4;
         }
 
-        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 5, digSpeed, true, true));
-        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 5, damage, true, true));
-        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 5, resistence, true, true));
+        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 5, digSpeed, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 5, damage, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 5, resistence, false, false));
 
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_pewter").get(), 5, 0, true, true));
     }
 
     /**
@@ -83,7 +82,7 @@ public class PewterAllomanticHelper {
 
         if (itemInHand.getItem() == ModItemsRegister.OBSIDIAN_DAGGER.get()) {
             if (Math.random() < 0.30d) {
-                target.addEffect(new MobEffectInstance(MobEffects.WITHER, 41, 1, true, true, false));
+                target.addEffect(new MobEffectInstance(MobEffects.WITHER, 41, 1, false, false, false));
             }
         }
 
