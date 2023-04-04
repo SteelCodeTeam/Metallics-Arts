@@ -36,8 +36,6 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("key.metallics_arts.feruchemic_store",CTW.FERUCHEMICAL.getNameInEnglish() + " " +CTW.STORAGE.getNameInEnglish());
                 put("key.metallics_arts.switch_overlay", CTW.SWITCH_OVERLAY.getNameInEnglish());
 
-                put("metallics_arts.patchouli.name_book", CTW.METALLICS_ARTS.getNameInEnglish() + ": " + CTW.GUIDE.getNameInEnglish());
-
                 put("metallics_arts.mental_mind_translate.has_reserve", CTW.HAS_RESERVE.getNameInEnglish());
                 put("metallics_arts.mental_mind_translate.not_has_reserve", CTW.NOT_HAS_RESERVE.getNameInEnglish());
                 put("metallics_arts.spike_feruchemic_power", CTW.STORAGE_POWER.getNameInEnglish() + ": " + CTW.FERUCHEMICAL.getNameInEnglish());

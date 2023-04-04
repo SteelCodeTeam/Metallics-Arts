@@ -34,8 +34,6 @@ public class ModLanguageProviderJP extends LanguageProvider {
         put("key.metallics_arts.feruchemic_store",CTW.FERUCHEMICAL.getNameInJapanese() + " " +CTW.STORAGE.getNameInJapanese());
         put("key.metallics_arts.switch_overlay", CTW.SWITCH_OVERLAY.getNameInJapanese());
 
-        put("metallics_arts.patchouli.name_book", CTW.METALLICS_ARTS.getNameInJapanese() + ": " + CTW.GUIDE.getNameInJapanese());
-
         put("metallics_arts.mental_mind_translate.has_reserve", CTW.HAS_RESERVE.getNameInJapanese());
         put("metallics_arts.mental_mind_translate.not_has_reserve", CTW.NOT_HAS_RESERVE.getNameInJapanese());
         put("metallics_arts.spike_feruchemic_power", CTW.STORAGE_POWER.getNameInJapanese() + ": " + CTW.FERUCHEMICAL.getNameInJapanese());
@@ -52,8 +50,6 @@ public class ModLanguageProviderJP extends LanguageProvider {
         put("metallics_arts.mental_mind.owner_someone", CTW.OWNER_SOMEONE.getNameInJapanese());
         put("metallics_arts.mental_mind_translate.uses", CTW.USES.getNameInJapanese());
 
-
-        put("metallics_arts.patchouli.landing_text", "Soy, por desgracia, el Héroe de las Eras, y tengo una pregunta que hacerte, ¿acaso un hombre no tiene derecho a poseer sus propios metales? No, dice el hombre del Imperio. Pertenece al \"dios\". No, dice el superviviente. Pertenece a todos. No, dice el hombre de Elendel. Pertenece a los pobres. Yo rechacé esas propuestas. En vez de eso elegí algo distinto. Elegi mi propio camino, elegí... Artes Metalicas Mod.");
         put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInJapanese());
         put("item.metallics_arts.cristal_dagger", CTW.CRYSTAL_DAGGER.getNameInJapanese());
         put("item.metallics_arts.koloss_blade", CTW.KOLOSS_BLADE.getNameInJapanese());

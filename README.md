@@ -52,7 +52,6 @@ We sincerely hope you enjoy your trip with us! 🎉
 
 And we have two mandatory dependencies:
 - **Curios 1.19.2-5.1.1.0** or superior
-- **Patchouli 1.19-75** or superior
 
 <br>
 

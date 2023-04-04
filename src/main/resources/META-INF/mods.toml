@@ -29,12 +29,12 @@ displayName="Metallics Arts" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
 #logoFile="examplemod.png" #optional
 # A text field displayed in the mod UI
-credits="A small mod based on Mistborns series. Read Brandon's boooks! Required: Curios API & Patchouli." #optional
+credits="A small mod based on Mistborns series. Read Brandon's boooks! Required: Curios API." #optional
 # A text field displayed in the mod UI
 authors="RuDaHee & TobibusFate as Devs, Farck as Designer." #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-A small mod based on Mistborns series. Read Brandon's boooks! Required: Curios API & Patchouli.
+A small mod based on Mistborns series. Read Brandon's boooks! Required: Curios API.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.metallics_arts]] #optional
