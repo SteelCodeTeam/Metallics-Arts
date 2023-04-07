@@ -40,6 +40,10 @@ public class BronzeAllomanticHelper {
         }
 
         world.getEntitiesOfClass(Mob.class, CapabilityUtils.getBubble(player, radius)).forEach(entity -> {
+            if (entity == null) {
+                return;
+            }
+
             entity.goalSelector.removeGoal(Objects.requireNonNull(entity.goalSelector.getRunningGoals().findFirst().orElse(null)));
             entity.getLookControl().setLookAt(player.position().x, player.position().y, player.position().z);
             entity.getMoveControl().setWantedPosition(player.position().x-0.5F, player.position().y, player.position().z-0.5F, 1.2f);

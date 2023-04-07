@@ -35,7 +35,12 @@ public class TeleportsUtils {
      * @param pos The BlockPos object representing the target position for teleportation.
      */
     public static void teleport(Player player, Level level, ResourceKey<Level> dimension, BlockPos pos) {
+
         if (!level.isClientSide) {
+            if (pos == null || dimension == null) {
+                return;
+            }
+
             if (player != null) {
                 if (player.isPassenger()) {
                     player.stopRiding();

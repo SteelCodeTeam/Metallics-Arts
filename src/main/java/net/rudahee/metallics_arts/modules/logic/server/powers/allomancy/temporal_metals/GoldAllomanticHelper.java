@@ -28,12 +28,14 @@ public class GoldAllomanticHelper {
      * @param player to use the power.
      * @param lerasium if the player is burning Lerasium.
      */
-    public static void teleportToDeathPos (Level level, IInvestedPlayerData playerCapability, ServerPlayer player, boolean lerasium) {
+    public static void teleportToDeathPos(Level level, IInvestedPlayerData playerCapability, ServerPlayer player, boolean lerasium) {
+
         if (lerasium) {
-            //multi tp
-            TeleportsUtils.multiTeleport(player, CapabilityUtils.getBubble(player,5), level,
-                    player.getLastDeathLocation().get().dimension(), player.getLastDeathLocation().get().pos());
-            playerCapability.drainMetals(MetalTagEnum.LERASIUM);
+            if (player.getLastDeathLocation().isPresent()) {
+                TeleportsUtils.multiTeleport(player, CapabilityUtils.getBubble(player, 5), level,
+                        player.getLastDeathLocation().get().dimension(), player.getLastDeathLocation().get().pos());
+                playerCapability.drainMetals(MetalTagEnum.LERASIUM);
+            }
         } else {
             if (player.getLastDeathLocation().isPresent()) {
                 TeleportsUtils.teleport(player, level, player.getLastDeathLocation().get().dimension(), player.getLastDeathLocation().get().pos());
