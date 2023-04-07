@@ -26,13 +26,14 @@ public class ElectrumAllomanticHelper {
      * @param player to use the power.
      * @param lerasium if the player is burning Lerasium.
      */
-    public static void teleportToSpawn (Level level, IInvestedPlayerData playerCapability, ServerPlayer player, boolean lerasium) {
+    public static void teleportToSpawn(Level level, IInvestedPlayerData playerCapability, ServerPlayer player, boolean lerasium) {
         if (lerasium) {
-            //multi tp
-            TeleportsUtils.multiTeleport(player, CapabilityUtils.getBubble(player,5),level,player.getRespawnDimension(),player.getRespawnPosition());
-            playerCapability.drainMetals(MetalTagEnum.LERASIUM);
+            if (player.getRespawnPosition() != null || player.getRespawnDimension() != null) {
+                TeleportsUtils.multiTeleport(player, CapabilityUtils.getBubble(player, 5), level, player.getRespawnDimension(), player.getRespawnPosition());
+                playerCapability.drainMetals(MetalTagEnum.LERASIUM);
+            }
         } else {
-            if (player.getRespawnPosition() != null) {
+            if (player.getRespawnPosition() != null || player.getRespawnDimension() != null) {
                 TeleportsUtils.teleport(player, level, player.getRespawnDimension(), player.getRespawnPosition());
             }
         }

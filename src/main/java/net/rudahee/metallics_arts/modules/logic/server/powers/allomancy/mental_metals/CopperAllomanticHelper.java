@@ -43,6 +43,10 @@ public class CopperAllomanticHelper {
         }
 
         world.getEntitiesOfClass(Mob.class, CapabilityUtils.getBubble(player, radius)).forEach(entity -> {
+            if (entity == null) {
+                return;
+            }
+
             if (!(entity instanceof WitherBoss) && !(entity instanceof EnderDragon)) {
                 entity.goalSelector.removeGoal(Objects.requireNonNull(entity.goalSelector.getRunningGoals().findFirst().orElse(null)));
                 entity.goalSelector.addGoal(1, new LookAtPlayerGoal(entity, Player.class, 1.0f));
