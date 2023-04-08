@@ -1,8 +1,17 @@
 package net.rudahee.metallics_arts.modules.custom_items.metal_spikes;
 
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.CriterionTriggerInstance;
+import net.minecraft.advancements.critereon.PlayerTrigger;
+import net.minecraft.advancements.critereon.TradeTrigger;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.commands.AdvancementCommands;
+import net.minecraft.server.commands.TriggerCommand;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -50,6 +59,38 @@ public class MetalSpike extends SwordItem {
 
     private MetalTagEnum metalSpike;
 
+    private static final Tier tier = new Tier() {
+        @Override
+        public int getUses() {
+            return 1;
+        }
+
+        @Override
+        public float getSpeed() {
+            return 0;
+        }
+
+        @Override
+        public float getAttackDamageBonus() {
+            return 0;
+        }
+
+        @Override
+        public int getLevel() {
+            return 0;
+        }
+
+        @Override
+        public int getEnchantmentValue() {
+            return 0;
+        }
+
+        @Override
+        public @NotNull Ingredient getRepairIngredient() {
+            return Ingredient.of(Blocks.AIR);
+        }
+    };
+
     /**
      * Default constructor, metalTagEnum param going to decide what kind of spike it's going to be.
      *
@@ -57,7 +98,7 @@ public class MetalSpike extends SwordItem {
      * @param metalTagEnum of the spike, will be decided what metal is going to steal.
      */
     public MetalSpike(Item.Properties properties, MetalTagEnum metalTagEnum) {
-        super(new SpikeTier(), ATTACK_DAMAGE, ATTACK_SPEED, properties);
+        super(tier, ATTACK_DAMAGE, ATTACK_SPEED, properties);
         this.metalSpike = metalTagEnum;
 
     }
@@ -298,6 +339,8 @@ public class MetalSpike extends SwordItem {
                     capabilities.addAllomanticPower(this.metalSpike);
                 } else if (!itemStack.getTag().getBoolean("feruchemic_power")) {
                     capabilities.addFeruchemicPower(this.metalSpike);
+
+
                 }
             } catch (PlayerException ex) {
                 ex.printResumeLog();
