@@ -14,6 +14,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.languages.book.mult
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft.MultiCraftData;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionData;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionDescription;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionDescriptionExtra;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponDescriptions;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponsData;
 
@@ -105,7 +106,7 @@ public class BookHelperEN {
 
         helper.page("page2");
         welcomeTraslationsMap.put(helper.pageTitle(), "textito");
-        welcomeTraslationsMap.put(helper.pageText(), SubdivisionDescription.valueOf(subdivisionEntry.name()).getEnglish());
+        welcomeTraslationsMap.put(helper.pageText(), SubdivisionDescriptionExtra.valueOf(subdivisionEntry.name()).getEnglish());
 
         return welcomeTraslationsMap;
     }

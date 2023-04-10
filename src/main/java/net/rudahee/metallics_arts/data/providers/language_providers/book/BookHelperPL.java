@@ -100,11 +100,11 @@ public class BookHelperPL {
         welcomeTraslationsMap.put(helper.entryDescription(), "descripcion");
 
         helper.page("page1");
-        welcomeTraslationsMap.put(helper.pageTitle(), "textito");
+        welcomeTraslationsMap.put(helper.pageTitle(), "Titulo");
         welcomeTraslationsMap.put(helper.pageText(), SubdivisionDescription.valueOf(subdivisionEntry.name()).getPolish());
 
         helper.page("page2");
-        welcomeTraslationsMap.put(helper.pageTitle(), "textito");
+        welcomeTraslationsMap.put(helper.pageTitle(), "-");
         welcomeTraslationsMap.put(helper.pageText(), SubdivisionDescription.valueOf(subdivisionEntry.name()).getPolish());
 
         return welcomeTraslationsMap;

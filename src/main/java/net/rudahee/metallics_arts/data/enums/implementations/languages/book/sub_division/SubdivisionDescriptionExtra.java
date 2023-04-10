@@ -6,11 +6,15 @@ package net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub
  * @author SteelCode Team
  * @since 1.5.1
  */
-public enum WelcomeExtraDescription {
-    ALLOMANCY("In case your power is allomantic, you will need to recharge your power reserves in order to start burning it.\\\n This is done by placing in a $(l:vials_entry/vials)Vials$() the Nuggets of the metal you wish to charge, or of various metals, if you have more than one power to use \\\nonce the vial is loaded, you must ingest it and you will see how your reserves are loaded.$(br) Finally, you must press the \"M\" key and select your power to activate it",
+public enum SubdivisionDescriptionExtra {
+    ALLOMANCY("",
             ""),
-    FERUCHEMY("presento feruqimia",""),
-    WELCOME("Soy por desgracia","");
+    FERUCHEMY("",
+            "A pesar de que se denomina un arte armónica, tiene una ligera desventaja, ya que todo el poder que su usuario podrá utilizar, deberá ser obtenido de la misma persona … ¿O quizá no …?"),
+    WELCOME("",
+            "Quizá hayas heredado alguna de estas grandes capacidades, quizá no, pero para sobrevivir en este mundo es mi deber mostrarte el camino de las Artes Metálicas, puede que algunas de estas prácticas te lleven por caminos oscuros repletos de muerte, otras pueden ayudar a la reconstrucción del mundo y la salvación de la humanidad, tú decidirás qué camino tomar.\n" +
+                    "\n" +
+                    "Mi nombre es Lemmeg y este es el Diario del Superviviente.\n");
 
     private final String english;
     private final String spanish;
@@ -21,7 +25,7 @@ public enum WelcomeExtraDescription {
      * @param english the English translation for the interaction.
      * @param spanish the Spanish translation for the interaction.
      */
-    WelcomeExtraDescription(String english, String spanish) {
+    SubdivisionDescriptionExtra(String english, String spanish) {
         this.english = english;
         this.spanish = spanish;
     }
