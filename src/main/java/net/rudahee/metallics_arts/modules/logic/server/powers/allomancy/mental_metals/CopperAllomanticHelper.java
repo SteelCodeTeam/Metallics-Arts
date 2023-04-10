@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.mental_
 
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.player.Player;
@@ -10,6 +11,7 @@ import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_ti
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Helper class that contains the methods to use the allomantic Copper
@@ -48,7 +50,12 @@ public class CopperAllomanticHelper {
             }
 
             if (!(entity instanceof WitherBoss) && !(entity instanceof EnderDragon)) {
-                entity.goalSelector.removeGoal(Objects.requireNonNull(entity.goalSelector.getRunningGoals().findFirst().orElse(null)));
+
+                if (entity.goalSelector.getRunningGoals().findAny().isPresent()) {
+                    Optional<WrappedGoal> goal = entity.goalSelector.getRunningGoals().findFirst();
+                    goal.ifPresent(wrappedGoal -> entity.goalSelector.removeGoal(Objects.requireNonNull(wrappedGoal)));
+                }
+
                 entity.goalSelector.addGoal(1, new LookAtPlayerGoal(entity, Player.class, 1.0f));
                 if (entity.getTarget() == player) {
                     entity.setAggressive(false);
