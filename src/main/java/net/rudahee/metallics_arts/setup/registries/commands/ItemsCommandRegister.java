@@ -27,7 +27,7 @@ public class ItemsCommandRegister {
 
         dispatcher.register(Commands.literal("ma-items").requires(commandSource -> commandSource.hasPermission(2))
                 .then(Commands.literal("give")
-                        .then(Commands.literal("large_vial")
+                        .then(Commands.literal("vial_large")
                                 .executes(context -> getLargeVial(context, List.of(context.getSource().getPlayerOrException())))
                                 .then(Commands.argument("target", EntityArgument.players())
                                         .executes(context -> getLargeVial(context, EntityArgument.getPlayers(context, "target")))))
