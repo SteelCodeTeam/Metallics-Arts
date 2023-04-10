@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:stone"
+    },
+    "title": "UN nuevo logro",
+    "description": "a ver que onda"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "metallics_arts:iron_spike"
+          ],
+          "nbt": "{iron_spike:{tag:{feruchemic_power:true}}"
+        }
+      }
+    }
+  }
+}

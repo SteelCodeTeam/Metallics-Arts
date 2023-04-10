@@ -1,17 +1,8 @@
 package net.rudahee.metallics_arts.modules.custom_items.metal_spikes;
 
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.advancements.critereon.PlayerTrigger;
-import net.minecraft.advancements.critereon.TradeTrigger;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.commands.AdvancementCommands;
-import net.minecraft.server.commands.TriggerCommand;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -28,7 +19,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
-import net.rudahee.metallics_arts.data.custom_tiers.SpikeTier;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
@@ -231,8 +221,8 @@ public class MetalSpike extends SwordItem {
 
                 } else if (hasPlayerBothPowers(localMetal, targetData)) {
                     if (isAllomantic) {
-                        if (Math.random()>0.50){
-                            if (Math.random()<0.75){
+                        if (couldStealPower){
+                            if (couldRemovePower){
                                 targetData.removeAllomanticPower(localMetal);
 
                                 target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, false, false));
@@ -244,8 +234,8 @@ public class MetalSpike extends SwordItem {
                             addItemToPlayer((Player) source, stack);
                         }
                     } else {
-                        if (Math.random()>0.50) {
-                            if (Math.random()<0.75) {
+                        if (couldStealPower) {
+                            if (couldRemovePower) {
                                 targetData.removeFeruchemicPower(localMetal);
 
                                 target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, false, false));
@@ -258,8 +248,8 @@ public class MetalSpike extends SwordItem {
                         }
                     }
                 } else if (hasAllomanticPower) {
-                    if (Math.random()>0.50){
-                        if (Math.random()<0.75){
+                    if (couldStealPower){
+                        if (couldRemovePower){
                             targetData.removeAllomanticPower(localMetal);
 
                             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, false, false));
@@ -270,8 +260,8 @@ public class MetalSpike extends SwordItem {
                         addItemToPlayer((Player) source, stack);
                     }
                 } else if (hasFeruchemicPower){
-                    if (Math.random()>0.50){
-                        if (Math.random()<0.75) {
+                    if (couldStealPower){
+                        if (couldRemovePower) {
                             targetData.removeFeruchemicPower(localMetal);
                             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, false, false));
                             target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, false, false));
@@ -339,8 +329,6 @@ public class MetalSpike extends SwordItem {
                     capabilities.addAllomanticPower(this.metalSpike);
                 } else if (!itemStack.getTag().getBoolean("feruchemic_power")) {
                     capabilities.addFeruchemicPower(this.metalSpike);
-
-
                 }
             } catch (PlayerException ex) {
                 ex.printResumeLog();
@@ -390,5 +378,25 @@ public class MetalSpike extends SwordItem {
         } else {
             attacker.addItem(itemStack);
         }
+    }
+
+    public static CompoundTag addSpikeWithAllomanticPower(MetalTagEnum metal) {
+        CompoundTag compoundTag = new CompoundTag();
+
+        compoundTag.putInt("metal_spike",metal.getIndex());
+        compoundTag.putBoolean("allomantic_power",true);
+        compoundTag.putBoolean("feruchemic_power",false);
+
+        return compoundTag;
+    }
+
+    public static CompoundTag addSpikeWithFeruchemicalPower(MetalTagEnum metal) {
+        CompoundTag compoundTag = new CompoundTag();
+
+        compoundTag.putInt("metal_spike",metal.getIndex());
+        compoundTag.putBoolean("allomantic_power",false);
+        compoundTag.putBoolean("feruchemic_power",true);
+
+        return compoundTag;
     }
 }
