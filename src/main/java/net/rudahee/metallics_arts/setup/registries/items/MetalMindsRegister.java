@@ -14,6 +14,7 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
  */
 public class MetalMindsRegister {
     private static final Item.Properties PROPERTY_METALMINDS = new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1);
+
     public static void register() {
         // Bands
         MetallicsArts.registerItem("band_aluminum_duralumin",
