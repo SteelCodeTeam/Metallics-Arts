@@ -23,6 +23,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft.MultiCraftData;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionData;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionDescription;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponsData;
 import net.rudahee.metallics_arts.utils.GetItemsUtils;
 
@@ -65,7 +66,7 @@ public class DemoBookProvider extends BookProvider {
                 .withName(helper.bookName())
                 .withTooltip(helper.bookTooltip())
                 .withGenerateBookItem(true)
-                .withModel(this.modLoc("dummy_book"))
+                .withModel(this.modLoc("metallics_arts_book"))
                 .withCreativeTab(MetallicsArts.MA_TAB.getRecipeFolderName())
                 .withCategories(introCategory, allomancyCategory, feruchemyCategory)
                 .build();
@@ -149,7 +150,7 @@ public class DemoBookProvider extends BookProvider {
         // Set up the entry location helper with a map of positions for the entries.
         EntryLocationHelper entryHelper = ModonomiconAPI.get().getEntryLocationHelper();
         entryHelper.setMap(
-                "________i_____________a________",
+                "________i______B______a________",
                 "_______j_______________b_______",
                 "___________q_______r___________",
                 "_______k_______________c_______",
@@ -167,11 +168,12 @@ public class DemoBookProvider extends BookProvider {
         // Generate entries for each subdivision and Allomantic powers.
         BookEntryModel allomancy = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.ALLOMANCY);
 
-        BookEntryModel physical = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionData.PHYSICAL, allomancy);
+        BookEntryModel physical = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionData.PHYSICAL_ALLOMANCY, allomancy);
         BookEntryModel enhancement = this.subDivisionEntry(helper, entryHelper, 't', SubdivisionData.ENHANCEMENT, allomancy);
         BookEntryModel temporal = this.subDivisionEntry(helper, entryHelper, 'v', SubdivisionData.TEMPORAL, allomancy);
-        BookEntryModel cognitive = this.subDivisionEntry(helper, entryHelper, 'q', SubdivisionData.COGNITIVE, allomancy);
-        BookEntryModel divine = this.subDivisionEntry(helper, entryHelper, 'A', SubdivisionData.DIVINE, allomancy);
+        BookEntryModel cognitive = this.subDivisionEntry(helper, entryHelper, 'q', SubdivisionData.MENTAL, allomancy);
+        BookEntryModel divine = this.subDivisionEntry(helper, entryHelper, 'A', SubdivisionData.DIVINE_ALLOMANCY, allomancy);
+        BookEntryModel tutorial = this.subDivisionEntry(helper, entryHelper, 'B', SubdivisionData.TUTORIAL_ALLOMANCY, allomancy);
 
         BookEntryModel iron = this.allomancyPowerEntry(helper, entryHelper, 'a',MetalTagEnum.IRON, physical);
         BookEntryModel steel = this.allomancyPowerEntry(helper, entryHelper, 'b',MetalTagEnum.STEEL, physical);
@@ -203,7 +205,7 @@ public class DemoBookProvider extends BookProvider {
                 .withId(this.modLoc(helper.category))
                 .withName(helper.categoryName())
                 .withIcon("minecraft:iron_ingot")
-                .withEntries(iron,steel,tin,pewter,gold,electrum,cadmium,bendalloy,copper,bronze,zinc,brass,aluminum,duralumin,chromium,nicrosil,cognitive,physical,allomancy,enhancement,temporal,atium,malatium,lerasium,ettmetal,divine)
+                .withEntries(iron,steel,tin,pewter,gold,electrum,cadmium,bendalloy,copper,bronze,zinc,brass,aluminum,duralumin,chromium,nicrosil,cognitive,physical,allomancy,enhancement,temporal,atium,malatium,lerasium,ettmetal,divine,tutorial)
                 .build();
     }
 
@@ -221,7 +223,7 @@ public class DemoBookProvider extends BookProvider {
         // Set up the entry location helper with a map of positions for the entries.
         EntryLocationHelper entryHelper = ModonomiconAPI.get().getEntryLocationHelper();
         entryHelper.setMap(
-                "________i_____________a________",
+                "________i______B______a________",
                 "_______j_______________b_______",
                 "___________q_______r___________",
                 "_______k_______________c_______",
@@ -239,11 +241,12 @@ public class DemoBookProvider extends BookProvider {
         // Generates all the entries and sub-entries for the Feruchemy category
         BookEntryModel feruchemy = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.FERUCHEMY);
 
-        BookEntryModel physical = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionData.PHYSICAL, feruchemy);
+        BookEntryModel physical = this.subDivisionEntry(helper, entryHelper, 'r', SubdivisionData.PHYSICAL_FERUCHEMY, feruchemy);
         BookEntryModel spiritual = this.subDivisionEntry(helper, entryHelper, 't', SubdivisionData.SPIRITUAL, feruchemy);
         BookEntryModel hybrid = this.subDivisionEntry(helper, entryHelper, 'v', SubdivisionData.HYBRID, feruchemy);
         BookEntryModel cognitive = this.subDivisionEntry(helper, entryHelper, 'q', SubdivisionData.COGNITIVE, feruchemy);
-        BookEntryModel divine = this.subDivisionEntry(helper, entryHelper, 'A', SubdivisionData.DIVINE, feruchemy);
+        BookEntryModel divine = this.subDivisionEntry(helper, entryHelper, 'A', SubdivisionData.DIVINE_FERUCHEMY, feruchemy);
+        BookEntryModel tutorial = this.subDivisionEntry(helper, entryHelper, 'B', SubdivisionData.TUTORIAL_FERUCHEMY, feruchemy);
 
         BookEntryModel iron = this.feruchemyPowerEntry(helper, entryHelper, 'a',MetalTagEnum.IRON, physical);
         BookEntryModel steel = this.feruchemyPowerEntry(helper, entryHelper, 'b',MetalTagEnum.STEEL, physical);
@@ -277,7 +280,7 @@ public class DemoBookProvider extends BookProvider {
                 .withId(this.modLoc(helper.category))
                 .withName(helper.categoryName())
                 .withIcon("minecraft:gold_ingot")
-                .withEntries(iron,steel,tin,pewter,gold,electrum,cadmium,bendalloy,copper,bronze,zinc,brass,aluminum,duralumin,chromium,nicrosil,cognitive,physical,feruchemy,spiritual,hybrid,atium,malatium,lerasium,ettmetal,divine)
+                .withEntries(iron,steel,tin,pewter,gold,electrum,cadmium,bendalloy,copper,bronze,zinc,brass,aluminum,duralumin,chromium,nicrosil,cognitive,physical,feruchemy,spiritual,hybrid,atium,malatium,lerasium,ettmetal,divine,tutorial)
                 .build();
     }
 
@@ -380,12 +383,18 @@ public class DemoBookProvider extends BookProvider {
     private BookEntryModel subDivisionEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, SubdivisionData subdivisionEntry, BookEntryModel parent) {
         helper.entry(subdivisionEntry.getId() + "_entry");
 
-        helper.page("page");
-        BookTextPageModel page =
-                BookTextPageModel.builder()
-                        .withText(helper.pageText())
-                        .withTitle(helper.pageTitle())
-                        .build();
+        ArrayList<BookTextPageModel> list = new ArrayList<>();
+        int x = 1;
+        for (String ignored: SubdivisionDescription.valueOf(subdivisionEntry.name()).getSpanish()) {
+            helper.page("page"+ x);
+            BookTextPageModel page =
+                    BookTextPageModel.builder()
+                            .withText(helper.pageText())
+                            .withTitle(helper.pageTitle())
+                            .build();
+            list.add(page);
+            x++;
+        }
 
         return BookEntryModel.builder()
                 .withId(this.modLoc(helper.category + "/" + helper.entry))
@@ -394,7 +403,7 @@ public class DemoBookProvider extends BookProvider {
                 .withIcon(subdivisionEntry.getIcon())
                 .withLocation(entryHelper.get(location))
                 .withParent(parent)
-                .withPages(page)
+                .withPages(list.toArray(new BookPageModel[0]))
                 .build();
     }
 
@@ -497,22 +506,18 @@ public class DemoBookProvider extends BookProvider {
     private BookEntryModel welcomePowerEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, SubdivisionData subdivisionData) {
         helper.entry(subdivisionData.getId() + "_entry");
 
-        // Generate the first page of the entry
-        helper.page("page1");
-        BookTextPageModel page =
-                BookTextPageModel.builder()
-                        .withText(helper.pageText())
-                        .withTitle(helper.pageTitle())
-                        .build();
-
-        // Generate the second page of the entry
-        helper.page("page2");
-        BookTextPageModel page2 =
-                BookTextPageModel.builder()
-                        .withText(helper.pageText())
-                        .withTitle(helper.pageTitle())
-                        .build();
-
+        ArrayList<BookTextPageModel> list = new ArrayList<>();
+        int x = 1;
+        for (String ignored: SubdivisionDescription.valueOf(subdivisionData.name()).getSpanish()) {
+            helper.page("page"+ x);
+            BookTextPageModel page =
+                    BookTextPageModel.builder()
+                            .withText(helper.pageText())
+                            .withTitle(helper.pageTitle())
+                            .build();
+            list.add(page);
+            x++;
+        }
         // Build and return the book entry model
         return BookEntryModel.builder()
                 .withId(this.modLoc(helper.category + "/" + helper.entry))
@@ -520,7 +525,7 @@ public class DemoBookProvider extends BookProvider {
                 .withDescription(helper.entryDescription())
                 .withIcon("minecraft:paper")
                 .withLocation(entryHelper.get(location))
-                .withPages(page,page2)
+                .withPages(list.toArray(new BookPageModel[0]))
                 .build();
     }
 

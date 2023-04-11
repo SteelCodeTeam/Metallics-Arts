@@ -12,16 +12,27 @@ public enum SubdivisionData {
     WEAPONS("weapon", "minecraft:textures/item/netherite_sword.png",false,false,false),
     CAFTING("crafting","minecraft:crafting_table",false,false,false),
     ALLOY_FURNACE("alloy_furnace","minecraft:blast_furnace",false,false,false),
-    PHYSICAL("physical",MetallicsArts.MOD_ID + ":textures/icons/physical.png",false,true,true),
-    SPIRITUAL("spiritual",MetallicsArts.MOD_ID + ":textures/icons/spiritual.png",false,true,false),
-    COGNITIVE("cognitive",MetallicsArts.MOD_ID + ":textures/icons/cognitive.png",false,true,true),
+
+    PHYSICAL_ALLOMANCY("physical_allomancy",MetallicsArts.MOD_ID + ":textures/icons/physical.png",false,false,true),
+    MENTAL("mental",MetallicsArts.MOD_ID + ":textures/icons/cognitive.png",false,false,true),
     TEMPORAL("temporal",MetallicsArts.MOD_ID + ":textures/icons/temporal.png",false,false,true),
-    DIVINE("divine", MetallicsArts.MOD_ID + ":textures/icons/divine.png",false,true,true),
-    HYBRID("hybrid",MetallicsArts.MOD_ID + ":textures/icons/hybrid.png",false,true,false),
     ENHANCEMENT("enhancement",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",false,false,true),
+    DIVINE_ALLOMANCY("divine_allomancy", MetallicsArts.MOD_ID + ":textures/icons/divine.png",false,false,true),
+    TUTORIAL_ALLOMANCY("tutorial_allomancy",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",false,true,false),
+
+    PHYSICAL_FERUCHEMY("physical_feruchemy",MetallicsArts.MOD_ID + ":textures/icons/physical.png",false,true,false),
+    SPIRITUAL("spiritual",MetallicsArts.MOD_ID + ":textures/icons/spiritual.png",false,true,false),
+    COGNITIVE("cognitive",MetallicsArts.MOD_ID + ":textures/icons/cognitive.png",false,true,false),
+    DIVINE_FERUCHEMY("divine_feruchemy", MetallicsArts.MOD_ID + ":textures/icons/divine.png",false,true,false),
+    HYBRID("hybrid",MetallicsArts.MOD_ID + ":textures/icons/hybrid.png",false,true,false),
+    TUTORIAL_FERUCHEMY("tutorial_feruchemy",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",false,true,false),
+
     ALLOMANCY("allomancy",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",true,false,false),
     FERUCHEMY("feruchemy",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",true,false,false),
     WELCOME("welcome",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",true,false,false);
+
+
+
     private final String id;
     private final String icon;
     private final boolean feruchemical;

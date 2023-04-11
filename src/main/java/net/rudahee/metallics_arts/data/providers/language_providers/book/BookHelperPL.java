@@ -27,7 +27,7 @@ public class BookHelperPL {
         helper.book("metallics_arts_book");
 
         bookLangHelper.put(helper.bookName(), CTW.METALLICS_ARTS.getNameInPolish() + ": " + CTW.GUIDE.getNameInPolish());
-        bookLangHelper.put(helper.bookTooltip(), "Libro de poderes");
+        bookLangHelper.put(helper.bookTooltip(), CTW.BOOK_TOOLTIP.getNameInPolish());
 
         bookLangHelper.putAll(addAllomancyCategory(helper));
         bookLangHelper.putAll(feruchemyCategory(helper));
@@ -39,7 +39,7 @@ public class BookHelperPL {
     private static HashMap<String, String> addIntroCategory(BookLangHelper helper){
         HashMap<String, String> introTraslationsMap = new HashMap<>();
         helper.category("intro");
-        introTraslationsMap.put(helper.categoryName(), "Intro");
+        introTraslationsMap.put(helper.categoryName(), CTW.INTRODUCTION.getNameInPolish());
 
         introTraslationsMap.putAll(addWelcomeEntry(helper, SubdivisionData.WELCOME));
         for (SubdivisionData entry: SubdivisionData.values()) {
@@ -96,16 +96,21 @@ public class BookHelperPL {
         HashMap<String, String> welcomeTraslationsMap = new HashMap<>();
         helper.entry(subdivisionEntry.getId() + "_entry");
 
-        welcomeTraslationsMap.put(helper.entryName(), "nombre");
-        welcomeTraslationsMap.put(helper.entryDescription(), "descripcion");
+        welcomeTraslationsMap.put(helper.entryName(), CTW.WELCOME.getNameInPolish());
+        welcomeTraslationsMap.put(helper.entryDescription(), "");
+        int x = 1;
 
-        helper.page("page1");
-        welcomeTraslationsMap.put(helper.pageTitle(), "textito");
-        welcomeTraslationsMap.put(helper.pageText(), SubdivisionDescription.valueOf(subdivisionEntry.name()).getPolish());
+        for (String content: SubdivisionDescription.valueOf(subdivisionEntry.name()).getSpanish()) {
+            helper.page("page"+ x);
+            if (x == 1){
+                welcomeTraslationsMap.put(helper.pageTitle(), CTW.valueOf(subdivisionEntry.name()).getNameInPolish());
+            } else {
+                welcomeTraslationsMap.put(helper.pageTitle(), "-");
+            }
+            welcomeTraslationsMap.put(helper.pageText(), content);
+            x++;
+        }
 
-        helper.page("page2");
-        welcomeTraslationsMap.put(helper.pageTitle(), "textito");
-        welcomeTraslationsMap.put(helper.pageText(), SubdivisionDescription.valueOf(subdivisionEntry.name()).getPolish());
 
         return welcomeTraslationsMap;
     }
@@ -116,9 +121,17 @@ public class BookHelperPL {
         subDivisionTraslationsMap.put(helper.entryName(), CTW.valueOf(subdivisionEntry.name()).getNameInPolish());
         subDivisionTraslationsMap.put(helper.entryDescription(), "");
 
-        helper.page("page");
-        subDivisionTraslationsMap.put(helper.pageTitle(), CTW.valueOf(subdivisionEntry.name()).getNameInPolish());
-        subDivisionTraslationsMap.put(helper.pageText(), SubdivisionDescription.valueOf(subdivisionEntry.name()).getPolish());
+        int x = 1;
+        for (String content: SubdivisionDescription.valueOf(subdivisionEntry.name()).getSpanish()) {
+            helper.page("page"+ x);
+            if (x == 1){
+                subDivisionTraslationsMap.put(helper.pageTitle(), CTW.valueOf(subdivisionEntry.name()).getNameInPolish());
+            } else {
+                subDivisionTraslationsMap.put(helper.pageTitle(), "-");
+            }
+            subDivisionTraslationsMap.put(helper.pageText(), content);
+            x++;
+        }
 
         return subDivisionTraslationsMap;
     }
@@ -130,7 +143,7 @@ public class BookHelperPL {
 
         helper.page("weapon_description");
         weaponsTraslationsMap.put(helper.pageTitle(), CTW.valueOf(weaponsEntry.name()).getNameInPolish());
-        weaponsTraslationsMap.put(helper.pageText(), WeaponDescriptions.valueOf(weaponsEntry.name()).getPolish());
+        weaponsTraslationsMap.put(helper.pageText(), WeaponDescriptions.valueOf(weaponsEntry.name()).getSpanish());
         return weaponsTraslationsMap;
 
     }
@@ -142,7 +155,7 @@ public class BookHelperPL {
 
         helper.page("items_description");
         multiCraftTraslationsMap.put(helper.pageTitle(), CTW.valueOf(multiCraftData.name()).getNameInPolish());
-        multiCraftTraslationsMap.put(helper.pageText(), MultiCaftDescriptions.valueOf(multiCraftData.name()).getPolish());
+        multiCraftTraslationsMap.put(helper.pageText(), MultiCaftDescriptions.valueOf(multiCraftData.name()).getSpanish());
         return multiCraftTraslationsMap;
     }
     private static HashMap<String, String> addAllomancyEntry(BookLangHelper helper, MetalTagEnum metal) {
@@ -154,11 +167,11 @@ public class BookHelperPL {
 
         helper.page("power_description");
         allomancyTraslationsMap.put(helper.pageTitle(), MetalNamesEnum.valueOf(metal.name()).getNameInPolish());
-        allomancyTraslationsMap.put(helper.pageText(), PowerDescriptions.valueOf(metal.name()).getPolish());
+        allomancyTraslationsMap.put(helper.pageText(), PowerDescriptions.valueOf(metal.name()).getSpanish());
 
         helper.page("power_interactions");
-        allomancyTraslationsMap.put(helper.pageTitle(), "Interactions");
-        allomancyTraslationsMap.put(helper.pageText(), Interactions.valueOf(metal.name()).getPolish());
+        allomancyTraslationsMap.put(helper.pageTitle(), CTW.INTERACTIONS.getNameInPolish());
+        allomancyTraslationsMap.put(helper.pageText(), Interactions.valueOf(metal.name()).getSpanish());
         return allomancyTraslationsMap;
     }
     private static HashMap<String, String> addFeruchemyEntry(BookLangHelper helper, MetalTagEnum metal) {
@@ -169,11 +182,11 @@ public class BookHelperPL {
 
         helper.page("power_storage");
         feruchemyTraslationsMap.put(helper.pageTitle(), MetalNamesEnum.valueOf(metal.name()).getNameInPolish());
-        feruchemyTraslationsMap.put(helper.pageText(), Storage.valueOf(metal.name()).getPolish());
+        feruchemyTraslationsMap.put(helper.pageText(), Storage.valueOf(metal.name()).getSpanish());
 
         helper.page("power_tap");
-        feruchemyTraslationsMap.put(helper.pageTitle(), "");
-        feruchemyTraslationsMap.put(helper.pageText(), Tap.valueOf(metal.name()).getPolish());
+        feruchemyTraslationsMap.put(helper.pageTitle(), "-");
+        feruchemyTraslationsMap.put(helper.pageText(), Tap.valueOf(metal.name()).getSpanish());
         return feruchemyTraslationsMap;
     }
 }

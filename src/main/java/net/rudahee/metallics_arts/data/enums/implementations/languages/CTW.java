@@ -75,13 +75,27 @@ public enum CTW implements ILanguage {
     CAFTING("crafting","Crafting","Crafteos","", "Tworzenie"),
     ALLOY_FURNACE("alloy_furnace","Alloy Furnace","Horno de fundicion","", "Piec stopowy"),
 
-    PHYSICAL("physical","Physical", "Fisico","物理的", "Fizyczne"),
+    PHYSICAL_ALLOMANCY("physical_allomancy","Physical", "Fisico","物理的", "Fizyczne"),
+    TEMPORAL("temporal","Temporal","Temporal","時間的", "Czasowe"),
+    ENHANCEMENT("enhancement","Enhancement","Mejora","", "Wzmocnienie"),
+    MENTAL("mental","Mental","Mental","",""),
+    DIVINE_ALLOMANCY("divine_allomancy","Divine", "Divino","神々しい", "Boskie"),
+    TUTORIAL_ALLOMANCY("tutorial_allomacy","Allomacy Tutorial","Tutorial de Alomancia","",""),
+
+    PHYSICAL_FERUCHEMY("physical_feruchemy","Physical", "Fisico","物理的", "Fizyczne"),
     SPIRITUAL("spiritual","Spiritual","Espiritual","霊的", "Duchowe"),
     COGNITIVE("cognitive","Cognitive","Cognitivo","認知", "Kognitywne"),
-    TEMPORAL("temporal","Temporal","Temporal","時間的", "Czasowe"),
-    DIVINE("divine","Divine", "Divino","神々しい", "Boskie"),
     HYBRID("hybrid","Hybrid","Hibrido","ハイブリッド", "Hybrydowe"),
-    ENHANCEMENT("enhancement","Enhancement","Mejora","", "Wzmocnienie"),
+    DIVINE_FERUCHEMY("divine_feruchemy","Divine", "Divino","神々しい", "Boskie"),
+    TUTORIAL_FERUCHEMY("tutorial_feruchemy","Feruchemic Tutorial","Tutorial de Feruquimia","",""),
+
+    WELCOME("welcome","Welcome", "Bienvenido","", ""),
+
+    INTERACTIONS("interactions","Interactions", "Interacciones","", ""),
+    INTRODUCTION("introduction","Introduction", "Introducción","", ""),
+    BOOK_TOOLTIP("book_tooltip","Diary of a Survivor","Diario de un Superviviente","",""),
+
+
 
     VIALS("vials","Vials", "Viales","瓶", "Fiolki"),
     RINGS("rings","Rings","Anillos","リング", "Pierścienie"),
