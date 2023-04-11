@@ -36,7 +36,7 @@ public class OnWorldTickEvent {
                 OnTickUtils.equipKolossBlade(player, capability);
                 AllomaticTick.each3Ticks(capability, player, level);
             }
-            AllomaticTick.eachTick(capability, player);
+            AllomaticTick.eachTick(capability, player, level);
 
             isMetalsDrains = AllomaticTick.eachTickWithInstantDrain(capability, player, level);
 

@@ -23,6 +23,6 @@ public class NicrosilAllomanticHelper {
      */
     public static void changeTargetEnhancedToTrue(Player target, IInvestedPlayerData targetCapability) {
         targetCapability.setEnhanced(true);
-        ModNetwork.sync(targetCapability, target);
+        ModNetwork.syncInvestedDataPacket(targetCapability, target);
     }
 }

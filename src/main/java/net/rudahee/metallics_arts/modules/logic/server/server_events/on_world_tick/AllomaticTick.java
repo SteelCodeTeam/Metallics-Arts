@@ -20,6 +20,8 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.GoldAllomanticHelper;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
 
+import java.util.logging.Level;
+
 /**
  * Handles the effects and abilities related to Allomantic metals for players.
  *
@@ -48,9 +50,6 @@ public class AllomaticTick {
         if (playerCapability.isBurning(MetalTagEnum.BENDALLOY) || playerCapability.isBurning(MetalTagEnum.CADMIUM)
                 || playerCapability.isBurning(MetalTagEnum.GOLD) || playerCapability.isBurning(MetalTagEnum.ELECTRUM)) {
             temporalMetals(playerCapability, player, level);
-        }
-        if (playerCapability.isBurning(MetalTagEnum.ETTMETAL) || playerCapability.isBurning(MetalTagEnum.MALATIUM)) {
-            godMetals(playerCapability, player, level);
         }
         if (MalatiumAllomanticHelper.isPosRegistered() && !playerCapability.isBurning(MetalTagEnum.MALATIUM)) {
             MalatiumAllomanticHelper.setPos(null, null);
@@ -88,7 +87,7 @@ public class AllomaticTick {
         if (playerCapability.isBurning(MetalTagEnum.ETTMETAL)) {
             EttmetalAllomanticHelper.ettmetalExplotion(level, playerCapability, player);
         }
-        if (playerCapability.isBurning(MetalTagEnum.MALATIUM) && playerCapability.isBurning(MetalTagEnum.DURALUMIN)) {
+        if (playerCapability.isBurning(MetalTagEnum.MALATIUM) && playerCapability.isBurning(MetalTagEnum.DURALUMIN) && MalatiumAllomanticHelper.isPosRegistered()) {
             MalatiumAllomanticHelper.teleportToDeathPosFromAnotherPlayer(level, playerCapability, player, playerCapability.isBurning(MetalTagEnum.LERASIUM));
         }
     }
@@ -198,7 +197,11 @@ public class AllomaticTick {
      * @param capability The player's Allomantic and Feruchemical abilities.
      * @param player     The player for whom the actions are being performed.
      */
-    public static void eachTick(IInvestedPlayerData capability, ServerPlayer player) {
+    public static void eachTick(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level) {
+        if (capability.isBurning(MetalTagEnum.ETTMETAL) || capability.isBurning(MetalTagEnum.MALATIUM)) {
+            godMetals(capability, player, level);
+        }
+
         OnTickUtils.duraluminAndExternalNicrosilEffect(capability, player);
         for (MetalTagEnum metal : MetalTagEnum.values()) {
             if (capability.isBurning(metal)) {

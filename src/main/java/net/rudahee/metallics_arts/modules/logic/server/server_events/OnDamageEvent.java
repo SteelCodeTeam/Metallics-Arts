@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
+import net.minecraft.core.GlobalPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
@@ -50,7 +51,12 @@ public class OnDamageEvent {
             }
             // Malatium
             if (sourceCapability.isBurning(MetalTagEnum.MALATIUM)) {
-                MalatiumAllomanticHelper.setPos(((Player) event.getEntity()).getLastDeathLocation().get());
+                if (target.getLastDeathLocation().isPresent()) {
+                    MalatiumAllomanticHelper.setPos(target.getLastDeathLocation().get());
+                } else {
+                    MalatiumAllomanticHelper.setPos(GlobalPos.of(target.getRespawnDimension(), target.getRespawnPosition()));
+                }
+                MalatiumAllomanticHelper.setPosRegistered(true);
             }
 
             // Nicrosil

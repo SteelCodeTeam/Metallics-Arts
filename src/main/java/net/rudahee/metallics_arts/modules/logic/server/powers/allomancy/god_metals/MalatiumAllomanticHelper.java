@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_metals;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.resources.ResourceKey;
@@ -29,9 +30,12 @@ import java.util.Map;
 
 public class MalatiumAllomanticHelper {
 
-    private static GlobalPos pos = null;
+    private static GlobalPos pos;
+
 
     private static boolean havePosRegistered = false;
+
+
     /**
      * This method is responsible for teleporting the player to the zone indicated by "pos", which is given the value of the death zone of another player. Along with nearby players if he is burning Lerasium.
      *
@@ -41,16 +45,23 @@ public class MalatiumAllomanticHelper {
      * @param lerasium if the player is burning Lerasium.
      */
     public static void teleportToDeathPosFromAnotherPlayer(Level level, IInvestedPlayerData capability, ServerPlayer player, boolean lerasium) {
+
         if (lerasium) {
-            TeleportsUtils.multiTeleport(player, CapabilityUtils.getBubble(player,5), level,
-                    pos.dimension(), pos.pos());
+            if (havePosRegistered) {
+                TeleportsUtils.multiTeleport(player, CapabilityUtils.getBubble(player,5), level, pos.dimension(), pos.pos());
+            } else {
+                TeleportsUtils.multiTeleport(player, CapabilityUtils.getBubble(player, 5), level, player.getRespawnDimension(), player.getRespawnPosition());
+            }
             capability.drainMetals(MetalTagEnum.LERASIUM);
         } else {
-            if (pos != null) {
+            if (havePosRegistered) {
                 TeleportsUtils.teleport(player, level, pos.dimension(), pos.pos());
             }
         }
-        pos = GlobalPos.of(null, null);
+
+        pos = null;
+        havePosRegistered = false;
+
         capability.drainMetals(MetalTagEnum.DURALUMIN, MetalTagEnum.MALATIUM);
     }
 
@@ -72,7 +83,13 @@ public class MalatiumAllomanticHelper {
      */
 
     public static void setPos(BlockPos blockPos, ResourceKey<Level> dimension) {
-        MalatiumAllomanticHelper.pos = GlobalPos.of(dimension, blockPos);
+        if (blockPos == null || dimension == null) {
+            MalatiumAllomanticHelper.pos = null;
+            setPosRegistered(false);
+        } else {
+            MalatiumAllomanticHelper.pos = GlobalPos.of(dimension, blockPos);
+            setPosRegistered(true);
+        }
     }
 
     /**
@@ -93,7 +110,7 @@ public class MalatiumAllomanticHelper {
         return havePosRegistered;
     }
 
-    //todo "esto deberia eliminarse o utilizarse ya que no esta comprobando que tenga la informacion para el tp"
+
     public static void setPosRegistered(boolean isPosRegistered) {
         havePosRegistered = isPosRegistered;
     }

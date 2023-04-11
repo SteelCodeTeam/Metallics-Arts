@@ -208,15 +208,17 @@ public class MetalSpike extends SwordItem {
                 Level world = target.level;
                 BlockPos pos = new BlockPos(target.position());
 
-                if (stack.getTag().getBoolean("allomantic_power")){
+                if (stack.getTag().getBoolean("allomantic_power")) {
                     if (!targetData.hasAllomanticPower(localMetal)){
                         targetData.addAllomanticPower(localMetal);
-                        doEffects( world, pos);
+                        doEffects(world, pos);
+                        source.setItemInHand(source.getUsedItemHand(), ItemStack.EMPTY);
                     }
-                } else if (stack.getTag().getBoolean("feruchemic_power")){
+                } else if (stack.getTag().getBoolean("feruchemic_power")) {
                     if (!targetData.hasFeruchemicPower(localMetal)){
                         targetData.addFeruchemicPower(localMetal);
                         doEffects(world, pos);
+                        source.setItemInHand(source.getUsedItemHand(), ItemStack.EMPTY);
                     }
 
                 } else if (hasPlayerBothPowers(localMetal, targetData)) {
@@ -270,8 +272,11 @@ public class MetalSpike extends SwordItem {
                         addItemToPlayer((Player) source, stack);
                     }
                 }
-                ModNetwork.sync(targetData,(Player) target);
+                ModNetwork.syncInvestedDataPacket(targetData,(Player) target);
             });
+
+
+
         } else if ((target instanceof Witch) && (source instanceof Player)) {
             if (!stack.getTag().getBoolean("allomantic_power") && !stack.getTag().getBoolean("feruchemic_power")) {
                 if (Math.random()<0.1){
@@ -333,7 +338,7 @@ public class MetalSpike extends SwordItem {
             } catch (PlayerException ex) {
                 ex.printResumeLog();
             }
-            doEffects(level,player.getOnPos());
+            doEffects(level, player.getOnPos());
             player.getInventory().removeItem(itemStack);
             return new InteractionResultHolder<>(InteractionResult.CONSUME, itemStack);
         }
