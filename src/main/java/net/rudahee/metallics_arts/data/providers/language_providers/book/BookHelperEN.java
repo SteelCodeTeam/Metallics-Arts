@@ -96,7 +96,8 @@ public class BookHelperEN {
         HashMap<String, String> welcomeTraslationsMap = new HashMap<>();
         helper.entry(subdivisionEntry.getId() + "_entry");
 
-        welcomeTraslationsMap.put(helper.entryName(), CTW.WELCOME.getNameInEnglish());
+
+        welcomeTraslationsMap.put(helper.entryName(), CTW.valueOf(subdivisionEntry.name()).getNameInEnglish());
         welcomeTraslationsMap.put(helper.entryDescription(), "");
         int x = 1;
 

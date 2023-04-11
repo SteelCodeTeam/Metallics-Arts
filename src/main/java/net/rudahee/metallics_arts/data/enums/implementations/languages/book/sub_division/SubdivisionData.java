@@ -18,14 +18,14 @@ public enum SubdivisionData {
     TEMPORAL("temporal",MetallicsArts.MOD_ID + ":textures/icons/temporal.png",false,false,true),
     ENHANCEMENT("enhancement",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",false,false,true),
     DIVINE_ALLOMANCY("divine_allomancy", MetallicsArts.MOD_ID + ":textures/icons/divine.png",false,false,true),
-    TUTORIAL_ALLOMANCY("tutorial_allomancy",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",false,true,false),
+    TUTORIAL_ALLOMANCY("tutorial_allomancy","minecraft:textures/item/compass_19.png",false,false,true),
 
     PHYSICAL_FERUCHEMY("physical_feruchemy",MetallicsArts.MOD_ID + ":textures/icons/physical.png",false,true,false),
     SPIRITUAL("spiritual",MetallicsArts.MOD_ID + ":textures/icons/spiritual.png",false,true,false),
     COGNITIVE("cognitive",MetallicsArts.MOD_ID + ":textures/icons/cognitive.png",false,true,false),
     DIVINE_FERUCHEMY("divine_feruchemy", MetallicsArts.MOD_ID + ":textures/icons/divine.png",false,true,false),
     HYBRID("hybrid",MetallicsArts.MOD_ID + ":textures/icons/hybrid.png",false,true,false),
-    TUTORIAL_FERUCHEMY("tutorial_feruchemy",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",false,true,false),
+    TUTORIAL_FERUCHEMY("tutorial_feruchemy","minecraft:textures/item/compass_19.png",false,true,false),
 
     ALLOMANCY("allomancy",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",true,false,false),
     FERUCHEMY("feruchemy",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",true,false,false),

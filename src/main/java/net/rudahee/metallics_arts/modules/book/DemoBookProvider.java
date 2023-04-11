@@ -88,18 +88,20 @@ public class DemoBookProvider extends BookProvider {
                 "________________________________",
                 "_________d__e__f__g__h__________",
                 "________________________________",
-                "_______________a_________j______",
+                "_______________a________________",
                 "________________________________",
-                "_______________s__________k__l__",
+                "_______________s________________",
                 "________________________________",
-                "__________c_________b______m____",
+                "_______________b________________",
+                "_________n___________k__________",
+                "____________j_____i_____________",
+                "_________o_____m_____l__________",
                 "________________________________",
-                "_______________i________________",
-                "________________________________",
-                "_________________________n___o__",
                 "________________________________",
                 "________________________________"
         );
+
+
 
         // Create various entries and entry parents.
         BookEntryModel welcome = this.welcomePowerEntry(helper, entryHelper, 's', SubdivisionData.WELCOME);
@@ -107,8 +109,8 @@ public class DemoBookProvider extends BookProvider {
 
         BookEntryModel crafting = this.subDivisionEntry(helper, entryHelper, 'b', SubdivisionData.CAFTING, welcome);
         BookEntryParentModel craftingParent = BookEntryParentModel.builder().withEntryId(crafting.getId()).build();
-        BookEntryModel alloyFurnace = this.subDivisionEntry(helper, entryHelper, 'c', SubdivisionData.ALLOY_FURNACE, welcome);
-        BookEntryParentModel alloyFurnaceParent = BookEntryParentModel.builder().withEntryId(alloyFurnace.getId()).build();
+        //BookEntryModel alloyFurnace = this.subDivisionEntry(helper, entryHelper, 'c', SubdivisionData.ALLOY_FURNACE, welcome);
+        //BookEntryParentModel alloyFurnaceParent = BookEntryParentModel.builder().withEntryId(alloyFurnace.getId()).build();
 
         BookEntryModel crystalDagger = this.weaponsEntry(helper, entryHelper, 'd', weapons, WeaponsData.CRYSTAL_DAGGER);
         BookEntryModel obsidianDagger = this.weaponsEntry(helper, entryHelper, 'e', weapons, WeaponsData.OBSIDIAN_DAGGER);
@@ -122,7 +124,7 @@ public class DemoBookProvider extends BookProvider {
         BookEntryModel bands = this.multiCraftsItemsEntry(helper, entryHelper, 'l', MultiCraftData.BANDS, GetItemsUtils.getBandList(), ringsParent);
         BookEntryModel spikes = this.multiCraftsItemsEntry(helper, entryHelper, 'm', MultiCraftData.SPIKES, GetItemsUtils.getSpikesList(), craftingParent);
         BookEntryModel icons = this.multiCraftsItemsEntry(helper, entryHelper, 'n', MultiCraftData.ICONS, GetItemsUtils.getIconsList(), craftingParent);
-        BookEntryModel alloys = this.multiCraftsItemsEntry(helper, entryHelper, 'i', MultiCraftData.ALLOYS, GetItemsUtils.getAlloysList(), craftingParent, alloyFurnaceParent);
+        BookEntryModel alloys = this.multiCraftsItemsEntry(helper, entryHelper, 'i', MultiCraftData.ALLOYS, GetItemsUtils.getAlloysList(), craftingParent); //, alloyFurnaceParent
 
         BookEntryParentModel iconsParent = BookEntryParentModel.builder().withEntryId(icons.getId()).build();
         BookEntryModel patterns = this.multiCraftsItemsEntry(helper, entryHelper, 'o', MultiCraftData.PATTERNS, GetItemsUtils.getPatterns(), iconsParent);
@@ -131,7 +133,9 @@ public class DemoBookProvider extends BookProvider {
                 .withId(this.modLoc(helper.category))
                 .withName(helper.categoryName())
                 .withIcon("minecraft:book")
-                .withEntries(weapons,crafting,alloyFurnace,crystalDagger,obsidianDagger,obsidianAxe,kolossBlade,duelingStaff,alloys,vials,rings,bands,spikes,icons,patterns,welcome)
+                .withSortNumber(0)
+                //alloyFurnace
+                .withEntries(weapons,crafting,crystalDagger,obsidianDagger,obsidianAxe,kolossBlade,duelingStaff,alloys,vials,rings,bands,spikes,icons,patterns,welcome)
                 .build();
     }
 
@@ -205,6 +209,7 @@ public class DemoBookProvider extends BookProvider {
                 .withId(this.modLoc(helper.category))
                 .withName(helper.categoryName())
                 .withIcon("minecraft:iron_ingot")
+                .withSortNumber(1)
                 .withEntries(iron,steel,tin,pewter,gold,electrum,cadmium,bendalloy,copper,bronze,zinc,brass,aluminum,duralumin,chromium,nicrosil,cognitive,physical,allomancy,enhancement,temporal,atium,malatium,lerasium,ettmetal,divine,tutorial)
                 .build();
     }
@@ -280,6 +285,7 @@ public class DemoBookProvider extends BookProvider {
                 .withId(this.modLoc(helper.category))
                 .withName(helper.categoryName())
                 .withIcon("minecraft:gold_ingot")
+                .withSortNumber(2)
                 .withEntries(iron,steel,tin,pewter,gold,electrum,cadmium,bendalloy,copper,bronze,zinc,brass,aluminum,duralumin,chromium,nicrosil,cognitive,physical,feruchemy,spiritual,hybrid,atium,malatium,lerasium,ettmetal,divine,tutorial)
                 .build();
     }
