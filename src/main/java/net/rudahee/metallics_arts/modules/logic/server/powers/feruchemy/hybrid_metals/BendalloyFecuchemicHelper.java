@@ -28,10 +28,11 @@ public class BendalloyFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void tapPower(Player player) {
         if (OnTickUtils.activationEvery30Tick(OnWorldTickEvent.getActualTick())) {
-            if (player.getFoodData().getFoodLevel()<20){
+            if (player.getFoodData().getFoodLevel() < 20) {
                 player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()+1);
             }
         }
+
         ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.BENDALLOY);
     }
 

@@ -67,7 +67,7 @@ public class BandCopperBronze extends BandMindAbstract<CopperFecuchemicHelper, B
             }
             if (!Screen.hasShiftDown()) {
                 toolTips.add(Component.translatable(" "));
-                toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
+                toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.DARK_GRAY));
             }
         }
         super.appendHoverText(stack, level, toolTips, flagIn);

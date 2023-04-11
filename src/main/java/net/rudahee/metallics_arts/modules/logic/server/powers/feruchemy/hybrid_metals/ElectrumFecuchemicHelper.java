@@ -54,7 +54,7 @@ public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper {
      * @param playerCapability capabilities (data) to the player.
      */
     public static void restoreHearts(Player player, IInvestedPlayerData playerCapability ){
-        if (player.getHealth()>20) {
+        if (player.getHealth() != 20) {
             player.setHealth(20);
         }
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
