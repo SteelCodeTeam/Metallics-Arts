@@ -156,10 +156,27 @@ public class DrawUtils {
     }
 
     private static void addVertexToBuffer(BufferBuilder buffer, Matrix4f translationMatrix, Vec3 vertex, float uv1, float uv2){
+        /**
+         * add a point to the specified BufferBuilder
+         */
         buffer.vertex(translationMatrix, (float)vertex.x, (float)vertex.y, (float)vertex.z).uv(uv1, uv2).endVertex();
     }
 
     private static void drawInOrder(BufferBuilder buffer, Matrix4f translationMatrix, Vec3 v1, Vec3 v2, Vec3 v3, Vec3 v4, double frame, double spriteLength, double columnWidthFraction, String key){
+        /**
+         * @param buffer BufferBuilder for rendering
+         * @param translationMatrix Matrix4f representing the transformation from world coordinates to on-screen coordinates
+         * @param v1 first vertex of the quad
+         * @param v2 second vertex of the quad
+         * @param v3 third vertex of the quad
+         * @param v4 fourth vertex of the quad
+         * @param frame double controlling which frame is displayed
+         * @param spriteLength the length of the line
+         * @param columnWidthFraction
+         * @param key determines which quad is drawn
+         *
+         * render the quads in order depending on player camera position
+         */
         switch (key) {
             case "pH1" -> {
                 addVertexToBuffer(buffer, translationMatrix, v1, (float) (columnWidthFraction * frame), 0);
@@ -190,8 +207,16 @@ public class DrawUtils {
 
     public static void drawMetalQuadLines(int tick, Vec3 viewPosition, Matrix4f translationMatrix, Vec3 target, Vec3 source, double scale, ResourceLocation texture, int numberOfFrames, int columnWidth, int columnHeight) {
         /**
-         * draw a metal line from source to target with the given texture
-         *
+         * @param tick integer representing the current world tick, used to calculate the current frame.
+         * @param viewPosition the current position of player's camera
+         * @param transformationMatrix Matrix4f representing the transformation from world to screen coordinates
+         * @param target Vec3 representing a point in the world to which the line will go to
+         * @param source Vec3 representing a point in the world from which line will originate
+         * @param scale controlls the width of the lines
+         * @param texture ResourceLocation pointing to the line texture
+         * @param numberOfFrames number of frames in the texture
+         * @param columnWidth width of a single frame
+         * @param columnHeight height of a single frame
          */
 
         // calculate the vertices
