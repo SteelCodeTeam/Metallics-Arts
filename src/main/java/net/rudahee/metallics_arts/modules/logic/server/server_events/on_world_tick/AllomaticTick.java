@@ -88,7 +88,7 @@ public class AllomaticTick {
         if (playerCapability.isBurning(MetalTagEnum.ETTMETAL)) {
             EttmetalAllomanticHelper.ettmetalExplotion(level, playerCapability, player);
         }
-        if (playerCapability.isBurning(MetalTagEnum.MALATIUM)) {
+        if (playerCapability.isBurning(MetalTagEnum.MALATIUM) && playerCapability.isBurning(MetalTagEnum.DURALUMIN)) {
             MalatiumAllomanticHelper.teleportToDeathPosFromAnotherPlayer(level, playerCapability, player, playerCapability.isBurning(MetalTagEnum.LERASIUM));
         }
     }

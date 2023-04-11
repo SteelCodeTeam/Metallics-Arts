@@ -73,7 +73,7 @@ public class BandGoldElectrum extends BandMindAbstract <GoldFecuchemicHelper, El
                     return;
                 }
                 if (!playerCapability.isTapping(MetalTagEnum.ELECTRUM) && !playerCapability.isStoring(MetalTagEnum.ELECTRUM)) {
-                    ElectrumFecuchemicHelper.restoreHearts();
+                    ElectrumFecuchemicHelper.restoreHearts(player, playerCapability);
                 }
 
                 if (playerCapability.isTapping(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)) {
