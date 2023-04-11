@@ -80,14 +80,20 @@ public enum CTW implements ILanguage {
     ENHANCEMENT("enhancement","Enhancement","Mejora","", "Wzmocnienie"),
     MENTAL("mental","Mental","Mental","",""),
     DIVINE_ALLOMANCY("divine_allomancy","Divine", "Divino","神々しい", "Boskie"),
-    TUTORIAL_ALLOMANCY("","","","",""),
+    TUTORIAL_ALLOMANCY("tutorial_allomacy","Allomacy Tutorial","Tutorial de Alomancia","",""),
 
     PHYSICAL_FERUCHEMY("physical_feruchemy","Physical", "Fisico","物理的", "Fizyczne"),
     SPIRITUAL("spiritual","Spiritual","Espiritual","霊的", "Duchowe"),
     COGNITIVE("cognitive","Cognitive","Cognitivo","認知", "Kognitywne"),
     HYBRID("hybrid","Hybrid","Hibrido","ハイブリッド", "Hybrydowe"),
     DIVINE_FERUCHEMY("divine_feruchemy","Divine", "Divino","神々しい", "Boskie"),
-    TUTORIAL_FERUCHEMY("","","","",""),
+    TUTORIAL_FERUCHEMY("tutorial_feruchemy","Feruchemic Tutorial","Tutorial de Feruquimia","",""),
+
+    WELCOME("welcome","Welcome", "Bienvenido","", ""),
+
+    INTERACTIONS("interactions","Interactions", "Interacciones","", ""),
+    INTRODUCTION("introduction","Introduction", "Introducción","", ""),
+    BOOK_TOOLTIP("book_tooltip","Diary of a Survivor","Diario de un Superviviente","",""),
 
 
 

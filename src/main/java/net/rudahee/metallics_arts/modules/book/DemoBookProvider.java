@@ -23,6 +23,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft.MultiCraftData;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionData;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionDescription;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponsData;
 import net.rudahee.metallics_arts.utils.GetItemsUtils;
 
@@ -65,7 +66,7 @@ public class DemoBookProvider extends BookProvider {
                 .withName(helper.bookName())
                 .withTooltip(helper.bookTooltip())
                 .withGenerateBookItem(true)
-                .withModel(this.modLoc("dummy_book"))
+                .withModel(this.modLoc("metallics_arts_book"))
                 .withCreativeTab(MetallicsArts.MA_TAB.getRecipeFolderName())
                 .withCategories(introCategory, allomancyCategory, feruchemyCategory)
                 .build();
@@ -382,12 +383,18 @@ public class DemoBookProvider extends BookProvider {
     private BookEntryModel subDivisionEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, SubdivisionData subdivisionEntry, BookEntryModel parent) {
         helper.entry(subdivisionEntry.getId() + "_entry");
 
-        helper.page("page");
-        BookTextPageModel page =
-                BookTextPageModel.builder()
-                        .withText(helper.pageText())
-                        .withTitle(helper.pageTitle())
-                        .build();
+        ArrayList<BookTextPageModel> list = new ArrayList<>();
+        int x = 1;
+        for (String ignored: SubdivisionDescription.valueOf(subdivisionEntry.name()).getSpanish()) {
+            helper.page("page"+ x);
+            BookTextPageModel page =
+                    BookTextPageModel.builder()
+                            .withText(helper.pageText())
+                            .withTitle(helper.pageTitle())
+                            .build();
+            list.add(page);
+            x++;
+        }
 
         return BookEntryModel.builder()
                 .withId(this.modLoc(helper.category + "/" + helper.entry))
@@ -396,7 +403,7 @@ public class DemoBookProvider extends BookProvider {
                 .withIcon(subdivisionEntry.getIcon())
                 .withLocation(entryHelper.get(location))
                 .withParent(parent)
-                .withPages(page)
+                .withPages(list.toArray(new BookPageModel[0]))
                 .build();
     }
 
@@ -499,22 +506,18 @@ public class DemoBookProvider extends BookProvider {
     private BookEntryModel welcomePowerEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, SubdivisionData subdivisionData) {
         helper.entry(subdivisionData.getId() + "_entry");
 
-        // Generate the first page of the entry
-        helper.page("page1");
-        BookTextPageModel page =
-                BookTextPageModel.builder()
-                        .withText(helper.pageText())
-                        .withTitle(helper.pageTitle())
-                        .build();
-
-        // Generate the second page of the entry
-        helper.page("page2");
-        BookTextPageModel page2 =
-                BookTextPageModel.builder()
-                        .withText(helper.pageText())
-                        .withTitle(helper.pageTitle())
-                        .build();
-
+        ArrayList<BookTextPageModel> list = new ArrayList<>();
+        int x = 1;
+        for (String ignored: SubdivisionDescription.valueOf(subdivisionData.name()).getSpanish()) {
+            helper.page("page"+ x);
+            BookTextPageModel page =
+                    BookTextPageModel.builder()
+                            .withText(helper.pageText())
+                            .withTitle(helper.pageTitle())
+                            .build();
+            list.add(page);
+            x++;
+        }
         // Build and return the book entry model
         return BookEntryModel.builder()
                 .withId(this.modLoc(helper.category + "/" + helper.entry))
@@ -522,7 +525,7 @@ public class DemoBookProvider extends BookProvider {
                 .withDescription(helper.entryDescription())
                 .withIcon("minecraft:paper")
                 .withLocation(entryHelper.get(location))
-                .withPages(page,page2)
+                .withPages(list.toArray(new BookPageModel[0]))
                 .build();
     }
 

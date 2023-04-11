@@ -39,8 +39,7 @@ public class ModItemsRegister {
     //Vials
     public static RegistryObject<Item> LARGE_VIAL;
     public static RegistryObject<Item> SMALL_VIAL;
-    public static RegistryObject<Item> DUMMY_BOOK;
-
+    public static RegistryObject<Item> METALLICS_ARTS_BOOK;
 
     public static void register() {
         BasicItemsRegister.register();

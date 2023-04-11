@@ -14,7 +14,6 @@ import net.rudahee.metallics_arts.data.enums.implementations.languages.book.mult
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft.MultiCraftData;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionData;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionDescription;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionDescriptionExtra;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponDescriptions;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponsData;
 
@@ -28,7 +27,7 @@ public class BookHelperES {
         helper.book("metallics_arts_book");
 
         bookLangHelper.put(helper.bookName(), CTW.METALLICS_ARTS.getNameInSpanish() + ": " + CTW.GUIDE.getNameInSpanish());
-        bookLangHelper.put(helper.bookTooltip(), "Libro de poderes");
+        bookLangHelper.put(helper.bookTooltip(), CTW.BOOK_TOOLTIP.getNameInSpanish());
 
         bookLangHelper.putAll(addAllomancyCategory(helper));
         bookLangHelper.putAll(feruchemyCategory(helper));
@@ -40,7 +39,7 @@ public class BookHelperES {
     private static HashMap<String, String> addIntroCategory(BookLangHelper helper){
         HashMap<String, String> introTraslationsMap = new HashMap<>();
         helper.category("intro");
-        introTraslationsMap.put(helper.categoryName(), "Intro");
+        introTraslationsMap.put(helper.categoryName(), CTW.INTRODUCTION.getNameInSpanish());
 
         introTraslationsMap.putAll(addWelcomeEntry(helper, SubdivisionData.WELCOME));
         for (SubdivisionData entry: SubdivisionData.values()) {
@@ -97,16 +96,21 @@ public class BookHelperES {
         HashMap<String, String> welcomeTraslationsMap = new HashMap<>();
         helper.entry(subdivisionEntry.getId() + "_entry");
 
-        welcomeTraslationsMap.put(helper.entryName(), "nombre");
-        welcomeTraslationsMap.put(helper.entryDescription(), "descripcion");
+        welcomeTraslationsMap.put(helper.entryName(), CTW.WELCOME.getNameInSpanish());
+        welcomeTraslationsMap.put(helper.entryDescription(), "");
+        int x = 1;
 
-        helper.page("page1");
-        welcomeTraslationsMap.put(helper.pageTitle(), "textito");
-        welcomeTraslationsMap.put(helper.pageText(), SubdivisionDescription.valueOf(subdivisionEntry.name()).getSpanish());
+        for (String content: SubdivisionDescription.valueOf(subdivisionEntry.name()).getSpanish()) {
+            helper.page("page"+ x);
+            if (x == 1){
+                welcomeTraslationsMap.put(helper.pageTitle(), CTW.valueOf(subdivisionEntry.name()).getNameInSpanish());
+            } else {
+                welcomeTraslationsMap.put(helper.pageTitle(), "-");
+            }
+            welcomeTraslationsMap.put(helper.pageText(), content);
+            x++;
+        }
 
-        helper.page("page2");
-        welcomeTraslationsMap.put(helper.pageTitle(), "textito");
-        welcomeTraslationsMap.put(helper.pageText(), SubdivisionDescriptionExtra.valueOf(subdivisionEntry.name()).getSpanish());
 
         return welcomeTraslationsMap;
     }
@@ -117,9 +121,17 @@ public class BookHelperES {
         subDivisionTraslationsMap.put(helper.entryName(), CTW.valueOf(subdivisionEntry.name()).getNameInSpanish());
         subDivisionTraslationsMap.put(helper.entryDescription(), "");
 
-        helper.page("page");
-        subDivisionTraslationsMap.put(helper.pageTitle(), CTW.valueOf(subdivisionEntry.name()).getNameInSpanish());
-        subDivisionTraslationsMap.put(helper.pageText(), SubdivisionDescription.valueOf(subdivisionEntry.name()).getSpanish());
+        int x = 1;
+        for (String content: SubdivisionDescription.valueOf(subdivisionEntry.name()).getSpanish()) {
+            helper.page("page"+ x);
+            if (x == 1){
+                subDivisionTraslationsMap.put(helper.pageTitle(), CTW.valueOf(subdivisionEntry.name()).getNameInSpanish());
+            } else {
+                subDivisionTraslationsMap.put(helper.pageTitle(), "-");
+            }
+            subDivisionTraslationsMap.put(helper.pageText(), content);
+            x++;
+        }
 
         return subDivisionTraslationsMap;
     }
@@ -158,7 +170,7 @@ public class BookHelperES {
         allomancyTraslationsMap.put(helper.pageText(), PowerDescriptions.valueOf(metal.name()).getSpanish());
 
         helper.page("power_interactions");
-        allomancyTraslationsMap.put(helper.pageTitle(), "Interactions");
+        allomancyTraslationsMap.put(helper.pageTitle(), CTW.INTERACTIONS.getNameInSpanish());
         allomancyTraslationsMap.put(helper.pageText(), Interactions.valueOf(metal.name()).getSpanish());
         return allomancyTraslationsMap;
     }
@@ -173,7 +185,7 @@ public class BookHelperES {
         feruchemyTraslationsMap.put(helper.pageText(), Storage.valueOf(metal.name()).getSpanish());
 
         helper.page("power_tap");
-        feruchemyTraslationsMap.put(helper.pageTitle(), "");
+        feruchemyTraslationsMap.put(helper.pageTitle(), "-");
         feruchemyTraslationsMap.put(helper.pageText(), Tap.valueOf(metal.name()).getSpanish());
         return feruchemyTraslationsMap;
     }

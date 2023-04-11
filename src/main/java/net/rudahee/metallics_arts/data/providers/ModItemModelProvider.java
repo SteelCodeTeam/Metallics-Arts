@@ -164,7 +164,7 @@ public class ModItemModelProvider extends ItemModelProvider {
             builder(itemGenerated,"item/"+metal.getNameLower()+"_feruchemic_icon","item/symbols/feruchemic_symbols/"+metal.getNameLower()+"_symbol");
         }
 
-        builder(itemHandHeld,"item/dummy_book","item/dummy_book");
+        builder(itemHandHeld,"item/metallics_arts_book","item/metallics_arts_book");
 
     }
 
