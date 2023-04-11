@@ -45,7 +45,9 @@ public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper {
             player.setHealth(10);
         }
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(10);
+
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.ELECTRUM);
+
     }
     /**
      * This is a unique method in the helpers, which is used to restore the max health to the base value (10 hearts), when the electrum powers stop working.

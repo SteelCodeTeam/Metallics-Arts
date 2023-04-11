@@ -122,6 +122,7 @@ public class BandGoldElectrum extends BandMindAbstract <GoldFecuchemicHelper, El
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(0), this.getMetals(1)));
                         playerCapability.setTapping(this.getMetals(1), false);
                     }
+                    playerCapability.setModifiedHealth(true);
                     /**
                      STORAGE
                      */
@@ -134,6 +135,9 @@ public class BandGoldElectrum extends BandMindAbstract <GoldFecuchemicHelper, El
                         }
                     } else {
                         playerCapability.setStoring(this.getMetals(1), false);
+                    }
+                    if (!playerCapability.hasModifiedHealth()) {
+                        playerCapability.setModifiedHealth(true);
                     }
                 } else if (playerCapability.hasModifiedHealth()) {
                     ElectrumFecuchemicHelper.restoreHearts(player, playerCapability);
