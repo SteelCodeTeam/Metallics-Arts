@@ -38,6 +38,7 @@ public class OnRenderLevelStage {
     @OnlyIn(Dist.CLIENT)
     public static void onRenderLevelStage(RenderLevelStageEvent event, Minecraft minecraft, @Nullable Player player, @Nullable IInvestedPlayerData capability) throws PlayerException {
 
+        // lines are only rendered after translucent blocks
         if ((event.getStage() != RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS) || minecraft.options.getCameraType().isMirrored()) {
             return;
         }
@@ -63,7 +64,9 @@ public class OnRenderLevelStage {
             Vec3 view = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
             Vector3f lookDirection = Minecraft.getInstance().gameRenderer.getMainCamera().getLookVector();
             Vec3 lookDir = new Vec3(lookDirection.x(), lookDirection.y(), lookDirection.z());
+            // controlls where the source of the lines is
             Vec3 playerPos = Minecraft.getInstance().player.getPosition(event.getPartialTick()).add(new Vec3(0,1,0)).add(lookDir);
+            // controlls the texture displayed for the line
             ResourceLocation texture = new ResourceLocation(MetallicsArts.MOD_ID,
                     "textures/veffects/the_idle4_60_transluscent.png");
             Vec3 sourceCameraVector = view.subtract(playerPos);
@@ -110,6 +113,21 @@ public class OnRenderLevelStage {
     }
 
     private static void metalLines(int tick, float partialTick, Vec3 viewPosition, Matrix4f translationMatrix, Vec3 source, double scale, ResourceLocation texture, int numberOfFrames, int columnWidth, int columnHeight, List<Entity> entities, List<MetalBlockUtils> blocks){
+        /**
+         * @param tick integer representing the current world tick, used to calculate the current frame.
+         * @param partialTick the current PartialTick value used for rendering.
+         * @param viewPosition the current position of player's camera
+         * @param transformationMatrix Matrix4f representing the transformation from world to screen coordinates
+         * @param source Vec3 representing a point in the world from which lines will originate
+         * @param scale controlls the width of the lines
+         * @param texture ResourceLocation pointing to the line texture
+         * @param numberOfFrames number of frames in the texture
+         * @param columnWidth width of a single frame
+         * @param columnHeight height of a single frame
+         * @param entities the entities to which lines should be drawn
+         * @param blocks the block blobs to which lines should be drawn
+         *
+         */
         for (Entity entity: entities) {
             DrawUtils.drawMetalQuadLines(tick, viewPosition, translationMatrix, entity.getPosition(partialTick), source, scale, texture, numberOfFrames, columnWidth, columnHeight);
         }
