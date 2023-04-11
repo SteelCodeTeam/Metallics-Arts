@@ -42,7 +42,7 @@ public enum SubdivisionDescription {
             new String[]{""}),
     TUTORIAL_ALLOMANCY(
             new String[]{""},
-            new String[]{"Para saber dónde empezar tenemos que ver cuáles son tus poderes, muchos aquí empiezan como brumosos, personas que solo tienen la capacidad de quemar un mental, por lo que deberíamos ver si puedes quemar algún metal, para esto presiona M, en caso de que algo hayas visto, serás capaz de ","identificar que metal es el que te dará poder. Para poder utilizarlo, rellena un vial con fragmentos de este metal y trágatelo, luego solo deberás volver a tocar M y activarlo."},
+            new String[]{"Para saber dónde empezar tenemos que ver cuáles son tus poderes, muchos aquí empiezan como brumosos, personas que solo tienen la capacidad de quemar un mental, por lo que deberíamos ver si puedes quemar algún metal, para esto presiona M, en caso de que algo hayas visto, serás capaz de ","identificar que metal es el que te dará poder. Para poder utilizarlo, rellena un [vial](entry://intro/vials_entry) con fragmentos de este metal y trágatelo, luego solo deberás volver a tocar M y activarlo."},
             new String[]{""}),
 
     PHYSICAL_FERUCHEMY(
@@ -67,7 +67,7 @@ public enum SubdivisionDescription {
             new String[]{""}),
     TUTORIAL_FERUCHEMY(
             new String[]{""},
-            new String[]{"Para empezar con este arte, deberíamos primero saber si tienes la capacidad de utilizar como reservas algún metal, esto lo verás al presionar N, no te será difícil identificar cuál puedes usar. Una vez que lo tengas, según dicen las historias, los místicos del norte utilizaban brazales o anillos para poder ","guardar su poder, así que intenta conseguir uno y tras equipártelo, utiliza N para activar este misterioso poder."},
+            new String[]{"Para empezar con este arte, deberíamos primero saber si tienes la capacidad de utilizar como reservas algún metal, esto lo verás al presionar N, no te será difícil identificar cuál puedes usar. Una vez que lo tengas, según dicen las historias, los místicos del norte utilizaban [anillos](entry://intro/rings_entry) o [brazales](entry://intro/bands_entry)  para poder ","guardar su poder, así que intenta conseguir uno y tras equipártelo, utiliza N para activar este misterioso poder."},
             new String[]{""}),
 
     ALLOMANCY(new String[]{""},
@@ -77,7 +77,7 @@ public enum SubdivisionDescription {
             new String[]{"El arte de la Feruquimia, es el arte de Armonía, esta permite almacenar ciertos atributos en los brazaletes, anillos o fragmentos de metal a los que llamamos “mentes de metal” dependiendo claro, del metal del cual estén compuestos, para luego utilizar el poder almacenado, aumentando así las capacidades de su usuario.", "A pesar de que se denomina un arte armónica, tiene una ligera desventaja, ya que todo el poder que su usuario podrá utilizar, deberá ser obtenido de la misma persona …\\\n ¿O quizá no …?"},
             new String[]{""}),
     WELCOME(new String[]{""},
-            new String[]{"Hace siglos, aquellos con la capacidad de ingerir metales y metabolizarlos para obtener poderes eran conocidos como “nacidos de la bruma” pero a día de hoy estas prácticas han quedado cerca de la extinción, si estás leyendo esto significa que tú, probablemente, poseas la habilidad para quemar","estos metales en tu interior, tal vez no te des cuenta y lo estés haciendo en este mismo momento. \\\nTambién se cuenta, que los místicos del norte, podían hacer otras “cosas” extrañas con los mismos metales… de esto no sé mucho, pero el caso, es que puede que incluso ahora haya descendientes del norte ", " capaz de usar su poder. \\\n Quizá hayas heredado alguna de estas grandes capacidades, quizá no, pero para sobrevivir en este mundo es mi deber mostrarte el camino de las Artes Metálicas, puede que algunas de estas prácticas te lleven por caminos oscuros repletos "," de muerte, otras pueden ayudar a la reconstrucción del mundo y la salvación de la humanidad, tú decidirás qué camino tomar. \\\n\\\n\\\n\\\n  Mi nombre es Lemmeg y este es el Diario del Superviviente."},
+            new String[]{"Hace siglos, aquellos con la capacidad de ingerir metales y metabolizarlos para obtener poderes eran conocidos como “nacidos de la bruma” pero a día de hoy estas prácticas han quedado cerca de la extinción, si estás leyendo esto significa que tú, probablemente, poseas la habilidad para quemar","estos metales en tu interior, tal vez no te des cuenta y lo estés haciendo en este mismo momento. \\\nTambién se cuenta, que los místicos del norte, podían hacer otras “cosas” extrañas con los mismos metales… de esto no sé mucho, pero el caso, es que puede que incluso ahora haya descendientes del norte ", " capaz de usar su poder. \\\n Quizá hayas heredado alguna de estas grandes capacidades, quizá no, pero para sobrevivir en este mundo es mi deber mostrarte el camino de las Artes Metálicas, puede que algunas de estas prácticas te lleven por caminos oscuros repletos "," de muerte, otras pueden ayudar a la reconstrucción del mundo y la salvación de la humanidad, tú decidirás qué camino tomar. \\\n\\\n\\\n\\\n\\\n  Mi nombre es Lemmeg y este es el Diario del Superviviente."},
             new String[]{""});
 
     private final String[] english;
