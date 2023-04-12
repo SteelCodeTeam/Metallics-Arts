@@ -14,6 +14,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritual_metals.ChromiumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritual_metals.NicrosilAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals.BrassFecuchemicHelper;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 /**
@@ -53,8 +54,10 @@ public class OnDamageEvent {
             if (sourceCapability.isBurning(MetalTagEnum.MALATIUM)) {
                 if (target.getLastDeathLocation().isPresent()) {
                     MalatiumAllomanticHelper.setPos(target.getLastDeathLocation().get());
+                    ModNetwork.syncAnotherPlayerDeathPos(target.getLastDeathLocation().get(), source);
                 } else {
                     MalatiumAllomanticHelper.setPos(GlobalPos.of(target.getRespawnDimension(), target.getRespawnPosition()));
+                    ModNetwork.syncAnotherPlayerDeathPos(GlobalPos.of(target.getRespawnDimension(), target.getRespawnPosition()), source);
                 }
                 MalatiumAllomanticHelper.setPosRegistered(true);
             }

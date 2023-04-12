@@ -19,6 +19,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.ElectrumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.GoldAllomanticHelper;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 import java.util.logging.Level;
 
@@ -53,6 +54,8 @@ public class AllomaticTick {
         }
         if (MalatiumAllomanticHelper.isPosRegistered() && !playerCapability.isBurning(MetalTagEnum.MALATIUM)) {
             MalatiumAllomanticHelper.setPos(null, null);
+            MalatiumAllomanticHelper.setPosRegistered(false);
+            ModNetwork.syncAnotherPlayerDeathPos(null, player);
         }
     }
 

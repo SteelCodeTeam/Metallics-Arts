@@ -6,6 +6,7 @@ import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
+import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -35,6 +36,8 @@ public class OnRenderLevelStage {
 
     static GlobalPos respawnPos;
 
+    static GlobalPos anotherPlayerDeathPos;
+
     @OnlyIn(Dist.CLIENT)
     public static void onRenderLevelStage(RenderLevelStageEvent event, Minecraft minecraft, @Nullable Player player, @Nullable IInvestedPlayerData capability) throws PlayerException {
 
@@ -60,7 +63,7 @@ public class OnRenderLevelStage {
 
         Matrix4f transformationMatrix = DrawUtils.setUpForDrawingQuadLines(event);
 
-        if (capability.isBurning(MetalTagEnum.IRON) || capability.isBurning(MetalTagEnum.STEEL)){
+        if (capability.isBurning(MetalTagEnum.IRON) || capability.isBurning(MetalTagEnum.STEEL)) {
             Vec3 view = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
             Vector3f lookDirection = Minecraft.getInstance().gameRenderer.getMainCamera().getLookVector();
             Vec3 lookDir = new Vec3(lookDirection.x(), lookDirection.y(), lookDirection.z());
@@ -75,40 +78,84 @@ public class OnRenderLevelStage {
                     FoundNearbyMetalUtils.getMetalBlocks().stream().sorted(Comparator.comparingDouble(e -> -1*(playerPos.subtract(e.getCenter()).normalize().dot(sourceCameraVector.normalize())))).toList());
         }
 
-        double rho = 1;
-        float theta = (float) ((player.getViewYRot(event.getPartialTick()) + 90) * Math.PI / 180);
-        float phi = Mth.clamp((float) ((player.getViewXRot(event.getPartialTick()) + 90) * Math.PI / 180), 0.0001F, 3.14F);
-
-        Vec3 playerCameraVector = minecraft.cameraEntity
-                .getEyePosition(event.getPartialTick())
-                .add(rho * Mth.sin(phi) * Mth.cos(theta), rho * Mth.cos(phi) - 0.35F, rho * Mth.sin(phi) * Mth.sin(theta));
 
 
-//        if (capability.isBurning(MetalTagEnum.IRON)) {
-//            IronMetalLines(stack, playerCameraVector, FoundNearbyMetalUtils.getMetalEntities(), FoundNearbyMetalUtils.getMetalBlocks());
-//        } else if (capability.isBurning(MetalTagEnum.STEEL)) {
-//            SteelMetalLines(stack, playerCameraVector, FoundNearbyMetalUtils.getMetalEntities(), FoundNearbyMetalUtils.getMetalBlocks());
-//        }
+
 
         if (capability.isBurning(MetalTagEnum.BRONZE)) {
-            // /!\ REDO LOGIC /!\
+            Vec3 view = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
+            Vector3f lookDirection = Minecraft.getInstance().gameRenderer.getMainCamera().getLookVector();
+            Vec3 lookDir = new Vec3(lookDirection.x(), lookDirection.y(), lookDirection.z());
+            Vec3 playerPos = Minecraft.getInstance().player.getPosition(event.getPartialTick()).add(new Vec3(0,1,0)).add(lookDir);
+
+            ResourceLocation texture = new ResourceLocation(MetallicsArts.MOD_ID,
+                    "textures/veffects/the_idle4_60_copper_transluscent.png");
+            Vec3 sourceCameraVector = view.subtract(playerPos);
+
+            metalLines(event.getRenderTick(), event.getPartialTick(), view, transformationMatrix, playerPos, 0.005, texture, 31, 8, 32, FoundNearbyMetalUtils.getNearbyAllomancers());
+
         }
 
-       /* if (capability.isBurning(MetalTagEnum.GOLD)) {
-            GoldMetalLines(stack, playerCameraVector, player.getLastDeathLocation());
+        if (capability.isBurning(MetalTagEnum.GOLD)) {
+
+            Vec3 view = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
+            Vector3f lookDirection = Minecraft.getInstance().gameRenderer.getMainCamera().getLookVector();
+            Vec3 lookDir = new Vec3(lookDirection.x(), lookDirection.y(), lookDirection.z());
+            Vec3 playerPos = Minecraft.getInstance().player.getPosition(event.getPartialTick()).add(new Vec3(0,1,0)).add(lookDir);
+
+            // controlls the texture displayed for the line
+            ResourceLocation texture = new ResourceLocation(MetallicsArts.MOD_ID,
+                    "textures/veffects/the_idle4_60_yellow_translucent.png");
+
+            Vec3 sourceCameraVector = view.subtract(playerPos);
+
+
+            if (player.getLastDeathLocation().isPresent()) {
+                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, Vec3.atCenterOf(player.getLastDeathLocation().get().pos()), playerPos, 0.005, texture, 31, 8, 32);
+            } else {
+                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, new Vec3(0, 100, 0), playerPos, 0.005, texture, 31, 8, 32);
+            }
+
         }
 
         if (capability.isBurning(MetalTagEnum.ELECTRUM)) {
-            ElectrumMetalLines(stack, playerCameraVector, getRespawnPos());
+
+            Vec3 view = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
+            Vector3f lookDirection = Minecraft.getInstance().gameRenderer.getMainCamera().getLookVector();
+            Vec3 lookDir = new Vec3(lookDirection.x(), lookDirection.y(), lookDirection.z());
+            // controlls where the source of the lines is
+            Vec3 playerPos = Minecraft.getInstance().player.getPosition(event.getPartialTick()).add(new Vec3(0,1,0)).add(lookDir);
+            // controlls the texture displayed for the line
+            ResourceLocation texture = new ResourceLocation(MetallicsArts.MOD_ID,
+                    "textures/veffects/the_idle4_60_yellow_translucent.png");
+            Vec3 sourceCameraVector = view.subtract(playerPos);
+
+            if (respawnPos == null) {
+                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, new Vec3(player.level.getLevelData().getXSpawn(), player.level.getLevelData().getYSpawn() + 1, player.level.getLevelData().getZSpawn()), playerPos, 0.005, texture, 31, 8, 32);
+            } else {
+                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, Vec3.atCenterOf(respawnPos.pos()), playerPos, 0.005, texture, 31, 8, 32);
+            }
         }
 
-        if (capability.isBurning(MetalTagEnum.MALATIUM) /*&& otherPlayerDeathPos != null) {
-            //Vec3 vector = new Vec3(otherPlayerDeathPos.getX(), otherPlayerDeathPos.getY(), otherPlayerDeathPos.getZ());
-            MalatiumMetalLines(stack, playerCameraVector, getRespawnPos() );
+        if (capability.isBurning(MetalTagEnum.MALATIUM)) {
+            Vec3 view = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
+            Vector3f lookDirection = Minecraft.getInstance().gameRenderer.getMainCamera().getLookVector();
+            Vec3 lookDir = new Vec3(lookDirection.x(), lookDirection.y(), lookDirection.z());
+
+            Vec3 playerPos = Minecraft.getInstance().player.getPosition(event.getPartialTick()).add(new Vec3(0,1,0)).add(lookDir);
+            // controlls the texture displayed for the line
+            ResourceLocation texture = new ResourceLocation(MetallicsArts.MOD_ID,
+                    "textures/veffects/the_idle4_60_yellow_translucent.png");
+            Vec3 sourceCameraVector = view.subtract(playerPos);
+
+
+            if (anotherPlayerDeathPos == null) {
+                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, new Vec3(player.level.getLevelData().getXSpawn(), player.level.getLevelData().getYSpawn() + 1, player.level.getLevelData().getZSpawn()), playerPos, 0.005, texture, 31, 8, 32);
+            } else {
+                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, Vec3.atCenterOf(anotherPlayerDeathPos.pos()), playerPos, 0.005, texture, 31, 8, 32);
+            }
         }
 
-        DrawUtils.teardownPoseStack(stack);
-        */
 
     }
 
@@ -136,12 +183,26 @@ public class OnRenderLevelStage {
         }
     }
 
+    private static void metalLines(int tick, float partialTick, Vec3 viewPosition, Matrix4f translationMatrix, Vec3 source, double scale, ResourceLocation texture, int numberOfFrames, int columnWidth, int columnHeight, List<BlockPos> pos) {
+        for (BlockPos singlePos: pos) {
+            DrawUtils.drawMetalQuadLines(tick, viewPosition, translationMatrix, Vec3.atCenterOf(singlePos), source, scale, texture, numberOfFrames, columnWidth, columnHeight);
+        }
+    }
+
     public static void setRespawnPos(GlobalPos pos) {
         respawnPos = pos;
     }
 
     public static Optional<GlobalPos> getRespawnPos() {
         return Optional.of(respawnPos);
+    }
+
+    public static void setAnotherPlayerDeathPos(GlobalPos pos) {
+        anotherPlayerDeathPos = pos;
+    }
+
+    public static Optional<GlobalPos> getAnotherPlayerDeathPos() {
+        return Optional.of(anotherPlayerDeathPos);
     }
 
     private static void IronMetalLines(PoseStack stack, Vec3 playerCameraVector, Set<Entity> entities, Set<MetalBlockUtils> blocks) {

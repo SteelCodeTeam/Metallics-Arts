@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.setup.network;
 
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -15,6 +16,8 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.network.packets.*;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+
+import java.util.List;
 
 /**
  * Class to control communications between Client game and Server game. That it's done defining packets to realize change
@@ -62,6 +65,8 @@ public class ModNetwork {
         INSTANCE.registerMessage(nextIndex(), UpdateStoragePacket.class, UpdateStoragePacket::encode, UpdateStoragePacket::decode, UpdateStoragePacket::handle);
         INSTANCE.registerMessage(nextIndex(), RemoveNuggetPacket.class, RemoveNuggetPacket::encode, RemoveNuggetPacket::decode, RemoveNuggetPacket::handle);
         INSTANCE.registerMessage(nextIndex(), RespawnPositionPacket.class, RespawnPositionPacket::encode, RespawnPositionPacket::decode, RespawnPositionPacket::handle);
+        INSTANCE.registerMessage(nextIndex(), NearbyInvestedPacket.class, NearbyInvestedPacket::encode, NearbyInvestedPacket::decode, NearbyInvestedPacket::handle);
+        INSTANCE.registerMessage(nextIndex(), AnotherPlayerDeathPosPacket.class, AnotherPlayerDeathPosPacket::encode, AnotherPlayerDeathPosPacket::decode, AnotherPlayerDeathPosPacket::handle);
     }
 
     /**
@@ -123,6 +128,15 @@ public class ModNetwork {
     public static void syncRespawnPosPacket(GlobalPos pos, Player player) {
         sync(new RespawnPositionPacket(player, pos), player);
     }
+
+    public static void syncNearbyInvestedPlayer(List<BlockPos> pos, Player player) {
+        sync(new NearbyInvestedPacket(player, pos.size(), pos), player);
+    }
+
+    public static void syncAnotherPlayerDeathPos(GlobalPos pos, Player player) {
+        sync(new AnotherPlayerDeathPosPacket(player, pos), player);
+    }
+
 
     /**
      * Specific method to synchronize any packet from server to client.

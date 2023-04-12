@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -11,7 +12,9 @@ import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.utils.powers_utils.MetalBlockUtils;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -31,7 +34,7 @@ import java.util.stream.Stream;
 public class FoundNearbyMetalUtils {
 
     private static final Set<Entity> metalEntities = new HashSet<>();
-    private final Set<Player> nearbyAllomancers = new HashSet<>();
+    private static List<BlockPos> nearbyAllomancers = new ArrayList<>();
     private static final Set<MetalBlockUtils> metalBlobs = new HashSet<>();
 
     /**
@@ -100,6 +103,14 @@ public class FoundNearbyMetalUtils {
                 }
             });
         }
+    }
+
+    public static List<BlockPos> getNearbyAllomancers() {
+        return nearbyAllomancers;
+    }
+
+    public static void setNearbyAllomancers(List<BlockPos> nearbyAllomancers) {
+        nearbyAllomancers = nearbyAllomancers;
     }
 
 

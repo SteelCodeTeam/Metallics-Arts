@@ -31,4 +31,6 @@ public class MathUtils {
      * @return boolean if it divisible.
      */
     public static boolean isDivisibleBy10(int number) { return (number % 10) == 0; }
+
+    public static boolean isDivisibleBy2(int number) { return (number % 2) == 0; }
 }

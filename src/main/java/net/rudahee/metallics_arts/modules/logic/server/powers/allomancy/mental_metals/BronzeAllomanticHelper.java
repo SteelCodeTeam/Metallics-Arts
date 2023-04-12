@@ -1,12 +1,18 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.mental_metals;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -20,6 +26,8 @@ import java.util.stream.Stream;
  * @see AllomaticTick
  */
 public class BronzeAllomanticHelper {
+
+    public static List<BlockPos> nearbyAllomancers;
 
     /**
      * Manipulates AI entities based on the player's Bronze Allomantic abilities.
@@ -42,19 +50,33 @@ public class BronzeAllomanticHelper {
             radius = 8;
         }
 
-        world.getEntitiesOfClass(Mob.class, CapabilityUtils.getBubble(player, radius)).forEach(entity -> {
+        nearbyAllomancers = new ArrayList<>();
+
+        world.getEntitiesOfClass(LivingEntity.class, CapabilityUtils.getBubble(player, radius)).forEach(entity -> {
             if (entity == null) {
                 return;
             }
 
-            if (entity.goalSelector.getRunningGoals().findAny().isPresent()) {
-                Optional<WrappedGoal> goal = entity.goalSelector.getRunningGoals().findFirst();
-                goal.ifPresent(wrappedGoal -> entity.goalSelector.removeGoal(Objects.requireNonNull(wrappedGoal)));
+            if (entity instanceof Mob) {
+                Mob mobEntity = (Mob) entity;
+                if (mobEntity.goalSelector.getRunningGoals().findAny().isPresent()) {
+                    Optional<WrappedGoal> goal = mobEntity.goalSelector.getRunningGoals().findFirst();
+                    goal.ifPresent(wrappedGoal -> mobEntity.goalSelector.removeGoal(Objects.requireNonNull(wrappedGoal)));
+                }
+
+                mobEntity.getLookControl().setLookAt(player.position().x, player.position().y, player.position().z);
+                mobEntity.getMoveControl().setWantedPosition(player.position().x - 0.5F, player.position().y, player.position().z - 0.5F, 1.2f);
             }
 
-            entity.getLookControl().setLookAt(player.position().x, player.position().y, player.position().z);
-            entity.getMoveControl().setWantedPosition(player.position().x-0.5F, player.position().y, player.position().z-0.5F, 1.2f);
+            if (entity instanceof Player) {
+                nearbyAllomancers.add(entity.blockPosition());
+            }
+
         });
+
+        if (nearbyAllomancers.size() != 0) {
+            ModNetwork.syncNearbyInvestedPlayer(nearbyAllomancers, player);
+        }
 
     }
 

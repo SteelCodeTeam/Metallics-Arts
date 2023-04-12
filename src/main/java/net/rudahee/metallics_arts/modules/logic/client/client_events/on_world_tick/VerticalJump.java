@@ -23,6 +23,8 @@ import net.rudahee.metallics_arts.setup.network.packets.RemoveNuggetPacket;
  */
 public class VerticalJump {
 
+    static int controlTick = 0;
+
     /**
      * Handles the fly action, which allows the player to jump or fly vertically based on the metal
      * they are burning and the surrounding blocks. The player can move up or down depending on the
@@ -84,9 +86,19 @@ public class VerticalJump {
                         Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player, capability.getEnhanced(),
                                 capability.isBurning(MetalTagEnum.LERASIUM)))));
 
-                ModNetwork.sendToServer(new RemoveNuggetPacket(slot, player));
+
+                if (controlTick == 0) {
+                    ModNetwork.sendToServer(new RemoveNuggetPacket(slot, player));
+                    controlTick = 10;
+                }
 
             }
+
+            if (controlTick > 0) {
+                controlTick--;
+            }
+
+
         }
     }
 }

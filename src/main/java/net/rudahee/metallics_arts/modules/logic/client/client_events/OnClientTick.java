@@ -87,7 +87,7 @@ public class OnClientTick {
                 }
             }
 
-            if (MathUtils.isDivisibleBy10(tick)) {
+            if (MathUtils.isDivisibleBy2(tick)) {
                 if (minecraft.options.keyJump.isDown() && ModKeyRegister.VERTICAL_JUMP.isDown() && capability.isBurning(MetalTagEnum.STEEL)) {
                     VerticalJump.fly(capability, minecraft, player, player.getLevel());
                 }
