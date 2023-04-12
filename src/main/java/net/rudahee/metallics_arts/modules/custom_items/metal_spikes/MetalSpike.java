@@ -76,8 +76,8 @@ public class MetalSpike extends SwordItem {
         }
 
         @Override
-        public @NotNull Ingredient getRepairIngredient() {
-            return Ingredient.of(Blocks.AIR);
+        public Ingredient getRepairIngredient() {
+            return Ingredient.of(Blocks.CRYING_OBSIDIAN);
         }
     };
 
@@ -183,15 +183,15 @@ public class MetalSpike extends SwordItem {
      * @return boolean
      */
     @Override
-    public boolean hurtEnemy(ItemStack stack, @NotNull LivingEntity target, @NotNull LivingEntity source) {
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity source) {
 
-        if (stack.hasTag()){
-            if  (!stack.getTag().contains("metal_spike") || !stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
-                stack.setTag(generateTags(stack));
-            }
+        if  (!stack.getTag().contains("metal_spike")||!stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
+            stack.setTag(generateTags(stack));
         }
 
+
         if ((target instanceof Player) && (source instanceof Player)){
+
 
             target.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(targetData -> {
 
@@ -208,91 +208,79 @@ public class MetalSpike extends SwordItem {
                 Level world = target.level;
                 BlockPos pos = new BlockPos(target.position());
 
-                if (stack.getTag().getBoolean("allomantic_power")) {
+                //DAR PODER
+                if (stack.getTag().getBoolean("allomantic_power")){
                     if (!targetData.hasAllomanticPower(localMetal)){
                         targetData.addAllomanticPower(localMetal);
                         doEffects(world, pos);
-                        source.setItemInHand(source.getUsedItemHand(), ItemStack.EMPTY);
                     }
-                } else if (stack.getTag().getBoolean("feruchemic_power")) {
+                } else if (stack.getTag().getBoolean("feruchemic_power")){
                     if (!targetData.hasFeruchemicPower(localMetal)){
                         targetData.addFeruchemicPower(localMetal);
                         doEffects(world, pos);
-                        source.setItemInHand(source.getUsedItemHand(), ItemStack.EMPTY);
                     }
 
+                    //SI EL CLAVO NO TIENE PODERES -> intenta robar
                 } else if (hasPlayerBothPowers(localMetal, targetData)) {
+                    //SI EL OBJETIVO TIENE AMBOS PODERES
                     if (isAllomantic) {
-                        if (couldStealPower){
-                            if (couldRemovePower){
+                        if (Math.random()>0.50){
+                            if (Math.random()<0.75){
                                 targetData.removeAllomanticPower(localMetal);
 
-                                target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, false, false));
+                                target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
 
-                                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, false, false));
+                                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
 
                             }
                             stack.getTag().putBoolean("allomantic_power",true);
                             addItemToPlayer((Player) source, stack);
                         }
                     } else {
-                        if (couldStealPower) {
-                            if (couldRemovePower) {
+                        if (Math.random()>0.50){
+                            if (Math.random()<0.75){
                                 targetData.removeFeruchemicPower(localMetal);
 
-                                target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, false, false));
+                                target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
 
-                                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, false, false));
+                                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
 
                             }
                             stack.getTag().putBoolean("feruchemic_power",true);
                             addItemToPlayer((Player) source, stack);
                         }
                     }
-                } else if (hasAllomanticPower) {
-                    if (couldStealPower){
-                        if (couldRemovePower){
+                } else if (hasAllomanticPower){
+                    if (Math.random()>0.50){
+                        if (Math.random()<0.75){
                             targetData.removeAllomanticPower(localMetal);
 
-                            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, false, false));
-                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, false, false));
+                            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
+
+                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
 
                         }
                         stack.getTag().putBoolean("allomantic_power",true);
                         addItemToPlayer((Player) source, stack);
                     }
                 } else if (hasFeruchemicPower){
-                    if (couldStealPower){
-                        if (couldRemovePower) {
+                    if (Math.random()>0.50){
+                        if (Math.random()<0.75) {
+
+
                             targetData.removeFeruchemicPower(localMetal);
-                            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, false, false));
-                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, false, false));
+
+                            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
+
+                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
+
                         }
                         stack.getTag().putBoolean("feruchemic_power",true);
                         addItemToPlayer((Player) source, stack);
                     }
                 }
-                ModNetwork.syncInvestedDataPacket(targetData,(Player) target);
+                ModNetwork.sync(targetData,(Player) target);
             });
-
-
-
-        } else if ((target instanceof Witch) && (source instanceof Player)) {
-            if (!stack.getTag().getBoolean("allomantic_power") && !stack.getTag().getBoolean("feruchemic_power")) {
-                if (Math.random()<0.1){
-                    stack.getTag().putBoolean("allomantic_power",true);
-                    addItemToPlayer((Player) source, stack);
-                    target.kill();
-                }
-            }
-        } else if ((target instanceof Evoker) && (source instanceof Player)) {
-            if (!stack.getTag().getBoolean("allomantic_power") && !stack.getTag().getBoolean("feruchemic_power")) {
-                if (Math.random()<0.1){
-                    target.kill();
-                    stack.getTag().putBoolean("feruchemic_power",true);
-                    addItemToPlayer((Player) source, stack);
-                }
-            }
         }
         return super.hurtEnemy(stack, target, source);
     }
@@ -310,64 +298,6 @@ public class MetalSpike extends SwordItem {
         lightning.moveTo(new Vec3(pos.getX(), pos.getY(), pos.getZ()));
 
         level.addFreshEntity(lightning);
-    }
-
-    /**
-     * This method define the behaviour when spike is used.
-     *
-     * @param level of the player when use it.
-     * @param player that use the spike.
-     * @param hand that have the spike.
-     *
-     * @return InteractionResultHolder<ItemStack>
-     */
-    @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
-        ItemStack itemStack = player.getItemInHand(hand);
-        if (!itemStack.getTag().contains("metal_spike") || !itemStack.getTag().contains("feruchemic_power") || !itemStack.getTag().contains("allomantic_power"))  {
-            return new InteractionResultHolder<>(InteractionResult.FAIL, itemStack);
-        } else if (itemStack.getTag().getBoolean("allomantic_power") || itemStack.getTag().getBoolean("feruchemic_power")) {
-            player.startUsingItem(hand);
-            try {
-                IInvestedPlayerData capabilities = CapabilityUtils.getCapability(player);
-                if (itemStack.getTag().getBoolean("allomantic_power")) {
-                    capabilities.addAllomanticPower(this.metalSpike);
-                } else if (!itemStack.getTag().getBoolean("feruchemic_power")) {
-                    capabilities.addFeruchemicPower(this.metalSpike);
-                }
-            } catch (PlayerException ex) {
-                ex.printResumeLog();
-            }
-            doEffects(level, player.getOnPos());
-            player.getInventory().removeItem(itemStack);
-            return new InteractionResultHolder<>(InteractionResult.CONSUME, itemStack);
-        }
-        return new InteractionResultHolder<>(InteractionResult.FAIL, itemStack);
-    }
-
-    /**
-     * This method define the behaviour when using is finished. but we don't do anything special, only call super().
-     *
-     * @param stack specific item.
-     * @param level of the player.
-     * @param livingEntity tht use the spike.
-     * @param status of the using.
-     */
-    @Override
-    public void releaseUsing(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity livingEntity, int status) {
-        super.releaseUsing(stack, level, livingEntity, status);
-    }
-
-    /**
-     * This method define the animation when the player use the spike. Always be BOW animation.
-     *
-     * @param stack of the animation.
-     *
-     * @return UseAnim
-     */
-    @Override
-    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
-        return UseAnim.BOW;
     }
 
     /**

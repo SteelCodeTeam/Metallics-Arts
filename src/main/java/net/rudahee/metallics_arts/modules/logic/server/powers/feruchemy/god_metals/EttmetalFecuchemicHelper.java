@@ -1,7 +1,10 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Explosion;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
 
@@ -23,7 +26,6 @@ public class EttmetalFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tapPower(Player player) {
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.ETTMETAL);
     }
 
     /**
@@ -34,7 +36,6 @@ public class EttmetalFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.ETTMETAL);
     }
 
     /**
@@ -51,13 +52,13 @@ public class EttmetalFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @see AbstractFechuchemicHelper#tapPower(Player)
      */
-    /*@Override
+    @Override
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         player.level.explode(player,player.position().x,player.position().y,player.position().z,(float) compoundTag.getInt(metalKey)/683, Explosion.BlockInteraction.NONE);
         player.setHealth((player.getHealth() - ((float) compoundTag.getInt(metalKey)/205)));
         compoundTag.putInt(metalKey,0);
         return compoundTag;
-    }*/
+    }
 
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -73,7 +74,7 @@ public class EttmetalFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @see AbstractFechuchemicHelper#storagePower(Player)
      */
-    /*@Override
+    @Override
     public CompoundTag calculateCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         if (player.getLastDamageSource() != null){
             if ((player.getLastDamageSource().isExplosion())){
@@ -81,7 +82,7 @@ public class EttmetalFecuchemicHelper extends AbstractFechuchemicHelper {
             }
         }
         return compoundTag;
-    }*/
+    }
 
     /**
      * Returns an instance of EttmetalFecuchemicHelper using a factory method pattern.

@@ -1,7 +1,11 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_metals.EttmetalAllomanticHelper;
@@ -20,8 +24,6 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.GoldAllomanticHelper;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-
-import java.util.logging.Level;
 
 /**
  * Handles the effects and abilities related to Allomantic metals for players.
@@ -53,9 +55,10 @@ public class AllomaticTick {
             temporalMetals(playerCapability, player, level);
         }
         if (MalatiumAllomanticHelper.isPosRegistered() && !playerCapability.isBurning(MetalTagEnum.MALATIUM)) {
-            MalatiumAllomanticHelper.setPos(null, null);
             MalatiumAllomanticHelper.setPosRegistered(false);
-            ModNetwork.syncAnotherPlayerDeathPos(null, player);
+            MalatiumAllomanticHelper.setPos(null, null);
+            GlobalPos gPos = GlobalPos.of(Level.OVERWORLD, new BlockPos(level.getLevelData().getXSpawn(), level.getLevelData().getYSpawn(), level.getLevelData().getZSpawn()));
+            ModNetwork.syncAnotherPlayerDeathPos(gPos, player);
         }
     }
 
