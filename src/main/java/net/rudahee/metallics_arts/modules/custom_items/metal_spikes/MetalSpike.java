@@ -189,9 +189,7 @@ public class MetalSpike extends SwordItem {
             stack.setTag(generateTags(stack));
         }
 
-
         if ((target instanceof Player) && (source instanceof Player)){
-
 
             target.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(targetData -> {
 
@@ -207,6 +205,8 @@ public class MetalSpike extends SwordItem {
                 Random rng = new Random();
                 Level world = target.level;
                 BlockPos pos = new BlockPos(target.position());
+
+
 
                 //DAR PODER
                 if (stack.getTag().getBoolean("allomantic_power")){
@@ -224,8 +224,8 @@ public class MetalSpike extends SwordItem {
                 } else if (hasPlayerBothPowers(localMetal, targetData)) {
                     //SI EL OBJETIVO TIENE AMBOS PODERES
                     if (isAllomantic) {
-                        if (Math.random()>0.50){
-                            if (Math.random()<0.75){
+                        if (couldStealPower){
+                            if (couldRemovePower){
                                 targetData.removeAllomanticPower(localMetal);
 
                                 target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
@@ -237,8 +237,8 @@ public class MetalSpike extends SwordItem {
                             addItemToPlayer((Player) source, stack);
                         }
                     } else {
-                        if (Math.random()>0.50){
-                            if (Math.random()<0.75){
+                        if (couldStealPower){
+                            if (couldRemovePower){
                                 targetData.removeFeruchemicPower(localMetal);
 
                                 target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
@@ -251,8 +251,8 @@ public class MetalSpike extends SwordItem {
                         }
                     }
                 } else if (hasAllomanticPower){
-                    if (Math.random()>0.50){
-                        if (Math.random()<0.75){
+                    if (couldStealPower){
+                        if (couldRemovePower){
                             targetData.removeAllomanticPower(localMetal);
 
                             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
@@ -264,14 +264,11 @@ public class MetalSpike extends SwordItem {
                         addItemToPlayer((Player) source, stack);
                     }
                 } else if (hasFeruchemicPower){
-                    if (Math.random()>0.50){
-                        if (Math.random()<0.75) {
-
+                    if (couldStealPower){
+                        if (couldRemovePower) {
 
                             targetData.removeFeruchemicPower(localMetal);
-
                             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 1, true, true, false));
-
                             target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
 
                         }
@@ -279,6 +276,7 @@ public class MetalSpike extends SwordItem {
                         addItemToPlayer((Player) source, stack);
                     }
                 }
+                ((Player) source).getInventory().removeItem(stack);
                 ModNetwork.sync(targetData,(Player) target);
             });
         }
