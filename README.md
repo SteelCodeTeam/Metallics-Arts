@@ -1,4 +1,4 @@
-# Metallics Arts 1.19.2-1.5.2
+# Metallics Arts 1.19.2-1.5.3
 
 
 
@@ -59,7 +59,7 @@ And we have two mandatory dependencies:
 
 <br>
 
-## **Changelog ✒ [v1.5.2]️** 
+## **Changelog ✒ [v1.5.3]️** 
 
 Problems solved:
 - Refactor 90%!
