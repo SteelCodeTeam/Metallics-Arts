@@ -102,7 +102,7 @@ public class MetalSpike extends SwordItem {
      * @deprecated
      */
   @Override
-    public boolean isFoil(ItemStack stack) {
+  public boolean isFoil(ItemStack stack) {
         try {
 
             if (stack.hasTag()) {
