@@ -12,6 +12,7 @@ import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTick
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
+import net.rudahee.metallics_arts.utils.MathUtils;
 
 import java.util.function.Supplier;
 
@@ -53,7 +54,7 @@ public class BronzeFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {
         Level level = player.getLevel();
-        if (OnTickUtils.activationEvery240Tick(OnWorldTickEvent.getActualTick())) {
+        if (MathUtils.isDivisibleBy60(OnWorldTickEvent.getActualTick())) {
             Phantom phantom = new Phantom(EntityType.PHANTOM, level);
             phantom.setPos(player.position().x,player.position().y + 4, player.position().z);
             phantom.setTarget(player);

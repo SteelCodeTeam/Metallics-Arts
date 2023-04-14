@@ -28,27 +28,7 @@ public class OnTickUtils {
         return (actualTick % 30) == 0;
 
     }
-    /**
-     * This method returns true when a period of 90 ticks expires.
-     *
-     * @param actualTick counter current value.
-     *
-     * @return boolean
-     */
-    public static boolean activationEvery90Tick(int actualTick) {
-        return (actualTick % 90) == 0;
-    }
 
-    /**
-     * This method returns true when a period of 240 ticks expires.
-     *
-     * @param actualTick counter current value.
-     *
-     * @return boolean
-     */
-    public static boolean activationEvery240Tick(int actualTick) {
-        return (actualTick % 240) == 0;
-    }
 
     /**
      * This method is responsible for adding negative effects to the player if he has the koloss blade in his hand without burning pewter.

@@ -10,6 +10,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.Abstract
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
+import net.rudahee.metallics_arts.utils.MathUtils;
 
 import java.util.function.Supplier;
 
@@ -32,7 +33,7 @@ public class CadmiumFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void tapPower(Player player) {
         if (player.isEyeInFluid(FluidTags.WATER)) {
-            if (OnTickUtils.activationEvery30Tick(OnWorldTickEvent.getActualTick())) {
+            if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
                 if (player.isEyeInFluid(FluidTags.WATER)) {
                     player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 40, 10, false, false));
                 }

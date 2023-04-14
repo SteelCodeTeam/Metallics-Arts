@@ -14,6 +14,8 @@ import net.minecraft.world.level.material.PushReaction;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
+
 /**
  * This class is used to create a custom ettmetal budding block, extended default amethyst block.
  * It also defines the behavior that occurs to grow ettmetal.
@@ -73,7 +75,9 @@ public class EttmetalBuddingBlock extends AmethystBlock {
      */
     @Deprecated
     public void randomTick(@NotNull BlockState blockState, @NotNull ServerLevel serverLevel, @NotNull BlockPos blockPos, RandomSource randomSource) {
-        if (randomSource.nextInt(GROWTH_CHANCE) == 0) {
+        Random rng = new Random();
+
+        if (rng.nextInt(GROWTH_CHANCE) == 0) {
             Direction direction = DIRECTIONS[randomSource.nextInt(DIRECTIONS.length)];
 
             Block block = null;

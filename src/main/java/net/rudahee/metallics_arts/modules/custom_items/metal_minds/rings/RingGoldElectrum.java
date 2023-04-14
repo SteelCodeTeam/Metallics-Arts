@@ -70,6 +70,10 @@ public class RingGoldElectrum extends RingsMindAbstract <GoldFecuchemicHelper, E
                     return;
                 }
 
+                if (!playerCapability.isTapping(MetalTagEnum.ELECTRUM) && !playerCapability.isStoring(MetalTagEnum.ELECTRUM)) {
+                    ElectrumFecuchemicHelper.restoreHearts(player, playerCapability);
+                }
+
                 if (playerCapability.isTapping(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)) {
                     stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(0), this.getMetals(1)));
                 }

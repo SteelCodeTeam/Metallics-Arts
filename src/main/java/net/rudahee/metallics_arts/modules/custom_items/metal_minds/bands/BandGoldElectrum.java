@@ -80,6 +80,7 @@ public class BandGoldElectrum extends BandMindAbstract <GoldFecuchemicHelper, El
                     stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(0), this.getMetals(1)));
                 }
 
+
                 String metalKey = this.getMetals(0).getNameLower() + "_feruchemic_reserve";
                 int actualReserve = stack.getTag().getInt(metalKey);
                 int maxReserve = this.getMetals(0).getMaxReserveRing();

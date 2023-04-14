@@ -32,5 +32,10 @@ public class MathUtils {
      */
     public static boolean isDivisibleBy10(int number) { return (number % 10) == 0; }
 
+    public static boolean isDivisibleBy30(int number) { return (number % 30) == 0; }
+
+    public static boolean isDivisibleBy60(int number) { return (number % 60) == 0; }
+
+
     public static boolean isDivisibleBy2(int number) { return (number % 2) == 0; }
 }

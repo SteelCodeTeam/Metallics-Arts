@@ -6,6 +6,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.Abstract
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
+import net.rudahee.metallics_arts.utils.MathUtils;
 
 import java.util.function.Supplier;
 
@@ -27,7 +28,7 @@ public class BendalloyFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tapPower(Player player) {
-        if (OnTickUtils.activationEvery30Tick(OnWorldTickEvent.getActualTick())) {
+        if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
             if (player.getFoodData().getFoodLevel() < 20) {
                 player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()+1);
             }
@@ -46,7 +47,7 @@ public class BendalloyFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        if (OnTickUtils.activationEvery30Tick(OnWorldTickEvent.getActualTick())) {
+        if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
             if (!player.isCreative()){
                 if (player.getFoodData().getFoodLevel()>0){
                     player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()-1);
