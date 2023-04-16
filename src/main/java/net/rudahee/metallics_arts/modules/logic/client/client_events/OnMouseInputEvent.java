@@ -54,7 +54,7 @@ public class OnMouseInputEvent {
             throw new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR);
         }
 
-
+        /*
         for (int i = 0; i< MetalTagEnum.values().length; i++) {
             if (ModKeyRegister.powers[i].isDown()) {
                 if (ModKeyRegister.FERUCHEMIC_DECANT.isDown()) {
@@ -65,6 +65,6 @@ public class OnMouseInputEvent {
                     ClientUtils.toggleBurn(MetalTagEnum.getMetal(i), capability);
                 }
             }
-        }
+        }*/
     }
 }

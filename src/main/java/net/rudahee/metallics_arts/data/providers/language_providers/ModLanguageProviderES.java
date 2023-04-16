@@ -25,7 +25,7 @@ public class ModLanguageProviderES extends LanguageProvider {
         put("itemGroup.metallics_arts.decorations", CTW.METALLICS_ARTS.getNameInSpanish() + " " + CTW.DECORATIONS.getNameInSpanish());
 
         put("key.category_powers_metallics_arts", CTW.METALLICS_ARTS.getNameInSpanish() + ": " + CTW.POWERS.getNameInSpanish());
-        put("key.categorymetallics_arts", CTW.METALLICS_ARTS.getNameInSpanish());
+        put("key.category.metallics_arts", CTW.METALLICS_ARTS.getNameInSpanish());
         put("key.metallics_arts.allomantic", CTW.POWER_SELECTOR.getNameInSpanish() + " " + CTW.ALLOMANTIC.getNameInSpanish());
         put("key.metallics_arts.feruchemic", CTW.POWER_SELECTOR.getNameInSpanish() + " " + CTW.FERUCHEMICAL.getNameInSpanish());
         put("key.metallics_arts.allomantic_push", CTW.PUSH.getNameInSpanish()+ " " + CTW.ALLOMANTIC.getNameInSpanish());
@@ -50,6 +50,7 @@ public class ModLanguageProviderES extends LanguageProvider {
         put("metallics_arts.mental_mind.nobody", CTW.NOBODY.getNameInSpanish());
         put("metallics_arts.mental_mind.owner_someone", CTW.OWNER_SOMEONE.getNameInSpanish());
         put("metallics_arts.mental_mind_translate.uses", CTW.USES.getNameInSpanish());
+        put("metallics_arts.mental_mind_translate.shift_info",CTW.SHIFT_TO_MORE_INFO.getNameInSpanish());
 
         put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInSpanish());
         put("item.metallics_arts.cristal_dagger", CTW.CRYSTAL_DAGGER.getNameInSpanish());

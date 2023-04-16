@@ -24,7 +24,7 @@ public class ModLanguageProviderJP extends LanguageProvider {
         put("itemGroup.metallics_arts.decorations", CTW.DECORATIONS.getNameInJapanese() + " " + CTW.METALLICS_ARTS.getNameInJapanese());
 
         put("key.category_powers_metallics_arts", CTW.POWERS.getNameInJapanese() + " " + CTW.METALLICS_ARTS.getNameInJapanese());
-        put("key.categorymetallics_arts", CTW.METALLICS_ARTS.getNameInJapanese());
+        put("key.category.metallics_arts", CTW.METALLICS_ARTS.getNameInJapanese());
         put("key.metallics_arts.allomantic", CTW.ALLOMANTIC.getNameInJapanese() + " " + CTW.POWER_SELECTOR.getNameInJapanese() );
         put("key.metallics_arts.feruchemic", CTW.FERUCHEMICAL.getNameInJapanese() + " " + CTW.POWER_SELECTOR.getNameInJapanese());
         put("key.metallics_arts.allomantic_push",CTW.ALLOMANTIC.getNameInJapanese() + " " + CTW.PUSH.getNameInJapanese());
@@ -49,6 +49,7 @@ public class ModLanguageProviderJP extends LanguageProvider {
         put("metallics_arts.mental_mind.nobody", CTW.NOBODY.getNameInJapanese());
         put("metallics_arts.mental_mind.owner_someone", CTW.OWNER_SOMEONE.getNameInJapanese());
         put("metallics_arts.mental_mind_translate.uses", CTW.USES.getNameInJapanese());
+        put("metallics_arts.mental_mind_translate.shift_info",CTW.SHIFT_TO_MORE_INFO.getNameInJapanese());
 
         put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInJapanese());
         put("item.metallics_arts.cristal_dagger", CTW.CRYSTAL_DAGGER.getNameInJapanese());

@@ -5,12 +5,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.selectors.AllomanticSelector;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.selectors.FeruchemySelector;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
+import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
 import org.lwjgl.glfw.GLFW;
 
 import javax.annotation.Nullable;
@@ -68,6 +70,17 @@ public class OnKeyInputEvent {
         } else if (ModKeyRegister.FERUCHEMIC_POWER_SELECTOR.isDown()) {
             if (capability.hasAnyFeruchemicPower()) {
                 minecraft.setScreen(new FeruchemySelector());
+            }
+        }
+        for (int i = 0; i< MetalTagEnum.values().length; i++) {
+            if (ModKeyRegister.powers[i].isDown()) {
+                if (ModKeyRegister.FERUCHEMIC_DECANT.isDown()) {
+                    ClientUtils.toggleTap(MetalTagEnum.getMetal(i), capability, player);
+                } else if (ModKeyRegister.FERUCHEMIC_STORAGE.isDown()) {
+                    ClientUtils.toggleStorage(MetalTagEnum.getMetal(i), capability, player);
+                } else {
+                    ClientUtils.toggleBurn(MetalTagEnum.getMetal(i), capability);
+                }
             }
         }
 

@@ -72,21 +72,13 @@ public class BandGoldElectrum extends BandMindAbstract <GoldFecuchemicHelper, El
                     ex.printCompleteLog();
                     return;
                 }
-                if (!playerCapability.isTapping(MetalTagEnum.ELECTRUM) && !playerCapability.isStoring(MetalTagEnum.ELECTRUM)) {
-                    ElectrumFecuchemicHelper.restoreHearts(player, playerCapability);
-                }
-
                 if (playerCapability.isTapping(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)) {
                     stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(0), this.getMetals(1)));
                 }
-
-
                 String metalKey = this.getMetals(0).getNameLower() + "_feruchemic_reserve";
                 int actualReserve = stack.getTag().getInt(metalKey);
-                int maxReserve = this.getMetals(0).getMaxReserveRing();
-                /**
-                 DECANT
-                 */
+                int maxReserve = this.getMetals(0).getMaxReserveBand();
+                // Tap.
                 if (playerCapability.isTapping(this.getMetals(0))) {
                     if (actualReserve > 0) {
                         stack.setTag(getFirstSupplier().calculateDischarge(nbtLocal, player, playerCapability, actualReserve, metalKey, nicConsumeMet0));
@@ -97,9 +89,7 @@ public class BandGoldElectrum extends BandMindAbstract <GoldFecuchemicHelper, El
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(0), this.getMetals(1)));
                         playerCapability.setTapping(this.getMetals(0), false);
                     }
-                    /**
-                     STORAGE
-                     */
+                    // Storage.
                 } else if (playerCapability.isStoring(this.getMetals(0))) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, true, this.getMetals(0), this.getMetals(1)));
@@ -113,10 +103,8 @@ public class BandGoldElectrum extends BandMindAbstract <GoldFecuchemicHelper, El
                 }
                 metalKey = this.getMetals(1).getNameLower() + "_feruchemic_reserve";
                 actualReserve = stack.getTag().getInt(metalKey);
-                maxReserve = this.getMetals(1).getMaxReserveRing();
-                /**
-                 DECANT
-                 */
+                maxReserve = this.getMetals(1).getMaxReserveBand();
+                // Tap.
                 if (playerCapability.isTapping(this.getMetals(1))) {
                     if (actualReserve > 0) {
                         stack.setTag(getSecondSupplier().calculateDischarge(nbtLocal, player, playerCapability, actualReserve, metalKey, nicConsumeMet1));
@@ -127,10 +115,10 @@ public class BandGoldElectrum extends BandMindAbstract <GoldFecuchemicHelper, El
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(0), this.getMetals(1)));
                         playerCapability.setTapping(this.getMetals(1), false);
                     }
-                    playerCapability.setModifiedHealth(true);
-                    /**
-                     STORAGE
-                     */
+                    if (!playerCapability.hasModifiedHealth()) {
+                        playerCapability.setModifiedHealth(true);
+                    }
+                    // Storage.
                 } else if (playerCapability.isStoring(this.getMetals(1))) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, true, this.getMetals(0), this.getMetals(1)));
@@ -172,7 +160,6 @@ public class BandGoldElectrum extends BandMindAbstract <GoldFecuchemicHelper, El
         IInvestedPlayerData playerCapability;
         try {
             playerCapability = CapabilityUtils.getCapability(player);
-
             super.onUnequip(slotContext, newStack, stack);
         } catch (PlayerException ex) {
             ex.printCompleteLog();

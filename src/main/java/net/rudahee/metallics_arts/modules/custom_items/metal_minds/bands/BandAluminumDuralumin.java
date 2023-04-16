@@ -78,7 +78,7 @@ public class BandAluminumDuralumin extends BandMindAbstract<AluminumFecuchemicHe
 
                 String metalKey = this.getMetals(0).getNameLower() + "_feruchemic_reserve";
                 int actualReserve = stack.getTag().getInt(metalKey);
-                int maxReserve = this.getMetals(0).getMaxReserveRing();
+                int maxReserve = this.getMetals(0).getMaxReserveBand();
 
                 /*
                  DECANT
@@ -108,7 +108,7 @@ public class BandAluminumDuralumin extends BandMindAbstract<AluminumFecuchemicHe
 
                 metalKey = this.getMetals(1).getNameLower() + "_feruchemic_reserve";
                 actualReserve = stack.getTag().getInt(metalKey);
-                maxReserve = this.getMetals(1).getMaxReserveRing();
+                maxReserve = this.getMetals(1).getMaxReserveBand();
                 /*
                  DECANT
                  */
