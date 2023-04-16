@@ -41,7 +41,7 @@ public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        if (player.getHealth()>10) {
+        if (player.getHealth() > 10) {
             player.setHealth(10);
         }
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(10);
