@@ -57,6 +57,7 @@ public enum CTW implements ILanguage {
     SLOT("slot", "Slot", "Ranura","", "Slot"),
     VIAL ("vial","Vial","Vial","瓶", "Fiolka"),
     USES ("uses","Uses","Usos","", "Użycia"),
+    SHIFT_TO_MORE_INFO("shift_to_more_info","Press [Shift] for more Info","Presione [Shift] para más información","",""),
     DECORATIONS ("decorations","Decorations","Decoración","", "Dekoracje"),
     GUIDE ("guide","Guide","Guia","", "Poradnik"),
     FERUCHEMICAL_SHADING("feruchemical_shading","Shading","feruquimico sombreado","", ""),

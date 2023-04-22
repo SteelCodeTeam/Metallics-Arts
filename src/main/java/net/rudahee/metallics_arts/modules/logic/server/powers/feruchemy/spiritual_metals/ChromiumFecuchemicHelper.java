@@ -31,7 +31,7 @@ public class  ChromiumFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tapPower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.LUCK,40,15,false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.LUCK,120,15,false, false));
         ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.CHROMIUM);
     }
 
@@ -45,20 +45,20 @@ public class  ChromiumFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.UNLUCK,40,15,false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.UNLUCK,120,15,false, false));
         if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())){
             if (Math.random()<0.5) {
                 Random a = new Random();
                 switch (a.nextInt(9)) {
-                    case 0 -> player.addEffect(new MobEffectInstance(MobEffects.WITHER, 40, 2, false, false));
-                    case 1 -> player.addEffect(new MobEffectInstance(MobEffects.POISON, 45, 2, false, false));
-                    case 2 -> player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 50, 2, false, false));
-                    case 3 -> player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 50, 2, false, false));
-                    case 4 -> player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 45, 2, false, false));
+                    case 0 -> player.addEffect(new MobEffectInstance(MobEffects.WITHER, 120, 2, false, false));
+                    case 1 -> player.addEffect(new MobEffectInstance(MobEffects.POISON, 120, 2, false, false));
+                    case 2 -> player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 120, 2, false, false));
+                    case 3 -> player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 120, 2, false, false));
+                    case 4 -> player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 120, 2, false, false));
                     case 5 -> player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 180, 4, false, false));
-                    case 6 -> player.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 40, 1, false, false));
-                    case 7 -> player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 50, 2, false, false));
-                    case 8 -> player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 50, 2, false, false));
+                    case 6 -> player.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 120, 1, false, false));
+                    case 7 -> player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 2, false, false));
+                    case 8 -> player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 120, 2, false, false));
                 }
             }
         }

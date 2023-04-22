@@ -95,7 +95,7 @@ public class OnClientTick {
 
         }
 
-        if (tick < 240) {
+        if (tick < 480) {
             tick++;
         } else {
             tick = 0;

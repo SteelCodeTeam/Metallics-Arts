@@ -35,7 +35,7 @@ public class CadmiumFecuchemicHelper extends AbstractFechuchemicHelper {
         if (player.isEyeInFluid(FluidTags.WATER)) {
             if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
                 if (player.isEyeInFluid(FluidTags.WATER)) {
-                    player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 40, 10, false, false));
+                    player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 120, 10, false, false));
                 }
             }
         }

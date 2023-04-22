@@ -9,6 +9,12 @@ import net.rudahee.metallics_arts.data.enums.interfaces.IMetal;
  * @author SteelCode Team
  * @since 1.5.1
  */
+
+
+
+
+
+
 public enum MetalTagEnum implements IMetal, IGems {
     /* 1s = 20 ticks, 1600 = 80s */
     IRON("iron", "IRON",0, 6000, true, false, 2,9600,3000),

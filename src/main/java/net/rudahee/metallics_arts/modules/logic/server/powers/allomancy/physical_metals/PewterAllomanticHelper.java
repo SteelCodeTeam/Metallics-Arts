@@ -88,9 +88,9 @@ public class PewterAllomanticHelper {
 
         if (itemInHand.getItem() == ModItemsRegister.OBSIDIAN_AXE.get()) {
             if (Math.random() < 0.50d) {
-                target.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 20, 1, true, true, false));
-                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
-                target.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 20, 1, true, true, false));
+                target.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 40, 1, true, true, false));
+                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 1, true, true, false));
+                target.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 40, 1, true, true, false));
                 target.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 2, true, true, false));
             }
         }

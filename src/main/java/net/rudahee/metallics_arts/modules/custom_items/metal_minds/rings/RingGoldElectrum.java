@@ -70,21 +70,13 @@ public class RingGoldElectrum extends RingsMindAbstract <GoldFecuchemicHelper, E
                     return;
                 }
 
-                if (!playerCapability.isTapping(MetalTagEnum.ELECTRUM) && !playerCapability.isStoring(MetalTagEnum.ELECTRUM)) {
-                    ElectrumFecuchemicHelper.restoreHearts(player, playerCapability);
-                }
-
                 if (playerCapability.isTapping(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)) {
                     stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(0), this.getMetals(1)));
                 }
-
                 String metalKey = this.getMetals(0).getNameLower() + "_feruchemic_reserve";
                 int actualReserve = stack.getTag().getInt(metalKey);
                 int maxReserve = this.getMetals(0).getMaxReserveRing();
 
-                /**
-                 DECANT
-                 */
                 if (playerCapability.isTapping(this.getMetals(0))) {
                     if (actualReserve > 0) {
                         stack.setTag(getFirstSupplier().calculateDischarge(nbtLocal, player, playerCapability, actualReserve, metalKey, nicConsumeMet0));
@@ -96,10 +88,6 @@ public class RingGoldElectrum extends RingsMindAbstract <GoldFecuchemicHelper, E
                         playerCapability.setTapping(this.getMetals(0), false);
                     }
 
-
-                /**
-                 STORAGE
-                 */
                 } else if (playerCapability.isStoring(this.getMetals(0))) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, true, this.getMetals(0), this.getMetals(1)));
@@ -116,9 +104,7 @@ public class RingGoldElectrum extends RingsMindAbstract <GoldFecuchemicHelper, E
                 metalKey = this.getMetals(1).getNameLower() + "_feruchemic_reserve";
                 actualReserve = stack.getTag().getInt(metalKey);
                 maxReserve = this.getMetals(1).getMaxReserveRing();
-                /**
-                 DECANT
-                 */
+                // Tap.
                 if (playerCapability.isTapping(this.getMetals(1))) {
                     if (actualReserve > 0) {
                         stack.setTag(getSecondSupplier().calculateDischarge(nbtLocal, player, playerCapability, actualReserve, metalKey, nicConsumeMet1));
@@ -129,9 +115,10 @@ public class RingGoldElectrum extends RingsMindAbstract <GoldFecuchemicHelper, E
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(0), this.getMetals(1)));
                         playerCapability.setTapping(this.getMetals(1), false);
                     }
-                    /**
-                     STORAGE
-                     */
+                    if (!playerCapability.hasModifiedHealth()) {
+                        playerCapability.setModifiedHealth(true);
+                    }
+                    // Storage.
                 } else if (playerCapability.isStoring(this.getMetals(1))) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, true, this.getMetals(0), this.getMetals(1)));
@@ -141,6 +128,9 @@ public class RingGoldElectrum extends RingsMindAbstract <GoldFecuchemicHelper, E
                         }
                     } else {
                         playerCapability.setStoring(this.getMetals(1), false);
+                    }
+                    if (!playerCapability.hasModifiedHealth()) {
+                        playerCapability.setModifiedHealth(true);
                     }
                 } else if (playerCapability.hasModifiedHealth()) {
                     ElectrumFecuchemicHelper.restoreHearts(player, playerCapability);

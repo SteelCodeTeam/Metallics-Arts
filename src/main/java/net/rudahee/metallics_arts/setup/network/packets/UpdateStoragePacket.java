@@ -76,7 +76,7 @@ public class UpdateStoragePacket {
                 } else {
                     cap.setStoring(this.metal, false);
                 }
-                ModNetwork.sync(cap, player);
+                ModNetwork.syncInvestedDataPacket(cap, player);
             });
         });
 

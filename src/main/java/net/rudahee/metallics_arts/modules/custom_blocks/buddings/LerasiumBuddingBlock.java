@@ -74,26 +74,26 @@ public class LerasiumBuddingBlock extends AmethystBlock {
      * @see AmethystBlock#getPistonPushReaction
      */
     public void randomTick(@NotNull BlockState blockState, @NotNull ServerLevel serverLevel, @NotNull BlockPos blockPos, RandomSource randomSource) {
-        Random rng = new Random();
+        int rng = randomSource.nextInt(5);
 
-        if (rng.nextInt(GROWTH_CHANCE) == 0) {
-
+        if (rng == 0 || rng == 1 || rng == 2)   {
             Direction direction = DIRECTIONS[randomSource.nextInt(DIRECTIONS.length)];
-
+            BlockPos blockpos = blockPos.relative(direction);
+            BlockState blockstate = serverLevel.getBlockState(blockpos);
             Block block = null;
-            if (canClusterGrowAtState(blockState)) {
+            if (canClusterGrowAtState(blockstate)) {
                 block = ModBlocksRegister.SMALL_LERASIUM_BUD.get();
-            } else if (blockState.is(ModBlocksRegister.SMALL_LERASIUM_BUD.get()) && blockState.getValue(AmethystClusterBlock.FACING) == direction) {
+            } else if (blockstate.is(ModBlocksRegister.SMALL_LERASIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
                 block = ModBlocksRegister.MEDIUM_LERASIUM_BUD.get();
-            } else if (blockState.is(ModBlocksRegister.MEDIUM_LERASIUM_BUD.get()) && blockState.getValue(AmethystClusterBlock.FACING) == direction) {
+            } else if (blockstate.is(ModBlocksRegister.MEDIUM_LERASIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
                 block = ModBlocksRegister.LARGE_LERASIUM_BUD.get();
-            } else if (blockState.is(ModBlocksRegister.LARGE_LERASIUM_BUD.get()) && blockState.getValue(AmethystClusterBlock.FACING) == direction) {
+            } else if (blockstate.is(ModBlocksRegister.LARGE_LERASIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
                 block = ModBlocksRegister.LERASIUM_CLUSTER.get();
             }
 
             if (block != null) {
-                BlockState blockState1 = block.defaultBlockState().setValue(AmethystClusterBlock.FACING, direction).setValue(AmethystClusterBlock.WATERLOGGED, Boolean.valueOf(blockState.getFluidState().getType() == Fluids.WATER));
-                serverLevel.setBlockAndUpdate(blockPos, blockState1);
+                BlockState blockstate1 = block.defaultBlockState().setValue(AmethystClusterBlock.FACING, direction).setValue(AmethystClusterBlock.WATERLOGGED, Boolean.valueOf(blockstate.getFluidState().getType() == Fluids.WATER));
+                serverLevel.setBlockAndUpdate(blockpos, blockstate1);
             }
 
         }

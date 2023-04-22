@@ -51,7 +51,7 @@ public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40, 1, true, false));
+        player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 120, 1, true, false));
         if (player.getLevel().getBiome(player.getOnPos()).is(Tags.Biomes.IS_COLD) ||
                 (player.getLevel().getBiome(player.getOnPos()).is(Biomes.DESERT) && player.getLevel().isNight())) {
             player.setTicksFrozen(player.getTicksFrozen() + 3);

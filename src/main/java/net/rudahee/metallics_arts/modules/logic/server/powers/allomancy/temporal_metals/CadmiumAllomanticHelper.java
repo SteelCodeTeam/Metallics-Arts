@@ -28,9 +28,9 @@ public class CadmiumAllomanticHelper {
      */
     public static void CadmiumEffectSelfPlayer(Player player, boolean enhanced) {
         if (enhanced) {
-            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 20, 100, true, false));
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 80, 100, true, false));
         } else {
-            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 10, 4, true, false));
+            player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 40, 4, true, false));
         }
     }
 
@@ -56,20 +56,20 @@ public class CadmiumAllomanticHelper {
         level.getEntitiesOfClass(LivingEntity.class, CapabilityUtils.getBubble(player,radius)).forEach(entity -> {
             if (playerCapability.isBurning(MetalTagEnum.LERASIUM)) {
                 if (playerCapability.getEnhanced()) {
-                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 100, true, false));
-                    entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60, 100, true, false));
+                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 100, true, false));
+                    entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 100, true, false));
                 } else {
-                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 2, true, false));
-                    entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 20, 2, true, false));
+                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 2, true, false));
+                    entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 2, true, false));
                 }
 
             } else {
                 if (playerCapability.getEnhanced()) {
-                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 2, true, false));
-                    entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 40, 2, true, false));
+                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 2, true, false));
+                    entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 2, true, false));
                 } else {
-                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 1, true, false));
-                    entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 10, 1, true, false));
+                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 1, true, false));
+                    entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 1, true, false));
                 }
             }
         });

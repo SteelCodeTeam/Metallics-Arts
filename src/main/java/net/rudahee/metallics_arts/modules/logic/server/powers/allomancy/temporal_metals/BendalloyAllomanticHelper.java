@@ -91,12 +91,12 @@ public class BendalloyAllomanticHelper {
     public static void AddAiSteeps(Player player, boolean enhanced) {
 
         if (enhanced) {
-            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 20, 3, true, false));
+            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 40, 3, true, false));
             player.aiStep();
             player.aiStep();
             player.aiStep();
         } else {
-            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 20, 1, true, false));
+            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 40, 1, true, false));
             player.aiStep();
         }
     }

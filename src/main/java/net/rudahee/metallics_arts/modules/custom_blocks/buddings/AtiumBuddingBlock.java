@@ -61,6 +61,13 @@ public class AtiumBuddingBlock extends AmethystBlock {
         return PushReaction.DESTROY;
     }
 
+    @Override
+    public boolean isRandomlyTicking(BlockState state) {
+        return true;
+    }
+
+
+
     /**
      * Method to define the events that be release each X random ticks. In this case, We're going to control de grow of the block.
      * <p>
@@ -76,25 +83,26 @@ public class AtiumBuddingBlock extends AmethystBlock {
      */
     @Override
     public void randomTick(@NotNull BlockState blockState, @NotNull ServerLevel serverLevel, @NotNull BlockPos blockPos, @NotNull RandomSource randomSource) {
-        Random rng = new Random();
+        int rng = randomSource.nextInt(5);
 
-        if (rng.nextInt(GROWTH_CHANCE) == 0) {
+        if (rng == 0 || rng == 1 || rng == 2)   {
             Direction direction = DIRECTIONS[randomSource.nextInt(DIRECTIONS.length)];
-
+            BlockPos blockpos = blockPos.relative(direction);
+            BlockState blockstate = serverLevel.getBlockState(blockpos);
             Block block = null;
-            if (canClusterGrowAtState(blockState)) {
+            if (canClusterGrowAtState(blockstate)) {
                 block = ModBlocksRegister.SMALL_ATIUM_BUD.get();
-            } else if (blockState.is(ModBlocksRegister.SMALL_ATIUM_BUD.get()) && blockState.getValue(AmethystClusterBlock.FACING) == direction) {
+            } else if (blockstate.is(ModBlocksRegister.SMALL_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
                 block = ModBlocksRegister.MEDIUM_ATIUM_BUD.get();
-            } else if (blockState.is(ModBlocksRegister.MEDIUM_ATIUM_BUD.get()) && blockState.getValue(AmethystClusterBlock.FACING) == direction) {
+            } else if (blockstate.is(ModBlocksRegister.MEDIUM_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
                 block = ModBlocksRegister.LARGE_ATIUM_BUD.get();
-            } else if (blockState.is(ModBlocksRegister.LARGE_ATIUM_BUD.get()) && blockState.getValue(AmethystClusterBlock.FACING) == direction) {
+            } else if (blockstate.is(ModBlocksRegister.LARGE_ATIUM_BUD.get()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
                 block = ModBlocksRegister.ATIUM_CLUSTER.get();
             }
 
             if (block != null) {
-                BlockState redefinedBlockState = block.defaultBlockState().setValue(AmethystClusterBlock.FACING, direction).setValue(AmethystClusterBlock.WATERLOGGED, Boolean.valueOf(blockState.getFluidState().getType() == Fluids.WATER));
-                serverLevel.setBlockAndUpdate(blockPos, redefinedBlockState);
+                BlockState blockstate1 = block.defaultBlockState().setValue(AmethystClusterBlock.FACING, direction).setValue(AmethystClusterBlock.WATERLOGGED, Boolean.valueOf(blockstate.getFluidState().getType() == Fluids.WATER));
+                serverLevel.setBlockAndUpdate(blockpos, blockstate1);
             }
 
         }
@@ -104,11 +112,11 @@ public class AtiumBuddingBlock extends AmethystBlock {
      * Auxiliary method to control if a cluster in the budding block can growth. To do this,
      * check the near blocks to find non-solid blocks.
      *
-     * @param blockState state of the block.
+     * @param state state of the block.
      *
      * @return boolean
      */
-    public static boolean canClusterGrowAtState(BlockState blockState) {
-        return blockState.isAir() || blockState.is(Blocks.WATER) && blockState.getFluidState().getAmount() == 8;
+    public static boolean canClusterGrowAtState(BlockState state) {
+        return state.isAir() || state.is(Blocks.WATER) && state.getFluidState().getAmount() == 8;
     }
 }

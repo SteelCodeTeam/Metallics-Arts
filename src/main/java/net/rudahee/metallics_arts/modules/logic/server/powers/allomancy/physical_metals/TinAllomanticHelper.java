@@ -24,7 +24,7 @@ public class TinAllomanticHelper {
      */
     public static void addTinEffects(Player player, boolean enhanced) {
         if (enhanced) {
-            player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60, 2, true, false, false));
+            player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 80, 2, true, false, false));
             player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 240, 2, true, false, false));
         } else {
             player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 320, 1, true, false, false));

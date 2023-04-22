@@ -77,7 +77,7 @@ public class UpdateBurnPacket {
                 } else {
                     cap.setBurning(this.metal, false);
                 }
-                ModNetwork.sync(cap, player);
+                ModNetwork.syncInvestedDataPacket(cap, player);
             });
         });
 

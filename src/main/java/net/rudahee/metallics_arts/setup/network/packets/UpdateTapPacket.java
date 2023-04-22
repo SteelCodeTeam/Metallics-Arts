@@ -76,7 +76,7 @@ public class UpdateTapPacket {
                 } else {
                     cap.setTapping(this.metal, false);
                 }
-                ModNetwork.sync(cap, player);
+                ModNetwork.syncInvestedDataPacket(cap, player);
             });
         });
 
