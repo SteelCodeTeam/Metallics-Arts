@@ -9,7 +9,7 @@ import net.rudahee.metallics_arts.data.enums.interfaces.ILanguage;
  * It contains common translation words for different languages related to items and objects in a game.
  *
  * @author SteelCode Team
- * @since 1.5.1
+ * @since 1.5.6
  *
  * @see ILanguage
  */
@@ -67,7 +67,7 @@ public enum CTW implements ILanguage {
     FERUCHEMICAL_PATTERN ("feruchemical_pattern","Pattern","Patrón feruquimico de","", "Wzór feruchemiczny"),
     ALLOMANTIC_PATTERN ("allomantical_pattern","Pattern","Patrón alomántico de","", "Wzór allomantyczny"),
     KOLOSS_BLADE ("koloss_blade","Koloss Blade","Espada Koloss","コロスの剣", "Ostrze kolosa"),
-    CRYSTAL_DAGGER("crystal_dagger","Crystal Dagger","Daga de Cristal","", "Kryształowy sztylet"),
+    SILVER_KNIFE("silver_kinfe","Silver Knife","Cuchillo de plata","", "Kryształowy sztylet"),
     OBSIDIAN_DAGGER ("obsidian_dagger","Obsidian Dagger","Daga de Obsidiana","", "Obsydianowy sztylet"),
     OBSIDIAN_AXE ("obsidian_axe","Obsidian Axe","Hacha de Obsidiana","", "Obsydianowy topór"),
     DUELING_STAFF ("dueling_staff","Dueling Staff","Baston de Duelos","", "Laska pojedynkowa"),
@@ -104,7 +104,19 @@ public enum CTW implements ILanguage {
     SPIKES("spikes","Spikes","Clavos","スパイク", "Kolce"),
     ICONS("icons","Icons","Iconos","", "Ikony"),
     ALLOYS("alloys","Alloys","Aleaciones","合金", "Stopy"),
-    PATTERNS("patterns","Patterns","Patrones","", "Wzory");
+    PATTERNS("patterns","Patterns","Patrones","", "Wzory"),
+
+    OBSIDIAN_CORE("obsidian_core", "Obsidian Core", "Nucleo de Obsidiana", "", ""),
+    STEEL_CORE("steel_core", "Steel Core", "", "Nucleo de Acero", ""),
+    ALUMINUM_CORE("aluminum_core", "Aluminum Core", "Nucleo de Aluminio", "", ""),
+    STEEL_HELMET("steel_helmet", "Steel Helmet", "Casco de Acero", "", ""),
+    STEEL_LEGGINS("steel_leggings", "Steel Leggings", "Pantalones de Acero", "", ""),
+    STEEL_CHESTPLATE("steel_chesplate", "Steel Chesplate", "Pechera de Acero", "", ""),
+    STEEL_BOOTS("steel_boots", "Steel Boots", "Zapatos de Acero", "", ""),
+    ALUMINUM_HELMET("aluminum_helmet", "Aluminum Helmet", "Casco de Aluminio", "", ""),
+    ALUMINUM_LEGGINS("aluminum_leggings", "Aluminum Leggings", "Pantalones de Aluminio", "", ""),
+    ALUMINUM_CHESTPLATE("aluminum_chesplate", "Aluminum Chesplate", "Pechera de Aluminio", "", ""),
+    ALUMINUM_BOOTS("aluminum_boots", "Aluminum Boots", "Zapatos de Aluminio", "", "");
 
     private final String id;
     private final String english;

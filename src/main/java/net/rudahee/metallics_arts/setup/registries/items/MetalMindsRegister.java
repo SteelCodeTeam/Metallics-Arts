@@ -44,12 +44,14 @@ public class MetalMindsRegister {
                 MetalMindEnum.CHROMIUM_NICROSIL.setBand(item);
                 return item;
             });
+
         MetallicsArts.registerItem("band_copper_bronze",
             () -> {
                 Item item = new BandCopperBronze(PROPERTY_METALMINDS);
                 MetalMindEnum.COPPER_BRONZE.setBand(item);
                 return item;
             });
+
         MetallicsArts.registerItem("band_gold_electrum",
             () -> {
                 Item item = new BandGoldElectrum(PROPERTY_METALMINDS);

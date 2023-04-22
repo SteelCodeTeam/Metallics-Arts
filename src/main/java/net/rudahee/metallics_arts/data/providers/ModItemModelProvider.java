@@ -20,7 +20,7 @@ import java.util.List;
  * This provider class control the default model from item. We use to define a texture in each item.
  *
  * @author SteelCode Team
- * @since 1.5.1
+ * @since 1.5.6
  *
  * @see ItemModelProvider
  * @see Item
@@ -81,6 +81,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         }
 
+        /* Cores for new armor or obsidian weapons */
+        builder(itemGenerated, "item/core_obsidian", "item/cores/core_obsidian");
+        builder(itemGenerated, "item/core_aluminum", "item/cores/core_aluminum");
+        builder(itemGenerated, "item/core_steel", "item/cores/core_steel");
 
         /* All textures for feruchemic bands **/
 
@@ -132,7 +136,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemHandHeld,"item/ettmetal_spike","item/spikes/ettmetal_spike");
 
         builder(itemHandHeld,"item/koloss_blade","item/combat/koloss_blade");
-        builder(itemHandHeld,"item/cristal_dagger","item/combat/cristal_dagger");
+        builder(itemHandHeld,"item/silver_knife","item/combat/silver_knife");
         builder(itemHandHeld,"item/obsidian_dagger","item/combat/obsidian_dagger");
         builder(itemHandHeld,"item/dueling_staff","item/combat/dueling_staff");
         builder(itemHandHeld,"item/obsidian_axe","item/combat/obsidian_axe");
@@ -154,7 +158,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .parent(itemGenerated)
                 .texture("layer0","item/consumables/large_vial")
                 .override()
-                .predicate(mcLoc("custom_model_data"),1)
+                .predicate(mcLoc("custom_model_data"), 1)
                 .model(mf_large)
                 .end();
 
@@ -165,6 +169,18 @@ public class ModItemModelProvider extends ItemModelProvider {
         }
 
         builder(itemHandHeld,"item/metallics_arts_book","item/metallics_arts_book");
+
+
+
+        builder(itemGenerated,"item/steel_helmet", "item/combat/steel_helmet");
+        builder(itemGenerated,"item/steel_chestplate", "item/combat/steel_chestplate");
+        builder(itemGenerated,"item/steel_leggings", "item/combat/steel_leggings");
+        builder(itemGenerated,"item/steel_boots", "item/combat/steel_boots");
+        builder(itemGenerated,"item/aluminum_helmet", "item/combat/aluminum_helmet");
+        builder(itemGenerated,"item/aluminum_chestplate", "item/combat/aluminum_chestplate");
+        builder(itemGenerated,"item/aluminum_leggings", "item/combat/aluminum_leggings");
+        builder(itemGenerated,"item/aluminum_boots", "item/combat/aluminum_boots");
+        builder(itemGenerated,"item/mistcloack","item/mistcloak");
 
     }
 
@@ -180,7 +196,7 @@ public class ModItemModelProvider extends ItemModelProvider {
      * @see ItemModelBuilder
      */
     private ItemModelBuilder builder(ModelFile itemGenerated, String outPath, String texturePath){
-        return getBuilder(outPath).parent(itemGenerated).texture("layer0",texturePath);
+        return getBuilder(outPath).parent(itemGenerated).texture("layer0", texturePath);
     }
 
 }

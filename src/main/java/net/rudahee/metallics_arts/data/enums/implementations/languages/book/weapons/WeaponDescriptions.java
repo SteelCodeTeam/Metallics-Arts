@@ -10,7 +10,7 @@ public enum WeaponDescriptions {
     OBSIDIAN_DAGGER("Durable and fast dagger, with moderate damage. Can produce bleed.",
             "Daga más resistente y rápida que su hermana de cristal, y más peligrosa. Conviene ir con cautela ante alguien que porta una de estas.",
             "Wytrzymały i szybki sztylet zadający średnie obrażenia. Może wywołać krwawienie."),
-    CRYSTAL_DAGGER("Extremely fast dagger, which deals little damage, it's very fragile and you can do a critical hit but it isn't at dangerous as some people might think",
+    SILVER_KNIFE("Extremely fast dagger, which deals little damage, it's very fragile and you can do a critical hit but it isn't at dangerous as some people might think",
             "Daga extremadamente ligera y veloz. Desgraciadamente, es muy fragil y no resulta tan peligrosa como algunos podrían pensar.",
             "Ekstremalnie szybki i delikatny sztylet zadający małe obrażenia. Ma szansę na zadanie obrażeń krytycznych."),
     OBSIDIAN_AXE("Heavy weapon, and slow to handle. Causes great damage. It can disarm the target.",

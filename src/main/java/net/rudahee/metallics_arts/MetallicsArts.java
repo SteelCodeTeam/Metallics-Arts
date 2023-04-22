@@ -38,6 +38,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.SlotTypeMessage;
+import top.theillusivec4.curios.api.SlotTypePreset;
 
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -144,11 +145,12 @@ public class MetallicsArts {
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
-                ()-> new SlotTypeMessage.Builder("metalmind_slot")
+                () -> new SlotTypeMessage.Builder("metalmind_slot")
                         .priority(1)
                         .size(4)
                         .icon(new ResourceLocation("curios:slot/metal_mind_slot"))
                         .build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BACK.getMessageBuilder().build());
     }
 
     private void processIMC(final InterModProcessEvent event)

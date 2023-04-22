@@ -8,10 +8,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
@@ -28,7 +28,7 @@ import java.util.function.Consumer;
  * It is used to create mod-specific crafting recipes.
  *
  * @author SteelCode Team
- * @since 1.5.1
+ * @since 1.5.6
  */
 public class ModRecipeProvider extends RecipeProvider {
 
@@ -293,9 +293,10 @@ public class ModRecipeProvider extends RecipeProvider {
         });
 
         ShapedRecipeBuilder.shaped(ModItemsRegister.OBSIDIAN_AXE.get())
-                .define('#',Items.OBSIDIAN)
-                .define('x',Items.STICK)
-                .pattern(" ##")
+                .define('O',ModItemsRegister.CORE_OBSIDIAN.get())
+                .define('#', Items.OBSIDIAN)
+                .define('x',ModItemsRegister.ITEM_METAL_INGOT.get("aluminum"))
+                .pattern(" O#")
                 .pattern(" x#")
                 .pattern(" x ")
                 .unlockedBy("has_item",has(ModItemsRegister.OBSIDIAN_AXE.get()))
@@ -303,7 +304,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         ShapedRecipeBuilder.shaped(ModItemsRegister.OBSIDIAN_DAGGER.get())
                 .define('#',Items.OBSIDIAN)
-                .define('x',Items.STICK)
+                .define('x',ModItemsRegister.ITEM_METAL_INGOT.get("aluminum"))
                 .pattern("  #")
                 .pattern(" # ")
                 .pattern("x  ")
@@ -320,14 +321,14 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItemsRegister.DUELING_STAFF.get()))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_dueling_staff"));
 
-        ShapedRecipeBuilder.shaped(ModItemsRegister.CRISTAL_DAGGER.get())
-                .define('#', Items.GLASS_PANE)
+        ShapedRecipeBuilder.shaped(ModItemsRegister.SILVER_KNIFE.get())
+                .define('#', ModItemsRegister.ITEM_METAL_INGOT.get("silver"))
                 .define('x', Items.STICK)
                 .pattern("  #")
                 .pattern(" # ")
                 .pattern("x  ")
-                .unlockedBy("has_item",has(ModItemsRegister.CRISTAL_DAGGER.get()))
-                .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_cristal_dagger"));
+                .unlockedBy("has_item",has(ModItemsRegister.SILVER_KNIFE.get()))
+                .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_silver_knife"));
 
         ShapedRecipeBuilder.shaped(ModItemsRegister.KOLOSS_BLADE.get())
                 .define('#', Items.COBBLESTONE)
@@ -474,7 +475,97 @@ public class ModRecipeProvider extends RecipeProvider {
 
         }
 
+        ShapedRecipeBuilder.shaped(ModItemsRegister.CORE_OBSIDIAN.get())
+                .define('#', Items.OBSIDIAN)
+                .define('*', Items.NETHERITE_SCRAP)
+                .define('X', Items.GOLD_INGOT)
+                .pattern("#X#")
+                .pattern("X*X")
+                .pattern("#X#")
+                .unlockedBy("has_block", has(ModItemsRegister.CORE_OBSIDIAN.get()))
+                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.CORE_OBSIDIAN.get().getDescriptionId()));
 
+        ShapedRecipeBuilder.shaped(ModItemsRegister.CORE_ALUMINUM.get())
+                .define('#', ModBlocksRegister.BLOCK_METAL_BLOCKS.get("aluminum"))
+                .define('*', Items.END_CRYSTAL)
+                .define('X', Items.NETHERITE_SCRAP)
+                .pattern("#X#")
+                .pattern("X*X")
+                .pattern("#X#")
+                .unlockedBy("has_block", has(ModItemsRegister.CORE_ALUMINUM.get()))
+                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.CORE_ALUMINUM.get().getDescriptionId()));
+
+        ShapedRecipeBuilder.shaped(ModItemsRegister.CORE_STEEL.get())
+                .define('#', ModBlocksRegister.BLOCK_METAL_BLOCKS.get("steel"))
+                .define('*', Items.END_CRYSTAL)
+                .define('X', Items.NETHERITE_SCRAP)
+                .pattern("#X#")
+                .pattern("X*X")
+                .pattern("#X#")
+                .unlockedBy("has_block", has(ModItemsRegister.CORE_STEEL.get()))
+                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.CORE_STEEL.get().getDescriptionId()));
+
+        UpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_HELMET),
+                        Ingredient.of(ModItemsRegister.CORE_STEEL.get()),
+                        ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.HELMET).get())
+                .unlocks("has_armor", has(ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.HELMET).get()))
+                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.HELMET).get().getDescriptionId()));
+        UpgradeRecipeBuilder.smithing(
+                Ingredient.of(Items.NETHERITE_CHESTPLATE),
+                Ingredient.of(ModItemsRegister.CORE_STEEL.get()),
+                ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get())
+                .unlocks("has_armor", has(ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get()))
+                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get().getDescriptionId()));
+        UpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_LEGGINGS),
+                        Ingredient.of(ModItemsRegister.CORE_STEEL.get()),
+                        ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get())
+                .unlocks("has_armor", has(ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get()))
+                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get().getDescriptionId()));
+        UpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_BOOTS),
+                        Ingredient.of(ModItemsRegister.CORE_STEEL.get()),
+                        ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.BOOTS).get())
+                .unlocks("has_armor", has(ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.BOOTS).get()))
+                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.BOOTS).get().getDescriptionId()));
+
+
+
+        UpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_HELMET),
+                        Ingredient.of(ModItemsRegister.CORE_ALUMINUM.get()),
+                        ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.HELMET).get())
+                .unlocks("has_armor", has(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.HELMET).get()))
+                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.HELMET).get().getDescriptionId()));
+        UpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_CHESTPLATE),
+                        Ingredient.of(ModItemsRegister.CORE_ALUMINUM.get()),
+                        ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get())
+                .unlocks("has_armor", has(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get()))
+                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get().getDescriptionId()));
+        UpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_LEGGINGS),
+                        Ingredient.of(ModItemsRegister.CORE_ALUMINUM.get()),
+                        ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get())
+                .unlocks("has_armor", has(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get()))
+                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get().getDescriptionId()));
+        UpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_BOOTS),
+                        Ingredient.of(ModItemsRegister.CORE_ALUMINUM.get()),
+                        ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get())
+                .unlocks("has_armor", has(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get()))
+                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get().getDescriptionId()));
+
+        ShapedRecipeBuilder.shaped(ModItemsRegister.MISTCLOACK.get())
+                .define('#', Items.STRING)
+                .define('*', Items.PHANTOM_MEMBRANE)
+                .define('X', Items.BLACK_WOOL)
+                .pattern("XXX")
+                .pattern("###")
+                .pattern("***")
+                .unlockedBy("has_block", has(ModItemsRegister.MISTCLOACK.get()))
+                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.MISTCLOACK.get().getDescriptionId()));
     }
 }
 

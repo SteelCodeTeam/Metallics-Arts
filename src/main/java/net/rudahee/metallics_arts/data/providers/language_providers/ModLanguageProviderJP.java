@@ -52,7 +52,7 @@ public class ModLanguageProviderJP extends LanguageProvider {
         put("metallics_arts.mental_mind_translate.shift_info",CTW.SHIFT_TO_MORE_INFO.getNameInJapanese());
 
         put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInJapanese());
-        put("item.metallics_arts.cristal_dagger", CTW.CRYSTAL_DAGGER.getNameInJapanese());
+        put("item.metallics_arts.cristal_dagger", CTW.SILVER_KNIFE.getNameInJapanese());
         put("item.metallics_arts.koloss_blade", CTW.KOLOSS_BLADE.getNameInJapanese());
         put("item.metallics_arts.dueling_staff", CTW.DUELING_STAFF.getNameInJapanese());
         put("item.metallics_arts.obsidian_axe", CTW.OBSIDIAN_AXE.getNameInJapanese());

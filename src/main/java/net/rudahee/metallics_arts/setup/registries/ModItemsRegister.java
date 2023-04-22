@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.setup.registries;
 
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
 import net.rudahee.metallics_arts.setup.registries.items.*;
 
 import java.util.HashMap;
@@ -16,6 +17,9 @@ import java.util.HashMap;
  * @see SpikesRegister
  * @see VialsRegister
  * @see WeaponsRegister
+ *
+ * @author SteelCode Team
+ * @since 1.5.6
  */
 public class ModItemsRegister {
 
@@ -32,7 +36,7 @@ public class ModItemsRegister {
 
     // Weapons
     public static RegistryObject<Item> OBSIDIAN_DAGGER;
-    public static RegistryObject<Item> CRISTAL_DAGGER;
+    public static RegistryObject<Item> SILVER_KNIFE;
     public static RegistryObject<Item> KOLOSS_BLADE;
     public static RegistryObject<Item> DUELING_STAFF;
     public static RegistryObject<Item> OBSIDIAN_AXE;
@@ -41,6 +45,15 @@ public class ModItemsRegister {
     public static RegistryObject<Item> SMALL_VIAL;
     public static RegistryObject<Item> METALLICS_ARTS_BOOK;
 
+    public static RegistryObject<Item> CORE_OBSIDIAN;
+    public static RegistryObject<Item> CORE_ALUMINUM;
+    public static RegistryObject<Item> CORE_STEEL;
+
+    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> STEEL_ARMOR = new HashMap<>();
+    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ALUMINUM_ARMOR = new HashMap<>();
+
+    public static RegistryObject<Item> MISTCLOACK;
+
     public static void register() {
         BasicItemsRegister.register();
         IconsRegister.register();
@@ -48,6 +61,8 @@ public class ModItemsRegister {
         SpikesRegister.register();
         WeaponsRegister.register();
         VialsRegister.register();
+        CoreBuilderItemRegister.register();
+        ArmorRegister.register();
     }
 
 }

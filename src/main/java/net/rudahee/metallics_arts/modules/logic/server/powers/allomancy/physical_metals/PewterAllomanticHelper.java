@@ -8,7 +8,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
-import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 /**
@@ -74,7 +73,7 @@ public class PewterAllomanticHelper {
             amountDamage = amountDamage * (((float) itemInHand.getDamageValue() / (float) itemInHand.getMaxDamage()) * 3.2f);
         }
 
-        if (itemInHand.getItem() == ModItemsRegister.CRISTAL_DAGGER.get()) {
+        if (itemInHand.getItem() == ModItemsRegister.SILVER_KNIFE.get()) {
             if (Math.random() < 0.10d) {
                 amountDamage = amountDamage * 2;
             }

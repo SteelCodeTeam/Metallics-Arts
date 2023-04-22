@@ -12,7 +12,7 @@ import java.util.Map;
  * A custom class for providing Spanish translations for mod elements.
  *
  * @author SteelCode Team
- * @since 1.5.1
+ * @since 1.5.6
  */
 public class ModLanguageProviderES extends LanguageProvider {
 
@@ -53,11 +53,22 @@ public class ModLanguageProviderES extends LanguageProvider {
         put("metallics_arts.mental_mind_translate.shift_info",CTW.SHIFT_TO_MORE_INFO.getNameInSpanish());
 
         put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInSpanish());
-        put("item.metallics_arts.cristal_dagger", CTW.CRYSTAL_DAGGER.getNameInSpanish());
+        put("item.metallics_arts.cristal_dagger", CTW.SILVER_KNIFE.getNameInSpanish());
         put("item.metallics_arts.koloss_blade", CTW.KOLOSS_BLADE.getNameInSpanish());
         put("item.metallics_arts.dueling_staff", CTW.DUELING_STAFF.getNameInSpanish());
         put("item.metallics_arts.obsidian_axe", CTW.OBSIDIAN_AXE.getNameInSpanish());
 
+        put("item.metallics_arts.core_obsidian", CTW.OBSIDIAN_CORE.getNameInSpanish());
+        put("item.metallics_arts.core_steel", CTW.STEEL_CORE.getNameInSpanish());
+        put("item.metallics_arts.core_aluminum", CTW.ALUMINUM_CORE.getNameInSpanish());
+        put("item.metallics_arts.steel_helmet", CTW.STEEL_HELMET.getNameInSpanish());
+        put("item.metallics_arts.steel_leggins", CTW.STEEL_LEGGINS.getNameInSpanish());
+        put("item.metallics_arts.steel_chestplate", CTW.STEEL_CHESTPLATE.getNameInSpanish());
+        put("item.metallics_arts.steel_shoes", CTW.STEEL_BOOTS.getNameInSpanish());
+        put("item.metallics_arts.aluminum_helmet", CTW.ALUMINUM_HELMET.getNameInSpanish());
+        put("item.metallics_arts.aluminum_leggins", CTW.ALUMINUM_LEGGINS.getNameInSpanish());
+        put("item.metallics_arts.aluminum_chestplate", CTW.ALUMINUM_CHESTPLATE.getNameInSpanish());
+        put("item.metallics_arts.aluminum_shoes", CTW.ALUMINUM_BOOTS.getNameInSpanish());
 
     }};
 

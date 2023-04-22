@@ -54,13 +54,24 @@ public class ModLanguageProviderEN extends LanguageProvider {
 
                 put("metallics_arts.mental_mind_translate.shift_info",CTW.SHIFT_TO_MORE_INFO.getNameInEnglish());
 
-
-
                 put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInEnglish());
-                put("item.metallics_arts.cristal_dagger", CTW.CRYSTAL_DAGGER.getNameInEnglish());
+                put("item.metallics_arts.silver_knife", CTW.SILVER_KNIFE.getNameInEnglish());
                 put("item.metallics_arts.koloss_blade", CTW.KOLOSS_BLADE.getNameInEnglish());
                 put("item.metallics_arts.dueling_staff", CTW.DUELING_STAFF.getNameInEnglish());
                 put("item.metallics_arts.obsidian_axe", CTW.OBSIDIAN_AXE.getNameInEnglish());
+
+                put("item.metallics_arts.core_obsidian", CTW.OBSIDIAN_CORE.getNameInEnglish());
+                put("item.metallics_arts.core_steel", CTW.STEEL_CORE.getNameInEnglish());
+                put("item.metallics_arts.core_aluminum", CTW.ALUMINUM_CORE.getNameInEnglish());
+                put("item.metallics_arts.steel_helmet", CTW.STEEL_HELMET.getNameInEnglish());
+                put("item.metallics_arts.steel_leggins", CTW.STEEL_LEGGINS.getNameInEnglish());
+                put("item.metallics_arts.steel_chestplate", CTW.STEEL_CHESTPLATE.getNameInEnglish());
+                put("item.metallics_arts.steel_shoes", CTW.STEEL_BOOTS.getNameInEnglish());
+                put("item.metallics_arts.aluminum_helmet", CTW.ALUMINUM_HELMET.getNameInEnglish());
+                put("item.metallics_arts.aluminum_leggins", CTW.ALUMINUM_LEGGINS.getNameInEnglish());
+                put("item.metallics_arts.aluminum_chestplate", CTW.ALUMINUM_CHESTPLATE.getNameInEnglish());
+                put("item.metallics_arts.aluminum_shoes", CTW.ALUMINUM_BOOTS.getNameInEnglish());
+
         }};
 
 
