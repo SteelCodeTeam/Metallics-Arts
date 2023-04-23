@@ -71,6 +71,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("item.metallics_arts.aluminum_leggings", CTW.ALUMINUM_LEGGINGS.getNameInEnglish());
                 put("item.metallics_arts.aluminum_chestplate", CTW.ALUMINUM_CHESTPLATE.getNameInEnglish());
                 put("item.metallics_arts.aluminum_boots", CTW.ALUMINUM_BOOTS.getNameInEnglish());
+                put("metallics_arts.item.tooltip.mistcloak", "Increase your speed");
 
         }};
 

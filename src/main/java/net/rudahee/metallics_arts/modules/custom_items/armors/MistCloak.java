@@ -1,16 +1,26 @@
 package net.rudahee.metallics_arts.modules.custom_items.armors;
 
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class MistCloak extends Item implements ICurioItem {
+import javax.annotation.Nullable;
+import java.util.List;
 
-    private Float DEFAULT_SPEED;
+import static net.rudahee.metallics_arts.modules.effects.ModModifiers.MISTCLOACK_SPEED;
+
+public class MistCloak extends Item implements ICurioItem {
 
     public MistCloak(Properties properties) {
         super(properties);
@@ -20,18 +30,18 @@ public class MistCloak extends Item implements ICurioItem {
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         LivingEntity livingEntity = slotContext.entity();
 
-        if (livingEntity.level instanceof ServerLevel) {
-            if (livingEntity instanceof Player player) {
-                if (DEFAULT_SPEED == null) {
-                    DEFAULT_SPEED = player.getSpeed();
-                }
-                if (player.level.isThundering() || player.level.isNight()) {
 
-                    player.setSpeed(player.getSpeed() * 30f);
-                } else {
-                    if (player.getSpeed() != DEFAULT_SPEED) {
-                        player.setSpeed(DEFAULT_SPEED);
+        if (livingEntity.level instanceof ServerLevel) {
+
+            if (livingEntity instanceof Player player) {
+
+                if (player.level.isNight() || player.level.isThundering()) {
+                    if (!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(MISTCLOACK_SPEED)) {
+                        player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(MISTCLOACK_SPEED);
                     }
+                } else {
+
+                    player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(MISTCLOACK_SPEED);
 
                 }
             }
@@ -40,15 +50,17 @@ public class MistCloak extends Item implements ICurioItem {
         ICurioItem.super.curioTick(slotContext, stack);
     }
 
-
+    public void appendHoverText(ItemStack stack, @Nullable Level level, @NotNull List<Component> toolTips, @NotNull TooltipFlag flag) {
+        toolTips.add(Component.translatable("metallics_arts.item.tooltip.mistcloak"));
+    }
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
         LivingEntity livingEntity = slotContext.entity();
 
         if (livingEntity.level instanceof ServerLevel) {
             if (livingEntity instanceof Player player) {
-                if (DEFAULT_SPEED != null) {
-                    player.setSpeed(DEFAULT_SPEED);
+                if (!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(MISTCLOACK_SPEED)) {
+                    player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(MISTCLOACK_SPEED);
                 }
             }
         }
