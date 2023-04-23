@@ -64,13 +64,13 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("item.metallics_arts.core_steel", CTW.STEEL_CORE.getNameInEnglish());
                 put("item.metallics_arts.core_aluminum", CTW.ALUMINUM_CORE.getNameInEnglish());
                 put("item.metallics_arts.steel_helmet", CTW.STEEL_HELMET.getNameInEnglish());
-                put("item.metallics_arts.steel_leggins", CTW.STEEL_LEGGINS.getNameInEnglish());
+                put("item.metallics_arts.steel_leggings", CTW.STEEL_LEGGINGS.getNameInEnglish());
                 put("item.metallics_arts.steel_chestplate", CTW.STEEL_CHESTPLATE.getNameInEnglish());
-                put("item.metallics_arts.steel_shoes", CTW.STEEL_BOOTS.getNameInEnglish());
+                put("item.metallics_arts.steel_boots", CTW.STEEL_BOOTS.getNameInEnglish());
                 put("item.metallics_arts.aluminum_helmet", CTW.ALUMINUM_HELMET.getNameInEnglish());
-                put("item.metallics_arts.aluminum_leggins", CTW.ALUMINUM_LEGGINS.getNameInEnglish());
+                put("item.metallics_arts.aluminum_leggings", CTW.ALUMINUM_LEGGINGS.getNameInEnglish());
                 put("item.metallics_arts.aluminum_chestplate", CTW.ALUMINUM_CHESTPLATE.getNameInEnglish());
-                put("item.metallics_arts.aluminum_shoes", CTW.ALUMINUM_BOOTS.getNameInEnglish());
+                put("item.metallics_arts.aluminum_boots", CTW.ALUMINUM_BOOTS.getNameInEnglish());
 
         }};
 

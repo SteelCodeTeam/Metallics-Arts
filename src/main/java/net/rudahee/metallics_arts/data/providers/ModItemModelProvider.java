@@ -170,17 +170,15 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         builder(itemHandHeld,"item/metallics_arts_book","item/metallics_arts_book");
 
-
-
-        builder(itemGenerated,"item/steel_helmet", "item/combat/steel_helmet");
-        builder(itemGenerated,"item/steel_chestplate", "item/combat/steel_chestplate");
-        builder(itemGenerated,"item/steel_leggings", "item/combat/steel_leggings");
-        builder(itemGenerated,"item/steel_boots", "item/combat/steel_boots");
-        builder(itemGenerated,"item/aluminum_helmet", "item/combat/aluminum_helmet");
-        builder(itemGenerated,"item/aluminum_chestplate", "item/combat/aluminum_chestplate");
-        builder(itemGenerated,"item/aluminum_leggings", "item/combat/aluminum_leggings");
-        builder(itemGenerated,"item/aluminum_boots", "item/combat/aluminum_boots");
-        builder(itemGenerated,"item/mistcloack","item/mistcloak");
+        builder(itemGenerated,"item/steel_helmet", "item/armors/steel_helmet");
+        builder(itemGenerated,"item/steel_chestplate", "item/armors/steel_chestplate");
+        builder(itemGenerated,"item/steel_leggings", "item/armors/steel_leggings");
+        builder(itemGenerated,"item/steel_boots", "item/armors/steel_boots");
+        builder(itemGenerated,"item/aluminum_helmet", "item/armors/aluminum_helmet");
+        builder(itemGenerated,"item/aluminum_chestplate", "item/armors/aluminum_chestplate");
+        builder(itemGenerated,"item/aluminum_leggings", "item/armors/aluminum_leggings");
+        builder(itemGenerated,"item/aluminum_boots", "item/armors/aluminum_boots");
+        builder(itemGenerated,"item/mistcloak","item/armors/mistcloak");
 
     }
 

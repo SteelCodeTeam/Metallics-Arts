@@ -110,13 +110,13 @@ public enum CTW implements ILanguage {
     STEEL_CORE("steel_core", "Steel Core", "", "Nucleo de Acero", ""),
     ALUMINUM_CORE("aluminum_core", "Aluminum Core", "Nucleo de Aluminio", "", ""),
     STEEL_HELMET("steel_helmet", "Steel Helmet", "Casco de Acero", "", ""),
-    STEEL_LEGGINS("steel_leggings", "Steel Leggings", "Pantalones de Acero", "", ""),
+    STEEL_LEGGINGS("steel_leggings", "Steel Leggings", "Pantalones de Acero", "", ""),
     STEEL_CHESTPLATE("steel_chesplate", "Steel Chesplate", "Pechera de Acero", "", ""),
-    STEEL_BOOTS("steel_boots", "Steel Boots", "Zapatos de Acero", "", ""),
+    STEEL_BOOTS("steel_boots", "Steel Boots", "Botas de Acero", "", ""),
     ALUMINUM_HELMET("aluminum_helmet", "Aluminum Helmet", "Casco de Aluminio", "", ""),
-    ALUMINUM_LEGGINS("aluminum_leggings", "Aluminum Leggings", "Pantalones de Aluminio", "", ""),
+    ALUMINUM_LEGGINGS("aluminum_leggings", "Aluminum Leggings", "Pantalones de Aluminio", "", ""),
     ALUMINUM_CHESTPLATE("aluminum_chesplate", "Aluminum Chesplate", "Pechera de Aluminio", "", ""),
-    ALUMINUM_BOOTS("aluminum_boots", "Aluminum Boots", "Zapatos de Aluminio", "", "");
+    ALUMINUM_BOOTS("aluminum_boots", "Aluminum Boots", "Botas de Aluminio", "", "");
 
     private final String id;
     private final String english;

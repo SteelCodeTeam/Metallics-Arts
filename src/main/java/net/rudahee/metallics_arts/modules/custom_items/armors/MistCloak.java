@@ -22,13 +22,17 @@ public class MistCloak extends Item implements ICurioItem {
 
         if (livingEntity.level instanceof ServerLevel) {
             if (livingEntity instanceof Player player) {
+                if (DEFAULT_SPEED == null) {
+                    DEFAULT_SPEED = player.getSpeed();
+                }
                 if (player.level.isThundering() || player.level.isNight()) {
-                    if (DEFAULT_SPEED == null) {
-                        DEFAULT_SPEED = player.getSpeed();
-                    }
+
                     player.setSpeed(player.getSpeed() * 30f);
                 } else {
-                    player.setSpeed(DEFAULT_SPEED);
+                    if (player.getSpeed() != DEFAULT_SPEED) {
+                        player.setSpeed(DEFAULT_SPEED);
+                    }
+
                 }
             }
         }
@@ -48,7 +52,7 @@ public class MistCloak extends Item implements ICurioItem {
                 }
             }
         }
-
+        
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
     }
 }

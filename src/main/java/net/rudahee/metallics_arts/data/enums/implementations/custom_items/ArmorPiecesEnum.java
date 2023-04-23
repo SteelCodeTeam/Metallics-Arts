@@ -4,7 +4,7 @@ public enum ArmorPiecesEnum {
     CHESTPLATE("chestplate"),
     LEGGINGS("leggings"),
     HELMET("helmet"),
-    BOOTS("shoes");
+    BOOTS("boots");
 
     private final String piece;
 

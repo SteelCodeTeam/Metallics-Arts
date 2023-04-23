@@ -62,13 +62,13 @@ public class ModLanguageProviderES extends LanguageProvider {
         put("item.metallics_arts.core_steel", CTW.STEEL_CORE.getNameInSpanish());
         put("item.metallics_arts.core_aluminum", CTW.ALUMINUM_CORE.getNameInSpanish());
         put("item.metallics_arts.steel_helmet", CTW.STEEL_HELMET.getNameInSpanish());
-        put("item.metallics_arts.steel_leggins", CTW.STEEL_LEGGINS.getNameInSpanish());
+        put("item.metallics_arts.steel_leggings", CTW.STEEL_LEGGINGS.getNameInSpanish());
         put("item.metallics_arts.steel_chestplate", CTW.STEEL_CHESTPLATE.getNameInSpanish());
-        put("item.metallics_arts.steel_shoes", CTW.STEEL_BOOTS.getNameInSpanish());
+        put("item.metallics_arts.steel_boots", CTW.STEEL_BOOTS.getNameInSpanish());
         put("item.metallics_arts.aluminum_helmet", CTW.ALUMINUM_HELMET.getNameInSpanish());
-        put("item.metallics_arts.aluminum_leggins", CTW.ALUMINUM_LEGGINS.getNameInSpanish());
+        put("item.metallics_arts.aluminum_leggings", CTW.ALUMINUM_LEGGINGS.getNameInSpanish());
         put("item.metallics_arts.aluminum_chestplate", CTW.ALUMINUM_CHESTPLATE.getNameInSpanish());
-        put("item.metallics_arts.aluminum_shoes", CTW.ALUMINUM_BOOTS.getNameInSpanish());
+        put("item.metallics_arts.aluminum_boots", CTW.ALUMINUM_BOOTS.getNameInSpanish());
 
     }};
 
