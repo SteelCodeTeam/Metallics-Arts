@@ -70,7 +70,8 @@ public class IronAndSteelHelpers {
         list = list.stream()
                 .filter(item -> !item.equals(ModItemsRegister.ITEM_METAL_NUGGET.get(MetalTagEnum.ALUMINUM.getGemNameLower())))
                 .filter(item -> !item.equals(ModItemsRegister.ITEM_METAL_NUGGET.get(MetalEnum.SILVER.getMetalNameLower())))
-                .collect(Collectors.toList());list.add(Items.IRON_NUGGET);
+                .collect(Collectors.toList());
+        list.add(Items.IRON_NUGGET);
         list.add(Items.GOLD_NUGGET);
 
         for (ItemStack stack: player.getInventory().items){

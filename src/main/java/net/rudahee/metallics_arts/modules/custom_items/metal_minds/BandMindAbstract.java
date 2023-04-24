@@ -297,7 +297,7 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
             stack.setTag(addBandTags());
         }
 
-        if (this instanceof BandAluminumDuralumin || this instanceof BandGoldElectrum) {
+        if (this instanceof BandAluminumDuralumin) {
             return;
         }
 

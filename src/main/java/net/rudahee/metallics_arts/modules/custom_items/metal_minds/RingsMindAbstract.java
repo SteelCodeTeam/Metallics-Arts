@@ -282,7 +282,7 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
             stack.setTag(addRingTags());
         }
 
-        if (this instanceof RingAluminumDuralumin|| this instanceof RingGoldElectrum) {
+        if (this instanceof RingAluminumDuralumin) {
             return;
         }
 

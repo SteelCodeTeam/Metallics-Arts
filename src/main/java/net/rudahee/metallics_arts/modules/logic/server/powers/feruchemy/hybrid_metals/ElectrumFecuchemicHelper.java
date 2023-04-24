@@ -4,8 +4,11 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.function.Supplier;
 
@@ -28,6 +31,15 @@ public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void tapPower(Player player) {
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30);
+        IInvestedPlayerData playerCapability;
+        try {
+            playerCapability = CapabilityUtils.getCapability(player);
+            playerCapability.setModifiedHealth(true);
+        } catch (PlayerException ex) {
+            ex.printCompleteLog();
+            return;
+        }
+        ModNetwork.syncInvestedDataPacket(playerCapability, player);
         ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.ELECTRUM);
     }
 
@@ -45,6 +57,15 @@ public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper {
             player.setHealth(10);
         }
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(10);
+        IInvestedPlayerData playerCapability;
+        try {
+            playerCapability = CapabilityUtils.getCapability(player);
+            playerCapability.setModifiedHealth(true);
+        } catch (PlayerException ex) {
+            ex.printCompleteLog();
+            return;
+        }
+        ModNetwork.syncInvestedDataPacket(playerCapability, player);
 
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.ELECTRUM);
 

@@ -22,6 +22,7 @@ public class MetalMindsUtils {
     public static CompoundTag changeOwner(Player player, CompoundTag compoundTag, boolean iStoreMetal, MetalTagEnum metal0, MetalTagEnum metal1) {
         boolean isFirstReserveZero = compoundTag.getInt(metal0.getNameLower()+"_feruchemic_reserve") == 0;
         boolean isSecondReserveZero = compoundTag.getInt(metal1.getNameLower()+"_feruchemic_reserve") == 0;
+
         player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
             if (isFirstReserveZero && isSecondReserveZero && !data.isStoring(MetalTagEnum.ALUMINUM) &&
                     !data.isTapping(MetalTagEnum.ALUMINUM) && iStoreMetal){
