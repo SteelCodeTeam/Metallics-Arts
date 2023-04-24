@@ -41,7 +41,7 @@ public class ModLanguageProviderPL extends LanguageProvider {
         put("metallics_arts.spike_allomantic_power", CTW.STORAGE_POWER.getNameInPolish() + ": " + CTW.ALLOMANTIC.getNameInPolish());
 
         //ver porque usa "spike"
-        put("metallics_arts.spike_allomantic_power.tapping_identity", CTW.TAPPING.getNameInPolish());
+        put("metallics_arts.mental_mind_translate.tapping_identity", CTW.TAPPING_IDENTITY.getNameInPolish());
 
         //arreglar estos de aca abajo
         put("metallics_arts.mental_mind_translate.store_identity", CTW.STORE_IDENTITY.getNameInPolish());

@@ -40,7 +40,7 @@ public class ModLanguageProviderJP extends LanguageProvider {
         put("metallics_arts.spike_allomantic_power", CTW.STORAGE_POWER.getNameInJapanese() + ": " + CTW.ALLOMANTIC.getNameInJapanese());
 
         //ver porque usa "spike"
-        put("metallics_arts.spike_allomantic_power.tapping_identity", CTW.TAPPING.getNameInJapanese());
+        put("metallics_arts.mental_mind_translate.tapping_identity", CTW.TAPPING_IDENTITY.getNameInJapanese());
 
         //arreglar estos de aca abajo
         put("metallics_arts.mental_mind_translate.store_identity", CTW.STORE_IDENTITY.getNameInJapanese());

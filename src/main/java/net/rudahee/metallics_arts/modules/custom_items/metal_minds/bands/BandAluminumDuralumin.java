@@ -1,12 +1,17 @@
 package net.rudahee.metallics_arts.modules.custom_items.metal_minds.bands;
 
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.BandMindAbstract;
@@ -18,6 +23,10 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.MetalMindsUtils;
 import top.theillusivec4.curios.api.SlotContext;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Class that specifies the aluminum and duralumin band, we pass to the abstract class (which has the behavior) the metals that compose it,
@@ -40,107 +49,65 @@ public class BandAluminumDuralumin extends BandMindAbstract<AluminumFecuchemicHe
         super(properties, MetalTagEnum.ALUMINUM, MetalTagEnum.DURALUMIN, AluminumFecuchemicHelper.getInstance(), DuraluminFecuchemicHelper.getInstance());
     }
 
-    private boolean nicConsumeMet1 = false;
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> toolTips, TooltipFlag flagIn) {
+        if (stack.hasTag()) {
+            int reserve = stack.getTag().getInt(this.getMetals(0).getNameLower()+"_feruchemic_reserve");
+            if (reserve == 1) {
+                toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": " + "metallics_arts.mental_mind_translate.store_identity"));
+            } else if (reserve == 2) {
+                toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": " + "metallics_arts.mental_mind_translate.tapping_identity"));
+            } else {
+                toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": " + "metallics_arts.mental_mind_translate.off_power"));
+            }
+            if (!Screen.hasShiftDown()){
+                toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(1).getNameLower()).append(": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") / 20 + "s"));
+            } else {
+                toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(1).getNameLower()).append(": "+ ((stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") * 100)/this.getMetals(1).getMaxReserveBand())+"%"));
+            }
+            if (level != null) {
+                toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : (level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? Component.translatable("metallics_arts.mental_mind.owner_someone") : level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
+            }
+            if (!Screen.hasShiftDown()){
+                toolTips.add(Component.translatable(" "));
+                toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
 
-    /**
-     * This method is in charge of loading and unloading the reserves within the mind of metal,
-     * as well as granting the corresponding feruchemical powers to the player to whom the slotContext belongs,
-     * all this through the metal suppliers.
-     * <p>
-     * This is a specific specification of the method for this particular item, since it has certain modifications with respect to the generic of the abstract class, it differs in that:
-     * <p>
-     * - Unlike the other metals, the Aluminum reserve is reflected as a boolean indicating the property of the metal mind, while the others reflect storage time, so this specification removes the loading logic from the generic case.
-     *
-     * @param slotContext slot the item is in
-     * @param stack item being used.
-     *
-     * @see AluminumFecuchemicHelper
-     * @see DuraluminFecuchemicHelper
-     */
+            }
+        }
+        super.appendHoverText(stack, level, toolTips, flagIn);
+    }
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         LivingEntity livingEntity = slotContext.entity();
+        CompoundTag compoundTag = stack.getTag();
 
-        CompoundTag nbtLocal = stack.getTag();
-
-        if (livingEntity.level instanceof ServerLevel) {
-            if (livingEntity instanceof Player player) {
-                IInvestedPlayerData playerCapability;
-                try {
-                    playerCapability = CapabilityUtils.getCapability(player);
-                } catch (PlayerException ex) {
-                    ex.printCompleteLog();
-                    return;
-                }
-                if (playerCapability.isTapping(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)) {
-                    stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(0), this.getMetals(1)));
-                }
-
-                String metalKey = this.getMetals(0).getNameLower() + "_feruchemic_reserve";
-                int actualReserve = stack.getTag().getInt(metalKey);
-                int maxReserve = this.getMetals(0).getMaxReserveBand();
-
-                /*
-                 DECANT
-                 */
-                if (playerCapability.isTapping(this.getMetals(0))) {
-                    if (actualReserve > 0) {
-                        stack.setTag(getFirstSupplier().calculateDischarge(nbtLocal, player, playerCapability, actualReserve, metalKey, false));
-
-                    } else {
-                        stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(0), this.getMetals(1)));
-                        playerCapability.setTapping(this.getMetals(0), false);
-                    }
-                    /*
-                     STORAGE
-                     */
-                } else if (playerCapability.isStoring(this.getMetals(0))) {
-                    if (actualReserve < maxReserve) {
-                        stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, true, this.getMetals(0), this.getMetals(1)));
-                        stack.setTag(getFirstSupplier().calculateCharge(nbtLocal, player, playerCapability, actualReserve, metalKey, false));
-
-                    } else {
-                        playerCapability.setStoring(this.getMetals(0), false);
-                    }
-                } else if (actualReserve != 3) {
-                    stack.setTag(AluminumFecuchemicHelper.turnOffPower(nbtLocal, metalKey));
-                }
-
-                metalKey = this.getMetals(1).getNameLower() + "_feruchemic_reserve";
-                actualReserve = stack.getTag().getInt(metalKey);
-                maxReserve = this.getMetals(1).getMaxReserveBand();
-                /*
-                 DECANT
-                 */
-                if (playerCapability.isTapping(this.getMetals(1))) {
-                    if (actualReserve > 0) {
-                        stack.setTag(getSecondSupplier().calculateDischarge(nbtLocal, player, playerCapability, actualReserve, metalKey, nicConsumeMet1));
-                        if (playerCapability.isTapping(MetalTagEnum.NICROSIL)) {
-                            nicConsumeMet1 = !nicConsumeMet1;
+        if(stack.hasTag()) {
+            if (livingEntity.level instanceof ServerLevel) {
+                if (livingEntity instanceof Player player) {
+                    IInvestedPlayerData playerCapability;
+                    try {
+                        playerCapability = CapabilityUtils.getCapability(player);
+                        int actualReserve = stack.getTag().getInt(this.getMetals(0).getNameLower() + "_feruchemic_reserve");
+                        if (!playerCapability.isTapping(MetalTagEnum.ALUMINUM) && !playerCapability.isStoring(MetalTagEnum.ALUMINUM) && actualReserve != 3) {
+                            stack.setTag(AluminumFecuchemicHelper.turnOffPower(compoundTag,this.getMetals(0).getNameLower() + "_feruchemic_reserve"));
                         }
-                    } else {
-                        stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, false, this.getMetals(1)));
-                        playerCapability.setTapping(this.getMetals(1), false);
+                    } catch (PlayerException ex) {
+                        ex.printCompleteLog();
+                        return;
                     }
-                    /*
-                     STORAGE
-                     */
-                } else if (playerCapability.isStoring(this.getMetals(1))) {
-                    if (actualReserve < maxReserve) {
-                        stack.setTag(MetalMindsUtils.changeOwner(player, nbtLocal, true, this.getMetals(1)));
-                        stack.setTag(getSecondSupplier().calculateCharge(nbtLocal, player, playerCapability, actualReserve, metalKey, nicConsumeMet1));
-                        if (playerCapability.isStoring(MetalTagEnum.NICROSIL)) {
-                            nicConsumeMet1 = !nicConsumeMet1;
-                        }
-                    } else {
-                        playerCapability.setStoring(this.getMetals(1), false);
-                    }
+
                 }
-                ModNetwork.syncInvestedDataPacket(playerCapability, player);
             }
         }
         super.curioTick(slotContext, stack);
     }
 
+    @Override
+    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
+        if(stack.hasTag()) {
+            stack.setTag(AluminumFecuchemicHelper.turnOffPower(stack.getTag(),this.getMetals(0).getNameLower() + "_feruchemic_reserve"));
+        }
+        super.onUnequip(slotContext, newStack, stack);
+    }
 
 }
