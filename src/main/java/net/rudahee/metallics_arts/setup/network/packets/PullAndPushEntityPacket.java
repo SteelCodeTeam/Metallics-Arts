@@ -11,15 +11,19 @@ import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.util.function.Supplier;
+import java.util.stream.StreamSupport;
 
 /**
  * Class to communicate data between Client game and Server game. This packet it's for send a request
@@ -78,9 +82,14 @@ public class PullAndPushEntityPacket {
      * @param ctx Network context with all data of the packet.
      */
     public void handle(Supplier<NetworkEvent.Context> ctx) {
+
+
         ctx.get().enqueueWork(() -> {
             ServerPlayer source = ctx.get().getSender();
             Entity target = source.level.getEntity(this.entityIDOther);
+
+            boolean aluminumArmor = false;
+
             if (target != null) {
 
                 if (IronAndSteelHelpers.isEntityMetal(target)) {
@@ -96,41 +105,46 @@ public class PullAndPushEntityPacket {
                     }  //2 sources ?
 
                     // If entity are player.
-                    if (target instanceof Player || target instanceof ServerPlayer) {
-                        IInvestedPlayerData sourceCapability = source.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).resolve().get();
-                        IInvestedPlayerData targetCapability = target.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).resolve().get();
-                        boolean areInSameState = false;
+                    if (target instanceof Player) {
+                        aluminumArmor = StreamSupport.stream(target.getArmorSlots().spliterator(), false).allMatch(stack -> stack.getTag().toString().equals("aluminum"));
 
-                        // if both are decanting or both storing are in same state
-                        if ((sourceCapability.isTapping(MetalTagEnum.IRON) && targetCapability.isTapping(MetalTagEnum.IRON))
-                                || (sourceCapability.isStoring(MetalTagEnum.IRON) && targetCapability.isStoring(MetalTagEnum.IRON))) {
-                            areInSameState = true;
 
-                            // otherwise, if both are NOT decanting, o both are not storing, both its doing nothing, also = same state.
-                        } else if ((!sourceCapability.isTapping(MetalTagEnum.IRON) && !targetCapability.isTapping(MetalTagEnum.IRON))
-                                || (!sourceCapability.isStoring(MetalTagEnum.IRON) && !targetCapability.isStoring(MetalTagEnum.IRON))) {
-                            areInSameState = true;
-                        }
+                        if (aluminumArmor) {
+                            IInvestedPlayerData sourceCapability = source.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).resolve().get();
+                            IInvestedPlayerData targetCapability = target.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).resolve().get();
+                            boolean areInSameState = false;
 
-                        // by default, they are not in same state.
+                            // if both are decanting or both storing are in same state
+                            if ((sourceCapability.isTapping(MetalTagEnum.IRON) && targetCapability.isTapping(MetalTagEnum.IRON))
+                                    || (sourceCapability.isStoring(MetalTagEnum.IRON) && targetCapability.isStoring(MetalTagEnum.IRON))) {
+                                areInSameState = true;
 
-                        // Normal move in same state.
-                        if (areInSameState) {
-                            IronAndSteelHelpers.move(this.direction / 2.0, target, source.blockPosition());
-                            IronAndSteelHelpers.move(this.direction / 2.0, source, target.blockPosition());
-                        } else {
-                            if (sourceCapability.isTapping(MetalTagEnum.IRON)) { // is decanting, so more weight
-                                // is storing, so less weight
-                                // Not storing and decanting.
-                                IronAndSteelHelpers.move(this.direction, target, target.blockPosition(), targetCapability.isStoring(MetalTagEnum.IRON));
-                            } else if (sourceCapability.isStoring(MetalTagEnum.IRON)) {
-                                // Not storing and decanting.
-                                IronAndSteelHelpers.move(this.direction, source, source.blockPosition(), targetCapability.isTapping(MetalTagEnum.IRON));
-                            } else if (!sourceCapability.isStoring(MetalTagEnum.IRON) && !sourceCapability.isTapping(MetalTagEnum.IRON)) {
-                                if (targetCapability.isTapping(MetalTagEnum.IRON)) {
-                                    IronAndSteelHelpers.move(this.direction, source, source.blockPosition(), true);
-                                } else if (targetCapability.isStoring(MetalTagEnum.IRON)) {
-                                    IronAndSteelHelpers.move(this.direction, target, target.blockPosition(), false);
+                                // otherwise, if both are NOT decanting, o both are not storing, both its doing nothing, also = same state.
+                            } else if ((!sourceCapability.isTapping(MetalTagEnum.IRON) && !targetCapability.isTapping(MetalTagEnum.IRON))
+                                    || (!sourceCapability.isStoring(MetalTagEnum.IRON) && !targetCapability.isStoring(MetalTagEnum.IRON))) {
+                                areInSameState = true;
+                            }
+
+                            // by default, they are not in same state.
+
+                            // Normal move in same state.
+                            if (areInSameState) {
+                                IronAndSteelHelpers.move(this.direction / 2.0, target, source.blockPosition());
+                                IronAndSteelHelpers.move(this.direction / 2.0, source, target.blockPosition());
+                            } else {
+                                if (sourceCapability.isTapping(MetalTagEnum.IRON)) { // is decanting, so more weight
+                                    // is storing, so less weight
+                                    // Not storing and decanting.
+                                    IronAndSteelHelpers.move(this.direction, target, target.blockPosition(), targetCapability.isStoring(MetalTagEnum.IRON));
+                                } else if (sourceCapability.isStoring(MetalTagEnum.IRON)) {
+                                    // Not storing and decanting.
+                                    IronAndSteelHelpers.move(this.direction, source, source.blockPosition(), targetCapability.isTapping(MetalTagEnum.IRON));
+                                } else if (!sourceCapability.isStoring(MetalTagEnum.IRON) && !sourceCapability.isTapping(MetalTagEnum.IRON)) {
+                                    if (targetCapability.isTapping(MetalTagEnum.IRON)) {
+                                        IronAndSteelHelpers.move(this.direction, source, source.blockPosition(), true);
+                                    } else if (targetCapability.isStoring(MetalTagEnum.IRON)) {
+                                        IronAndSteelHelpers.move(this.direction, target, target.blockPosition(), false);
+                                    }
                                 }
                             }
                         }

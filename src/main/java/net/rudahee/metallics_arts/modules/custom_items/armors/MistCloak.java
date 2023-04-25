@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.modules.custom_items.armors;
 
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,7 +9,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -40,9 +38,7 @@ public class MistCloak extends Item implements ICurioItem {
                         player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(MISTCLOACK_SPEED);
                     }
                 } else {
-
                     player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(MISTCLOACK_SPEED);
-
                 }
             }
         }
