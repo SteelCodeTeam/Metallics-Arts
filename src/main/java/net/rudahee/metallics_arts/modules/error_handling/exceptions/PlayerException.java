@@ -1,8 +1,10 @@
 package net.rudahee.metallics_arts.modules.error_handling.exceptions;
 
+import net.minecraftforge.common.util.NonNullSupplier;
 import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
 import net.rudahee.metallics_arts.modules.error_handling.messages.SeverityType;
 import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * PlayerException is a custom exception class that extends Exception.
@@ -16,7 +18,7 @@ import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
  * @author SteelCode Team
  * @since 1.5.1
  */
-public class PlayerException extends Exception {
+public class PlayerException extends Exception implements NonNullSupplier<PlayerException> {
     private final ErrorTypes errorType;
 
     /**
@@ -77,5 +79,11 @@ public class PlayerException extends Exception {
      */
     public void printCompleteLog() {
         LoggerUtils.printLog(this.getCode(), this.getMessage(), this.getStackTrace(), this.getSeverityType());
+    }
+
+    @NotNull
+    @Override
+    public PlayerException get() {
+        return this;
     }
 }

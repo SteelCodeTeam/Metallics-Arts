@@ -23,8 +23,6 @@ import java.util.HashMap;
  */
 public class CapabilityUtils<T> {
 
-    private static IInvestedPlayerData playerData;
-
     /**
      * Useful method to extract capabilities (data) from target ServerPlayer passed by parameter.
      *
@@ -36,16 +34,18 @@ public class CapabilityUtils<T> {
      */
     public static IInvestedPlayerData getCapability(@Nullable ServerPlayer player) throws PlayerException {
 
-        playerData = null;
 
         if (player == null) {
             throw new PlayerException(ErrorTypes.PLAYER_ERROR);
         }
 
         // if player is present and has capabilities, we return capabilities, else, return null.
-        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(playerCapability -> playerData = playerCapability);
+        if (player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).isPresent()) {
+            return player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).orElseThrow(new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR));
+        } else {
+            throw new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR);
+        }
 
-        return playerData;
     }
 
     /**
@@ -58,23 +58,27 @@ public class CapabilityUtils<T> {
      * @see IInvestedPlayerData
      */
     public static IInvestedPlayerData getCapability(@Nullable Player player) throws PlayerException {
-        playerData = null;
         if (player == null) {
             throw new PlayerException(ErrorTypes.PLAYER_ERROR);
         }
-        // if player is present and has capabilities, we return capabilities, else, return null.
-        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(playerCapability -> playerData = playerCapability);
-        return playerData;
+
+        if (player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).isPresent()) {
+            return player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).orElseThrow(new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR));
+        } else {
+            throw new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR);
+        }
     }
 
     public static IInvestedPlayerData getCapability(@Nullable Entity entity) throws PlayerException {
-        playerData = null;
+
         if (entity == null) {
             throw new PlayerException(ErrorTypes.PLAYER_ERROR);
         }
-
-        entity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(playerCapability -> playerData = playerCapability);
-        return playerData;
+        if (entity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).isPresent()) {
+            return entity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).orElseThrow(new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR));
+        } else {
+            throw new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR);
+        }
     }
 
 

@@ -150,16 +150,18 @@ public class ServerEventHandler {
     @SubscribeEvent
     public static void onWorldTickEvent(final TickEvent.LevelTickEvent event) {
 
+
         if (event.phase != TickEvent.Phase.END) {
             return;
         }
+        ServerPlayer serverPlayer;
 
         List<? extends Player> playerList = event.level.players();
 
         for (Player player : playerList) {
 
             if (player instanceof ServerPlayer) {
-                ServerPlayer serverPlayer = (ServerPlayer) player;
+                serverPlayer = (ServerPlayer) player;
                 try {
                     IInvestedPlayerData capabilities = CapabilityUtils.getCapability(serverPlayer);
 

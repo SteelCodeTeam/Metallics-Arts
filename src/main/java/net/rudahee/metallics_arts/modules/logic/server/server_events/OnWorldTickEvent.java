@@ -51,7 +51,7 @@ public class OnWorldTickEvent {
             }
         }
         if (capability.isStoringAnything() || capability.isTappingAnything()){
-            if (MathUtils.isDivisibleBy30(tick)){
+            if (MathUtils.isDivisibleBy30(tick)) {
                 FeruchemicTick.each3Ticks(capability,player,level);
             }
         }
