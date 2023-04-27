@@ -158,17 +158,18 @@ public class ServerEventHandler {
 
         for (Player player : playerList) {
 
-            ServerPlayer serverPlayer = (ServerPlayer) player;
-            try {
-                IInvestedPlayerData capabilities = CapabilityUtils.getCapability(serverPlayer);
+            if (player instanceof ServerPlayer) {
+                ServerPlayer serverPlayer = (ServerPlayer) player;
+                try {
+                    IInvestedPlayerData capabilities = CapabilityUtils.getCapability(serverPlayer);
 
-                if (capabilities != null && capabilities.isInvested()) {
-                    OnWorldTickEvent.onWorldTick(capabilities, serverPlayer, (ServerLevel) event.level);
+                    if (capabilities != null && capabilities.isInvested()) {
+                        OnWorldTickEvent.onWorldTick(capabilities, serverPlayer, (ServerLevel) event.level);
+                    }
+                } catch (PlayerException ex) {
+                    ex.printResumeLog();
                 }
-            } catch (PlayerException ex) {
-                ex.printResumeLog();
             }
         }
-
     }
 }
