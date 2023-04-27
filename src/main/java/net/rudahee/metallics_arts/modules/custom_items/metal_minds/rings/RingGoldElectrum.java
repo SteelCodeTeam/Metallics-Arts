@@ -27,7 +27,7 @@ import top.theillusivec4.curios.api.SlotContext;
  * @see RingsMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class RingGoldElectrum extends RingsMindAbstract <GoldFecuchemicHelper, ElectrumFecuchemicHelper> {
+public class RingGoldElectrum extends RingsMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -35,7 +35,7 @@ public class RingGoldElectrum extends RingsMindAbstract <GoldFecuchemicHelper, E
      * @param properties of the item.
      */
     public RingGoldElectrum(Properties properties){
-        super(properties, MetalTagEnum.GOLD, MetalTagEnum.ELECTRUM, GoldFecuchemicHelper.getInstance(), ElectrumFecuchemicHelper.getInstance());
+        super(properties, MetalTagEnum.GOLD, MetalTagEnum.ELECTRUM, new GoldFecuchemicHelper(), new ElectrumFecuchemicHelper());
     }
 
     /**

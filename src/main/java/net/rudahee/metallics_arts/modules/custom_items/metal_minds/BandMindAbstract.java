@@ -17,9 +17,11 @@ import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.bands.*;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
+import net.rudahee.metallics_arts.utils.MathUtils;
 import net.rudahee.metallics_arts.utils.MetalMindsUtils;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -39,13 +41,13 @@ import java.util.function.Supplier;
  * @see ICurioItem
  * @see AbstractFechuchemicHelper
  */
-public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T extends AbstractFechuchemicHelper> extends Item implements ICurioItem {
+public abstract class BandMindAbstract extends Item implements ICurioItem {
 
     private final MetalTagEnum[] metals = new MetalTagEnum[2];
     public String unkeyedString = "Nobody";
 
-    private E firstSupplier;
-    private T secondSupplier;
+    private AbstractFechuchemicHelper firstHelper;
+    private AbstractFechuchemicHelper secondHelper;
 
     /**
      * Default constructor, it is important that it receives both metals in the correct order, ore and alloy, along with their respective suppliers as a parameter.
@@ -53,17 +55,14 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
      * @param properties of the item.
      * @param metal1 first ring metal.
      * @param metal2 second ring metal.
-     * @param firstHelper supplier of the first metal.
-     * @param secondHelper supplier of the second metal.
      *
      */
-    public BandMindAbstract(Properties properties, MetalTagEnum metal1, MetalTagEnum metal2, Supplier<? extends E> firstHelper, Supplier<? extends T> secondHelper) {
+    public BandMindAbstract(Properties properties, MetalTagEnum metal1, MetalTagEnum metal2, AbstractFechuchemicHelper firstHelper, AbstractFechuchemicHelper secondHelper) {
         super(properties);
         metals[0]=metal1;
         metals[1]=metal2;
-
-        this.firstSupplier = firstHelper.get();
-        this.secondSupplier = secondHelper.get();
+        this.firstHelper = firstHelper;
+        this.secondHelper = secondHelper;
     }
 
     /**
@@ -80,7 +79,7 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
         Player player = (Player) slotContext.getWearer();
 
-        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
+        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
             data.setMetalMindEquiped(this.metals[0].getGroup(),true);
             data.setMetalMindEquiped(this.metals[1].getGroup(),true);
             ModNetwork.syncInvestedDataPacket(data, player);
@@ -99,9 +98,7 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
      */
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        if (this instanceof BandGoldElectrum) {
-            return;
-        }
+
         Player player = (Player) slotContext.getWearer();
         if (stack.getItem() != newStack.getItem()) {
             player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
@@ -111,6 +108,7 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
                 data.setStoring(this.metals[1],false);
                 data.setTapping(this.metals[0],false);
                 data.setTapping(this.metals[1],false);
+
                 ModNetwork.syncInvestedDataPacket(data, player);
             });
         }
@@ -149,6 +147,7 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
                 canEquip = false;
             }
         }
+
         ICurioItem.super.canEquip(slotContext, stack);
         return canEquip;
     }
@@ -315,7 +314,10 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
                 // Tap.
                 if (playerCapability.isTapping(this.metals[0])) {
                     if (actualReserve > 0) {
-                        stack.setTag(firstSupplier.calculateDischarge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet0));
+                        stack.setTag(firstHelper.calculateDischarge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet0));
+                        if (MathUtils.isDivisibleBy10(OnWorldTickEvent.getActualTick())) {
+                            firstHelper.tapPower(player);
+                        }
                     } else {
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, false, this.metals[0], this.metals[1]));
                         playerCapability.setTapping(this.metals[0], false);
@@ -324,8 +326,10 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
                 } else if (playerCapability.isStoring(this.metals[0])) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, true, this.metals[0], this.metals[1]));
-                        stack.setTag(firstSupplier.calculateCharge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet0));
-
+                        stack.setTag(firstHelper.calculateCharge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet0));
+                        if (MathUtils.isDivisibleBy10(OnWorldTickEvent.getActualTick())) {
+                            firstHelper.storagePower(player);
+                        }
                     } else {
                         playerCapability.setStoring(this.metals[0], false);
                     }
@@ -336,7 +340,9 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
                 // Tap.
                 if (playerCapability.isTapping(this.metals[1])) {
                     if (actualReserve > 0) {
-                        stack.setTag(secondSupplier.calculateDischarge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet1));
+                        stack.setTag(secondHelper.calculateDischarge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet1));
+                        secondHelper.tapPower(player);
+
                     } else {
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, false, this.metals[0], this.metals[1]));
                         playerCapability.setTapping(this.metals[1], false);
@@ -345,7 +351,8 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
                 } else if (playerCapability.isStoring(this.metals[1])) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, true, this.metals[0], this.metals[1]));
-                        stack.setTag(secondSupplier.calculateCharge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet1));
+                        stack.setTag(secondHelper.calculateCharge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet1));
+                        secondHelper.storagePower(player);
                     } else {
                         playerCapability.setStoring(this.metals[1], false);
                     }
@@ -358,24 +365,6 @@ public abstract class BandMindAbstract <E extends AbstractFechuchemicHelper, T e
             }
         }
         ICurioItem.super.curioTick(slotContext, stack);
-    }
-
-    /**
-     * Returns the first supplier of type E.
-     *
-     * @return the first supplier
-     */
-    public E getFirstSupplier() {
-        return firstSupplier;
-    }
-
-    /**
-     * Returns the second supplier of type T.
-     *
-     * @return the second supplier
-     */
-    public T getSecondSupplier() {
-        return secondSupplier;
     }
 
     /**

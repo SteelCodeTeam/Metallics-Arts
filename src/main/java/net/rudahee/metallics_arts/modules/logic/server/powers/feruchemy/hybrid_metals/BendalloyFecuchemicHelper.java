@@ -57,13 +57,4 @@ public class BendalloyFecuchemicHelper extends AbstractFechuchemicHelper {
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.BENDALLOY);
     }
 
-    /**
-     * Returns an instance of BendalloyFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of BendalloyFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of BendalloyFecuchemicHelper when called
-     */
-    public static Supplier<? extends BendalloyFecuchemicHelper> getInstance() {
-        return BendalloyFecuchemicHelper::new;
-    }
 }

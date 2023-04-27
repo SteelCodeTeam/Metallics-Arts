@@ -44,13 +44,4 @@ public class AtiumFecuchemicHelper extends AbstractFechuchemicHelper {
         player.addEffect(new MobEffectInstance(MobEffects.GLOWING, 5, 1, false, false));
     }
 
-    /**
-     * Returns an instance of AtiumFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of AtiumFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of AtiumFecuchemicHelper when called
-     */
-    public static Supplier<? extends AtiumFecuchemicHelper> getInstance() {
-        return AtiumFecuchemicHelper::new;
-    }
 }

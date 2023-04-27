@@ -52,21 +52,13 @@ public class BrassFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 120, 1, true, false));
+
         if (player.getLevel().getBiome(player.getOnPos()).is(Tags.Biomes.IS_COLD) ||
                 (player.getLevel().getBiome(player.getOnPos()).is(Biomes.DESERT) && player.getLevel().isNight())) {
             player.setTicksFrozen(player.getTicksFrozen() + 3);
         }
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.BRASS);
-    }
 
-    /**
-     * Returns an instance of BrassFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of BrassFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of BrassFecuchemicHelper when called
-     */
-    public static Supplier<? extends BrassFecuchemicHelper> getInstance() {
-        return BrassFecuchemicHelper::new;
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.BRASS);
     }
 
     /**

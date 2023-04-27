@@ -17,7 +17,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.physical
  * @see BandMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class BandIronSteel extends BandMindAbstract <IronFecuchemicHelper, SteelFecuchemicHelper> {
+public class BandIronSteel extends BandMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -25,7 +25,7 @@ public class BandIronSteel extends BandMindAbstract <IronFecuchemicHelper, Steel
      * @param properties of the item.
      */
     public BandIronSteel(Item.Properties properties){
-        super(properties, MetalTagEnum.IRON, MetalTagEnum.STEEL, IronFecuchemicHelper.getInstance(), SteelFecuchemicHelper.getInstance());
+        super(properties, MetalTagEnum.IRON, MetalTagEnum.STEEL, new IronFecuchemicHelper(), new SteelFecuchemicHelper());
     }
 
 }

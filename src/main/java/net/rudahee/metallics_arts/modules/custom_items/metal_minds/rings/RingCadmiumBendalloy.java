@@ -15,7 +15,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_m
  * @see RingsMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class RingCadmiumBendalloy extends RingsMindAbstract <CadmiumFecuchemicHelper, BendalloyFecuchemicHelper> {
+public class RingCadmiumBendalloy extends RingsMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -23,7 +23,7 @@ public class RingCadmiumBendalloy extends RingsMindAbstract <CadmiumFecuchemicHe
      * @param properties of the item.
      */
     public RingCadmiumBendalloy (Properties properties){
-        super(properties, MetalTagEnum.CADMIUM, MetalTagEnum.BENDALLOY, CadmiumFecuchemicHelper.getInstance(), BendalloyFecuchemicHelper.getInstance());
+        super(properties, MetalTagEnum.CADMIUM, MetalTagEnum.BENDALLOY, new CadmiumFecuchemicHelper(), new BendalloyFecuchemicHelper());
     }
 
 }

@@ -45,13 +45,5 @@ public class SteelFecuchemicHelper extends AbstractFechuchemicHelper {
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.STEEL);
     }
 
-    /**
-     * Returns an instance of SteelFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of SteelFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of SteelFecuchemicHelper when called
-     */
-    public static Supplier<? extends SteelFecuchemicHelper> getInstance() {
-        return SteelFecuchemicHelper::new;
-    }
+
 }

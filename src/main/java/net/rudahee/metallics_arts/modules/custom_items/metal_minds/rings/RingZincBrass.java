@@ -16,7 +16,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitiv
  * @see RingsMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class RingZincBrass extends RingsMindAbstract <ZincFecuchemicHelper, BrassFecuchemicHelper> {
+public class RingZincBrass extends RingsMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -24,6 +24,6 @@ public class RingZincBrass extends RingsMindAbstract <ZincFecuchemicHelper, Bras
      * @param properties of the item.
      */
     public RingZincBrass (Properties properties){
-        super(properties, MetalTagEnum.ZINC, MetalTagEnum.BRASS, ZincFecuchemicHelper.getInstance(), BrassFecuchemicHelper.getInstance());
+        super(properties, MetalTagEnum.ZINC, MetalTagEnum.BRASS, new ZincFecuchemicHelper(), new BrassFecuchemicHelper());
     }
 }

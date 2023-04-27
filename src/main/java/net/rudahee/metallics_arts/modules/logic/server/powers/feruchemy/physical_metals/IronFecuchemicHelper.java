@@ -47,13 +47,5 @@ public class IronFecuchemicHelper extends AbstractFechuchemicHelper {
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.IRON);
     }
 
-    /**
-     * Returns an instance of IronFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of IronFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of IronFecuchemicHelper when called
-     */
-    public static Supplier<? extends IronFecuchemicHelper> getInstance() {
-        return IronFecuchemicHelper::new;
-    }
+
 }

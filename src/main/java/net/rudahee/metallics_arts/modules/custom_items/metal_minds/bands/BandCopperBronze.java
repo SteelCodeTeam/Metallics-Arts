@@ -28,7 +28,7 @@ import java.util.UUID;
  * @see BandMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class BandCopperBronze extends BandMindAbstract<CopperFecuchemicHelper, BronzeFecuchemicHelper> {
+public class BandCopperBronze extends BandMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -36,7 +36,7 @@ public class BandCopperBronze extends BandMindAbstract<CopperFecuchemicHelper, B
      * @param properties of the item.
      */
     public BandCopperBronze(Item.Properties properties) {
-        super(properties, MetalTagEnum.COPPER, MetalTagEnum.BRONZE, CopperFecuchemicHelper.getInstance(), BronzeFecuchemicHelper.getInstance());
+        super(properties, MetalTagEnum.COPPER, MetalTagEnum.BRONZE, new CopperFecuchemicHelper(), new BronzeFecuchemicHelper());
     }
 
     /**

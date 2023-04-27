@@ -34,7 +34,9 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void tapPower(Player player) {
         if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
+
             ResourceKey<Biome> biome = player.getLevel().getBiome(player.getOnPos()).unwrapKey().get();
+
             // if biome is jungle
             if (biome.equals(Biomes.JUNGLE) || biome.equals(Biomes.BAMBOO_JUNGLE) ||biome.equals(Biomes.SPARSE_JUNGLE)) {
                 player.addEffect(new MobEffectInstance(MobEffects.JUMP, 120, 3, false, false));
@@ -117,6 +119,7 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 120, 2, false, false));
             }
         }
+
         ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.DURALUMIN);
     }
 
@@ -131,7 +134,9 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {
         if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
+
             ResourceKey<Biome> biome = player.getLevel().getBiome(player.getOnPos()).unwrapKey().get();
+
             // if biome is jungle
             if (biome.equals(Biomes.JUNGLE) || biome.equals(Biomes.BAMBOO_JUNGLE) ||biome.equals(Biomes.SPARSE_JUNGLE)) {
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 1, false, false));
@@ -207,6 +212,7 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 2, false, false));
             }
         }
+
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.DURALUMIN);
     }
 
@@ -216,7 +222,4 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @return a Supplier that returns a new instance of DuraluminFecuchemicHelper when called
      */
-    public static Supplier<? extends DuraluminFecuchemicHelper> getInstance() {
-        return DuraluminFecuchemicHelper::new;
-    }
 }

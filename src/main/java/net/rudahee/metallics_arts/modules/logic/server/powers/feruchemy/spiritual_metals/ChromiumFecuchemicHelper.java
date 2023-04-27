@@ -65,13 +65,5 @@ public class  ChromiumFecuchemicHelper extends AbstractFechuchemicHelper {
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.CHROMIUM);
     }
 
-    /**
-     * Returns an instance of ChromiumFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of ChromiumFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of ChromiumFecuchemicHelper when called
-     */
-    public static Supplier<? extends ChromiumFecuchemicHelper> getInstance() {
-        return ChromiumFecuchemicHelper::new;
-    }
+
 }

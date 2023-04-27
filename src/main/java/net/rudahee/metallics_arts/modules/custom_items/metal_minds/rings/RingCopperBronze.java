@@ -27,7 +27,7 @@ import java.util.UUID;
  * @see RingsMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class RingCopperBronze extends RingsMindAbstract <CopperFecuchemicHelper, BronzeFecuchemicHelper> {
+public class RingCopperBronze extends RingsMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -35,7 +35,7 @@ public class RingCopperBronze extends RingsMindAbstract <CopperFecuchemicHelper,
      * @param properties of the item.
      */
     public RingCopperBronze(Properties properties){
-        super(properties, MetalTagEnum.COPPER, MetalTagEnum.BRONZE, CopperFecuchemicHelper.getInstance(), BronzeFecuchemicHelper.getInstance());
+        super(properties, MetalTagEnum.COPPER, MetalTagEnum.BRONZE, new CopperFecuchemicHelper(), new BronzeFecuchemicHelper());
     }
 
     /**

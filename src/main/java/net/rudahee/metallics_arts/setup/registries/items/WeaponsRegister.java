@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.setup.registries.items;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.modules.custom_items.coins.CopperCoin;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.*;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
@@ -13,23 +14,26 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
  */
 public class WeaponsRegister {
 
-    private static final Item.Properties PROPERTY_WEAPONS = new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT);
-
+    private static final Item.Properties WEAPONS_PROPERTIES = new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT);
+    private static final Item.Properties COIN_PROPERTIES = new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT).stacksTo(64);
     public static void register (){
         ModItemsRegister.OBSIDIAN_DAGGER = MetallicsArts.registerItem("obsidian_dagger",
-                () -> new ObsidianDagger(PROPERTY_WEAPONS)
+                () -> new ObsidianDagger(WEAPONS_PROPERTIES)
         );
         ModItemsRegister.SILVER_KNIFE = MetallicsArts.registerItem("silver_knife",
-                () -> new CristalDagger(PROPERTY_WEAPONS)
+                () -> new CristalDagger(WEAPONS_PROPERTIES)
         );
         ModItemsRegister.KOLOSS_BLADE = MetallicsArts.registerItem("koloss_blade",
-                () -> new KolossBlade(PROPERTY_WEAPONS)
+                () -> new KolossBlade(WEAPONS_PROPERTIES)
         );
         ModItemsRegister.DUELING_STAFF = MetallicsArts.registerItem("dueling_staff",
-                () -> new DuelingStaff(PROPERTY_WEAPONS)
+                () -> new DuelingStaff(WEAPONS_PROPERTIES)
         );
         ModItemsRegister.OBSIDIAN_AXE = MetallicsArts.registerItem("obsidian_axe",
-                () -> new ObsidianAxe(PROPERTY_WEAPONS)
+                () -> new ObsidianAxe(WEAPONS_PROPERTIES)
         );
+
+        ModItemsRegister.COPPER_COIN = MetallicsArts.registerItem("copper_coin",
+                () -> new CopperCoin(COIN_PROPERTIES, 1, 5));
     }
 }

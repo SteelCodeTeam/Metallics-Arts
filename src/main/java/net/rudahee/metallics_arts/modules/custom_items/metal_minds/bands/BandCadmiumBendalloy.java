@@ -17,7 +17,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_m
  * @see BandMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class BandCadmiumBendalloy extends BandMindAbstract <CadmiumFecuchemicHelper, BendalloyFecuchemicHelper> {
+public class BandCadmiumBendalloy extends BandMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -25,7 +25,7 @@ public class BandCadmiumBendalloy extends BandMindAbstract <CadmiumFecuchemicHel
      * @param properties of the item.
      */
     public BandCadmiumBendalloy (Item.Properties properties){
-        super(properties, MetalTagEnum.CADMIUM, MetalTagEnum.BENDALLOY, CadmiumFecuchemicHelper.getInstance(), BendalloyFecuchemicHelper.getInstance());
+        super(properties, MetalTagEnum.CADMIUM, MetalTagEnum.BENDALLOY, new CadmiumFecuchemicHelper(), new BendalloyFecuchemicHelper());
     }
 
 }

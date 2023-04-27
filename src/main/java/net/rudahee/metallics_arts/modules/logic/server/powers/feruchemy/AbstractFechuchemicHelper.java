@@ -4,6 +4,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
+import net.rudahee.metallics_arts.utils.MathUtils;
 
 
 /**
@@ -47,7 +50,7 @@ public abstract class AbstractFechuchemicHelper {
         if (!playerCapability.isTapping(MetalTagEnum.NICROSIL) || !nicConsume) {
             compoundTag.putInt(metalKey, metalReserve - 1);
         }
-        tapPower(player);
+
         return compoundTag;
     }
 
@@ -66,7 +69,7 @@ public abstract class AbstractFechuchemicHelper {
         if (!playerCapability.isStoring(MetalTagEnum.NICROSIL) || !nicConsume) {
             compoundTag.putInt(metalKey, metalReserve + 1);
         }
-        storagePower(player);
+
         return compoundTag;
     }
 }

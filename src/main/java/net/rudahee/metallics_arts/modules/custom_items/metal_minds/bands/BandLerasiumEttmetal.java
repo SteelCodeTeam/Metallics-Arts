@@ -28,7 +28,7 @@ import java.util.UUID;
  * @see BandMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class BandLerasiumEttmetal extends BandMindAbstract <LerasiumFecuchemicHelper, EttmetalFecuchemicHelper> {
+public class BandLerasiumEttmetal extends BandMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -36,7 +36,7 @@ public class BandLerasiumEttmetal extends BandMindAbstract <LerasiumFecuchemicHe
      * @param properties of the item.
      */
     public BandLerasiumEttmetal (Item.Properties properties){
-        super(properties, MetalTagEnum.LERASIUM, MetalTagEnum.ETTMETAL, LerasiumFecuchemicHelper.getInstance(), EttmetalFecuchemicHelper.getInstance());
+        super(properties, MetalTagEnum.LERASIUM, MetalTagEnum.ETTMETAL, new LerasiumFecuchemicHelper(), new EttmetalFecuchemicHelper());
     }
 
     /**

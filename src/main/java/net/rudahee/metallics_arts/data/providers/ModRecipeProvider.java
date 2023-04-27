@@ -505,7 +505,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_block", has(ModItemsRegister.CORE_STEEL.get()))
                 .save(recipesConsumer, new ResourceLocation(ModItemsRegister.CORE_STEEL.get().getDescriptionId()));
 
-        UpgradeRecipeBuilder.smithing(
+      /*  UpgradeRecipeBuilder.smithing(
                         Ingredient.of(Items.NETHERITE_HELMET),
                         Ingredient.of(ModItemsRegister.CORE_STEEL.get()),
                         ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.HELMET).get())
@@ -565,7 +565,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .pattern("***")
                 .unlockedBy("has_block", has(ModItemsRegister.MISTCLOACK.get()))
-                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.MISTCLOACK.get().getDescriptionId()));
+                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.MISTCLOACK.get().getDescriptionId()));*/
     }
 }
 

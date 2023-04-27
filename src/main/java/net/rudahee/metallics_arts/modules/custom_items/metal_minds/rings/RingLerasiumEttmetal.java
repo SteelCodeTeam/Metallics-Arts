@@ -27,7 +27,7 @@ import java.util.UUID;
  * @see RingsMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class RingLerasiumEttmetal extends RingsMindAbstract <LerasiumFecuchemicHelper, EttmetalFecuchemicHelper> {
+public class RingLerasiumEttmetal extends RingsMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -35,7 +35,7 @@ public class RingLerasiumEttmetal extends RingsMindAbstract <LerasiumFecuchemicH
      * @param properties of the item.
      */
     public RingLerasiumEttmetal (Properties properties){
-        super(properties, MetalTagEnum.LERASIUM, MetalTagEnum.ETTMETAL, LerasiumFecuchemicHelper.getInstance(), EttmetalFecuchemicHelper.getInstance());
+        super(properties, MetalTagEnum.LERASIUM, MetalTagEnum.ETTMETAL, new LerasiumFecuchemicHelper(), new EttmetalFecuchemicHelper());
     }
 
     /**

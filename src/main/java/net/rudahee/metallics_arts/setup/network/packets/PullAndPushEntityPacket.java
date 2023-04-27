@@ -101,7 +101,7 @@ public class PullAndPushEntityPacket {
                             (target instanceof AbstractMinecart && !target.isVehicle())) {
                         IronAndSteelHelpers.move(this.direction / 2.0, target, source.blockPosition());
 
-                        // Split the difference
+
                     }  //2 sources ?
 
                     // If entity are player.
@@ -109,7 +109,7 @@ public class PullAndPushEntityPacket {
                         aluminumArmor = StreamSupport.stream(target.getArmorSlots().spliterator(), false).allMatch(stack -> stack.getTag().toString().equals("aluminum"));
 
 
-                        if (aluminumArmor) {
+                        if (!aluminumArmor) {
                             IInvestedPlayerData sourceCapability = source.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).resolve().get();
                             IInvestedPlayerData targetCapability = target.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).resolve().get();
                             boolean areInSameState = false;

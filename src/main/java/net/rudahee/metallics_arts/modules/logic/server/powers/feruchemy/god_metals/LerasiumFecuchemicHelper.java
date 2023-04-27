@@ -40,15 +40,6 @@ public class LerasiumFecuchemicHelper extends AbstractFechuchemicHelper {
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.LERASIUM);
     }
 
-    /**
-     * Returns an instance of LerasiumFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of LerasiumFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of LerasiumFecuchemicHelper when called
-     */
-    public static Supplier<? extends LerasiumFecuchemicHelper> getInstance() {
-        return LerasiumFecuchemicHelper::new;
-    }
 
     /**
      * Redefine of the method of the AbstractFechuchemicHelper class.

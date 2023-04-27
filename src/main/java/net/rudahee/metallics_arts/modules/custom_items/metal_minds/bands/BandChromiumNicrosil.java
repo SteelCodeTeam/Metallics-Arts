@@ -18,7 +18,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritua
  * @see BandMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class BandChromiumNicrosil extends BandMindAbstract <ChromiumFecuchemicHelper, NicrosilFecuchemicHelper> {
+public class BandChromiumNicrosil extends BandMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -26,7 +26,7 @@ public class BandChromiumNicrosil extends BandMindAbstract <ChromiumFecuchemicHe
      * @param properties of the item.
      */
     public BandChromiumNicrosil(Item.Properties properties){
-        super(properties, MetalTagEnum.CHROMIUM, MetalTagEnum.NICROSIL, ChromiumFecuchemicHelper.getInstance(), NicrosilFecuchemicHelper.getInstance());
+        super(properties, MetalTagEnum.CHROMIUM, MetalTagEnum.NICROSIL, new ChromiumFecuchemicHelper(), new NicrosilFecuchemicHelper());
     }
 
 }

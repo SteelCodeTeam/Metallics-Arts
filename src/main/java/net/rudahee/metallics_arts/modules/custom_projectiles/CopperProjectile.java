@@ -1,4 +1,5 @@
-package net.rudahee.metallics_arts.modules.custom_items.coins;
+package net.rudahee.metallics_arts.modules.custom_projectiles;
+
 
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
@@ -11,36 +12,41 @@ import net.minecraft.world.entity.projectile.Snowball;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
-public class ItemProjectile extends ThrowableItemProjectile {
+public class CopperProjectile extends ThrowableItemProjectile {
 
-    public ItemProjectile(EntityType<? extends Snowball> entityType, Level level) {
+    private int damage;
+
+    public CopperProjectile(EntityType<? extends Snowball> entityType, Level level, int damage) {
         super(entityType, level);
+        this.damage = damage;
     }
 
-    public ItemProjectile(Level level, LivingEntity livingEntity) {
+    public CopperProjectile(Level level, LivingEntity livingEntity, int damage) {
         super(EntityType.SNOWBALL, livingEntity, level);
+        this.damage = damage;
     }
 
-    public ItemProjectile(Level level, double p_37395_, double p_37396_, double p_37397_) {
-        super(EntityType.SNOWBALL, p_37395_, p_37396_, p_37397_, level);
+    public CopperProjectile(Level level, double x, double y, double z, int damage) {
+        super(EntityType.SNOWBALL, x, y, z, level);
+        this.damage = damage;
     }
 
     protected Item getDefaultItem() {
-        return Items.SNOWBALL;
+        return ModItemsRegister.COPPER_COIN.get();
     }
 
     private ParticleOptions getParticle() {
         ItemStack itemstack = this.getItemRaw();
-        return (ParticleOptions)(itemstack.isEmpty() ? ParticleTypes.ITEM_SNOWBALL : new ItemParticleOption(ParticleTypes.ITEM, itemstack));
+        return itemstack.isEmpty() ? ParticleTypes.WAX_ON : new ItemParticleOption(ParticleTypes.ITEM, itemstack);
     }
 
-    public void handleEntityEvent(byte p_37402_) {
-        if (p_37402_ == 3) {
+    public void handleEntityEvent(byte bytes) {
+        if (bytes == 3) {
             ParticleOptions particleoptions = this.getParticle();
 
             for(int i = 0; i < 8; ++i) {
@@ -54,8 +60,7 @@ public class ItemProjectile extends ThrowableItemProjectile {
         super.onHitEntity(entityHitResult);
         Entity entity = entityHitResult.getEntity();
         //int i = entity instanceof Blaze ? 3 : 0;
-        int i = 1;
-        entity.hurt(DamageSource.thrown(this, this.getOwner()), (float)i);
+        entity.hurt(DamageSource.thrown(this, this.getOwner()), this.damage);
     }
 
     protected void onHit(HitResult hitResult) {

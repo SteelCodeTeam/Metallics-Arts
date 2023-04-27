@@ -11,6 +11,8 @@ import net.rudahee.metallics_arts.modules.custom_items.metal_minds.RingsMindAbst
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.AtiumFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.MalatiumFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals.AluminumFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals.DuraluminFecuchemicHelper;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -26,15 +28,18 @@ import java.util.UUID;
  * @see RingsMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class RingAtiumMalatium extends RingsMindAbstract <AtiumFecuchemicHelper, MalatiumFecuchemicHelper> {
+public class RingAtiumMalatium extends RingsMindAbstract {
+
+
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
      *
      * @param properties of the item.
      */
-    public RingAtiumMalatium (Properties properties){
-        super(properties, MetalTagEnum.ATIUM, MetalTagEnum.MALATIUM, AtiumFecuchemicHelper.getInstance(), MalatiumFecuchemicHelper.getInstance());
+    public RingAtiumMalatium (Properties properties) {
+        super(properties, MetalTagEnum.ATIUM, MetalTagEnum.MALATIUM, new AtiumFecuchemicHelper(), new MalatiumFecuchemicHelper());
+
     }
 
     /**

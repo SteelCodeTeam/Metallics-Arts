@@ -1,15 +1,18 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals;
 
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.effects.ModModifiers;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
 /**
@@ -26,21 +29,21 @@ public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#tapPower(Player)
+     *
      */
-    @Override
+
     public void tapPower(Player player) {
-        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30);
-        IInvestedPlayerData playerCapability;
-        try {
-            playerCapability = CapabilityUtils.getCapability(player);
-            playerCapability.setModifiedHealth(true);
-        } catch (PlayerException ex) {
-            ex.printCompleteLog();
-            return;
+
+        if (player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MIN_HEALTH_ELECTRUM)) {
+            player.getAttribute(Attributes.MAX_HEALTH).removeModifier(ModModifiers.MIN_HEALTH_ELECTRUM);
         }
-        ModNetwork.syncInvestedDataPacket(playerCapability, player);
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.ELECTRUM);
+
+        if(!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MAX_HEALTH_ELECTRUM)) {
+            player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(ModModifiers.MAX_HEALTH_ELECTRUM);
+        }
+
+        ModEffects.giveFeruchemicalStorageEffect(player, MetalTagEnum.ELECTRUM);
+
     }
 
     /**
@@ -49,24 +52,21 @@ public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#storagePower(Player)
+     *
      */
-    @Override
     public void storagePower(Player player) {
-        if (player.getHealth() > 10) {
-            player.setHealth(10);
-        }
-        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(10);
-        IInvestedPlayerData playerCapability;
-        try {
-            playerCapability = CapabilityUtils.getCapability(player);
-            playerCapability.setModifiedHealth(true);
-        } catch (PlayerException ex) {
-            ex.printCompleteLog();
-            return;
-        }
-        ModNetwork.syncInvestedDataPacket(playerCapability, player);
 
+        if (player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MAX_HEALTH_ELECTRUM)) {
+            player.getAttribute(Attributes.MAX_HEALTH).removeModifier(ModModifiers.MAX_HEALTH_ELECTRUM);
+        }
+
+        if (!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MIN_HEALTH_ELECTRUM)) {
+            player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(ModModifiers.MIN_HEALTH_ELECTRUM);
+            if (player.getHealth() > 10) {
+                player.hurt(DamageSource.GENERIC, player.getHealth() - 10 + player.getAbsorptionAmount());
+            }
+
+        }
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.ELECTRUM);
 
     }
@@ -76,22 +76,14 @@ public class ElectrumFecuchemicHelper extends AbstractFechuchemicHelper {
      * @param player to whom the effect will be applied.
      * @param playerCapability capabilities (data) to the player.
      */
-    public static void restoreHearts(Player player, IInvestedPlayerData playerCapability ){
-        if (player.getHealth() != 20) {
-            player.setHealth(20);
+    public static void restoreHearts(Player player, IInvestedPlayerData playerCapability){
+        if (player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MAX_HEALTH_ELECTRUM)) {
+            player.getAttribute(Attributes.MAX_HEALTH).removeModifier(ModModifiers.MAX_HEALTH_ELECTRUM);
         }
-        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
-        playerCapability.setModifiedHealth(false);
-
+        if (player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MIN_HEALTH_ELECTRUM)) {
+            player.getAttribute(Attributes.MAX_HEALTH).removeModifier(ModModifiers.MIN_HEALTH_ELECTRUM);
+        }
     }
 
-    /**
-     * Returns an instance of ElectrumFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of ElectrumFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of ElectrumFecuchemicHelper when called
-     */
-    public static Supplier<? extends ElectrumFecuchemicHelper> getInstance() {
-        return ElectrumFecuchemicHelper::new;
-    }
+
 }

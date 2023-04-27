@@ -70,7 +70,7 @@ public class PewterAllomanticHelper {
         ItemStack itemInHand = source.getMainHandItem();
 
         if (itemInHand.getItem() == ModItemsRegister.DUELING_STAFF.get()) {
-            amountDamage = amountDamage * (((float) itemInHand.getDamageValue() / (float) itemInHand.getMaxDamage()) * 3.2f);
+            amountDamage = amountDamage * (((float) itemInHand.getDamageValue() / (float) itemInHand.getMaxDamage()) * 8.2f);
         }
 
         if (itemInHand.getItem() == ModItemsRegister.SILVER_KNIFE.get()) {

@@ -52,7 +52,7 @@ public class ModItemsRegister {
     public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> STEEL_ARMOR = new HashMap<>();
     public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ALUMINUM_ARMOR = new HashMap<>();
 
-    public static RegistryObject<Item> COIN;
+    public static RegistryObject<Item> COPPER_COIN;
 
     public static RegistryObject<Item> MISTCLOACK;
 
@@ -65,7 +65,6 @@ public class ModItemsRegister {
         VialsRegister.register();
         CoreBuilderItemRegister.register();
         ArmorRegister.register();
-        CoinsRegister.register();
     }
 
 }

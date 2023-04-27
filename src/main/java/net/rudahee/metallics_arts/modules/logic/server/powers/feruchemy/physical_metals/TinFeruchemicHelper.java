@@ -45,13 +45,5 @@ public class TinFeruchemicHelper extends AbstractFechuchemicHelper {
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.TIN);
     }
 
-    /**
-     * Returns an instance of TinFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of TinFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of TinFecuchemicHelper when called
-     */
-    public static Supplier<? extends TinFeruchemicHelper> getInstance() {
-        return TinFeruchemicHelper::new;
-    }
+
 }

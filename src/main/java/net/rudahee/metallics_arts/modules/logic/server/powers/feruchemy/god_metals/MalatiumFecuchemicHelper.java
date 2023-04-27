@@ -53,9 +53,6 @@ public class MalatiumFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @return a Supplier that returns a new instance of MalatiumFecuchemicHelper when called
      */
-    public static Supplier<? extends MalatiumFecuchemicHelper> getInstance() {
-        return MalatiumFecuchemicHelper::new;
-    }
 
     /**
      * Redefine of the method of the AbstractFechuchemicHelper class.

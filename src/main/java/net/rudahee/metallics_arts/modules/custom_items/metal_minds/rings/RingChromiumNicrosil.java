@@ -17,7 +17,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritua
  * @see RingsMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class RingChromiumNicrosil extends RingsMindAbstract <ChromiumFecuchemicHelper, NicrosilFecuchemicHelper> {
+public class RingChromiumNicrosil extends RingsMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -25,7 +25,7 @@ public class RingChromiumNicrosil extends RingsMindAbstract <ChromiumFecuchemicH
      * @param properties of the item.
      */
     public RingChromiumNicrosil(Properties properties){
-        super(properties, MetalTagEnum.CHROMIUM, MetalTagEnum.NICROSIL, ChromiumFecuchemicHelper.getInstance(), NicrosilFecuchemicHelper.getInstance());
+        super(properties, MetalTagEnum.CHROMIUM, MetalTagEnum.NICROSIL, new ChromiumFecuchemicHelper(), new NicrosilFecuchemicHelper());
     }
 
 }

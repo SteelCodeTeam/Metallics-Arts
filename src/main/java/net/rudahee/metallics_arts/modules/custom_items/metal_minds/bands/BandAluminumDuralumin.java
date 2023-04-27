@@ -38,7 +38,7 @@ import java.util.UUID;
  * @see BandMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class BandAluminumDuralumin extends BandMindAbstract<AluminumFecuchemicHelper, DuraluminFecuchemicHelper> {
+public class BandAluminumDuralumin extends BandMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -46,7 +46,7 @@ public class BandAluminumDuralumin extends BandMindAbstract<AluminumFecuchemicHe
      * @param properties of the item.
      */
     public BandAluminumDuralumin (Item.Properties properties){
-        super(properties, MetalTagEnum.ALUMINUM, MetalTagEnum.DURALUMIN, AluminumFecuchemicHelper.getInstance(), DuraluminFecuchemicHelper.getInstance());
+        super(properties, MetalTagEnum.ALUMINUM, MetalTagEnum.DURALUMIN, new AluminumFecuchemicHelper(), new DuraluminFecuchemicHelper());
     }
 
     @Override

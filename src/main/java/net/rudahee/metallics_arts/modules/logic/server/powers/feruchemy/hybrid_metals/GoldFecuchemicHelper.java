@@ -29,7 +29,7 @@ public class GoldFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void tapPower(Player player) {
         if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
-            player.setHealth(player.getHealth()+1);
+            player.heal(1f);
         }
         ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.GOLD);
     }
@@ -39,7 +39,7 @@ public class GoldFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @param player to whom the effect will be applied.
      *
-     * @see AbstractFechuchemicHelper#storagePower(Player) 
+     * @see AbstractFechuchemicHelper#storagePower(Player)
      */
     @Override
     public void storagePower(Player player) {
@@ -51,13 +51,4 @@ public class GoldFecuchemicHelper extends AbstractFechuchemicHelper {
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.GOLD);
     }
 
-    /**
-     * Returns an instance of GoldFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of GoldFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of GoldFecuchemicHelper when called
-     */
-    public static Supplier<? extends GoldFecuchemicHelper> getInstance() {
-        return GoldFecuchemicHelper::new;
-    }
 }

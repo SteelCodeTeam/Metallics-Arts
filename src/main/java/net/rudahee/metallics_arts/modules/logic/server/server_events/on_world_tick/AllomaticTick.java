@@ -23,7 +23,6 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.ElectrumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.GoldAllomanticHelper;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals.ElectrumFecuchemicHelper;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 /**
@@ -61,11 +60,8 @@ public class AllomaticTick {
             GlobalPos gPos = GlobalPos.of(Level.OVERWORLD, new BlockPos(level.getLevelData().getXSpawn(), level.getLevelData().getYSpawn(), level.getLevelData().getZSpawn()));
             ModNetwork.syncAnotherPlayerDeathPos(gPos, player);
         }
-        if (playerCapability.hasModifiedHealth()){
-            if (!playerCapability.isTapping(MetalTagEnum.ELECTRUM) || !playerCapability.isStoring(MetalTagEnum.ELECTRUM)) {
-                ElectrumFecuchemicHelper.restoreHearts(player,playerCapability);
-            }
-        }
+
+
     }
 
     /**

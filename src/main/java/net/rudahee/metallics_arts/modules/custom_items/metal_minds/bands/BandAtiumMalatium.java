@@ -27,7 +27,7 @@ import java.util.UUID;
  * @see BandMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class BandAtiumMalatium extends BandMindAbstract <AtiumFecuchemicHelper, MalatiumFecuchemicHelper> {
+public class BandAtiumMalatium extends BandMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -35,7 +35,7 @@ public class BandAtiumMalatium extends BandMindAbstract <AtiumFecuchemicHelper, 
      * @param properties of the item.
      */
     public BandAtiumMalatium (Item.Properties properties){
-        super(properties, MetalTagEnum.ATIUM, MetalTagEnum.MALATIUM, AtiumFecuchemicHelper.getInstance(), MalatiumFecuchemicHelper.getInstance());
+        super(properties, MetalTagEnum.ATIUM, MetalTagEnum.MALATIUM, new AtiumFecuchemicHelper(), new MalatiumFecuchemicHelper());
     }
 
     /**

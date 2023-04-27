@@ -43,15 +43,7 @@ public class NicrosilFecuchemicHelper extends AbstractFechuchemicHelper {
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.NICROSIL);
     }
 
-    /**
-     * Returns an instance of NicrosilFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of NicrosilFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of NicrosilFecuchemicHelper when called
-     */
-    public static Supplier<? extends NicrosilFecuchemicHelper> getInstance() {
-        return NicrosilFecuchemicHelper::new;
-    }
+
 
     /**
      * Redefine of the method of the AbstractFechuchemicHelper class.

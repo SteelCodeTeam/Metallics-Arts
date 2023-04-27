@@ -143,7 +143,7 @@ public class MetalSpike extends SwordItem {
             if (stack.getTag().getBoolean("feruchemic_power")) {
                 toolTips.add(TranslatableUtils.generateComponent("metallics_arts.spike_feruchemic_power"));
             }
-            if (stack.getTag().getBoolean("allomantic_power")) {
+            if (stack.getTag().getBoolean("allomantic _power")) {
                 toolTips.add(TranslatableUtils.generateComponent("metallics_arts.spike_allomantic_power"));
             }
         }

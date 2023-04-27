@@ -44,16 +44,6 @@ public class CopperFecuchemicHelper extends AbstractFechuchemicHelper {
     }
 
     /**
-     * Returns an instance of CopperFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of CopperFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of CopperFecuchemicHelper when called
-     */
-    public static Supplier<? extends CopperFecuchemicHelper> getInstance() {
-        return CopperFecuchemicHelper::new;
-    }
-
-    /**
      * Redefine of the method of the AbstractFechuchemicHelper class.
      * In this specific case, removes the basic interaction of nicrosil.
      *

@@ -17,7 +17,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.physical
  * @see RingsMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class RingIronSteel extends RingsMindAbstract <IronFecuchemicHelper, SteelFecuchemicHelper> {
+public class RingIronSteel extends RingsMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -25,6 +25,6 @@ public class RingIronSteel extends RingsMindAbstract <IronFecuchemicHelper, Stee
      * @param properties of the item.
      */
     public RingIronSteel(Properties properties){
-        super(properties, MetalTagEnum.IRON, MetalTagEnum.STEEL, IronFecuchemicHelper.getInstance(), SteelFecuchemicHelper.getInstance());
+        super(properties, MetalTagEnum.IRON, MetalTagEnum.STEEL, new IronFecuchemicHelper(), new SteelFecuchemicHelper());
     }
 }

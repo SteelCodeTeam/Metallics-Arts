@@ -37,13 +37,4 @@ public class ZincFecuchemicHelper extends AbstractFechuchemicHelper {
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.ZINC);
     }
 
-    /**
-     * Returns an instance of ZincFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of ZincFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of ZincFecuchemicHelper when called
-     */
-    public static Supplier<? extends ZincFecuchemicHelper> getInstance() {
-        return ZincFecuchemicHelper::new;
-    }
 }

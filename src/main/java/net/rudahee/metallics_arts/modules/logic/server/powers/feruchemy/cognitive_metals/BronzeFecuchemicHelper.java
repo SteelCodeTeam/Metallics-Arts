@@ -65,13 +65,5 @@ public class BronzeFecuchemicHelper extends AbstractFechuchemicHelper {
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.BRONZE);
     }
 
-    /**
-     * Returns an instance of BronzeFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of BronzeFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of BronzeFecuchemicHelper when called
-     */
-    public static Supplier<? extends BronzeFecuchemicHelper> getInstance() {
-        return BronzeFecuchemicHelper::new;
-    }
+
 }

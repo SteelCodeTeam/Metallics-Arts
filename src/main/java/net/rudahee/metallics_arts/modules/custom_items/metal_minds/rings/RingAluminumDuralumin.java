@@ -44,15 +44,15 @@ import java.util.UUID;
  * @see RingsMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class RingAluminumDuralumin extends RingsMindAbstract <AluminumFecuchemicHelper, DuraluminFecuchemicHelper> {
+public class RingAluminumDuralumin extends RingsMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
      *
      * @param properties of the item.
      */
-    public RingAluminumDuralumin (Properties properties){
-        super(properties, MetalTagEnum.ALUMINUM, MetalTagEnum.DURALUMIN, AluminumFecuchemicHelper.getInstance(), DuraluminFecuchemicHelper.getInstance());
+    public RingAluminumDuralumin(Properties properties){
+        super(properties, MetalTagEnum.ALUMINUM, MetalTagEnum.DURALUMIN, new AluminumFecuchemicHelper(), new DuraluminFecuchemicHelper());
     }
 
 

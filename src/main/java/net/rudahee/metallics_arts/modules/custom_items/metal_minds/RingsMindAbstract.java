@@ -46,12 +46,12 @@ import java.util.function.Supplier;
  * @see AbstractFechuchemicHelper
  *
  */
-public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T extends AbstractFechuchemicHelper> extends Item implements ICurioItem {
+public abstract class RingsMindAbstract extends Item implements ICurioItem {
     private final MetalTagEnum[] metals = new MetalTagEnum[2];
     public String unkeyedString = "Nobody";
-    private E firstSupplier;
-    private T secondSupplier;
 
+    private AbstractFechuchemicHelper firstHelper;
+    private AbstractFechuchemicHelper secondHelper;
 
     /**
      * Default constructor, it is important that it receives both metals in the correct order, ore and alloy, along with their respective suppliers as a parameter,
@@ -63,13 +63,13 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
      * @param secondHelper supplier of the second metal.
      *
      */
-    public RingsMindAbstract(Properties properties, MetalTagEnum metal1, MetalTagEnum metal2, Supplier<? extends E> firstHelper, Supplier<? extends T> secondHelper) {
+    public RingsMindAbstract(Properties properties, MetalTagEnum metal1, MetalTagEnum metal2, AbstractFechuchemicHelper firstHelper, AbstractFechuchemicHelper secondHelper) {
         super(properties);
         metals[0]=metal1;
         metals[1]=metal2;
 
-        this.firstSupplier = firstHelper.get();
-        this.secondSupplier = secondHelper.get();
+        this.firstHelper = firstHelper;
+        this.secondHelper = secondHelper;
     }
 
     /**
@@ -111,9 +111,7 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
      */
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        if (this instanceof RingGoldElectrum) {
-            return;
-        }
+
         Player player = (Player) slotContext.getWearer();
 
         IInvestedPlayerData data;
@@ -304,7 +302,8 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
                 // Tap.
                 if (playerCapability.isTapping(this.metals[0])) {
                     if (actualReserve > 0) {
-                        stack.setTag(firstSupplier.calculateDischarge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet0));
+                        stack.setTag(firstHelper.calculateDischarge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet0));
+                        firstHelper.tapPower(player);
                     } else {
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, false, this.metals[0], this.metals[1]));
                         playerCapability.setTapping(this.metals[0], false);
@@ -313,8 +312,8 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
                 } else if (playerCapability.isStoring(this.metals[0])) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, true, this.metals[0], this.metals[1]));
-                        stack.setTag(firstSupplier.calculateCharge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet0));
-
+                        stack.setTag(firstHelper.calculateCharge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet0));
+                        firstHelper.storagePower(player);
                     } else {
                         playerCapability.setStoring(this.metals[0], false);
                     }
@@ -325,7 +324,7 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
                 // Tap.
                 if (playerCapability.isTapping(this.metals[1])) {
                     if (actualReserve > 0) {
-                        stack.setTag(secondSupplier.calculateDischarge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet1));
+                        stack.setTag(secondHelper.calculateDischarge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet1));
                     } else {
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, false, this.metals[0], this.metals[1]));
                         playerCapability.setTapping(this.metals[1], false);
@@ -334,7 +333,7 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
                 } else if (playerCapability.isStoring(this.metals[1])) {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, true, this.metals[0], this.metals[1]));
-                        stack.setTag(secondSupplier.calculateCharge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet1));
+                        stack.setTag(secondHelper.calculateCharge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet1));
                     } else {
                         playerCapability.setStoring(this.metals[1], false);
                     }
@@ -347,26 +346,6 @@ public abstract class RingsMindAbstract <E extends AbstractFechuchemicHelper, T 
             }
         }
         ICurioItem.super.curioTick(slotContext, stack);
-    }
-
-
-
-    /**
-     * Returns the first supplier of type E.
-     *
-     * @return the first supplier
-     */
-    public E getFirstSupplier() {
-        return firstSupplier;
-    }
-
-    /**
-     * Returns the second supplier of type T.
-     *
-     * @return the second supplier
-     */
-    public T getSecondSupplier() {
-        return secondSupplier;
     }
 
     /**

@@ -17,7 +17,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.physical
  * @see BandMindAbstract
  * @see AbstractFechuchemicHelper
  */
-public class BandTinPewter extends BandMindAbstract <TinFeruchemicHelper, PewterFeruchemicHelper> {
+public class BandTinPewter extends BandMindAbstract {
 
     /**
      * Default constructor, it is important to send the metals by parameter in the correct order, metal and its alloy.
@@ -25,7 +25,7 @@ public class BandTinPewter extends BandMindAbstract <TinFeruchemicHelper, Pewter
      * @param properties of the item.
      */
     public BandTinPewter(Item.Properties properties){
-        super(properties, MetalTagEnum.TIN, MetalTagEnum.PEWTER, TinFeruchemicHelper.getInstance(), PewterFeruchemicHelper.getInstance());
+        super(properties, MetalTagEnum.TIN, MetalTagEnum.PEWTER, new TinFeruchemicHelper(), new PewterFeruchemicHelper());
     }
 
 }
