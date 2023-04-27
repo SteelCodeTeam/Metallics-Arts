@@ -25,7 +25,7 @@ public class BandGoldElectrum extends BandMindAbstract {
      * @param properties of the item.
      */
     public BandGoldElectrum(Item.Properties properties) {
-        super(properties, MetalTagEnum.GOLD, MetalTagEnum.ELECTRUM, new GoldFecuchemicHelper(), new ElectrumFecuchemicHelper());
+        super(properties, MetalTagEnum.GOLD, MetalTagEnum.ELECTRUM, null, null);
     }
 
 }

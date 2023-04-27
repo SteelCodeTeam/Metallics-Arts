@@ -6,6 +6,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals.ElectrumFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
+import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.FeruchemicTick;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
 import net.rudahee.metallics_arts.utils.MathUtils;
 
@@ -38,20 +39,20 @@ public class OnWorldTickEvent {
             ElectrumFecuchemicHelper.restoreHearts(player, capability);
         }
 
-        if (capability.isBurningAnything()) {
-            if (MathUtils.isDivisibleBy3(tick)) {
+        if (capability.isBurningAnything()){
+            if (MathUtils.isDivisibleBy3(tick)){
                 OnTickUtils.equipKolossBlade(player, capability);
                 AllomaticTick.each3Ticks(capability, player, level);
             }
-
-
-
             AllomaticTick.eachTick(capability, player, level);
-
             isMetalsDrains = AllomaticTick.eachTickWithInstantDrain(capability, player, level);
-
-            if (!isMetalsDrains) {
+            if (!isMetalsDrains){
                 capability.tickAllomancyBurningMetals(player);
+            }
+        }
+        if (capability.isStoringAnything() || capability.isTappingAnything()){
+            if (MathUtils.isDivisibleBy30(tick)){
+                FeruchemicTick.each3Ticks(capability,player,level);
             }
         }
 

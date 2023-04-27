@@ -35,7 +35,7 @@ public class RingGoldElectrum extends RingsMindAbstract {
      * @param properties of the item.
      */
     public RingGoldElectrum(Properties properties){
-        super(properties, MetalTagEnum.GOLD, MetalTagEnum.ELECTRUM, new GoldFecuchemicHelper(), new ElectrumFecuchemicHelper());
+        super(properties, MetalTagEnum.GOLD, MetalTagEnum.ELECTRUM, null, null);
     }
 
     /**

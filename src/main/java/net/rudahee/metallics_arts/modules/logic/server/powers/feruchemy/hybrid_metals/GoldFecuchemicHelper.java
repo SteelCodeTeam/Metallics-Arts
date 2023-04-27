@@ -17,7 +17,7 @@ import java.util.function.Supplier;
  * @author SteelCode Team
  * @since 1.5.1
  */
-public class GoldFecuchemicHelper extends AbstractFechuchemicHelper {
+public class GoldFecuchemicHelper {
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Gold: increases the current life of the player.
@@ -26,8 +26,8 @@ public class GoldFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @see AbstractFechuchemicHelper#tapPower(Player)
      */
-    @Override
-    public void tapPower(Player player) {
+
+    public static void tapPower(Player player) {
         if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
             player.heal(1f);
         }
@@ -41,8 +41,8 @@ public class GoldFecuchemicHelper extends AbstractFechuchemicHelper {
      *
      * @see AbstractFechuchemicHelper#storagePower(Player)
      */
-    @Override
-    public void storagePower(Player player) {
+
+    public static void storagePower(Player player) {
         if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
             if (!player.isCreative()){
                 player.hurt(DamageSource.GENERIC, 1);
