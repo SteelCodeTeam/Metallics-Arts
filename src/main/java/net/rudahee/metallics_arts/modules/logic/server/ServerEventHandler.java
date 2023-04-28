@@ -1,11 +1,9 @@
 package net.rudahee.metallics_arts.modules.logic.server;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -14,17 +12,13 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.*;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * The ServerEventHandler class is responsible for handling server-side events in the mod.
@@ -150,24 +144,20 @@ public class ServerEventHandler {
     @SubscribeEvent
     public static void onWorldTickEvent(final TickEvent.LevelTickEvent event) {
 
-
         if (event.phase != TickEvent.Phase.END) {
             return;
         }
-        ServerPlayer serverPlayer;
 
-        List<? extends Player> playerList = event.level.players();
+        Level level = event.level;
+        List<? extends Player> playerList = level.players();
 
         for (Player player : playerList) {
-
-            if (player instanceof ServerPlayer) {
-                serverPlayer = (ServerPlayer) player;
+            if (player instanceof ServerPlayer serverPlayer) {
                 try {
                     IInvestedPlayerData capabilities = CapabilityUtils.getCapability(serverPlayer);
 
-                    if (capabilities != null && capabilities.isInvested()) {
-                        OnWorldTickEvent.onWorldTick(capabilities, serverPlayer, (ServerLevel) event.level);
-                    }
+                    OnWorldTickEvent.onWorldTick(capabilities, serverPlayer, (ServerLevel) event.level);
+
                 } catch (PlayerException ex) {
                     ex.printResumeLog();
                 }

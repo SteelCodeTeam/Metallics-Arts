@@ -4,11 +4,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals.ElectrumFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.FeruchemicTick;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
 import net.rudahee.metallics_arts.utils.MathUtils;
+
+import java.util.logging.Logger;
 
 
 /**
@@ -32,12 +35,7 @@ public class OnWorldTickEvent {
      */
     public static void onWorldTick(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level)  {
 
-        boolean isMetalsDrains = false;
-
-
-        if (!capability.isTapping(MetalTagEnum.ELECTRUM) || !capability.isStoring(MetalTagEnum.ELECTRUM)) {
-            ElectrumFecuchemicHelper.restoreHearts(player, capability);
-        }
+        //LoggerUtils.printLog();
 
         if (capability.isBurningAnything()){
             if (MathUtils.isDivisibleBy3(tick)){
@@ -45,15 +43,18 @@ public class OnWorldTickEvent {
                 AllomaticTick.each3Ticks(capability, player, level);
             }
             AllomaticTick.eachTick(capability, player, level);
-            isMetalsDrains = AllomaticTick.eachTickWithInstantDrain(capability, player, level);
-            if (!isMetalsDrains){
+
+            if (!AllomaticTick.eachTickWithInstantDrain(capability, player, level)){
                 capability.tickAllomancyBurningMetals(player);
             }
         }
         if (capability.isStoringAnything() || capability.isTappingAnything()){
             if (MathUtils.isDivisibleBy30(tick)) {
-                FeruchemicTick.each3Ticks(capability,player,level);
+                FeruchemicTick.each3Ticks(capability,player);
             }
+        }
+        if (!capability.isTapping(MetalTagEnum.ELECTRUM) || !capability.isStoring(MetalTagEnum.ELECTRUM)) {
+            ElectrumFecuchemicHelper.restoreHearts(player, capability);
         }
 
         tick++;
