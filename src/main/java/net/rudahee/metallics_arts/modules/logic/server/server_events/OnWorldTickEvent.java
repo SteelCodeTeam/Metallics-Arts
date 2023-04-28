@@ -4,6 +4,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals.ElectrumFecuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.FeruchemicTick;
@@ -31,7 +32,6 @@ public class OnWorldTickEvent {
      * @param level      The server level in which the player is located.
      */
     public static void onWorldTick(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level)  {
-
         boolean isMetalsDrains = false;
 
 
@@ -39,13 +39,16 @@ public class OnWorldTickEvent {
             ElectrumFecuchemicHelper.restoreHearts(player, capability);
         }
 
-        if (capability.isBurningAnything()){
-            if (MathUtils.isDivisibleBy3(tick)){
-                OnTickUtils.equipKolossBlade(player, capability);
+        if (capability.isBurningAnything()) {
+            if (MathUtils.isDivisibleBy3(tick)) {
                 AllomaticTick.each3Ticks(capability, player, level);
             }
             AllomaticTick.eachTick(capability, player, level);
+
+            OnTickUtils.equipKolossBlade(player, capability);
+
             isMetalsDrains = AllomaticTick.eachTickWithInstantDrain(capability, player, level);
+
             if (!isMetalsDrains){
                 capability.tickAllomancyBurningMetals(player);
             }
