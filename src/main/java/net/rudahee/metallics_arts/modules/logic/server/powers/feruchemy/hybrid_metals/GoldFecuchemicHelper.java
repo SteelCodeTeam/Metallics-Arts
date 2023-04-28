@@ -1,8 +1,10 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.AbstractFechuchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnWorldTickEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
@@ -43,12 +45,15 @@ public class GoldFecuchemicHelper {
      */
 
     public static void storagePower(Player player) {
-        if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
-            if (!player.isCreative()){
-                player.hurt(DamageSource.GENERIC, 1);
-            }
+        LoggerUtils.printLogFatal("?????????DENTRO DEL STORAGE");
+
+        if (!player.isCreative()){
+            LoggerUtils.printLogFatal("-----------HACIENDO DAÑO");
+            player.hurt(DamageSource.GENERIC, 1);
         }
+
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.GOLD);
+        LoggerUtils.printLogFatal("??????????SALIENDO DEL STORAGE");
     }
 
 }

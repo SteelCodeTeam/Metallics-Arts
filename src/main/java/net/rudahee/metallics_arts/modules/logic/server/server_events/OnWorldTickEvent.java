@@ -11,6 +11,8 @@ import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_ti
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
 import net.rudahee.metallics_arts.utils.MathUtils;
 
+import java.util.logging.Logger;
+
 
 /**
  * Handles events related to world ticks and player abilities.
@@ -32,6 +34,7 @@ public class OnWorldTickEvent {
      * @param level      The server level in which the player is located.
      */
     public static void onWorldTick(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level)  {
+
         boolean isMetalsDrains = false;
 
 
@@ -47,16 +50,18 @@ public class OnWorldTickEvent {
 
             OnTickUtils.equipKolossBlade(player, capability);
 
-            isMetalsDrains = AllomaticTick.eachTickWithInstantDrain(capability, player, level);
+            if (!AllomaticTick.eachTickWithInstantDrain(capability, player, level)){
 
-            if (!isMetalsDrains){
                 capability.tickAllomancyBurningMetals(player);
             }
         }
         if (capability.isStoringAnything() || capability.isTappingAnything()){
             if (MathUtils.isDivisibleBy30(tick)) {
-                FeruchemicTick.each3Ticks(capability,player,level);
+                FeruchemicTick.each3Ticks(capability,player);
             }
+        }
+        if (!capability.isTapping(MetalTagEnum.ELECTRUM) || !capability.isStoring(MetalTagEnum.ELECTRUM)) {
+            ElectrumFecuchemicHelper.restoreHearts(player, capability);
         }
 
         tick++;
