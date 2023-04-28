@@ -46,7 +46,7 @@ public class  ChromiumFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.UNLUCK,120,15,false, false));
-        if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())){
+        //if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())){
             if (Math.random()<0.5) {
                 Random a = new Random();
                 switch (a.nextInt(9)) {
@@ -60,7 +60,7 @@ public class  ChromiumFecuchemicHelper extends AbstractFechuchemicHelper {
                     case 7 -> player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 2, false, false));
                     case 8 -> player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 120, 2, false, false));
                 }
-            }
+          //  }
         }
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.CHROMIUM);
     }

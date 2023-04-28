@@ -30,9 +30,9 @@ public class GoldFecuchemicHelper {
      */
 
     public static void tapPower(Player player) {
-        if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
+      //  if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
             player.heal(1f);
-        }
+       // }
         ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.GOLD);
     }
     /**

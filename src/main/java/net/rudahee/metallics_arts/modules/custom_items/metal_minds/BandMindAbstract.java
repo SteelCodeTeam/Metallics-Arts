@@ -315,9 +315,9 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                 if (playerCapability.isTapping(this.metals[0])) {
                     if (actualReserve > 0) {
                         //stack.setTag(firstHelper.calculateDischarge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet0));
-                        if (MathUtils.isDivisibleBy10(OnWorldTickEvent.getActualTick())) {
+                        //if (MathUtils.isDivisibleBy10(OnWorldTickEvent.getActualTick())) {
                             //firstHelper.tapPower(player);
-                        }
+                        //}
                     } else {
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, false, this.metals[0], this.metals[1]));
                         playerCapability.setTapping(this.metals[0], false);
@@ -327,9 +327,9 @@ public abstract class BandMindAbstract extends Item implements ICurioItem {
                     if (actualReserve < maxReserve) {
                         stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, true, this.metals[0], this.metals[1]));
                         //stack.setTag(firstHelper.calculateCharge(compoundTag, player, playerCapability, actualReserve, metalKey, nicConsumeMet0));
-                        if (MathUtils.isDivisibleBy10(OnWorldTickEvent.getActualTick())) {
+                       // if (MathUtils.isDivisibleBy10(OnWorldTickEvent.getActualTick())) {
                             //firstHelper.storagePower(player);
-                        }
+                       // }
                     } else {
                         playerCapability.setStoring(this.metals[0], false);
                     }

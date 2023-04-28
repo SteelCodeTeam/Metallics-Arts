@@ -33,11 +33,11 @@ public class CadmiumFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void tapPower(Player player) {
         if (player.isEyeInFluid(FluidTags.WATER)) {
-            if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
+            //if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
                 if (player.isEyeInFluid(FluidTags.WATER)) {
                     player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 120, 10, false, false));
                 }
-            }
+            //}
         }
         ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.CADMIUM);
     }

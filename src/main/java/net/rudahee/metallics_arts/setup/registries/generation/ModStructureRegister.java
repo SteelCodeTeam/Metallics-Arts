@@ -62,18 +62,18 @@ public class ModStructureRegister {
 
 
     public static final RegistryObject<PlacedFeature> ATIUM_GEODE =
-            PLACED_FEATURES.register("atium_geode", () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) CustomGeodeConfig.ATIUM_GEODE, algo()));
+            PLACED_FEATURES.register("atium_geode", () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) CustomGeodeConfig.ATIUM_GEODE, placementModifier()));
 
     public static final RegistryObject<PlacedFeature> LERASIUM_GEODE =
             PLACED_FEATURES.register("lerasium_geode",
                     () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) CustomGeodeConfig.LERASIUM_GEODE,
-                            algo()));
+                            placementModifier()));
 
     public static final RegistryObject<PlacedFeature> ETTMETAL_GEODE =
             PLACED_FEATURES.register("ettmetal_geode",
-                    () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) CustomGeodeConfig.ETTMETAL_GEODE, algo()));
+                    () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) CustomGeodeConfig.ETTMETAL_GEODE, placementModifier()));
 
-    public static List<PlacementModifier> algo(){
+    public static List<PlacementModifier> placementModifier() {
         return List.of(
                 RarityFilter.onAverageOnceEvery(12),
                 InSquarePlacement.spread(),

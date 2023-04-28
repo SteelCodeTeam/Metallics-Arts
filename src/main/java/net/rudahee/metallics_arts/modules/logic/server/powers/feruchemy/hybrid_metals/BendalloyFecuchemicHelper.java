@@ -28,11 +28,11 @@ public class BendalloyFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tapPower(Player player) {
-        if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
+       // if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
             if (player.getFoodData().getFoodLevel() < 20) {
                 player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()+1);
             }
-        }
+        //}
 
         ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.BENDALLOY);
     }
@@ -47,13 +47,13 @@ public class BendalloyFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
+        //if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
             if (!player.isCreative()){
                 if (player.getFoodData().getFoodLevel()>0){
                     player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel()-1);
                 }
             }
-        }
+        //}
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.BENDALLOY);
     }
 

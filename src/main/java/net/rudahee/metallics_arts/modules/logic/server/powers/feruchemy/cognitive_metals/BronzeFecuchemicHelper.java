@@ -54,14 +54,14 @@ public class BronzeFecuchemicHelper extends AbstractFechuchemicHelper {
     @Override
     public void storagePower(Player player) {
         Level level = player.getLevel();
-        if (MathUtils.isDivisibleBy60(OnWorldTickEvent.getActualTick())) {
+       // if (MathUtils.isDivisibleBy60(OnWorldTickEvent.getActualTick())) {
             Phantom phantom = new Phantom(EntityType.PHANTOM, level);
             phantom.setPos(player.position().x,player.position().y + 4, player.position().z);
             phantom.setTarget(player);
             phantom.setAggressive(true);
             phantom.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 240, 2, false, true));
             level.addFreshEntity(phantom);
-        }
+        //}
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.BRONZE);
     }
 

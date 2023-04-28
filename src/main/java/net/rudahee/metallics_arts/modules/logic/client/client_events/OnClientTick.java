@@ -67,7 +67,7 @@ public class OnClientTick {
         }
 
         if (capability.isInvested()) {
-            if (MathUtils.isDivisibleBy3(tick)) {
+            if (tick % 3 == 0) {
 
                 FoundNearbyMetalUtils.redoLists(player, capability);
 
@@ -87,7 +87,7 @@ public class OnClientTick {
                 }
             }
 
-            if (MathUtils.isDivisibleBy2(tick)) {
+            if (tick % 2 == 0) {
                 if (minecraft.options.keyJump.isDown() && ModKeyRegister.VERTICAL_JUMP.isDown() && capability.isBurning(MetalTagEnum.STEEL)) {
                     VerticalJump.fly(capability, minecraft, player, player.getLevel());
                 }
@@ -95,7 +95,7 @@ public class OnClientTick {
 
         }
 
-        if (tick < 480) {
+        if (tick < 4800) {
             tick++;
         } else {
             tick = 0;

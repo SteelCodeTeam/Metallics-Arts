@@ -11,7 +11,7 @@ public class FeruchemicTick {
 
     public static void each3Ticks(IInvestedPlayerData playerCapability, ServerPlayer player) {
         LoggerUtils.printLogFatal("METODO DE 3 TICKS");
-
+        LoggerUtils.printLogFatal("CAPABILITY:" + playerCapability.isStoring(MetalTagEnum.GOLD));
         if (playerCapability.isTapping(MetalTagEnum.GOLD)) {
             LoggerUtils.printLogFatal("PRE TAPPING GOLD");
             GoldFecuchemicHelper.tapPower(player);

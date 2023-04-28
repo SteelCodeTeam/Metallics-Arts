@@ -31,6 +31,8 @@ import java.util.List;
 @Mod.EventBusSubscriber
 public class ServerEventHandler {
 
+    private static Integer tick;
+
     /**
      * Handles the LivingDropsEvent to modify or add custom drops when a living entity dies.
      * This method delegates the handling of the event to the OnLivingEntityDropEvent class.
@@ -148,6 +150,12 @@ public class ServerEventHandler {
             return;
         }
 
+        if (tick == null || tick >= 4800) {
+            tick = 0;
+        }
+
+        tick++;
+
         Level level = event.level;
         List<? extends Player> playerList = level.players();
 
@@ -156,7 +164,7 @@ public class ServerEventHandler {
                 try {
                     IInvestedPlayerData capabilities = CapabilityUtils.getCapability(serverPlayer);
 
-                    OnWorldTickEvent.onWorldTick(capabilities, serverPlayer, (ServerLevel) event.level);
+                    OnWorldTickEvent.onWorldTick(capabilities, serverPlayer, (ServerLevel) event.level, tick);
 
                 } catch (PlayerException ex) {
                     ex.printResumeLog();

@@ -9,9 +9,6 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_m
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.FeruchemicTick;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
-import net.rudahee.metallics_arts.utils.MathUtils;
-
-import java.util.logging.Logger;
 
 
 /**
@@ -21,7 +18,7 @@ import java.util.logging.Logger;
  * @since 1.5.1
  */
 public class OnWorldTickEvent {
-    public static int tick = 0;
+
 
     /**
      * Performs various actions based on the world tick count and the player's
@@ -33,17 +30,14 @@ public class OnWorldTickEvent {
      * @param player     The player for whom the actions are being performed.
      * @param level      The server level in which the player is located.
      */
-    public static void onWorldTick(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level)  {
-
-        boolean isMetalsDrains = false;
-
+    public static void onWorldTick(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level, Integer tick)  {
 
         if (!capability.isTapping(MetalTagEnum.ELECTRUM) || !capability.isStoring(MetalTagEnum.ELECTRUM)) {
             ElectrumFecuchemicHelper.restoreHearts(player, capability);
         }
 
         if (capability.isBurningAnything()) {
-            if (MathUtils.isDivisibleBy3(tick)) {
+            if (tick % 5 == 0) {
                 AllomaticTick.each3Ticks(capability, player, level);
             }
             AllomaticTick.eachTick(capability, player, level);
@@ -55,28 +49,16 @@ public class OnWorldTickEvent {
                 capability.tickAllomancyBurningMetals(player);
             }
         }
-        if (capability.isStoringAnything() || capability.isTappingAnything()){
-            if (MathUtils.isDivisibleBy30(tick)) {
-                FeruchemicTick.each3Ticks(capability,player);
+        if (capability.isStoringAnything() || capability.isTappingAnything()) {
+            LoggerUtils.printLogFatal(player.getScoreboardName());
+            if (tick % 40 == 0) {
+                FeruchemicTick.each3Ticks(capability, player);
             }
+
         }
         if (!capability.isTapping(MetalTagEnum.ELECTRUM) || !capability.isStoring(MetalTagEnum.ELECTRUM)) {
             ElectrumFecuchemicHelper.restoreHearts(player, capability);
         }
 
-        tick++;
-
-        if (tick >= 4800) {
-            tick = 0;
-        }
-    }
-
-    /**
-     * Returns the current world tick count.
-     *
-     * @return The current world tick count.
-     */
-    public static int getActualTick() {
-        return tick;
     }
 }

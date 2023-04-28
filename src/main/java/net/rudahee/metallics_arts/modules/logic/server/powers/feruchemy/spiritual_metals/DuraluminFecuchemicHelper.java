@@ -33,7 +33,7 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void tapPower(Player player) {
-        if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
+        //if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
 
             ResourceKey<Biome> biome = player.getLevel().getBiome(player.getOnPos()).unwrapKey().get();
 
@@ -118,7 +118,7 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
             } else {
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 120, 2, false, false));
             }
-        }
+       // }
 
         ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.DURALUMIN);
     }
@@ -133,7 +133,7 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
      */
     @Override
     public void storagePower(Player player) {
-        if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
+        //if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
 
             ResourceKey<Biome> biome = player.getLevel().getBiome(player.getOnPos()).unwrapKey().get();
 
@@ -211,7 +211,7 @@ public class DuraluminFecuchemicHelper extends AbstractFechuchemicHelper {
             } else {
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 2, false, false));
             }
-        }
+       // }
 
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.DURALUMIN);
     }
