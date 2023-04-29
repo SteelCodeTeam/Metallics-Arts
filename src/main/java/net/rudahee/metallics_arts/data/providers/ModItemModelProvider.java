@@ -180,7 +180,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/aluminum_boots", "item/armors/aluminum_boots");
         builder(itemGenerated,"item/mistcloak","item/armors/mistcloak");
 
-        builder(itemGenerated,"item/coin","item/combat/coin");
+        builder(itemGenerated,"item/copper_coin","item/combat/copper_coin");
 
     }
 
