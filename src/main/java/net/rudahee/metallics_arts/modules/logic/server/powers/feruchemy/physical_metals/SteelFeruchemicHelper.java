@@ -7,37 +7,37 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
 
 /**
- * Helper class containing the methods and implementations for using feruchemical Tin.
+ * Helper class containing the methods and implementations for using feruchemical Steel.
  *
  * @author SteelCode Team
  * @since 1.5.1
  */
-public class TinFeruchemicHelper {
+public class SteelFeruchemicHelper {
 
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
-     * In this specific case, for the power of the Pewter: night vision will be applied to the target player.
+     * In this specific case, for the power of the Pewter: speed movement will be applied to the target player.
      *
      * @param player to whom the effect will be applied.
      *
      */
 
     public static void tapPower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 320, 1, false, false));
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.TIN);
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 3, false, false));
+        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.STEEL);
     }
 
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
-     * In this specific case, for the power of the Pewter: blindness will be applied to the target player.
+     * In this specific case, for the power of the Pewter: slowdowns movement will be applied to the target player.
      *
      * @param player to whom the effect will be applied.
      *
      */
 
     public static void storagePower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60, 1, false, false));
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.TIN);
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 3, false, false));
+        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.STEEL);
     }
 
 

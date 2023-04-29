@@ -121,7 +121,7 @@ public enum MetalTagEnum implements IMetal, IGems {
      */
     @Override
     public String getMetalNameLower() {
-        return null;
+        return nameLower;
     }
 
     /**
@@ -129,7 +129,7 @@ public enum MetalTagEnum implements IMetal, IGems {
      */
     @Override
     public String getMetalNameUpper() {
-        return null;
+        return nameUpper;
     }
 
     /**

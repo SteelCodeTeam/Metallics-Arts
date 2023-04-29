@@ -2,15 +2,12 @@ package net.rudahee.metallics_arts.setup.registries.items;
 
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.custom_tiers.PostNetheriteMaterials;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
 import net.rudahee.metallics_arts.modules.custom_items.armors.MistCloak;
-import net.rudahee.metallics_arts.modules.custom_items.metal_minds.bands.BandAluminumDuralumin;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 public class ArmorRegister {

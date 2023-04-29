@@ -13,7 +13,6 @@ import net.rudahee.metallics_arts.modules.logic.client.client_events.on_world_ti
 import net.rudahee.metallics_arts.modules.logic.client.client_events.on_world_tick.VerticalJump;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import net.rudahee.metallics_arts.utils.FoundNearbyMetalUtils;
-import net.rudahee.metallics_arts.utils.MathUtils;
 
 import javax.annotation.Nullable;
 

@@ -3,7 +3,6 @@ package net.rudahee.metallics_arts.modules.logic.server.server_events;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
@@ -13,7 +12,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_meta
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.PewterAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritual_metals.ChromiumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritual_metals.NicrosilAllomanticHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals.BrassFecuchemicHelper;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals.BrassFeruchemicHelper;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
@@ -92,7 +91,7 @@ public class OnDamageEvent {
 
             // Brass
             if (sourceCapability.isTapping(MetalTagEnum.BRASS)) {
-                BrassFecuchemicHelper.addFireAspectToPlayer(event.getEntity(), 4);
+                BrassFeruchemicHelper.addFireAspectToPlayer(event.getEntity(), 4);
             }
 
             //Cancel freeze damage
