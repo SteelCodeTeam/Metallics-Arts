@@ -21,9 +21,9 @@ public class GoldFeruchemicHelper {
      */
 
     public static void tapPower(Player player) {
-      //  if (MathUtils.isDivisibleBy30(OnWorldTickEvent.getActualTick())) {
-            player.heal(1f);
-       // }
+
+        player.heal(2f);
+
         ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.GOLD);
     }
     /**
@@ -36,7 +36,7 @@ public class GoldFeruchemicHelper {
 
     public static void storagePower(Player player) {
         if (!player.isCreative()){
-            player.hurt(DamageSource.GENERIC, 1);
+            player.hurt(DamageSource.GENERIC, 2);
         }
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.GOLD);
     }

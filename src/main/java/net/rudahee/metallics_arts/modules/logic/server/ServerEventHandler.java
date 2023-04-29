@@ -1,5 +1,7 @@
 package net.rudahee.metallics_arts.modules.logic.server;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -14,6 +16,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
+import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.*;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
@@ -150,21 +153,27 @@ public class ServerEventHandler {
             return;
         }
 
+        if (event.side.isClient()) {
+            return;
+        }
+
         if (tick == null || tick >= 4800) {
             tick = 0;
         }
 
         tick++;
 
+
+
         Level level = event.level;
         List<? extends Player> playerList = level.players();
 
         for (Player player : playerList) {
-            if (player instanceof ServerPlayer serverPlayer) {
+            if (player != null) {
                 try {
-                    IInvestedPlayerData capabilities = CapabilityUtils.getCapability(serverPlayer);
+                    IInvestedPlayerData capabilities = CapabilityUtils.getCapability(player);
 
-                    OnWorldTickEvent.onWorldTick(capabilities, serverPlayer, (ServerLevel) event.level, tick);
+                    OnWorldTickEvent.onWorldTick(capabilities, player, event.level, tick);
 
                 } catch (PlayerException ex) {
                     ex.printResumeLog();

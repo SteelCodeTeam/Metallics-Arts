@@ -17,17 +17,8 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
  * @since 1.5.1
  */
 public class OnTickUtils {
-    /**
-     * This method returns true when a period of 30 ticks expires.
-     *
-     * @param actualTick counter current value.
-     *
-     * @return boolean
-     */
-    public static boolean activationEvery30Tick(int actualTick) {
-        return (actualTick % 30) == 0;
 
-    }
+    private static int buffNicrosilDuralumin = -1;
 
 
     /**
@@ -57,8 +48,6 @@ public class OnTickUtils {
      *
      * @see NicrosilAllomanticHelper
      */
-
-    private static int buffNicrosilDuralumin = -1;
     public static void duraluminAndExternalNicrosilEffect(IInvestedPlayerData playerCapability, Player player) {
         if (playerCapability.isBurning(MetalTagEnum.DURALUMIN)) {
             if ((playerCapability.getAllomanticAmount(MetalTagEnum.DURALUMIN) > (MetalTagEnum.DURALUMIN.getMaxAllomanticTicksStorage()*0.88)) || (buffNicrosilDuralumin != -1)){

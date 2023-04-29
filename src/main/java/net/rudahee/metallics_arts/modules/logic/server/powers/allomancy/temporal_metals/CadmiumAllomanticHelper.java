@@ -5,6 +5,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
@@ -43,7 +44,7 @@ public class CadmiumAllomanticHelper {
      * @param level in which the player is located (world).
      * @param playerCapability capabilities (data) of the player.
      */
-    public static void CadmiumMobEffectsOtherPlayers(Player player, IInvestedPlayerData playerCapability, ServerLevel level, boolean enhanced, boolean lerasium) {
+    public static void CadmiumMobEffectsOtherPlayers(Player player, IInvestedPlayerData playerCapability, Level level, boolean enhanced, boolean lerasium) {
         int radius = 8;
         if (enhanced && lerasium) {
             radius = 13;

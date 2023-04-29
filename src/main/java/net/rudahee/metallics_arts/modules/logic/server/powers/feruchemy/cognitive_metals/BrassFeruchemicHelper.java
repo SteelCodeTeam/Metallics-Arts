@@ -29,9 +29,9 @@ public class BrassFeruchemicHelper {
 
     public static void tapPower(Player player) {
         if (player.getLevel().getBiome(player.getOnPos()).is(Biomes.DESERT) && player.getLevel().isDay()) {
-            player.setSecondsOnFire(1);
+            player.setSecondsOnFire(2);
         } else if (player.getLevel().getBiome(player.getOnPos()).is(Tags.Biomes.IS_HOT)) {
-            player.setSecondsOnFire(1);
+            player.setSecondsOnFire(2);
         }
         ModEffects.giveFeruchemicalTapEffect(player,MetalTagEnum.BRASS);
     }

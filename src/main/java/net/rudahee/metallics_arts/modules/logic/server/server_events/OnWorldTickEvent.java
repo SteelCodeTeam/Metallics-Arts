@@ -1,7 +1,7 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.FeruchemicTick;
@@ -27,25 +27,38 @@ public class OnWorldTickEvent {
      * @param player     The player for whom the actions are being performed.
      * @param level      The server level in which the player is located.
      */
-    public static void onWorldTick(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level, Integer tick)  {
+    public static void onWorldTick(IInvestedPlayerData capability, Player player, Level level, Integer tick) {
 
+        /*
+         * ALLOMANCY
+         */
         if (capability.isBurningAnything()) {
             if (tick % 5 == 0) {
-                AllomaticTick.each3Ticks(capability, player, level);
+                AllomaticTick.each5Ticks(capability, player, level);
             }
+
             AllomaticTick.eachTick(capability, player, level);
 
             OnTickUtils.equipKolossBlade(player, capability);
 
-            if (!AllomaticTick.eachTickWithInstantDrain(capability, player, level)){
+            if (!AllomaticTick.eachTickWithInstantDrain(capability, player, level)) {
                 capability.tickAllomancyBurningMetals(player);
             }
         }
 
+        /*
+         * FERUCHEMY
+         */
         if (capability.isStoringAnything() || capability.isTappingAnything()) {
-            if (tick % 40 == 0) {
-                FeruchemicTick.each3Ticks(capability, player);
+            if (tick % 5 == 0) {
+                FeruchemicTick.each5Ticks(capability, player);
             }
+
+            if (tick % 40 == 0) {
+                FeruchemicTick.each40Tick(capability, player);
+            }
+
+            FeruchemicTick.eachTick(capability, player);
         }
     }
 }

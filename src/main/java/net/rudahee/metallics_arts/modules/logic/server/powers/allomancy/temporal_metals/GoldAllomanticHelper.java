@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals;
 
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
@@ -28,7 +29,7 @@ public class GoldAllomanticHelper {
      * @param player to use the power.
      * @param lerasium if the player is burning Lerasium.
      */
-    public static void teleportToDeathPos(Level level, IInvestedPlayerData playerCapability, ServerPlayer player, boolean lerasium) {
+    public static void teleportToDeathPos(Level level, IInvestedPlayerData playerCapability, Player player, boolean lerasium) {
 
         if (lerasium) {
             if (player.getLastDeathLocation().isPresent()) {

@@ -1,12 +1,12 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick;
 
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals.BrassFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals.BronzeFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals.CopperFeruchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals.ZincFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.AtiumFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.EttmetalFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.LerasiumFeruchemicHelper;
@@ -26,26 +26,45 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritua
 
 public class FeruchemicTick {
 
-    public static void each3Ticks(IInvestedPlayerData playerCapability, ServerPlayer player) {
+    public static void each5Ticks(IInvestedPlayerData playerCapability, Player player) {
 
-        if (isTappingOrStorage(playerCapability, MetalTagEnum.BRASS, MetalTagEnum.BRONZE, MetalTagEnum.COPPER, MetalTagEnum.ZINC)) {
-            cognitiveMetals(playerCapability, player);
+        if (isTappingOrStorageAny(playerCapability, MetalTagEnum.ATIUM)) {
+            godMetalsEach5Ticks(playerCapability, player);
         }
-        if (isTappingOrStorage(playerCapability, MetalTagEnum.ATIUM, MetalTagEnum.MALATIUM, MetalTagEnum.LERASIUM, MetalTagEnum.ETTMETAL)) {
-            godMetals(playerCapability, player);
+
+        if (isTappingOrStorageAny(playerCapability, MetalTagEnum.IRON, MetalTagEnum.STEEL, MetalTagEnum.TIN, MetalTagEnum.PEWTER)) {
+            physicalMetalsEach5Ticks(playerCapability, player);
         }
-        if (isTappingOrStorage(playerCapability, MetalTagEnum.IRON, MetalTagEnum.STEEL, MetalTagEnum.TIN, MetalTagEnum.PEWTER)) {
-            physicalMetals(playerCapability, player);
-        }
-        if (isTappingOrStorage(playerCapability, MetalTagEnum.CADMIUM, MetalTagEnum.BENDALLOY, MetalTagEnum.GOLD, MetalTagEnum.ELECTRUM)) {
-            hybridMetals(playerCapability, player);
-        }
-        if (isTappingOrStorage(playerCapability, MetalTagEnum.ALUMINUM, MetalTagEnum.DURALUMIN, MetalTagEnum.CHROMIUM, MetalTagEnum.NICROSIL)) {
-            spiritualMetals(playerCapability, player);
+
+        if (isTappingOrStorageAny(playerCapability, MetalTagEnum.DURALUMIN, MetalTagEnum.CHROMIUM)) {
+            spiritualMetalsEach5Ticks(playerCapability, player);
         }
     }
 
-    public static boolean isTappingOrStorage(IInvestedPlayerData playerCapability, MetalTagEnum... metals) {
+    public static void eachTick(IInvestedPlayerData playerCapability, Player player) {
+
+        if (isTappingOrStorageAny(playerCapability, MetalTagEnum.BRASS, MetalTagEnum.COPPER) || playerCapability.isTapping(MetalTagEnum.BRONZE)) {
+            cognitiveMetals(playerCapability, player);
+        }
+
+        if (isTappingOrStorageAny(playerCapability, MetalTagEnum.ELECTRUM) || playerCapability.isStoring(MetalTagEnum.CADMIUM)) {
+            hybridMetals(playerCapability, player);
+        } else {
+            ElectrumFeruchemicHelper.restoreHearts(player, playerCapability);
+        }
+    }
+
+    public static void each40Tick(IInvestedPlayerData playerCapability, Player player) {
+        if (playerCapability.isStoring(MetalTagEnum.BRONZE)) {
+            cognitiveMetalsEach40Ticks(playerCapability, player);
+        }
+
+        if (isTappingOrStorageAny(playerCapability, MetalTagEnum.BENDALLOY, MetalTagEnum.GOLD) || playerCapability.isTapping(MetalTagEnum.CADMIUM))  {
+            hybridMetalsEach40Ticks(playerCapability, player);
+        }
+    }
+
+    public static boolean isTappingOrStorageAny(IInvestedPlayerData playerCapability, MetalTagEnum... metals) {
         for (MetalTagEnum metal : metals) {
             if (playerCapability.isStoring(metal) || playerCapability.isTapping(metal)) {
                 return true;
@@ -54,7 +73,7 @@ public class FeruchemicTick {
         return false;
     }
 
-    private static void cognitiveMetals(IInvestedPlayerData playerCapability, ServerPlayer player) {
+    private static void cognitiveMetals(IInvestedPlayerData playerCapability, Player player) {
         if (playerCapability.isTapping(MetalTagEnum.BRASS)) {
             BrassFeruchemicHelper.tapPower(player);
         } else if (playerCapability.isStoring(MetalTagEnum.BRASS)){
@@ -62,61 +81,36 @@ public class FeruchemicTick {
         }
         if (playerCapability.isTapping(MetalTagEnum.BRONZE)) {
             BronzeFeruchemicHelper.tapPower(player);
-        } else if (playerCapability.isStoring(MetalTagEnum.BRONZE)){
-            BronzeFeruchemicHelper.storagePower(player);
         }
         if (playerCapability.isTapping(MetalTagEnum.COPPER)) {
             CopperFeruchemicHelper.tapPower(player);
         } else if (playerCapability.isStoring(MetalTagEnum.COPPER)){
             CopperFeruchemicHelper.storagePower(player);
         }
-        if (playerCapability.isTapping(MetalTagEnum.ZINC)) {
-            ZincFeruchemicHelper.tapPower(player);
-        } else if (playerCapability.isStoring(MetalTagEnum.ZINC)){
-            ZincFeruchemicHelper.storagePower(player);
+    }
+
+    private static void cognitiveMetalsEach40Ticks(IInvestedPlayerData playerCapability, Player player) {
+        if (playerCapability.isStoring(MetalTagEnum.BRONZE)){
+            BronzeFeruchemicHelper.storagePower(player);
         }
     }
 
-    private static void godMetals(IInvestedPlayerData playerCapability, ServerPlayer player) {
+    private static void godMetalsEach5Ticks(IInvestedPlayerData playerCapability, Player player) {
         if (playerCapability.isTapping(MetalTagEnum.ATIUM)) {
             AtiumFeruchemicHelper.tapPower(player);
         } else if (playerCapability.isStoring(MetalTagEnum.ATIUM)){
             AtiumFeruchemicHelper.storagePower(player);
         }
-        if (playerCapability.isTapping(MetalTagEnum.MALATIUM)) {
-            MalatiumFeruchemicHelper.tapPower(player);
-        } else if (playerCapability.isStoring(MetalTagEnum.MALATIUM)){
-            MalatiumFeruchemicHelper.storagePower(player);
-        }
-        if (playerCapability.isTapping(MetalTagEnum.LERASIUM)) {
-            LerasiumFeruchemicHelper.tapPower(player);
-        } else if (playerCapability.isStoring(MetalTagEnum.LERASIUM)){
-            LerasiumFeruchemicHelper.storagePower(player);
-        }
-        if (playerCapability.isTapping(MetalTagEnum.ETTMETAL)) {
-            EttmetalFeruchemicHelper.tapPower(player);
-        } else if (playerCapability.isStoring(MetalTagEnum.ETTMETAL)){
-            EttmetalFeruchemicHelper.storagePower(player);
-        }
     }
 
-    private static void hybridMetals(IInvestedPlayerData playerCapability, ServerPlayer player) {
+    private static void hybridMetalsEach40Ticks(IInvestedPlayerData playerCapability, Player player) {
         if (playerCapability.isTapping(MetalTagEnum.GOLD)) {
             GoldFeruchemicHelper.tapPower(player);
         } else if (playerCapability.isStoring(MetalTagEnum.GOLD)){
             GoldFeruchemicHelper.storagePower(player);
         }
-        if (playerCapability.isTapping(MetalTagEnum.ELECTRUM)) {
-            ElectrumFeruchemicHelper.tapPower(player);
-        } else if (playerCapability.isStoring(MetalTagEnum.ELECTRUM)){
-            ElectrumFeruchemicHelper.storagePower(player);
-        } else {
-            ElectrumFeruchemicHelper.restoreHearts(player, playerCapability);
-        }
         if (playerCapability.isTapping(MetalTagEnum.CADMIUM)) {
             CadmiumFeruchemicHelper.tapPower(player);
-        } else if (playerCapability.isStoring(MetalTagEnum.CADMIUM)){
-            CadmiumFeruchemicHelper.storagePower(player);
         }
         if (playerCapability.isTapping(MetalTagEnum.BENDALLOY)) {
             BendalloyFeruchemicHelper.tapPower(player);
@@ -125,7 +119,18 @@ public class FeruchemicTick {
         }
     }
 
-    private static void physicalMetals(IInvestedPlayerData playerCapability, ServerPlayer player) {
+    private static void hybridMetals(IInvestedPlayerData playerCapability, Player player) {
+        if (playerCapability.isTapping(MetalTagEnum.ELECTRUM)) {
+            ElectrumFeruchemicHelper.tapPower(player);
+        } else if (playerCapability.isStoring(MetalTagEnum.ELECTRUM)){
+            ElectrumFeruchemicHelper.storagePower(player);
+        }
+        if (playerCapability.isStoring(MetalTagEnum.CADMIUM)){
+            CadmiumFeruchemicHelper.storagePower(player);
+        }
+    }
+
+    private static void physicalMetalsEach5Ticks(IInvestedPlayerData playerCapability, Player player) {
         if (playerCapability.isTapping(MetalTagEnum.IRON)) {
             IronFeruchemicHelper.tapPower(player);
         } else if (playerCapability.isStoring(MetalTagEnum.IRON)){
@@ -147,12 +152,8 @@ public class FeruchemicTick {
             PewterFeruchemicHelper.storagePower(player);
         }
     }
-    private static void spiritualMetals(IInvestedPlayerData playerCapability, ServerPlayer player) {
-        if (playerCapability.isTapping(MetalTagEnum.ALUMINUM)) {
-            AluminumFeruchemicHelper.tapPower(player);
-        } else if (playerCapability.isStoring(MetalTagEnum.ALUMINUM)){
-            AluminumFeruchemicHelper.storagePower(player);
-        }
+    private static void spiritualMetalsEach5Ticks(IInvestedPlayerData playerCapability, Player player) {
+
         if (playerCapability.isTapping(MetalTagEnum.DURALUMIN)) {
             DuraluminFeruchemicHelper.tapPower(player);
         } else if (playerCapability.isStoring(MetalTagEnum.DURALUMIN)){
@@ -162,11 +163,6 @@ public class FeruchemicTick {
             ChromiumFeruchemicHelper.tapPower(player);
         } else if (playerCapability.isStoring(MetalTagEnum.CHROMIUM)){
             ChromiumFeruchemicHelper.storagePower(player);
-        }
-        if (playerCapability.isTapping(MetalTagEnum.NICROSIL)) {
-            NicrosilFeruchemicHelper.tapPower(player);
-        } else if (playerCapability.isStoring(MetalTagEnum.NICROSIL)){
-            NicrosilFeruchemicHelper.storagePower(player);
         }
     }
 }

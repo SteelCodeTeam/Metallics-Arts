@@ -7,6 +7,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.TickingBlockEntity;
@@ -33,7 +34,7 @@ public class BendalloyAllomanticHelper {
      * @param enhanced if player is burning Duralumin or the player was hit with Nicrosil.
      * @param lerasium if the player is burning Lerasium.
      */
-    public static void BendalloyMobEffects(Player player, ServerLevel level, boolean enhanced, boolean lerasium) {
+    public static void BendalloyMobEffects(Player player, Level level, boolean enhanced, boolean lerasium) {
 
         int radius = 8;
         if (enhanced && lerasium) {
@@ -69,7 +70,7 @@ public class BendalloyAllomanticHelper {
 
             if (Math.random() > 0.5) {
                 if (tileEntity == null && block.isRandomlyTicking()) {
-                    block.randomTick(level, blockPos, level.random);
+                    block.randomTick((ServerLevel) level, blockPos, level.random);
                 }
 
                 else if (tileEntity instanceof TickingBlockEntity) {

@@ -18,20 +18,18 @@ public class CopperFeruchemicHelper {
      * In this specific case, for the power of the Copper: Increases the target player's amount experience.
      *
      * @param player to whom the effect will be applied.
-     *
      */
     public static void tapPower(Player player) {
         player.giveExperiencePoints(1);
         ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.COPPER);
     }
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Copper: Decreases the target player's amount experience.
      *
      * @param player to whom the effect will be applied.
-     *
      */
-
     public static void storagePower(Player player) {
         player.giveExperiencePoints(-1);
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.COPPER);

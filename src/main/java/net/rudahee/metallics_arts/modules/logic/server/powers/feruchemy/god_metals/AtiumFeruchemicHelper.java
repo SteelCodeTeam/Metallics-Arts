@@ -23,7 +23,7 @@ public class AtiumFeruchemicHelper {
      */
 
     public static void tapPower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 5, 1, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 20, 0, false, false));
         ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.ATIUM);
     }
 
@@ -36,7 +36,7 @@ public class AtiumFeruchemicHelper {
      */
 
     public static void storagePower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.GLOWING, 5, 1, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.GLOWING, 20, 0, false, false));
         ModEffects.giveFeruchemicalStorageEffect(player, MetalTagEnum.ATIUM);
     }
 

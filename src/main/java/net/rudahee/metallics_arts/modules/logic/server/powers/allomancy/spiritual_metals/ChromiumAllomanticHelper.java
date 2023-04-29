@@ -4,6 +4,7 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritu
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
@@ -42,11 +43,11 @@ public class ChromiumAllomanticHelper {
      * This method is responsible for clocarling nearby players and emptying their Allomantic reserves.
      *
      * @param player that is burning Chromium and Duralumin.
-     * @param serverLevel in which the player is located.
+     * @param level in which the player is located.
      * @param lerasium if the player is burning Lerasium.
      */
-    public static void drainMetalCloudChromium(ServerPlayer player, ServerLevel serverLevel, boolean lerasium) {
-        serverLevel.getEntitiesOfClass(Player.class, CapabilityUtils.getBubble(player, (lerasium) ? 10 : 8)).forEach(entity -> {
+    public static void drainMetalCloudChromium(Player player, Level level, boolean lerasium) {
+        level.getEntitiesOfClass(Player.class, CapabilityUtils.getBubble(player, (lerasium) ? 10 : 8)).forEach(entity -> {
             if (entity != null) {
                 IInvestedPlayerData targetCapability;
                 try {

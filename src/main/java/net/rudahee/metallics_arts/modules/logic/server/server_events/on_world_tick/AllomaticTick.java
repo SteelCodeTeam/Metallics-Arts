@@ -1,10 +1,10 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
@@ -41,7 +41,7 @@ public class AllomaticTick {
      * @param player           The player for whom the actions are being performed.
      * @param level            The server level in which the player is located.
      */
-    public static void each3Ticks(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
+    public static void each5Ticks(IInvestedPlayerData playerCapability, Player player, Level level) {
 
         if (playerCapability.isBurning(MetalTagEnum.TIN) || playerCapability.isBurning(MetalTagEnum.PEWTER)) {
             physicalMetals(playerCapability, player, level);
@@ -60,8 +60,6 @@ public class AllomaticTick {
             GlobalPos gPos = GlobalPos.of(Level.OVERWORLD, new BlockPos(level.getLevelData().getXSpawn(), level.getLevelData().getYSpawn(), level.getLevelData().getZSpawn()));
             ModNetwork.syncAnotherPlayerDeathPos(gPos, player);
         }
-
-
     }
 
     /**
@@ -73,7 +71,7 @@ public class AllomaticTick {
      * @param level            The server level in which the player is located.
      * @return True if metals have been drained, false otherwise.
      */
-    public static boolean eachTickWithInstantDrain(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
+    public static boolean eachTickWithInstantDrain(IInvestedPlayerData playerCapability, Player player, Level level) {
 
         boolean isMetalsDrained = false;
 
@@ -91,12 +89,12 @@ public class AllomaticTick {
      * @param player           The player for whom the actions are being performed.
      * @param level            The server level in which the player is located.
      */
-    private static void godMetals(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
+    private static void godMetals(IInvestedPlayerData playerCapability, Player player, Level level) {
         if (playerCapability.isBurning(MetalTagEnum.ETTMETAL)) {
             EttmetalAllomanticHelper.ettmetalExplotion(level, playerCapability, player);
         }
         if (playerCapability.isBurning(MetalTagEnum.MALATIUM) && playerCapability.isBurning(MetalTagEnum.DURALUMIN) && MalatiumAllomanticHelper.isPosRegistered()) {
-            MalatiumAllomanticHelper.teleportToDeathPosFromAnotherPlayer(level, playerCapability, player, playerCapability.isBurning(MetalTagEnum.LERASIUM));
+            MalatiumAllomanticHelper.teleportToDeathPosFromAnotherPlayer(level, playerCapability, (ServerPlayer) player, playerCapability.isBurning(MetalTagEnum.LERASIUM));
         }
     }
 
@@ -108,7 +106,7 @@ public class AllomaticTick {
      * @param level            The server level in which the player is located.
      * @return True if metals have been drained, false otherwise.
      */
-    private static boolean spiritualMetals(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
+    private static boolean spiritualMetals(IInvestedPlayerData playerCapability, Player player, Level level) {
 
         boolean drainedMetals = false;
 
@@ -130,7 +128,7 @@ public class AllomaticTick {
      * @param player           The player for whom the actions are being performed.
      * @param level            The server level in which the player is located.
      */
-    private static void temporalMetals(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
+    private static void temporalMetals(IInvestedPlayerData playerCapability, Player player, Level level) {
         if (playerCapability.isBurning(MetalTagEnum.BENDALLOY) && !playerCapability.isBurning(MetalTagEnum.CADMIUM)) {
             BendalloyAllomanticHelper.BendalloyMobEffects(player, level,
                     playerCapability.getEnhanced(), playerCapability.isBurning(MetalTagEnum.LERASIUM));
@@ -148,7 +146,7 @@ public class AllomaticTick {
         }
 
         if (playerCapability.isBurning(MetalTagEnum.ELECTRUM) && playerCapability.getEnhanced()) {
-            ElectrumAllomanticHelper.teleportToSpawn(level,playerCapability,player, playerCapability.isBurning(MetalTagEnum.LERASIUM));
+            ElectrumAllomanticHelper.teleportToSpawn(level,playerCapability, (ServerPlayer) player, playerCapability.isBurning(MetalTagEnum.LERASIUM));
         }
 
     }
@@ -160,7 +158,7 @@ public class AllomaticTick {
      * @param player           The player for whom the actions are being performed.
      * @param level            The server level in which the player is located.
      */
-    private static void mentalMetals(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
+    private static void mentalMetals(IInvestedPlayerData playerCapability, Player player, Level level) {
 
         if (playerCapability.isBurning(MetalTagEnum.COPPER)) {
             CopperAllomanticHelper.CopperAiEntityManipulation(player, level,
@@ -188,7 +186,7 @@ public class AllomaticTick {
      * @param player           The player for whom the actions are being performed.
      * @param level            The server level in which the player is located.
      */
-    private static void physicalMetals(IInvestedPlayerData playerCapability, ServerPlayer player, ServerLevel level) {
+    private static void physicalMetals(IInvestedPlayerData playerCapability, Player player, Level level) {
 
         if (playerCapability.isBurning(MetalTagEnum.TIN)) {
                 TinAllomanticHelper.addTinEffects(player, playerCapability.getEnhanced());
@@ -205,7 +203,7 @@ public class AllomaticTick {
      * @param capability The player's Allomantic and Feruchemical abilities.
      * @param player     The player for whom the actions are being performed.
      */
-    public static void eachTick(IInvestedPlayerData capability, ServerPlayer player, ServerLevel level) {
+    public static void eachTick(IInvestedPlayerData capability, Player player, Level level) {
         if (capability.isBurning(MetalTagEnum.ETTMETAL) || capability.isBurning(MetalTagEnum.MALATIUM)) {
             godMetals(capability, player, level);
         }

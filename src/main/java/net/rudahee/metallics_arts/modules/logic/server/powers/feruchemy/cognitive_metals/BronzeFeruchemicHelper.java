@@ -44,14 +44,13 @@ public class BronzeFeruchemicHelper {
      */
     public static void storagePower(Player player) {
         Level level = player.getLevel();
-       // if (MathUtils.isDivisibleBy60(OnWorldTickEvent.getActualTick())) {
-            Phantom phantom = new Phantom(EntityType.PHANTOM, level);
-            phantom.setPos(player.position().x,player.position().y + 4, player.position().z);
-            phantom.setTarget(player);
-            phantom.setAggressive(true);
-            phantom.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 240, 2, false, true));
-            level.addFreshEntity(phantom);
-        //}
+        Phantom phantom = new Phantom(EntityType.PHANTOM, level);
+        phantom.setPos(player.position().x,player.position().y + 4, player.position().z);
+        phantom.setTarget(player);
+        phantom.setAggressive(true);
+        phantom.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 280, 2, false, true));
+        level.addFreshEntity(phantom);
+
         ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.BRONZE);
     }
 
