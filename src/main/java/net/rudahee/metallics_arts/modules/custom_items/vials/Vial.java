@@ -80,7 +80,7 @@ public abstract class Vial extends Item {
         } else {
             if (hasAnyReserve(stack)) {
                 toolTips.add(Component.translatable(" "));
-                toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
+                toolTips.add(Component.translatable("metallics_arts.metal_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             }
         }
         super.appendHoverText(stack, level, toolTips, flag);

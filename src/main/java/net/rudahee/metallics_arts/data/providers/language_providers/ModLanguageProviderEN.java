@@ -36,23 +36,23 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("key.metallics_arts.feruchemic_store",CTW.FERUCHEMICAL.getNameInEnglish() + " " +CTW.STORAGE.getNameInEnglish());
                 put("key.metallics_arts.switch_overlay", CTW.SWITCH_OVERLAY.getNameInEnglish());
 
-                put("metallics_arts.mental_mind_translate.has_reserve", CTW.HAS_RESERVE.getNameInEnglish());
-                put("metallics_arts.mental_mind_translate.not_has_reserve", CTW.NOT_HAS_RESERVE.getNameInEnglish());
+                put("metallics_arts.metal_mind_translate.has_reserve", CTW.HAS_RESERVE.getNameInEnglish());
+                put("metallics_arts.metal_mind_translate.not_has_reserve", CTW.NOT_HAS_RESERVE.getNameInEnglish());
                 put("metallics_arts.spike_feruchemic_power", CTW.STORAGE_POWER.getNameInEnglish() + ": " + CTW.FERUCHEMICAL.getNameInEnglish());
                 put("metallics_arts.spike_allomantic_power", CTW.STORAGE_POWER.getNameInEnglish() + ": " + CTW.ALLOMANTIC.getNameInEnglish());
 
                 //ver porque usa "spike"
-                put("metallics_arts.mental_mind_translate.tapping_identity", CTW.TAPPING_IDENTITY.getNameInEnglish());
+                put("metallics_arts.metal_mind_translate.tapping_identity", CTW.TAPPING_IDENTITY.getNameInEnglish());
 
                 //arreglar estos de aca abajo
-                put("metallics_arts.mental_mind_translate.store_identity", CTW.STORE_IDENTITY.getNameInEnglish());
-                put("metallics_arts.mental_mind_translate.off_power", CTW.POWER_OFF.getNameInEnglish());
-                put("metallics_arts.mental_mind.owner", CTW.OWNER.getNameInEnglish());
-                put("metallics_arts.mental_mind.nobody", CTW.NOBODY.getNameInEnglish());
-                put("metallics_arts.mental_mind.owner_someone", CTW.OWNER_SOMEONE.getNameInEnglish());
-                put("metallics_arts.mental_mind_translate.uses", CTW.USES.getNameInEnglish());
+                put("metallics_arts.metal_mind_translate.store_identity", CTW.STORE_IDENTITY.getNameInEnglish());
+                put("metallics_arts.metal_mind_translate.off_power", CTW.POWER_OFF.getNameInEnglish());
+                put("metallics_arts.metal_mind.owner", CTW.OWNER.getNameInEnglish());
+                put("metallics_arts.metal_mind.nobody", CTW.NOBODY.getNameInEnglish());
+                put("metallics_arts.metal_mind.owner_someone", CTW.OWNER_SOMEONE.getNameInEnglish());
+                put("metallics_arts.metal_mind_translate.uses", CTW.USES.getNameInEnglish());
 
-                put("metallics_arts.mental_mind_translate.shift_info",CTW.SHIFT_TO_MORE_INFO.getNameInEnglish());
+                put("metallics_arts.metal_mind_translate.shift_info",CTW.SHIFT_TO_MORE_INFO.getNameInEnglish());
 
                 put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInEnglish());
                 put("item.metallics_arts.silver_knife", CTW.SILVER_KNIFE.getNameInEnglish());

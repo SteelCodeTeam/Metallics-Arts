@@ -150,11 +150,11 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+metals[1].getNameLower()).append(": "+ ((stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") * 100)/maxReserve1)+"%"));
             }
             if (level != null) {
-                toolTips.add(Component.translatable("metallics_arts.mental_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.mental_mind.nobody").getString() : (level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? Component.translatable("metallics_arts.mental_mind.owner_someone") : level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
+                toolTips.add(Component.translatable("metallics_arts.metal_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.metal_mind.nobody").getString() : (level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? Component.translatable("metallics_arts.metal_mind.owner_someone") : level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
             }
             if (!Screen.hasShiftDown()){
                 toolTips.add(Component.translatable(" "));
-                toolTips.add(Component.translatable("metallics_arts.mental_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
+                toolTips.add(Component.translatable("metallics_arts.metal_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
 
             }
         }
@@ -554,8 +554,8 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
                         compoundTag.putInt(metal.getNameLower()+"inLerasiumBand",0);
                     }
                     compoundTag.putInt(metal.getNameLower()+"inLerasiumBand", compoundTag.getInt(metal.getNameLower()+"inLerasiumBand")+qtyToRemove);
-                    if (compoundTag.getInt(metal.getNameLower()+"inLerasiumBand") > (metal.getMaxAllomanticTicksStorage()/2)) {
-                        compoundTag.putInt(metal.getNameLower()+"inLerasiumBand",(metal.getMaxAllomanticTicksStorage()/2));
+                    if (compoundTag.getInt(metal.getNameLower()+"inLerasiumBand") > (metal.getMaxAllomanticTicksStorage())) {
+                        compoundTag.putInt(metal.getNameLower()+"inLerasiumBand",(metal.getMaxAllomanticTicksStorage()));
                         continueSaving = false;
                     }
 

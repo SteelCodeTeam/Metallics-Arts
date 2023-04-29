@@ -247,8 +247,8 @@
   "item.metallics_arts.ettmetal_feruchemic_icon": "Ettmetal Feruquimico",
 
 
-  "metallics_arts.mental_mind.owner": "Dono",
-  "metallics_arts.mental_mind.nobody": "Ninguén",
+  "metallics_arts.metal_mind.owner": "Dono",
+  "metallics_arts.metal_mind.nobody": "Ninguén",
 
   "metallics_arts.metal_translate.iron": "Hierro",
   "metallics_arts.metal_translate.steel": "Aceiro",
@@ -271,17 +271,17 @@
   "metallics_arts.metal_translate.lerasium": "Lerasio",
   "metallics_arts.metal_translate.ettmetal": "Ettmetal",
 
-  "metallics_arts.mental_mind_translate.has_reserve": "Ten Reservas Alomanticas",
-  "metallics_arts.mental_mind_translate.not_has_reserve": "Non Ten Reservas Alomanticas",
+  "metallics_arts.metal_mind_translate.has_reserve": "Ten Reservas Alomanticas",
+  "metallics_arts.metal_mind_translate.not_has_reserve": "Non Ten Reservas Alomanticas",
 
-  "metallics_arts.mental_mind_translate.uses": "Usos",
+  "metallics_arts.metal_mind_translate.uses": "Usos",
 
   "metallics_arts.spike_feruchemic_power": "Enerxía Almacenada: Ferruquímico",
   "metallics_arts.spike_allomantic_power": "Enerxía Almacenada: Alomántico",
 
-  "metallics_arts.mental_mind_translate.store_identity": "Almaceando Identidade",
-  "metallics_arts.mental_mind_translate.off_power": "Poder Apagado",
+  "metallics_arts.metal_mind_translate.store_identity": "Almaceando Identidade",
+  "metallics_arts.metal_mind_translate.off_power": "Poder Apagado",
   "metallics_arts.spike_allomantic_power.tapping_identity": "Decantando Identidade",
 
-  "metallics_arts.mental_mind.owner_someone": "Alguén"
+  "metallics_arts.metal_mind.owner_someone": "Alguén"
 }

@@ -246,9 +246,9 @@
   "item.metallics_arts.lerasium_feruchemic_icon": "Lerasi Feruquímic",
   "item.metallics_arts.ettmetal_feruchemic_icon": "Ettmetall Feruquímic",
 
-  "metallics_arts.mental_mind.owner": "Dono",
+  "metallics_arts.metal_mind.owner": "Dono",
 
-  "metallics_arts.mental_mind.nobody": "Ninguén",
+  "metallics_arts.metal_mind.nobody": "Ninguén",
 
   "metallics_arts.metal_translate.iron": "Ferro",
   "metallics_arts.metal_translate.steel": "Acer",
@@ -271,18 +271,18 @@
   "metallics_arts.metal_translate.lerasium": "Lerasi",
   "metallics_arts.metal_translate.ettmetal": "Ettmetall",
 
-  "metallics_arts.mental_mind_translate.has_reserve": "Tens reserves alomàntiques",
-  "metallics_arts.mental_mind_translate.not_has_reserve": "No tens reserves alomàntiques",
+  "metallics_arts.metal_mind_translate.has_reserve": "Tens reserves alomàntiques",
+  "metallics_arts.metal_mind_translate.not_has_reserve": "No tens reserves alomàntiques",
 
-  "metallics_arts.mental_mind_translate.uses": "Usos",
+  "metallics_arts.metal_mind_translate.uses": "Usos",
 
   "metallics_arts.spike_feruchemic_power": "Potència Emmagatzemada: Feruquímic",
   "metallics_arts.spike_allomantic_power": "Potència Emmagatzemada: Alomàntic",
 
-  "metallics_arts.mental_mind_translate.store_identity": "Almacenant Identitat",
-  "metallics_arts.mental_mind_translate.off_power": "Poder Apagat",
+  "metallics_arts.metal_mind_translate.store_identity": "Almacenant Identitat",
+  "metallics_arts.metal_mind_translate.off_power": "Poder Apagat",
   "metallics_arts.spike_allomantic_power.tapping_identity": "Decantant Identitat",
 
-  "metallics_arts.mental_mind.owner_someone": "Algú"
+  "metallics_arts.metal_mind.owner_someone": "Algú"
 
 }

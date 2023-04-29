@@ -34,22 +34,22 @@ public class ModLanguageProviderJP extends LanguageProvider {
         put("key.metallics_arts.feruchemic_store",CTW.FERUCHEMICAL.getNameInJapanese() + " " +CTW.STORAGE.getNameInJapanese());
         put("key.metallics_arts.switch_overlay", CTW.SWITCH_OVERLAY.getNameInJapanese());
 
-        put("metallics_arts.mental_mind_translate.has_reserve", CTW.HAS_RESERVE.getNameInJapanese());
-        put("metallics_arts.mental_mind_translate.not_has_reserve", CTW.NOT_HAS_RESERVE.getNameInJapanese());
+        put("metallics_arts.metal_mind_translate.has_reserve", CTW.HAS_RESERVE.getNameInJapanese());
+        put("metallics_arts.metal_mind_translate.not_has_reserve", CTW.NOT_HAS_RESERVE.getNameInJapanese());
         put("metallics_arts.spike_feruchemic_power", CTW.STORAGE_POWER.getNameInJapanese() + ": " + CTW.FERUCHEMICAL.getNameInJapanese());
         put("metallics_arts.spike_allomantic_power", CTW.STORAGE_POWER.getNameInJapanese() + ": " + CTW.ALLOMANTIC.getNameInJapanese());
 
         //ver porque usa "spike"
-        put("metallics_arts.mental_mind_translate.tapping_identity", CTW.TAPPING_IDENTITY.getNameInJapanese());
+        put("metallics_arts.metal_mind_translate.tapping_identity", CTW.TAPPING_IDENTITY.getNameInJapanese());
 
         //arreglar estos de aca abajo
-        put("metallics_arts.mental_mind_translate.store_identity", CTW.STORE_IDENTITY.getNameInJapanese());
-        put("metallics_arts.mental_mind_translate.off_power", CTW.POWER_OFF.getNameInJapanese());
-        put("metallics_arts.mental_mind.owner", CTW.OWNER.getNameInJapanese());
-        put("metallics_arts.mental_mind.nobody", CTW.NOBODY.getNameInJapanese());
-        put("metallics_arts.mental_mind.owner_someone", CTW.OWNER_SOMEONE.getNameInJapanese());
-        put("metallics_arts.mental_mind_translate.uses", CTW.USES.getNameInJapanese());
-        put("metallics_arts.mental_mind_translate.shift_info",CTW.SHIFT_TO_MORE_INFO.getNameInJapanese());
+        put("metallics_arts.metal_mind_translate.store_identity", CTW.STORE_IDENTITY.getNameInJapanese());
+        put("metallics_arts.metal_mind_translate.off_power", CTW.POWER_OFF.getNameInJapanese());
+        put("metallics_arts.metal_mind.owner", CTW.OWNER.getNameInJapanese());
+        put("metallics_arts.metal_mind.nobody", CTW.NOBODY.getNameInJapanese());
+        put("metallics_arts.metal_mind.owner_someone", CTW.OWNER_SOMEONE.getNameInJapanese());
+        put("metallics_arts.metal_mind_translate.uses", CTW.USES.getNameInJapanese());
+        put("metallics_arts.metal_mind_translate.shift_info",CTW.SHIFT_TO_MORE_INFO.getNameInJapanese());
 
         put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInJapanese());
         put("item.metallics_arts.cristal_dagger", CTW.SILVER_KNIFE.getNameInJapanese());

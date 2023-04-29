@@ -246,9 +246,9 @@
   "item.metallics_arts.lerasium_feruchemic_icon": "Ферухимический Леразий",
   "item.metallics_arts.ettmetal_feruchemic_icon": "Ферухимический эттметалл",
 
-  "metallics_arts.mental_mind.owner": "Владелец",
+  "metallics_arts.metal_mind.owner": "Владелец",
 
-  "metallics_arts.mental_mind.nobody": "Никто",
+  "metallics_arts.metal_mind.nobody": "Никто",
 
   "metallics_arts.metal_translate.iron": "Железо",
   "metallics_arts.metal_translate.steel": "Сталь",
@@ -271,19 +271,19 @@
   "metallics_arts.metal_translate.lerasium": "Лерасиум",
   "metallics_arts.metal_translate.ettmetal": "Эттметалл",
 
-  "metallics_arts.mental_mind_translate.has_reserve": "Имеет алломантические резервы",
-  "metallics_arts.mental_mind_translate.not_has_reserve": "Не имеет алломантических резервов",
+  "metallics_arts.metal_mind_translate.has_reserve": "Имеет алломантические резервы",
+  "metallics_arts.metal_mind_translate.not_has_reserve": "Не имеет алломантических резервов",
 
-  "metallics_arts.mental_mind_translate.uses": "Использует",
+  "metallics_arts.metal_mind_translate.uses": "Использует",
 
   "metallics_arts.spike_feruchemic_power": "Сохраненная энергия: Ферукемик",
   "metallics_arts.spike_allomantic_power": "Сохраненная сила: алломантическая",
 
-  "metallics_arts.mental_mind_translate.store_identity": "Storing Identity",
-  "metallics_arts.mental_mind_translate.off_power": "Выключение",
+  "metallics_arts.metal_mind_translate.store_identity": "Storing Identity",
+  "metallics_arts.metal_mind_translate.off_power": "Выключение",
   "metallics_arts.spike_allomantic_power.tapping_identity": "Tapping Identity",
 
-  "metallics_arts.mental_mind_translate.shift_info": "[Сдвиг] Больше информации",
+  "metallics_arts.metal_mind_translate.shift_info": "[Сдвиг] Больше информации",
 
-  "metallics_arts.mental_mind.owner_someone": "смеоне"
+  "metallics_arts.metal_mind.owner_someone": "смеоне"
 }
