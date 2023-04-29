@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -96,8 +97,9 @@ public class PewterAllomanticHelper {
 
         if (enhanced) {
             if (itemInHand.getItem() == ModItemsRegister.KOLOSS_BLADE.get()) {
-                target.setHealth(2f);
-                amountDamage = 0;
+                //target.setHealth(2f);
+                //amountDamage = 0;
+                source.sendSystemMessage(Component.literal("Buen intento, pero está desactivado temporalmente :)"));
             }
             event.setAmount(amountDamage);
         }
