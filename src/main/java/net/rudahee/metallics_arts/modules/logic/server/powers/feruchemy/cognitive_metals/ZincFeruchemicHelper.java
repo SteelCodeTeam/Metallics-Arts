@@ -20,7 +20,6 @@ public class ZincFeruchemicHelper {
      */
 
     public static void tapPower(Player player) {
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.ZINC);
     }
 
     /**
@@ -31,7 +30,6 @@ public class ZincFeruchemicHelper {
      */
 
     public static void storagePower(Player player) {
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.ZINC);
     }
 
 }

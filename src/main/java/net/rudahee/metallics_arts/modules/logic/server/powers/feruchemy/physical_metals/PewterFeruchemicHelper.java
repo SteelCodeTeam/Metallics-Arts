@@ -24,7 +24,6 @@ public class PewterFeruchemicHelper {
     public static void tapPower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 1, false, false));
         player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20, 1, false, false));
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.PEWTER);
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -37,7 +36,6 @@ public class PewterFeruchemicHelper {
     public static void storagePower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, false, false));
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 20, 1, false, false));
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.PEWTER);
     }
 
 

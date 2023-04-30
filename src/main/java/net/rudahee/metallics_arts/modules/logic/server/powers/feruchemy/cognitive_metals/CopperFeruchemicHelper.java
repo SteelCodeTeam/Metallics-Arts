@@ -21,7 +21,6 @@ public class CopperFeruchemicHelper {
      */
     public static void tapPower(Player player) {
         player.giveExperiencePoints(1);
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.COPPER);
     }
 
     /**
@@ -32,7 +31,6 @@ public class CopperFeruchemicHelper {
      */
     public static void storagePower(Player player) {
         player.giveExperiencePoints(-1);
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.COPPER);
     }
 
 

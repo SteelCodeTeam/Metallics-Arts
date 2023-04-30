@@ -24,7 +24,6 @@ public class LerasiumFeruchemicHelper {
      */
 
     public static void tapPower(Player player) {
-        ModEffects.giveFeruchemicalTapEffect(player,MetalTagEnum.LERASIUM);
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -34,7 +33,6 @@ public class LerasiumFeruchemicHelper {
      */
 
     public static void storagePower(Player player) {
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.LERASIUM);
     }
 
 

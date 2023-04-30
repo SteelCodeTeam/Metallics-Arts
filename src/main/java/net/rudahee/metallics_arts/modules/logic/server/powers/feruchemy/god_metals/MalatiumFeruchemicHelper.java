@@ -27,7 +27,6 @@ public class MalatiumFeruchemicHelper {
      *
      */
     public static void tapPower(Player player) {
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.MALATIUM);
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -37,7 +36,6 @@ public class MalatiumFeruchemicHelper {
      *
      */
     public static void storagePower(Player player) {
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.MALATIUM);
     }
 
 

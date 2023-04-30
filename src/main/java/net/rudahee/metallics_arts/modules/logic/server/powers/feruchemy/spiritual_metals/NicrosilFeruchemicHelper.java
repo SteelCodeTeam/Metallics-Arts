@@ -22,7 +22,6 @@ public class NicrosilFeruchemicHelper {
      *
      */
     public static void tapPower(Player player) {
-        ModEffects.giveFeruchemicalTapEffect(player,MetalTagEnum.NICROSIL);
     }
 
     /**
@@ -33,7 +32,6 @@ public class NicrosilFeruchemicHelper {
      *
      */
     public static void storagePower(Player player) {
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.NICROSIL);
     }
 
 

@@ -33,7 +33,6 @@ public class BronzeFeruchemicHelper {
                 }
             }
         });
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.BRONZE);
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -50,8 +49,6 @@ public class BronzeFeruchemicHelper {
         phantom.setAggressive(true);
         phantom.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 280, 2, false, true));
         level.addFreshEntity(phantom);
-
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.BRONZE);
     }
 
 

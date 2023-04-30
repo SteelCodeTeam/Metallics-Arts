@@ -25,7 +25,6 @@ public class IronFeruchemicHelper {
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 5, false, false));
         // apply jump 128 nullifies the target player's ability to jump
         player.addEffect(new MobEffectInstance(MobEffects.JUMP, 120, 128, false, false));
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.IRON);
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -39,7 +38,6 @@ public class IronFeruchemicHelper {
         player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 1, false, false));
         player.addEffect(new MobEffectInstance(MobEffects.JUMP, 120, 2, false, false));
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 120, 1, false, false));
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.IRON);
     }
 
 

@@ -25,7 +25,6 @@ public class AluminumFeruchemicHelper {
      *
      */
     public static void tapPower(Player player) {
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.ALUMINUM);
     }
 
     /**
@@ -36,7 +35,6 @@ public class AluminumFeruchemicHelper {
      *
      */
     public static void storagePower(Player player) {
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.ALUMINUM);
     }
 
     /**

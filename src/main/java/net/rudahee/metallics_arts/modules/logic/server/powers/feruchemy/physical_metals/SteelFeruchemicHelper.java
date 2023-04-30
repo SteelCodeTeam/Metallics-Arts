@@ -24,7 +24,6 @@ public class SteelFeruchemicHelper {
 
     public static void tapPower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 3, false, false));
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.STEEL);
     }
 
     /**
@@ -37,7 +36,6 @@ public class SteelFeruchemicHelper {
 
     public static void storagePower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 3, false, false));
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.STEEL);
     }
 
 

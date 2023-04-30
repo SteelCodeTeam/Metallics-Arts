@@ -21,12 +21,9 @@ public class BendalloyFeruchemicHelper {
      */
 
     public static void tapPower(Player player) {
-            if (player.getFoodData().getFoodLevel() < 20) {
-                player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() + 2);
-            }
-
-
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.BENDALLOY);
+        if (player.getFoodData().getFoodLevel() < 20) {
+            player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() + 2);
+        }
     }
 
     /**
@@ -37,14 +34,11 @@ public class BendalloyFeruchemicHelper {
      *
      */
     public static void storagePower(Player player) {
-
-            if (!player.isCreative()){
-                if (player.getFoodData().getFoodLevel()>0){
-                    player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() - 2);
-                }
+        if (!player.isCreative()){
+            if (player.getFoodData().getFoodLevel()>0){
+                player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() - 2);
             }
-
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.BENDALLOY);
+        }
     }
 
 }

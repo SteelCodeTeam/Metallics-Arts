@@ -24,7 +24,6 @@ public class TinFeruchemicHelper {
 
     public static void tapPower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 320, 1, false, false));
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.TIN);
     }
 
     /**
@@ -37,7 +36,6 @@ public class TinFeruchemicHelper {
 
     public static void storagePower(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60, 1, false, false));
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.TIN);
     }
 
 

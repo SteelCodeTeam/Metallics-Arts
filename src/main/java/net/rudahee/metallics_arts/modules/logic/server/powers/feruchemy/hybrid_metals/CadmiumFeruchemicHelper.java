@@ -25,11 +25,8 @@ public class CadmiumFeruchemicHelper {
      */
     public static void tapPower(Player player) {
         if (player.isEyeInFluid(FluidTags.WATER)) {
-
             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 120, 10, false, false));
-
         }
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.CADMIUM);
     }
 
     /**
@@ -51,7 +48,6 @@ public class CadmiumFeruchemicHelper {
                 player.setAirSupply(player.getAirSupply()-1);
             }
         }
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.CADMIUM);
     }
 
 }

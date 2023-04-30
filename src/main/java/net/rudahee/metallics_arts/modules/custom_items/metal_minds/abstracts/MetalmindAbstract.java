@@ -20,6 +20,7 @@ import net.rudahee.metallics_arts.modules.custom_items.metal_minds.AluminumDural
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.AtiumMalatiumMetalmind;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.CopperBronzeMetalmind;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.LerasiumEttmetalMetalmind;
+import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
@@ -155,7 +156,6 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
             if (!Screen.hasShiftDown()){
                 toolTips.add(Component.translatable(" "));
                 toolTips.add(Component.translatable("metallics_arts.metal_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
-
             }
         }
         super.appendHoverText(stack, level, toolTips, flagIn);
@@ -185,7 +185,6 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
                 IInvestedPlayerData playerCapability;
                 try {
                     playerCapability = CapabilityUtils.getCapability(player);
-
                 } catch (PlayerException ex) {
                     ex.printCompleteLog();
                     return;
@@ -253,6 +252,8 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player,IInvestedPlayerData playerCapability, int metalReserve, boolean nicConsume, MetalTagEnum metal) {
         String metalKey = metal.getNameLower() + "_feruchemic_reserve";
 
+        ModEffects.giveFeruchemicalTapEffect(player, metal);
+
         if (metal == MetalTagEnum.COPPER) {
             return customDischargeCopper(compoundTag, metalReserve, metalKey);
         } else if (metal == MetalTagEnum.ETTMETAL) {
@@ -276,6 +277,8 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
     public CompoundTag calculateCharge(CompoundTag compoundTag, Player player,IInvestedPlayerData playerCapability, int metalReserve, boolean nicConsume, MetalTagEnum metal) {
         String metalKey = metal.getNameLower() + "_feruchemic_reserve";
 
+        ModEffects.giveFeruchemicalStorageEffect(player, metal);
+
         if (metal == MetalTagEnum.BRASS) {
             return customChargeBrass(compoundTag, player, playerCapability, metalReserve, metalKey, nicConsume);
         } else if (metal == MetalTagEnum.COPPER) {
@@ -289,13 +292,12 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
         } else if (metal == MetalTagEnum.ALUMINUM) {
             return calculateChargeAluminum(compoundTag, metalKey);
         } else if (metal == MetalTagEnum.NICROSIL) {
-            calculateChargeNicrosil(compoundTag, player, playerCapability, metalReserve, metalKey, nicConsume);
+            return calculateChargeNicrosil(compoundTag, player, playerCapability, metalReserve, metalKey, nicConsume);
         } else {
             if (!playerCapability.isStoring(MetalTagEnum.NICROSIL) || !nicConsume) {
                 compoundTag.putInt(metalKey, metalReserve + 1);
             }
         }
-
         return compoundTag;
     }
 
@@ -601,10 +603,6 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
         return compoundTag;
     }
 
-
-
-
-
     //MALATIUM
 
     /**
@@ -806,7 +804,6 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
             nbt.putInt(metal1.getNameLower()+"_feruchemic_reserve", metal1.getMaxReserveBand());
 
         }
-
         nbt.putInt(metal2.getNameLower()+"_feruchemic_reserve", metal2.getMaxReserveBand());
         nbt.putString("key","Nobody");
 

@@ -8,6 +8,8 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Pillager;
+import net.minecraft.world.entity.monster.Witch;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -16,8 +18,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
+import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals.AluminumFeruchemicHelper;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.TranslatableUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -143,7 +148,7 @@ public class MetalSpike extends SwordItem {
             if (stack.getTag().getBoolean("feruchemic_power")) {
                 toolTips.add(TranslatableUtils.generateComponent("metallics_arts.spike_feruchemic_power"));
             }
-            if (stack.getTag().getBoolean("allomantic _power")) {
+            if (stack.getTag().getBoolean("allomantic_power")) {
                 toolTips.add(TranslatableUtils.generateComponent("metallics_arts.spike_allomantic_power"));
             }
         }
@@ -184,94 +189,99 @@ public class MetalSpike extends SwordItem {
 
         if ((target instanceof Player) && (source instanceof Player)){
 
-            target.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(targetData -> {
+            IInvestedPlayerData targetData;
+            try {
+                targetData = CapabilityUtils.getCapability(target);
+            } catch (PlayerException ex) {
+                ex.printCompleteLog();
+                return false;
+            }
 
-                boolean hasAllomanticPower = targetData.hasAllomanticPower(MetalTagEnum.getMetal(stack.getTag().getInt("metal_spike")));
-                boolean hasFeruchemicPower = targetData.hasFeruchemicPower(MetalTagEnum.getMetal(stack.getTag().getInt("metal_spike")));
+            boolean hasAllomanticPower = targetData.hasAllomanticPower(MetalTagEnum.getMetal(stack.getTag().getInt("metal_spike")));
+            boolean hasFeruchemicPower = targetData.hasFeruchemicPower(MetalTagEnum.getMetal(stack.getTag().getInt("metal_spike")));
 
-                boolean couldStealPower = Math.random()>0.50;
-                boolean couldRemovePower = Math.random()<0.75;
-                boolean isAllomantic = Math.random()>0.50;
+            boolean couldStealPower = Math.random()>0.50;
+            boolean couldRemovePower = Math.random()<0.75;
+            boolean isAllomantic = Math.random()>0.50;
 
-                MetalTagEnum localMetal = MetalTagEnum.getMetal(stack.getTag().getInt("metal_spike"));
+            MetalTagEnum localMetal = MetalTagEnum.getMetal(stack.getTag().getInt("metal_spike"));
 
-                Random rng = new Random();
-                Level world = target.level;
-                BlockPos pos = new BlockPos(target.position());
+            Random rng = new Random();
+            Level world = target.level;
+            BlockPos pos = new BlockPos(target.position());
 
 
 
-                //DAR PODER
-                if (stack.getTag().getBoolean("allomantic_power")){
-                    if (!targetData.hasAllomanticPower(localMetal)){
-                        targetData.addAllomanticPower(localMetal);
-                        doEffects(world, pos);
-                    }
-                } else if (stack.getTag().getBoolean("feruchemic_power")){
-                    if (!targetData.hasFeruchemicPower(localMetal)){
-                        targetData.addFeruchemicPower(localMetal);
-                        doEffects(world, pos);
-                    }
+            //DAR PODER
+            if (stack.getTag().getBoolean("allomantic_power")){
+                if (!targetData.hasAllomanticPower(localMetal)){
+                    targetData.addAllomanticPower(localMetal);
+                    doEffects(world, pos);
+                }
+            } else if (stack.getTag().getBoolean("feruchemic_power")){
+                if (!targetData.hasFeruchemicPower(localMetal)){
+                    targetData.addFeruchemicPower(localMetal);
+                    doEffects(world, pos);
+                }
 
-                    //SI EL CLAVO NO TIENE PODERES -> intenta robar
-                } else if (hasPlayerBothPowers(localMetal, targetData)) {
-                    //SI EL OBJETIVO TIENE AMBOS PODERES
-                    if (isAllomantic) {
-                        if (couldStealPower){
-                            if (couldRemovePower){
-                                targetData.removeAllomanticPower(localMetal);
-
-                                target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, true, true, false));
-
-                                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
-
-                            }
-                            stack.getTag().putBoolean("allomantic_power",true);
-                            addItemToPlayer((Player) source, stack);
-                        }
-                    } else {
-                        if (couldStealPower){
-                            if (couldRemovePower){
-                                targetData.removeFeruchemicPower(localMetal);
-
-                                target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, true, true, false));
-
-                                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
-
-                            }
-                            stack.getTag().putBoolean("feruchemic_power",true);
-                            addItemToPlayer((Player) source, stack);
-                        }
-                    }
-                } else if (hasAllomanticPower){
+                //SI EL CLAVO NO TIENE PODERES -> intenta robar
+            } else if (hasPlayerBothPowers(localMetal, targetData)) {
+                //SI EL OBJETIVO TIENE AMBOS PODERES
+                if (isAllomantic) {
                     if (couldStealPower){
                         if (couldRemovePower){
                             targetData.removeAllomanticPower(localMetal);
 
                             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, true, true, false));
 
-                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 1, true, true, false));
+                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
 
                         }
                         stack.getTag().putBoolean("allomantic_power",true);
                         addItemToPlayer((Player) source, stack);
                     }
-                } else if (hasFeruchemicPower){
+                } else {
                     if (couldStealPower){
-                        if (couldRemovePower) {
-
+                        if (couldRemovePower){
                             targetData.removeFeruchemicPower(localMetal);
+
                             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, true, true, false));
-                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 1, true, true, false));
+
+                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
 
                         }
                         stack.getTag().putBoolean("feruchemic_power",true);
                         addItemToPlayer((Player) source, stack);
                     }
                 }
-                ((Player) source).getInventory().removeItem(stack);
-                ModNetwork.syncInvestedDataPacket(targetData,(Player) target);
-            });
+            } else if (hasAllomanticPower){
+                if (couldStealPower){
+                    if (couldRemovePower){
+                        targetData.removeAllomanticPower(localMetal);
+
+                        target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, true, true, false));
+
+                        target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 1, true, true, false));
+
+                    }
+                    stack.getTag().putBoolean("allomantic_power",true);
+                    addItemToPlayer((Player) source, stack);
+                }
+            } else if (hasFeruchemicPower){
+                if (couldStealPower){
+                    if (couldRemovePower) {
+
+                        targetData.removeFeruchemicPower(localMetal);
+                        target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, true, true, false));
+                        target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 1, true, true, false));
+
+                    }
+                    stack.getTag().putBoolean("feruchemic_power",true);
+                    addItemToPlayer((Player) source, stack);
+                }
+            }
+            ((Player) source).getInventory().removeItem(stack);
+            ModNetwork.syncInvestedDataPacket(targetData,(Player) target);
         }
         return super.hurtEnemy(stack, target, source);
     }

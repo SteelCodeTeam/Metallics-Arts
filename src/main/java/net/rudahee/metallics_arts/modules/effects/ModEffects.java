@@ -34,7 +34,7 @@ public class ModEffects {
      */
     public static final Map<String, RegistryObject<MobEffect>> POWER_EFFECTS = new HashMap<>() {{
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("allomantic_"+metal.getNameLower(), MOB_EFFECTS.register("allomantic_" + metal.getNameLower() + "_symbol", ()-> new PowerEffect(MobEffectCategory.NEUTRAL,11120)));
+            put("allomantic_"+metal.getNameLower(), MOB_EFFECTS.register("allomantic_" + metal.getNameLower(), ()-> new PowerEffect(MobEffectCategory.NEUTRAL,11120)));
             put("feruchemical_"+metal.getNameLower()+"_storage", MOB_EFFECTS.register("feruchemical_" + metal.getNameLower() + "_storage", ()-> new PowerEffect(MobEffectCategory.NEUTRAL,11120)));
             put("feruchemical_"+metal.getNameLower()+"_tap", MOB_EFFECTS.register("feruchemical_" + metal.getNameLower() + "_tap", ()-> new PowerEffect(MobEffectCategory.NEUTRAL,11120)));
         }
@@ -57,7 +57,7 @@ public class ModEffects {
      * @param metal the metal to use as the basis for the effect.
      */
     public static void giveFeruchemicalTapEffect(Player player, MetalTagEnum metal) {
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_" + metal.getNameLower() + "_tap").get(), 10, 0, true, true));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_" + metal.getNameLower() + "_tap").get(), 2, 0, true, true));
     }
     /**
      * Gives a Feruchemical Storage effect to the specified player based on the given metal.
@@ -66,7 +66,7 @@ public class ModEffects {
      * @param metal the metal to use as the basis for the effect.
      */
     public static void giveFeruchemicalStorageEffect(Player player, MetalTagEnum metal) {
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_" + metal.getNameLower() + "_storage").get(), 10, 0, true, true));
+        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_" + metal.getNameLower() + "_storage").get(), 2, 0, true, true));
     }
 
     /**

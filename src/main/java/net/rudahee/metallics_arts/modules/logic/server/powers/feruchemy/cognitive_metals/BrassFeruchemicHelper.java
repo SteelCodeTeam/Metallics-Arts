@@ -33,7 +33,6 @@ public class BrassFeruchemicHelper {
         } else if (player.getLevel().getBiome(player.getOnPos()).is(Tags.Biomes.IS_HOT)) {
             player.setSecondsOnFire(2);
         }
-        ModEffects.giveFeruchemicalTapEffect(player,MetalTagEnum.BRASS);
     }
 
     /**
@@ -50,8 +49,6 @@ public class BrassFeruchemicHelper {
                 (player.getLevel().getBiome(player.getOnPos()).is(Biomes.DESERT) && player.getLevel().isNight())) {
             player.setTicksFrozen(player.getTicksFrozen() + 3);
         }
-
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.BRASS);
     }
 
     /**

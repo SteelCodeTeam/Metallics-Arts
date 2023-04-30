@@ -26,17 +26,12 @@ public class ElectrumFeruchemicHelper {
      */
 
     public static void tapPower(Player player) {
-
         if (player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MIN_HEALTH_ELECTRUM)) {
             player.getAttribute(Attributes.MAX_HEALTH).removeModifier(ModModifiers.MIN_HEALTH_ELECTRUM);
         }
-
         if(!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MAX_HEALTH_ELECTRUM)) {
             player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(ModModifiers.MAX_HEALTH_ELECTRUM);
         }
-
-        ModEffects.giveFeruchemicalStorageEffect(player, MetalTagEnum.ELECTRUM);
-
     }
 
     /**
@@ -48,20 +43,15 @@ public class ElectrumFeruchemicHelper {
      *
      */
     public static void storagePower(Player player) {
-
         if (player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MAX_HEALTH_ELECTRUM)) {
             player.getAttribute(Attributes.MAX_HEALTH).removeModifier(ModModifiers.MAX_HEALTH_ELECTRUM);
         }
-
         if (!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MIN_HEALTH_ELECTRUM)) {
             player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(ModModifiers.MIN_HEALTH_ELECTRUM);
             if (player.getHealth() > 10) {
                 player.hurt(DamageSource.GENERIC, player.getHealth() - 10 + player.getAbsorptionAmount());
             }
-
         }
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.ELECTRUM);
-
     }
     /**
      * This is a unique method in the helpers, which is used to restore the max health to the base value (10 hearts), when the electrum powers stop working.

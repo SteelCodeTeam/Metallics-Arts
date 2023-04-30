@@ -26,7 +26,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("itemGroup.metallics_arts.decorations", CTW.DECORATIONS.getNameInEnglish() + " " + CTW.METALLICS_ARTS.getNameInEnglish());
 
                 put("key.category_powers_metallics_arts", CTW.POWERS.getNameInEnglish() + " " + CTW.METALLICS_ARTS.getNameInEnglish());
-                put("key.category.metallics_arts", CTW.METALLICS_ARTS.getNameInEnglish());
+                put("key.category_metallics_arts", CTW.METALLICS_ARTS.getNameInEnglish());
                 put("key.metallics_arts.allomantic", CTW.ALLOMANTIC.getNameInEnglish() + " " + CTW.POWER_SELECTOR.getNameInEnglish() );
                 put("key.metallics_arts.feruchemic", CTW.FERUCHEMICAL.getNameInEnglish() + " " + CTW.POWER_SELECTOR.getNameInEnglish());
                 put("key.metallics_arts.allomantic_push",CTW.ALLOMANTIC.getNameInEnglish() + " " + CTW.PUSH.getNameInEnglish());
@@ -47,12 +47,13 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 //arreglar estos de aca abajo
                 put("metallics_arts.metal_mind_translate.store_identity", CTW.STORE_IDENTITY.getNameInEnglish());
                 put("metallics_arts.metal_mind_translate.off_power", CTW.POWER_OFF.getNameInEnglish());
+                put("metallics_arts.metal_mind_translate.shift_info",CTW.SHIFT_TO_MORE_INFO.getNameInEnglish());
                 put("metallics_arts.metal_mind.owner", CTW.OWNER.getNameInEnglish());
                 put("metallics_arts.metal_mind.nobody", CTW.NOBODY.getNameInEnglish());
                 put("metallics_arts.metal_mind.owner_someone", CTW.OWNER_SOMEONE.getNameInEnglish());
                 put("metallics_arts.metal_mind_translate.uses", CTW.USES.getNameInEnglish());
 
-                put("metallics_arts.metal_mind_translate.shift_info",CTW.SHIFT_TO_MORE_INFO.getNameInEnglish());
+
 
                 put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInEnglish());
                 put("item.metallics_arts.silver_knife", CTW.SILVER_KNIFE.getNameInEnglish());

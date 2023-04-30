@@ -21,10 +21,7 @@ public class GoldFeruchemicHelper {
      */
 
     public static void tapPower(Player player) {
-
         player.heal(2f);
-
-        ModEffects.giveFeruchemicalTapEffect(player, MetalTagEnum.GOLD);
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -38,7 +35,6 @@ public class GoldFeruchemicHelper {
         if (!player.isCreative()){
             player.hurt(DamageSource.GENERIC, 2);
         }
-        ModEffects.giveFeruchemicalStorageEffect(player,MetalTagEnum.GOLD);
     }
 
 }
