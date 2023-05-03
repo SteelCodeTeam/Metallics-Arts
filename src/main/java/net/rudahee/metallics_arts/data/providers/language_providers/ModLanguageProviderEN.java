@@ -89,7 +89,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
         private final Map<String, String> effects = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
                         if (!metal.isOnlyForAlloys()) {
-                                put("effect."+ MetallicsArts.MOD_ID + ".allomantic_" + metal.getId() + "_symbol", CTW.ALLOMANTIC.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
+                                put("effect."+ MetallicsArts.MOD_ID + ".allomantic_" + metal.getId(), CTW.ALLOMANTIC.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
                                 put("effect."+ MetallicsArts.MOD_ID + ".feruchemical_" + metal.getId() + "_tap", CTW.FERUCHEMICAL.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
                                 put("effect."+ MetallicsArts.MOD_ID + ".feruchemical_" + metal.getId() + "_storage", CTW.FERUCHEMICAL.getNameInEnglish() + " " + MetalNamesEnum.valueOf(metal.name()).getNameInEnglish());
                         }

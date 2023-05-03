@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.setup;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.common.data.ForgeBlockTagsProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -17,6 +18,7 @@ import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageP
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBannerTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBeaconTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBlockTagProvider;
+import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvider;
 import net.rudahee.metallics_arts.modules.book.DemoBookProvider;
 
 @Mod.EventBusSubscriber (modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -33,6 +35,8 @@ public final class DataGenerators {
         gen.addProvider(true, new ModBlockTagProvider(gen, MetallicsArts.MOD_ID, event.getExistingFileHelper()));
         gen.addProvider(true, new ModLootTableProvider(gen));
         gen.addProvider(true, new ModRecipeProvider(gen));
+
+        gen.addProvider(true, new ModItemTagsProvider(gen, new ForgeBlockTagsProvider(gen, existingFileHelper), MetallicsArts.MOD_ID, existingFileHelper));
 
         gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_es"));
         gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_ar"));

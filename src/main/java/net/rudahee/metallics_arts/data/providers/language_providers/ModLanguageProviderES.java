@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.data.providers.language_providers;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
 import net.rudahee.metallics_arts.data.providers.language_providers.book.BookHelperES;
 
@@ -82,6 +83,16 @@ public class ModLanguageProviderES extends LanguageProvider {
             }
 
         }
+    }};
+    private final Map<String, String> effects = new HashMap<>() {{
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+            if (!metal.isOnlyForAlloys()) {
+                put("effect."+ MetallicsArts.MOD_ID + ".allomantic_" + metal.getId(),   MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.ALLOMANTIC.getNameInSpanish());
+                put("effect."+ MetallicsArts.MOD_ID + ".feruchemical_" + metal.getId() + "_tap",   MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.FERUCHEMICAL.getNameInSpanish());
+                put("effect."+ MetallicsArts.MOD_ID + ".feruchemical_" + metal.getId() + "_storage",   MetalNamesEnum.valueOf(metal.name()).getNameInSpanish() + " " + CTW.FERUCHEMICAL.getNameInSpanish());
+            }
+        }
+
     }};
     private final Map<String, String> rawItems = new HashMap<>() {{
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
