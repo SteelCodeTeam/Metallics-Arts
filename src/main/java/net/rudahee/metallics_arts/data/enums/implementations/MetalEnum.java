@@ -9,19 +9,19 @@ import net.rudahee.metallics_arts.data.enums.interfaces.IMetal;
  * @since 1.5.1
  */
 public enum MetalEnum implements IMetal {
-    STEEL("steel", "STEEL",true, true, true, true, null, null),
+    STEEL("steel", "STEEL",true, true, true, true, false, false),
     TIN("tin", "TIN",true, true, true, false, false, true),
-    PEWTER("pewter", "PEWTER",true, true, true, true, null, null),
-    BRONZE("bronze", "BRONZE",true, true, true, true, null, null),
+    PEWTER("pewter", "PEWTER",true, true, true, true, false, false),
+    BRONZE("bronze", "BRONZE",true, true, true, true, false, false),
     ZINC("zinc", "ZINC",true, true, true, false, false, true),
-    BRASS("brass", "BRASS",true, true, true, true, null, null),
-    ELECTRUM("electrum", "ELECTRUM",true, true, true, true, null, null),
+    BRASS("brass", "BRASS",true, true, true, true, false, false),
+    ELECTRUM("electrum", "ELECTRUM",true, true, true, true, false, false),
     CADMIUM("cadmium", "CADMIUM",true, true, true, false, true, false),
-    BENDALLOY("bendalloy", "BENDALLOY",true, true, true, true, null, null),
+    BENDALLOY("bendalloy", "BENDALLOY",true, true, true, true, false, false),
     ALUMINUM("aluminum", "ALUMINUM",true, true, true, false, true, true),
-    DURALUMIN("duralumin", "DURALUMIN",true, true, true, true, null, null),
+    DURALUMIN("duralumin", "DURALUMIN",true, true, true, true, false, false),
     CHROMIUM("chromium", "CHROMIUM",true, true, true, false, true, false),
-    NICROSIL("nicrosil", "NICROSIL",true, true, true, true, null, null),
+    NICROSIL("nicrosil", "NICROSIL",true, true, true, true, false, false),
     SILVER("silver", "SILVER",false, false, false, false, true, false),
     LEAD("lead", "LEAD",false, false, false, false, true, true),
     NICKEL("nickel", "NICKEL",false, false, false, false, true, false);

@@ -54,10 +54,9 @@ public class BasicItemsRegister {
             }
         });
 
-
         MetallicsArts.registerItem("copper_nugget",() -> {
             Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(64));
-            ModItemsRegister.ITEM_METAL_NUGGET.put("copper_nugget", item);
+            ModItemsRegister.ITEM_METAL_NUGGET.put("copper", item);
             return item;
         });
         // Gems

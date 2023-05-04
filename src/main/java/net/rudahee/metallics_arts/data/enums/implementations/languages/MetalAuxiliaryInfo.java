@@ -13,31 +13,31 @@ import net.rudahee.metallics_arts.data.enums.interfaces.ILanguage;
  *
  */
 public enum MetalAuxiliaryInfo {
-    IRON("iron",false,true,false,true,false, false),
-    STEEL("steel",true,false,false,false,false, false),
-    TIN("tin",false,false,false,true,true, false),
-    PEWTER("pewter",true,false,false,false,false, false),
-    ZINC("zinc",false,false,false,true,true, false),
-    BRASS("brass",true,false,false,false,false, false),
-    COPPER("copper",false,true,false,true,false, false),
-    BRONZE("bronze",true,false,false,false,false, false),
+    IRON("iron",false,true,false,true,true, false),
+    STEEL("steel",false,false,false,false,false, false),
+    TIN("tin",false,false,false,true,false, false),
+    PEWTER("pewter",false,false,false,false,false, false),
+    ZINC("zinc",false,false,false,true,false, false),
+    BRASS("brass",false,false,false,false,false, false),
+    COPPER("copper",false,false,false,true,true, false),
+    BRONZE("bronze",false,false,false,false,false, false),
     ALUMINUM("aluminum",false,false,false,true,true, false),
-    DURALUMIN("duralumin",true,false,false,false,false, false),
-    CHROMIUM("chromium",false,false,false,true,true, false),
-    NICROSIL("nicrosil",true,false,false,false,false, false),
-    GOLD("gold",false,true,false,false,false, false),
-    ELECTRUM("electrum",true,false,false,false,false, false),
-    CADMIUM("cadmium",false,false,false,true,true, false),
-    BENDALLOY("bendalloy",true,false,false,false,false, false),
+    DURALUMIN("duralumin",false,false,false,false,false, false),
+    CHROMIUM("chromium",false,false,false,false,true, false),
+    NICROSIL("nicrosil",false,false,false,false,false, false),
+    GOLD("gold",false,false,false,true,true, false),
+    ELECTRUM("electrum",false,false,false,false,false, false),
+    CADMIUM("cadmium",false,false,false,false,true, false),
+    BENDALLOY("bendalloy",false,false,false,false,false, false),
 
     ATIUM("atium", false, false, false,false,false, true),
-    MALATIUM("malatium", true, false, false,false,false, true),
+    MALATIUM("malatium", false, false, false,false,false, true),
     LERASIUM("lerasium", false, false, false,false,false, true),
     ETTMETAL("ettmetal", false, false, false,false,false, true),
 
-    SILVER( "silver",false,false, true,true,true, false),
+    SILVER( "silver",false,false, true,false,true, false),
     LEAD("lead",false,false, true,true,true, false),
-    NICKEL("nickel",false,false, true,true,true, false);
+    NICKEL("nickel",false,false, true,false,true, false);
 
     private final String id;
     private final boolean isAlloy;
