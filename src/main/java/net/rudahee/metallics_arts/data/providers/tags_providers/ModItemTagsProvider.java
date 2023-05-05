@@ -25,7 +25,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags() {
-        tag(ModTags.NUGGETS.get("copper")).add(ModItemsRegister.ITEM_METAL_NUGGET.get("copper_nugget"));
+        tag(ModTags.NUGGETS.get("copper")).add(ModItemsRegister.ITEM_METAL_NUGGET.get("copper"));
         for (GemsEnum gemsEnum : GemsEnum.values()) {
             tag(ModTags.NUGGETS.get(gemsEnum.getGemNameLower())).add(ModItemsRegister.ITEM_GEMS_BASE.get(gemsEnum.getGemNameLower()));
             tag(ModTags.GEMS.get(gemsEnum.getGemNameLower())).add(ModItemsRegister.ITEM_GEMS_NUGGET.get(gemsEnum.getGemNameLower()));

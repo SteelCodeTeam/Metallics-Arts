@@ -1,5 +1,7 @@
 package net.rudahee.metallics_arts.data.custom_recipes.vials;
 
+import it.unimi.dsi.fastutil.Hash;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
@@ -11,14 +13,17 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.Tags;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypesRegister;
+import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -37,24 +42,18 @@ public class LargeVialItemRecipe extends CustomRecipe {
     private ItemStack finalResult = ItemStack.EMPTY;
     private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItemsRegister.LARGE_VIAL.get());
 
+    private static final HashMap<String ,Ingredient> INGREDIENT_MAP = new HashMap<>() {{
 
-    private static final List<Ingredient> INGREDIENT_NUGGET = new ArrayList<Ingredient>() {{
-
-        for (Item metal: ModItemsRegister.ITEM_GEMS_NUGGET.values()) {
-            add(Ingredient.of(metal.asItem()));
-        }
-
-        for (Item metal: ModItemsRegister.ITEM_METAL_NUGGET.values()) {
-
-            if (!ModItemsRegister.ITEM_METAL_NUGGET.get("lead").getDescriptionId().equals(metal.getDescriptionId())
-                    && !ModItemsRegister.ITEM_METAL_NUGGET.get("silver").getDescriptionId().equals(metal.getDescriptionId())
-                    && !ModItemsRegister.ITEM_METAL_NUGGET.get("nickel").getDescriptionId().equals(metal.getDescriptionId())) {
-                add(Ingredient.of(metal.asItem()));
+        for (MetalTagEnum metal : MetalTagEnum.values()) {
+            if (metal.getNameLower().equals("iron")) {
+                put(metal.getNameLower(), Ingredient.of(Tags.Items.NUGGETS_IRON));
+            } else if (metal.getNameLower().equals("gold")) {
+                put(metal.getNameLower(), Ingredient.of(Tags.Items.NUGGETS_GOLD));
+            } else {
+                put(metal.getNameLower(), Ingredient.of(ModTags.NUGGETS.get(metal.getMetalNameLower())));
             }
-
-            add(Ingredient.of(Items.IRON_NUGGET.asItem()));
-            add(Ingredient.of(Items.GOLD_NUGGET.asItem()));
         }
+        System.out.println("A");
 
     }};
 
@@ -67,7 +66,11 @@ public class LargeVialItemRecipe extends CustomRecipe {
         super(location);
     }
 
-    public ItemStack auxIngredient = null;
+
+    private HashMap<String, Integer> faltante = new HashMap<>();
+    private HashMap<String, Integer> cantidadDelStack = new HashMap<>();
+
+    private HashMap<String ,Ingredient> ingredienteAEliminar = new HashMap<>();
 
     /**
      * Method in which the ingredients of the recipe are evaluated if they are correct and coincide with this one.
@@ -85,66 +88,81 @@ public class LargeVialItemRecipe extends CustomRecipe {
         boolean[] ingredients = {false, false};
         int maxQtyNuggets = 10;
         ItemStack actualIngredient;
-        boolean hasVial = false;
 
-        int[] metalsInVial = new int[MetalTagEnum.values().length];
-        Arrays.fill(metalsInVial,0);
-        int[] cantStorage = new int[MetalTagEnum.values().length];
-        Arrays.fill(cantStorage,0);
-        boolean[] addMetal = new boolean[MetalTagEnum.values().length];
-        Arrays.fill(addMetal,false);
+        HashMap<String, Integer> metalsInVial = new HashMap<>();
+        HashMap<String, Integer> cantStorage = new HashMap<>();
+        HashMap<String, Boolean> addMetal = new HashMap<>();
+        HashMap<String, Integer> maxValues = new HashMap<>();
+
 
         for (MetalTagEnum metal : MetalTagEnum.values()) {
-            cantStorage[metal.getIndex()] = metal.getMaxAllomanticTicksStorage()/maxQtyNuggets;
+            maxValues.put(metal.getNameLower(), metal.getMaxAllomanticTicksStorage());
+            metalsInVial.put(metal.getNameLower(), 0);
+            cantStorage.put(metal.getNameLower(),metal.getMaxAllomanticTicksStorage()/maxQtyNuggets);
+            addMetal.put(metal.getNameLower(), false);
+            faltante.put(metal.getNameLower(),0);
+            cantidadDelStack.put(metal.getNameLower(),0);
+            ingredienteAEliminar.clear();
         }
 
-        for(int i = 0; i < inventory.getContainerSize(); i++) {
+        for( int i = 0; i < inventory.getContainerSize(); i++) {
             actualIngredient = inventory.getItem(i);
-            if (actualIngredient != null && !actualIngredient.isEmpty()) {
-                if (INGREDIENT_VIAL.test(inventory.getItem(i))) {
-                    if (hasVial) {
+            if (!actualIngredient.isEmpty()) {
+                if (INGREDIENT_VIAL.test(actualIngredient)) {
+                    if (ingredients[0]) {
                         return false;
                     } else {
-                        hasVial = true;
+                        ingredients[0] = true;
                     }
                     if (actualIngredient.hasTag()){
                         for (MetalTagEnum metal : MetalTagEnum.values()) {
                             if (actualIngredient.getTag().contains(metal.getGemNameLower())){
-                                metalsInVial[metal.getIndex()] = actualIngredient.getTag().getInt(metal.getNameLower());
+                                metalsInVial.put(metal.getNameLower(), actualIngredient.getTag().getInt(metal.getNameLower()));
+                                faltante.put(metal.getNameLower(), maxQtyNuggets - (metalsInVial.get(metal.getNameLower())/cantStorage.get(metal.getNameLower())));
+                                //valor de 0 a 10
                             }
                         }
                     }
-                    ingredients[0] = true;
                 }
-                auxIngredient = actualIngredient;
-                if (INGREDIENT_NUGGET.stream().anyMatch(
-                        ing -> ing.getItems()[0].getItem().getDescriptionId().equals(auxIngredient.getItem().getDescriptionId()))) {
-                    for (MetalTagEnum metal : MetalTagEnum.values()) {
-                        if ((actualIngredient.getItem().getDescriptionId()).equals("item.minecraft."+metal.getNameLower()+"_nugget")
-                                ||(actualIngredient.getItem().getDescriptionId()).equals("item.metallics_arts."+metal.getNameLower()+"_nugget")){
-                            if (addMetal[metal.getIndex()]){
-                                return false;
-                            }
-                            if(metalsInVial[metal.getIndex()] >= metal.getMaxAllomanticTicksStorage()){
-                                return false;
-                            }
-                            addMetal[metal.getIndex()]=true;
+
+                ItemStack auxIngredient = actualIngredient;
+
+                INGREDIENT_MAP.forEach((name, ing) -> {
+                    if (!addMetal.get(name) && !(metalsInVial.get(name) >= maxValues.get(name))) {
+                        if (ing.test(auxIngredient)) {
+                            cantidadDelStack.put(name, auxIngredient.getCount());
+                            ingredienteAEliminar.put(name, ing);
+                            addMetal.put(name, true);
                             ingredients[1] = true;
                         }
                     }
-                }
+                });
             }
         }
 
-        if (ingredients[0] && ingredients[1]){
+        if (ingredients[0] && ingredienteAEliminar.values().stream().count()>0){
             this.finalResult = new ItemStack(ModItemsRegister.LARGE_VIAL.get(),1);
             CompoundTag compoundNBT = new CompoundTag();
-            for (MetalTagEnum metal : MetalTagEnum.values()){
-                if (addMetal[metal.getIndex()]){
-                    compoundNBT.putInt(metal.getNameLower(),metalsInVial[metal.getIndex()]+cantStorage[metal.getIndex()]);
-                }else{
-                    compoundNBT.putInt(metal.getNameLower(),metalsInVial[metal.getIndex()]);
+            /*for (MetalTagEnum metal : MetalTagEnum.values()) {
+                if (ingredienteAEliminar.containsKey(metal.getNameLower()) && metalsInVial.get(metal.getNameLower()).equals(maxValues.get(metal.getNameLower()))) {
+                    return false;
                 }
+            }*/
+
+            for (MetalTagEnum metal : MetalTagEnum.values()) {
+                if (cantidadDelStack.get(metal.getNameLower()) > 0 && addMetal.get(metal.getNameLower())){
+                    if (cantidadDelStack.get(metal.getNameLower()) < faltante.get(metal.getNameLower())) {
+                        compoundNBT.putInt(metal.getNameLower(),
+                                metalsInVial.get(metal.getNameLower()) +
+                                        (cantStorage.get(metal.getNameLower()) * cantidadDelStack.get(metal.getNameLower())));
+                    } else {
+                        compoundNBT.putInt(metal.getNameLower(),
+                                metalsInVial.get(metal.getNameLower()) + (faltante.get(metal.getNameLower()) * cantStorage.get(metal.getNameLower())));
+                    }
+                } else {
+                    compoundNBT.putInt(metal.getNameLower(), metalsInVial.get(metal.getNameLower()));
+                }
+
             }
             compoundNBT.putFloat("CustomModelData", 1);
             this.finalResult.setTag(compoundNBT);
@@ -153,6 +171,35 @@ public class LargeVialItemRecipe extends CustomRecipe {
         else {
             return false;
         }
+    }
+
+
+    @Override
+    public NonNullList<ItemStack> getRemainingItems(CraftingContainer container) {
+
+        NonNullList<ItemStack> list = NonNullList.withSize(container.getContainerSize(), ItemStack.EMPTY);
+        for (MetalTagEnum metal : MetalTagEnum.values()){
+
+            if (ingredienteAEliminar.containsKey(metal.getNameLower())) {
+                for (int i = 0; i < list.size(); ++i) {
+                    ItemStack item = container.getItem(i);
+                    if (ingredienteAEliminar.get(metal.getNameLower()).test(item)) {
+                        //pepitas de menos
+                        if (cantidadDelStack.get(metal.getNameLower()) < faltante.get(metal.getNameLower())) {
+                            item.setCount(0);
+                            list.set(i,item);
+                        } else {
+                            //pepitas de mas
+                            item.setCount(item.getCount() - faltante.get(metal.getNameLower()));
+                            list.set(i,item);
+                        }
+                        //list.set(i, item.getCraftingRemainingItem());
+                    }
+                }
+            }
+        }
+
+        return super.getRemainingItems(container);
     }
 
     /**

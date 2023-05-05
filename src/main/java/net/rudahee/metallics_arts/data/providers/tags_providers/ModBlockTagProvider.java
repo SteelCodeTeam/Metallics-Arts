@@ -40,12 +40,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         for (String key: ModBlocksRegister.BLOCK_METAL_BLOCKS.keySet()) {
             if (ModBlocksRegister.BLOCK_METAL_ORES.containsKey(key)) {
                 Block ore = ModBlocksRegister.BLOCK_METAL_ORES.get(key);
-                //addForgeTag("ores/"+key,ore);
+                addForgeTag("ores/"+key,ore);
                 makePickaxeMineable(ore);
             }
             if (ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.containsKey(key)) {
                 Block ds = ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(key);
-                //addForgeTag("deepslate_ores/"+key,ds);
+                addForgeTag("deepslate_ores/"+key,ds);
                 makePickaxeMineable(ds);
             }
             if (ModBlocksRegister.RAW_METAL_BLOCKS.containsKey(key)) {
@@ -56,7 +56,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
             addForgeTag("block/"+key, ModBlocksRegister.BLOCK_METAL_BLOCKS.get(key));
             makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(key));
         }
-        for (MetalAuxiliaryInfo metal : MetalAuxiliaryInfo.values()) {
+        /*for (MetalAuxiliaryInfo metal : MetalAuxiliaryInfo.values()) {
             if (!metal.isVanilla() && !metal.isAlloy() && !metal.isDivine()) {
                 if (metal.isAppearsInStone() && metal.isAppearsInDeepslate()) {
                     this.tag(ModTags.forgeBlockTag("ores/" + metal.getId()))
@@ -70,7 +70,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                             .add(ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
                 }
             }
-        }
+        }*/
 
         for (String key : ModBlocksRegister.BLOCK_GEMS_BLOCKS.keySet()) {
             addForgeTag("block/" + key, ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(key));
