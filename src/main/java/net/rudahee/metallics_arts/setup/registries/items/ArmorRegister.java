@@ -47,8 +47,8 @@ public class ArmorRegister {
                 () -> new ArmorItem(PostNetheriteMaterials.ALUMINUM, EquipmentSlot.FEET, PROPERTIES));
         ModItemsRegister.ALUMINUM_ARMOR.put(ArmorPiecesEnum.BOOTS, aluminumBoots);
 
-        ModItemsRegister.MISTCLOACK = MetallicsArts.registerItem("mistcloak",
-                () -> new MistCloak(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1)));
-
+        //ModItemsRegister.MISTCLOACK = MetallicsArts.registerItem("mistcloak",
+        //        () -> new MistCloak(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1)));
+        //
     }
 }

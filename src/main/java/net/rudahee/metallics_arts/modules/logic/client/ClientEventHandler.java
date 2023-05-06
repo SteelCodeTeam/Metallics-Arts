@@ -22,7 +22,6 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
  */
 public class ClientEventHandler {
 
-    private final Minecraft mc = Minecraft.getInstance();
 
     /**
      * This method is called when a client-side tick event occurs. It performs various

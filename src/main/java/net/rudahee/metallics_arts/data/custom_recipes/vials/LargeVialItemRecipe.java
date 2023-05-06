@@ -43,10 +43,6 @@ public class LargeVialItemRecipe extends CustomRecipe {
     private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItemsRegister.LARGE_VIAL.get());
 
     private static final HashMap<String ,Ingredient> INGREDIENT_MAP = new HashMap<>() {{
-        /**MAPA DE INGREDIENTES,
-         * KEY : NOMBRE DEL METAL EN MINUSCULA
-         * VALUE: ITEM TAG CASTEADO A INGREDIENT*/
-
 
         for (MetalTagEnum metal : MetalTagEnum.values()) {
             if (metal.getNameLower().equals("iron")) {
@@ -69,15 +65,10 @@ public class LargeVialItemRecipe extends CustomRecipe {
         super(location);
     }
 
-/** FALTANTE SE USA PARA CALCULAR CUANTAS PEPITAS DE CADA METAL SE PUEDEN COLOCAR EN EL VIAL,
- * SI TIENE 2 DE HIERRO 4 DE ORO, DEBERIA ALMACENAR 8 EN HIERRO Y 6 EN ORO*/
     private HashMap<String, Integer> faltante = new HashMap<>();
 
-    /** CANTIDAD EN STACK ACUMULA CUANTOS NUGGETS HAY EN EL STACK PARA CRAFTEO*/
     private HashMap<String, Integer> cantidadDelStack = new HashMap<>();
 
-    /** INGREDIENTES A ELIMINAR ALMACENA LA LISTA DE INGREDIENTES QUE DEBEN CONSUMIRSE PARA EL CRAFTEO, SE UTILIZA EN EL METODO
-     * getRemainingItems() PARA SABER EL NOMBRE DE LOS METALES A ELIMINAR Y COMPARAR SI HACE MACH CON LO QUE EL METODO VA A CONSUMIR*/
     private HashMap<String ,Ingredient> ingredienteAEliminar = new HashMap<>();
 
     /**
@@ -160,7 +151,7 @@ public class LargeVialItemRecipe extends CustomRecipe {
         }
 
         //SI AMBOS SON TRUE, SIGNIFICA QUE TENGO 1 VIAL Y AL MENOS UN NUGGET QUE DEBERIA PODER CARGAR
-        if (ingredients[0] && ingredients[1]){
+        if (ingredients[0] && ingredients[1]) {
             this.finalResult = new ItemStack(ModItemsRegister.LARGE_VIAL.get(),1);
             CompoundTag compoundNBT = new CompoundTag();
             //CREO UN NUEVO ITEM Y SUS TAGS PARA LA SALIDA

@@ -113,7 +113,7 @@ public class OnRenderLevelStage {
             if (player.getLastDeathLocation().isPresent()) {
                 DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, Vec3.atCenterOf(player.getLastDeathLocation().get().pos()), playerPos, 0.005, texture, 31, 8, 32);
             } else {
-                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, new Vec3(0, 100, 0), playerPos, 0.005, texture, 31, 8, 32);
+                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, new Vec3(player.level.getLevelData().getXSpawn(), player.level.getLevelData().getYSpawn() + 1, player.level.getLevelData().getZSpawn()), playerPos, 0.005, texture, 31, 8, 32);
             }
 
         }
