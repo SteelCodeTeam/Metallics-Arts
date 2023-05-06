@@ -15,6 +15,7 @@ import com.klikli_dev.modonomicon.api.datagen.book.BookEntryModel;
 import com.klikli_dev.modonomicon.api.datagen.book.BookModel;
 import com.klikli_dev.modonomicon.api.datagen.book.page.BookCraftingRecipePageModel;
 import com.klikli_dev.modonomicon.api.datagen.book.page.BookPageModel;
+import com.klikli_dev.modonomicon.api.datagen.book.page.BookSmithingRecipePageModel;
 import com.klikli_dev.modonomicon.api.datagen.book.page.BookTextPageModel;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -84,19 +85,17 @@ public class DemoBookProvider extends BookProvider {
         // Define a map used to determine the position of entries in the book.
         EntryLocationHelper entryHelper = ModonomiconAPI.get().getEntryLocationHelper();
         entryHelper.setMap(
-                "_____________________t____f_____",
+                "_________g___________t__f_______",
                 "________________________________",
-                "_______g_____________r____e_____",
-                "______d_____a_____p______________",
-                "_______h________________________",
+                "_______d____a_____p_____________",
+                "________________________________",
+                "_________h___________r__e_______",
                 "_______________s________________",
                 "________________________________",
                 "_______________b________________",
                 "_________n___________k__________",
                 "____________j_____i_____________",
                 "_________o_____m_____l__________",
-                "________________________________",
-                "________________________________",
                 "________________________________"
         );
 
@@ -109,8 +108,8 @@ public class DemoBookProvider extends BookProvider {
         BookEntryModel crafting = this.subDivisionEntry(helper, entryHelper, 'b', SubdivisionData.CAFTING, welcome);
 
         BookEntryModel cores = this.multiCraftsItemsEntry(helper, entryHelper, 'p', MultiCraftData.CORES, GetItemsUtils.getCores(), welcome);
-        BookEntryModel aluminum_armor = this.multiCraftsItemsEntry(helper, entryHelper, 'r', MultiCraftData.ALUMINUM_ARMOR, GetItemsUtils.getAluminumArmor(), cores);
-        BookEntryModel steel_armor = this.multiCraftsItemsEntry(helper, entryHelper, 't', MultiCraftData.STEEL_ARMOR, GetItemsUtils.getSteelArmor(), cores);
+        BookEntryModel aluminum_armor = this.multiSmithingItemsEntry(helper, entryHelper, 'r', MultiCraftData.ALUMINUM_ARMOR, GetItemsUtils.getAluminumArmor(), cores);
+        BookEntryModel steel_armor = this.multiSmithingItemsEntry(helper, entryHelper, 't', MultiCraftData.STEEL_ARMOR, GetItemsUtils.getSteelArmor(), cores);
 
         BookEntryModel crystalDagger = this.weaponsEntry(helper, entryHelper, 'd', weapons, WeaponsData.SILVER_KNIFE);
         BookEntryModel obsidianDagger = this.weaponsEntry(helper, entryHelper, 'e', aluminum_armor, WeaponsData.OBSIDIAN_DAGGER);
@@ -324,7 +323,43 @@ public class DemoBookProvider extends BookProvider {
                         .withRecipeId1(recipeList.remove(0))
                         .build());
             }
+        }
 
+        return BookEntryModel.builder()
+                .withId(this.modLoc(helper.category + "/" + helper.entry))
+                .withName(helper.entryName())
+                .withDescription(helper.entryDescription())
+                .withIcon(multiCraftEntry.getIcon())
+                .withLocation(entryHelper.get(location))
+                .withParent(parent)
+                .withPages(list.toArray(new BookPageModel[0]))
+                .build();
+    }
+    private BookEntryModel multiSmithingItemsEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, MultiCraftData multiCraftEntry, ArrayList<String> recipeList, BookEntryModel parent) {
+        helper.entry(multiCraftEntry.getId() + "_entry");
+        ArrayList<BookPageModel> list = new ArrayList<>();
+
+        // Add item description page
+        helper.page("items_description");
+        BookTextPageModel page =
+                BookTextPageModel.builder()
+                        .withText(helper.pageText())
+                        .withTitle(helper.pageTitle())
+                        .build();
+
+        list.add(page);
+        // Add recipe pages
+        while (!recipeList.isEmpty()) {
+            if (recipeList.size() != 1) {
+                list.add(BookSmithingRecipePageModel.builder()
+                        .withRecipeId1(recipeList.remove(0))
+                        .withRecipeId2(recipeList.remove(0))
+                        .build());
+            } else {
+                list.add(BookSmithingRecipePageModel.builder()
+                        .withRecipeId1(recipeList.remove(0))
+                        .build());
+            }
         }
 
         return BookEntryModel.builder()

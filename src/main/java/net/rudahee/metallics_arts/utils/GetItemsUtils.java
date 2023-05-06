@@ -88,21 +88,21 @@ public class GetItemsUtils {
         return coreList;
     }
 
-    public static ArrayList<String> getAluminumArmor() {
+    public static ArrayList<String> getSteelArmor() {
         ArrayList<String> armorList = new ArrayList<>();
-        armorList.add(MetallicsArts.MOD_ID + "armor_steel_helmet");
-        armorList.add(MetallicsArts.MOD_ID + "armor_steel_chestplate");
-        armorList.add(MetallicsArts.MOD_ID + "armor_steel_leggings");
-        armorList.add(MetallicsArts.MOD_ID + "armor_steel_boots");
+        armorList.add(MetallicsArts.MOD_ID + "_armor_steel_helmet");
+        armorList.add(MetallicsArts.MOD_ID + "_armor_steel_chestplate");
+        armorList.add(MetallicsArts.MOD_ID + "_armor_steel_leggings");
+        armorList.add(MetallicsArts.MOD_ID + "_armor_steel_boots");
         return armorList;
     }
 
-    public static ArrayList<String> getSteelArmor() {
+    public static ArrayList<String> getAluminumArmor() {
         ArrayList<String> armorList = new ArrayList<>();
-        armorList.add(MetallicsArts.MOD_ID + "armor_aluminum_helmet");
-        armorList.add(MetallicsArts.MOD_ID + "armor_aluminum_chestplate");
-        armorList.add(MetallicsArts.MOD_ID + "armor_aluminum_leggings");
-        armorList.add(MetallicsArts.MOD_ID + "armor_aluminum_boots");
+        armorList.add(MetallicsArts.MOD_ID + "_armor_aluminum_helmet");
+        armorList.add(MetallicsArts.MOD_ID + "_armor_aluminum_chestplate");
+        armorList.add(MetallicsArts.MOD_ID + "_armor_aluminum_leggings");
+        armorList.add(MetallicsArts.MOD_ID + "_armor_aluminum_boots");
         return armorList;
     }
 }

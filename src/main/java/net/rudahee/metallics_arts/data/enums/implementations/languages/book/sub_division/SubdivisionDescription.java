@@ -78,9 +78,6 @@ public enum SubdivisionDescription {
             new String[]{""}),
     WELCOME(new String[]{""},
             new String[]{"Hace siglos, aquellos con la capacidad de ingerir metales y metabolizarlos para obtener poderes eran conocidos como “nacidos de la bruma” pero a día de hoy estas prácticas han quedado cerca de la extinción, si estás leyendo esto significa que tú, probablemente, poseas la habilidad para quemar","estos metales en tu interior, tal vez no te des cuenta y lo estés haciendo en este mismo momento. \\\nTambién se cuenta, que los místicos del norte, podían hacer otras “cosas” extrañas con los mismos metales… de esto no sé mucho, pero el caso, es que puede que incluso ahora haya descendientes del norte ", " capaz de usar su poder. \\\n Quizá hayas heredado alguna de estas grandes capacidades, quizá no, pero para sobrevivir en este mundo es mi deber mostrarte el camino de las Artes Metálicas, puede que algunas de estas prácticas te lleven por caminos oscuros repletos "," de muerte, otras pueden ayudar a la reconstrucción del mundo y la salvación de la humanidad, tú decidirás qué camino tomar. \\\n\\\n\\\n\\\n\\\n  Mi nombre es Lemmeg y este es el Diario del Superviviente."},
-            new String[]{""}),
-    LEATHER(new String[]{""},
-            new String[]{"mierda de cuero"},
             new String[]{""});
 
     private final String[] english;

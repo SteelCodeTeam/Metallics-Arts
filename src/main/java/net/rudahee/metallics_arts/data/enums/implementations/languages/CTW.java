@@ -91,7 +91,6 @@ public enum CTW implements ILanguage {
     TUTORIAL_FERUCHEMY("tutorial_feruchemy","Feruchemic Tutorial","Tutorial de Feruquimia","",""),
 
     WELCOME("welcome","Welcome", "Bienvenido","", ""),
-    LEATHER("leather","Leather","Cuero","",""),
     CORES("cores", "Cores", "Nucleos", "", ""),
     ALUMINUM_ARMOR("aluminum_armor", "Aluminum Armor", "Armadura de Aluminio", "", ""),
     STEEL_ARMOR("steel_armor", "Steel Armor", "Armadura de Acero", "", ""),
