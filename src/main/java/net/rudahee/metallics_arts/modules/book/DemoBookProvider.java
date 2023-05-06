@@ -12,7 +12,6 @@ import com.klikli_dev.modonomicon.api.datagen.BookProvider;
 import com.klikli_dev.modonomicon.api.datagen.EntryLocationHelper;
 import com.klikli_dev.modonomicon.api.datagen.book.BookCategoryModel;
 import com.klikli_dev.modonomicon.api.datagen.book.BookEntryModel;
-import com.klikli_dev.modonomicon.api.datagen.book.BookEntryParentModel;
 import com.klikli_dev.modonomicon.api.datagen.book.BookModel;
 import com.klikli_dev.modonomicon.api.datagen.book.page.BookCraftingRecipePageModel;
 import com.klikli_dev.modonomicon.api.datagen.book.page.BookPageModel;
@@ -85,10 +84,10 @@ public class DemoBookProvider extends BookProvider {
         // Define a map used to determine the position of entries in the book.
         EntryLocationHelper entryHelper = ModonomiconAPI.get().getEntryLocationHelper();
         entryHelper.setMap(
-                "________________________________",
-                "_________d__e__f__g__h__________",
-                "________________________________",
-                "_______________a________________",
+                "______g______________t____f_____",
+                "______d_____q___________________",
+                "______h______________r____e_____",
+                "____________a_____p______________",
                 "________________________________",
                 "_______________s________________",
                 "________________________________",
@@ -108,34 +107,33 @@ public class DemoBookProvider extends BookProvider {
         BookEntryModel weapons = this.subDivisionEntry(helper, entryHelper, 'a', SubdivisionData.WEAPONS, welcome);
 
         BookEntryModel crafting = this.subDivisionEntry(helper, entryHelper, 'b', SubdivisionData.CAFTING, welcome);
-        BookEntryParentModel craftingParent = BookEntryParentModel.builder().withEntryId(crafting.getId()).build();
-        //BookEntryModel alloyFurnace = this.subDivisionEntry(helper, entryHelper, 'c', SubdivisionData.ALLOY_FURNACE, welcome);
-        //BookEntryParentModel alloyFurnaceParent = BookEntryParentModel.builder().withEntryId(alloyFurnace.getId()).build();
 
-        BookEntryModel crystalDagger = this.weaponsEntry(helper, entryHelper, 'd', weapons, WeaponsData.SILVER_KNIFE);
-        BookEntryModel obsidianDagger = this.weaponsEntry(helper, entryHelper, 'e', weapons, WeaponsData.OBSIDIAN_DAGGER);
-        BookEntryModel obsidianAxe = this.weaponsEntry(helper, entryHelper, 'f', weapons, WeaponsData.OBSIDIAN_AXE);
-        BookEntryModel kolossBlade = this.weaponsEntry(helper, entryHelper, 'g', weapons, WeaponsData.KOLOSS_BLADE);
-        BookEntryModel duelingStaff = this.weaponsEntry(helper, entryHelper, 'h', weapons, WeaponsData.DUELING_STAFF);
+        BookEntryModel cores = this.multiCraftsItemsEntry(helper, entryHelper, 'p', MultiCraftData.CORES, GetItemsUtils.getCores(), welcome);
+        BookEntryModel leather = this.subDivisionEntry(helper, entryHelper, 'q', SubdivisionData.LEATHER, weapons);
+        BookEntryModel aluminum_armor = this.multiCraftsItemsEntry(helper, entryHelper, 'r', MultiCraftData.ALUMINUM_ARMOR, GetItemsUtils.getAluminumArmor(), cores);
+        BookEntryModel steel_armor = this.multiCraftsItemsEntry(helper, entryHelper, 't', MultiCraftData.STEEL_ARMOR, GetItemsUtils.getSteelArmor(), cores);
 
-        BookEntryModel vials = this.multiCraftsItemsEntry(helper, entryHelper, 'j', MultiCraftData.VIALS, GetItemsUtils.getVialsList(), craftingParent);
-        BookEntryModel rings = this.multiCraftsItemsEntry(helper, entryHelper, 'k', MultiCraftData.RINGS, GetItemsUtils.getRingList(), craftingParent);
-        BookEntryParentModel ringsParent = BookEntryParentModel.builder().withEntryId(rings.getId()).build();
-        BookEntryModel bands = this.multiCraftsItemsEntry(helper, entryHelper, 'l', MultiCraftData.BANDS, GetItemsUtils.getBandList(), ringsParent);
-        BookEntryModel spikes = this.multiCraftsItemsEntry(helper, entryHelper, 'm', MultiCraftData.SPIKES, GetItemsUtils.getSpikesList(), craftingParent);
-        BookEntryModel icons = this.multiCraftsItemsEntry(helper, entryHelper, 'n', MultiCraftData.ICONS, GetItemsUtils.getIconsList(), craftingParent);
-        BookEntryModel alloys = this.multiCraftsItemsEntry(helper, entryHelper, 'i', MultiCraftData.ALLOYS, GetItemsUtils.getAlloysList(), craftingParent); //, alloyFurnaceParent
+        BookEntryModel crystalDagger = this.weaponsEntry(helper, entryHelper, 'd', leather, WeaponsData.SILVER_KNIFE);
+        BookEntryModel obsidianDagger = this.weaponsEntry(helper, entryHelper, 'e', aluminum_armor, WeaponsData.OBSIDIAN_DAGGER);
+        BookEntryModel obsidianAxe = this.weaponsEntry(helper, entryHelper, 'f', steel_armor, WeaponsData.OBSIDIAN_AXE);
+        BookEntryModel kolossBlade = this.weaponsEntry(helper, entryHelper, 'g', leather, WeaponsData.KOLOSS_BLADE);
+        BookEntryModel duelingStaff = this.weaponsEntry(helper, entryHelper, 'h', leather, WeaponsData.DUELING_STAFF);
 
-        BookEntryParentModel iconsParent = BookEntryParentModel.builder().withEntryId(icons.getId()).build();
-        BookEntryModel patterns = this.multiCraftsItemsEntry(helper, entryHelper, 'o', MultiCraftData.PATTERNS, GetItemsUtils.getPatterns(), iconsParent);
+        BookEntryModel vials = this.multiCraftsItemsEntry(helper, entryHelper, 'j', MultiCraftData.VIALS, GetItemsUtils.getVialsList(), crafting);
+        BookEntryModel rings = this.multiCraftsItemsEntry(helper, entryHelper, 'k', MultiCraftData.RINGS, GetItemsUtils.getRingList(), crafting);
+        BookEntryModel bands = this.multiCraftsItemsEntry(helper, entryHelper, 'l', MultiCraftData.BANDS, GetItemsUtils.getBandList(), rings);
+        BookEntryModel spikes = this.multiCraftsItemsEntry(helper, entryHelper, 'm', MultiCraftData.SPIKES, GetItemsUtils.getSpikesList(), crafting);
+        BookEntryModel icons = this.multiCraftsItemsEntry(helper, entryHelper, 'n', MultiCraftData.ICONS, GetItemsUtils.getIconsList(), crafting);
+        BookEntryModel alloys = this.multiCraftsItemsEntry(helper, entryHelper, 'i', MultiCraftData.ALLOYS, GetItemsUtils.getAlloysList(), crafting); //, alloyFurnaceParent
+
+        BookEntryModel patterns = this.multiCraftsItemsEntry(helper, entryHelper, 'o', MultiCraftData.PATTERNS, GetItemsUtils.getPatterns(), icons);
 
         return BookCategoryModel.builder()
                 .withId(this.modLoc(helper.category))
                 .withName(helper.categoryName())
                 .withIcon("minecraft:book")
                 .withSortNumber(0)
-                //alloyFurnace
-                .withEntries(weapons,crafting,crystalDagger,obsidianDagger,obsidianAxe,kolossBlade,duelingStaff,alloys,vials,rings,bands,spikes,icons,patterns,welcome)
+                .withEntries(weapons,crafting,crystalDagger,obsidianDagger,obsidianAxe,kolossBlade,duelingStaff,alloys,vials,rings,bands,spikes,icons,patterns,welcome,cores,aluminum_armor,leather,steel_armor)
                 .build();
     }
 
@@ -298,11 +296,11 @@ public class DemoBookProvider extends BookProvider {
      * @param location the location where the entry will be placed.
      * @param multiCraftEntry the MultiCraftData for the item.
      * @param recipeList the ArrayList of recipe IDs.
-     * @param parents the parent BookEntryParentModels of the entry (optional).
+     * @param parent the parent BookEntryParentModels of the entry (optional).
      *
      * @return the BookEntryModel for the multi-crafts item entry
      */
-    private BookEntryModel multiCraftsItemsEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, MultiCraftData multiCraftEntry, ArrayList<String> recipeList, BookEntryParentModel... parents) {
+    private BookEntryModel multiCraftsItemsEntry(BookLangHelper helper, EntryLocationHelper entryHelper, char location, MultiCraftData multiCraftEntry, ArrayList<String> recipeList, BookEntryModel parent) {
         helper.entry(multiCraftEntry.getId() + "_entry");
         ArrayList<BookPageModel> list = new ArrayList<>();
 
@@ -317,10 +315,17 @@ public class DemoBookProvider extends BookProvider {
         list.add(page);
         // Add recipe pages
         while (!recipeList.isEmpty()) {
-            list.add(BookCraftingRecipePageModel.builder()
-                    .withRecipeId1(recipeList.remove(0))
-                    .withRecipeId2(recipeList.remove(0))
-                    .build());
+            if (recipeList.size() != 1) {
+                list.add(BookCraftingRecipePageModel.builder()
+                        .withRecipeId1(recipeList.remove(0))
+                        .withRecipeId2(recipeList.remove(0))
+                        .build());
+            } else {
+                list.add(BookCraftingRecipePageModel.builder()
+                        .withRecipeId1(recipeList.remove(0))
+                        .build());
+            }
+
         }
 
         return BookEntryModel.builder()
@@ -329,7 +334,7 @@ public class DemoBookProvider extends BookProvider {
                 .withDescription(helper.entryDescription())
                 .withIcon(multiCraftEntry.getIcon())
                 .withLocation(entryHelper.get(location))
-                .withParents(parents)
+                .withParent(parent)
                 .withPages(list.toArray(new BookPageModel[0]))
                 .build();
     }

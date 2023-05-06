@@ -29,9 +29,8 @@ public enum SubdivisionData {
 
     ALLOMANCY("allomancy",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",true,false,false),
     FERUCHEMY("feruchemy",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",true,false,false),
-    WELCOME("welcome",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",true,false,false);
-
-
+    WELCOME("welcome",MetallicsArts.MOD_ID + ":textures/icons/enhancement.png",true,false,false),
+    LEATHER("leather","minecraft:textures/item/leather_chestplate.png",false,false,false);
 
     private final String id;
     private final String icon;

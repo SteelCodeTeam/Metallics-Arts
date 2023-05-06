@@ -27,6 +27,15 @@ public enum MultiCaftDescriptions {
             "Stopy metali które mogą być znalezione w różnych miejscach na świecie."),
     PATTERNS("",
             "",
+            ""),
+    CORES("",
+            "cosas de cuero",
+            ""),
+    ALUMINUM_ARMOR("",
+            "cosas de cuero",
+            ""),
+    STEEL_ARMOR("",
+            "cosas de cuero",
             "");
 
     private final String english;

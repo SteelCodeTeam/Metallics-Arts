@@ -91,6 +91,10 @@ public enum CTW implements ILanguage {
     TUTORIAL_FERUCHEMY("tutorial_feruchemy","Feruchemic Tutorial","Tutorial de Feruquimia","",""),
 
     WELCOME("welcome","Welcome", "Bienvenido","", ""),
+    LEATHER("leather","Leather","Cuero","",""),
+    CORES("cores", "Cores", "Nucleos", "", ""),
+    ALUMINUM_ARMOR("aluminum_armor", "Aluminum Armor", "Armadura de Aluminio", "", ""),
+    STEEL_ARMOR("steel_armor", "Steel Armor", "Armadura de Acero", "", ""),
 
     INTERACTIONS("interactions","Interactions", "Interacciones","", ""),
     INTRODUCTION("introduction","Introduction", "Introducción","", ""),
@@ -107,7 +111,7 @@ public enum CTW implements ILanguage {
     PATTERNS("patterns","Patterns","Patrones","", "Wzory"),
 
     OBSIDIAN_CORE("obsidian_core", "Obsidian Core", "Nucleo de Obsidiana", "", ""),
-    STEEL_CORE("steel_core", "Steel Core", "", "Nucleo de Acero", ""),
+    STEEL_CORE("steel_core", "Steel Core", "Nucleo de Acero", "", ""),
     ALUMINUM_CORE("aluminum_core", "Aluminum Core", "Nucleo de Aluminio", "", ""),
     STEEL_HELMET("steel_helmet", "Steel Helmet", "Casco de Acero", "", ""),
     STEEL_LEGGINGS("steel_leggings", "Steel Leggings", "Pantalones de Acero", "", ""),

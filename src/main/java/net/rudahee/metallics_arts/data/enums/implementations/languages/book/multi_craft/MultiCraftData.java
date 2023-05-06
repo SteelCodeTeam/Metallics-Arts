@@ -15,7 +15,10 @@ public enum MultiCraftData {
     SPIKES("spikes",MetallicsArts.MOD_ID + ":textures/item/spikes/gold_spike.png"),
     ICONS("icons",MetallicsArts.MOD_ID + ":textures/item/symbols/allomantic_symbols/iron_symbol.png"),
     ALLOYS("alloys",MetallicsArts.MOD_ID + ":textures/item/metal/ingot/cadmium_ingot.png"),
-    PATTERNS("patterns",MetallicsArts.MOD_ID + ":textures/item/pattern/a_aluminum_pattern.png");
+    PATTERNS("patterns",MetallicsArts.MOD_ID + ":textures/item/pattern/a_aluminum_pattern.png"),
+    CORES("cores",MetallicsArts.MOD_ID + ":textures/item/cores/core_aluminum.png"),
+    ALUMINUM_ARMOR("aluminum_armor",MetallicsArts.MOD_ID + ":textures/item/armors/aluminum_chestplate.png"),
+    STEEL_ARMOR("steel_armor",MetallicsArts.MOD_ID + ":textures/item/armors/steel_chestplate.png");
 
     private final String id;
     private final String icon;

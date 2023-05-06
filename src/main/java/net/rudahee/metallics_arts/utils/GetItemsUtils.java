@@ -78,4 +78,31 @@ public class GetItemsUtils {
         }
         return patternsList;
     }
+
+    public static ArrayList<String> getCores() {
+        ArrayList<String> coreList = new ArrayList<>();
+        coreList.add(MetallicsArts.MOD_ID + "_core_steel");
+        coreList.add(MetallicsArts.MOD_ID + "_core_aluminum");
+        coreList.add(MetallicsArts.MOD_ID + "_core_obsidian");
+
+        return coreList;
+    }
+
+    public static ArrayList<String> getAluminumArmor() {
+        ArrayList<String> armorList = new ArrayList<>();
+        armorList.add(MetallicsArts.MOD_ID + "armor_steel_helmet");
+        armorList.add(MetallicsArts.MOD_ID + "armor_steel_chestplate");
+        armorList.add(MetallicsArts.MOD_ID + "armor_steel_leggings");
+        armorList.add(MetallicsArts.MOD_ID + "armor_steel_boots");
+        return armorList;
+    }
+
+    public static ArrayList<String> getSteelArmor() {
+        ArrayList<String> armorList = new ArrayList<>();
+        armorList.add(MetallicsArts.MOD_ID + "armor_aluminum_helmet");
+        armorList.add(MetallicsArts.MOD_ID + "armor_aluminum_chestplate");
+        armorList.add(MetallicsArts.MOD_ID + "armor_aluminum_leggings");
+        armorList.add(MetallicsArts.MOD_ID + "armor_aluminum_boots");
+        return armorList;
+    }
 }
