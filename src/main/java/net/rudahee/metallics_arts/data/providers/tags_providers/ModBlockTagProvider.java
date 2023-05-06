@@ -37,10 +37,46 @@ public class ModBlockTagProvider extends BlockTagsProvider {
      */
     @Override
     protected void addTags() {
-        for (String key: ModBlocksRegister.BLOCK_METAL_BLOCKS.keySet()) {
+
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()){
+            if (!metal.isVanilla()) {
+                if (metal.isAppearsInStone() && metal.isAppearsInDeepslate()) {
+                    addForgeTag("ores/" + metal.getId(), ModBlocksRegister.BLOCK_METAL_ORES.get(metal.getId()), ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
+                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_ORES.get(metal.getId()));
+                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
+                } else if (metal.isAppearsInStone()) {
+                    addForgeTag("ores/" + metal.getId(), ModBlocksRegister.BLOCK_METAL_ORES.get(metal.getId()));
+                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_ORES.get(metal.getId()));
+                } else if (metal.isAppearsInDeepslate()) {
+                    addForgeTag("ores/" + metal.getId(), ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
+                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
+                }
+
+                if (!metal.isAlloy()&& !metal.isDivine()) {
+                    addForgeTag("storage_blocks/raw_" + metal.getId(), ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getId()));
+                    makePickaxeMineable(ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getId()));
+                }
+                addForgeTag("storage_blocks/"+metal.getId(), ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getId()));
+                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getId()));
+
+                if (metal.isDivine()) {
+                    addForgeTag("storage_blocks/" + metal.getId(), ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getId()));
+                    makePickaxeMineable(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getId()));
+                }
+            }
+
+
+        }
+        for (String key : ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.keySet()) {
+            addForgeTag("storage_blocks/" + key + "_cristal", ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key));
+            makePickaxeMineable(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key));
+        }
+
+        /*for (String key: ModBlocksRegister.BLOCK_METAL_BLOCKS.keySet()) {
+
             if (ModBlocksRegister.BLOCK_METAL_ORES.containsKey(key)) {
                 Block ore = ModBlocksRegister.BLOCK_METAL_ORES.get(key);
-                addForgeTag("ores/"+key,ore);
+                addForgeTag("ores/" + key, ore);
                 makePickaxeMineable(ore);
             }
             if (ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.containsKey(key)) {
@@ -50,37 +86,19 @@ public class ModBlockTagProvider extends BlockTagsProvider {
             }
             if (ModBlocksRegister.RAW_METAL_BLOCKS.containsKey(key)) {
                 Block raw = ModBlocksRegister.RAW_METAL_BLOCKS.get(key);
-                addForgeTag("raw_block/"+key, raw);
+                addForgeTag("storage_blocks/"+key, raw);
                 makePickaxeMineable(raw);
             }
-            addForgeTag("block/"+key, ModBlocksRegister.BLOCK_METAL_BLOCKS.get(key));
+            addForgeTag("storage_blocks/"+key, ModBlocksRegister.BLOCK_METAL_BLOCKS.get(key));
             makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(key));
         }
-        /*for (MetalAuxiliaryInfo metal : MetalAuxiliaryInfo.values()) {
-            if (!metal.isVanilla() && !metal.isAlloy() && !metal.isDivine()) {
-                if (metal.isAppearsInStone() && metal.isAppearsInDeepslate()) {
-                    this.tag(ModTags.forgeBlockTag("ores/" + metal.getId()))
-                            .add(ModBlocksRegister.BLOCK_METAL_ORES.get(metal.getId()))
-                            .add(ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
-                } else if (metal.isAppearsInStone()) {
-                    this.tag(ModTags.forgeBlockTag("ores/" + metal.getId()))
-                            .add(ModBlocksRegister.BLOCK_METAL_ORES.get(metal.getId()));
-                } else {
-                    this.tag(ModTags.forgeBlockTag("ores/" + metal.getId()))
-                            .add(ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
-                }
-            }
-        }*/
 
         for (String key : ModBlocksRegister.BLOCK_GEMS_BLOCKS.keySet()) {
-            addForgeTag("block/" + key, ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(key));
+            addForgeTag("storage_blocks/" + key, ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(key));
             makePickaxeMineable(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(key));
-        }
+        }*/
 
-        for (String key : ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.keySet()) {
-            addForgeTag("block/" + key, ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key));
-            makePickaxeMineable(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key));
-        }
+
 
     }
 

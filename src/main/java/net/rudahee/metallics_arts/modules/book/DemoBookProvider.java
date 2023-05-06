@@ -84,11 +84,11 @@ public class DemoBookProvider extends BookProvider {
         // Define a map used to determine the position of entries in the book.
         EntryLocationHelper entryHelper = ModonomiconAPI.get().getEntryLocationHelper();
         entryHelper.setMap(
-                "______g______________t____f_____",
-                "______d_____q___________________",
-                "______h______________r____e_____",
-                "____________a_____p______________",
+                "_____________________t____f_____",
                 "________________________________",
+                "_______g_____________r____e_____",
+                "______d_____a_____p______________",
+                "_______h________________________",
                 "_______________s________________",
                 "________________________________",
                 "_______________b________________",
@@ -109,15 +109,14 @@ public class DemoBookProvider extends BookProvider {
         BookEntryModel crafting = this.subDivisionEntry(helper, entryHelper, 'b', SubdivisionData.CAFTING, welcome);
 
         BookEntryModel cores = this.multiCraftsItemsEntry(helper, entryHelper, 'p', MultiCraftData.CORES, GetItemsUtils.getCores(), welcome);
-        BookEntryModel leather = this.subDivisionEntry(helper, entryHelper, 'q', SubdivisionData.LEATHER, weapons);
         BookEntryModel aluminum_armor = this.multiCraftsItemsEntry(helper, entryHelper, 'r', MultiCraftData.ALUMINUM_ARMOR, GetItemsUtils.getAluminumArmor(), cores);
         BookEntryModel steel_armor = this.multiCraftsItemsEntry(helper, entryHelper, 't', MultiCraftData.STEEL_ARMOR, GetItemsUtils.getSteelArmor(), cores);
 
-        BookEntryModel crystalDagger = this.weaponsEntry(helper, entryHelper, 'd', leather, WeaponsData.SILVER_KNIFE);
+        BookEntryModel crystalDagger = this.weaponsEntry(helper, entryHelper, 'd', weapons, WeaponsData.SILVER_KNIFE);
         BookEntryModel obsidianDagger = this.weaponsEntry(helper, entryHelper, 'e', aluminum_armor, WeaponsData.OBSIDIAN_DAGGER);
         BookEntryModel obsidianAxe = this.weaponsEntry(helper, entryHelper, 'f', steel_armor, WeaponsData.OBSIDIAN_AXE);
-        BookEntryModel kolossBlade = this.weaponsEntry(helper, entryHelper, 'g', leather, WeaponsData.KOLOSS_BLADE);
-        BookEntryModel duelingStaff = this.weaponsEntry(helper, entryHelper, 'h', leather, WeaponsData.DUELING_STAFF);
+        BookEntryModel kolossBlade = this.weaponsEntry(helper, entryHelper, 'g', weapons, WeaponsData.KOLOSS_BLADE);
+        BookEntryModel duelingStaff = this.weaponsEntry(helper, entryHelper, 'h', weapons, WeaponsData.DUELING_STAFF);
 
         BookEntryModel vials = this.multiCraftsItemsEntry(helper, entryHelper, 'j', MultiCraftData.VIALS, GetItemsUtils.getVialsList(), crafting);
         BookEntryModel rings = this.multiCraftsItemsEntry(helper, entryHelper, 'k', MultiCraftData.RINGS, GetItemsUtils.getRingList(), crafting);
@@ -133,7 +132,7 @@ public class DemoBookProvider extends BookProvider {
                 .withName(helper.categoryName())
                 .withIcon("minecraft:book")
                 .withSortNumber(0)
-                .withEntries(weapons,crafting,crystalDagger,obsidianDagger,obsidianAxe,kolossBlade,duelingStaff,alloys,vials,rings,bands,spikes,icons,patterns,welcome,cores,aluminum_armor,leather,steel_armor)
+                .withEntries(weapons,crafting,crystalDagger,obsidianDagger,obsidianAxe,kolossBlade,duelingStaff,alloys,vials,rings,bands,spikes,icons,patterns,welcome,cores,aluminum_armor,steel_armor)
                 .build();
     }
 

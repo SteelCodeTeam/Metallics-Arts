@@ -51,8 +51,4 @@ public class ModTags {
     public static TagKey<Item> forgeItemTag(String name) {
         return ItemTags.create(new ResourceLocation("forge", name));
     }
-
-    public static TagKey<Block> forgeBlockTag(String name) {
-        return BlockTags.create(new ResourceLocation("forge", name));
-    }
 }
