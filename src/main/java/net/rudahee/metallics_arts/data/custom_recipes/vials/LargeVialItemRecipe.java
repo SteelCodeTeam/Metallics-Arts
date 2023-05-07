@@ -43,6 +43,10 @@ public class LargeVialItemRecipe extends CustomRecipe {
     private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItemsRegister.LARGE_VIAL.get());
 
     private static final HashMap<String ,Ingredient> INGREDIENT_MAP = new HashMap<>() {{
+<<<<<<< HEAD
+=======
+
+>>>>>>> ee5ea25fb5b0e9e111654f788518cd64c09fe272
         for (MetalTagEnum metal : MetalTagEnum.values()) {
             if (metal.getNameLower().equals("iron")) {
                 put(metal.getNameLower(), Ingredient.of(Tags.Items.NUGGETS_IRON));
@@ -64,6 +68,14 @@ public class LargeVialItemRecipe extends CustomRecipe {
         super(location);
     }
 
+<<<<<<< HEAD
+=======
+    private HashMap<String, Integer> faltante = new HashMap<>();
+
+    private HashMap<String, Integer> cantidadDelStack = new HashMap<>();
+
+    private HashMap<String ,Ingredient> ingredienteAEliminar = new HashMap<>();
+>>>>>>> ee5ea25fb5b0e9e111654f788518cd64c09fe272
 
     /**
      * Method in which the ingredients of the recipe are evaluated if they are correct and coincide with this one.
@@ -126,7 +138,12 @@ public class LargeVialItemRecipe extends CustomRecipe {
             }
         }
 
+<<<<<<< HEAD
         if (ingredients[0] && ingredients[1]){
+=======
+        //SI AMBOS SON TRUE, SIGNIFICA QUE TENGO 1 VIAL Y AL MENOS UN NUGGET QUE DEBERIA PODER CARGAR
+        if (ingredients[0] && ingredients[1]) {
+>>>>>>> ee5ea25fb5b0e9e111654f788518cd64c09fe272
             this.finalResult = new ItemStack(ModItemsRegister.LARGE_VIAL.get(),1);
             CompoundTag compoundNBT = new CompoundTag();
             for (MetalTagEnum metal : MetalTagEnum.values()){

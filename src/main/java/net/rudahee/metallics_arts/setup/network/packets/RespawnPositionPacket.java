@@ -81,16 +81,8 @@ public class RespawnPositionPacket {
      */
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
-            ServerPlayer player = ctx.get().getSender();
 
-            if (player != null) {
-                if (player.getRespawnPosition() != null) {
-
-                    GlobalPos pos = GlobalPos.of(player.getRespawnDimension(), player.getRespawnPosition());
-                    OnRenderLevelStage.setRespawnPos(pos);
-
-                }
-            }
+            OnRenderLevelStage.setRespawnPos(pos);
 
         });
         ctx.get().setPacketHandled(true);

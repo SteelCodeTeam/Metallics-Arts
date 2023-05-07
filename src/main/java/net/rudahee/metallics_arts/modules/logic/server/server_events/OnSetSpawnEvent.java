@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
 import net.minecraft.core.GlobalPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
@@ -22,6 +23,11 @@ public class OnSetSpawnEvent {
      * @param event The PlayerSetSpawnEvent that triggered this method.
      */
     public static void setSpawn(PlayerSetSpawnEvent event) {
-        ModNetwork.syncRespawnPosPacket(GlobalPos.of(event.getSpawnLevel(),event.getNewSpawn()), event.getEntity());
+
+        if (event.getEntity() instanceof ServerPlayer player) {
+            if (event.getNewSpawn() != null) {
+                ModNetwork.syncRespawnPosPacket(GlobalPos.of(event.getSpawnLevel(), event.getNewSpawn()), player);
+            }
+        }
     }
 }
