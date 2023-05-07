@@ -17,13 +17,17 @@ import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.Tags;
 import net.rudahee.metallics_arts.data.configs.MetalListConfig;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalAuxiliaryInfo;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
+import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -61,24 +65,25 @@ public class IronAndSteelHelpers {
      */
     public static int haveNuggets(Player player){
 
-        List <Item> list = new ArrayList<>();
+        ArrayList<Ingredient> arrayList = new ArrayList<>();
 
-        list.addAll(ModItemsRegister.ITEM_METAL_NUGGET.values());
-        list.addAll(ModItemsRegister.ITEM_GEMS_NUGGET.values());
-
-        /**Get a list of nuggets of every metal except, ALUMINIUM and SILVER*/
-        list = list.stream()
-                .filter(item -> !item.equals(ModItemsRegister.ITEM_METAL_NUGGET.get(MetalTagEnum.ALUMINUM.getGemNameLower())))
-                .filter(item -> !item.equals(ModItemsRegister.ITEM_METAL_NUGGET.get(MetalEnum.SILVER.getMetalNameLower())))
-                .collect(Collectors.toList());
-        list.add(Items.IRON_NUGGET);
-        list.add(Items.GOLD_NUGGET);
-
-        for (ItemStack stack: player.getInventory().items){
-            if (list.contains(stack.getItem())){
-                return player.getInventory().findSlotMatchingItem(stack);
+        for (MetalAuxiliaryInfo metal : MetalAuxiliaryInfo.values()) {
+            if (!metal.getId().equals(MetalAuxiliaryInfo.IRON.getId()) && !metal.getId().equals(MetalAuxiliaryInfo.GOLD.getId())
+            && !metal.getId().equals(MetalAuxiliaryInfo.ALUMINUM.getId()) && !metal.getId().equals(MetalAuxiliaryInfo.SILVER.getId())) {
+                arrayList.add(Ingredient.of(ModTags.NUGGETS.get(metal.getId())));
             }
         }
+        arrayList.add(Ingredient.of(Tags.Items.NUGGETS_IRON));
+        arrayList.add(Ingredient.of(Tags.Items.NUGGETS_GOLD));
+
+        for (ItemStack stack: player.getInventory().items) {
+            for (Ingredient ing : arrayList) {
+                if (ing.test(stack)) {
+                    return player.getInventory().findSlotMatchingItem(stack);
+                }
+            }
+        }
+
         return -1;
     }
 
