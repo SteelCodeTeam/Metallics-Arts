@@ -41,7 +41,17 @@ public class ModPaintingProvider {
 
     // The RegistryObject for the Sanfre Painting variant.
     public static final RegistryObject<PaintingVariant> SANFRE_PAINTING = PAINTING_VARIANTS.register("sanfre_painting",
-     () -> new PaintingVariant(64,64));
+            () -> new PaintingVariant(64,64));
+
+    // The RegistryObject for the Koloss Painting by Gar Leyva variant.
+    public static final RegistryObject<PaintingVariant> KOLOSS_PAINTING = PAINTING_VARIANTS.register("gar_leyva_koloss_painting",
+            () -> new PaintingVariant(48,64));
+
+    // The RegistryObject for the Armonia Painting by Gar Leyva variant.
+    public static final RegistryObject<PaintingVariant> ARMONIA_PAINTING = PAINTING_VARIANTS.register("gar_leyva_armonia_painting",
+            () -> new PaintingVariant(42,48));
+
+
 
 
     /**

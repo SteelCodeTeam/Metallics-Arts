@@ -1,8 +1,7 @@
 {
    "values" : [
-
-     "metallics_arts:sanfre_painting", "metallics_arts:fun_cobber_painting", "metallics_arts:inquisitor_painting"
-
-
+     "metallics_arts:sanfre_painting", "metallics_arts:fun_cobber_painting",
+     "metallics_arts:inquisitor_painting", "metallics_arts:gar_leyva_koloss_painting",
+     "metallics_arts:gar_leyva_armonia_painting"
    ]
 }
