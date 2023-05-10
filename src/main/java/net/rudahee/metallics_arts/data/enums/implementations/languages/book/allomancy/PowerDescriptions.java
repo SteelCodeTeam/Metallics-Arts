@@ -58,7 +58,7 @@ public enum PowerDescriptions {
     ATIUM("\\\nGives you ä chance to avoid incoming damage.\\\n\\\nBonus:\\\nx If your attacker burns Atium he can partially cancel the effects.",
             "\\\n Te otorga una probabilidad de evadir el daño.\\\n\\\n\\\n\\\n\\\n Extra: \\\n x Si tu atacante también quema atium, puede cancelar una parte de los efectos.",
             "\\\nDaje ci szansę na uniknięcie obrażeń.\\\n\\\nBonus:\\\nx Jeżeli twój przeciwnik spala atium możę anulować część tego efektu."),
-    MALATIUM("\\\nDraws a line towards the last kill point of the player you hit.",
+    MALATIUM("\\\nDraws a line towards the the last point where the player you hit died.",
             "\\\n Señala el último punto de muerte del jugador al que golpees.",
             "\\\nWskazuje na miejce ostatniej śmierci uderzonego gracza"),
     LERASIUM("\\\nIncreases the potency of the metals you are burning.",
