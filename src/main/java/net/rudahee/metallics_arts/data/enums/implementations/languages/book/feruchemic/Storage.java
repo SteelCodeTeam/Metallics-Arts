@@ -16,7 +16,7 @@ public enum Storage {
     TIN("\\\n++Storing:++\\\n\\\nx While you store diminish your senses.",
             "\\\n++Almacenar:++\\\nx Mientras almacenas, disminuye tus sentidos.",
             "\\\n++Gromadzenie:++\\\n\\\nx Podczas gromadzenia wyostrz swoje zmysły."),
-    PEWTER("\\\n++Storing:++\\\n\\\nx While you decant, you feel weaker, I could almost win you a chicken.",
+    PEWTER("\\\n++Storing:++\\\n\\\nx While you store, you feel weaker as if a chicken could win if you fought.",
             "\\\n++Almacenar:++\\\nx Mientras almacenas, te sientes más debil, casi te podria ganar una gallina.",
             "\\\n++Gromadzenie:++\\\n\\\nx Podczas gromadzenia czujesz się słaby."),
     ZINC("\\\n++Storing:++\\\n\\\nx While storing, deny all loot from entity.",
