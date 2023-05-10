@@ -29,7 +29,7 @@ public enum SubdivisionDescription {
             new String[]{"Los metales mentales, como su nombre indica, permiten interactuar con las mentes ajenas y defender la nuestra del contacto externo."},
             new String[]{""}),
     TEMPORAL(
-            new String[]{"In the group of temporaryl metals, there are those that allow time to be broken, from knowing your past to accelerating what surrounds you."},
+            new String[]{"In the group of temporaral metals, there are those that allow time to be broken, from knowing your past to accelerating what surrounds you."},
             new String[]{"En el grupo de los metales temporales, están los que permiten quebrantar el tiempo, desde conocer tu pasado a acelerar lo que te rodea."},
             new String[]{""}),
     ENHANCEMENT(
