@@ -29,7 +29,7 @@ public enum SubdivisionDescription {
             new String[]{"Los metales mentales, como su nombre indica, permiten interactuar con las mentes ajenas y defender la nuestra del contacto externo."},
             new String[]{""}),
     TEMPORAL(
-            new String[]{"In the group of temporary metals, there are those that allow time to be broken, from knowing your past to accelerating what surrounds you."},
+            new String[]{"In the group of temporaryl metals, there are those that allow time to be broken, from knowing your past to accelerating what surrounds you."},
             new String[]{"En el grupo de los metales temporales, están los que permiten quebrantar el tiempo, desde conocer tu pasado a acelerar lo que te rodea."},
             new String[]{""}),
     ENHANCEMENT(
@@ -37,11 +37,11 @@ public enum SubdivisionDescription {
             new String[]{"Los metales de mejora, le permiten a un alomantico potenciar este arte, o denegarla por completo."},
             new String[]{""}),
     DIVINE_ALLOMANCY(
-            new String[]{"The divine metals are strange metals and lost in time, little is known about them as a whole, but something is clear, be careful when ingesting the metal of Harmony..."},
+            new String[]{"The divine metals are strange metals and lost to time, little is known about them as a whole, but something is clear, be careful when ingesting the metal of Harmony..."},
             new String[]{"Los metales divinos, son metales extraños y perdidos en el tiempo, poco se sabe de ellos como conjunto, pero algo está claro, ten cuidado al ingerir el metal de Armonía…"},
             new String[]{""}),
     TUTORIAL_ALLOMANCY(
-            new String[]{"To know where to start we have to see what your powers are, many here start as misty, people who only have the ability to burn a mental, so we should see if you can burn any metal, for this press M, in case something you have seen, you will be able to identify which metal is the one that will give you power."," To be able to use it, fill a [vial](entry://intro/vials_entry) with fragments of this metal and swallow it, then you just have to touch M again and activate it."},
+            new String[]{"To know where to start we have to see what your powers are, many here start as misty, people who only have the ability to burn a single metal, so we should see if you can burn any metal, for this press M, in case something you have any power, you will be able to identify which metal is the one that will give you power."," To be able to use it, fill a [vial](entry://intro/vials_entry) with fragments of this metal and consume it, then you just have to touch M again and activate it."},
             new String[]{"Para saber dónde empezar tenemos que ver cuáles son tus poderes, muchos aquí empiezan como brumosos, personas que solo tienen la capacidad de quemar un mental, por lo que deberíamos ver si puedes quemar algún metal, para esto presiona M, en caso de que algo hayas visto, serás capaz de ","identificar que metal es el que te dará poder. Para poder utilizarlo, rellena un [vial](entry://intro/vials_entry) con fragmentos de este metal y trágatelo, luego solo deberás volver a tocar M y activarlo."},
             new String[]{""}),
     PHYSICAL_FERUCHEMY(
@@ -53,7 +53,7 @@ public enum SubdivisionDescription {
             new String[]{"Los metales de tipo cognitivos, permiten acumular las capacidades mentales de tu cuerpo, desde el calor que sientes, hasta tus experiencias y así utilizarlas cuando sean necesarias."},
             new String[]{""}),
     SPIRITUAL(
-            new String[]{"Spiritual type metals allow you to accumulate and decant your attributes that define the spirit of each one, from the good Fortune you will have, to your Connection with the environment."},
+            new String[]{"Spiritual type metals allow you to accumulate and tap your attributes that define the spirit of each one, from the good Fortune you will have, to your Connection with the environment."},
             new String[]{"Los metales de tipo espirituales, permiten acumular y decantar tus atributos que definen el espíritu de cada uno, desde la buena Fortuna que tendrá, hasta su Conexión con el entorno."},
             new String[]{""}),
     HYBRID(
@@ -65,7 +65,7 @@ public enum SubdivisionDescription {
             new String[]{"De los legendarios metales divinos al igual que en la Alomancia, poco se sabe, será aunque se mencionan ciertos efectos sobrenaturales, incluso dentro de la misma Investidura."},
             new String[]{""}),
     TUTORIAL_FERUCHEMY(
-            new String[]{"To start with this art, we should first know if you have the ability to use any metal as reserves, you will see this by pressing N, it will not be difficult for you to identify which one you can use. Once you have it, so the stories say, Northern mystics used [rings](entry://intro/rings_entry) or [bracers](entry://intro/bands_entry) to be able to store their power, so try to get one"," and after equipping it, use N to activate this mysterious power."},
+            new String[]{"To start with this art, we should first know if you have the ability to use any metal as reserves, you will see this by pressing N, if you do posses such ability it will not be difficult for you to identify which one you can use. As the stories say, Northern mystics used [rings](entry://intro/rings_entry) or [bracers](entry://intro/bands_entry) to be able to store their power, such tools are also called metalminds, so try to get one"," after equipping it, use N to activate this mysterious power, the metalmind has to match your power though."},
             new String[]{"Para empezar con este arte, deberíamos primero saber si tienes la capacidad de utilizar como reservas algún metal, esto lo verás al presionar N, no te será difícil identificar cuál puedes usar. Una vez que lo tengas, según dicen las historias, los místicos del norte utilizaban [anillos](entry://intro/rings_entry) o [brazales](entry://intro/bands_entry)  para poder ","guardar su poder, así que intenta conseguir uno y tras equipártelo, utiliza N para activar este misterioso poder."},
             new String[]{""}),
 
@@ -73,7 +73,7 @@ public enum SubdivisionDescription {
             new String[]{"El arte de la Alomancia, es brutal, cruda, y poderosa. Este arte nos permite obtener gran poder a partir de los metales ingeridos, quemándolos en nuestro interior, como si de un horno se tratase."},
             new String[]{""}),
     FERUCHEMY(
-            new String[]{"The art of Feruchemy, is the art of Harmony, this allows to store certain attributes in the bracelets, rings or metal fragments that we call \"metal minds\" depending of course, on the metal of which they are composed, to later use the power stored, thus increasing the capabilities of its user.","Although it is called a harmonic art, it has a slight disadvantage, since all the power that its user will be able to use, must be obtained from the same person...\\\nOr maybe not…?"},
+            new String[]{"The art of Feruchemy, is the art of Harmony, this allows for storage of certain attributes in the bracelets, rings or metal fragments that we call \"metal minds\" depending of course, on the metal of which they are composed, to later use the power stored, thus increasing the capabilities of its user.","Although it is called a harmonic art, it has a slight disadvantage, since all the power that its user will be able to use, must be obtained from the same person...\\\nOr maybe not…?"},
             new String[]{"El arte de la Feruquimia, es el arte de Armonía, esta permite almacenar ciertos atributos en los brazaletes, anillos o fragmentos de metal a los que llamamos “mentes de metal” dependiendo claro, del metal del cual estén compuestos, para luego utilizar el poder almacenado, aumentando así las capacidades de su usuario.", "A pesar de que se denomina un arte armónica, tiene una ligera desventaja, ya que todo el poder que su usuario podrá utilizar, deberá ser obtenido de la misma persona …\\\n ¿O quizá no …?"},
             new String[]{""}),
     WELCOME(
