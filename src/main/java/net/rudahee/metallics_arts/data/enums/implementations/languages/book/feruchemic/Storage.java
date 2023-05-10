@@ -13,7 +13,7 @@ public enum Storage {
     STEEL("\\\n++Storing:++\\\n\\\nx While you store you feel really sluggish.",
             "\\\n++Almacenar:++\\\nx Mientras almacenas, notas como tu cuerpo responde más lentamente de lo que debería. ¿Ese caracol te acaba de avanzar?",
             "\\\n++Gromadzenie:++\\\n\\\nx Podczas gromadzenia czujesz się bardzo powolny."),
-    TIN("\\\n++Storing:++\\\n\\\nx While you store diminish your senses.",
+    TIN("\\\n++Storing:++\\\n\\\nx While you store, your senses are diminished.",
             "\\\n++Almacenar:++\\\nx Mientras almacenas, disminuye tus sentidos.",
             "\\\n++Gromadzenie:++\\\n\\\nx Podczas gromadzenia wyostrz swoje zmysły."),
     PEWTER("\\\n++Storing:++\\\n\\\nx While you store, you feel weaker as if a chicken could win if you fought.",
