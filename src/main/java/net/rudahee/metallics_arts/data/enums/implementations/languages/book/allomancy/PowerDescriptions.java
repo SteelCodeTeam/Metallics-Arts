@@ -7,10 +7,10 @@ package net.rudahee.metallics_arts.data.enums.implementations.languages.book.all
  * @since 1.5.1
  */
 public enum PowerDescriptions {
-    IRON("\\\nPulls the metal source you are aiming at.\\\n\\\n++To use this power, you need to left click while looking at the metal source.++",
+    IRON("\\\nPulls at the metal source you are aiming at.\\\n\\\n++To use this power, you need to left click while looking at the metal source.++",
             "\\\n Tira de la fuente de metal a la que estés apuntando.\\\n Para usar este poder, debes hacer clic izquierdo mientras miras a dicha fuente de metal.",
             "\\\nPrzyciągnij metal na którego linię patrzysz.\\\n\\\n++Żeby użyć tej mocy, naciśnij lewy przycisk myszy podczas patrzenia na linię metalu.++"),
-    STEEL("\\\nPushes the metal source you are pointing at.\\\n++To use this power, you must right click while looking at the metal source.++\\\n\\\nBonus:\\\nx You can use Ctrl + Spacebar to push towards the block at your feet.\\\nx In case there are no valid blocks, consume metal nuggets.",
+    STEEL("\\\nPushes the metal source you are pointing at.\\\n++To use this power, you must right click while looking at the metal source.++\\\n\\\nBonus:\\\nx You can use Ctrl + Spacebar to push towards the block at your feet.\\\nx In case there are no valid blocks, consume metal nuggets to produce the same effect.",
             "\\\n Empuja la fuente de metal a la que estés señalando. \\\n Para usar este poder, debes hacer clic derecho mientras miras a dicha fuente de metal.\\\n Extra: \\\n x Puedes utilizar Ctrl + Barra espaciadora para empujar hacia el bloque que tengas a tus pies. \\\n x En caso de que no haya bloques válidos, consume pepitas de metales.",
             "\\\nOdepchnij metal na którego linię patrzysz.\\\n++Żeby użyć tej mocy, naciśnij prawy przycisk myszy podczas patrzenia na linię metalu.++\\\n\\\nBonus:\\\nx Możesz nacisnąć Ctrl + Spacja żeby odepchnąć się od bloku metalu pod tobą.\\\nx Jeżeli nie ma takiego bloku, zarodki metalu z ekwipunku zostaną użyte."),
     TIN("\\\nHeightens your senses.",
@@ -25,7 +25,7 @@ public enum PowerDescriptions {
     BRASS("\\\nHostile entities will ignore you.\\\n\\\n++To use this power, you must right click while looking at the entity.++\\\n\\\nBonus:\\\nx You have a chance to tame pets.",
             "\\\n Las entidades hostiles te ignorarán. \\\n Para usar este poder en una entidad, debes hacer clic derecho mientras miras a la entidad.\\\n\\\n\\\n Extra: \\\n x Tienes una probabilidad de domesticar mascotas.",
             "\\\nSprawia że agresywne istoty cię ignorują.\\\\\\n++Żeby użyć tej mocy, naciśnij prawyxprzycisk myszy podczas patrzenia na istotę.++\\\\\\n\\\\\\nBonus:\\\\\\nx Masz szansę na oswojenie zwierzęcia"),
-    COPPER("\\\nMakes nearby entities ignore you.\\\n\\\nBonus:\\\nx Prevent other players from seeing that you're burning metal.",
+    COPPER("\\\nMakes nearby entities ignore you.\\\n\\\nBonus:\\\nx Prevent other players from seeing that you're burning metals.",
             "\\\n Hace que las entidades cercanas te ignoren. \\\n\\\n\\\n\\\n\\\n Extra: \\\n x Evita que otros jugadores vean que estás quemando metales.",
             "\\\nSprawia że pobliskie istoty cię ignorują.\\\n\\\nBonus:\\\nx Nie pozwala innym graczom zobaczyć że spalasz metal."),
     BRONZE("\\\nMakes nearby entities follow you around.\\\n\\\nBonus:\\\nx Mark players burning metals around you.",
@@ -55,7 +55,7 @@ public enum PowerDescriptions {
     BENDALLOY("\\\nSpeeds up the game around you.",
             "\\\n Acelera el tiempo a tu alrededor. \\\n",
             "\\\nGra przyśpiesza w okół ciebie."),
-    ATIUM("\\\nGives you chance to avoid incoming damage.\\\n\\\nBonus:\\\nx If your attacker burns Atium he can cancel a part of the effects.",
+    ATIUM("\\\nGives you ä chance to avoid incoming damage.\\\n\\\nBonus:\\\nx If your attacker burns Atium he can partially cancel the effects.",
             "\\\n Te otorga una probabilidad de evadir el daño.\\\n\\\n\\\n\\\n\\\n Extra: \\\n x Si tu atacante también quema atium, puede cancelar una parte de los efectos.",
             "\\\nDaje ci szansę na uniknięcie obrażeń.\\\n\\\nBonus:\\\nx Jeżeli twój przeciwnik spala atium możę anulować część tego efektu."),
     MALATIUM("\\\nDraws a line towards the last kill point of the player you hit.",
