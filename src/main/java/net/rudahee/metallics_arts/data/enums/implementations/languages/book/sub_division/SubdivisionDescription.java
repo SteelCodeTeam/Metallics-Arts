@@ -54,7 +54,7 @@ public enum SubdivisionDescription {
             new String[]{""}),
     SPIRITUAL(
             new String[]{"Spiritual type metals allow you to store and tap the attributes that define the spirit of each person, from the good Fortune you will have, to your Connection with the environment."},
-            new String[]{"Los metales de tipo espirituales, permiten acumular y decantar tus atributos que definen el espíritu de cada uno, desde la buena Fortuna que tendrá, hasta su Conexión con el entorno."},
+            new String[]{"Los metales de tipo espirituales, permiten acumular y decantar los atributos que definen el espíritu de cada persona, desde la buena Fortuna que tendrá, hasta su Conexión con el entorno."},
             new String[]{""}),
     HYBRID(
             new String[]{"Hybrid metals are those that allow you to store a combination of physical and cognitive capacities, from health to energy."},

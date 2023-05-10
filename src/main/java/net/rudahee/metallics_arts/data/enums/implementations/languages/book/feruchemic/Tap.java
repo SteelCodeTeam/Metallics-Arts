@@ -1,5 +1,5 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages.book.feruchemic;
-but 
+
 /**
  * This enum contains the description for the feruchemical powers tap book in different languages.
  *
