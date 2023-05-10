@@ -1,4 +1,4 @@
-# Metallics Arts 1.19.2-1.5.4
+# Metallics Arts 1.19.2-1.6.0
 
 
 
@@ -52,17 +52,15 @@ We sincerely hope you enjoy your trip with us! 🎉
 
 And we have two mandatory dependencies:
 - **Curios 1.19.2-5.1.1.0** or superior
-
+- **Modonomicon1.19.2-1.27.0** or superior
 <br>
 
 ------
 
 <br>
 
-## **Changelog ✒ [v1.5.3]️** 
-
-Problems solved:
-- Refactor 90%!
+## **Changelog ✒ [v1.6.0]️**
+- Refactor completed!
 - Names consistency are fixed.
 - All code is commented.
 - The powers that draw lines have been tweaked, now the lines are much cooler and more efficient!
@@ -72,7 +70,12 @@ Problems solved:
 - Polish and Japanese translations implemented.
 - We have changed the synchronization and the use of the internal tags of the players.
 - Commands now support selectors (@a, @p...) and support not having a specific target (applied to yourself)
+- New armors, new cores for armor's recipes.
+- New In-Game guide based on Modonomicon mod. 
 - Some minor github issues solved
+- Solve shield texture issues
+- Now we are using forgetag to do modpacks easier!
+- And a lot of minor changes and bug solveds!
   <br>
 
 ------
@@ -82,15 +85,10 @@ Problems solved:
 ## **Future Improvements ⬆️**
 
 **Known Issues**
-- ~~Names consistency is bad.~~ [v.1.5.2]
 - Decant iron and burn bendalloy while you fall result in a bug.
-- Shield with our banners are not getting the right texture.
 
 **Improvements**
-- Do steel flying more comfortable. (It's not a priority).
-- ~~Add sound effects.~~ [v.1.5.1]
-- Do more comfortable (and maybe push and pull through blocks) with iron/steel. 
-- ~~**We need to do a really hard refactor.**~~ [v.1.5.1]
+- Do more comfortable (and maybe push and pull through blocks) with iron/steel.
 - Add some entities like special zombies, specials archers, they must use allomancy or feruchemy.
 - Maybe, implements new structures with loot from the mod.
 - New kind of allomantic beacons with his respective powers.
@@ -137,4 +135,4 @@ We know we're going to port it to version 1.20.x, and we know we'll be adding si
 
 Join our Discord guild to stay in touch and receive updates: https://discord.gg/YHqMTRYAMT
 
-Also you can check our new website: **NOT YET** :)
+Also you can check our new website: https://steelcode.team :)
