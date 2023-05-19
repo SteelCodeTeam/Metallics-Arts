@@ -92,7 +92,7 @@ public class OnRenderLevelStage {
                     "textures/veffects/the_idle4_60_copper_transluscent.png");
             Vec3 sourceCameraVector = view.subtract(playerPos);
 
-            metalLines(event.getRenderTick(), event.getPartialTick(), view, transformationMatrix, playerPos, 0.005, texture, 31, 8, 32, FoundNearbyMetalUtils.getNearbyAllomancers());
+            metalLines(event.getRenderTick(), event.getPartialTick(), view, transformationMatrix, playerPos, 0.005, texture, 16, 8, 32, FoundNearbyMetalUtils.getNearbyAllomancers());
 
         }
 
@@ -111,9 +111,9 @@ public class OnRenderLevelStage {
 
 
             if (player.getLastDeathLocation().isPresent()) {
-                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, Vec3.atCenterOf(player.getLastDeathLocation().get().pos()), playerPos, 0.005, texture, 31, 8, 32);
+                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, Vec3.atCenterOf(player.getLastDeathLocation().get().pos()), playerPos, 0.005, texture, 16, 8, 32);
             } else {
-                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, new Vec3(player.level.getLevelData().getXSpawn(), player.level.getLevelData().getYSpawn() + 1, player.level.getLevelData().getZSpawn()), playerPos, 0.005, texture, 31, 8, 32);
+                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, new Vec3(player.level.getLevelData().getXSpawn(), player.level.getLevelData().getYSpawn() + 1, player.level.getLevelData().getZSpawn()), playerPos, 0.005, texture, 16, 8, 32);
             }
 
         }
@@ -131,9 +131,9 @@ public class OnRenderLevelStage {
             Vec3 sourceCameraVector = view.subtract(playerPos);
 
             if (respawnPos == null) {
-                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, new Vec3(player.level.getLevelData().getXSpawn(), player.level.getLevelData().getYSpawn() + 1, player.level.getLevelData().getZSpawn()), playerPos, 0.005, texture, 31, 8, 32);
+                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, new Vec3(player.level.getLevelData().getXSpawn(), player.level.getLevelData().getYSpawn() + 1, player.level.getLevelData().getZSpawn()), playerPos, 0.005, texture, 16, 8, 32);
             } else {
-                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, Vec3.atCenterOf(respawnPos.pos()), playerPos, 0.005, texture, 31, 8, 32);
+                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, Vec3.atCenterOf(respawnPos.pos()), playerPos, 0.005, texture, 16, 8, 32);
             }
         }
 
@@ -150,9 +150,9 @@ public class OnRenderLevelStage {
 
 
             if (anotherPlayerDeathPos == null) {
-                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, new Vec3(player.level.getLevelData().getXSpawn(), player.level.getLevelData().getYSpawn() + 1, player.level.getLevelData().getZSpawn()), playerPos, 0.005, texture, 31, 8, 32);
+                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, new Vec3(player.level.getLevelData().getXSpawn(), player.level.getLevelData().getYSpawn() + 1, player.level.getLevelData().getZSpawn()), playerPos, 0.005, texture, 16, 8, 32);
             } else {
-                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, Vec3.atCenterOf(anotherPlayerDeathPos.pos()), playerPos, 0.005, texture, 31, 8, 32);
+                DrawUtils.drawMetalQuadLines(event.getRenderTick(), view, transformationMatrix, Vec3.atCenterOf(anotherPlayerDeathPos.pos()), playerPos, 0.005, texture, 16, 8, 32);
             }
         }
 
