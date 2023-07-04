@@ -204,6 +204,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 else {
                     item1 = Tags.Items.INGOTS_COPPER;
                 }
+                item2 = ModTags.INGOTS.get(object.getSecondMetal());
             } else {
                 item1 = ModTags.INGOTS.get(object.getFirstMetal());
                 item2 = ModTags.INGOTS.get(object.getSecondMetal());

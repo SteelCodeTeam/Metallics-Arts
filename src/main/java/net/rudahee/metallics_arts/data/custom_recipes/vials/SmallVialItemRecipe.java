@@ -12,17 +12,21 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.Tags;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypesRegister;
+import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
- * Class that control the large vial recipe. It's a custom recipe, so extends CustomRecipe.
+ * Class that control the small vial recipe. It's a custom recipe, so extends CustomRecipe.
  *
  * @author SteelCode Team
  * @since 1.5.1
@@ -35,22 +39,20 @@ import java.util.List;
 public class SmallVialItemRecipe extends CustomRecipe {
 
     private ItemStack finalResult = ItemStack.EMPTY;
-
     private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItemsRegister.SMALL_VIAL.get());
 
-    private static final List<Ingredient> INGREDIENT_NUGGET = new ArrayList<Ingredient>() {{
-        for (Item metal: ModItemsRegister.ITEM_GEMS_NUGGET.values()) {
-            add(Ingredient.of(metal.asItem()));
-        }
-        for (Item metal: ModItemsRegister.ITEM_METAL_NUGGET.values()) {
-            if (!ModItemsRegister.ITEM_METAL_NUGGET.get("lead").getDescriptionId().equals(metal.getDescriptionId())
-                    && !ModItemsRegister.ITEM_METAL_NUGGET.get("silver").getDescriptionId().equals(metal.getDescriptionId())
-                    && !ModItemsRegister.ITEM_METAL_NUGGET.get("nickel").getDescriptionId().equals(metal.getDescriptionId())) {
-                add(Ingredient.of(metal.asItem()));
+    private static final HashMap<String ,Ingredient> INGREDIENT_MAP = new HashMap<>() {{
+
+        for (MetalTagEnum metal : MetalTagEnum.values()) {
+            if (metal.getNameLower().equals("iron")) {
+                put(metal.getNameLower(), Ingredient.of(Tags.Items.NUGGETS_IRON));
+            } else if (metal.getNameLower().equals("gold")) {
+                put(metal.getNameLower(), Ingredient.of(Tags.Items.NUGGETS_GOLD));
+            } else {
+                put(metal.getNameLower(), Ingredient.of(ModTags.NUGGETS.get(metal.getMetalNameLower())));
             }
-            add(Ingredient.of(Items.IRON_NUGGET.asItem()));
-            add(Ingredient.of(Items.GOLD_NUGGET.asItem()));
         }
+
     }};
 
     /**
@@ -62,7 +64,6 @@ public class SmallVialItemRecipe extends CustomRecipe {
         super(location);
     }
 
-    public ItemStack auxIngredient = null;
 
     /**
      * Method in which the ingredients of the recipe are evaluated if they are correct and coincide with this one.
@@ -71,66 +72,56 @@ public class SmallVialItemRecipe extends CustomRecipe {
      * If everything matches, it returns 'true' because the recipe exists and is correct.
      *
      * @param inventory the inventory in which the crafting is taking place.
-     * @param level level in which crafting is taking place.
+     * @param level world in which crafting is taking place.
      *
      * @return boolean
      */
     @Override
     public boolean matches(@NotNull CraftingContainer inventory, @NotNull Level level) {
         boolean[] ingredients = {false, false};
-        int cantMaxPep = 5;
+        int maxQtyNuggets = 5;
         ItemStack actualIngredient;
-        boolean hasVial = false;
 
-
-        int[] metalsEnVial = new int[MetalTagEnum.values().length];
-        Arrays.fill(metalsEnVial,0);
-
-        int[] cantStorage = new int[MetalTagEnum.values().length];
-        Arrays.fill(cantStorage,0);
-
-        boolean[] addMetal = new boolean[MetalTagEnum.values().length];
-        Arrays.fill(addMetal,false);
+        HashMap<String, Integer> metalsInVial = new HashMap<>();
+        HashMap<String, Integer> cantStorage = new HashMap<>();
+        HashMap<String, Boolean> addMetal= new HashMap<>();
+        HashMap<String, Integer> maxValues= new HashMap<>();
 
         for (MetalTagEnum metal : MetalTagEnum.values()) {
-            cantStorage[metal.getIndex()] = (metal.getMaxAllomanticTicksStorage()/2)/cantMaxPep;
+            maxValues.put(metal.getNameLower(), metal.getMaxAllomanticTicksStorage());
+            metalsInVial.put(metal.getNameLower(), 0);
+            cantStorage.put(metal.getNameLower(),metal.getMaxAllomanticTicksStorage()/maxQtyNuggets);
+            addMetal.put(metal.getNameLower(), false);
         }
+
+
         for(int i = 0; i < inventory.getContainerSize(); i++) {
             actualIngredient = inventory.getItem(i);
-            if (actualIngredient != null && !actualIngredient.isEmpty()) {
-                if (INGREDIENT_VIAL.test(inventory.getItem(i))) {
-                    if (hasVial) {
+            if (!actualIngredient.isEmpty()) {
+                if (INGREDIENT_VIAL.test(actualIngredient)) {
+                    if (ingredients[0]) {
                         return false;
                     } else {
-                        hasVial = true;
+                        ingredients[0] = true;
                     }
                     if (actualIngredient.hasTag()){
                         for (MetalTagEnum metal : MetalTagEnum.values()) {
                             if (actualIngredient.getTag().contains(metal.getGemNameLower())){
-                                metalsEnVial[metal.getIndex()] = actualIngredient.getTag().getInt(metal.getNameLower());
+                                metalsInVial.put(metal.getNameLower(), actualIngredient.getTag().getInt(metal.getNameLower()));
                             }
                         }
                     }
-                    ingredients[0] = true;
                 }
-                auxIngredient = actualIngredient;
-
-                if (INGREDIENT_NUGGET.stream().anyMatch(
-                        ing -> ing.getItems()[0].getItem().getDescriptionId().equals(auxIngredient.getItem().getDescriptionId()))) {
-                    for (MetalTagEnum metal : MetalTagEnum.values()) {
-                        if ((actualIngredient.getItem().getDescriptionId()).equals("item.minecraft."+metal.getNameLower()+"_nugget")
-                                ||(actualIngredient.getItem().getDescriptionId()).equals("item.metallics_arts."+metal.getNameLower()+"_nugget")){
-                            if (addMetal[metal.getIndex()]){
-                                return false;
-                            }
-                            if(metalsEnVial[metal.getIndex()] >= metal.getMaxAllomanticTicksStorage()/2){
-                                return false;
-                            }
-                            addMetal[metal.getIndex()]=true;
-                            ingredients[1] = true;
-                        }
+                ItemStack auxIngredient = actualIngredient;
+                INGREDIENT_MAP.forEach((name, ing) -> {
+                    if (addMetal.get(name) || metalsInVial.get(name) >= maxValues.get(name)) {
+                        return;
                     }
-                }
+                    if (ing.test(auxIngredient)) {
+                        addMetal.put(name, true);
+                        ingredients[1] = true;
+                    }
+                });
             }
         }
 
@@ -138,10 +129,10 @@ public class SmallVialItemRecipe extends CustomRecipe {
             this.finalResult = new ItemStack(ModItemsRegister.SMALL_VIAL.get(),1);
             CompoundTag compoundNBT = new CompoundTag();
             for (MetalTagEnum metal : MetalTagEnum.values()){
-                if (addMetal[metal.getIndex()]){
-                    compoundNBT.putInt(metal.getNameLower(),metalsEnVial[metal.getIndex()]+cantStorage[metal.getIndex()]);
+                if (addMetal.get(metal.getNameLower())) {
+                    compoundNBT.putInt(metal.getNameLower(),metalsInVial.get(metal.getNameLower()) + cantStorage.get(metal.getNameLower()));
                 }else{
-                    compoundNBT.putInt(metal.getNameLower(),metalsEnVial[metal.getIndex()]);
+                    compoundNBT.putInt(metal.getNameLower(),metalsInVial.get(metal.getNameLower()));
                 }
             }
             compoundNBT.putFloat("CustomModelData", 1);
@@ -153,6 +144,7 @@ public class SmallVialItemRecipe extends CustomRecipe {
         }
     }
 
+
     /**
      * Method that return a copy of the final result item of matches method.
      *
@@ -161,28 +153,8 @@ public class SmallVialItemRecipe extends CustomRecipe {
      * @return ItemStack
      */
     @Override
-    public @NotNull ItemStack assemble(@NotNull CraftingContainer inventory) { //getCraftingResult
+    public @NotNull ItemStack assemble(@NotNull CraftingContainer inventory) {
         return this.finalResult.copy();
-    }
-
-    /**
-     * Method that define if its special recipe or not. In this case will be always true.
-     *
-     * @return boolean (always true)
-     */
-    @Override
-    public boolean isSpecial() {
-        return true;
-    }
-
-    /**
-     * Method that return a result item by recipe.
-     *
-     * @return ItemStack
-     */
-    @Override
-    public @NotNull ItemStack getResultItem() {
-        return this.finalResult;
     }
 
     /**
@@ -205,13 +177,14 @@ public class SmallVialItemRecipe extends CustomRecipe {
      *
      * @return RecipeSerializer
      */
+    @Nonnull
     @Override
-    public @NotNull RecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return ModRecipeTypesRegister.SMALL_VIAL_ITEM_RECIPE_SERIALIZER.get();
     }
 
     /**
-     * Static class that controls Custom vial recipe serializer. Extend SimpleRecipeSerializer<LargeVialItemRecipe>
+     * Static class that controls Custom vial recipe serializer. Extend SimpleRecipeSerializer<SmallVialItemRecipe>
      *
      * @author SteelCode Team
      * @since 1.5.1
@@ -227,5 +200,6 @@ public class SmallVialItemRecipe extends CustomRecipe {
         public Serializer() {
             super(SmallVialItemRecipe::new);
         }
+
     }
 }

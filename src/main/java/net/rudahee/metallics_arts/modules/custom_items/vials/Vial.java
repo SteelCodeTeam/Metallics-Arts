@@ -48,7 +48,6 @@ public abstract class Vial extends Item {
     public Vial(Properties properties, int maxNuggets) {
         super(properties);
         this.maxNuggets = maxNuggets;
-
     }
 
     /**
