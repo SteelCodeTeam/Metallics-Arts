@@ -1,13 +1,10 @@
 package net.rudahee.metallics_arts.data.custom_recipes.vials;
 
-import it.unimi.dsi.fastutil.Hash;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -21,10 +18,7 @@ import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Class that control the large vial recipe. It's a custom recipe, so extends CustomRecipe.
@@ -41,6 +35,8 @@ public class LargeVialItemRecipe extends CustomRecipe {
 
     private ItemStack finalResult = ItemStack.EMPTY;
     private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItemsRegister.LARGE_VIAL.get());
+
+    private static final Ingredient FAIL_VIAL = Ingredient.of(ModItemsRegister.SMALL_VIAL.get());
 
     private static final HashMap<String ,Ingredient> INGREDIENT_MAP = new HashMap<>() {{
 
@@ -65,6 +61,8 @@ public class LargeVialItemRecipe extends CustomRecipe {
         super(location);
     }
 
+    private final HashMap<String, Integer> needed = new HashMap<>();
+    private final HashMap<String, Integer> disponible = new HashMap<>();
 
     /**
      * Method in which the ingredients of the recipe are evaluated if they are correct and coincide with this one.
@@ -82,19 +80,15 @@ public class LargeVialItemRecipe extends CustomRecipe {
         boolean[] ingredients = {false, false};
         int maxQtyNuggets = 10;
         ItemStack actualIngredient;
+        int posVial = 0;
 
         HashMap<String, Integer> metalsInVial = new HashMap<>();
-        HashMap<String, Integer> cantStorage = new HashMap<>();
-        HashMap<String, Boolean> addMetal= new HashMap<>();
-        HashMap<String, Integer> maxValues= new HashMap<>();
 
         for (MetalTagEnum metal : MetalTagEnum.values()) {
-            maxValues.put(metal.getNameLower(), metal.getMaxAllomanticTicksStorage());
             metalsInVial.put(metal.getNameLower(), 0);
-            cantStorage.put(metal.getNameLower(),metal.getMaxAllomanticTicksStorage()/maxQtyNuggets);
-            addMetal.put(metal.getNameLower(), false);
+            needed.put(metal.getNameLower(), 0);
+            disponible.put(metal.getNameLower(), 0);
         }
-
 
         for(int i = 0; i < inventory.getContainerSize(); i++) {
             actualIngredient = inventory.getItem(i);
@@ -103,38 +97,47 @@ public class LargeVialItemRecipe extends CustomRecipe {
                     if (ingredients[0]) {
                         return false;
                     } else {
+                        posVial = i;
                         ingredients[0] = true;
                     }
                     if (actualIngredient.hasTag()){
                         for (MetalTagEnum metal : MetalTagEnum.values()) {
                             if (actualIngredient.getTag().contains(metal.getGemNameLower())){
                                 metalsInVial.put(metal.getNameLower(), actualIngredient.getTag().getInt(metal.getNameLower()));
+                                needed.put(metal.getNameLower(), maxQtyNuggets - metalsInVial.get(metal.getNameLower()));
                             }
                         }
                     }
                 }
-                ItemStack auxIngredient = actualIngredient;
-                INGREDIENT_MAP.forEach((name, ing) -> {
-                    if (addMetal.get(name) || metalsInVial.get(name) >= maxValues.get(name)) {
-                        return;
-                    }
-                    if (ing.test(auxIngredient)) {
-                        addMetal.put(name, true);
-                        ingredients[1] = true;
-                    }
-                });
             }
         }
+        for(int i = 0; i < inventory.getContainerSize(); i++) {
+            actualIngredient = inventory.getItem(i);
+            if (!actualIngredient.isEmpty()) {
+                if (ingredients[0] && i != posVial && !FAIL_VIAL.test(actualIngredient)) {
+                    ItemStack auxIngredient = actualIngredient;
+                    INGREDIENT_MAP.forEach((name, ing) -> {
+                        if (ing.test(auxIngredient) && needed.get(name) > 0) {
+                            disponible.put(name, auxIngredient.getCount());
+                            ingredients[1] = true;
+                        }
+                    });
+                }
+            }
+        }
+
 
         if (ingredients[0] && ingredients[1]){
             this.finalResult = new ItemStack(ModItemsRegister.LARGE_VIAL.get(),1);
             CompoundTag compoundNBT = new CompoundTag();
-            for (MetalTagEnum metal : MetalTagEnum.values()){
-                if (addMetal.get(metal.getNameLower())) {
-                    compoundNBT.putInt(metal.getNameLower(),metalsInVial.get(metal.getNameLower()) + cantStorage.get(metal.getNameLower()));
-                }else{
-                    compoundNBT.putInt(metal.getNameLower(),metalsInVial.get(metal.getNameLower()));
+            for (MetalTagEnum metal: MetalTagEnum.values()) {
+
+                if (disponible.get(metal.getNameLower()) >= needed.get(metal.getNameLower())) {
+                    compoundNBT.putInt(metal.getNameLower(), maxQtyNuggets); //si tiene la cantidad justa o superior del metal
+                } else {
+                    compoundNBT.putInt(metal.getNameLower(), metalsInVial.get(metal.getNameLower()) + disponible.get(metal.getNameLower()));
                 }
+
             }
             compoundNBT.putFloat("CustomModelData", 1);
             this.finalResult.setTag(compoundNBT);
@@ -145,6 +148,30 @@ public class LargeVialItemRecipe extends CustomRecipe {
         }
     }
 
+    @Override
+    public NonNullList<ItemStack> getRemainingItems(CraftingContainer containers) {
+
+        for(int i = 0; i < containers.getContainerSize(); i++) {
+            ItemStack actualIngredient;
+            actualIngredient = containers.getItem(i);
+            if (!actualIngredient.isEmpty()) {
+                if (!INGREDIENT_VIAL.test(actualIngredient)) {
+                    INGREDIENT_MAP.forEach((name, ing) -> {
+                        if (ing.test(actualIngredient) && needed.get(name) > 0) {
+                            if (disponible.get(name) > needed.get(name)) {
+                                actualIngredient.setCount(actualIngredient.getCount() - needed.get(name));
+                            } else {
+                                actualIngredient.setCount(0);
+                            }
+                        } else {
+                            actualIngredient.setCount(actualIngredient.getCount() + 1);
+                        }
+                    });
+                }
+            }
+        }
+        return super.getRemainingItems(containers);
+    }
 
     /**
      * Method that return a copy of the final result item of matches method.

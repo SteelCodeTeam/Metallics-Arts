@@ -63,7 +63,19 @@ public abstract class Vial extends Item {
         if (!stack.hasTag()) {
             stack.setTag(addVialTags());
         }
-        if (Screen.hasShiftDown()) {
+
+        for (MetalTagEnum metal : MetalTagEnum.values()) {
+            if (stack.getTag().getInt(metal.getGemNameLower()) > 0) {
+                toolTips.add(
+                        Component.translatable(" * ")
+                                .append(
+                                        Component.translatable("metallics_arts.metal_translate." + metal.getNameLower()))
+                                .append(": "
+                                        +(stack.getTag().getInt(metal.getGemNameLower())
+                                        +"/"+ this.maxNuggets)));
+            }
+        }
+        /*if (Screen.hasShiftDown()) {
             for (MetalTagEnum metal : MetalTagEnum.values()) {
                 if (stack.getTag().getInt(metal.getGemNameLower()) > 0) {
                     toolTips.add(
@@ -81,7 +93,7 @@ public abstract class Vial extends Item {
                 toolTips.add(Component.translatable(" "));
                 toolTips.add(Component.translatable("metallics_arts.metal_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             }
-        }
+        }*/
         super.appendHoverText(stack, level, toolTips, flag);
     }
 
