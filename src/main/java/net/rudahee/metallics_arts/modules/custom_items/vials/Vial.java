@@ -63,38 +63,49 @@ public abstract class Vial extends Item {
         if (!stack.hasTag()) {
             stack.setTag(addVialTags());
         }
-
-        for (MetalTagEnum metal : MetalTagEnum.values()) {
-            if (stack.getTag().getInt(metal.getGemNameLower()) > 0) {
-                toolTips.add(
-                        Component.translatable(" * ")
-                                .append(
-                                        Component.translatable("metallics_arts.metal_translate." + metal.getNameLower()))
-                                .append(": "
-                                        +(stack.getTag().getInt(metal.getGemNameLower())
-                                        +"/"+ this.maxNuggets)));
-            }
-        }
-        /*if (Screen.hasShiftDown()) {
+        if (!Screen.hasShiftDown()) {
             for (MetalTagEnum metal : MetalTagEnum.values()) {
                 if (stack.getTag().getInt(metal.getGemNameLower()) > 0) {
                     toolTips.add(
                             Component.translatable(" * ")
                                     .append(
-                                            Component.translatable("metallics_arts.metal_translate."
-                                                    +metal.getNameLower()))
+                                            Component.translatable("metallics_arts.metal_translate." + metal.getNameLower()))
                                     .append(": "
-                                            +(stack.getTag().getInt(metal.getGemNameLower())/(metal.getMaxAllomanticTicksStorage()/10)
+                                            +(stack.getTag().getInt(metal.getGemNameLower())
                                             +"/"+ this.maxNuggets)));
                 }
             }
-        } else {
             if (hasAnyReserve(stack)) {
                 toolTips.add(Component.translatable(" "));
                 toolTips.add(Component.translatable("metallics_arts.metal_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             }
-        }*/
+        } else {
+            for (MetalTagEnum metal : MetalTagEnum.values()) {
+                if (stack.getTag().getInt(metal.getGemNameLower()) > 0) {
+                    toolTips.add(
+                            Component.translatable(" * ")
+                                    .append(
+                                            Component.translatable("metallics_arts.metal_translate." + metal.getNameLower()))
+                                    .append(": " + time(stack.getTag().getInt(metal.getGemNameLower()) * metal.getChargeForNugget()))
+
+                    );
+                }
+            }
+        }
         super.appendHoverText(stack, level, toolTips, flag);
+    }
+
+    /**
+     Converts a time value in Minecraft ticks to a formatted string representing minutes and seconds.
+
+     @param timeTick The time value in Minecraft ticks to be converted.
+     @return A string in the format "minutes:seconds" representing the converted time.
+     */
+    private String time(int timeTick) {
+        timeTick = timeTick/20;
+        int minutes = timeTick / 60;
+        int remainingSeconds = timeTick % 60;
+        return minutes + ":" + String.format("%02d", remainingSeconds);
     }
 
     /**
@@ -222,7 +233,9 @@ public abstract class Vial extends Item {
         livingEntity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
             for (MetalTagEnum metal : MetalTagEnum.values()) {
                 if (itemStack.getTag().contains(metal.getNameLower()) && itemStack.getTag().getInt(metal.getNameLower())>0) {
-                    data.setAllomanticMetalsAmount(metal,itemStack.getTag().getInt(metal.getNameLower()) + data.getAllomanticAmount(metal));
+                    data.setAllomanticMetalsAmount(metal,
+                            itemStack.getTag().getInt(metal.getNameLower()) * metal.getChargeForNugget()
+                                    + data.getAllomanticAmount(metal));
                 }
             }
         });

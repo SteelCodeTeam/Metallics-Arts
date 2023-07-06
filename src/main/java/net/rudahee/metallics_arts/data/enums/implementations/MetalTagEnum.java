@@ -42,6 +42,7 @@ public enum MetalTagEnum implements IMetal, IGems {
     private final String nameUpper;
     private final int group;
     private final int maxAllomanticTicksStorage;
+    private final int chargeForNugget;
     private final boolean external;
     private final boolean divine;
     private final int order;
@@ -66,6 +67,7 @@ public enum MetalTagEnum implements IMetal, IGems {
         this.nameUpper = nameUpper;
         this.group = group;
         this.maxAllomanticTicksStorage = maxAllomanticTicksStorage;
+        this.chargeForNugget = this.maxAllomanticTicksStorage/10;
         this.external = external;
         this.divine = divine;
         this.order = order;
@@ -209,5 +211,9 @@ public enum MetalTagEnum implements IMetal, IGems {
      */
     public int getMaxReserveRing() {
         return maxReserveRing;
+    }
+
+    public int getChargeForNugget() {
+        return chargeForNugget;
     }
 }

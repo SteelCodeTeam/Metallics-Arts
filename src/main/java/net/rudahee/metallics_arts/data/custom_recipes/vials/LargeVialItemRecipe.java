@@ -18,6 +18,7 @@ import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -33,10 +34,7 @@ import java.util.HashMap;
  */
 public class LargeVialItemRecipe extends CustomRecipe {
 
-    private ItemStack finalResult = ItemStack.EMPTY;
     private static final Ingredient INGREDIENT_VIAL = Ingredient.of(ModItemsRegister.LARGE_VIAL.get());
-
-    private static final Ingredient FAIL_VIAL = Ingredient.of(ModItemsRegister.SMALL_VIAL.get());
 
     private static final HashMap<String ,Ingredient> INGREDIENT_MAP = new HashMap<>() {{
 
@@ -61,35 +59,40 @@ public class LargeVialItemRecipe extends CustomRecipe {
         super(location);
     }
 
-    private final HashMap<String, Integer> needed = new HashMap<>();
-    private final HashMap<String, Integer> disponible = new HashMap<>();
+    private final HashMap<String, Integer> required = new HashMap<>();
+    private final HashMap<String, Integer> available = new HashMap<>();
+    private final HashMap<String, Integer> inVial = new HashMap<>();
+    private boolean cancel;
 
     /**
-     * Method in which the ingredients of the recipe are evaluated if they are correct and coincide with this one.
-     * <p>
-     * In this case, it is verified that the pips are correct, and that the quantity is correct.
-     * If everything matches, it returns 'true' because the recipe exists and is correct.
-     *
-     * @param inventory the inventory in which the crafting is taking place.
-     * @param level world in which crafting is taking place.
-     *
-     * @return boolean
+     Checks if the given crafting inventory matches the required ingredients for a specific crafting operation.
+    <p>
+     - Check for the presence of a vial ingredient, determines the quantities of metals in the vial,
+     and calculates the required quantities for crafting based on the vial's contents.
+     <p>
+     - Check for duplicate items in different slots.
+
+     @param inventory The crafting container to be checked.
+     @param level The level associated with the crafting operation.
+
+     @return {@code true} if the inventory contains the required ingredients and meets all conditions, {@code false} otherwise.
      */
     @Override
     public boolean matches(@NotNull CraftingContainer inventory, @NotNull Level level) {
         boolean[] ingredients = {false, false};
-        int maxQtyNuggets = 10;
         ItemStack actualIngredient;
         int posVial = 0;
-
-        HashMap<String, Integer> metalsInVial = new HashMap<>();
+        this.cancel = false;
 
         for (MetalTagEnum metal : MetalTagEnum.values()) {
-            metalsInVial.put(metal.getNameLower(), 0);
-            needed.put(metal.getNameLower(), 0);
-            disponible.put(metal.getNameLower(), 0);
+            inVial.put(metal.getNameLower(), 0);
+            required.put(metal.getNameLower(), 0);
+            available.put(metal.getNameLower(), 0);
         }
 
+        if (!containsInvalidElements(inventory, new ArrayList<>() {{addAll(INGREDIENT_MAP.values()); add(INGREDIENT_VIAL); add(Ingredient.of(ItemStack.EMPTY)); }})) {
+            return false;
+        }
         for(int i = 0; i < inventory.getContainerSize(); i++) {
             actualIngredient = inventory.getItem(i);
             if (!actualIngredient.isEmpty()) {
@@ -100,78 +103,112 @@ public class LargeVialItemRecipe extends CustomRecipe {
                         posVial = i;
                         ingredients[0] = true;
                     }
-                    if (actualIngredient.hasTag()){
+                    if (actualIngredient.hasTag()) {
                         for (MetalTagEnum metal : MetalTagEnum.values()) {
-                            if (actualIngredient.getTag().contains(metal.getGemNameLower())){
-                                metalsInVial.put(metal.getNameLower(), actualIngredient.getTag().getInt(metal.getNameLower()));
-                                needed.put(metal.getNameLower(), maxQtyNuggets - metalsInVial.get(metal.getNameLower()));
+                            if (actualIngredient.getTag().contains(metal.getGemNameLower())) {
+                                inVial.put(metal.getNameLower(), actualIngredient.getTag().getInt(metal.getNameLower()));
+                                required.put(metal.getNameLower(), 10 - inVial.get(metal.getNameLower()));
                             }
                         }
                     }
                 }
             }
         }
+
         for(int i = 0; i < inventory.getContainerSize(); i++) {
             actualIngredient = inventory.getItem(i);
             if (!actualIngredient.isEmpty()) {
-                if (ingredients[0] && i != posVial && !FAIL_VIAL.test(actualIngredient)) {
+                if (ingredients[0] && i != posVial) {
                     ItemStack auxIngredient = actualIngredient;
+                    int finalI = i;
                     INGREDIENT_MAP.forEach((name, ing) -> {
-                        if (ing.test(auxIngredient) && needed.get(name) > 0) {
-                            disponible.put(name, auxIngredient.getCount());
-                            ingredients[1] = true;
+                        if (ing.test(auxIngredient)) {
+                            if (required.get(name) > 0) {
+                                available.put(name, auxIngredient.getCount());
+                                ingredients[1] = true;
+                            } else { //If the vial contains the maximum capacity of this metal, cancel the crafting
+                                this.cancel = true;
+                            }
+                            if (duplicateIngredients(inventory, finalI, ing)) {
+                                this.cancel = true;
+                            }
                         }
                     });
                 }
             }
         }
 
-
-        if (ingredients[0] && ingredients[1]){
-            this.finalResult = new ItemStack(ModItemsRegister.LARGE_VIAL.get(),1);
-            CompoundTag compoundNBT = new CompoundTag();
-            for (MetalTagEnum metal: MetalTagEnum.values()) {
-
-                if (disponible.get(metal.getNameLower()) >= needed.get(metal.getNameLower())) {
-                    compoundNBT.putInt(metal.getNameLower(), maxQtyNuggets); //si tiene la cantidad justa o superior del metal
-                } else {
-                    compoundNBT.putInt(metal.getNameLower(), metalsInVial.get(metal.getNameLower()) + disponible.get(metal.getNameLower()));
-                }
-
-            }
-            compoundNBT.putFloat("CustomModelData", 1);
-            this.finalResult.setTag(compoundNBT);
-            return true;
-        }
-        else {
-            return false;
-        }
+        return ingredients[0] && ingredients[1] && !this.cancel;
     }
 
-    @Override
-    public NonNullList<ItemStack> getRemainingItems(CraftingContainer containers) {
+    /**
+     Checks if the given crafting container contains duplicate ingredients.
 
-        for(int i = 0; i < containers.getContainerSize(); i++) {
+     @param inventory The crafting container to be checked.
+     @param slot The index of the current slot being compared (to exclude it from the check).
+     @param ingredient The ingredient to be checked for duplicates.
+
+     @return {@code true} if a duplicate ingredient is found, {@code false} otherwise.
+     */
+    private boolean duplicateIngredients(CraftingContainer inventory, int slot, Ingredient ingredient) {
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            if (i != slot) {
+                ItemStack actual = inventory.getItem(i);
+                if (ingredient.test(actual)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    /**
+     Checks if the given crafting container contains any invalid elements.
+
+     @param inventory The crafting container to be checked.
+     @param list The list of ingredients used for validation.
+
+     @return {@code true} if the crafting container contains only valid elements, {@code false} otherwise.
+     */
+    private boolean containsInvalidElements(CraftingContainer inventory, ArrayList<Ingredient> list) {
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            ItemStack itemStack = inventory.getItem(i);
+            if (list.stream().noneMatch(e -> e.test(itemStack))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+
+     Retrieves the remaining items after a crafting operation.
+
+     @param inventory The crafting container used in the crafting operation.
+
+     @return A list of ItemStack objects representing the remaining items.
+     */
+    @Override
+    public NonNullList<ItemStack> getRemainingItems(CraftingContainer inventory) {
+        NonNullList<ItemStack> nonnulllist = NonNullList.withSize(inventory.getContainerSize(), ItemStack.EMPTY);
+        for(int i = 0; i < nonnulllist.size(); ++i) {
             ItemStack actualIngredient;
-            actualIngredient = containers.getItem(i);
+            actualIngredient = inventory.getItem(i);
             if (!actualIngredient.isEmpty()) {
                 if (!INGREDIENT_VIAL.test(actualIngredient)) {
+                    int finalI = i;
                     INGREDIENT_MAP.forEach((name, ing) -> {
-                        if (ing.test(actualIngredient) && needed.get(name) > 0) {
-                            if (disponible.get(name) > needed.get(name)) {
-                                actualIngredient.setCount(actualIngredient.getCount() - needed.get(name));
-                            } else {
-                                actualIngredient.setCount(0);
-                            }
-                        } else {
-                            actualIngredient.setCount(actualIngredient.getCount() + 1);
+                        if (ing.test(actualIngredient)) {
+                            inventory.removeItem(finalI, required.get(name) - 1);
+
                         }
                     });
                 }
             }
         }
-        return super.getRemainingItems(containers);
+        return super.getRemainingItems(inventory);
     }
+
+
 
     /**
      * Method that return a copy of the final result item of matches method.
@@ -182,7 +219,19 @@ public class LargeVialItemRecipe extends CustomRecipe {
      */
     @Override
     public @NotNull ItemStack assemble(@NotNull CraftingContainer inventory) {
-        return this.finalResult.copy();
+
+        ItemStack finalResult = new ItemStack(ModItemsRegister.LARGE_VIAL.get(), 1);
+        CompoundTag compoundNBT = new CompoundTag();
+        for (MetalTagEnum metal: MetalTagEnum.values()) {
+            if (available.get(metal.getNameLower()) >= required.get(metal.getNameLower())) {
+                compoundNBT.putInt(metal.getNameLower(), 10); //si tiene la cantidad justa o superior del metal
+            } else {
+                compoundNBT.putInt(metal.getNameLower(), inVial.get(metal.getNameLower()) + available.get(metal.getNameLower()));
+            }
+        }
+        compoundNBT.putFloat("CustomModelData", 1);
+        finalResult.setTag(compoundNBT);
+        return finalResult.copy();
     }
 
     /**
