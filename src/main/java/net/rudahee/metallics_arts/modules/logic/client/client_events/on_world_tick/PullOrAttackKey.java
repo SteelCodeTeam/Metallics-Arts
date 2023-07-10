@@ -14,6 +14,7 @@ import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.network.packets.ChangeEmotionPacket;
+import net.rudahee.metallics_arts.setup.network.packets.LeverPacket;
 import net.rudahee.metallics_arts.setup.network.packets.PullAndPushBlockPacket;
 import net.rudahee.metallics_arts.setup.network.packets.PullAndPushEntityPacket;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
@@ -46,6 +47,11 @@ public class PullOrAttackKey {
             if (trace != null) {
                 if (trace instanceof BlockHitResult) {
                     BlockPos blockPosition = ((BlockHitResult) trace).getBlockPos();
+
+                    /**if (IronAndSteelHelpers.isAllomanticLever(minecraft.level.getBlockState(blockPosition))) {
+                        ModNetwork.sendToServer(new LeverPacket(blockPosition));
+                    }*/
+
                     if (IronAndSteelHelpers.isBlockStateMetal(minecraft.level.getBlockState(blockPosition))) {
                         ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
                                 Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player, capability.getEnhanced() || capability.getEnhanced(),

@@ -9,6 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -58,9 +59,23 @@ public class MistCloak extends Item implements ICurioItem {
                 if (!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(MISTCLOACK_SPEED)) {
                     player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(MISTCLOACK_SPEED);
                 }
+                player.setCustomNameVisible(true);
             }
         }
         
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
+    }
+
+    @Override
+    public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+        LivingEntity livingEntity =  slotContext.entity();
+
+        if (livingEntity.level instanceof ServerLevel) {
+            if (livingEntity instanceof Player player) {
+                player.setCustomNameVisible(false);
+            }
+        }
+
+        ICurioItem.super.onEquip(slotContext, prevStack, stack);
     }
 }

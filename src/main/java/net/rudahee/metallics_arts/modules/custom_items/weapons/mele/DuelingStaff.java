@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_items.weapons;
+package net.rudahee.metallics_arts.modules.custom_items.weapons.mele;
 
 
 import net.minecraft.world.item.Item;

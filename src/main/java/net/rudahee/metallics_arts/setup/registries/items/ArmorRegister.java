@@ -48,7 +48,7 @@ public class ArmorRegister {
         ModItemsRegister.ALUMINUM_ARMOR.put(ArmorPiecesEnum.BOOTS, aluminumBoots);
 
         //ModItemsRegister.MISTCLOACK = MetallicsArts.registerItem("mistcloak",
-        //        () -> new MistCloak(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1)));
-        //
+          //      () -> new MistCloak(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1)));
+
     }
 }

@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_items.weapons;
+package net.rudahee.metallics_arts.modules.custom_items.weapons.mele;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,17 +20,17 @@ import net.rudahee.metallics_arts.data.custom_tiers.ObsidianTier;
  * @see SwordItem
  * @see ObsidianTier
  */
-public class ObsidianDagger extends SwordItem {
+public class ObsidianAxe extends SwordItem {
 
-    private static final Tier OBSIDIAN_TIER = new ObsidianTier(1250,3,7,6,3);
+    private static final Tier OBSIDIAN_TIER = new ObsidianTier(2500,0.8F,19,6,3);
 
     /**
      * Default constructor, we define the properties of to set a durability and creative tab. So, we change the damage and speed.
      *
      * @param properties of the item.
      */
-    public ObsidianDagger(Item.Properties properties) {
-        super(OBSIDIAN_TIER, -1, -1, properties.durability(1250).tab(MetallicsArts.MA_TAB));
+    public ObsidianAxe (Item.Properties properties) {
+        super(OBSIDIAN_TIER, -1, -3.2F, properties.durability(2500).tab(MetallicsArts.MA_TAB));
     }
 
     /**

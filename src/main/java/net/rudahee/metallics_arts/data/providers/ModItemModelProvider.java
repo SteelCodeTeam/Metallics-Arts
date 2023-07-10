@@ -135,7 +135,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemHandHeld,"item/lerasium_spike","item/spikes/lerasium_spike");
         builder(itemHandHeld,"item/ettmetal_spike","item/spikes/ettmetal_spike");
 
-        builder(itemHandHeld,"item/koloss_blade","item/combat/koloss_blade");
+        //builder(itemHandHeld,"item/koloss_blade","item/combat/koloss_blade");
         builder(itemHandHeld,"item/silver_knife","item/combat/silver_knife");
         builder(itemHandHeld,"item/obsidian_dagger","item/combat/obsidian_dagger");
         builder(itemHandHeld,"item/dueling_staff","item/combat/dueling_staff");
@@ -163,6 +163,8 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .end();
 
 
+
+
         for (MetalTagEnum metal: MetalTagEnum.values()) {
             builder(itemGenerated,"item/"+metal.getNameLower()+"_allomantic_icon","item/symbols/allomantic_symbols/"+metal.getNameLower()+"_symbol");
             builder(itemGenerated,"item/"+metal.getNameLower()+"_feruchemic_icon","item/symbols/feruchemic_symbols/"+metal.getNameLower()+"_symbol");
@@ -178,9 +180,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/aluminum_chestplate", "item/armors/aluminum_chestplate");
         builder(itemGenerated,"item/aluminum_leggings", "item/armors/aluminum_leggings");
         builder(itemGenerated,"item/aluminum_boots", "item/armors/aluminum_boots");
-        builder(itemGenerated,"item/mistcloak","item/armors/mistcloak");
 
+        builder(itemGenerated,"item/mistcloak","item/armors/mistcloak");
         builder(itemGenerated,"item/copper_coin","item/combat/copper_coin");
+
 
     }
 

@@ -31,6 +31,9 @@ public class ModKeyRegister {
     public static KeyMapping ALLOMANTIC_PUSH;
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping ALLOMANTIC_PULL;
+
+    //@OnlyIn(Dist.CLIENT)
+    //public static KeyMapping RELOAD;
     public static void initKeys(final RegisterKeyMappingsEvent evt){
         ALLOMANTIC_POWER_SELECTOR =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomantic", GLFW.GLFW_KEY_M,KEY_CATEGORY);
         evt.register(ALLOMANTIC_POWER_SELECTOR);
@@ -55,6 +58,9 @@ public class ModKeyRegister {
 
         ALLOMANTIC_PULL = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomantic_pull", InputConstants.Type.MOUSE, 0,KEY_CATEGORY);
         evt.register(ALLOMANTIC_PULL);
+
+        //RELOAD =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "reload", GLFW.GLFW_KEY_R, KEY_CATEGORY);
+        //evt.register(RELOAD);
 
         powers = new KeyMapping[MetalTagEnum.values().length];
         for (int i = 0; i< MetalTagEnum.values().length; i++) {

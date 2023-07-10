@@ -229,7 +229,7 @@ public class SmallVialItemRecipe extends CustomRecipe {
         CompoundTag compoundNBT = new CompoundTag();
         for (MetalTagEnum metal: MetalTagEnum.values()) {
             if (available.get(metal.getNameLower()) >= required.get(metal.getNameLower())) {
-                compoundNBT.putInt(metal.getNameLower(), 10); //si tiene la cantidad justa o superior del metal
+                compoundNBT.putInt(metal.getNameLower(), 5); //si tiene la cantidad justa o superior del metal
             } else {
                 compoundNBT.putInt(metal.getNameLower(), inVial.get(metal.getNameLower()) + available.get(metal.getNameLower()));
             }

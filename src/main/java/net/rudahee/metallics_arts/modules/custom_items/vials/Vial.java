@@ -10,10 +10,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.custom_items.vials.large_vial.LargeVial;
@@ -147,7 +144,7 @@ public abstract class Vial extends Item {
     public static CompoundTag addFullReserveVialTags() {
         CompoundTag nbt = new CompoundTag();
         for (MetalTagEnum metal : MetalTagEnum.values()){
-            nbt.putInt(metal.getNameLower(),metal.getMaxAllomanticTicksStorage());
+            nbt.putInt(metal.getNameLower(), 10);
         }
         return nbt;
     }

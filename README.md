@@ -1,4 +1,4 @@
-# Metallics Arts 1.19.2-1.6.0
+# Metallics Arts 1.19.2-1.6.1
 
 
 
@@ -53,51 +53,35 @@ We sincerely hope you enjoy your trip with us! 🎉
 And we have two mandatory dependencies:
 - **Curios 1.19.2-5.1.1.0** or superior
 - **Modonomicon1.19.2-1.27.0** or superior
-<br>
 
 ------
 
+## **Changelog ✒ [v1.6.1]️**
+- New vials:
+  - fixed a bug with small vials that did not allow their correct crafting.
+  - vials can now be crafted with more than one nugget at a time.
+- The crafting of the feruchemical rings was fixed.
+- New model of the sword koloss
+- New paintings created by Gar Leyva (https://twitter.com/gar_leyva)
 <br>
-
-## **Changelog ✒ [v1.6.0]️**
-- Refactor completed!
-- Names consistency are fixed.
-- All code is commented.
-- The powers that draw lines have been tweaked, now the lines are much cooler and more efficient!
-- The way to manage powers both on the server and on the client are now much more efficient.
-- Now when you activate a power up you will see it as a minecraft effect.
-- Now we don't depend on Patchouli, we use Modonomicon.
-- Polish and Japanese translations implemented.
-- We have changed the synchronization and the use of the internal tags of the players.
-- Commands now support selectors (@a, @p...) and support not having a specific target (applied to yourself)
-- New armors, new cores for armor's recipes.
-- New In-Game guide based on Modonomicon mod. 
-- Some minor github issues solved
-- Solve shield texture issues
-- Now we are using forgetag to do modpacks easier!
-- And a lot of minor changes and bug solveds!
-  <br>
 
 ------
-
-<br>
 
 ## **Future Improvements ⬆️**
+You can check our roadmap in our discord:
+https://discord.gg/b8sw7QEtgE
+<br>
 
 **Known Issues**
 - Decant iron and burn bendalloy while you fall result in a bug.
 
-**Improvements**
+**Some Improvements**
 - Do more comfortable (and maybe push and pull through blocks) with iron/steel.
 - Add some entities like special zombies, specials archers, they must use allomancy or feruchemy.
 - Maybe, implements new structures with loot from the mod.
 - New kind of allomantic beacons with his respective powers.
-
 <br>
-
 ------
-
-<br>
 
 ## **Fork me! 🛠️**
 We welcome you to take on the challenge of further developing this project on your own.

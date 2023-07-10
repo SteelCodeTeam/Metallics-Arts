@@ -303,9 +303,10 @@ public class ModRecipeProvider extends RecipeProvider {
 
         ShapedRecipeBuilder.shaped(ModItemsRegister.KOLOSS_BLADE.get())
                 .define('#', Items.COBBLESTONE)
+                .define('*', ModItemsRegister.ITEM_METAL_INGOT.get("steel"))
                 .define('x', Items.STICK)
-                .pattern("## ")
-                .pattern("###")
+                .pattern("** ")
+                .pattern("*#*")
                 .pattern(" x ")
                 .unlockedBy("has_item",has(ModItemsRegister.KOLOSS_BLADE.get()))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID + "_koloss_blade"));

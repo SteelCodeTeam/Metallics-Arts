@@ -14,26 +14,20 @@ import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 import net.rudahee.metallics_arts.data.configs.MetalListConfig;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalAuxiliaryInfo;
-import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
+import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticLever;
 import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * A utility class that provides helper methods for various functionalities related to Iron and Steel,
@@ -264,4 +258,11 @@ public class IronAndSteelHelpers {
         }
     }
 
+    public static boolean isAllomanticLever(BlockState state) {
+        return isAllomanticLeverBlock(state.getBlock());
+    }
+
+    private static boolean isAllomanticLeverBlock(Block block) {
+        return (block instanceof AllomanticLever);
+    }
 }

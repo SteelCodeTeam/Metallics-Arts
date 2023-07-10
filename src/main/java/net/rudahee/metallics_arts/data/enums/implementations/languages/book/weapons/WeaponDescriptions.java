@@ -16,9 +16,9 @@ public enum WeaponDescriptions {
     OBSIDIAN_AXE("Heavy weapon, and slow to handle. Causes great damage. It can disarm the target.",
             "Arma pesada y lenta de manejar. Pero como te pille... bueno, no hace falta entrar en detalles desagradables.",
             "Ciężka i powolna broń zadająca duże obrażenia. Możesz rozbroić przeciwnika."),
-    KOLOSS_BLADE("Giant stone sword, of rudimentary construction. It's a really heavy weapon, but with the right strength it can do extraordinary damage.",
-            "Espada gigante de piedra de elaboración rudimentaria. Es un arma realmente pesada, pero con la fuerza adecuada puede llegar a hacer un daño extraordinario.",
-            "Gigantyczny kamienny miecz o prymitywnym wykonaniu. Bardzo ciężka broń, ale przy odpowiedniej sile może zadać wielkie obrażenia."),
+    KOLOSS_BLADE("Giant stone and steel sword, of rudimentary construction. It's a really heavy weapon, but with the right strength it can do extraordinary damage.",
+            "Espada gigante de piedra y acero de elaboración rudimentaria. Es un arma realmente pesada, pero con la fuerza adecuada puede llegar a hacer un daño extraordinario.",
+            "Gigantyczny kamienno-stalowy miecz o prymitywnym wykonaniu. Bardzo ciężka broń, ale przy odpowiedniej sile może zadać wielkie obrażenia."),
     DUELING_STAFF("Wooden cane with a very hard metallic piece as decoration on the tip. Seems like it does more damage the more you use it.",
             "Bastón de madera con una pieza de metal muy dura en el pomo. Parece que hace más daño cuanto más gastado está.",
             "Drewniana laska z metaliczną ozdobą na rękojeści. Wydaje się że zadaje więcej obrażeń im więcej jest używana.");

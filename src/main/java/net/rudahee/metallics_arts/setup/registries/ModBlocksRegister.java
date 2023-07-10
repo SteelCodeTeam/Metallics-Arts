@@ -15,6 +15,7 @@ import net.rudahee.metallics_arts.setup.registries.blocks.BasicBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.AtiumBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.EttmetalBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.LerasiumBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.blocks.redstone.Electric;
 
 import java.util.HashMap;
 
@@ -48,6 +49,7 @@ public class ModBlocksRegister {
         LerasiumBlocksRegister.register();
         EttmetalBlocksRegister.register();
         BasicBlocksRegister.register();
+        //Electric.register();
     }
 
     public static class InvestedCapabilityRegister {

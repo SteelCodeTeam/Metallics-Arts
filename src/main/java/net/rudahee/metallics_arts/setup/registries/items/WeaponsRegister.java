@@ -4,7 +4,8 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_items.coins.CopperCoin;
-import net.rudahee.metallics_arts.modules.custom_items.weapons.*;
+import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.PistolTest;
+import net.rudahee.metallics_arts.modules.custom_items.weapons.mele.*;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 /**
@@ -35,5 +36,8 @@ public class WeaponsRegister {
 
         ModItemsRegister.COPPER_COIN = MetallicsArts.registerItem("copper_coin",
                 () -> new CopperCoin(COIN_PROPERTIES, 1, 5));
+
+        //MetallicsArts.registerItem("pistol_test",
+          //      () -> new PistolTest(new Item.Properties().stacksTo(1).tab(MetallicsArts.MA_TAB)));
     }
 }
