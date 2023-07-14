@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.setup.network.packets;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.network.NetworkEvent;
 import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticLever;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;
@@ -38,6 +39,7 @@ public class LeverPacket {
                 if (IronAndSteelHelpers.isAllomanticLever(player.level.getBlockState(this.blockPos))) { // Check whitelist on server)
                     AllomanticLever lever =  (AllomanticLever) player.level.getBlockState(this.blockPos).getBlock();
                     lever.pull(player.level.getBlockState(this.blockPos), player.level, this.blockPos);
+
                 }
             }
         });

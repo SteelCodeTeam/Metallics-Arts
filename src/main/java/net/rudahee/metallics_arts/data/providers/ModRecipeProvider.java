@@ -59,51 +59,58 @@ public class ModRecipeProvider extends RecipeProvider {
     @Override
     protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> recipesConsumer) {
 
-        ModItemsRegister.ITEM_METAL_INGOT.forEach((name, item) -> ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
-                .requires(ModTags.METAL_BLOCKS.get(name))
-                .unlockedBy("has_item", has(item))
-                .save(recipesConsumer, new ResourceLocation(name + "_block_to_" + name + "_ingot")));
+        ModItemsRegister.ITEM_METAL_INGOT.forEach((name, item) ->
+                ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
+                    .requires(ModTags.METAL_BLOCKS.get(name))
+                    .unlockedBy("has_item", has(item))
+                    .save(recipesConsumer, new ResourceLocation(name + "_block_to_" + name + "_ingot")));
 
-        ModBlocksRegister.BLOCK_METAL_BLOCKS.forEach((name, block) -> ShapedRecipeBuilder.shaped(block)
-                .define('#', ModTags.INGOTS.get(name))
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .unlockedBy("has_block", has(block))
-                .save(recipesConsumer, new ResourceLocation(name + "_ingot_to_" + name + "_block")));
+        ModBlocksRegister.BLOCK_METAL_BLOCKS.forEach((name, block) ->
+                ShapedRecipeBuilder.shaped(block)
+                    .define('#', ModTags.INGOTS.get(name))
+                    .pattern("###")
+                    .pattern("###")
+                    .pattern("###")
+                    .unlockedBy("has_block", has(block))
+                    .save(recipesConsumer, new ResourceLocation(name + "_ingot_to_" + name + "_block")));
 
-        ModBlocksRegister.RAW_METAL_BLOCKS.forEach((name, block) -> ShapedRecipeBuilder.shaped(block)
-                .define('#', ModTags.RAWS.get(name))
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .unlockedBy("has_block", has(block))
-                .save(recipesConsumer, new ResourceLocation(name + "_raw_to_" + name + "_block")));
+        ModBlocksRegister.RAW_METAL_BLOCKS.forEach((name, block) ->
+                ShapedRecipeBuilder.shaped(block)
+                        .define('#', ModTags.RAWS.get(name))
+                        .pattern("###")
+                        .pattern("###")
+                        .pattern("###")
+                        .unlockedBy("has_block", has(block))
+                        .save(recipesConsumer, new ResourceLocation(name + "_raw_to_" + name + "_block")));
 
-        ModItemsRegister.ITEM_RAW_METAL.forEach((name, item) -> ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
-                .requires(ModTags.RAW_BLOCKS.get(name))
-                .unlockedBy("has_item", has(item))
-                .save(recipesConsumer, new ResourceLocation(name + "_raw_block_to_" + name + "_raw")));
+        ModItemsRegister.ITEM_RAW_METAL.forEach((name, item) ->
+                ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
+                        .requires(ModTags.RAW_BLOCKS.get(name))
+                        .unlockedBy("has_item", has(item))
+                        .save(recipesConsumer, new ResourceLocation(name + "_raw_block_to_" + name + "_raw")));
 
 
 
-        ModItemsRegister.ITEM_GEMS_BASE.forEach((name, item) -> ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
-                .requires(ModTags.METAL_BLOCKS.get(name))
-                .unlockedBy("has_item", has(item))
-                .save(recipesConsumer, new ResourceLocation(name + "_block" + "_to_" + name + "_gem")));
+        ModItemsRegister.ITEM_GEMS_BASE.forEach((name, item) ->
+                ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
+                        .requires(ModTags.METAL_BLOCKS.get(name))
+                        .unlockedBy("has_item", has(item))
+                        .save(recipesConsumer, new ResourceLocation(name + "_block" + "_to_" + name + "_gem")));
 
-        ModBlocksRegister.BLOCK_GEMS_BLOCKS.forEach((name, block) -> ShapedRecipeBuilder.shaped(block)
-                .define('#', ModTags.GEMS.get(name))
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .unlockedBy("has_block", has(block))
-                .save(recipesConsumer, new ResourceLocation(name + "_gem_to_" + name + "_block")));
+        ModBlocksRegister.BLOCK_GEMS_BLOCKS.forEach((name, block) ->
+                ShapedRecipeBuilder.shaped(block)
+                        .define('#', ModTags.GEMS.get(name))
+                        .pattern("###")
+                        .pattern("###")
+                        .pattern("###")
+                        .unlockedBy("has_block", has(block))
+                        .save(recipesConsumer, new ResourceLocation(name + "_gem_to_" + name + "_block")));
 
-        ModItemsRegister.ITEM_METAL_INGOT.forEach((name, item) -> ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_METAL_NUGGET.get(name), 9)
-                .requires(ModTags.INGOTS.get(name))
-                .unlockedBy("has_block", has(item))
-                .save(recipesConsumer, new ResourceLocation(name + "_ingot_to_" + name + "_nugget")));
+        ModItemsRegister.ITEM_METAL_INGOT.forEach((name, item) ->
+                ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_METAL_NUGGET.get(name), 9)
+                        .requires(ModTags.INGOTS.get(name))
+                        .unlockedBy("has_block", has(item))
+                        .save(recipesConsumer, new ResourceLocation(name + "_ingot_to_" + name + "_nugget")));
 
         ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_METAL_NUGGET.get("copper"), 9)
                 .requires(Tags.Items.INGOTS_COPPER)
@@ -122,18 +129,20 @@ public class ModRecipeProvider extends RecipeProvider {
 
         });
 
-        ModItemsRegister.ITEM_GEMS_BASE.forEach((name, item) -> ShapelessRecipeBuilder.shapeless(ModItemsRegister.ITEM_GEMS_NUGGET.get(name), 9)
-                .requires(ModTags.NUGGETS.get(name))
-                .unlockedBy("has_block", has(item))
-                .save(recipesConsumer, new ResourceLocation(name + "_gem_to_" + name + "_nugget")));
+        ModItemsRegister.ITEM_GEMS_NUGGET.forEach((name, item) ->
+                ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
+                    .requires(ModTags.GEMS.get(name))
+                    .unlockedBy("has_block", has(item))
+                    .save(recipesConsumer, new ResourceLocation(name + "_gem_to_" + name + "_nugget")));
 
-        ModItemsRegister.ITEM_GEMS_NUGGET.forEach((name, item) -> ShapedRecipeBuilder.shaped(ModItemsRegister.ITEM_GEMS_BASE.get(name))
-                .define('#', ModTags.NUGGETS.get(name))
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .unlockedBy("has_block", has(item))
-                .save(recipesConsumer, new ResourceLocation(name + "_nugget_to_" + name + "_gem")));
+        ModItemsRegister.ITEM_GEMS_BASE.forEach((name, item) ->
+                ShapedRecipeBuilder.shaped(item)
+                    .define('#', ModTags.NUGGETS.get(name))
+                    .pattern("###")
+                    .pattern("###")
+                    .pattern("###")
+                    .unlockedBy("has_block", has(item))
+                    .save(recipesConsumer, new ResourceLocation(name + "_nugget_to_" + name + "_gem")));
 
         Arrays.asList(MetalEnum.values()).forEach(metal -> {
             if (!metal.isAlloy()){
