@@ -1,13 +1,18 @@
 package net.rudahee.metallics_arts.modules.logic.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.InteractionHand;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.PistolTest;
+import net.rudahee.metallics_arts.modules.custom_items.weapons.mele.KolossBlade;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.client.client_events.*;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
@@ -21,7 +26,6 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
  * @since 1.5.1
  */
 public class ClientEventHandler {
-
 
     /**
      * This method is called when a client-side tick event occurs. It performs various
@@ -86,11 +90,20 @@ public class ClientEventHandler {
             if (Minecraft.getInstance().player == null) {
                 return;
             }
+            if (event.getButton() == 0 && event.getAction() == 1) {
+                //button = 0 - Left click
+                //action = 1 - Press button
+                if (Minecraft.getInstance().player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof PistolTest) {
+                    OnMouseInputEvent.otro(Minecraft.getInstance().player, Minecraft.getInstance().player.getItemInHand(InteractionHand.MAIN_HAND));
+
+                }
+            }
             OnMouseInputEvent.OnMouseInputEvent(Minecraft.getInstance().player, CapabilityUtils.getCapability(Minecraft.getInstance().player));
         } catch (PlayerException ex) {
             ex.printResumeLog();
         }
     }
+
 
     /**
      * Entrypoint of the client-side rendering of custom game overlays. the method delegates the handling of the overlay render
@@ -136,5 +149,6 @@ public class ClientEventHandler {
             ex.printResumeLog();
         }
     }
+
 
 }

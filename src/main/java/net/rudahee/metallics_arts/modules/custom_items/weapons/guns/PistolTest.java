@@ -1,10 +1,21 @@
 package net.rudahee.metallics_arts.modules.custom_items.weapons.guns;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.BulletType;
@@ -22,52 +33,41 @@ public class PistolTest extends Item  {
     }
 
     @Override
-    public void onUsingTick(ItemStack stack, LivingEntity player, int count) {
-        /*if (ModKeyRegister.RELOAD.isDown()) {
-            if (count % 30 == 0) {
-                reload(stack);
-            }
-        }*/
-        player.sendSystemMessage(Component.translatable("carga = " + stack.getTag().get(BULLETS)));
-        super.onUsingTick(stack, player, count);
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        player.sendSystemMessage(Component.translatable("APUNTANDO"));
+
+        return super.use(level, player, hand);
     }
 
-    @SubscribeEvent
-    public void leftClick (PlayerInteractEvent.LeftClickEmpty event) {
 
-        ItemStack item = event.getEntity().getItemInHand(event.getHand());
-        if (item.getItem() instanceof PistolTest) {
-            if (!item.hasTag()) {
-                item.setTag(generateGunTags());
-            }
 
-            if (item.getTag().getInt(BULLETS) > 0) {
-                //generar disparo
-                event.getEntity().sendSystemMessage(Component.translatable("BANG"));
-                //sonido de disparo
-            } else {
-                event.getEntity().sendSystemMessage(Component.translatable("VACIO"));
-                //sonido de cargador vacio
-            }
-        }
-
-        /**
-         * ESTE METODO HAY QUE SINCRONIZARLO MANUALMENTE CON UN PACKET
-         *
-         */
-    }
-    public void reload (ItemStack itemStack) {
-        CompoundTag t = itemStack.getTag();
-        t.putInt(BULLETS, t.getInt(BULLETS) + 1);
-        itemStack.setTag(t);
+    public void reload (Player player, CompoundTag compoundTag) {
+        player.sendSystemMessage(Component.translatable("RECARGANDO"));
+        compoundTag.putInt(this.BULLETS, compoundTag.getInt(this.BULLETS_MAX));
     }
 
-    private CompoundTag generateGunTags() {
+    public CompoundTag generateGunTags() {
         CompoundTag compoundTag = new CompoundTag();
         compoundTag.putInt(BULLETS, 0);
         compoundTag.putInt(BULLETS_MAX, 6);
-        compoundTag.putString(BULLET_TYPE, this.bulletType.getType());
+        compoundTag.putString(BULLET_TYPE, BulletType.NONE.getType());
         return compoundTag;
+    }
+
+    public CompoundTag shot(LocalPlayer player, CompoundTag tag) {
+        if (tag.getInt(BULLETS) > 0) {
+            player.sendSystemMessage(Component.translatable("BANG"));
+            tag.putInt(this.BULLETS, tag.getInt(this.BULLETS) - 1);
+            player.playSound(SoundEvents.CROSSBOW_HIT);
+        } else {
+            player.sendSystemMessage(Component.translatable("VACIO"));
+        }
+        return tag;
+    }
+
+    @Override
+    public UseAnim getUseAnimation(ItemStack p_41452_) {
+        return UseAnim.CROSSBOW;
     }
 
 }

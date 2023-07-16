@@ -72,30 +72,30 @@ public class AtiumAllomanticHelper {
      */
     private static float getCalculateDobleBurn(int targetC, int sourceC, float damage) {
         if (targetC == 3) {                     //target = atium + lerasium
-            if (Math.random()<0.5) {        //source = atium
+            if (Math.random()<0.5) {            //source = atium
                 return 0;
             }
         } else if (targetC == 4) {              //target = atium + duralumin
             if (sourceC == 1) {
-                if (Math.random()<0.65) {   //source = atium
+                if (Math.random()<0.65) {       //source = atium
                     return 0;
                 }
             } else {
-                if (Math.random()<0.55) {    //source = atium + lerasium
+                if (Math.random()<0.55) {       //source = atium + lerasium
                     return 0;
                 }
             }
-        } else {                            //target quema atium + lerasium + duralumin
+        } else {                                //target quema atium + lerasium + duralumin
             if (sourceC == 1) {
-                if (Math.random()<0.9) {   //source = atium
+                if (Math.random()<0.9) {        //source = atium
                     return 0;
                 }
             } else if (sourceC == 3) {
-                if (Math.random()<0.75) {   //source = atium + lerasium
+                if (Math.random()<0.75) {       //source = atium + lerasium
                     return 0;
                 }
             } else {
-                if (Math.random()<0.65) {   //source = atium + duralumin
+                if (Math.random()<0.65) {       //source = atium + duralumin
                     return 0;
                 }
             }

@@ -184,6 +184,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/mistcloak","item/armors/mistcloak");
         builder(itemGenerated,"item/copper_coin","item/combat/copper_coin");
 
+        builder(itemGenerated,"item/pistol_test","item/combat/pistol");
+
 
     }
 

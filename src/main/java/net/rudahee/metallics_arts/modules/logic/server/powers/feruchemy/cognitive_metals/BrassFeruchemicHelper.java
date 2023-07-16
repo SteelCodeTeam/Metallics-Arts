@@ -43,7 +43,7 @@ public class BrassFeruchemicHelper {
      *
      */
     public static void storagePower(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 120, 1, true, false));
+        player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 120, 1, false, false));
 
         if (player.getLevel().getBiome(player.getOnPos()).is(Tags.Biomes.IS_COLD) ||
                 (player.getLevel().getBiome(player.getOnPos()).is(Biomes.DESERT) && player.getLevel().isNight())) {

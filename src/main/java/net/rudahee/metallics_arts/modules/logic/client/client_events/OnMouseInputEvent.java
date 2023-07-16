@@ -1,10 +1,14 @@
 package net.rudahee.metallics_arts.modules.logic.client.client_events;
 
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.PistolTest;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
@@ -45,7 +49,7 @@ public class OnMouseInputEvent {
      * @throws PlayerException If any error occurs related to the player or player capability.
      */
     @OnlyIn(Dist.CLIENT)
-    public static void OnMouseInputEvent(Player player,IInvestedPlayerData capability) throws PlayerException {
+    public static void OnMouseInputEvent(Player player, IInvestedPlayerData capability) throws PlayerException {
 
         if (player == null) {
             throw new PlayerException(ErrorTypes.PLAYER_ERROR);
@@ -67,4 +71,16 @@ public class OnMouseInputEvent {
             }
         }*/
     }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void otro(LocalPlayer player, ItemStack itemInHand) {
+        if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof PistolTest pistol) {
+            if (!itemInHand.hasTag()) {
+                itemInHand.setTag(pistol.generateGunTags());
+            }
+            itemInHand.setTag(pistol.shot(player, itemInHand.getTag()));
+        }
+    }
+
+
 }

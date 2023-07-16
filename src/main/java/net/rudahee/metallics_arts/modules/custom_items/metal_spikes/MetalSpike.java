@@ -232,9 +232,9 @@ public class MetalSpike extends SwordItem {
                         if (couldRemovePower){
                             targetData.removeAllomanticPower(localMetal);
 
-                            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, true, true, false));
+                            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, false, false, false));
 
-                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
+                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, false, false, false));
 
                         }
                         stack.getTag().putBoolean("allomantic_power",true);
@@ -245,9 +245,9 @@ public class MetalSpike extends SwordItem {
                         if (couldRemovePower){
                             targetData.removeFeruchemicPower(localMetal);
 
-                            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, true, true, false));
+                            target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, false, false, false));
 
-                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, true, true, false));
+                            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, false, false, false));
 
                         }
                         stack.getTag().putBoolean("feruchemic_power",true);
@@ -259,7 +259,7 @@ public class MetalSpike extends SwordItem {
                     if (couldRemovePower){
                         targetData.removeAllomanticPower(localMetal);
 
-                        target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, true, true, false));
+                        target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, false, false, false));
 
                         target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 1, true, true, false));
 
@@ -334,5 +334,10 @@ public class MetalSpike extends SwordItem {
         compoundTag.putBoolean("feruchemic_power",true);
 
         return compoundTag;
+    }
+
+    @Override
+    public boolean isEnchantable(ItemStack itemStack) {
+        return false;
     }
 }

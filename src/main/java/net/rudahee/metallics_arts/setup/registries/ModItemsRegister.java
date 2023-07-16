@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.setup.registries;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
+import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.PistolTest;
 import net.rudahee.metallics_arts.setup.registries.items.*;
 
 import java.util.HashMap;
@@ -34,6 +35,7 @@ public class ModItemsRegister {
     public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY_DIVINE = new HashMap<>();
     public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC_DIVINE = new HashMap<>();
 
+
     // Weapons
     public static RegistryObject<Item> OBSIDIAN_DAGGER;
     public static RegistryObject<Item> SILVER_KNIFE;
@@ -53,6 +55,7 @@ public class ModItemsRegister {
     public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ALUMINUM_ARMOR = new HashMap<>();
 
     public static RegistryObject<Item> COPPER_COIN;
+    public static RegistryObject<Item> PISTOL_TEST;
 
     public static RegistryObject<Item> MISTCLOACK;
 
