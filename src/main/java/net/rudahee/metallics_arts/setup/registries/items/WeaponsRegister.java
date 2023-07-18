@@ -37,7 +37,12 @@ public class WeaponsRegister {
         ModItemsRegister.COPPER_COIN = MetallicsArts.registerItem("copper_coin",
                 () -> new CopperCoin(COIN_PROPERTIES, 1, 5));
 
-        ModItemsRegister.PISTOL_TEST = MetallicsArts.registerItem("pistol_test",
+        /*ModItemsRegister.PISTOL_TEST = MetallicsArts.registerItem("pistol_test",
                 () -> new PistolTest(new Item.Properties().stacksTo(1).tab(MetallicsArts.MA_TAB)));
+
+        ModItemsRegister.LEAD_BULLET = MetallicsArts.registerItem("lead_bullet",
+                () -> new Item(COIN_PROPERTIES));
+        ModItemsRegister.ALUMINUM_BULLET = MetallicsArts.registerItem("aluminum_bullet",
+                () -> new Item(COIN_PROPERTIES));*/
     }
 }

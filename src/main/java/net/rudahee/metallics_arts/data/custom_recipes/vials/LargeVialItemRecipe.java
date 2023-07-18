@@ -105,10 +105,18 @@ public class LargeVialItemRecipe extends CustomRecipe {
                     }
                     if (actualIngredient.hasTag()) {
                         for (MetalTagEnum metal : MetalTagEnum.values()) {
-                            if (actualIngredient.getTag().contains(metal.getGemNameLower())) {
+                            if (actualIngredient.getTag().contains(metal.getNameLower())) {
                                 inVial.put(metal.getNameLower(), actualIngredient.getTag().getInt(metal.getNameLower()));
                                 required.put(metal.getNameLower(), 10 - inVial.get(metal.getNameLower()));
+                            } else {
+                                inVial.put(metal.getNameLower(), 0);
+                                required.put(metal.getNameLower(), 10);
                             }
+                        }
+                    } else {
+                        for (MetalTagEnum metal : MetalTagEnum.values()) {
+                            inVial.put(metal.getNameLower(), 0);
+                            required.put(metal.getNameLower(), 10);
                         }
                     }
                 }

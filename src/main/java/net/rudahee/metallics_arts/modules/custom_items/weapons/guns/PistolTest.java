@@ -26,6 +26,9 @@ public class PistolTest extends Item  {
     private final String BULLETS  = "bullets_count";
     private final String BULLETS_MAX  = "bullets_max";
     private final String BULLET_TYPE  = "bullets_type";
+
+    private final String STATE  = "state";
+
     private BulletType bulletType;
 
     public PistolTest(Properties properties) {
@@ -70,4 +73,14 @@ public class PistolTest extends Item  {
         return UseAnim.CROSSBOW;
     }
 
+    @Override
+    public boolean isBarVisible(ItemStack itemStack) {
+        return itemStack.getTag().getInt(this.BULLETS) > 0;
+    }
+
+    @Override
+    public int getBarWidth(ItemStack itemStack) {
+
+        return super.getBarWidth(itemStack);
+    }
 }

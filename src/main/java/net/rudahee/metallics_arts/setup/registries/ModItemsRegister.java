@@ -55,6 +55,8 @@ public class ModItemsRegister {
     public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ALUMINUM_ARMOR = new HashMap<>();
 
     public static RegistryObject<Item> COPPER_COIN;
+    public static RegistryObject<Item> ALUMINUM_BULLET;
+    public static RegistryObject<Item> LEAD_BULLET;
     public static RegistryObject<Item> PISTOL_TEST;
 
     public static RegistryObject<Item> MISTCLOACK;

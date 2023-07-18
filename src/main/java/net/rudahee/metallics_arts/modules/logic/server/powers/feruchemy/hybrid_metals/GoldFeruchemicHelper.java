@@ -21,7 +21,7 @@ public class GoldFeruchemicHelper {
      */
 
     public static void tapPower(Player player) {
-        player.heal(2f);
+        player.heal(2.0F);
     }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
@@ -33,7 +33,7 @@ public class GoldFeruchemicHelper {
 
     public static void storagePower(Player player) {
         if (!player.isCreative()){
-            player.hurt(DamageSource.GENERIC, 2);
+            player.hurt(DamageSource.GENERIC, 2.0F);
         }
     }
 

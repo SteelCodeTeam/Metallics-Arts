@@ -12,6 +12,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.custom_items.vials.large_vial.LargeVial;
 import net.rudahee.metallics_arts.modules.custom_items.vials.small_vial.SmallVial;
@@ -128,7 +129,7 @@ public abstract class Vial extends Item {
      *
      * @return CompoundTag
      */
-    private static CompoundTag addVialTags() {
+    public static CompoundTag addVialTags() {
         CompoundTag nbt = new CompoundTag();
         for (MetalTagEnum metal : MetalTagEnum.values()){
             nbt.putInt(metal.getNameLower(),0);
@@ -239,7 +240,7 @@ public abstract class Vial extends Item {
 
         if (!((Player) (livingEntity)).getAbilities().instabuild) {
             itemStack.shrink(1);
-            ItemStack item = null;
+            ItemStack item;
             if(this.maxNuggets==5){
                 item = new ItemStack(ModItemsRegister.SMALL_VIAL.get());
             }else {

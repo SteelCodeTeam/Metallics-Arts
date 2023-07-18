@@ -15,6 +15,7 @@ import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.Tags;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.modules.custom_items.vials.Vial;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypesRegister;
 import net.rudahee.metallics_arts.setup.registries.items.ModTags;
@@ -110,10 +111,18 @@ public class SmallVialItemRecipe extends CustomRecipe {
                     }
                     if (actualIngredient.hasTag()) {
                         for (MetalTagEnum metal : MetalTagEnum.values()) {
-                            if (actualIngredient.getTag().contains(metal.getGemNameLower())) {
+                            if (actualIngredient.getTag().contains(metal.getNameLower())) {
                                 inVial.put(metal.getNameLower(), actualIngredient.getTag().getInt(metal.getNameLower()));
                                 required.put(metal.getNameLower(), 5 - inVial.get(metal.getNameLower()));
+                            } else {
+                                inVial.put(metal.getNameLower(), 0);
+                                required.put(metal.getNameLower(), 5);
                             }
+                        }
+                    } else {
+                        for (MetalTagEnum metal : MetalTagEnum.values()) {
+                            inVial.put(metal.getNameLower(), 0);
+                            required.put(metal.getNameLower(), 5);
                         }
                     }
                 }
@@ -224,7 +233,6 @@ public class SmallVialItemRecipe extends CustomRecipe {
      */
     @Override
     public @NotNull ItemStack assemble(@NotNull CraftingContainer inventory) {
-
         ItemStack finalResult = new ItemStack(ModItemsRegister.SMALL_VIAL.get(), 1);
         CompoundTag compoundNBT = new CompoundTag();
         for (MetalTagEnum metal: MetalTagEnum.values()) {

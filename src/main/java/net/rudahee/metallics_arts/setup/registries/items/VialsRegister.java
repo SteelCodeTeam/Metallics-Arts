@@ -2,7 +2,9 @@ package net.rudahee.metallics_arts.setup.registries.items;
 
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.modules.custom_items.vials.Vial;
 import net.rudahee.metallics_arts.modules.custom_items.vials.large_vial.LargeVial;
 import net.rudahee.metallics_arts.modules.custom_items.vials.small_vial.SmallVial;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;

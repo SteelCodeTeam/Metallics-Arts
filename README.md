@@ -1,4 +1,4 @@
-# Metallics Arts 1.19.2-1.6.1
+# Metallics Arts 1.19.2-1.6.4
 
 
 
@@ -56,14 +56,15 @@ And we have two mandatory dependencies:
 
 ------
 
-## **Changelog ✒ [v1.6.2]️**
+## **Changelog ✒ [v1.6.4]️**
 - New vials: [v1.6.1]
   - fixed a bug with small vials that did not allow their correct crafting.
   - vials can now be crafted with more than one nugget at a time.
 - The crafting of the feruchemical rings was fixed. [v1.6.1]
 - New model of the sword koloss [v1.6.1]
 - New paintings created by Gar Leyva (https://twitter.com/gar_leyva) [v1.6.1]
-- fixed crafting of gems and divine metal nuggets [1.6.2]
+- Fixed crafting of gems and divine metal nuggets [1.6.2]
+- Fixed a bug in crafting vials and their subsequent loading [v1.6.4]
 <br>
 
 ------
