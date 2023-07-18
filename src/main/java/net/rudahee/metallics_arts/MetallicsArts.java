@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
@@ -37,6 +38,7 @@ import net.rudahee.metallics_arts.setup.registries.generation.ModStructureRegist
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
@@ -49,7 +51,7 @@ public class MetallicsArts {
     // Mod id
     public static final String MOD_ID = "metallics_arts";
 
-    public static final String VERSION = "1.6.4";
+    public static final String VERSION = "1.6.5";
 
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
@@ -151,7 +153,9 @@ public class MetallicsArts {
                         .size(4)
                         .icon(new ResourceLocation("curios:slot/metal_mind_slot"))
                         .build());
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BACK.getMessageBuilder().build());
+        //InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BACK..getMessageBuilder().build());
+        //InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
+        //        () -> new SlotTypeMessage.Builder("mistcloak_slot").priority(2).size(1).build());
     }
 
     private void processIMC(final InterModProcessEvent event)
