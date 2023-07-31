@@ -58,7 +58,7 @@ public class BasicGun extends Item  {
      * @param hand The hand used to interact with the basic gun.
      * @return The result of the interaction with the basic gun.
      */
-    @Override
+    /*@Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         CompoundTag tag = itemStack.getTag();
@@ -66,7 +66,7 @@ public class BasicGun extends Item  {
         itemStack.setTag(tag);
         player.startUsingItem(hand);
         return InteractionResultHolder.consume(itemStack);
-    }
+    }*/
 
     /**
      * Called every tick for the gun item while it is in the player's inventory.
@@ -83,7 +83,6 @@ public class BasicGun extends Item  {
         if (!stack.hasTag()) {
             stack.setTag(GunUtils.generateGunTags(this.gunType));
         }
-
         if (entity instanceof Player player) {
             if (player.getItemInHand(InteractionHand.MAIN_HAND) == stack) {
                 if (ModKeyRegister.RELOAD.isDown()) {
@@ -177,12 +176,12 @@ public class BasicGun extends Item  {
      * @param livingEntity The living entity using the gun item.
      * @param remainingTicks The remaining ticks for item usage.
      */
-    @Override
+    /*@Override
     public void releaseUsing(ItemStack itemStack, Level level, LivingEntity livingEntity, int remainingTicks) {
         CompoundTag tag = itemStack.getTag();
          tag.putFloat("CustomModelData", 0);
         itemStack.setTag(tag);
-    }
+    }*/
 
     /**
      * Gets the maximum duration for which the gun item can be used.
