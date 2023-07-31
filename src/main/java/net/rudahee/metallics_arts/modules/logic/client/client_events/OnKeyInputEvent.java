@@ -1,15 +1,12 @@
 package net.rudahee.metallics_arts.modules.logic.client.client_events;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.PistolTest;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.selectors.AllomanticSelector;
@@ -84,17 +81,6 @@ public class OnKeyInputEvent {
                 } else {
                     ClientUtils.toggleBurn(MetalTagEnum.getMetal(i), capability);
                 }
-            }
-        }
-
-        if (ModKeyRegister.RELOAD.isDown()) {
-
-            if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof PistolTest pistol) {
-                ItemStack a = player.getItemInHand(InteractionHand.MAIN_HAND);
-                if (!a.hasTag()) {
-                    a.setTag(pistol.generateGunTags());
-                }
-                pistol.reload(player, a.getTag());
             }
         }
 

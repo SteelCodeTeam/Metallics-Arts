@@ -2,8 +2,7 @@ package net.rudahee.metallics_arts.data.enums.implementations;
 
 public enum BulletType {
     ALUMINUM("aluminum"),
-    LEAD("lead"),
-    NONE("none");
+    LEAD("lead");
 
     private final String type;
 

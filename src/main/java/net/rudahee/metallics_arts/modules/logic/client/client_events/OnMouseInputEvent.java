@@ -6,13 +6,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
 import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.PistolTest;
+import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.BasicGun;
+import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.GunUtils;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
-import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
-import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.network.packets.ShotPacket;
 
 /**
  * OnMouseInputEvent is a client-side class responsible for processing
@@ -74,11 +75,13 @@ public class OnMouseInputEvent {
 
     @OnlyIn(Dist.CLIENT)
     public static void otro(LocalPlayer player, ItemStack itemInHand) {
-        if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof PistolTest pistol) {
+        if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof BasicGun instance) {
             if (!itemInHand.hasTag()) {
-                itemInHand.setTag(pistol.generateGunTags());
+                itemInHand.setTag(GunUtils.generateGunTags(instance.getGunType()));
             }
-            itemInHand.setTag(pistol.shot(player, itemInHand.getTag()));
+            if (itemInHand.getTag().getInt(GunsAccess.BULLETS.getKey()) > 0) {
+                ModNetwork.sendToServer(new ShotPacket());
+            }
         }
     }
 

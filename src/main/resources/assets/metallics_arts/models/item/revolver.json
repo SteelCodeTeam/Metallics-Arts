@@ -1,0 +1,216 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "metallics_arts:item/combat/guns/revolver"
+	},
+	"elements": [
+		{
+			"from": [1, 0.75, 7.25],
+			"to": [3, 4.75, 9.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 2, 5.25]},
+			"faces": {
+				"north": {"uv": [14, 10, 12, 14], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [14, 10, 16, 14], "rotation": 180, "texture": "#1"},
+				"south": {"uv": [14, 10, 12, 14], "texture": "#1"},
+				"west": {"uv": [16, 10, 14, 14], "texture": "#1"},
+				"up": {"uv": [14, 8, 16, 10], "rotation": 90, "texture": "#1"},
+				"down": {"uv": [14, 14, 16, 16], "rotation": 270, "texture": "#1"}
+			}
+		},
+		{
+			"from": [2, 3.75, 7.25],
+			"to": [4, 5.75, 9.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 2, 5.25]},
+			"faces": {
+				"north": {"uv": [14, 5, 16, 7], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [16, 7, 14, 9], "texture": "#1"},
+				"south": {"uv": [14, 5, 16, 7], "rotation": 270, "texture": "#1"},
+				"west": {"uv": [14, 7, 16, 9], "rotation": 180, "texture": "#1"},
+				"up": {"uv": [14, 8, 16, 10], "texture": "#1"},
+				"down": {"uv": [14, 7, 16, 9], "rotation": 270, "texture": "#1"}
+			}
+		},
+		{
+			"from": [4, 4.75, 7.25],
+			"to": [9, 8.75, 9.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 2, 5.25]},
+			"faces": {
+				"north": {"uv": [7, 6, 12, 10], "texture": "#1"},
+				"east": {"uv": [5, 10, 7, 14], "texture": "#1"},
+				"south": {"uv": [7, 10, 12, 6], "rotation": 180, "texture": "#1"},
+				"west": {"uv": [5, 10, 7, 14], "texture": "#1"},
+				"up": {"uv": [7, 3, 12, 5], "texture": "#1"},
+				"down": {"uv": [6, 12, 11, 14], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [4.75, 5.75, 6.75],
+			"to": [8.25, 8.25, 9.75],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 6, 8.25]},
+			"faces": {
+				"north": {"uv": [0.5, 2.75, 4, 0.25], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [4.3, 9.8, 0.7, 13.2], "rotation": 90, "texture": "#1"},
+				"south": {"uv": [10.4, 0.2, 13.9, 2.7], "texture": "#1"},
+				"west": {"uv": [0.7, 9.8, 4.3, 13.2], "rotation": 270, "texture": "#1"},
+				"up": {"uv": [0.5, 0, 4, 3], "texture": "#1"},
+				"down": {"uv": [5, 0, 8.5, 3], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [3, 5.75, 7.75],
+			"to": [4, 7.75, 8.75],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 2, 5.25]},
+			"faces": {
+				"north": {"uv": [13, 9, 12, 7], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [12, 7, 13, 9], "rotation": 180, "texture": "#1"},
+				"south": {"uv": [13, 7, 12, 9], "texture": "#1"},
+				"west": {"uv": [12, 7, 13, 9], "texture": "#1"},
+				"up": {"uv": [12, 7, 13, 8], "texture": "#1"},
+				"down": {"uv": [12, 7, 13, 8], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [4.2, 8.75, 8.75],
+			"to": [5, 9.15, 8.95],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 2, 5.25]},
+			"faces": {
+				"north": {"uv": [13, 9, 12, 7], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [12, 7, 13, 9], "rotation": 180, "texture": "#1"},
+				"south": {"uv": [13, 7, 12, 9], "texture": "#1"},
+				"west": {"uv": [12, 7, 13, 9], "texture": "#1"},
+				"up": {"uv": [12, 7, 13, 8], "texture": "#1"},
+				"down": {"uv": [12, 7, 13, 8], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [4.2, 8.75, 7.55],
+			"to": [5, 9.15, 7.75],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 2, 5.25]},
+			"faces": {
+				"north": {"uv": [13, 9, 12, 7], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [12, 7, 13, 9], "rotation": 180, "texture": "#1"},
+				"south": {"uv": [13, 7, 12, 9], "texture": "#1"},
+				"west": {"uv": [12, 7, 13, 9], "texture": "#1"},
+				"up": {"uv": [12, 7, 13, 8], "texture": "#1"},
+				"down": {"uv": [12, 7, 13, 8], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [9, 6.75, 7.5],
+			"to": [15, 8.25, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 2, 5.25]},
+			"faces": {
+				"north": {"uv": [9, 8, 3, 6.5], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [4.2, 11.8, 2.7, 13.3], "rotation": 90, "texture": "#1"},
+				"south": {"uv": [9, 6.5, 3, 8], "texture": "#1"},
+				"west": {"uv": [0, 3, 1.5, 4.5], "rotation": 270, "texture": "#1"},
+				"up": {"uv": [8.9, 5.1, 2.9, 6.6], "texture": "#1"},
+				"down": {"uv": [3, 14.3, 9, 15.8], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [9, 8.25, 8],
+			"to": [15, 8.75, 8.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 2, 5.25]},
+			"faces": {
+				"north": {"uv": [0, 0, 6, 0.5], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [0, 0, 0.5, 0.5], "rotation": 90, "texture": "#1"},
+				"south": {"uv": [0, 0, 6, 0.5], "texture": "#1"},
+				"west": {"uv": [0, 0, 0.5, 0.5], "rotation": 270, "texture": "#1"},
+				"up": {"uv": [0, 0, 6, 0.5], "texture": "#1"},
+				"down": {"uv": [0, 0, 6, 0.5], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [14.1, 8.75, 8.15],
+			"to": [15, 9.15, 8.35],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 2, 5.25]},
+			"faces": {
+				"north": {"uv": [13, 9, 12, 7], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [12, 7, 13, 9], "rotation": 180, "texture": "#1"},
+				"south": {"uv": [13, 7, 12, 9], "texture": "#1"},
+				"west": {"uv": [12, 7, 13, 9], "texture": "#1"},
+				"up": {"uv": [12, 7, 13, 8], "texture": "#1"},
+				"down": {"uv": [12, 7, 13, 8], "rotation": 180, "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [5, 90, 0],
+			"translation": [-0.25, 2.75, -2.5],
+			"scale": [0.75, 0.75, 0.75]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [5, -90, 0],
+			"translation": [-0.25, 2.75, -2.5],
+			"scale": [0.75, 0.75, 0.75]
+		},
+		"firstperson_righthand": {
+			"rotation": [5, 90, 0],
+			"translation": [-0.25, 2.75, -2.5],
+			"scale": [0.75, 0.75, 0.75]
+		},
+		"firstperson_lefthand": {
+			"rotation": [5, -90, 0],
+			"translation": [-0.25, 2.75, -2.5],
+			"scale": [0.75, 0.75, 0.75]
+		},
+		"ground": {
+			"translation": [0, 2.75, 0]
+		},
+		"gui": {
+			"rotation": [17, 23, 18],
+			"translation": [0, 2.5, 0]
+		},
+		"head": {
+			"rotation": [90, 0, 0],
+			"translation": [1, 8, 0.75]
+		},
+		"fixed": {
+			"translation": [0.5, 1.75, 0]
+		}
+	},
+	"groups": [
+		{
+			"name": "gun",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [
+				{
+					"name": "grip",
+					"origin": [8, 8, 8],
+					"color": 0,
+					"children": [0, 1]
+				},
+				{
+					"name": "frame",
+					"origin": [8, 8, 8],
+					"color": 0,
+					"children": [2, 3, 4, 5, 6]
+				},
+				{
+					"name": "barrel",
+					"origin": [8, 8, 8],
+					"color": 0,
+					"children": [7, 8, 9]
+				}
+			]
+		}
+	],
+	"overrides": [
+		{
+			"model": "metallics_arts:item/revolver_aim",
+			"predicate": {
+				"minecraft:custom_model_data": 1.0
+			}
+		},
+		{
+			"model": "metallics_arts:item/revolver_reload",
+			"predicate": {
+				"minecraft:custom_model_data": 2.0
+			}
+		}
+	]
+
+}

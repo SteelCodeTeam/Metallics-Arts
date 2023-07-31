@@ -3,7 +3,6 @@ package net.rudahee.metallics_arts.setup.registries;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
-import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.PistolTest;
 import net.rudahee.metallics_arts.setup.registries.items.*;
 
 import java.util.HashMap;
@@ -55,9 +54,17 @@ public class ModItemsRegister {
     public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ALUMINUM_ARMOR = new HashMap<>();
 
     public static RegistryObject<Item> COPPER_COIN;
-    public static RegistryObject<Item> ALUMINUM_BULLET;
-    public static RegistryObject<Item> LEAD_BULLET;
-    public static RegistryObject<Item> PISTOL_TEST;
+    public static RegistryObject<Item> PISTOL_ALUMINUM_BULLET;
+    public static RegistryObject<Item> PISTOL_LEAD_BULLET;
+
+    public static RegistryObject<Item> SHOTGUN_ALUMINUM_BULLET;
+    public static RegistryObject<Item> SHOTGUN_LEAD_BULLET;
+    public static RegistryObject<Item> RIFLE_ALUMINUM_BULLET;
+    public static RegistryObject<Item> RIFLE_LEAD_BULLET;
+    public static RegistryObject<Item> REVOLVER;
+    public static RegistryObject<Item> RIFLE;
+    public static RegistryObject<Item> SHOTGUN;
+    public static RegistryObject<Item> VINDICATOR;
 
     public static RegistryObject<Item> MISTCLOACK;
 

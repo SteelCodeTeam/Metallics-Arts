@@ -184,8 +184,18 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/mistcloak","item/armors/mistcloak");
         builder(itemGenerated,"item/copper_coin","item/combat/copper_coin");
 
-        builder(itemGenerated,"item/pistol_test","item/combat/pistol");
+        builder(itemGenerated,"item/vindicator","item/combat/guns/vindicator");
+        builder(itemGenerated,"item/shotgun","item/combat/guns/shotgun");
+        builder(itemGenerated,"item/rifle","item/combat/guns/rifle");
 
+        builder(itemGenerated,"item/shotgun_aluminum_bullet","item/combat/guns/shotgun_aluminum_bullet");
+        builder(itemGenerated,"item/shotgun_lead_bullet","item/combat/guns/shotgun_lead_bullet");
+
+        builder(itemGenerated,"item/pistol_aluminum_bullet","item/combat/guns/pistol_aluminum_bullet");
+        builder(itemGenerated,"item/pistol_lead_bullet","item/combat/guns/pistol_lead_bullet");
+
+        builder(itemGenerated,"item/rifle_lead_bullet","item/combat/guns/rifle_lead_bullet");
+        builder(itemGenerated,"item/rifle_aluminum_bullet","item/combat/guns/rifle_aluminum_bullet");
 
     }
 

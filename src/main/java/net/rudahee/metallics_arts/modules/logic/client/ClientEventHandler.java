@@ -2,16 +2,20 @@ package net.rudahee.metallics_arts.modules.logic.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
+import net.minecraftforge.client.event.RenderArmEvent;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.PistolTest;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.BasicGun;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.mele.KolossBlade;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.client.client_events.*;
@@ -85,18 +89,21 @@ public class ClientEventHandler {
      */
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
-    public void onMouseInput(final InputEvent.MouseButton event) {
+    public void onMouseInput(final InputEvent.MouseButton.Post event) {
         try {
             if (Minecraft.getInstance().player == null) {
                 return;
             }
             if (event.getButton() == 0 && event.getAction() == 1) {
+
                 //button = 0 - Left click
                 //action = 1 - Press button
-                if (Minecraft.getInstance().player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof PistolTest) {
-                    OnMouseInputEvent.otro(Minecraft.getInstance().player, Minecraft.getInstance().player.getItemInHand(InteractionHand.MAIN_HAND));
 
-                }
+                //if ( !Minecraft.getInstance().screen.isPauseScreen()) {
+                    if (Minecraft.getInstance().player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof BasicGun) {
+                        OnMouseInputEvent.otro(Minecraft.getInstance().player, Minecraft.getInstance().player.getItemInHand(InteractionHand.MAIN_HAND));
+                    }
+               // }
             }
             OnMouseInputEvent.OnMouseInputEvent(Minecraft.getInstance().player, CapabilityUtils.getCapability(Minecraft.getInstance().player));
         } catch (PlayerException ex) {
@@ -149,6 +156,7 @@ public class ClientEventHandler {
             ex.printResumeLog();
         }
     }
+
 
 
 }
