@@ -7,9 +7,12 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.BulletType;
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
+import net.rudahee.metallics_arts.modules.custom_projectiles.BulletProjectile;
+import net.rudahee.metallics_arts.modules.custom_projectiles.CopperProjectile;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 
@@ -87,13 +90,26 @@ public class GunUtils {
      * @param gunType The type of the gun being shot.
      * @return The updated CompoundTag of the gun item after the shot.
      */
-    public static CompoundTag shot(ItemStack gun, ServerPlayer player, GunType gunType) {
+    public static CompoundTag shot(ItemStack gun, Level level , ServerPlayer player, GunType gunType) {
         CompoundTag tag = gun.getTag();
-        //EL GUNTYPE SE USARIA PARA GENERAR EL PROYECTIL CORRESPONDIENTE
+
         if (tag.getInt(GunsAccess.BULLETS.getKey()) > 0) {
-            player.sendSystemMessage(Component.translatable("BANG"));
+            BulletProjectile bullet = new BulletProjectile(level, player);
+            if (gunType != GunType.SHOTGUN) {
+
+                if (gunType == GunType.RIFLE) {
+                    bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 5F, 1.0F);
+                } else {
+                    bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 4F, 1.0F);
+
+                }
+                level.addFreshEntity(bullet);
+            } else {
+                bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1F, 1.0F);
+            }
+
             tag.putInt(GunsAccess.BULLETS.getKey(), tag.getInt(GunsAccess.BULLETS.getKey()) - 1);
-            player.playSound(SoundEvents.CROSSBOW_HIT);
+
         } else {
             player.sendSystemMessage(Component.translatable("VACIO"));
         }

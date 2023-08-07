@@ -26,8 +26,6 @@ public class CopperCoin extends Item {
 
     }
 
-
-
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
       ItemStack itemstack = player.getItemInHand(interactionHand);
 
@@ -47,10 +45,10 @@ public class CopperCoin extends Item {
 
           if (playerCapability.isBurning(MetalTagEnum.STEEL)) {
 
-              CopperProjectile coin = new CopperProjectile(level, player, damage);
-
+              CopperProjectile coin = new CopperProjectile(level, player);
               coin.setItem(itemstack);
-              coin.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 0F, 1.0F);
+
+              coin.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 4F, 1.0F);
               level.addFreshEntity(coin);
 
               player.awardStat(Stats.ITEM_USED.get(this));

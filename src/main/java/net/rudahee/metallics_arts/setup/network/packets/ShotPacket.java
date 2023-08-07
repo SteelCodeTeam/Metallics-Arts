@@ -40,7 +40,7 @@ public class ShotPacket {
                     gun.setTag(GunUtils.generateGunTags(instance.getGunType()));
                 }
                 if (gun.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
-                    gun.setTag(GunUtils.shot(gun, player, instance.getGunType()));
+                    gun.setTag(GunUtils.shot(gun, player.level ,player, instance.getGunType()));
                 }
             }
         });

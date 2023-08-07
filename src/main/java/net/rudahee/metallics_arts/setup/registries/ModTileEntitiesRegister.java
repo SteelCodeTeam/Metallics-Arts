@@ -12,6 +12,7 @@ public class ModTileEntitiesRegister {
     public static DeferredRegister<BlockEntityType<?>> TILE_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MetallicsArts.MOD_ID);
 
+
     public static void register(IEventBus eventBus) {
         TILE_ENTITIES.register(eventBus);
     }

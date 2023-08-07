@@ -1,5 +1,7 @@
 package net.rudahee.metallics_arts.modules.custom_items.weapons.guns;
 
+import net.minecraft.client.renderer.ItemInHandRenderer;
+import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -12,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.IForgeRegistry;
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
@@ -36,7 +39,6 @@ import java.util.List;
 public class BasicGun extends Item  {
     private GunType gunType;
 
-
     /**
      * Constructs a new BasicGun with the given properties and gun type.
      *
@@ -58,15 +60,15 @@ public class BasicGun extends Item  {
      * @param hand The hand used to interact with the basic gun.
      * @return The result of the interaction with the basic gun.
      */
-    /*@Override
+    @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
-        CompoundTag tag = itemStack.getTag();
+        /*CompoundTag tag = itemStack.getTag();
         tag.putFloat("CustomModelData", 1);
         itemStack.setTag(tag);
-        player.startUsingItem(hand);
+        player.startUsingItem(hand);*/
         return InteractionResultHolder.consume(itemStack);
-    }*/
+    }
 
     /**
      * Called every tick for the gun item while it is in the player's inventory.
@@ -168,20 +170,6 @@ public class BasicGun extends Item  {
         return true;
     }
 
-    /**
-     * Called when the player releases the use button while using the gun item.
-     *
-     * @param itemStack The ItemStack representing the gun item.
-     * @param level The current game level.
-     * @param livingEntity The living entity using the gun item.
-     * @param remainingTicks The remaining ticks for item usage.
-     */
-    /*@Override
-    public void releaseUsing(ItemStack itemStack, Level level, LivingEntity livingEntity, int remainingTicks) {
-        CompoundTag tag = itemStack.getTag();
-         tag.putFloat("CustomModelData", 0);
-        itemStack.setTag(tag);
-    }*/
 
     /**
      * Gets the maximum duration for which the gun item can be used.
@@ -194,14 +182,8 @@ public class BasicGun extends Item  {
         return 72000;
     }
 
-    /**
-     * Gets the animation type used while using the gun item.
-     *
-     * @param itemStack The ItemStack representing the gun item.
-     * @return The UseAnim representing the use animation.
-     */
     @Override
-    public UseAnim getUseAnimation(ItemStack itemStack) {
-        return UseAnim.BOW;
+    public boolean isEnchantable(ItemStack p_41456_) {
+        return false;
     }
 }
