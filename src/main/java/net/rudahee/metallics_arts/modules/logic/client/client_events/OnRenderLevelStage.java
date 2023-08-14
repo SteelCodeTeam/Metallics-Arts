@@ -159,7 +159,7 @@ public class OnRenderLevelStage {
 
     }
 
-    private static void metalLines(int tick, float partialTick, Vec3 viewPosition, Matrix4f translationMatrix, Vec3 source, double scale, ResourceLocation texture, int numberOfFrames, int columnWidth, int columnHeight, List<Entity> entities, List<MetalBlockUtils> blocks){
+    private static void metalLines(int tick, float partialTick, Vec3 viewPosition, Matrix4f translationMatrix, Vec3 source, double scale, ResourceLocation texture, int numberOfFrames, int columnWidth, int columnHeight, List<Entity> entities, List<MetalBlockUtils> blocks) {
         /**
          * @param tick integer representing the current world tick, used to calculate the current frame.
          * @param partialTick the current PartialTick value used for rendering.

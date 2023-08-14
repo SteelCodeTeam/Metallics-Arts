@@ -249,7 +249,7 @@ public class PowersAddRegister {
     }
 
 
-    public static int addAllomanticPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players){
+    public static int addAllomanticPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
             player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
@@ -262,7 +262,7 @@ public class PowersAddRegister {
 
         return 1;
     }
-    public static int addFeruchemicPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players){
+    public static int addFeruchemicPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
             player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
@@ -275,7 +275,7 @@ public class PowersAddRegister {
 
         return 1;
     }
-    public static int addAllAllomanticPower (CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players){
+    public static int addAllAllomanticPower (CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
         ServerPlayer playerEntity = null;
 
         for (ServerPlayer player: players) {
@@ -289,7 +289,7 @@ public class PowersAddRegister {
 
         return 1;
     }
-    public static int addAllFeruchemicPower (CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players){
+    public static int addAllFeruchemicPower (CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
             player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
@@ -302,7 +302,7 @@ public class PowersAddRegister {
 
         return 1;
     }
-    public static int addAllPower(CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players){
+    public static int addAllPower(CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
             player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{

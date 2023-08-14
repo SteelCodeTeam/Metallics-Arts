@@ -84,7 +84,7 @@ public enum ColorsNames implements ILanguage {
      *
      * @return the name of the color in Polish
      */
-    public String getNameInPolish(){
+    public String getNameInPolish() {
         return this.polish;
     }
 }

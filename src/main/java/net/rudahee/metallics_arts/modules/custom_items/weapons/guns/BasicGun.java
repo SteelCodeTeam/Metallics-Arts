@@ -88,10 +88,28 @@ public class BasicGun extends Item  {
         if (entity instanceof Player player) {
             if (player.getItemInHand(InteractionHand.MAIN_HAND) == stack) {
                 if (ModKeyRegister.RELOAD.isDown()) {
-                    if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) < stack.getTag().getInt(GunsAccess.BULLETS_MAX.getKey())) {
-                        stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
+                    if (this.gunType == GunType.SHOTGUN) {
+                        //stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
+                        if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 0) {
+                            stack.getTag().putFloat("CustomModelData", 2);
+                        } else if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 1) {
+                            stack.getTag().putFloat("CustomModelData", 3);
+                        } else {
+                            stack.getTag().putFloat("CustomModelData", 4);
+                        }
+                    } else if (this.gunType == GunType.RIFLE) {
+                        //stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
+                        if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 0) {
+                            stack.getTag().putFloat("CustomModelData", 2);
+                        } else {
+                            stack.getTag().putFloat("CustomModelData", 3);
+                        }
+
+                    } else if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) < stack.getTag().getInt(GunsAccess.BULLETS_MAX.getKey())) {
+                        //stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
                         stack.getTag().putFloat("CustomModelData", 2);
                     }
+                    stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
                 }
             } else if (stack.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.RELOAD.getKey())) {
                 stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());

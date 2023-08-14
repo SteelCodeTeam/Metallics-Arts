@@ -128,7 +128,7 @@ public abstract class Vial extends Item {
      */
     public static CompoundTag addVialTags() {
         CompoundTag nbt = new CompoundTag();
-        for (MetalTagEnum metal : MetalTagEnum.values()){
+        for (MetalTagEnum metal : MetalTagEnum.values()) {
             nbt.putInt(metal.getNameLower(),0);
         }
         return nbt;
@@ -141,7 +141,7 @@ public abstract class Vial extends Item {
      */
     public static CompoundTag addFullReserveVialTags() {
         CompoundTag nbt = new CompoundTag();
-        for (MetalTagEnum metal : MetalTagEnum.values()){
+        for (MetalTagEnum metal : MetalTagEnum.values()) {
             nbt.putInt(metal.getNameLower(), 10);
         }
         return nbt;
@@ -238,20 +238,20 @@ public abstract class Vial extends Item {
         if (!((Player) (livingEntity)).getAbilities().instabuild) {
             itemStack.shrink(1);
             ItemStack item;
-            if(this.maxNuggets==5){
+            if(this.maxNuggets==5) {
                 item = new ItemStack(ModItemsRegister.SMALL_VIAL.get());
             }else {
                 item = new ItemStack(ModItemsRegister.LARGE_VIAL.get());
             }
 
             CompoundTag data = new CompoundTag();
-            for (MetalTagEnum metal : MetalTagEnum.values()){
+            for (MetalTagEnum metal : MetalTagEnum.values()) {
                 data.putInt(metal.getNameLower(),0);
             }
             item.setTag(data);
 
             if (!((Player) livingEntity).getInventory().add(item)) {
-                if(this.maxNuggets==5){
+                if(this.maxNuggets==5) {
                     level.addFreshEntity(new ItemEntity(level, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItemsRegister.SMALL_VIAL.get(), 1)));
                 }else {
                     level.addFreshEntity(new ItemEntity(level, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), new ItemStack(ModItemsRegister.LARGE_VIAL.get(), 1)));

@@ -213,7 +213,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      * @return int
      */
     @Override
-    public int getAllomanticPowerCount(){
+    public int getAllomanticPowerCount() {
         return (int) this.allomanticPowers.values().stream().filter(power -> power).count();
     }
 
@@ -223,7 +223,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      * @return int
      */
     @Override
-    public int getFeruchemicPowerCount(){
+    public int getFeruchemicPowerCount() {
         return (int) this.feruchemicPowers.values().stream().filter(power -> power).count();
     }
 
@@ -255,7 +255,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
     @Override
     public ArrayList<MetalTagEnum> getAllomanticPowers() {
         ArrayList<MetalTagEnum> powers = new ArrayList<>();
-        for(MetalTagEnum metals: MetalTagEnum.values()){
+        for(MetalTagEnum metals: MetalTagEnum.values()) {
             if (hasAllomanticPower(metals))
                 powers.add(metals);
         }
@@ -270,7 +270,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
     @Override
     public ArrayList<MetalTagEnum> getFeruchemicPowers() {
         ArrayList<MetalTagEnum> powers = new ArrayList<>();
-        for(MetalTagEnum metals: MetalTagEnum.values()){
+        for(MetalTagEnum metals: MetalTagEnum.values()) {
             if (hasFeruchemicPower(metals))
                 powers.add(metals);
         }
@@ -775,7 +775,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
 
         investedData.put("modified_health", modified_health);
 
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             metalMindEquipped.putBoolean("group" + i, this.hasMetalMindEquiped(i));
         }
 
@@ -828,7 +828,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
             this.setTapping(metal, tappingMetals.getBoolean(metal.getNameLower()));
             this.setStoring(metal, storingMetals.getBoolean(metal.getNameLower()));
 
-            if (this.hasAllomanticPower(metal)){
+            if (this.hasAllomanticPower(metal)) {
                 this.setAllomanticMetalsAmount(metal,allomantic_reserve.getInt(metal.getNameLower()));
                 this.setBurning(metal,burningMetals.getBoolean(metal.getNameLower()));
             }
@@ -841,7 +841,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         this.setFullFeruchemist(investedData.getBoolean("full_feruchemic"));
         this.setFullInvested(investedData.getBoolean("full_invested"));
 
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             this.setMetalMindEquiped(i,metalMindEquipped.getBoolean("group" + i));
         }
 

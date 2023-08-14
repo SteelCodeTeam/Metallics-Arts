@@ -20,7 +20,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weap
 import java.util.HashMap;
 
 public class BookHelperES {
-    public static HashMap<String, String> addDemoBook(){
+    public static HashMap<String, String> addDemoBook() {
 
         HashMap<String, String> bookLangHelper = new HashMap<>();
         BookLangHelper helper = ModonomiconAPI.get().getLangHelper(MetallicsArts.MOD_ID);
@@ -36,14 +36,14 @@ public class BookHelperES {
         return bookLangHelper;
     }
 
-    private static HashMap<String, String> addIntroCategory(BookLangHelper helper){
+    private static HashMap<String, String> addIntroCategory(BookLangHelper helper) {
         HashMap<String, String> introTraslationsMap = new HashMap<>();
         helper.category("intro");
         introTraslationsMap.put(helper.categoryName(), CTW.INTRODUCTION.getNameInSpanish());
 
         introTraslationsMap.putAll(addWelcomeEntry(helper, SubdivisionData.WELCOME));
         for (SubdivisionData entry: SubdivisionData.values()) {
-            if (!entry.isAllomantic() && !entry.isFeruchemical() && !entry.isWelcome()){
+            if (!entry.isAllomantic() && !entry.isFeruchemical() && !entry.isWelcome()) {
                 introTraslationsMap.putAll(addSubDivisionEntry(helper,entry));
             }
         }
@@ -64,7 +64,7 @@ public class BookHelperES {
         allomancyTraslationsMap.putAll(addWelcomeEntry(helper, SubdivisionData.ALLOMANCY));
 
         for (SubdivisionData oM: SubdivisionData.values()) {
-            if (oM.isAllomantic()){
+            if (oM.isAllomantic()) {
                 allomancyTraslationsMap.putAll(addSubDivisionEntry(helper,oM));
             }
         }
@@ -82,7 +82,7 @@ public class BookHelperES {
         feruchemyTraslationsMap.putAll(addWelcomeEntry(helper, SubdivisionData.FERUCHEMY));
 
         for (SubdivisionData oM: SubdivisionData.values()) {
-            if (oM.isFeruchemical()){
+            if (oM.isFeruchemical()) {
                 feruchemyTraslationsMap.putAll(addSubDivisionEntry(helper,oM));
             }
         }
@@ -102,7 +102,7 @@ public class BookHelperES {
 
         for (String content: SubdivisionDescription.valueOf(subdivisionEntry.name()).getSpanish()) {
             helper.page("page"+ x);
-            if (x == 1){
+            if (x == 1) {
                 welcomeTraslationsMap.put(helper.pageTitle(), CTW.valueOf(subdivisionEntry.name()).getNameInSpanish());
             } else {
                 welcomeTraslationsMap.put(helper.pageTitle(), "-");
@@ -124,7 +124,7 @@ public class BookHelperES {
         int x = 1;
         for (String content: SubdivisionDescription.valueOf(subdivisionEntry.name()).getSpanish()) {
             helper.page("page"+ x);
-            if (x == 1){
+            if (x == 1) {
                 subDivisionTraslationsMap.put(helper.pageTitle(), CTW.valueOf(subdivisionEntry.name()).getNameInSpanish());
             } else {
                 subDivisionTraslationsMap.put(helper.pageTitle(), "-");

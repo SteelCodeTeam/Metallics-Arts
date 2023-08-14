@@ -34,7 +34,7 @@ public class ModKeyRegister {
 
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping RELOAD;
-    public static void initKeys(final RegisterKeyMappingsEvent evt){
+    public static void initKeys(final RegisterKeyMappingsEvent evt) {
         ALLOMANTIC_POWER_SELECTOR =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomantic", GLFW.GLFW_KEY_M,KEY_CATEGORY);
         evt.register(ALLOMANTIC_POWER_SELECTOR);
 

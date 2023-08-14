@@ -34,8 +34,8 @@ public class BendalloyFeruchemicHelper {
      *
      */
     public static void storagePower(Player player) {
-        if (!player.isCreative()){
-            if (player.getFoodData().getFoodLevel()>0){
+        if (!player.isCreative()) {
+            if (player.getFoodData().getFoodLevel()>0) {
                 player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() - 2);
             }
         }

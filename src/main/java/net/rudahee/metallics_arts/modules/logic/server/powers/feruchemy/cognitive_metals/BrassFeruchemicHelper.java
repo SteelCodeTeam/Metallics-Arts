@@ -57,7 +57,7 @@ public class BrassFeruchemicHelper {
      * @param livingEntity to whom the seconds of fire will be applied.
      * @param secondsFire seconds the entity will be on fire.
      */
-    public static void addFireAspectToPlayer(LivingEntity livingEntity, int secondsFire){
+    public static void addFireAspectToPlayer(LivingEntity livingEntity, int secondsFire) {
         livingEntity.setSecondsOnFire(secondsFire);
     }
 }

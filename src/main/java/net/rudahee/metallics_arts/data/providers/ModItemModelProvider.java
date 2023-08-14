@@ -48,7 +48,7 @@ public class ModItemModelProvider extends ItemModelProvider {
      * for this we use a tons of predefined (by super class) methods.
      */
     @Override
-    protected void registerModels(){
+    protected void registerModels() {
 
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
         ModelFile itemHandHeld = getExistingFile(mcLoc("item/handheld"));
@@ -185,8 +185,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/copper_coin","item/combat/copper_coin");
 
         builder(itemGenerated,"item/vindicator","item/combat/guns/vindicator");
-        builder(itemGenerated,"item/shotgun","item/combat/guns/shotgun");
-        builder(itemGenerated,"item/rifle","item/combat/guns/rifle");
 
         builder(itemGenerated,"item/shotgun_aluminum_bullet","item/combat/guns/shotgun_aluminum_bullet");
         builder(itemGenerated,"item/shotgun_lead_bullet","item/combat/guns/shotgun_lead_bullet");
@@ -210,7 +208,7 @@ public class ModItemModelProvider extends ItemModelProvider {
      *
      * @see ItemModelBuilder
      */
-    private ItemModelBuilder builder(ModelFile itemGenerated, String outPath, String texturePath){
+    private ItemModelBuilder builder(ModelFile itemGenerated, String outPath, String texturePath) {
         return getBuilder(outPath).parent(itemGenerated).texture("layer0", texturePath);
     }
 

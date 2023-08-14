@@ -59,7 +59,7 @@ public class ElectrumFeruchemicHelper {
      * @param player to whom the effect will be applied.
      * @param playerCapability capabilities (data) to the player.
      */
-    public static void restoreHearts(Player player, IInvestedPlayerData playerCapability){
+    public static void restoreHearts(Player player, IInvestedPlayerData playerCapability) {
         if (player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MAX_HEALTH_ELECTRUM)) {
             player.getAttribute(Attributes.MAX_HEALTH).removeModifier(ModModifiers.MAX_HEALTH_ELECTRUM);
         }

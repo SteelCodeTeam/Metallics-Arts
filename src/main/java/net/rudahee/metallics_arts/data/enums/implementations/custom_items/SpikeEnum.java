@@ -73,7 +73,7 @@ public enum SpikeEnum {
      *
      * @param spike the item representing the spike.
      */
-    public void setSpike (Item spike){
+    public void setSpike (Item spike) {
         this.spike = spike;
     }
 

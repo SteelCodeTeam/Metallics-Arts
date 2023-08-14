@@ -32,7 +32,7 @@ public class GoldFeruchemicHelper {
      */
 
     public static void storagePower(Player player) {
-        if (!player.isCreative()){
+        if (!player.isCreative()) {
             player.hurt(DamageSource.GENERIC, 2.0F);
         }
     }

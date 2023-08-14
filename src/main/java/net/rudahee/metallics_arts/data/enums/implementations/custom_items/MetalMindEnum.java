@@ -106,7 +106,7 @@ public enum MetalMindEnum {
      *
      * @param band the new associated band item.
      */
-    public void setBand(Item band){
+    public void setBand(Item band) {
         this.band = band;
     }
     /**
@@ -114,7 +114,7 @@ public enum MetalMindEnum {
      *
      * @param ring the new associated ring item.
      */
-    public void setRing(Item ring){
+    public void setRing(Item ring) {
         this.ring = ring;
     }
 

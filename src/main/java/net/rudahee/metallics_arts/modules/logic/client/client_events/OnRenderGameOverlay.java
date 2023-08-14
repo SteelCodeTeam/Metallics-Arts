@@ -35,23 +35,23 @@ public class OnRenderGameOverlay {
             throw new PlayerException(ErrorTypes.PLAYER_ERROR);
         }
 
-        if (ModKeyRegister.ALLOMANTIC_POWER_SELECTOR.isDown()){
-            if (minecraft.screen == null){
-                if (!minecraft.isWindowActive()){
+        if (ModKeyRegister.ALLOMANTIC_POWER_SELECTOR.isDown()) {
+            if (minecraft.screen == null) {
+                if (!minecraft.isWindowActive()) {
                     return;
                 }
-                if (capability.getAllomanticPowerCount() != 0){
+                if (capability.getAllomanticPowerCount() != 0) {
                     minecraft.setScreen(new AllomanticSelector());
                 }
             }
         }
 
-        if (ModKeyRegister.FERUCHEMIC_POWER_SELECTOR.isDown()){
-            if (minecraft.screen == null){
-                if (!minecraft.isWindowActive()){
+        if (ModKeyRegister.FERUCHEMIC_POWER_SELECTOR.isDown()) {
+            if (minecraft.screen == null) {
+                if (!minecraft.isWindowActive()) {
                     return;
                 }
-                if (capability.getFeruchemicPowerCount() != 0){
+                if (capability.getFeruchemicPowerCount() != 0) {
                     minecraft.setScreen(new FeruchemySelector());
                 }
             }

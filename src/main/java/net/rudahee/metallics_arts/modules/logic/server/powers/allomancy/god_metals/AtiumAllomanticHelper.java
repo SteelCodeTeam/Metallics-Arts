@@ -35,7 +35,7 @@ public class AtiumAllomanticHelper {
         if (targetCapability.getEnhanced())
             tar = tar + 3;
 
-        if (sourceCapability.isBurning(MetalTagEnum.ATIUM)){
+        if (sourceCapability.isBurning(MetalTagEnum.ATIUM)) {
             sour = sour + 1;
             if (sourceCapability.isBurning(MetalTagEnum.LERASIUM))
                 sour =sour + 2;

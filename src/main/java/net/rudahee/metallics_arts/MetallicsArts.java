@@ -176,11 +176,11 @@ public class MetallicsArts {
 
 
     @SubscribeEvent
-    public void onCommandsRegister(RegisterCommandsEvent event){
+    public void onCommandsRegister(RegisterCommandsEvent event) {
         ModCommandsRegister.register(event.getDispatcher());
     }
 
-    public void clientInit(final FMLClientSetupEvent e){
+    public void clientInit(final FMLClientSetupEvent e) {
         ModEventsRegister.clientInit(e);
     }
 

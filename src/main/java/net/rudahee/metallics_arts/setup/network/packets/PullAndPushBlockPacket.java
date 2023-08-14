@@ -74,7 +74,7 @@ public class PullAndPushBlockPacket {
             // Sanity check to make sure  the block is loaded in the server
             if (player.level.isLoaded(pos)) {
                 // activate blocks
-                if (IronAndSteelHelpers.isBlockStateMetal(player.level.getBlockState(pos))){ // Check whitelist on server)
+                if (IronAndSteelHelpers.isBlockStateMetal(player.level.getBlockState(pos))) { // Check whitelist on server)
                     IronAndSteelHelpers.move(this.direction, player, pos);
                 }
             }

@@ -141,7 +141,7 @@ public class MetalSpike extends SwordItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, @NotNull List<Component> toolTips, @NotNull TooltipFlag flag) {
 
-        if (stack.hasTag()){
+        if (stack.hasTag()) {
             if  (!stack.getTag().contains("metal_spike") || !stack.getTag().contains("feruchemic_power") || !stack.getTag().contains("allomantic_power"))  {
                 stack.setTag(generateTags(stack));
             }
@@ -187,7 +187,7 @@ public class MetalSpike extends SwordItem {
             stack.setTag(generateTags(stack));
         }
 
-        if ((target instanceof Player) && (source instanceof Player)){
+        if ((target instanceof Player) && (source instanceof Player)) {
 
             IInvestedPlayerData targetData;
             try {
@@ -213,13 +213,13 @@ public class MetalSpike extends SwordItem {
 
 
             //DAR PODER
-            if (stack.getTag().getBoolean("allomantic_power")){
-                if (!targetData.hasAllomanticPower(localMetal)){
+            if (stack.getTag().getBoolean("allomantic_power")) {
+                if (!targetData.hasAllomanticPower(localMetal)) {
                     targetData.addAllomanticPower(localMetal);
                     doEffects(world, pos);
                 }
-            } else if (stack.getTag().getBoolean("feruchemic_power")){
-                if (!targetData.hasFeruchemicPower(localMetal)){
+            } else if (stack.getTag().getBoolean("feruchemic_power")) {
+                if (!targetData.hasFeruchemicPower(localMetal)) {
                     targetData.addFeruchemicPower(localMetal);
                     doEffects(world, pos);
                 }
@@ -228,8 +228,8 @@ public class MetalSpike extends SwordItem {
             } else if (hasPlayerBothPowers(localMetal, targetData)) {
                 //SI EL OBJETIVO TIENE AMBOS PODERES
                 if (isAllomantic) {
-                    if (couldStealPower){
-                        if (couldRemovePower){
+                    if (couldStealPower) {
+                        if (couldRemovePower) {
                             targetData.removeAllomanticPower(localMetal);
 
                             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, false, false, false));
@@ -241,8 +241,8 @@ public class MetalSpike extends SwordItem {
                         addItemToPlayer((Player) source, stack);
                     }
                 } else {
-                    if (couldStealPower){
-                        if (couldRemovePower){
+                    if (couldStealPower) {
+                        if (couldRemovePower) {
                             targetData.removeFeruchemicPower(localMetal);
 
                             target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, false, false, false));
@@ -254,9 +254,9 @@ public class MetalSpike extends SwordItem {
                         addItemToPlayer((Player) source, stack);
                     }
                 }
-            } else if (hasAllomanticPower){
-                if (couldStealPower){
-                    if (couldRemovePower){
+            } else if (hasAllomanticPower) {
+                if (couldStealPower) {
+                    if (couldRemovePower) {
                         targetData.removeAllomanticPower(localMetal);
 
                         target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120, 1, false, false, false));
@@ -267,8 +267,8 @@ public class MetalSpike extends SwordItem {
                     stack.getTag().putBoolean("allomantic_power",true);
                     addItemToPlayer((Player) source, stack);
                 }
-            } else if (hasFeruchemicPower){
-                if (couldStealPower){
+            } else if (hasFeruchemicPower) {
+                if (couldStealPower) {
                     if (couldRemovePower) {
 
                         targetData.removeFeruchemicPower(localMetal);

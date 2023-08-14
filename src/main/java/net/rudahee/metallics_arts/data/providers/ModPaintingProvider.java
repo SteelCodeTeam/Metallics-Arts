@@ -59,7 +59,7 @@ public class ModPaintingProvider {
      *
      * @param eventBus the event bus to register the painting variants
      */
-    public static void register(IEventBus eventBus){
+    public static void register(IEventBus eventBus) {
         PAINTING_VARIANTS.register(eventBus);
     }
 

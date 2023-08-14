@@ -27,14 +27,22 @@ public class GunUtils {
         CompoundTag compoundTag = gun.getTag();
 
         int slot = hasBulletOfType(player, compoundTag.getString(GunsAccess.BULLET_TYPE.getKey()), gunType);
-        if (slot != -1) {
-            player.sendSystemMessage(Component.translatable("RECARGANDO"));
+        if (slot != -1 && compoundTag.getInt(GunsAccess.BULLETS.getKey()) < gunType.getMaxAmount()) {
+
             compoundTag.putInt(GunsAccess.BULLETS.getKey(), compoundTag.getInt(GunsAccess.BULLETS.getKey()) + 1);
             player.getInventory().removeItem(slot, 1);
 
-            if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == gunType.getMaxAmount()) {
-                compoundTag.putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
-                compoundTag.putFloat("CustomModelData", 0);
+
+            if (gunType == GunType.SHOTGUN) {
+                if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 1) {
+                    compoundTag.putFloat("CustomModelData", 3);
+                } else {
+                    compoundTag.putFloat("CustomModelData", 4);
+                }
+            } else if (gunType == GunType.RIFLE) {
+                if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 1) {
+                    compoundTag.putFloat("CustomModelData", 3);
+                }
             }
         } else {
             compoundTag.putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
@@ -61,7 +69,7 @@ public class GunUtils {
             item = type.equals(BulletType.LEAD.getType()) ? ModItemsRegister.PISTOL_LEAD_BULLET.get() : ModItemsRegister.PISTOL_ALUMINUM_BULLET.get();
         }
         for (ItemStack stack: player.getInventory().items) {
-            if (stack.is(item)){
+            if (stack.is(item)) {
                 return player.getInventory().findSlotMatchingItem(stack);
             }
         }

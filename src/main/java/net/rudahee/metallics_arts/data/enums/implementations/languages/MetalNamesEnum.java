@@ -114,7 +114,7 @@ public enum MetalNamesEnum implements ILanguage {
      *
      * @return the name of the MetalNamesEnum instance in Polish
      */
-    public String getNameInPolish(){
+    public String getNameInPolish() {
         return this.polish;
     }
 }

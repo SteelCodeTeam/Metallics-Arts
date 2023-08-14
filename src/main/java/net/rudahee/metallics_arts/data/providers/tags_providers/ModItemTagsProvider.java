@@ -35,7 +35,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
             tag(ModTags.INGOTS.get(metal.getMetalNameLower())).add(ModItemsRegister.ITEM_METAL_INGOT.get(metal.getMetalNameLower()));
             tag(ModTags.METAL_BLOCKS.get(metal.getMetalNameLower())).add(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower()).asItem());
 
-            if (!metal.isAlloy()){
+            if (!metal.isAlloy()) {
                 tag(ModTags.RAWS.get(metal.getMetalNameLower())).add(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower()));
                 tag(ModTags.RAW_BLOCKS.get(metal.getMetalNameLower())).add(ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getMetalNameLower()).asItem());
             }

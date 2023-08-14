@@ -35,7 +35,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags() {
 
-        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()){
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (!metal.isVanilla()) {
                 if (metal.isAppearsInStone() && metal.isAppearsInDeepslate()) {
                     addForgeTag("ores/" + metal.getId(), ModBlocksRegister.BLOCK_METAL_ORES.get(metal.getId()), ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
@@ -83,7 +83,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (!metal.isVanilla() ) {
                 tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + metal.getId()));
-                if ((metal.isAppearsInDeepslate() || metal.isAppearsInStone())){
+                if ((metal.isAppearsInDeepslate() || metal.isAppearsInStone())) {
                     /*if (metal.isAppearsInDeepslate()) {
                         tag(ModTags.forgeBlockTag("ores_in_ground")).addTags(ModTags.forgeBlockTag("ores/" + metal.getId()));
                     }*/

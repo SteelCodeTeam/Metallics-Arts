@@ -57,7 +57,7 @@ public class IronAndSteelHelpers {
      *
      * @return int
      */
-    public static int haveNuggets(Player player){
+    public static int haveNuggets(Player player) {
 
         ArrayList<Ingredient> arrayList = new ArrayList<>();
 
@@ -247,11 +247,11 @@ public class IronAndSteelHelpers {
      * @return the calculated multiplier as a float value (1f, 2f, 4f, or 6f)
      */
     public static float getMultiplier(Player player, boolean duralumin, boolean lerasium) {
-        if (duralumin && lerasium){
+        if (duralumin && lerasium) {
             return 6f;
-        } else if (duralumin && !lerasium){
+        } else if (duralumin && !lerasium) {
             return 4f;
-        } else if (!duralumin && lerasium){
+        } else if (!duralumin && lerasium) {
             return 2f;
         } else {
             return 1f;

@@ -26,7 +26,7 @@ public class ComparatorMetals implements Comparator<MetalTagEnum> {
      */
     @Override
     public int compare(MetalTagEnum metal1, MetalTagEnum metal2) {
-        if (metal1.getOrder() < metal2.getOrder()){
+        if (metal1.getOrder() < metal2.getOrder()) {
             return 1;
         } else {
             return -1;

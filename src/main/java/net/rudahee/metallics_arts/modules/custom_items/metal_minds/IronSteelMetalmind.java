@@ -20,7 +20,7 @@ public class IronSteelMetalmind extends MetalmindAbstract {
      *
      * @param properties of the item.
      */
-    public IronSteelMetalmind(Item.Properties properties, MetalmindType type){
+    public IronSteelMetalmind(Item.Properties properties, MetalmindType type) {
         super(properties, MetalTagEnum.IRON, MetalTagEnum.STEEL, type);
     }
 

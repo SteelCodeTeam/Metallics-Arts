@@ -141,7 +141,7 @@ public class ZincAllomanticHelper {
                 target.setLastHurtByMob(source);
                 target.setAggressive(true);
 
-                if (enhanced){
+                if (enhanced) {
                     target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 4, true, true, true));
                     target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 4, true, true, true));
                 } else {

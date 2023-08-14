@@ -128,7 +128,7 @@ public class AllomanticSelector extends Screen {
                 if (mouseInSector) {
                     this.slotSelected = actualSegment;
                     this.list=3;
-                    if (data.getAllomanticAmount(metal)>0){
+                    if (data.getAllomanticAmount(metal)>0) {
                         radius *= 1.025f;
                     }
                 }
@@ -179,7 +179,7 @@ public class AllomanticSelector extends Screen {
                 if (mouseInSector) {
                     this.slotSelected = actualSegment;
                     this.list=2;
-                    if (data.getAllomanticAmount(metal)>0){
+                    if (data.getAllomanticAmount(metal)>0) {
                         radius *= 1.025f;
                     }
                 }
@@ -230,7 +230,7 @@ public class AllomanticSelector extends Screen {
                 if (mouseInSector) {
                     this.slotSelected = actualSegment;
                     this.list=1;
-                    if (data.getAllomanticAmount(metal)>0){
+                    if (data.getAllomanticAmount(metal)>0) {
                         radius *= 1.025f;
                     }
                 }
@@ -276,7 +276,7 @@ public class AllomanticSelector extends Screen {
                 boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment*(actualSegment  + 1)) && (distance<internalRadio);
                 float radius = internalRadio;
                 if (mouseInSector) {
-                    if (data.getAllomanticAmount(metal)>0){
+                    if (data.getAllomanticAmount(metal)>0) {
                         radius *= 1.025f;
                     }
                 }
@@ -286,7 +286,7 @@ public class AllomanticSelector extends Screen {
                 float yp = centerY  + Mth.sin(rad) * radius;
 
 
-                if (mouseInSector){
+                if (mouseInSector) {
                     renderTooltip(matrixStack, Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mx,my);
                 }
 
@@ -311,7 +311,7 @@ public class AllomanticSelector extends Screen {
 
                 float radius = mediumRadio;
                 if (mouseInSector) {
-                    if (data.getAllomanticAmount(metal)>0){
+                    if (data.getAllomanticAmount(metal)>0) {
                         radius *= 1.025f;
                     }
                 }
@@ -324,7 +324,7 @@ public class AllomanticSelector extends Screen {
                 float xsp = xp - 4;
                 float ysp = yp;
 
-                if (mouseInSector){
+                if (mouseInSector) {
                     renderTooltip(matrixStack,Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mx,my);
                 }
 
@@ -348,7 +348,7 @@ public class AllomanticSelector extends Screen {
                 float radius = externalRadio;
 
                 if (mouseInSector) {
-                    if (data.getAllomanticAmount(metal)>0){
+                    if (data.getAllomanticAmount(metal)>0) {
                         radius *= 1.025f;
                     }
                 }
@@ -357,7 +357,7 @@ public class AllomanticSelector extends Screen {
                 float xp = centerX  + Mth.cos(rad) * radius;
                 float yp = centerY  + Mth.sin(rad) * radius;
 
-                if (mouseInSector){
+                if (mouseInSector) {
                     renderTooltip(matrixStack, Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mx,my);
                 }
 
@@ -418,11 +418,11 @@ public class AllomanticSelector extends Screen {
         if (this.slotSelected != -1) {
             MetalTagEnum mt ;
 
-            if(this.list==1){
+            if(this.list==1) {
                 mt = internalMetals.get(this.slotSelected);
-            }else if(this.list==2){
+            }else if(this.list==2) {
                 mt = externalMetals.get(this.slotSelected);
-            }else if(this.list==3){
+            }else if(this.list==3) {
                 mt = divineMetals.get(this.slotSelected);
             }else{
                 mt = null;

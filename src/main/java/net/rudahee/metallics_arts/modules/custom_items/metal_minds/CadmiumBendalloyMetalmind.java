@@ -20,7 +20,7 @@ public class CadmiumBendalloyMetalmind extends MetalmindAbstract {
      *
      * @param properties of the item.
      */
-    public CadmiumBendalloyMetalmind(Item.Properties properties, MetalmindType type){
+    public CadmiumBendalloyMetalmind(Item.Properties properties, MetalmindType type) {
         super(properties, MetalTagEnum.CADMIUM, MetalTagEnum.BENDALLOY, type);
     }
 

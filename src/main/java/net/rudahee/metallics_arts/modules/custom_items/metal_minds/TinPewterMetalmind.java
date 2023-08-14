@@ -21,7 +21,7 @@ public class TinPewterMetalmind extends MetalmindAbstract {
      *
      * @param properties of the item.
      */
-    public TinPewterMetalmind(Item.Properties properties, MetalmindType type){
+    public TinPewterMetalmind(Item.Properties properties, MetalmindType type) {
         super(properties, MetalTagEnum.TIN, MetalTagEnum.PEWTER, type);
     }
 

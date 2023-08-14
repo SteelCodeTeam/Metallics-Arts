@@ -71,7 +71,7 @@ public class EttmetalBlock extends Block {
         BlockPos posRightDown = new BlockPos(blockPos.getX() - 1, blockPos.getY() - 1, blockPos.getZ() - 1);
         AABB area  = new AABB(posLeftTop, posRightDown);
 
-        if (isTouchingWater(serverLevel, area)){
+        if (isTouchingWater(serverLevel, area)) {
             serverLevel.explode(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 8.0f, true, Explosion.BlockInteraction.DESTROY);
             serverLevel.setBlock(blockPos, Blocks.AIR.defaultBlockState(), 1);
         }

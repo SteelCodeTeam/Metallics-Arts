@@ -40,7 +40,7 @@ public class AluminumDuraluminMetalmind extends MetalmindAbstract {
      *
      * @param properties of the item.
      */
-    public AluminumDuraluminMetalmind(Item.Properties properties, MetalmindType type){
+    public AluminumDuraluminMetalmind(Item.Properties properties, MetalmindType type) {
         super(properties, MetalTagEnum.ALUMINUM, MetalTagEnum.DURALUMIN, type);
     }
 
@@ -56,7 +56,7 @@ public class AluminumDuraluminMetalmind extends MetalmindAbstract {
             } else {
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": ").append(Component.translatable("metallics_arts.metal_mind_translate.off_power")));
             }
-            if (!Screen.hasShiftDown()){
+            if (!Screen.hasShiftDown()) {
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(1).getNameLower()).append(": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") / 20 + "s"));
             } else {
                 int maxReserve = this.isBand(MetalmindType.BAND) ? this.getMetals(1).getMaxReserveBand() : this.getMetals(1).getMaxReserveRing();
@@ -65,7 +65,7 @@ public class AluminumDuraluminMetalmind extends MetalmindAbstract {
             if (level != null) {
                 toolTips.add(Component.translatable("metallics_arts.metal_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.metal_mind.nobody").getString() : (level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? Component.translatable("metallics_arts.metal_mind.owner_someone") : level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
             }
-            if (!Screen.hasShiftDown()){
+            if (!Screen.hasShiftDown()) {
                 toolTips.add(Component.translatable(" "));
                 toolTips.add(Component.translatable("metallics_arts.metal_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
 

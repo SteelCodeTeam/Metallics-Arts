@@ -248,7 +248,7 @@ public class PowersRemoveRegister {
 
     }
 
-    public static int removeAllomanticPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players){
+    public static int removeAllomanticPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
             player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
@@ -261,7 +261,7 @@ public class PowersRemoveRegister {
 
         return 1;
     }
-    public static int removeFeruchemicPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players){
+    public static int removeFeruchemicPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
             player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
@@ -274,7 +274,7 @@ public class PowersRemoveRegister {
 
         return 1;
     }
-    public static int removeAllAllomanticPower (CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players){
+    public static int removeAllAllomanticPower (CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
             player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
@@ -287,7 +287,7 @@ public class PowersRemoveRegister {
 
         return 1;
     }
-    public static int removeAllFeruchemicPower (CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players){
+    public static int removeAllFeruchemicPower (CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
             player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
@@ -300,7 +300,7 @@ public class PowersRemoveRegister {
 
         return 1;
     }
-    public static int removeAllPower(CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players){
+    public static int removeAllPower(CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
             player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {

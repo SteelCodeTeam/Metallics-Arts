@@ -21,7 +21,7 @@ public class ChromiumNicrosilMetalmind extends MetalmindAbstract {
      *
      * @param properties of the item.
      */
-    public ChromiumNicrosilMetalmind(Item.Properties properties, MetalmindType type){
+    public ChromiumNicrosilMetalmind(Item.Properties properties, MetalmindType type) {
         super(properties, MetalTagEnum.CHROMIUM, MetalTagEnum.NICROSIL, type);
     }
 

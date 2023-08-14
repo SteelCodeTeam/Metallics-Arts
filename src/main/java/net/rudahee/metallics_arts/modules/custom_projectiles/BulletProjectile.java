@@ -20,7 +20,7 @@ public class BulletProjectile extends ThrowableItemProjectile {
 
     private BulletType bulletType;
 
-    public BulletProjectile(EntityType<? extends CopperProjectile> entityType, Level level) {
+    public BulletProjectile(EntityType<? extends BulletProjectile> entityType, Level level) {
         super(entityType, level);
     }
 

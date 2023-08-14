@@ -54,7 +54,7 @@ public class ModBlocksRegister {
 
     public static class InvestedCapabilityRegister {
 
-        public static final Capability<IInvestedPlayerData> PLAYER_CAP = CapabilityManager.get(new CapabilityToken<IInvestedPlayerData>(){
+        public static final Capability<IInvestedPlayerData> PLAYER_CAP = CapabilityManager.get(new CapabilityToken<IInvestedPlayerData>() {
             @Override
             public String toString() {
                 return super.toString();

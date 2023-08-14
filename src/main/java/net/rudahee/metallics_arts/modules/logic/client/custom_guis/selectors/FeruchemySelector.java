@@ -151,7 +151,7 @@ public class FeruchemySelector extends Screen {
             pintar(buf,intermedioXNegYPosExterno,new Point(intermedioXNegYPosExterno.x,intermedioXNegYPosExterno.y+large),new Point(intermedioXNegYPosExterno.x+large,intermedioXNegYPosExterno.y), MetalTagEnum.LERASIUM,mouse,2,false,data);
 
 
-            if(this.point1!=null&&this.point2!=null&&this.point3!=null&&this.tipoTemp!=-1){
+            if(this.point1!=null&&this.point2!=null&&this.point3!=null&&this.tipoTemp!=-1) {
                 if(pointInTriangle(mouse,this.point1,this.point2,this.point3)) {
                     if (data.hasMetalMindEquiped(this.metalTemp.getGroup())) {
                         pintadoUnico(buf,this.point1,this.point2,this.point3,this.metalTemp,mouse,this.paridadTemp,data);
@@ -248,7 +248,7 @@ public class FeruchemySelector extends Screen {
         });
     }
 
-    public void addpintado(PoseStack matrixStack, Point a, Point b, Point c, MetalTagEnum metal, Point mouse, boolean hasPower){
+    public void addpintado(PoseStack matrixStack, Point a, Point b, Point c, MetalTagEnum metal, Point mouse, boolean hasPower) {
 
         Point vertex1 = new Point(a.x,a.y);
         Point vertex2 = new Point(b.x,b.y);
@@ -258,7 +258,7 @@ public class FeruchemySelector extends Screen {
         boolean inSelector = pointInTriangle(mouse,vertex1,vertex2,vertex3);
 
         if (hasPower) {
-            if (inSelector){
+            if (inSelector) {
                 renderTooltip(matrixStack, Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mouse.x,mouse.y);
             }
         }
@@ -275,7 +275,7 @@ public class FeruchemySelector extends Screen {
         return new Point(((vertex1.x+vertex2.x+vertex3.x)/3),((vertex1.y+vertex2.y+vertex3.y)/3));
     }
 
-    public void pintar(BufferBuilder buf, Point a, Point b, Point c, MetalTagEnum metal, Point mouse, int tipo, boolean paridad, IInvestedPlayerData data){
+    public void pintar(BufferBuilder buf, Point a, Point b, Point c, MetalTagEnum metal, Point mouse, int tipo, boolean paridad, IInvestedPlayerData data) {
 
         Point vertex1 = new Point(a.x,a.y);
         Point vertex2 = new Point(b.x,b.y);
@@ -311,9 +311,9 @@ public class FeruchemySelector extends Screen {
         if(paridad) {
             if (!data.hasFeruchemicPower(metal)) {
                 actualColor = noMetalMIndPar;
-            } else if(data.isStoring(metal)){
+            } else if(data.isStoring(metal)) {
                 actualColor = isStoragePar;
-            } else if (data.isTapping(metal)){
+            } else if (data.isTapping(metal)) {
                 actualColor = isDecantingPar;
             } else {
                 actualColor = normalPar;    //Tiene poder, pero no lo esta usando
@@ -321,9 +321,9 @@ public class FeruchemySelector extends Screen {
         } else{
             if (!data.hasFeruchemicPower(metal)) {
                 actualColor = noMetalMIndImpar;
-            } else if(data.isStoring(metal)){
+            } else if(data.isStoring(metal)) {
                 actualColor = isStorageImpar;
-            } else if (data.isTapping(metal)){
+            } else if (data.isTapping(metal)) {
                 actualColor = isDecantingImpar;
             } else {
                 actualColor = normalImpar;  //Tiene poder, pero no lo esta usando
@@ -336,7 +336,7 @@ public class FeruchemySelector extends Screen {
 
 
     }
-    public void pintadoUnico (BufferBuilder buf, Point a, Point b, Point c, MetalTagEnum metal, Point mouse, boolean paridad, IInvestedPlayerData data){
+    public void pintadoUnico (BufferBuilder buf, Point a, Point b, Point c, MetalTagEnum metal, Point mouse, boolean paridad, IInvestedPlayerData data) {
 
         Point vertex1 = new Point(a.x,a.y);
         Point vertex2 = new Point(b.x,b.y);
@@ -349,12 +349,12 @@ public class FeruchemySelector extends Screen {
         }
 
         int[] actualColor;
-        if(paridad){
+        if(paridad) {
             if (!data.hasFeruchemicPower(metal)) {
                 actualColor = noMetalMIndPar;
-            }else if(data.isStoring(metal)){
+            }else if(data.isStoring(metal)) {
                 actualColor = isStoragePar;
-            }else if (data.isTapping(metal)){
+            }else if (data.isTapping(metal)) {
                 actualColor = isDecantingPar;
             }else {
                 actualColor = normalPar;
@@ -363,9 +363,9 @@ public class FeruchemySelector extends Screen {
         }else{
             if (!data.hasFeruchemicPower(metal)) {
                 actualColor = noMetalMIndImpar;
-            }else if(data.isStoring(metal)){
+            }else if(data.isStoring(metal)) {
                 actualColor = isStorageImpar;
-            }else if (data.isTapping(metal)){
+            }else if (data.isTapping(metal)) {
                 actualColor = isDecantingImpar;
             }else {
                 actualColor = normalImpar;
@@ -396,9 +396,9 @@ public class FeruchemySelector extends Screen {
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
         // 0: left click
         // 1: right click
-        if(mouseButton == 1){
+        if(mouseButton == 1) {
             toggleSelectedRight();
-        }else if (mouseButton==0){
+        }else if (mouseButton==0) {
             toggleSelectedLeft();
         }
         return super.mouseClicked(mouseX, mouseY, mouseButton);
@@ -407,7 +407,7 @@ public class FeruchemySelector extends Screen {
 
     @Override
     public boolean keyReleased(int keysym, int scancode, int modifiers) {
-        if (ModKeyRegister.FERUCHEMIC_POWER_SELECTOR.matches(keysym,scancode)){
+        if (ModKeyRegister.FERUCHEMIC_POWER_SELECTOR.matches(keysym,scancode)) {
             this.mc.setScreen(null);
             this.mc.mouseHandler.grabMouse();
             return true;

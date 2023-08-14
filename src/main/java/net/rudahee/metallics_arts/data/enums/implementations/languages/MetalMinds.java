@@ -103,7 +103,7 @@ public enum MetalMinds implements ILanguage {
      *
      * @return the Polish name of the MetalMinds object
      */
-    public String getNameInPolish(){
+    public String getNameInPolish() {
         return  this.polish;
     }
 }

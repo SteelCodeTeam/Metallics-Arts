@@ -147,7 +147,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .save(recipesConsumer, new ResourceLocation(name + "_nugget_to_" + name + "_gem")));
 
         Arrays.asList(MetalEnum.values()).forEach(metal -> {
-            if (!metal.isAlloy()){
+            if (!metal.isAlloy()) {
                 SimpleCookingRecipeBuilder.cooking(Ingredient.of(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())), ModItemsRegister.ITEM_METAL_INGOT.get(metal.getMetalNameLower()), 0.5f, 250, RecipeSerializer.SMELTING_RECIPE)
                         .unlockedBy("has_block", has(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())))
                         .save(recipesConsumer, new ResourceLocation(metal.getMetalNameLower() + "_raw_to_" + metal.getMetalNameLower() + "_ingot_furnace"));
@@ -155,7 +155,7 @@ public class ModRecipeProvider extends RecipeProvider {
         });
 
         Arrays.asList(MetalEnum.values()).forEach(metal -> {
-            if (!metal.isAlloy()){
+            if (!metal.isAlloy()) {
                 SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())), ModItemsRegister.ITEM_METAL_INGOT.get(metal.getMetalNameLower()), 0.8f, 100)
                         .unlockedBy("has_block", has(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())))
                         .save(recipesConsumer, new ResourceLocation(metal.getMetalNameLower() + "_raw_to_" + metal.getMetalNameLower() + "_ingot_blast"));

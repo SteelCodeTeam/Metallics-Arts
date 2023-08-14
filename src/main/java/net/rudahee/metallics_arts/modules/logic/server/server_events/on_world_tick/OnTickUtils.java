@@ -50,13 +50,13 @@ public class OnTickUtils {
      */
     public static void duraluminAndExternalNicrosilEffect(IInvestedPlayerData playerCapability, Player player) {
         if (playerCapability.isBurning(MetalTagEnum.DURALUMIN)) {
-            if ((playerCapability.getAllomanticAmount(MetalTagEnum.DURALUMIN) > (MetalTagEnum.DURALUMIN.getMaxAllomanticTicksStorage()*0.88)) || (buffNicrosilDuralumin != -1)){
+            if ((playerCapability.getAllomanticAmount(MetalTagEnum.DURALUMIN) > (MetalTagEnum.DURALUMIN.getMaxAllomanticTicksStorage()*0.88)) || (buffNicrosilDuralumin != -1)) {
                 if (buffNicrosilDuralumin == -1) {
                     playerCapability.setEnhanced(true);
                     buffNicrosilDuralumin = MetalTagEnum.DURALUMIN.getMaxAllomanticTicksStorage();
                 }
                 for (MetalTagEnum metal : MetalTagEnum.values()) {
-                    if (playerCapability.isBurning(metal) && !playerCapability.containsMetalsEnhanced(metal)){
+                    if (playerCapability.isBurning(metal) && !playerCapability.containsMetalsEnhanced(metal)) {
                         playerCapability.addMetalsEnhanced(metal);
                     }
                 }
@@ -68,7 +68,7 @@ public class OnTickUtils {
                 buffNicrosilDuralumin = MetalTagEnum.DURALUMIN.getMaxAllomanticTicksStorage();
             }
             for (MetalTagEnum metal : MetalTagEnum.values()) {
-                if (playerCapability.isBurning(metal) && !playerCapability.containsMetalsEnhanced(metal)){
+                if (playerCapability.isBurning(metal) && !playerCapability.containsMetalsEnhanced(metal)) {
                     playerCapability.addMetalsEnhanced(metal);
                 }
             }
@@ -80,7 +80,7 @@ public class OnTickUtils {
                 playerCapability.clearMetalsEnhanced();
             }
         }
-        if (playerCapability.getEnhanced()){
+        if (playerCapability.getEnhanced()) {
             buffNicrosilDuralumin--;
             if (buffNicrosilDuralumin == 0) {
                 playerCapability.setEnhanced(false);

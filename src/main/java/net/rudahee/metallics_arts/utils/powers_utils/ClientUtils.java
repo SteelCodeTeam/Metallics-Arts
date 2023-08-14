@@ -113,15 +113,15 @@ public class ClientUtils {
      * @param capability The IInvestedPlayerData object representing the invested player's data.
      * @param player The Player object representing the player who is trying to toggle the tapping state.
      */
-    public static void toggleTap(MetalTagEnum metal, IInvestedPlayerData capability, Player player){
-        if (!capability.hasFeruchemicPower(metal)||!capability.hasMetalMindEquiped(metal.getGroup())){
+    public static void toggleTap(MetalTagEnum metal, IInvestedPlayerData capability, Player player) {
+        if (!capability.hasFeruchemicPower(metal)||!capability.hasMetalMindEquiped(metal.getGroup())) {
             return;
         }
 
         CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curioData -> {
             for (int i=0; i < curioData.getSlots(); i++) {
 
-                if (curioData.getStackInSlot(i).getItem().getDescriptionId().toLowerCase().contains(metal.getNameLower())){
+                if (curioData.getStackInSlot(i).getItem().getDescriptionId().toLowerCase().contains(metal.getNameLower())) {
                     if (curioData.getStackInSlot(i).hasTag()) {
                         actualFeruchemicReserve = curioData.getStackInSlot(i).getTag().getInt(metal.getNameLower() + "_feruchemic_reserve");
                     }
@@ -151,14 +151,14 @@ public class ClientUtils {
      * @param capability The IInvestedPlayerData object representing the invested player's data.
      * @param player The Player object representing the player who is trying to toggle the storage state.
      */
-    public static void toggleStorage(MetalTagEnum metal, IInvestedPlayerData capability, Player player){
-        if (!capability.hasFeruchemicPower(metal)||!capability.hasMetalMindEquiped(metal.getGroup())){
+    public static void toggleStorage(MetalTagEnum metal, IInvestedPlayerData capability, Player player) {
+        if (!capability.hasFeruchemicPower(metal)||!capability.hasMetalMindEquiped(metal.getGroup())) {
             return;
         }
         CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curioData -> {
             for (int i=0; i < curioData.getSlots(); i++) {
 
-                if (curioData.getStackInSlot(i).getItem().getDescriptionId().toLowerCase().contains(metal.getNameLower())){
+                if (curioData.getStackInSlot(i).getItem().getDescriptionId().toLowerCase().contains(metal.getNameLower())) {
 
                     if (curioData.getStackInSlot(i).hasTag()) {
                         actualFeruchemicReserve = curioData.getStackInSlot(i).getTag().getInt(metal.getNameLower() + "_feruchemic_reserve");

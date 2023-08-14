@@ -56,7 +56,7 @@ public class DrawUtils {
 
     // new methods
 
-    public static Matrix4f setUpForDrawingQuadLines(final RenderLevelStageEvent event){
+    public static Matrix4f setUpForDrawingQuadLines(final RenderLevelStageEvent event) {
         /**
          * @param event the levelRenderEvent.
          * @return the matrix that will translate in game vertices to on-screen vertices
@@ -77,14 +77,14 @@ public class DrawUtils {
         return translationMatrix;
     }
 
-    private static void addVertexToBuffer(BufferBuilder buffer, Matrix4f translationMatrix, Vec3 vertex, float uv1, float uv2){
+    private static void addVertexToBuffer(BufferBuilder buffer, Matrix4f translationMatrix, Vec3 vertex, float uv1, float uv2) {
         /**
          * add a point to the specified BufferBuilder
          */
         buffer.vertex(translationMatrix, (float)vertex.x, (float)vertex.y, (float)vertex.z).uv(uv1, uv2).endVertex();
     }
 
-    private static void drawInOrder(BufferBuilder buffer, Matrix4f translationMatrix, Vec3 v1, Vec3 v2, Vec3 v3, Vec3 v4, double frame, double spriteLength, double columnWidthFraction, String key){
+    private static void drawInOrder(BufferBuilder buffer, Matrix4f translationMatrix, Vec3 v1, Vec3 v2, Vec3 v3, Vec3 v4, double frame, double spriteLength, double columnWidthFraction, String key) {
         /**
          * @param buffer BufferBuilder for rendering
          * @param translationMatrix Matrix4f representing the transformation from world coordinates to on-screen coordinates
@@ -145,7 +145,7 @@ public class DrawUtils {
         Vec3 sourceTargetVector = target.subtract(source);
         Vec3 sourceTargetDirection = sourceTargetVector.normalize();
         Vec3 horizontalDependent = sourceTargetDirection.cross(new Vec3(0.0,1.0,0.0)).normalize();
-        if (horizontalDependent.length() == 0){
+        if (horizontalDependent.length() == 0) {
             horizontalDependent = sourceTargetVector.subtract(sourceTargetDirection.scale(0.001)).cross(new Vec3(0.0,1.0,0.0)).normalize();
         }
         Vec3 verticalDependent = sourceTargetDirection.cross(horizontalDependent).normalize();
@@ -175,7 +175,7 @@ public class DrawUtils {
         BufferBuilder buffer = tesselator.getBuilder();
         buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
 
-        for (Tuple<String, Vec3> tup : quadList.stream().sorted(Comparator.comparingDouble(vecTup -> -1*(vecTup.getB().subtract(viewPosition).length()))).toList()){
+        for (Tuple<String, Vec3> tup : quadList.stream().sorted(Comparator.comparingDouble(vecTup -> -1*(vecTup.getB().subtract(viewPosition).length()))).toList()) {
             drawInOrder(buffer, translationMatrix, tup.getB(), source, target, tup.getB().add(sourceTargetVector), frame, spriteLength, columnWidthFraction, tup.getA());
         }
 

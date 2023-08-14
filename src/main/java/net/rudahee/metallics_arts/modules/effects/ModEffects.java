@@ -74,7 +74,7 @@ public class ModEffects {
      *
      * @param eventBus the event bus to register the effects variants.
      */
-    public static void register (IEventBus eventBus){
+    public static void register (IEventBus eventBus) {
         MOB_EFFECTS.register(eventBus);
     }
 }

@@ -22,7 +22,7 @@ public class MetalListConfig {
     public static final Set<String> whitelist = new HashSet<String>() {{
 
         for (MetalTagEnum metals : MetalTagEnum.values()) {
-            if (!metals.equals(MetalTagEnum.TIN)&&!metals.equals(MetalTagEnum.ALUMINUM)){
+            if (!metals.equals(MetalTagEnum.TIN)&&!metals.equals(MetalTagEnum.ALUMINUM)) {
                 add(metals.getNameLower());
             }
         }

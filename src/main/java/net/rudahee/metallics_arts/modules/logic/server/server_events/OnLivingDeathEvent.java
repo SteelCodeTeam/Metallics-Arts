@@ -31,7 +31,7 @@ public class OnLivingDeathEvent {
         try {
             IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
 
-            if (capability.isTapping(MetalTagEnum.ETTMETAL)){
+            if (capability.isTapping(MetalTagEnum.ETTMETAL)) {
                 capability.setEttmetalState(EttmetalState.KEEP_ITEMS);
             } else if (capability.isStoring(MetalTagEnum.ETTMETAL)) {
                 capability.setEttmetalState(EttmetalState.DELETE_ITEMS);

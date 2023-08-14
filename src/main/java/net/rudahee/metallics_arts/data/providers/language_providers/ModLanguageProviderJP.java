@@ -223,55 +223,55 @@ public class ModLanguageProviderJP extends LanguageProvider {
     @Override
     protected void addTranslations() {
 
-        for (String key: ingots.keySet()){
+        for (String key: ingots.keySet()) {
             add(key, ingots.get(key));
         }
-        for (String key: gems.keySet()){
+        for (String key: gems.keySet()) {
             add(key, gems.get(key));
         }
-        for (String key: rawBlocks.keySet()){
+        for (String key: rawBlocks.keySet()) {
             add(key, rawBlocks.get(key));
         }
-        for (String key: metalMinds.keySet()){
+        for (String key: metalMinds.keySet()) {
             add(key, metalMinds.get(key));
         }
 
-        for (String key: rawItems.keySet()){
+        for (String key: rawItems.keySet()) {
             add(key, rawItems.get(key));
         }
 
-        for (String key: geodeBlocks.keySet()){
+        for (String key: geodeBlocks.keySet()) {
             add(key, geodeBlocks.get(key));
         }
 
-        for (String key: ores.keySet()){
+        for (String key: ores.keySet()) {
             add(key, ores.get(key));
         }
-        for (String key: deepslateOres.keySet()){
+        for (String key: deepslateOres.keySet()) {
             add(key, deepslateOres.get(key));
         }
 
-        for (String key: nuggets.keySet()){
+        for (String key: nuggets.keySet()) {
             add(key, nuggets.get(key));
         }
 
-        for (String key: blocks.keySet()){
+        for (String key: blocks.keySet()) {
             add(key, blocks.get(key));
         }
 
-        for (String key: spikes.keySet()){
+        for (String key: spikes.keySet()) {
             add(key, spikes.get(key));
         }
 
-        for (String key: icons.keySet()){
+        for (String key: icons.keySet()) {
             add(key, icons.get(key));
         }
 
-        for (String key: metals.keySet()){
+        for (String key: metals.keySet()) {
             add(key, metals.get(key));
         }
 
-        for (String key: powers.keySet()){
+        for (String key: powers.keySet()) {
             add(key, powers.get(key));
         }
 
@@ -279,7 +279,7 @@ public class ModLanguageProviderJP extends LanguageProvider {
             add(key, base.get(key));
         }
 
-        for(String key: patterns.keySet()){
+        for(String key: patterns.keySet()) {
             add(key, patterns.get(key));
         }
 

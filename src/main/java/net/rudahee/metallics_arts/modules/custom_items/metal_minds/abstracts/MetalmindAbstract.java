@@ -143,7 +143,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
         int maxReserve1 = this.type == MetalmindType.BAND ? this.metals[1].getMaxReserveBand() : this.metals[1].getMaxReserveRing();
 
         if (stack.hasTag()) {
-            if (!Screen.hasShiftDown()){
+            if (!Screen.hasShiftDown()) {
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+metals[0].getNameLower()).append(": "+ stack.getTag().getInt(metals[0].getNameLower()+"_feruchemic_reserve") / 20 + "s"));
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+metals[1].getNameLower()).append(": "+ stack.getTag().getInt(metals[1].getNameLower()+"_feruchemic_reserve") / 20 + "s"));
             } else {
@@ -153,7 +153,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
             if (level != null) {
                 toolTips.add(Component.translatable("metallics_arts.metal_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.metal_mind.nobody").getString() : (level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? Component.translatable("metallics_arts.metal_mind.owner_someone") : level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
             }
-            if (!Screen.hasShiftDown()){
+            if (!Screen.hasShiftDown()) {
                 toolTips.add(Component.translatable(" "));
                 toolTips.add(Component.translatable("metallics_arts.metal_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             }
@@ -343,7 +343,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
 
     public CompoundTag calculateChargeNicrosil(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
         int value = playerCapability.cantMetalsStoring();
-        if (playerCapability.isStoring(MetalTagEnum.BRASS) && !player.isOnFire()){
+        if (playerCapability.isStoring(MetalTagEnum.BRASS) && !player.isOnFire()) {
             value = value - 1;
         }
         if (nicConsume) {
@@ -448,8 +448,8 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
      */
 
     public CompoundTag calculateChargeEttmetal(CompoundTag compoundTag, Player player, int metalReserve, String metalKey) {
-        if (player.getLastDamageSource() != null){
-            if ((player.getLastDamageSource().isExplosion())){
+        if (player.getLastDamageSource() != null) {
+            if ((player.getLastDamageSource().isExplosion())) {
                 compoundTag.putInt(metalKey, metalReserve + 1);
             }
         }
@@ -518,7 +518,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
      * @return Boolean
      */
     public boolean havePlayerAnyReserve (IInvestedPlayerData playerCapability) {
-        for (MetalTagEnum metal: MetalTagEnum.values()){
+        for (MetalTagEnum metal: MetalTagEnum.values()) {
             if (playerCapability.getAllomanticAmount(metal)>0) {
                 return true;
             }
@@ -552,7 +552,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
                     qtyToRemove = 0;
                     continueSaving = false;
                 } else {
-                    if (!compoundTag.contains(metal.getNameLower()+"inLerasiumBand")){ //no existe el tag
+                    if (!compoundTag.contains(metal.getNameLower()+"inLerasiumBand")) { //no existe el tag
                         compoundTag.putInt(metal.getNameLower()+"inLerasiumBand",0);
                     }
                     compoundTag.putInt(metal.getNameLower()+"inLerasiumBand", compoundTag.getInt(metal.getNameLower()+"inLerasiumBand")+qtyToRemove);
@@ -592,7 +592,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
                     qtyToAdd = 0;
                     continueLoading = false;
                 } else {
-                    if (!compoundTag.contains(metal.getNameLower()+"inLerasiumBand")){ //no existe el tag
+                    if (!compoundTag.contains(metal.getNameLower()+"inLerasiumBand")) { //no existe el tag
                         compoundTag.putInt(metal.getNameLower()+"inLerasiumBand",0);
                     }
                     compoundTag.putInt(metal.getNameLower()+"inLerasiumBand", compoundTag.getInt(metal.getNameLower()+"inLerasiumBand")-qtyToAdd);
@@ -662,8 +662,8 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
      */
     public boolean isDecanting(Player player, CompoundTag compoundTag) {
         if (player.getMainHandItem().getItem() instanceof TieredItem tiered) {
-            if (tiered.getTier().getLevel() == compoundTag.getInt("tier_malatium_storage")){
-                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == 0){
+            if (tiered.getTier().getLevel() == compoundTag.getInt("tier_malatium_storage")) {
+                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == 0) {
                     return false;
                 }
                 player.getItemInHand(InteractionHand.MAIN_HAND).setDamageValue(player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue()-1);
@@ -672,8 +672,8 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
             return false; //el item no es del tier de la primer carga de la mente
         } else if (player.getMainHandItem().getItem() instanceof ArmorItem armorItem) {
             int tier = convertMaterialToTier(armorItem.getMaterial().getName());
-            if (tier == compoundTag.getInt("tier_malatium_storage")){
-                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == 0){
+            if (tier == compoundTag.getInt("tier_malatium_storage")) {
+                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == 0) {
                     return false;
                 }
                 player.getItemInHand(InteractionHand.MAIN_HAND).setDamageValue(player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue()-1);
@@ -691,17 +691,17 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
      * @param compoundTag metalmind information update.
      * @return If durability was consumed from the weapon or armor returns true, otherwise false
      */
-    public boolean isStoring (Player player, CompoundTag compoundTag){
-        if (!compoundTag.contains("tier_malatium_storage")){
+    public boolean isStoring (Player player, CompoundTag compoundTag) {
+        if (!compoundTag.contains("tier_malatium_storage")) {
             compoundTag.putInt("tier_malatium_storage",-1);
         }
-        if (compoundTag.getInt("tier_malatium_storage") == -1){
+        if (compoundTag.getInt("tier_malatium_storage") == -1) {
             compoundTag = generateIternalReserve(player, compoundTag);
         }
 
         if (player.getMainHandItem().getItem() instanceof TieredItem tiered) {
-            if (tiered.getTier().getLevel() == compoundTag.getInt("tier_malatium_storage")){
-                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == player.getItemInHand(InteractionHand.MAIN_HAND).getMaxDamage()){
+            if (tiered.getTier().getLevel() == compoundTag.getInt("tier_malatium_storage")) {
+                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == player.getItemInHand(InteractionHand.MAIN_HAND).getMaxDamage()) {
                     player.setItemInHand(InteractionHand.MAIN_HAND,ItemStack.EMPTY);
                     player.level.playLocalSound(player.getX(),player.getY(),player.getZ(), SoundEvents.ITEM_BREAK, SoundSource.NEUTRAL,1.0f, 2.0f, true);
                     return false;
@@ -712,8 +712,8 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
             return false; //el item no es del tier de la primer carga de la mente
         } else if (player.getMainHandItem().getItem() instanceof ArmorItem armorItem) {
             int tier = convertMaterialToTier(armorItem.getMaterial().getName());
-            if (tier == compoundTag.getInt("tier_malatium_storage")){
-                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == player.getItemInHand(InteractionHand.MAIN_HAND).getMaxDamage()){
+            if (tier == compoundTag.getInt("tier_malatium_storage")) {
+                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == player.getItemInHand(InteractionHand.MAIN_HAND).getMaxDamage()) {
                     player.setItemInHand(InteractionHand.MAIN_HAND,ItemStack.EMPTY);
                     return false;
                 }
@@ -731,11 +731,11 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
      * @param compoundTag metalmind information update.
      * @return CompoundTag metalmind information update.
      */
-    public CompoundTag generateIternalReserve (Player player, CompoundTag compoundTag){
+    public CompoundTag generateIternalReserve (Player player, CompoundTag compoundTag) {
         if (player.getMainHandItem().getItem() instanceof TieredItem tiered) {
             compoundTag.putInt("tier_malatium_storage",tiered.getTier().getLevel());
         }
-        if (player.getMainHandItem().getItem() instanceof ArmorItem armorItem){
+        if (player.getMainHandItem().getItem() instanceof ArmorItem armorItem) {
             compoundTag.putInt("tier_malatium_storage",convertMaterialToTier(armorItem.getMaterial().getName()));
         }
         return  compoundTag;
@@ -751,7 +751,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
 
         if (material.equals(ArmorMaterials.GOLD.getName()) || material.equals(ArmorMaterials.LEATHER.getName())) {
             return 0;
-        } else if (material.equals(ArmorMaterials.TURTLE.getName())){
+        } else if (material.equals(ArmorMaterials.TURTLE.getName())) {
             return 1;
         } else if (material.equals(ArmorMaterials.IRON.getName()) || material.equals(ArmorMaterials.CHAIN.getName())) {
             return 2;
@@ -772,15 +772,15 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
      * @return String with the name of tier
      */
     public static String convertTierToMaterial (int tier) {
-        if (tier == 0){
+        if (tier == 0) {
             return Tiers.GOLD.name()+" "+ArmorMaterials.LEATHER.getName().toUpperCase();
-        } else if (tier == 1){
+        } else if (tier == 1) {
             return ArmorMaterials.TURTLE.getName();
-        } else if (tier == 2){
+        } else if (tier == 2) {
             return Tiers.IRON.name()+" "+ArmorMaterials.CHAIN.getName().toUpperCase();
-        } else if (tier == 3){
+        } else if (tier == 3) {
             return Tiers.DIAMOND.name();
-        } else if (tier == 4){
+        } else if (tier == 4) {
             return Tiers.NETHERITE.name();
         } else if (tier == 6) {
             return "Obsidian";
@@ -792,10 +792,10 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
     public static CompoundTag addBandTagsFull(MetalTagEnum metal1, MetalTagEnum metal2) {
         CompoundTag nbt = new CompoundTag();
 
-        if(metal1.equals(MetalTagEnum.ALUMINUM)){
+        if(metal1.equals(MetalTagEnum.ALUMINUM)) {
             nbt.putInt(metal1.getNameLower()+"_feruchemic_reserve",3);
 
-        }else if(metal1.equals(MetalTagEnum.LERASIUM)){
+        }else if(metal1.equals(MetalTagEnum.LERASIUM)) {
             nbt.putInt(metal1.getNameLower() + "_feruchemic_reserve",1);
             for (MetalTagEnum metal: MetalTagEnum.values()) {
                 nbt.putInt(metal.getNameLower()+"inLerasiumBand", metal.getMaxAllomanticTicksStorage());

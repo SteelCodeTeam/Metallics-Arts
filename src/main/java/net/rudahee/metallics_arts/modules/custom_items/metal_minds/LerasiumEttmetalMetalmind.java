@@ -31,7 +31,7 @@ public class LerasiumEttmetalMetalmind extends MetalmindAbstract {
      *
      * @param properties of the item.
      */
-    public LerasiumEttmetalMetalmind(Item.Properties properties, MetalmindType type){
+    public LerasiumEttmetalMetalmind(Item.Properties properties, MetalmindType type) {
         super(properties, MetalTagEnum.LERASIUM, MetalTagEnum.ETTMETAL, type);
     }
 
@@ -55,7 +55,7 @@ public class LerasiumEttmetalMetalmind extends MetalmindAbstract {
             } else {
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": ").append(Component.translatable("metallics_arts.metal_mind_translate.not_has_reserve")));
             }
-            if (!Screen.hasShiftDown()){
+            if (!Screen.hasShiftDown()) {
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(1).getNameLower()).append(": "+(stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")/41)));
                 if (level != null) {
                     toolTips.add(Component.translatable("metallics_arts.metal_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.metal_mind.nobody").getString() : (level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? Component.translatable("metallics_arts.metal_mind.owner_someone") : level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
@@ -70,8 +70,8 @@ public class LerasiumEttmetalMetalmind extends MetalmindAbstract {
                     toolTips.add(Component.translatable("metallics_arts.metal_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.metal_mind.nobody").getString() : (level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? Component.translatable("metallics_arts.metal_mind.owner_someone") : level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
                 }
                 toolTips.add(Component.translatable("-------------------"));
-                for (MetalTagEnum metal : MetalTagEnum.values()){
-                    if(stack.getTag().getInt(metal.getNameLower()+"inLerasiumBand")>0){
+                for (MetalTagEnum metal : MetalTagEnum.values()) {
+                    if(stack.getTag().getInt(metal.getNameLower()+"inLerasiumBand")>0) {
                         toolTips.add(Component.translatable(" * ").append(Component.translatable("metallics_arts.metal_translate."+metal.getNameLower())).append(": "+stack.getTag().getInt(metal.getNameLower()+"inLerasiumBand")));
                     }
                 }

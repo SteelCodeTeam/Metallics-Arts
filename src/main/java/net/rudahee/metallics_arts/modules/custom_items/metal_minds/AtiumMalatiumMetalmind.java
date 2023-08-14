@@ -30,7 +30,7 @@ public class AtiumMalatiumMetalmind extends MetalmindAbstract {
      *
      * @param properties of the item.
      */
-    public AtiumMalatiumMetalmind(Properties properties, MetalmindType type){
+    public AtiumMalatiumMetalmind(Properties properties, MetalmindType type) {
         super(properties, MetalTagEnum.ATIUM, MetalTagEnum.MALATIUM, type);
     }
 
@@ -50,10 +50,10 @@ public class AtiumMalatiumMetalmind extends MetalmindAbstract {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> toolTips, TooltipFlag flagIn) {
         if (stack.hasTag()) {
-            if (!stack.getTag().contains("tier_malatium_storage") || stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") == 0){
+            if (!stack.getTag().contains("tier_malatium_storage") || stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve") == 0) {
                 stack.getTag().putInt("tier_malatium_storage",-1);
             }
-            if (!Screen.hasShiftDown()){
+            if (!Screen.hasShiftDown()) {
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(0).getNameLower()).append(": "+ stack.getTag().getInt(getMetals(0).getNameLower()+"_feruchemic_reserve") / 20 + "s"));
                 toolTips.add(Component.translatable("metallics_arts.metal_translate."+getMetals(1).getNameLower()).append(": "+ stack.getTag().getInt(getMetals(1).getNameLower()+"_feruchemic_reserve")+" ").append(Component.translatable("metallics_arts.metal_mind_translate.uses")));
 
@@ -66,11 +66,11 @@ public class AtiumMalatiumMetalmind extends MetalmindAbstract {
             if (level != null) {
                 toolTips.add(Component.translatable("metallics_arts.metal_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.metal_mind.nobody").getString() : (level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? Component.translatable("metallics_arts.metal_mind.owner_someone") : level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
             }
-            if (stack.getTag().getInt("tier_malatium_storage")!=-1){
+            if (stack.getTag().getInt("tier_malatium_storage")!=-1) {
                 toolTips.add(Component.translatable("-------------------"));
                 toolTips.add(Component.translatable("Tier: "+ MetalmindAbstract.convertTierToMaterial(stack.getTag().getInt("tier_malatium_storage"))));
             }
-            if (!Screen.hasShiftDown()){
+            if (!Screen.hasShiftDown()) {
                 toolTips.add(Component.translatable(" "));
                 toolTips.add(Component.translatable("metallics_arts.metal_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             }

@@ -20,7 +20,7 @@ public class WeaponsRegister {
 
     private static final Item.Properties WEAPONS_PROPERTIES = new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT).stacksTo(1);
     private static final Item.Properties COIN_PROPERTIES = new Item.Properties().tab(MetallicsArts.MA_TAB).tab(CreativeModeTab.TAB_COMBAT).stacksTo(64);
-    public static void register (){
+    public static void register () {
         ModItemsRegister.OBSIDIAN_DAGGER = MetallicsArts.registerItem("obsidian_dagger",
                 () -> new ObsidianDagger(WEAPONS_PROPERTIES)
         );

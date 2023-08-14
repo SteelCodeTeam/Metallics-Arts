@@ -1,8 +1,6 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritual_metals;
 
 
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
@@ -28,15 +26,14 @@ public class ChromiumAllomanticHelper {
     /**
      * This method is responsible for emptying the allomantic reserves of the target that is attacked.
      *
-     * @param target who is attacked.
+     * @param target           who is attacked.
      * @param targetCapability capabilities (data) of the target.
      */
-    public static boolean drainMetalChromium(Player target, IInvestedPlayerData targetCapability) {
-        for (MetalTagEnum metalTagEnum : targetCapability.getAllomanticPowers()){
+    public static void drainMetalChromium(Player target, IInvestedPlayerData targetCapability) {
+        for (MetalTagEnum metalTagEnum : targetCapability.getAllomanticPowers()) {
             targetCapability.drainMetals(metalTagEnum);
             ModNetwork.syncInvestedDataPacket(targetCapability, target);
         }
-        return true;
     }
 
     /**

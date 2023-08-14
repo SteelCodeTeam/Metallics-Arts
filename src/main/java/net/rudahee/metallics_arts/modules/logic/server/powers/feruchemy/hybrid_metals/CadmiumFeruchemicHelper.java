@@ -37,7 +37,7 @@ public class CadmiumFeruchemicHelper {
      *
      */
     public static void storagePower(Player player) {
-        if (!player.isCreative()){
+        if (!player.isCreative()) {
             if (!player.isEyeInFluid(FluidTags.WATER)) {
                 player.setAirSupply(player.getAirSupply() - 5);
                 if (player.getAirSupply()<= -29) {

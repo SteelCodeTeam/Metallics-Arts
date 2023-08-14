@@ -28,7 +28,7 @@ public class ShotPacket {
 
     }
 
-    public boolean handle (Supplier<NetworkEvent.Context> supplier){
+    public boolean handle (Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() ->{
 
