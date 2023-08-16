@@ -1,10 +1,7 @@
 package net.rudahee.metallics_arts.setup;
 
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
-import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
-import net.rudahee.metallics_arts.setup.registries.ModRecipeTypesRegister;
-import net.rudahee.metallics_arts.setup.registries.ModTileEntitiesRegister;
+import net.rudahee.metallics_arts.setup.registries.*;
 
 public class Registration {
 
@@ -15,6 +12,7 @@ public class Registration {
 
         ModBlocksRegister.register();
         ModItemsRegister.register();
+
 
         ModTileEntitiesRegister.register(FMLJavaModLoadingContext.get().getModEventBus());
         ModRecipeTypesRegister.register(FMLJavaModLoadingContext.get().getModEventBus());

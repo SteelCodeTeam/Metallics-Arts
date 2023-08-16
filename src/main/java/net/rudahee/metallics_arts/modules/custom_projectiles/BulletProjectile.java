@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.rudahee.metallics_arts.data.enums.implementations.BulletType;
+import net.rudahee.metallics_arts.setup.registries.ModEntityTypesRegister;
 
 public class BulletProjectile extends ThrowableItemProjectile {
 
@@ -25,11 +26,21 @@ public class BulletProjectile extends ThrowableItemProjectile {
     }
 
     public BulletProjectile(Level level, LivingEntity livingEntity) {
-        super(EntityType.SNOWBALL, livingEntity, level);
+        super(ModEntityTypesRegister.BULLET_PROJECTILE.get(), livingEntity, level);
     }
 
     public BulletProjectile(Level level, double v, double v1, double v2) {
-        super(EntityType.SNOWBALL, v, v1, v2, level);
+        super(ModEntityTypesRegister.BULLET_PROJECTILE.get(), v, v1, v2, level);
+    }
+
+    @Override
+    public boolean shouldRenderAtSqrDistance(double p_37470_) {
+        return true;
+    }
+
+    @Override
+    public boolean shouldRender(double p_20296_, double p_20297_, double p_20298_) {
+        return true;
     }
 
     @Override

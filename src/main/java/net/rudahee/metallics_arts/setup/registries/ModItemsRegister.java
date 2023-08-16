@@ -1,7 +1,10 @@
 package net.rudahee.metallics_arts.setup.registries;
 
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.RegistryObject;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
 import net.rudahee.metallics_arts.setup.registries.items.*;
 
@@ -33,7 +36,6 @@ public class ModItemsRegister {
     public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC = new HashMap<>();
     public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY_DIVINE = new HashMap<>();
     public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC_DIVINE = new HashMap<>();
-
 
     // Weapons
     public static RegistryObject<Item> OBSIDIAN_DAGGER;
