@@ -16,6 +16,8 @@ import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.BasicGun;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.mele.KolossBlade;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.client.client_events.*;
+import net.rudahee.metallics_arts.modules.logic.client.custom_renders.ModEntityRender;
+import net.rudahee.metallics_arts.setup.registries.ModRenderRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 /**
@@ -130,6 +132,9 @@ public class ClientEventHandler {
 
     }
 
+
+
+
     /**
      * Entrypoint of the client-side rendering of custom level stage elements. the method delegates the handling of the stage render
      * event to the OnRenderLevelStage.onRenderLevelStage method
@@ -152,6 +157,10 @@ public class ClientEventHandler {
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
+    public static void onEntityRender(final EntityRenderersEvent.RegisterRenderers event) {
+        ModRenderRegister.register(event);
+    }
 
 
 }
