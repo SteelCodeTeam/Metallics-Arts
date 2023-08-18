@@ -1,16 +1,12 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick;
 
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals.BrassFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals.BronzeFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals.CopperFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.AtiumFeruchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.EttmetalFeruchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.LerasiumFeruchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.MalatiumFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals.BendalloyFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals.CadmiumFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals.ElectrumFeruchemicHelper;
@@ -19,10 +15,8 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.physical
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.physical_metals.PewterFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.physical_metals.SteelFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.physical_metals.TinFeruchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals.AluminumFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals.ChromiumFeruchemicHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals.DuraluminFeruchemicHelper;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals.NicrosilFeruchemicHelper;
 
 public class FeruchemicTick {
 

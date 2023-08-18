@@ -15,7 +15,7 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalmindType;
-import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.AluminumDuraluminMetalmind;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.AtiumMalatiumMetalmind;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.CopperBronzeMetalmind;

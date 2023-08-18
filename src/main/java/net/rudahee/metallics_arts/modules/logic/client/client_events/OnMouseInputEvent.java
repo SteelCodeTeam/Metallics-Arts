@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
-import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.BasicGun;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.GunUtils;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;

@@ -10,8 +10,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
-import net.rudahee.metallics_arts.data.player.InvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.data.InvestedPlayerData;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import javax.annotation.Nonnull;

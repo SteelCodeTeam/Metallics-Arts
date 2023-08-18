@@ -1,9 +1,8 @@
-package net.rudahee.metallics_arts.data.player;
+package net.rudahee.metallics_arts.data.player.data;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;

@@ -1,14 +1,6 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals;
 
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.effects.ModEffects;
 
 
 /**

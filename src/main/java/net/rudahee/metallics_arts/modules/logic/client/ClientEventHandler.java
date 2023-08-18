@@ -1,21 +1,19 @@
 package net.rudahee.metallics_arts.modules.logic.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.*;
+import net.minecraftforge.common.extensions.IForgeEntity;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.BasicGun;
-import net.rudahee.metallics_arts.modules.custom_items.weapons.mele.KolossBlade;
+import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.client.client_events.*;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 /**
@@ -27,6 +25,30 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
  * @since 1.5.1
  */
 public class ClientEventHandler {
+
+
+    @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
+    public void onRenderPlayerEvent(RenderPlayerEvent.Pre event) {
+        Player player = event.getEntity();
+
+        if (player != null) {
+            if (player.getMainHandItem().is(ModItemsRegister.REVOLVER.get()) || player.getMainHandItem().is(ModItemsRegister.VINDICATOR.get())) {
+                event.getRenderer().getModel().rightArmPose = CustomPoses.POSE_RIGHT_AIM;
+            } else if (player.getMainHandItem().is(ModItemsRegister.SHOTGUN.get()) || player.getMainHandItem().is(ModItemsRegister.RIFLE.get())) {
+                event.getRenderer().getModel().leftArmPose = CustomPoses.POSE_LEFT_AIM;
+                event.getRenderer().getModel().rightArmPose = CustomPoses.POSE_RIGHT_AIM;
+            } else if (player.getMainHandItem().is(ModItemsRegister.KOLOSS_BLADE.get())) {
+                if (player.getMainHandItem().hasTag()) {
+                    if (player.getMainHandItem().getTag().getFloat("CustomModelData") != 1.0f) {
+                        event.getRenderer().getModel().rightArmPose = CustomPoses.POSE_RIGHT_KOLOSS;
+                    }
+                }
+            }
+        }
+    }
+
+
 
     /**
      * This method is called when a client-side tick event occurs. It performs various
@@ -91,6 +113,7 @@ public class ClientEventHandler {
             if (Minecraft.getInstance().player == null) {
                 return;
             }
+
             if (event.getButton() == 0 && event.getAction() == 1) {
 
                 //button = 0 - Left click

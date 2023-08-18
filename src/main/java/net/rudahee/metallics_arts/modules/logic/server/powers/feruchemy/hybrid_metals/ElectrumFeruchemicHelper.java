@@ -3,10 +3,8 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.effects.ModModifiers;
-import net.rudahee.metallics_arts.modules.effects.ModEffects;
 
 /**
  * Helper class containing the methods and implementations for using feruchemical Electrum.

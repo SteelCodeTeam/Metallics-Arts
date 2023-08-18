@@ -1,21 +1,16 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_metals;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.powers_utils.TeleportsUtils;
-
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Helper class that contains the methods to use the allomantic Malatium

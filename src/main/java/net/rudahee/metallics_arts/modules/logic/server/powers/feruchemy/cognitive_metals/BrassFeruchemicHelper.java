@@ -1,15 +1,11 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.cognitive_metals;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraftforge.common.Tags;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.effects.ModEffects;
 
 /**
  * Helper class containing the methods and implementations for using feruchemical Brass.

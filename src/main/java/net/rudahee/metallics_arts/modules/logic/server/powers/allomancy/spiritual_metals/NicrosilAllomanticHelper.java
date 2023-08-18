@@ -1,10 +1,10 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.spiritual_metals;
 
 import net.minecraft.world.entity.player.Player;
-import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+
 /**
  * Helper class that contains the methods to use the allomantic Nicrosil
  *

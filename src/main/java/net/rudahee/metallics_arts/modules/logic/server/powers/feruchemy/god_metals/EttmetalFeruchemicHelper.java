@@ -1,9 +1,6 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Explosion;
-import net.rudahee.metallics_arts.data.player.IInvestedPlayerData;
 
 /**
  * Helper class containing the methods and implementations for using feruchemical Ettmetal.
