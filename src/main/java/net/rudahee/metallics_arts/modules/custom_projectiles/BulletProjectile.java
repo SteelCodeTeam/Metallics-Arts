@@ -16,6 +16,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.rudahee.metallics_arts.data.enums.implementations.BulletType;
 import net.rudahee.metallics_arts.setup.registries.ModEntityTypesRegister;
+import net.rudahee.metallics_arts.setup.registries.particle.ModSimpleParticleRegister;
 
 public class BulletProjectile extends ThrowableItemProjectile {
 
@@ -33,6 +34,7 @@ public class BulletProjectile extends ThrowableItemProjectile {
         super(ModEntityTypesRegister.BULLET_PROJECTILE.get(), v, v1, v2, level);
     }
 
+
     @Override
     public boolean shouldRenderAtSqrDistance(double p_37470_) {
         return true;
@@ -49,7 +51,7 @@ public class BulletProjectile extends ThrowableItemProjectile {
     }
     private ParticleOptions getParticle() {
         ItemStack itemstack = this.getItemRaw();
-        return (ParticleOptions)(itemstack.isEmpty() ? ParticleTypes.ITEM_SNOWBALL : new ItemParticleOption(ParticleTypes.ITEM, itemstack));
+        return (ParticleOptions)(itemstack.isEmpty() ? ModSimpleParticleRegister.ITEM_BULLET : new ItemParticleOption(ParticleTypes.ITEM, itemstack));
     }
 
     public void handleEntityEvent(byte p_37402_) {
