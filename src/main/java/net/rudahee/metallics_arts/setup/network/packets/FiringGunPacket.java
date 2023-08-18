@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.setup.network.packets;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -12,15 +11,15 @@ import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.GunUtils;
 
 import java.util.function.Supplier;
 
-public class ShotPacket {
+public class FiringGunPacket {
 
-    public ShotPacket() {
+    public FiringGunPacket() {
 
     }
 
 
-    public static ShotPacket decode(FriendlyByteBuf buf) {
-        return new ShotPacket();
+    public static FiringGunPacket decode(FriendlyByteBuf buf) {
+        return new FiringGunPacket();
     }
 
 
@@ -28,7 +27,7 @@ public class ShotPacket {
 
     }
 
-    public boolean handle (Supplier<NetworkEvent.Context> supplier) {
+    public boolean handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() ->{
 
@@ -40,7 +39,7 @@ public class ShotPacket {
                     gun.setTag(GunUtils.generateGunTags(instance.getGunType()));
                 }
                 if (gun.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
-                    gun.setTag(GunUtils.shot(gun, player.level ,player, instance.getGunType()));
+                    gun.setTag(GunUtils.shoot(gun, player.level ,player, instance.getGunType()));
                 }
             }
         });

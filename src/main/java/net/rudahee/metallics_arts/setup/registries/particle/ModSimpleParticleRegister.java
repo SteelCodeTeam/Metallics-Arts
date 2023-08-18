@@ -5,9 +5,9 @@ import net.minecraft.core.particles.SimpleParticleType;
 
 public class ModSimpleParticleRegister {
 
-    public static final SimpleParticleType ITEM_BULLET = register("item_bullet", false);
+    //public static final SimpleParticleType BULLET_PARTICLE = register("item_bullet", false);
 
-    private static SimpleParticleType register(String p_123825_, boolean p_123826_) {
-        return Registry.register(Registry.PARTICLE_TYPE, p_123825_, new SimpleParticleType(p_123826_));
-    }
+    //private static SimpleParticleType register(String name, boolean bool) {
+    //    return Registry.register(Registry.PARTICLE_TYPE, name, new SimpleParticleType(bool));
+    //}
 }

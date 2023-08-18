@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts;
 
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -25,6 +26,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
+import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceScreen;
 import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays.MetalsOverlay;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
@@ -105,6 +107,9 @@ public class MetallicsArts {
         modEventBus.addListener(this::doClientStuff);
         ModEntityTypesRegister.ENTITY_TYPES.register(modEventBus);
 
+        ModBlockEntitiesRegister.register(modEventBus);
+        ModMenuRegister.register(modEventBus);
+
         ModGeodeGenerationRegister.register(modEventBus);
         ModOreGenerationRegister.register(modEventBus);
         ModStructureRegister.register(modEventBus);
@@ -183,6 +188,7 @@ public class MetallicsArts {
 
     public void clientInit(final FMLClientSetupEvent e) {
         ModEventsRegister.clientInit(e);
+        MenuScreens.register(ModMenuRegister.CRUCIBLE_FURNACE_MENU.get(), CrucibleFurnaceScreen::new);
     }
 
 

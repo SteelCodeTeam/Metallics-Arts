@@ -68,7 +68,7 @@ public class ModNetwork {
         INSTANCE.registerMessage(nextIndex(), NearbyInvestedPacket.class, NearbyInvestedPacket::encode, NearbyInvestedPacket::decode, NearbyInvestedPacket::handle);
         INSTANCE.registerMessage(nextIndex(), AnotherPlayerDeathPosPacket.class, AnotherPlayerDeathPosPacket::encode, AnotherPlayerDeathPosPacket::decode, AnotherPlayerDeathPosPacket::handle);
         INSTANCE.registerMessage(nextIndex(), LeverPacket.class, LeverPacket::encode, LeverPacket::decode, LeverPacket::handle);
-        INSTANCE.registerMessage(nextIndex(), ShotPacket.class, ShotPacket::encode, ShotPacket::decode, ShotPacket::handle);
+        INSTANCE.registerMessage(nextIndex(), FiringGunPacket.class, FiringGunPacket::encode, FiringGunPacket::decode, FiringGunPacket::handle);
 
 
     }

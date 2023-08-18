@@ -4,6 +4,7 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -34,7 +35,7 @@ public class ModEntityTypesRegister {
                     .<BulletProjectile>of(BulletProjectile::new, MobCategory.MISC)
                     .setShouldReceiveVelocityUpdates(true)
                     .setUpdateInterval(20)
-                    .setCustomClientFactory((spawnEntity, world) -> new BulletProjectile(world, spawnEntity.getEntity()))
+                    .setCustomClientFactory((spawnEntity, world) -> new BulletProjectile(world, (LivingEntity) spawnEntity.getEntity()))
                     .sized(0.25F, 0.25F)
                     .build("nugget_projectile"));
 

@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.setup.registries.blocks;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.rudahee.metallics_arts.MetallicsArts;
@@ -9,6 +10,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.OreGenerationEnum;
 import net.rudahee.metallics_arts.modules.custom_blocks.ettmetal_block.EttmetalBlock;
+import net.rudahee.metallics_arts.modules.custom_blocks.tables.CrucibleFurnaceBlock;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.Arrays;
@@ -111,7 +113,21 @@ public class BasicBlocksRegister {
                 });
 
 
+
+        ModBlocksRegister.CRUCIBLE_FURNACE = MetallicsArts.registerBlock("crucible_furnace", () -> {
+            Block block = new CrucibleFurnaceBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
+                    .strength(10f, 10f)
+                    .lightLevel(litBlockEmission(16))
+                    .sound(SoundType.ANVIL)
+                    .requiresCorrectToolForDrops()
+                    .destroyTime(15f));
+
+            return block;
+        });
     }
+
+
+
     private static ToIntFunction<BlockState> litBlockEmission(int value) {
         return (funcValue) -> {
             return 12;

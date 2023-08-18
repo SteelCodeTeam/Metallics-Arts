@@ -8,12 +8,16 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
+import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.modules.logic.client.client_events.*;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.setup.registries.ModRenderRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
+
+import java.util.Objects;
 
 /**
  * Handles client-side events and custom rendering.
@@ -39,8 +43,13 @@ public class ClientEventHandler {
                 event.getRenderer().getModel().rightArmPose = CustomPoses.POSE_RIGHT_AIM;
             } else if (player.getMainHandItem().is(ModItemsRegister.KOLOSS_BLADE.get())) {
                 if (player.getMainHandItem().hasTag()) {
-                    if (player.getMainHandItem().getTag().getFloat("CustomModelData") != 1.0f) {
-                        event.getRenderer().getModel().rightArmPose = CustomPoses.POSE_RIGHT_KOLOSS;
+                    try {
+
+                        if (player.getMainHandItem().getTag().getFloat("CustomModelData") != 1.0f) {
+                            event.getRenderer().getModel().rightArmPose = CustomPoses.POSE_RIGHT_KOLOSS;
+                        }
+                    } catch (NullPointerException ex) {
+                        LoggerUtils.printLogInfo(ex.getMessage());
                     }
                 }
             }
@@ -178,6 +187,7 @@ public class ClientEventHandler {
     }
 
     @OnlyIn(Dist.CLIENT)
+    @SubscribeEvent
     public static void onEntityRender(final EntityRenderersEvent.RegisterRenderers event) {
         ModRenderRegister.register(event);
     }

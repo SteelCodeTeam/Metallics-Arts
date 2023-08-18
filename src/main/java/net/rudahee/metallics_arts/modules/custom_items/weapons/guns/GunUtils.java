@@ -98,7 +98,7 @@ public class GunUtils {
      * @param gunType The type of the gun being shot.
      * @return The updated CompoundTag of the gun item after the shot.
      */
-    public static CompoundTag shot(ItemStack gun, Level level , ServerPlayer player, GunType gunType) {
+    public static CompoundTag shoot(ItemStack gun, Level level , ServerPlayer player, GunType gunType) {
         CompoundTag tag = gun.getTag();
 
         if (tag.getInt(GunsAccess.BULLETS.getKey()) > 0) {

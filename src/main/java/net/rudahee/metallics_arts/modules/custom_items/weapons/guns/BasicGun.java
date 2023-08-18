@@ -9,18 +9,17 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * The BasicGun class represents a basic gun item that extends the Item class.
@@ -36,7 +35,7 @@ import java.util.List;
  */
 
 
-public class BasicGun extends Item  {
+public class BasicGun extends ProjectileWeaponItem {
     private GunType gunType;
 
     /**
@@ -136,6 +135,7 @@ public class BasicGun extends Item  {
                 stack.setTag(GunUtils.generateGunTags(this.gunType));
             }
         }
+
         super.appendHoverText(stack, level, toolTips, flagIn);
     }
 
@@ -203,5 +203,15 @@ public class BasicGun extends Item  {
     @Override
     public boolean isEnchantable(ItemStack p_41456_) {
         return false;
+    }
+
+    @Override
+    public Predicate<ItemStack> getAllSupportedProjectiles() {
+        return itemStack -> itemStack.is(ModItemsRegister.PISTOL_LEAD_BULLET.get()) || itemStack.is(ModItemsRegister.PISTOL_ALUMINUM_BULLET.get());
+    }
+
+    @Override
+    public int getDefaultProjectileRange() {
+        return 8;
     }
 }

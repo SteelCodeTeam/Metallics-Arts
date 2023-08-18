@@ -43,6 +43,8 @@ public class ModBlocksRegister {
     public static RegistryObject<AmethystBlock> SMALL_ETTMETAL_BUD;
     public static RegistryObject<Block> ETTMETAL_BLOCK = null;
 
+    public static RegistryObject<Block> CRUCIBLE_FURNACE;
+
     public static void register() {
         AtiumBlocksRegister.register();
         LerasiumBlocksRegister.register();

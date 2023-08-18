@@ -16,11 +16,10 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.rudahee.metallics_arts.data.enums.implementations.BulletType;
 import net.rudahee.metallics_arts.setup.registries.ModEntityTypesRegister;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.setup.registries.particle.ModSimpleParticleRegister;
 
 public class BulletProjectile extends ThrowableItemProjectile {
-
-    private BulletType bulletType;
 
     public BulletProjectile(EntityType<? extends BulletProjectile> entityType, Level level) {
         super(entityType, level);
@@ -36,26 +35,26 @@ public class BulletProjectile extends ThrowableItemProjectile {
 
 
     @Override
-    public boolean shouldRenderAtSqrDistance(double p_37470_) {
+    public boolean shouldRenderAtSqrDistance(double distance) {
         return true;
     }
 
     @Override
-    public boolean shouldRender(double p_20296_, double p_20297_, double p_20298_) {
+    public boolean shouldRender(double x, double y, double z) {
         return true;
     }
 
     @Override
     protected Item getDefaultItem() {
-        return Items.SNOWBALL;
+        return ModItemsRegister.PISTOL_LEAD_BULLET.get();
     }
     private ParticleOptions getParticle() {
         ItemStack itemstack = this.getItemRaw();
-        return (ParticleOptions)(itemstack.isEmpty() ? ModSimpleParticleRegister.ITEM_BULLET : new ItemParticleOption(ParticleTypes.ITEM, itemstack));
+        return itemstack.isEmpty() ? ParticleTypes.EXPLOSION : new ItemParticleOption(ParticleTypes.ITEM, itemstack);
     }
 
-    public void handleEntityEvent(byte p_37402_) {
-        if (p_37402_ == 3) {
+    public void handleEntityEvent(byte b) {
+        if (b == 3) {
             ParticleOptions particleoptions = this.getParticle();
 
             for(int i = 0; i < 8; ++i) {

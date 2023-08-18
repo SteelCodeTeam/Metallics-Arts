@@ -13,7 +13,7 @@ import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.GunUtils;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.setup.network.packets.ShotPacket;
+import net.rudahee.metallics_arts.setup.network.packets.FiringGunPacket;
 
 /**
  * OnMouseInputEvent is a client-side class responsible for processing
@@ -80,7 +80,7 @@ public class OnMouseInputEvent {
                 itemInHand.setTag(GunUtils.generateGunTags(instance.getGunType()));
             }
             if (itemInHand.getTag().getInt(GunsAccess.BULLETS.getKey()) > 0) {
-                ModNetwork.sendToServer(new ShotPacket());
+                ModNetwork.sendToServer(new FiringGunPacket());
             }
         }
     }
