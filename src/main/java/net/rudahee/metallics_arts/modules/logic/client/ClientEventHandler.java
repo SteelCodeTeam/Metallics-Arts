@@ -44,7 +44,6 @@ public class ClientEventHandler {
             } else if (player.getMainHandItem().is(ModItemsRegister.KOLOSS_BLADE.get())) {
                 if (player.getMainHandItem().hasTag()) {
                     try {
-
                         if (player.getMainHandItem().getTag().getFloat("CustomModelData") != 1.0f) {
                             event.getRenderer().getModel().rightArmPose = CustomPoses.POSE_RIGHT_KOLOSS;
                         }
@@ -122,7 +121,7 @@ public class ClientEventHandler {
                 return;
             }
 
-            if (event.getButton() == 0 && event.getAction() == 1) {
+            /*if (event.getButton() == 0 && event.getAction() == 1) {
 
                 //button = 0 - Left click
                 //action = 1 - Press button
@@ -130,7 +129,7 @@ public class ClientEventHandler {
                 //if ( !Minecraft.getInstance().screen.isPauseScreen()) {
                     OnMouseInputEvent.otro(Minecraft.getInstance().player, Minecraft.getInstance().player.getItemInHand(InteractionHand.MAIN_HAND));
                // }
-            }
+            }*/
             OnMouseInputEvent.OnMouseInputEvent(Minecraft.getInstance().player, CapabilityUtils.getCapability(Minecraft.getInstance().player));
         } catch (PlayerException ex) {
             ex.printResumeLog();

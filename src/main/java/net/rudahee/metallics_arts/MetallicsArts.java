@@ -105,9 +105,10 @@ public class MetallicsArts {
         // Register the doClientStuff method for modloading
         modEventBus.addListener(ModBlocksRegister.InvestedCapabilityRegister::register);
         modEventBus.addListener(this::doClientStuff);
-        ModEntityTypesRegister.ENTITY_TYPES.register(modEventBus);
 
+        ModEntityTypesRegister.register(modEventBus);
         ModBlockEntitiesRegister.register(modEventBus);
+
         ModMenuRegister.register(modEventBus);
 
         ModGeodeGenerationRegister.register(modEventBus);

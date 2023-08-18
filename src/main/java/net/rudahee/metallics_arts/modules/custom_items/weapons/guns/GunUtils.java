@@ -3,7 +3,6 @@ package net.rudahee.metallics_arts.modules.custom_items.weapons.guns;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -12,7 +11,6 @@ import net.rudahee.metallics_arts.data.enums.implementations.BulletType;
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
 import net.rudahee.metallics_arts.modules.custom_projectiles.BulletProjectile;
-import net.rudahee.metallics_arts.modules.custom_projectiles.CopperProjectile;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 
@@ -23,6 +21,7 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
  * @since 1.6.4
  */
 public class GunUtils {
+
     public static CompoundTag reload(ItemStack gun, Player player, GunType gunType) {
         CompoundTag compoundTag = gun.getTag();
 
@@ -31,7 +30,6 @@ public class GunUtils {
 
             compoundTag.putInt(GunsAccess.BULLETS.getKey(), compoundTag.getInt(GunsAccess.BULLETS.getKey()) + 1);
             player.getInventory().removeItem(slot, 1);
-
 
             if (gunType == GunType.SHOTGUN) {
                 if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 1) {
@@ -98,29 +96,61 @@ public class GunUtils {
      * @param gunType The type of the gun being shot.
      * @return The updated CompoundTag of the gun item after the shot.
      */
-    public static CompoundTag shoot(ItemStack gun, Level level , ServerPlayer player, GunType gunType) {
+    public static CompoundTag shot(ItemStack gun, Level level , ServerPlayer player, GunType gunType) {
         CompoundTag tag = gun.getTag();
 
         if (tag.getInt(GunsAccess.BULLETS.getKey()) > 0) {
             BulletProjectile bullet = new BulletProjectile(level, player);
             if (gunType != GunType.SHOTGUN) {
-
                 if (gunType == GunType.RIFLE) {
                     bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 5F, 1.0F);
                 } else {
                     bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 4F, 1.0F);
-
                 }
                 level.addFreshEntity(bullet);
             } else {
                 bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1F, 1.0F);
             }
-
             tag.putInt(GunsAccess.BULLETS.getKey(), tag.getInt(GunsAccess.BULLETS.getKey()) - 1);
-
         } else {
             player.sendSystemMessage(Component.translatable("VACIO"));
         }
         return tag;
+    }
+
+    public static CompoundTag reloadTexture(ItemStack stack, GunType gunType) {
+        if (gunType == GunType.SHOTGUN) {
+            if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 0) {
+                stack.getTag().putFloat("CustomModelData", 2);
+            } else if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 1) {
+                stack.getTag().putFloat("CustomModelData", 3);
+            } else {
+                stack.getTag().putFloat("CustomModelData", 4);
+            }
+        } else if (gunType == GunType.RIFLE) {
+            if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 0) {
+                stack.getTag().putFloat("CustomModelData", 2);
+            } else {
+                stack.getTag().putFloat("CustomModelData", 3);
+            }
+        } else if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) < stack.getTag().getInt(GunsAccess.BULLETS_MAX.getKey())) {
+            //stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
+            stack.getTag().putFloat("CustomModelData", 2);
+        }
+        return stack.getTag();
+    }
+
+    public static CompoundTag changeAmmo(Player player, ItemStack stack) {
+        if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 0) {
+            if (stack.getTag().getString(GunsAccess.BULLET_TYPE.getKey()).equals(BulletType.LEAD.getType())) {
+                stack.getTag().putString(GunsAccess.BULLET_TYPE.getKey(), BulletType.ALUMINUM.getType());
+            } else {
+                stack.getTag().putString(GunsAccess.BULLET_TYPE.getKey(), BulletType.LEAD.getType());
+            }
+            player.sendSystemMessage(Component.translatable("Municion actual:"+ stack.getTag().getString(GunsAccess.BULLET_TYPE.getKey())));
+        } else {
+            player.sendSystemMessage(Component.translatable("No se puede cambiar, aun quedan cargas"));
+        }
+        return stack.getTag();
     }
 }

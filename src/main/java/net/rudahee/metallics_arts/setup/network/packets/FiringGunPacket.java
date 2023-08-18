@@ -17,7 +17,6 @@ public class FiringGunPacket {
 
     }
 
-
     public static FiringGunPacket decode(FriendlyByteBuf buf) {
         return new FiringGunPacket();
     }
@@ -39,7 +38,7 @@ public class FiringGunPacket {
                     gun.setTag(GunUtils.generateGunTags(instance.getGunType()));
                 }
                 if (gun.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
-                    gun.setTag(GunUtils.shoot(gun, player.level ,player, instance.getGunType()));
+                    gun.setTag(GunUtils.shot(gun, player.level ,player, instance.getGunType()));
                 }
             }
         });

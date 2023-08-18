@@ -12,7 +12,7 @@ public class CustomPoses {
     });
 
 
-    public static HumanoidModel.ArmPose POSE_RIGHT_KOLOSS = HumanoidModel.ArmPose.create("koloss_pose_left", false, (model, entity, arm) -> {
+    public static HumanoidModel.ArmPose POSE_RIGHT_KOLOSS = HumanoidModel.ArmPose.create("koloss_pose_right", false, (model, entity, arm) -> {
         model.rightArm.setRotation(-0.8f, -0.3f, 0.1f);
     });
 

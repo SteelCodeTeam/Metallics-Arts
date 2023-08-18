@@ -1,19 +1,20 @@
 package net.rudahee.metallics_arts.modules.custom_items.weapons.guns;
 
-import net.minecraft.client.renderer.ItemInHandRenderer;
-import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ProjectileWeaponItem;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.IForgeRegistry;
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
+import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.network.packets.FiringGunPacket;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import org.jetbrains.annotations.Nullable;
@@ -87,30 +88,18 @@ public class BasicGun extends ProjectileWeaponItem {
         if (entity instanceof Player player) {
             if (player.getItemInHand(InteractionHand.MAIN_HAND) == stack) {
                 if (ModKeyRegister.RELOAD.isDown()) {
-                    if (this.gunType == GunType.SHOTGUN) {
-                        //stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
-                        if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 0) {
-                            stack.getTag().putFloat("CustomModelData", 2);
-                        } else if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 1) {
-                            stack.getTag().putFloat("CustomModelData", 3);
-                        } else {
-                            stack.getTag().putFloat("CustomModelData", 4);
-                        }
-                    } else if (this.gunType == GunType.RIFLE) {
-                        //stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
-                        if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 0) {
-                            stack.getTag().putFloat("CustomModelData", 2);
-                        } else {
-                            stack.getTag().putFloat("CustomModelData", 3);
-                        }
-
-                    } else if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) < stack.getTag().getInt(GunsAccess.BULLETS_MAX.getKey())) {
-                        //stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
-                        stack.getTag().putFloat("CustomModelData", 2);
-                    }
+                    stack.setTag(GunUtils.reloadTexture(stack, this.gunType));
                     stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
                 }
-            } else if (stack.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.RELOAD.getKey())) {
+                if (ModKeyRegister.CHANGE.isDown()) {
+                    stack.setTag(GunUtils.changeAmmo(player, stack));
+                }
+                if (ModKeyRegister.SHOT.isDown()){
+                    if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) > 0) {
+                        ModNetwork.sendToServer(new FiringGunPacket());
+                    }
+                }
+            } else if (!stack.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
                 stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
                 stack.getTag().putFloat("CustomModelData", 0);
             }
