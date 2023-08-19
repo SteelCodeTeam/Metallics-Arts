@@ -1,14 +1,14 @@
 package net.rudahee.metallics_arts.modules.logic.client;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
@@ -16,8 +16,6 @@ import net.rudahee.metallics_arts.modules.logic.client.client_events.*;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.setup.registries.ModRenderRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
-
-import java.util.Objects;
 
 /**
  * Handles client-side events and custom rendering.
@@ -32,20 +30,19 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
-    public void onRenderPlayerEvent(RenderPlayerEvent.Pre event) {
+    public void onRenderPlayerEvent(RenderPlayerEvent event) {
         Player player = event.getEntity();
-
+        PlayerRenderer renderer = event.getRenderer();
         if (player != null) {
             if (player.getMainHandItem().is(ModItemsRegister.REVOLVER.get()) || player.getMainHandItem().is(ModItemsRegister.VINDICATOR.get())) {
-                event.getRenderer().getModel().rightArmPose = CustomPoses.POSE_RIGHT_AIM;
+                renderer.getModel().rightArmPose = CustomPoses.getArmPose(CustomPoses.POSE_RIGHT_AIM);
             } else if (player.getMainHandItem().is(ModItemsRegister.SHOTGUN.get()) || player.getMainHandItem().is(ModItemsRegister.RIFLE.get())) {
-                event.getRenderer().getModel().leftArmPose = CustomPoses.POSE_LEFT_AIM;
-                event.getRenderer().getModel().rightArmPose = CustomPoses.POSE_RIGHT_AIM;
+               renderer.getModel().rightArmPose = CustomPoses.getArmPose(CustomPoses.POSE_BOTH_AIM);
             } else if (player.getMainHandItem().is(ModItemsRegister.KOLOSS_BLADE.get())) {
                 if (player.getMainHandItem().hasTag()) {
                     try {
                         if (player.getMainHandItem().getTag().getFloat("CustomModelData") != 1.0f) {
-                            event.getRenderer().getModel().rightArmPose = CustomPoses.POSE_RIGHT_KOLOSS;
+                           renderer.getModel().rightArmPose = CustomPoses.getArmPose(CustomPoses.POSE_RIGHT_KOLOSS);
                         }
                     } catch (NullPointerException ex) {
                         LoggerUtils.printLogInfo(ex.getMessage());

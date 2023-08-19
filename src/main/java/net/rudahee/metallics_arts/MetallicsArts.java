@@ -12,6 +12,7 @@ import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -25,6 +26,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
 import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceScreen;
 import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
@@ -139,7 +141,7 @@ public class MetallicsArts {
     {
         // some preinit code
         LOGGER.info("Starting Metallics Arts Setup.");
-
+        CustomPoses.initializePoses();
         ModNetwork.registerPackets();
         ModEventsRegister.register(event);
 
@@ -180,7 +182,6 @@ public class MetallicsArts {
 
         ClientEventHandler.onRenderGameOverlay(event);
     }
-
 
     @SubscribeEvent
     public void onCommandsRegister(RegisterCommandsEvent event) {
