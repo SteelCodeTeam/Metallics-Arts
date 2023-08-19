@@ -21,15 +21,19 @@ public class ModVillager {
     public static final DeferredRegister<PoiType> POI_TYPE =
             DeferredRegister.create(ForgeRegistries.POI_TYPES, MetallicsArts.MOD_ID);
 
-    public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSION =
+    public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS =
             DeferredRegister.create(ForgeRegistries.VILLAGER_PROFESSIONS, MetallicsArts.MOD_ID);
 
 
     public static final RegistryObject<PoiType> CRUCIBLE_FURNACE_POI = POI_TYPE.register("crucible_furnace_poi",
-            () -> new PoiType(getBlockStates(ModBlocksRegister.CRUCIBLE_FURNACE.get()),1,1));
+            () -> new PoiType(ImmutableSet.copyOf(ModBlocksRegister.CRUCIBLE_FURNACE.get().getStateDefinition().getPossibleStates()),
 
-    public static final RegistryObject<VillagerProfession> VILLAGER_PROFESSION_REGISTRY_OBJECT = VILLAGER_PROFESSION.register("crucible",
-            () -> new VillagerProfession("name",PoiType.NONE, (poiTypeHolder) -> poiTypeHolder.is(CRUCIBLE_FURNACE_POI.getId()) , ImmutableSet.of(), ImmutableSet.of(),SoundEvents.VILLAGER_WORK_ARMORER));
+                    1,1));
+
+    public static final RegistryObject<VillagerProfession> VILLAGER_CRUCIBLE_PROFESSION = VILLAGER_PROFESSIONS.register("forge_master",
+            () -> new VillagerProfession("forge_master", x -> x.get() == CRUCIBLE_FURNACE_POI.get(),
+                    x -> x.get() == CRUCIBLE_FURNACE_POI.get(), ImmutableSet.of(), ImmutableSet.of(),
+                    SoundEvents.VILLAGER_WORK_ARMORER));
 
 
     public static void registerPOIs () {
@@ -42,12 +46,8 @@ public class ModVillager {
         }
     }
 
-    private static Set<BlockState> getBlockStates(Block p_218074_) {
-        return ImmutableSet.copyOf(p_218074_.getStateDefinition().getPossibleStates());
-    }
-
     public static void register(IEventBus eventBus) {
         POI_TYPE.register(eventBus);
-        VILLAGER_PROFESSION.register(eventBus);
+        VILLAGER_PROFESSIONS.register(eventBus);
     }
 }

@@ -18,6 +18,9 @@ import java.util.Map;
 public class ModLanguageProviderEN extends LanguageProvider {
         private final Map<String, String> base = new HashMap<>() {{
 
+
+                put("entity.minecraft.villagers.metallics_arts.forge_master", "MAESTRO DE LA FORGA");
+
                 put("item.metallics_arts.large_vial",CTW.LARGE.getNameInEnglish() + " " + CTW.VIAL.getNameInEnglish());
                 put("item.metallics_arts.small_vial",CTW.SMALL.getNameInEnglish() + " " + CTW.VIAL.getNameInEnglish());
                 put("curios.identifier.metalmind_slot",CTW.METALMIND.getNameInEnglish() + " " + CTW.SLOT.getNameInEnglish());

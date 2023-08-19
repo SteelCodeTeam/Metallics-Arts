@@ -7,7 +7,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
@@ -256,7 +255,7 @@ public class ServerEventHandler {
     @SubscribeEvent
     public static void addCustomTrades(VillagerTradesEvent event) {
 
-        if (event.getType() == ModVillager.VILLAGER_PROFESSION_REGISTRY_OBJECT.get()) {
+        if (event.getType() == ModVillager.VILLAGER_CRUCIBLE_PROFESSION.get()) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 
             ItemStack a = new ItemStack(ModItemsRegister.REVOLVER.get(),1 );
