@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.custom_items.weapons.guns;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -63,11 +64,20 @@ public class BasicGun extends ProjectileWeaponItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
-        /*CompoundTag tag = itemStack.getTag();
+        CompoundTag tag = itemStack.getTag();
         tag.putFloat("CustomModelData", 1);
         itemStack.setTag(tag);
-        player.startUsingItem(hand);*/
+        player.startUsingItem(hand);
         return InteractionResultHolder.consume(itemStack);
+    }
+
+    @Override
+    public void releaseUsing(ItemStack stack, Level level, LivingEntity livingEntity, int i) {
+        ItemStack itemStack = livingEntity.getItemInHand(InteractionHand.MAIN_HAND);
+        CompoundTag tag = itemStack.getTag();
+        tag.putFloat("CustomModelData", 0);
+        itemStack.setTag(tag);
+        super.releaseUsing(stack, level, livingEntity, i);
     }
 
     /**

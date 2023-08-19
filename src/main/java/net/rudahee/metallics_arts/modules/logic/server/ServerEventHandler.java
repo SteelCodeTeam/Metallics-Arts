@@ -1,11 +1,16 @@
 package net.rudahee.metallics_arts.modules.logic.server;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -15,6 +20,7 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
+import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -25,6 +31,7 @@ import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.GunUtils;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.mele.KolossBlade;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.*;
+import net.rudahee.metallics_arts.modules.villagers.ModVillager;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
@@ -242,6 +249,22 @@ public class ServerEventHandler {
                     }
                 }
             }
+        }
+
+
+    }
+    @SubscribeEvent
+    public static void addCustomTrades(VillagerTradesEvent event) {
+
+        if (event.getType() == ModVillager.VILLAGER_PROFESSION_REGISTRY_OBJECT.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+
+            ItemStack a = new ItemStack(ModItemsRegister.REVOLVER.get(),1 );
+
+            trades.get(1).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 12),
+                    a, 4 , 12, 0.09F
+            ));
         }
     }
 

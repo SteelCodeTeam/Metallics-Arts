@@ -8,6 +8,7 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.*;
@@ -39,8 +40,14 @@ public class ClientEventHandler {
         Player player = event.getEntity();
         PlayerRenderer renderer = event.getRenderer();
         if (player != null) {
+            ItemStack stack = player.getMainHandItem();
+
             if (player.getMainHandItem().is(ModItemsRegister.REVOLVER.get()) || player.getMainHandItem().is(ModItemsRegister.VINDICATOR.get())) {
-                renderer.getModel().rightArmPose = CustomPoses.getArmPose(CustomPoses.POSE_RIGHT_AIM);
+                if (stack.getTag().getFloat("CustomModelData") == 1) {
+                    renderer.getModel().rightArmPose = CustomPoses.getArmPose(CustomPoses.POSE_RIGHT_AIM);
+                } else {
+                    renderer.getModel().rightArmPose = CustomPoses.getArmPose(CustomPoses.POSE_RIGHT_REST);
+                }
             } else if (player.getMainHandItem().is(ModItemsRegister.SHOTGUN.get()) || player.getMainHandItem().is(ModItemsRegister.RIFLE.get())) {
                renderer.getModel().rightArmPose = CustomPoses.getArmPose(CustomPoses.POSE_BOTH_AIM);
             } else if (player.getMainHandItem().is(ModItemsRegister.KOLOSS_BLADE.get())) {

@@ -9,7 +9,7 @@ package net.rudahee.metallics_arts.data.enums.implementations;
  * @since 1.6.4
  */
 public enum GunType {
-    SHOTGUN("shotgun", 40, 2),
+    SHOTGUN("shotgun", 10, 2),
     RIFLE("rifle", 10, 1),
     REVOLVER("revolver", 20, 6),
     VINDICATOR("vindicator", 20, 8);

@@ -32,6 +32,7 @@ import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace
 import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays.MetalsOverlay;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
+import net.rudahee.metallics_arts.modules.villagers.ModVillager;
 import net.rudahee.metallics_arts.setup.DataGenerators;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
@@ -110,8 +111,9 @@ public class MetallicsArts {
 
         ModEntityTypesRegister.register(modEventBus);
         ModBlockEntitiesRegister.register(modEventBus);
-
         ModMenuRegister.register(modEventBus);
+
+        ModVillager.register(modEventBus);
 
         ModGeodeGenerationRegister.register(modEventBus);
         ModOreGenerationRegister.register(modEventBus);
@@ -144,6 +146,8 @@ public class MetallicsArts {
         CustomPoses.initializePoses();
         ModNetwork.registerPackets();
         ModEventsRegister.register(event);
+
+        event.enqueueWork(ModVillager::registerPOIs);
 
     }
 

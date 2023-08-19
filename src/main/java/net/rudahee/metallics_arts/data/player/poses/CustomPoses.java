@@ -4,6 +4,7 @@ import net.minecraft.client.model.HumanoidModel;
 
 public enum CustomPoses {
 
+    POSE_RIGHT_REST(null),
     POSE_RIGHT_AIM(null),
     POSE_BOTH_AIM(null),
     POSE_RIGHT_KOLOSS(null);
@@ -23,6 +24,14 @@ public enum CustomPoses {
     }
 
     public static void initializePoses() {
+
+
+        POSE_RIGHT_REST.setPose(HumanoidModel.ArmPose.create("gun_pose_right_rest", false, (model, entity, arm) -> {
+            if (model != null) {
+                model.rightArm.setRotation(-1.3f, 0.1f, 0.1f);
+            }
+        }));
+
 
         POSE_RIGHT_AIM.setPose(HumanoidModel.ArmPose.create("gun_pose_right_aim", false, (model, entity, arm) -> {
             if (model != null) {
@@ -50,6 +59,8 @@ public enum CustomPoses {
             return POSE_BOTH_AIM.getPose();
         } else if (pose.equals(POSE_RIGHT_KOLOSS)) {
             return POSE_RIGHT_KOLOSS.getPose();
+        } else if(pose.equals(POSE_RIGHT_REST)) {
+            return POSE_RIGHT_REST.getPose();
         } else {
             return HumanoidModel.ArmPose.EMPTY;
         }
