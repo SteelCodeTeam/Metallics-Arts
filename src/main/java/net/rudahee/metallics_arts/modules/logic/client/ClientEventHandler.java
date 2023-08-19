@@ -1,8 +1,12 @@
 package net.rudahee.metallics_arts.modules.logic.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.ChatScreen;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -14,6 +18,7 @@ import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerExcept
 import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.modules.logic.client.client_events.*;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
+import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import net.rudahee.metallics_arts.setup.registries.ModRenderRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
@@ -114,19 +119,17 @@ public class ClientEventHandler {
     @SubscribeEvent
     public void onMouseInput(final InputEvent.MouseButton.Post event) {
         try {
-            if (Minecraft.getInstance().player == null) {
+            if (Minecraft.getInstance().player == null || Minecraft.getInstance().screen == null) {
                 return;
             }
 
-            /*if (event.getButton() == 0 && event.getAction() == 1) {
-
+            if (event.getButton() == 0 && event.getAction() == 1) {
                 //button = 0 - Left click
                 //action = 1 - Press button
-
-                //if ( !Minecraft.getInstance().screen.isPauseScreen()) {
+                if (!Minecraft.getInstance().screen.isPauseScreen()) {//todo
                     OnMouseInputEvent.otro(Minecraft.getInstance().player, Minecraft.getInstance().player.getItemInHand(InteractionHand.MAIN_HAND));
-               // }
-            }*/
+                }
+            }
             OnMouseInputEvent.OnMouseInputEvent(Minecraft.getInstance().player, CapabilityUtils.getCapability(Minecraft.getInstance().player));
         } catch (PlayerException ex) {
             ex.printResumeLog();

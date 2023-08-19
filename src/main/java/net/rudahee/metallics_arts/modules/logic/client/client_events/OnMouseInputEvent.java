@@ -73,7 +73,7 @@ public class OnMouseInputEvent {
         }*/
     }
 
-    /*@OnlyIn(Dist.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public static void otro(LocalPlayer player, ItemStack itemInHand) {
         if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof BasicGun instance) {
             if (!itemInHand.hasTag()) {
@@ -83,7 +83,7 @@ public class OnMouseInputEvent {
                 ModNetwork.sendToServer(new FiringGunPacket());
             }
         }
-    }*/
+    }
 
 
 }

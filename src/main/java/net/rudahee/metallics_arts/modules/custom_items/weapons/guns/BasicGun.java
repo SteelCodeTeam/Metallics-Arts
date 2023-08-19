@@ -94,11 +94,7 @@ public class BasicGun extends ProjectileWeaponItem {
                 if (ModKeyRegister.CHANGE.isDown()) {
                     stack.setTag(GunUtils.changeAmmo(player, stack));
                 }
-                if (ModKeyRegister.SHOT.isDown()){
-                    if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) > 0) {
-                        ModNetwork.sendToServer(new FiringGunPacket());
-                    }
-                }
+
             } else if (!stack.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
                 stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
                 stack.getTag().putFloat("CustomModelData", 0);

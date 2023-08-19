@@ -206,9 +206,45 @@
 			}
 		},
 		{
-			"model": "metallics_arts:item/revolver_reload",
+			"model": "metallics_arts:item/revolver_reload_0",
 			"predicate": {
 				"minecraft:custom_model_data": 2.0
+			}
+		},
+		{
+			"model": "metallics_arts:item/revolver_reload_1",
+			"predicate": {
+				"minecraft:custom_model_data": 3.0
+			}
+		},
+		{
+			"model": "metallics_arts:item/revolver_reload_2",
+			"predicate": {
+				"minecraft:custom_model_data": 4.0
+			}
+		},
+		{
+			"model": "metallics_arts:item/revolver_reload_3",
+			"predicate": {
+				"minecraft:custom_model_data": 5.0
+			}
+		},
+		{
+			"model": "metallics_arts:item/revolver_reload_4",
+			"predicate": {
+				"minecraft:custom_model_data": 6.0
+			}
+		},
+		{
+			"model": "metallics_arts:item/revolver_reload_5",
+			"predicate": {
+				"minecraft:custom_model_data": 7.0
+			}
+		},
+		{
+			"model": "metallics_arts:item/revolver_reload_6",
+			"predicate": {
+				"minecraft:custom_model_data": 8.0
 			}
 		}
 	]

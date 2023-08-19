@@ -30,7 +30,6 @@ public class BulletProjectile extends ThrowableItemProjectile {
         super(ModEntityTypesRegister.BULLET_PROJECTILE.get(), v, v1, v2, level);
     }
 
-
     @Override
     public boolean shouldRenderAtSqrDistance(double distance) {
         return true;

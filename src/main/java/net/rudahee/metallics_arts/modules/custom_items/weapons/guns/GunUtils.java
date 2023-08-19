@@ -29,6 +29,7 @@ public class GunUtils {
         if (slot != -1 && compoundTag.getInt(GunsAccess.BULLETS.getKey()) < gunType.getMaxAmount()) {
 
             compoundTag.putInt(GunsAccess.BULLETS.getKey(), compoundTag.getInt(GunsAccess.BULLETS.getKey()) + 1);
+
             player.getInventory().removeItem(slot, 1);
 
             if (gunType == GunType.SHOTGUN) {
@@ -40,6 +41,20 @@ public class GunUtils {
             } else if (gunType == GunType.RIFLE) {
                 if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 1) {
                     compoundTag.putFloat("CustomModelData", 3);
+                }
+            } else if (gunType == GunType.REVOLVER) {
+                if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 1) {
+                    compoundTag.putFloat("CustomModelData", 3);
+                } else if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 2) {
+                    compoundTag.putFloat("CustomModelData", 4);
+                } else if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 3) {
+                    compoundTag.putFloat("CustomModelData", 5);
+                } else if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 4) {
+                    compoundTag.putFloat("CustomModelData", 6);
+                } else if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 5) {
+                    compoundTag.putFloat("CustomModelData", 7);
+                } else {
+                    compoundTag.putFloat("CustomModelData", 8);
                 }
             }
         } else {
@@ -112,6 +127,7 @@ public class GunUtils {
                 bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1F, 1.0F);
             }
             tag.putInt(GunsAccess.BULLETS.getKey(), tag.getInt(GunsAccess.BULLETS.getKey()) - 1);
+
         } else {
             player.sendSystemMessage(Component.translatable("VACIO"));
         }
@@ -133,8 +149,23 @@ public class GunUtils {
             } else {
                 stack.getTag().putFloat("CustomModelData", 3);
             }
+        } else if (gunType == GunType.REVOLVER) {
+            if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 0) {
+                stack.getTag().putFloat("CustomModelData", 2);
+            } else if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 1) {
+                stack.getTag().putFloat("CustomModelData", 3);
+            } else if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 2) {
+                stack.getTag().putFloat("CustomModelData", 4);
+            } else if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 3) {
+                stack.getTag().putFloat("CustomModelData", 5);
+            } else if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 4) {
+                stack.getTag().putFloat("CustomModelData", 6);
+            } else if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 5) {
+                stack.getTag().putFloat("CustomModelData", 7);
+            } else {
+                stack.getTag().putFloat("CustomModelData", 8);
+            }
         } else if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) < stack.getTag().getInt(GunsAccess.BULLETS_MAX.getKey())) {
-            //stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
             stack.getTag().putFloat("CustomModelData", 2);
         }
         return stack.getTag();
