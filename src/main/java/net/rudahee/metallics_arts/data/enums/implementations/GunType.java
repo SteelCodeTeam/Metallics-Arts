@@ -11,6 +11,8 @@ package net.rudahee.metallics_arts.data.enums.implementations;
 public enum GunType {
     SHOTGUN("shotgun", 10, 2),
     RIFLE("rifle", 10, 1),
+
+    RIFLE_SPYGLASS("rifle_spyglass", 10, 1),
     REVOLVER("revolver", 20, 6),
     VINDICATOR("vindicator", 20, 8);
 

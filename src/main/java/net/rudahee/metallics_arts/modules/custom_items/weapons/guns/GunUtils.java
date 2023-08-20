@@ -38,7 +38,7 @@ public class GunUtils {
                 } else {
                     compoundTag.putFloat("CustomModelData", 4);
                 }
-            } else if (gunType == GunType.RIFLE) {
+            } else if (gunType == GunType.RIFLE || gunType == GunType.RIFLE_SPYGLASS) {
                 if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 1) {
                     compoundTag.putFloat("CustomModelData", 3);
                 }
@@ -76,7 +76,7 @@ public class GunUtils {
         Item item;
         if (gunType == GunType.SHOTGUN) {
             item = type.equals(BulletType.LEAD.getType()) ? ModItemsRegister.SHOTGUN_LEAD_BULLET.get() : ModItemsRegister.SHOTGUN_ALUMINUM_BULLET.get();
-        } else if (gunType == GunType.RIFLE) {
+        } else if (gunType == GunType.RIFLE || gunType == GunType.RIFLE_SPYGLASS) {
             item = type.equals(BulletType.LEAD.getType()) ? ModItemsRegister.RIFLE_LEAD_BULLET.get() : ModItemsRegister.RIFLE_ALUMINUM_BULLET.get();
         } else {
             item = type.equals(BulletType.LEAD.getType()) ? ModItemsRegister.PISTOL_LEAD_BULLET.get() : ModItemsRegister.PISTOL_ALUMINUM_BULLET.get();
@@ -143,7 +143,7 @@ public class GunUtils {
             } else {
                 stack.getTag().putFloat("CustomModelData", 4);
             }
-        } else if (gunType == GunType.RIFLE) {
+        } else if (gunType == GunType.RIFLE || gunType == GunType.RIFLE_SPYGLASS) {
             if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 0) {
                 stack.getTag().putFloat("CustomModelData", 2);
             } else {

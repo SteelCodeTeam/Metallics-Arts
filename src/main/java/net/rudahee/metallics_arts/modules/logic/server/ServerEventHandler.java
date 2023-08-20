@@ -51,7 +51,7 @@ public class ServerEventHandler {
     private static Integer tick;
 
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    /*@SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onAttackEvent(final PlayerInteractEvent event) {
         Player player = event.getEntity();
         if (!event.getEntity().isLocalPlayer()) {
@@ -82,7 +82,7 @@ public class ServerEventHandler {
                 event.setCanceled(true);
             }
         }
-    }
+    }*/
 
 
     /**

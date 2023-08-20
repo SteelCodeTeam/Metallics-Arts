@@ -38,8 +38,6 @@ public class ModKeyRegister {
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping CHANGE;
 
-    @OnlyIn(Dist.CLIENT)
-    public static KeyMapping SHOT;
 
     public static void initKeys(final RegisterKeyMappingsEvent evt) {
         ALLOMANTIC_POWER_SELECTOR =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomantic", GLFW.GLFW_KEY_M,KEY_CATEGORY);
@@ -71,9 +69,6 @@ public class ModKeyRegister {
 
         RELOAD =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "reload", GLFW.GLFW_KEY_R, KEY_CATEGORY);
         evt.register(RELOAD);
-
-        SHOT = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "shot", InputConstants.Type.MOUSE, 0, KEY_CATEGORY);
-        evt.register(SHOT);
 
         powers = new KeyMapping[MetalTagEnum.values().length];
         for (int i = 0; i< MetalTagEnum.values().length; i++) {

@@ -63,12 +63,16 @@ public class BasicGun extends ProjectileWeaponItem {
      */
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+
         ItemStack itemStack = player.getItemInHand(hand);
         CompoundTag tag = itemStack.getTag();
         tag.putFloat("CustomModelData", 1);
         itemStack.setTag(tag);
         player.startUsingItem(hand);
+
         return InteractionResultHolder.consume(itemStack);
+
+
     }
 
     @Override

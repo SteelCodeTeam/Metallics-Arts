@@ -2,8 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "metallics_arts:item/combat/guns/shotgun",
-		"particle": "shotgun"
+		"0": "metallics_arts:item/combat/guns/shotgun"
 	},
 	"elements": [
 		{
@@ -113,7 +112,7 @@
 		{
 			"from": [9, 4.75, 6.65],
 			"to": [16, 5.75, 9.85],
-			"rotation": {"angle": 0, "axis": "z", "origin": [9, 5, 8.25]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 5, 8.25]},
 			"faces": {
 				"north": {"uv": [6, 11.5, 9.5, 12], "texture": "#0"},
 				"east": {"uv": [13.5, 9, 15, 9.5], "texture": "#0"},
@@ -126,7 +125,7 @@
 		{
 			"from": [7, 5.35, 8.35],
 			"to": [27, 6.75, 9.75],
-			"rotation": {"angle": 0, "axis": "z", "origin": [9, 5, 8.25]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 5, 8.25]},
 			"faces": {
 				"north": {"uv": [0, 0, 11.5, 0.75], "texture": "#0"},
 				"east": {"uv": [5, 13.5, 5.75, 14.25], "texture": "#0"},
@@ -139,7 +138,7 @@
 		{
 			"from": [7, 5.35, 6.75],
 			"to": [27, 6.75, 8.15],
-			"rotation": {"angle": 0, "axis": "z", "origin": [9, 5, 8.25]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 5, 8.25]},
 			"faces": {
 				"north": {"uv": [0, 4, 11.5, 4.75], "texture": "#0"},
 				"east": {"uv": [13.5, 11.5, 14.25, 12.25], "texture": "#0"},
@@ -152,7 +151,7 @@
 		{
 			"from": [7, 5.55, 8.15],
 			"to": [26.9, 6.65, 8.35],
-			"rotation": {"angle": 0, "axis": "z", "origin": [9, 5, 8.25]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 5, 8.25]},
 			"faces": {
 				"north": {"uv": [0, 8, 11.5, 8.5], "texture": "#0"},
 				"east": {"uv": [9, 12, 9.25, 12.5], "texture": "#0"},
@@ -165,7 +164,7 @@
 		{
 			"from": [26.1, 6.65, 8.15],
 			"to": [26.8, 7.05, 8.35],
-			"rotation": {"angle": 0, "axis": "z", "origin": [9, 5, 8.25]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 5, 8.25]},
 			"faces": {
 				"north": {"uv": [14, 1, 14.25, 1.25], "texture": "#0"},
 				"east": {"uv": [14, 1.5, 14.25, 1.75], "texture": "#0"},
@@ -227,12 +226,12 @@
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [0, 90, 0],
-			"translation": [-2, 2, 2.25],
+			"translation": [-2, 2, -0.1],
 			"scale": [0.75, 0.75, 0.75]
 		},
 		"thirdperson_lefthand": {
 			"rotation": [0, -90, 0],
-			"translation": [-2, 1.5, 2.25],
+			"translation": [-2, 2, -0.1],
 			"scale": [0.75, 0.75, 0.75]
 		},
 		"firstperson_righthand": {
@@ -311,7 +310,7 @@
 	],
 	"overrides": [
 		{
-			"model": "metallics_arts:item/revolver_aim",
+			"model": "metallics_arts:item/shotgun_aim",
 			"predicate": {
 				"minecraft:custom_model_data": 1.0
 			}

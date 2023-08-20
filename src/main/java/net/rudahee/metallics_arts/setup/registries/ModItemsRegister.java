@@ -67,6 +67,7 @@ public class ModItemsRegister {
     public static RegistryObject<Item> RIFLE_LEAD_BULLET;
     public static RegistryObject<Item> REVOLVER;
     public static RegistryObject<Item> RIFLE;
+    public static RegistryObject<Item> RIFLE_WITH_SPYGLASS;
     public static RegistryObject<Item> SHOTGUN;
     public static RegistryObject<Item> VINDICATOR;
 

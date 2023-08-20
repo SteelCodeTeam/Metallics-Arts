@@ -18,7 +18,7 @@ public class ModLanguageProviderPL extends LanguageProvider {
 
     private final Map<String, String> base = new HashMap<>() {{
 
-        put("entity.minecraft.villagers.forge_master", "MAESTRO DE LA FORGA");
+        put("entity.minecraft.villager.metallics_arts.forge_master", "MAESTRO DE LA FORGA");
 
         put("item.metallics_arts.large_vial", CTW.VIAL.getNameInPolish() + " " + CTW.LARGE.getNameInPolish());
         put("item.metallics_arts.small_vial", CTW.VIAL.getNameInPolish() + " " + CTW.SMALL.getNameInPolish());

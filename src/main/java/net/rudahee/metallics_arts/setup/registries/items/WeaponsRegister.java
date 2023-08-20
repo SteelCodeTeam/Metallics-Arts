@@ -7,6 +7,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.modules.custom_items.coins.CopperCoin;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.BasicGun;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.Rifle;
+import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.RifleWithSpyGlass;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.ShotGun;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.mele.*;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
@@ -49,6 +50,9 @@ public class WeaponsRegister {
 
         ModItemsRegister.RIFLE = MetallicsArts.registerItem(GunType.RIFLE.getName(),
                 () -> new Rifle(WEAPONS_PROPERTIES));
+
+        ModItemsRegister.RIFLE_WITH_SPYGLASS = MetallicsArts.registerItem(GunType.RIFLE_SPYGLASS.getName(),
+                () -> new RifleWithSpyGlass(WEAPONS_PROPERTIES));
 
         ModItemsRegister.PISTOL_LEAD_BULLET = MetallicsArts.registerItem("pistol_lead_bullet",
                 () -> new Item(COIN_PROPERTIES));

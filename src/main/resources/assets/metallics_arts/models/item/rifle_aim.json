@@ -342,11 +342,11 @@
 		},
 		"firstperson_righthand": {
 			"rotation": [0, 90, 0],
-			"translation": [-2.25, 5.5, -0.5]
+			"translation": [-9.15, 7.75, -0.5]
 		},
 		"firstperson_lefthand": {
 			"rotation": [0, -90, 0],
-			"translation": [-2.25, 5.5, -0.5]
+			"translation": [-8.9, 7.75, -0.5]
 		},
 		"ground": {
 			"translation": [0, 2.25, 0],
@@ -434,26 +434,6 @@
 					]
 				}
 			]
-		}
-	],
-	"overrides": [
-		{
-			"model": "metallics_arts:item/rifle_aim",
-			"predicate": {
-				"minecraft:custom_model_data": 1.0
-			}
-		},
-		{
-			"model": "metallics_arts:item/rifle_reload",
-			"predicate": {
-				"minecraft:custom_model_data": 2.0
-			}
-		},
-		{
-			"model": "metallics_arts:item/rifle_reload_1",
-			"predicate": {
-				"minecraft:custom_model_data": 3.0
-			}
 		}
 	]
 }

@@ -41,14 +41,13 @@ public class ClientEventHandler {
         PlayerRenderer renderer = event.getRenderer();
         if (player != null) {
             ItemStack stack = player.getMainHandItem();
-
             if (player.getMainHandItem().is(ModItemsRegister.REVOLVER.get()) || player.getMainHandItem().is(ModItemsRegister.VINDICATOR.get())) {
                 if (stack.getTag().getFloat("CustomModelData") == 1) {
                     renderer.getModel().rightArmPose = CustomPoses.getArmPose(CustomPoses.POSE_RIGHT_AIM);
                 } else {
                     renderer.getModel().rightArmPose = CustomPoses.getArmPose(CustomPoses.POSE_RIGHT_REST);
                 }
-            } else if (player.getMainHandItem().is(ModItemsRegister.SHOTGUN.get()) || player.getMainHandItem().is(ModItemsRegister.RIFLE.get())) {
+            } else if (player.getMainHandItem().is(ModItemsRegister.SHOTGUN.get()) || player.getMainHandItem().is(ModItemsRegister.RIFLE.get()) || player.getMainHandItem().is(ModItemsRegister.RIFLE_WITH_SPYGLASS.get())) {
                renderer.getModel().rightArmPose = CustomPoses.getArmPose(CustomPoses.POSE_BOTH_AIM);
             } else if (player.getMainHandItem().is(ModItemsRegister.KOLOSS_BLADE.get())) {
                 if (player.getMainHandItem().hasTag()) {
@@ -126,16 +125,16 @@ public class ClientEventHandler {
     @SubscribeEvent
     public void onMouseInput(final InputEvent.MouseButton.Post event) {
         try {
-            if (Minecraft.getInstance().player == null || Minecraft.getInstance().screen == null) {
+            if (Minecraft.getInstance().player == null) {
                 return;
             }
 
             if (event.getButton() == 0 && event.getAction() == 1) {
                 //button = 0 - Left click
                 //action = 1 - Press button
-                if (!Minecraft.getInstance().screen.isPauseScreen()) {//todo
+                //if (!Minecraft.getInstance().screen.isPauseScreen()) {//todo
                     OnMouseInputEvent.otro(Minecraft.getInstance().player, Minecraft.getInstance().player.getItemInHand(InteractionHand.MAIN_HAND));
-                }
+                //}
             }
             OnMouseInputEvent.OnMouseInputEvent(Minecraft.getInstance().player, CapabilityUtils.getCapability(Minecraft.getInstance().player));
         } catch (PlayerException ex) {
