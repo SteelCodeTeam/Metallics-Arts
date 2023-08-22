@@ -118,7 +118,8 @@ public class BasicBlocksRegister {
             Block block = new CrucibleFurnaceBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
                     .strength(10f, 10f)
                     .lightLevel(litBlockEmission(16))
-                    .sound(SoundType.ANVIL)
+                    .sound(SoundType.BASALT)
+                    .randomTicks()
                     .requiresCorrectToolForDrops()
                     .destroyTime(15f));
 
@@ -130,7 +131,7 @@ public class BasicBlocksRegister {
 
     private static ToIntFunction<BlockState> litBlockEmission(int value) {
         return (funcValue) -> {
-            return 12;
+            return value;
             //return funcValue.getValue(BlockStateProperties.LIT) ? value : 0;
         };
     }

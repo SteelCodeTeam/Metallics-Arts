@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace;
 
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -25,7 +26,7 @@ public class CrucibleFurnaceMenu extends AbstractContainerMenu {
     @SuppressWarnings("removal")
     public CrucibleFurnaceMenu(int id, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuRegister.CRUCIBLE_FURNACE_MENU.get(), id);
-        checkContainerSize(inv, 3);
+        checkContainerSize(inv, 6);
         blockEntity = (CrucibleFurnaceBlockEntity) entity;
         this.level = inv.player.level;
         this.data = data;
@@ -34,12 +35,12 @@ public class CrucibleFurnaceMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 12, 15));
-            this.addSlot(new SlotItemHandler(handler, 1, 86, 15));
-            this.addSlot(new SlotItemHandler(handler, 2, 86, 60));
-            this.addSlot(new SlotItemHandler(handler, 2, 86, 60));
-            this.addSlot(new SlotItemHandler(handler, 2, 86, 60));
-            this.addSlot(new SlotItemHandler(handler, 2, 86, 60));
+            this.addSlot(new SlotItemHandler(handler, 0, 8, 22));
+            this.addSlot(new SlotItemHandler(handler, 1, 55, 43));
+            this.addSlot(new SlotItemHandler(handler, 2, 74, 43));
+            this.addSlot(new SlotItemHandler(handler, 2, 55, 62));
+            this.addSlot(new SlotItemHandler(handler, 2, 74, 62));
+            this.addSlot(new SlotItemHandler(handler, 2, 137, 64));
         });
 
         addDataSlots(data);
@@ -105,14 +106,16 @@ public class CrucibleFurnaceMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 86 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 112 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 170));
         }
     }
+
+
 }
