@@ -19,7 +19,7 @@ public class CrucibleFurnaceMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public CrucibleFurnaceMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-        this(id, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+        this(id, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(5));
     }
 
     @Deprecated(since = "1.6.5", forRemoval = true)
