@@ -79,6 +79,9 @@ public class ModLanguageProviderEN extends LanguageProvider {
 
         }};
 
+        private final Map<String, String> tables = new HashMap<>() {{
+                put("block.metallics_arts.menu.crucible_furnace", "Crucible Furnace");
+        }};
 
         private final Map<String, String> ingots = new HashMap<>() {{
                 for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
@@ -323,8 +326,13 @@ public class ModLanguageProviderEN extends LanguageProvider {
             HashMap<String, String> bookTraslationsHelper = BookHelperEN.addDemoBook();
 
             for (String key : bookTraslationsHelper.keySet()) {
-                    add(key,bookTraslationsHelper.get(key));
+                    add(key, bookTraslationsHelper.get(key));
             }
+
+            for (String key : tables.keySet()) {
+                    add(key, tables.get(key));
+            }
+
     }
 
 

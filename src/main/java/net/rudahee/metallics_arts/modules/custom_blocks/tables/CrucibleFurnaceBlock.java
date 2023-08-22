@@ -35,10 +35,6 @@ public class CrucibleFurnaceBlock extends BaseEntityBlock {
     }
 
 
-
-
-
-
     /*
      *
      * DAMAGE TO PLAYER

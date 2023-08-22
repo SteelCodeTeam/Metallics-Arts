@@ -12,6 +12,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -39,7 +41,16 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 78;
+    private int maxProgress = 100;
+    private int fuelStorage = 0;
+    private int maxFuelStorage = 100;
+    private int timeWithoutRecipe = 0;
+
+    private final int PROGRESS_INDEX = 0;
+    private final int MAX_PROGRESS_INDEX = 1;
+    private final int FUEL_STORAGE_INDEX = 2;
+    private final int MAX_FUEL_STORAGE_INDEX = 3;
+    private final int TIME_WITHOUT_RECIPE_INDEX = 4;
 
     public CrucibleFurnaceBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntitiesRegister.CRUCIBLE_FURNACE_ENTITY.get(), pos, state);
@@ -49,6 +60,9 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
                 return switch (index) {
                     case 0 -> CrucibleFurnaceBlockEntity.this.progress;
                     case 1 -> CrucibleFurnaceBlockEntity.this.maxProgress;
+                    case 2 -> CrucibleFurnaceBlockEntity.this.fuelStorage;
+                    case 3 -> CrucibleFurnaceBlockEntity.this.maxFuelStorage;
+                    case 4 -> CrucibleFurnaceBlockEntity.this.timeWithoutRecipe;
                     default -> 0;
                 };
             }
@@ -58,19 +72,22 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
                 switch (index) {
                     case 0 -> CrucibleFurnaceBlockEntity.this.progress = value;
                     case 1 -> CrucibleFurnaceBlockEntity.this.maxProgress = value;
+                    case 2 -> CrucibleFurnaceBlockEntity.this.fuelStorage = value;
+                    case 3 -> CrucibleFurnaceBlockEntity.this.maxFuelStorage = value;
+                    case 4 -> CrucibleFurnaceBlockEntity.this.timeWithoutRecipe = value;
                 }
             }
 
             @Override
             public int getCount() {
-                return 2;
+                return 5;
             }
         };
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("metallics_arts.block.menu.crucible_furnace");
+        return Component.translatable("block.metallics_arts.menu.crucible_furnace");
     }
 
 
@@ -100,16 +117,25 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
     @Override
     protected void saveAdditional(CompoundTag tag) {
         tag.put("inventory", itemHandler.serializeNBT());
-        tag.putInt("gem_infusing_station.progress", this.progress);
+        tag.putInt("crucible_furnace.progress", this.progress);
+        tag.putInt("crucible_furnace.max_progress", this.maxProgress);
+        tag.putInt("crucible_furnace.fuel_storage", this.fuelStorage);
+        tag.putInt("crucible_furnace.max_fuel_storage", this.maxFuelStorage);
+        tag.putInt("crucible_furnace.time_without_recipe", this.timeWithoutRecipe);
 
         super.saveAdditional(tag);
     }
 
     @Override
     public void load(CompoundTag tag) {
-        super.load(tag);
         itemHandler.deserializeNBT(tag.getCompound("inventory"));
-        progress = tag.getInt("gem_infusing_station.progress");
+        this.progress = tag.getInt("crucible_furnace.progress");
+        this.maxProgress =tag.getInt("crucible_furnace.max_progress");
+        this.fuelStorage = tag.getInt("crucible_furnace.fuel_storage");
+        this.maxFuelStorage = tag.getInt("crucible_furnace.max_fuel_storage");
+        this.timeWithoutRecipe = tag.getInt("crucible_furnace.time_without_recipe");
+
+        super.load(tag);
     }
 
     public void drops() {
@@ -122,11 +148,25 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, CrucibleFurnaceBlockEntity entity) {
-        if(level.isClientSide()) {
-            return;
+        if (!level.isClientSide()) {
+            if (entity.itemHandler.getStackInSlot(0).is(Items.LAVA_BUCKET)) {
+                if (entity.data.get(entity.FUEL_STORAGE_INDEX) < entity.data.get(entity.MAX_FUEL_STORAGE_INDEX)) {
+                    rechargeFuel(entity);
+                }
+            }
         }
 
         //TODO
+    }
+
+    public static void rechargeFuel(CrucibleFurnaceBlockEntity entity) {
+        if (entity.data.get(entity.FUEL_STORAGE_INDEX) >= 80) {
+            entity.data.set(entity.FUEL_STORAGE_INDEX, entity.data.get(entity.MAX_FUEL_STORAGE_INDEX));
+        } else {
+            entity.data.set(entity.FUEL_STORAGE_INDEX, entity.data.get(entity.FUEL_STORAGE_INDEX) + 20);
+        }
+
+        entity.itemHandler.setStackInSlot(0, new ItemStack(Items.BUCKET));
     }
 
     private void resetProgress() {
@@ -137,7 +177,6 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
 
        //TODO
     }
-
 
     @Nullable
     @Override

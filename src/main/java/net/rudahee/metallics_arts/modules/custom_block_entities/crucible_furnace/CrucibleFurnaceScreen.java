@@ -58,6 +58,14 @@ public class CrucibleFurnaceScreen extends AbstractContainerScreen<CrucibleFurna
         renderTooltip(pPoseStack, mouseX, mouseY);
     }
 
+    @Override
+    protected void renderLabels(PoseStack stack, int mouseX, int mouseY) {
+        this.font.draw(stack, this.title, 8.0F, 6.0F, 4210752);
+
+        this.font.draw(stack, this.playerInventoryTitle, 8.0F, (float) (this.imageHeight - 64), 4210752);
+
+
+    }
 
     @Override
     public boolean shouldCloseOnEsc() {

@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.MetallicsArts;
@@ -28,13 +29,29 @@ public class CrucibleFurnaceRecipe implements Recipe<SimpleContainer> {
 
 
     @Override
-    public boolean matches(SimpleContainer container, Level level) {
-        return false;
+    public boolean matches(@NotNull SimpleContainer container, Level level) {
+        if (level.isClientSide()) {
+            return false;
+        }
+
+        if (container.getItem(0).is(Items.LAVA_BUCKET)) {
+            return true;
+        }
+
+        if  (recipeItems.get(0).test(container.getItem(1))
+                && recipeItems.get(1).test(container.getItem(2))
+                && recipeItems.get(2).test(container.getItem(3))
+                && recipeItems.get(3).test(container.getItem(4))) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     @Override
     public ItemStack assemble(SimpleContainer container) {
-        return output;
+        return output.copy();
     }
 
     @Override
