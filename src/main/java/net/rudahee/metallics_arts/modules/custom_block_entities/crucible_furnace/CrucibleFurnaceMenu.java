@@ -119,7 +119,7 @@ public class CrucibleFurnaceMenu extends AbstractContainerMenu {
     }
 
     public int getFuelQty() {
-        int maxHeight = 52;
+        int maxHeight = 51;
         double percentage = ((double) this.data.get(CrucibleFurnaceBlockEntity.FUEL_STORAGE_INDEX) / this.data.get(CrucibleFurnaceBlockEntity.MAX_FUEL_STORAGE_INDEX)) * 100;
 
         int height = Math.min(maxHeight, (int) ((percentage / 100) * maxHeight));
