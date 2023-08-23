@@ -1,7 +1,6 @@
 package net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -35,12 +34,12 @@ public class CrucibleFurnaceMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 6, 23));
+            this.addSlot(new SlotItemHandler(handler, 0, 7, 23));
             this.addSlot(new SlotItemHandler(handler, 1, 54, 44));
             this.addSlot(new SlotItemHandler(handler, 2, 73, 44));
             this.addSlot(new SlotItemHandler(handler, 3, 54, 63));
             this.addSlot(new SlotItemHandler(handler, 4, 73, 63));
-            this.addSlot(new SlotItemHandler(handler, 5, 137, 64));
+            this.addSlot(new SlotItemHandler(handler, 5, 137, 63));
         });
 
         addDataSlots(data);
@@ -106,16 +105,14 @@ public class CrucibleFurnaceMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 112 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 7 + l * 18, 113 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 170));
+            this.addSlot(new Slot(playerInventory, i, 7 + i * 18, 171));
         }
     }
-
-
 }

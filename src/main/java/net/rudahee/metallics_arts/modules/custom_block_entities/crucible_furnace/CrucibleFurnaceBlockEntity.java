@@ -14,6 +14,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,6 +26,9 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.rudahee.metallics_arts.setup.registries.ModBlockEntitiesRegister;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.text.html.Option;
+import java.util.Optional;
 
 
 public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvider {
@@ -154,6 +158,17 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
                     rechargeFuel(entity);
                 }
             }
+            if (hasRecipe(entity)) {
+                entity.progress++;
+                setChanged(level, pos, state);
+
+                if (entity.maxProgress <= entity.progress) {
+                    craftItem(entity);
+                }
+            } else {
+                entity.resetProgress();
+                setChanged(level, pos, state);
+            }
         }
 
         //TODO
@@ -165,7 +180,6 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
         } else {
             entity.data.set(entity.FUEL_STORAGE_INDEX, entity.data.get(entity.FUEL_STORAGE_INDEX) + 20);
         }
-
         entity.itemHandler.setStackInSlot(0, new ItemStack(Items.BUCKET));
     }
 
@@ -175,7 +189,36 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
 
     private static void craftItem(CrucibleFurnaceBlockEntity pEntity) {
 
+        SimpleContainer inventory = new SimpleContainer(pEntity.itemHandler.getSlots());
+        for (int i = 0; i < pEntity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, pEntity.itemHandler.getStackInSlot(i));
+        }
+
+        Optional<RecipeCustom> recipe = pEntity.level.getRecipeManager().getRecipeFor(RecipeCustom.Type.INSTANCE, inventory, pEntity.level);
        //TODO
+    }
+
+    private static boolean hasRecipe(CrucibleFurnaceBlockEntity entity) {
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+        }
+
+        //Todo
+        //habria que chequear que la receta exista
+        /**
+         * @see AbstractCookingRecipe
+         * @see AbstractFurnaceBlockEntity
+         * */
+        return canInsertItemIntoOutputSlot(inventory, new ItemStack(Items.EMERALD)) && canInsertAmountIntoOutputSlot(inventory); //add exist recipe
+    }
+
+    private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack stack) {
+        return inventory.getItem(5).getItem() == stack.getItem() || inventory.getItem(5).isEmpty();
+    }
+
+    private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
+        return inventory.getItem(5).getMaxStackSize() > inventory.getItem(5).getCount();
     }
 
     @Nullable
