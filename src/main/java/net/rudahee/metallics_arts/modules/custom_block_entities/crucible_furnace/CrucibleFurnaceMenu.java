@@ -11,6 +11,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModMenuRegister;
+import org.jetbrains.annotations.Nullable;
 
 public class CrucibleFurnaceMenu extends AbstractContainerMenu {
     public final CrucibleFurnaceBlockEntity blockEntity;
@@ -18,18 +19,18 @@ public class CrucibleFurnaceMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public CrucibleFurnaceMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-        this(id, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(5));
+        this(id, inv, (CrucibleFurnaceBlockEntity) inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(5));
     }
 
-    @Deprecated(since = "1.6.5", forRemoval = true)
     @SuppressWarnings("removal")
-    public CrucibleFurnaceMenu(int id, Inventory inv, BlockEntity entity, ContainerData data) {
+
+    public CrucibleFurnaceMenu(int id, Inventory inv, CrucibleFurnaceBlockEntity entity, ContainerData data) {
         super(ModMenuRegister.CRUCIBLE_FURNACE_MENU.get(), id);
         checkContainerSize(inv, 6);
-        blockEntity = (CrucibleFurnaceBlockEntity) entity;
+
         this.level = inv.player.level;
         this.data = data;
-
+        this.blockEntity = entity;
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
@@ -44,6 +45,7 @@ public class CrucibleFurnaceMenu extends AbstractContainerMenu {
 
         addDataSlots(data);
     }
+
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.
@@ -114,5 +116,23 @@ public class CrucibleFurnaceMenu extends AbstractContainerMenu {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 7 + i * 18, 171));
         }
+    }
+
+    public int getFuelQty() {
+        int maxHeight = 52;
+        double percentage = ((double) this.data.get(CrucibleFurnaceBlockEntity.FUEL_STORAGE_INDEX) / this.data.get(CrucibleFurnaceBlockEntity.MAX_FUEL_STORAGE_INDEX)) * 100;
+
+        int height = Math.min(maxHeight, (int) ((percentage / 100) * maxHeight));
+
+        return height;
+    }
+
+    public int getLitProgress() {
+        int i = this.data.get(1);
+        if (i == 0) {
+            i = 200;
+        }
+
+        return this.data.get(0) * 13 / i;
     }
 }
