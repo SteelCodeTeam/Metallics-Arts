@@ -97,7 +97,7 @@ public class BendalloyAllomanticHelper {
             player.aiStep();
             player.aiStep();
         } else {
-            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 40, 1, true, false));
+            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 40, 1, false, false));
             player.aiStep();
         }
     }

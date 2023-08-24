@@ -2,13 +2,11 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physica
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.rudahee.metallics_arts.modules.custom_items.weapons.mele.KolossBlade;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
@@ -53,10 +51,10 @@ public class PewterAllomanticHelper {
         }
 
 
-        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 5, digSpeed, false, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 7, digSpeed, false, false));
 
-        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 5, damage, false,false, false));
-        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 5, resistence,false, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 7, damage, false,false));
+        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 7, resistence,false, false));
 
     }
 
