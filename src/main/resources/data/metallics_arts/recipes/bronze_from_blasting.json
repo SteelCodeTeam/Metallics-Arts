@@ -2,7 +2,7 @@
   "type": "metallics_arts:crucible_furnace_recipe",
   "key": {
     "#": {
-      "item": "minecraft:glass_pane"
+      "item": "minecraft:stick"
     }
   },
   "pattern": [
