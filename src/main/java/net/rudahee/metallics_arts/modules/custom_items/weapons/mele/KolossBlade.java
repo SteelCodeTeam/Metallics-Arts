@@ -32,9 +32,8 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
 public class KolossBlade extends SwordItem {
 
     private static final int ATTACK_DAMAGE = 8;
-    private static final float ATTACK_SPEED = -2.6F;
-
-    public static final int descanso = 80;
+    private static final float ATTACK_SPEED = -1F;
+    public static final int descanso = 180;
 
     /**
      * Default constructor, we define the properties of to set a durability and creative tab.
@@ -83,7 +82,7 @@ public class KolossBlade extends SwordItem {
             ex.printResumeLog();
         }
         CompoundTag compoundTag = stack.getTag();
-        compoundTag.putFloat("CustomModelData", 1);
+        compoundTag.putFloat("CustomModelData", 0);
         stack.setTag(compoundTag);
         return false;
     }

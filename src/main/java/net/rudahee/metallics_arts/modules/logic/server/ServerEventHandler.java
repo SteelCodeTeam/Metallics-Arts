@@ -20,6 +20,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
+import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -241,10 +242,10 @@ public class ServerEventHandler {
                         }
                     }
                 } else if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof KolossBlade) {
-                    if (tick % KolossBlade.descanso == 0 && player.getItemInHand(InteractionHand.MAIN_HAND).getTag().getFloat("CustomModelData") == 1F) {
+                    if (tick % KolossBlade.descanso == 0 && player.getItemInHand(InteractionHand.MAIN_HAND).getTag().getFloat("CustomModelData") != 1F) {
                         ItemStack gun = player.getItemInHand(InteractionHand.MAIN_HAND);
                         CompoundTag compoundTag = gun.getTag();
-                        compoundTag.putFloat("CustomModelData", 0);
+                        compoundTag.putFloat("CustomModelData", 1);
                         gun.setTag(compoundTag);
                     }
                 }
@@ -255,17 +256,21 @@ public class ServerEventHandler {
     }
     @SubscribeEvent
     public static void addCustomTrades(VillagerTradesEvent event) {
-
         if (event.getType() == ModVillager.VILLAGER_CRUCIBLE_PROFESSION.get()) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
-
             for (ForgeMasterTrades localTrade: ForgeMasterTrades.values()){
-                trades.get(localTrade.getLevel()).add((trader, rand)->
-                        new MerchantOffer(localTrade.getInput(),localTrade.getOutput(),localTrade.getMaxqty(),localTrade.getXp(),0.09F
-                ));
+                if (localTrade.getOptionalSecondInput() == null) {
+                    trades.get(localTrade.getLevel()).add((trader, rand)->
+                            new MerchantOffer(localTrade.getInput(),localTrade.getOutput(),localTrade.getMaxqty(),localTrade.getXp(),0.09F
+                    ));
+                } else {
+                    trades.get(localTrade.getLevel()).add((trader, rand)->
+                            new MerchantOffer(localTrade.getInput(),localTrade.getOptionalSecondInput(), localTrade.getOutput(), localTrade.getMaxqty(),localTrade.getXp(),0.09F
+                            ));
+                }
             }
-
         }
     }
+
 
 }
