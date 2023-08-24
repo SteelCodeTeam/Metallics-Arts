@@ -23,6 +23,7 @@ import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.rudahee.metallics_arts.data.enums.implementations.ForgeMasterTrades;
 import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.BasicGun;
@@ -258,12 +259,12 @@ public class ServerEventHandler {
         if (event.getType() == ModVillager.VILLAGER_CRUCIBLE_PROFESSION.get()) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 
-            ItemStack a = new ItemStack(ModItemsRegister.REVOLVER.get(),1 );
+            for (ForgeMasterTrades localTrade: ForgeMasterTrades.values()){
+                trades.get(localTrade.getLevel()).add((trader, rand)->
+                        new MerchantOffer(localTrade.getInput(),localTrade.getOutput(),localTrade.getMaxqty(),localTrade.getXp(),0.09F
+                ));
+            }
 
-            trades.get(1).add((trader, rand) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 12),
-                    a, 4 , 12, 0.09F
-            ));
         }
     }
 

@@ -1,7 +1,10 @@
 package net.rudahee.metallics_arts.modules.custom_items.weapons.mele;
 
+import com.mojang.authlib.minecraft.TelemetrySession;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -48,10 +51,29 @@ public class KolossBlade extends SwordItem {
     }
 
     @Override
+    public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int p_41407_, boolean p_41408_) {
+
+        if (entity instanceof Player player) {
+            if (player.getItemInHand(InteractionHand.MAIN_HAND).equals(itemStack)){
+                try {
+                    IInvestedPlayerData capabilities = CapabilityUtils.getCapability(entity);
+                    if (!capabilities.isBurning(MetalTagEnum.PEWTER)) {
+                     if (itemStack.getTag().getFloat("CustomModelData")!=2){
+                         itemStack.getTag().putFloat("CustomModelData",2);
+                     }
+                    }
+                } catch (PlayerException ex) {
+                    ex.printResumeLog();
+                }
+            }
+        }
+
+        super.inventoryTick(itemStack, level, entity, p_41407_, p_41408_);
+    }
+
+    @Override
     public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
-        CompoundTag compoundTag = stack.getTag();
-        compoundTag.putFloat("CustomModelData", 1);
-        stack.setTag(compoundTag);
+
         try {
             IInvestedPlayerData capabilities = CapabilityUtils.getCapability(entity);
             if (!capabilities.isBurning(MetalTagEnum.PEWTER)) {
@@ -60,6 +82,9 @@ public class KolossBlade extends SwordItem {
         } catch (PlayerException ex) {
             ex.printResumeLog();
         }
+        CompoundTag compoundTag = stack.getTag();
+        compoundTag.putFloat("CustomModelData", 1);
+        stack.setTag(compoundTag);
         return false;
     }
 
