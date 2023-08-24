@@ -21,14 +21,7 @@ import static net.rudahee.metallics_arts.MetallicsArts.registerBlock;
 
 public class BasicBlocksRegister {
     public static void register() {
-
-
-        /*
-            INITIALIZING METALS
-         */
-        List<MetalEnum> metalEnumList = Arrays.asList(MetalEnum.values());
-
-        metalEnumList.forEach(metal -> {
+        for (MetalEnum metal: MetalEnum.values()) {
             // If not alloy, create ore.
             if (!metal.isAlloy()) {
                 //ORES BLOCKS
@@ -74,15 +67,11 @@ public class BasicBlocksRegister {
                 ModBlocksRegister.BLOCK_METAL_BLOCKS.put(metal.getMetalNameLower(), block);
                 return block;
             });
-        });
+
+        }
 
 
-        /*
-            INITIALIZING DIVINE METALS
-         */
-        List<GemsEnum> gemsEnumList = Arrays.asList(GemsEnum.values());
-
-        gemsEnumList.forEach(gem -> {
+        for (GemsEnum gem : GemsEnum.values()) {
             if (!gem.getGemNameLower().equals(GemsEnum.ETTMETAL.getGemNameLower())) {
                 MetallicsArts.registerBlockDecoration(gem.getGemNameLower() + "_block", () -> {
                     Block block = new Block(Block.Properties.of(Material.METAL)
@@ -95,11 +84,7 @@ public class BasicBlocksRegister {
                     return block;
                 });
             }
-        });
-
-        /*
-         INITIALIZING SPECIAL ETTMETAL BLOCK
-         */
+        }
         ModBlocksRegister.ETTMETAL_BLOCK = MetallicsArts.registerBlockDecoration(GemsEnum.ETTMETAL.getGemNameLower() + "_block",
                 () -> {
                     Block block = new EttmetalBlock(Block.Properties.of(Material.HEAVY_METAL)
@@ -112,8 +97,6 @@ public class BasicBlocksRegister {
                     return block;
                 });
 
-
-
         ModBlocksRegister.CRUCIBLE_FURNACE = MetallicsArts.registerBlock("crucible_furnace", () -> {
             Block block = new CrucibleFurnaceBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
                     .strength(10f, 10f)
@@ -122,7 +105,6 @@ public class BasicBlocksRegister {
                     .randomTicks()
                     .requiresCorrectToolForDrops()
                     .destroyTime(15f));
-
             return block;
         });
     }

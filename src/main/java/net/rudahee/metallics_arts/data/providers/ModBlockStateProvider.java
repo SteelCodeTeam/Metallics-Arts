@@ -2,13 +2,19 @@ package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.OreGenerationEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+
+import java.util.HashMap;
 
 /**
  * This provider class control the default state from blocks. We use to define a texture in each block.
@@ -128,9 +134,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(ModBlocksRegister.CRUCIBLE_FURNACE.get());
         simpleBlockItem(ModBlocksRegister.CRUCIBLE_FURNACE.get(),model);
 
-        for (MetalTagEnum metal:MetalTagEnum.values()){
-            stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getNameLower()), blockTexture(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower())));
 
+        for (MetalEnum metal : MetalEnum.values()){
+            stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower()), blockTexture(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower())));
+            if (!metal.isAlloy()) {
+                stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower() + "_raw"), blockTexture(ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getMetalNameLower())));
+            }
         }
+        for (GemsEnum metal : GemsEnum.values()){
+            stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getGemNameLower()), blockTexture(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower())));
+        }
+
+
+        stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get("iron"), blockTexture(Blocks.IRON_BLOCK));
+        stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get("gold"), blockTexture(Blocks.GOLD_BLOCK));
     }
 }

@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.StonecutterRecipe;
 import net.minecraftforge.common.Tags;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
@@ -584,6 +585,33 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_block", has(ModItemsRegister.BRONZE_ALUMINUM_SHIELD.get()))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_" + Shields.BRONZE_ALUMINUM.getId()));
 
+        for (MetalEnum metal : MetalEnum.values()) {
+            ShapedRecipeBuilder.shaped(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower()),4)
+                    .define('#', ModTags.METAL_BLOCKS.get(metal.getMetalNameLower()))
+                    .pattern("#  ")
+                    .pattern("## ")
+                    .pattern("###")
+                    .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower())))
+                    .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_" + metal.getMetalNameLower() + "_stairs"));
+            if (!metal.isAlloy()) {
+                ShapedRecipeBuilder.shaped(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower()+"_raw"),4)
+                        .define('#', ModTags.METAL_BLOCKS.get(metal.getMetalNameLower()))
+                        .pattern("#  ")
+                        .pattern("## ")
+                        .pattern("###")
+                        .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower())))
+                        .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_" + metal.getMetalNameLower() + "raw_stairs"));
+            }
+        }
+        for (GemsEnum metal : GemsEnum.values()) {
+            ShapedRecipeBuilder.shaped(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getGemNameLower()),4)
+                    .define('#', ModTags.METAL_BLOCKS.get(metal.getGemNameLower()))
+                    .pattern("#  ")
+                    .pattern("## ")
+                    .pattern("###")
+                    .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getGemNameLower())))
+                    .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_" + metal.getGemNameLower() + "_stairs"));
+        }
 
         /*ShapedRecipeBuilder.shaped(ModItemsRegister.MISTCLOACK.get())
                 .define('#', Items.STRING)

@@ -3,6 +3,8 @@ package net.rudahee.metallics_arts.data.providers.language_providers;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
 import net.rudahee.metallics_arts.data.providers.language_providers.book.BookHelperES;
 
@@ -91,6 +93,20 @@ public class ModLanguageProviderES extends LanguageProvider {
             }
 
         }
+    }};
+
+    private final Map<String, String> stairs = new HashMap<>() {{
+        for (MetalEnum metal : MetalEnum.values()){
+            put("block.metallics_arts." + metal.getMetalNameLower() + "_stairs", CTW.STAIRS.getNameInSpanish() + " de " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish().toLowerCase());
+            if (!metal.isAlloy()) {
+                put("block.metallics_arts." + metal.getMetalNameLower() + "_raw_stairs", CTW.STAIRS.getNameInSpanish() + " de " + MetalNamesEnum.valueOf(metal.name()).getNameInSpanish().toLowerCase());
+            }
+        }
+        for (GemsEnum metal : GemsEnum.values()){
+            put("block.metallics_arts." + metal.getGemNameLower() + "_stairs", CTW.STAIRS.getNameInSpanish() + " de " +  MetalNamesEnum.valueOf(metal.name()).getNameInSpanish().toLowerCase());
+        }
+        put("block.metallics_arts.iron_stairs", CTW.STAIRS.getNameInSpanish() + " de " +  MetalNamesEnum.IRON.getNameInSpanish().toLowerCase());
+        put("block.metallics_arts.gold_stairs", CTW.STAIRS.getNameInSpanish() + " de " +  MetalNamesEnum.GOLD.getNameInSpanish().toLowerCase());
     }};
     private final Map<String, String> effects = new HashMap<>() {{
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
@@ -318,6 +334,12 @@ public class ModLanguageProviderES extends LanguageProvider {
 
         for(String key: patterns.keySet()) {
             add(key, patterns.get(key));
+        }
+        for(String key: effects.keySet()) {
+            add(key, effects.get(key));
+        }
+        for(String key: stairs.keySet()) {
+            add(key, stairs.get(key));
         }
 
         for (String keySymbol : symbols.keySet()) {

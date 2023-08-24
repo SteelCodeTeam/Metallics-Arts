@@ -2,16 +2,20 @@ package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.Arrays;
 import java.util.List;
@@ -163,8 +167,6 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .end();
 
 
-
-
         for (MetalTagEnum metal: MetalTagEnum.values()) {
             builder(itemGenerated,"item/"+metal.getNameLower()+"_allomantic_icon","item/symbols/allomantic_symbols/"+metal.getNameLower()+"_symbol");
             builder(itemGenerated,"item/"+metal.getNameLower()+"_feruchemic_icon","item/symbols/feruchemic_symbols/"+metal.getNameLower()+"_symbol");
@@ -195,6 +197,23 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/rifle_lead_bullet","item/combat/guns/rifle_lead_bullet");
         builder(itemGenerated,"item/rifle_aluminum_bullet","item/combat/guns/rifle_aluminum_bullet");
 
+
+        for (MetalEnum metal : MetalEnum.values()){
+            evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower()));
+            if (!metal.isAlloy()) {
+                evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower() + "_raw"));
+            }
+        }
+        for (GemsEnum metal : GemsEnum.values()){
+            evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getGemNameLower()));
+        }
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get("gold"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get("iron"));
+    }
+
+    public void evenSimplerBlockItem(Block block) {
+        this.withExistingParent(MetallicsArts.MOD_ID + ":" + ForgeRegistries.BLOCKS.getKey(block).getPath(),
+                modLoc("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath()));
     }
 
     /**

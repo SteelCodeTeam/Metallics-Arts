@@ -1,10 +1,14 @@
 package net.rudahee.metallics_arts.data.providers.language_providers;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
 import net.rudahee.metallics_arts.data.providers.language_providers.book.BookHelperEN;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -76,8 +80,8 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("item.metallics_arts.aluminum_chestplate", CTW.ALUMINUM_CHESTPLATE.getNameInEnglish());
                 put("item.metallics_arts.aluminum_boots", CTW.ALUMINUM_BOOTS.getNameInEnglish());
                 put("metallics_arts.item.tooltip.mistcloak", "Increase your speed");
-                put("item.metallics_arts.wood_shield", CTW.WOOD.getNameInEnglish() +" "+ CTW.SHIELD.getNameInEnglish().toLowerCase());
-                put("item.metallics_arts.bronze_aluminum_shield", MetalNamesEnum.ALUMINUM.getNameInEnglish() +" "+ CTW.SHIELD.getNameInEnglish().toLowerCase());
+                put("item.metallics_arts.wood_shield", CTW.WOOD.getNameInEnglish() +" "+ CTW.SHIELD.getNameInEnglish());
+                put("item.metallics_arts.bronze_aluminum_shield", MetalNamesEnum.ALUMINUM.getNameInEnglish() +" "+ CTW.SHIELD.getNameInEnglish());
 
         }};
 
@@ -92,6 +96,20 @@ public class ModLanguageProviderEN extends LanguageProvider {
                         }
 
                 }
+        }};
+
+        private final Map<String, String> stairs = new HashMap<>() {{
+                for (MetalEnum metal : MetalEnum.values()){
+                        put("block.metallics_arts." + metal.getMetalNameLower() + "_stairs", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.STAIRS.getNameInEnglish());
+                                if (!metal.isAlloy()) {
+                                        put("block.metallics_arts." + metal.getMetalNameLower() + "_raw_stairs", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.STAIRS.getNameInEnglish());
+                                }
+                }
+                for (GemsEnum metal : GemsEnum.values()){
+                        put("block.metallics_arts." + metal.getGemNameLower() + "_stairs", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.STAIRS.getNameInEnglish());
+                }
+                put("block.metallics_arts.iron_stairs", MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.STAIRS.getNameInEnglish());
+                put("block.metallics_arts.gold_stairs", MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.STAIRS.getNameInEnglish());
         }};
 
         private final Map<String, String> effects = new HashMap<>() {{
@@ -317,6 +335,9 @@ public class ModLanguageProviderEN extends LanguageProvider {
 
             for(String key: patterns.keySet()) {
                     add(key, patterns.get(key));
+            }
+            for (String key: stairs.keySet()) {
+                    add(key, stairs.get(key));
             }
 
             for (String keySymbol : symbols.keySet()) {
