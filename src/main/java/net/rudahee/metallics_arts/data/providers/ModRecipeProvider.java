@@ -17,6 +17,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.Shields;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeEnum;
 import net.rudahee.metallics_arts.modules.custom_items.vials.Vial;
 import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
@@ -564,6 +565,25 @@ public class ModRecipeProvider extends RecipeProvider {
                         ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get())
                 .unlocks("has_armor", has(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get()))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_aluminum_boots"));
+
+        ShapedRecipeBuilder.shaped(ModItemsRegister.WOOD_SHIELD.get())
+                .define('#', ItemTags.PLANKS)
+                .define('*', ItemTags.LOGS)
+                .pattern("###")
+                .pattern("#*#")
+                .pattern(" # ")
+                .unlockedBy("has_block", has(ModItemsRegister.WOOD_SHIELD.get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_" + Shields.WOOD.getId()));
+
+        ShapedRecipeBuilder.shaped(ModItemsRegister.BRONZE_ALUMINUM_SHIELD.get())
+                .define('#', ModTags.INGOTS.get(MetalTagEnum.ALUMINUM.getMetalNameLower()))
+                .define('*', ModTags.METAL_BLOCKS.get(MetalTagEnum.BRONZE.getMetalNameLower()))
+                .pattern("###")
+                .pattern("#*#")
+                .pattern(" # ")
+                .unlockedBy("has_block", has(ModItemsRegister.BRONZE_ALUMINUM_SHIELD.get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_" + Shields.BRONZE_ALUMINUM.getId()));
+
 
         /*ShapedRecipeBuilder.shaped(ModItemsRegister.MISTCLOACK.get())
                 .define('#', Items.STRING)

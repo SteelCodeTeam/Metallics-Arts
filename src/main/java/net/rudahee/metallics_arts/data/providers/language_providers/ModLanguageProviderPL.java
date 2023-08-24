@@ -60,6 +60,8 @@ public class ModLanguageProviderPL extends LanguageProvider {
         put("item.metallics_arts.koloss_blade", CTW.KOLOSS_BLADE.getNameInPolish());
         put("item.metallics_arts.dueling_staff", CTW.DUELING_STAFF.getNameInPolish());
         put("item.metallics_arts.obsidian_axe", CTW.OBSIDIAN_AXE.getNameInPolish());
+        put("item.metallics_arts.wood_shield", CTW.WOOD.getNameInEnglish() +" "+ CTW.SHIELD.getNameInEnglish().toLowerCase());
+        put("item.metallics_arts.bronze_aluminum_shield", MetalNamesEnum.ALUMINUM.getNameInEnglish() +" "+ CTW.SHIELD.getNameInEnglish().toLowerCase());
 
 
     }};

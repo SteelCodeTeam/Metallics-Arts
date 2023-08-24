@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -126,5 +127,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         model = new ModelFile.UncheckedModelFile(modLoc("block/crucible_furnace"));
         simpleBlock(ModBlocksRegister.CRUCIBLE_FURNACE.get());
         simpleBlockItem(ModBlocksRegister.CRUCIBLE_FURNACE.get(),model);
+
+        for (MetalTagEnum metal:MetalTagEnum.values()){
+            stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getNameLower()), blockTexture(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower())));
+
+        }
     }
 }

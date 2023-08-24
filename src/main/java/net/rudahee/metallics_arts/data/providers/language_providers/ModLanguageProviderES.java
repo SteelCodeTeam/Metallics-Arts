@@ -74,6 +74,8 @@ public class ModLanguageProviderES extends LanguageProvider {
         put("item.metallics_arts.aluminum_chestplate", CTW.ALUMINUM_CHESTPLATE.getNameInSpanish());
         put("item.metallics_arts.aluminum_boots", CTW.ALUMINUM_BOOTS.getNameInSpanish());
         put("metallics_arts.item.tooltip.mistcloak", "Aumenta ligeramente tu velocidad");
+        put("item.metallics_arts.wood_shield",CTW.SHIELD.getNameInSpanish() + " de " + CTW.WOOD.getNameInSpanish().toLowerCase());
+        put("item.metallics_arts.bronze_aluminum_shield", CTW.SHIELD.getNameInSpanish() + " de " + MetalNamesEnum.ALUMINUM.getNameInSpanish().toLowerCase());
 
     }};
 

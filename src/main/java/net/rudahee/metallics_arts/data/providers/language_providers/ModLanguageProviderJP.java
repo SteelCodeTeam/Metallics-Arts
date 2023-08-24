@@ -59,6 +59,8 @@ public class ModLanguageProviderJP extends LanguageProvider {
         put("item.metallics_arts.koloss_blade", CTW.KOLOSS_BLADE.getNameInJapanese());
         put("item.metallics_arts.dueling_staff", CTW.DUELING_STAFF.getNameInJapanese());
         put("item.metallics_arts.obsidian_axe", CTW.OBSIDIAN_AXE.getNameInJapanese());
+        put("item.metallics_arts.wood_shield", CTW.WOOD.getNameInEnglish() +" "+ CTW.SHIELD.getNameInEnglish().toLowerCase());
+        put("item.metallics_arts.bronze_aluminum_shield", MetalNamesEnum.ALUMINUM.getNameInEnglish() +" "+ CTW.SHIELD.getNameInEnglish().toLowerCase());
 
 
     }};

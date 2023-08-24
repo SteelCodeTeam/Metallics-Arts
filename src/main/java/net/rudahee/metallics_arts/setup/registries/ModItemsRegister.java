@@ -45,6 +45,10 @@ public class ModItemsRegister {
     public static RegistryObject<Item> KOLOSS_BLADE;
     public static RegistryObject<Item> DUELING_STAFF;
     public static RegistryObject<Item> OBSIDIAN_AXE;
+    // Shields
+    public static RegistryObject<Item> WOOD_SHIELD;
+    public static RegistryObject<Item> BRONZE_ALUMINUM_SHIELD;
+
     //Vials
     public static RegistryObject<Item> LARGE_VIAL;
     public static RegistryObject<Item> SMALL_VIAL;

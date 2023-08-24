@@ -119,7 +119,10 @@ public enum CTW implements ILanguage {
     ALUMINUM_HELMET("aluminum_helmet", "Aluminum Helmet", "Casco de Aluminio", "", ""),
     ALUMINUM_LEGGINGS("aluminum_leggings", "Aluminum Leggings", "Pantalones de Aluminio", "", ""),
     ALUMINUM_CHESTPLATE("aluminum_chesplate", "Aluminum Chesplate", "Pechera de Aluminio", "", ""),
-    ALUMINUM_BOOTS("aluminum_boots", "Aluminum Boots", "Botas de Aluminio", "", "");
+    ALUMINUM_BOOTS("aluminum_boots", "Aluminum Boots", "Botas de Aluminio", "", ""),
+
+    WOOD("wood", "Wood", "Madera", "", ""),
+    SHIELD("shield", "Shield", "Escudo", "", "");
 
     private final String id;
     private final String english;

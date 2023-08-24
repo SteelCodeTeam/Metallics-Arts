@@ -117,27 +117,11 @@ repositories {
         url = "https://maven.theillusivec4.top/"
     }
     maven {
-        url = "https://maven.tehnut.info/"
-    }
-    maven {
         url = "https://maven.blamejared.com"
     }
     maven {
         name = "KliKli Dev Repsy Maven"
         url = "https://repo.repsy.io/mvn/klikli-dev/mods"
-    }
-}
-
-repositories {
-    maven {
-        // location of the maven that hosts JEI files
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
-        // location of a maven mirror for JEI files, as a fallback
-        name = "ModMaven"
-        url = "https://modmaven.dev"
     }
 }
 dependencies {
@@ -148,10 +132,6 @@ dependencies {
 
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.2-5.1.1.0")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.2-5.1.1.0:api")
-
-    compileOnly fg.deobf("mezz.jei:jei-1.19.2-common-api:11.2.0.246")
-    compileOnly fg.deobf("mezz.jei:jei-1.19.2-forge-api:11.2.0.246")
-    compileOnly fg.deobf("mezz.jei:jei-1.19.2-forge:11.2.0.246")
 
     compileOnly fg.deobf("com.klikli_dev:modonomicon:1.19.2-1.27.0")
     runtimeOnly fg.deobf("com.klikli_dev:modonomicon:1.19.2-1.27.0")
