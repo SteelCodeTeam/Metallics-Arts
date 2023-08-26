@@ -160,8 +160,11 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 }
                 put("block.metallics_arts.iron_fences", MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.FENCES.getNameInEnglish());
                 put("block.metallics_arts.gold_fences", MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.FENCES.getNameInEnglish());
+                put("block.metallics_arts.copper_fences", MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.FENCES.getNameInEnglish());
                 put("block.metallics_arts.iron_raw_fences",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.FENCES.getNameInEnglish());
                 put("block.metallics_arts.gold_raw_fences",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.FENCES.getNameInEnglish());
+                put("block.metallics_arts.copper_raw_fences",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.FENCES.getNameInEnglish());
+
         }};
 
         private final Map<String, String> fence_gates = new HashMap<>() {{
@@ -176,8 +179,10 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 }
                 put("block.metallics_arts.iron_fence_gates", MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.FENCE_GATES.getNameInEnglish());
                 put("block.metallics_arts.gold_fence_gates", MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.FENCE_GATES.getNameInEnglish());
+                put("block.metallics_arts.copper_fence_gates", MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.FENCE_GATES.getNameInEnglish());
                 put("block.metallics_arts.iron_raw_fence_gates",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.FENCE_GATES.getNameInEnglish());
                 put("block.metallics_arts.gold_raw_fence_gates",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.FENCE_GATES.getNameInEnglish());
+                put("block.metallics_arts.copper_raw_fence_gates",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.FENCE_GATES.getNameInEnglish());
         }};
 
 
