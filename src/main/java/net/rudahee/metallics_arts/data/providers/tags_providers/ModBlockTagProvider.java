@@ -3,10 +3,12 @@ package net.rudahee.metallics_arts.data.providers.tags_providers;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalAuxiliaryInfo;
+import net.rudahee.metallics_arts.data.providers.ModBlockStateProvider;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 
@@ -104,6 +106,22 @@ public class ModBlockTagProvider extends BlockTagsProvider {
             }
 
         }
+
+
+        for (Block wall:ModBlocksRegister.BLOCK_METAL_WALLS.values()){
+            this.tag(BlockTags.WALLS).add(wall);
+        }
+
+        for (Block fence:ModBlocksRegister.BLOCK_METAL_FENCES.values()){
+            this.tag(BlockTags.FENCES).add(fence);
+        }
+        for (Block fence_gate:ModBlocksRegister.BLOCK_METAL_FENCE_GATES.values()){
+            this.tag(BlockTags.FENCE_GATES).add(fence_gate);
+        }
+
+
+
+
 
         /*for (String key: ModBlocksRegister.BLOCK_METAL_BLOCKS.keySet()) {
 
