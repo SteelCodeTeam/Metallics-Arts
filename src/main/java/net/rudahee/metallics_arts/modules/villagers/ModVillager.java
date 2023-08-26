@@ -27,7 +27,6 @@ public class ModVillager {
 
     public static final RegistryObject<PoiType> CRUCIBLE_FURNACE_POI = POI_TYPE.register("crucible_furnace_poi",
             () -> new PoiType(ImmutableSet.copyOf(ModBlocksRegister.CRUCIBLE_FURNACE.get().getStateDefinition().getPossibleStates()),
-
                     1,1));
 
     public static final RegistryObject<VillagerProfession> VILLAGER_CRUCIBLE_PROFESSION = VILLAGER_PROFESSIONS.register("forge_master",

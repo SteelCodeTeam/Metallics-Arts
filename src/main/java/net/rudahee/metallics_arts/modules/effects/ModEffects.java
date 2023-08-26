@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.modules.effects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -47,7 +48,9 @@ public class ModEffects {
      * @param metal the metal to use as the basis for the effect.
      */
     public static void giveAllomanticEffect(Player player, MetalTagEnum metal) {
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_"+metal.getNameLower()).get(), 10, 0, true, true));
+        MobEffectInstance effect = new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_"+metal.getNameLower()).get(), 10, 0, true, true);
+        effect.setNoCounter(true);
+        player.addEffect(effect);
     }
 
     /**
@@ -57,7 +60,9 @@ public class ModEffects {
      * @param metal the metal to use as the basis for the effect.
      */
     public static void giveFeruchemicalTapEffect(Player player, MetalTagEnum metal) {
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_" + metal.getNameLower() + "_tap").get(), 2, 0, true, true));
+        MobEffectInstance effect = new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_" + metal.getNameLower() + "_tap").get(), 2, 0, true, true);
+        effect.setNoCounter(true);
+        player.addEffect(effect);
     }
     /**
      * Gives a Feruchemical Storage effect to the specified player based on the given metal.
@@ -66,7 +71,9 @@ public class ModEffects {
      * @param metal the metal to use as the basis for the effect.
      */
     public static void giveFeruchemicalStorageEffect(Player player, MetalTagEnum metal) {
-        player.addEffect(new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_" + metal.getNameLower() + "_storage").get(), 2, 0, true, true));
+        MobEffectInstance effect = new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_" + metal.getNameLower() + "_storage").get(), 2, 0, true, true);
+        effect.setNoCounter(true);
+        player.addEffect(effect);
     }
 
     /**

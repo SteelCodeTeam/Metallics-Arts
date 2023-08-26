@@ -1,0 +1,15 @@
+{
+  "type": "metallics_arts:crucible_furnace_recipe",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "item": "metallics_arts:bronze_ingot"
+  }
+}

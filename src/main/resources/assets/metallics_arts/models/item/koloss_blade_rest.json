@@ -103,27 +103,27 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [0, 90, 0],
-			"translation": [0, 15, 0.75]
+			"rotation": [78.5, 90, 0],
+			"translation": [0, 2.75, 17.25]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [0, -90, 0],
-			"translation": [0, 15, 0.75]
+			"rotation": [78.5, -90, 0],
+			"translation": [0, 2.75, 17.25]
 		},
 		"firstperson_righthand": {
-			"rotation": [0, 93, 0],
-			"translation": [4.5, 10, -6.25]
+			"rotation": [55, 93, 0],
+			"translation": [4.5, 3, 2.25]
 		},
 		"firstperson_lefthand": {
-			"rotation": [0, -91, 0],
-			"translation": [4.5, 10, -6.25]
+			"rotation": [55, -93, 0],
+			"translation": [4.5, 3, 2.25]
 		},
 		"ground": {
 			"rotation": [45, -90, 0],
 			"translation": [0, 14, 0]
 		},
 		"gui": {
-			"rotation": [142.78, -1.73, -140.06],
+			"rotation": [-139.31, -7.03, -139.32],
 			"scale": [0.5, 0.5, 0.5]
 		},
 		"head": {
@@ -153,20 +153,6 @@
 					"children": [2, 3, 4, 5, 6]
 				}
 			]
-		}
-	],
-	"overrides": [
-		{
-			"model": "metallics_arts:item/koloss_blade_rest",
-			"predicate": {
-				"minecraft:custom_model_data": 1.0
-			}
-		},
-		{
-			"model": "metallics_arts:item/koloss_blade_pull",
-			"predicate": {
-				"minecraft:custom_model_data": 2.0
-			}
 		}
 	]
 }

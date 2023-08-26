@@ -1,7 +1,10 @@
 package net.rudahee.metallics_arts.modules.custom_items.weapons.mele;
 
+import com.mojang.authlib.minecraft.TelemetrySession;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -29,9 +32,8 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
 public class KolossBlade extends SwordItem {
 
     private static final int ATTACK_DAMAGE = 8;
-    private static final float ATTACK_SPEED = -2.6F;
-
-    public static final int descanso = 80;
+    private static final float ATTACK_SPEED = -3F;
+    public static final int descanso = 180;
 
     /**
      * Default constructor, we define the properties of to set a durability and creative tab.
@@ -47,18 +49,44 @@ public class KolossBlade extends SwordItem {
         return super.canAttackBlock(p_43291_, p_43292_, p_43293_, p_43294_);
     }
 
+
+    @Override
+    public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int p_41407_, boolean p_41408_) {
+
+        if (entity instanceof Player player) {
+            if (player.getItemInHand(InteractionHand.MAIN_HAND).equals(itemStack)){
+                try {
+                    IInvestedPlayerData capabilities = CapabilityUtils.getCapability(entity);
+                    if (!capabilities.isBurning(MetalTagEnum.PEWTER)) {
+                        if (itemStack.getTag().getFloat("CustomModelData")!=2){
+                            itemStack.getTag().putFloat("CustomModelData",2);
+                        }
+                    }
+                } catch (PlayerException ex) {
+                    ex.printResumeLog();
+                }
+            }
+        }
+        super.inventoryTick(itemStack, level, entity, p_41407_, p_41408_);
+    }
+
+
     @Override
     public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
-        CompoundTag compoundTag = stack.getTag();
-        compoundTag.putFloat("CustomModelData", 1);
-        stack.setTag(compoundTag);
+
         try {
             IInvestedPlayerData capabilities = CapabilityUtils.getCapability(entity);
-            if (!capabilities.isBurning(MetalTagEnum.PEWTER)) {
+            if (!capabilities.isBurning(MetalTagEnum.PEWTER)) { //|| player.getCooldowns().isOnCooldown(this)
                 return true;
             }
         } catch (PlayerException ex) {
             ex.printResumeLog();
+        }
+        if (stack.getTag().getFloat("CustomModelData")!=0){
+            stack.getTag().putFloat("CustomModelData",0);
+        }
+        if (entity instanceof Player player) {
+            player.getCooldowns().addCooldown(this,25);
         }
         return false;
     }

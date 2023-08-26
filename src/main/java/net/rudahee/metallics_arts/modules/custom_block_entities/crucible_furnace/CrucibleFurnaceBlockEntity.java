@@ -14,7 +14,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -26,9 +25,6 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.rudahee.metallics_arts.setup.registries.ModBlockEntitiesRegister;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import javax.swing.text.html.Option;
-import java.util.Optional;
 
 
 public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvider {
@@ -50,11 +46,11 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
     private int maxFuelStorage = 100;
     private int timeWithoutRecipe = 0;
 
-    private final int PROGRESS_INDEX = 0;
-    private final int MAX_PROGRESS_INDEX = 1;
-    private final int FUEL_STORAGE_INDEX = 2;
-    private final int MAX_FUEL_STORAGE_INDEX = 3;
-    private final int TIME_WITHOUT_RECIPE_INDEX = 4;
+    public static final int PROGRESS_INDEX = 0;
+    public static final int MAX_PROGRESS_INDEX = 1;
+    public static final int FUEL_STORAGE_INDEX = 2;
+    public static final int MAX_FUEL_STORAGE_INDEX = 3;
+    public static final int TIME_WITHOUT_RECIPE_INDEX = 4;
 
     public CrucibleFurnaceBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntitiesRegister.CRUCIBLE_FURNACE_ENTITY.get(), pos, state);
@@ -155,7 +151,7 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
         if (!level.isClientSide()) {
             if (entity.itemHandler.getStackInSlot(0).is(Items.LAVA_BUCKET)) {
                 if (entity.data.get(entity.FUEL_STORAGE_INDEX) < entity.data.get(entity.MAX_FUEL_STORAGE_INDEX)) {
-                    rechargeFuel(entity);
+                    rechargeFuel(entity, level, pos, state);
                 }
             }
             if (hasRecipe(entity)) {
@@ -174,11 +170,13 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
         //TODO
     }
 
-    public static void rechargeFuel(CrucibleFurnaceBlockEntity entity) {
-        if (entity.data.get(entity.FUEL_STORAGE_INDEX) >= 80) {
-            entity.data.set(entity.FUEL_STORAGE_INDEX, entity.data.get(entity.MAX_FUEL_STORAGE_INDEX));
+    public static void rechargeFuel(CrucibleFurnaceBlockEntity entity, Level level, BlockPos pos, BlockState state) {
+        if (entity.fuelStorage >= 80) {
+            entity.fuelStorage = entity.maxFuelStorage;
+            setChanged(level, pos, state);
         } else {
-            entity.data.set(entity.FUEL_STORAGE_INDEX, entity.data.get(entity.FUEL_STORAGE_INDEX) + 20);
+            entity.fuelStorage = entity.fuelStorage + 20;
+            setChanged(level, pos, state);
         }
         entity.itemHandler.setStackInSlot(0, new ItemStack(Items.BUCKET));
     }
@@ -194,7 +192,6 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
             inventory.setItem(i, pEntity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<RecipeCustom> recipe = pEntity.level.getRecipeManager().getRecipeFor(RecipeCustom.Type.INSTANCE, inventory, pEntity.level);
        //TODO
     }
 
