@@ -242,32 +242,34 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get("iron"));
         evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get("gold_raw"));
         evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get("iron_raw"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get("copper_raw"));
 
         evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get("gold"));
         evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get("iron"));
         evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get("gold_raw"));
         evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get("iron_raw"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get("copper_raw"));
 
         evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("gold"));
         evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("iron"));
-        //evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("copper"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("copper"));
         evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("gold_raw"));
         evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("iron_raw"));
-        //evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("copper_raw"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("copper_raw"));
 
         fenceItemMC(ModBlocksRegister.BLOCK_METAL_FENCES.get("gold"), Blocks.GOLD_BLOCK);
         fenceItemMC(ModBlocksRegister.BLOCK_METAL_FENCES.get("gold_raw"), Blocks.GOLD_BLOCK);
         fenceItemMC(ModBlocksRegister.BLOCK_METAL_FENCES.get("iron"), Blocks.IRON_BLOCK);
         fenceItemMC(ModBlocksRegister.BLOCK_METAL_FENCES.get("iron_raw"), Blocks.IRON_BLOCK);
         fenceItemMC(ModBlocksRegister.BLOCK_METAL_FENCES.get("copper"), Blocks.COPPER_BLOCK);
-        fenceItemMC(ModBlocksRegister.BLOCK_METAL_FENCES.get("copper_raw"), Blocks.COPPER_BLOCK);
+        fenceItemMC(ModBlocksRegister.BLOCK_METAL_FENCES.get("copper_raw"), Blocks.RAW_COPPER_BLOCK);
 
         wallItemMC(ModBlocksRegister.BLOCK_METAL_WALLS.get("gold"), Blocks.GOLD_BLOCK);
         wallItemMC(ModBlocksRegister.BLOCK_METAL_WALLS.get("gold_raw"), Blocks.GOLD_BLOCK);
         wallItemMC(ModBlocksRegister.BLOCK_METAL_WALLS.get("iron"), Blocks.IRON_BLOCK);
         wallItemMC(ModBlocksRegister.BLOCK_METAL_WALLS.get("iron_raw"), Blocks.IRON_BLOCK);
         wallItemMC(ModBlocksRegister.BLOCK_METAL_WALLS.get("copper"), Blocks.COPPER_BLOCK);
-        wallItemMC(ModBlocksRegister.BLOCK_METAL_WALLS.get("copper_raw"), Blocks.COPPER_BLOCK);
+        wallItemMC(ModBlocksRegister.BLOCK_METAL_WALLS.get("copper_raw"), Blocks.RAW_COPPER_BLOCK);
 
     }
 

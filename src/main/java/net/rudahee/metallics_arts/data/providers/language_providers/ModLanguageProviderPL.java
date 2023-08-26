@@ -89,6 +89,7 @@ public class ModLanguageProviderPL extends LanguageProvider {
         put("block.metallics_arts.gold_stairs", MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.STAIRS.getNameInEnglish());
         put("block.metallics_arts.iron_raw_stairs",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.STAIRS.getNameInEnglish());
         put("block.metallics_arts.gold_raw_stairs",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.STAIRS.getNameInEnglish());
+        put("block.metallics_arts.copper_raw_stairs",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.STAIRS.getNameInEnglish());
     }};
 
     private final Map<String, String> slabs = new HashMap<>() {{
@@ -105,7 +106,9 @@ public class ModLanguageProviderPL extends LanguageProvider {
         put("block.metallics_arts.gold_slabs", MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.SLABS.getNameInEnglish());
         put("block.metallics_arts.iron_raw_slabs",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.SLABS.getNameInEnglish());
         put("block.metallics_arts.gold_raw_slabs",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.SLABS.getNameInEnglish());
+        put("block.metallics_arts.copper_raw_slabs",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.SLABS.getNameInEnglish());
     }};
+
     private final Map<String, String> walls = new HashMap<>() {{
         for (MetalEnum metal : MetalEnum.values()){
             put("block.metallics_arts." + metal.getMetalNameLower() + "_walls", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.WALLS.getNameInEnglish());

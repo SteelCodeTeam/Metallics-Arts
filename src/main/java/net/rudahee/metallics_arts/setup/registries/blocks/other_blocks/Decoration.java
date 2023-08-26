@@ -73,10 +73,18 @@ public class Decoration {
         });
         MetallicsArts.registerBlockDecoration("gold_raw_stairs", ()-> {
             StairBlock block = new StairBlock(
-                    Blocks.GOLD_BLOCK::defaultBlockState,
+                    Blocks.RAW_GOLD_BLOCK::defaultBlockState,
                     BlockBehaviour.Properties.copy(Blocks.RAW_GOLD_BLOCK).sound(SoundType.METAL));
 
             ModBlocksRegister.BLOCK_METAL_STAIRS.put("gold_raw", block);
+            return block;
+        });
+        MetallicsArts.registerBlockDecoration("copper_raw_stairs", ()-> {
+            StairBlock block = new StairBlock(
+                    Blocks.RAW_COPPER_BLOCK::defaultBlockState,
+                    BlockBehaviour.Properties.copy(Blocks.RAW_COPPER_BLOCK).sound(SoundType.METAL));
+
+            ModBlocksRegister.BLOCK_METAL_STAIRS.put("copper_raw", block);
             return block;
         });
 
@@ -137,6 +145,13 @@ public class Decoration {
                     BlockBehaviour.Properties.copy(Blocks.RAW_GOLD_BLOCK).sound(SoundType.METAL));
 
             ModBlocksRegister.BLOCK_METAL_SLABS.put("gold_raw", block);
+            return block;
+        });
+        MetallicsArts.registerBlockDecoration("copper_raw_slabs", ()-> {
+            SlabBlock block = new SlabBlock(
+                    BlockBehaviour.Properties.copy(Blocks.RAW_COPPER_BLOCK).sound(SoundType.METAL));
+
+            ModBlocksRegister.BLOCK_METAL_SLABS.put("copper_raw", block);
             return block;
         });
 
@@ -213,6 +228,7 @@ public class Decoration {
             ModBlocksRegister.BLOCK_METAL_WALLS.put("copper_raw", block);
             return block;
         });
+
 
 
         for (MetalEnum metal: MetalEnum.values()) {
