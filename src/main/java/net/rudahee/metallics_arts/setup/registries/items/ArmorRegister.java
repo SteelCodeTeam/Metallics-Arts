@@ -7,6 +7,8 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.custom_tiers.PostNetheriteMaterials;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.Shields;
+import net.rudahee.metallics_arts.modules.custom_items.armors.CustomShield;
 import net.rudahee.metallics_arts.modules.custom_items.armors.MistCloak;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
@@ -47,8 +49,12 @@ public class ArmorRegister {
                 () -> new ArmorItem(PostNetheriteMaterials.ALUMINUM, EquipmentSlot.FEET, PROPERTIES));
         ModItemsRegister.ALUMINUM_ARMOR.put(ArmorPiecesEnum.BOOTS, aluminumBoots);
 
-        //ModItemsRegister.MISTCLOACK = MetallicsArts.registerItem("mistcloak",
-          //      () -> new MistCloak(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1)));
+        ModItemsRegister.WOOD_SHIELD = MetallicsArts.registerItem(Shields.WOOD.getId(),
+                () -> new CustomShield(PROPERTIES, Shields.WOOD));
+        ModItemsRegister.BRONZE_ALUMINUM_SHIELD = MetallicsArts.registerItem(Shields.BRONZE_ALUMINUM.getId(),
+                () -> new CustomShield(PROPERTIES, Shields.BRONZE_ALUMINUM));
+        ModItemsRegister.MISTCLOACK = MetallicsArts.registerItem("mistcloak",
+                () -> new MistCloak(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1)));
 
     }
 }

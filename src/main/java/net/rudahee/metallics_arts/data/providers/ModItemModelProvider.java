@@ -1,17 +1,25 @@
 package net.rudahee.metallics_arts.data.providers;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.Arrays;
 import java.util.List;
@@ -163,8 +171,6 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .end();
 
 
-
-
         for (MetalTagEnum metal: MetalTagEnum.values()) {
             builder(itemGenerated,"item/"+metal.getNameLower()+"_allomantic_icon","item/symbols/allomantic_symbols/"+metal.getNameLower()+"_symbol");
             builder(itemGenerated,"item/"+metal.getNameLower()+"_feruchemic_icon","item/symbols/feruchemic_symbols/"+metal.getNameLower()+"_symbol");
@@ -195,7 +201,102 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/rifle_lead_bullet","item/combat/guns/rifle_lead_bullet");
         builder(itemGenerated,"item/rifle_aluminum_bullet","item/combat/guns/rifle_aluminum_bullet");
 
+
+        for (MetalEnum metal : MetalEnum.values()){
+            evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower()));
+
+            evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getMetalNameLower()));
+
+            evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(metal.getMetalNameLower()));
+
+            fenceItem(ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getMetalNameLower()), ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower()));
+
+            wallItem(ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getMetalNameLower()), ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower()));
+
+            if (!metal.isAlloy()) {
+                evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower() + "_raw"));
+
+                evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getMetalNameLower() + "_raw"));
+
+                evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(metal.getMetalNameLower()+ "_raw"));
+
+                fenceItem(ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getMetalNameLower() + "_raw"), ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getMetalNameLower()));
+
+                wallItem(ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getMetalNameLower() + "_raw"), ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getMetalNameLower()));
+
+            }
+        }
+        for (GemsEnum metal : GemsEnum.values()){
+            evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getGemNameLower()));
+
+            evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getGemNameLower()));
+
+            evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(metal.getGemNameLower()));
+
+            fenceItem(ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getGemNameLower()), ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower()));
+
+            wallItem(ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getGemNameLower()), ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower()));
+
+        }
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get("gold"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get("iron"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get("gold_raw"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get("iron_raw"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get("copper_raw"));
+
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get("gold"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get("iron"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get("gold_raw"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get("iron_raw"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get("copper_raw"));
+
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("gold"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("iron"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("copper"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("gold_raw"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("iron_raw"));
+        evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("copper_raw"));
+
+        fenceItemMC(ModBlocksRegister.BLOCK_METAL_FENCES.get("gold"), Blocks.GOLD_BLOCK);
+        fenceItemMC(ModBlocksRegister.BLOCK_METAL_FENCES.get("gold_raw"), Blocks.RAW_GOLD_BLOCK);
+        fenceItemMC(ModBlocksRegister.BLOCK_METAL_FENCES.get("iron"), Blocks.IRON_BLOCK);
+        fenceItemMC(ModBlocksRegister.BLOCK_METAL_FENCES.get("iron_raw"), Blocks.RAW_IRON_BLOCK);
+        fenceItemMC(ModBlocksRegister.BLOCK_METAL_FENCES.get("copper"), Blocks.COPPER_BLOCK);
+        fenceItemMC(ModBlocksRegister.BLOCK_METAL_FENCES.get("copper_raw"), Blocks.RAW_COPPER_BLOCK);
+
+        wallItemMC(ModBlocksRegister.BLOCK_METAL_WALLS.get("gold"), Blocks.GOLD_BLOCK);
+        wallItemMC(ModBlocksRegister.BLOCK_METAL_WALLS.get("gold_raw"), Blocks.RAW_GOLD_BLOCK);
+        wallItemMC(ModBlocksRegister.BLOCK_METAL_WALLS.get("iron"), Blocks.IRON_BLOCK);
+        wallItemMC(ModBlocksRegister.BLOCK_METAL_WALLS.get("iron_raw"), Blocks.RAW_IRON_BLOCK);
+        wallItemMC(ModBlocksRegister.BLOCK_METAL_WALLS.get("copper"), Blocks.COPPER_BLOCK);
+        wallItemMC(ModBlocksRegister.BLOCK_METAL_WALLS.get("copper_raw"), Blocks.RAW_COPPER_BLOCK);
+
     }
+
+    public void evenSimplerBlockItem(Block block) {
+        this.withExistingParent(MetallicsArts.MOD_ID + ":" + ForgeRegistries.BLOCKS.getKey(block).getPath(),
+                modLoc("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath()));
+    }
+
+    public void fenceItem(Block block, Block baseBlock) {
+        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block).getPath(), mcLoc("block/fence_inventory"))
+                .texture("texture",  new ResourceLocation(MetallicsArts.MOD_ID, "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock).getPath()));
+    }
+    public void fenceItemMC(Block block, Block baseBlock) {
+        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block).getPath(), mcLoc("block/fence_inventory"))
+                .texture("texture",  new ResourceLocation("minecraft", "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock).getPath()));
+    }
+
+    public void wallItem(Block block, Block baseBlock) {
+        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block).getPath(), mcLoc("block/wall_inventory"))
+                .texture("wall",  new ResourceLocation(MetallicsArts.MOD_ID, "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock).getPath()));
+    }
+
+    public void wallItemMC(Block block, Block baseBlock) {
+        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block).getPath(), mcLoc("block/wall_inventory"))
+                .texture("wall",  new ResourceLocation("minecraft", "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock).getPath()));
+    }
+
 
     /**
      * Auxiliary method to generate a common builder for the item models.

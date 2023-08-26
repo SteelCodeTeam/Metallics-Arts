@@ -1,13 +1,18 @@
 package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.OreGenerationEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+
+import java.util.HashMap;
 
 /**
  * This provider class control the default state from blocks. We use to define a texture in each block.
@@ -126,5 +131,63 @@ public class ModBlockStateProvider extends BlockStateProvider {
         model = new ModelFile.UncheckedModelFile(modLoc("block/crucible_furnace"));
         simpleBlock(ModBlocksRegister.CRUCIBLE_FURNACE.get());
         simpleBlockItem(ModBlocksRegister.CRUCIBLE_FURNACE.get(),model);
+
+
+        for (MetalEnum metal : MetalEnum.values()){
+            stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower()), blockTexture(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower())));
+            slabBlock((SlabBlock) ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getMetalNameLower()), blockTexture(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower())), blockTexture(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower())));
+            wallBlock((WallBlock) ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getMetalNameLower()), blockTexture(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower())));
+            fenceBlock((FenceBlock) ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getMetalNameLower()), blockTexture(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower())));
+            fenceGateBlock((FenceGateBlock) ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(metal.getMetalNameLower()), blockTexture(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower())));
+
+            if (!metal.isAlloy()) {
+                stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower() + "_raw"), blockTexture(ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getMetalNameLower())));
+                slabBlock((SlabBlock) ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getMetalNameLower() + "_raw"), blockTexture(ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getMetalNameLower())), blockTexture(ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getMetalNameLower())));
+                wallBlock((WallBlock) ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getMetalNameLower() + "_raw"), blockTexture(ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getMetalNameLower())));
+                fenceBlock((FenceBlock) ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getMetalNameLower() + "_raw"), blockTexture(ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getMetalNameLower())));
+                fenceGateBlock((FenceGateBlock) ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(metal.getMetalNameLower() + "_raw"), blockTexture(ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getMetalNameLower())));
+            }
+        }
+        for (GemsEnum metal : GemsEnum.values()){
+            stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getGemNameLower()), blockTexture(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower())));
+            slabBlock((SlabBlock) ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getGemNameLower()), blockTexture(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower())), blockTexture(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower())));
+            wallBlock((WallBlock) ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getGemNameLower()), blockTexture(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower())));
+            fenceBlock((FenceBlock) ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getGemNameLower()), blockTexture(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower())));
+            fenceGateBlock((FenceGateBlock) ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(metal.getGemNameLower()), blockTexture(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower())));
+        }
+
+
+        stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get("iron"), blockTexture(Blocks.IRON_BLOCK));
+        stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get("gold"), blockTexture(Blocks.GOLD_BLOCK));
+        stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get("iron_raw"), blockTexture(Blocks.RAW_IRON_BLOCK));
+        stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get("gold_raw"), blockTexture(Blocks.RAW_GOLD_BLOCK));
+        stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get("copper_raw"), blockTexture(Blocks.RAW_COPPER_BLOCK));
+
+        slabBlock((SlabBlock) ModBlocksRegister.BLOCK_METAL_SLABS.get("gold"), blockTexture(Blocks.GOLD_BLOCK), blockTexture(Blocks.GOLD_BLOCK));
+        slabBlock((SlabBlock) ModBlocksRegister.BLOCK_METAL_SLABS.get("iron"), blockTexture(Blocks.IRON_BLOCK), blockTexture(Blocks.IRON_BLOCK));
+        slabBlock((SlabBlock) ModBlocksRegister.BLOCK_METAL_SLABS.get("gold_raw"), blockTexture(Blocks.RAW_GOLD_BLOCK), blockTexture(Blocks.RAW_GOLD_BLOCK));
+        slabBlock((SlabBlock) ModBlocksRegister.BLOCK_METAL_SLABS.get("iron_raw"), blockTexture(Blocks.RAW_IRON_BLOCK), blockTexture(Blocks.RAW_IRON_BLOCK));
+        slabBlock((SlabBlock) ModBlocksRegister.BLOCK_METAL_SLABS.get("copper_raw"), blockTexture(Blocks.RAW_COPPER_BLOCK), blockTexture(Blocks.RAW_COPPER_BLOCK));
+
+        wallBlock((WallBlock) ModBlocksRegister.BLOCK_METAL_WALLS.get("iron"), blockTexture(Blocks.IRON_BLOCK));
+        wallBlock((WallBlock) ModBlocksRegister.BLOCK_METAL_WALLS.get("gold"), blockTexture(Blocks.GOLD_BLOCK));
+        wallBlock((WallBlock) ModBlocksRegister.BLOCK_METAL_WALLS.get("copper"), blockTexture(Blocks.COPPER_BLOCK));
+        wallBlock((WallBlock) ModBlocksRegister.BLOCK_METAL_WALLS.get("iron_raw"), blockTexture(Blocks.RAW_IRON_BLOCK));
+        wallBlock((WallBlock) ModBlocksRegister.BLOCK_METAL_WALLS.get("gold_raw"), blockTexture(Blocks.RAW_GOLD_BLOCK));
+        wallBlock((WallBlock) ModBlocksRegister.BLOCK_METAL_WALLS.get("copper_raw"), blockTexture(Blocks.RAW_COPPER_BLOCK));
+
+        fenceBlock((FenceBlock) ModBlocksRegister.BLOCK_METAL_FENCES.get("iron"), blockTexture(Blocks.IRON_BLOCK));
+        fenceBlock((FenceBlock) ModBlocksRegister.BLOCK_METAL_FENCES.get("gold"), blockTexture(Blocks.GOLD_BLOCK));
+        fenceBlock((FenceBlock) ModBlocksRegister.BLOCK_METAL_FENCES.get("copper"), blockTexture(Blocks.COPPER_BLOCK));
+        fenceBlock((FenceBlock) ModBlocksRegister.BLOCK_METAL_FENCES.get("iron_raw"), blockTexture(Blocks.RAW_IRON_BLOCK));
+        fenceBlock((FenceBlock) ModBlocksRegister.BLOCK_METAL_FENCES.get("gold_raw"), blockTexture(Blocks.RAW_GOLD_BLOCK));
+        fenceBlock((FenceBlock) ModBlocksRegister.BLOCK_METAL_FENCES.get("copper_raw"), blockTexture(Blocks.RAW_COPPER_BLOCK));
+
+        fenceGateBlock((FenceGateBlock) ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("iron"), blockTexture(Blocks.IRON_BLOCK));
+        fenceGateBlock((FenceGateBlock) ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("gold"), blockTexture(Blocks.GOLD_BLOCK));
+        fenceGateBlock((FenceGateBlock) ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("copper"), blockTexture(Blocks.COPPER_BLOCK));
+        fenceGateBlock((FenceGateBlock) ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("iron_raw"), blockTexture(Blocks.RAW_IRON_BLOCK));
+        fenceGateBlock((FenceGateBlock) ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("gold_raw"), blockTexture(Blocks.RAW_GOLD_BLOCK));
+        fenceGateBlock((FenceGateBlock) ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get("copper_raw"), blockTexture(Blocks.RAW_COPPER_BLOCK));
     }
 }

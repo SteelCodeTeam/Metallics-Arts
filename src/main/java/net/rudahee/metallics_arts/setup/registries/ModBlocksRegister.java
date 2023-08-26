@@ -4,6 +4,7 @@ package net.rudahee.metallics_arts.setup.registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.AmethystBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
@@ -15,6 +16,7 @@ import net.rudahee.metallics_arts.setup.registries.blocks.BasicBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.AtiumBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.EttmetalBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.LerasiumBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.blocks.other_blocks.Decoration;
 
 import java.util.HashMap;
 
@@ -26,6 +28,11 @@ public class ModBlocksRegister {
     public static final HashMap<String, Block> RAW_METAL_BLOCKS = new HashMap<>();
     public static final HashMap<String, Block> BLOCK_GEMS_BLOCKS = new HashMap<>();
     public static final HashMap<String, Block> DIVINE_CRISTAL_BLOCKS = new HashMap<>();
+    public static final HashMap<String, Block> BLOCK_METAL_STAIRS = new HashMap<>();
+    public static final HashMap<String, Block> BLOCK_METAL_SLABS = new HashMap<>();
+    public static final HashMap<String, Block> BLOCK_METAL_WALLS = new HashMap<>();
+    public static final HashMap<String, Block> BLOCK_METAL_FENCES = new HashMap<>();
+    public static final HashMap<String, Block> BLOCK_METAL_FENCE_GATES = new HashMap<>();
     public static RegistryObject<AmethystBlock> BUDDING_ATIUM;
     public static RegistryObject<AmethystBlock> ATIUM_CLUSTER;
     public static RegistryObject<AmethystBlock> LARGE_ATIUM_BUD;
@@ -50,6 +57,7 @@ public class ModBlocksRegister {
         LerasiumBlocksRegister.register();
         EttmetalBlocksRegister.register();
         BasicBlocksRegister.register();
+        Decoration.register();
         //Electric.register();
     }
 

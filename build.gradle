@@ -117,9 +117,6 @@ repositories {
         url = "https://maven.theillusivec4.top/"
     }
     maven {
-        url = "https://maven.tehnut.info/"
-    }
-    maven {
         url = "https://maven.blamejared.com"
     }
     maven {
@@ -128,18 +125,6 @@ repositories {
     }
 }
 
-/* repositories {
-    maven {
-        // location of the maven that hosts JEI files
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
-        // location of a maven mirror for JEI files, as a fallback
-        name = "ModMaven"
-        url = "https://modmaven.dev"
-    }
-} */
  dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.

@@ -3,10 +3,12 @@ package net.rudahee.metallics_arts.data.providers.tags_providers;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalAuxiliaryInfo;
+import net.rudahee.metallics_arts.data.providers.ModBlockStateProvider;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 
@@ -55,19 +57,27 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                     addForgeTag("ores_in_ground/deepslate",ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
                 }
 
-                if (!metal.isAlloy()&& !metal.isDivine()) {
+                if (!metal.isAlloy() && !metal.isDivine()) {
                     addForgeTag("storage_blocks/raw_" + metal.getId(), ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getId()));
                     makePickaxeMineable(ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getId()));
+                    addForgeTag("storage_blocks/" + metal.getId() + "_raw_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()+ "_raw"));
+                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId() + "_raw"));
                 }
-
 
                 if (!metal.isDivine()) {
                     addForgeTag("storage_blocks/"+metal.getId(), ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getId()));
                     makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getId()));
+
                 } else {
                     addForgeTag("storage_blocks/" + metal.getId(), ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getId()));
                     makePickaxeMineable(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getId()));
                 }
+                addForgeTag("storage_blocks/" + metal.getId() + "_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()));
+                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()));
+            } else if (metal != MetalAuxiliaryInfo.COPPER) {
+
+                addForgeTag("storage_blocks/" + metal.getId() + "_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()));
+                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()));
             }
 
 
@@ -78,26 +88,40 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         }
 
 
-
-
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (!metal.isVanilla() ) {
                 tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + metal.getId()));
                 if ((metal.isAppearsInDeepslate() || metal.isAppearsInStone())) {
-                    /*if (metal.isAppearsInDeepslate()) {
-                        tag(ModTags.forgeBlockTag("ores_in_ground")).addTags(ModTags.forgeBlockTag("ores/" + metal.getId()));
-                    }*/
                     tag(ModTags.forgeBlockTag("ores")).addTags(ModTags.forgeBlockTag("ores/" + metal.getId()));
                     tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/raw_" + metal.getId()));
+                    tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + metal.getId() + "_raw_stairs"));
                 }
                 if (metal.isDivine() && ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.containsKey(metal.getId())) {
                     tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + metal.getId() + "_cristal"));
                 }
+                tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + metal.getId() + "_stairs"));
 
+            } else if (metal != MetalAuxiliaryInfo.COPPER) {
+                tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + metal.getId() + "_stairs"));
             }
 
-
         }
+
+
+        for (Block wall:ModBlocksRegister.BLOCK_METAL_WALLS.values()){
+            this.tag(BlockTags.WALLS).add(wall);
+        }
+
+        for (Block fence:ModBlocksRegister.BLOCK_METAL_FENCES.values()){
+            this.tag(BlockTags.FENCES).add(fence);
+        }
+        for (Block fence_gate:ModBlocksRegister.BLOCK_METAL_FENCE_GATES.values()){
+            this.tag(BlockTags.FENCE_GATES).add(fence_gate);
+        }
+
+
+
+
 
         /*for (String key: ModBlocksRegister.BLOCK_METAL_BLOCKS.keySet()) {
 
