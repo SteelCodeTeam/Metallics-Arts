@@ -66,6 +66,8 @@ And we have two mandatory dependencies:
 - Fixed crafting of gems and divine metal nuggets [1.6.2]
 - Fixed a bug in crafting vials and their subsequent loading [v1.6.4]
 - Implemented compatibility with Backpack Mods implementing a new slot in CurioAPI [v1.6.5]
+- Implemented stairs, slabs, fences, walls  and fence gates from all metals/raws [v1.6.5]
+- Implemented custom shields [v1.6.5]
 <br>
 
 ------

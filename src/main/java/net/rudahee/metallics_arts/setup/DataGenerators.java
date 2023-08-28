@@ -4,6 +4,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeBlockTagsProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
@@ -20,6 +21,8 @@ import net.rudahee.metallics_arts.data.providers.tags_providers.ModBeaconTagProv
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBlockTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvider;
 import net.rudahee.metallics_arts.modules.book.DemoBookProvider;
+import net.rudahee.metallics_arts.modules.custom_entities.ExampleEntity;
+import net.rudahee.metallics_arts.setup.registries.ModEntityTypesRegister;
 
 @Mod.EventBusSubscriber (modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {
@@ -59,5 +62,10 @@ public final class DataGenerators {
         gen.addProvider(event.includeServer(), new DemoBookProvider(gen, MetallicsArts.MOD_ID, null));
         //gen.addProvider(event.includeClient(), null);
 
+    }
+
+    @SubscribeEvent
+    public static void entityAtributes(EntityAttributeCreationEvent event){
+        event.put(ModEntityTypesRegister.EXAMPLE.get(), ExampleEntity.getExampleAttributes().build());
     }
 }
