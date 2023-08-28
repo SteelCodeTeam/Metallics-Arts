@@ -22,9 +22,13 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.*;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.rudahee.metallics_arts.data.custom_recipes.tables.CrucibleFurnaceRecipe;
 import net.rudahee.metallics_arts.setup.registries.ModBlockEntitiesRegister;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 
 public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvider {
@@ -34,6 +38,41 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
+        }
+
+        @Override
+        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            if (!isItemValid(slot, stack)) {
+                return stack;
+            }
+
+            return super.insertItem(slot, stack, simulate);
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return 64;
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            switch (slot) {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    return (Items.IRON_INGOT == stack.getItem() ||
+                            Items.GOLD_INGOT == stack.getItem() ||
+                            Items.COAL == stack.getItem() ||
+                            ModItemsRegister.ITEM_METAL_INGOT.values().stream().anyMatch(m-> m == stack.getItem()) ||
+                            ModItemsRegister.ITEM_GEMS_BASE.values().stream().anyMatch(m -> m == stack.getItem()));
+                case 0:
+                    return Items.LAVA_BUCKET == stack.getItem();
+                case 6:
+                    return true;
+                default:
+                    return false;
+            }
         }
     };
 
@@ -45,12 +84,17 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
     private int fuelStorage = 0;
     private int maxFuelStorage = 100;
     private int timeWithoutRecipe = 0;
+    private int tickFuel = 0;
+    private int tickProgress = 0;
 
     public static final int PROGRESS_INDEX = 0;
     public static final int MAX_PROGRESS_INDEX = 1;
     public static final int FUEL_STORAGE_INDEX = 2;
     public static final int MAX_FUEL_STORAGE_INDEX = 3;
     public static final int TIME_WITHOUT_RECIPE_INDEX = 4;
+    public static final int TICK_FUEL_INDEX = 5;
+    public static final int TICK_PROGRESS_INDEX = 6;
+
 
     public CrucibleFurnaceBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntitiesRegister.CRUCIBLE_FURNACE_ENTITY.get(), pos, state);
@@ -63,6 +107,8 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
                     case 2 -> CrucibleFurnaceBlockEntity.this.fuelStorage;
                     case 3 -> CrucibleFurnaceBlockEntity.this.maxFuelStorage;
                     case 4 -> CrucibleFurnaceBlockEntity.this.timeWithoutRecipe;
+                    case 5 -> CrucibleFurnaceBlockEntity.this.tickFuel;
+                    case 6 -> CrucibleFurnaceBlockEntity.this.tickProgress;
                     default -> 0;
                 };
             }
@@ -75,12 +121,14 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
                     case 2 -> CrucibleFurnaceBlockEntity.this.fuelStorage = value;
                     case 3 -> CrucibleFurnaceBlockEntity.this.maxFuelStorage = value;
                     case 4 -> CrucibleFurnaceBlockEntity.this.timeWithoutRecipe = value;
+                    case 5 -> CrucibleFurnaceBlockEntity.this.tickFuel = value;
+                    case 6 -> CrucibleFurnaceBlockEntity.this.tickProgress = value;
                 }
             }
 
             @Override
             public int getCount() {
-                return 5;
+                return 7;
             }
         };
     }
@@ -122,7 +170,8 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
         tag.putInt("crucible_furnace.fuel_storage", this.fuelStorage);
         tag.putInt("crucible_furnace.max_fuel_storage", this.maxFuelStorage);
         tag.putInt("crucible_furnace.time_without_recipe", this.timeWithoutRecipe);
-
+        tag.putInt("crucible_furnace.tick_fuel", this.tickFuel);
+        tag.putInt("crucible_furnace.tick_progress", this.tickProgress);
         super.saveAdditional(tag);
     }
 
@@ -134,6 +183,8 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
         this.fuelStorage = tag.getInt("crucible_furnace.fuel_storage");
         this.maxFuelStorage = tag.getInt("crucible_furnace.max_fuel_storage");
         this.timeWithoutRecipe = tag.getInt("crucible_furnace.time_without_recipe");
+        this.tickFuel = tag.getInt("crucible_furnace.tick_fuel");
+        this.tickProgress = tag.getInt("crucible_furnace.tick_progress");
 
         super.load(tag);
     }
@@ -155,19 +206,16 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
                 }
             }
             if (hasRecipe(entity)) {
-                entity.progress++;
                 setChanged(level, pos, state);
 
-                if (entity.maxProgress <= entity.progress) {
-                    craftItem(entity);
-                }
+                craftItem(entity);
+
             } else {
                 entity.resetProgress();
                 setChanged(level, pos, state);
             }
         }
 
-        //TODO
     }
 
     public static void rechargeFuel(CrucibleFurnaceBlockEntity entity, Level level, BlockPos pos, BlockState state) {
@@ -182,17 +230,70 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
     }
 
     private void resetProgress() {
+        this.tickProgress = 0;
+        this.tickFuel = 0;
         this.progress = 0;
     }
 
-    private static void craftItem(CrucibleFurnaceBlockEntity pEntity) {
+    private static void craftItem(CrucibleFurnaceBlockEntity entity) {
 
-        SimpleContainer inventory = new SimpleContainer(pEntity.itemHandler.getSlots());
-        for (int i = 0; i < pEntity.itemHandler.getSlots(); i++) {
-            inventory.setItem(i, pEntity.itemHandler.getStackInSlot(i));
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-       //TODO
+        Optional<CrucibleFurnaceRecipe> recipe = entity.level.getRecipeManager().getRecipeFor(CrucibleFurnaceRecipe.Type.INSTANCE, inventory, entity.level);
+
+        if (recipe.isPresent()) {
+
+            if (entity.fuelStorage > 0) {
+
+                if (entity.tickProgress <= 1) {
+                    entity.tickProgress++;
+                } else {
+                    entity.progress++;
+                    entity.tickProgress = 0;
+                }
+
+                if (entity.progress >= entity.maxProgress) {
+
+                    entity.itemHandler.extractItem(1, 1, false);
+                    entity.itemHandler.extractItem(2, 1, false);
+                    entity.itemHandler.extractItem(3, 1, false);
+                    entity.itemHandler.extractItem(4, 1, false);
+
+                    if (entity.itemHandler.getStackInSlot(5).isEmpty()) {
+                        entity.itemHandler.setStackInSlot(5, new ItemStack(recipe.get().getResultItem().getItemHolder(), 3));
+                    } else {
+                        entity.itemHandler.setStackInSlot(5, new ItemStack(recipe.get().getResultItem().getItem(),
+                                entity.itemHandler.getStackInSlot(5).getCount() + 3));
+                    }
+
+                    entity.progress = 0;
+                }
+                if (entity.tickFuel <= 1000) {
+                    entity.tickFuel++;
+                } else {
+                    entity.tickFuel = 0;
+                    entity.fuelStorage--;
+                }
+            }
+        } else {
+            entity.timeWithoutRecipe++;
+
+            if (entity.timeWithoutRecipe >= 20000) {
+                if (entity.itemHandler.getStackInSlot(5).is(Items.AIR)) {
+                    entity.itemHandler.setStackInSlot(5, new ItemStack(Items.OBSIDIAN, (int) Math.ceil(entity.fuelStorage/100.0 * 5)));
+                    entity.timeWithoutRecipe = 0;
+                    entity.fuelStorage = 0;
+
+                } else {
+                    entity.timeWithoutRecipe--;
+                    entity.fuelStorage--;
+                }
+            }
+        }
     }
 
     private static boolean hasRecipe(CrucibleFurnaceBlockEntity entity) {
@@ -201,22 +302,12 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        //Todo
-        //habria que chequear que la receta exista
-        /**
-         * @see AbstractCookingRecipe
-         * @see AbstractFurnaceBlockEntity
-         * */
-        return canInsertItemIntoOutputSlot(inventory, new ItemStack(Items.EMERALD)) && canInsertAmountIntoOutputSlot(inventory); //add exist recipe
+        Optional<CrucibleFurnaceRecipe> recipe = entity.level.getRecipeManager().getRecipeFor(CrucibleFurnaceRecipe.Type.INSTANCE, inventory, entity.level);
+
+        return recipe.isPresent();
+
     }
 
-    private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack stack) {
-        return inventory.getItem(5).getItem() == stack.getItem() || inventory.getItem(5).isEmpty();
-    }
-
-    private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
-        return inventory.getItem(5).getMaxStackSize() > inventory.getItem(5).getCount();
-    }
 
     @Nullable
     @Override

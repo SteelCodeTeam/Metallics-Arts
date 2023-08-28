@@ -6,12 +6,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModMenuRegister;
-import org.jetbrains.annotations.Nullable;
 
 public class CrucibleFurnaceMenu extends AbstractContainerMenu {
     public final CrucibleFurnaceBlockEntity blockEntity;
@@ -19,7 +17,7 @@ public class CrucibleFurnaceMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public CrucibleFurnaceMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-        this(id, inv, (CrucibleFurnaceBlockEntity) inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(5));
+        this(id, inv, (CrucibleFurnaceBlockEntity) inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(7));
     }
 
     @SuppressWarnings("removal")

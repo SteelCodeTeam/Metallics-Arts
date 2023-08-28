@@ -1,17 +1,13 @@
-package net.rudahee.metallics_arts.setup.registries.blocks.other_blocks;
+package net.rudahee.metallics_arts.setup.registries.blocks.decoration;
 
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.OreGenerationEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
-public class Decoration {
+public class DecorationBlockRegister {
 
     public static void register() {
         for (MetalEnum metal: MetalEnum.values()) {

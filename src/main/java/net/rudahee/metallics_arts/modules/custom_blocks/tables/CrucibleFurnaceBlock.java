@@ -28,12 +28,14 @@ import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace
 import net.rudahee.metallics_arts.setup.registries.ModBlockEntitiesRegister;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.function.Supplier;
+
 public class CrucibleFurnaceBlock extends BaseEntityBlock {
 
     public CrucibleFurnaceBlock(Properties properties) {
         super(properties);
     }
-
 
     /*
      *
@@ -45,6 +47,8 @@ public class CrucibleFurnaceBlock extends BaseEntityBlock {
         if (entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entity)) {
             entity.hurt(DamageSource.HOT_FLOOR, 4.0F);
         }
+
+
         super.stepOn(level, pos, state, entity);
     }
 

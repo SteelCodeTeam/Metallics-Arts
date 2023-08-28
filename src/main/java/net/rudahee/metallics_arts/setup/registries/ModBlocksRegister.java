@@ -4,7 +4,6 @@ package net.rudahee.metallics_arts.setup.registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.AmethystBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
@@ -16,7 +15,7 @@ import net.rudahee.metallics_arts.setup.registries.blocks.BasicBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.AtiumBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.EttmetalBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.LerasiumBlocksRegister;
-import net.rudahee.metallics_arts.setup.registries.blocks.other_blocks.Decoration;
+import net.rudahee.metallics_arts.setup.registries.blocks.decoration.DecorationBlockRegister;
 
 import java.util.HashMap;
 
@@ -57,7 +56,7 @@ public class ModBlocksRegister {
         LerasiumBlocksRegister.register();
         EttmetalBlocksRegister.register();
         BasicBlocksRegister.register();
-        Decoration.register();
+        DecorationBlockRegister.register();
         //Electric.register();
     }
 
