@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.modules.custom_blocks.tables;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
@@ -11,20 +12,26 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceBlockEntity;
+import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceMenu;
 import net.rudahee.metallics_arts.setup.registries.ModBlockEntitiesRegister;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,9 +39,37 @@ import java.util.ArrayList;
 import java.util.function.Supplier;
 
 public class CrucibleFurnaceBlock extends BaseEntityBlock {
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public CrucibleFurnaceBlock(Properties properties) {
         super(properties);
+
+    }
+
+    /*
+
+        HORIZONTAL FACING
+
+     */
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, Rotation rotation) {
+        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
+    }
+    @Override
+    public BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.getRotation(state.getValue(FACING)));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
+        builder.add(LIT);
     }
 
     /*
@@ -46,8 +81,8 @@ public class CrucibleFurnaceBlock extends BaseEntityBlock {
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
         if (entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entity)) {
             entity.hurt(DamageSource.HOT_FLOOR, 4.0F);
+            entity.setSecondsOnFire(4);
         }
-
 
         super.stepOn(level, pos, state, entity);
     }
@@ -57,6 +92,9 @@ public class CrucibleFurnaceBlock extends BaseEntityBlock {
     * BURN NEAR BLOCKS RANDOMLY
     *
     */
+
+
+
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rng) {
         if (level.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
@@ -106,10 +144,6 @@ public class CrucibleFurnaceBlock extends BaseEntityBlock {
         return false;
     }
 
-    private boolean isFlammable(LevelReader levelReader, BlockPos pos) {
-        return pos.getY() >= levelReader.getMinBuildHeight() && pos.getY() < levelReader.getMaxBuildHeight() && !levelReader.hasChunkAt(pos) ? false : levelReader.getBlockState(pos).getMaterial().isFlammable();
-    }
-
     private boolean isFlammable(LevelReader level, BlockPos pos, Direction face) {
         return pos.getY() >= level.getMinBuildHeight() && pos.getY() < level.getMaxBuildHeight() && !level.hasChunkAt(pos) ? false : level.getBlockState(pos).isFlammable(level, pos, face);
     }
@@ -125,7 +159,7 @@ public class CrucibleFurnaceBlock extends BaseEntityBlock {
     *
     */
     @Override
-    public RenderShape getRenderShape(BlockState p_49232_) {
+    public RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
 

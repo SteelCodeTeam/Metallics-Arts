@@ -120,17 +120,22 @@ public class CrucibleFurnaceMenu extends AbstractContainerMenu {
         int maxHeight = 51;
         double percentage = ((double) this.data.get(CrucibleFurnaceBlockEntity.FUEL_STORAGE_INDEX) / this.data.get(CrucibleFurnaceBlockEntity.MAX_FUEL_STORAGE_INDEX)) * 100;
 
-        int height = Math.min(maxHeight, (int) ((percentage / 100) * maxHeight));
-
-        return height;
+        return Math.min(maxHeight, (int) ((percentage / 100) * maxHeight));
     }
 
-    public int getLitProgress() {
-        int i = this.data.get(1);
-        if (i == 0) {
-            i = 200;
-        }
+    public int getProgress() {
+        int maxWidth = 24;
 
-        return this.data.get(0) * 13 / i;
+        double percentage = ((double) this.data.get(CrucibleFurnaceBlockEntity.PROGRESS_INDEX) / this.data.get(CrucibleFurnaceBlockEntity.MAX_PROGRESS_INDEX)) * 100;
+
+        return Math.min(maxWidth, (int) ((percentage / 100) * maxWidth));
+    }
+
+    public boolean isHot() {
+        return this.data.get(CrucibleFurnaceBlockEntity.FUEL_STORAGE_INDEX) != 0;
+    }
+
+    public int timeWithoutRecipe() {
+        return this.data.get(CrucibleFurnaceBlockEntity.TIME_WITHOUT_RECIPE_INDEX);
     }
 }

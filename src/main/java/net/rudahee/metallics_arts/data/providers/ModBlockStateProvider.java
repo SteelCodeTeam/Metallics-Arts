@@ -129,7 +129,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(MetalTagEnum.ETTMETAL.getGemNameLower()),model);
 
         model = new ModelFile.UncheckedModelFile(modLoc("block/crucible_furnace"));
-        simpleBlock(ModBlocksRegister.CRUCIBLE_FURNACE.get());
+        directionalBlock(ModBlocksRegister.CRUCIBLE_FURNACE.get(), model);
+        //simpleBlock(ModBlocksRegister.CRUCIBLE_FURNACE.get());
         simpleBlockItem(ModBlocksRegister.CRUCIBLE_FURNACE.get(),model);
 
 

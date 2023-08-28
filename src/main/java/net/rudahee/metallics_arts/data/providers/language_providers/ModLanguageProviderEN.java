@@ -87,6 +87,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
 
         private final Map<String, String> tables = new HashMap<>() {{
                 put("block.metallics_arts.menu.crucible_furnace", "Crucible Furnace");
+                put("block.metallics_arts.crucible_furnace", "Crucible Furnace");
         }};
 
         private final Map<String, String> ingots = new HashMap<>() {{

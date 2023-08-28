@@ -2,8 +2,11 @@ package net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnac
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -23,6 +26,7 @@ import net.minecraftforge.items.*;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.rudahee.metallics_arts.data.custom_recipes.tables.CrucibleFurnaceRecipe;
+import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.setup.registries.ModBlockEntitiesRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import org.jetbrains.annotations.NotNull;
@@ -86,6 +90,7 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
     private int timeWithoutRecipe = 0;
     private int tickFuel = 0;
     private int tickProgress = 0;
+    private int tickAnim = 0;
 
     public static final int PROGRESS_INDEX = 0;
     public static final int MAX_PROGRESS_INDEX = 1;
@@ -211,10 +216,38 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
                 craftItem(entity);
 
             } else {
-                entity.resetProgress();
-                setChanged(level, pos, state);
+                if (entity.fuelStorage > 0) {
+                    entity.timeWithoutRecipe++;
+
+                    if (entity.timeWithoutRecipe >= 20000) {
+                        if (entity.itemHandler.getStackInSlot(5).is(Items.AIR)) {
+                            entity.itemHandler.setStackInSlot(10, new ItemStack(Items.OBSIDIAN, (int) Math.ceil(entity.fuelStorage / 100.0 * 10)));
+                            entity.timeWithoutRecipe = 0;
+                            entity.fuelStorage = 0;
+
+                        } else {
+                            entity.timeWithoutRecipe--;
+                            entity.fuelStorage--;
+                        }
+                    }
+                    entity.resetProgress();
+                    setChanged(level, pos, state);
+                }
+            }
+
+            if (level instanceof ServerLevel servLevel && entity.fuelStorage > 0) {
+                if (entity.tickAnim == 5) {
+                    servLevel.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, pos.getX() + 0.5d, pos.getY() + 1d, pos.getZ() + 0.5d, 3, 0d, 0, 0, 0d);
+                    //servLevel.sendParticles(ParticleTypes.LANDING_LAVA, pos.getX() + 0.5d, pos.getY() + 0.5d, pos.getZ() + 0.5d, 0, 0d, 0.5d, 0.5d, 0d);
+                    servLevel.sendParticles(ParticleTypes.LAVA, pos.getX() + 0.5d, pos.getY() + 0.5d, pos.getZ() + 0.5d, 0, 0d, 0.5d, 0.5d, 0d);
+                    entity.tickAnim = 0;
+                } else {
+                    entity.tickAnim++;
+                }
             }
         }
+
+
 
     }
 
@@ -245,7 +278,7 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
 
         Optional<CrucibleFurnaceRecipe> recipe = entity.level.getRecipeManager().getRecipeFor(CrucibleFurnaceRecipe.Type.INSTANCE, inventory, entity.level);
 
-        if (recipe.isPresent()) {
+        if (recipe.isPresent() && entity.itemHandler.getStackInSlot(5).getCount() < 64) {
 
             if (entity.fuelStorage > 0) {
 
@@ -276,20 +309,6 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
                     entity.tickFuel++;
                 } else {
                     entity.tickFuel = 0;
-                    entity.fuelStorage--;
-                }
-            }
-        } else {
-            entity.timeWithoutRecipe++;
-
-            if (entity.timeWithoutRecipe >= 20000) {
-                if (entity.itemHandler.getStackInSlot(5).is(Items.AIR)) {
-                    entity.itemHandler.setStackInSlot(5, new ItemStack(Items.OBSIDIAN, (int) Math.ceil(entity.fuelStorage/100.0 * 5)));
-                    entity.timeWithoutRecipe = 0;
-                    entity.fuelStorage = 0;
-
-                } else {
-                    entity.timeWithoutRecipe--;
                     entity.fuelStorage--;
                 }
             }

@@ -32,6 +32,11 @@ public class CrucibleFurnaceScreen extends AbstractContainerScreen<CrucibleFurna
 
     private static final Square SIZE_LAVA_GRAY = new Square(new Point(238, 103),new Point(253, 103),new Point(238, 154),new Point(253, 154));
 
+    private static final Square SIZE_PROGRESS_GRAY = new Square(new Point(109, 58),new Point(132, 58),new Point(109, 71),new Point(109, 71));
+    private static final Square SIZE_PROGRESS_BAR = new Square(new Point(177, 82),new Point(200, 82),new Point(177, 95),new Point(200, 95));
+
+    private static final Square SIZE_CRUCIBLE_ON = new Square(new Point(177, 3),new Point(254, 3),new Point(177, 80),new Point(254, 80));
+    private static final Square SIZE_CRUCIBLE_OFF = new Square(new Point(32, 17),new Point(108, 17),new Point(32, 42),new Point(108, 42));
 
 
     public CrucibleFurnaceScreen(CrucibleFurnaceMenu menu, Inventory inventory, Component component) {
@@ -58,15 +63,21 @@ public class CrucibleFurnaceScreen extends AbstractContainerScreen<CrucibleFurna
 
         this.blit(pPoseStack, x - 1, y + offsetY, SIZE_GUI.getTopLeft().x, SIZE_GUI.getTopLeft().y, SIZE_GUI.getBottomRight().x, SIZE_GUI.getBottomRight().y);
 
+        if (menu.isHot()) {
+            renderHotGui(pPoseStack, x, y);
+        }
 
         renderLavaAnimation(pPoseStack, x , y);
         renderLavaHeight(pPoseStack, x , y);
-
-        renderProgressArrow(pPoseStack, width / 2, height / 2);
+        renderProgress(pPoseStack, x, y);
 
         if (tick > 480) {
             tick = 0;
         }
+    }
+
+    private void renderHotGui(PoseStack stack, int x, int y) {
+        this.blit(stack, x + SIZE_CRUCIBLE_OFF.getTopLeft().x - 1, y + SIZE_CRUCIBLE_OFF.getTopLeft().y + 14, SIZE_CRUCIBLE_ON.getTopLeft().x, SIZE_CRUCIBLE_ON.getTopLeft().y,77,78);
     }
 
     protected void renderLavaHeight(PoseStack stack, int x, int y) {
@@ -88,10 +99,8 @@ public class CrucibleFurnaceScreen extends AbstractContainerScreen<CrucibleFurna
 
     }
 
-    private void renderProgressArrow(PoseStack pPoseStack, int x, int y) {
-
-        blit(pPoseStack, x + 105, y + 33, 176, 0, 8, 1);
-
+    private void renderProgress(PoseStack stack, int x, int y) {
+        this.blit(stack, x + SIZE_PROGRESS_GRAY.getTopLeft().x - 1, y + SIZE_PROGRESS_GRAY.getTopLeft().y + 14, SIZE_PROGRESS_BAR.getTopLeft().x, SIZE_PROGRESS_BAR.getTopLeft().y, menu.getProgress(), 14);
     }
 
     @Override
