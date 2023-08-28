@@ -1,0 +1,20 @@
+{
+    "type": "metallics_arts:crucible_furnace_melting",
+    "ingredients": [
+    {
+        "item": "metallics_arts:zinc_ingot"
+    },
+    {
+        "item": "metallics_arts:zinc_ingot"
+    },
+    {
+        "item": "minecraft:copper_ingot"
+    },
+    {
+        "item": "minecraft:copper_ingot"
+    }
+    ],
+    "output": {
+    "item": "metallics_arts:brass_ingot"
+    }
+}

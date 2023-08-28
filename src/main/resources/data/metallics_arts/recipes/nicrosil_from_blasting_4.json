@@ -1,0 +1,20 @@
+{
+    "type": "metallics_arts:crucible_furnace_melting",
+    "ingredients": [
+    {
+        "item": "metallics_arts:chromium_ingot"
+    },
+    {
+        "item": "metallics_arts:chromium_ingot"
+    },
+    {
+        "item": "metallics_arts:nickel_ingot"
+    },
+    {
+        "item": "metallics_arts:nickel_ingot"
+    }
+    ],
+    "output": {
+    "item": "metallics_arts:nicrosil_ingot"
+    }
+}

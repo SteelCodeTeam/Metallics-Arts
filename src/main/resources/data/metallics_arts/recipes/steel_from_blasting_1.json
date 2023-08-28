@@ -1,0 +1,20 @@
+{
+  "type": "metallics_arts:crucible_furnace_melting",
+  "ingredients": [
+    {
+      "item": "minecraft:coal"
+    },
+    {
+      "item": "minecraft:coal"
+    },
+    {
+      "item": "minecraft:coal"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "output": {
+    "item": "metallics_arts:steel_ingot"
+  }
+}

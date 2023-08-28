@@ -1,0 +1,20 @@
+{
+    "type": "metallics_arts:crucible_furnace_melting",
+    "ingredients": [
+    {
+        "item": "metallics_arts:lead_ingot"
+    },
+    {
+        "item": "metallics_arts:cadmium_ingot"
+    },
+    {
+        "item": "metallics_arts:lead_ingot"
+    },
+    {
+        "item": "metallics_arts:cadmium_ingot"
+    }
+    ],
+    "output": {
+    "item": "metallics_arts:bendalloy_ingot"
+    }
+}
