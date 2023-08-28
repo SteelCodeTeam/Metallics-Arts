@@ -30,6 +30,8 @@ public class ModPaintingProvider {
     // The DeferredRegister for registering custom PaintingVariants.
     public static final DeferredRegister<PaintingVariant> PAINTING_VARIANTS =
             DeferredRegister.create(ForgeRegistries.PAINTING_VARIANTS, MetallicsArts.MOD_ID);
+    public static final DeferredRegister<PaintingVariant> PAINTING_VARIANTS2 =
+            DeferredRegister.create(ForgeRegistries.PAINTING_VARIANTS, MetallicsArts.MOD_ID);
 
     // The RegistryObject for the Inquisitor Painting variant.
     public static final RegistryObject<PaintingVariant> INQUISITOR_PAINTING = PAINTING_VARIANTS.register("inquisitor_painting",
@@ -49,7 +51,18 @@ public class ModPaintingProvider {
 
     // The RegistryObject for the Armonia Painting by Gar Leyva variant.
     public static final RegistryObject<PaintingVariant> ARMONIA_PAINTING = PAINTING_VARIANTS.register("gar_leyva_armonia_painting",
-            () -> new PaintingVariant(42,48));
+            () -> new PaintingVariant(32,48));
+
+    public static final RegistryObject<PaintingVariant> CARLOS1 = PAINTING_VARIANTS2.register("carlos_wk_art_kelsier_painting",
+            () -> new PaintingVariant(32,48));
+    public static final RegistryObject<PaintingVariant> CARLOS2 = PAINTING_VARIANTS.register("carlos_wk_art_ascension_painting",
+            () -> new PaintingVariant(32,48));
+    public static final RegistryObject<PaintingVariant> CARLOS3 = PAINTING_VARIANTS.register("carlos_wk_art_windows_pose_painting",
+            () -> new PaintingVariant(32,48));
+    public static final RegistryObject<PaintingVariant> CARLOS4 = PAINTING_VARIANTS.register("carlos_wk_art_luthadel_painting",
+            () -> new PaintingVariant(32,48));
+    public static final RegistryObject<PaintingVariant> CARLOS5 = PAINTING_VARIANTS.register("carlos_wk_art_red_sun_painting",
+            () -> new PaintingVariant(32,48));
 
 
 
@@ -61,6 +74,7 @@ public class ModPaintingProvider {
      */
     public static void register(IEventBus eventBus) {
         PAINTING_VARIANTS.register(eventBus);
+        PAINTING_VARIANTS2.register(eventBus);
     }
 
     /**

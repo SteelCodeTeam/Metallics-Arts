@@ -2,6 +2,8 @@
    "values" : [
      "metallics_arts:sanfre_painting", "metallics_arts:fun_cobber_painting",
      "metallics_arts:inquisitor_painting", "metallics_arts:gar_leyva_koloss_painting",
-     "metallics_arts:gar_leyva_armonia_painting"
+     "metallics_arts:gar_leyva_armonia_painting","metallics_arts:carlos_wk_art_kelsier_painting",
+     "metallics_arts:carlos_wk_art_ascension_painting", "metallics_arts:carlos_wk_art_windows_pose_painting",
+     "metallics_arts:carlos_wk_art_luthadel_painting","metallics_arts:carlos_wk_art_red_sun_painting"
    ]
 }

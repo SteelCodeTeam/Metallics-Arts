@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.custom_items.metal_spikes;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -331,6 +332,7 @@ public class MetalSpike extends SwordItem {
 
         return compoundTag;
     }
+
 
     @Override
     public boolean isEnchantable(ItemStack itemStack) {
