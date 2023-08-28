@@ -105,9 +105,6 @@ public class BasicGun extends ProjectileWeaponItem {
                     stack.setTag(GunUtils.reloadTexture(stack, this.gunType));
                     stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
                 }
-                if (ModKeyRegister.CHANGE.isDown()) {
-                    stack.setTag(GunUtils.changeAmmo(player, stack));
-                }
 
             } else if (!stack.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
                 stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());

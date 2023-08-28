@@ -35,8 +35,6 @@ public class ModKeyRegister {
 
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping RELOAD;
-    @OnlyIn(Dist.CLIENT)
-    public static KeyMapping CHANGE;
 
 
     public static void initKeys(final RegisterKeyMappingsEvent evt) {
@@ -63,9 +61,6 @@ public class ModKeyRegister {
 
         ALLOMANTIC_PULL = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomantic_pull", InputConstants.Type.MOUSE, 0,KEY_CATEGORY);
         evt.register(ALLOMANTIC_PULL);
-
-        CHANGE = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "change", InputConstants.Type.MOUSE, 2, KEY_CATEGORY);
-        evt.register(CHANGE);
 
         RELOAD =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "reload", GLFW.GLFW_KEY_R, KEY_CATEGORY);
         evt.register(RELOAD);
