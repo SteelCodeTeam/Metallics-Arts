@@ -221,7 +221,7 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
 
                     if (entity.timeWithoutRecipe >= 20000) {
                         if (entity.itemHandler.getStackInSlot(5).is(Items.AIR)) {
-                            entity.itemHandler.setStackInSlot(10, new ItemStack(Items.OBSIDIAN, (int) Math.ceil(entity.fuelStorage / 100.0 * 10)));
+                            entity.itemHandler.setStackInSlot(5, new ItemStack(Items.OBSIDIAN, (int) Math.ceil(entity.fuelStorage / 100.0 * 10)));
                             entity.timeWithoutRecipe = 0;
                             entity.fuelStorage = 0;
 
