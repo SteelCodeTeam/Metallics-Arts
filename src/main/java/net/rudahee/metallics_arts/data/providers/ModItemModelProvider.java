@@ -47,7 +47,7 @@ public class ModItemModelProvider extends ItemModelProvider {
      * @see ExistingFileHelper
      */
     public ModItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, MetallicsArts.MOD_ID, existingFileHelper);
+        super(generator.getPackOutput(), MetallicsArts.MOD_ID, existingFileHelper);
     }
 
 

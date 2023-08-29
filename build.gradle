@@ -8,13 +8,13 @@ plugins {
 
 group = 'net.rudahee.metallics_arts' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'metallics_arts'
-version = '1.19.2-1.6.6'
+version = '1.19.4-1.6.6'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println "Java: 17, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
-    mappings channel: 'official', version: '1.19.2'
+    mappings channel: 'official', version: '1.19.4'
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
@@ -129,17 +129,17 @@ repositories {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.19.2-43.2.8'
+    minecraft 'net.minecraftforge:forge:1.19.4-45.1.16'
 
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.2-5.1.1.0")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.2-5.1.1.0:api")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.4-5.1.5.3")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.4-5.1.5.3:api")
 
  //   compileOnly fg.deobf("mezz.jei:jei-1.19.2-common-api:11.2.0.246")
  //   compileOnly fg.deobf("mezz.jei:jei-1.19.2-forge-api:11.2.0.246")
   //  compileOnly fg.deobf("mezz.jei:jei-1.19.2-forge:11.2.0.246")
 
-    compileOnly fg.deobf("com.klikli_dev:modonomicon:1.19.2-1.27.0")
-    runtimeOnly fg.deobf("com.klikli_dev:modonomicon:1.19.2-1.27.0")
+    compileOnly fg.deobf("com.klikli_dev:modonomicon:1.19.4-1.33.1")
+    runtimeOnly fg.deobf("com.klikli_dev:modonomicon:1.19.4-1.33.1")
     
 }
 

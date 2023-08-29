@@ -1,8 +1,6 @@
 package net.rudahee.metallics_arts.modules.logic.client.client_events;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
@@ -23,6 +21,8 @@ import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
 import net.rudahee.metallics_arts.utils.DrawUtils;
 import net.rudahee.metallics_arts.utils.FoundNearbyMetalUtils;
 import net.rudahee.metallics_arts.utils.powers_utils.MetalBlockUtils;
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
 import java.util.Comparator;

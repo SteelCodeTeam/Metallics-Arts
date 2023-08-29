@@ -80,7 +80,7 @@ public class CrucibleFurnaceBlock extends BaseEntityBlock {
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
         if (entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entity)) {
-            entity.hurt(DamageSource.HOT_FLOOR, 4.0F);
+            //entity.hurt(DamageSource.HOT_FLOOR, 4.0F);
             entity.setSecondsOnFire(4);
         }
 

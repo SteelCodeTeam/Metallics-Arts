@@ -48,7 +48,7 @@ public class ModRecipeProvider extends RecipeProvider {
      * @param generator the data generator used to generate crafting recipes
      */
     public ModRecipeProvider(DataGenerator generator) {
-        super(generator);
+        super(generator.getPackOutput());
     }
 
     /**
@@ -63,7 +63,7 @@ public class ModRecipeProvider extends RecipeProvider {
      * @see ModBlocksRegister
      */
     @Override
-    protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> recipesConsumer) {
+    protected void buildRecipes(@NotNull Consumer<FinishedRecipe> recipesConsumer) {
 
         ModItemsRegister.ITEM_METAL_INGOT.forEach((name, item) ->
                 ShapelessRecipeBuilder.shapeless(item.asItem(), 9)
@@ -931,6 +931,8 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_block", has(ModItemsRegister.MISTCLOACK.get()))
                 .save(recipesConsumer, new ResourceLocation(ModItemsRegister.MISTCLOACK.get().getDescriptionId()));*/
     }
+
+
 }
 
 

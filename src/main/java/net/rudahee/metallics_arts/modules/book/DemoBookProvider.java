@@ -40,7 +40,7 @@ public class DemoBookProvider extends BookProvider {
      * @param lang The LanguageProvider object used to provide translations for the book.
      */
     public DemoBookProvider(DataGenerator generator, String modid, LanguageProvider lang) {
-        super(generator, modid, lang);
+        super(generator.getPackOutput(), modid, lang);
     }
 
     /**

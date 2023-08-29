@@ -430,7 +430,7 @@ public class FeruchemySelector extends Screen {
             MetalTagEnum metal = MetalTagEnum.getMetal(this.slotSelected);
             this.mc.player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
                 ClientUtils.toggleStorage(metal, data, this.mc.player);
-                this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK, 0.1F, 2.0F);
+                this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK.get(), 0.1F, 2.0F);
             });
         }
     }
@@ -440,7 +440,7 @@ public class FeruchemySelector extends Screen {
             MetalTagEnum metal = MetalTagEnum.getMetal(this.slotSelected);
             this.mc.player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
                 ClientUtils.toggleTap(metal, data,this.mc.player);
-                this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK, 0.1F, 2.0F);
+                this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK.get(), 0.1F, 2.0F);
             });
         }
     }

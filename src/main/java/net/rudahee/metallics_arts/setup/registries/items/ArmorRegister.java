@@ -18,35 +18,35 @@ public class ArmorRegister {
 
     public static void register() {
         RegistryObject<Item> steelHelmet = MetallicsArts.registerItem("steel_helmet",
-                () -> new ArmorItem(PostNetheriteMaterials.STEEL, EquipmentSlot.HEAD, PROPERTIES));
+                () -> new ArmorItem(PostNetheriteMaterials.STEEL, ArmorItem.Type.HELMET, PROPERTIES));
         ModItemsRegister.STEEL_ARMOR.put(ArmorPiecesEnum.HELMET, steelHelmet);
 
         RegistryObject<Item> steelChesplate = MetallicsArts.registerItem("steel_chestplate",
-                () -> new ArmorItem(PostNetheriteMaterials.STEEL, EquipmentSlot.CHEST, PROPERTIES));
+                () -> new ArmorItem(PostNetheriteMaterials.STEEL, ArmorItem.Type.CHESTPLATE, PROPERTIES));
         ModItemsRegister.STEEL_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, steelChesplate);
 
         RegistryObject<Item> steelLeggings = MetallicsArts.registerItem("steel_leggings",
-                () -> new ArmorItem(PostNetheriteMaterials.STEEL, EquipmentSlot.LEGS, PROPERTIES));
+                () -> new ArmorItem(PostNetheriteMaterials.STEEL, ArmorItem.Type.LEGGINGS, PROPERTIES));
         ModItemsRegister.STEEL_ARMOR.put(ArmorPiecesEnum.LEGGINGS, steelLeggings);
 
         RegistryObject<Item> steelBoots = MetallicsArts.registerItem("steel_boots",
-                () -> new ArmorItem(PostNetheriteMaterials.STEEL, EquipmentSlot.FEET, PROPERTIES));
+                () -> new ArmorItem(PostNetheriteMaterials.STEEL, ArmorItem.Type.BOOTS, PROPERTIES));
         ModItemsRegister.STEEL_ARMOR.put(ArmorPiecesEnum.BOOTS, steelBoots);
 
         RegistryObject<Item> aluminumHelmet = MetallicsArts.registerItem("aluminum_helmet",
-                () -> new ArmorItem(PostNetheriteMaterials.ALUMINUM, EquipmentSlot.HEAD, PROPERTIES));
+                () -> new ArmorItem(PostNetheriteMaterials.ALUMINUM, ArmorItem.Type.HELMET, PROPERTIES));
         ModItemsRegister.ALUMINUM_ARMOR.put(ArmorPiecesEnum.HELMET, aluminumHelmet);
 
         RegistryObject<Item> aluminumChesplate = MetallicsArts.registerItem("aluminum_chestplate",
-                () -> new ArmorItem(PostNetheriteMaterials.ALUMINUM, EquipmentSlot.CHEST, PROPERTIES));
+                () -> new ArmorItem(PostNetheriteMaterials.ALUMINUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
         ModItemsRegister.ALUMINUM_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, aluminumChesplate);
 
         RegistryObject<Item> aluminumLeggings = MetallicsArts.registerItem("aluminum_leggings",
-                () -> new ArmorItem(PostNetheriteMaterials.ALUMINUM, EquipmentSlot.LEGS, PROPERTIES));
+                () -> new ArmorItem(PostNetheriteMaterials.ALUMINUM, ArmorItem.Type.LEGGINGS, PROPERTIES));
         ModItemsRegister.ALUMINUM_ARMOR.put(ArmorPiecesEnum.LEGGINGS, aluminumLeggings);
 
         RegistryObject<Item> aluminumBoots = MetallicsArts.registerItem("aluminum_boots",
-                () -> new ArmorItem(PostNetheriteMaterials.ALUMINUM, EquipmentSlot.FEET, PROPERTIES));
+                () -> new ArmorItem(PostNetheriteMaterials.ALUMINUM, ArmorItem.Type.BOOTS, PROPERTIES));
         ModItemsRegister.ALUMINUM_ARMOR.put(ArmorPiecesEnum.BOOTS, aluminumBoots);
 
         ModItemsRegister.WOOD_SHIELD = MetallicsArts.registerItem(Shields.WOOD.getId(),

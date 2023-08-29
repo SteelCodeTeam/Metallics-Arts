@@ -1,14 +1,17 @@
 package net.rudahee.metallics_arts.data.custom_recipes.vials;
 
+import com.google.gson.JsonObject;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.Tags;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
@@ -16,6 +19,7 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypesRegister;
 import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -56,7 +60,7 @@ public class LargeVialItemRecipe extends CustomRecipe {
      * @param location of the path.
      */
     public LargeVialItemRecipe(ResourceLocation location) {
-        super(location);
+        super(location, CraftingBookCategory.EQUIPMENT);
     }
 
     private final HashMap<String, Integer> required = new HashMap<>();
@@ -225,8 +229,11 @@ public class LargeVialItemRecipe extends CustomRecipe {
      *
      * @return ItemStack
      */
+
+
+
     @Override
-    public @NotNull ItemStack assemble(@NotNull CraftingContainer inventory) {
+    public @NotNull ItemStack assemble(@NotNull CraftingContainer inventory, RegistryAccess registryAccess) {
 
         ItemStack finalResult = new ItemStack(ModItemsRegister.LARGE_VIAL.get(), 1);
         CompoundTag compoundNBT = new CompoundTag();
@@ -274,18 +281,32 @@ public class LargeVialItemRecipe extends CustomRecipe {
      * @author SteelCode Team
      * @since 1.5.1
      *
-     * @see SimpleRecipeSerializer
+     * @see RecipeSerializer
      * @see LargeVialItemRecipe
      */
-    public static class Serializer extends SimpleRecipeSerializer<LargeVialItemRecipe> {
+    public static class Serializer implements RecipeSerializer<LargeVialItemRecipe> {
 
         /**
          * Constructor of the class. The only thing that constructor does its pass the Recipe class to superclass.
          */
         public Serializer() {
-            super(LargeVialItemRecipe::new);
+            super();
         }
 
+        @Override
+        public LargeVialItemRecipe fromJson(ResourceLocation p_44103_, JsonObject p_44104_) {
+            return null;
+        }
+
+        @Override
+        public @Nullable LargeVialItemRecipe fromNetwork(ResourceLocation p_44105_, FriendlyByteBuf p_44106_) {
+            return null;
+        }
+
+        @Override
+        public void toNetwork(FriendlyByteBuf p_44101_, LargeVialItemRecipe p_44102_) {
+
+        }
     }
 
 }

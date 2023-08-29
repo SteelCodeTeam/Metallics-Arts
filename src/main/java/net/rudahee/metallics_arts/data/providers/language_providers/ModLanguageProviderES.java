@@ -341,7 +341,7 @@ public class ModLanguageProviderES extends LanguageProvider {
      * @param locale            the locale for the target language
      */
     public ModLanguageProviderES(DataGenerator gen, String modid, String locale) {
-        super(gen, modid, locale);
+        super(gen.getPackOutput(), modid, locale);
     }
 
     /**

@@ -303,7 +303,7 @@ public class ModLanguageProviderPL extends LanguageProvider {
      * @param locale            the locale for the target language
      */
     public ModLanguageProviderPL(DataGenerator gen, String modid, String locale) {
-        super(gen, modid, locale);
+        super(gen.getPackOutput(), modid, locale);
     }
 
     /**

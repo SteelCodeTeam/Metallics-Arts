@@ -1,10 +1,12 @@
 package net.rudahee.metallics_arts.data.providers.tags_providers;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalAuxiliaryInfo;
@@ -27,15 +29,16 @@ public class ModBlockTagProvider extends BlockTagsProvider {
      * @param modid the mod ID for the mod that's adding the block tags
      * @param exFileHelper the existing file helper for handling existing files
      */
-    public ModBlockTagProvider(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
+    /*public ModBlockTagProvider(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
         super(gen, modid, exFileHelper);
     }
+
 
     /**
      * Adds tags for all custom blocks in the mod.
      */
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
 
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
             if (!metal.isVanilla()) {

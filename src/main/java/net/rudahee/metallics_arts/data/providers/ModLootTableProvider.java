@@ -32,7 +32,10 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * A custom loot table provider for the mod, responsible for generating loot tables
@@ -53,8 +56,9 @@ public class ModLootTableProvider extends LootTableProvider {
      *
      * @param generator the data generator to use for generating the loot tables
      */
-    public ModLootTableProvider(DataGenerator generator) {
-        super(generator);
+    public ModLootTableProvider(DataGenerator generator, Set<ResourceLocation> loc, List<SubProviderEntry> prov) {
+        //TODO no se que onda con el super, agrege los dos parametros finales.
+        super(generator.getPackOutput(), loc, prov);
         this.generator = generator;
     }
 
@@ -101,9 +105,10 @@ public class ModLootTableProvider extends LootTableProvider {
      * The main method for generating loot tables using the provided CachedOutput.
      *
      * @param cachedOutput the cached output for storing the generated loot tables
+     * @return
      */
     @Override
-    public void run(CachedOutput cachedOutput) {
+    public CompletableFuture<?> run(CachedOutput cachedOutput) {
         addBlockTables();
         Map<ResourceLocation, LootTable> tables;
         tables = new HashMap<>();
@@ -111,6 +116,8 @@ public class ModLootTableProvider extends LootTableProvider {
             tables.put(entry.getKey().getLootTable(), entry.getValue().setParamSet(LootContextParamSets.BLOCK).build());
         }
         writeTables(cachedOutput, tables);
+        //TODO Arreglar el return return null;
+        return null;
     }
 
     /**
@@ -120,14 +127,10 @@ public class ModLootTableProvider extends LootTableProvider {
      * @param tables       the collection of generated loot tables
      */
     private void writeTables(CachedOutput cachedOutput, Map<ResourceLocation, LootTable> tables) {
-        Path outputFolder = this.generator.getOutputFolder();
+        Path outputFolder = this.generator.getPackOutput().getOutputFolder();
         tables.forEach((key, lootTable) -> {
             Path path = outputFolder.resolve("data/" + key.getNamespace() + "/loot_tables/" + key.getPath() + ".json");
-            try {
-                DataProvider.saveStable(cachedOutput,net.minecraft.world.level.storage.loot.LootTables.serialize(lootTable),path);
-            } catch (IOException e) {
-                MetallicsArts.LOGGER.error("Couldn't write loot table {}", path, e);
-            }
+            DataProvider.saveStable(cachedOutput,net.minecraft.world.level.storage.loot.LootTables.serialize(lootTable),path);
         });
     }
 
@@ -190,13 +193,5 @@ public class ModLootTableProvider extends LootTableProvider {
         this.lootTables.put(block, LootTable.lootTable().withPool(builder));
     }
 
-    /**
-     * Returns the name of the loot table provider.
-     *
-     * @return a String representing the name of the loot table provider
-     */
-    @Override
-    public String getName() {
-        return "metallics_arts_loot_table";
-    }
+
 }

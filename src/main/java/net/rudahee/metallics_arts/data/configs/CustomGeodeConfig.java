@@ -1,7 +1,8 @@
 package net.rudahee.metallics_arts.data.configs;
 
 import net.minecraft.core.Holder;
-import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
+//import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
@@ -26,7 +27,7 @@ import java.util.List;
  */
 public class CustomGeodeConfig {
 
-
+/*
     public static final Holder<ConfiguredFeature<GeodeConfiguration, ?>> ATIUM_GEODE =
             register(
                     "atium_geode",
@@ -91,7 +92,7 @@ public class CustomGeodeConfig {
                             0.35D, 0.083D, true, UniformInt.of(2, 3), UniformInt.of(2, 2), UniformInt.of(1, 2),
                             -16, 16, 0.05D, 1
                     ));
-
+*/
     /**
      * This method is used to register the geodes that will be generated in the world.
      *
@@ -101,9 +102,9 @@ public class CustomGeodeConfig {
      *
      * @return <FC extends FeatureConfiguration, F extends Feature<FC>>
      */
-    public static <FC extends FeatureConfiguration, F extends Feature<FC>> Holder<ConfiguredFeature<FC, ?>> register(String registerName, F feature, FC featureConfiguration) {
-        return BuiltinRegistries.registerExact(BuiltinRegistries.CONFIGURED_FEATURE, registerName, new ConfiguredFeature<>(feature, featureConfiguration));
-    }
+    //public static <FC extends FeatureConfiguration, F extends Feature<FC>> Holder<ConfiguredFeature<FC, ?>> register(String registerName, F feature, FC featureConfiguration) {
+    //    return BuiltInRegistries.registerExact(BuiltInRegistries.CONFIGURED_FEATURE, registerName, new ConfiguredFeature<>(feature, featureConfiguration));
+    //}
 
 
 }

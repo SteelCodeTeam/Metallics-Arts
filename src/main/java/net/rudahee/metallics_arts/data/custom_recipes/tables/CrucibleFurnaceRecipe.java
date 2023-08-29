@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.data.custom_recipes.tables;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -30,6 +31,7 @@ public class CrucibleFurnaceRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public boolean matches(@NotNull SimpleContainer container, Level level) {
+
         if (level.isClientSide()) {
             return false;
         }
@@ -50,7 +52,7 @@ public class CrucibleFurnaceRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public ItemStack assemble(SimpleContainer container) {
+    public ItemStack assemble(SimpleContainer container, RegistryAccess acess) {
         return output.copy();
     }
 
@@ -59,7 +61,13 @@ public class CrucibleFurnaceRecipe implements Recipe<SimpleContainer> {
         return true;
     }
 
+
+
     @Override
+    public ItemStack getResultItem(RegistryAccess access) {
+        return output.copy();
+    }
+
     public ItemStack getResultItem() {
         return output.copy();
     }
