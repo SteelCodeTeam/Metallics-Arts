@@ -25,16 +25,20 @@ displayName="Metallics Arts" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
-#displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
+displayURL="https://steelcode.team/" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 #logoFile="examplemod.png" #optional
 # A text field displayed in the mod UI
 credits="A small mod based on Mistborns series. Read Brandon's boooks! Required: Curios API." #optional
 # A text field displayed in the mod UI
-authors="RuDaHee & TobibusFate as Devs, Farck as Designer." #optional
+authors="SteelCode Team. You can check our projects in: https://steelcode.team/" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-A small mod based on Mistborns series. Read Brandon's boooks! Required: Curios API.
+A mod based on Mistborns series. Read Brandon's boooks!
+
+Based on legobmw99 and blits work. Please, check their mods.
+
+Required: Curios API, Modonomicon.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.metallics_arts]] #optional

@@ -48,7 +48,7 @@ We sincerely hope you enjoy your trip with us! 🎉
 
 ## **Requirements 📦**
 
-- **Forge 1.19.2-43.2.3** exactly.
+- **Forge 1.19.2-43.2.8** exactly.
 
 And we have two mandatory dependencies:
 - **Curios 1.19.2-5.1.1.0** or superior
@@ -56,18 +56,11 @@ And we have two mandatory dependencies:
 
 ------
 
-## **Changelog ✒ [v1.6.5]**
-- New vials: [v1.6.1]
-  - fixed a bug with small vials that did not allow their correct crafting.
-  - vials can now be crafted with more than one nugget at a time.
-- The crafting of the feruchemical rings was fixed. [v1.6.1]
-- New model of the sword koloss [v1.6.1]
-- New paintings created by Gar Leyva (https://twitter.com/gar_leyva) [v1.6.1]
-- Fixed crafting of gems and divine metal nuggets [1.6.2]
-- Fixed a bug in crafting vials and their subsequent loading [v1.6.4]
-- Implemented compatibility with Backpack Mods implementing a new slot in CurioAPI [v1.6.5]
-- Implemented stairs, slabs, fences, walls  and fence gates from all metals/raws [v1.6.5]
-- Implemented custom shields [v1.6.5]
+## **Changelog ✒ [v1.6.6]**
+- Implemented stairs, slabs, fences, walls  and fence gates from all metals/raws [v1.6.6]
+- Implemented custom shields [v1.6.6]
+- Implemented guns [v1.6.6]
+- Implemented furnace [1.6.6]
 <br>
 
 ------
