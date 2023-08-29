@@ -9,16 +9,17 @@ package net.rudahee.metallics_arts.data.enums.implementations;
  * @since 1.6.4
  */
 public enum GunType {
-    SHOTGUN("shotgun", 10, 2),
-    RIFLE("rifle", 10, 1),
+    SHOTGUN("shotgun", 10, 2,10),
+    RIFLE("rifle", 10, 1,100),
 
-    RIFLE_SPYGLASS("rifle_spyglass", 10, 1),
-    REVOLVER("revolver", 20, 6),
-    VINDICATOR("vindicator", 20, 8);
+    RIFLE_SPYGLASS("rifle_spyglass", 10, 1,100),
+    REVOLVER("revolver", 20, 6, 20),
+    VINDICATOR("vindicator", 20, 8, 20);
 
     private final String name;
     private final int reload_cooldown;
     private  final int maxAmount;
+    private  final int despawn;
 
 
     /**
@@ -28,10 +29,11 @@ public enum GunType {
      * @param reload_cooldown To reload cooldown in ticks.
      * @param maxAmount The maximum amount of ammunition the gun can hold.
      */
-    GunType(String name, int reload_cooldown, int maxAmount) {
+    GunType(String name, int reload_cooldown, int maxAmount, int despawn) {
         this.name = name;
         this.reload_cooldown = reload_cooldown;
         this.maxAmount = maxAmount;
+        this.despawn = despawn;
     }
 
     /**
@@ -59,5 +61,9 @@ public enum GunType {
      */
     public int getMaxAmount() {
         return maxAmount;
+    }
+
+    public int getDespawn() {
+        return despawn;
     }
 }

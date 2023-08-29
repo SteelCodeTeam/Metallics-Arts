@@ -13,6 +13,8 @@ import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
 import net.rudahee.metallics_arts.modules.custom_projectiles.BulletProjectile;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
+import java.util.Random;
+
 
 /**
  * Utility class containing static methods related to gun functionality.
@@ -22,6 +24,16 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
  */
 public class GunUtils {
 
+    /**
+     * This method handles the reloading of a gun owned by a player, based on the specified bullet type and gun type.
+     * The method updates the gun's CompoundTag to reflect to reload, including changes to bullet count and
+     * custom model data based on the gun type.
+     *
+     * @param gun The ItemStack representing the gun to be reloaded.
+     * @param player The player who owns the gun.
+     * @param gunType The type of gun.
+     * @return The updated CompoundTag of the reloaded gun ItemStack.
+     */
     public static CompoundTag reload(ItemStack gun, Player player, GunType gunType) {
         CompoundTag compoundTag = gun.getTag();
 
@@ -79,7 +91,7 @@ public class GunUtils {
         } else if (gunType == GunType.RIFLE || gunType == GunType.RIFLE_SPYGLASS) {
             item = type.equals(BulletType.LEAD.getType()) ? ModItemsRegister.RIFLE_LEAD_BULLET.get() : ModItemsRegister.RIFLE_ALUMINUM_BULLET.get();
         } else {
-            item = type.equals(BulletType.LEAD.getType()) ? ModItemsRegister.PISTOL_LEAD_BULLET.get() : ModItemsRegister.PISTOL_ALUMINUM_BULLET.get();
+            item = type.equals(BulletType.LEAD.getType()) ? ModItemsRegister.REVOLVER_LEAD_BULLET.get() : ModItemsRegister.REVOLVER_ALUMINUM_BULLET.get();
         }
         for (ItemStack stack: player.getInventory().items) {
             if (stack.is(item)) {
@@ -115,8 +127,10 @@ public class GunUtils {
         CompoundTag tag = gun.getTag();
 
         if (tag.getInt(GunsAccess.BULLETS.getKey()) > 0) {
-            BulletProjectile bullet = new BulletProjectile(level, player);
+
+
             if (gunType != GunType.SHOTGUN) {
+                BulletProjectile bullet = new BulletProjectile(level, player, gunType, tag.getString(GunsAccess.BULLET_TYPE.getKey()).equals(BulletType.LEAD.getType()) ? BulletType.LEAD : BulletType.ALUMINUM, 80);
                 if (gunType == GunType.RIFLE) {
                     bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 5F, 1.0F);
                 } else {
@@ -124,16 +138,53 @@ public class GunUtils {
                 }
                 level.addFreshEntity(bullet);
             } else {
+                BulletProjectile bullet = new BulletProjectile(level, player, gunType, tag.getString(GunsAccess.BULLET_TYPE.getKey()).equals(BulletType.LEAD.getType()) ? BulletType.LEAD : BulletType.ALUMINUM, gunType.getDespawn());
+
                 bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1F, 1.0F);
+                level.addFreshEntity(bullet);
+                BulletProjectile bullet1 = new BulletProjectile(level, player, gunType, tag.getString(GunsAccess.BULLET_TYPE.getKey()).equals(BulletType.LEAD.getType()) ? BulletType.LEAD : BulletType.ALUMINUM, gunType.getDespawn());
+                bullet1.shootFromRotation(player, player.getXRot()+ dispersion() , player.getYRot() + dispersion(),  dispersion(), 1F, 1.0F);
+                level.addFreshEntity(bullet1);
+                BulletProjectile bullet2 = new BulletProjectile(level, player, gunType, tag.getString(GunsAccess.BULLET_TYPE.getKey()).equals(BulletType.LEAD.getType()) ? BulletType.LEAD : BulletType.ALUMINUM, gunType.getDespawn());
+                bullet2.shootFromRotation(player, player.getXRot()+ dispersion(), player.getYRot() + dispersion(),  dispersion(), 1F, 1.0F);
+                level.addFreshEntity(bullet2);
+                BulletProjectile bullet3 = new BulletProjectile(level, player, gunType, tag.getString(GunsAccess.BULLET_TYPE.getKey()).equals(BulletType.LEAD.getType()) ? BulletType.LEAD : BulletType.ALUMINUM, gunType.getDespawn());
+                bullet3.shootFromRotation(player, player.getXRot()+ dispersion(), player.getYRot() + dispersion(),  dispersion(), 1F, 1.0F);
+                level.addFreshEntity(bullet3);
+                BulletProjectile bullet4 = new BulletProjectile(level, player, gunType, tag.getString(GunsAccess.BULLET_TYPE.getKey()).equals(BulletType.LEAD.getType()) ? BulletType.LEAD : BulletType.ALUMINUM, gunType.getDespawn());
+                bullet4.shootFromRotation(player, player.getXRot()+ dispersion(), player.getYRot() + dispersion(),  dispersion(), 1F, 1.0F);
+                level.addFreshEntity(bullet4);
+                BulletProjectile bullet5 = new BulletProjectile(level, player, gunType, tag.getString(GunsAccess.BULLET_TYPE.getKey()).equals(BulletType.LEAD.getType()) ? BulletType.LEAD : BulletType.ALUMINUM, gunType.getDespawn());
+                bullet5.shootFromRotation(player, player.getXRot()+ dispersion(), player.getYRot() + dispersion(),  dispersion(), 1F, 1.0F);
+                level.addFreshEntity(bullet5);
+                BulletProjectile bullet6 = new BulletProjectile(level, player, gunType, tag.getString(GunsAccess.BULLET_TYPE.getKey()).equals(BulletType.LEAD.getType()) ? BulletType.LEAD : BulletType.ALUMINUM, gunType.getDespawn());
+                bullet6.shootFromRotation(player, player.getXRot()+ dispersion(), player.getYRot() + dispersion(),  dispersion(), 1F, 1.0F);
+                level.addFreshEntity(bullet6);
+                BulletProjectile bullet7 = new BulletProjectile(level, player, gunType, tag.getString(GunsAccess.BULLET_TYPE.getKey()).equals(BulletType.LEAD.getType()) ? BulletType.LEAD : BulletType.ALUMINUM, gunType.getDespawn());
+                bullet7.shootFromRotation(player, player.getXRot()+ dispersion(), player.getYRot() + dispersion(),  dispersion(), 1F, 1.0F);
+                level.addFreshEntity(bullet7);
+                BulletProjectile bullet8 = new BulletProjectile(level, player, gunType, tag.getString(GunsAccess.BULLET_TYPE.getKey()).equals(BulletType.LEAD.getType()) ? BulletType.LEAD : BulletType.ALUMINUM, gunType.getDespawn());
+                bullet8.shootFromRotation(player, player.getXRot()+ dispersion(), player.getYRot() + dispersion(),  dispersion(), 1F, 1.0F);
+                level.addFreshEntity(bullet8);
+
             }
             tag.putInt(GunsAccess.BULLETS.getKey(), tag.getInt(GunsAccess.BULLETS.getKey()) - 1);
-
         } else {
             player.sendSystemMessage(Component.translatable("VACIO"));
         }
         return tag;
     }
 
+    /**
+     * Reloads the texture data for the provided GunType.
+     *
+     * This method updates the "CustomModelData" attribute of the ItemStack's CompoundTag
+     * to determine the appropriate texture data for the specified gun type and bullet count.
+     *
+     * @param stack The ItemStack representing the gun.
+     * @param gunType The type of gun (e.g., SHOTGUN, RIFLE, RIFLE_SPYGLASS, REVOLVER).
+     * @return The updated CompoundTag of the ItemStack after reloading the texture data.
+     */
     public static CompoundTag reloadTexture(ItemStack stack, GunType gunType) {
         if (gunType == GunType.SHOTGUN) {
             if (stack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 0) {
@@ -169,6 +220,17 @@ public class GunUtils {
             stack.getTag().putFloat("CustomModelData", 2);
         }
         return stack.getTag();
+    }
+
+    /**
+     * Randomly generates a spread value within a specified range for shotgun fire.
+     *
+     * This method creates a random dispersion value within the range [-15, 15].
+     *
+     * @return A random dispersion value between -15 and 15 (inclusive).
+     */
+    public static int dispersion() {
+        return new Random().nextInt(30 + 1) - 15;
     }
 
     public static CompoundTag changeAmmo(Player player, ItemStack stack) {

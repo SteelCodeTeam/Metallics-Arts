@@ -14,8 +14,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
-import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.setup.network.packets.FiringGunPacket;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import org.jetbrains.annotations.Nullable;
@@ -203,7 +201,7 @@ public class BasicGun extends ProjectileWeaponItem {
 
     @Override
     public Predicate<ItemStack> getAllSupportedProjectiles() {
-        return itemStack -> itemStack.is(ModItemsRegister.PISTOL_LEAD_BULLET.get()) || itemStack.is(ModItemsRegister.PISTOL_ALUMINUM_BULLET.get());
+        return itemStack -> itemStack.is(ModItemsRegister.REVOLVER_LEAD_BULLET.get()) || itemStack.is(ModItemsRegister.REVOLVER_ALUMINUM_BULLET.get());
     }
 
     @Override

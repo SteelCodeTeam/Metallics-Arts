@@ -16,17 +16,17 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 
-public class CopperProjectile extends ThrowableItemProjectile {
+public class CoinProjectile extends ThrowableItemProjectile {
 
-    public CopperProjectile(EntityType<? extends CopperProjectile> entityType, Level level) {
+    public CoinProjectile(EntityType<? extends CoinProjectile> entityType, Level level) {
         super(entityType, level);
     }
 
-    public CopperProjectile(Level level, LivingEntity livingEntity) {
+    public CoinProjectile(Level level, LivingEntity livingEntity) {
         super(EntityType.SNOWBALL, livingEntity, level);
     }
 
-    public CopperProjectile(Level level, double v, double v1, double v2) {
+    public CoinProjectile(Level level, double v, double v1, double v2) {
         super(EntityType.SNOWBALL, v, v1, v2, level);
     }
 

@@ -1,12 +1,7 @@
 package net.rudahee.metallics_arts.setup.registries;
 
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.RegistryObject;
-import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
 import net.rudahee.metallics_arts.setup.registries.items.*;
 
@@ -38,7 +33,6 @@ public class ModItemsRegister {
     public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC = new HashMap<>();
     public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY_DIVINE = new HashMap<>();
     public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC_DIVINE = new HashMap<>();
-
     // Weapons
     public static RegistryObject<Item> OBSIDIAN_DAGGER;
     public static RegistryObject<Item> SILVER_KNIFE;
@@ -48,23 +42,19 @@ public class ModItemsRegister {
     // Shields
     public static RegistryObject<Item> WOOD_SHIELD;
     public static RegistryObject<Item> BRONZE_ALUMINUM_SHIELD;
-
     //Vials
     public static RegistryObject<Item> LARGE_VIAL;
     public static RegistryObject<Item> SMALL_VIAL;
     public static RegistryObject<Item> METALLICS_ARTS_BOOK;
-
     public static RegistryObject<Item> CORE_OBSIDIAN;
     public static RegistryObject<Item> CORE_ALUMINUM;
     public static RegistryObject<Item> CORE_STEEL;
-
     public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> STEEL_ARMOR = new HashMap<>();
     public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ALUMINUM_ARMOR = new HashMap<>();
-
     public static RegistryObject<Item> COPPER_COIN;
-    public static RegistryObject<Item> PISTOL_ALUMINUM_BULLET;
-    public static RegistryObject<Item> PISTOL_LEAD_BULLET;
-
+    public static RegistryObject<Item> REVOLVER_ALUMINUM_BULLET;
+    public static RegistryObject<Item> REVOLVER_LEAD_BULLET;
+    public static RegistryObject<Item> BULLET_PROJECTILE;
     public static RegistryObject<Item> SHOTGUN_ALUMINUM_BULLET;
     public static RegistryObject<Item> SHOTGUN_LEAD_BULLET;
     public static RegistryObject<Item> RIFLE_ALUMINUM_BULLET;
@@ -74,7 +64,6 @@ public class ModItemsRegister {
     public static RegistryObject<Item> RIFLE_WITH_SPYGLASS;
     public static RegistryObject<Item> SHOTGUN;
     public static RegistryObject<Item> VINDICATOR;
-
     public static RegistryObject<Item> MISTCLOACK;
 
     public static void register() {

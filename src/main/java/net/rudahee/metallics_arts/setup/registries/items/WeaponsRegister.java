@@ -4,6 +4,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
+import net.rudahee.metallics_arts.modules.custom_items.InvisibleItem;
 import net.rudahee.metallics_arts.modules.custom_items.coins.CopperCoin;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.BasicGun;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.Rifle;
@@ -54,10 +55,10 @@ public class WeaponsRegister {
         ModItemsRegister.RIFLE_WITH_SPYGLASS = MetallicsArts.registerItem(GunType.RIFLE_SPYGLASS.getName(),
                 () -> new RifleWithSpyGlass(WEAPONS_PROPERTIES));
 
-        ModItemsRegister.PISTOL_LEAD_BULLET = MetallicsArts.registerItem("pistol_lead_bullet",
+        ModItemsRegister.REVOLVER_LEAD_BULLET = MetallicsArts.registerItem("revolver_lead_bullet",
                 () -> new Item(COIN_PROPERTIES));
 
-        ModItemsRegister.PISTOL_ALUMINUM_BULLET = MetallicsArts.registerItem("pistol_aluminum_bullet",
+        ModItemsRegister.REVOLVER_ALUMINUM_BULLET = MetallicsArts.registerItem("revolver_aluminum_bullet",
                 () -> new Item(COIN_PROPERTIES));
 
         ModItemsRegister.SHOTGUN_LEAD_BULLET = MetallicsArts.registerItem("shotgun_lead_bullet",
@@ -72,5 +73,7 @@ public class WeaponsRegister {
         ModItemsRegister.RIFLE_ALUMINUM_BULLET = MetallicsArts.registerItem("rifle_aluminum_bullet",
                 () -> new Item(COIN_PROPERTIES));
 
+        ModItemsRegister.BULLET_PROJECTILE = MetallicsArts.registerItem("bullet_projectile",
+                () -> new InvisibleItem(new Item.Properties()));
     }
 }

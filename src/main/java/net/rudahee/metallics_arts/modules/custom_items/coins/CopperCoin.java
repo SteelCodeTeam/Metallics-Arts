@@ -9,14 +9,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.custom_projectiles.CopperProjectile;
+import net.rudahee.metallics_arts.modules.custom_projectiles.CoinProjectile;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 public class CopperCoin extends Item {
 
     public int damage;
-
     public int cooldown;
 
     public CopperCoin(Properties properties, int damage, int cooldown) {
@@ -45,7 +44,7 @@ public class CopperCoin extends Item {
 
           if (playerCapability.isBurning(MetalTagEnum.STEEL)) {
 
-              CopperProjectile coin = new CopperProjectile(level, player);
+              CoinProjectile coin = new CoinProjectile(level, player);
               coin.setItem(itemstack);
 
               coin.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 4F, 1.0F);
