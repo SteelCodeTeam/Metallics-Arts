@@ -127,7 +127,7 @@ public class ClientEventHandler {
             if (event.getButton() == 0 && event.getAction() == 1) {
                 //button = 0 - Left click
                 //action = 1 - Press button
-                //if (!Minecraft.getInstance().screen.isPauseScreen()) {//todo
+                //if (!Minecraft.getInstance().screen.isPauseScreen()) {
                     OnMouseInputEvent.otro(Minecraft.getInstance().player, Minecraft.getInstance().player.getItemInHand(InteractionHand.MAIN_HAND));
                 //}
             }

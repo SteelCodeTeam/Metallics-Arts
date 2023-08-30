@@ -1,6 +1,8 @@
 package net.rudahee.metallics_arts.setup.registries.blocks;
 
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,10 +27,10 @@ public class BasicBlocksRegister {
                 //ORES BLOCKS
                 if (metal.isStone()) {
                     registerBlock(metal.getMetalNameLower() + "_ore", () -> {
-                        Block block = new Block(Block.Properties.of(Material.STONE)
+                        DropExperienceBlock block = new DropExperienceBlock(Block.Properties.of(Material.STONE)
                                 .strength(3.0F, 3.0F)
                                 .sound(SoundType.STONE)
-                                .requiresCorrectToolForDrops());
+                                .requiresCorrectToolForDrops(), UniformInt.of(1, 6));
                         OreGenerationEnum.valueOf(metal.getMetalNameUpper()).setBlock(block);
                         ModBlocksRegister.BLOCK_METAL_ORES.put(metal.getMetalNameLower(), block);
                         return block;
@@ -37,10 +39,10 @@ public class BasicBlocksRegister {
                 //DEEPSLATE BLOCKS
                 if (metal.isDeepslate()) {
                     registerBlock("deepslate_" + metal.getMetalNameLower() + "_ore", () -> {
-                        Block block = new Block(Block.Properties.of(Material.STONE)
+                        DropExperienceBlock block = new DropExperienceBlock(Block.Properties.of(Material.STONE)
                                 .strength(4.5F, 3.0F)
                                 .sound(SoundType.DEEPSLATE)
-                                .requiresCorrectToolForDrops());
+                                .requiresCorrectToolForDrops(), UniformInt.of(3, 10));
                         OreGenerationEnum.valueOf(metal.getMetalNameUpper()).setBlock(block);
                         ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.put(metal.getMetalNameLower(), block);
                         return block;

@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.*;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -27,14 +28,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
      * Default constructor.These will be default parameters to register model textures in each block.
      * By default, always use "metallics_arts" mod id.
      *
-     * @param generator class that will be used to generate the json that will contain the information
+     * @param output class that will be used to generate the json that will contain the information
      * @param existingFileHelper class to check if path and image are valid in GatherDataEvent
      *
      * @see DataGenerator
      * @see ExistingFileHelper
      */
-    public ModBlockStateProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator.getPackOutput(), MetallicsArts.MOD_ID, existingFileHelper);
+    public ModBlockStateProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+        super(output, MetallicsArts.MOD_ID, existingFileHelper);
     }
 
     /**

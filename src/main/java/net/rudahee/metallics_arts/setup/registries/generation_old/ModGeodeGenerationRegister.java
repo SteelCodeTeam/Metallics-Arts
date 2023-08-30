@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.setup.registries.generation;
+package net.rudahee.metallics_arts.setup.registries.generation_old;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -10,10 +10,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.configs.GeodeGenerationConfig;
 
 public class ModGeodeGenerationRegister {
-    public static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIER =
+   /* public static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIER =
             DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, MetallicsArts.MOD_ID);
 
     public static RegistryObject<Codec<GeodeGenerationConfig>> GEODE_CODEC = BIOME_MODIFIER.register("geode_aa", () ->
@@ -27,5 +26,5 @@ public class ModGeodeGenerationRegister {
 
     public static void register(IEventBus eventBus) {
         BIOME_MODIFIER.register(eventBus);
-    }
+    }*/
 }

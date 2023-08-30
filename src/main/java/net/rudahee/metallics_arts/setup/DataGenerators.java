@@ -12,6 +12,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.providers.ModBlockStateProvider;
 import net.rudahee.metallics_arts.data.providers.ModItemModelProvider;
 import net.rudahee.metallics_arts.data.providers.ModRecipeProvider;
+import net.rudahee.metallics_arts.data.providers.ModWorldGenerationProvider;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderEN;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderES;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderJP;
@@ -28,44 +29,46 @@ import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber (modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {
-    private DataGenerators() {}
 
     @SubscribeEvent
-    public static void  gatherData (GatherDataEvent event) {
+    public static void  gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
-        PackOutput packOutput = event.getGenerator().getPackOutput();
+        PackOutput packOutput = gen.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         ModBlockTagProvider blockTags = new  ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
 
 
-        gen.addProvider(true, new ModBlockStateProvider(gen, existingFileHelper));
-        gen.addProvider(true, new ModItemModelProvider(gen, existingFileHelper));
-        gen.addProvider(true, blockTags);
-        //gen.addProvider(true, new ModLootTableProvider(gen)); //todo mirar lo de brayan
+        gen.addProvider(event.includeServer(), new ModBlockStateProvider(packOutput, existingFileHelper));
+        gen.addProvider(event.includeServer(), new ModItemModelProvider(gen, existingFileHelper));
+        gen.addProvider(event.includeServer(), blockTags);
+        //gen.addProvider(event.includeServer(), new ModLootTableProvider(gen)); //todo mirar lo de brayan
 
-        gen.addProvider(true, new ModRecipeProvider(gen));
-        gen.addProvider(true, new ModItemTagsProvider(packOutput,lookupProvider, blockTags.contentsGetter(), existingFileHelper));
+        gen.addProvider(event.includeServer(), new ModRecipeProvider(gen));
+        gen.addProvider(event.includeServer(), new ModItemTagsProvider(packOutput,lookupProvider, blockTags.contentsGetter(), existingFileHelper));
 
-        gen.addProvider(true, new ModLanguageProviderES(gen, "es_es"));
-        gen.addProvider(true, new ModLanguageProviderES(gen, "es_ar"));
-        gen.addProvider(true, new ModLanguageProviderES(gen, "es_mx"));
-        gen.addProvider(true, new ModLanguageProviderES(gen, "es_uy"));
-        gen.addProvider(true, new ModLanguageProviderES(gen, "es_ve"));
-        gen.addProvider(true, new ModLanguageProviderEN(gen, "en_us"));
-        gen.addProvider(true, new ModLanguageProviderEN(gen, "en_au"));
-        gen.addProvider(true, new ModLanguageProviderEN(gen, "en_ca"));
-        gen.addProvider(true, new ModLanguageProviderEN(gen, "en_gb"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_es"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_ar"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_mx"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_uy"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_ve"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_us"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_au"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_ca"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_gb"));
 
-        gen.addProvider(true, new ModLanguageProviderJP(gen, "ja_jp"));
-        gen.addProvider(true, new ModLanguageProviderPL(gen, "pl_pl"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderJP(gen, "ja_jp"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderPL(gen, "pl_pl"));
 
 
         gen.addProvider(event.includeServer(), new ModBannerTagProvider(packOutput, lookupProvider, event.getExistingFileHelper()));
-        gen.addProvider(true, new ModBeaconTagProvider(packOutput, lookupProvider, existingFileHelper));
+        gen.addProvider(event.includeServer(), new ModBeaconTagProvider(packOutput, lookupProvider, existingFileHelper));
 
         gen.addProvider(event.includeServer(), new DemoBookProvider(gen, MetallicsArts.MOD_ID, null));
         //gen.addProvider(event.includeClient(), null);
+
+        gen.addProvider(event.includeServer(), new ModWorldGenerationProvider(packOutput, lookupProvider));
+
 
     }
 

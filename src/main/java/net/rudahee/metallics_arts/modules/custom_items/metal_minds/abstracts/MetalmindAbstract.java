@@ -11,6 +11,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalmindType;
@@ -448,8 +449,8 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
 
     public CompoundTag calculateChargeEttmetal(CompoundTag compoundTag, Player player, int metalReserve, String metalKey) {
         if (player.getLastDamageSource() != null) {
-            //todo chequear esto, no me gusta ese null ahi
-            if (player.getLastDamageSource().type().equals(player.damageSources().explosion(null).type())) {
+            //todo chequear esto, no me gusta ese null ahi, he cambiado a una explosion por defecto, pero no tiene buena pinta, la verdad
+            if (player.getLastDamageSource().type().equals(player.damageSources().explosion(new Explosion(player.level, player, player.position().x,player.position().y,player.position().z,4, List.of(player.blockPosition()))).type())) {
                 compoundTag.putInt(metalKey, metalReserve + 1);
             }
         }

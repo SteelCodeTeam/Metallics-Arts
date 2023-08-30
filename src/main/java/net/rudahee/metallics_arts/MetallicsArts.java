@@ -36,9 +36,8 @@ import net.rudahee.metallics_arts.setup.DataGenerators;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.*;
-import net.rudahee.metallics_arts.setup.registries.generation.ModGeodeGenerationRegister;
-import net.rudahee.metallics_arts.setup.registries.generation.ModOreGenerationRegister;
-import net.rudahee.metallics_arts.setup.registries.generation.ModStructureRegister;
+import net.rudahee.metallics_arts.setup.registries.generation_old.ModGeodeGenerationRegister;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
@@ -111,9 +110,7 @@ public class MetallicsArts {
 
         ModVillager.register(modEventBus);
 
-        ModGeodeGenerationRegister.register(modEventBus);
-        ModOreGenerationRegister.register(modEventBus);
-        ModStructureRegister.register(modEventBus);
+
         //Register for the paintings
         ModPaintingProvider.register(modEventBus);
 
@@ -220,6 +217,5 @@ public class MetallicsArts {
         ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().stacksTo(64))));
         return blockRegistered;
     }
-
 
 }

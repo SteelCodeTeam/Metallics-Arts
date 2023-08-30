@@ -8,7 +8,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ModifiableBiomeInfo;
-import net.rudahee.metallics_arts.setup.registries.generation.ModGeodeGenerationRegister;
+import net.rudahee.metallics_arts.setup.registries.generation_old.ModGeodeGenerationRegister;
 
 /**
  * Class that defines how geodes will be generated in the world. Implements BiomeModifier. implements BiomeModifier
@@ -19,6 +19,7 @@ import net.rudahee.metallics_arts.setup.registries.generation.ModGeodeGeneration
  * @see CustomGeodeConfig
  * @see BiomeModifier
  */
+/*
 public record GeodeGenerationConfig(HolderSet<Biome> biomes, Holder<PlacedFeature> feature) implements BiomeModifier {
 
     /**
@@ -27,7 +28,7 @@ public record GeodeGenerationConfig(HolderSet<Biome> biomes, Holder<PlacedFeatur
      * @param biomes holder with biomes to modify.
      * @param phase phase the event.
      * @param builder object used to modify biomes generation options.
-     */
+
     @Override
     public void modify(Holder<Biome> biomes, Phase phase, ModifiableBiomeInfo.BiomeInfo.Builder builder) {
         // add a feature to all specified biomes
@@ -41,8 +42,8 @@ public record GeodeGenerationConfig(HolderSet<Biome> biomes, Holder<PlacedFeatur
      *
      * @return Codec<? extends BiomeModifier>
      */
-    @Override
+   /* @Override
     public Codec<? extends BiomeModifier> codec() {
         return ModGeodeGenerationRegister.GEODE_CODEC.get();
     }
-}
+}*/

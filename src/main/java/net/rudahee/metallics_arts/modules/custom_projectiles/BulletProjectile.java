@@ -159,8 +159,10 @@ public class BulletProjectile extends ThrowableItemProjectile {
             } catch (PlayerException ex) {
                 ex.printCompleteLog();
             }
-        }//todo convertir a player solo cuadno es posible para evitar crash
-        entity.hurt(entity.damageSources().drown(), 80F);
+        } //todo checkear
+        if (entity instanceof LivingEntity) {
+            entity.hurt(entity.damageSources().drown(), 80F);
+        }
     }
 
     /**
