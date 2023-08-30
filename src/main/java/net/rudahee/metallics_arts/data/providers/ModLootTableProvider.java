@@ -66,6 +66,8 @@ public class ModLootTableProvider extends LootTableProvider {
         this.generator = generator;
     }
 
+
+
     /**
      * Adds block-based loot tables for various mod blocks such as ores,
      * deepslate ores, metal blocks, gem blocks, and divine crystal blocks.

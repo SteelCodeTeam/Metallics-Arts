@@ -8,6 +8,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
@@ -104,7 +105,7 @@ public class CrucibleFurnaceRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public @NotNull CrucibleFurnaceRecipe fromJson(@NotNull ResourceLocation loc, @NotNull JsonObject json) {
-            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
+            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));//
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(4, Ingredient.EMPTY);
             for (int i = 0; i < inputs.size(); i++) {
