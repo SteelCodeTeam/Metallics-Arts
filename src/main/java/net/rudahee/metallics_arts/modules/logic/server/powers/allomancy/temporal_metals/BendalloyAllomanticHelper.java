@@ -45,8 +45,10 @@ public class BendalloyAllomanticHelper {
             radius = 10;
         }
 
-        BlockPos negative = new BlockPos(player.position()).offset(- radius, - radius, - radius);
-        BlockPos positive = new BlockPos(player.position()).offset(radius, radius , radius);
+
+
+        BlockPos negative = new BlockPos(player.blockPosition()).offset(- radius, - radius, - radius);
+        BlockPos positive = new BlockPos(player.blockPosition()).offset(radius, radius , radius);
 
 
         level.getEntitiesOfClass(LivingEntity.class, CapabilityUtils.getBubble(player, radius)).forEach(entity -> {

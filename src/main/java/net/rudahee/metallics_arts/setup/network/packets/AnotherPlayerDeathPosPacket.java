@@ -10,7 +10,6 @@ import net.minecraftforge.network.NetworkEvent;
 import net.rudahee.metallics_arts.modules.logic.client.client_events.OnRenderLevelStage;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-import java.awt.*;
 import java.util.UUID;
 import java.util.function.Supplier;
 

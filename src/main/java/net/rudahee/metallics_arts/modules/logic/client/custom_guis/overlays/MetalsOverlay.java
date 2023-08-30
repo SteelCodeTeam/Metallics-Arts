@@ -72,9 +72,10 @@ public class MetalsOverlay implements IGuiOverlay {
     private static int actualFeruchemicReserve = -1;
     private static String actualIsBandOrRing = "";
 
-    private static void blit(PoseStack matrix, ForgeGui gui, int x, int y, float uOffset, float vOffset, int uWidth, int vHeight) {
-        ForgeGui.blit(matrix, x, y, gui.getBlitOffset(), uOffset, vOffset, uWidth, vHeight, 128, 128);
+    private static void blit(PoseStack matrix, int x, int y, float uOffset, float vOffset, int uWidth, int vHeight) {
+        ForgeGui.blit(matrix, x, y, uOffset, vOffset, uWidth, vHeight, 128, 128);
     }
+
 
 
     public MetalsOverlay() {}
@@ -120,9 +121,7 @@ public class MetalsOverlay implements IGuiOverlay {
 
 
 
-            /*
-             * RENDERING ALLOMANTIC THINGS
-             */
+            //RENDERING ALLOMANTIC THINGS
 
 
             //Separacion superior
@@ -157,9 +156,9 @@ public class MetalsOverlay implements IGuiOverlay {
                 if (data.hasAllomanticPower(metal)) {
                     int actualHeightBarXD = allomanticOffsetY + allomanticPixelOffsetXInVialBar + (allomanticHeightBar - modifierAllomantic);
 
-                    blit(matrix, gui, allomanticActualOffSetX,  allomanticOffsetY, 0, 0, allomanticWidthVial, allomanticHeightVial);
+                    blit(matrix, allomanticActualOffSetX,  allomanticOffsetY, 0, 0, allomanticWidthVial, allomanticHeightVial);
                     int basura2xD = (modifierAllomantic == 13) ? actualHeightBarXD : (modifierAllomantic < 13 && modifierAllomantic >= 6) ? actualHeightBarXD - 1 : actualHeightBarXD - 1;
-                    blit(matrix, gui, allomanticActualOffSetX+1, basura2xD, barOffSet, 0, allomanticWidthBar, modifierAllomantic);
+                    blit(matrix, allomanticActualOffSetX+1, basura2xD, barOffSet, 0, allomanticWidthBar, modifierAllomantic);
 
 
                     //ForgeIngameGui.drawString(matrix, mc.font, text, allomanticActualOffSetX, allomanticOffsetY + allomanticHeightVial + 1, Integer.parseInt("FF0000", 16));
@@ -167,18 +166,17 @@ public class MetalsOverlay implements IGuiOverlay {
                     // Este calculo mueve el offset 6 pixeles (3 para las barras, y 3 blancos).
 
                     if (data.isBurning(metal)) {
-                        blit(matrix, gui, allomanticActualOffSetX, basura2xD-1, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, allomanticWidthAnimation, (modifierAllomantic > 4) ? allomanticHeightAnimation: (modifierAllomantic == 3) ? allomanticHeightAnimation -1 : (modifierAllomantic == 2) ? allomanticHeightAnimation -3 : allomanticHeightAnimation - 4);
+                        blit(matrix, allomanticActualOffSetX, basura2xD-1, AllomanticFrames[currentFrame].x, AllomanticFrames[currentFrame].y, allomanticWidthAnimation, (modifierAllomantic > 4) ? allomanticHeightAnimation: (modifierAllomantic == 3) ? allomanticHeightAnimation -1 : (modifierAllomantic == 2) ? allomanticHeightAnimation -3 : allomanticHeightAnimation - 4);
                     }
                 } else {
-                    blit(matrix, gui, allomanticActualOffSetX,  allomanticOffsetY, 102, 102, allomanticWidthVial, allomanticHeightVial);
+                    blit(matrix, allomanticActualOffSetX,  allomanticOffsetY, 102, 102, allomanticWidthVial, allomanticHeightVial);
                 }
                 barOffSet = barOffSet + 6;
             }
 
 
-            /*
-             * RENDERING FERUCHEMIC THINGS
-             */
+            //RENDERING FERUCHEMIC THINGS
+
 
 
             int offSetTop = allomanticOffsetY  + allomanticHeightVial;
@@ -243,21 +241,21 @@ public class MetalsOverlay implements IGuiOverlay {
                 int basura3xD = (modifierFeruchemic == 13) ? feruchemicCalculatedOffset : (modifierFeruchemic < 13 && modifierFeruchemic >= 6) ? feruchemicCalculatedOffset - 1 : feruchemicCalculatedOffset - 1;
 
                 if (data.hasFeruchemicPower(metal)) {
-                    blit(matrix, gui, feruchemicActualOffSetX, feruchemicOffsetY + offSetTop, 0, 17, feruchemicWidthVial, feruchemicHeightVial);
+                    blit(matrix, feruchemicActualOffSetX, feruchemicOffsetY + offSetTop, 0, 17, feruchemicWidthVial, feruchemicHeightVial);
 
 
                     if (data.hasMetalMindEquiped(metal.getGroup())) {
-                        blit(matrix, gui, feruchemicActualOffSetX + 1, (modifierFeruchemic == 13) ? feruchemicCalculatedOffset: feruchemicCalculatedOffset - 1, barOffSet, 0, feruchemicWidthBar, modifierFeruchemic);
+                        blit(matrix, feruchemicActualOffSetX + 1, (modifierFeruchemic == 13) ? feruchemicCalculatedOffset: feruchemicCalculatedOffset - 1, barOffSet, 0, feruchemicWidthBar, modifierFeruchemic);
                     }
                     //if decant
                     if (data.isTapping(metal)) {
-                        blit(matrix, gui, feruchemicActualOffSetX, (modifierFeruchemic == 13) ? feruchemicCalculatedOffset: feruchemicCalculatedOffset - 1, FeruchemicStorageFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation, ((fixOffset) ? feruchemicHeightAnimation : 2));
+                        blit(matrix, feruchemicActualOffSetX, (modifierFeruchemic == 13) ? feruchemicCalculatedOffset: feruchemicCalculatedOffset - 1, FeruchemicStorageFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation, ((fixOffset) ? feruchemicHeightAnimation : 2));
                     // else if storage
                     } else if (data.isStoring(metal)) {
-                        blit(matrix, gui, feruchemicActualOffSetX, (modifierFeruchemic == 13) ? feruchemicCalculatedOffset: feruchemicCalculatedOffset - 1, FeruchemicDecantFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation,  + ((fixOffset) ? feruchemicHeightAnimation : 2));
+                        blit(matrix, feruchemicActualOffSetX, (modifierFeruchemic == 13) ? feruchemicCalculatedOffset: feruchemicCalculatedOffset - 1, FeruchemicDecantFrames[currentFrame].x, AllomanticFrames[currentFrame].y, feruchemicWidthAnimation,  + ((fixOffset) ? feruchemicHeightAnimation : 2));
                     }
                 } else {
-                    blit(matrix, gui, feruchemicActualOffSetX,  feruchemicOffsetY + offSetTop, 109, 103, feruchemicWidthVial, feruchemicHeightVial);
+                    blit(matrix, feruchemicActualOffSetX,  feruchemicOffsetY + offSetTop, 109, 103, feruchemicWidthVial, feruchemicHeightVial);
                 }
 
                 barOffSet = barOffSet + 6;

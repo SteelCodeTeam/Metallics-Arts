@@ -1,8 +1,5 @@
 package net.rudahee.metallics_arts.setup.registries;
 
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
@@ -13,8 +10,6 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_entities.ExampleEntity;
 import net.rudahee.metallics_arts.modules.custom_projectiles.BulletProjectile;
-
-import java.util.function.Supplier;
 
 public class ModEntityTypesRegister {
 

@@ -12,10 +12,10 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.registries.blocks.BasicBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.blocks.decoration.DecorationBlockRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.AtiumBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.EttmetalBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.LerasiumBlocksRegister;
-import net.rudahee.metallics_arts.setup.registries.blocks.decoration.DecorationBlockRegister;
 
 import java.util.HashMap;
 

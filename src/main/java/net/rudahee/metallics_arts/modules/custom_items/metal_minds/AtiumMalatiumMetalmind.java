@@ -9,7 +9,6 @@ import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalmindType;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.abstracts.MetalmindAbstract;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_metals.MalatiumFeruchemicHelper;
 
 import javax.annotation.Nullable;
 import java.util.List;

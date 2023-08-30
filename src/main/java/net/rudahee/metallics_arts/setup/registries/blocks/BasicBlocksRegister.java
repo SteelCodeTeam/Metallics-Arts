@@ -13,8 +13,6 @@ import net.rudahee.metallics_arts.modules.custom_blocks.ettmetal_block.EttmetalB
 import net.rudahee.metallics_arts.modules.custom_blocks.tables.CrucibleFurnaceBlock;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.ToIntFunction;
 
 import static net.rudahee.metallics_arts.MetallicsArts.registerBlock;

@@ -3,7 +3,7 @@ package net.rudahee.metallics_arts.modules.custom_projectiles;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -146,12 +146,12 @@ public class BulletProjectile extends ThrowableItemProjectile {
      */
     protected void onHitEntity(EntityHitResult entityHitResult) {
         super.onHitEntity(entityHitResult);
-        LivingEntity entity = (LivingEntity) entityHitResult.getEntity();
-        if (entity instanceof Player) {
+        Entity entity = entityHitResult.getEntity();
+        if (entity instanceof Player player) {
             try {
                 IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(entity);
                 if (playerCapability.isBurning(MetalTagEnum.STEEL) && this.bulletType.getType().equals(BulletType.LEAD.getType())) {
-                    BulletProjectile bullet = new BulletProjectile(level, entity, gunType, this.bulletType, gunType.getDespawn());
+                    BulletProjectile bullet = new BulletProjectile(level, player, gunType, this.bulletType, gunType.getDespawn());
                     bullet.shootFromRotation(entity, entity.getXRot(), entity.getYRot(), 0.0F, 5F, 1.0F);
                     level.addFreshEntity(bullet);
                     return;
@@ -159,8 +159,8 @@ public class BulletProjectile extends ThrowableItemProjectile {
             } catch (PlayerException ex) {
                 ex.printCompleteLog();
             }
-        }
-        entity.hurt(DamageSource.thrown(this, this.getOwner()), 80F);
+        }//todo convertir a player solo cuadno es posible para evitar crash
+        entity.hurt(entity.damageSources().drown(), 80F);
     }
 
     /**

@@ -337,11 +337,11 @@ public class ModLanguageProviderES extends LanguageProvider {
      * Constructs a new ModLanguageProviderES instance.
      *
      * @param gen               the data generator for language files
-     * @param modid             the mod ID for the target mod
+     *
      * @param locale            the locale for the target language
      */
-    public ModLanguageProviderES(DataGenerator gen, String modid, String locale) {
-        super(gen.getPackOutput(), modid, locale);
+    public ModLanguageProviderES(DataGenerator gen, String locale) {
+        super(gen.getPackOutput(), MetallicsArts.MOD_ID, locale);
     }
 
     /**

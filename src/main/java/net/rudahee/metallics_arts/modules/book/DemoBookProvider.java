@@ -61,15 +61,12 @@ public class DemoBookProvider extends BookProvider {
         BookCategoryModel allomancyCategory = this.allomancyCategory(helper);
         BookCategoryModel feruchemyCategory = this.feruchemyCategory(helper);
 
-        return BookModel.builder()
-                .withId(this.modLoc(bookName))
-                .withName(helper.bookName())
+
+        return BookModel.create(this.modLoc(bookName), helper.bookName())
                 .withTooltip(helper.bookTooltip())
                 .withGenerateBookItem(true)
                 .withModel(this.modLoc("metallics_arts_book"))
-                .withCreativeTab(MetallicsArts.MA_TAB.getRecipeFolderName())
-                .withCategories(introCategory, allomancyCategory, feruchemyCategory)
-                .build();
+                .withCategories(introCategory, allomancyCategory, feruchemyCategory);
     }
 
     /**
@@ -126,13 +123,15 @@ public class DemoBookProvider extends BookProvider {
 
         BookEntryModel patterns = this.multiCraftsItemsEntry(helper, entryHelper, 'o', MultiCraftData.PATTERNS, GetItemsUtils.getPatterns(), icons);
 
-        return BookCategoryModel.builder()
-                .withId(this.modLoc(helper.category))
-                .withName(helper.categoryName())
+
+        return BookCategoryModel.create(this.modLoc(helper.category),helper.categoryName())
                 .withIcon("minecraft:book")
                 .withSortNumber(0)
-                .withEntries(weapons,crafting,crystalDagger,obsidianDagger,obsidianAxe,kolossBlade,duelingStaff,alloys,vials,rings,bands,spikes,icons,patterns,welcome,cores,aluminum_armor,steel_armor)
-                .build();
+                .withEntries(weapons,crafting,crystalDagger,
+                        obsidianDagger,obsidianAxe,kolossBlade,
+                        duelingStaff,alloys,vials,rings,bands,
+                        spikes,icons,patterns,welcome,cores,
+                        aluminum_armor,steel_armor);
     }
 
     /**
@@ -201,13 +200,13 @@ public class DemoBookProvider extends BookProvider {
         BookEntryModel ettmetal = this.allomancyPowerEntry(helper, entryHelper, 'z',MetalTagEnum.ETTMETAL, divine);
 
         //.withBackground(new ResourceLocation(MetallicsArts.MOD_ID + ":textures/icons/background.png"))
-        return BookCategoryModel.builder()
-                .withId(this.modLoc(helper.category))
-                .withName(helper.categoryName())
+        return BookCategoryModel.create(this.modLoc(helper.category), helper.categoryName())
                 .withIcon("minecraft:iron_ingot")
                 .withSortNumber(1)
-                .withEntries(iron,steel,tin,pewter,gold,electrum,cadmium,bendalloy,copper,bronze,zinc,brass,aluminum,duralumin,chromium,nicrosil,cognitive,physical,allomancy,enhancement,temporal,atium,malatium,lerasium,ettmetal,divine,tutorial)
-                .build();
+                .withEntries(iron,steel,tin,pewter,gold,electrum,cadmium,bendalloy,
+                        copper,bronze,zinc,brass,aluminum,duralumin,chromium,nicrosil,
+                        cognitive,physical,allomancy,enhancement,temporal,atium,malatium,
+                        lerasium,ettmetal,divine,tutorial);
     }
 
     /**
@@ -277,13 +276,12 @@ public class DemoBookProvider extends BookProvider {
 
         //lista de entradas
 
-        return BookCategoryModel.builder()
-                .withId(this.modLoc(helper.category))
-                .withName(helper.categoryName())
+        return BookCategoryModel.create(this.modLoc(helper.category), helper.categoryName())
                 .withIcon("minecraft:gold_ingot")
                 .withSortNumber(2)
-                .withEntries(iron,steel,tin,pewter,gold,electrum,cadmium,bendalloy,copper,bronze,zinc,brass,aluminum,duralumin,chromium,nicrosil,cognitive,physical,feruchemy,spiritual,hybrid,atium,malatium,lerasium,ettmetal,divine,tutorial)
-                .build();
+                .withEntries(iron,steel,tin,pewter,gold,electrum,cadmium,bendalloy,copper,bronze,zinc,
+                        brass,aluminum,duralumin,chromium,nicrosil,cognitive,physical,feruchemy,spiritual,
+                        hybrid,atium,malatium,lerasium,ettmetal,divine,tutorial);
     }
 
     /**

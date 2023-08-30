@@ -12,7 +12,6 @@ import net.rudahee.metallics_arts.modules.custom_items.metal_minds.abstracts.Met
  * @author SteelCode Team
  * @since 1.5.1
  *
- * @see MindAbstract
  */
 public class TinPewterMetalmind extends MetalmindAbstract {
 

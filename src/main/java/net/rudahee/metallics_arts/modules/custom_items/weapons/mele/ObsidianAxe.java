@@ -7,7 +7,6 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.custom_tiers.ObsidianTier;
 
 /**
@@ -30,7 +29,7 @@ public class ObsidianAxe extends SwordItem {
      * @param properties of the item.
      */
     public ObsidianAxe (Item.Properties properties) {
-        super(OBSIDIAN_TIER, -1, -3.2F, properties.durability(2500).tab(MetallicsArts.MA_TAB));
+        super(OBSIDIAN_TIER, -1, -3.2F, properties.durability(2500));
     }
 
     /**

@@ -6,8 +6,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 /**

@@ -1,6 +1,6 @@
 package net.rudahee.metallics_arts.setup.registries;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BannerPatternItem;
@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 public class ModBannersRegister {
     public static final DeferredRegister<BannerPattern> BANNER_PATTERN =
-            DeferredRegister.create(Registry.BANNER_PATTERN_REGISTRY, MetallicsArts.MOD_ID);
+            DeferredRegister.create(Registries.BANNER_PATTERN, MetallicsArts.MOD_ID);
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MetallicsArts.MOD_ID);
     public static final HashMap <String,RegistryObject<BannerPattern>> PATTERNS = new HashMap<>();
@@ -41,17 +41,17 @@ public class ModBannersRegister {
             PATTERNS.put("f_"+metal.getNameLower()+"_2",pattern);
 
             //Tag that associates patterns with item that contains them
-            bannerPatternTagKey = TagKey.create(Registry.BANNER_PATTERN_REGISTRY, new ResourceLocation(MetallicsArts.MOD_ID, "a_"+metal.getNameLower()));
+            bannerPatternTagKey = TagKey.create(Registries.BANNER_PATTERN, new ResourceLocation(MetallicsArts.MOD_ID, "a_"+metal.getNameLower()));
             PATTERNS_KEYS.put("a_"+metal.getNameLower(), bannerPatternTagKey);
 
-            bannerPatternTagKey = TagKey.create(Registry.BANNER_PATTERN_REGISTRY, new ResourceLocation(MetallicsArts.MOD_ID, "f_"+metal.getNameLower()));
+            bannerPatternTagKey = TagKey.create(Registries.BANNER_PATTERN, new ResourceLocation(MetallicsArts.MOD_ID, "f_"+metal.getNameLower()));
             PATTERNS_KEYS.put("f_"+metal.getNameLower(), bannerPatternTagKey);
 
             //Item pattern for loom
-            bannerPatternItem = ITEMS.register("a_"+metal.getNameLower() + "_pattern", () -> new BannerPatternItem(PATTERNS_KEYS.get("a_"+metal.getNameLower()), new Item.Properties().tab(MetallicsArts.MA_TAB_DECORATION).stacksTo(1)));
+            bannerPatternItem = ITEMS.register("a_"+metal.getNameLower() + "_pattern", () -> new BannerPatternItem(PATTERNS_KEYS.get("a_"+metal.getNameLower()), new Item.Properties().stacksTo(1)));
             PATTERN_ITEMS.put("a_"+metal.getNameLower(),bannerPatternItem);
 
-            bannerPatternItem = ITEMS.register("f_"+metal.getNameLower() + "_pattern", () -> new BannerPatternItem(PATTERNS_KEYS.get("f_"+metal.getNameLower()), new Item.Properties().tab(MetallicsArts.MA_TAB_DECORATION).stacksTo(1)));
+            bannerPatternItem = ITEMS.register("f_"+metal.getNameLower() + "_pattern", () -> new BannerPatternItem(PATTERNS_KEYS.get("f_"+metal.getNameLower()), new Item.Properties().stacksTo(1)));
             PATTERN_ITEMS.put("f_"+metal.getNameLower(),bannerPatternItem);
 
         }

@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.data.providers.language_providers;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
@@ -299,11 +300,11 @@ public class ModLanguageProviderPL extends LanguageProvider {
      * Constructs a new ModLanguageProviderPL instance.
      *
      * @param gen               the data generator for language files
-     * @param modid             the mod ID for the target mod
+     *
      * @param locale            the locale for the target language
      */
-    public ModLanguageProviderPL(DataGenerator gen, String modid, String locale) {
-        super(gen.getPackOutput(), modid, locale);
+    public ModLanguageProviderPL(DataGenerator gen, String locale) {
+        super(gen.getPackOutput(), MetallicsArts.MOD_ID, locale);
     }
 
     /**

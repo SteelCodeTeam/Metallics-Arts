@@ -9,10 +9,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.OreGenerationEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
-
-import java.util.HashMap;
 
 /**
  * This provider class control the default state from blocks. We use to define a texture in each block.

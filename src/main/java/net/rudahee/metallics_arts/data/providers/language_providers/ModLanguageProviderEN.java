@@ -1,14 +1,12 @@
 package net.rudahee.metallics_arts.data.providers.language_providers;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
 import net.rudahee.metallics_arts.data.providers.language_providers.book.BookHelperEN;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -337,11 +335,10 @@ public class ModLanguageProviderEN extends LanguageProvider {
      * Constructs a new ModLanguageProviderEN instance.
      *
      * @param gen               the data generator for language files
-     * @param modid             the mod ID for the target mod
      * @param locale            the locale for the target language
      */
-    public ModLanguageProviderEN(DataGenerator gen, String modid, String locale) {
-        super(gen.getPackOutput(), modid, locale);
+    public ModLanguageProviderEN(DataGenerator gen, String locale) {
+        super(gen.getPackOutput(), MetallicsArts.MOD_ID, locale);
     }
 
     /**

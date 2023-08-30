@@ -7,6 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_metals.EttmetalAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_metals.MalatiumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.mental_metals.BrassAllomanticHelper;
@@ -21,7 +22,6 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.CadmiumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.ElectrumAllomanticHelper;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.temporal_metals.GoldAllomanticHelper;
-import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 
 /**

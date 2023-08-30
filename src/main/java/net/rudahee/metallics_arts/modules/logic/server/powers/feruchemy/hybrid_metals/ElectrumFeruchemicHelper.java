@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals;
 
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
@@ -47,7 +46,7 @@ public class ElectrumFeruchemicHelper {
         if (!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MIN_HEALTH_ELECTRUM)) {
             player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(ModModifiers.MIN_HEALTH_ELECTRUM);
             if (player.getHealth() > 10) {
-                player.hurt(DamageSource.GENERIC, player.getHealth() - 10 + player.getAbsorptionAmount());
+                player.hurt(player.damageSources().generic(), player.getHealth() - 10 + player.getAbsorptionAmount());
             }
         }
     }

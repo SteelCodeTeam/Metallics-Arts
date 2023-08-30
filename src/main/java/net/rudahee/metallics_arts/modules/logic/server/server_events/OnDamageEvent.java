@@ -2,7 +2,6 @@ package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
 import net.minecraft.core.GlobalPos;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
@@ -96,7 +95,9 @@ public class OnDamageEvent {
 
             //Cancel freeze damage
             if (targetCapability.isTapping(MetalTagEnum.BRASS)) {
-                if (event.getSource().equals(DamageSource.FREEZE)) {
+                //event.getSource().equals(DamageSource.FREEZE)
+                //todo chekear, esto es raro
+                if (event.getSource().equals(event.getEntity().damageSources().freeze())) {
                     event.setCanceled(true);
                 }
             }

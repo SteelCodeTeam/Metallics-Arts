@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.setup.registries.generation;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class ModStructureRegister {
     public static final DeferredRegister<PlacedFeature> PLACED_FEATURES =
-            DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, MetallicsArts.MOD_ID);
+            DeferredRegister.create(Registries.PLACED_FEATURE, MetallicsArts.MOD_ID);
 
     public static final RegistryObject<PlacedFeature> ZINC_ORE_PLACED_STONE = PLACED_FEATURES.register("zinc_ore_placed_stone",
             () -> new PlacedFeature(ModOreGenerationRegister.ZINC_ORE_GENERATION_STONE.getHolder().get(),
@@ -61,7 +62,7 @@ public class ModStructureRegister {
 
 
 
-    public static final RegistryObject<PlacedFeature> ATIUM_GEODE =
+    /*public static final RegistryObject<PlacedFeature> ATIUM_GEODE =
             PLACED_FEATURES.register("atium_geode", () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) CustomGeodeConfig.ATIUM_GEODE, placementModifier()));
 
     public static final RegistryObject<PlacedFeature> LERASIUM_GEODE =
@@ -71,7 +72,7 @@ public class ModStructureRegister {
 
     public static final RegistryObject<PlacedFeature> ETTMETAL_GEODE =
             PLACED_FEATURES.register("ettmetal_geode",
-                    () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) CustomGeodeConfig.ETTMETAL_GEODE, placementModifier()));
+                    () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>) (Holder<? extends ConfiguredFeature<?,?>>) CustomGeodeConfig.ETTMETAL_GEODE, placementModifier()));*/
 
     public static List<PlacementModifier> placementModifier() {
         return List.of(

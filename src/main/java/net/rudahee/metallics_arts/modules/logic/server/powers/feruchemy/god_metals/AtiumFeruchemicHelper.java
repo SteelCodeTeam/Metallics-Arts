@@ -3,8 +3,6 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.god_met
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.modules.effects.ModEffects;
 
 /**
  * Helper class containing the methods and implementations for using feruchemical Atium.

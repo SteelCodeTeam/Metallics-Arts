@@ -108,7 +108,6 @@ public class AllomanticSelector extends Screen {
 
 
             RenderSystem.disableCull();
-            RenderSystem.disableTexture();
             RenderSystem.enableBlend();
             RenderSystem.setShader(GameRenderer::getPositionColorShader);
 
@@ -268,7 +267,6 @@ public class AllomanticSelector extends Screen {
                 }
             }
             tess.end();
-            RenderSystem.enableTexture();
 
             //pintado interno
             for (int actualSegment  = 0; actualSegment  < internalSegments ; actualSegment ++) {

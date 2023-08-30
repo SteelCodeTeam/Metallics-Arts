@@ -1,8 +1,9 @@
 package net.rudahee.metallics_arts.setup;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.common.data.ForgeBlockTagsProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -10,7 +11,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.providers.ModBlockStateProvider;
 import net.rudahee.metallics_arts.data.providers.ModItemModelProvider;
-import net.rudahee.metallics_arts.data.providers.ModLootTableProvider;
 import net.rudahee.metallics_arts.data.providers.ModRecipeProvider;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderEN;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderES;
@@ -24,6 +24,8 @@ import net.rudahee.metallics_arts.modules.book.DemoBookProvider;
 import net.rudahee.metallics_arts.modules.custom_entities.ExampleEntity;
 import net.rudahee.metallics_arts.setup.registries.ModEntityTypesRegister;
 
+import java.util.concurrent.CompletableFuture;
+
 @Mod.EventBusSubscriber (modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {
     private DataGenerators() {}
@@ -31,33 +33,36 @@ public final class DataGenerators {
     @SubscribeEvent
     public static void  gatherData (GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
-
+        PackOutput packOutput = event.getGenerator().getPackOutput();
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-        gen.addProvider(true, new ModBlockStateProvider(gen,existingFileHelper));
-        gen.addProvider(true, new ModItemModelProvider(gen,existingFileHelper));
-        gen.addProvider(true, new ModBlockTagProvider(gen, MetallicsArts.MOD_ID, event.getExistingFileHelper()));
-        gen.addProvider(true, new ModLootTableProvider(gen));
+        ModBlockTagProvider blockTags = new  ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
+
+
+        gen.addProvider(true, new ModBlockStateProvider(gen, existingFileHelper));
+        gen.addProvider(true, new ModItemModelProvider(gen, existingFileHelper));
+        gen.addProvider(true, blockTags);
+        //gen.addProvider(true, new ModLootTableProvider(gen)); //todo mirar lo de brayan
+
         gen.addProvider(true, new ModRecipeProvider(gen));
+        gen.addProvider(true, new ModItemTagsProvider(packOutput,lookupProvider, blockTags.contentsGetter(), existingFileHelper));
 
-        gen.addProvider(true, new ModItemTagsProvider(gen, new ForgeBlockTagsProvider(gen, existingFileHelper), MetallicsArts.MOD_ID, existingFileHelper));
+        gen.addProvider(true, new ModLanguageProviderES(gen, "es_es"));
+        gen.addProvider(true, new ModLanguageProviderES(gen, "es_ar"));
+        gen.addProvider(true, new ModLanguageProviderES(gen, "es_mx"));
+        gen.addProvider(true, new ModLanguageProviderES(gen, "es_uy"));
+        gen.addProvider(true, new ModLanguageProviderES(gen, "es_ve"));
+        gen.addProvider(true, new ModLanguageProviderEN(gen, "en_us"));
+        gen.addProvider(true, new ModLanguageProviderEN(gen, "en_au"));
+        gen.addProvider(true, new ModLanguageProviderEN(gen, "en_ca"));
+        gen.addProvider(true, new ModLanguageProviderEN(gen, "en_gb"));
 
-        gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_es"));
-        gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_ar"));
-        gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_mx"));
-        gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_uy"));
-        gen.addProvider(true, new ModLanguageProviderES(gen, MetallicsArts.MOD_ID, "es_ve"));
-        gen.addProvider(true, new ModLanguageProviderEN(gen, MetallicsArts.MOD_ID, "en_us"));
-        gen.addProvider(true, new ModLanguageProviderEN(gen, MetallicsArts.MOD_ID, "en_au"));
-        gen.addProvider(true, new ModLanguageProviderEN(gen, MetallicsArts.MOD_ID, "en_ca"));
-        gen.addProvider(true, new ModLanguageProviderEN(gen, MetallicsArts.MOD_ID, "en_gb"));
-
-        gen.addProvider(true, new ModLanguageProviderJP(gen, MetallicsArts.MOD_ID, "ja_jp"));
-
-        gen.addProvider(true, new ModLanguageProviderPL(gen, MetallicsArts.MOD_ID, "pl_pl"));
+        gen.addProvider(true, new ModLanguageProviderJP(gen, "ja_jp"));
+        gen.addProvider(true, new ModLanguageProviderPL(gen, "pl_pl"));
 
 
-        gen.addProvider(event.includeServer(), new ModBannerTagProvider(gen, event.getExistingFileHelper()));
-        gen.addProvider(true, new ModBeaconTagProvider(gen,event.getExistingFileHelper()));
+        gen.addProvider(event.includeServer(), new ModBannerTagProvider(packOutput, lookupProvider, event.getExistingFileHelper()));
+        gen.addProvider(true, new ModBeaconTagProvider(packOutput, lookupProvider, existingFileHelper));
 
         gen.addProvider(event.includeServer(), new DemoBookProvider(gen, MetallicsArts.MOD_ID, null));
         //gen.addProvider(event.includeClient(), null);

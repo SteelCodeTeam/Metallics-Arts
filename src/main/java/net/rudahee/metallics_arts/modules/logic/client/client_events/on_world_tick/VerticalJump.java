@@ -38,28 +38,28 @@ public class VerticalJump {
      */
     public static void fly(IInvestedPlayerData capability, Minecraft minecraft, Player player, Level level) {
 
-        double x = player.getX();
-        double y = player.getY();
-        double z = player.getZ();
+        int x = player.getBlockX();
+        int y = player.getBlockY();
+        int z = player.getBlockZ();
 
         BlockPos blockPos = new BlockPos(x, y, z);
         Vec3 vector = player.getViewVector(1.0F);
 
-        double pushX;
-        double pushZ;
+        int pushX;
+        int pushZ;
 
         int maxAltitude = 10;
         int range = 7;
 
-        if (minecraft.options.keyUp.isDown()) {
-            pushX = x - (vector.x * range);
-            pushZ = z - (vector.z * range);
+        if (minecraft.options.keyUp.isDown()) { //todo chequear estos casteos por las dudas antes eran double
+            pushX = (int) (x - (vector.x * range));
+            pushZ = (int) (z - (vector.z * range));
         } else if (minecraft.options.keyDown.isDown()) {
-            pushX = x + (vector.x * range);
-            pushZ = z + (vector.z * range);
+            pushX = (int) (x + (vector.x * range));
+            pushZ = (int) (z + (vector.z * range));
         } else {
-            pushX = x - (vector.x * range);
-            pushZ = z - (vector.z * range);
+            pushX = (int) (x - (vector.x * range));
+            pushZ = (int) (z - (vector.z * range));
         }
         blockPos = new BlockPos(pushX, y, pushZ);
 

@@ -8,7 +8,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_entities.ExampleEntityModel;
-import net.rudahee.metallics_arts.modules.logic.client.custom_renders.ModEntityRender;
 import net.rudahee.metallics_arts.modules.render.ExampleEntityRenderer;
 
 @OnlyIn(Dist.CLIENT)

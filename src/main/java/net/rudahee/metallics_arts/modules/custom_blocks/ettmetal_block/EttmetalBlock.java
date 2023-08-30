@@ -5,7 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -72,7 +72,8 @@ public class EttmetalBlock extends Block {
         AABB area  = new AABB(posLeftTop, posRightDown);
 
         if (isTouchingWater(serverLevel, area)) {
-            serverLevel.explode(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 8.0f, true, Explosion.BlockInteraction.DESTROY);
+
+            serverLevel.explode(null, (double) blockPos.getX(), (double) blockPos.getY(), (double) blockPos.getZ(), 8.0f, true, Level.ExplosionInteraction.BLOCK);// todo antes era destroy
             serverLevel.setBlock(blockPos, Blocks.AIR.defaultBlockState(), 1);
         }
 
@@ -91,9 +92,11 @@ public class EttmetalBlock extends Block {
      */
     private boolean isTouchingWater(ServerLevel level, AABB area) {
         boolean isTouchingWater = false;
-        for (double x = area.minX; x <= area.maxX; x++) {
-            for (double y = area.minY; y <= area.maxY; y++) {
-                for (double z = area.minZ; z <= area.maxZ; z++) {
+
+        //todo chekear estos casteos
+        for (int x = (int) area.minX; x <= area.maxX; x++) {
+            for (int y = (int) area.minY; y <= area.maxY; y++) {
+                for (int z = (int) area.minZ; z <= area.maxZ; z++) {
 
                     if (level.getFluidState(new BlockPos(x,y,z)).is(FluidTags.WATER)) {
                         isTouchingWater = true;

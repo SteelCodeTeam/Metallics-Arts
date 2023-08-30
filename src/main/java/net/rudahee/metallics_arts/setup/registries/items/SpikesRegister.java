@@ -13,7 +13,7 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
  * @see ModItemsRegister
  */
 public class SpikesRegister {
-    private static final Item.Properties PROPERTY_SPIKE = new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1);
+    private static final Item.Properties PROPERTY_SPIKE = new Item.Properties().stacksTo(1);
 
     public static void register() {
 

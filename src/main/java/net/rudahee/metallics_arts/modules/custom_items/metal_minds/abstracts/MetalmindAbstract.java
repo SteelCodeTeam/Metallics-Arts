@@ -11,7 +11,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalmindType;
@@ -449,7 +448,8 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
 
     public CompoundTag calculateChargeEttmetal(CompoundTag compoundTag, Player player, int metalReserve, String metalKey) {
         if (player.getLastDamageSource() != null) {
-            if ((player.getLastDamageSource().isExplosion())) {
+            //todo chequear esto, no me gusta ese null ahi
+            if (player.getLastDamageSource().type().equals(player.damageSources().explosion(null).type())) {
                 compoundTag.putInt(metalKey, metalReserve + 1);
             }
         }
@@ -469,7 +469,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
      */
 
     public CompoundTag calculateDischargeEttmetal(CompoundTag compoundTag, Player player, String metalKey) {
-        player.level.explode(player,player.position().x,player.position().y,player.position().z,(float) compoundTag.getInt(metalKey)/683, Explosion.BlockInteraction.NONE);
+        player.level.explode(player,player.position().x,player.position().y,player.position().z,(float) compoundTag.getInt(metalKey)/683, Level.ExplosionInteraction.NONE); // todo antes era none
         player.setHealth((player.getHealth() - ((float) compoundTag.getInt(metalKey)/205)));
         compoundTag.putInt(metalKey,0);
         return compoundTag;

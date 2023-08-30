@@ -1,9 +1,6 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals;
 
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.modules.effects.ModEffects;
 
 /**
  * Helper class containing the methods and implementations for using feruchemical Gold.
@@ -33,7 +30,7 @@ public class GoldFeruchemicHelper {
 
     public static void storagePower(Player player) {
         if (!player.isCreative()) {
-            player.hurt(DamageSource.GENERIC, 2.0F);
+            player.hurt(player.damageSources().generic(), 2.0F);
         }
     }
 

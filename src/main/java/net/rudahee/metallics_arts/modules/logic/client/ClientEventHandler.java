@@ -1,10 +1,6 @@
 package net.rudahee.metallics_arts.modules.logic.client;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.ChatScreen;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -19,7 +15,6 @@ import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerExcept
 import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.modules.logic.client.client_events.*;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
-import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import net.rudahee.metallics_arts.setup.registries.ModRenderRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 

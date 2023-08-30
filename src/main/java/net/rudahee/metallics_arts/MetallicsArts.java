@@ -4,15 +4,14 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -29,9 +28,9 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
 import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceScreen;
+import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays.MetalsOverlay;
-import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.villagers.ModVillager;
 import net.rudahee.metallics_arts.setup.DataGenerators;
 import net.rudahee.metallics_arts.setup.Registration;
@@ -42,10 +41,7 @@ import net.rudahee.metallics_arts.setup.registries.generation.ModOreGenerationRe
 import net.rudahee.metallics_arts.setup.registries.generation.ModStructureRegister;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.NotNull;
-import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
-import top.theillusivec4.curios.api.SlotTypePreset;
 
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -62,7 +58,7 @@ public class MetallicsArts {
     public static final Logger LOGGER = LogManager.getLogger();
 
     // creative tab
-    public static CreativeModeTab MA_TAB = new CreativeModeTab(MOD_ID) {
+    /*public static CreativeModeTab MA_TAB = new CreativeModeTab(MOD_ID) {
         @Override
         public @NotNull ItemStack makeIcon() {
             return new ItemStack(Items.GOLD_INGOT);
@@ -74,7 +70,7 @@ public class MetallicsArts {
         public @NotNull ItemStack makeIcon() {
             return new ItemStack(Items.GOLD_BLOCK);
         }
-    };
+    };*/
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID);
 
@@ -212,14 +208,16 @@ public class MetallicsArts {
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> blockSupplier) {
 
         RegistryObject<T> blockRegistered = registerBlockNoItem(name, blockSupplier);
-        ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().tab(MA_TAB).stacksTo(64))));
+        ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().stacksTo(64))));
+        //ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().tab(MA_TAB).stacksTo(64))));
         return blockRegistered;
 
     }
 
     public static <T extends Block> RegistryObject<T> registerBlockDecoration(String name, Supplier<T> blockSupplier) {
         RegistryObject<T> blockRegistered = registerBlockNoItem(name, blockSupplier);
-        ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().tab(MA_TAB_DECORATION).stacksTo(64))));
+        //ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().tab(MA_TAB_DECORATION).stacksTo(64))));
+        ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().stacksTo(64))));
         return blockRegistered;
     }
 

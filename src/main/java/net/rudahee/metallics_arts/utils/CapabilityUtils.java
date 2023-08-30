@@ -84,8 +84,8 @@ public class CapabilityUtils<T> {
 
     public static AABB getBubble (Player player, int radius) {
         return new AABB(
-                new BlockPos(player.position()).offset(-radius, -radius, -radius),
-                new BlockPos(player.position()).offset(radius, radius, radius));
+                new BlockPos(player.blockPosition()).offset(-radius, -radius, -radius),
+                new BlockPos(player.blockPosition()).offset(radius, radius, radius));
     }
 
     public HashMap<MetalTagEnum, T> fillMetalTagMap(T defaultValue) {

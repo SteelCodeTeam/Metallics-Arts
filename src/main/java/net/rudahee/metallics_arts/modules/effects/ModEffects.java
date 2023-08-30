@@ -3,7 +3,6 @@ package net.rudahee.metallics_arts.modules.effects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -11,6 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,7 +49,6 @@ public class ModEffects {
      */
     public static void giveAllomanticEffect(Player player, MetalTagEnum metal) {
         MobEffectInstance effect = new MobEffectInstance(ModEffects.POWER_EFFECTS.get("allomantic_"+metal.getNameLower()).get(), 10, 0, true, true);
-        effect.setNoCounter(true);
         player.addEffect(effect);
     }
 
@@ -61,7 +60,6 @@ public class ModEffects {
      */
     public static void giveFeruchemicalTapEffect(Player player, MetalTagEnum metal) {
         MobEffectInstance effect = new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_" + metal.getNameLower() + "_tap").get(), 2, 0, true, true);
-        effect.setNoCounter(true);
         player.addEffect(effect);
     }
     /**
@@ -72,7 +70,6 @@ public class ModEffects {
      */
     public static void giveFeruchemicalStorageEffect(Player player, MetalTagEnum metal) {
         MobEffectInstance effect = new MobEffectInstance(ModEffects.POWER_EFFECTS.get("feruchemical_" + metal.getNameLower() + "_storage").get(), 2, 0, true, true);
-        effect.setNoCounter(true);
         player.addEffect(effect);
     }
 

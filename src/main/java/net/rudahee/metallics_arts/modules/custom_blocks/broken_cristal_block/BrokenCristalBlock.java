@@ -1,7 +1,6 @@
 package net.rudahee.metallics_arts.modules.custom_blocks.broken_cristal_block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -46,7 +45,7 @@ public class BrokenCristalBlock extends Block {
     @Override
     public void stepOn(@NotNull Level level, @NotNull BlockPos blockPos, @NotNull BlockState blockState, Entity entity) {
         if (!entity.isSteppingCarefully() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entity)) {
-            entity.hurt(DamageSource.STALAGMITE, 1.0F);
+            entity.hurt(entity.damageSources().stalagmite(), 1.0F);
         }
         super.stepOn(level, blockPos, blockState, entity);
     }

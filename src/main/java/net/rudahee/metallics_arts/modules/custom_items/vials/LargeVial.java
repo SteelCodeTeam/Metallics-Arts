@@ -1,7 +1,6 @@
 package net.rudahee.metallics_arts.modules.custom_items.vials;
 
 import net.minecraft.world.item.Item;
-import net.rudahee.metallics_arts.modules.custom_items.vials.Vial;
 
 
 /**

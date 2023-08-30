@@ -14,8 +14,6 @@ import net.minecraft.world.level.material.PushReaction;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Random;
-
 /**
  * This class is used to create a custom atium budding block, extended default amethyst block.
  * It also defines the behavior that occurs to grow atium.

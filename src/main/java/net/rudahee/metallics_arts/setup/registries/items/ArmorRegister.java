@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.setup.registries.items;
 
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
@@ -14,7 +13,7 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 public class ArmorRegister {
 
-    private static final Item.Properties PROPERTIES = new Item.Properties().tab(MetallicsArts.MA_TAB);
+    private static final Item.Properties PROPERTIES = new Item.Properties();
 
     public static void register() {
         RegistryObject<Item> steelHelmet = MetallicsArts.registerItem("steel_helmet",
@@ -54,7 +53,7 @@ public class ArmorRegister {
         ModItemsRegister.BRONZE_ALUMINUM_SHIELD = MetallicsArts.registerItem(Shields.BRONZE_ALUMINUM.getId(),
                 () -> new CustomShield(PROPERTIES, Shields.BRONZE_ALUMINUM));
         ModItemsRegister.MISTCLOACK = MetallicsArts.registerItem("mistcloak",
-                () -> new MistCloak(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1)));
+                () -> new MistCloak(new Item.Properties().stacksTo(1)));
 
     }
 }

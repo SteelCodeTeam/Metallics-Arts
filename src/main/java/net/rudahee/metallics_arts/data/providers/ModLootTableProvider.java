@@ -1,13 +1,13 @@
 package net.rudahee.metallics_arts.data.providers;
 
 
-
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -29,7 +29,6 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
@@ -59,6 +58,11 @@ public class ModLootTableProvider extends LootTableProvider {
     public ModLootTableProvider(DataGenerator generator, Set<ResourceLocation> loc, List<SubProviderEntry> prov) {
         //TODO no se que onda con el super, agrege los dos parametros finales.
         super(generator.getPackOutput(), loc, prov);
+        this.generator = generator;
+    }
+
+    public ModLootTableProvider(PackOutput packOutput, Set<ResourceLocation> resourceLocations, List<SubProviderEntry> subProviderEntries, DataGenerator generator) {
+        super(packOutput, resourceLocations, subProviderEntries);
         this.generator = generator;
     }
 

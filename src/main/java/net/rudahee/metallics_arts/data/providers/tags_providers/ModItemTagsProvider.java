@@ -1,13 +1,13 @@
 package net.rudahee.metallics_arts.data.providers.tags_providers;
 
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
@@ -16,12 +16,17 @@ import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
 
 public class ModItemTagsProvider extends ItemTagsProvider {
-    public ModItemTagsProvider(DataGenerator dataGenerator, BlockTagsProvider blockTagsProvider, String modId, @Nullable ExistingFileHelper existingFileHelper) {
-        super(dataGenerator, blockTagsProvider, modId, existingFileHelper);
+    public ModItemTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> tagLookupCompletableFuture, @Nullable ExistingFileHelper existingFileHelper) {
+        super(packOutput, lookupProvider, tagLookupCompletableFuture, MetallicsArts.MOD_ID, existingFileHelper);
     }
+    /*public ModItemTagsProvider(DataGenerator dataGenerator, BlockTagsProvider blockTagsProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(dataGenerator, blockTagsProvider, MetallicsArts.MOD_ID, existingFileHelper);
+        super()
+    }*/
 
     @Override
     protected void addTags(HolderLookup.Provider prov) {

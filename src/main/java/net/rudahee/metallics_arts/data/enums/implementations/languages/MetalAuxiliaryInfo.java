@@ -1,8 +1,6 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages;
 
 
-import net.rudahee.metallics_arts.data.enums.interfaces.ILanguage;
-
 /**
  * Enum class for auxiliary information about metals.
  * It contains information about metal types, such as their id, whether they are alloys or not,

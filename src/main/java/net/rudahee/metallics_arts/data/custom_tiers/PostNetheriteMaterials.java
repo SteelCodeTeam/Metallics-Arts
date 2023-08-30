@@ -1,12 +1,9 @@
 package net.rudahee.metallics_arts.data.custom_tiers;
 
 import net.minecraft.sounds.SoundEvent;
-
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
-
 import net.minecraft.world.item.crafting.Ingredient;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;

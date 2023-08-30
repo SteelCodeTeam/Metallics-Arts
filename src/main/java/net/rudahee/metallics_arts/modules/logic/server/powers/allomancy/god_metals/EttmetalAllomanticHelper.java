@@ -2,7 +2,6 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_met
 
 
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
@@ -30,11 +29,12 @@ public class EttmetalAllomanticHelper {
         if (playerCapability.getEnhanced()) {
             //max reserve = 100/20 = 5
             //min reserve = 10/20 = 0*5
-            level.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL))/20, Explosion.BlockInteraction.BREAK);
+
+            level.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL))/20, Level.ExplosionInteraction.TNT); //todo antes era break
             player.setHealth((player.getHealth() - ((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL)/5)));
             playerCapability.drainMetals(MetalTagEnum.DURALUMIN);
         } else {
-            level.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL))/20,Explosion.BlockInteraction.NONE);
+            level.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL))/20, Level.ExplosionInteraction.NONE); //antes era none
             player.setHealth((player.getHealth() - ((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL)/10)));
         }
         playerCapability.drainMetals(MetalTagEnum.ETTMETAL);

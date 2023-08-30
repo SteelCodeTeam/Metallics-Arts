@@ -1,12 +1,9 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.hybrid_metals;
 
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.modules.effects.ModEffects;
 
 /**
  * Helper class containing the methods and implementations for using feruchemical Cadmium.
@@ -41,7 +38,7 @@ public class CadmiumFeruchemicHelper {
             if (!player.isEyeInFluid(FluidTags.WATER)) {
                 player.setAirSupply(player.getAirSupply() - 5);
                 if (player.getAirSupply()<= -29) {
-                    player.hurt(DamageSource.DROWN,1);
+                    player.hurt(player.damageSources().drown(),1);
                     player.setAirSupply(-9);
                 }
             } else {

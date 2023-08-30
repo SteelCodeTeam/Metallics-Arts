@@ -1,7 +1,6 @@
 package net.rudahee.metallics_arts.modules.custom_items.metal_spikes;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -205,7 +204,8 @@ public class MetalSpike extends SwordItem {
 
             Random rng = new Random();
             Level world = target.level;
-            BlockPos pos = new BlockPos(target.position());
+
+            BlockPos pos = new BlockPos(target.blockPosition());
 
 
 

@@ -27,7 +27,7 @@ public class BasicItemsRegister {
         metalList.forEach(metal -> {
             //Ingots
             MetallicsArts.registerItem(metal.getMetalNameLower() + "_ingot", () -> {
-                Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(64));
+                Item item = new Item(new Item.Properties().stacksTo(64));
                 ModItemsRegister.ITEM_METAL_INGOT.put(metal.getMetalNameLower(), item);
                 if (metal.isAlloy()) {
 
@@ -40,14 +40,14 @@ public class BasicItemsRegister {
             });
             // Nuggets
             MetallicsArts.registerItem(metal.getMetalNameLower() + "_nugget", () -> {
-                Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(64));
+                Item item = new Item(new Item.Properties().stacksTo(64));
                 ModItemsRegister.ITEM_METAL_NUGGET.put(metal.getMetalNameLower(), item);
                 return item;
             });
             // Raws
             if (!metal.isAlloy()) {
                 MetallicsArts.registerItem("raw_" + metal.getMetalNameLower(), () -> {
-                    Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(64));
+                    Item item = new Item(new Item.Properties().stacksTo(64));
                     ModItemsRegister.ITEM_RAW_METAL.put(metal.getMetalNameLower(), item);
                     return item;
                 });
@@ -55,7 +55,7 @@ public class BasicItemsRegister {
         });
 
         MetallicsArts.registerItem("copper_nugget",() -> {
-            Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(64));
+            Item item = new Item(new Item.Properties().stacksTo(64));
             ModItemsRegister.ITEM_METAL_NUGGET.put("copper", item);
             return item;
         });
@@ -64,7 +64,7 @@ public class BasicItemsRegister {
             // Ingot
             MetallicsArts.registerItem(gem.getGemNameLower(),
                 () -> {
-                    Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB));
+                    Item item = new Item(new Item.Properties());
                     ModItemsRegister.ITEM_GEMS_BASE.put(gem.getGemNameLower(), item);
                     if (gem.getGemNameLower() == "malatium") {
                         //AlloyRecipeEnum.valueOf(gem.getGemNameUpper()).setItem(item);
@@ -78,7 +78,7 @@ public class BasicItemsRegister {
             // Nuggets
             MetallicsArts.registerItem(gem.getGemNameLower() + "_nugget",
                 () -> {
-                    Item item = new Item(new Item.Properties().tab(MetallicsArts.MA_TAB));
+                    Item item = new Item(new Item.Properties());
                     ModItemsRegister.ITEM_GEMS_NUGGET.put(gem.getGemNameLower(), item);
                     return item;
                 });

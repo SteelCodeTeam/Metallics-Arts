@@ -1,8 +1,7 @@
 package net.rudahee.metallics_arts.data.providers.tags_providers;
 
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
@@ -10,9 +9,11 @@ import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalAuxiliaryInfo;
-import net.rudahee.metallics_arts.data.providers.ModBlockStateProvider;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.items.ModTags;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * A custom block tag provider class to create and manage tags for modded blocks.
@@ -22,21 +23,24 @@ import net.rudahee.metallics_arts.setup.registries.items.ModTags;
  */
 public class ModBlockTagProvider extends BlockTagsProvider {
 
-    /**
-     * Constructor for the ModBlockTagProvider class.
-     *
-     * @param gen the data generator used for creating block tags
-     * @param modid the mod ID for the mod that's adding the block tags
-     * @param exFileHelper the existing file helper for handling existing files
-     */
-    /*public ModBlockTagProvider(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
-        super(gen, modid, exFileHelper);
+    public ModBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, MetallicsArts.MOD_ID, existingFileHelper);
     }
 
 
-    /**
-     * Adds tags for all custom blocks in the mod.
-     */
+    @Override
+    public CompletableFuture<TagLookup<Block>> contentsGetter() {
+        return super.contentsGetter();
+    }
+
+    /*public ModBlockTagProvider(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
+            super(gen, modid, exFileHelper);
+        }
+
+
+        /**
+         * Add tags for all custom blocks in the mod.
+         */
     @Override
     protected void addTags(HolderLookup.Provider provider) {
 
@@ -77,8 +81,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 }
                 addForgeTag("storage_blocks/" + metal.getId() + "_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()));
                 makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()));
-            } else if (metal != MetalAuxiliaryInfo.COPPER) {
 
+            } else if (metal != MetalAuxiliaryInfo.COPPER) {
                 addForgeTag("storage_blocks/" + metal.getId() + "_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()));
                 makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()));
             }
@@ -121,6 +125,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         for (Block fence_gate:ModBlocksRegister.BLOCK_METAL_FENCE_GATES.values()){
             this.tag(BlockTags.FENCE_GATES).add(fence_gate);
         }
+
+
 
 
 

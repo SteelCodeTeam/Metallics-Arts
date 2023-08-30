@@ -14,7 +14,7 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
  */
 public class VialsRegister {
     private static final Item.Properties PROPERTY_VIALS =
-            new Item.Properties().tab(MetallicsArts.MA_TAB).stacksTo(1).food(new FoodProperties.Builder().nutrition(0).build());
+            new Item.Properties().stacksTo(1).food(new FoodProperties.Builder().nutrition(0).build());
 
     public static void register () {
         ModItemsRegister.LARGE_VIAL =  MetallicsArts.registerItem("large_vial",

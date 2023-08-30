@@ -119,7 +119,6 @@ public class FeruchemySelector extends Screen {
             BufferBuilder buf = tess.getBuilder();
 
             RenderSystem.disableCull();
-            RenderSystem.disableTexture();
             RenderSystem.enableBlend();
             RenderSystem.setShader(GameRenderer::getPositionColorShader);
 
@@ -165,8 +164,6 @@ public class FeruchemySelector extends Screen {
             }
 
             tess.end();
-
-            RenderSystem.enableTexture();
 
             //pintado
 

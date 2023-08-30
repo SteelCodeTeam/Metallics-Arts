@@ -3,7 +3,6 @@ package net.rudahee.metallics_arts.setup.network.packets;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.network.NetworkEvent;
 import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticLever;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;

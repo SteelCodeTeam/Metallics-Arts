@@ -1,8 +1,6 @@
 package net.rudahee.metallics_arts.modules.custom_items.weapons.mele;
 
-import com.mojang.authlib.minecraft.TelemetrySession;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -13,7 +11,6 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
@@ -41,7 +38,7 @@ public class KolossBlade extends SwordItem {
      * @param properties of the item.
      */
     public KolossBlade(Properties properties) {
-        super(Tiers.STONE, ATTACK_DAMAGE, ATTACK_SPEED, properties.durability(200).tab(MetallicsArts.MA_TAB));
+        super(Tiers.STONE, ATTACK_DAMAGE, ATTACK_SPEED, properties.durability(200));
     }
 
     @Override
