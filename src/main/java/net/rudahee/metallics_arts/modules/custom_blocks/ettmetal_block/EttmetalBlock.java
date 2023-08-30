@@ -73,7 +73,7 @@ public class EttmetalBlock extends Block {
 
         if (isTouchingWater(serverLevel, area)) {
 
-            serverLevel.explode(null, (double) blockPos.getX(), (double) blockPos.getY(), (double) blockPos.getZ(), 8.0f, true, Level.ExplosionInteraction.BLOCK);// todo antes era destroy
+            serverLevel.explode(null, (double) blockPos.getX(), (double) blockPos.getY(), (double) blockPos.getZ(), 8.0f, true, Level.ExplosionInteraction.BLOCK);
             serverLevel.setBlock(blockPos, Blocks.AIR.defaultBlockState(), 1);
         }
 
@@ -93,7 +93,7 @@ public class EttmetalBlock extends Block {
     private boolean isTouchingWater(ServerLevel level, AABB area) {
         boolean isTouchingWater = false;
 
-        //todo chekear estos casteos
+
         for (int x = (int) area.minX; x <= area.maxX; x++) {
             for (int y = (int) area.minY; y <= area.maxY; y++) {
                 for (int z = (int) area.minZ; z <= area.maxZ; z++) {

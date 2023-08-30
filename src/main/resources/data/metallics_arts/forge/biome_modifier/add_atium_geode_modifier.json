@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#minecraft:is_overworld",
-  "features": "metallics_arts:atium_geode",
-  "step": "underground_decoration"
-}

@@ -191,8 +191,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/shotgun_aluminum_bullet","item/combat/guns/shotgun_aluminum_bullet");
         builder(itemGenerated,"item/shotgun_lead_bullet","item/combat/guns/shotgun_lead_bullet");
 
-        builder(itemGenerated,"item/pistol_aluminum_bullet","item/combat/guns/pistol_aluminum_bullet");
-        builder(itemGenerated,"item/pistol_lead_bullet","item/combat/guns/pistol_lead_bullet");
+        builder(itemGenerated,"item/revolver_aluminum_bullet","item/combat/guns/revolver_aluminum_bullet");
+        builder(itemGenerated,"item/revolver_lead_bullet","item/combat/guns/revolver_lead_bullet");
 
         builder(itemGenerated,"item/rifle_lead_bullet","item/combat/guns/rifle_lead_bullet");
         builder(itemGenerated,"item/rifle_aluminum_bullet","item/combat/guns/rifle_aluminum_bullet");

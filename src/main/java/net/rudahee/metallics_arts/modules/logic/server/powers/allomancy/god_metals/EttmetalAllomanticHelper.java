@@ -30,11 +30,11 @@ public class EttmetalAllomanticHelper {
             //max reserve = 100/20 = 5
             //min reserve = 10/20 = 0*5
 
-            level.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL))/20, Level.ExplosionInteraction.TNT); //todo antes era break
+            level.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL))/20, Level.ExplosionInteraction.TNT);
             player.setHealth((player.getHealth() - ((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL)/5)));
             playerCapability.drainMetals(MetalTagEnum.DURALUMIN);
         } else {
-            level.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL))/20, Level.ExplosionInteraction.NONE); //antes era none
+            level.explode(player,player.position().x,player.position().y,player.position().z,((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL))/20, Level.ExplosionInteraction.MOB);
             player.setHealth((player.getHealth() - ((float) playerCapability.getAllomanticAmount(MetalTagEnum.ETTMETAL)/10)));
         }
         playerCapability.drainMetals(MetalTagEnum.ETTMETAL);

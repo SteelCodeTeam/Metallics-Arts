@@ -450,7 +450,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
     public CompoundTag calculateChargeEttmetal(CompoundTag compoundTag, Player player, int metalReserve, String metalKey) {
         if (player.getLastDamageSource() != null) {
             //todo chequear esto, no me gusta ese null ahi, he cambiado a una explosion por defecto, pero no tiene buena pinta, la verdad
-            if (player.getLastDamageSource().type().equals(player.damageSources().explosion(new Explosion(player.level, player, player.position().x,player.position().y,player.position().z,4, List.of(player.blockPosition()))).type())) {
+            if (player.getLastDamageSource().type().equals(player.damageSources().explosion(null).type())) {
                 compoundTag.putInt(metalKey, metalReserve + 1);
             }
         }
@@ -470,7 +470,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
      */
 
     public CompoundTag calculateDischargeEttmetal(CompoundTag compoundTag, Player player, String metalKey) {
-        player.level.explode(player,player.position().x,player.position().y,player.position().z,(float) compoundTag.getInt(metalKey)/683, Level.ExplosionInteraction.NONE); // todo antes era none
+        player.level.explode(player,player.position().x,player.position().y,player.position().z,(float) compoundTag.getInt(metalKey)/683, Level.ExplosionInteraction.MOB);
         player.setHealth((player.getHealth() - ((float) compoundTag.getInt(metalKey)/205)));
         compoundTag.putInt(metalKey,0);
         return compoundTag;

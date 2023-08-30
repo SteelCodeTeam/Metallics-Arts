@@ -32,15 +32,16 @@ public class ModVillager {
                     SoundEvents.VILLAGER_WORK_ARMORER));
 
 
-    public static void registerPOIs () {
+    /*// TODO public static void registerPOIs () {
         try {
-            ObfuscationReflectionHelper.findMethod(PoiType.class,"registerBlockStates", PoiType.class)
+
+            ObfuscationReflectionHelper.findMethod(PoiType.class,"is", PoiType.class)
                     .invoke(null, CRUCIBLE_FURNACE_POI.get());
 
         } catch (InvocationTargetException | IllegalAccessException exception) {
                 exception.printStackTrace();
         }
-    }
+    }*/
 
     public static void register(IEventBus eventBus) {
         POI_TYPE.register(eventBus);

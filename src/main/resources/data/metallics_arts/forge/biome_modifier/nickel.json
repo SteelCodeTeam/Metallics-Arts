@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#minecraft:is_overworld",
-  "features": "metallics_arts:nickel_ore_placed_deepslate",
-  "step": "underground_ores"
-}

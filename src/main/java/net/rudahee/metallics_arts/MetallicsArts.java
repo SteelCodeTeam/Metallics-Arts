@@ -32,12 +32,12 @@ import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays.MetalsOverlay;
 import net.rudahee.metallics_arts.modules.villagers.ModVillager;
-import net.rudahee.metallics_arts.setup.DataGenerators;
+import net.rudahee.metallics_arts.setup.tabs.ModCreativeTabs;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.*;
-import net.rudahee.metallics_arts.setup.registries.generation_old.ModGeodeGenerationRegister;
 
+import net.rudahee.metallics_arts.setup.tabs.ModCreativeTabsEvents;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
@@ -107,9 +107,11 @@ public class MetallicsArts {
         ModEntityTypesRegister.register(modEventBus);
         ModBlockEntitiesRegister.register(modEventBus);
         ModMenuRegister.register(modEventBus);
-
         ModVillager.register(modEventBus);
 
+        modEventBus.addListener(ModCreativeTabsEvents::addToMetallicsArtsTab);
+        modEventBus.addListener(ModCreativeTabsEvents::addToMetallicsArtsDecorationTab);
+        modEventBus.addListener(ModCreativeTabsEvents::addToCombatTab);
 
         //Register for the paintings
         ModPaintingProvider.register(modEventBus);
@@ -121,7 +123,7 @@ public class MetallicsArts {
         MinecraftForge.EVENT_BUS.register(this);
 
         //book
-        modEventBus.addListener(DataGenerators::gatherData);
+        //modEventBus.addListener(DataGenerators::gatherData);
     }
 
 
@@ -140,7 +142,7 @@ public class MetallicsArts {
         ModNetwork.registerPackets();
         ModEventsRegister.register(event);
 
-        event.enqueueWork(ModVillager::registerPOIs);
+        // TODO event.enqueueWork(ModVillager::registerPOIs);
 
     }
 

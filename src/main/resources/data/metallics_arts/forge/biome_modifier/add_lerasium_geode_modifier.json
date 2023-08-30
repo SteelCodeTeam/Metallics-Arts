@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#minecraft:is_nether",
-  "features": "metallics_arts:lerasium_geode",
-  "step": "underground_decoration"
-}
