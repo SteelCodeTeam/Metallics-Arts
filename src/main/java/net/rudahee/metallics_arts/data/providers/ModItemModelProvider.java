@@ -198,7 +198,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/rifle_aluminum_bullet","item/combat/guns/rifle_aluminum_bullet");
 
 
-        for (MetalEnum metal : MetalEnum.values()){
+        for (MetalEnum metal : MetalEnum.values()) {
             evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower()));
 
             evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getMetalNameLower()));
@@ -222,7 +222,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
             }
         }
-        for (GemsEnum metal : GemsEnum.values()){
+        for (GemsEnum metal : GemsEnum.values()) {
             evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getGemNameLower()));
 
             evenSimplerBlockItem(ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getGemNameLower()));

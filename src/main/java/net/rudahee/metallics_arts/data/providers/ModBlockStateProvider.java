@@ -132,7 +132,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 
 
-        for (MetalEnum metal : MetalEnum.values()){
+        for (MetalEnum metal : MetalEnum.values()) {
             stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower()), blockTexture(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower())));
             slabBlock((SlabBlock) ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getMetalNameLower()), blockTexture(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower())), blockTexture(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower())));
             wallBlock((WallBlock) ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getMetalNameLower()), blockTexture(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower())));
@@ -147,7 +147,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 fenceGateBlock((FenceGateBlock) ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(metal.getMetalNameLower() + "_raw"), blockTexture(ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getMetalNameLower())));
             }
         }
-        for (GemsEnum metal : GemsEnum.values()){
+        for (GemsEnum metal : GemsEnum.values()) {
             stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getGemNameLower()), blockTexture(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower())));
             slabBlock((SlabBlock) ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getGemNameLower()), blockTexture(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower())), blockTexture(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower())));
             wallBlock((WallBlock) ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getGemNameLower()), blockTexture(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower())));

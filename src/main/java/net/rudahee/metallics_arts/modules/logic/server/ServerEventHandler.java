@@ -251,7 +251,7 @@ public class ServerEventHandler {
     public static void addCustomTrades(VillagerTradesEvent event) {
         if (event.getType() == ModVillager.VILLAGER_CRUCIBLE_PROFESSION.get()) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
-            for (ForgeMasterTrades localTrade: ForgeMasterTrades.values()){
+            for (ForgeMasterTrades localTrade: ForgeMasterTrades.values()) {
                 if (localTrade.getOptionalSecondInput() == null) {
                     trades.get(localTrade.getLevel()).add((trader, rand)->
                             new MerchantOffer(localTrade.getInput(),localTrade.getOutput(),localTrade.getMaxqty(),localTrade.getXp(),0.09F

@@ -33,10 +33,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         return super.contentsGetter();
     }
 
-    /*public ModBlockTagProvider(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
-            super(gen, modid, exFileHelper);
-        }
-
 
         /**
          * Add tags for all custom blocks in the mod.
@@ -64,14 +60,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                     addForgeTag("ores_in_ground/deepslate",ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
                 }
 
-                if (!metal.isAlloy() && !metal.isDivine()) {
-                  // addForgeTag("storage_blocks/raw_" + metal.getId(), ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getId())); TODO
-                    //makePickaxeMineable(ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getId()));
-                   // addForgeTag("storage_blocks/" + metal.getId() + "_raw_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()+ "_raw"));
-                    //makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId() + "_raw"));
+                if (metal.isAppearsInStone() || metal.isAppearsInDeepslate()) {
+                    addForgeTag("storage_blocks/raw_" + metal.getId(), ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getId())); //TODO
+                    makePickaxeMineable(ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getId()));
+                    addForgeTag("storage_blocks/" + metal.getId() + "_raw_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()+ "_raw"));
+                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId() + "_raw"));
                 }
-
-                if (!metal.isDivine()) {
+            if (!metal.isDivine()) {
                     addForgeTag("storage_blocks/"+metal.getId(), ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getId()));
                     makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getId()));
 
@@ -79,6 +74,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                     addForgeTag("storage_blocks/" + metal.getId(), ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getId()));
                     makePickaxeMineable(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getId()));
                 }
+
                 addForgeTag("storage_blocks/" + metal.getId() + "_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()));
                 makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()));
 
@@ -89,6 +85,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
 
         }
+
         for (String key : ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.keySet()) {
             addForgeTag("storage_blocks/" + key + "_cristal", ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key));
             makePickaxeMineable(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key));
@@ -115,61 +112,18 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         }
 
 
-        for (Block wall:ModBlocksRegister.BLOCK_METAL_WALLS.values()){
+        for (Block wall : ModBlocksRegister.BLOCK_METAL_WALLS.values()) {
             this.tag(BlockTags.WALLS).add(wall);
         }
 
-        for (Block fence:ModBlocksRegister.BLOCK_METAL_FENCES.values()){
+        for (Block fence : ModBlocksRegister.BLOCK_METAL_FENCES.values()) {
             this.tag(BlockTags.FENCES).add(fence);
         }
-        for (Block fence_gate:ModBlocksRegister.BLOCK_METAL_FENCE_GATES.values()){
+        for (Block fence_gate : ModBlocksRegister.BLOCK_METAL_FENCE_GATES.values()) {
             this.tag(BlockTags.FENCE_GATES).add(fence_gate);
         }
 
-
-
-
-
-
-
-        /*for (String key: ModBlocksRegister.BLOCK_METAL_BLOCKS.keySet()) {
-
-            if (ModBlocksRegister.BLOCK_METAL_ORES.containsKey(key)) {
-                Block ore = ModBlocksRegister.BLOCK_METAL_ORES.get(key);
-                addForgeTag("ores/" + key, ore);
-                makePickaxeMineable(ore);
-            }
-            if (ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.containsKey(key)) {
-                Block ds = ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(key);
-                addForgeTag("deepslate_ores/"+key,ds);
-                makePickaxeMineable(ds);
-            }
-            if (ModBlocksRegister.RAW_METAL_BLOCKS.containsKey(key)) {
-                Block raw = ModBlocksRegister.RAW_METAL_BLOCKS.get(key);
-                addForgeTag("storage_blocks/"+key, raw);
-                makePickaxeMineable(raw);
-            }
-            addForgeTag("storage_blocks/"+key, ModBlocksRegister.BLOCK_METAL_BLOCKS.get(key));
-            makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(key));
-        }
-
-        for (String key : ModBlocksRegister.BLOCK_GEMS_BLOCKS.keySet()) {
-            addForgeTag("storage_blocks/" + key, ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(key));
-            makePickaxeMineable(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(key));
-        }*/
-
-
-
     }
-
-
-    /*
-    this.tag(TagUtils.forgeBlockTag( "ores/adamantine"))
-	        .add(ModBlocks.adamantium_ore.get())
-			.add(ModBlocks.deepslate_adamantium_ore.get());
-     */
-
-
 
     /**
      * Adds a forge tag for a group of blocks.

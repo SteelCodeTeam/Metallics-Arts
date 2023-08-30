@@ -26,21 +26,12 @@ public class ModBannerTagProvider extends TagsProvider<BannerPattern> {
         super(packOutput, Registries.BANNER_PATTERN, completableFuture, MetallicsArts.MOD_ID, existingFileHelper);
     }
 
-    /*public ModBannerTagProvider(DataGenerator pGenerator, net.minecraftforge.common.data.ExistingFileHelper existingFileHelper) {
-        super();
-        super(pGenerator, Registry.BANNER_PATTERN, MetallicsArts.MOD_ID, existingFileHelper);
-    }*/
-
     /**
      * Adds tags for custom mod banner patterns.
      */
-    protected void addTags() {
-
-
-    }
 
     @Override
-    protected void addTags(HolderLookup.Provider p_256380_) {
+    protected void addTags(HolderLookup.Provider provider) {
         for (MetalTagEnum metal : MetalTagEnum.values()) {
             MetallicsArts.LOGGER.debug("Creating banner tag for " + metal.getNameLower());
 

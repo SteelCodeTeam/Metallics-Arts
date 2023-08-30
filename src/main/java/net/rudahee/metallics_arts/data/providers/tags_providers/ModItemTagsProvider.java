@@ -23,10 +23,6 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     public ModItemTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> tagLookupCompletableFuture, @Nullable ExistingFileHelper existingFileHelper) {
         super(packOutput, lookupProvider, tagLookupCompletableFuture, MetallicsArts.MOD_ID, existingFileHelper);
     }
-    /*public ModItemTagsProvider(DataGenerator dataGenerator, BlockTagsProvider blockTagsProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(dataGenerator, blockTagsProvider, MetallicsArts.MOD_ID, existingFileHelper);
-        super()
-    }*/
 
     @Override
     protected void addTags(HolderLookup.Provider prov) {

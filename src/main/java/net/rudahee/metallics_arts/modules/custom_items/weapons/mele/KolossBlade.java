@@ -51,11 +51,11 @@ public class KolossBlade extends SwordItem {
     public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int p_41407_, boolean p_41408_) {
 
         if (entity instanceof Player player) {
-            if (player.getItemInHand(InteractionHand.MAIN_HAND).equals(itemStack)){
+            if (player.getItemInHand(InteractionHand.MAIN_HAND).equals(itemStack)) {
                 try {
                     IInvestedPlayerData capabilities = CapabilityUtils.getCapability(entity);
                     if (!capabilities.isBurning(MetalTagEnum.PEWTER)) {
-                        if (itemStack.getTag().getFloat("CustomModelData")!=2){
+                        if (itemStack.getTag().getFloat("CustomModelData")!=2) {
                             itemStack.getTag().putFloat("CustomModelData",2);
                         }
                     }
@@ -79,7 +79,7 @@ public class KolossBlade extends SwordItem {
         } catch (PlayerException ex) {
             ex.printResumeLog();
         }
-        if (stack.getTag().getFloat("CustomModelData")!=0){
+        if (stack.getTag().getFloat("CustomModelData")!=0) {
             stack.getTag().putFloat("CustomModelData",0);
         }
         if (entity instanceof Player player) {

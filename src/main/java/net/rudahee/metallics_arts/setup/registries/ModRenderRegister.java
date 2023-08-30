@@ -21,7 +21,7 @@ public class ModRenderRegister {
     }
 
     @SubscribeEvent
-    public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event){
+    public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ExampleEntityModel.LAYER_LOCATION, ExampleEntityModel::createBodyLayer);
     }
 

@@ -14,6 +14,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -25,19 +26,16 @@ import java.util.concurrent.CompletableFuture;
  * @since 1.5.1
  */
 public class ModBeaconTagProvider extends TagsProvider<Block> {
+    /**
+     * Constructs a new ModBeaconTagProvider instance.
+     *
+     * @param existingFileHelper the existing file helper to assist with data generation
+     */
     public ModBeaconTagProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
         super(packOutput, Registries.BLOCK, lookupProvider, MetallicsArts.MOD_ID, existingFileHelper);
     }
 
-    /**
-     * Constructs a new ModBeaconTagProvider instance.
-     *
-     * @param gen the data generator for tag generation
-     * @param existingFileHelper the existing file helper to assist with data generation
-     */
-    /*public ModBeaconTagProvider(DataGenerator gen, net.minecraftforge.common.data.ExistingFileHelper existingFileHelper) {
-        super(gen,Registry.BLOCK,MetallicsArts.MOD_ID,existingFileHelper);
-    }*/
+
 
     /**
      * Adds tags for custom mod blocks to be used as beacon base blocks.
@@ -45,12 +43,12 @@ public class ModBeaconTagProvider extends TagsProvider<Block> {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        for (MetalEnum metalEnum : MetalEnum.values()) {
-            this.tag(BlockTags.BEACON_BASE_BLOCKS).add(TagEntry.tag(new ResourceLocation("forge/tags/storage_blocks/ " + metalEnum.getMetalNameLower())));
+        for (MetalEnum metalEnum : MetalEnum.values()) {//"forge/tags/blocks/storage_blocks/"
+            //this.tag(BlockTags.BEACON_BASE_BLOCKS).add(TagEntry.tag(new ResourceLocation(MetallicsArts.MOD_ID,  metalEnum.getMetalNameLower() + "_block")));
         }
         for (GemsEnum gemsEnum : GemsEnum.values()) {
-            this.tag(BlockTags.BEACON_BASE_BLOCKS).add(TagEntry.tag(new ResourceLocation("forge/tags/storage_blocks/ " + gemsEnum.getGemNameLower())));
-
+            //todo no se como mierda va
+            //this.tag(BlockTags.BEACON_BASE_BLOCKS).add(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(gemsEnum.getGemNameLower()).asItem().);
         }
     }
 }
