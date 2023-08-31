@@ -36,7 +36,6 @@ public class ModBannerTagProvider extends TagsProvider<BannerPattern> {
             MetallicsArts.LOGGER.debug("Creating banner tag for " + metal.getNameLower());
 
             this.tag(ModBannersRegister.PATTERNS_KEYS.get("a_"+metal.getNameLower())).add(ModBannersRegister.PATTERNS.get("a_"+metal.getNameLower()).getKey()).add(ModBannersRegister.PATTERNS.get("a_"+metal.getNameLower()+"_2").getKey());
-
             this.tag(ModBannersRegister.PATTERNS_KEYS.get("f_"+metal.getNameLower())).add(ModBannersRegister.PATTERNS.get("f_"+metal.getNameLower()).getKey()).add(ModBannersRegister.PATTERNS.get("f_"+metal.getNameLower()+"_2").getKey());
 
         }

@@ -49,7 +49,6 @@ public class ModBeaconTagProvider extends TagsProvider<Block> {
         for (MetalAuxiliaryInfo metal : MetalAuxiliaryInfo.values()) {
             if (!metal.isVanilla()) {
                 this.tag(BlockTags.BEACON_BASE_BLOCKS).add(TagEntry.tag(new ResourceLocation("forge", "storage_blocks/" + metal.getId())));
-
             }
         }
     }
