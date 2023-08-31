@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace;
 
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.stats.RecipeBook;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;

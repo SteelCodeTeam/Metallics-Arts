@@ -96,7 +96,7 @@ public class OnDamageEvent {
             //Cancel freeze damage
             if (targetCapability.isTapping(MetalTagEnum.BRASS)) {
                 //event.getSource().equals(DamageSource.FREEZE)
-                //todo chekear, esto es raro
+
                 if (event.getSource().equals(event.getEntity().damageSources().freeze())) {
                     event.setCanceled(true);
                 }

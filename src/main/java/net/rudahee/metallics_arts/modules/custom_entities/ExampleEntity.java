@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.custom_entities;
 
+import net.minecraft.client.renderer.texture.Tickable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -44,12 +45,17 @@ public class ExampleEntity extends Animal {
 
     public static AttributeSupplier.Builder getExampleAttributes() {
         return Mob.createMobAttributes()
-                .add(ForgeMod.ENTITY_GRAVITY.get(), 1.5f)
-                .add(Attributes.MAX_HEALTH, 25.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.7246D);
+                .add(ForgeMod.ENTITY_GRAVITY.get(), 0)
+                .add(Attributes.MAX_HEALTH, 25f)
+                .add(Attributes.MOVEMENT_SPEED, -0.7246D);
     }
 
     public static boolean canSpawn(EntityType<ExampleEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return checkAnimalSpawnRules(entityType, level, spawnType, pos, random) && pos.getY() > 100;
     }
+
+
+
+
+
 }

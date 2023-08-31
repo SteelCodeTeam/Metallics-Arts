@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-package net.rudahee.metallics_arts.modules.book;
+package net.rudahee.metallics_arts.data.providers;
 
 import com.klikli_dev.modonomicon.api.ModonomiconAPI;
 import com.klikli_dev.modonomicon.api.datagen.BookLangHelper;
@@ -19,7 +19,6 @@ import com.klikli_dev.modonomicon.api.datagen.book.page.BookSmithingRecipePageMo
 import com.klikli_dev.modonomicon.api.datagen.book.page.BookTextPageModel;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
-import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft.MultiCraftData;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionData;
@@ -30,7 +29,7 @@ import net.rudahee.metallics_arts.utils.GetItemsUtils;
 import java.util.ArrayList;
 
 
-public class DemoBookProvider extends BookProvider {
+public class MetallicsArtsGuideBookProvider extends BookProvider {
 
     /**
      * Constructs a new DemoBookProvider.
@@ -39,7 +38,7 @@ public class DemoBookProvider extends BookProvider {
      * @param modid The ID of the mod that the book belongs to.
      * @param lang The LanguageProvider object used to provide translations for the book.
      */
-    public DemoBookProvider(DataGenerator generator, String modid, LanguageProvider lang) {
+    public MetallicsArtsGuideBookProvider(DataGenerator generator, String modid, LanguageProvider lang) {
         super(generator.getPackOutput(), modid, lang);
     }
 

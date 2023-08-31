@@ -14,6 +14,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.Shields;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeEnum;
@@ -56,13 +57,13 @@ public class ModRecipeProvider extends RecipeProvider {
      * @see ModItemsRegister
      * @see ModBlocksRegister
      */
+    @Deprecated(since = "1.6.6", forRemoval = true)
     @Override
     protected void buildRecipes(@NotNull Consumer<FinishedRecipe> recipesConsumer) {
 
 
-        //todo revisar las recipe categorys mas epecificamente para cada tipo de item
         ModItemsRegister.ITEM_METAL_INGOT.forEach((name, item) ->
-                ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS,item.asItem(), 9)
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,item.asItem(), 9)
                     .requires(ModTags.METAL_BLOCKS.get(name))
                     .unlockedBy("has_item", has(item))
                     .save(recipesConsumer, new ResourceLocation(name + "_block_to_" + name + "_ingot")));
@@ -86,7 +87,7 @@ public class ModRecipeProvider extends RecipeProvider {
                         .save(recipesConsumer, new ResourceLocation(name + "_raw_to_" + name + "_block")));
 
         ModItemsRegister.ITEM_RAW_METAL.forEach((name, item) ->
-                ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, item.asItem(), 9)
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, item.asItem(), 9)
                         .requires(ModTags.RAW_BLOCKS.get(name))
                         .unlockedBy("has_item", has(item))
                         .save(recipesConsumer, new ResourceLocation(name + "_raw_block_to_" + name + "_raw")));
@@ -94,7 +95,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
 
         ModItemsRegister.ITEM_GEMS_BASE.forEach((name, item) ->
-                ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, item.asItem(), 9)
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, item.asItem(), 9)
                         .requires(ModTags.METAL_BLOCKS.get(name))
                         .unlockedBy("has_item", has(item))
                         .save(recipesConsumer, new ResourceLocation(name + "_block" + "_to_" + name + "_gem")));
@@ -109,19 +110,19 @@ public class ModRecipeProvider extends RecipeProvider {
                         .save(recipesConsumer, new ResourceLocation(name + "_gem_to_" + name + "_block")));
 
         ModItemsRegister.ITEM_METAL_INGOT.forEach((name, item) ->
-                ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS ,ModItemsRegister.ITEM_METAL_NUGGET.get(name), 9)
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC ,ModItemsRegister.ITEM_METAL_NUGGET.get(name), 9)
                         .requires(ModTags.INGOTS.get(name))
                         .unlockedBy("has_block", has(item))
                         .save(recipesConsumer, new ResourceLocation(name + "_ingot_to_" + name + "_nugget")));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS ,ModItemsRegister.ITEM_METAL_NUGGET.get("copper"), 9)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC ,ModItemsRegister.ITEM_METAL_NUGGET.get("copper"), 9)
                 .requires(Tags.Items.INGOTS_COPPER)
                 .unlockedBy("has_block", has(ModTags.NUGGETS.get("copper")))
                 .save(recipesConsumer, new ResourceLocation("copper_ingot_to_copper_nugget"));
 
 
         ModItemsRegister.ITEM_METAL_NUGGET.forEach((name, item) -> {
-            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, name.equals("copper") ? Items.COPPER_INGOT : ModItemsRegister.ITEM_METAL_INGOT.get(name))
+            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, name.equals("copper") ? Items.COPPER_INGOT : ModItemsRegister.ITEM_METAL_INGOT.get(name))
                     .define('#', ModTags.NUGGETS.get(name))
                     .pattern("###")
                     .pattern("###")
@@ -132,13 +133,13 @@ public class ModRecipeProvider extends RecipeProvider {
         });
 
         ModItemsRegister.ITEM_GEMS_NUGGET.forEach((name, item) ->
-                ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, item.asItem(), 9)
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, item.asItem(), 9)
                     .requires(ModTags.GEMS.get(name))
                     .unlockedBy("has_block", has(item))
                     .save(recipesConsumer, new ResourceLocation(name + "_gem_to_" + name + "_nugget")));
 
         ModItemsRegister.ITEM_GEMS_BASE.forEach((name, item) ->
-                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, item)
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, item)
                     .define('#', ModTags.NUGGETS.get(name))
                     .pattern("###")
                     .pattern("###")
@@ -148,7 +149,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         Arrays.asList(MetalEnum.values()).forEach(metal -> {
             if (!metal.isAlloy()) {
-                SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())), RecipeCategory.BUILDING_BLOCKS,ModItemsRegister.ITEM_METAL_INGOT.get(metal.getMetalNameLower()), 0.5f, 250)
+                SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())), RecipeCategory.MISC,ModItemsRegister.ITEM_METAL_INGOT.get(metal.getMetalNameLower()), 0.5f, 250)
                         .unlockedBy("has_block", has(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())))
                         .save(recipesConsumer, new ResourceLocation(metal.getMetalNameLower() + "_raw_to_" + metal.getMetalNameLower() + "_ingot_furnace"));
             }
@@ -158,7 +159,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         Arrays.asList(MetalEnum.values()).forEach(metal -> {
             if (!metal.isAlloy()) {
-                SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())), RecipeCategory.BUILDING_BLOCKS,ModItemsRegister.ITEM_METAL_INGOT.get(metal.getMetalNameLower()), 0.8f, 100)
+                SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())), RecipeCategory.MISC,ModItemsRegister.ITEM_METAL_INGOT.get(metal.getMetalNameLower()), 0.8f, 100)
                         .unlockedBy("has_block", has(ModItemsRegister.ITEM_RAW_METAL.get(metal.getMetalNameLower())))
                         .save(recipesConsumer, new ResourceLocation(metal.getMetalNameLower() + "_raw_to_" + metal.getMetalNameLower() + "_ingot_blast"));
             }
@@ -324,7 +325,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItemsRegister.KOLOSS_BLADE.get()))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID + "_koloss_blade"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BREWING, ModItemsRegister.SMALL_VIAL.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItemsRegister.SMALL_VIAL.get())
                 .define('#',Items.GLASS)
                 .define('x',Items.GLASS_BOTTLE)
                 .define('+',ItemTags.PLANKS)
@@ -334,7 +335,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItemsRegister.SMALL_VIAL.get()))
                 .save(recipesConsumer,new ResourceLocation("allomantic_small_vial"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BREWING, ModItemsRegister.LARGE_VIAL.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItemsRegister.LARGE_VIAL.get())
                 .define('#',Items.GLASS)
                 .define('x', ModItemsRegister.SMALL_VIAL.get())
                 .define('+',ItemTags.PLANKS)
@@ -344,7 +345,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItemsRegister.LARGE_VIAL.get()))
                 .save(recipesConsumer,new ResourceLocation("allomantic_large_vial"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS ,ModItemsRegister.ITEM_METAL_INGOT.get("steel"),1).
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC ,ModItemsRegister.ITEM_METAL_INGOT.get("steel"),1).
                 requires(Items.IRON_INGOT)
                 .requires(Items.COAL)
                 .requires(Items.COAL)
@@ -352,7 +353,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("steel")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_steel_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS ,ModItemsRegister.ITEM_METAL_INGOT.get("pewter"),1)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC ,ModItemsRegister.ITEM_METAL_INGOT.get("pewter"),1)
                 .requires(ModTags.INGOTS.get(MetalEnum.LEAD.getMetalNameLower()))
                 .requires(ModTags.INGOTS.get(MetalEnum.TIN.getMetalNameLower()))
                 .requires(ModTags.INGOTS.get(MetalEnum.TIN.getMetalNameLower()))
@@ -360,7 +361,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("pewter")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_pewter_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS ,ModItemsRegister.ITEM_METAL_INGOT.get("bronze"),1)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC ,ModItemsRegister.ITEM_METAL_INGOT.get("bronze"),1)
                 .requires(ModTags.INGOTS.get(MetalEnum.TIN.getMetalNameLower()))
                 .requires(Items.COPPER_INGOT)
                 .requires(Items.COPPER_INGOT)
@@ -368,7 +369,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("bronze")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_bronze_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS ,ModItemsRegister.ITEM_METAL_INGOT.get("brass"),1)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC ,ModItemsRegister.ITEM_METAL_INGOT.get("brass"),1)
                 .requires(ModTags.INGOTS.get(MetalEnum.ZINC.getMetalNameLower()))
                 .requires(ModTags.INGOTS.get(MetalEnum.ZINC.getMetalNameLower()))
                 .requires(Items.COPPER_INGOT)
@@ -376,7 +377,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("brass")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_brass_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS ,ModItemsRegister.ITEM_METAL_INGOT.get("electrum"),1)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC ,ModItemsRegister.ITEM_METAL_INGOT.get("electrum"),1)
                 .requires(ModTags.INGOTS.get(MetalEnum.SILVER.getMetalNameLower()))
                 .requires(ModTags.INGOTS.get(MetalEnum.SILVER.getMetalNameLower()))
                 .requires(ModTags.INGOTS.get(MetalEnum.SILVER.getMetalNameLower()))
@@ -384,7 +385,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("electrum")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_electrum_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS ,ModItemsRegister.ITEM_METAL_INGOT.get("bendalloy"),1)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC ,ModItemsRegister.ITEM_METAL_INGOT.get("bendalloy"),1)
                 .requires(ModTags.INGOTS.get(MetalEnum.LEAD.getMetalNameLower()))
                 .requires(ModTags.INGOTS.get(MetalEnum.LEAD.getMetalNameLower()))
                 .requires(ModTags.INGOTS.get(MetalEnum.CADMIUM.getMetalNameLower()))
@@ -392,7 +393,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("bendalloy")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_bendalloy_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS ,ModItemsRegister.ITEM_METAL_INGOT.get("duralumin"),1)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC ,ModItemsRegister.ITEM_METAL_INGOT.get("duralumin"),1)
                 .requires(ModTags.INGOTS.get(MetalEnum.ALUMINUM.getMetalNameLower()))
                 .requires(ModTags.INGOTS.get(MetalEnum.ALUMINUM.getMetalNameLower()))
                 .requires(ModTags.INGOTS.get(MetalEnum.ALUMINUM.getMetalNameLower()))
@@ -400,7 +401,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("duralumin")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_duralumin_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS ,ModItemsRegister.ITEM_METAL_INGOT.get("nicrosil"),1)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC ,ModItemsRegister.ITEM_METAL_INGOT.get("nicrosil"),1)
                 .requires(ModTags.INGOTS.get(MetalEnum.NICKEL.getMetalNameLower()))
                 .requires(ModTags.INGOTS.get(MetalEnum.NICKEL.getMetalNameLower()))
                 .requires(ModTags.INGOTS.get(MetalEnum.NICKEL.getMetalNameLower()))
@@ -408,7 +409,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("nicrosil")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_nicrosil_alloy_craft"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS ,ModItemsRegister.ITEM_GEMS_BASE.get("malatium"),1)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC ,ModItemsRegister.ITEM_GEMS_BASE.get("malatium"),1)
                 .requires(ModTags.GEMS.get(GemsEnum.ATIUM.getGemNameLower()))
                 .requires(ModTags.GEMS.get(GemsEnum.ATIUM.getGemNameLower()))
                 .requires(Items.GOLD_INGOT)
@@ -514,59 +515,75 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_block", has(ModItemsRegister.CORE_STEEL.get()))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_core_steel"));
 
-        /*UpgradeRecipeBuilder.smithing(
+        LegacyUpgradeRecipeBuilder.smithing(
                         Ingredient.of(Items.NETHERITE_HELMET),
                         Ingredient.of(ModItemsRegister.CORE_STEEL.get()),
+                        RecipeCategory.COMBAT,
                         ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.HELMET).get())
                 .unlocks("has_armor", has(ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.HELMET).get()))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_steel_helmet"));
-        UpgradeRecipeBuilder.smithing(
+
+        LegacyUpgradeRecipeBuilder.smithing(
                         Ingredient.of(Items.NETHERITE_CHESTPLATE),
                         Ingredient.of(ModItemsRegister.CORE_STEEL.get()),
+                        RecipeCategory.COMBAT,
                         ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get())
                 .unlocks("has_armor", has(ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get()))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_steel_chestplate"));
 
-        UpgradeRecipeBuilder.smithing(
+
+        LegacyUpgradeRecipeBuilder.smithing(
                         Ingredient.of(Items.NETHERITE_LEGGINGS),
                         Ingredient.of(ModItemsRegister.CORE_STEEL.get()),
+                        RecipeCategory.COMBAT,
                         ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get())
                 .unlocks("has_armor", has(ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get()))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_steel_leggings"));
-        UpgradeRecipeBuilder.smithing(
+
+        LegacyUpgradeRecipeBuilder.smithing(
                         Ingredient.of(Items.NETHERITE_BOOTS),
                         Ingredient.of(ModItemsRegister.CORE_STEEL.get()),
+                        RecipeCategory.COMBAT,
                         ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.BOOTS).get())
                 .unlocks("has_armor", has(ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.BOOTS).get()))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_steel_boots"));
 
 
 
-        UpgradeRecipeBuilder.smithing(
+
+        LegacyUpgradeRecipeBuilder.smithing(
                         Ingredient.of(Items.NETHERITE_HELMET),
                         Ingredient.of(ModItemsRegister.CORE_ALUMINUM.get()),
+                        RecipeCategory.COMBAT,
                         ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.HELMET).get())
                 .unlocks("has_armor", has(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.HELMET).get()))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_aluminum_helmet"));
-        UpgradeRecipeBuilder.smithing(
+
+        LegacyUpgradeRecipeBuilder.smithing(
                         Ingredient.of(Items.NETHERITE_CHESTPLATE),
                         Ingredient.of(ModItemsRegister.CORE_ALUMINUM.get()),
+                        RecipeCategory.COMBAT,
                         ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get())
                 .unlocks("has_armor", has(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get()))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_aluminum_chestplate"));
-        UpgradeRecipeBuilder.smithing(
+
+        LegacyUpgradeRecipeBuilder.smithing(
                         Ingredient.of(Items.NETHERITE_LEGGINGS),
                         Ingredient.of(ModItemsRegister.CORE_ALUMINUM.get()),
+                        RecipeCategory.COMBAT,
                         ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get())
                 .unlocks("has_armor", has(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get()))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_aluminum_leggings"));
-        UpgradeRecipeBuilder.smithing(
+
+        LegacyUpgradeRecipeBuilder.smithing(
                         Ingredient.of(Items.NETHERITE_BOOTS),
                         Ingredient.of(ModItemsRegister.CORE_ALUMINUM.get()),
+                        RecipeCategory.COMBAT,
                         ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get())
                 .unlocks("has_armor", has(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get()))
-                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_aluminum_boots"));*/
-        //todo mejoras de armaduras a nuevos tiers
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_aluminum_boots"));
+
+
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItemsRegister.WOOD_SHIELD.get())
                 .define('#', ItemTags.PLANKS)

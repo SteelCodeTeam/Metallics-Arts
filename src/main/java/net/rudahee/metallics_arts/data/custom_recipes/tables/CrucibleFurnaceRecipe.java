@@ -94,7 +94,7 @@ public class CrucibleFurnaceRecipe implements Recipe<SimpleContainer> {
 
         public static final Type INSTANCE = new Type();
 
-        public static final String ID = "crucible_furnace_recipe";
+        public static final String ID = "crucible_furnace_recipe_type";
     }
 
 
@@ -111,7 +111,7 @@ public class CrucibleFurnaceRecipe implements Recipe<SimpleContainer> {
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
-            return new CrucibleFurnaceRecipe(ID, output, inputs);
+            return new CrucibleFurnaceRecipe(ID.withSuffix("_" + loc.getPath()), output, inputs);
 
         }
 
@@ -124,7 +124,7 @@ public class CrucibleFurnaceRecipe implements Recipe<SimpleContainer> {
             }
 
             ItemStack output = buf.readItem();
-            return new CrucibleFurnaceRecipe(ID, output, inputs);
+            return new CrucibleFurnaceRecipe(ID.withSuffix("_" + loc.getPath()), output, inputs);
         }
 
         @Override

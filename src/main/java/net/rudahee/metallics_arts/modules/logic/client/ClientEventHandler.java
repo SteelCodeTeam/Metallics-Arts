@@ -3,20 +3,25 @@ package net.rudahee.metallics_arts.modules.logic.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.*;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
+import net.rudahee.metallics_arts.modules.effects.ModModifiers;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.modules.logic.client.client_events.*;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.setup.registries.ModRenderRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
+
+import java.util.List;
 
 /**
  * Handles client-side events and custom rendering.
@@ -69,6 +74,9 @@ public class ClientEventHandler {
      *
      * @param event The TickEvent.ClientTickEvent instance representing the current tick event.
      */
+
+
+
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onClientTick(final TickEvent.ClientTickEvent event) {
@@ -76,6 +84,7 @@ public class ClientEventHandler {
             if (Minecraft.getInstance().player == null) {
                 return;
             }
+
             OnClientTick.onClientTick(event, Minecraft.getInstance(), Minecraft.getInstance().player, CapabilityUtils.getCapability(Minecraft.getInstance().player));
         } catch (PlayerException ex) {
             ex.printResumeLog();

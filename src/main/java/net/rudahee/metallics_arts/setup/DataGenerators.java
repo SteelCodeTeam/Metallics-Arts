@@ -20,7 +20,7 @@ import net.rudahee.metallics_arts.data.providers.tags_providers.ModBannerTagProv
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBeaconTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBlockTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvider;
-import net.rudahee.metallics_arts.modules.book.DemoBookProvider;
+import net.rudahee.metallics_arts.data.providers.MetallicsArtsGuideBookProvider;
 import net.rudahee.metallics_arts.modules.custom_entities.ExampleEntity;
 import net.rudahee.metallics_arts.setup.registries.ModEntityTypesRegister;
 
@@ -43,9 +43,8 @@ public final class DataGenerators {
 
         gen.addProvider(event.includeServer(), new ModBlockStateProvider(packOutput, existingFileHelper));
         gen.addProvider(event.includeServer(), new ModItemModelProvider(gen, existingFileHelper));
-        //gen.addProvider(event.includeServer(), new ModLootTableProvider(gen)); //todo mirar lo de brayan
         gen.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
-                List.of(new LootTableProvider.SubProviderEntry(BlocksLootTables::new, LootContextParamSets.BLOCK))));
+                List.of(new LootTableProvider.SubProviderEntry(ModLootTableProvider::new, LootContextParamSets.BLOCK))));
 
         gen.addProvider(event.includeServer(), new ModRecipeProvider(gen));
 
@@ -63,7 +62,7 @@ public final class DataGenerators {
         gen.addProvider(event.includeServer(), new ModLanguageProviderJP(gen, "ja_jp"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderPL(gen, "pl_pl"));
 
-        gen.addProvider(event.includeServer(), new DemoBookProvider(gen, MetallicsArts.MOD_ID, null));
+        gen.addProvider(event.includeServer(), new MetallicsArtsGuideBookProvider(gen, MetallicsArts.MOD_ID, null));
         //gen.addProvider(event.includeClient(), null);
 
         gen.addProvider(event.includeServer(), new ModWorldGenerationProvider(packOutput, lookupProvider));

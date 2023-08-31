@@ -51,7 +51,7 @@ public class VerticalJump {
         int maxAltitude = 10;
         int range = 7;
 
-        if (minecraft.options.keyUp.isDown()) { //todo chequear estos casteos por las dudas antes eran double
+        if (minecraft.options.keyUp.isDown()) {
             pushX = (int) (x - (vector.x * range));
             pushZ = (int) (z - (vector.z * range));
         } else if (minecraft.options.keyDown.isDown()) {
