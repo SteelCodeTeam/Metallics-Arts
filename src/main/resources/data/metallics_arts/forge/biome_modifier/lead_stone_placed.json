@@ -1,0 +1,6 @@
+{
+	"type": "forge:add_features",
+	"biomes": "#is_overworld",
+	"features": "metallics_arts:lead_placed_stone",
+	"step": "underground_ores"
+}

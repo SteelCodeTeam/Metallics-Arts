@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#is_overworld",
+  "features": "metallics_arts:atium_placed_geode",
+  "step": "underground_ores"
+}

@@ -66,7 +66,7 @@ public final class DataGenerators {
         gen.addProvider(event.includeServer(), new DemoBookProvider(gen, MetallicsArts.MOD_ID, null));
         //gen.addProvider(event.includeClient(), null);
 
-        gen.addProvider(event.includeServer(), new ModWorldGenerationProvider(packOutput, lookupProvider)); // TODO Revisar jsons, generar geodas
+        gen.addProvider(event.includeServer(), new ModWorldGenerationProvider(packOutput, lookupProvider));
 
 
         ModBlockTagProvider blockTags = new  ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper);

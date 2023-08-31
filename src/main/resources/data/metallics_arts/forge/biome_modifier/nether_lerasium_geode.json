@@ -1,0 +1,7 @@
+
+{
+  "type": "forge:add_features",
+  "biomes": "#is_nether",
+  "features": "metallics_arts:lerasium_placed_geode",
+  "step": "underground_ores"
+}

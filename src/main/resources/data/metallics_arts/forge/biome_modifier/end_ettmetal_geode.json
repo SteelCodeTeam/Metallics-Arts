@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#is_end",
+  "features": "metallics_arts:ettmetal_placed_geode",
+  "step": "underground_ores"
+}
