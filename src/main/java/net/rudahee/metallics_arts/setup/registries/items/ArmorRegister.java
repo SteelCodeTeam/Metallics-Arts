@@ -48,10 +48,6 @@ public class ArmorRegister {
                 () -> new ArmorItem(PostNetheriteMaterials.ALUMINUM, ArmorItem.Type.BOOTS, PROPERTIES));
         ModItemsRegister.ALUMINUM_ARMOR.put(ArmorPiecesEnum.BOOTS, aluminumBoots);
 
-        ModItemsRegister.WOOD_SHIELD = MetallicsArts.registerItem(Shields.WOOD.getId(),
-                () -> new CustomShield(PROPERTIES, Shields.WOOD));
-        ModItemsRegister.BRONZE_ALUMINUM_SHIELD = MetallicsArts.registerItem(Shields.BRONZE_ALUMINUM.getId(),
-                () -> new CustomShield(PROPERTIES, Shields.BRONZE_ALUMINUM));
         ModItemsRegister.MISTCLOACK = MetallicsArts.registerItem("mistcloak",
                 () -> new MistCloak(new Item.Properties().stacksTo(1)));
 

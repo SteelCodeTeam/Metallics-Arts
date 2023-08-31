@@ -5,6 +5,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeEnum;
+import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
@@ -37,8 +38,18 @@ public class ModCreativeTabsEvents {
 
             event.accept(ModBlocksRegister.CRUCIBLE_FURNACE);
 
+            event.accept(ModItemsRegister.SMALL_VIAL);
+            event.accept(ModItemsRegister.LARGE_VIAL);
+
+            ModItemsRegister.ChargeInList(); //todo Mirar si se puede hacer en otro lado - lo tuve que poner aca porque no registraba a tiempo los items sino
+            event.acceptAll(ModItemsRegister.ITEM_CORES.values().stream().map(ItemStack::new).collect(Collectors.toList()));
+            event.acceptAll(ModItemsRegister.ITEM_MELE_WEAPON.values().stream().map(ItemStack::new).collect(Collectors.toList()));
+            event.acceptAll(ModItemsRegister.ITEM_RANGE_WEAPON.values().stream().map(ItemStack::new).collect(Collectors.toList()));
+
             event.acceptAll(ModItemsRegister.STEEL_ARMOR.values().stream().map(itemRegistryObject -> new ItemStack(itemRegistryObject.get())).collect(Collectors.toList()));
             event.acceptAll(ModItemsRegister.ALUMINUM_ARMOR.values().stream().map(itemRegistryObject -> new ItemStack(itemRegistryObject.get())).collect(Collectors.toList()));
+
+            event.accept(ModItemsRegister.MISTCLOACK);
 
         }
     }
@@ -67,6 +78,8 @@ public class ModCreativeTabsEvents {
             event.acceptAll(ModItemsRegister.ITEM_ICONS_ALLOMANCY_DIVINE.values().stream().map(ItemStack::new).collect(Collectors.toList()));
             event.acceptAll(ModItemsRegister.ITEM_ICONS_FERUCHEMIC.values().stream().map(ItemStack::new).collect(Collectors.toList()));
             event.acceptAll(ModItemsRegister.ITEM_ICONS_FERUCHEMIC_DIVINE.values().stream().map(ItemStack::new).collect(Collectors.toList()));
+
+            event.acceptAll(ModBannersRegister.PATTERN_ITEMS.values().stream().map(itemRegistryObject -> new ItemStack(itemRegistryObject.get())).collect(Collectors.toList()));
         }
     }
 

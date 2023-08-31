@@ -3,7 +3,9 @@ package net.rudahee.metallics_arts.setup.registries.items;
 import net.minecraft.world.item.Item;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.Shields;
 import net.rudahee.metallics_arts.modules.custom_items.InvisibleItem;
+import net.rudahee.metallics_arts.modules.custom_items.armors.CustomShield;
 import net.rudahee.metallics_arts.modules.custom_items.coins.CopperCoin;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.BasicGun;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.Rifle;
@@ -25,6 +27,7 @@ public class WeaponsRegister {
         ModItemsRegister.OBSIDIAN_DAGGER = MetallicsArts.registerItem("obsidian_dagger",
                 () -> new ObsidianDagger(WEAPONS_PROPERTIES)
         );
+
         ModItemsRegister.SILVER_KNIFE = MetallicsArts.registerItem("silver_knife",
                 () -> new CristalDagger(WEAPONS_PROPERTIES)
         );
@@ -37,6 +40,8 @@ public class WeaponsRegister {
         ModItemsRegister.OBSIDIAN_AXE = MetallicsArts.registerItem("obsidian_axe",
                 () -> new ObsidianAxe(WEAPONS_PROPERTIES)
         );
+
+
 
         ModItemsRegister.COPPER_COIN = MetallicsArts.registerItem("copper_coin",
                 () -> new CopperCoin(COIN_PROPERTIES, 1, 5));
@@ -72,7 +77,14 @@ public class WeaponsRegister {
         ModItemsRegister.RIFLE_ALUMINUM_BULLET = MetallicsArts.registerItem("rifle_aluminum_bullet",
                 () -> new Item(COIN_PROPERTIES));
 
+
+        ModItemsRegister.WOOD_SHIELD = MetallicsArts.registerItem(Shields.WOOD.getId(),
+                () -> new CustomShield(WEAPONS_PROPERTIES, Shields.WOOD));
+        ModItemsRegister.BRONZE_ALUMINUM_SHIELD = MetallicsArts.registerItem(Shields.BRONZE_ALUMINUM.getId(),
+                () -> new CustomShield(WEAPONS_PROPERTIES, Shields.BRONZE_ALUMINUM));
+
         ModItemsRegister.BULLET_PROJECTILE = MetallicsArts.registerItem("bullet_projectile",
                 () -> new InvisibleItem(new Item.Properties()));
+
     }
 }

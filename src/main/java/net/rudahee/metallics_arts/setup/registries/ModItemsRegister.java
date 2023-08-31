@@ -33,6 +33,12 @@ public class ModItemsRegister {
     public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC = new HashMap<>();
     public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY_DIVINE = new HashMap<>();
     public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC_DIVINE = new HashMap<>();
+    public static final HashMap<String, Item> ITEM_CORES = new HashMap<>();
+    public static final HashMap<String, Item> ITEM_MELE_WEAPON = new HashMap<>();
+    public static final HashMap<String, Item> ITEM_RANGE_WEAPON = new HashMap<>();
+    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> STEEL_ARMOR = new HashMap<>();
+    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ALUMINUM_ARMOR = new HashMap<>();
+
     // Weapons
     public static RegistryObject<Item> OBSIDIAN_DAGGER;
     public static RegistryObject<Item> SILVER_KNIFE;
@@ -49,8 +55,6 @@ public class ModItemsRegister {
     public static RegistryObject<Item> CORE_OBSIDIAN;
     public static RegistryObject<Item> CORE_ALUMINUM;
     public static RegistryObject<Item> CORE_STEEL;
-    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> STEEL_ARMOR = new HashMap<>();
-    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ALUMINUM_ARMOR = new HashMap<>();
     public static RegistryObject<Item> COPPER_COIN;
     public static RegistryObject<Item> REVOLVER_ALUMINUM_BULLET;
     public static RegistryObject<Item> REVOLVER_LEAD_BULLET;
@@ -75,6 +79,34 @@ public class ModItemsRegister {
         VialsRegister.register();
         CoreBuilderItemRegister.register();
         ArmorRegister.register();
+    }
+
+    public static void ChargeInList() {
+        System.out.println("a");
+        ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.OBSIDIAN_DAGGER.toString(), ModItemsRegister.OBSIDIAN_DAGGER.get());
+        ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.SILVER_KNIFE.toString(),ModItemsRegister.SILVER_KNIFE.get());
+        ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.KOLOSS_BLADE.toString(),ModItemsRegister.KOLOSS_BLADE.get());
+        ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.DUELING_STAFF.toString(),ModItemsRegister.DUELING_STAFF.get());
+        ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.OBSIDIAN_AXE.toString(),ModItemsRegister.OBSIDIAN_AXE.get());
+        ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.WOOD_SHIELD.toString(),ModItemsRegister.WOOD_SHIELD.get());
+        ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.BRONZE_ALUMINUM_SHIELD.toString(),ModItemsRegister.BRONZE_ALUMINUM_SHIELD.get());
+
+        ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.COPPER_COIN.toString(),ModItemsRegister.COPPER_COIN.get());
+        ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.REVOLVER.toString(),ModItemsRegister.REVOLVER.get());
+        ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.VINDICATOR.toString(),ModItemsRegister.VINDICATOR.get());
+        ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.RIFLE.toString(),ModItemsRegister.RIFLE.get());
+        ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.RIFLE_WITH_SPYGLASS.toString(),ModItemsRegister.RIFLE_WITH_SPYGLASS.get());
+        ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.REVOLVER_LEAD_BULLET.toString(),ModItemsRegister.REVOLVER_LEAD_BULLET.get());
+        ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.REVOLVER_ALUMINUM_BULLET.toString(),ModItemsRegister.REVOLVER_ALUMINUM_BULLET.get());
+        ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.SHOTGUN_LEAD_BULLET.toString(),ModItemsRegister.SHOTGUN_LEAD_BULLET.get());
+        ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.SHOTGUN_ALUMINUM_BULLET.toString(),ModItemsRegister.SHOTGUN_ALUMINUM_BULLET.get());
+        ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.RIFLE_LEAD_BULLET.toString(),ModItemsRegister.RIFLE_LEAD_BULLET.get());
+        ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.RIFLE_ALUMINUM_BULLET.toString(),ModItemsRegister.RIFLE_ALUMINUM_BULLET.get());
+
+        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_OBSIDIAN.toString(),ModItemsRegister.CORE_OBSIDIAN.get());
+        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_ALUMINUM.toString(),ModItemsRegister.CORE_ALUMINUM.get());
+        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_STEEL.toString(),ModItemsRegister.CORE_STEEL.get());
+
     }
 
 }
