@@ -41,125 +41,29 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
 
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
-            if (!metal.isVanilla()) {
-                if (metal.isAppearsInStone() && metal.isAppearsInDeepslate()) {
-                    addForgeTag("ores/" + metal.getId(), ModBlocksRegister.BLOCK_METAL_ORES.get(metal.getId()), ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
-                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_ORES.get(metal.getId()));
-                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
-
-                    addForgeTag("ores_in_ground/deepslate",ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
-                    addForgeTag("ores_in_ground/stone",ModBlocksRegister.BLOCK_METAL_ORES.get(metal.getId()));
-
-                } else if (metal.isAppearsInStone()) {
-                    addForgeTag("ores/" + metal.getId(), ModBlocksRegister.BLOCK_METAL_ORES.get(metal.getId()));
-                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_ORES.get(metal.getId()));
-                    addForgeTag("ores_in_ground/stone",ModBlocksRegister.BLOCK_METAL_ORES.get(metal.getId()));
+            if (metal.isVanilla()) {
+                addVanillaBlocksTags(metal.getId());
+            } else {
+                if (metal.isAppearsInDeepslate() && metal.isAppearsInStone()) {
+                    addTagsStoneAndDeepslate(metal.getId());
                 } else if (metal.isAppearsInDeepslate()) {
-                    addForgeTag("ores/" + metal.getId(), ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
-                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
-                    addForgeTag("ores_in_ground/deepslate",ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(metal.getId()));
+                    addDeepslateTags(metal.getId());
+                } else if (metal.isAppearsInStone()) {
+                    addStoneTags(metal.getId());
                 }
 
-                if (metal.isAppearsInStone() || metal.isAppearsInDeepslate()) {
-                    addForgeTag("storage_blocks/raw_" + metal.getId(), ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getId())); //TODO
-                    makePickaxeMineable(ModBlocksRegister.RAW_METAL_BLOCKS.get(metal.getId()));
-                    addForgeTag("storage_blocks/" + metal.getId() + "_raw_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()+ "_raw"));
-                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId() + "_raw"));
-
-                    addForgeTag("storage_blocks/" + metal.getId() + "_raw_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId() + "_raw"));
-                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId() + "_raw"));
-
-                    addForgeTag("storage_blocks/" + metal.getId() + "_raw_slabs", ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getId() + "_raw"));
-                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getId() + "_raw"));
-
-                    addForgeTag("storage_blocks/" + metal.getId() + "_raw_walls", ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getId() + "_raw"));
-                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getId() + "_raw"));
-
-                    addForgeTag("storage_blocks/" + metal.getId() + "_raw_fences", ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getId() + "_raw"));
-                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getId() + "_raw"));
-
-                    addForgeTag("storage_blocks/" + metal.getId() + "_raw_fences", ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(metal.getId() + "_raw"));
-                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getId() + "_raw"));
+                if (metal.isAppearsInDeepslate() || metal.isAppearsInStone()) {
+                    addRawTags(metal.getId());
                 }
-                if (!metal.isDivine()) {
-                    addForgeTag("storage_blocks/"+metal.getId(), ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getId()));
-                    makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getId()));
-                } else {
-                    addForgeTag("storage_blocks/" + metal.getId(), ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getId()));
-                    makePickaxeMineable(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getId()));
-                }
-                addForgeTag("storage_blocks/" + metal.getId() + "_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()));
-                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()));
-
-                addForgeTag("storage_blocks/" + metal.getId() + "_slabs", ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getId()));
-                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getId()));
-
-                addForgeTag("storage_blocks/" + metal.getId() + "_walls", ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getId()));
-                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getId()));
-
-                addForgeTag("storage_blocks/" + metal.getId() + "_fences", ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getId()));
-                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getId()));
-
-                addForgeTag("storage_blocks/" + metal.getId() + "_fences", ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(metal.getId()));
-                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getId()));
-
-            } else if (metal != MetalAuxiliaryInfo.COPPER) {
-                addForgeTag("storage_blocks/" + metal.getId() + "_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()));
-                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()));
-
-                addForgeTag("storage_blocks/" + metal.getId() + "_raw_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId()+ "_raw"));
-                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getId() + "_raw"));
-
-                addForgeTag("storage_blocks/" + metal.getId() + "_raw_slabs", ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getId() + "_raw"));
-                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_SLABS.get(metal.getId() + "_raw"));
-
-                addForgeTag("storage_blocks/" + metal.getId() + "_raw_walls", ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getId() + "_raw"));
-                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getId() + "_raw"));
-
-                addForgeTag("storage_blocks/" + metal.getId() + "_raw_fences", ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getId() + "_raw"));
-                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getId() + "_raw"));
-
-                addForgeTag("storage_blocks/" + metal.getId() + "_raw_fences", ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(metal.getId() + "_raw"));
-                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getId() + "_raw"));
-
-                addForgeTag("storage_blocks/" + metal.getId() + "_walls", ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getId()));
-                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_WALLS.get(metal.getId()));
-
-                addForgeTag("storage_blocks/" + metal.getId() + "_fences", ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getId()));
-                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getId()));
-
-                addForgeTag("storage_blocks/" + metal.getId() + "_fences", ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(metal.getId()));
-                makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCES.get(metal.getId()));
+                addBasicBlocksTags(metal.getId(), metal.isDivine());
             }
-
-
         }
-
         for (String key : ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.keySet()) {
             addForgeTag("storage_blocks/" + key + "_cristal", ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key));
             makePickaxeMineable(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key));
+            //Added to "storage_blocks.json"
+            tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_cristal"));
         }
-
-
-        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
-            if (!metal.isVanilla() ) {
-                tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + metal.getId()));
-                if ((metal.isAppearsInDeepslate() || metal.isAppearsInStone())) {
-                    tag(ModTags.forgeBlockTag("ores")).addTags(ModTags.forgeBlockTag("ores/" + metal.getId()));
-                    tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/raw_" + metal.getId()));
-                    tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + metal.getId() + "_raw_stairs"));
-                }
-                if (metal.isDivine() && ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.containsKey(metal.getId())) {
-                    tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + metal.getId() + "_cristal"));
-                }
-                tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + metal.getId() + "_stairs"));
-
-            } else if (metal != MetalAuxiliaryInfo.COPPER) {
-                tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + metal.getId() + "_stairs"));
-            }
-
-        }
-
 
         for (Block wall : ModBlocksRegister.BLOCK_METAL_WALLS.values()) {
             this.tag(BlockTags.WALLS).add(wall);
@@ -173,6 +77,146 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         }
 
     }
+
+    private void addTagsStoneAndDeepslate(String key) {
+
+        addForgeTag("ores/" + key, ModBlocksRegister.BLOCK_METAL_ORES.get(key), ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(key));
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_ORES.get(key));
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(key));
+        addForgeTag("ores_in_ground/deepslate",ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(key));
+        addForgeTag("ores_in_ground/stone",ModBlocksRegister.BLOCK_METAL_ORES.get(key));
+
+    }
+
+    private void addStoneTags(String key) {
+        addForgeTag("ores/" + key, ModBlocksRegister.BLOCK_METAL_ORES.get(key));
+        addForgeTag("ores_in_ground/stone",ModBlocksRegister.BLOCK_METAL_ORES.get(key));
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_ORES.get(key));
+    }
+
+    private void addDeepslateTags(String key) {
+        addForgeTag("ores/" + key, ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(key));
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(key));
+        addForgeTag("ores_in_ground/deepslate",ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get(key));
+    }
+
+    private void addRawTags(String key) {
+        addForgeTag("storage_blocks/raw_" + key, ModBlocksRegister.RAW_METAL_BLOCKS.get(key));
+        makePickaxeMineable(ModBlocksRegister.RAW_METAL_BLOCKS.get(key));
+
+        addForgeTagDecoration(key + "_raw");
+        pickaxeMineableDecoration(key + "_raw");
+
+        addGenericForgeTagDecoration(key + "_raw");
+
+        //Added to "storage_blocks.json"
+        tag(ModTags.forgeBlockTag("ores")).addTags(ModTags.forgeBlockTag("ores/" + key));
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/raw_" + key));
+    }
+
+    private void addBasicBlocksTags(String key, boolean isDivine) {
+        if (isDivine){
+            addForgeTag("storage_blocks/" + key, ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(key));
+            makePickaxeMineable(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(key));
+        } else {
+            addForgeTag("storage_blocks/" + key, ModBlocksRegister.BLOCK_METAL_BLOCKS.get(key));
+            makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(key));
+        }
+
+        addForgeTagDecoration(key);
+        addGenericForgeTagDecoration(key);
+        pickaxeMineableDecoration(key);
+
+        //Added to "storage_blocks.json"
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key));
+    }
+    public void addForgeTagDecoration(String key) {
+        addForgeTag("storage_blocks/" + key + "_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(key));
+        addForgeTag("storage_blocks/" + key + "_slabs", ModBlocksRegister.BLOCK_METAL_SLABS.get(key));
+        addForgeTag("storage_blocks/" + key + "_walls", ModBlocksRegister.BLOCK_METAL_WALLS.get(key));
+        addForgeTag("storage_blocks/" + key + "_fences", ModBlocksRegister.BLOCK_METAL_FENCES.get(key));
+        addForgeTag("storage_blocks/" + key + "_fences_gate", ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(key));
+
+    }
+    public void addGenericForgeTagDecoration(String key) {
+        //Added to "storage_blocks.json"
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_stairs"));
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_slabs"));
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_walls"));
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_fences"));
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_fences_gate"));
+    }
+
+
+    private void pickaxeMineableDecoration(String key) {
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(key));
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_SLABS.get(key));
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_WALLS.get(key));
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCES.get(key));
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(key));
+    }
+
+    private void addVanillaBlocksTags(String key) {
+
+        //walls, fance_gates, fances
+        addForgeTag("storage_blocks/" + key + "_walls", ModBlocksRegister.BLOCK_METAL_WALLS.get(key));
+        addForgeTag("storage_blocks/" + key + "_fences", ModBlocksRegister.BLOCK_METAL_FENCES.get(key));
+        addForgeTag("storage_blocks/" + key + "_fences_gate", ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(key));
+
+        //Added to "storage_blocks.json"
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_walls"));
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_fences"));
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_fences_gate"));
+
+        //walls, fance_gates, fances raw
+        addForgeTag("storage_blocks/" + key + "_raw_walls", ModBlocksRegister.BLOCK_METAL_WALLS.get(key + "_raw"));
+        addForgeTag("storage_blocks/" + key + "_raw_fences", ModBlocksRegister.BLOCK_METAL_FENCES.get(key + "_raw"));
+        addForgeTag("storage_blocks/" + key + "_raw_fences_gate", ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(key + "_raw"));
+
+        //Added to "storage_blocks.json"
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_walls"));
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_fences"));
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_fences_gate"));
+
+        //stair and slab raw
+        addForgeTag("storage_blocks/" + key + "_raw_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(key + "_raw"));
+        addForgeTag("storage_blocks/" + key + "_raw_slabs", ModBlocksRegister.BLOCK_METAL_SLABS.get(key + "_raw"));
+
+        //Added to "storage_blocks.json"
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_stairs"));
+        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_slabs"));
+
+
+        //walls, fance_gates, fances
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_WALLS.get(key));
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCES.get(key));
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(key));
+        //walls, fance_gates, fances raw
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_WALLS.get(key + "_raw"));
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCES.get(key + "_raw"));
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(key + "_raw"));
+
+        //stair and slab raw
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(key + "_raw"));
+        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_SLABS.get(key + "_raw"));
+
+        if (!key.equals("copper")) {
+            //stair and slab // not copper, exist in vanilla
+            addForgeTag("storage_blocks/" + key + "_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(key));
+            addForgeTag("storage_blocks/" + key + "_slabs", ModBlocksRegister.BLOCK_METAL_SLABS.get(key));
+
+            //Added to "storage_blocks.json"
+            tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_stairs"));
+            tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_slabs"));
+
+            makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(key));
+            makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_SLABS.get(key));
+        }
+    }
+
+
+
+
 
     /**
      * Adds a forge tag for a group of blocks.

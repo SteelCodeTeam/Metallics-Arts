@@ -26,8 +26,7 @@ public class ModLanguageProviderJP extends LanguageProvider {
         put("item.metallics_arts.small_vial",CTW.SMALL.getNameInJapanese() + " " + CTW.VIAL.getNameInJapanese());
         put("curios.identifier.metalmind_slot",CTW.METALMIND.getNameInJapanese() + " " + CTW.SLOT.getNameInJapanese());
 
-        put("itemGroup.metallics_arts", CTW.METALLICS_ARTS.getNameInJapanese());
-        put("itemGroup.metallics_arts.decorations", CTW.DECORATIONS.getNameInJapanese() + " " + CTW.METALLICS_ARTS.getNameInJapanese());
+        put("metallics_arts.tab.decorations", CTW.DECORATIONS.getNameInJapanese() + " " + CTW.METALLICS_ARTS.getNameInJapanese());
 
         put("key.category_powers_metallics_arts", CTW.POWERS.getNameInJapanese() + " " + CTW.METALLICS_ARTS.getNameInJapanese());
         put("key.category.metallics_arts", CTW.METALLICS_ARTS.getNameInJapanese());

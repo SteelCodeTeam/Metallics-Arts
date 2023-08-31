@@ -27,8 +27,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("item.metallics_arts.small_vial",CTW.SMALL.getNameInEnglish() + " " + CTW.VIAL.getNameInEnglish());
                 put("curios.identifier.metalmind_slot",CTW.METALMIND.getNameInEnglish() + " " + CTW.SLOT.getNameInEnglish());
 
-                put("itemGroup.metallics_arts", CTW.METALLICS_ARTS.getNameInEnglish());
-                put("itemGroup.metallics_arts.decorations", CTW.DECORATIONS.getNameInEnglish() + " " + CTW.METALLICS_ARTS.getNameInEnglish());
+                put("metallics_arts.tab.decorations", CTW.DECORATIONS.getNameInEnglish() + " " + CTW.METALLICS_ARTS.getNameInEnglish());
 
                 put("key.category_powers_metallics_arts", CTW.POWERS.getNameInEnglish() + " " + CTW.METALLICS_ARTS.getNameInEnglish());
                 put("key.category_metallics_arts", CTW.METALLICS_ARTS.getNameInEnglish());

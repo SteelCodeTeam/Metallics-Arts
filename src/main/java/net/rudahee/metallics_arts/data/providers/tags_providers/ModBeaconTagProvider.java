@@ -8,11 +8,13 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagEntry;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalAuxiliaryInfo;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 import org.jetbrains.annotations.Nullable;
@@ -43,12 +45,12 @@ public class ModBeaconTagProvider extends TagsProvider<Block> {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        for (MetalEnum metalEnum : MetalEnum.values()) {//"forge/tags/blocks/storage_blocks/"
-            //this.tag(BlockTags.BEACON_BASE_BLOCKS).add(TagEntry.tag(new ResourceLocation(MetallicsArts.MOD_ID,  metalEnum.getMetalNameLower() + "_block")));
-        }
-        for (GemsEnum gemsEnum : GemsEnum.values()) {
-            //todo no se como mierda va
-            //this.tag(BlockTags.BEACON_BASE_BLOCKS).add(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(gemsEnum.getGemNameLower()).asItem().);
+
+        for (MetalAuxiliaryInfo metal : MetalAuxiliaryInfo.values()) {
+            if (!metal.isVanilla()) {
+                this.tag(BlockTags.BEACON_BASE_BLOCKS).add(TagEntry.tag(new ResourceLocation("forge", "storage_blocks/" + metal.getId())));
+
+            }
         }
     }
 }
