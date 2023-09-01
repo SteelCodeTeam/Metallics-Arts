@@ -138,7 +138,6 @@ public class MetallicsArts {
     {
         // some preinit code
         LOGGER.info("Starting Metallics Arts Setup.");
-        CustomPoses.initializePoses();
         ModNetwork.registerPackets();
         ModEventsRegister.register(event);
 
@@ -147,6 +146,7 @@ public class MetallicsArts {
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
+        CustomPoses.initializePoses();
 
         event.enqueueWork(() -> {
 

@@ -449,7 +449,6 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
 
     public CompoundTag calculateChargeEttmetal(CompoundTag compoundTag, Player player, int metalReserve, String metalKey) {
         if (player.getLastDamageSource() != null) {
-            //todo chequear esto, no me gusta ese null ahi, he cambiado a una explosion por defecto, pero no tiene buena pinta, la verdad
             if (player.getLastDamageSource().type().equals(player.damageSources().explosion(null).type())) {
                 compoundTag.putInt(metalKey, metalReserve + 1);
             }

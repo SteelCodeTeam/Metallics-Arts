@@ -11,7 +11,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.OreGenerationEnum;
-import net.rudahee.metallics_arts.modules.custom_blocks.ettmetal_block.EttmetalBlock;
+import net.rudahee.metallics_arts.modules.custom_blocks.ettmetal_blocks.EttmetalBlock;
 import net.rudahee.metallics_arts.modules.custom_blocks.tables.CrucibleFurnaceBlock;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 

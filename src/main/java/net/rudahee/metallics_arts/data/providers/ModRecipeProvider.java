@@ -612,7 +612,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower())))
                     .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_" + metal.getMetalNameLower() + "_stairs"));
 
-            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get(metal.getMetalNameLower()),3)
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get(metal.getMetalNameLower()),6)
                     .define('#', ModTags.METAL_BLOCKS.get(metal.getMetalNameLower()))
                     .pattern("###")
                     .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_SLAB.get(metal.getMetalNameLower())))
@@ -650,7 +650,7 @@ public class ModRecipeProvider extends RecipeProvider {
                         .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower()+ "_raw")))
                         .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_" + metal.getMetalNameLower() + "_raw_stairs"));
 
-                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get(metal.getMetalNameLower() + "_raw"),4)
+                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get(metal.getMetalNameLower() + "_raw"),6)
                         .define('#', ModTags.RAW_BLOCKS.get(metal.getMetalNameLower()))
                         .pattern("###")
                         .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_SLAB.get(metal.getMetalNameLower() + "_raw")))
@@ -689,7 +689,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getGemNameLower())))
                     .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_" + metal.getGemNameLower() + "_stairs"));
 
-            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get(metal.getGemNameLower()),3)
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get(metal.getGemNameLower()),6)
                     .define('#', ModTags.METAL_BLOCKS.get(metal.getGemNameLower()))
                     .pattern("###")
                     .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_SLAB.get(metal.getGemNameLower())))
@@ -762,31 +762,31 @@ public class ModRecipeProvider extends RecipeProvider {
 
 
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get("gold"),3)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get("gold"),6)
                 .define('#', Items.GOLD_BLOCK)
                 .pattern("###")
                 .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_SLAB.get("gold")))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_gold_slab"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get("iron"),3)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get("iron"),6)
                 .define('#', Items.IRON_BLOCK)
                 .pattern("###")
                 .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_SLAB.get("iron")))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_iron_slab"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get("iron_raw"),3)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get("iron_raw"),6)
                 .define('#', Items.RAW_IRON_BLOCK)
                 .pattern("###")
                 .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_SLAB.get("iron_raw")))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_iron_raw_slab"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get("gold_raw"),3)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get("gold_raw"),6)
                 .define('#', Items.RAW_GOLD_BLOCK)
                 .pattern("###")
                 .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_SLAB.get("gold_raw")))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_gold_raw_slab"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get("copper_raw"),3)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_SLAB.get("copper_raw"),6)
                 .define('#', Items.RAW_COPPER_BLOCK)
                 .pattern("###")
                 .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_SLAB.get("copper_raw")))
@@ -815,19 +815,19 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_WALL.get("copper")))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_copper_wall"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_WALL.get("gold_raw"),3)
+                .define('#', Items.RAW_GOLD_BLOCK)
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_WALL.get("gold_raw")))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_gold_raw_wall"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_WALL.get("iron_raw"),3)
                 .define('#', Items.RAW_IRON_BLOCK)
                 .pattern("###")
                 .pattern("###")
                 .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_WALL.get("iron_raw")))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_iron_raw_wall"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_WALL.get("iron_raw"),3)
-                .define('#', Items.RAW_GOLD_BLOCK)
-                .pattern("###")
-                .pattern("###")
-                .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_WALL.get("iron_raw")))
-                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_gold_raw_wall"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_WALL.get("copper_raw"),3)
                 .define('#', Items.RAW_COPPER_BLOCK)
@@ -864,7 +864,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_FENCE.get("iron_raw"),3)
                 .define('#', Blocks.RAW_IRON_BLOCK)
-                .define('*', Items.IRON_INGOT)
+                .define('*', Items.RAW_IRON)
                 .pattern("#*#")
                 .pattern("#*#")
                 .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_FENCE.get("iron_raw")))
@@ -872,7 +872,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_FENCE.get("gold_raw"),3)
                 .define('#', Items.RAW_GOLD_BLOCK)
-                .define('*', Items.GOLD_INGOT)
+                .define('*', Items.RAW_GOLD)
                 .pattern("#*#")
                 .pattern("#*#")
                 .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_FENCE.get("gold_raw")))
@@ -880,7 +880,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_FENCE.get("copper_raw"),3)
                 .define('#', Items.RAW_COPPER_BLOCK)
-                .define('*', Items.COPPER_INGOT)
+                .define('*', Items.RAW_COPPER)
                 .pattern("#*#")
                 .pattern("#*#")
                 .unlockedBy("has_block", has(ModBlocksRegister.BLOCK_METAL_FENCE.get("copper_raw")))

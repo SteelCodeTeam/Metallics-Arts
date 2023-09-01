@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
+import net.rudahee.metallics_arts.modules.custom_blocks.ettmetal_blocks.*;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class DecorationBlockRegister {
@@ -13,7 +14,6 @@ public class DecorationBlockRegister {
     public static void register() {
         for (MetalEnum metal: MetalEnum.values()) {
             MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_stairs", ()-> {
-
                 StairBlock block = new StairBlock(
                         ()-> ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower()).defaultBlockState(),
                         BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
@@ -40,16 +40,31 @@ public class DecorationBlockRegister {
             }
         }
         for (GemsEnum metal: GemsEnum.values()) {
-            MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_stairs", ()-> {
-                StairBlock block = new StairBlock(
-                        () -> ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower()).defaultBlockState(),
-                        BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                                .sound(SoundType.METAL)
-                                .requiresCorrectToolForDrops());;
+            if (metal.equals(GemsEnum.ETTMETAL)) {
+                MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_stairs", () -> {
+                    EttmetalStairs block = new EttmetalStairs(
+                            ()-> ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower()).defaultBlockState(),
+                            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                                    .sound(SoundType.METAL)
+                                    .requiresCorrectToolForDrops()
+                                    .randomTicks());
 
-                ModBlocksRegister.BLOCK_METAL_STAIRS.put(metal.getGemNameLower(), block);
-                return block;
-            });
+                    ModBlocksRegister.BLOCK_METAL_STAIRS.put(metal.getGemNameLower(), block);
+
+                    return block;
+                });
+            } else {
+                MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_stairs", () -> {
+                    StairBlock block = new StairBlock(
+                            () -> ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(metal.getGemNameLower()).defaultBlockState(),
+                            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                                    .sound(SoundType.METAL)
+                                    .requiresCorrectToolForDrops());
+
+                    ModBlocksRegister.BLOCK_METAL_STAIRS.put(metal.getGemNameLower(), block);
+                    return block;
+                });
+            }
         }
 
         MetallicsArts.registerBlockDecoration("iron_stairs", ()-> {
@@ -129,15 +144,30 @@ public class DecorationBlockRegister {
             }
         }
         for (GemsEnum metal: GemsEnum.values()) {
-            MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_slab", ()-> {
-                SlabBlock block = new SlabBlock(
-                        BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                                .sound(SoundType.METAL)
-                                .requiresCorrectToolForDrops());;
+            if (metal.equals(GemsEnum.ETTMETAL)) {
+                MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_slab", () -> {
+                    EttmetalSlab block = new EttmetalSlab(
+                            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                                    .sound(SoundType.METAL)
+                                    .requiresCorrectToolForDrops()
+                                    .randomTicks());
 
-                ModBlocksRegister.BLOCK_METAL_SLAB.put(metal.getGemNameLower(), block);
-                return block;
-            });
+                    ModBlocksRegister.BLOCK_METAL_SLAB.put(metal.getGemNameLower(), block);
+
+                    return block;
+                });
+            } else {
+                MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_slab", () -> {
+                    SlabBlock block = new SlabBlock(
+                            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                                    .sound(SoundType.METAL)
+                                    .requiresCorrectToolForDrops());
+                    ;
+
+                    ModBlocksRegister.BLOCK_METAL_SLAB.put(metal.getGemNameLower(), block);
+                    return block;
+                });
+            }
         }
 
         MetallicsArts.registerBlockDecoration("iron_slab", ()-> {
@@ -212,15 +242,30 @@ public class DecorationBlockRegister {
             }
         }
         for (GemsEnum metal: GemsEnum.values()) {
-            MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_wall", ()-> {
-                WallBlock block = new WallBlock(
-                        BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                                .sound(SoundType.METAL)
-                                .requiresCorrectToolForDrops());;
+            if (metal.equals(GemsEnum.ETTMETAL)) {
+                MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_wall", () -> {
+                    EttmetalWall block = new EttmetalWall(
+                            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                                    .sound(SoundType.METAL)
+                                    .requiresCorrectToolForDrops()
+                                    .randomTicks());
 
-                ModBlocksRegister.BLOCK_METAL_WALL.put(metal.getGemNameLower(), block);
-                return block;
-            });
+                    ModBlocksRegister.BLOCK_METAL_WALL.put(metal.getGemNameLower(), block);
+
+                    return block;
+                });
+            } else {
+
+                MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_wall", ()-> {
+                    WallBlock block = new WallBlock(
+                            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                                    .sound(SoundType.METAL)
+                                    .requiresCorrectToolForDrops());;
+
+                    ModBlocksRegister.BLOCK_METAL_WALL.put(metal.getGemNameLower(), block);
+                    return block;
+                });
+            }
         }
 
         MetallicsArts.registerBlockDecoration("iron_wall", ()-> {
@@ -305,15 +350,31 @@ public class DecorationBlockRegister {
             }
         }
         for (GemsEnum metal: GemsEnum.values()) {
-            MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_fence", ()-> {
-                FenceBlock block = new FenceBlock(
-                        BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                                .sound(SoundType.METAL)
-                                .requiresCorrectToolForDrops());;
 
-                ModBlocksRegister.BLOCK_METAL_FENCE.put(metal.getGemNameLower(), block);
-                return block;
-            });
+            if (metal.equals(GemsEnum.ETTMETAL)) {
+                MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_fence", () -> {
+                    EttmetalFence block = new EttmetalFence (
+                            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                                    .sound(SoundType.METAL)
+                                    .requiresCorrectToolForDrops()
+                                    .randomTicks());
+
+                    ModBlocksRegister.BLOCK_METAL_FENCE.put(metal.getGemNameLower(), block);
+
+                    return block;
+                });
+            } else {
+
+                MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_fence", () -> {
+                    FenceBlock block = new FenceBlock(
+                            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                                    .sound(SoundType.METAL)
+                                    .requiresCorrectToolForDrops());
+
+                    ModBlocksRegister.BLOCK_METAL_FENCE.put(metal.getGemNameLower(), block);
+                    return block;
+                });
+            }
         }
 
         MetallicsArts.registerBlockDecoration("iron_fence", ()-> {
@@ -372,6 +433,7 @@ public class DecorationBlockRegister {
         });
 
         for (MetalEnum metal: MetalEnum.values()) {
+
             MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_fence_gate", ()-> {
 
                 FenceGateBlock block = new FenceGateBlock(
@@ -396,15 +458,31 @@ public class DecorationBlockRegister {
             }
         }
         for (GemsEnum metal: GemsEnum.values()) {
-            MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_fence_gate", ()-> {
-                FenceGateBlock block = new FenceGateBlock(
-                        BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                                .sound(SoundType.METAL)
-                                .requiresCorrectToolForDrops(), WoodType.ACACIA);
 
-                ModBlocksRegister.BLOCK_METAL_FENCE_GATE.put(metal.getGemNameLower(), block);
-                return block;
-            });
+            if (metal.equals(GemsEnum.ETTMETAL)) {
+                MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_fence_gate", () -> {
+                    EttmetalFenceGate block = new EttmetalFenceGate(
+                            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                                    .sound(SoundType.METAL)
+                                    .requiresCorrectToolForDrops()
+                                    .randomTicks(), WoodType.ACACIA);
+
+                    ModBlocksRegister.BLOCK_METAL_FENCE_GATE.put(metal.getGemNameLower(), block);
+
+                    return block;
+                });
+            } else {
+
+                MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_fence_gate", ()-> {
+                    FenceGateBlock block = new FenceGateBlock(
+                            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                                    .sound(SoundType.METAL)
+                                    .requiresCorrectToolForDrops(), WoodType.ACACIA);
+
+                    ModBlocksRegister.BLOCK_METAL_FENCE_GATE.put(metal.getGemNameLower(), block);
+                    return block;
+                });
+            }
         }
 
         MetallicsArts.registerBlockDecoration("iron_fence_gate", ()-> {
