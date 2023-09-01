@@ -67,12 +67,12 @@ public class ModCreativeTabsEvents {
             event.acceptAll(ModBlocksRegister.BLOCK_GEMS_BLOCKS.values().stream().map(ItemStack::new).collect(Collectors.toList()));
 
 
-            event.acceptAll(ModBlocksRegister.BLOCK_METAL_SLABS.values().stream().map(ItemStack::new).collect(Collectors.toList()));
+            event.acceptAll(ModBlocksRegister.BLOCK_METAL_SLAB.values().stream().map(ItemStack::new).collect(Collectors.toList()));
             event.acceptAll(ModBlocksRegister.BLOCK_METAL_STAIRS.values().stream().map(ItemStack::new).collect(Collectors.toList()));
 
-            event.acceptAll(ModBlocksRegister.BLOCK_METAL_WALLS.values().stream().map(ItemStack::new).collect(Collectors.toList()));
-            event.acceptAll(ModBlocksRegister.BLOCK_METAL_FENCES.values().stream().map(ItemStack::new).collect(Collectors.toList()));
-            event.acceptAll(ModBlocksRegister.BLOCK_METAL_FENCE_GATES.values().stream().map(ItemStack::new).collect(Collectors.toList()));
+            event.acceptAll(ModBlocksRegister.BLOCK_METAL_WALL.values().stream().map(ItemStack::new).collect(Collectors.toList()));
+            event.acceptAll(ModBlocksRegister.BLOCK_METAL_FENCE.values().stream().map(ItemStack::new).collect(Collectors.toList()));
+            event.acceptAll(ModBlocksRegister.BLOCK_METAL_FENCE_GATE.values().stream().map(ItemStack::new).collect(Collectors.toList()));
 
             event.acceptAll(ModItemsRegister.ITEM_ICONS_ALLOMANCY.values().stream().map(ItemStack::new).collect(Collectors.toList()));
             event.acceptAll(ModItemsRegister.ITEM_ICONS_ALLOMANCY_DIVINE.values().stream().map(ItemStack::new).collect(Collectors.toList()));

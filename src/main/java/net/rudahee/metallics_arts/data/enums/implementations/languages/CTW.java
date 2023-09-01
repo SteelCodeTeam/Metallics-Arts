@@ -123,10 +123,10 @@ public enum CTW implements ILanguage {
     WOOD("wood", "Wood", "Madera", "", ""),
     SHIELD("shield", "Shield", "Escudo", "", ""),
     STAIRS("stair", "Stairs", "Escaleras", "", ""),
-    SLABS("slab", "Slab", "Losa", "", ""),
-    WALLS("wall", "Wall", "Muro", "", ""),
-    FENCES("fence", "Fence", "Valla", "", ""),
-    FENCE_GATES("fence_gate", "Fence Gate", "Puerta de valla", "", "");
+    SLAB("slab", "Slab", "Losa", "", ""),
+    WALL("wall", "Wall", "Muro", "", ""),
+    FENCE("fence", "Fence", "Valla", "", ""),
+    FENCE_GATE("fence_gate", "Fence Gate", "Puerta de valla", "", "");
     private final String id;
     private final String english;
     private final String spanish;

@@ -21,6 +21,7 @@ public class ModLanguageProviderPL extends LanguageProvider {
 
     private final Map<String, String> base = new HashMap<>() {{
 
+        put("item.metallics_arts.metallics_arts_book", CTW.METALLICS_ARTS.getNameInEnglish() + " " + CTW.GUIDE.getNameInEnglish());
         put("entity.minecraft.villager.metallics_arts.forge_master", "MAESTRO DE LA FORGA");
 
         put("item.metallics_arts.large_vial", CTW.VIAL.getNameInPolish() + " " + CTW.LARGE.getNameInPolish());
@@ -66,6 +67,38 @@ public class ModLanguageProviderPL extends LanguageProvider {
         put("item.metallics_arts.bronze_aluminum_shield", MetalNamesEnum.ALUMINUM.getNameInEnglish() + " " + CTW.SHIELD.getNameInEnglish());
     }};
 
+    private final Map<String, String> paintings = new HashMap<>() {{
+        put("painting.metallics_arts.inquisitor_painting.title", "Inquisitor Painting");
+        put("painting.metallics_arts.inquisitor_painting.author", "-");
+
+        put("painting.metallics_arts.fun_cobber_painting.title", "Fun Cobber Painting");
+        put("painting.metallics_arts.fun_cobber_painting.author", "-");
+
+        put("painting.metallics_arts.sanfre_painting.title", "Luthadel Pixel Painting");
+        put("painting.metallics_arts.sanfre_painting.author", "Sanfre");
+
+        put("painting.metallics_arts.gar_leyva_koloss_painting.title", "Koloss Painting");
+        put("painting.metallics_arts.gar_leyva_koloss_painting.author", "Gar Leyva");
+
+        put("painting.metallics_arts.gar_leyva_armonia_painting.title", "Harmony Painting");
+        put("painting.metallics_arts.gar_leyva_armonia_painting.author", "Gar Leyva");
+
+        put("painting.metallics_arts.carlos_wk_art_kelsier_painting.title", "Kelsier Painting");
+        put("painting.metallics_arts.carlos_wk_art_kelsier_painting.author", "CarloswkArt");
+
+        put("painting.metallics_arts.carlos_wk_art_ascension_painting.title", "Ascension Painting");
+        put("painting.metallics_arts.carlos_wk_art_ascension_painting.author", "CarloswkArt");
+
+        put("painting.metallics_arts.carlos_wk_art_windows_pose_painting.title", "Windows Pose Painting");
+        put("painting.metallics_arts.carlos_wk_art_windows_pose_painting.author", "CarloswkArt");
+
+        put("painting.metallics_arts.carlos_wk_art_luthadel_painting.title", "Luthadel Painting");
+        put("painting.metallics_arts.carlos_wk_art_luthadel_painting.author", "CarloswkArt");
+
+        put("painting.metallics_arts.carlos_wk_art_red_sun_painting.title", "Red Sun Painting");
+        put("painting.metallics_arts.carlos_wk_art_red_sun_painting.author", "CarloswkArt");
+    }};
+
     private final Map<String, String> ingots = new HashMap<>() {{
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
 
@@ -94,67 +127,69 @@ public class ModLanguageProviderPL extends LanguageProvider {
 
     private final Map<String, String> slabs = new HashMap<>() {{
         for (MetalEnum metal : MetalEnum.values()) {
-            put("block.metallics_arts." + metal.getMetalNameLower() + "_slabs", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.SLABS.getNameInEnglish());
+            put("block.metallics_arts." + metal.getMetalNameLower() + "_slab", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.SLAB.getNameInEnglish());
             if (!metal.isAlloy()) {
-                put("block.metallics_arts." + metal.getMetalNameLower() + "_raw_slabs", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.SLABS.getNameInEnglish());
+                put("block.metallics_arts." + metal.getMetalNameLower() + "_raw_slab", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.SLAB.getNameInEnglish());
             }
         }
         for (GemsEnum metal : GemsEnum.values()) {
-            put("block.metallics_arts." + metal.getGemNameLower() + "_slabs", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.SLABS.getNameInEnglish());
+            put("block.metallics_arts." + metal.getGemNameLower() + "_slab", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.SLAB.getNameInEnglish());
         }
-        put("block.metallics_arts.iron_slabs", MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.SLABS.getNameInEnglish());
-        put("block.metallics_arts.gold_slabs", MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.SLABS.getNameInEnglish());
-        put("block.metallics_arts.iron_raw_slabs",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.SLABS.getNameInEnglish());
-        put("block.metallics_arts.gold_raw_slabs",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.SLABS.getNameInEnglish());
-        put("block.metallics_arts.copper_raw_slabs",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.SLABS.getNameInEnglish());
+        put("block.metallics_arts.iron_slab", MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.SLAB.getNameInEnglish());
+        put("block.metallics_arts.gold_slab", MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.SLAB.getNameInEnglish());
+        put("block.metallics_arts.iron_raw_slab",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.SLAB.getNameInEnglish());
+        put("block.metallics_arts.gold_raw_slab",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.SLAB.getNameInEnglish());
+        put("block.metallics_arts.copper_raw_slab",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.SLAB.getNameInEnglish());
     }};
 
     private final Map<String, String> walls = new HashMap<>() {{
         for (MetalEnum metal : MetalEnum.values()) {
-            put("block.metallics_arts." + metal.getMetalNameLower() + "_walls", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.WALLS.getNameInEnglish());
+            put("block.metallics_arts." + metal.getMetalNameLower() + "_wall", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.WALL.getNameInEnglish());
             if (!metal.isAlloy()) {
-                put("block.metallics_arts." + metal.getMetalNameLower() + "_raw_walls", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.WALLS.getNameInEnglish());
+                put("block.metallics_arts." + metal.getMetalNameLower() + "_raw_wall", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.WALL.getNameInEnglish());
             }
         }
         for (GemsEnum metal : GemsEnum.values()) {
-            put("block.metallics_arts." + metal.getGemNameLower() + "_walls", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.WALLS.getNameInEnglish());
+            put("block.metallics_arts." + metal.getGemNameLower() + "_wall", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.WALL.getNameInEnglish());
         }
-        put("block.metallics_arts.iron_walls", MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.WALLS.getNameInEnglish());
-        put("block.metallics_arts.gold_walls", MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.WALLS.getNameInEnglish());
-        put("block.metallics_arts.iron_raw_walls",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.WALLS.getNameInEnglish());
-        put("block.metallics_arts.gold_raw_walls",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.WALLS.getNameInEnglish());
+        put("block.metallics_arts.iron_wall", MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.WALL.getNameInEnglish());
+        put("block.metallics_arts.gold_wall", MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.WALL.getNameInEnglish());
+        put("block.metallics_arts.copper_wall", MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.WALL.getNameInEnglish());
+        put("block.metallics_arts.iron_raw_wall",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.WALL.getNameInEnglish());
+        put("block.metallics_arts.gold_raw_wall",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.WALL.getNameInEnglish());
+        put("block.metallics_arts.copper_raw_wall",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.WALL.getNameInEnglish());
     }};
 
     private final Map<String, String> fences = new HashMap<>() {{
         for (MetalEnum metal : MetalEnum.values()) {
-            put("block.metallics_arts." + metal.getMetalNameLower() + "_fences", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FENCES.getNameInEnglish());
+            put("block.metallics_arts." + metal.getMetalNameLower() + "_fence", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FENCE.getNameInEnglish());
             if (!metal.isAlloy()) {
-                put("block.metallics_arts." + metal.getMetalNameLower() + "_raw_fences", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FENCES.getNameInEnglish());
+                put("block.metallics_arts." + metal.getMetalNameLower() + "_raw_fence", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FENCE.getNameInEnglish());
             }
         }
         for (GemsEnum metal : GemsEnum.values()) {
-            put("block.metallics_arts." + metal.getGemNameLower() + "_fences", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FENCES.getNameInEnglish());
+            put("block.metallics_arts." + metal.getGemNameLower() + "_fence", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FENCE.getNameInEnglish());
         }
-        put("block.metallics_arts.iron_fences", MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.FENCES.getNameInEnglish());
-        put("block.metallics_arts.gold_fences", MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.FENCES.getNameInEnglish());
-        put("block.metallics_arts.iron_raw_fences",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.FENCES.getNameInEnglish());
-        put("block.metallics_arts.gold_raw_fences",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.FENCES.getNameInEnglish());
+        put("block.metallics_arts.iron_fence", MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.FENCE.getNameInEnglish());
+        put("block.metallics_arts.gold_fence", MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.FENCE.getNameInEnglish());
+        put("block.metallics_arts.iron_raw_fence",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.FENCE.getNameInEnglish());
+        put("block.metallics_arts.gold_raw_fence",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.FENCE.getNameInEnglish());
     }};
 
     private final Map<String, String> fence_gates = new HashMap<>() {{
         for (MetalEnum metal : MetalEnum.values()) {
-            put("block.metallics_arts." + metal.getMetalNameLower() + "_fence_gates", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FENCE_GATES.getNameInEnglish());
+            put("block.metallics_arts." + metal.getMetalNameLower() + "_fence_gate", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FENCE_GATE.getNameInEnglish());
             if (!metal.isAlloy()) {
-                put("block.metallics_arts." + metal.getMetalNameLower() + "_raw_fence_gates", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FENCE_GATES.getNameInEnglish());
+                put("block.metallics_arts." + metal.getMetalNameLower() + "_raw_fence_gate", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FENCE_GATE.getNameInEnglish());
             }
         }
         for (GemsEnum metal : GemsEnum.values()) {
-            put("block.metallics_arts." + metal.getGemNameLower() + "_fence_gates", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FENCE_GATES.getNameInEnglish());
+            put("block.metallics_arts." + metal.getGemNameLower() + "_fence_gate", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.FENCE_GATE.getNameInEnglish());
         }
-        put("block.metallics_arts.iron_fence_gates", MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.FENCE_GATES.getNameInEnglish());
-        put("block.metallics_arts.gold_fence_gates", MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.FENCE_GATES.getNameInEnglish());
-        put("block.metallics_arts.iron_raw_fence_gates",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.FENCE_GATES.getNameInEnglish());
-        put("block.metallics_arts.gold_raw_fence_gates",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.FENCE_GATES.getNameInEnglish());
+        put("block.metallics_arts.iron_fence_gate", MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.FENCE_GATE.getNameInEnglish());
+        put("block.metallics_arts.gold_fence_gate", MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.FENCE_GATE.getNameInEnglish());
+        put("block.metallics_arts.iron_raw_fence_gate",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.IRON.getNameInEnglish() + " " + CTW.FENCE_GATE.getNameInEnglish());
+        put("block.metallics_arts.gold_raw_fence_gate",CTW.RAW.getNameInEnglish() + " " + MetalNamesEnum.GOLD.getNameInEnglish() + " " + CTW.FENCE_GATE.getNameInEnglish());
     }};
 
     private final Map<String, String> rawItems = new HashMap<>() {{
@@ -388,6 +423,9 @@ public class ModLanguageProviderPL extends LanguageProvider {
         }
         for (String key: fence_gates.keySet()) {
             add(key, fence_gates.get(key));
+        }
+        for (String key: paintings.keySet()) {
+            add(key, paintings.get(key));
         }
 
         for (String keySymbol : symbols.keySet()) {

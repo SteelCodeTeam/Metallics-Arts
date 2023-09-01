@@ -105,360 +105,360 @@ public class DecorationBlockRegister {
 
 
         for (MetalEnum metal: MetalEnum.values()) {
-            MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_slabs", ()-> {
+            MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_slab", ()-> {
 
                 SlabBlock block = new SlabBlock(
                         BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                                 .sound(SoundType.METAL)
                                 .requiresCorrectToolForDrops());
 
-                ModBlocksRegister.BLOCK_METAL_SLABS.put(metal.getMetalNameLower(), block);
+                ModBlocksRegister.BLOCK_METAL_SLAB.put(metal.getMetalNameLower(), block);
 
                 return block;
             });
             if (!metal.isAlloy()) {
-                MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_raw_slabs", ()-> {
+                MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_raw_slab", ()-> {
                     SlabBlock block = new SlabBlock(
                             BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                                     .sound(SoundType.METAL)
                                     .requiresCorrectToolForDrops());
 
-                    ModBlocksRegister.BLOCK_METAL_SLABS.put(metal.getMetalNameLower() + "_raw", block);
+                    ModBlocksRegister.BLOCK_METAL_SLAB.put(metal.getMetalNameLower() + "_raw", block);
                     return block;
                 });
             }
         }
         for (GemsEnum metal: GemsEnum.values()) {
-            MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_slabs", ()-> {
+            MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_slab", ()-> {
                 SlabBlock block = new SlabBlock(
                         BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                                 .sound(SoundType.METAL)
                                 .requiresCorrectToolForDrops());;
 
-                ModBlocksRegister.BLOCK_METAL_SLABS.put(metal.getGemNameLower(), block);
+                ModBlocksRegister.BLOCK_METAL_SLAB.put(metal.getGemNameLower(), block);
                 return block;
             });
         }
 
-        MetallicsArts.registerBlockDecoration("iron_slabs", ()-> {
+        MetallicsArts.registerBlockDecoration("iron_slab", ()-> {
             SlabBlock block = new SlabBlock(
                     BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_SLABS.put("iron", block);
+            ModBlocksRegister.BLOCK_METAL_SLAB.put("iron", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("gold_slabs", ()-> {
+        MetallicsArts.registerBlockDecoration("gold_slab", ()-> {
             SlabBlock block = new SlabBlock(
                     BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_SLABS.put("gold", block);
+            ModBlocksRegister.BLOCK_METAL_SLAB.put("gold", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("iron_raw_slabs", ()-> {
+        MetallicsArts.registerBlockDecoration("iron_raw_slab", ()-> {
             SlabBlock block = new SlabBlock(
                     BlockBehaviour.Properties.copy(Blocks.RAW_IRON_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_SLABS.put("iron_raw", block);
+            ModBlocksRegister.BLOCK_METAL_SLAB.put("iron_raw", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("gold_raw_slabs", ()-> {
+        MetallicsArts.registerBlockDecoration("gold_raw_slab", ()-> {
             SlabBlock block = new SlabBlock(
                     BlockBehaviour.Properties.copy(Blocks.RAW_GOLD_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_SLABS.put("gold_raw", block);
+            ModBlocksRegister.BLOCK_METAL_SLAB.put("gold_raw", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("copper_raw_slabs", ()-> {
+        MetallicsArts.registerBlockDecoration("copper_raw_slab", ()-> {
             SlabBlock block = new SlabBlock(
                     BlockBehaviour.Properties.copy(Blocks.RAW_COPPER_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_SLABS.put("copper_raw", block);
+            ModBlocksRegister.BLOCK_METAL_SLAB.put("copper_raw", block);
             return block;
         });
 
 
         for (MetalEnum metal: MetalEnum.values()) {
-            MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_walls", ()-> {
+            MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_wall", ()-> {
 
                 WallBlock block = new WallBlock(
                         BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                                 .sound(SoundType.METAL)
                                 .requiresCorrectToolForDrops());
 
-                ModBlocksRegister.BLOCK_METAL_WALLS.put(metal.getMetalNameLower(), block);
+                ModBlocksRegister.BLOCK_METAL_WALL.put(metal.getMetalNameLower(), block);
 
                 return block;
             });
             if (!metal.isAlloy()) {
-                MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_raw_walls", ()-> {
+                MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_raw_wall", ()-> {
                     WallBlock block = new WallBlock(
                             BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                                     .sound(SoundType.METAL)
                                     .requiresCorrectToolForDrops());
 
-                    ModBlocksRegister.BLOCK_METAL_WALLS.put(metal.getMetalNameLower() + "_raw", block);
+                    ModBlocksRegister.BLOCK_METAL_WALL.put(metal.getMetalNameLower() + "_raw", block);
                     return block;
                 });
             }
         }
         for (GemsEnum metal: GemsEnum.values()) {
-            MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_walls", ()-> {
+            MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_wall", ()-> {
                 WallBlock block = new WallBlock(
                         BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                                 .sound(SoundType.METAL)
                                 .requiresCorrectToolForDrops());;
 
-                ModBlocksRegister.BLOCK_METAL_WALLS.put(metal.getGemNameLower(), block);
+                ModBlocksRegister.BLOCK_METAL_WALL.put(metal.getGemNameLower(), block);
                 return block;
             });
         }
 
-        MetallicsArts.registerBlockDecoration("iron_walls", ()-> {
+        MetallicsArts.registerBlockDecoration("iron_wall", ()-> {
             WallBlock block = new WallBlock(
                     BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_WALLS.put("iron", block);
+            ModBlocksRegister.BLOCK_METAL_WALL.put("iron", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("gold_walls", ()-> {
+        MetallicsArts.registerBlockDecoration("gold_wall", ()-> {
             WallBlock block = new WallBlock(
                     BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_WALLS.put("gold", block);
+            ModBlocksRegister.BLOCK_METAL_WALL.put("gold", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("copper_walls", ()-> {
+        MetallicsArts.registerBlockDecoration("copper_wall", ()-> {
             WallBlock block = new WallBlock(
                     BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_WALLS.put("copper", block);
+            ModBlocksRegister.BLOCK_METAL_WALL.put("copper", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("iron_raw_walls", ()-> {
+        MetallicsArts.registerBlockDecoration("iron_raw_wall", ()-> {
             WallBlock block = new WallBlock(
                     BlockBehaviour.Properties.copy(Blocks.RAW_IRON_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_WALLS.put("iron_raw", block);
+            ModBlocksRegister.BLOCK_METAL_WALL.put("iron_raw", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("gold_raw_walls", ()-> {
+        MetallicsArts.registerBlockDecoration("gold_raw_wall", ()-> {
             WallBlock block = new WallBlock(
                     BlockBehaviour.Properties.copy(Blocks.RAW_GOLD_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_WALLS.put("gold_raw", block);
+            ModBlocksRegister.BLOCK_METAL_WALL.put("gold_raw", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("copper_raw_walls", ()-> {
+        MetallicsArts.registerBlockDecoration("copper_raw_wall", ()-> {
             WallBlock block = new WallBlock(
                     BlockBehaviour.Properties.copy(Blocks.RAW_COPPER_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_WALLS.put("copper_raw", block);
+            ModBlocksRegister.BLOCK_METAL_WALL.put("copper_raw", block);
             return block;
         });
 
 
 
         for (MetalEnum metal: MetalEnum.values()) {
-            MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_fences", ()-> {
+            MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_fence", ()-> {
 
                 FenceBlock block = new FenceBlock(
                         BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                                 .sound(SoundType.METAL)
                                 .requiresCorrectToolForDrops());
 
-                ModBlocksRegister.BLOCK_METAL_FENCES.put(metal.getMetalNameLower(), block);
+                ModBlocksRegister.BLOCK_METAL_FENCE.put(metal.getMetalNameLower(), block);
 
                 return block;
             });
             if (!metal.isAlloy()) {
-                MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_raw_fences", ()-> {
+                MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_raw_fence", ()-> {
                     FenceBlock block = new FenceBlock(
                             BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                                     .sound(SoundType.METAL)
                                     .requiresCorrectToolForDrops());
 
-                    ModBlocksRegister.BLOCK_METAL_FENCES.put(metal.getMetalNameLower() + "_raw", block);
+                    ModBlocksRegister.BLOCK_METAL_FENCE.put(metal.getMetalNameLower() + "_raw", block);
                     return block;
                 });
             }
         }
         for (GemsEnum metal: GemsEnum.values()) {
-            MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_fences", ()-> {
+            MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_fence", ()-> {
                 FenceBlock block = new FenceBlock(
                         BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                                 .sound(SoundType.METAL)
                                 .requiresCorrectToolForDrops());;
 
-                ModBlocksRegister.BLOCK_METAL_FENCES.put(metal.getGemNameLower(), block);
+                ModBlocksRegister.BLOCK_METAL_FENCE.put(metal.getGemNameLower(), block);
                 return block;
             });
         }
 
-        MetallicsArts.registerBlockDecoration("iron_fences", ()-> {
+        MetallicsArts.registerBlockDecoration("iron_fence", ()-> {
             FenceBlock block = new FenceBlock(
                     BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_FENCES.put("iron", block);
+            ModBlocksRegister.BLOCK_METAL_FENCE.put("iron", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("gold_fences", ()-> {
+        MetallicsArts.registerBlockDecoration("gold_fence", ()-> {
             FenceBlock block = new FenceBlock(
                     BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_FENCES.put("gold", block);
+            ModBlocksRegister.BLOCK_METAL_FENCE.put("gold", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("copper_fences", ()-> {
+        MetallicsArts.registerBlockDecoration("copper_fence", ()-> {
             FenceBlock block = new FenceBlock(
                     BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_FENCES.put("copper", block);
+            ModBlocksRegister.BLOCK_METAL_FENCE.put("copper", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("iron_raw_fences", ()-> {
+        MetallicsArts.registerBlockDecoration("iron_raw_fence", ()-> {
             FenceBlock block = new FenceBlock(
                     BlockBehaviour.Properties.copy(Blocks.RAW_IRON_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_FENCES.put("iron_raw", block);
+            ModBlocksRegister.BLOCK_METAL_FENCE.put("iron_raw", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("gold_raw_fences", ()-> {
+        MetallicsArts.registerBlockDecoration("gold_raw_fence", ()-> {
             FenceBlock block = new FenceBlock(
                     BlockBehaviour.Properties.copy(Blocks.RAW_GOLD_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_FENCES.put("gold_raw", block);
+            ModBlocksRegister.BLOCK_METAL_FENCE.put("gold_raw", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("copper_raw_fences", ()-> {
+        MetallicsArts.registerBlockDecoration("copper_raw_fence", ()-> {
             FenceBlock block = new FenceBlock(
                     BlockBehaviour.Properties.copy(Blocks.RAW_COPPER_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.BLOCK_METAL_FENCES.put("copper_raw", block);
+            ModBlocksRegister.BLOCK_METAL_FENCE.put("copper_raw", block);
             return block;
         });
 
         for (MetalEnum metal: MetalEnum.values()) {
-            MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_fence_gates", ()-> {
+            MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_fence_gate", ()-> {
 
                 FenceGateBlock block = new FenceGateBlock(
                         BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                                 .sound(SoundType.METAL)
                                 .requiresCorrectToolForDrops(), WoodType.ACACIA);
 
-                ModBlocksRegister.BLOCK_METAL_FENCE_GATES.put(metal.getMetalNameLower(), block);
+                ModBlocksRegister.BLOCK_METAL_FENCE_GATE.put(metal.getMetalNameLower(), block);
 
                 return block;
             });
             if (!metal.isAlloy()) {
 
-                MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_raw_fence_gates", ()-> {
+                MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_raw_fence_gate", ()-> {
                     FenceGateBlock block = new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops(), WoodType.ACACIA);
 
-                    ModBlocksRegister.BLOCK_METAL_FENCE_GATES.put(metal.getMetalNameLower() + "_raw", block);
+                    ModBlocksRegister.BLOCK_METAL_FENCE_GATE.put(metal.getMetalNameLower() + "_raw", block);
                     return block;
                 });
             }
         }
         for (GemsEnum metal: GemsEnum.values()) {
-            MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_fence_gates", ()-> {
+            MetallicsArts.registerBlockDecoration(metal.getGemNameLower() + "_fence_gate", ()-> {
                 FenceGateBlock block = new FenceGateBlock(
                         BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                                 .sound(SoundType.METAL)
                                 .requiresCorrectToolForDrops(), WoodType.ACACIA);
 
-                ModBlocksRegister.BLOCK_METAL_FENCE_GATES.put(metal.getGemNameLower(), block);
+                ModBlocksRegister.BLOCK_METAL_FENCE_GATE.put(metal.getGemNameLower(), block);
                 return block;
             });
         }
 
-        MetallicsArts.registerBlockDecoration("iron_fence_gates", ()-> {
+        MetallicsArts.registerBlockDecoration("iron_fence_gate", ()-> {
             FenceGateBlock block = new FenceGateBlock(
                     BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops(), WoodType.ACACIA);
 
-            ModBlocksRegister.BLOCK_METAL_FENCE_GATES.put("iron", block);
+            ModBlocksRegister.BLOCK_METAL_FENCE_GATE.put("iron", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("gold_fence_gates", ()-> {
+        MetallicsArts.registerBlockDecoration("gold_fence_gate", ()-> {
             FenceGateBlock block = new FenceGateBlock(
                     BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops(), WoodType.ACACIA);
 
-            ModBlocksRegister.BLOCK_METAL_FENCE_GATES.put("gold", block);
+            ModBlocksRegister.BLOCK_METAL_FENCE_GATE.put("gold", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("copper_fence_gates", ()-> {
+        MetallicsArts.registerBlockDecoration("copper_fence_gate", ()-> {
             FenceGateBlock block = new FenceGateBlock(
                     BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops(), WoodType.ACACIA);
 
-            ModBlocksRegister.BLOCK_METAL_FENCE_GATES.put("copper", block);
+            ModBlocksRegister.BLOCK_METAL_FENCE_GATE.put("copper", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("iron_raw_fence_gates", ()-> {
+        MetallicsArts.registerBlockDecoration("iron_raw_fence_gate", ()-> {
             FenceGateBlock block = new FenceGateBlock(
                     BlockBehaviour.Properties.copy(Blocks.RAW_IRON_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops(), WoodType.ACACIA);
 
-            ModBlocksRegister.BLOCK_METAL_FENCE_GATES.put("iron_raw", block);
+            ModBlocksRegister.BLOCK_METAL_FENCE_GATE.put("iron_raw", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("gold_raw_fence_gates", ()-> {
+        MetallicsArts.registerBlockDecoration("gold_raw_fence_gate", ()-> {
             FenceGateBlock block = new FenceGateBlock(
                     BlockBehaviour.Properties.copy(Blocks.RAW_GOLD_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops(), WoodType.ACACIA);
 
-            ModBlocksRegister.BLOCK_METAL_FENCE_GATES.put("gold_raw", block);
+            ModBlocksRegister.BLOCK_METAL_FENCE_GATE.put("gold_raw", block);
             return block;
         });
-        MetallicsArts.registerBlockDecoration("copper_raw_fence_gates", ()-> {
+        MetallicsArts.registerBlockDecoration("copper_raw_fence_gate", ()-> {
             FenceGateBlock block = new FenceGateBlock(
                     BlockBehaviour.Properties.copy(Blocks.RAW_COPPER_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops(), WoodType.ACACIA);
 
-            ModBlocksRegister.BLOCK_METAL_FENCE_GATES.put("copper_raw", block);
+            ModBlocksRegister.BLOCK_METAL_FENCE_GATE.put("copper_raw", block);
             return block;
         });
 

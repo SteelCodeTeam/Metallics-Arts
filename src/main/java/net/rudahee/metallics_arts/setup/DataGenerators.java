@@ -71,8 +71,8 @@ public final class DataGenerators {
         ModBlockTagProvider blockTags = new  ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
         gen.addProvider(event.includeServer(), blockTags);
         gen.addProvider(event.includeServer(), new ModItemTagsProvider(packOutput,lookupProvider, blockTags.contentsGetter(), existingFileHelper));
-        gen.addProvider(event.includeServer(), new ModBannerTagProvider(packOutput, lookupProvider, event.getExistingFileHelper()));
-        gen.addProvider(event.includeServer(), new ModBeaconTagProvider(packOutput, lookupProvider, existingFileHelper));
+        //gen.addProvider(event.includeServer(), new ModBannerTagProvider(packOutput, lookupProvider, event.getExistingFileHelper()));
+        //gen.addProvider(event.includeServer(), new ModBeaconTagProvider(packOutput, lookupProvider, existingFileHelper));
     }
 
     @SubscribeEvent

@@ -94,10 +94,10 @@ public class ModLootTableProvider implements LootTableSubProvider {
         }
         for (String key : ModBlocksRegister.BLOCK_METAL_BLOCKS.keySet()) {
             Block metalBlock = ModBlocksRegister.BLOCK_METAL_BLOCKS.get(key);
-            Block wallBlock = ModBlocksRegister.BLOCK_METAL_WALLS.get(key);
-            Block fences = ModBlocksRegister.BLOCK_METAL_FENCES.get(key);
-            Block fencesGates = ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(key);
-            Block slabs = ModBlocksRegister.BLOCK_METAL_SLABS.get(key);
+            Block wallBlock = ModBlocksRegister.BLOCK_METAL_WALL.get(key);
+            Block fences = ModBlocksRegister.BLOCK_METAL_FENCE.get(key);
+            Block fencesGates = ModBlocksRegister.BLOCK_METAL_FENCE_GATE.get(key);
+            Block slabs = ModBlocksRegister.BLOCK_METAL_SLAB.get(key);
 
             addSimpleBlock(writer, ForgeRegistries.BLOCKS.getKey(metalBlock).getPath(), metalBlock);
             addSimpleBlock(writer, ForgeRegistries.BLOCKS.getKey(wallBlock).getPath(), wallBlock);
@@ -107,10 +107,10 @@ public class ModLootTableProvider implements LootTableSubProvider {
         }
         for (String key : ModBlocksRegister.BLOCK_GEMS_BLOCKS.keySet()) {
             Block gemBlock = ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(key);
-            Block wallBlock = ModBlocksRegister.BLOCK_METAL_WALLS.get(key);
-            Block fences = ModBlocksRegister.BLOCK_METAL_FENCES.get(key);
-            Block fencesGates = ModBlocksRegister.BLOCK_METAL_FENCE_GATES.get(key);
-            Block slabs = ModBlocksRegister.BLOCK_METAL_SLABS.get(key);
+            Block wallBlock = ModBlocksRegister.BLOCK_METAL_WALL.get(key);
+            Block fences = ModBlocksRegister.BLOCK_METAL_FENCE.get(key);
+            Block fencesGates = ModBlocksRegister.BLOCK_METAL_FENCE_GATE.get(key);
+            Block slabs = ModBlocksRegister.BLOCK_METAL_SLAB.get(key);
 
             addSimpleBlock(writer, ForgeRegistries.BLOCKS.getKey(gemBlock).getPath(), gemBlock);
             addSimpleBlock(writer, ForgeRegistries.BLOCKS.getKey(wallBlock).getPath(), wallBlock);
@@ -121,14 +121,8 @@ public class ModLootTableProvider implements LootTableSubProvider {
 
         for (String key: ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.keySet()) {
             Block block = ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key);
-
             addOnlySilkTouchBlock(writer, ForgeRegistries.BLOCKS.getKey(block).getPath(), block);
-
-            /*this.lootTables.put(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key)).when(MatchTool.toolMatches(ItemPredicate.Builder
-                    .item()
-                    .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH,
-                            MinMaxBounds.Ints.atLeast(1))))))));*/
-        } //todo
+        }
 
         addSilkTouchBlock(writer, ForgeRegistries.BLOCKS.getKey(ModBlocksRegister.ATIUM_CLUSTER.get()).getPath(),
                 ModBlocksRegister.ATIUM_CLUSTER.get(), ModItemsRegister.ITEM_GEMS_BASE.get("atium"), 1, 1);
