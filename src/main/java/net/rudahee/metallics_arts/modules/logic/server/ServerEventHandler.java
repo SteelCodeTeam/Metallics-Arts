@@ -225,15 +225,11 @@ public class ServerEventHandler {
                     ex.printResumeLog();
                 }
 
-
                 /*
                  * GUNS
                  */
-                if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof BasicGun instance) {
-                    ItemStack gun = player.getItemInHand(InteractionHand.MAIN_HAND);
-                    if (!gun.hasTag()) {
-                        gun.setTag(GunUtils.generateGunTags(instance.getGunType()));
-                    }
+                if (player.getMainHandItem().getItem() instanceof BasicGun instance) {
+                    ItemStack gun = player.getMainHandItem();
                     if (gun.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.RELOAD.getKey())) {
                         if ((tick % instance.getGunType().getReload_cooldown()) == 0) {
                             gun.setTag(GunUtils.reload(gun, player, instance.getGunType()));

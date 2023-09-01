@@ -73,6 +73,17 @@ public class BasicGun extends ProjectileWeaponItem {
 
     }
 
+    public void alternateReload(ItemStack itemStack) {
+        if (!itemStack.hasTag()) {
+            itemStack.setTag(GunUtils.generateGunTags(this.gunType));
+        }
+        if (itemStack.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
+            itemStack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
+        } else {
+            itemStack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
+        }
+    }
+
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity livingEntity, int i) {
         ItemStack itemStack = livingEntity.getItemInHand(InteractionHand.MAIN_HAND);
@@ -97,18 +108,15 @@ public class BasicGun extends ProjectileWeaponItem {
         if (!stack.hasTag()) {
             stack.setTag(GunUtils.generateGunTags(this.gunType));
         }
-        if (entity instanceof Player player) {
-            if (player.getItemInHand(InteractionHand.MAIN_HAND) == stack) {
-                if (ModKeyRegister.RELOAD.isDown()) {
-                    stack.setTag(GunUtils.reloadTexture(stack, this.gunType));
-                    stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
-                }
+        /*if (entity instanceof Player player) {
+            if (player.getItemInHand(InteractionHand.MAIN_HAND) != stack) {
+
 
             } else if (!stack.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
                 stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
                 stack.getTag().putFloat("CustomModelData", 0);
             }
-        }
+        }*/
         super.inventoryTick(stack, level, entity, selectedSlot, hasItemSelected);
     }
 

@@ -76,6 +76,7 @@ public class GunUtils {
         return compoundTag;
     }
 
+
     /**
      * Checks if the player has a bullet of the specified type and gun type in their inventory.
      *

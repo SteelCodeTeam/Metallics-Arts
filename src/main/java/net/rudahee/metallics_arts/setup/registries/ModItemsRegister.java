@@ -82,7 +82,6 @@ public class ModItemsRegister {
     }
 
     public static void ChargeInList() {
-        System.out.println("a");
         ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.OBSIDIAN_DAGGER.toString(), ModItemsRegister.OBSIDIAN_DAGGER.get());
         ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.SILVER_KNIFE.toString(),ModItemsRegister.SILVER_KNIFE.get());
         ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.KOLOSS_BLADE.toString(),ModItemsRegister.KOLOSS_BLADE.get());
@@ -94,6 +93,7 @@ public class ModItemsRegister {
         ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.COPPER_COIN.toString(),ModItemsRegister.COPPER_COIN.get());
         ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.REVOLVER.toString(),ModItemsRegister.REVOLVER.get());
         ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.VINDICATOR.toString(),ModItemsRegister.VINDICATOR.get());
+        ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.SHOTGUN.toString(),ModItemsRegister.SHOTGUN.get());
         ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.RIFLE.toString(),ModItemsRegister.RIFLE.get());
         ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.RIFLE_WITH_SPYGLASS.toString(),ModItemsRegister.RIFLE_WITH_SPYGLASS.get());
         ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.REVOLVER_LEAD_BULLET.toString(),ModItemsRegister.REVOLVER_LEAD_BULLET.get());
