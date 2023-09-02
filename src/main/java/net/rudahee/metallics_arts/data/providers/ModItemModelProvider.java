@@ -188,14 +188,14 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         builder(itemGenerated,"item/vindicator","item/combat/guns/vindicator");
 
-        builder(itemGenerated,"item/shotgun_aluminum_bullet","item/combat/guns/shotgun_aluminum_bullet");
-        builder(itemGenerated,"item/shotgun_lead_bullet","item/combat/guns/shotgun_lead_bullet");
+        builder(itemGenerated,"item/shotgun_aluminum_ammo","item/combat/guns/shotgun_aluminum_ammo");
+        builder(itemGenerated,"item/shotgun_lead_ammo","item/combat/guns/shotgun_lead_ammo");
 
-        builder(itemGenerated,"item/revolver_aluminum_bullet","item/combat/guns/revolver_aluminum_bullet");
-        builder(itemGenerated,"item/revolver_lead_bullet","item/combat/guns/revolver_lead_bullet");
+        builder(itemGenerated,"item/revolver_aluminum_ammo","item/combat/guns/revolver_aluminum_ammo");
+        builder(itemGenerated,"item/revolver_lead_ammo","item/combat/guns/revolver_lead_ammo");
 
-        builder(itemGenerated,"item/rifle_lead_bullet","item/combat/guns/rifle_lead_bullet");
-        builder(itemGenerated,"item/rifle_aluminum_bullet","item/combat/guns/rifle_aluminum_bullet");
+        builder(itemGenerated,"item/rifle_lead_ammo","item/combat/guns/rifle_lead_ammo");
+        builder(itemGenerated,"item/rifle_aluminum_ammo","item/combat/guns/rifle_aluminum_ammo");
 
 
         for (MetalEnum metal : MetalEnum.values()) {

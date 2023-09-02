@@ -4,6 +4,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
 
@@ -100,6 +101,23 @@ public class ModLanguageProviderJP extends LanguageProvider {
         put("painting.metallics_arts.carlos_wk_art_red_sun_painting.author", "CarloswkArt");
     }};
 
+    private final Map<String, String> gun_and_ammo = new HashMap<>() {{
+        put("item.metallics_arts." + GunType.REVOLVER.getName(), CTW.REVOLVER.getNameInEnglish());
+        put("item.metallics_arts." + GunType.VINDICATOR.getName(), CTW.VINDICATOR.getNameInEnglish());
+        put("item.metallics_arts." + GunType.RIFLE.getName(), CTW.RIFLE.getNameInEnglish());
+        put("item.metallics_arts." + GunType.SHOTGUN.getName(), CTW.SHOTGUN.getNameInEnglish());
+
+        put("item.metallics_arts." + GunType.REVOLVER.getName() +"_aluminum_ammo", MetalNamesEnum.ALUMINUM.getNameInEnglish() + " " + CTW.REVOLVER.getNameInEnglish() + " " + CTW.AMMO.getNameInEnglish());
+        put("item.metallics_arts." + GunType.REVOLVER.getName() +"_lead_ammo", MetalNamesEnum.LEAD.getNameInEnglish() + " " + CTW.REVOLVER.getNameInEnglish() + " " + CTW.AMMO.getNameInEnglish());
+
+        put("item.metallics_arts." + GunType.RIFLE.getName() +"_aluminum_ammo", MetalNamesEnum.ALUMINUM.getNameInEnglish() + " " + CTW.RIFLE.getNameInEnglish() + " " + CTW.AMMO.getNameInEnglish());
+        put("item.metallics_arts." + GunType.RIFLE.getName() +"_lead_ammo", MetalNamesEnum.LEAD.getNameInEnglish() + " " + CTW.RIFLE.getNameInEnglish() + " " + CTW.AMMO.getNameInEnglish());
+
+        put("item.metallics_arts." + GunType.SHOTGUN.getName() +"_aluminum_ammo", MetalNamesEnum.ALUMINUM.getNameInEnglish() + " " + CTW.SHOTGUN.getNameInEnglish() + " " + CTW.AMMO.getNameInEnglish());
+        put("item.metallics_arts." + GunType.SHOTGUN.getName() +"_lead_ammo", MetalNamesEnum.LEAD.getNameInEnglish() + " " + CTW.SHOTGUN.getNameInEnglish() + " " + CTW.AMMO.getNameInEnglish());
+
+
+    }};
 
     private final Map<String, String> ingots = new HashMap<>() {{
         for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
@@ -423,6 +441,9 @@ public class ModLanguageProviderJP extends LanguageProvider {
         }
         for (String key: paintings.keySet()) {
             add(key, paintings.get(key));
+        }
+        for (String key: gun_and_ammo.keySet()) {
+            add(key, gun_and_ammo.get(key));
         }
 
         for (String keySymbol : symbols.keySet()) {

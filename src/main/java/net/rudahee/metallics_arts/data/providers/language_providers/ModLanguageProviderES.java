@@ -4,6 +4,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
 import net.rudahee.metallics_arts.data.providers.language_providers.book.BookHelperES;
@@ -111,6 +112,24 @@ public class ModLanguageProviderES extends LanguageProvider {
 
         put("painting.metallics_arts.carlos_wk_art_red_sun_painting.title", "Red Sun Painting");
         put("painting.metallics_arts.carlos_wk_art_red_sun_painting.author", "CarloswkArt");
+    }};
+
+    private final Map<String, String> gun_and_ammo = new HashMap<>() {{
+        put("item.metallics_arts." + GunType.REVOLVER.getName(), CTW.REVOLVER.getNameInSpanish());
+        put("item.metallics_arts." + GunType.VINDICATOR.getName(), CTW.VINDICATOR.getNameInSpanish());
+        put("item.metallics_arts." + GunType.RIFLE.getName(), CTW.RIFLE.getNameInSpanish());
+        put("item.metallics_arts." + GunType.SHOTGUN.getName(), CTW.SHOTGUN.getNameInSpanish());
+
+        put("item.metallics_arts." + GunType.REVOLVER.getName() +"_aluminum_ammo", CTW.AMMO.getNameInSpanish() + " de "+ MetalNamesEnum.ALUMINUM.getNameInSpanish().toLowerCase() + " para " + CTW.REVOLVER.getNameInSpanish().toLowerCase());
+        put("item.metallics_arts." + GunType.REVOLVER.getName() +"_lead_ammo", CTW.AMMO.getNameInSpanish() + " de "+ MetalNamesEnum.LEAD.getNameInSpanish().toLowerCase()  + " para " + CTW.REVOLVER.getNameInSpanish().toLowerCase());
+
+        put("item.metallics_arts." + GunType.RIFLE.getName() +"_aluminum_ammo", CTW.AMMO.getNameInSpanish() + " de "+ MetalNamesEnum.ALUMINUM.getNameInSpanish().toLowerCase()  + " para " + CTW.RIFLE.getNameInSpanish().toLowerCase());
+        put("item.metallics_arts." + GunType.RIFLE.getName() +"_lead_ammo", CTW.AMMO.getNameInSpanish() + " de "+ MetalNamesEnum.LEAD.getNameInSpanish().toLowerCase()  + " para " + CTW.RIFLE.getNameInSpanish().toLowerCase());
+
+        put("item.metallics_arts." + GunType.SHOTGUN.getName() +"_aluminum_ammo", CTW.AMMO.getNameInSpanish() + " de "+ MetalNamesEnum.ALUMINUM.getNameInSpanish().toLowerCase()  + " para " + CTW.SHOTGUN.getNameInSpanish().toLowerCase());
+        put("item.metallics_arts." + GunType.SHOTGUN.getName() +"_lead_ammo", CTW.AMMO.getNameInSpanish() + " de "+ MetalNamesEnum.LEAD.getNameInSpanish().toLowerCase()  + " para " + CTW.SHOTGUN.getNameInSpanish().toLowerCase());
+
+
     }};
 
     private final Map<String, String> tables = new HashMap<>() {{
@@ -464,6 +483,10 @@ public class ModLanguageProviderES extends LanguageProvider {
         }
         for (String key: paintings.keySet()) {
             add(key, paintings.get(key));
+        }
+
+        for (String key: gun_and_ammo.keySet()) {
+            add(key, gun_and_ammo.get(key));
         }
 
         for (String keySymbol : symbols.keySet()) {

@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages;
 
+import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.interfaces.ILanguage;
 
 //CommonTranslationWords
@@ -126,7 +127,12 @@ public enum CTW implements ILanguage {
     SLAB("slab", "Slab", "Losa", "", ""),
     WALL("wall", "Wall", "Muro", "", ""),
     FENCE("fence", "Fence", "Valla", "", ""),
-    FENCE_GATE("fence_gate", "Fence Gate", "Puerta de valla", "", "");
+    FENCE_GATE("fence_gate", "Fence Gate", "Puerta de valla", "", ""),
+    REVOLVER(GunType.REVOLVER.getName(), "Revolver", "Revolver", "",""),
+    VINDICATOR(GunType.VINDICATOR.getName(), "Vindicator", "Vindicadora", "",""),
+    RIFLE(GunType.RIFLE.getName(), "Rifle", "Rifle", "",""),
+    SHOTGUN(GunType.SHOTGUN.getName(), "Shotgun", "Escopeta", "",""),
+    AMMO("ammo","Ammo","Municion","","");
     private final String id;
     private final String english;
     private final String spanish;

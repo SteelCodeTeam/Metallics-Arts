@@ -4,7 +4,6 @@ import net.minecraft.world.item.Item;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.Shields;
-import net.rudahee.metallics_arts.modules.custom_items.InvisibleItem;
 import net.rudahee.metallics_arts.modules.custom_items.armors.CustomShield;
 import net.rudahee.metallics_arts.modules.custom_items.coins.CopperCoin;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.BasicGun;
@@ -59,22 +58,22 @@ public class WeaponsRegister {
         ModItemsRegister.RIFLE_WITH_SPYGLASS = MetallicsArts.registerItem(GunType.RIFLE_SPYGLASS.getName(),
                 () -> new RifleWithSpyGlass(WEAPONS_PROPERTIES));
 
-        ModItemsRegister.REVOLVER_LEAD_BULLET = MetallicsArts.registerItem("revolver_lead_bullet",
+        ModItemsRegister.REVOLVER_LEAD_BULLET = MetallicsArts.registerItem("revolver_lead_ammo",
                 () -> new Item(COIN_PROPERTIES));
 
-        ModItemsRegister.REVOLVER_ALUMINUM_BULLET = MetallicsArts.registerItem("revolver_aluminum_bullet",
+        ModItemsRegister.REVOLVER_ALUMINUM_BULLET = MetallicsArts.registerItem("revolver_aluminum_ammo",
                 () -> new Item(COIN_PROPERTIES));
 
-        ModItemsRegister.SHOTGUN_LEAD_BULLET = MetallicsArts.registerItem("shotgun_lead_bullet",
+        ModItemsRegister.SHOTGUN_LEAD_BULLET = MetallicsArts.registerItem("shotgun_lead_ammo",
                 () -> new Item(COIN_PROPERTIES));
 
-        ModItemsRegister.SHOTGUN_ALUMINUM_BULLET = MetallicsArts.registerItem("shotgun_aluminum_bullet",
+        ModItemsRegister.SHOTGUN_ALUMINUM_BULLET = MetallicsArts.registerItem("shotgun_aluminum_ammo",
                 () -> new Item(COIN_PROPERTIES));
 
-        ModItemsRegister.RIFLE_LEAD_BULLET = MetallicsArts.registerItem("rifle_lead_bullet",
+        ModItemsRegister.RIFLE_LEAD_BULLET = MetallicsArts.registerItem("rifle_lead_ammo",
                 () -> new Item(COIN_PROPERTIES));
 
-        ModItemsRegister.RIFLE_ALUMINUM_BULLET = MetallicsArts.registerItem("rifle_aluminum_bullet",
+        ModItemsRegister.RIFLE_ALUMINUM_BULLET = MetallicsArts.registerItem("rifle_aluminum_ammo",
                 () -> new Item(COIN_PROPERTIES));
 
 
@@ -84,7 +83,7 @@ public class WeaponsRegister {
                 () -> new CustomShield(WEAPONS_PROPERTIES, Shields.BRONZE_ALUMINUM));
 
         ModItemsRegister.BULLET_PROJECTILE = MetallicsArts.registerItem("bullet_projectile",
-                () -> new InvisibleItem(new Item.Properties()));
+                () -> new Item(new Item.Properties()));
 
     }
 }
