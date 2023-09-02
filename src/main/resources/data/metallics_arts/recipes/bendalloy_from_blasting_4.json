@@ -2,16 +2,16 @@
     "type": "metallics_arts:crucible_furnace_melting",
     "ingredients": [
     {
-        "tag": "forge:ingots/cadmium_ingot"
+        "tag": "forge:ingots/cadmium"
     },
     {
-        "tag": "forge:ingots/cadmium_ingot"
+        "tag": "forge:ingots/cadmium"
     },
     {
-        "tag": "forge:ingots/lead_ingot"
+        "tag": "forge:ingots/lead"
     },
     {
-        "tag": "forge:ingots/lead_ingot"
+        "tag": "forge:ingots/lead"
     }
     ],
     "output": {

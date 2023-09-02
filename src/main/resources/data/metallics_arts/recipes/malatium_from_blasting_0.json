@@ -2,7 +2,7 @@
   "type": "metallics_arts:crucible_furnace_melting",
   "ingredients": [
     {
-      "item": "metallics_arts:atium"
+      "item": "metallics_arts:atium_gem"
     },
     {
       "item": "minecraft:gold_ingot"
@@ -15,6 +15,6 @@
     }
   ],
   "output": {
-    "item": "metallics_arts:malatium"
+    "item": "metallics_arts:malatium_gem"
   }
 }

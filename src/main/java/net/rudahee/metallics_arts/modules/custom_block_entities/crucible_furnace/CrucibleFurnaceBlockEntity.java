@@ -18,6 +18,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -64,6 +65,7 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
                 case 4:
                     return (Items.IRON_INGOT == stack.getItem() ||
                             Items.GOLD_INGOT == stack.getItem() ||
+                            Items.COPPER_INGOT == stack.getItem() ||
                             Items.COAL == stack.getItem() ||
                             ModItemsRegister.ITEM_METAL_INGOT.values().stream().anyMatch(m-> m == stack.getItem()) ||
                             ModItemsRegister.ITEM_GEMS_BASE.values().stream().anyMatch(m -> m == stack.getItem()));

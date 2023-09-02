@@ -11,10 +11,10 @@
       "item": "minecraft:gold_ingot"
     },
     {
-      "item": "metallics_arts:atium"
+      "item": "metallics_arts:atium_gem"
     }
   ],
   "output": {
-    "item": "metallics_arts:malatium"
+    "item": "metallics_arts:malatium_gem"
   }
 }
