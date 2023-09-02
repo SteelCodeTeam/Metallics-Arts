@@ -11,8 +11,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.rudahee.metallics_arts.data.custom_tiers.CustomMaterials;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalmindType;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
@@ -671,7 +671,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
             }
             return false; //el item no es del tier de la primer carga de la mente
         } else if (player.getMainHandItem().getItem() instanceof ArmorItem armorItem) {
-            int tier = convertMaterialToTier(armorItem.getMaterial().getName());
+            int tier = convertMaterialToTier(armorItem.getMaterial());
             if (tier == compoundTag.getInt("tier_malatium_storage")) {
                 if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == 0) {
                     return false;
@@ -711,7 +711,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
             }
             return false; //el item no es del tier de la primer carga de la mente
         } else if (player.getMainHandItem().getItem() instanceof ArmorItem armorItem) {
-            int tier = convertMaterialToTier(armorItem.getMaterial().getName());
+            int tier = convertMaterialToTier(armorItem.getMaterial());
             if (tier == compoundTag.getInt("tier_malatium_storage")) {
                 if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == player.getItemInHand(InteractionHand.MAIN_HAND).getMaxDamage()) {
                     player.setItemInHand(InteractionHand.MAIN_HAND,ItemStack.EMPTY);
@@ -736,7 +736,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
             compoundTag.putInt("tier_malatium_storage",tiered.getTier().getLevel());
         }
         if (player.getMainHandItem().getItem() instanceof ArmorItem armorItem) {
-            compoundTag.putInt("tier_malatium_storage",convertMaterialToTier(armorItem.getMaterial().getName()));
+            compoundTag.putInt("tier_malatium_storage",convertMaterialToTier(armorItem.getMaterial()));
         }
         return  compoundTag;
     }
@@ -747,19 +747,19 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
      * @param material string name
      * @return int value tier
      */
-    public static int convertMaterialToTier (String material) {
+    public static int convertMaterialToTier (ArmorMaterial material) {
 
-        if (material.equals(ArmorMaterials.GOLD.getName()) || material.equals(ArmorMaterials.LEATHER.getName())) {
+        if (material.equals(ArmorMaterials.GOLD) || material.equals(ArmorMaterials.LEATHER)) {
             return 0;
-        } else if (material.equals(ArmorMaterials.TURTLE.getName())) {
+        } else if (material.equals(ArmorMaterials.TURTLE)) {
             return 1;
-        } else if (material.equals(ArmorMaterials.IRON.getName()) || material.equals(ArmorMaterials.CHAIN.getName())) {
+        } else if (material.equals(ArmorMaterials.IRON) || material.equals(ArmorMaterials.CHAIN)) {
             return 2;
-        } else if (material.equals(ArmorMaterials.DIAMOND.getName())) {
+        } else if (material.equals(ArmorMaterials.DIAMOND)) {
             return 3;
-        } else if (material.equals(ArmorMaterials.NETHERITE.getName())) {
+        } else if (material.equals(ArmorMaterials.NETHERITE)) {
             return 4;
-        } else if (material.equals("Obsidian")) {
+        } else if (material.getName().equals(CustomMaterials.STEEL.getName()) || material.getName().equals(CustomMaterials.ALUMINUM.getName())) {
             return 6;
         }
         return -1;
@@ -783,7 +783,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
         } else if (tier == 4) {
             return Tiers.NETHERITE.name();
         } else if (tier == 6) {
-            return "Obsidian";
+            return "post_netherite";
         }
         return "";
     }

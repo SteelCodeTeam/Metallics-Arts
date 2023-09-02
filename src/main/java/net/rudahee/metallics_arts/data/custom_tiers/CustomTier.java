@@ -22,7 +22,8 @@ import org.jetbrains.annotations.Nullable;
  * @see Tier
  * @see Tiers
  */
-public class ObsidianTier implements Tier {
+public class CustomTier implements Tier {
+
 
     private final int uses;
     private final float speed;
@@ -38,7 +39,7 @@ public class ObsidianTier implements Tier {
      * @param attackDamageBonus Bonus damage for being in this tier.
      * @param level of the tier. High level symbolize a better tier.
      */
-    public ObsidianTier(int uses, float speed, float attackDamageBonus, int level) {
+    public CustomTier(int uses, float speed, float attackDamageBonus, int level) {
         this.uses = uses;
         this.speed = speed;
         this.attackDamageBonus = attackDamageBonus;
@@ -56,7 +57,7 @@ public class ObsidianTier implements Tier {
      * @param level of the tier. High level symbolize a better tier.
      * @param enchantmentValue value of the enchantment in enchanting table.
      */
-    public ObsidianTier(int uses, float speed, float attackDamageBonus, int level, int enchantmentValue) {
+    public CustomTier(int uses, float speed, float attackDamageBonus, int level, int enchantmentValue) {
         this.uses = uses;
         this.speed = speed;
         this.attackDamageBonus = attackDamageBonus;

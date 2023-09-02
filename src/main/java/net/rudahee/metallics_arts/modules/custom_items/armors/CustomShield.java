@@ -8,13 +8,13 @@ public class CustomShield extends ShieldItem {
 
     private Shields type;
 
-    public CustomShield(Properties p_43089_, Shields type) {
-        super(p_43089_);
+    public CustomShield(Properties properties, Shields type) {
+        super(properties);
         this.type = type;
     }
 
     @Override
-    public int getUseDuration(ItemStack p_43107_) {
+    public int getUseDuration(ItemStack stack) {
         return this.type.getUses();
     }
 }

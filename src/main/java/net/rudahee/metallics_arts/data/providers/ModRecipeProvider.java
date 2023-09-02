@@ -380,7 +380,7 @@ public class ModRecipeProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC ,ModItemsRegister.ITEM_METAL_INGOT.get("electrum"),1)
                 .requires(ModTags.INGOTS.get(MetalEnum.SILVER.getMetalNameLower()))
                 .requires(ModTags.INGOTS.get(MetalEnum.SILVER.getMetalNameLower()))
-                .requires(ModTags.INGOTS.get(MetalEnum.SILVER.getMetalNameLower()))
+                .requires(Items.GOLD_INGOT)
                 .requires(Items.GOLD_INGOT)
                 .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("electrum")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_electrum_alloy_craft"));
@@ -404,14 +404,14 @@ public class ModRecipeProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC ,ModItemsRegister.ITEM_METAL_INGOT.get("nicrosil"),1)
                 .requires(ModTags.INGOTS.get(MetalEnum.NICKEL.getMetalNameLower()))
                 .requires(ModTags.INGOTS.get(MetalEnum.NICKEL.getMetalNameLower()))
-                .requires(ModTags.INGOTS.get(MetalEnum.NICKEL.getMetalNameLower()))
+                .requires(ModTags.INGOTS.get(MetalEnum.CHROMIUM.getMetalNameLower()))
                 .requires(ModTags.INGOTS.get(MetalEnum.CHROMIUM.getMetalNameLower()))
                 .unlockedBy("has_item",has(ModItemsRegister.ITEM_METAL_INGOT.get("nicrosil")))
                 .save(recipesConsumer,new ResourceLocation(MetallicsArts.MOD_ID+"_nicrosil_alloy_craft"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC ,ModItemsRegister.ITEM_GEMS_BASE.get("malatium"),1)
                 .requires(ModTags.GEMS.get(GemsEnum.ATIUM.getGemNameLower()))
-                .requires(ModTags.GEMS.get(GemsEnum.ATIUM.getGemNameLower()))
+                .requires(Items.GOLD_INGOT)
                 .requires(Items.GOLD_INGOT)
                 .requires(Items.GOLD_INGOT)
                 .unlockedBy("has_item",has(ModItemsRegister.ITEM_GEMS_BASE.get("malatium")))

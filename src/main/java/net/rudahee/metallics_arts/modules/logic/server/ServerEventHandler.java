@@ -236,7 +236,7 @@ public class ServerEventHandler {
                         }
                     }
                 } else if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof KolossBlade) {
-                    if (tick % KolossBlade.descanso == 0 && player.getItemInHand(InteractionHand.MAIN_HAND).getTag().getFloat("CustomModelData") != 1F) {
+                    if (tick % KolossBlade.COOLDOWN == 0 && player.getItemInHand(InteractionHand.MAIN_HAND).getTag().getFloat("CustomModelData") != 1F) {
                         ItemStack gun = player.getItemInHand(InteractionHand.MAIN_HAND);
                         CompoundTag compoundTag = gun.getTag();
                         compoundTag.putFloat("CustomModelData", 1);

@@ -8,11 +8,11 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
-public enum PostNetheriteMaterials implements ArmorMaterial {
+public enum CustomMaterials implements ArmorMaterial {
 
 
-    STEEL("steel", 45, 0.9F, 1.5F, Ingredient.of(ModItemsRegister.CORE_STEEL.get())),
-    ALUMINUM("aluminum", 30, Ingredient.of(ModItemsRegister.CORE_ALUMINUM.get()));
+    STEEL("post_netherite", 45, 0.9F, 1.5F, Ingredient.of(ModItemsRegister.CORE_STEEL.get())),
+    ALUMINUM("post_netherite", 30, Ingredient.of(ModItemsRegister.CORE_ALUMINUM.get()));
 
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
@@ -26,7 +26,7 @@ public enum PostNetheriteMaterials implements ArmorMaterial {
     private final Ingredient repairIngredient;
 
 
-     PostNetheriteMaterials(String name, int durability, Ingredient repairIngredient) {
+     CustomMaterials(String name, int durability, Ingredient repairIngredient) {
         this.name = name;
         this.durabilityMultiplier = durability;
         this.slotProtections = new int[]{4, 6, 8, 4};
@@ -37,7 +37,7 @@ public enum PostNetheriteMaterials implements ArmorMaterial {
         this.repairIngredient = repairIngredient;
     }
 
-    PostNetheriteMaterials(String name, int durability, float knockbackResistance, float toughness, Ingredient repairIngredient) {
+    CustomMaterials(String name, int durability, float knockbackResistance, float toughness, Ingredient repairIngredient) {
         this.name = name;
         this.durabilityMultiplier = durability;
         this.slotProtections = new int[]{4, 6, 8, 4};
@@ -87,5 +87,7 @@ public enum PostNetheriteMaterials implements ArmorMaterial {
     public float getKnockbackResistance() {
         return this.knockbackResistance;
     }
+
+
 
 }

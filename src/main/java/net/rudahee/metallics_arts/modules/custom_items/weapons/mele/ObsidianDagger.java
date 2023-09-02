@@ -7,7 +7,8 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.rudahee.metallics_arts.data.custom_tiers.ObsidianTier;
+import net.rudahee.metallics_arts.data.custom_tiers.CustomTier;
+import net.rudahee.metallics_arts.data.custom_tiers.CustomTiers;
 
 /**
  * Class to create a custom sword item. This item it's a new custom "Obsidian tier" item.
@@ -17,11 +18,11 @@ import net.rudahee.metallics_arts.data.custom_tiers.ObsidianTier;
  *
  * @see Item
  * @see SwordItem
- * @see ObsidianTier
+ * @see CustomTier
  */
 public class ObsidianDagger extends SwordItem {
 
-    private static final Tier OBSIDIAN_TIER = new ObsidianTier(1250,3,7,6,3);
+
 
     /**
      * Default constructor, we define the properties of to set a durability and creative tab. So, we change the damage and speed.
@@ -29,7 +30,7 @@ public class ObsidianDagger extends SwordItem {
      * @param properties of the item.
      */
     public ObsidianDagger(Item.Properties properties) {
-        super(OBSIDIAN_TIER, -1, -1, properties.durability(1250));
+        super(CustomTiers.OBSIDIAN_TIER, 8, 16f, properties.durability(1250));
     }
 
     /**

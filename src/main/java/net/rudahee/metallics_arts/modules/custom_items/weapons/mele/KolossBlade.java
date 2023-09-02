@@ -30,7 +30,7 @@ public class KolossBlade extends SwordItem {
 
     private static final int ATTACK_DAMAGE = 8;
     private static final float ATTACK_SPEED = -3F;
-    public static final int descanso = 180;
+    public static final int COOLDOWN = 180;
 
     /**
      * Default constructor, we define the properties of to set a durability and creative tab.
@@ -42,13 +42,13 @@ public class KolossBlade extends SwordItem {
     }
 
     @Override
-    public boolean canAttackBlock(BlockState p_43291_, Level p_43292_, BlockPos p_43293_, Player p_43294_) {
-        return super.canAttackBlock(p_43291_, p_43292_, p_43293_, p_43294_);
+    public boolean canAttackBlock(BlockState blockstate, Level level, BlockPos blockPos, Player player) {
+        return super.canAttackBlock(blockstate, level, blockPos, player);
     }
 
 
     @Override
-    public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int p_41407_, boolean p_41408_) {
+    public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int stack, boolean flag) {
 
         if (entity instanceof Player player) {
             if (player.getItemInHand(InteractionHand.MAIN_HAND).equals(itemStack)) {
@@ -64,7 +64,7 @@ public class KolossBlade extends SwordItem {
                 }
             }
         }
-        super.inventoryTick(itemStack, level, entity, p_41407_, p_41408_);
+        super.inventoryTick(itemStack, level, entity, stack, flag);
     }
 
 
@@ -73,7 +73,7 @@ public class KolossBlade extends SwordItem {
 
         try {
             IInvestedPlayerData capabilities = CapabilityUtils.getCapability(entity);
-            if (!capabilities.isBurning(MetalTagEnum.PEWTER)) { //|| player.getCooldowns().isOnCooldown(this)
+            if (!capabilities.isBurning(MetalTagEnum.PEWTER)) { 
                 return true;
             }
         } catch (PlayerException ex) {
