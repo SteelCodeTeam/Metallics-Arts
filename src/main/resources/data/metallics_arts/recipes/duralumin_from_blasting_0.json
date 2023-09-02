@@ -2,16 +2,16 @@
   "type": "metallics_arts:crucible_furnace_melting",
   "ingredients": [
     {
-      "item": "minecraft:copper_ingot"
+      "tag": "forge:ingots/copper"
     },
     {
-      "item": "metallics_arts:aluminum_ingot"
+      "tag": "forge:ingots/aluminum"
     },
     {
-      "item": "metallics_arts:aluminum_ingot"
+      "tag": "forge:ingots/aluminum"
     },
     {
-      "item": "metallics_arts:aluminum_ingot"
+      "tag": "forge:ingots/aluminum"
     }
   ],
   "output": {

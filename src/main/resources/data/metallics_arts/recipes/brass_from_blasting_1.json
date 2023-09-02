@@ -2,19 +2,19 @@
     "type": "metallics_arts:crucible_furnace_melting",
     "ingredients": [
     {
-        "item": "metallics_arts:zinc_ingot"
+        "tag": "forge:ingots/zinc"
     },
     {
-        "item": "minecraft:copper_ingot"
+        "tag": "forge:ingots/copper"
     },
     {
-        "item": "metallics_arts:zinc_ingot"
+        "tag": "forge:ingots/zinc"
     },
     {
-        "item": "minecraft:copper_ingot"
+        "tag": "forge:ingots/copper"
     }
     ],
     "output": {
-    "item": "metallics_arts:brass_ingot"
+        "item": "metallics_arts:brass_ingot"
     }
 }

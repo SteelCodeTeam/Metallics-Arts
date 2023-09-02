@@ -63,6 +63,7 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
                 case 2:
                 case 3:
                 case 4:
+                    //todo - ver si esta comparacion se puede hacer con Tags (ModTags para items no vanilla y Tags.Items. para vanillas)
                     return (Items.IRON_INGOT == stack.getItem() ||
                             Items.GOLD_INGOT == stack.getItem() ||
                             Items.COPPER_INGOT == stack.getItem() ||
