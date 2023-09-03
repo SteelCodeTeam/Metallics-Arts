@@ -1,13 +1,17 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
+import net.minecraft.commands.Commands;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.custom_items.metal_minds.LerasiumEttmetalMetalmind;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
+import top.theillusivec4.curios.api.CuriosApi;
 
 /**
  * Handles events related to a player's death.
@@ -33,6 +37,18 @@ public class OnLivingDeathEvent {
 
             if (capability.isTapping(MetalTagEnum.ETTMETAL)) {
                 capability.setEttmetalState(EttmetalState.KEEP_ITEMS);
+                //todo aqui deberia poder hacerse algo para recordar en que slots deben quedar los items
+                //para en el onlivinddrop asignarlos en su slot correspondiente
+                CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curioData -> {
+                    for (int i=0; i < curioData.getSlots(); i++) {
+                        if (curioData.getStackInSlot(i).getItem() instanceof LerasiumEttmetalMetalmind) {
+                            CompoundTag compoundTag = curioData.getStackInSlot(i).getTag();
+                            compoundTag.putInt(MetalTagEnum.ETTMETAL.getNameLower() + "_feruchemic_reserve", 0);
+                            curioData.getStackInSlot(i).setTag(compoundTag);
+                        }
+                    }
+                });
+
             } else if (capability.isStoring(MetalTagEnum.ETTMETAL)) {
                 capability.setEttmetalState(EttmetalState.DELETE_ITEMS);
             }

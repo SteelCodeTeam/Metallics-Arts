@@ -96,6 +96,9 @@ public class ServerEventHandler {
     @SubscribeEvent
     public static void onLivingEntityDrop(final LivingDropsEvent event) {
         OnLivingEntityDropEvent.livingEntityDrop(event);
+        /*if (event.getEntity() instanceof ServerPlayer) {
+            OnLivingEntityDropEvent.playerDrops(event);
+        }*/
     }
 
     /**
@@ -141,6 +144,7 @@ public class ServerEventHandler {
             OnLivingDeathEvent.livingDeath(event);
         }
     }
+
 
     /**
      * Handles the PlayerChangedDimensionEvent to perform custom actions when a player changes dimensions.

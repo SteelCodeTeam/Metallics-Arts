@@ -2,6 +2,10 @@ package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
@@ -10,6 +14,8 @@ import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -57,8 +63,17 @@ public class OnLivingEntityDropEvent {
             try {
                 IInvestedPlayerData capabilityTarget = CapabilityUtils.getCapability(event.getEntity());
 
-                if (capabilityTarget.getEttmetalState().equals(EttmetalState.KEEP_ITEMS)
-                        || capabilityTarget.getEttmetalState() == EttmetalState.DELETE_ITEMS) {
+                if (capabilityTarget.getEttmetalState().equals(EttmetalState.KEEP_ITEMS) || capabilityTarget.getEttmetalState() == EttmetalState.DELETE_ITEMS) {
+                    if (capabilityTarget.getEttmetalState().equals(EttmetalState.KEEP_ITEMS)) {
+
+                        Inventory inventory = new Inventory((Player) event.getEntity());
+                        List<ItemStack> itemStacks = event.getDrops().stream().map(ItemEntity::getItem).toList();
+
+                        for (ItemStack itemStack : itemStacks) {
+                            inventory.add(itemStack);
+                        }
+                        ((ServerPlayer) event.getEntity()).getInventory().replaceWith(inventory);
+                    }
 
                     event.setCanceled(true);
                 }
@@ -68,4 +83,5 @@ public class OnLivingEntityDropEvent {
             }
         }
     }
+
 }

@@ -40,6 +40,11 @@ public class OnPlayerCloneEvent {
             IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
             IInvestedPlayerData originalCapability = CapabilityUtils.getCapability(original);
 
+            if (originalCapability.getEttmetalState() == EttmetalState.KEEP_ITEMS) {
+                player.getInventory().replaceWith(original.getInventory());
+                originalCapability.setEttmetalState(EttmetalState.NOTHING);
+            }
+
             if (originalCapability.isInvested()) {
                 for (MetalTagEnum mt : MetalTagEnum.values()) {
                     if (originalCapability.hasAllomanticPower(mt)) {
@@ -50,23 +55,6 @@ public class OnPlayerCloneEvent {
                     }
                 }
             }
-
-            if (originalCapability.getEttmetalState().equals(EttmetalState.KEEP_ITEMS)) {
-
-                Inventory originalInventory = original.getInventory();
-
-                for (int i = 0; i < originalInventory.getContainerSize(); i++) {
-                    ItemStack stack = originalInventory.getItem(i);
-
-                    if (stack.isEmpty()) {
-                        player.getInventory().setItem(i, ItemStack.EMPTY);
-                    } else {
-                        player.getInventory().setItem(i, stack);
-                    }
-                }
-                capability.setEttmetalState(EttmetalState.NOTHING);
-            }
-
             original.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).invalidate();
             ModNetwork.syncInvestedDataPacket(player);
         } catch (PlayerException ex) {

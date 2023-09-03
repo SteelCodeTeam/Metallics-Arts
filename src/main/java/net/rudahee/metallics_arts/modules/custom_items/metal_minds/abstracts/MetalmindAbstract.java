@@ -41,8 +41,8 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
 
     public MetalmindAbstract(Item.Properties properties, MetalTagEnum metal0, MetalTagEnum metal1, MetalmindType type) {
         super(properties);
-        this.metals[0]=metal0;
-        this.metals[1]=metal1;
+        this.metals[0] = metal0;
+        this.metals[1] = metal1;
         this.type = type;
     }
 
@@ -256,8 +256,8 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
 
         if (metal == MetalTagEnum.COPPER) {
             return customDischargeCopper(compoundTag, metalReserve, metalKey);
-        } else if (metal == MetalTagEnum.ETTMETAL) {
-            return calculateDischargeEttmetal(compoundTag, player, metalKey);
+        /*} else if (metal == MetalTagEnum.ETTMETAL) {
+            return calculateDischargeEttmetal(compoundTag, player, metalKey);*/
         } else if (metal == MetalTagEnum.LERASIUM) {
             return calculateDischargeLerasium(compoundTag, playerCapability, metalKey);
         } else if (metal == MetalTagEnum.MALATIUM) {
@@ -283,8 +283,8 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
             return customChargeBrass(compoundTag, player, playerCapability, metalReserve, metalKey, nicConsume);
         } else if (metal == MetalTagEnum.COPPER) {
             return customChargeCopper(compoundTag, player, metalReserve, metalKey);
-        } else if(metal == MetalTagEnum.ETTMETAL) {
-            return calculateChargeEttmetal(compoundTag, player, metalReserve, metalKey);
+        /*} else if(metal == MetalTagEnum.ETTMETAL) {
+            return calculateChargeEttmetal(compoundTag, player, metalReserve, metalKey);*/
         } else if (metal == MetalTagEnum.LERASIUM) {
             return calculateChargeLerasium(compoundTag, playerCapability, metalKey);
         } else if (metal == MetalTagEnum.MALATIUM) {
