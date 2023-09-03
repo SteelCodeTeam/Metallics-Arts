@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
-import net.minecraft.commands.Commands;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;

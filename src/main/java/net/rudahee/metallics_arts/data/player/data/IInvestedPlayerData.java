@@ -134,4 +134,6 @@ public interface IInvestedPlayerData {
     CompoundTag save();
 
     void load(CompoundTag nbt);
+
+    boolean hasAllomanticAmountOf(MetalTagEnum metal);
 }

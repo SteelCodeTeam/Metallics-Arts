@@ -16,10 +16,7 @@ import net.rudahee.metallics_arts.data.custom_tiers.CustomMaterials;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalmindType;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.custom_items.metal_minds.AluminumDuraluminMetalmind;
-import net.rudahee.metallics_arts.modules.custom_items.metal_minds.AtiumMalatiumMetalmind;
-import net.rudahee.metallics_arts.modules.custom_items.metal_minds.CopperBronzeMetalmind;
-import net.rudahee.metallics_arts.modules.custom_items.metal_minds.LerasiumEttmetalMetalmind;
+import net.rudahee.metallics_arts.modules.custom_items.metal_minds.*;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
@@ -489,9 +486,14 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
      */
 
     public CompoundTag calculateDischargeLerasium(CompoundTag compoundTag, IInvestedPlayerData playerCapability, String metalKey) {
-        compoundTag.putInt(metalKey,0);
+        if (allLerasiumReservesEmpty(compoundTag)) {
+            compoundTag.putInt(metalKey,0);
+        } else {
+            compoundTag.putInt(metalKey,1);
+        }
         return loadAllomanticReserve(playerCapability, compoundTag);
     }
+
 
     /**
      * Redefine of the method of the AbstractFechuchemicHelper class.
@@ -504,11 +506,37 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
      */
 
     public CompoundTag calculateChargeLerasium(CompoundTag compoundTag, IInvestedPlayerData playerCapability, String metalKey) {
-        if (havePlayerAnyReserve(playerCapability)) {
+        if (hasAllReservesLerasiumFull(compoundTag)) {
+            compoundTag.putInt(metalKey,2);
+        } else if (havePlayerAnyReserve(playerCapability)) {
             compoundTag = saveAllomanticReserve(playerCapability, compoundTag);
             compoundTag.putInt(metalKey,1);
         }
         return compoundTag;
+    }
+
+    private boolean hasAllReservesLerasiumFull(CompoundTag compoundTag) {
+        for (MetalTagEnum metal : MetalTagEnum.values()) {
+            if (!compoundTag.contains(metal.getNameLower()+"inLerasiumBand")) { //no existe el tag
+                compoundTag.putInt(metal.getNameLower()+"inLerasiumBand",0);
+            }
+            if (compoundTag.getInt(metal.getNameLower()+"inLerasiumBand") < metal.getMaxAllomanticTicksStorage() * 2) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean allLerasiumReservesEmpty(CompoundTag compoundTag) {
+        for (MetalTagEnum metal : MetalTagEnum.values()) {
+            if (!compoundTag.contains(metal.getNameLower()+"inLerasiumBand")) {
+                compoundTag.putInt(metal.getNameLower()+"inLerasiumBand",0);
+            }
+            if (compoundTag.getInt(metal.getNameLower()+"inLerasiumBand") > 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -535,32 +563,17 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
      */
     public CompoundTag saveAllomanticReserve(IInvestedPlayerData playerCapability, CompoundTag compoundTag) {
         ArrayList<MetalTagEnum> metals = playerCapability.getAllomanticPowers();
-        int firstQty = 0;
-        int qtyToRemove = 0;
-        boolean continueSaving;
 
-        for (MetalTagEnum metal: metals) {
-            continueSaving = true;
-            while (continueSaving) {
-                if (firstQty == 0) {
-                    firstQty = playerCapability.getAllomanticAmount(metal);
-                    qtyToRemove = Math.toIntExact(Math.round(firstQty * 0.1));
-                }
-                continueSaving = playerCapability.substractAllomanticMetalAmount(metal, qtyToRemove);
-                if (!continueSaving || firstQty == 0) {
-                    firstQty = 0;
-                    qtyToRemove = 0;
-                    continueSaving = false;
+        for (MetalTagEnum metal : metals) {
+            int reserveInBand = compoundTag.getInt(metal.getNameLower()+"inLerasiumBand");
+            if (playerCapability.hasAllomanticAmountOf(metal) && reserveInBand < (metal.getMaxAllomanticTicksStorage() * 2)) {
+                if (playerCapability.getAllomanticAmount(metal) <= ((metal.getMaxAllomanticTicksStorage() * 2) - reserveInBand)) {
+                    compoundTag.putInt(metal.getNameLower() +"inLerasiumBand", reserveInBand + playerCapability.getAllomanticAmount(metal));
+                    playerCapability.setAllomanticMetalsAmount(metal, 0);
                 } else {
-                    if (!compoundTag.contains(metal.getNameLower()+"inLerasiumBand")) { //no existe el tag
-                        compoundTag.putInt(metal.getNameLower()+"inLerasiumBand",0);
-                    }
-                    compoundTag.putInt(metal.getNameLower()+"inLerasiumBand", compoundTag.getInt(metal.getNameLower()+"inLerasiumBand")+qtyToRemove);
-                    if (compoundTag.getInt(metal.getNameLower()+"inLerasiumBand") > (metal.getMaxAllomanticTicksStorage())) {
-                        compoundTag.putInt(metal.getNameLower()+"inLerasiumBand",(metal.getMaxAllomanticTicksStorage()));
-                        continueSaving = false;
-                    }
-
+                    compoundTag.putInt(metal.getNameLower() +"inLerasiumBand", (metal.getMaxAllomanticTicksStorage() * 2));
+                    playerCapability.setAllomanticMetalsAmount(metal, playerCapability.getAllomanticAmount(metal) -
+                            ((metal.getMaxAllomanticTicksStorage() * 2) - reserveInBand));
                 }
             }
         }
@@ -575,28 +588,18 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
      * @return CompoundTag metalmind information update.
      */
     public CompoundTag loadAllomanticReserve(IInvestedPlayerData playerCapability, CompoundTag compoundTag) {
+        //vuelve a cargar el jugador
         ArrayList<MetalTagEnum> metals = playerCapability.getAllomanticPowers();
-        int firstQty = 0;
-        int qtyToAdd = 0;
-        boolean continueLoading;
-
-        for (MetalTagEnum metal: metals) {
-            continueLoading = true;
-            while (continueLoading) {
-                if (firstQty == 0) {
-                    firstQty = compoundTag.getInt(metal.getNameLower()+"inLerasiumBand");
-                    qtyToAdd = Math.toIntExact(Math.round(firstQty * 0.1));
-                }
-                if (compoundTag.getInt(metal.getNameLower()+"inLerasiumBand") == 0) {
-                    firstQty = 0;
-                    qtyToAdd = 0;
-                    continueLoading = false;
+//todo testear que no explote
+        for (MetalTagEnum metal : metals) {
+            int reserveInBand = compoundTag.getInt(metal.getNameLower()+"inLerasiumBand");
+            if (playerCapability.getAllomanticAmount(metal) < metal.getMaxAllomanticTicksStorage() && reserveInBand > 0){
+                if ((metal.getMaxAllomanticTicksStorage() - playerCapability.getAllomanticAmount(metal)) >= reserveInBand) {
+                    playerCapability.setAllomanticMetalsAmount(metal, reserveInBand);
+                    compoundTag.putInt(metal.getNameLower()+"inLerasiumBand",0);
                 } else {
-                    if (!compoundTag.contains(metal.getNameLower()+"inLerasiumBand")) { //no existe el tag
-                        compoundTag.putInt(metal.getNameLower()+"inLerasiumBand",0);
-                    }
-                    compoundTag.putInt(metal.getNameLower()+"inLerasiumBand", compoundTag.getInt(metal.getNameLower()+"inLerasiumBand")-qtyToAdd);
-                    continueLoading = playerCapability.addAllomanticMetalAmount(metal, qtyToAdd);
+                    playerCapability.setAllomanticMetalsAmount(metal, metal.getMaxAllomanticTicksStorage());
+                    compoundTag.putInt(metal.getNameLower()+"inLerasiumBand", reserveInBand - (metal.getMaxAllomanticTicksStorage() - playerCapability.getAllomanticAmount(metal)));
                 }
             }
         }

@@ -726,6 +726,12 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         return this.ettmetalState;
     }
 
+    @Override
+    public boolean hasAllomanticAmountOf(MetalTagEnum metal) {
+        return (this.getAllomanticAmount(metal) > 0);
+    }
+
+
 
     /**
      * Save the actual data in the CompoundTag
@@ -788,6 +794,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         return investedData;
     }
 
+
     /**
      * Load the actual data in the past by parameter tag.
      *
@@ -845,4 +852,6 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         }
 
     }
+
+
 }

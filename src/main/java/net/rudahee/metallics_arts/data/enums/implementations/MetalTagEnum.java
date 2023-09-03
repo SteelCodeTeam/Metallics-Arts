@@ -35,7 +35,7 @@ public enum MetalTagEnum implements IMetal, IGems {
     BENDALLOY("bendalloy", "BENDALLOY", 6, 1800, true, false, 7,9600,3000),
     ATIUM("atium", "ATIUM", 8,800, false, true, 0,2400,600),
     MALATIUM("malatium", "MALATIUM",8, 12000, false, true, 1,3000,500),
-    LERASIUM("lerasium", "LERASIUM",9, 6000, false, true, 2,1,1),
+    LERASIUM("lerasium", "LERASIUM",9, 6000, false, true, 2,2,2),
     ETTMETAL("ettmetal", "ETTMETAL",9, 100, false, true, 3,4100,1640);
 
     private final String nameLower;
