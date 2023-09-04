@@ -41,6 +41,7 @@ public class ModCreativeTabsEvents {
             event.accept(ModItemsRegister.SMALL_VIAL);
             event.accept(ModItemsRegister.LARGE_VIAL);
 
+
             ModItemsRegister.ChargeInList(); //todo Mirar si se puede hacer en otro lado - lo tuve que poner aca porque no registraba a tiempo los items sino
             event.acceptAll(ModItemsRegister.ITEM_CORES.values().stream().map(ItemStack::new).collect(Collectors.toList()));
             event.acceptAll(ModItemsRegister.ITEM_MELE_WEAPON.values().stream().map(ItemStack::new).collect(Collectors.toList()));
@@ -66,7 +67,26 @@ public class ModCreativeTabsEvents {
             event.acceptAll(ModBlocksRegister.BLOCK_METAL_BLOCKS.values().stream().map(ItemStack::new).collect(Collectors.toList()));
             event.acceptAll(ModBlocksRegister.BLOCK_GEMS_BLOCKS.values().stream().map(ItemStack::new).collect(Collectors.toList()));
 
+            event.accept(ModBlocksRegister.BUDDING_ETTMETAL);
+            event.accept(ModBlocksRegister.ETTMETAL_CLUSTER);
+            event.accept(ModBlocksRegister.LARGE_ETTMETAL_BUD);
+            event.accept(ModBlocksRegister.SMALL_ETTMETAL_BUD);
+            event.accept(ModBlocksRegister.MEDIUM_ETTMETAL_BUD);
 
+            event.accept(ModBlocksRegister.BUDDING_ATIUM);
+            event.accept(ModBlocksRegister.ATIUM_CLUSTER);
+            event.accept(ModBlocksRegister.LARGE_ATIUM_BUD);
+            event.accept(ModBlocksRegister.SMALL_ATIUM_BUD);
+            event.accept(ModBlocksRegister.MEDIUM_ATIUM_BUD);
+
+            event.accept(ModBlocksRegister.BUDDING_LERASIUM);
+            event.accept(ModBlocksRegister.LERASIUM_CLUSTER);
+            event.accept(ModBlocksRegister.LARGE_LERASIUM_BUD);
+            event.accept(ModBlocksRegister.SMALL_LERASIUM_BUD);
+            event.accept(ModBlocksRegister.MEDIUM_LERASIUM_BUD);
+
+
+            event.acceptAll(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.values().stream().map(ItemStack::new).collect(Collectors.toList()));
             event.acceptAll(ModBlocksRegister.BLOCK_METAL_SLAB.values().stream().map(ItemStack::new).collect(Collectors.toList()));
             event.acceptAll(ModBlocksRegister.BLOCK_METAL_STAIRS.values().stream().map(ItemStack::new).collect(Collectors.toList()));
 

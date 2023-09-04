@@ -76,6 +76,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
             this.tag(BlockTags.FENCE_GATES).add(fence_gate);
         }
 
+        makePickaxeMineable(ModBlocksRegister.CRUCIBLE_FURNACE.get());
+
     }
 
     private void addTagsStoneAndDeepslate(String key) {

@@ -131,5 +131,7 @@ public class ModLootTableProvider implements LootTableSubProvider {
         addSilkTouchBlock(writer, ForgeRegistries.BLOCKS.getKey(ModBlocksRegister.ETTMETAL_CLUSTER.get()).getPath(),
                 ModBlocksRegister.ETTMETAL_CLUSTER.get(), ModItemsRegister.ITEM_GEMS_BASE.get("ettmetal"), 1, 1);
 
+        addSimpleBlock(writer, ForgeRegistries.BLOCKS.getKey(ModBlocksRegister.CRUCIBLE_FURNACE.get()).getPath(), ModBlocksRegister.CRUCIBLE_FURNACE.get());
+
     }
 }
