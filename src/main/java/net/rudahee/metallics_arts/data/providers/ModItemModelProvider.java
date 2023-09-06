@@ -267,7 +267,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         wallItemMC(ModBlocksRegister.BLOCK_METAL_WALL.get("copper"), Blocks.COPPER_BLOCK);
         wallItemMC(ModBlocksRegister.BLOCK_METAL_WALL.get("copper_raw"), Blocks.RAW_COPPER_BLOCK);
 
-        evenSimplerBlockItem(ModBlocksRegister.CRUCIBLE_FURNACE.get());
     }
 
     public void evenSimplerBlockItem(Block block) {

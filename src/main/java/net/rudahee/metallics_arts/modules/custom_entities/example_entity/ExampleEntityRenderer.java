@@ -1,11 +1,9 @@
-package net.rudahee.metallics_arts.modules.render;
+package net.rudahee.metallics_arts.modules.custom_entities.example_entity;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.custom_entities.ExampleEntity;
-import net.rudahee.metallics_arts.modules.custom_entities.ExampleEntityModel;
 
 public class ExampleEntityRenderer extends MobRenderer<ExampleEntity, ExampleEntityModel> {
 

@@ -1,5 +1,10 @@
 package net.rudahee.metallics_arts.setup.tabs;
 
+import com.klikli_dev.modonomicon.api.ModonomiconConstants;
+import com.klikli_dev.modonomicon.data.BookDataManager;
+import com.klikli_dev.modonomicon.item.ModonomiconItem;
+import com.klikli_dev.modonomicon.registry.ItemRegistry;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.CreativeModeTabEvent;
@@ -11,6 +16,8 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
+
+import static com.klikli_dev.modonomicon.registry.ItemRegistry.MODONOMICON;
 
 public class ModCreativeTabsEvents {
 
@@ -24,7 +31,13 @@ public class ModCreativeTabsEvents {
 
     public static void addToMetallicsArtsTab(CreativeModeTabEvent.BuildContents event) {
         if (event.getTab().equals(ModCreativeTabs.METALLICS_ARTS_TAB)) {
-            event.accept(ModItemsRegister.METALLICS_ARTS_BOOK);
+            BookDataManager.get().getBooks().values().forEach(b -> {
+
+                if (b.getId().toString().contains("metallics_arts")){
+                    event.accept(b.getBookItem());
+                }
+            });
+
 
             event.acceptAll(ModItemsRegister.ITEM_RAW_METAL.values().stream().map(ItemStack::new).collect(Collectors.toList()));
             event.acceptAll(ModItemsRegister.ITEM_METAL_INGOT.values().stream().map(ItemStack::new).collect(Collectors.toList()));
@@ -58,7 +71,7 @@ public class ModCreativeTabsEvents {
 
     public static void addToMetallicsArtsDecorationTab(CreativeModeTabEvent.BuildContents event) {
         if (event.getTab().equals(ModCreativeTabs.METTALLICS_ARTS_DECORATION_TAB)) {
-            event.accept(ModItemsRegister.METALLICS_ARTS_BOOK);
+            //event.accept(ModItemsRegister.METALLICS_ARTS_BOOK);
 
             event.acceptAll(ModBlocksRegister.BLOCK_METAL_ORES.values().stream().map(ItemStack::new).collect(Collectors.toList()));
             event.acceptAll(ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.values().stream().map(ItemStack::new).collect(Collectors.toList()));

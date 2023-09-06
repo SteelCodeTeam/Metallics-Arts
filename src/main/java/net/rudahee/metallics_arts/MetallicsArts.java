@@ -32,6 +32,7 @@ import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays.MetalsOverlay;
 import net.rudahee.metallics_arts.modules.villagers.ModVillager;
+import net.rudahee.metallics_arts.setup.DataGenerators;
 import net.rudahee.metallics_arts.setup.tabs.ModCreativeTabs;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
@@ -105,6 +106,7 @@ public class MetallicsArts {
         modEventBus.addListener(this::doClientStuff);
 
         ModEntityTypesRegister.register(modEventBus);
+        ModLivingEntityRegister.register(modEventBus);
         ModBlockEntitiesRegister.register(modEventBus);
         ModMenuRegister.register(modEventBus);
         ModVillager.register(modEventBus);

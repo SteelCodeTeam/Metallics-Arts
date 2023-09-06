@@ -16,13 +16,13 @@ import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageP
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderES;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderJP;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderPL;
-import net.rudahee.metallics_arts.data.providers.tags_providers.ModBannerTagProvider;
-import net.rudahee.metallics_arts.data.providers.tags_providers.ModBeaconTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBlockTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvider;
 import net.rudahee.metallics_arts.data.providers.MetallicsArtsGuideBookProvider;
-import net.rudahee.metallics_arts.modules.custom_entities.ExampleEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.alomancer_entity.AlomancerEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.example_entity.ExampleEntity;
 import net.rudahee.metallics_arts.setup.registries.ModEntityTypesRegister;
+import net.rudahee.metallics_arts.setup.registries.ModLivingEntityRegister;
 
 import java.util.Collections;
 import java.util.List;
@@ -53,6 +53,7 @@ public final class DataGenerators {
         gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_mx"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_uy"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_ve"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_cl"));
 
         gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_us"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_au"));
@@ -78,5 +79,6 @@ public final class DataGenerators {
     @SubscribeEvent
     public static void entityAtributes(EntityAttributeCreationEvent event) {
         event.put(ModEntityTypesRegister.EXAMPLE.get(), ExampleEntity.getExampleAttributes().build());
+        event.put(ModLivingEntityRegister.ALOMANCER.get(), AlomancerEntity.getExampleAttributes().build());
     }
 }

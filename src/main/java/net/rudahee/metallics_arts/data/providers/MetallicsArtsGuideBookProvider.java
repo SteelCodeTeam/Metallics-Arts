@@ -18,12 +18,16 @@ import com.klikli_dev.modonomicon.api.datagen.book.page.BookPageModel;
 import com.klikli_dev.modonomicon.api.datagen.book.page.BookSmithingRecipePageModel;
 import com.klikli_dev.modonomicon.api.datagen.book.page.BookTextPageModel;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.multi_craft.MultiCraftData;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionData;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.sub_division.SubdivisionDescription;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons.WeaponsData;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
+import net.rudahee.metallics_arts.setup.tabs.ModCreativeTabs;
 import net.rudahee.metallics_arts.utils.GetItemsUtils;
 
 import java.util.ArrayList;
@@ -65,7 +69,9 @@ public class MetallicsArtsGuideBookProvider extends BookProvider {
                 .withTooltip(helper.bookTooltip())
                 .withGenerateBookItem(true)
                 .withModel(this.modLoc("metallics_arts_book"))
+                .withCreativeTab(new ResourceLocation(MetallicsArts.MOD_ID, "metallics_arts_tab"))
                 .withCategories(introCategory, allomancyCategory, feruchemyCategory);
+
     }
 
     /**

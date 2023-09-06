@@ -1,6 +1,5 @@
-package net.rudahee.metallics_arts.modules.custom_entities;
+package net.rudahee.metallics_arts.modules.custom_entities.example_entity;
 
-import net.minecraft.client.renderer.texture.Tickable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;

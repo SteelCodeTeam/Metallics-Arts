@@ -8,7 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.custom_entities.ExampleEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.example_entity.ExampleEntity;
 import net.rudahee.metallics_arts.modules.custom_projectiles.BulletProjectile;
 
 public class ModEntityTypesRegister {

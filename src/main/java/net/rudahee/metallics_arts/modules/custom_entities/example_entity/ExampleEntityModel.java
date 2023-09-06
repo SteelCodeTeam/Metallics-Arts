@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_entities;
+package net.rudahee.metallics_arts.modules.custom_entities.example_entity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
