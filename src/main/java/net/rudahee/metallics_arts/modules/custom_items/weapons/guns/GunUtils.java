@@ -44,29 +44,49 @@ public class GunUtils {
 
             player.getInventory().removeItem(slot, 1);
 
+            int bullets = compoundTag.getInt(GunsAccess.BULLETS.getKey());
             if (gunType == GunType.SHOTGUN) {
-                if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 1) {
+                if (bullets == 1) {
                     compoundTag.putFloat("CustomModelData", 3);
                 } else {
                     compoundTag.putFloat("CustomModelData", 4);
                 }
             } else if (gunType == GunType.RIFLE || gunType == GunType.RIFLE_SPYGLASS) {
-                if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 1) {
+                if (bullets == 1) {
                     compoundTag.putFloat("CustomModelData", 3);
                 }
             } else if (gunType == GunType.REVOLVER) {
-                if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 1) {
+                if (bullets == 1) {
                     compoundTag.putFloat("CustomModelData", 3);
-                } else if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 2) {
+                } else if (bullets == 2) {
                     compoundTag.putFloat("CustomModelData", 4);
-                } else if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 3) {
+                } else if (bullets == 3) {
                     compoundTag.putFloat("CustomModelData", 5);
-                } else if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 4) {
+                } else if (bullets == 4) {
                     compoundTag.putFloat("CustomModelData", 6);
-                } else if (compoundTag.getInt(GunsAccess.BULLETS.getKey()) == 5) {
+                } else if (bullets == 5) {
                     compoundTag.putFloat("CustomModelData", 7);
                 } else {
                     compoundTag.putFloat("CustomModelData", 8);
+                }
+            } else if (gunType == GunType.VINDICATOR) {
+                if (bullets == 1) {
+                    compoundTag.putFloat("CustomModelData", 3);
+                } else if (bullets == 2) {
+                    compoundTag.putFloat("CustomModelData", 4);
+                } else if (bullets == 3) {
+                    compoundTag.putFloat("CustomModelData", 5);
+                } else if (bullets == 4) {
+                    compoundTag.putFloat("CustomModelData", 6);
+                } else if (bullets == 5) {
+                    compoundTag.putFloat("CustomModelData", 7);
+                } else if (bullets == 6) {
+                    compoundTag.putFloat("CustomModelData", 8);
+                } else if (bullets == 7) {
+                    compoundTag.putFloat("CustomModelData", 9);
+                }
+                else {
+                    compoundTag.putFloat("CustomModelData", 10);
                 }
             }
         } else {
