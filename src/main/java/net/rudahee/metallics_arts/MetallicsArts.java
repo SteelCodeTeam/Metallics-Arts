@@ -41,7 +41,9 @@ import net.rudahee.metallics_arts.setup.registries.*;
 import net.rudahee.metallics_arts.setup.tabs.ModCreativeTabsEvents;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
+import top.theillusivec4.curios.api.SlotTypePreset;
 
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -163,9 +165,10 @@ public class MetallicsArts {
                         .size(4)
                         .icon(new ResourceLocation("curios:slot/metal_mind_slot"))
                         .build());
-        //InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BACK..getMessageBuilder().build());
-        //InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
-        //        () -> new SlotTypeMessage.Builder("mistcloak_slot").priority(2).size(1).build());
+
+        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
+                () -> SlotTypePreset.BACK.getMessageBuilder().build());
+
     }
 
     private void processIMC(final InterModProcessEvent event)

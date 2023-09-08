@@ -18,6 +18,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
+import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.mental_metals.BronzeAllomanticHelper;
 import net.rudahee.metallics_arts.utils.DrawUtils;
 import net.rudahee.metallics_arts.utils.FoundNearbyMetalUtils;
 import net.rudahee.metallics_arts.utils.powers_utils.MetalBlockUtils;
@@ -88,10 +89,12 @@ public class OnRenderLevelStage {
             Vec3 playerPos = Minecraft.getInstance().player.getPosition(event.getPartialTick()).add(new Vec3(0,1,0)).add(lookDir);
 
             ResourceLocation texture = new ResourceLocation(MetallicsArts.MOD_ID,
-                    "textures/veffects/the_idle4_60_copper_transluscent.png");
+                    "textures/veffects/the_idle4_60_copper_translucent.png");
             Vec3 sourceCameraVector = view.subtract(playerPos);
+            metalLines(event.getRenderTick(), event.getPartialTick(), view, transformationMatrix, playerPos, 0.005, texture, 31, 8, 32, BronzeAllomanticHelper.allomancers(player, capability.isBurning(MetalTagEnum.LERASIUM)));
 
-            metalLines(event.getRenderTick(), event.getPartialTick(), view, transformationMatrix, playerPos, 0.005, texture, 16, 8, 32, FoundNearbyMetalUtils.getNearbyAllomancers());
+        //metalLines(event.getRenderTick(), event.getPartialTick(), view, transformationMatrix, playerPos, 0.005, texture, 31, 8, 32, BronzeAllomanticHelper.allomancers(player));
+            //metalLines(event.getRenderTick(), event.getPartialTick(), view, transformationMatrix, playerPos, 0.005, texture, 16, 8, 32, FoundNearbyMetalUtils.getNearbyAllomancers());
 
         }
 
@@ -182,9 +185,9 @@ public class OnRenderLevelStage {
         }
     }
 
-    private static void metalLines(int tick, float partialTick, Vec3 viewPosition, Matrix4f translationMatrix, Vec3 source, double scale, ResourceLocation texture, int numberOfFrames, int columnWidth, int columnHeight, List<BlockPos> pos) {
-        for (BlockPos singlePos: pos) {
-            DrawUtils.drawMetalQuadLines(tick, viewPosition, translationMatrix, Vec3.atCenterOf(singlePos), source, scale, texture, numberOfFrames, columnWidth, columnHeight);
+    private static void metalLines(int tick, float partialTick, Vec3 viewPosition, Matrix4f translationMatrix, Vec3 source, double scale, ResourceLocation texture, int numberOfFrames, int columnWidth, int columnHeight, List<Entity> entities) {
+        for (Entity entity: entities) {
+            DrawUtils.drawMetalQuadLines(tick, viewPosition, translationMatrix, entity.getPosition(partialTick), source, scale, texture, numberOfFrames, columnWidth, columnHeight);
         }
     }
 

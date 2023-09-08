@@ -65,7 +65,7 @@ public class ModNetwork {
         INSTANCE.registerMessage(nextIndex(), UpdateStoragePacket.class, UpdateStoragePacket::encode, UpdateStoragePacket::decode, UpdateStoragePacket::handle);
         INSTANCE.registerMessage(nextIndex(), RemoveNuggetPacket.class, RemoveNuggetPacket::encode, RemoveNuggetPacket::decode, RemoveNuggetPacket::handle);
         INSTANCE.registerMessage(nextIndex(), RespawnPositionPacket.class, RespawnPositionPacket::encode, RespawnPositionPacket::decode, RespawnPositionPacket::handle);
-        INSTANCE.registerMessage(nextIndex(), NearbyInvestedPacket.class, NearbyInvestedPacket::encode, NearbyInvestedPacket::decode, NearbyInvestedPacket::handle);
+        //INSTANCE.registerMessage(nextIndex(), NearbyInvestedPacket.class, NearbyInvestedPacket::encode, NearbyInvestedPacket::decode, NearbyInvestedPacket::handle);
         INSTANCE.registerMessage(nextIndex(), AnotherPlayerDeathPosPacket.class, AnotherPlayerDeathPosPacket::encode, AnotherPlayerDeathPosPacket::decode, AnotherPlayerDeathPosPacket::handle);
         INSTANCE.registerMessage(nextIndex(), LeverPacket.class, LeverPacket::encode, LeverPacket::decode, LeverPacket::handle);
         INSTANCE.registerMessage(nextIndex(), FiringGunPacket.class, FiringGunPacket::encode, FiringGunPacket::decode, FiringGunPacket::handle);
@@ -134,9 +134,9 @@ public class ModNetwork {
         sync(new RespawnPositionPacket(player, pos), player);
     }
 
-    public static void syncNearbyInvestedPlayer(List<BlockPos> pos, Player player) {
+    /*public static void syncNearbyInvestedPlayer(List<BlockPos> pos, Player player) {
         sync(new NearbyInvestedPacket(player, pos.size(), pos), player);
-    }
+    }*/
 
     public static void syncAnotherPlayerDeathPos(GlobalPos pos, Player player) {
         sync(new AnotherPlayerDeathPosPacket(player, pos), player);

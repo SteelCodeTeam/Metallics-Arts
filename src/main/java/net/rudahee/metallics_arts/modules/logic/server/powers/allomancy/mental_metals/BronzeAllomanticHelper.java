@@ -1,11 +1,15 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.mental_metals;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
@@ -14,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Helper class for handling the effects of burning Bronze in an Allomantic system.
@@ -24,8 +29,6 @@ import java.util.Optional;
  * @see AllomaticTick
  */
 public class BronzeAllomanticHelper {
-
-    public static List<BlockPos> nearbyAllomancers;
 
     /**
      * Manipulates AI entities based on the player's Bronze Allomantic abilities.
@@ -48,7 +51,6 @@ public class BronzeAllomanticHelper {
             radius = 8;
         }
 
-        nearbyAllomancers = new ArrayList<>();
 
         world.getEntitiesOfClass(LivingEntity.class, CapabilityUtils.getBubble(player, radius)).forEach(entity -> {
             if (entity == null) {
@@ -66,16 +68,34 @@ public class BronzeAllomanticHelper {
                 mobEntity.getMoveControl().setWantedPosition(player.position().x - 0.5F, player.position().y, player.position().z - 0.5F, 1.2f);
             }
 
-            if (entity instanceof Player) {
-                nearbyAllomancers.add(entity.blockPosition());
-            }
-
         });
 
-        if (nearbyAllomancers.size() != 0) {
-            ModNetwork.syncNearbyInvestedPlayer(nearbyAllomancers, player);
-        }
+    }
 
+    public static List<Entity> allomancers(Player player, boolean lerasium) {
+        ArrayList<Entity> list = new ArrayList<>();
+        AtomicBoolean clean = new AtomicBoolean(false);
+        player.getLevel().getEntitiesOfClass(LivingEntity.class, CapabilityUtils.getBubble(player, lerasium ? 12 : 8)).forEach(entity -> {
+            if (entity == null) {
+                return;
+            }
+            if (entity instanceof Player) {
+                try {
+                    IInvestedPlayerData entityCapability = CapabilityUtils.getCapability(entity);
+                    if (entityCapability.isBurning(MetalTagEnum.COPPER)) {
+                        clean.set(true);
+                    } else if (entityCapability.isBurningAnything() || entityCapability.isTappingAnything() || entityCapability.isStoringAnything()) {
+                        list.add(entity);
+                    }
+                 } catch (PlayerException ex) {
+                    ex.printCompleteLog();
+                }
+            }
+        });
+        if (clean.get()) {
+            list.clear();
+        }
+        return list;
     }
 
 }

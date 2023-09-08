@@ -1,6 +1,10 @@
 package net.rudahee.metallics_arts.modules.logic.client.client_events;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.goal.WrappedGoal;
+import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -12,9 +16,12 @@ import net.rudahee.metallics_arts.modules.logic.client.client_events.on_world_ti
 import net.rudahee.metallics_arts.modules.logic.client.client_events.on_world_tick.PushOrUseKey;
 import net.rudahee.metallics_arts.modules.logic.client.client_events.on_world_tick.VerticalJump;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
+import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.FoundNearbyMetalUtils;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * The OnClientTick class is responsible for managing client-side tick events
@@ -93,6 +100,9 @@ public class OnClientTick {
             }
 
         }
+
+
+
 
         if (tick < 4800) {
             tick++;
