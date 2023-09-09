@@ -5,7 +5,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.Shields;
 import net.rudahee.metallics_arts.modules.custom_items.armors.CustomShield;
-import net.rudahee.metallics_arts.modules.custom_items.coins.CopperCoin;
+import net.rudahee.metallics_arts.modules.custom_items.coins.Coins;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.BasicGun;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.Rifle;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.RifleWithSpyGlass;
@@ -43,7 +43,7 @@ public class WeaponsRegister {
 
 
         ModItemsRegister.COPPER_COIN = MetallicsArts.registerItem("copper_coin",
-                () -> new CopperCoin(COIN_PROPERTIES, 1, 5));
+                () -> new Coins(COIN_PROPERTIES, 1, 5));
 
         ModItemsRegister.REVOLVER = MetallicsArts.registerItem(GunType.REVOLVER.getName(),
                 () -> new BasicGun(WEAPONS_PROPERTIES, GunType.REVOLVER));
@@ -82,7 +82,10 @@ public class WeaponsRegister {
         ModItemsRegister.BRONZE_ALUMINUM_SHIELD = MetallicsArts.registerItem(Shields.BRONZE_ALUMINUM.getId(),
                 () -> new CustomShield(WEAPONS_PROPERTIES, Shields.BRONZE_ALUMINUM));
 
-        ModItemsRegister.BULLET_PROJECTILE = MetallicsArts.registerItem("bullet_projectile",
+
+        ModItemsRegister.LEAD_BULLET_PROJECTILE = MetallicsArts.registerItem("lead_bullet",
+                () -> new Item(new Item.Properties()));
+        ModItemsRegister.ALUMINUM_BULLET_PROJECTILE = MetallicsArts.registerItem("aluminum_bullet",
                 () -> new Item(new Item.Properties()));
 
     }

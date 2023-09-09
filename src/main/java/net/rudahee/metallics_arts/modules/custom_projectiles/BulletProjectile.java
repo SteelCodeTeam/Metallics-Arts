@@ -93,7 +93,9 @@ public class BulletProjectile extends ThrowableItemProjectile {
 
     @Override
     protected Item getDefaultItem() {
-        return ModItemsRegister.BULLET_PROJECTILE.get(); //ESTA ES LA TEXTURA QUE SE MUESTRA AL SALIR
+        return (this.bulletType == BulletType.LEAD ?
+                ModItemsRegister.LEAD_BULLET_PROJECTILE.get() :
+                ModItemsRegister.ALUMINUM_BULLET_PROJECTILE.get());
     }
     private ParticleOptions getParticle() {
         ItemStack itemstack = this.getItemRaw();

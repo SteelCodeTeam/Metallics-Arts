@@ -79,7 +79,7 @@ public class BronzeAllomanticHelper {
             if (entity == null) {
                 return;
             }
-            if (entity instanceof Player) {
+            if (entity instanceof Player p && p != player) {
                 try {
                     IInvestedPlayerData entityCapability = CapabilityUtils.getCapability(entity);
                     if (entityCapability.isBurning(MetalTagEnum.COPPER)) {

@@ -58,7 +58,8 @@ public class ModItemsRegister {
     public static RegistryObject<Item> COPPER_COIN;
     public static RegistryObject<Item> REVOLVER_ALUMINUM_BULLET;
     public static RegistryObject<Item> REVOLVER_LEAD_BULLET;
-    public static RegistryObject<Item> BULLET_PROJECTILE;
+    public static RegistryObject<Item> LEAD_BULLET_PROJECTILE;
+    public static RegistryObject<Item> ALUMINUM_BULLET_PROJECTILE;
     public static RegistryObject<Item> SHOTGUN_ALUMINUM_BULLET;
     public static RegistryObject<Item> SHOTGUN_LEAD_BULLET;
     public static RegistryObject<Item> RIFLE_ALUMINUM_BULLET;

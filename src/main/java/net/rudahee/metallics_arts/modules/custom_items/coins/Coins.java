@@ -13,12 +13,12 @@ import net.rudahee.metallics_arts.modules.custom_projectiles.CoinProjectile;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
-public class CopperCoin extends Item {
+public class Coins extends Item {
 
     public int damage;
     public int cooldown;
 
-    public CopperCoin(Properties properties, int damage, int cooldown) {
+    public Coins(Properties properties, int damage, int cooldown) {
         super(properties);
         this.damage = damage;
         this.cooldown = cooldown;
