@@ -233,14 +233,14 @@ public class ServerEventHandler {
                 /*
                  * GUNS
                  */
-                if (player.getMainHandItem().getItem() instanceof BasicGun instance) {
+                /*if (player.getMainHandItem().getItem() instanceof BasicGun instance) {
                     ItemStack gun = player.getMainHandItem();
                     if (gun.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.RELOAD.getKey())) {
                         if ((tick % instance.getGunType().getReload_cooldown()) == 0) {
                             gun.setTag(GunUtils.reload(gun, player, instance.getGunType()));
                         }
                     }
-                } else if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof KolossBlade) {
+                } else*/ if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof KolossBlade) {
                     if (tick % KolossBlade.COOLDOWN == 0 && player.getItemInHand(InteractionHand.MAIN_HAND).getTag().getFloat("CustomModelData") != 1F) {
                         ItemStack gun = player.getItemInHand(InteractionHand.MAIN_HAND);
                         CompoundTag compoundTag = gun.getTag();

@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:item/handheld",
+	"textures": {
+		"layer0": "metallics_arts:item/combat/koloss_blade"
+	}
+}

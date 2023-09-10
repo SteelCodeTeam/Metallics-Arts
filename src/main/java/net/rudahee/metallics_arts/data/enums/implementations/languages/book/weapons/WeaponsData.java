@@ -13,7 +13,7 @@ public enum WeaponsData {
     OBSIDIAN_DAGGER(CTW.OBSIDIAN_DAGGER.getId(),MetallicsArts.MOD_ID + "_obsidian_dagger",MetallicsArts.MOD_ID + ":textures/item/combat/obsidian_dagger.png"),
     SILVER_KNIFE(CTW.SILVER_KNIFE.getId(),MetallicsArts.MOD_ID + "_silver_knife",MetallicsArts.MOD_ID + ":textures/item/combat/silver_knife.png"),
     OBSIDIAN_AXE(CTW.OBSIDIAN_AXE.getId(),MetallicsArts.MOD_ID + "_obsidian_axe",MetallicsArts.MOD_ID + ":textures/item/combat/obsidian_axe.png"),
-    KOLOSS_BLADE(CTW.KOLOSS_BLADE.getId(),MetallicsArts.MOD_ID + "_koloss_blade",MetallicsArts.MOD_ID + ":textures/item/combat/koloss_blade.png"),
+    KOLOSS_BLADE(CTW.KOLOSS_BLADE.getId(),MetallicsArts.MOD_ID + "_koloss_blade",MetallicsArts.MOD_ID + ":textures/item/combat/koloss_blade_3d.png"),
     DUELING_STAFF(CTW.DUELING_STAFF.getId(),MetallicsArts.MOD_ID + "_dueling_staff",MetallicsArts.MOD_ID + ":textures/item/combat/dueling_staff.png");
     private final String id;
     private final String recipe;

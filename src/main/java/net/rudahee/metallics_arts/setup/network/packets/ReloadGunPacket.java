@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.setup.network.packets;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -32,17 +33,21 @@ public class ReloadGunPacket {
 
             ServerPlayer player = context.getSender();
 
-            if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof BasicGun instance) {
-                ItemStack itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
-                if (!itemStack.hasTag()) {
-                    itemStack.setTag(GunUtils.generateGunTags(instance.getGunType()));
-                }
-                if (itemStack.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
-                    itemStack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
-                } else {
-                    itemStack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
-                }
+            ItemStack itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
+
+            CompoundTag tag = itemStack.getTag();
+
+            if (itemStack.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
+                tag.putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
+                tag.putFloat("CustomModelData",
+                        GunUtils.updateTexture(tag.getInt(GunsAccess.BULLETS.getKey()),
+                                ((BasicGun) itemStack.getItem()).getGunType()));
+            } else {
+                tag.putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
+                tag.putFloat("CustomModelData",0F);
             }
+            itemStack.setTag(tag);
+
         });
         return true;
     }

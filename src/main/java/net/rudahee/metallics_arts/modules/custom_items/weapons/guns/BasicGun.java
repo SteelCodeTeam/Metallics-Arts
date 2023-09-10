@@ -66,7 +66,7 @@ public class BasicGun extends ProjectileWeaponItem {
         ItemStack itemStack = player.getItemInHand(hand);
         CompoundTag tag = itemStack.getTag();
         tag.putFloat("CustomModelData", 1);
-        if (tag.getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
+        if (tag.getString(GunsAccess.STATE.getKey()).equals(GunsAccess.RELOAD.getKey())) {
             tag.putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
         }
         itemStack.setTag(tag);
@@ -93,13 +93,24 @@ public class BasicGun extends ProjectileWeaponItem {
      * @param selectedSlot The selected inventory slot of the player.
      * @param hasItemSelected A flag indicating whether the player has an item selected.
      */
+    private int tick = 0;
+
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int selectedSlot, boolean hasItemSelected) {
-        if (!stack.hasTag()) {
+        if (!GunUtils.hasTags(stack.getTag())) {
             stack.setTag(GunUtils.generateGunTags(this.gunType));
         }
         if (entity instanceof Player player) {
-            if (player.getMainHandItem() != stack ||player.inventoryMenu.active) {
+            if (player.getMainHandItem() == stack) {
+                if (stack.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.RELOAD.getKey())) {
+                    if ((tick % this.gunType.getReload_cooldown()) == 0) {
+                        stack.setTag(GunUtils.reload(stack.getTag(), player, gunType));
+
+                        tick = 0;
+                    }
+                    tick++;
+                }
+            } else {
                 stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
                 stack.getTag().putFloat("CustomModelData", 0);
             }
@@ -117,12 +128,10 @@ public class BasicGun extends ProjectileWeaponItem {
      */
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> toolTips, TooltipFlag flagIn) {
-        if (stack.hasTag()) {
-            if (stack.getTag().contains(GunsAccess.BULLET_TYPE.getKey())) {
-                toolTips.add(Component.translatable(stack.getTag().getString(GunsAccess.BULLET_TYPE.getKey())));
-            } else {
-                stack.setTag(GunUtils.generateGunTags(this.gunType));
-            }
+        if (!GunUtils.hasTags(stack.getTag())) {
+            stack.setTag(GunUtils.generateGunTags(this.gunType));
+        } else {
+            toolTips.add(Component.translatable(stack.getTag().getString(GunsAccess.BULLET_TYPE.getKey())));
         }
         super.appendHoverText(stack, level, toolTips, flagIn);
     }
@@ -208,4 +217,6 @@ public class BasicGun extends ProjectileWeaponItem {
     public int getDefaultProjectileRange() {
         return 8;
     }
+
+
 }

@@ -12,6 +12,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
 import net.rudahee.metallics_arts.modules.custom_projectiles.BulletProjectile;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.Random;
 
@@ -24,76 +25,75 @@ import java.util.Random;
  */
 public class GunUtils {
 
-    /**
-     * This method handles the reloading of a gun owned by a player, based on the specified bullet type and gun type.
-     * The method updates the gun's CompoundTag to reflect to reload, including changes to bullet count and
-     * custom model data based on the gun type.
-     *
-     * @param gun The ItemStack representing the gun to be reloaded.
-     * @param player The player who owns the gun.
-     * @param gunType The type of gun.
-     * @return The updated CompoundTag of the reloaded gun ItemStack.
-     */
-    public static CompoundTag reload(ItemStack gun, Player player, GunType gunType) {
-        CompoundTag compoundTag = gun.getTag();
+    public static CompoundTag reload(CompoundTag compoundTag, Player player, GunType gunType) {
 
         int slot = hasBulletOfType(player, compoundTag.getString(GunsAccess.BULLET_TYPE.getKey()), gunType);
         if (slot != -1 && compoundTag.getInt(GunsAccess.BULLETS.getKey()) < gunType.getMaxAmount()) {
-
             compoundTag.putInt(GunsAccess.BULLETS.getKey(), compoundTag.getInt(GunsAccess.BULLETS.getKey()) + 1);
-
+            compoundTag.putFloat("CustomModelData",
+                    GunUtils.updateTexture(compoundTag.getInt(GunsAccess.BULLETS.getKey()), gunType));
             player.getInventory().removeItem(slot, 1);
-
-            int bullets = compoundTag.getInt(GunsAccess.BULLETS.getKey());
-            if (gunType == GunType.SHOTGUN) {
-                if (bullets == 1) {
-                    compoundTag.putFloat("CustomModelData", 3);
-                } else {
-                    compoundTag.putFloat("CustomModelData", 4);
-                }
-            } else if (gunType == GunType.RIFLE || gunType == GunType.RIFLE_SPYGLASS) {
-                if (bullets == 1) {
-                    compoundTag.putFloat("CustomModelData", 3);
-                }
-            } else if (gunType == GunType.REVOLVER) {
-                if (bullets == 1) {
-                    compoundTag.putFloat("CustomModelData", 3);
-                } else if (bullets == 2) {
-                    compoundTag.putFloat("CustomModelData", 4);
-                } else if (bullets == 3) {
-                    compoundTag.putFloat("CustomModelData", 5);
-                } else if (bullets == 4) {
-                    compoundTag.putFloat("CustomModelData", 6);
-                } else if (bullets == 5) {
-                    compoundTag.putFloat("CustomModelData", 7);
-                } else {
-                    compoundTag.putFloat("CustomModelData", 8);
-                }
-            } else if (gunType == GunType.VINDICATOR) {
-                if (bullets == 1) {
-                    compoundTag.putFloat("CustomModelData", 3);
-                } else if (bullets == 2) {
-                    compoundTag.putFloat("CustomModelData", 4);
-                } else if (bullets == 3) {
-                    compoundTag.putFloat("CustomModelData", 5);
-                } else if (bullets == 4) {
-                    compoundTag.putFloat("CustomModelData", 6);
-                } else if (bullets == 5) {
-                    compoundTag.putFloat("CustomModelData", 7);
-                } else if (bullets == 6) {
-                    compoundTag.putFloat("CustomModelData", 8);
-                } else if (bullets == 7) {
-                    compoundTag.putFloat("CustomModelData", 9);
-                }
-                else {
-                    compoundTag.putFloat("CustomModelData", 10);
-                }
-            }
         } else {
             compoundTag.putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
             compoundTag.putFloat("CustomModelData", 0);
         }
         return compoundTag;
+    }
+
+    public static float updateTexture(int bullets, GunType gunType) {
+        if (gunType == GunType.SHOTGUN) {
+            if (bullets == 0) {
+                return 2F;
+            } else if (bullets == 1) {
+                return 3F;
+            } else {
+                return 4F;
+            }
+        } else if (gunType == GunType.RIFLE || gunType == GunType.RIFLE_SPYGLASS) {
+            if (bullets == 0) {
+                return 2F;
+            } else if (bullets == 1) {
+                return 3F;
+            }
+        } else if (gunType == GunType.REVOLVER) {
+            if (bullets == 0) {
+                return 2F;
+            } else if (bullets == 1) {
+                return 3F;
+            } else if (bullets == 2) {
+                return 4F;
+            } else if (bullets == 3) {
+                return 5F;
+            } else if (bullets == 4) {
+                return 6F;
+            } else if (bullets == 5) {
+                return 7F;
+            } else {
+                return 8F;
+            }
+        } else if (gunType == GunType.VINDICATOR) {
+            if (bullets == 0) {
+                return 2F;
+            } else if (bullets == 1) {
+                return 3F;
+            } else if (bullets == 2) {
+                return 4F;
+            } else if (bullets == 3) {
+                return 5F;
+            } else if (bullets == 4) {
+                return 6F;
+            } else if (bullets == 5) {
+                return 7F;
+            } else if (bullets == 6) {
+                return 8F;
+            } else if (bullets == 7) {
+                return 9F;
+            }
+            else {
+                return 10F;
+            }
+        }
+        return 0F;
     }
 
 
@@ -130,9 +130,14 @@ public class GunUtils {
      */
     public static CompoundTag generateGunTags(GunType gunType) {
         CompoundTag compoundTag = new CompoundTag();
+        compoundTag.putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
         compoundTag.putInt(GunsAccess.BULLETS.getKey(), 0);
         compoundTag.putString(GunsAccess.BULLET_TYPE.getKey(), BulletType.LEAD.getType());
         return compoundTag;
+    }
+
+    public static boolean hasTags(CompoundTag compoundTag) {
+        return compoundTag.contains(GunsAccess.STATE.getKey()) && compoundTag.contains(GunsAccess.BULLETS.getKey()) && compoundTag.contains(GunsAccess.BULLET_TYPE.getKey());
     }
 
     /**
@@ -143,7 +148,7 @@ public class GunUtils {
      * @param gunType The type of the gun being shot.
      * @return The updated CompoundTag of the gun item after the shot.
      */
-    public static CompoundTag shot(ItemStack gun, Level level , ServerPlayer player, GunType gunType) {
+    public static CompoundTag shot(ItemStack gun, Level level , Player player, GunType gunType) {
         CompoundTag tag = gun.getTag();
 
         if (tag.getInt(GunsAccess.BULLETS.getKey()) > 0) {
@@ -215,10 +220,11 @@ public class GunUtils {
             } else {
                 stack.getTag().putString(GunsAccess.BULLET_TYPE.getKey(), BulletType.LEAD.getType());
             }
-            player.sendSystemMessage(Component.translatable("Municion actual:"+ stack.getTag().getString(GunsAccess.BULLET_TYPE.getKey())));
+            player.sendSystemMessage(Component.translatable("Municion actual:" + stack.getTag().getString(GunsAccess.BULLET_TYPE.getKey())));
         } else {
             player.sendSystemMessage(Component.translatable("No se puede cambiar, aun quedan cargas"));
         }
         return stack.getTag();
     }
+
 }

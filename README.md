@@ -1,4 +1,4 @@
-# Metallics Arts 1.19.2-1.6.5
+# Metallics Arts 1.19.2-1.6.7
 
 
 
@@ -56,11 +56,15 @@ And we have two mandatory dependencies:
 
 ------
 
-## **Changelog ✒ [v1.6.6]**
+## **Changelog ✒ [v1.6.7]**
 - Implemented stairs, slabs, fences, walls  and fence gates from all metals/raws [v1.6.6]
 - Implemented custom shields [v1.6.6]
 - Implemented guns [v1.6.6]
 - Implemented furnace [1.6.6]
+- weapons review [1.6.7]
+- first entities [1.6.7]
+- coins review [1.6.7]
+
 <br>
 
 ------

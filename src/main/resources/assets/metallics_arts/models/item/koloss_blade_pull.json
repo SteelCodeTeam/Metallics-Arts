@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "metallics_arts:item/combat/koloss_blade",
+		"0": "metallics_arts:item/combat/koloss_blade_3d",
 		"particle": "koloss_blade"
 	},
 	"elements": [

@@ -31,14 +31,14 @@ public class FiringGunPacket {
         context.enqueueWork(() ->{
 
             ServerPlayer player = context.getSender();
+            ItemStack itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
+            if (itemStack.getItem() instanceof BasicGun instance) {
 
-            if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof BasicGun instance) {
-                ItemStack gun = player.getItemInHand(InteractionHand.MAIN_HAND);
-                if (!gun.hasTag()) {
-                    gun.setTag(GunUtils.generateGunTags(instance.getGunType()));
+                if (!GunUtils.hasTags(itemStack.getTag())) {
+                    itemStack.setTag(GunUtils.generateGunTags(instance.getGunType()));
                 }
-                if (gun.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
-                    gun.setTag(GunUtils.shot(gun, player.level ,player, instance.getGunType()));
+                if (itemStack.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
+                    itemStack.setTag(GunUtils.shot(itemStack, player.level ,player, instance.getGunType()));
                 }
             }
         });
