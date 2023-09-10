@@ -6,13 +6,11 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.WitherSkeleton;
-import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
-public class AlomancerEntity extends Monster {
-    public AlomancerEntity(EntityType<? extends Monster> type, Level level) {
+public class EttmetalAllomancerEntity extends Monster {
+    public EttmetalAllomancerEntity(EntityType<? extends Monster> type, Level level) {
         super(type, level);
     }
 
@@ -23,15 +21,19 @@ public class AlomancerEntity extends Monster {
         this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1D, true));
+
     }
 
     public static AttributeSupplier.Builder getExampleAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 50.0D)
                 .add(Attributes.MOVEMENT_SPEED, (double)0.30F)
-                .add(Attributes.ATTACK_DAMAGE, 3.0D)
+                .add(Attributes.ATTACK_DAMAGE, 10.0D)
                 .add(Attributes.ARMOR, .0D)
-                .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
+                .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE)
+                .add(Attributes.MAX_HEALTH, 100)
+                .add(Attributes.ATTACK_SPEED, 0.5F);
+
     }
 
 }

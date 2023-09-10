@@ -6,7 +6,6 @@ package net.rudahee.metallics_arts.modules.custom_entities.alomancer_entity;// M
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +13,7 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 import net.rudahee.metallics_arts.MetallicsArts;
 
-public class AlomancerEntityModel extends EntityModel<AlomancerEntity> {
+public class EttmetalAllomancerEntityModel extends EntityModel<EttmetalAllomancerEntity> {
 // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(MetallicsArts.MOD_ID, "alomancer_entity"), "main");
 private final ModelPart Head;
@@ -24,7 +23,7 @@ private final ModelPart LeftArm;
 private final ModelPart RightLeg;
 private final ModelPart LeftLeg;
 
-public AlomancerEntityModel(ModelPart root) {
+public EttmetalAllomancerEntityModel(ModelPart root) {
         this.Head = root.getChild("head");
         this.Body = root.getChild("body");
         this.RightArm = root.getChild("right_arm");
@@ -61,7 +60,7 @@ public AlomancerEntityModel(ModelPart root) {
         }
 
 @Override
-public void setupAnim(AlomancerEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+public void setupAnim(EttmetalAllomancerEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
         }
 
