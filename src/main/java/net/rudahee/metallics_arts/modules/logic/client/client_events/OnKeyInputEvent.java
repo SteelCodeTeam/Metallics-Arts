@@ -76,9 +76,8 @@ public class OnKeyInputEvent {
             }
         }
         if (ModKeyRegister.RELOAD.isDown()) {
-            if (player.getMainHandItem().getItem() instanceof BasicGun instance) {
+            if (player.getMainHandItem().getItem() instanceof BasicGun) {
                 ModNetwork.sendToServer(new ReloadGunPacket());
-                instance.alternateReload(player.getMainHandItem());
             }
         }
         for (int i = 0; i< MetalTagEnum.values().length; i++) {

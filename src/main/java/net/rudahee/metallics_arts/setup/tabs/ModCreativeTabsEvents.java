@@ -32,7 +32,8 @@ public class ModCreativeTabsEvents {
     public static void addToMetallicsArtsTab(CreativeModeTabEvent.BuildContents event) {
         if (event.getTab().equals(ModCreativeTabs.METALLICS_ARTS_TAB)) {
             BookDataManager.get().getBooks().values().forEach(b -> {
-
+                //todo hacer esto causa que si el no se tiene el momonomicon el juego crashee
+                //pero de lo contrario no se agrega correctamente
                 if (b.getId().toString().contains("metallics_arts")){
                     event.accept(b.getBookItem());
                 }

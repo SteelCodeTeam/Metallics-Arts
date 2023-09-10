@@ -42,8 +42,10 @@ public class WeaponsRegister {
 
 
 
-        ModItemsRegister.COPPER_COIN = MetallicsArts.registerItem("copper_coin",
-                () -> new Coins(COIN_PROPERTIES, 1, 5));
+        ModItemsRegister.COPPER_COIN = MetallicsArts.registerItem(GunType.COPPER_COIN.getName(),
+                () -> new Coins(COIN_PROPERTIES, GunType.COPPER_COIN));
+        ModItemsRegister.BRONZE_COIN = MetallicsArts.registerItem(GunType.BRONZE_COIN.getName(),
+                () -> new Coins(COIN_PROPERTIES, GunType.BRONZE_COIN));
 
         ModItemsRegister.REVOLVER = MetallicsArts.registerItem(GunType.REVOLVER.getName(),
                 () -> new BasicGun(WEAPONS_PROPERTIES, GunType.REVOLVER));

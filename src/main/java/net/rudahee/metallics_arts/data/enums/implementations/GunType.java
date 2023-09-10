@@ -9,14 +9,17 @@ package net.rudahee.metallics_arts.data.enums.implementations;
  * @since 1.6.4
  */
 public enum GunType {
-    SHOTGUN("shotgun", 10, 2,10),
-    RIFLE("rifle", 10, 1,100),
-    RIFLE_SPYGLASS("rifle_spyglass", 10, 1,100),
-    REVOLVER("revolver", 20, 6, 20),
-    VINDICATOR("vindicator", 20, 8, 20);
+    SHOTGUN("shotgun",1F,10, 2,10),
+    RIFLE("rifle",1F,10, 1,100),
+    RIFLE_SPYGLASS("rifle_spyglass",1F,10, 1,100),
+    REVOLVER("revolver", 1F,20, 6, 20),
+    VINDICATOR("vindicator", 1F,20, 8, 20),
+    COPPER_COIN("copper_coin",1F,20, 0, 0),
+    BRONZE_COIN("bronze_coin",1F,20, 0, 0);
 
     private final String name;
     private final int reload_cooldown;
+    private final float damage;
     private  final int maxAmount;
     private  final int despawn;
 
@@ -28,11 +31,12 @@ public enum GunType {
      * @param reload_cooldown To reload cooldown in ticks.
      * @param maxAmount The maximum amount of ammunition the gun can hold.
      */
-    GunType(String name, int reload_cooldown, int maxAmount, int despawn) {
+    GunType(String name, float damage, int reload_cooldown, int maxAmount, int despawn) {
         this.name = name;
         this.reload_cooldown = reload_cooldown;
         this.maxAmount = maxAmount;
         this.despawn = despawn;
+        this.damage = damage;
     }
 
     /**
@@ -64,5 +68,9 @@ public enum GunType {
 
     public int getDespawn() {
         return despawn;
+    }
+
+    public float getDamage() {
+        return damage;
     }
 }

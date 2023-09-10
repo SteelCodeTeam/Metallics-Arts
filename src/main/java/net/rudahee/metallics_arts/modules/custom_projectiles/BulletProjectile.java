@@ -23,9 +23,9 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 public class BulletProjectile extends ThrowableItemProjectile {
-    private int despawnTime;
     private GunType gunType;
     private BulletType bulletType;
+    private int despawnTime;
 
     /**
      * Constructs a new instance of a BulletProjectile.
@@ -35,9 +35,9 @@ public class BulletProjectile extends ThrowableItemProjectile {
      */
     public BulletProjectile(EntityType<? extends BulletProjectile> entityType, Level level) {
         super(entityType, level);
-        this.despawnTime = 0;
         this.gunType = GunType.REVOLVER;
         this.bulletType = BulletType.LEAD;
+        this.despawnTime = gunType.getDespawn();
     }
 
     /**
@@ -47,13 +47,12 @@ public class BulletProjectile extends ThrowableItemProjectile {
      * @param livingEntity The living entity associated with the BulletProjectile.
      * @param gunType The type of gun associated with the BulletProjectile.
      * @param bulletType The type of bullet associated with the BulletProjectile.
-     * @param despawnTime The time after which the BulletProjectile will despawn.
      */
-    public BulletProjectile(Level level, LivingEntity livingEntity, GunType gunType, BulletType bulletType, int despawnTime) {
+    public BulletProjectile(Level level, LivingEntity livingEntity, GunType gunType, BulletType bulletType) {
         super(ModEntityTypesRegister.BULLET_PROJECTILE.get(), livingEntity, level);
-        this.despawnTime = despawnTime;
         this.gunType = gunType;
         this.bulletType = bulletType;
+        this.despawnTime = gunType.getDespawn();
     }
 
     /**
@@ -64,16 +63,16 @@ public class BulletProjectile extends ThrowableItemProjectile {
      */
     public BulletProjectile(Level level, LivingEntity livingEntity) {
         super(ModEntityTypesRegister.BULLET_PROJECTILE.get(), livingEntity, level);
-        this.despawnTime = 0;
         this.gunType = GunType.REVOLVER;
         this.bulletType = BulletType.LEAD;
+        this.despawnTime = gunType.getDespawn();
     }
 
     public BulletProjectile(Level level, double v, double v1, double v2) {
         super(ModEntityTypesRegister.BULLET_PROJECTILE.get(), v, v1, v2, level);
-        this.despawnTime = 0;
         this.gunType = GunType.REVOLVER;
         this.bulletType = BulletType.LEAD;
+        this.despawnTime = gunType.getDespawn();
     }
 
     @Override
@@ -113,7 +112,6 @@ public class BulletProjectile extends ThrowableItemProjectile {
     public void tick() {
         this.despawnTime--;
         if (this.despawnTime == 0) {
-            //this.kill();
             this.discard();
         }
         super.tick();
@@ -153,7 +151,7 @@ public class BulletProjectile extends ThrowableItemProjectile {
             try {
                 IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(entity);
                 if (playerCapability.isBurning(MetalTagEnum.STEEL) && this.bulletType.getType().equals(BulletType.LEAD.getType())) {
-                    BulletProjectile bullet = new BulletProjectile(level, player, gunType, this.bulletType, gunType.getDespawn());
+                    BulletProjectile bullet = new BulletProjectile(level, player, gunType, this.bulletType);
                     bullet.shootFromRotation(entity, entity.getXRot(), entity.getYRot(), 0.0F, 5F, 1.0F);
                     level.addFreshEntity(bullet);
                     return;
@@ -163,7 +161,8 @@ public class BulletProjectile extends ThrowableItemProjectile {
             }
         } //todo checkear
         if (entity instanceof LivingEntity) {
-            entity.hurt(entity.damageSources().drown(), 80F);
+
+            entity.hurt(entity.damageSources().drown(), this.gunType.getDamage());
         }
     }
 

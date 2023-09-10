@@ -7,6 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_projectiles.CoinProjectile;
@@ -15,20 +16,17 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 public class Coins extends Item {
 
-    public int damage;
-    public int cooldown;
+    private GunType gunType;
 
-    public Coins(Properties properties, int damage, int cooldown) {
+    public Coins(Properties properties, GunType gunType) {
         super(properties);
-        this.damage = damage;
-        this.cooldown = cooldown;
-
+        this.gunType = gunType;
     }
 
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
       ItemStack itemstack = player.getItemInHand(interactionHand);
 
-      player.getCooldowns().addCooldown(this, cooldown);
+      player.getCooldowns().addCooldown(this, gunType.getReload_cooldown());
       // level.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
 
 
@@ -44,7 +42,7 @@ public class Coins extends Item {
 
           if (playerCapability.isBurning(MetalTagEnum.STEEL)) {
 
-              CoinProjectile coin = new CoinProjectile(level, player);
+              CoinProjectile coin = new CoinProjectile(level, player, gunType);
               coin.setItem(itemstack);
 
               coin.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 4F, 1.0F);
@@ -59,7 +57,6 @@ public class Coins extends Item {
           }
 
       }
-
       return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
    }
 

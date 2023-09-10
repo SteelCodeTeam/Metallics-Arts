@@ -87,6 +87,8 @@ public class BronzeAllomanticHelper {
                     } else if (entityCapability.isBurningAnything() || entityCapability.isTappingAnything() || entityCapability.isStoringAnything()) {
                         list.add(entity);
                     }
+                    //todo por algun motivo señala a usuarios que no esten usando poderes
+                    //aunque con el copper si se oculta
                  } catch (PlayerException ex) {
                     ex.printCompleteLog();
                 }

@@ -38,6 +38,7 @@ import java.util.function.Predicate;
 public class BasicGun extends ProjectileWeaponItem {
     private GunType gunType;
 
+
     /**
      * Constructs a new BasicGun with the given properties and gun type.
      *
@@ -65,23 +66,12 @@ public class BasicGun extends ProjectileWeaponItem {
         ItemStack itemStack = player.getItemInHand(hand);
         CompoundTag tag = itemStack.getTag();
         tag.putFloat("CustomModelData", 1);
+        if (tag.getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
+            tag.putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
+        }
         itemStack.setTag(tag);
         player.startUsingItem(hand);
-
         return InteractionResultHolder.consume(itemStack);
-
-
-    }
-
-    public void alternateReload(ItemStack itemStack) {
-        if (!itemStack.hasTag()) {
-            itemStack.setTag(GunUtils.generateGunTags(this.gunType));
-        }
-        if (itemStack.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
-            itemStack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
-        } else {
-            itemStack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
-        }
     }
 
     @Override
@@ -108,15 +98,12 @@ public class BasicGun extends ProjectileWeaponItem {
         if (!stack.hasTag()) {
             stack.setTag(GunUtils.generateGunTags(this.gunType));
         }
-        /*if (entity instanceof Player player) {
-            if (player.getItemInHand(InteractionHand.MAIN_HAND) != stack) {
-
-
-            } else if (!stack.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
+        if (entity instanceof Player player) {
+            if (player.getMainHandItem() != stack ||player.inventoryMenu.active) {
                 stack.getTag().putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
                 stack.getTag().putFloat("CustomModelData", 0);
             }
-        }*/
+        }
         super.inventoryTick(stack, level, entity, selectedSlot, hasItemSelected);
     }
 
@@ -137,7 +124,6 @@ public class BasicGun extends ProjectileWeaponItem {
                 stack.setTag(GunUtils.generateGunTags(this.gunType));
             }
         }
-
         super.appendHoverText(stack, level, toolTips, flagIn);
     }
 
@@ -153,7 +139,6 @@ public class BasicGun extends ProjectileWeaponItem {
             if (itemStack.getTag().contains(GunsAccess.BULLETS.getKey())) {
                 return itemStack.getTag().getInt(GunsAccess.BULLETS.getKey()) > 0;
             }
-            return false;
         }
         return false;
     }
@@ -166,8 +151,15 @@ public class BasicGun extends ProjectileWeaponItem {
      */
     @Override
     public int getBarWidth(ItemStack itemStack) {
-        return super.getBarWidth(itemStack);
+        if (itemStack.hasTag()) {
+            if (itemStack.getTag().contains(GunsAccess.BULLETS.getKey())) {
+                return Math.round(((float) itemStack.getTag().getInt(GunsAccess.BULLETS.getKey()) * 13F / (float) gunType.getMaxAmount()));
+            }
+        }
+        return 0;
     }
+
+
 
     /**
      * Gets the type of the gun.

@@ -56,6 +56,7 @@ public class ModItemsRegister {
     public static RegistryObject<Item> CORE_ALUMINUM;
     public static RegistryObject<Item> CORE_STEEL;
     public static RegistryObject<Item> COPPER_COIN;
+    public static RegistryObject<Item> BRONZE_COIN;
     public static RegistryObject<Item> REVOLVER_ALUMINUM_BULLET;
     public static RegistryObject<Item> REVOLVER_LEAD_BULLET;
     public static RegistryObject<Item> LEAD_BULLET_PROJECTILE;
@@ -92,6 +93,7 @@ public class ModItemsRegister {
         ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.BRONZE_ALUMINUM_SHIELD.toString(),ModItemsRegister.BRONZE_ALUMINUM_SHIELD.get());
 
         ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.COPPER_COIN.toString(),ModItemsRegister.COPPER_COIN.get());
+        ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.BRONZE_COIN.toString(),ModItemsRegister.BRONZE_COIN.get());
         ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.REVOLVER.toString(),ModItemsRegister.REVOLVER.get());
         ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.VINDICATOR.toString(),ModItemsRegister.VINDICATOR.get());
         ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.SHOTGUN.toString(),ModItemsRegister.SHOTGUN.get());
