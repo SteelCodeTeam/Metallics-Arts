@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_entities.alomancer_entity;// Made with Blockbench 4.6.5
+package net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity;// Made with Blockbench 4.6.5
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
@@ -15,7 +15,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 
 public class EttmetalAllomancerEntityModel extends EntityModel<EttmetalAllomancerEntity> {
 // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(MetallicsArts.MOD_ID, "alomancer_entity"), "main");
+public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(MetallicsArts.MOD_ID, "ettmetal_alllomancer_entity"), "main");
 private final ModelPart Head;
 private final ModelPart Body;
 private final ModelPart RightArm;

@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_entities.alomancer_entity;
+package net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;

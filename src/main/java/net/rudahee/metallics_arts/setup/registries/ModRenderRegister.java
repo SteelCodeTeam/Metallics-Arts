@@ -7,8 +7,8 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.custom_entities.alomancer_entity.AlomancerEntityModel;
-import net.rudahee.metallics_arts.modules.custom_entities.alomancer_entity.AlomancerEntityRenderer;
+import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntityModel;
+import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntityRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.example_entity.ExampleEntityModel;
 import net.rudahee.metallics_arts.modules.custom_entities.example_entity.ExampleEntityRenderer;
 
@@ -20,13 +20,13 @@ public class ModRenderRegister {
     public static void register(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntityTypesRegister.BULLET_PROJECTILE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntityTypesRegister.EXAMPLE.get(), ExampleEntityRenderer::new);
-        event.registerEntityRenderer(ModLivingEntityRegister.ALOMANCER.get(), AlomancerEntityRenderer::new);
+        event.registerEntityRenderer(ModLivingEntityRegister.ETTMETAL_ALLOMANCER.get(), EttmetalAllomancerEntityRenderer::new);
     }
 
     @SubscribeEvent
     public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ExampleEntityModel.LAYER_LOCATION, ExampleEntityModel::createBodyLayer);
-        event.registerLayerDefinition(AlomancerEntityModel.LAYER_LOCATION, AlomancerEntityModel::createBodyLayer);
+        event.registerLayerDefinition(EttmetalAllomancerEntityModel.LAYER_LOCATION, EttmetalAllomancerEntityModel::createBodyLayer);
     }
 
 }

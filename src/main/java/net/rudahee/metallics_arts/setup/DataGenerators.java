@@ -19,7 +19,7 @@ import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageP
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBlockTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvider;
 import net.rudahee.metallics_arts.data.providers.MetallicsArtsGuideBookProvider;
-import net.rudahee.metallics_arts.modules.custom_entities.alomancer_entity.AlomancerEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.example_entity.ExampleEntity;
 import net.rudahee.metallics_arts.setup.registries.ModEntityTypesRegister;
 import net.rudahee.metallics_arts.setup.registries.ModLivingEntityRegister;
@@ -79,6 +79,6 @@ public final class DataGenerators {
     @SubscribeEvent
     public static void entityAtributes(EntityAttributeCreationEvent event) {
         event.put(ModEntityTypesRegister.EXAMPLE.get(), ExampleEntity.getExampleAttributes().build());
-        event.put(ModLivingEntityRegister.ALOMANCER.get(), AlomancerEntity.getExampleAttributes().build());
+        event.put(ModLivingEntityRegister.ETTMETAL_ALLOMANCER.get(), EttmetalAllomancerEntity.getExampleAttributes().build());
     }
 }
