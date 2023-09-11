@@ -61,9 +61,10 @@ And we have two mandatory dependencies:
 - Implemented custom shields [v1.6.6]
 - Implemented guns [v1.6.6]
 - Implemented furnace [1.6.6]
-- weapons review [1.6.7]
-- first entities [1.6.7]
-- coins review [1.6.7]
+- Weapons review [1.6.7]
+- First entities [1.6.7]
+- Coins review [1.6.7]
+- Fixed vials recipes [1.6.7]
 
 <br>
 

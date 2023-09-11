@@ -8,10 +8,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.CraftingBookCategory;
-import net.minecraft.world.item.crafting.CustomRecipe;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.Tags;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
@@ -59,14 +56,15 @@ public class LargeVialItemRecipe extends CustomRecipe {
      *
      * @param location of the path.
      */
-    public LargeVialItemRecipe(ResourceLocation location) {
-        super(location, CraftingBookCategory.EQUIPMENT);
+    public LargeVialItemRecipe(ResourceLocation location, CraftingBookCategory category) {
+        super(location, category);
     }
 
     private final HashMap<String, Integer> required = new HashMap<>();
     private final HashMap<String, Integer> available = new HashMap<>();
     private final HashMap<String, Integer> inVial = new HashMap<>();
     private boolean cancel;
+
 
     /**
      Checks if the given crafting inventory matches the required ingredients for a specific crafting operation.
@@ -230,8 +228,6 @@ public class LargeVialItemRecipe extends CustomRecipe {
      * @return ItemStack
      */
 
-
-
     @Override
     public @NotNull ItemStack assemble(@NotNull CraftingContainer inventory, RegistryAccess registryAccess) {
 
@@ -284,29 +280,15 @@ public class LargeVialItemRecipe extends CustomRecipe {
      * @see RecipeSerializer
      * @see LargeVialItemRecipe
      */
-    public static class Serializer implements RecipeSerializer<LargeVialItemRecipe> {
+    public static class Serializer extends SimpleCraftingRecipeSerializer<LargeVialItemRecipe> {
 
         /**
          * Constructor of the class. The only thing that constructor does its pass the Recipe class to superclass.
          */
         public Serializer() {
-            super();
+            super(LargeVialItemRecipe::new);
         }
 
-        @Override
-        public LargeVialItemRecipe fromJson(ResourceLocation p_44103_, JsonObject p_44104_) {
-            return null;
-        }
-
-        @Override
-        public @Nullable LargeVialItemRecipe fromNetwork(ResourceLocation p_44105_, FriendlyByteBuf p_44106_) {
-            return null;
-        }
-
-        @Override
-        public void toNetwork(FriendlyByteBuf p_44101_, LargeVialItemRecipe p_44102_) {
-
-        }
     }
 
 }
