@@ -63,8 +63,11 @@ And we have two mandatory dependencies:
 - Implemented furnace [1.6.6]
 - Weapons review [1.6.7]
 - First entities [1.6.7]
+- Entities with ettmetal[1.6.7]
 - Coins review [1.6.7]
 - Fixed vials recipes [1.6.7]
+- Added furnace recipes [1.6.7]
+- Added loot tables for new blocks [1.6.7]
 
 <br>
 
