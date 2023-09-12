@@ -28,6 +28,8 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
 import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceScreen;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.HemalurgyAltarMenu;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.HemalurgyAltarScreen;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays.MetalsOverlay;
@@ -195,6 +197,8 @@ public class MetallicsArts {
     public void clientInit(final FMLClientSetupEvent e) {
         ModEventsRegister.clientInit(e);
         MenuScreens.register(ModMenuRegister.CRUCIBLE_FURNACE_MENU.get(), CrucibleFurnaceScreen::new);
+        MenuScreens.register(ModMenuRegister.HEMALUGY_ALTAR_MENU.get(), HemalurgyAltarScreen::new);
+
     }
 
 

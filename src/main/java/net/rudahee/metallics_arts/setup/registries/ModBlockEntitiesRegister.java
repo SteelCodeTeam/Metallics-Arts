@@ -7,6 +7,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceBlockEntity;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.HemalurgyAltarBlockEntity;
 
 public class ModBlockEntitiesRegister {
 
@@ -18,6 +19,10 @@ public class ModBlockEntitiesRegister {
                     BlockEntityType.Builder.of(CrucibleFurnaceBlockEntity::new,
                             ModBlocksRegister.CRUCIBLE_FURNACE.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<HemalurgyAltarBlockEntity>> HEMALURGY_ALTAR_ENTITY =
+            BLOCK_ENTITIES.register("hemalurgy_altar_entity", () ->
+                    BlockEntityType.Builder.of(HemalurgyAltarBlockEntity::new,
+                            ModBlocksRegister.HEMALURGY_ALTAR.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

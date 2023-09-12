@@ -50,6 +50,7 @@ public class ModBlocksRegister {
     public static RegistryObject<Block> ETTMETAL_BLOCK = null;
 
     public static RegistryObject<Block> CRUCIBLE_FURNACE;
+    public static RegistryObject<Block> HEMALURGY_ALTAR;
 
     public static void register() {
         AtiumBlocksRegister.register();

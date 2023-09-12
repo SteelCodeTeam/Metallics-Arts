@@ -10,6 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceMenu;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.HemalurgyAltarMenu;
 
 public class ModMenuRegister {
 
@@ -17,8 +18,9 @@ public class ModMenuRegister {
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, MetallicsArts.MOD_ID);
 
     public static final RegistryObject<MenuType<CrucibleFurnaceMenu>> CRUCIBLE_FURNACE_MENU =
-            registerMenuType(CrucibleFurnaceMenu::new, "gem_infusing_station_menu");
-
+            registerMenuType(CrucibleFurnaceMenu::new, "crucible_furnace_menu");
+    public static final RegistryObject<MenuType<HemalurgyAltarMenu>> HEMALUGY_ALTAR_MENU =
+            registerMenuType(HemalurgyAltarMenu::new, "hemalurgy_altar_menu");
 
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory,
                                                                                                   String name) {
