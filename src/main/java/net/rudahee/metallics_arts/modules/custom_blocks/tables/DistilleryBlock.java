@@ -69,7 +69,7 @@ public class DistilleryBlock extends BaseEntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
                                                                   BlockEntityType<T> type) {
-        return createTickerHelper(type, ModBlockEntitiesRegister.HEMALURGY_ALTAR_ENTITY.get(),
+        return createTickerHelper(type, ModBlockEntitiesRegister.DISTILLERY_ENTITY.get(),
                 DistilleryBlockEntity::tick);
     }
 

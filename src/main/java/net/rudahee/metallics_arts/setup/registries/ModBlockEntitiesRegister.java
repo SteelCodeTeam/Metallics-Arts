@@ -7,6 +7,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceBlockEntity;
+import net.rudahee.metallics_arts.modules.custom_block_entities.distillery.DistilleryBlockEntity;
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.HemalurgyAltarBlockEntity;
 import net.rudahee.metallics_arts.modules.custom_block_entities.signs.ModSingBlockEntity;
 
@@ -25,7 +26,10 @@ public class ModBlockEntitiesRegister {
                     BlockEntityType.Builder.of(HemalurgyAltarBlockEntity::new,
                             ModBlocksRegister.HEMALURGY_ALTAR.get()).build(null));
 
-
+    public static final RegistryObject<BlockEntityType<DistilleryBlockEntity>> DISTILLERY_ENTITY =
+            BLOCK_ENTITIES.register("distillery_entity", () ->
+                    BlockEntityType.Builder.of(DistilleryBlockEntity::new,
+                            ModBlocksRegister.DESTILLERY.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<ModSingBlockEntity>> SIGN_BLOCK =
             BLOCK_ENTITIES.register("sign_block_entity", () ->

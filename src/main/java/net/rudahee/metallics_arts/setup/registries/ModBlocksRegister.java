@@ -51,6 +51,7 @@ public class ModBlocksRegister {
 
     public static RegistryObject<Block> CRUCIBLE_FURNACE;
     public static RegistryObject<Block> HEMALURGY_ALTAR;
+    public static RegistryObject<Block> DESTILLERY;
 
     public static RegistryObject<Block> IRON_WALL_SIGN;
     public static RegistryObject<Block> IRON_STANDING_SIGN;

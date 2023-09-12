@@ -14,6 +14,7 @@ import net.rudahee.metallics_arts.modules.custom_blocks.sings.ModStandingSignBlo
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.ModWallSignBlock;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.WoodTypeMetal;
 import net.rudahee.metallics_arts.modules.custom_blocks.tables.CrucibleFurnaceBlock;
+import net.rudahee.metallics_arts.modules.custom_blocks.tables.DistilleryBlock;
 import net.rudahee.metallics_arts.modules.custom_blocks.tables.HemalurgyAltarBlock;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
@@ -112,6 +113,17 @@ public class BasicBlocksRegister {
 
         ModBlocksRegister.HEMALURGY_ALTAR = MetallicsArts.registerBlock("hemalugy_altar", () -> {
             Block block = new HemalurgyAltarBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
+                    .strength(10f, 10f)
+                    .lightLevel(litBlockEmission(16))
+                    .sound(SoundType.BASALT)
+                    .randomTicks()
+                    .requiresCorrectToolForDrops()
+                    .destroyTime(15f));
+            return block;
+        });
+
+        ModBlocksRegister.DESTILLERY = MetallicsArts.registerBlock("distillery", () -> {
+            Block block = new DistilleryBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
                     .strength(10f, 10f)
                     .lightLevel(litBlockEmission(16))
                     .sound(SoundType.BASALT)
