@@ -51,6 +51,7 @@ public class ModCreativeTabsEvents {
 
             event.accept(ModBlocksRegister.CRUCIBLE_FURNACE);
 
+            event.accept(ModItemsRegister.IRON_SIGN);
             event.accept(ModItemsRegister.SMALL_VIAL);
             event.accept(ModItemsRegister.LARGE_VIAL);
 

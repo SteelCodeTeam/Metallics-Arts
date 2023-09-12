@@ -1,12 +1,18 @@
 package net.rudahee.metallics_arts;
 
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -28,14 +34,12 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
 import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceScreen;
-import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.HemalurgyAltarMenu;
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.HemalurgyAltarScreen;
+import net.rudahee.metallics_arts.modules.custom_blocks.sings.WoodTypeMetal;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays.MetalsOverlay;
 import net.rudahee.metallics_arts.modules.villagers.ModVillager;
-import net.rudahee.metallics_arts.setup.DataGenerators;
-import net.rudahee.metallics_arts.setup.tabs.ModCreativeTabs;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.*;
@@ -128,8 +132,7 @@ public class MetallicsArts {
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
-        //book
-        //modEventBus.addListener(DataGenerators::gatherData);
+
     }
 
 
@@ -147,12 +150,16 @@ public class MetallicsArts {
         ModNetwork.registerPackets();
         ModEventsRegister.register(event);
 
+        Sheets.addWoodType(WoodTypeMetal.IRON_TYPE);
+
         // TODO event.enqueueWork(ModVillager::registerPOIs);
 
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         CustomPoses.initializePoses();
+
+
 
         event.enqueueWork(() -> {
 
@@ -199,6 +206,9 @@ public class MetallicsArts {
         MenuScreens.register(ModMenuRegister.CRUCIBLE_FURNACE_MENU.get(), CrucibleFurnaceScreen::new);
         MenuScreens.register(ModMenuRegister.HEMALUGY_ALTAR_MENU.get(), HemalurgyAltarScreen::new);
 
+        WoodType.register(WoodTypeMetal.IRON_TYPE);
+        BlockEntityRenderers.register(ModBlockEntitiesRegister.SIGN_BLOCK.get(), SignRenderer::new);
+
     }
 
 
@@ -209,7 +219,7 @@ public class MetallicsArts {
         return MetallicsArts.ITEMS.register(name, itemSupplier);
     }
 
-    private static <T extends Block> RegistryObject<T> registerBlockNoItem(String name, Supplier<T> blockSupplier) {
+    public static <T extends Block> RegistryObject<T> registerBlockNoItem(String name, Supplier<T> blockSupplier) {
         return BLOCKS.register(name, blockSupplier);
     }
 
@@ -228,5 +238,6 @@ public class MetallicsArts {
         ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().stacksTo(64))));
         return blockRegistered;
     }
+
 
 }

@@ -2,9 +2,11 @@ package net.rudahee.metallics_arts.setup.registries.items;
 
 
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SignItem;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
+import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.util.Arrays;
@@ -85,6 +87,9 @@ public class BasicItemsRegister {
         });
 
         ModItemsRegister.METALLICS_ARTS_BOOK =  MetallicsArts.registerItem("metallics_arts_book",() -> new Item(new Item.Properties()));
+        ModItemsRegister.IRON_SIGN =
+                MetallicsArts.registerItem("iron_sign",() -> new SignItem(new Item.Properties().stacksTo(16),
+                        ModBlocksRegister.IRON_STANDING_SIGN.get(), ModBlocksRegister.IRON_WALL_SIGN.get()));
 
     }
 

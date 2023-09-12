@@ -71,6 +71,7 @@ public class ModItemsRegister {
     public static RegistryObject<Item> SHOTGUN;
     public static RegistryObject<Item> VINDICATOR;
     public static RegistryObject<Item> MISTCLOACK;
+    public static RegistryObject<Item> IRON_SIGN;
 
     public static void register() {
         BasicItemsRegister.register();
@@ -84,6 +85,7 @@ public class ModItemsRegister {
     }
 
     public static void ChargeInList() {
+
         ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.OBSIDIAN_DAGGER.toString(), ModItemsRegister.OBSIDIAN_DAGGER.get());
         ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.SILVER_KNIFE.toString(),ModItemsRegister.SILVER_KNIFE.get());
         ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.KOLOSS_BLADE.toString(),ModItemsRegister.KOLOSS_BLADE.get());

@@ -1,9 +1,7 @@
 package net.rudahee.metallics_arts.setup.registries.blocks;
 
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
@@ -12,6 +10,9 @@ import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.OreGenerationEnum;
 import net.rudahee.metallics_arts.modules.custom_blocks.ettmetal_blocks.EttmetalBlock;
+import net.rudahee.metallics_arts.modules.custom_blocks.sings.ModStandingSignBlock;
+import net.rudahee.metallics_arts.modules.custom_blocks.sings.ModWallSignBlock;
+import net.rudahee.metallics_arts.modules.custom_blocks.sings.WoodTypeMetal;
 import net.rudahee.metallics_arts.modules.custom_blocks.tables.CrucibleFurnaceBlock;
 import net.rudahee.metallics_arts.modules.custom_blocks.tables.HemalurgyAltarBlock;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
@@ -119,8 +120,13 @@ public class BasicBlocksRegister {
                     .destroyTime(15f));
             return block;
         });
-    }
 
+        ModBlocksRegister.IRON_WALL_SIGN = MetallicsArts.registerBlockNoItem("iron_wall_sign", ()
+                -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.ACACIA_WALL_SIGN), WoodTypeMetal.IRON_TYPE));
+
+        ModBlocksRegister.IRON_STANDING_SIGN = MetallicsArts.registerBlockNoItem("iron_standing_sign", ()
+                -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.ACACIA_SIGN), WoodTypeMetal.IRON_TYPE));
+    }
 
 
     private static ToIntFunction<BlockState> litBlockEmission(int value) {
