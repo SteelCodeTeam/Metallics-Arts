@@ -246,6 +246,9 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
         return this.type == type;
     }
 
+    private static int tick; //todo - esto deberia verse, porque al ser static podria causar problemas entre varias mentes de metal
+                            // todo - lo ideal seria usar el tick del server tick, pero no es accesible desde aqui
+
     public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player,IInvestedPlayerData playerCapability, int metalReserve, boolean nicConsume, MetalTagEnum metal) {
         String metalKey = metal.getNameLower() + "_feruchemic_reserve";
 
@@ -253,8 +256,6 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
 
         if (metal == MetalTagEnum.COPPER) {
             return customDischargeCopper(compoundTag, metalReserve, metalKey);
-        /*} else if (metal == MetalTagEnum.ETTMETAL) {
-            return calculateDischargeEttmetal(compoundTag, player, metalKey);*/
         } else if (metal == MetalTagEnum.LERASIUM) {
             return calculateDischargeLerasium(compoundTag, playerCapability, metalKey);
         } else if (metal == MetalTagEnum.MALATIUM) {
@@ -264,9 +265,22 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
         } else if (metal == MetalTagEnum.NICROSIL) {
             return calculateDischargeNicrosil(compoundTag, playerCapability, metalReserve, metalKey, nicConsume);
         }else {
-            if (!playerCapability.isTapping(MetalTagEnum.NICROSIL) || !nicConsume) {
-                compoundTag.putInt(metalKey, metalReserve - 1);
+            if (playerCapability.isBurning(metal)) {
+                if (tick % metal.getCompoundingMultiplier() == 0) {
+                    if (!playerCapability.isTapping(MetalTagEnum.NICROSIL) || !nicConsume) {
+                        compoundTag.putInt(metalKey, metalReserve - 1);
+                    }
+                }
+                tick++;
+                if (tick>=4){
+                    tick = 0;
+                }
+            } else {
+                if (!playerCapability.isTapping(MetalTagEnum.NICROSIL) || !nicConsume) {
+                    compoundTag.putInt(metalKey, metalReserve - 1);
+                }
             }
+
         }
         return compoundTag;
     }
@@ -280,8 +294,6 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
             return customChargeBrass(compoundTag, player, playerCapability, metalReserve, metalKey, nicConsume);
         } else if (metal == MetalTagEnum.COPPER) {
             return customChargeCopper(compoundTag, player, metalReserve, metalKey);
-        /*} else if(metal == MetalTagEnum.ETTMETAL) {
-            return calculateChargeEttmetal(compoundTag, player, metalReserve, metalKey);*/
         } else if (metal == MetalTagEnum.LERASIUM) {
             return calculateChargeLerasium(compoundTag, playerCapability, metalKey);
         } else if (metal == MetalTagEnum.MALATIUM) {

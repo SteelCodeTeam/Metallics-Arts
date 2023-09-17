@@ -42,7 +42,7 @@ public class OnWorldTickEvent {
             OnTickUtils.equipKolossBlade(player, capability);
 
             if (!AllomaticTick.eachTickWithInstantDrain(capability, player, level)) {
-                capability.tickAllomancyBurningMetals(player);
+                capability.tickAllomancyBurningMetals(player, tick);
             }
         }
 

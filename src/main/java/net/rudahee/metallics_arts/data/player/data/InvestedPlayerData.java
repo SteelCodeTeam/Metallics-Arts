@@ -88,17 +88,22 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      * @see ServerPlayer
      */
     @Override
-    public void tickAllomancyBurningMetals(Player player) {
+    public void tickAllomancyBurningMetals(Player player, int tick) {
         boolean readyToSync = false;
 
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-
             if (this.isBurning(metal)) {
                 if (!this.hasAllomanticPower(metal)) {
                     this.setBurning(metal, false);
                 }
                 else {
-                    this.setAllomanticMetalsAmount(metal, this.getAllomanticAmount(metal) - 1);
+                    if (isTapping(metal)) {
+                        if (tick % metal.getCompoundingMultiplier() == 0) {
+                            this.setAllomanticMetalsAmount(metal, this.getAllomanticAmount(metal) - 1);
+                        }
+                    } else {
+                        this.setAllomanticMetalsAmount(metal, this.getAllomanticAmount(metal) - 1);
+                    }
                     if (this.getAllomanticAmount(metal) <= 0) {
                         this.setBurning(metal, false);
                     }

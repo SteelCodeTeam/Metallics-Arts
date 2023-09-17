@@ -7,11 +7,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 public class AllomancerEvents {
 
     public static void OnEttmetalAllomancerHit(LivingHurtEvent event, LivingEntity source, LivingEntity target) {
-
-
         target.level.explode(target, target.getX(), target.getY(), target.getZ(), (float)130, Level.ExplosionInteraction.MOB);
-
-
     }
 
 }

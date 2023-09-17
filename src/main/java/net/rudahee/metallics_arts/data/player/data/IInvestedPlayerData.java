@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @see InvestedPlayerData
  */
 public interface IInvestedPlayerData {
-    void tickAllomancyBurningMetals(Player player);
+    void tickAllomancyBurningMetals(Player player, int tick);
 
     void setEttmetalState(EttmetalState state);
 

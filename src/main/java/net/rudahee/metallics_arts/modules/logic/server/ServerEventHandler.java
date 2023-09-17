@@ -9,12 +9,14 @@ import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.BlockEventData;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -192,6 +194,17 @@ public class ServerEventHandler {
             AllomancerEvents.OnEttmetalAllomancerHit(event, (LivingEntity) event.getSource().getDirectEntity(), event.getEntity());
         }
 
+    }
+
+
+    /**
+     * This method detects hitting an element with left click.
+     *
+     * @param event The PlayerInteractEvent.LeftClickBlock instance that represents the block hit event.
+     */
+    @SubscribeEvent
+    public static void onAttackBlock(final PlayerInteractEvent.LeftClickBlock event) {
+        OnAttackBlockEvent.hitBlock(event.getEntity(), event.getPos());
     }
 
     /**
