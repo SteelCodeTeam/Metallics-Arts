@@ -18,7 +18,9 @@ public enum ErrorTypes implements Serializable {
 
     PLAYER_ERROR("1000", "Player is null or not found.", SeverityType.WARN),
     PLAYER_CAPABILITY_ERROR("1001", "Capability not found for a Player or ServerPlayer.", SeverityType.ERROR),
-    PLAYER_DEAD_ERROR("1002", "Player is dead error.", SeverityType.WARN);
+    PLAYER_DEAD_ERROR("1002", "Player is dead error.", SeverityType.WARN),
+
+    PLAYER_DATA_SPIKES_OVERLOAD("2001", "Player has more spikes in one part of the body of those allowed.", SeverityType.WARN);
 
     private final String code;
     private final String message;

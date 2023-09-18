@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.player.data.model.PlayerEntity;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
@@ -34,49 +35,27 @@ import java.util.HashMap;
  */
 public class InvestedPlayerData implements IInvestedPlayerData {
 
-    private HashMap<MetalTagEnum, Boolean> allomanticPowers;
-    private HashMap<MetalTagEnum, Boolean> feruchemicPowers;
-    private final HashMap<MetalTagEnum, Integer> allomanticReserve;
-    private final HashMap<MetalTagEnum, Boolean> burningMetals;
-    private final HashMap<MetalTagEnum, Boolean> tappingMetals;
-    private final HashMap<MetalTagEnum, Boolean> storingMetals;
-    private Boolean invested;
-    private Boolean mistborn;
-    private Boolean fullFeruchemist;
-    private Boolean fullInvested;
-    private ArrayList<Boolean> metalMindEquipped = new ArrayList<>(10);
-    private Boolean enhanced;
-    private final ArrayList<MetalTagEnum> metalsEnhanced = new ArrayList<>();
-    private Boolean modifiedHealth;
-
-    private EttmetalState ettmetalState;
-
+    PlayerEntity player;
     /**
      * Default constructor.These will be the initial values that a player will have in their tags.
      *
      * @see Tag
      */
     public InvestedPlayerData() {
+        player = new PlayerEntity();
 
-        this.invested = false;
-        this.mistborn = false;
-        this.fullFeruchemist = false;
-        this.fullInvested = false;
-        this.enhanced = false;
-        this.modifiedHealth = false;
+        player.setEnhanced(false);
+        player.setModifiedHealth(false);
 
-        this.allomanticPowers = new CapabilityUtils<Boolean>().fillMetalTagMap(false);
-        this.feruchemicPowers = new CapabilityUtils<Boolean>().fillMetalTagMap(false);
+        player.setBurningMetals(new CapabilityUtils<Boolean>().fillMetalTagMap(false));
+        player.setTappingMetals(new CapabilityUtils<Boolean>().fillMetalTagMap(false));
+        player.setStoringMetals(new CapabilityUtils<Boolean>().fillMetalTagMap(false));
 
-        this.tappingMetals = new CapabilityUtils<Boolean>().fillMetalTagMap(false);
-        this.storingMetals = new CapabilityUtils<Boolean>().fillMetalTagMap(false);
-        this.burningMetals = new CapabilityUtils<Boolean>().fillMetalTagMap(false);
+        player.setAllomanticReserve(new CapabilityUtils<Integer>().fillMetalTagMap(0));
 
-        this.allomanticReserve = new CapabilityUtils<Integer>().fillMetalTagMap(0);
+        player.setMetalMindEquipped(new CapabilityUtils<Boolean>().fillListWithDefaultValue(false, 10));
 
-        this.metalMindEquipped = new CapabilityUtils<Boolean>().fillListWithDefaultValue(false, 10);
-
-        this.ettmetalState = EttmetalState.NOTHING;
+        this.player.setEttmetalState(EttmetalState.NOTHING);
     }
 
     /**
@@ -124,7 +103,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean isBurningAnything() {
-        return this.burningMetals.values().stream().anyMatch(isBurning -> true);
+        return this.player.getBurningMetals().values().stream().anyMatch(isBurning -> true);
     }
 
     /**
@@ -134,7 +113,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean isTappingAnything() {
-        return this.tappingMetals.values().stream().anyMatch(isTapping -> true);
+        return this.player.getTappingMetals().values().stream().anyMatch(isTapping -> true);
     }
 
     /**
@@ -144,7 +123,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean isStoringAnything() {
-        return this.storingMetals.values().stream().anyMatch(isStoring -> true);
+        return this.player.getStoringMetals().values().stream().anyMatch(isStoring -> true);
     }
 
     /**
@@ -152,7 +131,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void clearMetalsEnhanced() {
-        this.metalsEnhanced.clear();
+        this.player.getMetalsEnhanced().clear();
     }
 
     /**
@@ -162,7 +141,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void addMetalsEnhanced(MetalTagEnum metal) {
-        this.metalsEnhanced.add(metal);
+        this.player.getMetalsEnhanced().add(metal);
     }
 
     /**
@@ -172,7 +151,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public ArrayList<MetalTagEnum> getMetalsEnhanced() {
-        return this.metalsEnhanced;
+        return this.player.getMetalsEnhanced();
     }
 
     /**
@@ -184,7 +163,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean containsMetalsEnhanced(MetalTagEnum metal) {
-        return this.metalsEnhanced.contains(metal);
+        return this.player.getMetalsEnhanced().contains(metal);
     }
 
     /**
@@ -196,7 +175,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean hasAllomanticPower(MetalTagEnum metal) {
-        return this.allomanticPowers.get(metal);
+        return this.player.hasAllomanticMetal();
     }
 
     /**
@@ -208,7 +187,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean hasFeruchemicPower(MetalTagEnum metal) {
-        return this.feruchemicPowers.get(metal);
+        return this.player.hasFeruchemicMetal();
     }
 
     /**
@@ -218,7 +197,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public int getAllomanticPowerCount() {
-        return (int) this.allomanticPowers.values().stream().filter(power -> power).count();
+        return (int) this.player.getCountAllomanticMetal();
     }
 
     /**
@@ -228,7 +207,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public int getFeruchemicPowerCount() {
-        return (int) this.feruchemicPowers.values().stream().filter(power -> power).count();
+        return (int) this.player.getCountFeruchemicMetal();
     }
 
     /**
@@ -303,7 +282,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean hasMetalMindEquiped(int group) {
-        return this.metalMindEquipped.get(group);
+        return this.player.getMetalMindEquipped().get(group);
     }
 
     /**
@@ -314,7 +293,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void setMetalMindEquiped(int group, boolean value) {
-        this.metalMindEquipped.set(group, value);
+        this.player.getMetalMindEquipped().set(group, value);
     }
 
     /**
@@ -324,7 +303,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public ArrayList<Boolean> getMetalMindEquipedList() {
-        return this.metalMindEquipped;
+        return this.player.getMetalMindEquipped();
     }
 
     /**
@@ -334,7 +313,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void setMetalMindEquipedList(ArrayList<Boolean> list) {
-        this.metalMindEquipped = list;
+        this.player.setMetalMindEquipped(list);
     }
 
     /**
@@ -344,7 +323,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean getEnhanced() {
-        return this.enhanced;
+        return this.player.getEnhanced();
     }
 
     /**
@@ -354,7 +333,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void setEnhanced(boolean isEnhanced) {
-        this.enhanced = isEnhanced;
+        this.player.setEnhanced(isEnhanced);
     }
 
     /**
@@ -364,7 +343,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean hasModifiedHealth() {
-        return this.modifiedHealth;
+        return this.player.getModifiedHealth();
     }
 
     /**
@@ -374,7 +353,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void setModifiedHealth(boolean modifiedHealth) {
-        this.modifiedHealth = modifiedHealth;
+        this.setModifiedHealth(modifiedHealth);
     }
 
     /**
@@ -384,7 +363,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void setMistborn(boolean mistborn) {
-        this.mistborn = mistborn;
+        this.setMistborn(mistborn);
     }
 
     /**
@@ -394,7 +373,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void setFullFeruchemist(boolean feruchemist) {
-        this.fullFeruchemist = feruchemist;
+        this.setFullFeruchemist(feruchemist);
     }
 
     /**
@@ -404,7 +383,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void setFullInvested(boolean invested) {
-        this.fullInvested = invested;
+        this.setFullInvested(invested);
     }
 
     /**
@@ -414,7 +393,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean isMistborn() {
-        return this.mistborn;
+        return true; //TODO
     }
 
     /**
@@ -424,7 +403,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean isFullFeruchemist() {
-        return this.fullFeruchemist;
+        return true; //TODO
     }
 
     /**
@@ -434,7 +413,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean isFullInvested() {
-        return this.fullInvested;
+        return true; //TODO
     }
 
     /**
@@ -444,7 +423,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean isInvested() {
-        return this.invested;
+        return true; //TODO
     }
 
     /**
@@ -454,7 +433,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void setInvested(boolean invested) {
-        this.invested = invested;
+        this.setInvested(invested);
     }
 
     /**
@@ -462,7 +441,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void setUninvested() {
-        this.invested = false;
+        this.setInvested(false);
     }
 
     /**

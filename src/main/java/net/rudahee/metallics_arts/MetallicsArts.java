@@ -65,21 +65,6 @@ public class MetallicsArts {
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
 
-    // creative tab
-    /*public static CreativeModeTab MA_TAB = new CreativeModeTab(MOD_ID) {
-        @Override
-        public @NotNull ItemStack makeIcon() {
-            return new ItemStack(Items.GOLD_INGOT);
-        }
-    };
-
-    public static CreativeModeTab MA_TAB_DECORATION = new CreativeModeTab(-1, MOD_ID + ".decorations") {
-        @Override
-        public @NotNull ItemStack makeIcon() {
-            return new ItemStack(Items.GOLD_BLOCK);
-        }
-    };*/
-
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID);
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
