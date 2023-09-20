@@ -11,6 +11,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.rudahee.metallics_arts.MetallicsArts;
 
 public class EttmetalAllomancerEntityModel extends EntityModel<EttmetalAllomancerEntity> {
@@ -61,6 +62,12 @@ public EttmetalAllomancerEntityModel(ModelPart root) {
 
 @Override
 public void setupAnim(EttmetalAllomancerEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+                this.Head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
+                this.Head.xRot = headPitch * Mth.DEG_TO_RAD;
+                this.LeftLeg.xRot = Mth.cos(limbSwing*0.662F)* 1.4F * limbSwingAmount;
+                this.RightLeg.xRot = Mth.cos(limbSwing*0.662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+                this.LeftArm.xRot = Mth.cos(limbSwing*0.662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+                this.RightArm.xRot =Mth.cos(limbSwing*0.662F)* 1.4F * limbSwingAmount;
 
         }
 

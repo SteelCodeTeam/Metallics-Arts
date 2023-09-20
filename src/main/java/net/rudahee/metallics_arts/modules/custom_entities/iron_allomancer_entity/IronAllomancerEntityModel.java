@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.ettmetal_allomancer_entity;// Made with Blockbench 4.6.5
+package net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity;// Made with Blockbench 4.6.5
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
@@ -11,9 +11,10 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.rudahee.metallics_arts.MetallicsArts;
 
-public class EttmetalAllomancerEntityModel extends EntityModel<IronAllomancerEntity> {
+public class IronAllomancerEntityModel extends EntityModel<IronAllomancerEntity> {
 // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(MetallicsArts.MOD_ID, "ettmetal_alllomancer_entity"), "main");
 private final ModelPart Head;
@@ -23,7 +24,7 @@ private final ModelPart LeftArm;
 private final ModelPart RightLeg;
 private final ModelPart LeftLeg;
 
-public EttmetalAllomancerEntityModel(ModelPart root) {
+public IronAllomancerEntityModel(ModelPart root) {
         this.Head = root.getChild("head");
         this.Body = root.getChild("body");
         this.RightArm = root.getChild("right_arm");
@@ -61,7 +62,12 @@ public EttmetalAllomancerEntityModel(ModelPart root) {
 
 @Override
 public void setupAnim(IronAllomancerEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
+                this.Head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
+                this.Head.xRot = headPitch * Mth.DEG_TO_RAD;
+                this.LeftLeg.xRot = Mth.cos(limbSwing*0.662F)* 1.4F * limbSwingAmount;
+                this.RightLeg.xRot = Mth.cos(limbSwing*0.662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+                this.LeftArm.xRot = Mth.cos(limbSwing*0.662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+                this.RightArm.xRot =Mth.cos(limbSwing*0.662F)* 1.4F * limbSwingAmount;
         }
 
 @Override

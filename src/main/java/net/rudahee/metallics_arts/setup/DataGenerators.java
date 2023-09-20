@@ -21,6 +21,8 @@ import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvi
 import net.rudahee.metallics_arts.data.providers.MetallicsArtsGuideBookProvider;
 import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.example_entity.ExampleEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.steel_allomancer_entity.SteelAllomancerEntity;
 import net.rudahee.metallics_arts.setup.registries.ModEntityTypesRegister;
 import net.rudahee.metallics_arts.setup.registries.ModLivingEntityRegister;
 
@@ -76,9 +78,13 @@ public final class DataGenerators {
         //gen.addProvider(event.includeServer(), new ModBeaconTagProvider(packOutput, lookupProvider, existingFileHelper));
     }
 
+
+
     @SubscribeEvent
     public static void entityAtributes(EntityAttributeCreationEvent event) {
         event.put(ModEntityTypesRegister.EXAMPLE.get(), ExampleEntity.getExampleAttributes().build());
         event.put(ModLivingEntityRegister.ETTMETAL_ALLOMANCER.get(), EttmetalAllomancerEntity.getExampleAttributes().build());
+        event.put(ModLivingEntityRegister.IRON_ALLOMANCER.get(), IronAllomancerEntity.getExampleAttributes().build());
+        event.put(ModLivingEntityRegister.STEEL_ALLOMANCER.get(), SteelAllomancerEntity.getExampleAttributes().build());
     }
 }

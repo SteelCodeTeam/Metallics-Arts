@@ -11,6 +11,10 @@ import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_en
 import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntityRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.example_entity.ExampleEntityModel;
 import net.rudahee.metallics_arts.modules.custom_entities.example_entity.ExampleEntityRenderer;
+import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntityModel;
+import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntityRenderer;
+import net.rudahee.metallics_arts.modules.custom_entities.steel_allomancer_entity.SteelAllomancerEntityModel;
+import net.rudahee.metallics_arts.modules.custom_entities.steel_allomancer_entity.SteelAllomancerEntityRenderer;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -21,12 +25,17 @@ public class ModRenderRegister {
         event.registerEntityRenderer(ModEntityTypesRegister.BULLET_PROJECTILE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntityTypesRegister.EXAMPLE.get(), ExampleEntityRenderer::new);
         event.registerEntityRenderer(ModLivingEntityRegister.ETTMETAL_ALLOMANCER.get(), EttmetalAllomancerEntityRenderer::new);
+        event.registerEntityRenderer(ModLivingEntityRegister.IRON_ALLOMANCER.get(), IronAllomancerEntityRenderer::new);
+        event.registerEntityRenderer(ModLivingEntityRegister.STEEL_ALLOMANCER.get(), SteelAllomancerEntityRenderer::new);
+
     }
 
     @SubscribeEvent
     public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ExampleEntityModel.LAYER_LOCATION, ExampleEntityModel::createBodyLayer);
         event.registerLayerDefinition(EttmetalAllomancerEntityModel.LAYER_LOCATION, EttmetalAllomancerEntityModel::createBodyLayer);
+        event.registerLayerDefinition(IronAllomancerEntityModel.LAYER_LOCATION, IronAllomancerEntityModel::createBodyLayer);
+        event.registerLayerDefinition(SteelAllomancerEntityModel.LAYER_LOCATION, SteelAllomancerEntityModel::createBodyLayer);
     }
 
 }

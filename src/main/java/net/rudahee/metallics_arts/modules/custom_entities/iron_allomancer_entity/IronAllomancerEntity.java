@@ -1,6 +1,9 @@
-package net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.ettmetal_allomancer_entity;
+package net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -11,6 +14,8 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.rudahee.metallics_arts.modules.logic.server.ServerEventHandler;
+import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;
 
 public class IronAllomancerEntity extends Monster {
     public IronAllomancerEntity(EntityType<? extends Monster> type, Level level) {
@@ -27,11 +32,32 @@ public class IronAllomancerEntity extends Monster {
 
     }
 
+    @Override
+    public void tick() {
+
+        if(getTarget() instanceof ServerPlayer && distance((ServerPlayer) getTarget())<10 ){
+            IronAndSteelHelpers.move(-3,getTarget(),this.blockPosition());
+        }
+        super.tick();
+    }
+
+    private double distance(ServerPlayer player){
+
+        BlockPos playerPos= player.blockPosition();
+        BlockPos entityPos= this.blockPosition();
+
+
+       return Math.sqrt(Math.pow(playerPos.getX()-entityPos.getX(),2)+
+               Math.pow(playerPos.getY()-entityPos.getY(),2)+
+               Math.pow(playerPos.getZ()-entityPos.getZ(),2));
+
+
+    }
     public static AttributeSupplier.Builder getExampleAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 50.0D)
                 .add(Attributes.MOVEMENT_SPEED, (double)0.30F)
-                .add(Attributes.ATTACK_DAMAGE, 10.0D)
+                .add(Attributes.ATTACK_DAMAGE, 2.0D)
                 .add(Attributes.ARMOR, .0D)
                 .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE)
                 .add(Attributes.MAX_HEALTH, 100)
