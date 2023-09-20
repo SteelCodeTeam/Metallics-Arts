@@ -4,14 +4,23 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.data.enums.implementations.BodyPartEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.TypeOfSpikeEnum;
+import net.rudahee.metallics_arts.data.player.data.model.BodyPartEntity;
 import net.rudahee.metallics_arts.data.player.data.model.PlayerEntity;
+import net.rudahee.metallics_arts.data.player.data.model.SpikeEntity;
+import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerDataException;
+import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * This class control all data from invested player in the game. Use IInvestedPlayerData interface
@@ -94,6 +103,16 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         if (readyToSync) {
             ModNetwork.syncInvestedDataPacket(this, player);
         }
+    }
+
+    @Override
+    public boolean hasOriginalMetal() {
+        return this.player.getOriginalMetals().size() > 0;
+    }
+
+    @Override
+    public void setOriginalsMetal(List<SpikeEntity> metals) {
+        this.player.setOriginalMetals(metals);
     }
 
     /**
@@ -451,8 +470,43 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void addAllomanticPower(MetalTagEnum metal) {
-        this.allomanticPowers.put(metal, true);
-        this.invested = true;
+        try {
+            Optional<BodyPartEntity> partEntity = Arrays.asList(player.getLegs(), player.getHead(), player.getBack(), player.getArms(), player.getChest())
+                    .stream().filter(bodyPart -> bodyPart.getActualSpikes() < bodyPart.getMaxSpikes()).findFirst();
+
+            if (partEntity.isPresent()) {
+                partEntity.get().addSpike(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
+            }
+        } catch (PlayerDataException ex) {
+            LoggerUtils.printLogError(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void addAllomanticPower(MetalTagEnum metal, TypeOfSpikeEnum spike, BodyPartEnum part) {
+        try {
+            if (part.equals(BodyPartEnum.HEAD)) {
+                this.player.getHead().addSpike(new SpikeEntity(metal, spike));
+            } else if (part.equals(BodyPartEnum.CHEST)) {
+                this.player.getChest().addSpike(new SpikeEntity(metal, spike));
+            } else if (part.equals(BodyPartEnum.ARMS)) {
+                this.player.getArms().addSpike(new SpikeEntity(metal, spike));
+            } else if (part.equals(BodyPartEnum.BACK)) {
+                this.player.getBack().addSpike(new SpikeEntity(metal, spike));
+            } else if (part.equals(BodyPartEnum.LEGS)) {
+                this.player.getLegs().addSpike(new SpikeEntity(metal, spike));
+            } else {
+                Optional<BodyPartEntity> partEntity = Stream.of(player.getLegs(), player.getHead(), player.getBack(), player.getArms(), player.getChest())
+                        .filter(bodyPart -> bodyPart.getActualSpikes() < bodyPart.getMaxSpikes()).findFirst();
+
+                if (partEntity.isPresent()) {
+                    partEntity.get().addSpike(new SpikeEntity(metal, spike));
+                }
+            }
+        } catch (PlayerDataException ex) {
+            LoggerUtils.printLogError(ex.getMessage());
+        }
+
     }
 
     /**
@@ -462,8 +516,42 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void addFeruchemicPower(MetalTagEnum metal) {
-        this.feruchemicPowers.put(metal, true);
-        this.invested = true;
+        try {
+            Optional<BodyPartEntity> partEntity = Stream.of(player.getLegs(), player.getHead(), player.getBack(), player.getArms(), player.getChest())
+                    .filter(bodyPart -> bodyPart.getActualSpikes() < bodyPart.getMaxSpikes()).findFirst();
+
+            if (partEntity.isPresent()) {
+                partEntity.get().addSpike(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC));
+            }
+        } catch (PlayerDataException ex) {
+            LoggerUtils.printLogError(ex.getMessage());
+        }
+    }
+
+    public void addFeruchemicPower(MetalTagEnum metal, TypeOfSpikeEnum spike, BodyPartEnum part) {
+        try {
+            if (part.equals(BodyPartEnum.HEAD)) {
+                this.player.getHead().addSpike(new SpikeEntity(metal, spike));
+            } else if (part.equals(BodyPartEnum.CHEST)) {
+                this.player.getChest().addSpike(new SpikeEntity(metal, spike));
+            } else if (part.equals(BodyPartEnum.ARMS)) {
+                this.player.getArms().addSpike(new SpikeEntity(metal, spike));
+            } else if (part.equals(BodyPartEnum.BACK)) {
+                this.player.getBack().addSpike(new SpikeEntity(metal, spike));
+            } else if (part.equals(BodyPartEnum.LEGS)) {
+                this.player.getLegs().addSpike(new SpikeEntity(metal, spike));
+            } else {
+                Optional<BodyPartEntity> partEntity = Stream.of(player.getLegs(), player.getHead(), player.getBack(), player.getArms(), player.getChest())
+                        .filter(bodyPart -> bodyPart.getActualSpikes() < bodyPart.getMaxSpikes()).findFirst();
+
+                if (partEntity.isPresent()) {
+                    partEntity.get().addSpike(new SpikeEntity(metal, spike));
+                }
+            }
+        } catch (PlayerDataException ex) {
+            LoggerUtils.printLogError(ex.getMessage());
+        }
+
     }
 
     /**
@@ -471,9 +559,14 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void addAllAllomantic() {
-        this.allomanticPowers = new CapabilityUtils<Boolean>().fillMetalTagMap(true);
-        this.mistborn = true;
-        this.invested = true;
+
+        List<MetalTagEnum> metals = Arrays.asList(MetalTagEnum.values());
+
+        List<MetalTagEnum> filteredMetals = metals.stream().filter(metal -> !this.getAllomanticPowers().contains(metal)).toList();
+
+        for (MetalTagEnum metal: filteredMetals) {
+            addAllomanticPower(metal);
+        }
     }
 
     /**
@@ -481,9 +574,13 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void addAllFeruchemic() {
-        this.feruchemicPowers = new CapabilityUtils<Boolean>().fillMetalTagMap(true);
-        this.fullFeruchemist = true;
-        this.invested = true;
+        List<MetalTagEnum> metals = Arrays.asList(MetalTagEnum.values());
+
+        List<MetalTagEnum> filteredMetals = metals.stream().filter(metal -> !this.getFeruchemicPowers().contains(metal)).toList();
+
+        for (MetalTagEnum metal: filteredMetals) {
+            addFeruchemicPower(metal);
+        }
     }
 
     /**
@@ -493,7 +590,16 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void removeAllomanticPower(MetalTagEnum metal) {
-        this.allomanticPowers.put(metal, false);
+        try {
+            Optional<BodyPartEntity> partEntity = Stream.of(player.getLegs(), player.getHead(), player.getBack(), player.getArms(), player.getChest())
+                    .filter(bodyPart -> bodyPart.getActualSpikes() < bodyPart.getMaxSpikes()).findFirst();
+
+            if (partEntity.isPresent()) {
+                partEntity.get().removeSpike(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
+            }
+        } catch (PlayerDataException ex) {
+            LoggerUtils.printLogError(ex.getMessage());
+        }
     }
 
     /**
@@ -501,8 +607,10 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void removeAllAllomanticPower() {
-        this.allomanticPowers = new CapabilityUtils<Boolean>().fillMetalTagMap(false);
-        this.mistborn = false;
+        List<MetalTagEnum> metals = getAllomanticPowers();
+        for (MetalTagEnum metal: metals) {
+            this.removeAllomanticPower(metal);
+        }
     }
 
     /**
@@ -512,7 +620,16 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void removeFeruchemicPower(MetalTagEnum metal) {
-        this.feruchemicPowers.put(metal, false);
+        try {
+            Optional<BodyPartEntity> partEntity = Stream.of(player.getLegs(), player.getHead(), player.getBack(), player.getArms(), player.getChest())
+                    .filter(bodyPart -> bodyPart.getActualSpikes() < bodyPart.getMaxSpikes()).findFirst();
+
+            if (partEntity.isPresent()) {
+                partEntity.get().removeSpike(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC));
+            }
+        } catch (PlayerDataException ex) {
+            LoggerUtils.printLogError(ex.getMessage());
+        }
     }
 
     /**
@@ -520,8 +637,10 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void removeAllFeruchemicPower() {
-        this.feruchemicPowers = new CapabilityUtils<Boolean>().fillMetalTagMap(false);
-        this.fullFeruchemist = false;
+        List<MetalTagEnum> metals = getFeruchemicPowers();
+        for (MetalTagEnum metal: metals) {
+            this.removeFeruchemicPower(metal);
+        }
     }
 
     /**
@@ -532,7 +651,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean isTapping(MetalTagEnum metal) {
-        return this.tappingMetals.get(metal);
+        return this.player.getTappingMetals().get(metal);
     }
 
     /**
@@ -543,7 +662,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean isStoring(MetalTagEnum metal) {
-        return this.storingMetals.get(metal);
+        return this.player.getStoringMetals().get(metal);
     }
 
     /**
@@ -554,7 +673,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean isBurning(MetalTagEnum metal) {
-        return this.burningMetals.get(metal);
+        return this.player.getBurningMetals().get(metal);
     }
 
     /**
@@ -606,7 +725,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void setTapping(MetalTagEnum metal, boolean value) {
-        this.tappingMetals.put(metal, value);
+        this.player.getTappingMetals().put(metal, value);
     }
 
     /**
@@ -617,7 +736,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void setStoring(MetalTagEnum metal, boolean value) {
-        this.storingMetals.put(metal, value);
+        this.player.getStoringMetals().put(metal, value);
     }
 
     /**
@@ -628,7 +747,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void setBurning(MetalTagEnum metal, boolean value) {
-        this.burningMetals.put(metal, value);
+        this.player.getBurningMetals().put(metal, value);
     }
 
     /**
@@ -644,7 +763,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
             qty = metal.getMaxAllomanticTicksStorage();
         }
 
-        this.allomanticReserve.put(metal, qty);
+        this.player.getAllomanticReserve().put(metal, qty);
     }
 
     /**
@@ -657,13 +776,13 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean addAllomanticMetalAmount(MetalTagEnum metal, int qty) {
-        int value = this.allomanticReserve.get(metal);
+        int value = this.player.getAllomanticReserve().get(metal);
 
         if (metal.getMaxAllomanticTicksStorage() < value + qty) {
-            this.allomanticReserve.put(metal, metal.getMaxAllomanticTicksStorage());
+            this.player.getAllomanticReserve().put(metal, metal.getMaxAllomanticTicksStorage());
             return false;
         } else {
-            this.allomanticReserve.put(metal, value + qty);
+            this.player.getAllomanticReserve().put(metal, value + qty);
             return true;
         }
     }
@@ -678,12 +797,12 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean substractAllomanticMetalAmount(MetalTagEnum metal, int qty) {
-        int value = this.allomanticReserve.get(metal);
+        int value = this.player.getAllomanticReserve().get(metal);
         if (value - qty < 0) {
-            this.allomanticReserve.put(metal, 0);
+            this.player.getAllomanticReserve().put(metal, 0);
             return false;
         } else {
-            this.allomanticReserve.put(metal, value - qty);
+            this.player.getAllomanticReserve().put(metal, value - qty);
             return true;
         }
     }
@@ -697,17 +816,17 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public int getAllomanticAmount(MetalTagEnum metal) {
-        return this.allomanticReserve.get(metal);
+        return this.player.getAllomanticReserve().get(metal);
     }
 
     @Override
     public void setEttmetalState(EttmetalState state) {
-        this.ettmetalState = state;
+        this.player.setEttmetalState(state);
     }
 
     @Override
     public EttmetalState getEttmetalState() {
-        return this.ettmetalState;
+        return this.player.getEttmetalState();
     }
 
     @Override
@@ -732,10 +851,6 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         CompoundTag burningMetals = new CompoundTag();
         CompoundTag tappingMetals = new CompoundTag();
         CompoundTag storingMetals = new CompoundTag();
-        CompoundTag deathPos = new CompoundTag();
-        CompoundTag spawnPos = new CompoundTag();
-        CompoundTag spawnDimension = new CompoundTag();
-        CompoundTag deathDimension = new CompoundTag();
         CompoundTag metalMindEquipped = new CompoundTag();
 
 
@@ -750,7 +865,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
             storingMetals.putBoolean(metal.getNameLower(), this.isStoring(metal));
         }
 
-        modified_health.putBoolean("modified_health", this.modifiedHealth);
+        modified_health.putBoolean("modified_health", this.hasModifiedHealth());
 
         investedData.put("allomantic_powers", allomanticPowers);
         investedData.put("feruchemic_powers", feruchemicPowers);

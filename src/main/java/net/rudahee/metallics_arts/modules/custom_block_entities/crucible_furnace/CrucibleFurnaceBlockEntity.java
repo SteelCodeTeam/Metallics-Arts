@@ -203,6 +203,8 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
+
+
     public static void tick(Level level, BlockPos pos, BlockState state, CrucibleFurnaceBlockEntity entity) {
         if (!level.isClientSide()) {
             if (entity.itemHandler.getStackInSlot(0).is(Items.LAVA_BUCKET)) {

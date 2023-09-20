@@ -38,6 +38,17 @@ public class PlayerEntity {
         this.back = new BodyPartEntity(BodyPartEnum.BACK);
         this.arms = new BodyPartEntity(BodyPartEnum.ARMS);
         this.legs = new BodyPartEntity(BodyPartEnum.LEGS);
+        this.originalMetals = new ArrayList<>();
+        this.allomanticReserve = new HashMap<>();
+        this.burningMetals = new HashMap<>();
+        this.tappingMetals = new HashMap<>();
+        this.storingMetals = new HashMap<>();
+        this.metalMindEquipped = new ArrayList<>();
+        this.enhanced = false;
+        this.metalsEnhanced = new ArrayList<>();
+        this.modifiedHealth = false;
+        this.ettmetalState = EttmetalState.NOTHING;
+
     }
 
     public PlayerEntity(List<SpikeEntity> originalMetals,

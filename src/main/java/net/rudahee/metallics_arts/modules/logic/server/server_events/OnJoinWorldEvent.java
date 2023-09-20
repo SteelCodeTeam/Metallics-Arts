@@ -3,11 +3,14 @@ package net.rudahee.metallics_arts.modules.logic.server.server_events;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.TypeOfSpikeEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
+import net.rudahee.metallics_arts.data.player.data.model.SpikeEntity;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -40,19 +43,21 @@ public class OnJoinWorldEvent {
 
             Collections.shuffle(typeOfPower);
 
+            List<SpikeEntity> spikes = new ArrayList<>();
+
             if (typeOfPower.get(0) == 0) {
                 Collections.shuffle(metals);
-                capability.addAllomanticPower(metals.get(0));
+                spikes.add(new SpikeEntity(metals.get(0), TypeOfSpikeEnum.ALLOMANTIC));
             } else if (typeOfPower.get(0) == 1) {
                 Collections.shuffle(metals);
-                capability.addFeruchemicPower(metals.get(0));
+                spikes.add(new SpikeEntity(metals.get(0), TypeOfSpikeEnum.FERUCHEMIC));
             } else {
                 Collections.shuffle(metals);
-                capability.addAllomanticPower(metals.get(0));
+                spikes.add(new SpikeEntity(metals.get(0), TypeOfSpikeEnum.ALLOMANTIC));
                 Collections.shuffle(metals);
-                capability.addFeruchemicPower(metals.get(0));
+                spikes.add(new SpikeEntity(metals.get(0), TypeOfSpikeEnum.FERUCHEMIC));
             }
-            capability.setInvested(true);
+            capability.setOriginalsMetal(spikes);
         }
         //Sync cap to client
         ModNetwork.syncInvestedDataPacket(player);

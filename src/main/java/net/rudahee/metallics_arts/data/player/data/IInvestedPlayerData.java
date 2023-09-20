@@ -2,10 +2,14 @@ package net.rudahee.metallics_arts.data.player.data;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
+import net.rudahee.metallics_arts.data.enums.implementations.BodyPartEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.TypeOfSpikeEnum;
+import net.rudahee.metallics_arts.data.player.data.model.SpikeEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This interface is used to define the required methods that must exist in the InvestedPlayerData class.
@@ -21,6 +25,10 @@ public interface IInvestedPlayerData {
     void setEttmetalState(EttmetalState state);
 
     EttmetalState getEttmetalState();
+
+    boolean hasOriginalMetal();
+
+    void setOriginalsMetal(List<SpikeEntity> metals);
 
     boolean isBurningAnything();
 
@@ -89,6 +97,8 @@ public interface IInvestedPlayerData {
     void setUninvested();
 
     void addAllomanticPower(MetalTagEnum metal);
+
+    void addAllomanticPower(MetalTagEnum metal, TypeOfSpikeEnum spike, BodyPartEnum part);
 
     void addFeruchemicPower(MetalTagEnum metal);
 

@@ -17,6 +17,7 @@ public class CrucibleFurnaceMenu extends AbstractContainerMenu {
     private final Level level;
     private final ContainerData data;
 
+
     public CrucibleFurnaceMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
         this(id, inv, (CrucibleFurnaceBlockEntity) inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(7));
     }
