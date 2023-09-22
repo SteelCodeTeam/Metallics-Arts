@@ -1,0 +1,11 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#is_overworld",
+  "spawners":
+  {
+    "type": "metallics_arts:steel_allomancer_entity",
+    "weight": 100,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}
