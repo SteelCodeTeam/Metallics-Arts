@@ -3,7 +3,7 @@
   "biomes": "#is_overworld",
   "spawners":
   {
-    "type": "metallics_arts:steel_allomancer_entity",
+    "type": "metallics_arts:ettmetal_allomancer_entity",
     "weight": 100,
     "minCount": 1,
     "maxCount": 1

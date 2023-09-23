@@ -117,4 +117,10 @@ public class ModCreativeTabsEvents {
         }
     }
 
+    public static void addToMetallicsArtsEntityTab(CreativeModeTabEvent.BuildContents event) {
+        if (event.getTab().equals(ModCreativeTabs.METALLICS_ARTS_ENTITY_TAB)) {
+           event.acceptAll(ModItemsRegister.ENTITY_EGGS.values().stream().map(itemRegistryObject -> new ItemStack(itemRegistryObject.get())).collect(Collectors.toList()));
+        }
+    }
+
 }

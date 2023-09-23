@@ -1,7 +1,11 @@
 {
   "type": "forge:add_spawns",
-  "biomes": "minecraft:overworld",
-  "spawners": {
-    "type": "metallics_arts:iron_allomancer_entity"
+  "biomes": "#is_overworld",
+  "spawners":
+  {
+    "type": "metallics_arts:iron_allomancer_entity",
+    "weight": 100,
+    "minCount": 1,
+    "maxCount": 1
   }
 }

@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.setup.registries;
 
 import net.minecraft.world.item.Item;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
 import net.rudahee.metallics_arts.setup.registries.items.*;
@@ -38,6 +39,8 @@ public class ModItemsRegister {
     public static final HashMap<String, Item> ITEM_RANGE_WEAPON = new HashMap<>();
     public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> STEEL_ARMOR = new HashMap<>();
     public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ALUMINUM_ARMOR = new HashMap<>();
+    public static HashMap<String, RegistryObject<ForgeSpawnEggItem>> ENTITY_EGGS = new HashMap<>();
+
 
     // Weapons
     public static RegistryObject<Item> OBSIDIAN_DAGGER;
@@ -73,6 +76,7 @@ public class ModItemsRegister {
     public static RegistryObject<Item> MISTCLOACK;
     public static RegistryObject<Item> IRON_SIGN;
 
+
     public static void register() {
         BasicItemsRegister.register();
         IconsRegister.register();
@@ -82,6 +86,7 @@ public class ModItemsRegister {
         VialsRegister.register();
         CoreBuilderItemRegister.register();
         ArmorRegister.register();
+        ModEntityEggsRegister.register();
     }
 
     public static void ChargeInList() {

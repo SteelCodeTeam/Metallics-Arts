@@ -4,10 +4,13 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
@@ -20,7 +23,6 @@ import net.rudahee.metallics_arts.data.providers.tags_providers.ModBlockTagProvi
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvider;
 import net.rudahee.metallics_arts.data.providers.MetallicsArtsGuideBookProvider;
 import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
-import net.rudahee.metallics_arts.modules.custom_entities.example_entity.ExampleEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.steel_allomancer_entity.SteelAllomancerEntity;
 import net.rudahee.metallics_arts.setup.registries.ModEntityTypesRegister;
@@ -82,9 +84,16 @@ public final class DataGenerators {
 
     @SubscribeEvent
     public static void entityAtributes(EntityAttributeCreationEvent event) {
-        event.put(ModEntityTypesRegister.EXAMPLE.get(), ExampleEntity.getExampleAttributes().build());
         event.put(ModLivingEntityRegister.ETTMETAL_ALLOMANCER.get(), EttmetalAllomancerEntity.getExampleAttributes().build());
         event.put(ModLivingEntityRegister.IRON_ALLOMANCER.get(), IronAllomancerEntity.getExampleAttributes().build());
         event.put(ModLivingEntityRegister.STEEL_ALLOMANCER.get(), SteelAllomancerEntity.getExampleAttributes().build());
     }
+
+    @SubscribeEvent
+    public  static void registerSpawnPlacements(SpawnPlacementRegisterEvent event){
+        event.register(ModLivingEntityRegister.IRON_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.WORLD_SURFACE, IronAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.OR );
+        event.register(ModLivingEntityRegister.STEEL_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.WORLD_SURFACE, SteelAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.OR );
+        event.register(ModLivingEntityRegister.ETTMETAL_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.WORLD_SURFACE, EttmetalAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.OR );
+    }
+
 }

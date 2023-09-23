@@ -1,41 +1,45 @@
-package net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity;
+package net.rudahee.metallics_arts.modules.custom_goals;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.level.pathfinder.Path;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.utils.EntityUtils;
 
-import java.util.EnumSet;
-
-public class IronAllomancerGoal extends Goal {
+public class PullAndPushGoal extends Goal {
 
 
     private final Monster entity;
+    private final double power;
+    private final int blocks;
     private long lastCanUseCheck;
 
 
-    public IronAllomancerGoal(Monster entity) {
+    public PullAndPushGoal(Monster entity, double power, int blocks) {
         this.entity = entity;
+        this.power = power;
+        this.blocks = blocks;
     }
 
 
     @Override
     public boolean canUse() {
 
+        double random;
+        random = Math.random();
+        random = 20 + (random*10);
+
         long i = entity.level.getGameTime();
-        if (i - this.lastCanUseCheck < 20L) {
+        if (i - this.lastCanUseCheck < (int)random) {
             return false;
         } else {
             this.lastCanUseCheck = i;
         }
 
-        if(this.entity.getTarget() instanceof ServerPlayer && EntityUtils.distance((ServerPlayer) this.entity.getTarget(), this.entity)<10 ){
-            IronAndSteelHelpers.move(-1,this.entity.getTarget(),this.entity.blockPosition());
+
+
+        if(this.entity.getTarget() instanceof ServerPlayer && EntityUtils.distance((ServerPlayer) this.entity.getTarget(), this.entity)<blocks ){
+            IronAndSteelHelpers.move(power,this.entity.getTarget(),this.entity.blockPosition());
             return true;
         }else
             return false;

@@ -8,7 +8,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.modules.custom_entities.example_entity.ExampleEntity;
 import net.rudahee.metallics_arts.modules.custom_projectiles.BulletProjectile;
 
 public class ModEntityTypesRegister {
@@ -24,8 +23,6 @@ public class ModEntityTypesRegister {
                     .sized(0.25F, 0.25F)
                     .build("bullet_projectile"));
 
-    public static final RegistryObject<EntityType<ExampleEntity>> EXAMPLE = ENTITY_TYPES.register("example_entity",
-            () -> EntityType.Builder.of(ExampleEntity::new, MobCategory.CREATURE).sized(1.0f, 1.0f).build(MetallicsArts.MOD_ID + ":example"));
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }

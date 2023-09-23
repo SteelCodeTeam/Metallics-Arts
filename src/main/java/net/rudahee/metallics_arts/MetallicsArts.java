@@ -107,6 +107,7 @@ public class MetallicsArts {
         modEventBus.addListener(ModCreativeTabsEvents::addToMetallicsArtsTab);
         modEventBus.addListener(ModCreativeTabsEvents::addToMetallicsArtsDecorationTab);
         modEventBus.addListener(ModCreativeTabsEvents::addToCombatTab);
+        modEventBus.addListener(ModCreativeTabsEvents::addToMetallicsArtsEntityTab);
 
         //Register for the paintings
         ModPaintingProvider.register(modEventBus);

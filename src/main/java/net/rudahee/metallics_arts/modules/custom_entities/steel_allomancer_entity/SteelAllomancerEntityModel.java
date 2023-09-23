@@ -79,4 +79,7 @@ public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, i
         RightLeg.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         LeftLeg.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         }
-        }
+
+}
+
+

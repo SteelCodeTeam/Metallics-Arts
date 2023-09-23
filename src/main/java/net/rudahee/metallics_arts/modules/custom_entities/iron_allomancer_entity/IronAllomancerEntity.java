@@ -1,9 +1,9 @@
 package net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -11,11 +11,14 @@ import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.rudahee.metallics_arts.modules.logic.server.ServerEventHandler;
-import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;
+import net.minecraft.world.level.LevelAccessor;
+import net.rudahee.metallics_arts.modules.custom_goals.PullAndPushGoal;
+
+import java.util.Random;
 
 public class IronAllomancerEntity extends Monster {
     public IronAllomancerEntity(EntityType<? extends Monster> type, Level level) {
@@ -29,30 +32,11 @@ public class IronAllomancerEntity extends Monster {
         this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1D, true));
+        this.goalSelector.addGoal(4, new PullAndPushGoal(this, -2,10));
 
     }
 
-    @Override
-    public void tick() {
 
-        if(getTarget() instanceof ServerPlayer && distance((ServerPlayer) getTarget())<10 ){
-            IronAndSteelHelpers.move(-3,getTarget(),this.blockPosition());
-        }
-        super.tick();
-    }
-
-    private double distance(ServerPlayer player){
-
-        BlockPos playerPos= player.blockPosition();
-        BlockPos entityPos= this.blockPosition();
-
-
-       return Math.sqrt(Math.pow(playerPos.getX()-entityPos.getX(),2)+
-               Math.pow(playerPos.getY()-entityPos.getY(),2)+
-               Math.pow(playerPos.getZ()-entityPos.getZ(),2));
-
-
-    }
     public static AttributeSupplier.Builder getExampleAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 50.0D)
@@ -64,5 +48,11 @@ public class IronAllomancerEntity extends Monster {
                 .add(Attributes.ATTACK_SPEED, 0.5F);
 
     }
+
+    public static  boolean canSpawn(EntityType<IronAllomancerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random){
+
+        return checkAnyLightMonsterSpawnRules(entityType, level, spawnType, pos, random);
+    }
+
 
 }
