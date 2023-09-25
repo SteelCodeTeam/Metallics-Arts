@@ -31,6 +31,9 @@ public class ModEntityEggsRegister {
       ModItemsRegister.ENTITY_EGGS.put("ettmetal_allomancer_entity_spawn_egg",MetallicsArts.registerItem("ettmetal_allomancer_entity_spawn_egg",
               () -> new ForgeSpawnEggItem(ModLivingEntityRegister.ETTMETAL_ALLOMANCER, 0x5BFF9F, 0xAE4C82, new Item.Properties())));
 
+      ModItemsRegister.ENTITY_EGGS.put("pewter_allomancer_entity_spawn_egg",MetallicsArts.registerItem("pewter_allomancer_entity_spawn_egg",
+              () -> new ForgeSpawnEggItem(ModLivingEntityRegister.ETTMETAL_ALLOMANCER, 0x2FCD74, 0x2F0074, new Item.Properties())));
+
    }
 
 }

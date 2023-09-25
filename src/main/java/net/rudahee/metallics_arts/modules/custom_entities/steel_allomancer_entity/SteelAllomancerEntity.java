@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
@@ -11,6 +12,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
@@ -57,10 +59,10 @@ public class SteelAllomancerEntity extends Monster implements RangedAttackMob {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 50.0D)
                 .add(Attributes.MOVEMENT_SPEED, (double)0.30F)
-                .add(Attributes.ATTACK_DAMAGE, 10.0D)
+                .add(Attributes.ATTACK_DAMAGE, 5.0D)
                 .add(Attributes.ARMOR, .0D)
                 .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE)
-                .add(Attributes.MAX_HEALTH, 100)
+                .add(Attributes.MAX_HEALTH, 50)
                 .add(Attributes.ATTACK_SPEED, 0.5F);
 
     }
@@ -84,7 +86,6 @@ public class SteelAllomancerEntity extends Monster implements RangedAttackMob {
         this.playSound(SoundEvents.SKELETON_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
         this.level.addFreshEntity(abstractarrow);
     }
-
     @Nullable
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_32146_, DifficultyInstance p_32147_, MobSpawnType p_32148_, @Nullable SpawnGroupData p_32149_, @Nullable CompoundTag p_32150_) {
         p_32149_ = super.finalizeSpawn(p_32146_, p_32147_, p_32148_, p_32149_, p_32150_);
@@ -93,9 +94,9 @@ public class SteelAllomancerEntity extends Monster implements RangedAttackMob {
 
         return p_32149_;
     }
-
     public static  boolean canSpawn(EntityType<SteelAllomancerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random){
 
         return checkAnyLightMonsterSpawnRules(entityType, level, spawnType, pos, random);
+
     }
 }

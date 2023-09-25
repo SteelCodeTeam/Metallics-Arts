@@ -8,7 +8,7 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical
 public class AllomancerEvents {
 
     public static void OnEttmetalAllomancerHit(LivingHurtEvent event, LivingEntity source, LivingEntity target) {
-        target.level.explode(target, target.getX(), target.getY(), target.getZ(), (float)30, Level.ExplosionInteraction.MOB);
+        target.level.explode(target, target.getX(), target.getY(), target.getZ(), (float)5, Level.ExplosionInteraction.MOB);
     }
 
 

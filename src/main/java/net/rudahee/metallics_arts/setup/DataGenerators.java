@@ -24,6 +24,7 @@ import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvi
 import net.rudahee.metallics_arts.data.providers.MetallicsArtsGuideBookProvider;
 import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.pewter_allomancer_entity.PewterAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.steel_allomancer_entity.SteelAllomancerEntity;
 import net.rudahee.metallics_arts.setup.registries.ModEntityTypesRegister;
 import net.rudahee.metallics_arts.setup.registries.ModLivingEntityRegister;
@@ -87,6 +88,7 @@ public final class DataGenerators {
         event.put(ModLivingEntityRegister.ETTMETAL_ALLOMANCER.get(), EttmetalAllomancerEntity.getExampleAttributes().build());
         event.put(ModLivingEntityRegister.IRON_ALLOMANCER.get(), IronAllomancerEntity.getExampleAttributes().build());
         event.put(ModLivingEntityRegister.STEEL_ALLOMANCER.get(), SteelAllomancerEntity.getExampleAttributes().build());
+        event.put(ModLivingEntityRegister.PEWTER_ALLOMANCER.get(), PewterAllomancerEntity.getExampleAttributes().build());
     }
 
     @SubscribeEvent
@@ -94,6 +96,7 @@ public final class DataGenerators {
         event.register(ModLivingEntityRegister.IRON_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.WORLD_SURFACE, IronAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.OR );
         event.register(ModLivingEntityRegister.STEEL_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.WORLD_SURFACE, SteelAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.OR );
         event.register(ModLivingEntityRegister.ETTMETAL_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.WORLD_SURFACE, EttmetalAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.OR );
+        event.register(ModLivingEntityRegister.PEWTER_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.WORLD_SURFACE, PewterAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.OR );
     }
 
 }
