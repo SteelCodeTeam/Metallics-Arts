@@ -78,12 +78,6 @@ public interface IInvestedPlayerData {
 
     void setModifiedHealth(boolean modified);
 
-    void setMistborn(boolean mistborn);
-
-    void setFullFeruchemist(boolean feruchemic);
-
-    void setFullInvested(boolean invested);
-
     boolean isMistborn();
 
     boolean isFullFeruchemist();
@@ -91,10 +85,6 @@ public interface IInvestedPlayerData {
     boolean isFullInvested();
 
     boolean isInvested();
-
-    void setInvested(boolean invested);
-
-    void setUninvested();
 
     void addAllomanticPower(MetalTagEnum metal);
 

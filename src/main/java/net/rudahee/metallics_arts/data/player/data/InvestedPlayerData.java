@@ -372,37 +372,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void setModifiedHealth(boolean modifiedHealth) {
-        this.setModifiedHealth(modifiedHealth);
-    }
-
-    /**
-     * Defines whether the player is Mistborn or not.
-     *
-     * @param mistborn boolean to define if it's full mistborn.
-     */
-    @Override
-    public void setMistborn(boolean mistborn) {
-        this.setMistborn(mistborn);
-    }
-
-    /**
-     * Defines whether the player is full feruchemist or not.
-     *
-     * @param feruchemist boolean to define if it's full feruchemist.
-     */
-    @Override
-    public void setFullFeruchemist(boolean feruchemist) {
-        this.setFullFeruchemist(feruchemist);
-    }
-
-    /**
-     * Defines whether the player is full mistborn AND full feruchemist or not.
-     *
-     * @param invested boolean to define if it's full mistborn and full feruchemist.
-     */
-    @Override
-    public void setFullInvested(boolean invested) {
-        this.setFullInvested(invested);
+        this.player.setModifiedHealth(modifiedHealth);
     }
 
     /**
@@ -443,24 +413,6 @@ public class InvestedPlayerData implements IInvestedPlayerData {
     @Override
     public boolean isInvested() {
         return true; //TODO
-    }
-
-    /**
-     * Defines the value of whether the player is invested or not.
-     *
-     * @param invested value of the player invested.
-     */
-    @Override
-    public void setInvested(boolean invested) {
-        this.setInvested(invested);
-    }
-
-    /**
-     * Defines the player as uninvested.
-     */
-    @Override
-    public void setUninvested() {
-        this.setInvested(false);
     }
 
     /**
@@ -872,11 +824,6 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         investedData.put("allomantic_reserve", allomantic_reserve);
         investedData.put("burning_metals", burningMetals);
 
-        investedData.putBoolean("invested",this.isInvested());
-        investedData.putBoolean("mistborn",this.isMistborn());
-        investedData.putBoolean("full_feruchemic",this.isFullFeruchemist());
-        investedData.putBoolean("full_invested",this.isFullInvested());
-
         investedData.put("modified_health", modified_health);
 
         for (int i = 0; i < 10; i++) {
@@ -940,11 +887,6 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         }
 
         this.setModifiedHealth(modified_health.getBoolean("modified_health"));
-
-        this.setInvested(investedData.getBoolean("invested"));
-        this.setMistborn(investedData.getBoolean("mistborn"));
-        this.setFullFeruchemist(investedData.getBoolean("full_feruchemic"));
-        this.setFullInvested(investedData.getBoolean("full_invested"));
 
         for (int i = 0; i < 10; i++) {
             this.setMetalMindEquiped(i,metalMindEquipped.getBoolean("group" + i));
