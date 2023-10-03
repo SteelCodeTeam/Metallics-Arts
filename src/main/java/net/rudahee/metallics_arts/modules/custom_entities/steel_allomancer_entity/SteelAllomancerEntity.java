@@ -94,7 +94,9 @@ public class SteelAllomancerEntity extends Monster implements RangedAttackMob {
 
         return p_32149_;
     }
-    public static  boolean canSpawn(EntityType<SteelAllomancerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random){
+
+
+    public static boolean canSpawn(EntityType<SteelAllomancerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random){
 
         return checkAnyLightMonsterSpawnRules(entityType, level, spawnType, pos, random);
 

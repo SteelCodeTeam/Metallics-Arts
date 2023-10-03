@@ -35,7 +35,6 @@ public class EttmetalAllomancerEntity extends Monster {
                 .add(Attributes.MOVEMENT_SPEED, (double)0.30F)
                 .add(Attributes.ATTACK_DAMAGE, 5.0D)
                 .add(Attributes.ARMOR, .0D)
-                .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE)
                 .add(Attributes.MAX_HEALTH, 50)
                 .add(Attributes.ATTACK_SPEED, 0.5F);
 

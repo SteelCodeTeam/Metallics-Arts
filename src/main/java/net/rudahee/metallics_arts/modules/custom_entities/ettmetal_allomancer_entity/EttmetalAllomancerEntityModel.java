@@ -33,8 +33,6 @@ public EttmetalAllomancerEntityModel(ModelPart root) {
         this.LeftLeg = root.getChild("left_leg");
         }
 
-
-
         public static LayerDefinition createBodyLayer() {
                 var meshdefinition = new MeshDefinition();
                 PartDefinition partdefinition = meshdefinition.getRoot();
