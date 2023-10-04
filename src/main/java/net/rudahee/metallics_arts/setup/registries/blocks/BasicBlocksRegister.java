@@ -134,10 +134,10 @@ public class BasicBlocksRegister {
         });
 
         ModBlocksRegister.IRON_WALL_SIGN = MetallicsArts.registerBlockNoItem("iron_wall_sign", ()
-                -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.ACACIA_WALL_SIGN), WoodTypeMetal.IRON_TYPE));
+                -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK), WoodTypeMetal.IRON_TYPE));
 
         ModBlocksRegister.IRON_STANDING_SIGN = MetallicsArts.registerBlockNoItem("iron_standing_sign", ()
-                -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.ACACIA_SIGN), WoodTypeMetal.IRON_TYPE));
+                -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK), WoodTypeMetal.IRON_TYPE));
     }
 
 

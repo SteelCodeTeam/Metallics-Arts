@@ -72,22 +72,5 @@ public class BrassFeruchemicHelper {
         livingEntity.setSecondsOnFire(secondsFire);
     }
 
-    public static void compoundingBrass(Player player, BlockPos blockPos) {
 
-        Level level = player.getLevel();
-        BlockState blockstate = level.getBlockState(blockPos);
-        if (!CampfireBlock.canLight(blockstate) && !CandleBlock.canLight(blockstate) && !CandleCakeBlock.canLight(blockstate)) {
-            //player.getClickedFace()
-
-            BlockPos blockpos1 = blockPos.relative(player.getDirection().getOpposite());
-            //player.getHorizontalDirection()
-            if (BaseFireBlock.canBePlacedAt(level, blockpos1, player.getDirection().getOpposite())) {
-                level.playSound(player, blockpos1, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.4F + 0.8F);
-                BlockState blockstate1 = BaseFireBlock.getState(level, blockpos1);
-                level.setBlock(blockpos1, blockstate1, 11);
-                level.gameEvent(player, GameEvent.BLOCK_PLACE, blockPos);
-
-            }
-        }
-    }
 }
