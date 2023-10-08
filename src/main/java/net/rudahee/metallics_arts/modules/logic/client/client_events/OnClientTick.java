@@ -72,7 +72,7 @@ public class OnClientTick {
             return;
         }
 
-        if (capability.isInvested()) {
+        if (capability.hasAnyAllomanticPower()) {
             if (tick % 3 == 0) {
 
                 FoundNearbyMetalUtils.redoLists(player, capability);

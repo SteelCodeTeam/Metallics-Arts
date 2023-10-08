@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.TypeOfSpikeEnum;
@@ -30,37 +31,35 @@ public class OnJoinWorldEvent {
      * any Allomantic or Feruchemical powers and, if not, randomly assigns them one or both types
      * of powers. Finally, it syncs the player's capability data with the client.
      *
-     * @param event The PlayerEvent.PlayerLoggedInEvent that triggered this method.
+     * @param player The PlayerEvent.PlayerLoggedInEvent that triggered this method.
      */
-    public static void joinWorld(PlayerEvent.PlayerLoggedInEvent event) {
-        ServerPlayer player = (ServerPlayer) event.getEntity();
+    public static void joinWorld(Player player) {
         try {
-        IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
-        if ((capability.getAllomanticPowerCount() + capability.getFeruchemicPowerCount() == 0) && !capability.isInvested()) {
-            List<MetalTagEnum> metals = Arrays.asList(MetalTagEnum.values());
-            Collections.shuffle(metals);
-            List<Integer> typeOfPower = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2); // Leras footjob
+            IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
 
-            Collections.shuffle(typeOfPower);
+            if (capability.isFirstJoin()) {
+                List<MetalTagEnum> metals = Arrays.asList(MetalTagEnum.values());
+                Collections.shuffle(metals);
+                MetalTagEnum metal = metals.get(0);
+                List<Integer> typeOfPower = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2); // Leras footjob
 
-            List<SpikeEntity> spikes = new ArrayList<>();
+                Collections.shuffle(typeOfPower);
 
-            if (typeOfPower.get(0) == 0) {
-                Collections.shuffle(metals);
-                spikes.add(new SpikeEntity(metals.get(0), TypeOfSpikeEnum.ALLOMANTIC));
-            } else if (typeOfPower.get(0) == 1) {
-                Collections.shuffle(metals);
-                spikes.add(new SpikeEntity(metals.get(0), TypeOfSpikeEnum.FERUCHEMIC));
-            } else {
-                Collections.shuffle(metals);
-                spikes.add(new SpikeEntity(metals.get(0), TypeOfSpikeEnum.ALLOMANTIC));
-                Collections.shuffle(metals);
-                spikes.add(new SpikeEntity(metals.get(0), TypeOfSpikeEnum.FERUCHEMIC));
+                if (typeOfPower.get(0) == 0) {
+                    capability.addAllomanticPower(metal);
+                } else if (typeOfPower.get(0) == 1) {
+                    capability.addFeruchemicPower(metal);
+                } else {
+                    capability.addAllomanticPower(metal);
+                    capability.addFeruchemicPower(metal);
+                }
+
+                capability.alreadyJoin();
+
+                //Sync cap to client
+                ModNetwork.syncInvestedDataPacket(capability, player);
+
             }
-            capability.setOriginalsMetal(spikes);
-        }
-        //Sync cap to client
-        ModNetwork.syncInvestedDataPacket(player);
         } catch (PlayerException ex) {
             ex.printCompleteLog();
         }

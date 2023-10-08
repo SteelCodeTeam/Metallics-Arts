@@ -7,9 +7,13 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.common.capabilities.CapabilityProvider;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -248,7 +252,7 @@ public class PowersRemoveRegister {
 
     }
 
-    public static int removeAllomanticPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
+    public static int removeAllomanticPower(CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
             player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
@@ -261,7 +265,7 @@ public class PowersRemoveRegister {
 
         return 1;
     }
-    public static int removeFeruchemicPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
+    public static int removeFeruchemicPower(CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
             player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
@@ -301,19 +305,23 @@ public class PowersRemoveRegister {
         return 1;
     }
     public static int removeAllPower(CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
+        try {
+            for (ServerPlayer player: players) {
+                IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
 
-        for (ServerPlayer player: players) {
-            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
-                        p.removeAllAllomanticPower();
-                        p.removeAllFeruchemicPower();
-                    }
-            );
-            ModNetwork.syncInvestedDataPacket(player);
-            player.sendSystemMessage(Component.translatable("Revoke all powers to " + player.getScoreboardName()));
+                capability.removeAllAllomanticPower();
+                capability.removeAllFeruchemicPower();
+
+                ModNetwork.syncInvestedDataPacket(capability, player);
+
+                player.sendSystemMessage(Component.translatable("Revoke all powers to " + player.getScoreboardName()));
+            }
+        } catch (PlayerException e) {
+            e.printStackTrace();
         }
-
         return 1;
     }
+
 
     public static int removeRandomPower(CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
 

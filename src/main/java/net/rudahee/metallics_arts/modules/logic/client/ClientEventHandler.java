@@ -166,9 +166,6 @@ public class ClientEventHandler {
             }
             OnRenderGameOverlay.onRenderGameOverlay(event, Minecraft.getInstance(), Minecraft.getInstance().player, CapabilityUtils.getCapability(Minecraft.getInstance().player));
 
-
-
-
         } catch (PlayerException ex) {
             ex.printResumeLog();
         }

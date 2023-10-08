@@ -57,7 +57,7 @@ public class OnRenderLevelStage {
             throw new PlayerException(ErrorTypes.PLAYER_DEAD_ERROR);
         }
 
-        if (!capability.isInvested()) {
+        if (!capability.hasAnyAllomanticPower() && !capability.hasAnyFeruchemicPower()) {
             return;
         }
 

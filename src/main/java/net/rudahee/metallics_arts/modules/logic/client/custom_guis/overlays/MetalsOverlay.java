@@ -12,8 +12,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
+import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.awt.*;
@@ -117,12 +120,16 @@ public class MetalsOverlay implements IGuiOverlay {
 
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, meterLocation);
-        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
 
+        IInvestedPlayerData data = null;
+        try {
+            data = CapabilityUtils.getCapability(Minecraft.getInstance().player);
+        } catch (PlayerException e) {
+            throw new RuntimeException(e);
+        }
 
 
             //RENDERING ALLOMANTIC THINGS
-
 
             //Separacion superior
             int allomanticOffsetY = 4;
@@ -260,9 +267,6 @@ public class MetalsOverlay implements IGuiOverlay {
 
                 barOffSet = barOffSet + 6;
             }
-
-
-        });
 
         animationCounterFeruchemic++;
         if (animationCounterFeruchemic > 100) {

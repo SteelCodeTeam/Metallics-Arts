@@ -40,9 +40,9 @@ public class OnRenderGameOverlay {
                 if (!minecraft.isWindowActive()) {
                     return;
                 }
-                if (capability.getAllomanticPowerCount() != 0) {
-                    minecraft.setScreen(new AllomanticSelector());
-                }
+                
+                minecraft.setScreen(new AllomanticSelector());
+
             }
         }
 
@@ -51,9 +51,9 @@ public class OnRenderGameOverlay {
                 if (!minecraft.isWindowActive()) {
                     return;
                 }
-                if (capability.getFeruchemicPowerCount() != 0) {
-                    minecraft.setScreen(new FeruchemySelector());
-                }
+
+                minecraft.setScreen(new FeruchemySelector());
+
             }
         }
     }

@@ -16,10 +16,7 @@ import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 /**
@@ -106,13 +103,18 @@ public class InvestedPlayerData implements IInvestedPlayerData {
     }
 
     @Override
-    public boolean hasOriginalMetal() {
-        return this.player.getOriginalMetals().size() > 0;
+    public boolean isFirstJoin() {
+        return this.player.isFirstJoin();
     }
 
     @Override
-    public void setOriginalsMetal(List<SpikeEntity> metals) {
-        this.player.setOriginalMetals(metals);
+    public void setFirstJoin(boolean joined) {
+        this.player.setFirstJoin(joined);
+    }
+
+    @Override
+    public void alreadyJoin() {
+        this.player.setFirstJoin(false);
     }
 
     /**
@@ -376,46 +378,6 @@ public class InvestedPlayerData implements IInvestedPlayerData {
     }
 
     /**
-     * Check if the player is mistborn.
-     *
-     * @return boolean.
-     */
-    @Override
-    public boolean isMistborn() {
-        return true; //TODO
-    }
-
-    /**
-     * Check if the player is complete feruchemist.
-     *
-     * @return boolean.
-     */
-    @Override
-    public boolean isFullFeruchemist() {
-        return true; //TODO
-    }
-
-    /**
-     * Check if the player is complete feruchemist and complete mistborn.
-     *
-     * @return boolean.
-     */
-    @Override
-    public boolean isFullInvested() {
-        return true; //TODO
-    }
-
-    /**
-     * Check if the player has had any power at some point, so, it's invested.
-     *
-     * @return boolean.
-     */
-    @Override
-    public boolean isInvested() {
-        return true; //TODO
-    }
-
-    /**
      * Adds an allomantic power to the player.
      *
      * @param metal of the power.
@@ -423,8 +385,8 @@ public class InvestedPlayerData implements IInvestedPlayerData {
     @Override
     public void addAllomanticPower(MetalTagEnum metal) {
         try {
-            Optional<BodyPartEntity> partEntity = Arrays.asList(player.getLegs(), player.getHead(), player.getBack(), player.getArms(), player.getChest())
-                    .stream().filter(bodyPart -> bodyPart.getActualSpikes() < bodyPart.getMaxSpikes()).findFirst();
+            Optional<BodyPartEntity> partEntity = Stream.of(player.getLegs(), player.getHead(), player.getBack(), player.getArms(), player.getChest())
+                    .filter(bodyPart -> bodyPart.getActualSpikes() < bodyPart.getMaxSpikes()).findFirst();
 
             if (partEntity.isPresent()) {
                 partEntity.get().addSpike(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
@@ -542,16 +504,8 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void removeAllomanticPower(MetalTagEnum metal) {
-        try {
-            Optional<BodyPartEntity> partEntity = Stream.of(player.getLegs(), player.getHead(), player.getBack(), player.getArms(), player.getChest())
-                    .filter(bodyPart -> bodyPart.getActualSpikes() < bodyPart.getMaxSpikes()).findFirst();
-
-            if (partEntity.isPresent()) {
-                partEntity.get().removeSpike(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
-            }
-        } catch (PlayerDataException ex) {
-            LoggerUtils.printLogError(ex.getMessage());
-        }
+        Stream.of(player.getLegs(), player.getHead(), player.getBack(), player.getArms(), player.getChest())
+                .forEach(bodyPart -> bodyPart.removeSpike(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC)));
     }
 
     /**
@@ -572,16 +526,8 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void removeFeruchemicPower(MetalTagEnum metal) {
-        try {
-            Optional<BodyPartEntity> partEntity = Stream.of(player.getLegs(), player.getHead(), player.getBack(), player.getArms(), player.getChest())
-                    .filter(bodyPart -> bodyPart.getActualSpikes() < bodyPart.getMaxSpikes()).findFirst();
-
-            if (partEntity.isPresent()) {
-                partEntity.get().removeSpike(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC));
-            }
-        } catch (PlayerDataException ex) {
-            LoggerUtils.printLogError(ex.getMessage());
-        }
+        Stream.of(player.getLegs(), player.getHead(), player.getBack(), player.getArms(), player.getChest())
+                .forEach(bodyPart -> bodyPart.removeSpike(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC)));
     }
 
     /**
@@ -796,101 +742,212 @@ public class InvestedPlayerData implements IInvestedPlayerData {
     @Override
     public CompoundTag save() {
 
-        CompoundTag investedData = new CompoundTag();
-        CompoundTag allomanticPowers = new CompoundTag();
-        CompoundTag feruchemicPowers = new CompoundTag();
-        CompoundTag allomantic_reserve = new CompoundTag();
+        CompoundTag playerData = new CompoundTag();
+        CompoundTag head = new CompoundTag();
+        CompoundTag chest = new CompoundTag();
+        CompoundTag back = new CompoundTag();
+        CompoundTag arms = new CompoundTag();
+        CompoundTag legs = new CompoundTag();
+        CompoundTag metalminds = new CompoundTag();
+        CompoundTag extraData = new CompoundTag();
+        CompoundTag reserve = new CompoundTag();
         CompoundTag burningMetals = new CompoundTag();
         CompoundTag tappingMetals = new CompoundTag();
         CompoundTag storingMetals = new CompoundTag();
-        CompoundTag metalMindEquipped = new CompoundTag();
+        CompoundTag enhanced = new CompoundTag();
+        CompoundTag metalEnhanced = new CompoundTag();
 
+        SpikeEntity spike;
+        for (int i = 0; i < player.getHead().getMaxSpikes(); i++) {
+            try {
+                spike = player.getHead().getSpikes().get(i);
+            } catch (IndexOutOfBoundsException e) {
+                spike = null;
+            }
+            String slotValue = (spike != null) ? spike.getMetal().getNameLower() + "_" + spike.getType().getType() : "empty";
+            head.putString("slot_"+i, slotValue);
+        }
 
-        CompoundTag modified_health = new CompoundTag();
+        for (int i = 0; i < player.getChest().getMaxSpikes(); i++) {
+            try {
+                spike = player.getChest().getSpikes().get(i);
+            } catch (IndexOutOfBoundsException e) {
+                spike = null;
+            }
+            String slotValue = (spike != null) ? spike.getMetal().getNameLower() + "_" + spike.getType().getType() : "empty";
+            chest.putString("slot_"+i, slotValue);
+        }
+
+        for (int i = 0; i < player.getBack().getMaxSpikes(); i++) {
+            try {
+                spike = player.getBack().getSpikes().get(i);
+            } catch (IndexOutOfBoundsException e) {
+                spike = null;
+            }
+            String slotValue = (spike != null) ? spike.getMetal().getNameLower() + "_" + spike.getType().getType() : "empty";
+            back.putString("slot_"+i, slotValue);
+        }
+
+        for (int i = 0; i < player.getArms().getMaxSpikes(); i++) {
+            try {
+                spike = player.getArms().getSpikes().get(i);
+            } catch (IndexOutOfBoundsException e) {
+                spike = null;
+            }
+            String slotValue = (spike != null) ? spike.getMetal().getNameLower() + "_" + spike.getType().getType() : "empty";
+            arms.putString("slot_"+i, slotValue);
+        }
+
+        for (int i = 0; i < player.getLegs().getMaxSpikes(); i++) {
+            try {
+                spike = player.getLegs().getSpikes().get(i);
+            } catch (IndexOutOfBoundsException e) {
+                spike = null;
+            }
+            String slotValue = (spike != null) ? spike.getMetal().getNameLower() + "_" + spike.getType().getType() : "empty";
+            legs.putString("slot_"+i, slotValue);
+        }
+
+        playerData.put("head", head);
+        playerData.put("chest", chest);
+        playerData.put("back", back);
+        playerData.put("arms", arms);
+        playerData.put("legs", legs);
+
+        for (int i = 0; i < 10; i++) {
+            metalminds.putBoolean("group_" + i, this.hasMetalMindEquiped(i));
+        }
+        playerData.put("metalminds", metalminds);
 
         for (MetalTagEnum metal : MetalTagEnum.values()) {
-            allomanticPowers.putBoolean(metal.getNameLower(), this.hasAllomanticPower(metal));
-            feruchemicPowers.putBoolean(metal.getNameLower(), this.hasFeruchemicPower(metal));
-            allomantic_reserve.putInt(metal.getNameLower(), this.getAllomanticAmount(metal));
+            reserve.putInt(metal.getNameLower(), this.getAllomanticAmount(metal));
             burningMetals.putBoolean(metal.getNameLower(), this.isBurning(metal));
             tappingMetals.putBoolean(metal.getNameLower(), this.isTapping(metal));
             storingMetals.putBoolean(metal.getNameLower(), this.isStoring(metal));
         }
 
-        modified_health.putBoolean("modified_health", this.hasModifiedHealth());
+        extraData.put("reserve", reserve);
+        extraData.put("burning", burningMetals);
+        extraData.put("tapping", tappingMetals);
+        extraData.put("storing", storingMetals);
 
-        investedData.put("allomantic_powers", allomanticPowers);
-        investedData.put("feruchemic_powers", feruchemicPowers);
-        investedData.put("allomantic_reserve", allomantic_reserve);
-        investedData.put("burning_metals", burningMetals);
 
-        investedData.put("modified_health", modified_health);
-
-        for (int i = 0; i < 10; i++) {
-            metalMindEquipped.putBoolean("group" + i, this.hasMetalMindEquiped(i));
+        for (MetalTagEnum metal : MetalTagEnum.values()) {
+            metalEnhanced.putBoolean(metal.getNameLower(), this.getMetalsEnhanced().contains(metal));
         }
 
-        investedData.put("metal_mind_equipped", metalMindEquipped);
+        enhanced.putBoolean("is_enhanced", this.getEnhanced());
+        enhanced.put("metal_enhanced", metalEnhanced);
+        extraData.put("enhanced_data", enhanced);
 
-        investedData.put("tapping_metals", tappingMetals);
-        investedData.put("storing_metals", storingMetals);
+        extraData.putBoolean("has_modified_health", this.hasModifiedHealth());
+        extraData.putString("ettmetal_state", this.getEttmetalState().getName());
+        extraData.putBoolean("is_first_join", this.isFirstJoin());
 
-        investedData.putBoolean("is_enhanced", this.getEnhanced());
+        playerData.put("extra_data", extraData);
 
-        return investedData;
+        return playerData;
     }
 
 
     /**
      * Load the actual data in the past by parameter tag.
      *
-     * @param nbt tag to save data.
+     * @param playerData tag to save data.
      */
     @Override
-    public void load(CompoundTag nbt) {
-        CompoundTag investedData;
-        investedData = nbt;
+    public void load(CompoundTag playerData) {
 
-        this.setEnhanced(investedData.getBoolean("is_enhanced"));
 
-        CompoundTag allomanticPowers = (CompoundTag) investedData.get("allomantic_powers");
-        CompoundTag feruchemicPowers = (CompoundTag) investedData.get("feruchemic_powers");
-        CompoundTag allomantic_reserve = (CompoundTag) investedData.get("allomantic_reserve");
-        CompoundTag burningMetals = (CompoundTag) investedData.get("burning_metals");
-        CompoundTag storingMetals = (CompoundTag) investedData.get("storing_metals");
-        CompoundTag tappingMetals = (CompoundTag) investedData.get("tapping_metals");
-
-        CompoundTag modified_health = (CompoundTag) investedData.get("modified_health");
-
-        CompoundTag metalMindEquipped = (CompoundTag) investedData.get("metal_mind_equipped");
-
-        for (MetalTagEnum metal : MetalTagEnum.values()) {
-            if (allomanticPowers.getBoolean(metal.getNameLower())) {
-                this.addAllomanticPower(metal);
-            } else {
-                this.removeAllomanticPower(metal);
-            }
-
-            if (feruchemicPowers.getBoolean(metal.getNameLower())) {
-                this.addFeruchemicPower(metal);
-            } else {
-                this.removeFeruchemicPower(metal);
-            }
-
-            this.setTapping(metal, tappingMetals.getBoolean(metal.getNameLower()));
-            this.setStoring(metal, storingMetals.getBoolean(metal.getNameLower()));
-
-            if (this.hasAllomanticPower(metal)) {
-                this.setAllomanticMetalsAmount(metal,allomantic_reserve.getInt(metal.getNameLower()));
-                this.setBurning(metal,burningMetals.getBoolean(metal.getNameLower()));
+        CompoundTag head = playerData.getCompound("head");
+        CompoundTag back = playerData.getCompound("back");
+        CompoundTag chest = playerData.getCompound("chest");
+        CompoundTag legs = playerData.getCompound("legs");
+        CompoundTag arms = playerData.getCompound("arms");
+        CompoundTag metalminds = playerData.getCompound("metalminds");
+        CompoundTag extraData = playerData.getCompound("extra_data");
+        CompoundTag reserve = extraData.getCompound("reserve");
+        CompoundTag burning = extraData.getCompound("burning");
+        CompoundTag tapping= extraData.getCompound("tapping");
+        CompoundTag storing = extraData.getCompound("storing");
+        CompoundTag enhanced = extraData.getCompound("enhanced_data");
+        CompoundTag metalEnhanced = extraData.getCompound("metal_enhanced");
+        String spike;
+        for (int i = 0; i < player.getHead().getMaxSpikes(); i++) {
+            spike = head.getString("slot_"+i);
+            if (!spike.equals("empty")) {
+                if (spike.contains("allomantic")) {
+                    this.addAllomanticPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.ALLOMANTIC, BodyPartEnum.HEAD);
+                } else {
+                    this.addFeruchemicPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.FERUCHEMIC, BodyPartEnum.HEAD);
+                }
             }
         }
+        for (int i = 0; i < player.getBack().getMaxSpikes(); i++) {
+            spike = back.getString("slot_"+i);
+            if (!spike.equals("empty")) {
+                if (spike.contains("allomantic")) {
+                    this.addAllomanticPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.ALLOMANTIC, BodyPartEnum.BACK);
+                } else {
+                    this.addFeruchemicPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.FERUCHEMIC, BodyPartEnum.BACK);
+                }
+            }
+        }
+        for (int i = 0; i < player.getChest().getMaxSpikes(); i++) {
+            spike = chest.getString("slot_"+i);
+            if (!spike.equals("empty")) {
+                if (spike.contains("allomantic")) {
+                    this.addAllomanticPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.ALLOMANTIC, BodyPartEnum.CHEST);
+                } else {
+                    this.addFeruchemicPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.FERUCHEMIC, BodyPartEnum.CHEST);
+                }
+            }
+        }
+        for (int i = 0; i < player.getArms().getMaxSpikes(); i++) {
+            spike = arms.getString("slot_"+i);
+            if (!spike.equals("empty")) {
+                if (spike.contains("allomantic")) {
+                    this.addAllomanticPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.ALLOMANTIC, BodyPartEnum.ARMS);
+                } else {
+                    this.addFeruchemicPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.FERUCHEMIC, BodyPartEnum.ARMS);
 
-        this.setModifiedHealth(modified_health.getBoolean("modified_health"));
+                }
+            }
+        }
+        for (int i = 0; i < player.getLegs().getMaxSpikes(); i++) {
+            spike = legs.getString("slot_"+i);
+            if (!spike.equals("empty")) {
+                if (spike.contains("allomantic")) {
+                    this.addAllomanticPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.ALLOMANTIC, BodyPartEnum.LEGS);
+                } else {
+                    this.addFeruchemicPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.FERUCHEMIC, BodyPartEnum.LEGS);
+                }
+            }
+        }
 
         for (int i = 0; i < 10; i++) {
-            this.setMetalMindEquiped(i,metalMindEquipped.getBoolean("group" + i));
+            this.setMetalMindEquiped(i, metalminds.getBoolean("group_" + i));
         }
+
+        for (MetalTagEnum metal : MetalTagEnum.values()) {
+            this.setTapping(metal, tapping.getBoolean(metal.getNameLower()));
+            this.setStoring(metal, storing.getBoolean(metal.getNameLower()));
+            this.setAllomanticMetalsAmount(metal, reserve.getInt(metal.getNameLower()));
+            this.setBurning(metal, burning.getBoolean(metal.getNameLower()));
+        }
+
+        this.setEnhanced(enhanced.getBoolean("is_enhanced"));
+
+        for (MetalTagEnum metal : MetalTagEnum.values()) {
+            if (metalEnhanced.getBoolean(metal.getNameLower())) {
+                this.addMetalsEnhanced(metal);
+            }
+        }
+
+        this.setModifiedHealth(extraData.getBoolean("has_modified_health"));
+        this.setEttmetalState(EttmetalState.valueOf(extraData.getString("ettmetal_state")));
+
+        this.setFirstJoin(extraData.getBoolean("is_first_join"));
 
     }
 

@@ -8,7 +8,17 @@ package net.rudahee.metallics_arts.data.enums.implementations;
  * @since 1.5.1
  * */
 public enum EttmetalState {
-    DELETE_ITEMS,   // indicates that items should be deleted.
-    KEEP_ITEMS,     // indicates that items should be kept.
-    NOTHING         // indicates that nothing should be done.
+    DELETE_ITEMS("delete"),   // indicates that items should be deleted.
+    KEEP_ITEMS("keep"),     // indicates that items should be kept.
+    NOTHING("none");         // indicates that nothing should be done.
+
+    final String name;
+
+    EttmetalState(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

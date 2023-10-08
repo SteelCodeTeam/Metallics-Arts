@@ -15,8 +15,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
+import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.ComparatorMetals;
 import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
 import org.lwjgl.opengl.GL11;
@@ -82,167 +84,172 @@ public class FeruchemySelector extends Screen {
     public void render(PoseStack matrixStack, int mx, int my, float partialTicks) {
         super.render(matrixStack, mx, my, partialTicks);
 
-        this.mc.player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
+        IInvestedPlayerData data = null;
+        try {
+            data = CapabilityUtils.getCapability(Minecraft.getInstance().player);
+        } catch (PlayerException e) {
+            throw new RuntimeException(e);
+        }
 
-            Point center = new Point(this.width / 2,this.height / 2);
-            Point mouse = new Point(mx,my);
+        Point center = new Point(this.width / 2,this.height / 2);
+        Point mouse = new Point(mx,my);
 
-            Point xPositivo = new Point((int) (center.x*1.2), center.y);
-            Point xNegativo = new Point(center.x-(xPositivo.x-center.x), center.y);
-            Point yPositivo = new Point(center.x, center.y-(xPositivo.x-center.x));
-            Point yNegativo = new Point(center.x, center.y+(xPositivo.x-center.x));
+        Point xPositivo = new Point((int) (center.x*1.2), center.y);
+        Point xNegativo = new Point(center.x-(xPositivo.x-center.x), center.y);
+        Point yPositivo = new Point(center.x, center.y-(xPositivo.x-center.x));
+        Point yNegativo = new Point(center.x, center.y+(xPositivo.x-center.x));
 
-            //extremos externos
-            Point xPositivoExterno = new Point(xPositivo.x+(xPositivo.x-center.x), center.y);
-            Point xNegativoExterno = new Point(xNegativo.x-(xPositivo.x- center.x), center.y);
+        //extremos externos
+        Point xPositivoExterno = new Point(xPositivo.x+(xPositivo.x-center.x), center.y);
+        Point xNegativoExterno = new Point(xNegativo.x-(xPositivo.x- center.x), center.y);
 
-            Point yNegativoExterno = new Point(center.x,yNegativo.y+(xPositivo.x- center.x));
-            Point yPositivoExterno = new Point(center.x,yPositivo.y-(xPositivo.x- center.x));
+        Point yNegativoExterno = new Point(center.x,yNegativo.y+(xPositivo.x- center.x));
+        Point yPositivoExterno = new Point(center.x,yPositivo.y-(xPositivo.x- center.x));
 
-            //diagonales internos
-            Point intermedioXPosYNeg = new Point(xPositivo.x, yNegativo.y);
-            Point intermedioXPosYPos = new Point(xPositivo.x, yPositivo.y);
-            Point intermedioXNegYNeg = new Point(xNegativo.x, yNegativo.y);
-            Point intermedioXNegYPos = new Point(xNegativo.x, yPositivo.y);
+        //diagonales internos
+        Point intermedioXPosYNeg = new Point(xPositivo.x, yNegativo.y);
+        Point intermedioXPosYPos = new Point(xPositivo.x, yPositivo.y);
+        Point intermedioXNegYNeg = new Point(xNegativo.x, yNegativo.y);
+        Point intermedioXNegYPos = new Point(xNegativo.x, yPositivo.y);
 
-            //diagonales
-            Point intermedioXPosYNegExterno = new Point(xPositivoExterno.x, yNegativoExterno.y);
-            Point intermedioXPosYPosExterno = new Point(xPositivoExterno.x, yPositivoExterno.y);
-            Point intermedioXNegYNegExterno = new Point(xNegativoExterno.x, yNegativoExterno.y);
-            Point intermedioXNegYPosExterno = new Point(xNegativoExterno.x, yPositivoExterno.y);
-
-
-            int large = xPositivo.x-center.x;
-
-
-            Tesselator tess = Tesselator.getInstance();
-            BufferBuilder buf = tess.getBuilder();
-
-            RenderSystem.disableCull();
-            RenderSystem.enableBlend();
-            RenderSystem.setShader(GameRenderer::getPositionColorShader);
-
-            buf.begin(VertexFormat.Mode.TRIANGLES, DefaultVertexFormat.POSITION_COLOR);
-
-            //trazado
-
-            pintar(buf,xPositivo,intermedioXPosYNeg,xPositivoExterno, MetalTagEnum.BRASS,mouse,2,true,data);
-            pintar(buf,xPositivo,intermedioXPosYPos,xPositivoExterno, MetalTagEnum.ZINC,mouse,1,false,data);
-            pintar(buf,yPositivo,yPositivoExterno,intermedioXPosYPos, MetalTagEnum.IRON,mouse,1,true,data);
-            pintar(buf,yPositivo,yPositivoExterno,intermedioXNegYPos, MetalTagEnum.STEEL,mouse,0,false,data);
-            pintar(buf,xNegativo,intermedioXNegYPos,xNegativoExterno, MetalTagEnum.CHROMIUM,mouse,0,true,data);
-            pintar(buf,xNegativo,intermedioXNegYNeg,xNegativoExterno, MetalTagEnum.NICROSIL,mouse,3,false,data);
-            pintar(buf,yNegativo,yNegativoExterno,intermedioXNegYNeg, MetalTagEnum.CADMIUM,mouse,3,true,data);
-            pintar(buf,yNegativo,yNegativoExterno,intermedioXPosYNeg, MetalTagEnum.BENDALLOY,mouse,2,false,data);
-
-            pintar(buf,xPositivo,intermedioXPosYNeg,center, MetalTagEnum.BRONZE,mouse,3,false,data);
-            pintar(buf,xPositivo,intermedioXPosYPos,center, MetalTagEnum.COPPER,mouse,0,true,data);
-            pintar(buf,yPositivo,center,intermedioXPosYPos, MetalTagEnum.TIN,mouse,2,false,data);
-            pintar(buf,yPositivo,center,intermedioXNegYPos, MetalTagEnum.PEWTER,mouse,3,true,data);
-            pintar(buf,xNegativo,intermedioXNegYPos,center, MetalTagEnum.DURALUMIN,mouse,1,false,data);
-            pintar(buf,xNegativo,intermedioXNegYNeg,center, MetalTagEnum.ALUMINUM,mouse,2,true,data);
-            pintar(buf,yNegativo,center,intermedioXNegYNeg, MetalTagEnum.GOLD,mouse,0,false,data);
-            pintar(buf,yNegativo,center,intermedioXPosYNeg, MetalTagEnum.ELECTRUM,mouse,1,true,data);
-
-            pintar(buf,intermedioXPosYNegExterno,new Point(intermedioXPosYNegExterno.x,intermedioXPosYNegExterno.y-large),new Point(intermedioXPosYNegExterno.x-large,intermedioXPosYNegExterno.y), MetalTagEnum.ATIUM,mouse,0,false,data);
-            pintar(buf,intermedioXPosYPosExterno,new Point(intermedioXPosYPosExterno.x,intermedioXPosYPosExterno.y+large),new Point(intermedioXPosYPosExterno.x-large,intermedioXPosYPosExterno.y), MetalTagEnum.MALATIUM,mouse,3,true,data);
-            pintar(buf,intermedioXNegYNegExterno,new Point(intermedioXNegYNegExterno.x,intermedioXNegYNegExterno.y-large),new Point(intermedioXNegYNegExterno.x+large,intermedioXNegYNegExterno.y), MetalTagEnum.ETTMETAL,mouse,1,true,data);
-            pintar(buf,intermedioXNegYPosExterno,new Point(intermedioXNegYPosExterno.x,intermedioXNegYPosExterno.y+large),new Point(intermedioXNegYPosExterno.x+large,intermedioXNegYPosExterno.y), MetalTagEnum.LERASIUM,mouse,2,false,data);
+        //diagonales
+        Point intermedioXPosYNegExterno = new Point(xPositivoExterno.x, yNegativoExterno.y);
+        Point intermedioXPosYPosExterno = new Point(xPositivoExterno.x, yPositivoExterno.y);
+        Point intermedioXNegYNegExterno = new Point(xNegativoExterno.x, yNegativoExterno.y);
+        Point intermedioXNegYPosExterno = new Point(xNegativoExterno.x, yPositivoExterno.y);
 
 
-            if(this.point1!=null&&this.point2!=null&&this.point3!=null&&this.tipoTemp!=-1) {
-                if(pointInTriangle(mouse,this.point1,this.point2,this.point3)) {
-                    if (data.hasMetalMindEquiped(this.metalTemp.getGroup())) {
-                        pintadoUnico(buf,this.point1,this.point2,this.point3,this.metalTemp,mouse,this.paridadTemp,data);
-                    }
-                }else {
-                     this.point1 = null;
-                     this.point2 = null;
-                     this.point3 = null;
-                     this.metalTemp=null;
+        int large = xPositivo.x-center.x;
+
+
+        Tesselator tess = Tesselator.getInstance();
+        BufferBuilder buf = tess.getBuilder();
+
+        RenderSystem.disableCull();
+        RenderSystem.enableBlend();
+        RenderSystem.setShader(GameRenderer::getPositionColorShader);
+
+        buf.begin(VertexFormat.Mode.TRIANGLES, DefaultVertexFormat.POSITION_COLOR);
+
+        //trazado
+
+        pintar(buf,xPositivo,intermedioXPosYNeg,xPositivoExterno, MetalTagEnum.BRASS,mouse,2,true,data);
+        pintar(buf,xPositivo,intermedioXPosYPos,xPositivoExterno, MetalTagEnum.ZINC,mouse,1,false,data);
+        pintar(buf,yPositivo,yPositivoExterno,intermedioXPosYPos, MetalTagEnum.IRON,mouse,1,true,data);
+        pintar(buf,yPositivo,yPositivoExterno,intermedioXNegYPos, MetalTagEnum.STEEL,mouse,0,false,data);
+        pintar(buf,xNegativo,intermedioXNegYPos,xNegativoExterno, MetalTagEnum.CHROMIUM,mouse,0,true,data);
+        pintar(buf,xNegativo,intermedioXNegYNeg,xNegativoExterno, MetalTagEnum.NICROSIL,mouse,3,false,data);
+        pintar(buf,yNegativo,yNegativoExterno,intermedioXNegYNeg, MetalTagEnum.CADMIUM,mouse,3,true,data);
+        pintar(buf,yNegativo,yNegativoExterno,intermedioXPosYNeg, MetalTagEnum.BENDALLOY,mouse,2,false,data);
+
+        pintar(buf,xPositivo,intermedioXPosYNeg,center, MetalTagEnum.BRONZE,mouse,3,false,data);
+        pintar(buf,xPositivo,intermedioXPosYPos,center, MetalTagEnum.COPPER,mouse,0,true,data);
+        pintar(buf,yPositivo,center,intermedioXPosYPos, MetalTagEnum.TIN,mouse,2,false,data);
+        pintar(buf,yPositivo,center,intermedioXNegYPos, MetalTagEnum.PEWTER,mouse,3,true,data);
+        pintar(buf,xNegativo,intermedioXNegYPos,center, MetalTagEnum.DURALUMIN,mouse,1,false,data);
+        pintar(buf,xNegativo,intermedioXNegYNeg,center, MetalTagEnum.ALUMINUM,mouse,2,true,data);
+        pintar(buf,yNegativo,center,intermedioXNegYNeg, MetalTagEnum.GOLD,mouse,0,false,data);
+        pintar(buf,yNegativo,center,intermedioXPosYNeg, MetalTagEnum.ELECTRUM,mouse,1,true,data);
+
+        pintar(buf,intermedioXPosYNegExterno,new Point(intermedioXPosYNegExterno.x,intermedioXPosYNegExterno.y-large),new Point(intermedioXPosYNegExterno.x-large,intermedioXPosYNegExterno.y), MetalTagEnum.ATIUM,mouse,0,false,data);
+        pintar(buf,intermedioXPosYPosExterno,new Point(intermedioXPosYPosExterno.x,intermedioXPosYPosExterno.y+large),new Point(intermedioXPosYPosExterno.x-large,intermedioXPosYPosExterno.y), MetalTagEnum.MALATIUM,mouse,3,true,data);
+        pintar(buf,intermedioXNegYNegExterno,new Point(intermedioXNegYNegExterno.x,intermedioXNegYNegExterno.y-large),new Point(intermedioXNegYNegExterno.x+large,intermedioXNegYNegExterno.y), MetalTagEnum.ETTMETAL,mouse,1,true,data);
+        pintar(buf,intermedioXNegYPosExterno,new Point(intermedioXNegYPosExterno.x,intermedioXNegYPosExterno.y+large),new Point(intermedioXNegYPosExterno.x+large,intermedioXNegYPosExterno.y), MetalTagEnum.LERASIUM,mouse,2,false,data);
+
+
+        if(this.point1!=null&&this.point2!=null&&this.point3!=null&&this.tipoTemp!=-1) {
+            if(pointInTriangle(mouse,this.point1,this.point2,this.point3)) {
+                if (data.hasMetalMindEquiped(this.metalTemp.getGroup())) {
+                    pintadoUnico(buf,this.point1,this.point2,this.point3,this.metalTemp,mouse,this.paridadTemp,data);
                 }
+            }else {
+                 this.point1 = null;
+                 this.point2 = null;
+                 this.point3 = null;
+                 this.metalTemp=null;
             }
+        }
 
-            tess.end();
+        tess.end();
 
-            //pintado
+        //pintado
 
-            if (this.metalTemp != MetalTagEnum.BRASS) {
-                addpintado(matrixStack, xPositivo, intermedioXPosYNeg, xPositivoExterno, MetalTagEnum.BRASS, mouse,data.hasFeruchemicPower(MetalTagEnum.BRASS));
-            }
-            if (this.metalTemp != MetalTagEnum.ZINC) {
-                addpintado(matrixStack, xPositivo, intermedioXPosYPos, xPositivoExterno, MetalTagEnum.ZINC, mouse,data.hasFeruchemicPower(MetalTagEnum.ZINC));
-            }
-            if (this.metalTemp != MetalTagEnum.IRON) {
-                addpintado(matrixStack, yPositivo, yPositivoExterno, intermedioXPosYPos, MetalTagEnum.IRON, mouse,data.hasFeruchemicPower(MetalTagEnum.IRON));
-            }
-            if (this.metalTemp != MetalTagEnum.STEEL) {
-                addpintado(matrixStack, yPositivo, yPositivoExterno, intermedioXNegYPos, MetalTagEnum.STEEL, mouse,data.hasFeruchemicPower(MetalTagEnum.STEEL));
-            }
-            if (this.metalTemp != MetalTagEnum.CHROMIUM) {
-                addpintado(matrixStack, xNegativo, intermedioXNegYPos, xNegativoExterno, MetalTagEnum.CHROMIUM, mouse,data.hasFeruchemicPower(MetalTagEnum.CHROMIUM));
-            }
-            if (this.metalTemp != MetalTagEnum.NICROSIL) {
-                addpintado(matrixStack, xNegativo, intermedioXNegYNeg, xNegativoExterno, MetalTagEnum.NICROSIL, mouse,data.hasFeruchemicPower(MetalTagEnum.NICROSIL));
-            }
-            if (this.metalTemp != MetalTagEnum.CADMIUM) {
-                addpintado(matrixStack, yNegativo, yNegativoExterno, intermedioXNegYNeg, MetalTagEnum.CADMIUM, mouse,data.hasFeruchemicPower(MetalTagEnum.CADMIUM));
-            }
-            if (this.metalTemp != MetalTagEnum.BENDALLOY) {
-                addpintado(matrixStack, yNegativo, yNegativoExterno, intermedioXPosYNeg, MetalTagEnum.BENDALLOY, mouse,data.hasFeruchemicPower(MetalTagEnum.BENDALLOY));
-            }
-            if (this.metalTemp != MetalTagEnum.BRONZE) {
-                addpintado(matrixStack, xPositivo, intermedioXPosYNeg, center, MetalTagEnum.BRONZE, mouse,data.hasFeruchemicPower(MetalTagEnum.BRONZE));
-            }
-            if (this.metalTemp != MetalTagEnum.COPPER) {
-                addpintado(matrixStack, xPositivo, intermedioXPosYPos, center, MetalTagEnum.COPPER, mouse,data.hasFeruchemicPower(MetalTagEnum.COPPER));
-            }
-            if (this.metalTemp != MetalTagEnum.TIN) {
-                addpintado(matrixStack, yPositivo, center, intermedioXPosYPos, MetalTagEnum.TIN, mouse,data.hasFeruchemicPower(MetalTagEnum.TIN));
-            }
-            if (this.metalTemp != MetalTagEnum.PEWTER) {
-                addpintado(matrixStack, yPositivo, center, intermedioXNegYPos, MetalTagEnum.PEWTER, mouse,data.hasFeruchemicPower(MetalTagEnum.PEWTER));
-            }
-            if (this.metalTemp != MetalTagEnum.DURALUMIN) {
-                addpintado(matrixStack, xNegativo, intermedioXNegYPos, center, MetalTagEnum.DURALUMIN, mouse,data.hasFeruchemicPower(MetalTagEnum.DURALUMIN));
-            }
-            if (this.metalTemp != MetalTagEnum.ALUMINUM) {
-                addpintado(matrixStack, xNegativo, intermedioXNegYNeg, center, MetalTagEnum.ALUMINUM, mouse,data.hasFeruchemicPower(MetalTagEnum.ALUMINUM));
-            }
-            if (this.metalTemp != MetalTagEnum.GOLD) {
-                addpintado(matrixStack, yNegativo, center, intermedioXNegYNeg, MetalTagEnum.GOLD, mouse,data.hasFeruchemicPower(MetalTagEnum.GOLD));
-            }
-            if (this.metalTemp != MetalTagEnum.ELECTRUM) {
-                addpintado(matrixStack, yNegativo, center, intermedioXPosYNeg, MetalTagEnum.ELECTRUM, mouse,data.hasFeruchemicPower(MetalTagEnum.ELECTRUM));
-            }
-            if (this.metalTemp != MetalTagEnum.ATIUM) {
-                addpintado(matrixStack, intermedioXPosYNegExterno,
-                        new Point(intermedioXPosYNegExterno.x, intermedioXPosYNegExterno.y - large),
-                        new Point(intermedioXPosYNegExterno.x - large, intermedioXPosYNegExterno.y), MetalTagEnum.ATIUM, mouse,data.hasFeruchemicPower(MetalTagEnum.ATIUM));
-            }
-            if (this.metalTemp != MetalTagEnum.MALATIUM) {
-                addpintado(matrixStack, intermedioXPosYPosExterno,
-                        new Point(intermedioXPosYPosExterno.x, intermedioXPosYPosExterno.y + large),
-                        new Point(intermedioXPosYPosExterno.x - large, intermedioXPosYPosExterno.y), MetalTagEnum.MALATIUM, mouse,data.hasFeruchemicPower(MetalTagEnum.MALATIUM));
-            }
-            if (this.metalTemp != MetalTagEnum.ETTMETAL) {
-                addpintado(matrixStack, intermedioXNegYNegExterno,
-                        new Point(intermedioXNegYNegExterno.x, intermedioXNegYNegExterno.y - large),
-                        new Point(intermedioXNegYNegExterno.x + large, intermedioXNegYNegExterno.y), MetalTagEnum.ETTMETAL, mouse,data.hasFeruchemicPower(MetalTagEnum.ETTMETAL));
-            }
-            if (this.metalTemp != MetalTagEnum.LERASIUM) {
-                addpintado(matrixStack, intermedioXNegYPosExterno,
-                        new Point(intermedioXNegYPosExterno.x, intermedioXNegYPosExterno.y + large),
-                        new Point(intermedioXNegYPosExterno.x + large, intermedioXNegYPosExterno.y), MetalTagEnum.LERASIUM, mouse,data.hasFeruchemicPower(MetalTagEnum.LERASIUM));
-            }
-            if (this.point1 != null && this.point2 != null && this.point3 != null) {
-                addpintado(matrixStack, this.point1, this.point2, this.point3, this.metalTemp, mouse,data.hasFeruchemicPower(this.metalTemp));
-            }
+        if (this.metalTemp != MetalTagEnum.BRASS) {
+            addpintado(matrixStack, xPositivo, intermedioXPosYNeg, xPositivoExterno, MetalTagEnum.BRASS, mouse,data.hasFeruchemicPower(MetalTagEnum.BRASS));
+        }
+        if (this.metalTemp != MetalTagEnum.ZINC) {
+            addpintado(matrixStack, xPositivo, intermedioXPosYPos, xPositivoExterno, MetalTagEnum.ZINC, mouse,data.hasFeruchemicPower(MetalTagEnum.ZINC));
+        }
+        if (this.metalTemp != MetalTagEnum.IRON) {
+            addpintado(matrixStack, yPositivo, yPositivoExterno, intermedioXPosYPos, MetalTagEnum.IRON, mouse,data.hasFeruchemicPower(MetalTagEnum.IRON));
+        }
+        if (this.metalTemp != MetalTagEnum.STEEL) {
+            addpintado(matrixStack, yPositivo, yPositivoExterno, intermedioXNegYPos, MetalTagEnum.STEEL, mouse,data.hasFeruchemicPower(MetalTagEnum.STEEL));
+        }
+        if (this.metalTemp != MetalTagEnum.CHROMIUM) {
+            addpintado(matrixStack, xNegativo, intermedioXNegYPos, xNegativoExterno, MetalTagEnum.CHROMIUM, mouse,data.hasFeruchemicPower(MetalTagEnum.CHROMIUM));
+        }
+        if (this.metalTemp != MetalTagEnum.NICROSIL) {
+            addpintado(matrixStack, xNegativo, intermedioXNegYNeg, xNegativoExterno, MetalTagEnum.NICROSIL, mouse,data.hasFeruchemicPower(MetalTagEnum.NICROSIL));
+        }
+        if (this.metalTemp != MetalTagEnum.CADMIUM) {
+            addpintado(matrixStack, yNegativo, yNegativoExterno, intermedioXNegYNeg, MetalTagEnum.CADMIUM, mouse,data.hasFeruchemicPower(MetalTagEnum.CADMIUM));
+        }
+        if (this.metalTemp != MetalTagEnum.BENDALLOY) {
+            addpintado(matrixStack, yNegativo, yNegativoExterno, intermedioXPosYNeg, MetalTagEnum.BENDALLOY, mouse,data.hasFeruchemicPower(MetalTagEnum.BENDALLOY));
+        }
+        if (this.metalTemp != MetalTagEnum.BRONZE) {
+            addpintado(matrixStack, xPositivo, intermedioXPosYNeg, center, MetalTagEnum.BRONZE, mouse,data.hasFeruchemicPower(MetalTagEnum.BRONZE));
+        }
+        if (this.metalTemp != MetalTagEnum.COPPER) {
+            addpintado(matrixStack, xPositivo, intermedioXPosYPos, center, MetalTagEnum.COPPER, mouse,data.hasFeruchemicPower(MetalTagEnum.COPPER));
+        }
+        if (this.metalTemp != MetalTagEnum.TIN) {
+            addpintado(matrixStack, yPositivo, center, intermedioXPosYPos, MetalTagEnum.TIN, mouse,data.hasFeruchemicPower(MetalTagEnum.TIN));
+        }
+        if (this.metalTemp != MetalTagEnum.PEWTER) {
+            addpintado(matrixStack, yPositivo, center, intermedioXNegYPos, MetalTagEnum.PEWTER, mouse,data.hasFeruchemicPower(MetalTagEnum.PEWTER));
+        }
+        if (this.metalTemp != MetalTagEnum.DURALUMIN) {
+            addpintado(matrixStack, xNegativo, intermedioXNegYPos, center, MetalTagEnum.DURALUMIN, mouse,data.hasFeruchemicPower(MetalTagEnum.DURALUMIN));
+        }
+        if (this.metalTemp != MetalTagEnum.ALUMINUM) {
+            addpintado(matrixStack, xNegativo, intermedioXNegYNeg, center, MetalTagEnum.ALUMINUM, mouse,data.hasFeruchemicPower(MetalTagEnum.ALUMINUM));
+        }
+        if (this.metalTemp != MetalTagEnum.GOLD) {
+            addpintado(matrixStack, yNegativo, center, intermedioXNegYNeg, MetalTagEnum.GOLD, mouse,data.hasFeruchemicPower(MetalTagEnum.GOLD));
+        }
+        if (this.metalTemp != MetalTagEnum.ELECTRUM) {
+            addpintado(matrixStack, yNegativo, center, intermedioXPosYNeg, MetalTagEnum.ELECTRUM, mouse,data.hasFeruchemicPower(MetalTagEnum.ELECTRUM));
+        }
+        if (this.metalTemp != MetalTagEnum.ATIUM) {
+            addpintado(matrixStack, intermedioXPosYNegExterno,
+                    new Point(intermedioXPosYNegExterno.x, intermedioXPosYNegExterno.y - large),
+                    new Point(intermedioXPosYNegExterno.x - large, intermedioXPosYNegExterno.y), MetalTagEnum.ATIUM, mouse,data.hasFeruchemicPower(MetalTagEnum.ATIUM));
+        }
+        if (this.metalTemp != MetalTagEnum.MALATIUM) {
+            addpintado(matrixStack, intermedioXPosYPosExterno,
+                    new Point(intermedioXPosYPosExterno.x, intermedioXPosYPosExterno.y + large),
+                    new Point(intermedioXPosYPosExterno.x - large, intermedioXPosYPosExterno.y), MetalTagEnum.MALATIUM, mouse,data.hasFeruchemicPower(MetalTagEnum.MALATIUM));
+        }
+        if (this.metalTemp != MetalTagEnum.ETTMETAL) {
+            addpintado(matrixStack, intermedioXNegYNegExterno,
+                    new Point(intermedioXNegYNegExterno.x, intermedioXNegYNegExterno.y - large),
+                    new Point(intermedioXNegYNegExterno.x + large, intermedioXNegYNegExterno.y), MetalTagEnum.ETTMETAL, mouse,data.hasFeruchemicPower(MetalTagEnum.ETTMETAL));
+        }
+        if (this.metalTemp != MetalTagEnum.LERASIUM) {
+            addpintado(matrixStack, intermedioXNegYPosExterno,
+                    new Point(intermedioXNegYPosExterno.x, intermedioXNegYPosExterno.y + large),
+                    new Point(intermedioXNegYPosExterno.x + large, intermedioXNegYPosExterno.y), MetalTagEnum.LERASIUM, mouse,data.hasFeruchemicPower(MetalTagEnum.LERASIUM));
+        }
+        if (this.point1 != null && this.point2 != null && this.point3 != null) {
+            addpintado(matrixStack, this.point1, this.point2, this.point3, this.metalTemp, mouse,data.hasFeruchemicPower(this.metalTemp));
+        }
 
-            RenderSystem.enableBlend();
-            RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
-            RenderSystem.disableBlend();
-        });
+        RenderSystem.enableBlend();
+        RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
+        RenderSystem.disableBlend();
+
     }
 
     public void addpintado(PoseStack matrixStack, Point a, Point b, Point c, MetalTagEnum metal, Point mouse, boolean hasPower) {

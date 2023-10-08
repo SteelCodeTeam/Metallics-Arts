@@ -14,8 +14,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
+import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.ComparatorMetals;
 import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
 import org.lwjgl.opengl.GL11;
@@ -83,299 +86,302 @@ public class AllomanticSelector extends Screen {
     public void render(PoseStack matrixStack, int mx, int my, float partialTicks) {
         super.render(matrixStack, mx, my, partialTicks);
 
-        this.mc.player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data ->{
-            int centerX  = this.width / 2;
-            int centerY  = this.height / 2;
-            float internalRadio = this.height/5;
-            float mediumRadio = (float) (internalRadio*1.5);
-            float externalRadio = (float) (mediumRadio*1.25);
+        IInvestedPlayerData data = null;
+        try {
+            data = CapabilityUtils.getCapability(Minecraft.getInstance().player);
+        } catch (PlayerException e) {
+            throw new RuntimeException(e);
+        }
 
-            double angle = mouseAngle(centerX,centerY,mx,my);
-            double distance = mouseDistance(centerX,centerY,mx,my);
+        int centerX  = this.width / 2;
+        int centerY  = this.height / 2;
+        float internalRadio = this.height/5;
+        float mediumRadio = (float) (internalRadio*1.5);
+        float externalRadio = (float) (mediumRadio*1.25);
 
-            int internalSegments = 8;
-            float step = (float) Math.PI / 180;
-            float degreesPerSegment  = (float) Math.PI * 2 / internalSegments;
-            float degreesDivinePerSegment  = (float) Math.PI * 2 / 4;
+        double angle = mouseAngle(centerX,centerY,mx,my);
+        double distance = mouseDistance(centerX,centerY,mx,my);
 
-            float degreesExternal = (float) Math.PI * 2 / divineMetals.size();
+        int internalSegments = 8;
+        float step = (float) Math.PI / 180;
+        float degreesPerSegment  = (float) Math.PI * 2 / internalSegments;
+        float degreesDivinePerSegment  = (float) Math.PI * 2 / 4;
 
-            this.slotSelected = -1;
+        float degreesExternal = (float) Math.PI * 2 / divineMetals.size();
 
-
-            Tesselator tess = Tesselator.getInstance();
-            BufferBuilder buf = tess.getBuilder();
-
-
-            RenderSystem.disableCull();
-            RenderSystem.enableBlend();
-            RenderSystem.setShader(GameRenderer::getPositionColorShader);
-
-            buf.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION_COLOR);
+        this.slotSelected = -1;
 
 
-            //circulo externo
-            for (int actualSegment  = 0; actualSegment  < divineMetals.size(); actualSegment++) {
-                MetalTagEnum metal = divineMetals.get(actualSegment);
-                boolean mouseInSector = data.hasAllomanticPower(metal) &&
-                        (degreesDivinePerSegment*actualSegment < angle && angle < degreesDivinePerSegment*(actualSegment  + 1))
-                        && (mediumRadio<distance && distance<externalRadio);
+        Tesselator tess = Tesselator.getInstance();
+        BufferBuilder buf = tess.getBuilder();
 
 
-                float radius = externalRadio;
+        RenderSystem.disableCull();
+        RenderSystem.enableBlend();
+        RenderSystem.setShader(GameRenderer::getPositionColorShader);
 
-                if (mouseInSector) {
-                    this.slotSelected = actualSegment;
-                    this.list=3;
-                    if (data.getAllomanticAmount(metal)>0) {
-                        radius *= 1.025f;
-                    }
+        buf.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION_COLOR);
+
+
+        //circulo externo
+        for (int actualSegment  = 0; actualSegment  < divineMetals.size(); actualSegment++) {
+            MetalTagEnum metal = divineMetals.get(actualSegment);
+            boolean mouseInSector = data.hasAllomanticPower(metal) &&
+                    (degreesDivinePerSegment*actualSegment < angle && angle < degreesDivinePerSegment*(actualSegment  + 1))
+                    && (mediumRadio<distance && distance<externalRadio);
+
+
+            float radius = externalRadio;
+
+            if (mouseInSector) {
+                this.slotSelected = actualSegment;
+                this.list=3;
+                if (data.getAllomanticAmount(metal)>0) {
+                    radius *= 1.025f;
                 }
+            }
 
-                int[] actualColor;
-                if (actualSegment % 2 == 0) {
-                    if (!data.hasAllomanticPower(metal)) {
-                        actualColor = noPowerParDivine;
-                    } else if (data.isBurning(metal)) {
-                        actualColor = burningParDivine;
-                    } else {
-                        actualColor = normalParDivine;
-                    }
-                } else{
-                    if (!data.hasAllomanticPower(metal)) {
-                        actualColor = noPowerImparDivine;
-                    } else if (data.isBurning(metal)) {
-                        actualColor = burningImparDivine;
-                    } else {
-                        actualColor = normalImparDivine;
-                    }
+            int[] actualColor;
+            if (actualSegment % 2 == 0) {
+                if (!data.hasAllomanticPower(metal)) {
+                    actualColor = noPowerParDivine;
+                } else if (data.isBurning(metal)) {
+                    actualColor = burningParDivine;
+                } else {
+                    actualColor = normalParDivine;
                 }
-
-                if (actualSegment  == 0) {
-                    buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1], actualColor[2], actualColor[3]).endVertex();
+            } else{
+                if (!data.hasAllomanticPower(metal)) {
+                    actualColor = noPowerImparDivine;
+                } else if (data.isBurning(metal)) {
+                    actualColor = burningImparDivine;
+                } else {
+                    actualColor = normalImparDivine;
                 }
+            }
 
-                for (float v = 0; v < degreesDivinePerSegment  + step/2; v += step) {
-                    float rad = (v + actualSegment  * degreesDivinePerSegment) ; // (*2) DUPLICA EL TAMAÑO DE LOS ULTIMOS SELECTORES, VISUALMENTE
-                    float xp = centerX  + Mth.cos(rad) * radius;
-                    float yp = centerY  + Mth.sin(rad) * radius;
+            if (actualSegment  == 0) {
+                buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1], actualColor[2], actualColor[3]).endVertex();
+            }
 
-                    if (v == 0) {
-                        buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1], actualColor[2], actualColor[3]).endVertex();
-                    }
+            for (float v = 0; v < degreesDivinePerSegment  + step/2; v += step) {
+                float rad = (v + actualSegment  * degreesDivinePerSegment) ; // (*2) DUPLICA EL TAMAÑO DE LOS ULTIMOS SELECTORES, VISUALMENTE
+                float xp = centerX  + Mth.cos(rad) * radius;
+                float yp = centerY  + Mth.sin(rad) * radius;
+
+                if (v == 0) {
                     buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1], actualColor[2], actualColor[3]).endVertex();
                 }
+                buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1], actualColor[2], actualColor[3]).endVertex();
+            }
+        }
+
+        //circulo intermedio
+        for (int actualSegment  = 0; actualSegment  < internalSegments; actualSegment++) {
+            MetalTagEnum metal = externalMetals.get(actualSegment);
+            boolean mouseInSector = data.hasAllomanticPower(metal) &&
+                    (degreesPerSegment*actualSegment<angle && angle < degreesPerSegment  * (actualSegment  + 1)) &&
+                    (internalRadio<distance && distance<mediumRadio);
+            float radius = mediumRadio;
+
+            if (mouseInSector) {
+                this.slotSelected = actualSegment;
+                this.list=2;
+                if (data.getAllomanticAmount(metal)>0) {
+                    radius *= 1.025f;
+                }
             }
 
-            //circulo intermedio
-            for (int actualSegment  = 0; actualSegment  < internalSegments; actualSegment++) {
-                MetalTagEnum metal = externalMetals.get(actualSegment);
-                boolean mouseInSector = data.hasAllomanticPower(metal) &&
-                        (degreesPerSegment*actualSegment<angle && angle < degreesPerSegment  * (actualSegment  + 1)) &&
-                        (internalRadio<distance && distance<mediumRadio);
-                float radius = mediumRadio;
+            int[] actualColor;
 
-                if (mouseInSector) {
-                    this.slotSelected = actualSegment;
-                    this.list=2;
-                    if (data.getAllomanticAmount(metal)>0) {
-                        radius *= 1.025f;
-                    }
+            if (actualSegment % 2 != 0) {
+                if (!data.hasAllomanticPower(metal)) {
+                    actualColor = noPowerPar;
+                } else if (data.isBurning(metal)) {
+                    actualColor = burningPar;
+                } else {
+                    actualColor = normalPar;
                 }
-
-                int[] actualColor;
-
-                if (actualSegment % 2 != 0) {
-                    if (!data.hasAllomanticPower(metal)) {
-                        actualColor = noPowerPar;
-                    } else if (data.isBurning(metal)) {
-                        actualColor = burningPar;
-                    } else {
-                        actualColor = normalPar;
-                    }
-                } else{
-                    if (!data.hasAllomanticPower(metal)) {
-                        actualColor = noPowerImpar;
-                    } else if (data.isBurning(metal)) {
-                        actualColor = burningImpar;
-                    } else {
-                        actualColor = normalImpar;
-                    }
+            } else{
+                if (!data.hasAllomanticPower(metal)) {
+                    actualColor = noPowerImpar;
+                } else if (data.isBurning(metal)) {
+                    actualColor = burningImpar;
+                } else {
+                    actualColor = normalImpar;
                 }
+            }
 
-                if (actualSegment  == 0) {
-                    buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
-                }
+            if (actualSegment  == 0) {
+                buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
+            }
 
-                for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
-                    float rad = v + actualSegment  * degreesPerSegment ;
-                    float xp = centerX  + Mth.cos(rad) * radius;
-                    float yp = centerY  + Mth.sin(rad) * radius;
+            for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
+                float rad = v + actualSegment  * degreesPerSegment ;
+                float xp = centerX  + Mth.cos(rad) * radius;
+                float yp = centerY  + Mth.sin(rad) * radius;
 
-                    if (v == 0) {
-                        buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
-                    }
+                if (v == 0) {
                     buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
                 }
-
+                buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
             }
 
-            //circulo interno
-            for (int actualSegment=0; actualSegment<internalSegments;actualSegment++) {
-                MetalTagEnum metal = internalMetals.get(actualSegment);
-                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))  && (distance<internalRadio);
-                float radius = internalRadio;
+        }
 
-                if (mouseInSector) {
-                    this.slotSelected = actualSegment;
-                    this.list=1;
-                    if (data.getAllomanticAmount(metal)>0) {
-                        radius *= 1.025f;
-                    }
-                }
+        //circulo interno
+        for (int actualSegment=0; actualSegment<internalSegments;actualSegment++) {
+            MetalTagEnum metal = internalMetals.get(actualSegment);
+            boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))  && (distance<internalRadio);
+            float radius = internalRadio;
 
-                int[] actualColor;
-                if (actualSegment % 2 == 0) {
-                    if (!data.hasAllomanticPower(metal)) {
-                        actualColor = noPowerPar;
-                    } else if (data.isBurning(metal)) {
-                        actualColor = burningPar;
-                    } else {
-                        actualColor = normalPar;
-                    }
-                } else{
-                    if (!data.hasAllomanticPower(metal)) {
-                        actualColor = noPowerImpar;
-                    } else if (data.isBurning(metal)) {
-                        actualColor = burningImpar;
-                    } else {
-                        actualColor = normalImpar;
-                    }
+            if (mouseInSector) {
+                this.slotSelected = actualSegment;
+                this.list=1;
+                if (data.getAllomanticAmount(metal)>0) {
+                    radius *= 1.025f;
                 }
-                if (actualSegment  == 0) {
-                    buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
-                }
-                for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
-                    float rad = v + actualSegment  * degreesPerSegment ;
-                    float xp = centerX  + Mth.cos(rad) * radius;
-                    float yp = centerY  + Mth.sin(rad) * radius;
+            }
 
-                    if (v == 0) {
-                        buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
-                    }
+            int[] actualColor;
+            if (actualSegment % 2 == 0) {
+                if (!data.hasAllomanticPower(metal)) {
+                    actualColor = noPowerPar;
+                } else if (data.isBurning(metal)) {
+                    actualColor = burningPar;
+                } else {
+                    actualColor = normalPar;
+                }
+            } else{
+                if (!data.hasAllomanticPower(metal)) {
+                    actualColor = noPowerImpar;
+                } else if (data.isBurning(metal)) {
+                    actualColor = burningImpar;
+                } else {
+                    actualColor = normalImpar;
+                }
+            }
+            if (actualSegment  == 0) {
+                buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
+            }
+            for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
+                float rad = v + actualSegment  * degreesPerSegment ;
+                float xp = centerX  + Mth.cos(rad) * radius;
+                float yp = centerY  + Mth.sin(rad) * radius;
+
+                if (v == 0) {
                     buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
                 }
+                buf.vertex(xp, yp, 0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3] ).endVertex();
             }
-            tess.end();
+        }
+        tess.end();
 
-            //pintado interno
-            for (int actualSegment  = 0; actualSegment  < internalSegments ; actualSegment ++) {
-                MetalTagEnum metal = internalMetals.get(actualSegment);
-                boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment*(actualSegment  + 1)) && (distance<internalRadio);
-                float radius = internalRadio;
-                if (mouseInSector) {
-                    if (data.getAllomanticAmount(metal)>0) {
-                        radius *= 1.025f;
-                    }
+        //pintado interno
+        for (int actualSegment  = 0; actualSegment  < internalSegments ; actualSegment ++) {
+            MetalTagEnum metal = internalMetals.get(actualSegment);
+            boolean mouseInSector = data.hasAllomanticPower(metal) && (degreesPerSegment*actualSegment < angle && angle < degreesPerSegment*(actualSegment  + 1)) && (distance<internalRadio);
+            float radius = internalRadio;
+            if (mouseInSector) {
+                if (data.getAllomanticAmount(metal)>0) {
+                    radius *= 1.025f;
                 }
-
-                float rad = (actualSegment  + 0.5f) * degreesPerSegment;
-                float xp = centerX  + Mth.cos(rad) * radius;
-                float yp = centerY  + Mth.sin(rad) * radius;
-
-
-                if (mouseInSector) {
-                    renderTooltip(matrixStack, Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mx,my);
-                }
-
-                double mod = 0.8;
-                int xdp = (int) ((xp - centerX )*mod+centerX);
-                int ydp = (int) ((yp - centerY )*mod+centerY);
-
-
-                RenderSystem.setShader(GameRenderer::getPositionTexShader);
-                RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/item/symbols/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
-                RenderSystem.setShaderColor(1, 1, 1, 1);
-                blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
-
             }
 
-           //pintado intermedio
-            for (int actualSegment  = 0; actualSegment  < internalSegments ; actualSegment ++) {
-                MetalTagEnum metal = externalMetals.get(actualSegment);
-                boolean mouseInSector = data.hasAllomanticPower(metal) &&
-                        (degreesPerSegment* actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))  &&
-                        (internalRadio<distance && distance<mediumRadio);
-
-                float radius = mediumRadio;
-                if (mouseInSector) {
-                    if (data.getAllomanticAmount(metal)>0) {
-                        radius *= 1.025f;
-                    }
-                }
+            float rad = (actualSegment  + 0.5f) * degreesPerSegment;
+            float xp = centerX  + Mth.cos(rad) * radius;
+            float yp = centerY  + Mth.sin(rad) * radius;
 
 
-                float rad = (actualSegment  + 0.5f) * degreesPerSegment;
-                float xp = centerX  + Mth.cos(rad) * radius;
-                float yp = centerY  + Mth.sin(rad) * radius;
-
-                float xsp = xp - 4;
-                float ysp = yp;
-
-                if (mouseInSector) {
-                    renderTooltip(matrixStack,Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mx,my);
-                }
-
-                double mod = 0.8;
-                int xdp = (int) ((xp - centerX ) * mod + centerX );
-                int ydp = (int) ((yp - centerY ) * mod + centerY );
-
-                RenderSystem.setShader(GameRenderer::getPositionTexShader);
-                RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/item/symbols/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
-                blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
-
+            if (mouseInSector) {
+                renderTooltip(matrixStack, Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mx,my);
             }
 
-            //pintado externo
-            for (int actualSegment  = 0; actualSegment  < divineMetals.size() ; actualSegment ++) {
-                MetalTagEnum metal = divineMetals.get(actualSegment);
-                boolean mouseInSector = data.hasAllomanticPower(metal) &&
-                        (degreesExternal*actualSegment < angle && angle < degreesExternal * (actualSegment  + 1))
-                        && (mediumRadio<distance && distance<externalRadio);
+            double mod = 0.8;
+            int xdp = (int) ((xp - centerX )*mod+centerX);
+            int ydp = (int) ((yp - centerY )*mod+centerY);
 
-                float radius = externalRadio;
 
-                if (mouseInSector) {
-                    if (data.getAllomanticAmount(metal)>0) {
-                        radius *= 1.025f;
-                    }
+            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/item/symbols/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+            RenderSystem.setShaderColor(1, 1, 1, 1);
+            blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
+
+        }
+
+       //pintado intermedio
+        for (int actualSegment  = 0; actualSegment  < internalSegments ; actualSegment ++) {
+            MetalTagEnum metal = externalMetals.get(actualSegment);
+            boolean mouseInSector = data.hasAllomanticPower(metal) &&
+                    (degreesPerSegment* actualSegment < angle && angle < degreesPerSegment  * (actualSegment  + 1))  &&
+                    (internalRadio<distance && distance<mediumRadio);
+
+            float radius = mediumRadio;
+            if (mouseInSector) {
+                if (data.getAllomanticAmount(metal)>0) {
+                    radius *= 1.025f;
                 }
-
-                float rad = (actualSegment + 0.5f) * degreesExternal;
-                float xp = centerX  + Mth.cos(rad) * radius;
-                float yp = centerY  + Mth.sin(rad) * radius;
-
-                if (mouseInSector) {
-                    renderTooltip(matrixStack, Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mx,my);
-                }
-
-                double mod = 0.9;
-                int xdp = (int) ((xp - centerX ) * mod + centerX );
-                int ydp = (int) ((yp - centerY ) * mod + centerY );
-
-                RenderSystem.setShader(GameRenderer::getPositionTexShader);
-                RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/item/symbols/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
-                blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
-
             }
 
-            RenderSystem.enableBlend();
-            RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
-            RenderSystem.disableBlend();
 
+            float rad = (actualSegment  + 0.5f) * degreesPerSegment;
+            float xp = centerX  + Mth.cos(rad) * radius;
+            float yp = centerY  + Mth.sin(rad) * radius;
 
-        });
+            float xsp = xp - 4;
+            float ysp = yp;
 
+            if (mouseInSector) {
+                renderTooltip(matrixStack,Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mx,my);
+            }
+
+            double mod = 0.8;
+            int xdp = (int) ((xp - centerX ) * mod + centerX );
+            int ydp = (int) ((yp - centerY ) * mod + centerY );
+
+            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/item/symbols/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+            blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
+
+        }
+
+        //pintado externo
+        for (int actualSegment  = 0; actualSegment  < divineMetals.size() ; actualSegment ++) {
+            MetalTagEnum metal = divineMetals.get(actualSegment);
+            boolean mouseInSector = data.hasAllomanticPower(metal) &&
+                    (degreesExternal*actualSegment < angle && angle < degreesExternal * (actualSegment  + 1))
+                    && (mediumRadio<distance && distance<externalRadio);
+
+            float radius = externalRadio;
+
+            if (mouseInSector) {
+                if (data.getAllomanticAmount(metal)>0) {
+                    radius *= 1.025f;
+                }
+            }
+
+            float rad = (actualSegment + 0.5f) * degreesExternal;
+            float xp = centerX  + Mth.cos(rad) * radius;
+            float yp = centerY  + Mth.sin(rad) * radius;
+
+            if (mouseInSector) {
+                renderTooltip(matrixStack, Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mx,my);
+            }
+
+            double mod = 0.9;
+            int xdp = (int) ((xp - centerX ) * mod + centerX );
+            int ydp = (int) ((yp - centerY ) * mod + centerY );
+
+            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShaderTexture(0,new ResourceLocation(MetallicsArts.MOD_ID,"textures/item/symbols/allomantic_symbols/"+metal.getNameLower()+"_symbol.png"));
+            blit(matrixStack, xdp - 8, ydp - 8, 0, 0, 16, 16, 16, 16);
+
+        }
+
+        RenderSystem.enableBlend();
+        RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
+        RenderSystem.disableBlend();
+        
     }
 
     @Override

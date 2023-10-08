@@ -26,9 +26,11 @@ public interface IInvestedPlayerData {
 
     EttmetalState getEttmetalState();
 
-    boolean hasOriginalMetal();
+    boolean isFirstJoin();
 
-    void setOriginalsMetal(List<SpikeEntity> metals);
+    void setFirstJoin(boolean joined);
+
+    void alreadyJoin();
 
     boolean isBurningAnything();
 
@@ -77,14 +79,6 @@ public interface IInvestedPlayerData {
     boolean hasModifiedHealth();
 
     void setModifiedHealth(boolean modified);
-
-    boolean isMistborn();
-
-    boolean isFullFeruchemist();
-
-    boolean isFullInvested();
-
-    boolean isInvested();
 
     void addAllomanticPower(MetalTagEnum metal);
 

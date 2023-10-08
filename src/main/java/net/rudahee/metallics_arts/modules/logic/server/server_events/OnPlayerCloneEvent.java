@@ -45,7 +45,7 @@ public class OnPlayerCloneEvent {
                 originalCapability.setEttmetalState(EttmetalState.NOTHING);
             }
 
-            if (originalCapability.isInvested()) {
+            if (originalCapability.hasAnyFeruchemicPower() || originalCapability.hasAnyAllomanticPower()) {
                 for (MetalTagEnum mt : MetalTagEnum.values()) {
                     if (originalCapability.hasAllomanticPower(mt)) {
                         capability.addAllomanticPower(mt);

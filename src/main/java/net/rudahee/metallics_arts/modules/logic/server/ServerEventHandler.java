@@ -118,7 +118,7 @@ public class ServerEventHandler {
     public static void onJoinWorld(final PlayerEvent.PlayerLoggedInEvent event) {
         if (!event.getEntity().level.isClientSide) {
             if (event.getEntity() instanceof ServerPlayer) {
-                OnJoinWorldEvent.joinWorld(event);
+                OnJoinWorldEvent.joinWorld(event.getEntity());
             }
         }
     }
