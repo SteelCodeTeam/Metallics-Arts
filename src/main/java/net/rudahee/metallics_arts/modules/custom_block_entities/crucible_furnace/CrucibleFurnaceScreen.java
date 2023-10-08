@@ -60,7 +60,7 @@ public class CrucibleFurnaceScreen extends AbstractContainerScreen<CrucibleFurna
 
         int offsetY = 14;
 
-        this.blit(pPoseStack, x - 1, y + offsetY, SIZE_GUI.getTopLeft().x, SIZE_GUI.getTopLeft().y, SIZE_GUI.getBottomRight().x, SIZE_GUI.getBottomRight().y);
+        blit(pPoseStack, x - 1, y + offsetY, SIZE_GUI.getTopLeft().x, SIZE_GUI.getTopLeft().y, SIZE_GUI.getBottomRight().x, SIZE_GUI.getBottomRight().y);
 
         if (menu.isHot()) {
             renderHotGui(pPoseStack, x, y);

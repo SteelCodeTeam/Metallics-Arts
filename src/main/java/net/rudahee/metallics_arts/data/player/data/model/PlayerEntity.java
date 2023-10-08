@@ -56,19 +56,39 @@ public class PlayerEntity {
         this.firstJoin = firstJoin;
     }
 
-    public boolean hasAllomanticMetal() {
+    public boolean hasAnyAllomanticMetal() {
 
         return Stream.of(this.head, this.chest, this.back, this.arms, this.legs)
                 .anyMatch(partOfBody -> partOfBody.getSpikes().stream()
                         .anyMatch(spike -> spike.getType().equals(TypeOfSpikeEnum.ALLOMANTIC)));
     }
 
-    public boolean hasFeruchemicMetal() {
+    public boolean hasAllomanticMetal(MetalTagEnum metal) {
+         Optional<BodyPartEntity> bodyPart = Stream.of(this.head, this.chest, this.back, this.arms, this.legs).filter(
+                bodyPartEntity -> bodyPartEntity.getSpikes().stream().anyMatch(
+                        spikeEntity -> spikeEntity.getType().equals(TypeOfSpikeEnum.ALLOMANTIC) && spikeEntity.getMetal().equals(metal))
+         ).findAny();
+
+         return bodyPart.isPresent();
+    }
+
+    public boolean hasAnyFeruchemicMetal() {
 
         return Stream.of(this.head, this.chest, this.back, this.arms, this.legs)
                 .anyMatch(partOfBody -> partOfBody.getSpikes().stream()
                         .anyMatch(spike -> spike.getType().equals(TypeOfSpikeEnum.FERUCHEMIC)));
     }
+
+    public boolean hasFeruchemicMetal(MetalTagEnum metal) {
+        Optional<BodyPartEntity> bodyPart = Stream.of(this.head, this.chest, this.back, this.arms, this.legs).filter(
+                bodyPartEntity -> bodyPartEntity.getSpikes().stream().anyMatch(
+                        spikeEntity -> spikeEntity.getType().equals(TypeOfSpikeEnum.FERUCHEMIC) && spikeEntity.getMetal().equals(metal))
+        ).findAny();
+
+        return bodyPart.isPresent();
+    }
+
+
     public long getCountAllomanticMetal() {
 
         long count = 0;

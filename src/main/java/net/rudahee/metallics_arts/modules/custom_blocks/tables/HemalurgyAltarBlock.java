@@ -45,7 +45,7 @@ public class HemalurgyAltarBlock extends BaseEntityBlock {
 
     @Override
     public RenderShape getRenderShape(BlockState state) {
-        return super.getRenderShape(state);
+        return RenderShape.MODEL;
     }
 
     /*

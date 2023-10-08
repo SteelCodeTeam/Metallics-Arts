@@ -50,6 +50,7 @@ public class ModCreativeTabsEvents {
             event.acceptAll(Arrays.asList(MetalMindEnum.values()).stream().map(bandEnum -> new ItemStack(bandEnum.getBand())).collect(Collectors.toList()));
 
             event.accept(ModBlocksRegister.CRUCIBLE_FURNACE);
+            event.accept(ModBlocksRegister.HEMALURGY_ALTAR);
 
             event.accept(ModItemsRegister.IRON_SIGN);
             event.accept(ModItemsRegister.SMALL_VIAL);

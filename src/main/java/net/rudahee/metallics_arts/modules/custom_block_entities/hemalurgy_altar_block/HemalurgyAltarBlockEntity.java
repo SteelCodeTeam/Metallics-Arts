@@ -55,8 +55,8 @@ public class HemalurgyAltarBlockEntity extends BlockEntity implements MenuProvid
 
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            if (slot > 0 && slot < 40) {
-                return Arrays.asList(SpikeEnum.values()).stream().anyMatch(spike -> spike.getSpike().equals(stack.getItem()));
+            if (slot >= 0 && slot <= 40) {
+                return Arrays.stream(SpikeEnum.values()).anyMatch(spike -> spike.getSpike().equals(stack.getItem()));
             }
 
             return false;

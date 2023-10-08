@@ -15,6 +15,7 @@ import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerDataEx
 import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
+import net.rudahee.metallics_arts.utils.MetalTagsUtils;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -196,7 +197,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean hasAllomanticPower(MetalTagEnum metal) {
-        return this.player.hasAllomanticMetal();
+        return this.player.hasAllomanticMetal(metal);
     }
 
     /**
@@ -208,7 +209,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean hasFeruchemicPower(MetalTagEnum metal) {
-        return this.player.hasFeruchemicMetal();
+        return this.player.hasFeruchemicMetal(metal);
     }
 
     /**
@@ -238,7 +239,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean hasAnyAllomanticPower() {
-        return (getAllomanticPowerCount()) != 0;
+        return this.player.hasAnyAllomanticMetal();
     }
 
     /**
@@ -248,7 +249,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public boolean hasAnyFeruchemicPower() {
-        return (getFeruchemicPowerCount()) != 0;
+        return  this.player.hasAnyFeruchemicMetal();
     }
 
     /**
@@ -872,58 +873,94 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         CompoundTag storing = extraData.getCompound("storing");
         CompoundTag enhanced = extraData.getCompound("enhanced_data");
         CompoundTag metalEnhanced = extraData.getCompound("metal_enhanced");
-        String spike;
+
+        List<SpikeEntity> spikes = new ArrayList<>();
+        String spikeStr;
         for (int i = 0; i < player.getHead().getMaxSpikes(); i++) {
-            spike = head.getString("slot_"+i);
-            if (!spike.equals("empty")) {
-                if (spike.contains("allomantic")) {
-                    this.addAllomanticPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.ALLOMANTIC, BodyPartEnum.HEAD);
+            spikeStr = head.getString("slot_"+i);
+            if (!spikeStr.equals("empty")) {
+                if (spikeStr.contains("allomantic")) {
+                    spikes.add(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(spikeStr), TypeOfSpikeEnum.ALLOMANTIC));
                 } else {
-                    this.addFeruchemicPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.FERUCHEMIC, BodyPartEnum.HEAD);
+                    spikes.add(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(spikeStr), TypeOfSpikeEnum.FERUCHEMIC));
                 }
             }
         }
+        try {
+            player.getHead().setSpikes(spikes);
+        } catch (PlayerDataException ex) {
+            ex.printCompleteLog();
+        }
+
+        spikes = new ArrayList<>();
         for (int i = 0; i < player.getBack().getMaxSpikes(); i++) {
-            spike = back.getString("slot_"+i);
-            if (!spike.equals("empty")) {
-                if (spike.contains("allomantic")) {
-                    this.addAllomanticPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.ALLOMANTIC, BodyPartEnum.BACK);
+            spikeStr = back.getString("slot_"+i);
+            if (!spikeStr.equals("empty")) {
+                if (spikeStr.contains("allomantic")) {
+                    spikes.add(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(spikeStr), TypeOfSpikeEnum.ALLOMANTIC));
                 } else {
-                    this.addFeruchemicPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.FERUCHEMIC, BodyPartEnum.BACK);
+                    spikes.add(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(spikeStr), TypeOfSpikeEnum.FERUCHEMIC));
                 }
             }
         }
+        try {
+            player.getBack().setSpikes(spikes);
+        } catch (PlayerDataException ex) {
+            ex.printCompleteLog();
+        }
+
+        spikes = new ArrayList<>();
         for (int i = 0; i < player.getChest().getMaxSpikes(); i++) {
-            spike = chest.getString("slot_"+i);
-            if (!spike.equals("empty")) {
-                if (spike.contains("allomantic")) {
-                    this.addAllomanticPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.ALLOMANTIC, BodyPartEnum.CHEST);
+            spikeStr = chest.getString("slot_"+i);
+            if (!spikeStr.equals("empty")) {
+                if (spikeStr.contains("allomantic")) {
+                    spikes.add(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(spikeStr), TypeOfSpikeEnum.ALLOMANTIC));
                 } else {
-                    this.addFeruchemicPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.FERUCHEMIC, BodyPartEnum.CHEST);
+                    spikes.add(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(spikeStr), TypeOfSpikeEnum.FERUCHEMIC));
                 }
             }
         }
+        try {
+            player.getChest().setSpikes(spikes);
+        } catch (PlayerDataException ex) {
+            ex.printCompleteLog();
+        }
+
+        spikes = new ArrayList<>();
         for (int i = 0; i < player.getArms().getMaxSpikes(); i++) {
-            spike = arms.getString("slot_"+i);
-            if (!spike.equals("empty")) {
-                if (spike.contains("allomantic")) {
-                    this.addAllomanticPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.ALLOMANTIC, BodyPartEnum.ARMS);
+            spikeStr = arms.getString("slot_"+i);
+            if (!spikeStr.equals("empty")) {
+                if (spikeStr.contains("allomantic")) {
+                    spikes.add(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(spikeStr), TypeOfSpikeEnum.ALLOMANTIC));
                 } else {
-                    this.addFeruchemicPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.FERUCHEMIC, BodyPartEnum.ARMS);
+                    spikes.add(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(spikeStr), TypeOfSpikeEnum.FERUCHEMIC));
 
                 }
             }
         }
+        try {
+            player.getArms().setSpikes(spikes);
+        } catch (PlayerDataException ex) {
+            ex.printCompleteLog();
+        }
+
+        spikes = new ArrayList<>();
         for (int i = 0; i < player.getLegs().getMaxSpikes(); i++) {
-            spike = legs.getString("slot_"+i);
-            if (!spike.equals("empty")) {
-                if (spike.contains("allomantic")) {
-                    this.addAllomanticPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.ALLOMANTIC, BodyPartEnum.LEGS);
+            spikeStr = legs.getString("slot_"+i);
+            if (!spikeStr.equals("empty")) {
+                if (spikeStr.contains("allomantic")) {
+                    spikes.add(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(spikeStr), TypeOfSpikeEnum.ALLOMANTIC));
                 } else {
-                    this.addFeruchemicPower(MetalTagEnum.valueOf(spike.substring(0, spike.indexOf("_"))), TypeOfSpikeEnum.FERUCHEMIC, BodyPartEnum.LEGS);
+                    spikes.add(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(spikeStr), TypeOfSpikeEnum.FERUCHEMIC));
                 }
             }
         }
+        try {
+            player.getLegs().setSpikes(spikes);
+        } catch (PlayerDataException ex) {
+            ex.printCompleteLog();
+        }
+
 
         for (int i = 0; i < 10; i++) {
             this.setMetalMindEquiped(i, metalminds.getBoolean("group_" + i));
@@ -945,7 +982,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         }
 
         this.setModifiedHealth(extraData.getBoolean("has_modified_health"));
-        this.setEttmetalState(EttmetalState.valueOf(extraData.getString("ettmetal_state")));
+        this.setEttmetalState(EttmetalState.getEttmetaStateByName(extraData.getString("ettmetal_state")));
 
         this.setFirstJoin(extraData.getBoolean("is_first_join"));
 

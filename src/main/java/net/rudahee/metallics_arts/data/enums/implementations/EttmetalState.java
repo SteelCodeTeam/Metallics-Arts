@@ -21,4 +21,14 @@ public enum EttmetalState {
     public String getName() {
         return name;
     }
+
+    public static EttmetalState getEttmetaStateByName(String name) {
+        if (name.equals("delete")) {
+            return DELETE_ITEMS;
+        } else if (name.equals("keep")) {
+            return KEEP_ITEMS;
+        } else {
+            return NOTHING;
+        }
+    }
 }

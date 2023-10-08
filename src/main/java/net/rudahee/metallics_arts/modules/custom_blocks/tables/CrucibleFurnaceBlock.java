@@ -163,7 +163,8 @@ public class CrucibleFurnaceBlock extends BaseEntityBlock {
                 ((CrucibleFurnaceBlockEntity) blockEntity).drops();
             }
         }
-        super.onRemove(state, level, pos, newState, isMoving);    }
+        super.onRemove(state, level, pos, newState, isMoving);
+    }
 
     @Nullable
     @Override
