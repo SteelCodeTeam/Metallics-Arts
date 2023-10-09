@@ -4,7 +4,7 @@
   "spawners":
   {
     "type": "metallics_arts:steel_allomancer_entity",
-    "weight": 1000,
+    "weight": 100,
     "minCount": 1,
     "maxCount": 1
   }

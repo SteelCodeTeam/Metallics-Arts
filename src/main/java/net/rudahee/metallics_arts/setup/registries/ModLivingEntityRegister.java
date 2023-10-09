@@ -16,14 +16,14 @@ public class ModLivingEntityRegister {
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MetallicsArts.MOD_ID);
     public static final RegistryObject<EntityType<EttmetalAllomancerEntity>> ETTMETAL_ALLOMANCER = ENTITY_TYPES.register("ettmetal_allomancer_entity",
-            () -> EntityType.Builder.of(EttmetalAllomancerEntity::new, MobCategory.MONSTER).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":ettmetal_allomancer"));
+            () -> EntityType.Builder.of(EttmetalAllomancerEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).canSpawnFarFromPlayer().clientTrackingRange(64).build(MetallicsArts.MOD_ID + ":ettmetal_allomancer"));
 
     public static final RegistryObject<EntityType<IronAllomancerEntity>> IRON_ALLOMANCER = ENTITY_TYPES.register("iron_allomancer_entity",
-            () -> EntityType.Builder.of(IronAllomancerEntity::new, MobCategory.MONSTER).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":iron_allomancer"));
+            () -> EntityType.Builder.of(IronAllomancerEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":iron_allomancer"));
     public static final RegistryObject<EntityType<SteelAllomancerEntity>> STEEL_ALLOMANCER = ENTITY_TYPES.register("steel_allomancer_entity",
-            () -> EntityType.Builder.of(SteelAllomancerEntity::new, MobCategory.MONSTER).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":steel_allomancer"));
+            () -> EntityType.Builder.of(SteelAllomancerEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":steel_allomancer"));
     public static final RegistryObject<EntityType<PewterAllomancerEntity>> PEWTER_ALLOMANCER = ENTITY_TYPES.register("pewter_allomancer_entity",
-            () -> EntityType.Builder.of(PewterAllomancerEntity::new, MobCategory.MONSTER).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":pewter_allomancer"));
+            () -> EntityType.Builder.of(PewterAllomancerEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":pewter_allomancer"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

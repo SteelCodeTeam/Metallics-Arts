@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.modules.custom_entities.steel_allomancer_enti
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
@@ -35,8 +36,8 @@ import javax.annotation.Nullable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 
-public class SteelAllomancerEntity extends Monster implements RangedAttackMob {
-    public SteelAllomancerEntity(EntityType<? extends Monster> type, Level level) {
+public class SteelAllomancerEntity extends Animal implements RangedAttackMob {
+    public SteelAllomancerEntity(EntityType<? extends Animal> type, Level level) {
         super(type, level);
     }
 
@@ -95,10 +96,16 @@ public class SteelAllomancerEntity extends Monster implements RangedAttackMob {
         return p_32149_;
     }
 
+    @org.jetbrains.annotations.Nullable
+    @Override
+    public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
+        return null;
+    }
+
 
     public static boolean canSpawn(EntityType<SteelAllomancerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random){
 
-        return checkAnyLightMonsterSpawnRules(entityType, level, spawnType, pos, random);
+        return checkMobSpawnRules(entityType, level, spawnType, pos, random);
 
     }
 }
