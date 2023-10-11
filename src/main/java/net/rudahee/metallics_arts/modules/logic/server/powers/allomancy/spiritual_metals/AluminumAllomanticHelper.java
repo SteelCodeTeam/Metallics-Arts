@@ -28,7 +28,8 @@ public class AluminumAllomanticHelper {
      * @return boolean if the player's reserve its empty
      */
     public static boolean drainAndCleanEffects(Player player, IInvestedPlayerData playerCapability) {
-        if (Math.random()<((double) (playerCapability.getAllomanticAmount(MetalTagEnum.ALUMINUM)+1)/10)) {
+        if ((Math.random() < ((double) (playerCapability.getAllomanticAmount(MetalTagEnum.ALUMINUM)+1)/10))
+                || playerCapability.isTapping(MetalTagEnum.ALUMINUM)) { /** Compounding */
             player.removeAllEffects();
         }
         for (MetalTagEnum metalTagEnum : playerCapability.getAllomanticPowers()) {

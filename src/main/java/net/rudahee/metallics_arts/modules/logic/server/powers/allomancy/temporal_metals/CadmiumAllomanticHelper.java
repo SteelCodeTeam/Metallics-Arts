@@ -41,21 +41,13 @@ public class CadmiumAllomanticHelper {
      * @param enhanced if player is burning Duralumin or the player was hit with Nicrosil.
      * @param lerasium if the player is burning Lerasium.
      * @param level in which the player is located (world).
-     * @param playerCapability capabilities (data) of the player.
      */
-    public static void CadmiumMobEffectsOtherPlayers(Player player, IInvestedPlayerData playerCapability, Level level, boolean enhanced, boolean lerasium) {
-        int radius = 8;
-        if (enhanced && lerasium) {
-            radius = 13;
-        } else if (enhanced) {
-            radius = 11;
-        } else if (lerasium) {
-            radius = 10;
-        }
+    public static void CadmiumMobEffectsOtherPlayers(Player player, Level level, boolean enhanced, boolean lerasium, boolean compounding) {
+        int radius = CapabilityUtils.getRadius(enhanced, lerasium, compounding);
 
-        level.getEntitiesOfClass(LivingEntity.class, CapabilityUtils.getBubble(player,radius)).forEach(entity -> {
-            if (playerCapability.isBurning(MetalTagEnum.LERASIUM)) {
-                if (playerCapability.getEnhanced()) {
+        level.getEntitiesOfClass(LivingEntity.class, CapabilityUtils.getBubble(player, radius)).forEach(entity -> {
+            if (lerasium) {
+                if (enhanced) {
                     entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 100, true, false));
                     entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 100, true, false));
                 } else {
@@ -64,7 +56,7 @@ public class CadmiumAllomanticHelper {
                 }
 
             } else {
-                if (playerCapability.getEnhanced()) {
+                if (enhanced) {
                     entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 2, true, false));
                     entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 2, true, false));
                 } else {

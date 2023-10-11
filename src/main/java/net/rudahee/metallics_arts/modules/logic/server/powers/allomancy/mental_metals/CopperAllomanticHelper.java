@@ -31,18 +31,8 @@ public class CopperAllomanticHelper {
      * @param enhanced a boolean indicating if the enhanced mode is active
      * @param lerasium a boolean indicating if lerasium is present
      */
-    public static void CopperAiEntityManipulation(Player player, Level world, boolean enhanced, boolean lerasium) {
-        int radius;
-
-        if (enhanced && lerasium) {
-            radius = 16;
-        } else if (enhanced) {
-            radius = 14;
-        } else if (lerasium) {
-            radius = 12;
-        } else {
-            radius = 8;
-        }
+    public static void CopperAiEntityManipulation(Player player, Level world, boolean enhanced, boolean lerasium, boolean compounding) {
+        int radius = CapabilityUtils.getRadius(enhanced, lerasium, compounding);
 
         world.getEntitiesOfClass(Mob.class, CapabilityUtils.getBubble(player, radius)).forEach(entity -> {
             if (entity == null) {

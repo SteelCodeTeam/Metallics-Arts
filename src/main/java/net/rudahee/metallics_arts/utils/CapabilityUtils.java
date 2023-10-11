@@ -103,7 +103,26 @@ public class CapabilityUtils<T> {
         for (int i = 0; i<qty; i++) {
             list.add(defaultValue);
         }
-
         return list;
+    }
+
+    public static int getRadius(boolean enhanced, boolean lerasium, boolean compounding) {
+        if (enhanced && lerasium && compounding) {
+            return 18;
+        } else if(enhanced && lerasium) {
+            return 16;
+        } else if(enhanced && compounding){
+            return 15;
+        } else if(lerasium && compounding){
+            return 13;
+        } else if (enhanced) {
+            return 13;
+        } else if (lerasium) {
+            return 11;
+        } else if (compounding){
+            return 10;
+        } else {
+            return 8;
+        }
     }
 }

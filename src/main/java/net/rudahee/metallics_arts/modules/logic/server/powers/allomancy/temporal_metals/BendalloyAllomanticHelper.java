@@ -34,18 +34,9 @@ public class BendalloyAllomanticHelper {
      * @param enhanced if player is burning Duralumin or the player was hit with Nicrosil.
      * @param lerasium if the player is burning Lerasium.
      */
-    public static void BendalloyMobEffects(Player player, Level level, boolean enhanced, boolean lerasium) {
+    public static void BendalloyMobEffects(Player player, Level level, boolean enhanced, boolean lerasium, boolean compounding) {
 
-        int radius = 8;
-        if (enhanced && lerasium) {
-            radius = 13;
-        } else if (enhanced) {
-            radius = 11;
-        } else if (lerasium) {
-            radius = 10;
-        }
-
-
+        int radius = CapabilityUtils.getRadius(enhanced, lerasium, compounding);
 
         BlockPos negative = new BlockPos(player.blockPosition()).offset(- radius, - radius, - radius);
         BlockPos positive = new BlockPos(player.blockPosition()).offset(radius, radius , radius);

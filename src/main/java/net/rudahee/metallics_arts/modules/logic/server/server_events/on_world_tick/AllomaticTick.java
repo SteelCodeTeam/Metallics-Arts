@@ -114,7 +114,7 @@ public class AllomaticTick {
         }
 
         if (playerCapability.isBurning(MetalTagEnum.ALUMINUM)) {
-            drainedMetals = AluminumAllomanticHelper.drainAndCleanEffects(player,playerCapability);
+            drainedMetals = AluminumAllomanticHelper.drainAndCleanEffects(player, playerCapability);
         }
 
         return drainedMetals;
@@ -130,13 +130,13 @@ public class AllomaticTick {
     private static void temporalMetals(IInvestedPlayerData playerCapability, Player player, Level level) {
         if (playerCapability.isBurning(MetalTagEnum.BENDALLOY) && !playerCapability.isBurning(MetalTagEnum.CADMIUM)) {
             BendalloyAllomanticHelper.BendalloyMobEffects(player, level,
-                    playerCapability.getEnhanced(), playerCapability.isBurning(MetalTagEnum.LERASIUM));
+                    playerCapability.getEnhanced(), playerCapability.isBurning(MetalTagEnum.LERASIUM), playerCapability.isTapping(MetalTagEnum.BENDALLOY));
             BendalloyAllomanticHelper.AddAiSteeps(player, playerCapability.getEnhanced());
         }
 
         if (playerCapability.isBurning(MetalTagEnum.CADMIUM) && !playerCapability.isBurning(MetalTagEnum.BENDALLOY)) {
-            CadmiumAllomanticHelper.CadmiumMobEffectsOtherPlayers(player, playerCapability,
-                    level, playerCapability.getEnhanced(), playerCapability.isBurning(MetalTagEnum.LERASIUM));
+            CadmiumAllomanticHelper.CadmiumMobEffectsOtherPlayers(player, level,
+                    playerCapability.getEnhanced(), playerCapability.isBurning(MetalTagEnum.LERASIUM), playerCapability.isTapping(MetalTagEnum.CADMIUM));
             CadmiumAllomanticHelper.CadmiumEffectSelfPlayer(player, playerCapability.getEnhanced());
         }
 
@@ -161,7 +161,8 @@ public class AllomaticTick {
 
         if (playerCapability.isBurning(MetalTagEnum.COPPER)) {
             CopperAllomanticHelper.CopperAiEntityManipulation(player, level,
-                    playerCapability.getEnhanced(), playerCapability.isBurning(MetalTagEnum.LERASIUM));
+                    playerCapability.getEnhanced(), playerCapability.isBurning(MetalTagEnum.LERASIUM),
+                    playerCapability.isTapping(MetalTagEnum.COPPER));
         }
 
         if (playerCapability.isBurning(MetalTagEnum.BRONZE)) {

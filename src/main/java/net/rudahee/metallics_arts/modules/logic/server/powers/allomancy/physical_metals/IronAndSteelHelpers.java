@@ -241,7 +241,6 @@ public class IronAndSteelHelpers {
     /**
      * Calculates a multiplier value based on the player and the given duralumin and lerasium flags.
      *
-     * @param player the Player for which the multiplier is calculated
      * @param duralumin the boolean flag representing whether duralumin is considered in the calculation
      * @param lerasium the boolean flag representing whether lerasium is considered in the calculation
      * @return the calculated multiplier as a float value (1f, 2f, 4f, or 6f)
@@ -264,17 +263,6 @@ public class IronAndSteelHelpers {
         } else {
             return 1f;
         }
-
-
-        /*if (duralumin && lerasium) {
-            return 6f;
-        } else if (duralumin && !lerasium) {
-            return 4f;
-        } else if (!duralumin && lerasium) {
-            return 2f;
-        } else {
-            return 1f;
-        }*/
     }
 
     public static boolean isAllomanticLever(BlockState state) {
