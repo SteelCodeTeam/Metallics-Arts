@@ -26,8 +26,26 @@ public class ElectrumFeruchemicHelper {
         if (player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MIN_HEALTH_ELECTRUM)) {
             player.getAttribute(Attributes.MAX_HEALTH).removeModifier(ModModifiers.MIN_HEALTH_ELECTRUM);
         }
+        if (player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MAX_HEALTH_ELECTRUM_COMPOUNDING)) {
+            player.getAttribute(Attributes.MAX_HEALTH).removeModifier(ModModifiers.MAX_HEALTH_ELECTRUM_COMPOUNDING);
+        }
         if(!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MAX_HEALTH_ELECTRUM)) {
             player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(ModModifiers.MAX_HEALTH_ELECTRUM);
+            if (player.getHealth() > 30) {
+                player.hurt(player.damageSources().generic(), player.getHealth() - 30 + player.getAbsorptionAmount());
+            }
+        }
+    }
+
+    public static void tapCompoundingPower(Player player) {
+        if (player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MIN_HEALTH_ELECTRUM)) {
+            player.getAttribute(Attributes.MAX_HEALTH).removeModifier(ModModifiers.MIN_HEALTH_ELECTRUM);
+        }
+        if (player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MAX_HEALTH_ELECTRUM)) {
+            player.getAttribute(Attributes.MAX_HEALTH).removeModifier(ModModifiers.MAX_HEALTH_ELECTRUM);
+        }
+        if(!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MAX_HEALTH_ELECTRUM_COMPOUNDING)) {
+            player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(ModModifiers.MAX_HEALTH_ELECTRUM_COMPOUNDING);
         }
     }
 
@@ -54,14 +72,19 @@ public class ElectrumFeruchemicHelper {
      * This is a unique method in the helpers, which is used to restore the max health to the base value (10 hearts), when the electrum powers stop working.
      *
      * @param player to whom the effect will be applied.
-     * @param playerCapability capabilities (data) to the player.
      */
-    public static void restoreHearts(Player player, IInvestedPlayerData playerCapability) {
+    public static void restoreHearts(Player player) {
         if (player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MAX_HEALTH_ELECTRUM)) {
             player.getAttribute(Attributes.MAX_HEALTH).removeModifier(ModModifiers.MAX_HEALTH_ELECTRUM);
         }
         if (player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MIN_HEALTH_ELECTRUM)) {
             player.getAttribute(Attributes.MAX_HEALTH).removeModifier(ModModifiers.MIN_HEALTH_ELECTRUM);
+        }
+        if (player.getAttribute(Attributes.MAX_HEALTH).hasModifier(ModModifiers.MAX_HEALTH_ELECTRUM_COMPOUNDING)) {
+            player.getAttribute(Attributes.MAX_HEALTH).removeModifier(ModModifiers.MAX_HEALTH_ELECTRUM_COMPOUNDING);
+        }
+        if (player.getHealth() > 20) {
+            player.hurt(player.damageSources().generic(), player.getHealth() - 20 + player.getAbsorptionAmount());
         }
     }
 

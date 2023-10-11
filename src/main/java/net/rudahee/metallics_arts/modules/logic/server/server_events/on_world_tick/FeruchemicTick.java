@@ -44,7 +44,7 @@ public class FeruchemicTick {
         if (isTappingOrStorageAny(playerCapability, MetalTagEnum.ELECTRUM) || playerCapability.isStoring(MetalTagEnum.CADMIUM)) {
             hybridMetals(playerCapability, player);
         } else {
-            ElectrumFeruchemicHelper.restoreHearts(player, playerCapability);
+            ElectrumFeruchemicHelper.restoreHearts(player);
         }
     }
 
@@ -99,7 +99,11 @@ public class FeruchemicTick {
 
     private static void hybridMetalsEach40Ticks(IInvestedPlayerData playerCapability, Player player) {
         if (playerCapability.isTapping(MetalTagEnum.GOLD)) {
-            GoldFeruchemicHelper.tapPower(player);
+            if (playerCapability.isBurning(MetalTagEnum.GOLD)) {
+                GoldFeruchemicHelper.tapCompoundingPower(player);
+            } else {
+                GoldFeruchemicHelper.tapPower(player);
+            }
         } else if (playerCapability.isStoring(MetalTagEnum.GOLD)) {
             GoldFeruchemicHelper.storagePower(player);
         }
@@ -107,7 +111,11 @@ public class FeruchemicTick {
             CadmiumFeruchemicHelper.tapPower(player);
         }
         if (playerCapability.isTapping(MetalTagEnum.BENDALLOY)) {
-            BendalloyFeruchemicHelper.tapPower(player);
+            if (playerCapability.isBurning(MetalTagEnum.BENDALLOY)) {
+                BendalloyFeruchemicHelper.tapCompoundingPower(player);
+            } else {
+                BendalloyFeruchemicHelper.tapPower(player);
+            }
         } else if (playerCapability.isStoring(MetalTagEnum.BENDALLOY)) {
             BendalloyFeruchemicHelper.storagePower(player);
         }
@@ -115,7 +123,11 @@ public class FeruchemicTick {
 
     private static void hybridMetals(IInvestedPlayerData playerCapability, Player player) {
         if (playerCapability.isTapping(MetalTagEnum.ELECTRUM)) {
-            ElectrumFeruchemicHelper.tapPower(player);
+            if (playerCapability.isBurning(MetalTagEnum.ELECTRUM)) {
+                ElectrumFeruchemicHelper.tapCompoundingPower(player);
+            } else {
+                ElectrumFeruchemicHelper.tapPower(player);
+            }
         } else if (playerCapability.isStoring(MetalTagEnum.ELECTRUM)) {
             ElectrumFeruchemicHelper.storagePower(player);
         }
@@ -126,12 +138,20 @@ public class FeruchemicTick {
 
     private static void physicalMetalsEach5Ticks(IInvestedPlayerData playerCapability, Player player) {
         if (playerCapability.isTapping(MetalTagEnum.IRON)) {
-            IronFeruchemicHelper.tapPower(player);
+            if (playerCapability.isBurning(MetalTagEnum.IRON)) {
+                IronFeruchemicHelper.tapCompoundingPower(player); /** Compounding */
+            } else {
+                IronFeruchemicHelper.tapPower(player);
+            }
         } else if (playerCapability.isStoring(MetalTagEnum.IRON)) {
             IronFeruchemicHelper.storagePower(player);
         }
         if (playerCapability.isTapping(MetalTagEnum.STEEL)) {
-            SteelFeruchemicHelper.tapPower(player);
+            if (playerCapability.isBurning(MetalTagEnum.STEEL)) {
+                SteelFeruchemicHelper.tapCompoundingPower(player); /** Compounding */
+            } else {
+                SteelFeruchemicHelper.tapPower(player);
+            }
         } else if (playerCapability.isStoring(MetalTagEnum.STEEL)) {
             SteelFeruchemicHelper.storagePower(player);
         }

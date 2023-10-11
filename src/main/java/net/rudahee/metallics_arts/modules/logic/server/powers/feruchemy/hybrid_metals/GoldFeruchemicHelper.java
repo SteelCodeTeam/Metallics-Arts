@@ -20,6 +20,12 @@ public class GoldFeruchemicHelper {
     public static void tapPower(Player player) {
         player.heal(2.0F);
     }
+
+
+    public static void tapCompoundingPower(Player player) {
+        player.heal(4.0F);
+    }
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Gold: decreases the current life of the player.

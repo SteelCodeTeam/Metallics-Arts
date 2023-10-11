@@ -24,6 +24,10 @@ public class SteelFeruchemicHelper {
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 3, false, false));
     }
 
+    public static void tapCompoundingPower(Player player) {
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 5, false, false));
+    }
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Pewter: slowdowns movement will be applied to the target player.

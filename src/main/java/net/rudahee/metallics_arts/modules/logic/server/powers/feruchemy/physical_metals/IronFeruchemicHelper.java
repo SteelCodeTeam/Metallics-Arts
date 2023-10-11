@@ -24,6 +24,13 @@ public class IronFeruchemicHelper {
         // apply jump 128 nullifies the target player's ability to jump
         player.addEffect(new MobEffectInstance(MobEffects.JUMP, 120, 128, false, false));
     }
+
+
+    public static void tapCompoundingPower(Player player) {
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 7, false, false));
+        // apply jump 128 nullifies the target player's ability to jump
+        player.addEffect(new MobEffectInstance(MobEffects.JUMP, 120, 128, false, false));
+    }
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Iron: slow falling, jump and weakness will be applied to the target player.

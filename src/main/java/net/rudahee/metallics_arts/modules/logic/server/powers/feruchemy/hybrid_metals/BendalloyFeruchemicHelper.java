@@ -24,6 +24,12 @@ public class BendalloyFeruchemicHelper {
         }
     }
 
+    public static void tapCompoundingPower(Player player) {
+        if (player.getFoodData().getFoodLevel() < 20) {
+            player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() + 4);
+        }
+    }
+
     /**
      * Implementation of the abstract method of the AbstractFechuchemicHelper class.
      * In this specific case, for the power of the Bendalloy: Decreases the target player's amount of food.

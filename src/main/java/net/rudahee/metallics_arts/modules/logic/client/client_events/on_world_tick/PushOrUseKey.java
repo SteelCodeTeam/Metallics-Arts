@@ -52,16 +52,17 @@ public class PushOrUseKey {
 
                     if (IronAndSteelHelpers.isBlockStateMetal(minecraft.level.getBlockState(blockPosition))) {
                         ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
-                                Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player, capability.getEnhanced() || capability.getEnhanced(),
-                                        capability.isBurning(MetalTagEnum.LERASIUM)))));
+                                //todo Ruben es un genio
+                                Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(capability.getEnhanced() || capability.getEnhanced(),
+                                        capability.isBurning(MetalTagEnum.LERASIUM), capability.isTapping(MetalTagEnum.STEEL)))));
                     }
 
                 }
                 if (trace instanceof EntityHitResult) {
                     ModNetwork.sendToServer(
                             new PullAndPushEntityPacket(((EntityHitResult) trace).getEntity().getId(),
-                                    Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(player, capability.getEnhanced() || capability.getEnhanced(),
-                                            capability.isBurning(MetalTagEnum.LERASIUM)))));
+                                    Math.round(IronAndSteelHelpers.PUSH * IronAndSteelHelpers.getMultiplier(capability.getEnhanced(),
+                                            capability.isBurning(MetalTagEnum.LERASIUM), capability.isTapping(MetalTagEnum.STEEL)))));
                 }
             }
         }

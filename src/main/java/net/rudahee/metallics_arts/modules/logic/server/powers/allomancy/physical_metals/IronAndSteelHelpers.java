@@ -246,8 +246,27 @@ public class IronAndSteelHelpers {
      * @param lerasium the boolean flag representing whether lerasium is considered in the calculation
      * @return the calculated multiplier as a float value (1f, 2f, 4f, or 6f)
      */
-    public static float getMultiplier(Player player, boolean duralumin, boolean lerasium) {
-        if (duralumin && lerasium) {
+    public static float getMultiplier(boolean duralumin, boolean lerasium, boolean feruchemicSteel) {
+        if (duralumin && lerasium && feruchemicSteel) {
+            return 9f;
+        } else if (duralumin && lerasium) {
+            return 8f;
+        } else if (duralumin && feruchemicSteel) {
+            return 7f;
+        } else if (duralumin) {
+            return 5f;
+        } else if (lerasium && feruchemicSteel) {
+            return 4f;
+        } else if (lerasium) {
+            return 3f;
+        } else if (feruchemicSteel) {
+            return 2f;
+        } else {
+            return 1f;
+        }
+
+
+        /*if (duralumin && lerasium) {
             return 6f;
         } else if (duralumin && !lerasium) {
             return 4f;
@@ -255,7 +274,7 @@ public class IronAndSteelHelpers {
             return 2f;
         } else {
             return 1f;
-        }
+        }*/
     }
 
     public static boolean isAllomanticLever(BlockState state) {

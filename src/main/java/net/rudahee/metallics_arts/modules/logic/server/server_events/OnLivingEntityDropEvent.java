@@ -1,7 +1,10 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Containers;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -19,6 +22,7 @@ import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerExcept
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import top.theillusivec4.curios.api.CuriosApi;
 
+import java.awt.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -51,6 +55,11 @@ public class OnLivingEntityDropEvent {
                     if (capabilitySource.isTapping(MetalTagEnum.ZINC)) {
                         Collection<ItemEntity> drops = event.getDrops();
                         List<ItemEntity> filteredDrops = drops.stream().filter(e -> e.getItem().getItem() != Items.NETHER_STAR).collect(Collectors.toList());
+
+                        if (capabilitySource.isBurning(MetalTagEnum.ZINC)) { /** Compounding*/
+                            event.getDrops().addAll(filteredDrops);
+                            event.getDrops().addAll(filteredDrops);
+                        }
                         event.getDrops().addAll(filteredDrops);
 
                     } else if (capabilitySource.isStoring(MetalTagEnum.ZINC)) {
@@ -67,22 +76,16 @@ public class OnLivingEntityDropEvent {
 
             try {
                 IInvestedPlayerData capabilityTarget = CapabilityUtils.getCapability(event.getEntity());
-
                 if (capabilityTarget.getEttmetalState().equals(EttmetalState.KEEP_ITEMS) || capabilityTarget.getEttmetalState() == EttmetalState.DELETE_ITEMS) {
                     if (capabilityTarget.getEttmetalState().equals(EttmetalState.KEEP_ITEMS)) {
-
-                        Inventory inventory = new Inventory((Player) event.getEntity());
-                        List<ItemStack> itemStacks = event.getDrops().stream().map(ItemEntity::getItem).toList();
-
-                        for (ItemStack itemStack : itemStacks) {
-                            inventory.add(itemStack);
+                        for (ItemStack itemStack : event.getDrops().stream().map(ItemEntity::getItem).toList()) {
+                            //todo revisar por errores (si no hay respawnpoint, si esta obstruido etc)
+                            BlockPos blockPos = ((ServerPlayer) event.getEntity()).getRespawnPosition();
+                            Containers.dropItemStack(event.getEntity().level, blockPos.getX(), blockPos.getY(), blockPos.getZ(), itemStack);
                         }
-                        ((ServerPlayer) event.getEntity()).getInventory().replaceWith(inventory);
                     }
-
                     event.setCanceled(true);
                 }
-
             } catch (PlayerException ex) {
                 ex.printCompleteLog();
             }

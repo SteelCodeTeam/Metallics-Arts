@@ -53,16 +53,16 @@ public class PullOrAttackKey {
 
                     if (IronAndSteelHelpers.isBlockStateMetal(minecraft.level.getBlockState(blockPosition))) {
                         ModNetwork.sendToServer(new PullAndPushBlockPacket(blockPosition,
-                                Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player, capability.getEnhanced() || capability.getEnhanced(),
-                                        capability.isBurning(MetalTagEnum.LERASIUM)))));
+                                Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(capability.getEnhanced(),
+                                        capability.isBurning(MetalTagEnum.LERASIUM), capability.isTapping(MetalTagEnum.STEEL)))));
                     }
                 }
 
                 if (trace instanceof EntityHitResult) {
                     ModNetwork.sendToServer(
                             new PullAndPushEntityPacket(((EntityHitResult) trace).getEntity().getId(),
-                                    Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(player, capability.getEnhanced() || capability.getEnhanced(),
-                                            capability.isBurning(MetalTagEnum.LERASIUM)))));
+                                    Math.round(IronAndSteelHelpers.PULL * IronAndSteelHelpers.getMultiplier(capability.getEnhanced(),
+                                            capability.isBurning(MetalTagEnum.LERASIUM), capability.isTapping(MetalTagEnum.STEEL)))));
                 }
             }
         }
