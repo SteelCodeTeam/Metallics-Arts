@@ -4,17 +4,18 @@ package net.rudahee.metallics_arts.modules.custom_projectiles;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
+import net.rudahee.metallics_arts.setup.registries.ModEntityTypesRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 public class CoinProjectile extends ThrowableItemProjectile {
@@ -26,14 +27,20 @@ public class CoinProjectile extends ThrowableItemProjectile {
     }
 
     public CoinProjectile(Level level, LivingEntity livingEntity, GunType gunType) {
-        super(EntityType.SNOWBALL, livingEntity, level);
+        super(ModEntityTypesRegister.COIN_PROJECTILE.get(), livingEntity, level);
         this.gunType = gunType;
     }
 
     public CoinProjectile(Level level, double v, double v1, double v2, GunType gunType) {
-        super(EntityType.SNOWBALL, v, v1, v2, level);
+        super(ModEntityTypesRegister.COIN_PROJECTILE.get(), v, v1, v2, level);
         this.gunType = gunType;
     }
+
+    public CoinProjectile(EntityType<? extends CoinProjectile> entityType, Level level) {
+        super(entityType, level);
+        this.gunType = GunType.COPPER_COIN;
+    }
+
 
     protected Item getDefaultItem() {
         return (gunType == GunType.COPPER_COIN) ?
@@ -56,15 +63,21 @@ public class CoinProjectile extends ThrowableItemProjectile {
         }
 
     }
+    protected void onHitEntity(EntityHitResult hitResult) {
+        super.onHitEntity(hitResult);
+        Entity entityHurt = hitResult.getEntity();
 
-    protected void onHitEntity(EntityHitResult p_37404_) {
-        super.onHitEntity(p_37404_);
-        Entity entity = p_37404_.getEntity();
-        entity.hurt(entity.damageSources().drown(), gunType.getDamage());
+        entityHurt.hurt(entityHurt.damageSources().thrown(entityHurt, this.getOwner()), gunType.getDamage());
+        Entity entitySource = this.getOwner();
+        if (entitySource != null) {
+            if (entitySource instanceof LivingEntity) {
+                ((LivingEntity) entitySource).setLastHurtMob(entityHurt);
+            }
+        }
     }
 
-    protected void onHit(HitResult p_37406_) {
-        super.onHit(p_37406_);
+    protected void onHit(HitResult hitResult) {
+        super.onHit(hitResult);
         if (!this.level.isClientSide) {
             this.level.broadcastEntityEvent(this, (byte)3);
             this.discard();

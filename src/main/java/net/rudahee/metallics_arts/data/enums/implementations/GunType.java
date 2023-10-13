@@ -14,7 +14,7 @@ public enum GunType {
     RIFLE_SPYGLASS("rifle_spyglass",1F,10, 1,100),
     REVOLVER("revolver", 1F,25, 6, 20),
     VINDICATOR("vindicator", 1F,25, 8, 20),
-    COPPER_COIN("copper_coin",1F,20, 0, 0),
+    COPPER_COIN("copper_coin",1F,5, 0, 0),
     BRONZE_COIN("bronze_coin",1F,20, 0, 0);
 
     private final String name;

@@ -154,16 +154,20 @@ public class BulletProjectile extends ThrowableItemProjectile {
                     BulletProjectile bullet = new BulletProjectile(level, player, gunType, this.bulletType);
                     bullet.shootFromRotation(entity, entity.getXRot(), entity.getYRot(), 0.0F, 5F, 1.0F);
                     level.addFreshEntity(bullet);
-                    return;
                 }
             } catch (PlayerException ex) {
                 ex.printCompleteLog();
             }
-        } //todo checkear
-        if (entity instanceof LivingEntity) {
-
-            entity.hurt(entity.damageSources().drown(), this.gunType.getDamage());
+        } //todo chekear
+        entity.hurt(entity.damageSources().thrown(entity, this.getOwner()), this.gunType.getDamage());
+        Entity entitySource = this.getOwner();
+        if (entitySource != null) {
+            if (entitySource instanceof LivingEntity) {
+                ((LivingEntity) entitySource).setLastHurtMob(entity);
+            }
         }
+
+
     }
 
     /**
