@@ -13,6 +13,7 @@ import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.selectors.AllomanticSelector;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.selectors.FeruchemySelector;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.network.packets.ChangeAmmoGunPacket;
 import net.rudahee.metallics_arts.setup.network.packets.ReloadGunPacket;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
@@ -78,6 +79,11 @@ public class OnKeyInputEvent {
         if (ModKeyRegister.RELOAD.isDown()) {
             if (player.getMainHandItem().getItem() instanceof BasicGun) {
                 ModNetwork.sendToServer(new ReloadGunPacket());
+            }
+        }
+        if (ModKeyRegister.CHANGE_AMMO.isDown()) {
+            if (player.getMainHandItem().getItem() instanceof BasicGun) {
+                ModNetwork.sendToServer(new ChangeAmmoGunPacket());
             }
         }
         for (int i = 0; i< MetalTagEnum.values().length; i++) {

@@ -2,24 +2,23 @@ package net.rudahee.metallics_arts.setup.network.packets;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
+import net.rudahee.metallics_arts.data.enums.implementations.BulletType;
 import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
-import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.BasicGun;
-import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.GunUtils;
 
 import java.util.function.Supplier;
 
-public class ReloadGunPacket {
-
-    public ReloadGunPacket() {
+public class ChangeAmmoGunPacket {
+    public ChangeAmmoGunPacket() {
 
     }
 
-    public static ReloadGunPacket decode(FriendlyByteBuf buf) {
-        return new ReloadGunPacket();
+    public static ChangeAmmoGunPacket decode(FriendlyByteBuf buf) {
+        return new ChangeAmmoGunPacket();
     }
 
 
@@ -35,14 +34,15 @@ public class ReloadGunPacket {
             ItemStack itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
             CompoundTag tag = itemStack.getTag();
 
-            if (itemStack.getTag().getString(GunsAccess.STATE.getKey()).equals(GunsAccess.READY.getKey())) {
-                tag.putString(GunsAccess.STATE.getKey(), GunsAccess.RELOAD.getKey());
-                tag.putFloat("CustomModelData",
-                        GunUtils.updateTexture(tag.getInt(GunsAccess.BULLETS.getKey()),
-                                ((BasicGun) itemStack.getItem()).getGunType()));
+            if (itemStack.getTag().getInt(GunsAccess.BULLETS.getKey()) == 0) {
+                if (tag.getString(GunsAccess.BULLET_TYPE.getKey()).equals(BulletType.LEAD.getType())) {
+                    tag.putString(GunsAccess.BULLET_TYPE.getKey(), BulletType.ALUMINUM.getType());
+                } else {
+                    tag.putString(GunsAccess.BULLET_TYPE.getKey(), BulletType.LEAD.getType());
+                }
+                player.displayClientMessage(Component.literal(tag.getString(GunsAccess.BULLET_TYPE.getKey())),true);
             } else {
-                tag.putString(GunsAccess.STATE.getKey(), GunsAccess.READY.getKey());
-                tag.putFloat("CustomModelData",0F);
+                player.displayClientMessage(Component.literal("No podes cambiar el tipo manito, vacia el cargador"),true);
             }
             itemStack.setTag(tag);
         });

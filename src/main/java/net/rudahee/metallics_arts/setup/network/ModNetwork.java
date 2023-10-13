@@ -70,6 +70,7 @@ public class ModNetwork {
         INSTANCE.registerMessage(nextIndex(), LeverPacket.class, LeverPacket::encode, LeverPacket::decode, LeverPacket::handle);
         INSTANCE.registerMessage(nextIndex(), FiringGunPacket.class, FiringGunPacket::encode, FiringGunPacket::decode, FiringGunPacket::handle);
         INSTANCE.registerMessage(nextIndex(), ReloadGunPacket.class, ReloadGunPacket::encode, ReloadGunPacket::decode, ReloadGunPacket::handle);
+        INSTANCE.registerMessage(nextIndex(), ChangeAmmoGunPacket.class, ChangeAmmoGunPacket::encode, ChangeAmmoGunPacket::decode, ChangeAmmoGunPacket::handle);
 
 
     }
