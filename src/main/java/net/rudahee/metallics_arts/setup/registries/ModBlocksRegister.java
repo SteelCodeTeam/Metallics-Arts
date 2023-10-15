@@ -59,6 +59,9 @@ public class ModBlocksRegister {
 
     public static RegistryObject<Block> ALLOMANTIC_LEVER;
 
+    public static RegistryObject<Block> ALLOMANTIC_PULL_BUTTON;
+    public static RegistryObject<Block> ALLOMANTIC_PUSH_BUTTON;
+
     public static void register() {
         AtiumBlocksRegister.register();
         LerasiumBlocksRegister.register();

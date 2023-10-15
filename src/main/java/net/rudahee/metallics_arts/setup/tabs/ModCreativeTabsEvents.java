@@ -57,6 +57,8 @@ public class ModCreativeTabsEvents {
 
             event.accept(ModItemsRegister.IRON_SIGN);
             event.accept(ModBlocksRegister.ALLOMANTIC_LEVER);
+            event.accept(ModBlocksRegister.ALLOMANTIC_PUSH_BUTTON);
+            event.accept(ModBlocksRegister.ALLOMANTIC_PULL_BUTTON);
             event.accept(ModItemsRegister.SMALL_VIAL);
             event.accept(ModItemsRegister.LARGE_VIAL);
 

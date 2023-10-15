@@ -23,6 +23,8 @@ import net.minecraftforge.common.Tags;
 import net.rudahee.metallics_arts.data.configs.MetalListConfig;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalAuxiliaryInfo;
 import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticLever;
+import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticPullButton;
+import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticPushButton;
 import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 
 import javax.annotation.Nullable;
@@ -266,10 +268,15 @@ public class IronAndSteelHelpers {
     }
 
     public static boolean isAllomanticLever(BlockState state) {
-        return isAllomanticLeverBlock(state.getBlock());
+        return (state.getBlock() instanceof AllomanticLever);
     }
 
-    private static boolean isAllomanticLeverBlock(Block block) {
-        return (block instanceof AllomanticLever);
+
+    public static boolean isAllomanticPushButton(BlockState state) {
+        return (state.getBlock() instanceof AllomanticPushButton);
+    }
+
+    public static boolean isAllomanticPullButton(BlockState state) {
+        return (state.getBlock() instanceof AllomanticPullButton);
     }
 }

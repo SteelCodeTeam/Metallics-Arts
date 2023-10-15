@@ -1,7 +1,6 @@
 package net.rudahee.metallics_arts.setup.network;
 
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -16,8 +15,6 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.network.packets.*;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
-
-import java.util.List;
 
 /**
  * Class to control communications between Client game and Server game. That it's done defining packets to realize change
@@ -67,7 +64,7 @@ public class ModNetwork {
         INSTANCE.registerMessage(nextIndex(), RespawnPositionPacket.class, RespawnPositionPacket::encode, RespawnPositionPacket::decode, RespawnPositionPacket::handle);
         //INSTANCE.registerMessage(nextIndex(), NearbyInvestedPacket.class, NearbyInvestedPacket::encode, NearbyInvestedPacket::decode, NearbyInvestedPacket::handle);
         INSTANCE.registerMessage(nextIndex(), AnotherPlayerDeathPosPacket.class, AnotherPlayerDeathPosPacket::encode, AnotherPlayerDeathPosPacket::decode, AnotherPlayerDeathPosPacket::handle);
-        INSTANCE.registerMessage(nextIndex(), LeverPacket.class, LeverPacket::encode, LeverPacket::decode, LeverPacket::handle);
+        INSTANCE.registerMessage(nextIndex(), RedstoneSignalsPacket.class, RedstoneSignalsPacket::encode, RedstoneSignalsPacket::decode, RedstoneSignalsPacket::handle);
         INSTANCE.registerMessage(nextIndex(), FiringGunPacket.class, FiringGunPacket::encode, FiringGunPacket::decode, FiringGunPacket::handle);
         INSTANCE.registerMessage(nextIndex(), ReloadGunPacket.class, ReloadGunPacket::encode, ReloadGunPacket::decode, ReloadGunPacket::handle);
         INSTANCE.registerMessage(nextIndex(), ChangeAmmoGunPacket.class, ChangeAmmoGunPacket::encode, ChangeAmmoGunPacket::decode, ChangeAmmoGunPacket::handle);
