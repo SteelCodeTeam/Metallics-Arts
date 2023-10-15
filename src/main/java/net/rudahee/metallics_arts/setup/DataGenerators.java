@@ -23,6 +23,7 @@ import net.rudahee.metallics_arts.data.providers.tags_providers.ModBlockTagProvi
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvider;
 import net.rudahee.metallics_arts.data.providers.MetallicsArtsGuideBookProvider;
 import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_entity.HazeKillerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.pewter_allomancer_entity.PewterAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.steel_allomancer_entity.SteelAllomancerEntity;
@@ -87,6 +88,8 @@ public final class DataGenerators {
         event.put(ModLivingEntityRegister.IRON_ALLOMANCER.get(), IronAllomancerEntity.getExampleAttributes().build());
         event.put(ModLivingEntityRegister.STEEL_ALLOMANCER.get(), SteelAllomancerEntity.getExampleAttributes().build());
         event.put(ModLivingEntityRegister.PEWTER_ALLOMANCER.get(), PewterAllomancerEntity.getExampleAttributes().build());
+        event.put(ModLivingEntityRegister.HAZE_KILLER.get(), HazeKillerEntity.getExampleAttributes().build());
+
     }
 
     @SubscribeEvent
@@ -95,6 +98,7 @@ public final class DataGenerators {
         event.register(ModLivingEntityRegister.STEEL_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SteelAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
         event.register(ModLivingEntityRegister.ETTMETAL_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EttmetalAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
         event.register(ModLivingEntityRegister.PEWTER_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PewterAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
+        event.register(ModLivingEntityRegister.HAZE_KILLER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HazeKillerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
     }
 
 }
