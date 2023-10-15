@@ -4,6 +4,8 @@ package net.rudahee.metallics_arts.modules.custom_projectiles;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -41,7 +43,6 @@ public class CoinProjectile extends ThrowableItemProjectile {
         this.gunType = GunType.COPPER_COIN;
     }
 
-
     protected Item getDefaultItem() {
         return (gunType == GunType.COPPER_COIN) ?
                 ModItemsRegister.COPPER_COIN.get() :
@@ -68,12 +69,16 @@ public class CoinProjectile extends ThrowableItemProjectile {
         Entity entityHurt = hitResult.getEntity();
 
         entityHurt.hurt(entityHurt.damageSources().thrown(entityHurt, this.getOwner()), gunType.getDamage());
+
         Entity entitySource = this.getOwner();
+
         if (entitySource != null) {
             if (entitySource instanceof LivingEntity) {
                 ((LivingEntity) entitySource).setLastHurtMob(entityHurt);
             }
         }
+
+
     }
 
     protected void onHit(HitResult hitResult) {

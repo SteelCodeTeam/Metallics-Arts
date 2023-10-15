@@ -48,7 +48,7 @@ public class EttmetalFenceGate extends FenceGateBlock {
     @Override
     public void tick(@NotNull BlockState blockState, @NotNull ServerLevel serverLevel, BlockPos blockPos, @NotNull RandomSource random) {
         if (serverLevel.isWaterAt(blockPos)) {
-            serverLevel.explode(null, (double) blockPos.getX(), (double) blockPos.getY(), (double) blockPos.getZ(), 8.0f, true, Level.ExplosionInteraction.BLOCK);
+    serverLevel.explode(null, (double) blockPos.getX(), (double) blockPos.getY(), (double) blockPos.getZ(), 8.0f, true, Level.ExplosionInteraction.BLOCK);
         }
 
         BlockPos posLeftTop = new BlockPos(blockPos.getX() + 1, blockPos.getY() + 1, blockPos.getZ() + 1);
