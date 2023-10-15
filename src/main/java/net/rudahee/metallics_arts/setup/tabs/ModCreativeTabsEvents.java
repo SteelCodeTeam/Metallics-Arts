@@ -26,6 +26,9 @@ public class ModCreativeTabsEvents {
         if (event.getTab().equals(CreativeModeTabs.COMBAT)) {
             event.acceptAll(ModItemsRegister.STEEL_ARMOR.values().stream().map(itemRegistryObject -> new ItemStack(itemRegistryObject.get())).collect(Collectors.toList()));
             event.acceptAll(ModItemsRegister.ALUMINUM_ARMOR.values().stream().map(itemRegistryObject -> new ItemStack(itemRegistryObject.get())).collect(Collectors.toList()));
+            event.acceptAll(ModItemsRegister.ATIUM_ARMOR.values().stream().map(itemRegistryObject -> new ItemStack(itemRegistryObject.get())).collect(Collectors.toList()));
+            event.acceptAll(ModItemsRegister.LERASIUM_ARMOR.values().stream().map(itemRegistryObject -> new ItemStack(itemRegistryObject.get())).collect(Collectors.toList()));
+            event.acceptAll(ModItemsRegister.ETTMETAL_ARMOR.values().stream().map(itemRegistryObject -> new ItemStack(itemRegistryObject.get())).collect(Collectors.toList()));
         }
     }
 
@@ -53,6 +56,7 @@ public class ModCreativeTabsEvents {
             event.accept(ModBlocksRegister.HEMALURGY_ALTAR);
 
             event.accept(ModItemsRegister.IRON_SIGN);
+            event.accept(ModBlocksRegister.ALLOMANTIC_LEVER);
             event.accept(ModItemsRegister.SMALL_VIAL);
             event.accept(ModItemsRegister.LARGE_VIAL);
 
@@ -64,6 +68,9 @@ public class ModCreativeTabsEvents {
 
             event.acceptAll(ModItemsRegister.STEEL_ARMOR.values().stream().map(itemRegistryObject -> new ItemStack(itemRegistryObject.get())).collect(Collectors.toList()));
             event.acceptAll(ModItemsRegister.ALUMINUM_ARMOR.values().stream().map(itemRegistryObject -> new ItemStack(itemRegistryObject.get())).collect(Collectors.toList()));
+            event.acceptAll(ModItemsRegister.ATIUM_ARMOR.values().stream().map(itemRegistryObject -> new ItemStack(itemRegistryObject.get())).collect(Collectors.toList()));
+            event.acceptAll(ModItemsRegister.LERASIUM_ARMOR.values().stream().map(itemRegistryObject -> new ItemStack(itemRegistryObject.get())).collect(Collectors.toList()));
+            event.acceptAll(ModItemsRegister.ETTMETAL_ARMOR.values().stream().map(itemRegistryObject -> new ItemStack(itemRegistryObject.get())).collect(Collectors.toList()));
 
             event.accept(ModItemsRegister.MISTCLOACK);
 

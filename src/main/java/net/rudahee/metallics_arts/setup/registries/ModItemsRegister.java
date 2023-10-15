@@ -39,6 +39,9 @@ public class ModItemsRegister {
     public static final HashMap<String, Item> ITEM_RANGE_WEAPON = new HashMap<>();
     public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> STEEL_ARMOR = new HashMap<>();
     public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ALUMINUM_ARMOR = new HashMap<>();
+    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ETTMETAL_ARMOR = new HashMap<>();
+    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> LERASIUM_ARMOR = new HashMap<>();
+    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ATIUM_ARMOR = new HashMap<>();
     public static HashMap<String, RegistryObject<ForgeSpawnEggItem>> ENTITY_EGGS = new HashMap<>();
 
 
@@ -54,12 +57,19 @@ public class ModItemsRegister {
     //Vials
     public static RegistryObject<Item> LARGE_VIAL;
     public static RegistryObject<Item> SMALL_VIAL;
+    //book
     public static RegistryObject<Item> METALLICS_ARTS_BOOK;
+    //cores
     public static RegistryObject<Item> CORE_OBSIDIAN;
     public static RegistryObject<Item> CORE_ALUMINUM;
     public static RegistryObject<Item> CORE_STEEL;
+    public static RegistryObject<Item> CORE_ETTMETAL;
+    public static RegistryObject<Item> CORE_LERASIUM;
+    public static RegistryObject<Item> CORE_ATIUM;
+    //coins
     public static RegistryObject<Item> COPPER_COIN;
     public static RegistryObject<Item> BRONZE_COIN;
+    //bullets
     public static RegistryObject<Item> REVOLVER_ALUMINUM_BULLET;
     public static RegistryObject<Item> REVOLVER_LEAD_BULLET;
     public static RegistryObject<Item> LEAD_BULLET_PROJECTILE;
@@ -68,6 +78,7 @@ public class ModItemsRegister {
     public static RegistryObject<Item> SHOTGUN_LEAD_BULLET;
     public static RegistryObject<Item> RIFLE_ALUMINUM_BULLET;
     public static RegistryObject<Item> RIFLE_LEAD_BULLET;
+    //guns
     public static RegistryObject<Item> REVOLVER;
     public static RegistryObject<Item> RIFLE;
     public static RegistryObject<Item> RIFLE_WITH_SPYGLASS;
@@ -116,6 +127,10 @@ public class ModItemsRegister {
         ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_OBSIDIAN.toString(),ModItemsRegister.CORE_OBSIDIAN.get());
         ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_ALUMINUM.toString(),ModItemsRegister.CORE_ALUMINUM.get());
         ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_STEEL.toString(),ModItemsRegister.CORE_STEEL.get());
+        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_ATIUM.toString(),ModItemsRegister.CORE_ATIUM.get());
+        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_LERASIUM.toString(),ModItemsRegister.CORE_LERASIUM.get());
+        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_ETTMETAL.toString(),ModItemsRegister.CORE_ETTMETAL.get());
+
 
     }
 

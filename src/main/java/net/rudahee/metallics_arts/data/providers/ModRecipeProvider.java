@@ -463,36 +463,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("X*X")
                 .pattern("#X#")
                 .unlockedBy("has_block", has(ModItemsRegister.CORE_OBSIDIAN.get()))
-                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.CORE_OBSIDIAN.get().getDescriptionId()));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,ModItemsRegister.CORE_ALUMINUM.get())
-                .define('#', ModBlocksRegister.BLOCK_METAL_BLOCKS.get("aluminum"))
-                .define('*', Items.END_CRYSTAL)
-                .define('X', Items.NETHERITE_SCRAP)
-                .pattern("#X#")
-                .pattern("X*X")
-                .pattern("#X#")
-                .unlockedBy("has_block", has(ModItemsRegister.CORE_ALUMINUM.get()))
-                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.CORE_ALUMINUM.get().getDescriptionId()));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,ModItemsRegister.CORE_STEEL.get())
-                .define('#', ModBlocksRegister.BLOCK_METAL_BLOCKS.get("steel"))
-                .define('*', Items.END_CRYSTAL)
-                .define('X', Items.NETHERITE_SCRAP)
-                .pattern("#X#")
-                .pattern("X*X")
-                .pattern("#X#")
-                .unlockedBy("has_block", has(ModItemsRegister.CORE_STEEL.get()))
-                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.CORE_STEEL.get().getDescriptionId()));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,ModItemsRegister.CORE_OBSIDIAN.get())
-                .define('#', Items.OBSIDIAN)
-                .define('*', Items.NETHERITE_SCRAP)
-                .define('X', Items.GOLD_INGOT)
-                .pattern("#X#")
-                .pattern("X*X")
-                .pattern("#X#")
-                .unlockedBy("has_block", has(ModItemsRegister.CORE_OBSIDIAN.get()))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_core_obsidian"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC,ModItemsRegister.CORE_ALUMINUM.get())
@@ -514,6 +484,38 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("#X#")
                 .unlockedBy("has_block", has(ModItemsRegister.CORE_STEEL.get()))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_core_steel"));
+
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,ModItemsRegister.CORE_ATIUM.get())
+                .define('#', ModBlocksRegister.BLOCK_GEMS_BLOCKS.get("atium"))
+                .define('*', Items.END_CRYSTAL)
+                .define('X', Items.NETHERITE_SCRAP)
+                .pattern("#X#")
+                .pattern("X*X")
+                .pattern("#X#")
+                .unlockedBy("has_block", has(ModItemsRegister.CORE_ATIUM.get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_core_atium"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,ModItemsRegister.CORE_LERASIUM.get())
+                .define('#', ModBlocksRegister.BLOCK_GEMS_BLOCKS.get("lerasium"))
+                .define('*', Items.END_CRYSTAL)
+                .define('X', Items.NETHERITE_SCRAP)
+                .pattern("#X#")
+                .pattern("X*X")
+                .pattern("#X#")
+                .unlockedBy("has_block", has(ModItemsRegister.CORE_LERASIUM.get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_core_lerasium"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,ModItemsRegister.CORE_ETTMETAL.get())
+                .define('#', ModBlocksRegister.BLOCK_GEMS_BLOCKS.get("ettmetal"))
+                .define('*', Items.END_CRYSTAL)
+                .define('X', Items.NETHERITE_SCRAP)
+                .pattern("#X#")
+                .pattern("X*X")
+                .pattern("#X#")
+                .unlockedBy("has_block", has(ModItemsRegister.CORE_ETTMETAL.get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_core_ettmetal"));
+
 
         LegacyUpgradeRecipeBuilder.smithing(
                         Ingredient.of(Items.NETHERITE_HELMET),
@@ -548,9 +550,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlocks("has_armor", has(ModItemsRegister.STEEL_ARMOR.get(ArmorPiecesEnum.BOOTS).get()))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_steel_boots"));
 
-
-
-
         LegacyUpgradeRecipeBuilder.smithing(
                         Ingredient.of(Items.NETHERITE_HELMET),
                         Ingredient.of(ModItemsRegister.CORE_ALUMINUM.get()),
@@ -582,6 +581,118 @@ public class ModRecipeProvider extends RecipeProvider {
                         ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get())
                 .unlocks("has_armor", has(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get()))
                 .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_aluminum_boots"));
+
+        LegacyUpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_HELMET),
+                        Ingredient.of(ModItemsRegister.CORE_ATIUM.get()),
+                        RecipeCategory.COMBAT,
+                        ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.HELMET).get())
+                .unlocks("has_armor", has(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.HELMET).get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_atium_helmet"));
+
+        LegacyUpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_CHESTPLATE),
+                        Ingredient.of(ModItemsRegister.CORE_ATIUM.get()),
+                        RecipeCategory.COMBAT,
+                        ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get())
+                .unlocks("has_armor", has(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_atium_chestplate"));
+
+        LegacyUpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_LEGGINGS),
+                        Ingredient.of(ModItemsRegister.CORE_ATIUM.get()),
+                        RecipeCategory.COMBAT,
+                        ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get())
+                .unlocks("has_armor", has(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_atium_leggings"));
+
+        LegacyUpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_BOOTS),
+                        Ingredient.of(ModItemsRegister.CORE_ATIUM.get()),
+                        RecipeCategory.COMBAT,
+                        ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get())
+                .unlocks("has_armor", has(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_atium_boots"));
+
+        LegacyUpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_HELMET),
+                        Ingredient.of(ModItemsRegister.CORE_LERASIUM.get()),
+                        RecipeCategory.COMBAT,
+                        ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.HELMET).get())
+                .unlocks("has_armor", has(ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.HELMET).get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_lerasium_helmet"));
+
+        LegacyUpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_CHESTPLATE),
+                        Ingredient.of(ModItemsRegister.CORE_LERASIUM.get()),
+                        RecipeCategory.COMBAT,
+                        ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get())
+                .unlocks("has_armor", has(ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_lerasium_chestplate"));
+
+        LegacyUpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_LEGGINGS),
+                        Ingredient.of(ModItemsRegister.CORE_LERASIUM.get()),
+                        RecipeCategory.COMBAT,
+                        ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get())
+                .unlocks("has_armor", has(ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_lerasium_leggings"));
+
+        LegacyUpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_BOOTS),
+                        Ingredient.of(ModItemsRegister.CORE_LERASIUM.get()),
+                        RecipeCategory.COMBAT,
+                        ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get())
+                .unlocks("has_armor", has(ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_lerasium_boots"));
+
+        LegacyUpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_HELMET),
+                        Ingredient.of(ModItemsRegister.CORE_ETTMETAL.get()),
+                        RecipeCategory.COMBAT,
+                        ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.HELMET).get())
+                .unlocks("has_armor", has(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.HELMET).get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_ettmetal_helmet"));
+
+        LegacyUpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_CHESTPLATE),
+                        Ingredient.of(ModItemsRegister.CORE_ETTMETAL.get()),
+                        RecipeCategory.COMBAT,
+                        ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get())
+                .unlocks("has_armor", has(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_ettmetal_chestplate"));
+
+        LegacyUpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_LEGGINGS),
+                        Ingredient.of(ModItemsRegister.CORE_ETTMETAL.get()),
+                        RecipeCategory.COMBAT,
+                        ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get())
+                .unlocks("has_armor", has(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_ettmetal_leggings"));
+
+        LegacyUpgradeRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_BOOTS),
+                        Ingredient.of(ModItemsRegister.CORE_ETTMETAL.get()),
+                        RecipeCategory.COMBAT,
+                        ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.BOOTS).get())
+                .unlocks("has_armor", has(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.BOOTS).get()))
+                .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_armor_ettmetal_boots"));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

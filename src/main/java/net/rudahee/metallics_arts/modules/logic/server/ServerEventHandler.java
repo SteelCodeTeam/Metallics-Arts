@@ -1,24 +1,22 @@
 package net.rudahee.metallics_arts.modules.logic.server;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Targeting;
-import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.world.level.BlockEventData;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.ZombieEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
@@ -26,23 +24,19 @@ import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.data.enums.implementations.ForgeMasterTrades;
-import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
-import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntity;
-import net.rudahee.metallics_arts.modules.custom_entities.steel_allomancer_entity.SteelAllomancerEntity;
-import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.BasicGun;
-import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.GunUtils;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.mele.KolossBlade;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.*;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.entity_events.AllomancerEvents;
-import net.rudahee.metallics_arts.modules.villagers.ModVillager;
+import net.rudahee.metallics_arts.modules.custom_entities.villagers.ModVillager;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * The ServerEventHandler class is responsible for handling server-side events in the mod.
@@ -194,10 +188,22 @@ public class ServerEventHandler {
      */
     @SubscribeEvent
     public static void onDamageEvent(final LivingHurtEvent event) {
+        if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+            if (event.getSource().type().msgId().contains("explosion")) {// todo mirar de mejorar este if
+                NonNullList<ItemStack> list = serverPlayer.getInventory().armor;
+                if (list.get(0).getItem().equals(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.BOOTS).get()) &&
+                        list.get(1).getItem().equals(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get()) &&
+                        list.get(2).getItem().equals(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get()) &&
+                        list.get(3).getItem().equals(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.HELMET).get())) {
+                    event.setAmount(event.getAmount()/2);
+                }
+            }
+
+        }
         if (event.getSource().getDirectEntity() instanceof ServerPlayer && event.getEntity() instanceof ServerPlayer) {
             OnDamageEvent.onDamageFeruchemical(event, (ServerPlayer) event.getSource().getEntity(), (ServerPlayer) event.getEntity());
             OnDamageEvent.onDamageAllomantic(event, (ServerPlayer) event.getSource().getEntity(), (ServerPlayer) event.getEntity());
-        }else if(event.getSource().getDirectEntity() instanceof EttmetalAllomancerEntity){
+        } else if(event.getSource().getDirectEntity() instanceof EttmetalAllomancerEntity){
             AllomancerEvents.OnEttmetalAllomancerHit(event, (LivingEntity) event.getSource().getDirectEntity(), event.getEntity());
         }
     }

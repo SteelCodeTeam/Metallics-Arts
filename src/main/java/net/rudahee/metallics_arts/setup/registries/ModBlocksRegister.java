@@ -16,6 +16,7 @@ import net.rudahee.metallics_arts.setup.registries.blocks.decoration.DecorationB
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.AtiumBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.EttmetalBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.LerasiumBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.blocks.redstone.Electric;
 
 import java.util.HashMap;
 
@@ -56,13 +57,15 @@ public class ModBlocksRegister {
     public static RegistryObject<Block> IRON_WALL_SIGN;
     public static RegistryObject<Block> IRON_STANDING_SIGN;
 
+    public static RegistryObject<Block> ALLOMANTIC_LEVER;
+
     public static void register() {
         AtiumBlocksRegister.register();
         LerasiumBlocksRegister.register();
         EttmetalBlocksRegister.register();
         BasicBlocksRegister.register();
         DecorationBlockRegister.register();
-        //Electric.register();
+        Electric.register();
     }
 
     public static class InvestedCapabilityRegister {

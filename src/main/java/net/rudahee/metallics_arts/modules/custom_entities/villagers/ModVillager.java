@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.villagers;
+package net.rudahee.metallics_arts.modules.custom_entities.villagers;
 
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.sounds.SoundEvents;

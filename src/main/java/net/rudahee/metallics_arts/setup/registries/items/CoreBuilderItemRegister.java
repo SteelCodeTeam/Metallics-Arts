@@ -22,5 +22,12 @@ public class CoreBuilderItemRegister {
         ModItemsRegister.CORE_STEEL = MetallicsArts.registerItem("core_steel",
                 () -> new Item(new Item.Properties()));
 
+        ModItemsRegister.CORE_ATIUM = MetallicsArts.registerItem("core_atium",
+                () -> new Item(new Item.Properties()));
+        ModItemsRegister.CORE_LERASIUM = MetallicsArts.registerItem("core_lerasium",
+                () -> new Item(new Item.Properties()));
+        ModItemsRegister.CORE_ETTMETAL = MetallicsArts.registerItem("core_ettmetal",
+                () -> new Item(new Item.Properties()));
+
     }
 }

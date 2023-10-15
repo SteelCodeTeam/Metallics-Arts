@@ -46,6 +46,59 @@ public class ArmorRegister {
                 () -> new ArmorItem(CustomMaterials.ALUMINUM, ArmorItem.Type.BOOTS, PROPERTIES));
         ModItemsRegister.ALUMINUM_ARMOR.put(ArmorPiecesEnum.BOOTS, aluminumBoots);
 
+
+        RegistryObject<Item> ettmetalHelmet = MetallicsArts.registerItem("ettmetal_helmet",
+                () -> new ArmorItem(CustomMaterials.ETTMETAL, ArmorItem.Type.HELMET, PROPERTIES));
+        ModItemsRegister.ETTMETAL_ARMOR.put(ArmorPiecesEnum.HELMET, ettmetalHelmet);
+
+        RegistryObject<Item> ettmetalChesplate = MetallicsArts.registerItem("ettmetal_chestplate",
+                () -> new ArmorItem(CustomMaterials.ETTMETAL, ArmorItem.Type.CHESTPLATE, PROPERTIES));
+        ModItemsRegister.ETTMETAL_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, ettmetalChesplate);
+
+        RegistryObject<Item> ettmetalLeggings = MetallicsArts.registerItem("ettmetal_leggings",
+                () -> new ArmorItem(CustomMaterials.ETTMETAL, ArmorItem.Type.LEGGINGS, PROPERTIES));
+        ModItemsRegister.ETTMETAL_ARMOR.put(ArmorPiecesEnum.LEGGINGS, ettmetalLeggings);
+
+        RegistryObject<Item> ettmetalBoots = MetallicsArts.registerItem("ettmetal_boots",
+                () -> new ArmorItem(CustomMaterials.ETTMETAL, ArmorItem.Type.BOOTS, PROPERTIES));
+        ModItemsRegister.ETTMETAL_ARMOR.put(ArmorPiecesEnum.BOOTS, ettmetalBoots);
+
+
+        RegistryObject<Item> lerasiumHelmet = MetallicsArts.registerItem("lerasium_helmet",
+                () -> new ArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.HELMET, PROPERTIES));
+        ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.HELMET, lerasiumHelmet);
+
+        RegistryObject<Item> lerasiumChesplate = MetallicsArts.registerItem("lerasium_chestplate",
+                () -> new ArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
+        ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, lerasiumChesplate);
+
+        RegistryObject<Item> lerasiumLeggings = MetallicsArts.registerItem("lerasium_leggings",
+                () -> new ArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.LEGGINGS, PROPERTIES));
+        ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.LEGGINGS, lerasiumLeggings);
+
+        RegistryObject<Item> lerasiumBoots = MetallicsArts.registerItem("lerasium_boots",
+                () -> new ArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.BOOTS, PROPERTIES));
+        ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.BOOTS, lerasiumBoots);
+
+
+
+        RegistryObject<Item> atiumHelmet = MetallicsArts.registerItem("atium_helmet",
+                () -> new ArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.HELMET, PROPERTIES));
+        ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.HELMET, atiumHelmet);
+
+        RegistryObject<Item> atiumChesplate = MetallicsArts.registerItem("atium_chestplate",
+                () -> new ArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
+        ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, atiumChesplate);
+
+        RegistryObject<Item> atiumLeggings = MetallicsArts.registerItem("atium_leggings",
+                () -> new ArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.LEGGINGS, PROPERTIES));
+        ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.LEGGINGS, atiumLeggings);
+
+        RegistryObject<Item> atiumBoots = MetallicsArts.registerItem("atium_boots",
+                () -> new ArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.BOOTS, PROPERTIES));
+        ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.BOOTS, atiumBoots);
+
+
         ModItemsRegister.MISTCLOACK = MetallicsArts.registerItem("mistcloak",
                 () -> new MistCloak(new Item.Properties().stacksTo(1)));
 
