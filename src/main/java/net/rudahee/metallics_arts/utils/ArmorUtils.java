@@ -35,4 +35,12 @@ public class ArmorUtils {
                 list.get(2).getItem().equals(ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get()) &&
                 list.get(3).getItem().equals(ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.HELMET).get());
     }
+
+    public static boolean hasCopperArmor(Player player) {
+        NonNullList<ItemStack> list = player.getInventory().armor;
+        return list.get(0).getItem().equals(ModItemsRegister.COPPER_ARMOR.get(ArmorPiecesEnum.BOOTS).get()) &&
+                list.get(1).getItem().equals(ModItemsRegister.COPPER_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get()) &&
+                list.get(2).getItem().equals(ModItemsRegister.COPPER_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get()) &&
+                list.get(3).getItem().equals(ModItemsRegister.COPPER_ARMOR.get(ArmorPiecesEnum.HELMET).get());
+    }
 }

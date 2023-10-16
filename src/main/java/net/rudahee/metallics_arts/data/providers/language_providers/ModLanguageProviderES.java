@@ -111,6 +111,11 @@ public class ModLanguageProviderES extends LanguageProvider {
         put("item.metallics_arts.ettmetal_leggings", CTW.LEGGINGS.getNameInSpanish() + "de" + MetalNamesEnum.ETTMETAL.getNameInSpanish());
         put("item.metallics_arts.ettmetal_chestplate", CTW.CHESTPLATE.getNameInSpanish() + "de" + MetalNamesEnum.ETTMETAL.getNameInSpanish());
         put("item.metallics_arts.ettmetal_boots", CTW.BOOTS.getNameInSpanish() + "de" + MetalNamesEnum.ETTMETAL.getNameInSpanish());
+
+        put("item.metallics_arts.copper_helmet", CTW.HELMET.getNameInSpanish() + "de" + MetalNamesEnum.COPPER.getNameInSpanish());
+        put("item.metallics_arts.copper_leggings", CTW.LEGGINGS.getNameInSpanish() + "de" + MetalNamesEnum.COPPER.getNameInSpanish());
+        put("item.metallics_arts.copper_chestplate", CTW.CHESTPLATE.getNameInSpanish() + "de" + MetalNamesEnum.COPPER.getNameInSpanish());
+        put("item.metallics_arts.copper_boots", CTW.BOOTS.getNameInSpanish() + "de" + MetalNamesEnum.COPPER.getNameInSpanish());
     }};
 
     private final Map<String, String> paintings = new HashMap<>() {{

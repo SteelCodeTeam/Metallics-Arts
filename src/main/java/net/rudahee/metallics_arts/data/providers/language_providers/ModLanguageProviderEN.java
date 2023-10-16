@@ -110,6 +110,11 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("item.metallics_arts.ettmetal_leggings", MetalNamesEnum.ETTMETAL.getNameInEnglish() + " " + CTW.LEGGINGS.getNameInEnglish());
                 put("item.metallics_arts.ettmetal_chestplate", MetalNamesEnum.ETTMETAL.getNameInEnglish() + " " + CTW.CHESTPLATE.getNameInEnglish());
                 put("item.metallics_arts.ettmetal_boots", MetalNamesEnum.ETTMETAL.getNameInEnglish() + " " + CTW.BOOTS.getNameInEnglish());
+
+                put("item.metallics_arts.copper_helmet", MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.HELMET.getNameInEnglish());
+                put("item.metallics_arts.copper_leggings", MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.LEGGINGS.getNameInEnglish());
+                put("item.metallics_arts.copper_chestplate", MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.CHESTPLATE.getNameInEnglish());
+                put("item.metallics_arts.copper_boots", MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.BOOTS.getNameInEnglish());
         }};
 
 

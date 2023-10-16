@@ -99,6 +99,23 @@ public class ArmorRegister {
         ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.BOOTS, atiumBoots);
 
 
+        RegistryObject<Item> copperHelmet = MetallicsArts.registerItem("copper_helmet",
+                () -> new ArmorItem(CustomMaterials.COPPER, ArmorItem.Type.HELMET, PROPERTIES));
+        ModItemsRegister.COPPER_ARMOR.put(ArmorPiecesEnum.HELMET, copperHelmet);
+
+        RegistryObject<Item> copperChesplate = MetallicsArts.registerItem("copper_chestplate",
+                () -> new ArmorItem(CustomMaterials.COPPER, ArmorItem.Type.CHESTPLATE, PROPERTIES));
+        ModItemsRegister.COPPER_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, copperChesplate);
+
+        RegistryObject<Item> copperLeggings = MetallicsArts.registerItem("copper_leggings",
+                () -> new ArmorItem(CustomMaterials.COPPER, ArmorItem.Type.LEGGINGS, PROPERTIES));
+        ModItemsRegister.COPPER_ARMOR.put(ArmorPiecesEnum.LEGGINGS, copperLeggings);
+
+        RegistryObject<Item> copperBoots = MetallicsArts.registerItem("copper_boots",
+                () -> new ArmorItem(CustomMaterials.COPPER, ArmorItem.Type.BOOTS, PROPERTIES));
+        ModItemsRegister.COPPER_ARMOR.put(ArmorPiecesEnum.BOOTS, copperBoots);
+
+
         ModItemsRegister.MISTCLOACK = MetallicsArts.registerItem("mistcloak",
                 () -> new MistCloak(new Item.Properties().stacksTo(1)));
 

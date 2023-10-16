@@ -42,6 +42,7 @@ public class ModItemsRegister {
     public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ETTMETAL_ARMOR = new HashMap<>();
     public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> LERASIUM_ARMOR = new HashMap<>();
     public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ATIUM_ARMOR = new HashMap<>();
+    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> COPPER_ARMOR = new HashMap<>();
     public static HashMap<String, RegistryObject<ForgeSpawnEggItem>> ENTITY_EGGS = new HashMap<>();
 
 
@@ -60,12 +61,13 @@ public class ModItemsRegister {
     //book
     public static RegistryObject<Item> METALLICS_ARTS_BOOK;
     //cores
-    public static RegistryObject<Item> CORE_OBSIDIAN;
-    public static RegistryObject<Item> CORE_ALUMINUM;
-    public static RegistryObject<Item> CORE_STEEL;
-    public static RegistryObject<Item> CORE_ETTMETAL;
-    public static RegistryObject<Item> CORE_LERASIUM;
-    public static RegistryObject<Item> CORE_ATIUM;
+    public static RegistryObject<Item> OBSIDIAN_CORE;
+    public static RegistryObject<Item> ALUMINUM_CORE;
+    public static RegistryObject<Item> STEEL_CORE;
+    public static RegistryObject<Item> ETTMETAL_CORE;
+    public static RegistryObject<Item> LERASIUM_CORE;
+    public static RegistryObject<Item> ATIUM_CORE;
+    public static RegistryObject<Item> COPPER_CORE;
     //coins
     public static RegistryObject<Item> COPPER_COIN;
     public static RegistryObject<Item> BRONZE_COIN;
@@ -127,12 +129,13 @@ public class ModItemsRegister {
         ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.RIFLE_LEAD_BULLET.toString(),ModItemsRegister.RIFLE_LEAD_BULLET.get());
         ModItemsRegister.ITEM_RANGE_WEAPON.put(ModItemsRegister.RIFLE_ALUMINUM_BULLET.toString(),ModItemsRegister.RIFLE_ALUMINUM_BULLET.get());
 
-        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_OBSIDIAN.toString(),ModItemsRegister.CORE_OBSIDIAN.get());
-        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_ALUMINUM.toString(),ModItemsRegister.CORE_ALUMINUM.get());
-        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_STEEL.toString(),ModItemsRegister.CORE_STEEL.get());
-        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_ATIUM.toString(),ModItemsRegister.CORE_ATIUM.get());
-        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_LERASIUM.toString(),ModItemsRegister.CORE_LERASIUM.get());
-        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.CORE_ETTMETAL.toString(),ModItemsRegister.CORE_ETTMETAL.get());
+        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.OBSIDIAN_CORE.toString(),ModItemsRegister.OBSIDIAN_CORE.get());
+        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.ALUMINUM_CORE.toString(),ModItemsRegister.ALUMINUM_CORE.get());
+        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.STEEL_CORE.toString(),ModItemsRegister.STEEL_CORE.get());
+        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.ATIUM_CORE.toString(),ModItemsRegister.ATIUM_CORE.get());
+        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.LERASIUM_CORE.toString(),ModItemsRegister.LERASIUM_CORE.get());
+        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.ETTMETAL_CORE.toString(),ModItemsRegister.ETTMETAL_CORE.get());
+        ModItemsRegister.ITEM_CORES.put(ModItemsRegister.COPPER_CORE.toString(),ModItemsRegister.COPPER_CORE.get());
 
 
     }

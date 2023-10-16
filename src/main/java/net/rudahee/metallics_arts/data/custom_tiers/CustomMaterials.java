@@ -11,11 +11,12 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 public enum CustomMaterials implements ArmorMaterial {
 
 
-    STEEL("post_netherite", 45, 0.9F, 1.5F, Ingredient.of(ModItemsRegister.CORE_STEEL.get())),
-    ALUMINUM("post_netherite", 30, Ingredient.of(ModItemsRegister.CORE_ALUMINUM.get())),
-    ETTMETAL("post_netherite", 45, Ingredient.of(ModItemsRegister.CORE_ETTMETAL.get())),
-    LERASIUM("post_netherite", 45, Ingredient.of(ModItemsRegister.CORE_LERASIUM.get())),
-    ATIUM("post_netherite", 45, Ingredient.of(ModItemsRegister.CORE_ATIUM.get()));
+    STEEL("post_netherite", 45, 0.9F, 1.5F, Ingredient.of(ModItemsRegister.STEEL_CORE.get())),
+    ALUMINUM("post_netherite", 30, Ingredient.of(ModItemsRegister.ALUMINUM_CORE.get())),
+    ETTMETAL("post_netherite", 45, Ingredient.of(ModItemsRegister.ETTMETAL_CORE.get())),
+    LERASIUM("post_netherite", 45, Ingredient.of(ModItemsRegister.LERASIUM_CORE.get())),
+    ATIUM("post_netherite", 45, Ingredient.of(ModItemsRegister.ATIUM_CORE.get())),
+    COPPER("post_netherite", 45, Ingredient.of(ModItemsRegister.COPPER_CORE.get()));
 
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
