@@ -2,10 +2,12 @@ package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.FeruchemicTick;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.OnTickUtils;
+import net.rudahee.metallics_arts.utils.ArmorUtils;
 
 
 /**
@@ -61,6 +63,13 @@ public class OnWorldTickEvent {
             FeruchemicTick.eachTick(capability, player);
         }
 
+        if (ArmorUtils.hasLerasiumArmor(player) && ((tick % 20) == 0)) {
+            for (MetalTagEnum metal: MetalTagEnum.values()) {
+                if (capability.hasAllomanticPower(metal)) { //todo mirar los valores
+                    capability.addAllomanticMetalAmount(metal, (int) Math.floor(metal.getMaxAllomanticTicksStorage() * 0.1));
+                }
+            }
+        }
 
     }
 }

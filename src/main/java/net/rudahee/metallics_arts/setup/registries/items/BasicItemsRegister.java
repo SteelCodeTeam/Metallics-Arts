@@ -91,6 +91,15 @@ public class BasicItemsRegister {
                 MetallicsArts.registerItem("iron_sign",() -> new SignItem(new Item.Properties().stacksTo(16),
                         ModBlocksRegister.IRON_STANDING_SIGN.get(), ModBlocksRegister.IRON_WALL_SIGN.get()));
 
+        ModItemsRegister.GOLD_SIGN =
+                MetallicsArts.registerItem("gold_sign",() -> new SignItem(new Item.Properties().stacksTo(16),
+                        ModBlocksRegister.GOLD_STANDING_SIGN.get(), ModBlocksRegister.GOLD_WALL_SIGN.get()));
+        ModItemsRegister.COPPER_SIGN =
+                MetallicsArts.registerItem("copper_sign",() -> new SignItem(new Item.Properties().stacksTo(16),
+                        ModBlocksRegister.COPPER_STANDING_SIGN.get(), ModBlocksRegister.COPPER_WALL_SIGN.get()));
+        ModItemsRegister.ALUMINUM_SIGN =
+                MetallicsArts.registerItem("aluminum_sign",() -> new SignItem(new Item.Properties().stacksTo(16),
+                        ModBlocksRegister.ALUMINUM_STANDING_SIGN.get(), ModBlocksRegister.ALUMINUM_WALL_SIGN.get()));
     }
 
 }

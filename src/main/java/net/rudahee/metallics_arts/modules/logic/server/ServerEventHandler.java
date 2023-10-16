@@ -34,6 +34,7 @@ import net.rudahee.metallics_arts.modules.logic.server.server_events.entity_even
 import net.rudahee.metallics_arts.modules.custom_entities.villagers.ModVillager;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
+import net.rudahee.metallics_arts.utils.ArmorUtils;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.List;
@@ -188,7 +189,7 @@ public class ServerEventHandler {
      */
     @SubscribeEvent
     public static void onDamageEvent(final LivingHurtEvent event) {
-        if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+        /*if (event.getEntity() instanceof ServerPlayer serverPlayer) {
             if (event.getSource().type().msgId().contains("explosion")) {// todo mirar de mejorar este if
                 NonNullList<ItemStack> list = serverPlayer.getInventory().armor;
                 if (list.get(0).getItem().equals(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.BOOTS).get()) &&
@@ -199,10 +200,11 @@ public class ServerEventHandler {
                 }
             }
 
-        }
+        }*/
         if (event.getSource().getDirectEntity() instanceof ServerPlayer && event.getEntity() instanceof ServerPlayer) {
             OnDamageEvent.onDamageFeruchemical(event, (ServerPlayer) event.getSource().getEntity(), (ServerPlayer) event.getEntity());
             OnDamageEvent.onDamageAllomantic(event, (ServerPlayer) event.getSource().getEntity(), (ServerPlayer) event.getEntity());
+            OnDamageEvent.onDamageToArmor(event, (ServerPlayer) event.getEntity()); //todo funciona en este if ?
         } else if(event.getSource().getDirectEntity() instanceof EttmetalAllomancerEntity){
             AllomancerEvents.OnEttmetalAllomancerHit(event, (LivingEntity) event.getSource().getDirectEntity(), event.getEntity());
         }

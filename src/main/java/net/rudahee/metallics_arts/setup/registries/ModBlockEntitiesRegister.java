@@ -31,11 +31,17 @@ public class ModBlockEntitiesRegister {
                     BlockEntityType.Builder.of(DistilleryBlockEntity::new,
                             ModBlocksRegister.DESTILLERY.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<ModSingBlockEntity>> SIGN_BLOCK =
+    public static final RegistryObject<BlockEntityType<ModSingBlockEntity>> BLOCK_ENTITY =
             BLOCK_ENTITIES.register("sign_block_entity", () ->
                     BlockEntityType.Builder.of(ModSingBlockEntity::new,
                                     ModBlocksRegister.IRON_STANDING_SIGN.get(),
-                                    ModBlocksRegister.IRON_WALL_SIGN.get())
+                                    ModBlocksRegister.IRON_WALL_SIGN.get(),
+                                    ModBlocksRegister.GOLD_STANDING_SIGN.get(),
+                                    ModBlocksRegister.GOLD_WALL_SIGN.get(),
+                                    ModBlocksRegister.COPPER_STANDING_SIGN.get(),
+                                    ModBlocksRegister.COPPER_WALL_SIGN.get(),
+                                    ModBlocksRegister.ALUMINUM_STANDING_SIGN.get(),
+                                    ModBlocksRegister.ALUMINUM_WALL_SIGN.get())
                             .build(null));
 
     public static void register(IEventBus eventBus) {

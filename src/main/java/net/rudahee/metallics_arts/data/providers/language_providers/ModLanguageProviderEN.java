@@ -30,6 +30,39 @@ public class ModLanguageProviderEN extends LanguageProvider {
 
                 put("metallics_arts.tab.decorations", CTW.DECORATIONS.getNameInEnglish() + " " + CTW.METALLICS_ARTS.getNameInEnglish());
 
+                put("metallics_arts.item.tooltip.mistcloak", "Increase your speed");
+                put("item.metallics_arts.wood_shield", CTW.WOOD.getNameInEnglish() +" "+ CTW.SHIELD.getNameInEnglish());
+                put("item.metallics_arts.bronze_aluminum_shield", MetalNamesEnum.ALUMINUM.getNameInEnglish() +" "+ CTW.SHIELD.getNameInEnglish());
+
+        }};
+
+        private final Map<String, String> signs = new HashMap<>() {{
+                put("block.metallics_arts.iron_standing_sign",MetalNamesEnum.IRON.getNameInLowerEnglish()  + " " + CTW.SIGN.getNameInEnglish());
+                put("block.metallics_arts.gold_standing_sign", MetalNamesEnum.GOLD.getNameInLowerEnglish() + " " + CTW.SIGN.getNameInEnglish());
+                put("block.metallics_arts.copper_standing_sign", MetalNamesEnum.COPPER.getNameInLowerEnglish() + " " + CTW.SIGN.getNameInEnglish());
+                put("block.metallics_arts.aluminum_standing_sign", MetalNamesEnum.ALUMINUM.getNameInLowerEnglish() + " " + CTW.SIGN.getNameInEnglish());
+        }};
+        private final Map<String, String> redstone = new HashMap<>() {{
+                put("block.metallics_arts.allomantic_push_button", CTW.ALLOMANTIC.getNameInEnglish() + " " + CTW.PUSH.getNameInEnglish() + " " + CTW.BUTTON.getNameInEnglish());
+                put("block.metallics_arts.allomantic_pull_button", CTW.ALLOMANTIC.getNameInEnglish() + " " + CTW.PULL.getNameInEnglish() + " " + CTW.BUTTON.getNameInEnglish());
+                put("block.metallics_arts.allomantic_lever", CTW.ALLOMANTIC.getNameInEnglish() + " " + CTW.LEVER.getNameInEnglish());
+        }};
+
+        private final Map<String, String> metalMindsData = new HashMap<>() {{
+                put("metallics_arts.metal_mind_translate.has_reserve", CTW.HAS_RESERVE.getNameInEnglish());
+                put("metallics_arts.metal_mind_translate.not_has_reserve", CTW.NOT_HAS_RESERVE.getNameInEnglish());
+                put("metallics_arts.spike_feruchemic_power", CTW.STORAGE_POWER.getNameInEnglish() + ": " + CTW.FERUCHEMICAL.getNameInEnglish());
+                put("metallics_arts.spike_allomantic_power", CTW.STORAGE_POWER.getNameInEnglish() + ": " + CTW.ALLOMANTIC.getNameInEnglish());
+                put("metallics_arts.metal_mind_translate.tapping_identity", CTW.TAPPING_IDENTITY.getNameInEnglish());
+                put("metallics_arts.metal_mind_translate.store_identity", CTW.STORE_IDENTITY.getNameInEnglish());
+                put("metallics_arts.metal_mind_translate.off_power", CTW.POWER_OFF.getNameInEnglish());
+                put("metallics_arts.metal_mind_translate.shift_info",CTW.SHIFT_TO_MORE_INFO.getNameInEnglish());
+                put("metallics_arts.metal_mind.owner", CTW.OWNER.getNameInEnglish());
+                put("metallics_arts.metal_mind.nobody", CTW.NOBODY.getNameInEnglish());
+                put("metallics_arts.metal_mind.owner_someone", CTW.OWNER_SOMEONE.getNameInEnglish());
+                put("metallics_arts.metal_mind_translate.uses", CTW.USES.getNameInEnglish());
+        }};
+        private final Map<String, String> buttonConfigs = new HashMap<>() {{
                 put("key.category_powers_metallics_arts", CTW.POWERS.getNameInEnglish() + " " + CTW.METALLICS_ARTS.getNameInEnglish());
                 put("key.category_metallics_arts", CTW.METALLICS_ARTS.getNameInEnglish());
                 put("key.metallics_arts.allomantic", CTW.ALLOMANTIC.getNameInEnglish() + " " + CTW.POWER_SELECTOR.getNameInEnglish() );
@@ -40,47 +73,43 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("key.metallics_arts.feruchemic_decant", CTW.FERUCHEMICAL.getNameInEnglish() + " " + CTW.TAPPING.getNameInEnglish());
                 put("key.metallics_arts.feruchemic_store",CTW.FERUCHEMICAL.getNameInEnglish() + " " +CTW.STORAGE.getNameInEnglish());
                 put("key.metallics_arts.switch_overlay", CTW.SWITCH_OVERLAY.getNameInEnglish());
-
-                put("metallics_arts.metal_mind_translate.has_reserve", CTW.HAS_RESERVE.getNameInEnglish());
-                put("metallics_arts.metal_mind_translate.not_has_reserve", CTW.NOT_HAS_RESERVE.getNameInEnglish());
-                put("metallics_arts.spike_feruchemic_power", CTW.STORAGE_POWER.getNameInEnglish() + ": " + CTW.FERUCHEMICAL.getNameInEnglish());
-                put("metallics_arts.spike_allomantic_power", CTW.STORAGE_POWER.getNameInEnglish() + ": " + CTW.ALLOMANTIC.getNameInEnglish());
-
-                //ver porque usa "spike"
-                put("metallics_arts.metal_mind_translate.tapping_identity", CTW.TAPPING_IDENTITY.getNameInEnglish());
-
-                //arreglar estos de aca abajo
-                put("metallics_arts.metal_mind_translate.store_identity", CTW.STORE_IDENTITY.getNameInEnglish());
-                put("metallics_arts.metal_mind_translate.off_power", CTW.POWER_OFF.getNameInEnglish());
-                put("metallics_arts.metal_mind_translate.shift_info",CTW.SHIFT_TO_MORE_INFO.getNameInEnglish());
-                put("metallics_arts.metal_mind.owner", CTW.OWNER.getNameInEnglish());
-                put("metallics_arts.metal_mind.nobody", CTW.NOBODY.getNameInEnglish());
-                put("metallics_arts.metal_mind.owner_someone", CTW.OWNER_SOMEONE.getNameInEnglish());
-                put("metallics_arts.metal_mind_translate.uses", CTW.USES.getNameInEnglish());
-
-
-
-                put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInEnglish());
-                put("item.metallics_arts.silver_knife", CTW.SILVER_KNIFE.getNameInEnglish());
-                put("item.metallics_arts.koloss_blade", CTW.KOLOSS_BLADE.getNameInEnglish());
-                put("item.metallics_arts.dueling_staff", CTW.DUELING_STAFF.getNameInEnglish());
-                put("item.metallics_arts.obsidian_axe", CTW.OBSIDIAN_AXE.getNameInEnglish());
-
+                put("key.metallics_arts.change_ammo", CTW.CHANGE_AMMO.getNameInEnglish());
+                put("key.metallics_arts.reload", CTW.RELOAD.getNameInEnglish());
+        }};
+        private final Map<String, String> cores = new HashMap<>() {{
                 put("item.metallics_arts.core_obsidian", CTW.OBSIDIAN_CORE.getNameInEnglish());
                 put("item.metallics_arts.core_steel", CTW.STEEL_CORE.getNameInEnglish());
                 put("item.metallics_arts.core_aluminum", CTW.ALUMINUM_CORE.getNameInEnglish());
-                put("item.metallics_arts.steel_helmet", CTW.STEEL_HELMET.getNameInEnglish());
-                put("item.metallics_arts.steel_leggings", CTW.STEEL_LEGGINGS.getNameInEnglish());
-                put("item.metallics_arts.steel_chestplate", CTW.STEEL_CHESTPLATE.getNameInEnglish());
-                put("item.metallics_arts.steel_boots", CTW.STEEL_BOOTS.getNameInEnglish());
-                put("item.metallics_arts.aluminum_helmet", CTW.ALUMINUM_HELMET.getNameInEnglish());
-                put("item.metallics_arts.aluminum_leggings", CTW.ALUMINUM_LEGGINGS.getNameInEnglish());
-                put("item.metallics_arts.aluminum_chestplate", CTW.ALUMINUM_CHESTPLATE.getNameInEnglish());
-                put("item.metallics_arts.aluminum_boots", CTW.ALUMINUM_BOOTS.getNameInEnglish());
-                put("metallics_arts.item.tooltip.mistcloak", "Increase your speed");
-                put("item.metallics_arts.wood_shield", CTW.WOOD.getNameInEnglish() +" "+ CTW.SHIELD.getNameInEnglish());
-                put("item.metallics_arts.bronze_aluminum_shield", MetalNamesEnum.ALUMINUM.getNameInEnglish() +" "+ CTW.SHIELD.getNameInEnglish());
+                put("item.metallics_arts.core_atium", CTW.ATIUM_CORE.getNameInEnglish());
+                put("item.metallics_arts.core_lerasium", CTW.LERASIUM_CORE.getNameInEnglish());
+                put("item.metallics_arts.core_ettmetal", CTW.ETTMETAL_CORE.getNameInEnglish());
+        }};
 
+        private final Map<String, String> armors = new HashMap<>() {{
+                put("item.metallics_arts.steel_helmet", MetalNamesEnum.STEEL.getNameInEnglish() + " " + CTW.HELMET.getNameInEnglish());
+                put("item.metallics_arts.steel_leggings", MetalNamesEnum.STEEL.getNameInEnglish() + " " + CTW.LEGGINGS.getNameInEnglish());
+                put("item.metallics_arts.steel_chestplate", MetalNamesEnum.STEEL.getNameInEnglish() + " " + CTW.CHESTPLATE.getNameInEnglish());
+                put("item.metallics_arts.steel_boots", MetalNamesEnum.STEEL.getNameInEnglish() + " " + CTW.BOOTS.getNameInEnglish());
+
+                put("item.metallics_arts.aluminum_helmet", MetalNamesEnum.ALUMINUM.getNameInEnglish() + " " + CTW.HELMET.getNameInEnglish());
+                put("item.metallics_arts.aluminum_leggings", MetalNamesEnum.ALUMINUM.getNameInEnglish() + " " + CTW.LEGGINGS.getNameInEnglish());
+                put("item.metallics_arts.aluminum_chestplate", MetalNamesEnum.ALUMINUM.getNameInEnglish() + " " + CTW.CHESTPLATE.getNameInEnglish());
+                put("item.metallics_arts.aluminum_boots", MetalNamesEnum.ALUMINUM.getNameInEnglish() + " " + CTW.BOOTS.getNameInEnglish());
+
+                put("item.metallics_arts.atium_helmet", MetalNamesEnum.ATIUM.getNameInEnglish() + " " + CTW.HELMET.getNameInEnglish());
+                put("item.metallics_arts.atium_leggings", MetalNamesEnum.ATIUM.getNameInEnglish() + " " + CTW.LEGGINGS.getNameInEnglish());
+                put("item.metallics_arts.atium_chestplate", MetalNamesEnum.ATIUM.getNameInEnglish() + " " + CTW.CHESTPLATE.getNameInEnglish());
+                put("item.metallics_arts.atium_boots", MetalNamesEnum.ATIUM.getNameInEnglish() + " " + CTW.BOOTS.getNameInEnglish());
+
+                put("item.metallics_arts.lerasium_helmet", MetalNamesEnum.LERASIUM.getNameInEnglish() + " " + CTW.HELMET.getNameInEnglish());
+                put("item.metallics_arts.lerasium_leggings", MetalNamesEnum.LERASIUM.getNameInEnglish() + " " + CTW.LEGGINGS.getNameInEnglish());
+                put("item.metallics_arts.lerasium_chestplate", MetalNamesEnum.LERASIUM.getNameInEnglish() + " " + CTW.CHESTPLATE.getNameInEnglish());
+                put("item.metallics_arts.lerasium_boots", MetalNamesEnum.LERASIUM.getNameInEnglish() + " " + CTW.BOOTS.getNameInEnglish());
+
+                put("item.metallics_arts.ettmetal_helmet", MetalNamesEnum.ETTMETAL.getNameInEnglish() + " " + CTW.HELMET.getNameInEnglish());
+                put("item.metallics_arts.ettmetal_leggings", MetalNamesEnum.ETTMETAL.getNameInEnglish() + " " + CTW.LEGGINGS.getNameInEnglish());
+                put("item.metallics_arts.ettmetal_chestplate", MetalNamesEnum.ETTMETAL.getNameInEnglish() + " " + CTW.CHESTPLATE.getNameInEnglish());
+                put("item.metallics_arts.ettmetal_boots", MetalNamesEnum.ETTMETAL.getNameInEnglish() + " " + CTW.BOOTS.getNameInEnglish());
         }};
 
 
@@ -119,10 +148,13 @@ public class ModLanguageProviderEN extends LanguageProvider {
         private final Map<String, String> tables = new HashMap<>() {{
                 put("block.metallics_arts.menu.crucible_furnace", "Crucible Furnace");
                 put("block.metallics_arts.crucible_furnace", "Crucible Furnace");
+
+                put("block.metallics_arts.menu.hemalurgy_altar", "Hemalurgy Altar");
+                put("block.metallics_arts.hemalurgy_altar", "Hemalurgy Altar");
         }};
 
 
-        private final Map<String, String> gun_and_ammo = new HashMap<>() {{
+        private final Map<String, String> gun_ammo_and_weapons = new HashMap<>() {{
                 put("item.metallics_arts." + GunType.REVOLVER.getName(), CTW.REVOLVER.getNameInEnglish());
                 put("item.metallics_arts." + GunType.VINDICATOR.getName(), CTW.VINDICATOR.getNameInEnglish());
                 put("item.metallics_arts." + GunType.RIFLE.getName(), CTW.RIFLE.getNameInEnglish());
@@ -137,6 +169,14 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("item.metallics_arts." + GunType.SHOTGUN.getName() +"_aluminum_ammo", MetalNamesEnum.ALUMINUM.getNameInEnglish() + " " + CTW.SHOTGUN.getNameInEnglish() + " " + CTW.AMMO.getNameInEnglish());
                 put("item.metallics_arts." + GunType.SHOTGUN.getName() +"_lead_ammo", MetalNamesEnum.LEAD.getNameInEnglish() + " " + CTW.SHOTGUN.getNameInEnglish() + " " + CTW.AMMO.getNameInEnglish());
 
+                put("item.metallics_arts.obsidian_dagger", CTW.OBSIDIAN_DAGGER.getNameInEnglish());
+                put("item.metallics_arts.silver_knife", CTW.SILVER_KNIFE.getNameInEnglish());
+                put("item.metallics_arts.koloss_blade", CTW.KOLOSS_BLADE.getNameInEnglish());
+                put("item.metallics_arts.dueling_staff", CTW.DUELING_STAFF.getNameInEnglish());
+                put("item.metallics_arts.obsidian_axe", CTW.OBSIDIAN_AXE.getNameInEnglish());
+
+                put("item.metallics_arts.copper_coin", MetalNamesEnum.COPPER.getNameInEnglish() + " " + CTW.COIN.getNameInEnglish());
+                put("item.metallics_arts.bronze_coin", MetalNamesEnum.BRONZE.getNameInEnglish() + " " + CTW.COIN.getNameInEnglish());
 
         }};
 
@@ -415,50 +455,39 @@ public class ModLanguageProviderEN extends LanguageProvider {
             for (String key: metalMinds.keySet()) {
                     add(key, metalMinds.get(key));
             }
-
             for (String key: rawItems.keySet()) {
                     add(key, rawItems.get(key));
             }
-
             for (String key: geodeBlocks.keySet()) {
                     add(key, geodeBlocks.get(key));
             }
-
             for (String key: ores.keySet()) {
                     add(key, ores.get(key));
             }
             for (String key: deepslateOres.keySet()) {
                     add(key, deepslateOres.get(key));
             }
-
             for (String key: nuggets.keySet()) {
                     add(key, nuggets.get(key));
             }
-
             for (String key: blocks.keySet()) {
                     add(key, blocks.get(key));
             }
-
             for (String key: spikes.keySet()) {
                     add(key, spikes.get(key));
             }
-
             for (String key: icons.keySet()) {
                     add(key, icons.get(key));
             }
-
             for (String key: metals.keySet()) {
                     add(key, metals.get(key));
             }
-
             for (String key: powers.keySet()) {
                     add(key, powers.get(key));
             }
-
             for(String key: base.keySet()) {
                     add(key, base.get(key));
             }
-
             for(String key: patterns.keySet()) {
                     add(key, patterns.get(key));
             }
@@ -480,9 +509,26 @@ public class ModLanguageProviderEN extends LanguageProvider {
             for (String key: paintings.keySet()) {
                     add(key, paintings.get(key));
             }
-
-            for (String key: gun_and_ammo.keySet()) {
-                    add(key, gun_and_ammo.get(key));
+            for (String key: gun_ammo_and_weapons.keySet()) {
+                    add(key, gun_ammo_and_weapons.get(key));
+            }
+            for (String key: cores.keySet()) {
+                    add(key, cores.get(key));
+            }
+            for (String key: armors.keySet()) {
+                    add(key, armors.get(key));
+            }
+            for (String key: buttonConfigs.keySet()) {
+                    add(key, buttonConfigs.get(key));
+            }
+            for (String key: metalMindsData.keySet()) {
+                    add(key, metalMindsData.get(key));
+            }
+            for (String key: signs.keySet()) {
+                    add(key, signs.get(key));
+            }
+            for (String key: redstone.keySet()) {
+                    add(key, redstone.get(key));
             }
 
             for (String keySymbol : symbols.keySet()) {

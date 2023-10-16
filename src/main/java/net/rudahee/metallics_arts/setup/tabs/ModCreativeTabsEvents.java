@@ -56,6 +56,9 @@ public class ModCreativeTabsEvents {
             event.accept(ModBlocksRegister.HEMALURGY_ALTAR);
 
             event.accept(ModItemsRegister.IRON_SIGN);
+            event.accept(ModItemsRegister.GOLD_SIGN);
+            event.accept(ModItemsRegister.COPPER_SIGN);
+            event.accept(ModItemsRegister.ALUMINUM_SIGN);
             event.accept(ModBlocksRegister.ALLOMANTIC_LEVER);
             event.accept(ModBlocksRegister.ALLOMANTIC_PUSH_BUTTON);
             event.accept(ModBlocksRegister.ALLOMANTIC_PULL_BUTTON);

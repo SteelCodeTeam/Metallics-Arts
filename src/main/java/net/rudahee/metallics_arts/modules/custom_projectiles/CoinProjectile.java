@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.modules.custom_projectiles;
 
 
+import net.minecraft.client.multiplayer.chat.report.ReportEnvironment;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -67,18 +68,22 @@ public class CoinProjectile extends ThrowableItemProjectile {
     protected void onHitEntity(EntityHitResult hitResult) {
         super.onHitEntity(hitResult);
         Entity entityHurt = hitResult.getEntity();
-
-        entityHurt.hurt(entityHurt.damageSources().thrown(entityHurt, this.getOwner()), gunType.getDamage());
-
+//
+        //entityHurt.hurt(entityHurt.damageSources().thrown(this.getOwner(), entityHurt), gunType.getDamage());
         Entity entitySource = this.getOwner();
 
         if (entitySource != null) {
             if (entitySource instanceof LivingEntity) {
                 ((LivingEntity) entitySource).setLastHurtMob(entityHurt);
             }
+            if (entitySource instanceof ServerPlayer) {
+                entityHurt.hurt(entityHurt.damageSources().indirectMagic(entityHurt, entitySource), gunType.getDamage());
+            } else {
+                entityHurt.hurt(entityHurt.damageSources().generic(), gunType.getDamage());
+            }
+        } else {
+            entityHurt.hurt(entityHurt.damageSources().generic(), gunType.getDamage());
         }
-
-
     }
 
     protected void onHit(HitResult hitResult) {

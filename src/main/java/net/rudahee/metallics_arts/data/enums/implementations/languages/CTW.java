@@ -43,6 +43,9 @@ public enum CTW implements ILanguage {
     PULL("pull", "Pull", "Tiron","", "Ciągnij"),
     VERTICAL("vertical", "Vertical", "Vertical","", "Pionowy"),
     SWITCH_OVERLAY("switch_overlay", "Switch Overlay", "Alrternar interfaz","", "Zmień nakładkę"),
+
+    CHANGE_AMMO("change_ammo", "Change Ammo", "Cambiar Municion","", ""),
+    RELOAD("reload", "Reload", "Recargar","", ""),
     METALLICS_ARTS("metallics_arts", "Metallics Arts", "Artes Metalicas","金属術", "Sztuki metaliczne"),
     OWNER("ring", "Owner", "Propietario","オーナー", "Właściciel"),
     NOBODY("nobody", "Nobody", "Sin Propietario","誰でもない", "Nikt"),
@@ -111,16 +114,15 @@ public enum CTW implements ILanguage {
     PATTERNS("patterns","Patterns","Patrones","", "Wzory"),
 
     OBSIDIAN_CORE("obsidian_core", "Obsidian Core", "Nucleo de Obsidiana", "", ""),
-    STEEL_CORE("steel_core", "Steel Core", "Nucleo de Acero", "", ""),
-    ALUMINUM_CORE("aluminum_core", "Aluminum Core", "Nucleo de Aluminio", "", ""),
-    STEEL_HELMET("steel_helmet", "Steel Helmet", "Casco de Acero", "", ""),
-    STEEL_LEGGINGS("steel_leggings", "Steel Leggings", "Pantalones de Acero", "", ""),
-    STEEL_CHESTPLATE("steel_chesplate", "Steel Chesplate", "Pechera de Acero", "", ""),
-    STEEL_BOOTS("steel_boots", "Steel Boots", "Botas de Acero", "", ""),
-    ALUMINUM_HELMET("aluminum_helmet", "Aluminum Helmet", "Casco de Aluminio", "", ""),
-    ALUMINUM_LEGGINGS("aluminum_leggings", "Aluminum Leggings", "Pantalones de Aluminio", "", ""),
-    ALUMINUM_CHESTPLATE("aluminum_chesplate", "Aluminum Chesplate", "Pechera de Aluminio", "", ""),
-    ALUMINUM_BOOTS("aluminum_boots", "Aluminum Boots", "Botas de Aluminio", "", ""),
+    STEEL_CORE("steel_core", "Steel Core", "Nucleo de acero", "", ""),
+    ALUMINUM_CORE("aluminum_core", "Aluminum Core", "Nucleo de aluminio", "", ""),
+    ATIUM_CORE("atium_core", "Atium Core", "Nucleo de Atium", "", ""),
+    LERASIUM_CORE("lerasium_core", "Lerasium Core", "Nucleo de lerasium", "", ""),
+    ETTMETAL_CORE("ettmetal_core", "Ettmetal Core", "Nucleo de ettmetal", "", ""),
+    HELMET("helmet", "Helmet", "Casco", "", ""),
+    LEGGINGS("leggings", "Leggings", "Pantalones", "", ""),
+    CHESTPLATE("chesplate", "Chesplate", "Pechera", "", ""),
+    BOOTS("boots", "Boots", "Botas de Acero", "", ""),
     WOOD("wood", "Wood", "Madera", "", ""),
     SHIELD("shield", "Shield", "Escudo", "", ""),
     STAIRS("stair", "Stairs", "Escaleras", "", ""),
@@ -132,7 +134,11 @@ public enum CTW implements ILanguage {
     VINDICATOR(GunType.VINDICATOR.getName(), "Vindicator", "Vindicadora", "",""),
     RIFLE(GunType.RIFLE.getName(), "Rifle", "Rifle", "",""),
     SHOTGUN(GunType.SHOTGUN.getName(), "Shotgun", "Escopeta", "",""),
-    AMMO("ammo","Ammo","Municion","","");
+    AMMO("ammo","Ammo","Municion","",""),
+    COIN("coin","Coin","Moneda","",""),
+    SIGN("sign","Sign","Letrero","",""),
+    BUTTON("button","Button","Boton","",""),
+    LEVER("lever","Lever","Palanca","","");
     private final String id;
     private final String english;
     private final String spanish;

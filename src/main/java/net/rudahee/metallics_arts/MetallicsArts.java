@@ -135,6 +135,9 @@ public class MetallicsArts {
         ModEventsRegister.register(event);
 
         Sheets.addWoodType(WoodTypeMetal.IRON_TYPE);
+        Sheets.addWoodType(WoodTypeMetal.GOLD_TYPE);
+        Sheets.addWoodType(WoodTypeMetal.COPPER_TYPE);
+        Sheets.addWoodType(WoodTypeMetal.ALUMINUM_TYPE);
 
         // TODO event.enqueueWork(ModVillager::registerPOIs);
 
@@ -191,7 +194,10 @@ public class MetallicsArts {
         MenuScreens.register(ModMenuRegister.HEMALUGY_ALTAR_MENU.get(), HemalurgyAltarScreen::new);
 
         WoodType.register(WoodTypeMetal.IRON_TYPE);
-        BlockEntityRenderers.register(ModBlockEntitiesRegister.SIGN_BLOCK.get(), SignRenderer::new);
+        WoodType.register(WoodTypeMetal.GOLD_TYPE);
+        WoodType.register(WoodTypeMetal.COPPER_TYPE);
+        WoodType.register(WoodTypeMetal.ALUMINUM_TYPE);
+        BlockEntityRenderers.register(ModBlockEntitiesRegister.BLOCK_ENTITY.get(), SignRenderer::new);
 
     }
 

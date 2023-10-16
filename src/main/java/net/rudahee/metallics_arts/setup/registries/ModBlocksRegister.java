@@ -56,6 +56,12 @@ public class ModBlocksRegister {
 
     public static RegistryObject<Block> IRON_WALL_SIGN;
     public static RegistryObject<Block> IRON_STANDING_SIGN;
+    public static RegistryObject<Block> GOLD_WALL_SIGN;
+    public static RegistryObject<Block> GOLD_STANDING_SIGN;
+    public static RegistryObject<Block> COPPER_WALL_SIGN;
+    public static RegistryObject<Block> COPPER_STANDING_SIGN;
+    public static RegistryObject<Block> ALUMINUM_WALL_SIGN;
+    public static RegistryObject<Block> ALUMINUM_STANDING_SIGN;
 
     public static RegistryObject<Block> ALLOMANTIC_LEVER;
 

@@ -135,9 +135,23 @@ public class BasicBlocksRegister {
 
         ModBlocksRegister.IRON_WALL_SIGN = MetallicsArts.registerBlockNoItem("iron_wall_sign", ()
                 -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK), WoodTypeMetal.IRON_TYPE));
-
         ModBlocksRegister.IRON_STANDING_SIGN = MetallicsArts.registerBlockNoItem("iron_standing_sign", ()
                 -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK), WoodTypeMetal.IRON_TYPE));
+
+        ModBlocksRegister.GOLD_WALL_SIGN = MetallicsArts.registerBlockNoItem("gold_wall_sign", ()
+                -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK), WoodTypeMetal.GOLD_TYPE));
+        ModBlocksRegister.GOLD_STANDING_SIGN = MetallicsArts.registerBlockNoItem("gold_standing_sign", ()
+                -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK), WoodTypeMetal.GOLD_TYPE));
+
+        ModBlocksRegister.COPPER_WALL_SIGN = MetallicsArts.registerBlockNoItem("copper_wall_sign", ()
+                -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK), WoodTypeMetal.COPPER_TYPE));
+        ModBlocksRegister.COPPER_STANDING_SIGN = MetallicsArts.registerBlockNoItem("copper_standing_sign", ()
+                -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK), WoodTypeMetal.COPPER_TYPE));
+
+        ModBlocksRegister.ALUMINUM_WALL_SIGN = MetallicsArts.registerBlockNoItem("aluminum_wall_sign", ()
+                -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK), WoodTypeMetal.ALUMINUM_TYPE));
+        ModBlocksRegister.ALUMINUM_STANDING_SIGN = MetallicsArts.registerBlockNoItem("aluminum_standing_sign", ()
+                -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK), WoodTypeMetal.ALUMINUM_TYPE));
     }
 
 

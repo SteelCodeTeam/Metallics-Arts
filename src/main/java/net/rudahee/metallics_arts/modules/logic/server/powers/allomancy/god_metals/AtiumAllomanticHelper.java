@@ -3,8 +3,6 @@ package net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.god_met
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
-
-
 /**
  * Helper class that contains the methods to use the allomantic Atium
  *
@@ -21,36 +19,33 @@ public class AtiumAllomanticHelper {
      *
      * @param targetCapability capabilities (data) of the target player.
      * @param sourceCapability capabilities (data) of the source player.
-     * @param damage dealt in the event.
      * @return float final damage.
      */
-    public static float getCalculateComplexDamage(IInvestedPlayerData targetCapability, IInvestedPlayerData sourceCapability, float damage) {
-
-        int tar = 0;
-        int sour = 0;
+    public static boolean getCalculateComplexDamage(IInvestedPlayerData targetCapability, IInvestedPlayerData sourceCapability, boolean hasAtiumArmor) {
+        int target = 0;
+        int source = 0;
         if (targetCapability.isBurning(MetalTagEnum.ATIUM))
-            tar = tar + 1;
+            target = target + 1;
         if (targetCapability.isBurning(MetalTagEnum.LERASIUM))
-            tar =tar + 2;
+            target =target + 2;
         if (targetCapability.getEnhanced())
-            tar = tar + 3;
+            target = target + 3;
 
         if (sourceCapability.isBurning(MetalTagEnum.ATIUM)) {
-            sour = sour + 1;
+            source = source + 1;
             if (sourceCapability.isBurning(MetalTagEnum.LERASIUM))
-                sour =sour + 2;
+                source = source + 2;
             if (sourceCapability.getEnhanced())
-                sour = sour + 3;
+                source = source + 3;
         }
 
-        if (tar <= sour) {
-            return damage;
-        }
-        else { //mayor probabilidad de evitar
-            if (sour == 0) {
-                return getCalculateSimpleDamage(targetCapability,damage);
+        if (target <= source) {
+            return false;
+        } else { //mayor probabilidad de evitar
+            if (source == 0) {
+                return getCalculateSimpleDamage(targetCapability, hasAtiumArmor ? 0.1 : 0);
             } else {
-                return getCalculateDobleBurn(tar, sour, damage);
+                return getCalculateDoubleBurn(target, source, hasAtiumArmor ? 0.1 : 0);
             }
 
         }
@@ -67,67 +62,50 @@ public class AtiumAllomanticHelper {
      *
      * @param targetC calculated value based on whether the target is burning Atium, Lerasium and Duralumin.
      * @param sourceC calculated value based on whether the source is burning Atium, Lerasium and Duralumin.
-     * @param damage dealt in the event.
      * @return float final damage.
      */
-    private static float getCalculateDobleBurn(int targetC, int sourceC, float damage) {
+    private static boolean getCalculateDoubleBurn(int targetC, int sourceC, double armor) {
         if (targetC == 3) {                     //target = atium + lerasium
-            if (Math.random()<0.5) {            //source = atium
-                return 0;
-            }
+            return Math.random() < (0.5 + armor);         //source = atium
         } else if (targetC == 4) {              //target = atium + duralumin
             if (sourceC == 1) {
-                if (Math.random()<0.65) {       //source = atium
-                    return 0;
-                }
+                //source = atium
+                return Math.random() < (0.65 + armor);
             } else {
-                if (Math.random()<0.55) {       //source = atium + lerasium
-                    return 0;
-                }
+                //source = atium + lerasium
+                return Math.random() < (0.55 + armor);
             }
         } else {                                //target quema atium + lerasium + duralumin
             if (sourceC == 1) {
-                if (Math.random()<0.9) {        //source = atium
-                    return 0;
-                }
+                //source = atium
+                return Math.random() < (0.9 + armor);
             } else if (sourceC == 3) {
-                if (Math.random()<0.75) {       //source = atium + lerasium
-                    return 0;
-                }
+                //source = atium + lerasium
+                return Math.random() < (0.75 + armor);
             } else {
-                if (Math.random()<0.65) {       //source = atium + duralumin
-                    return 0;
-                }
+                //source = atium + duralumin
+                return Math.random() < (0.65 + armor);
             }
         }
-        return damage;
     }
 
     /**
      * Is in charge of calculating the final damage based on the metals burned by the target of damage.
      *
      * @param targetCapability capabilities (data) of the target player.
-     * @param damage dealt in the event.
      * @return float final damage.
      */
 
-    public static float getCalculateSimpleDamage(IInvestedPlayerData targetCapability, float damage) {
+    public static boolean getCalculateSimpleDamage(IInvestedPlayerData targetCapability, double armor) {
         if (targetCapability.isBurning(MetalTagEnum.LERASIUM) && targetCapability.getEnhanced()) { //lerasium + duralumin
-            return 0;
+            return true;
         } else if (targetCapability.isBurning(MetalTagEnum.LERASIUM)) { //solo lerasium
-            if (Math.random()<0.6) {
-                return 0;
-            }
+            return Math.random() < (0.6 + armor);
         } else if (targetCapability.getEnhanced()) { //solo duralumin
-            if (Math.random()<0.8) {
-                return 0;
-            }
+            return Math.random() < (0.8 + armor);
         } else { //solo atium
-            if (Math.random()<0.4) {
-                return 0;
-            }
+            return Math.random() < (0.4 + armor);
         }
-        return damage;
     }
 
 }

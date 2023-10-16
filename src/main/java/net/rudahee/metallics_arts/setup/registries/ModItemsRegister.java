@@ -86,6 +86,9 @@ public class ModItemsRegister {
     public static RegistryObject<Item> VINDICATOR;
     public static RegistryObject<Item> MISTCLOACK;
     public static RegistryObject<Item> IRON_SIGN;
+    public static RegistryObject<Item> GOLD_SIGN;
+    public static RegistryObject<Item> COPPER_SIGN;
+    public static RegistryObject<Item> ALUMINUM_SIGN;
 
 
     public static void register() {
