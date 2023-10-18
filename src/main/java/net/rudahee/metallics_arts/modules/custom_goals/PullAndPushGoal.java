@@ -39,7 +39,7 @@ public class PullAndPushGoal extends Goal {
 
 
 
-        if(this.entity.getTarget() instanceof ServerPlayer && EntityUtils.distance((ServerPlayer) this.entity.getTarget(), this.entity)<blocks ){
+        if(this.entity.getTarget() instanceof ServerPlayer && EntityUtils.distance((ServerPlayer) this.entity.getTarget(), this.entity)<blocks ) {
             IronAndSteelHelpers.move(power,this.entity.getTarget(),this.entity.blockPosition());
             return true;
         }else

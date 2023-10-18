@@ -205,7 +205,7 @@ public class ServerEventHandler {
             OnDamageEvent.onDamageFeruchemical(event, (ServerPlayer) event.getSource().getEntity(), (ServerPlayer) event.getEntity());
             OnDamageEvent.onDamageAllomantic(event, (ServerPlayer) event.getSource().getEntity(), (ServerPlayer) event.getEntity());
             OnDamageEvent.onDamageToArmor(event, (ServerPlayer) event.getEntity()); //todo funciona en este if ?
-        } else if(event.getSource().getDirectEntity() instanceof EttmetalAllomancerEntity){
+        } else if(event.getSource().getDirectEntity() instanceof EttmetalAllomancerEntity) {
             AllomancerEvents.OnEttmetalAllomancerHit(event, (LivingEntity) event.getSource().getDirectEntity(), event.getEntity());
         }
     }

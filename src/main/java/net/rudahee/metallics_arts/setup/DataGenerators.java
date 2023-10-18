@@ -93,7 +93,7 @@ public final class DataGenerators {
     }
 
     @SubscribeEvent
-    public  static void registerSpawnPlacements(SpawnPlacementRegisterEvent event){
+    public  static void registerSpawnPlacements(SpawnPlacementRegisterEvent event) {
         event.register(ModLivingEntityRegister.IRON_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, IronAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
         event.register(ModLivingEntityRegister.STEEL_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SteelAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
         event.register(ModLivingEntityRegister.ETTMETAL_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EttmetalAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );

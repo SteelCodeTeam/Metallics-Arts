@@ -111,15 +111,15 @@ public class CapabilityUtils<T> {
             return 18;
         } else if(enhanced && lerasium) {
             return 16;
-        } else if(enhanced && compounding){
+        } else if(enhanced && compounding) {
             return 15;
-        } else if(lerasium && compounding){
+        } else if(lerasium && compounding) {
             return 13;
         } else if (enhanced) {
             return 13;
         } else if (lerasium) {
             return 11;
-        } else if (compounding){
+        } else if (compounding) {
             return 10;
         } else {
             return 8;

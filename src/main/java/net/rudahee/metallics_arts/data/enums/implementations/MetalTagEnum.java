@@ -42,7 +42,7 @@ public enum MetalTagEnum implements IMetal, IGems {
     private final String nameUpper;
     private final int group;
     private final int maxAllomanticTicksStorage;
-    private final int compoundingMultiplier;
+    private final int feruchemicCompoundingMultiplier;
     private final int chargeForNugget;
     private final boolean external;
     private final boolean divine;
@@ -63,12 +63,12 @@ public enum MetalTagEnum implements IMetal, IGems {
      * @param maxReserveBand The maximum reserve band
      * @param maxReserveRing The maximum reserve ring
      */
-    MetalTagEnum(String nameLower, String nameUpper, int group, int maxAllomanticTicksStorage, int compoundingMultiplier,boolean external, boolean divine, int order, int maxReserveBand, int maxReserveRing) {
+    MetalTagEnum(String nameLower, String nameUpper, int group, int maxAllomanticTicksStorage, int feruchemicCompoundingMultiplier,boolean external, boolean divine, int order, int maxReserveBand, int maxReserveRing) {
         this.nameLower = nameLower;
         this.nameUpper = nameUpper;
         this.group = group;
         this.maxAllomanticTicksStorage = maxAllomanticTicksStorage;
-        this.compoundingMultiplier = compoundingMultiplier;
+        this.feruchemicCompoundingMultiplier = feruchemicCompoundingMultiplier;
         this.chargeForNugget = this.maxAllomanticTicksStorage/10;
         this.external = external;
         this.divine = divine;
@@ -149,8 +149,8 @@ public enum MetalTagEnum implements IMetal, IGems {
      *
      * @return Number of times the allomantic reserve is extended
      */
-    public int getCompoundingMultiplier() {
-        return compoundingMultiplier;
+    public int getFeruchemicCompoundingMultiplier() {
+        return feruchemicCompoundingMultiplier;
     }
 
     /**

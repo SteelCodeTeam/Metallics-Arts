@@ -103,7 +103,7 @@ public class SteelAllomancerEntity extends Animal implements RangedAttackMob {
     }
 
 
-    public static boolean canSpawn(EntityType<SteelAllomancerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random){
+    public static boolean canSpawn(EntityType<SteelAllomancerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
 
         return checkMobSpawnRules(entityType, level, spawnType, pos, random);
 

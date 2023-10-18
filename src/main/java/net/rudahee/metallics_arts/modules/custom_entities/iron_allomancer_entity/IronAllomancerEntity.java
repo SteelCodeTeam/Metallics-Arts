@@ -63,7 +63,7 @@ public class IronAllomancerEntity extends Animal {
     }
 
 
-    public static  boolean canSpawn(EntityType<IronAllomancerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random){
+    public static  boolean canSpawn(EntityType<IronAllomancerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
 
         return checkAnimalSpawnRules(entityType, level, spawnType, pos, random);
     }

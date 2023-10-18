@@ -3,14 +3,18 @@ package net.rudahee.metallics_arts.modules.custom_items.metal_minds;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalmindType;
+import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.abstracts.MetalmindAbstract;
+import net.rudahee.metallics_arts.modules.effects.ModEffects;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -21,7 +25,7 @@ import java.util.UUID;
  * in the order: metal and its alloy, along with their corresponding suppliers.
  *
  * @author SteelCode Team
- * @since 1.5.1
+ * @since 1.6.8
  *
  */
 public class CopperBronzeMetalmind extends MetalmindAbstract {
@@ -66,8 +70,50 @@ public class CopperBronzeMetalmind extends MetalmindAbstract {
                 toolTips.add(Component.translatable("metallics_arts.metal_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             }
         }
-        super.appendHoverText(stack, level, toolTips, flagIn);
     }
 
+    /**
+     * Redefine of the method of the MetalmindAbstract class.
+     * In this specific case, removes the basic interaction of nicrosil.
+     *
+     * @param compoundTag The compound tag associated with the curio item.
+     * @param player The player performing the charge.
+     * @param playerCapability The invested player data capability for the player.
+     * @param metalReserve The current reserve of the metal to be charged.
+     * @param nicConsume Specifies whether nicrosil consumption is enabled.
+     * @param metal The metal being charged.
+     *
+     * @return The updated compound tag with the first metal charge applied.
+     *
+     */
+    @Override
+    public CompoundTag calculateFirstMetalDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, boolean nicConsume, MetalTagEnum metal) {
+        ModEffects.giveFeruchemicalTapEffect(player, metal);
+        compoundTag.putInt(metal.getNameLower() + "_feruchemic_reserve", metalReserve - 1);
+        return compoundTag;
+    }
 
+    /**
+     * Redefine of the method of the MetalmindAbstract class.
+     * <p>
+     * In this specific case, only charge when target player has experience.
+     *
+     * @param compoundTag The compound tag associated with the curio item.
+     * @param player The player performing the charge.
+     * @param playerCapability The invested player data capability for the player.
+     * @param metalReserve The current reserve of the metal to be charged.
+     * @param nicConsume Specifies whether nicrosil consumption is enabled.
+     * @param metal The metal being charged.
+     *
+     * @return The updated compound tag with the first metal charge applied.
+     *
+     */
+    @Override
+    public CompoundTag calculateFirstMetalCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, boolean nicConsume, MetalTagEnum metal) {
+        ModEffects.giveFeruchemicalStorageEffect(player, metal);
+        if (player.totalExperience>0) {
+            compoundTag.putInt(metal.getNameLower() + "_feruchemic_reserve", metalReserve + 1);
+        }
+        return compoundTag;
+    }
 }

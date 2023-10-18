@@ -50,7 +50,7 @@ public class PewterAllomancerEntity extends Animal {
 
     }
 
-    public static  boolean canSpawn(EntityType<PewterAllomancerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random){
+    public static  boolean canSpawn(EntityType<PewterAllomancerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
 
         return checkMobSpawnRules(entityType, level, spawnType, pos, random);
     }

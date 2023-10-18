@@ -45,15 +45,4 @@ public class AluminumFeruchemicHelper {
 
 
 
-    /**
-     * This is a unique method in the helpers, which is responsible for modifying the internal reserve of the metalmind, to show that the power is off.
-     *
-     * @param compoundTag the inside information of the metalmind.
-     * @param metalKey metal key to be modified.
-     * @return CompoundTag metalmind information update.
-     */
-    public static CompoundTag turnOffPower(CompoundTag compoundTag, String metalKey) {
-        compoundTag.putInt(metalKey, 3);
-        return compoundTag;
-    }
 }

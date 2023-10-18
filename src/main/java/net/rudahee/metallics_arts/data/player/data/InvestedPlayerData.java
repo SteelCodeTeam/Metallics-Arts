@@ -84,7 +84,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
                 }
                 else {
                     if (isTapping(metal)) {
-                        if (tick % metal.getCompoundingMultiplier() == 0) {
+                        if (tick % metal.getFeruchemicCompoundingMultiplier() == 0) {
                             this.setAllomanticMetalsAmount(metal, this.getAllomanticAmount(metal) - 1);
                         }
                     } else {

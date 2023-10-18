@@ -41,7 +41,6 @@ public class Coins extends Item {
           }
 
           if (playerCapability.isBurning(MetalTagEnum.STEEL)) {
-
               CoinProjectile coin = new CoinProjectile(level, player, gunType);
               coin.setItem(itemstack);
 

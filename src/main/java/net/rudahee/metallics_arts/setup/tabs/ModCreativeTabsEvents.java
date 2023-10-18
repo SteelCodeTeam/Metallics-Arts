@@ -37,7 +37,7 @@ public class ModCreativeTabsEvents {
         if (event.getTab().equals(ModCreativeTabs.METALLICS_ARTS_TAB)) {
             BookDataManager.get().getBooks().values().forEach(books -> {
 
-                if (books.getId().toString().contains("metallics_arts")){
+                if (books.getId().toString().contains("metallics_arts")) {
                     event.accept(books.getBookItem());
                 }
             });

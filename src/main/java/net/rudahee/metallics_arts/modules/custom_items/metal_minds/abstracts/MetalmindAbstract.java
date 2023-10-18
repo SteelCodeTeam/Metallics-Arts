@@ -16,7 +16,6 @@ import net.rudahee.metallics_arts.data.custom_tiers.CustomMaterials;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalmindType;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.custom_items.metal_minds.*;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
@@ -30,11 +29,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Abstract class in which the base functionality of metal minds is defined,
+ * which in specific cases are redefined by those who inherit from it, due to specific situations.
+ *
+ * @see Item
+ * @see ICurioItem
+ *
+ * @author SteelCode Team
+ * @since 1.6.8
+ *
+ */
 public abstract class MetalmindAbstract extends Item implements ICurioItem {
 
     private final MetalTagEnum[] metals = new MetalTagEnum[2];
     public String unkeyedString = "Nobody";
-    private MetalmindType type = null;
+    private MetalmindType type;
 
     public MetalmindAbstract(Item.Properties properties, MetalTagEnum metal0, MetalTagEnum metal1, MetalmindType type) {
         super(properties);
@@ -43,6 +53,15 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
         this.type = type;
     }
 
+    /**
+     * Called when a curio item is equipped in a specified slot.
+     * <p>
+     * Here the capability of the player is modified with the metal mind equipped.
+     *
+     * @param slotContext The context of the slot where the item is being equipped.
+     * @param prevStack The previous item stack in the slot, if any.
+     * @param stack The new item stack being equipped.
+     */
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
         ICurioItem.super.onEquip(slotContext, prevStack, stack);
@@ -60,6 +79,15 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
     }
 
 
+    /**
+     * Called when a curio item is unequipped from a specified slot.
+     * <p>
+     * Here the capability of the player is modified removing the metal mind from this.
+     *
+     * @param slotContext The context of the slot from which the item is being unequipped.
+     * @param newStack The new item stack that will replace the curio item, if any.
+     * @param stack The item stack that is being unequipped.
+     */
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
@@ -84,6 +112,15 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
     }
 
 
+    /**
+     * Determines whether a curio item can be equipped in the slot.
+     * <p>
+     * To do this, check that a mind of the same metals is not currently equipped (either band or ring).
+     *
+     * @param slotContext The context of the slot where the item is to be equipped.
+     * @param stack The item stack being considered for equipping.
+     * @return {@code true} if the item can be equipped, or {@code false} otherwise.
+     */
     @Override
     public boolean canEquip(SlotContext slotContext, ItemStack stack) {
         ICurioItem.super.canEquip(slotContext, stack);
@@ -95,7 +132,6 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
 
         try {
             IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(player);
-
             return !playerCapability.hasMetalMindEquiped(this.metals[0].getGroup()) && (stack.getTag().getString("key").equals(unkeyedString) || player.getStringUUID().equals(stack.getTag().getString("key")));
 
         } catch (PlayerException e) {
@@ -104,6 +140,16 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
         }
     }
 
+    /**
+     * Determines whether a curious item can be equipped in any slot when the item is used (use right click).
+     * <p>
+     * To do this, check that a mind of the same metals is not currently equipped (either band or ring).
+     *
+     * @param slotContext The context of the slot where the item is being equipped.
+     * @param stack The item stack that is being considered for equipping.
+     * <p>
+     * @return {@code true} if the item can be equipped, {@code false} otherwise.
+     */
     @Override
     public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
         ICurioItem.super.canEquip(slotContext, stack);
@@ -115,7 +161,6 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
 
         try {
             IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(player);
-
             return !playerCapability.hasMetalMindEquiped(this.metals[0].getGroup()) && (stack.getTag().getString("key").equals(unkeyedString) || player.getStringUUID().equals(stack.getTag().getString("key")));
 
         } catch (PlayerException e) {
@@ -124,16 +169,21 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
         }
     }
 
+    /**
+     * Appends additional hover text to an ItemStack when it is hovered over in the game.
+     * <p>
+     * In this case, it shows the metal and its charge in seconds, and if shift is pressed, the percentage of charge of each metal.
+     *
+     * @param stack The ItemStack to append hover text to.
+     * @param level The game world level, or null if not in a world.
+     * @param toolTips A list of text components representing the hover text to display.
+     * @param flagIn A flag indicating the tooltip context.
+     */
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> toolTips, TooltipFlag flagIn) {
 
         if(!stack.hasTag()) {
             stack.setTag(addTags());
-        }
-
-        if (this instanceof LerasiumEttmetalMetalmind || this instanceof AtiumMalatiumMetalmind || this instanceof CopperBronzeMetalmind
-                || this instanceof AluminumDuraluminMetalmind) {
-            return;
         }
 
         int maxReserve0 = this.type == MetalmindType.BAND ? this.metals[0].getMaxReserveBand() : this.metals[0].getMaxReserveRing();
@@ -151,13 +201,18 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
                 toolTips.add(Component.translatable("metallics_arts.metal_mind.owner").append(": "+ ((stack.getTag().getString("key").equals("Nobody")) ? Component.translatable("metallics_arts.metal_mind.nobody").getString() : (level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))) == null) ? Component.translatable("metallics_arts.metal_mind.owner_someone") : level.getPlayerByUUID(UUID.fromString((stack.getTag().getString("key")))).getName().getString())));
             }
             if (!Screen.hasShiftDown()) {
-                toolTips.add(Component.translatable(" "));
+                toolTips.add(Component.literal(" "));
                 toolTips.add(Component.translatable("metallics_arts.metal_mind_translate.shift_info").withStyle(ChatFormatting.BLUE));
             }
         }
         super.appendHoverText(stack, level, toolTips, flagIn);
     }
 
+    /**
+     * Creates and returns a CompoundTag containing specific data to this metalmind.
+     *<p>
+     * @return A CompoundTag containing metadata, including feruchemic reserves for two metals and a custom key as a string.
+     */
     private CompoundTag addTags() {
         CompoundTag compoundTag = new CompoundTag();
         compoundTag.putInt(this.metals[0].getNameLower()+"_feruchemic_reserve",0);
@@ -168,6 +223,17 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
 
     private boolean nicConsume = false;
 
+
+    /**
+     * Handles the periodic tick update for a curio item,
+     * <p>
+     * In this case, the data of the owner of the metal mind and its reserves.
+     * <p>
+     * It is also responsible for synchronize the player to update the data of the powers used.
+     *
+     * @param slotContext The context of the slot in which the curio item is equipped.
+     * @param stack The item stack represents.
+     */
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         LivingEntity livingEntity = slotContext.entity();
@@ -177,6 +243,9 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
         }
 
         CompoundTag compoundTag = stack.getTag();
+
+        if (compoundTag == null) return;
+
         if (livingEntity.level instanceof ServerLevel) {
             if (livingEntity instanceof Player player) {
                 IInvestedPlayerData playerCapability;
@@ -191,44 +260,9 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
                     stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, false, this.metals[0], this.metals[1]));
                 }
 
-                int actualReserve = stack.getTag().getInt(this.metals[0].getNameLower() + "_feruchemic_reserve");
-                int maxReserve = this.type == MetalmindType.BAND ? this.metals[0].getMaxReserveBand() : this.metals[0].getMaxReserveRing();
-                // Tap.
-                if (playerCapability.isTapping(this.metals[0])) {
-                    if (actualReserve > 0) {
-                        stack.setTag(calculateDischarge(compoundTag, player,playerCapability, actualReserve, nicConsume, this.metals[0]));
-                    } else {
-                        stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, false, this.metals[0], this.metals[1]));
-                        playerCapability.setTapping(this.metals[0], false);
-                    }
-                    // Storage.
-                } else if (playerCapability.isStoring(this.metals[0])) {
-                    if (actualReserve < maxReserve) {
-                        stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, true, this.metals[0], this.metals[1]));
-                        stack.setTag(calculateCharge(compoundTag, player,playerCapability, actualReserve, nicConsume, this.metals[0]));
-                    } else {
-                        playerCapability.setStoring(this.metals[0], false);
-                    }
-                }
-                actualReserve = stack.getTag().getInt(this.metals[1].getNameLower() + "_feruchemic_reserve");
-                maxReserve = this.type == MetalmindType.BAND ? this.metals[1].getMaxReserveBand() : this.metals[1].getMaxReserveRing();
-                // Tap.
-                if (playerCapability.isTapping(this.metals[1])) {
-                    if (actualReserve > 0) {
-                        stack.setTag(calculateDischarge(compoundTag, player,playerCapability, actualReserve, nicConsume, this.metals[1]));
-                    } else {
-                        stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, false, this.metals[0], this.metals[1]));
-                        playerCapability.setTapping(this.metals[1], false);
-                    }
-                    // Storage.
-                } else if (playerCapability.isStoring(this.metals[1])) {
-                    if (actualReserve < maxReserve) {
-                        stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, true, this.metals[0], this.metals[1]));
-                        stack.setTag(calculateCharge(compoundTag, player,playerCapability, actualReserve, nicConsume, this.metals[1]));
-                    } else {
-                        playerCapability.setStoring(this.metals[1], false);
-                    }
-                }
+                powerUse(compoundTag, stack, playerCapability, player, this.metals[0], true);
+                powerUse(compoundTag, stack, playerCapability, player, this.metals[1], false);
+
                 if (playerCapability.isStoring(MetalTagEnum.NICROSIL) || playerCapability.isTapping(MetalTagEnum.NICROSIL)) {
                     nicConsume = !nicConsume;
                 }
@@ -238,591 +272,230 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
         ICurioItem.super.curioTick(slotContext, stack);
     }
 
+
+    /**
+     * Manage the use, charge and discharge of reserves to a specific metal in the curio item.
+     *
+     * @param compoundTag The compound tag associated with the curio item.
+     * @param stack The item stack represents.
+     * @param playerCapability The invested player data capability for the player.
+     * @param player The player associated with the curio item.
+     * @param metal The metal being used or charged.
+     * @param first Specifies whether this is the first or second metal being used or charged.
+     */
+    private void powerUse(CompoundTag compoundTag, ItemStack stack, IInvestedPlayerData playerCapability, Player player, MetalTagEnum metal, boolean first) {
+        int actualReserve = stack.getTag().getInt(metal.getNameLower() + "_feruchemic_reserve");
+        int maxReserve = this.type.equals(MetalmindType.BAND) ? metal.getMaxReserveBand() : metal.getMaxReserveRing();
+        //Tap
+        if (playerCapability.isTapping(metal)) {
+            if (actualReserve > 0) {
+                if (first) {
+                    stack.setTag(calculateFirstMetalDischarge(compoundTag, player, playerCapability, actualReserve, nicConsume, metal));
+                } else {
+                    stack.setTag(calculateSecondMetalDischarge(compoundTag, player, playerCapability, actualReserve, nicConsume, metal));
+                }
+            } else {
+                stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, false, this.metals[0], this.metals[1]));
+                playerCapability.setTapping(metal, false);
+            }
+        //Storage.
+        } else if (playerCapability.isStoring(metal)) {
+            if (actualReserve < maxReserve) {
+                stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, true, this.metals[0], this.metals[1]));
+                if (first) {
+                    stack.setTag(calculateFirstMetalCharge(compoundTag, player,playerCapability, actualReserve, nicConsume, metal));
+                } else {
+                    stack.setTag(calculateSecondMetalCharge(compoundTag, player,playerCapability, actualReserve, nicConsume, metal));
+                }
+            } else {
+                playerCapability.setStoring(metal, false);
+            }
+        }
+    }
+
+    /**
+     * Retrieves the metal at the specified position in the curio item's metal array.
+     *
+     * @param pos The position of the metal to retrieve.
+     *
+     * @return The MetalTagEnum representing the metal at the specified position.
+     */
     public MetalTagEnum getMetals(int pos) {
         return this.metals[pos];
     }
 
+    /**
+     * Checks if the curio item's type matches the given MetalmindType.
+     *
+     * @param type The MetalmindType to compare with the curio item's type.
+     *
+     * @return True if the curio item is of the specified type, false otherwise.
+     */
     public boolean isBand(MetalmindType type) {
-        return this.type == type;
+        return this.type.equals(type);
     }
 
-    private static int tick; //todo - esto deberia verse, porque al ser static podria causar problemas entre varias mentes de metal
-                            // todo - lo ideal seria usar el tick del server tick, pero no es accesible desde aqui
+    private int tick;
 
-    public CompoundTag calculateDischarge(CompoundTag compoundTag, Player player,IInvestedPlayerData playerCapability, int metalReserve, boolean nicConsume, MetalTagEnum metal) {
+
+    /**
+     * Calculates the charge for the first metal in the curio item and updates the compound tag accordingly.
+     * <p>
+     * It is divided into first and second metal, since in case one of these has a specific type of charge,
+     * an override of said metal can be done in the specific metal mind.
+     *
+     * @param compoundTag The compound tag associated with the curio item.
+     * @param player The player performing the charge.
+     * @param playerCapability The invested player data capability for the player.
+     * @param metalReserve The current reserve of the metal to be charged.
+     * @param nicConsume Specifies whether nicrosil consumption is enabled.
+     * @param metal The metal being charged.
+     *
+     * @return The updated compound tag with the first metal charge applied.
+     */
+    public CompoundTag calculateFirstMetalCharge(CompoundTag compoundTag, Player player,IInvestedPlayerData playerCapability, int metalReserve, boolean nicConsume, MetalTagEnum metal) {
+        return basicCharge(compoundTag, player,playerCapability, metalReserve, nicConsume, metal);
+    }
+
+    /**
+     * Calculates the charge for the second metal in the curio item and updates the compound tag accordingly.
+     * <p>
+     * It is divided into first and second metal, since in case one of these has a specific type of charge,
+     * an override of said metal can be done in the specific metal mind.
+     *
+     * @param compoundTag The compound tag associated with the curio item.
+     * @param player The player performing the charge.
+     * @param playerCapability The invested player data capability for the player.
+     * @param metalReserve The current reserve of the metal to be charged.
+     * @param nicConsume Specifies whether nicrosil consumption is enabled.
+     * @param metal The metal being charged.
+     * @return The updated compound tag with the second metal charge applied.
+     */
+    public CompoundTag calculateSecondMetalCharge(CompoundTag compoundTag, Player player,IInvestedPlayerData playerCapability, int metalReserve, boolean nicConsume, MetalTagEnum metal) {
+        return basicCharge(compoundTag, player,playerCapability, metalReserve, nicConsume, metal);
+    }
+
+    /**
+     * Calculates the discharge for the first metal in the curio item and updates the compound tag accordingly.
+     * <p>
+     * It is divided into first and second metal, since in case one of these has a specific type of discharge,
+     * an override of said metal can be done in the specific metal mind.
+     *
+     * @param compoundTag The compound tag associated with the curio item.
+     * @param player The player performing the discharge.
+     * @param playerCapability The invested player data capability for the player.
+     * @param metalReserve The current reserve of the metal to be discharged.
+     * @param nicConsume Specifies whether nicrosil consumption is enabled.
+     * @param metal The metal being discharged.
+     * @return The updated compound tag with the first metal discharge applied.
+     */
+    public CompoundTag calculateFirstMetalDischarge(CompoundTag compoundTag, Player player,IInvestedPlayerData playerCapability, int metalReserve, boolean nicConsume, MetalTagEnum metal) {
+        return basicDischarge(compoundTag, player,playerCapability, metalReserve, nicConsume, metal);
+    }
+
+    /**
+     * Calculates the discharge for the second metal in the curio item and updates the compound tag accordingly.
+     * <p>
+     * It is divided into first and second metal, since in case one of these has a specific type of discharge,
+     * an override of said metal can be done in the specific metal mind.
+     *
+     * @param compoundTag The compound tag associated with the curio item.
+     * @param player The player performing the discharge.
+     * @param playerCapability The invested player data capability for the player.
+     * @param metalReserve The current reserve of the metal to be discharged.
+     * @param nicConsume Specifies whether nicrosil consumption is enabled.
+     * @param metal The metal being discharged.
+     * @return The updated compound tag with the first metal discharge applied.
+     */
+    public CompoundTag calculateSecondMetalDischarge(CompoundTag compoundTag, Player player,IInvestedPlayerData playerCapability, int metalReserve, boolean nicConsume, MetalTagEnum metal) {
+        return basicDischarge(compoundTag, player,playerCapability, metalReserve, nicConsume, metal);
+    }
+
+    /**
+     * Applies a basic charge operation to a specific metal and updates the compound tag accordingly.
+     * <p>
+     * This is executed in case the metal die does not have a specific type of charge.
+     *
+     * @param compoundTag The compound tag associated with the curio item.
+     * @param player The player performing the charge.
+     * @param playerCapability The invested player data capability for the player.
+     * @param metalReserve The current reserve of the metal.
+     * @param nicConsume Specifies whether nicrosil consumption is enabled.
+     * @param metal The metal being charged.
+     * @return The updated compound tag with the metal charge applied.
+     */
+    private CompoundTag basicCharge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, boolean nicConsume, MetalTagEnum metal) {
         String metalKey = metal.getNameLower() + "_feruchemic_reserve";
 
+        ModEffects.giveFeruchemicalStorageEffect(player, metal);
+        if (!playerCapability.isStoring(MetalTagEnum.NICROSIL) || !nicConsume) {
+            compoundTag.putInt(metalKey, metalReserve + 1);
+        }
+        return compoundTag;
+    }
+
+    /**
+     * Applies a basic discharge operation to a specific metal and updates the compound tag accordingly.
+     * <p>
+     * This is executed in case the metal die does not have a specific type of discharge.
+     * <p>
+     * Additionally, compounding specific consumption logic is added here, decreasing reserves only when compound values match.
+     *
+     * @param compoundTag The compound tag associated with the curio item.
+     * @param player The player performing the charge.
+     * @param playerCapability The invested player data capability for the player.
+     * @param metalReserve The current reserve of the metal.
+     * @param nicConsume Specifies whether nicrosil consumption is enabled.
+     * @param metal The metal being charged.
+     * @return The updated compound tag with the metal charge applied.
+     */
+    private CompoundTag basicDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, boolean nicConsume, MetalTagEnum metal) {
+        String metalKey = metal.getNameLower() + "_feruchemic_reserve";
         ModEffects.giveFeruchemicalTapEffect(player, metal);
 
-        if (metal == MetalTagEnum.COPPER) {
-            return customDischargeCopper(compoundTag, metalReserve, metalKey);
-        } else if (metal == MetalTagEnum.LERASIUM) {
-            return calculateDischargeLerasium(compoundTag, playerCapability, metalKey);
-        } else if (metal == MetalTagEnum.MALATIUM) {
-            return calculateDischargeMalatium(compoundTag, player, metalReserve, metalKey);
-        } else if (metal == MetalTagEnum.ALUMINUM) {
-            return calculateDischargeAluminum(compoundTag, metalKey);
-        } else if (metal == MetalTagEnum.NICROSIL) {
-            return calculateDischargeNicrosil(compoundTag, playerCapability, metalReserve, metalKey, nicConsume);
-        }else {
-            if (playerCapability.isBurning(metal)) {
-                if (tick % metal.getCompoundingMultiplier() == 0) {
-                    if (!playerCapability.isTapping(MetalTagEnum.NICROSIL) || !nicConsume) {
-                        compoundTag.putInt(metalKey, metalReserve - 1);
-                    }
-                }
-                tick++;
-                if (tick>=4){
-                    tick = 0;
-                }
-            } else {
+        if (playerCapability.isBurning(metal)) {
+            if (tick % metal.getFeruchemicCompoundingMultiplier() == 0) {
                 if (!playerCapability.isTapping(MetalTagEnum.NICROSIL) || !nicConsume) {
                     compoundTag.putInt(metalKey, metalReserve - 1);
                 }
             }
-
-        }
-        return compoundTag;
-    }
-
-    public CompoundTag calculateCharge(CompoundTag compoundTag, Player player,IInvestedPlayerData playerCapability, int metalReserve, boolean nicConsume, MetalTagEnum metal) {
-        String metalKey = metal.getNameLower() + "_feruchemic_reserve";
-
-        ModEffects.giveFeruchemicalStorageEffect(player, metal);
-
-        if (metal == MetalTagEnum.BRASS) {
-            return customChargeBrass(compoundTag, player, playerCapability, metalReserve, metalKey, nicConsume);
-        } else if (metal == MetalTagEnum.COPPER) {
-            return customChargeCopper(compoundTag, player, metalReserve, metalKey);
-        } else if (metal == MetalTagEnum.LERASIUM) {
-            return calculateChargeLerasium(compoundTag, playerCapability, metalKey);
-        } else if (metal == MetalTagEnum.MALATIUM) {
-            return calculateChargeMalatium(compoundTag, player, metalReserve, metalKey);
-        } else if (metal == MetalTagEnum.ALUMINUM) {
-            return calculateChargeAluminum(compoundTag, metalKey);
-        } else if (metal == MetalTagEnum.NICROSIL) {
-            return calculateChargeNicrosil(compoundTag, player, playerCapability, metalReserve, metalKey, nicConsume);
+            tick++;
+            if (tick>=4) {
+                tick = 0;
+            }
         } else {
-            if (!playerCapability.isStoring(MetalTagEnum.NICROSIL) || !nicConsume) {
-                compoundTag.putInt(metalKey, metalReserve + 1);
-            }
-        }
-        return compoundTag;
-    }
-
-
-
-    /**
-     * Redefine of the method of the AbstractFechuchemicHelper class.
-     * <p>
-     * In this specific case, the Nicrosil reserve is discharged based on the amount of other metals being tapped at the same time as the Nicrosil.
-     *
-     * @param compoundTag the inside information of the metalmind.
-     * @param playerCapability capabilities (data) of the player.
-     * @param metalReserve present value of the metal reserve.
-     * @param metalKey metal key to be modified.
-     * @param nicConsume control value of whether it is necessary to store charge or not.
-     * @return CompoundTag metalmind information update.
-     *
-     */
-
-    public CompoundTag calculateDischargeNicrosil(CompoundTag compoundTag, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
-        int value = playerCapability.cantMetalsTapping();
-        if (nicConsume) {
-            value = 0;
-        }
-        compoundTag.putInt(metalKey, metalReserve - value);
-        return compoundTag;
-    }
-
-    /**
-     * Redefine of the method of the AbstractFechuchemicHelper class.
-     * <p>
-     * In this specific case, the Nicrosil reserve is charged based on the amount of other metals being stored at the same time as the Nicrosil.
-     *
-     * @param compoundTag the inside information of the metalmind.
-     * @param player with the mindmetal equipped.
-     * @param playerCapability capabilities (data) of the player.
-     * @param metalReserve present value of the metal reserve.
-     * @param metalKey metal key to be modified.
-     * @param nicConsume control value of whether it is necessary to store charge or not.
-     * @return CompoundTag metalmind information update.
-     *
-     */
-
-    public CompoundTag calculateChargeNicrosil(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
-        int value = playerCapability.cantMetalsStoring();
-        if (playerCapability.isStoring(MetalTagEnum.BRASS) && !player.isOnFire()) {
-            value = value - 1;
-        }
-        if (nicConsume) {
-            value = 0;
-        }
-        compoundTag.putInt(metalKey, metalReserve + value);
-        return compoundTag;
-    }
-
-
-
-    /**
-     * Redefine of the method of the AbstractFechuchemicHelper class.
-     * In this specific case, because the logic of the charge is proper of the Aluminum.
-     *
-     * @param compoundTag the inside information of the metalmind.
-     * @param metalKey metal key to be modified.
-     * @return CompoundTag metalmind information update.
-     *
-     */
-    public CompoundTag calculateDischargeAluminum(CompoundTag compoundTag, String metalKey) {
-        compoundTag.putInt(metalKey, 1);
-        return compoundTag;
-    }
-
-    /**
-     * Redefine of the method of the AbstractFechuchemicHelper class.
-     * In this specific case, because the logic of the charge is proper of the Aluminum.
-     *
-     * @param compoundTag the inside information of the metalmind.
-     * @param metalKey metal key to be modified.
-     * @return CompoundTag metalmind information update.
-     *
-     */
-
-    public CompoundTag calculateChargeAluminum(CompoundTag compoundTag, String metalKey) {
-        compoundTag.putInt(metalKey, 2);
-        return compoundTag;
-    }
-
-    /**
-     * Redefine of the method of the AbstractFechuchemicHelper class.
-     * In this specific case, metalmind only charges when player is burning.
-     *
-     * @param player to whom the effect will be applied.
-     *
-     */
-
-    public CompoundTag customChargeBrass(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, String metalKey, boolean nicConsume) {
-        if (player.isOnFire()) {
-            if (!playerCapability.isStoring(MetalTagEnum.NICROSIL) || !nicConsume) {
-                compoundTag.putInt(metalKey, metalReserve + 1);
-            }
-        }
-        return compoundTag;
-    }
-
-
-    /**
-     * Redefine of the method of the AbstractFechuchemicHelper class.
-     * In this specific case, only charge when target player has experience.
-     *
-     * @param compoundTag the inside information of the metalmind.
-     * @param player with the mindmetal equipped.
-     * @param metalReserve present value of the metal reserve.
-     * @param metalKey metal key to be modified.
-     * @return CompoundTag metalmind information update.
-     *
-     */
-    public CompoundTag customChargeCopper(CompoundTag compoundTag, Player player, int metalReserve, String metalKey) {
-        if (player.totalExperience>0) {
-            compoundTag.putInt(metalKey, metalReserve + 1);
-        }
-        return compoundTag;
-    }
-
-    /**
-     * Redefine of the method of the AbstractFechuchemicHelper class.
-     * In this specific case, removes the basic interaction of nicrosil.
-     *
-     * @param compoundTag the inside information of the metalmind.
-     * @param metalReserve present value of the metal reserve.
-     * @param metalKey metal key to be modified.
-     * @return CompoundTag metalmind information update.
-     *
-     */
-    public CompoundTag customDischargeCopper(CompoundTag compoundTag, int metalReserve, String metalKey) {
-        compoundTag.putInt(metalKey, metalReserve - 1);
-        return compoundTag;
-    }
-
-    /**
-     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
-     * In this specific case, only charge when target player take damage from explosions.
-     *
-     * @param compoundTag the inside information of the metalmind.
-     * @param player with the mindmetal equipped.
-     * @param metalReserve present value of the metal reserve.
-     * @param metalKey metal key to be modified.
-     * @return CompoundTag metalmind information update.
-     *
-     */
-
-    public CompoundTag calculateChargeEttmetal(CompoundTag compoundTag, Player player, int metalReserve, String metalKey) {
-        if (player.getLastDamageSource() != null) {
-            if (player.getLastDamageSource().type().equals(player.damageSources().explosion(null).type())) {
-                compoundTag.putInt(metalKey, metalReserve + 1);
-            }
-        }
-        return compoundTag;
-    }
-
-
-    /**
-     * Implementation of the abstract method of the AbstractFechuchemicHelper class.
-     * In this specific case, it generates the explosion based on the charge values.
-     *
-     * @param compoundTag the inside information of the metalmind.
-     * @param player with the mindmetal equipped.
-     * @param metalKey metal key to be modified.
-     * @return CompoundTag metalmind information update.
-     *
-     */
-
-    public CompoundTag calculateDischargeEttmetal(CompoundTag compoundTag, Player player, String metalKey) {
-        player.level.explode(player,player.position().x,player.position().y,player.position().z,(float) compoundTag.getInt(metalKey)/683, Level.ExplosionInteraction.MOB);
-        player.setHealth((player.getHealth() - ((float) compoundTag.getInt(metalKey)/205)));
-        compoundTag.putInt(metalKey,0);
-        return compoundTag;
-    }
-
-
-
-    /**
-     * Redefine of the method of the AbstractFechuchemicHelper class.
-     * In this specific case, removes the basic interaction of nicrosil.
-     * @param compoundTag the inside information of the metalmind.
-     * @param playerCapability capabilities (data) of the player.
-     * @param metalKey metal key to be modified.
-     * @return CompoundTag metalmind information update.
-     *
-
-     */
-
-    public CompoundTag calculateDischargeLerasium(CompoundTag compoundTag, IInvestedPlayerData playerCapability, String metalKey) {
-        if (allLerasiumReservesEmpty(compoundTag)) {
-            compoundTag.putInt(metalKey,0);
-        } else {
-            compoundTag.putInt(metalKey,1);
-        }
-        return loadAllomanticReserve(playerCapability, compoundTag);
-    }
-
-
-    /**
-     * Redefine of the method of the AbstractFechuchemicHelper class.
-     * In this specific case, removes the basic interaction of nicrosil.
-     * @param compoundTag the inside information of the metalmind.
-     * @param playerCapability capabilities (data) of the player.
-     * @param metalKey metal key to be modified.
-     * @return CompoundTag metalmind information update.
-     *
-     */
-
-    public CompoundTag calculateChargeLerasium(CompoundTag compoundTag, IInvestedPlayerData playerCapability, String metalKey) {
-        if (hasAllReservesLerasiumFull(compoundTag)) {
-            compoundTag.putInt(metalKey,2);
-        } else if (havePlayerAnyReserve(playerCapability)) {
-            compoundTag = saveAllomanticReserve(playerCapability, compoundTag);
-            compoundTag.putInt(metalKey,1);
-        }
-        return compoundTag;
-    }
-
-    private boolean hasAllReservesLerasiumFull(CompoundTag compoundTag) {
-        for (MetalTagEnum metal : MetalTagEnum.values()) {
-            if (!compoundTag.contains(metal.getNameLower()+"inLerasiumBand")) { //no existe el tag
-                compoundTag.putInt(metal.getNameLower()+"inLerasiumBand",0);
-            }
-            if (compoundTag.getInt(metal.getNameLower()+"inLerasiumBand") < metal.getMaxAllomanticTicksStorage() * 2) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean allLerasiumReservesEmpty(CompoundTag compoundTag) {
-        for (MetalTagEnum metal : MetalTagEnum.values()) {
-            if (!compoundTag.contains(metal.getNameLower()+"inLerasiumBand")) {
-                compoundTag.putInt(metal.getNameLower()+"inLerasiumBand",0);
-            }
-            if (compoundTag.getInt(metal.getNameLower()+"inLerasiumBand") > 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Returns if target player has any allomantic reserves
-     *
-     * @param playerCapability capabilities (data) of the player.
-     * @return Boolean
-     */
-    public boolean havePlayerAnyReserve (IInvestedPlayerData playerCapability) {
-        for (MetalTagEnum metal: MetalTagEnum.values()) {
-            if (playerCapability.getAllomanticAmount(metal)>0) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * This is a unique method in the helpers, that is in charge of storing allomantic reserves in the metalmind and eliminating them from the target player.
-     *
-     * @param playerCapability capabilities (data) of the player.
-     * @param compoundTag the inside information of the metalmind.
-     * @return CompoundTag metalmind information update.
-     */
-    public CompoundTag saveAllomanticReserve(IInvestedPlayerData playerCapability, CompoundTag compoundTag) {
-        ArrayList<MetalTagEnum> metals = playerCapability.getAllomanticPowers();
-
-        for (MetalTagEnum metal : metals) {
-            int reserveInBand = compoundTag.getInt(metal.getNameLower()+"inLerasiumBand");
-            if (playerCapability.hasAllomanticAmountOf(metal) && reserveInBand < (metal.getMaxAllomanticTicksStorage() * 2)) {
-                if (playerCapability.getAllomanticAmount(metal) <= ((metal.getMaxAllomanticTicksStorage() * 2) - reserveInBand)) {
-                    compoundTag.putInt(metal.getNameLower() +"inLerasiumBand", reserveInBand + playerCapability.getAllomanticAmount(metal));
-                    playerCapability.setAllomanticMetalsAmount(metal, 0);
-                } else {
-                    compoundTag.putInt(metal.getNameLower() +"inLerasiumBand", (metal.getMaxAllomanticTicksStorage() * 2));
-                    playerCapability.setAllomanticMetalsAmount(metal, playerCapability.getAllomanticAmount(metal) -
-                            ((metal.getMaxAllomanticTicksStorage() * 2) - reserveInBand));
-                }
+            if (!playerCapability.isTapping(MetalTagEnum.NICROSIL) || !nicConsume) {
+                compoundTag.putInt(metalKey, metalReserve - 1);
             }
         }
         return compoundTag;
     }
 
     /**
-     * This is a unique method in the helpers, which is in charge of recover allomantic reserves the metalmind and return them to the target player.
+     * Creates and returns a compound tag containing full feruchemical reserve information for two metals in a band.
      *
-     * @param playerCapability capabilities (data) of the player.
-     * @param compoundTag the inside information of the metalmind.
-     * @return CompoundTag metalmind information update.
+     * @param metal1 The first metal for which to create the reserve information.
+     * @param metal2 The second metal for which to create the reserve information.
+     *
+     * @return A CompoundTag containing the feruchemical reserve information for the specified metals.
      */
-    public CompoundTag loadAllomanticReserve(IInvestedPlayerData playerCapability, CompoundTag compoundTag) {
-        //vuelve a cargar el jugador
-        ArrayList<MetalTagEnum> metals = playerCapability.getAllomanticPowers();
-//todo testear que no explote
-        for (MetalTagEnum metal : metals) {
-            int reserveInBand = compoundTag.getInt(metal.getNameLower()+"inLerasiumBand");
-            if (playerCapability.getAllomanticAmount(metal) < metal.getMaxAllomanticTicksStorage() && reserveInBand > 0){
-                if ((metal.getMaxAllomanticTicksStorage() - playerCapability.getAllomanticAmount(metal)) >= reserveInBand) {
-                    playerCapability.setAllomanticMetalsAmount(metal, reserveInBand);
-                    compoundTag.putInt(metal.getNameLower()+"inLerasiumBand",0);
-                } else {
-                    playerCapability.setAllomanticMetalsAmount(metal, metal.getMaxAllomanticTicksStorage());
-                    compoundTag.putInt(metal.getNameLower()+"inLerasiumBand", reserveInBand - (metal.getMaxAllomanticTicksStorage() - playerCapability.getAllomanticAmount(metal)));
-                }
-            }
-        }
-        return compoundTag;
-    }
-
-    //MALATIUM
-
-    /**
-     * Returns an instance of MalatiumFecuchemicHelper using a factory method pattern.
-     * This method allows you to create instances of MalatiumFecuchemicHelper with a consistent interface.
-     *
-     * @return a Supplier that returns a new instance of MalatiumFecuchemicHelper when called
-     */
-
-    /**
-     * Redefine of the method of the AbstractFechuchemicHelper class.
-     * <p>
-     * In this specific case, removes interaction with nicrosil and performs the discharge only when the item in the user's hand is of the same tier that the metal mind has in reserve.
-     *
-     * @param compoundTag the inside information of the metalmind.
-     * @param player with the mindmetal equipped.
-     * @param metalReserve present value of the metal reserve.
-     * @param metalKey metal key to be modified.
-     * @return CompoundTag metalmind information update.
-     *
-     */
-    public CompoundTag calculateDischargeMalatium(CompoundTag compoundTag, Player player, int metalReserve, String metalKey) {
-        if (isDecanting(player,compoundTag)) {
-            compoundTag.putInt(metalKey, metalReserve - 1);
-        }
-        if (compoundTag.getInt(metalKey) == 0) {
-            compoundTag.putInt("tier_malatium_storage",-1);
-        }
-        return compoundTag;
-    }
-
-    /**
-     * Redefine of the method of the AbstractFechuchemicHelper class.
-     * <p>
-     * In this specific case, removes interaction with nicrosil and performs the charge only when the item in the user's hand is of the same tier that the metal mind has in reserve or the metal mind does not have a tier assigned.
-     *
-     * @param compoundTag the inside information of the metalmind.
-     * @param player with the mindmetal equipped.
-     * @param metalReserve present value of the metal reserve.
-     * @param metalKey metal key to be modified.
-     * @return CompoundTag metalmind information update.
-     *
-     */
-    public CompoundTag calculateChargeMalatium(CompoundTag compoundTag, Player player, int metalReserve, String metalKey) {
-        if (isStoring(player,compoundTag)) {
-            compoundTag.putInt(metalKey, metalReserve + 1);
-        }
-        return compoundTag;
-    }
-
-    /**
-     * Repairs the durability of weapons and armor that target player has in hand.
-     *
-     * @param player to whom the effect will be applied.
-     * @param compoundTag metalmind information update.
-     * @return If the weapon or armor was repaired it returns true, otherwise false
-     */
-    public boolean isDecanting(Player player, CompoundTag compoundTag) {
-        if (player.getMainHandItem().getItem() instanceof TieredItem tiered) {
-            if (tiered.getTier().getLevel() == compoundTag.getInt("tier_malatium_storage")) {
-                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == 0) {
-                    return false;
-                }
-                player.getItemInHand(InteractionHand.MAIN_HAND).setDamageValue(player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue()-1);
-                return true;
-            }
-            return false; //el item no es del tier de la primer carga de la mente
-        } else if (player.getMainHandItem().getItem() instanceof ArmorItem armorItem) {
-            int tier = convertMaterialToTier(armorItem.getMaterial());
-            if (tier == compoundTag.getInt("tier_malatium_storage")) {
-                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == 0) {
-                    return false;
-                }
-                player.getItemInHand(InteractionHand.MAIN_HAND).setDamageValue(player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue()-1);
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    /**
-     * Removes the durability of weapons and armor the target player has in hand.
-     *
-     * @param player to whom the effect will be applied.
-     * @param compoundTag metalmind information update.
-     * @return If durability was consumed from the weapon or armor returns true, otherwise false
-     */
-    public boolean isStoring (Player player, CompoundTag compoundTag) {
-        if (!compoundTag.contains("tier_malatium_storage")) {
-            compoundTag.putInt("tier_malatium_storage",-1);
-        }
-        if (compoundTag.getInt("tier_malatium_storage") == -1) {
-            compoundTag = generateIternalReserve(player, compoundTag);
-        }
-
-        if (player.getMainHandItem().getItem() instanceof TieredItem tiered) {
-            if (tiered.getTier().getLevel() == compoundTag.getInt("tier_malatium_storage")) {
-                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == player.getItemInHand(InteractionHand.MAIN_HAND).getMaxDamage()) {
-                    player.setItemInHand(InteractionHand.MAIN_HAND,ItemStack.EMPTY);
-                    player.level.playLocalSound(player.getX(),player.getY(),player.getZ(), SoundEvents.ITEM_BREAK, SoundSource.NEUTRAL,1.0f, 2.0f, true);
-                    return false;
-                }
-                player.getItemInHand(InteractionHand.MAIN_HAND).setDamageValue(player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue()+1);
-                return true;
-            }
-            return false; //el item no es del tier de la primer carga de la mente
-        } else if (player.getMainHandItem().getItem() instanceof ArmorItem armorItem) {
-            int tier = convertMaterialToTier(armorItem.getMaterial());
-            if (tier == compoundTag.getInt("tier_malatium_storage")) {
-                if (player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() == player.getItemInHand(InteractionHand.MAIN_HAND).getMaxDamage()) {
-                    player.setItemInHand(InteractionHand.MAIN_HAND,ItemStack.EMPTY);
-                    return false;
-                }
-                player.getItemInHand(InteractionHand.MAIN_HAND).setDamageValue(player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue()+1);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Modify the information of the metal mind to assign it the corresponding tier.
-     *
-     * @param player to whom the effect will be applied.
-     * @param compoundTag metalmind information update.
-     * @return CompoundTag metalmind information update.
-     */
-    public CompoundTag generateIternalReserve (Player player, CompoundTag compoundTag) {
-        if (player.getMainHandItem().getItem() instanceof TieredItem tiered) {
-            compoundTag.putInt("tier_malatium_storage",tiered.getTier().getLevel());
-        }
-        if (player.getMainHandItem().getItem() instanceof ArmorItem armorItem) {
-            compoundTag.putInt("tier_malatium_storage",convertMaterialToTier(armorItem.getMaterial()));
-        }
-        return  compoundTag;
-    }
-
-    /**
-     * Recovers the material tier.
-     *
-     * @param material string name
-     * @return int value tier
-     */
-    public static int convertMaterialToTier (ArmorMaterial material) {
-
-        if (material.equals(ArmorMaterials.GOLD) || material.equals(ArmorMaterials.LEATHER)) {
-            return 0;
-        } else if (material.equals(ArmorMaterials.TURTLE)) {
-            return 1;
-        } else if (material.equals(ArmorMaterials.IRON) || material.equals(ArmorMaterials.CHAIN)) {
-            return 2;
-        } else if (material.equals(ArmorMaterials.DIAMOND)) {
-            return 3;
-        } else if (material.equals(ArmorMaterials.NETHERITE)) {
-            return 4;
-        } else if (material.getName().equals(CustomMaterials.STEEL.getName()) || material.getName().equals(CustomMaterials.ALUMINUM.getName())) {
-            return 6;
-        }
-        return -1;
-    }
-
-    /**
-     * Retrieve the name of the tier.
-     *
-     * @param tier value of tier
-     * @return String with the name of tier
-     */
-    public static String convertTierToMaterial (int tier) {
-        if (tier == 0) {
-            return Tiers.GOLD.name()+" "+ArmorMaterials.LEATHER.getName().toUpperCase();
-        } else if (tier == 1) {
-            return ArmorMaterials.TURTLE.getName();
-        } else if (tier == 2) {
-            return Tiers.IRON.name()+" "+ArmorMaterials.CHAIN.getName().toUpperCase();
-        } else if (tier == 3) {
-            return Tiers.DIAMOND.name();
-        } else if (tier == 4) {
-            return Tiers.NETHERITE.name();
-        } else if (tier == 6) {
-            return "post_netherite";
-        }
-        return "";
-    }
-
-
     public static CompoundTag addBandTagsFull(MetalTagEnum metal1, MetalTagEnum metal2) {
         CompoundTag nbt = new CompoundTag();
 
-        if(metal1.equals(MetalTagEnum.ALUMINUM)) {
+        if (metal1.equals(MetalTagEnum.ALUMINUM)) {
             nbt.putInt(metal1.getNameLower()+"_feruchemic_reserve",3);
 
-        }else if(metal1.equals(MetalTagEnum.LERASIUM)) {
+        } else if(metal1.equals(MetalTagEnum.LERASIUM)) {
             nbt.putInt(metal1.getNameLower() + "_feruchemic_reserve",1);
             for (MetalTagEnum metal: MetalTagEnum.values()) {
                 nbt.putInt(metal.getNameLower()+"inLerasiumBand", metal.getMaxAllomanticTicksStorage());
             }
-        }else {
+        } else {
             nbt.putInt(metal1.getNameLower()+"_feruchemic_reserve", metal1.getMaxReserveBand());
-
         }
         nbt.putInt(metal2.getNameLower()+"_feruchemic_reserve", metal2.getMaxReserveBand());
         nbt.putString("key","Nobody");
 
         return nbt;
     }
-
 }

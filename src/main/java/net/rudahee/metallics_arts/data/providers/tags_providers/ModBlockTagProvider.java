@@ -117,7 +117,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     }
 
     private void addBasicBlocksTags(String key, boolean isDivine) {
-        if (isDivine){
+        if (isDivine) {
             addForgeTag("storage_blocks/" + key, ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(key));
             makePickaxeMineable(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(key));
         } else {

@@ -43,7 +43,7 @@ public class HazeKillerEntity extends Animal {
 
     }
 
-    public static  boolean canSpawn(EntityType<net.rudahee.metallics_arts.modules.custom_entities.haze_killer_entity.HazeKillerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random){
+    public static  boolean canSpawn(EntityType<net.rudahee.metallics_arts.modules.custom_entities.haze_killer_entity.HazeKillerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
 
         return checkMobSpawnRules(entityType, level, spawnType, pos, random);
     }
