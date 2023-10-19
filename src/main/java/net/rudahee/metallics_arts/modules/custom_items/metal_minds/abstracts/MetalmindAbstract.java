@@ -471,6 +471,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
         return compoundTag;
     }
 
+
     /**
      * Creates and returns a compound tag containing full feruchemical reserve information for two metals in a band.
      *

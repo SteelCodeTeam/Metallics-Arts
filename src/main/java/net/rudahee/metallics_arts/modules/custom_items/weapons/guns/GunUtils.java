@@ -25,8 +25,16 @@ import java.util.Random;
  */
 public class GunUtils {
 
+    /**
+     * Reloads of guns, updating its properties in the provided compound tag.
+     * To do this, check if there is ammunition in the inventory, and modify the texture to the reloading one.
+     *
+     * @param compoundTag The compound tag representing the firearm's properties.
+     * @param player The player performing to reload.
+     * @param gunType The type of firearm being reloaded.
+     * @return The updated compound tag with the firearm's properties after to reload.
+     */
     public static CompoundTag reload(CompoundTag compoundTag, Player player, GunType gunType) {
-
         int slot = hasBulletOfType(player, compoundTag.getString(GunsAccess.BULLET_TYPE.getKey()), gunType);
         if (slot != -1 && compoundTag.getInt(GunsAccess.BULLETS.getKey()) < gunType.getMaxAmount()) {
             compoundTag.putInt(GunsAccess.BULLETS.getKey(), compoundTag.getInt(GunsAccess.BULLETS.getKey()) + 1);
@@ -40,6 +48,13 @@ public class GunUtils {
         return compoundTag;
     }
 
+    /**
+     * Updates the texture value for a gun based on the number of bullets loaded and the gun type.
+     *
+     * @param bullets The number of bullets loaded into the firearm.
+     * @param gunType The type of the firearm for which the texture is being updated.
+     * @return The updated texture value based on the bullets and gun type.
+     */
     public static float updateTexture(int bullets, GunType gunType) {
         if (gunType == GunType.SHOTGUN) {
             if (bullets == 0) {
@@ -136,6 +151,12 @@ public class GunUtils {
         return compoundTag;
     }
 
+    /**
+     * Checks if it contains the tags related to the gun.
+     *
+     * @param compoundTag The CompoundTag to check for tags.
+     * @return True if the CompoundTag contains the required firearm tags, false otherwise.
+     */
     public static boolean hasTags(CompoundTag compoundTag) {
         return compoundTag.contains(GunsAccess.STATE.getKey()) && compoundTag.contains(GunsAccess.BULLETS.getKey()) && compoundTag.contains(GunsAccess.BULLET_TYPE.getKey());
     }
@@ -192,11 +213,17 @@ public class GunUtils {
             }
             tag.putInt(GunsAccess.BULLETS.getKey(), tag.getInt(GunsAccess.BULLETS.getKey()) - 1);
         } else {
-            player.sendSystemMessage(Component.translatable("VACIO"));
+            player.sendSystemMessage(Component.literal("VACIO"));
         }
         return tag;
     }
 
+    /**
+     * Converts the bullet type stored in the given CompoundTag to the corresponding BulletType enum.
+     *
+     * @param compoundTag The CompoundTag containing the bullet type information.
+     * @return The BulletType enum that corresponds to the stored bullet type.
+     */
     private static BulletType bulletTypeToShot(CompoundTag compoundTag) {
         return compoundTag.getString(GunsAccess.BULLET_TYPE.getKey()).equals(BulletType.LEAD.getType()) ? BulletType.LEAD : BulletType.ALUMINUM;
     }
@@ -222,7 +249,7 @@ public class GunUtils {
             }
             player.sendSystemMessage(Component.translatable("Municion actual:" + stack.getTag().getString(GunsAccess.BULLET_TYPE.getKey())));
         } else {
-            player.sendSystemMessage(Component.translatable("No se puede cambiar, aun quedan cargas"));
+            player.sendSystemMessage(Component.literal("No se puede cambiar, aun quedan cargas"));
         }
         return stack.getTag();
     }

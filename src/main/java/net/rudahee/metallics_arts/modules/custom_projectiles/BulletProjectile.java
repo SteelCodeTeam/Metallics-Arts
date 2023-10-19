@@ -68,6 +68,14 @@ public class BulletProjectile extends ThrowableItemProjectile {
         this.despawnTime = gunType.getDespawn();
     }
 
+    /**
+     * Creates a BulletProjectile entity with the initial velocity.
+     *
+     * @param level The level in which the projectile exists.
+     * @param v The X-coordinate velocity of the projectile.
+     * @param v1 The Y-coordinate velocity of the projectile.
+     * @param v2 The Z-coordinate velocity of the projectile.
+     */
     public BulletProjectile(Level level, double v, double v1, double v2) {
         super(ModEntityTypesRegister.BULLET_PROJECTILE.get(), v, v1, v2, level);
         this.gunType = GunType.REVOLVER;
@@ -75,27 +83,57 @@ public class BulletProjectile extends ThrowableItemProjectile {
         this.despawnTime = gunType.getDespawn();
     }
 
+    /**
+     * Determines whether the projectile should be rendered based on the squared distance.
+     *
+     * @param distance The squared distance at which rendering is considered.
+     * @return True if the projectile should be rendered.
+     */
     @Override
     public boolean shouldRenderAtSqrDistance(double distance) {
         return true;
     }
 
+    /**
+     * Determines whether the projectile should be rendered at specific coordinates.
+     *
+     * @param x The X-coordinate.
+     * @param y The Y-coordinate.
+     * @param z The Z-coordinate.
+     * @return True if the projectile should be rendered.
+     */
     @Override
     public boolean shouldRender(double x, double y, double z) {
         return true;
     }
 
+
+    /**
+     * Retrieves the gravity applied to the projectile.
+     *
+     * @return The gravity value (0 for no gravity).
+     */
     @Override
     protected float getGravity() {
         return 0;
     }
 
+    /**
+     * Retrieves the default item associated with the projectile.
+     *
+     * @return The default item for the projectile based on its bullet type.
+     */
     @Override
     protected Item getDefaultItem() {
         return (this.bulletType == BulletType.LEAD ?
                 ModItemsRegister.LEAD_BULLET_PROJECTILE.get() :
                 ModItemsRegister.ALUMINUM_BULLET_PROJECTILE.get());
     }
+    /**
+     * Retrieves the particle options associated with the projectile.
+     *
+     * @return The particle options based on the item stack of the projectile.
+     */
     private ParticleOptions getParticle() {
         ItemStack itemstack = this.getItemRaw();
         return itemstack.isEmpty() ? ParticleTypes.EXPLOSION : new ItemParticleOption(ParticleTypes.ITEM, itemstack);

@@ -1,10 +1,6 @@
 package net.rudahee.metallics_arts.setup.tabs;
 
-import com.klikli_dev.modonomicon.api.ModonomiconConstants;
 import com.klikli_dev.modonomicon.data.BookDataManager;
-import com.klikli_dev.modonomicon.item.ModonomiconItem;
-import com.klikli_dev.modonomicon.registry.ItemRegistry;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.CreativeModeTabEvent;
@@ -16,8 +12,6 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
-
-import static com.klikli_dev.modonomicon.registry.ItemRegistry.MODONOMICON;
 
 public class ModCreativeTabsEvents {
 
@@ -86,7 +80,7 @@ public class ModCreativeTabsEvents {
 
 
     public static void addToMetallicsArtsDecorationTab(CreativeModeTabEvent.BuildContents event) {
-        if (event.getTab().equals(ModCreativeTabs.METTALLICS_ARTS_DECORATION_TAB)) {
+        if (event.getTab().equals(ModCreativeTabs.METALLICS_ARTS_DECORATION_TAB)) {
             //event.accept(ModItemsRegister.METALLICS_ARTS_BOOK);
 
             event.acceptAll(ModBlocksRegister.BLOCK_METAL_ORES.values().stream().map(ItemStack::new).collect(Collectors.toList()));

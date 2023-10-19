@@ -74,6 +74,14 @@ public class BasicGun extends ProjectileWeaponItem {
         return InteractionResultHolder.consume(itemStack);
     }
 
+    /**
+     * Releases the use of the item after holding it for a certain duration.
+     *
+     * @param stack The ItemStack being released after usage.
+     * @param level The Level (world) in which the item is used.
+     * @param livingEntity The living entity using the item.
+     * @param i The duration of item usage.
+     */
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity livingEntity, int i) {
         ItemStack itemStack = livingEntity.getItemInHand(InteractionHand.MAIN_HAND);
@@ -87,11 +95,11 @@ public class BasicGun extends ProjectileWeaponItem {
      * Called every tick for the gun item while it is in the player's inventory.
      * It handles actions and updates related to the gun item's state.
      *
-     * @param stack The ItemStack representing the gun item.
-     * @param level The current game level.
-     * @param entity The entity holding the gun item.
-     * @param selectedSlot The selected inventory slot of the player.
-     * @param hasItemSelected A flag indicating whether the player has an item selected.
+     * @param stack The ItemStack being ticked.
+     * @param level The Level (world) in which the item exists.
+     * @param entity The entity associated with the inventory containing the item.
+     * @param selectedSlot The selected slot in the entity's inventory.
+     * @param hasItemSelected A boolean indicating whether the player has this item selected.
      */
     private int tick = 0;
 
@@ -168,8 +176,6 @@ public class BasicGun extends ProjectileWeaponItem {
         return 0;
     }
 
-
-
     /**
      * Gets the type of the gun.
      *
@@ -203,16 +209,33 @@ public class BasicGun extends ProjectileWeaponItem {
         return 72000;
     }
 
+    /**
+     * Checks whether the ItemStack can be enchanted.
+     *
+     * @param itemStack The ItemStack to be checked for enchantability.
+     *
+     * @return False, as this item is not enchantable.
+     */
     @Override
-    public boolean isEnchantable(ItemStack p_41456_) {
+    public boolean isEnchantable(ItemStack itemStack) {
         return false;
     }
 
+    /**
+     * Retrieves a predicate representing all supported projectiles for this item.
+     *
+     * @return A predicate that checks if an ItemStack is one of the supported projectiles.
+     */
     @Override
     public Predicate<ItemStack> getAllSupportedProjectiles() {
         return itemStack -> itemStack.is(ModItemsRegister.REVOLVER_LEAD_BULLET.get()) || itemStack.is(ModItemsRegister.REVOLVER_ALUMINUM_BULLET.get());
     }
 
+    /**
+     * Gets the default range for projectiles fired from this item.
+     *
+     * @return The default projectile range, which is set to 8.
+     */
     @Override
     public int getDefaultProjectileRange() {
         return 8;

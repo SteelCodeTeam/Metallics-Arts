@@ -313,6 +313,12 @@ public class MetalSpike extends SwordItem {
         }
     }
 
+    /**
+     * Creates a CompoundTag representing a spike with Allomantic powers associated with a specific metal.
+     *
+     * @param metal The MetalTagEnum representing the type of metal associated with the spike.
+     * @return The created CompoundTag with Allomantic powers and metal information.
+     */
     public static CompoundTag addSpikeWithAllomanticPower(MetalTagEnum metal) {
         CompoundTag compoundTag = new CompoundTag();
 
@@ -323,6 +329,12 @@ public class MetalSpike extends SwordItem {
         return compoundTag;
     }
 
+    /**
+     * Creates a CompoundTag representing a spike with Feruchemic powers associated with a specific metal.
+     *
+     * @param metal The MetalTagEnum representing the type of metal associated with the spike.
+     * @return The created CompoundTag with Feruchemical powers and metal information.
+     */
     public static CompoundTag addSpikeWithFeruchemicalPower(MetalTagEnum metal) {
         CompoundTag compoundTag = new CompoundTag();
 
@@ -333,7 +345,12 @@ public class MetalSpike extends SwordItem {
         return compoundTag;
     }
 
-
+    /**
+     * Checks whether the item can be enchanted.
+     *
+     * @param itemStack The ItemStack to be checked for enchantability.
+     * @return False, as this item is not enchantable.
+     */
     @Override
     public boolean isEnchantable(ItemStack itemStack) {
         return false;

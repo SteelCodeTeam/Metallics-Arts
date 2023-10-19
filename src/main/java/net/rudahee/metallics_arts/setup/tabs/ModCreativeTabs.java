@@ -3,9 +3,7 @@ package net.rudahee.metallics_arts.setup.tabs;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -18,7 +16,7 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 public class ModCreativeTabs {
 
     public static CreativeModeTab METALLICS_ARTS_TAB;
-    public static CreativeModeTab METTALLICS_ARTS_DECORATION_TAB;
+    public static CreativeModeTab METALLICS_ARTS_DECORATION_TAB;
     public static CreativeModeTab METALLICS_ARTS_ENTITY_TAB;
 
     @SubscribeEvent
@@ -30,7 +28,7 @@ public class ModCreativeTabs {
                                     () -> new ItemStack(ModItemsRegister.ITEM_ICONS_ALLOMANCY_DIVINE.get(MetalTagEnum.ETTMETAL.getMetalNameLower())))
                                     .title(Component.literal("Metallics Arts")).withSearchBar().build());
 
-        METTALLICS_ARTS_DECORATION_TAB = event.registerCreativeModeTab(
+        METALLICS_ARTS_DECORATION_TAB = event.registerCreativeModeTab(
                 new ResourceLocation(MetallicsArts.MOD_ID, "metallics_arts_decoration_tab"),
                 builder ->
                         builder.icon(

@@ -12,12 +12,30 @@ import net.minecraft.world.phys.BlockHitResult;
 
 public class AllomanticPushButton extends ButtonBlock {
 
-    public AllomanticPushButton(Properties p_273290_, BlockSetType p_273462_, int p_273212_) {
-        super(p_273290_, p_273462_, p_273212_, false);
+    /**
+     * Constructs an AllomanticPushButton with the specified block properties, set type, and delay.
+     *
+     * @param properties The properties to configure the behavior of the button block.
+     * @param blockSetType The set type associated with the button.
+     * @param ticks The delay value for the button.
+     */
+    public AllomanticPushButton(Properties properties, BlockSetType blockSetType, int ticks) {
+        super(properties, blockSetType, ticks, false);
     }
 
+    /**
+     * Handles the interaction with the AllomanticPushButton block.
+     *
+     * @param blockState The current state of the button block.
+     * @param level The level (world) in which the interaction occurs.
+     * @param blockPos The position of the button block.
+     * @param player The player performing the interaction.
+     * @param interactionHand The hand used by the player to interact.
+     * @param blockHitResult The result of the block hit during the interaction.
+     * @return The result of the interaction, which is set to InteractionResult.FAIL.
+     */
     @Override
-    public InteractionResult use(BlockState p_51088_, Level p_51089_, BlockPos p_51090_, Player p_51091_, InteractionHand p_51092_, BlockHitResult p_51093_) {
+    public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         return InteractionResult.FAIL;
     }
 }
