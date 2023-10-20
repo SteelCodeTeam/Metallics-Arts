@@ -187,4 +187,31 @@ public class ClientUtils {
             }
         }
     }
+
+    public static void toggleCompounding(MetalTagEnum metal, IInvestedPlayerData capability, Player player) {
+        if (!capability.hasFeruchemicPower(metal) || !capability.hasMetalMindEquiped(metal.getGroup()) || !capability.hasAllomanticPower(metal) || capability.getAllomanticAmount(metal) == 0) {
+            return;
+        }
+        CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curioData -> {
+            for (int i=0; i < curioData.getSlots(); i++) {
+
+                if (curioData.getStackInSlot(i).getItem().getDescriptionId().toLowerCase().contains(metal.getNameLower())) {
+                    if (curioData.getStackInSlot(i).hasTag()) {
+                        actualFeruchemicReserve = curioData.getStackInSlot(i).getTag().getInt(metal.getNameLower() + "_feruchemic_reserve");
+                    }
+                }
+            }
+        });
+        if (actualFeruchemicReserve <=0) {
+            return;
+        }
+        if (capability.isTapping(metal) && capability.isBurning(metal)) {
+            ModNetwork.sendToServer(new UpdateTapPacket(metal, false));
+            ModNetwork.sendToServer(new UpdateBurnPacket(metal, false));
+        } else {
+            ModNetwork.sendToServer(new UpdateTapPacket(metal, true));
+            ModNetwork.sendToServer(new UpdateBurnPacket(metal, true));
+        }
+
+    }
 }

@@ -92,6 +92,8 @@ public class OnKeyInputEvent {
                     ClientUtils.toggleTap(MetalTagEnum.getMetal(i), capability, player);
                 } else if (ModKeyRegister.FERUCHEMIC_STORAGE.isDown()) {
                     ClientUtils.toggleStorage(MetalTagEnum.getMetal(i), capability, player);
+                } else if (ModKeyRegister.COMPOUNDING.isDown()){
+                    ClientUtils.toggleCompounding(MetalTagEnum.getMetal(i), capability, player);
                 } else {
                     ClientUtils.toggleBurn(MetalTagEnum.getMetal(i), capability);
                 }

@@ -49,23 +49,26 @@ public class AllomanticSelector extends Screen {
     int list =-1;
     int timeIn = 8;
 
-    static int[] noPowerImpar = new int[] {125, 125, 125, 255};     // Grises = No tienes poder
-    static int[] noPowerPar = new int[]{109, 109, 109, 255};
+    static int[] noPowerOdd = new int[] {125, 125, 125, 255};     // Grises = No tienes poder
+    static int[] noPowerEven = new int[]{109, 109, 109, 255};
 
-    static int[] normalPar = new int[]{84, 91, 120, 255};           //azules = Tiene poder inactivo y se expande si llevas la mente
-    static int[] normalImpar = new int[]{103, 110, 140, 255};
+    static int[] normalEven = new int[]{84, 91, 120, 255};           //azules = Tiene poder inactivo y se expande si llevas la mente
+    static int[] normalOdd = new int[]{103, 110, 140, 255};
 
-    static int[] burningPar = new int[]{235, 190, 68, 255};
-    static int[] burningImpar = new int[]{206, 160, 32, 255};
+    static int[] burningEven = new int[]{235, 190, 68, 255};
+    static int[] burningOdd = new int[]{206, 160, 32, 255};
 
-    static int[] burningParDivine = new int[]{235, 190, 45, 255};
-    static int[] burningImparDivine = new int[]{220, 165, 40, 255};
+    static int[] burningEvenDivine = new int[]{235, 190, 45, 255};
+    static int[] burningOddDivine = new int[]{220, 165, 40, 255};
 
-    static int[] normalParDivine = new int[]{105, 105, 120, 255};
-    static int[] normalImparDivine = new int[]{88, 92, 110, 255};
+    static int[] normalEvenDivine = new int[]{105, 105, 120, 255};
+    static int[] normalOddDivine = new int[]{88, 92, 110, 255};
 
-    static int[] noPowerParDivine = new int[] {140, 140, 140, 255};
-    static int[] noPowerImparDivine = new int[]{123, 123, 123, 255};
+    static int[] noPowerEvenDivine = new int[] {140, 140, 140, 255};
+    static int[] noPowerOddDivine = new int[]{123, 123, 123, 255};
+
+    static int[] isCompoundingEven = new int[]{237, 130, 237, 255};       //Pink = desventaja/almacenar
+    static int[] isCompoundingOdd = new int[]{219, 65, 219, 255};
 
 
     public AllomanticSelector() {
@@ -144,19 +147,19 @@ public class AllomanticSelector extends Screen {
             int[] actualColor;
             if (actualSegment % 2 == 0) {
                 if (!data.hasAllomanticPower(metal)) {
-                    actualColor = noPowerParDivine;
+                    actualColor = noPowerEvenDivine;
                 } else if (data.isBurning(metal)) {
-                    actualColor = burningParDivine;
+                    actualColor = burningEvenDivine;
                 } else {
-                    actualColor = normalParDivine;
+                    actualColor = normalEvenDivine;
                 }
             } else{
                 if (!data.hasAllomanticPower(metal)) {
-                    actualColor = noPowerImparDivine;
+                    actualColor = noPowerOddDivine;
                 } else if (data.isBurning(metal)) {
-                    actualColor = burningImparDivine;
+                    actualColor = burningOddDivine;
                 } else {
-                    actualColor = normalImparDivine;
+                    actualColor = normalOddDivine;
                 }
             }
 
@@ -196,19 +199,27 @@ public class AllomanticSelector extends Screen {
 
             if (actualSegment % 2 != 0) {
                 if (!data.hasAllomanticPower(metal)) {
-                    actualColor = noPowerPar;
+                    actualColor = noPowerEven;
                 } else if (data.isBurning(metal)) {
-                    actualColor = burningPar;
+                    if (!data.isTapping(metal)) {
+                        actualColor = burningEven;
+                    } else {
+                        actualColor = isCompoundingEven;
+                    }
                 } else {
-                    actualColor = normalPar;
+                    actualColor = normalEven;
                 }
             } else{
                 if (!data.hasAllomanticPower(metal)) {
-                    actualColor = noPowerImpar;
+                    actualColor = noPowerOdd;
                 } else if (data.isBurning(metal)) {
-                    actualColor = burningImpar;
+                    if (!data.isTapping(metal)) {
+                        actualColor = burningOdd;
+                    } else {
+                        actualColor = isCompoundingOdd;
+                    }
                 } else {
-                    actualColor = normalImpar;
+                    actualColor = normalOdd;
                 }
             }
 
@@ -246,19 +257,19 @@ public class AllomanticSelector extends Screen {
             int[] actualColor;
             if (actualSegment % 2 == 0) {
                 if (!data.hasAllomanticPower(metal)) {
-                    actualColor = noPowerPar;
+                    actualColor = noPowerEven;
                 } else if (data.isBurning(metal)) {
-                    actualColor = burningPar;
+                    actualColor = burningEven;
                 } else {
-                    actualColor = normalPar;
+                    actualColor = normalEven;
                 }
             } else{
                 if (!data.hasAllomanticPower(metal)) {
-                    actualColor = noPowerImpar;
+                    actualColor = noPowerOdd;
                 } else if (data.isBurning(metal)) {
-                    actualColor = burningImpar;
+                    actualColor = burningOdd;
                 } else {
-                    actualColor = normalImpar;
+                    actualColor = normalOdd;
                 }
             }
             if (actualSegment  == 0) {

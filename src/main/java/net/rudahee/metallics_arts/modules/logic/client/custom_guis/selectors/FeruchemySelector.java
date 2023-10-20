@@ -70,14 +70,18 @@ public class FeruchemySelector extends Screen {
     //static int[] noPowerPar = new int[] {70, 70, 80, 255};
     //static int[] noPowerImpar = new int[]{50, 50, 60, 255};
 
-    static int[] normalPar = new int[]{84, 91, 120, 255};           //azules = Tiene poder inactivo y se expande si llevas la mente
-    static int[] normalImpar = new int[]{103, 110, 140, 255};
-    static int[] noMetalMIndPar = new int[] {125, 125, 125, 255};   // Grises = No tienes poder
-    static int[] noMetalMIndImpar = new int[]{109, 109, 109, 255};
-    static int[] isDecantingPar = new int[]{119, 173, 131, 255};    //Verde = ventaja/decantar
-    static int[] isDecantingImpar = new int[]{84, 142, 96, 255};
-    static int[] isStoragePar = new int[]{206, 160, 32, 255};       //Amarillo = desventaja/almacenar
-    static int[] isStorageImpar = new int[]{235, 190, 68, 255};
+    static int[] normalEven = new int[]{84, 91, 120, 255};           //azules = Tiene poder inactivo y se expande si llevas la mente
+    static int[] normalOdd = new int[]{103, 110, 140, 255};
+    static int[] noMetalMindEven = new int[] {125, 125, 125, 255};   // Grises = No tienes poder
+    static int[] noMetalMindOdd = new int[]{109, 109, 109, 255};
+    static int[] isTappingEven = new int[]{119, 173, 131, 255};    //Verde = ventaja/decantar
+    static int[] isTappingOdd = new int[]{84, 142, 96, 255};
+    static int[] isStorageEven = new int[]{206, 160, 32, 255};       //Amarillo = desventaja/almacenar
+    static int[] isStorageOdd = new int[]{235, 190, 68, 255};
+
+
+    static int[] isCompoundingEven = new int[]{237, 130, 237, 255};       //Pink = desventaja/almacenar
+    static int[] isCompoundingOdd = new int[]{219, 65, 219, 255};
 
 
     @Override
@@ -314,23 +318,31 @@ public class FeruchemySelector extends Screen {
 
         if(paridad) {
             if (!data.hasFeruchemicPower(metal)) {
-                actualColor = noMetalMIndPar;
+                actualColor = noMetalMindEven;
             } else if(data.isStoring(metal)) {
-                actualColor = isStoragePar;
+                actualColor = isStorageEven;
             } else if (data.isTapping(metal)) {
-                actualColor = isDecantingPar;
+                if (!data.isBurning(metal)) {
+                    actualColor = isTappingEven;
+                } else {
+                    actualColor = isCompoundingEven;
+                }
             } else {
-                actualColor = normalPar;    //Tiene poder, pero no lo esta usando
+                actualColor = normalEven;    //Tiene poder, pero no lo esta usando
             }
-        } else{
+        } else {
             if (!data.hasFeruchemicPower(metal)) {
-                actualColor = noMetalMIndImpar;
-            } else if(data.isStoring(metal)) {
-                actualColor = isStorageImpar;
+                actualColor = noMetalMindOdd;
+            } else if (data.isStoring(metal)) {
+                actualColor = isStorageOdd;
             } else if (data.isTapping(metal)) {
-                actualColor = isDecantingImpar;
+                if (!data.isBurning(metal)) {
+                    actualColor = isTappingOdd;
+                } else {
+                    actualColor = isCompoundingOdd;
+                }
             } else {
-                actualColor = normalImpar;  //Tiene poder, pero no lo esta usando
+                actualColor = normalOdd;  //Tiene poder, pero no lo esta usando
             }
         }
 
@@ -355,24 +367,32 @@ public class FeruchemySelector extends Screen {
         int[] actualColor;
         if(paridad) {
             if (!data.hasFeruchemicPower(metal)) {
-                actualColor = noMetalMIndPar;
+                actualColor = noMetalMindEven;
             }else if(data.isStoring(metal)) {
-                actualColor = isStoragePar;
+                actualColor = isStorageEven;
             }else if (data.isTapping(metal)) {
-                actualColor = isDecantingPar;
+                if (!data.isBurning(metal)) {
+                    actualColor = isTappingEven;
+                } else {
+                    actualColor = isCompoundingEven;
+                }
             }else {
-                actualColor = normalPar;
+                actualColor = normalEven;
             }
 
         }else{
             if (!data.hasFeruchemicPower(metal)) {
-                actualColor = noMetalMIndImpar;
+                actualColor = noMetalMindOdd;
             }else if(data.isStoring(metal)) {
-                actualColor = isStorageImpar;
+                actualColor = isStorageOdd;
             }else if (data.isTapping(metal)) {
-                actualColor = isDecantingImpar;
+                if (!data.isBurning(metal)) {
+                    actualColor = isTappingOdd;
+                } else {
+                    actualColor = isCompoundingOdd;
+                }
             }else {
-                actualColor = normalImpar;
+                actualColor = normalOdd;
             }
         }
 

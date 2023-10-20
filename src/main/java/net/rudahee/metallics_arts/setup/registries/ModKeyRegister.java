@@ -29,6 +29,8 @@ public class ModKeyRegister {
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping FERUCHEMIC_STORAGE;
     @OnlyIn(Dist.CLIENT)
+    public static KeyMapping COMPOUNDING;
+    @OnlyIn(Dist.CLIENT)
     public static KeyMapping ALLOMANTIC_PUSH;
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping ALLOMANTIC_PULL;
@@ -50,11 +52,14 @@ public class ModKeyRegister {
         SWITCH_OVERLAY = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "switch_overlay", GLFW.GLFW_KEY_UNKNOWN, KEY_CATEGORY);
         evt.register(SWITCH_OVERLAY);
 
-        FERUCHEMIC_DECANT = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic_decant", GLFW.GLFW_KEY_LEFT_CONTROL,KEY_CATEGORY);
+        FERUCHEMIC_DECANT = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic_decant", GLFW.GLFW_KEY_LEFT_CONTROL, KEY_CATEGORY);
         evt.register(FERUCHEMIC_DECANT);
 
-        FERUCHEMIC_STORAGE = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic_store", GLFW.GLFW_KEY_LEFT_SHIFT,KEY_CATEGORY);
+        FERUCHEMIC_STORAGE = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic_store", GLFW.GLFW_KEY_LEFT_SHIFT, KEY_CATEGORY);
         evt.register(FERUCHEMIC_STORAGE);
+
+        COMPOUNDING = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "compounding", GLFW.GLFW_KEY_LEFT_ALT, KEY_CATEGORY);
+        evt.register(COMPOUNDING);
 
         ALLOMANTIC_PUSH = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "allomantic_push", InputConstants.Type.MOUSE, 1, KEY_CATEGORY);
         evt.register(ALLOMANTIC_PUSH);
