@@ -449,6 +449,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
      * @param metal The metal being charged.
      * @return The updated compound tag with the metal charge applied.
      */
+
     private CompoundTag basicDischarge(CompoundTag compoundTag, Player player, IInvestedPlayerData playerCapability, int metalReserve, boolean nicConsume, MetalTagEnum metal) {
         String metalKey = metal.getNameLower() + "_feruchemic_reserve";
         ModEffects.giveFeruchemicalTapEffect(player, metal);
