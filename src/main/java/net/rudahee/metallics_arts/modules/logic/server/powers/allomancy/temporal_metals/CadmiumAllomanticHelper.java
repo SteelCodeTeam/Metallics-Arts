@@ -8,6 +8,7 @@ import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
+import net.rudahee.metallics_arts.utils.ArmorUtils;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 /**
@@ -46,22 +47,24 @@ public class CadmiumAllomanticHelper {
         int radius = CapabilityUtils.getRadius(enhanced, lerasium, compounding);
 
         level.getEntitiesOfClass(LivingEntity.class, CapabilityUtils.getBubble(player, radius)).forEach(entity -> {
-            if (lerasium) {
-                if (enhanced) {
-                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 100, true, false));
-                    entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 100, true, false));
-                } else {
-                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 2, true, false));
-                    entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 2, true, false));
-                }
+            if (!ArmorUtils.hasAluminumArmor(entity)) {
+                if (lerasium) {
+                    if (enhanced) {
+                        entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 100, true, false));
+                        entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 100, true, false));
+                    } else {
+                        entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 2, true, false));
+                        entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 2, true, false));
+                    }
 
-            } else {
-                if (enhanced) {
-                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 2, true, false));
-                    entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 2, true, false));
                 } else {
-                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 1, true, false));
-                    entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 1, true, false));
+                    if (enhanced) {
+                        entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 2, true, false));
+                        entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 2, true, false));
+                    } else {
+                        entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 1, true, false));
+                        entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 1, true, false));
+                    }
                 }
             }
         });

@@ -3,6 +3,8 @@ package net.rudahee.metallics_arts.modules.logic.server.server_events;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
@@ -75,8 +77,6 @@ public class OnDamageEvent {
             // Atium
             if (targetCapability.isBurning(MetalTagEnum.ATIUM)) { //todo habria que cancelar si usa atium ? ya que modificar el daño no e vita efectos negativos como el nicrosil, solo evtia daño
                 event.setCanceled(AtiumAllomanticHelper.getCalculateComplexDamage(targetCapability, sourceCapability, ArmorUtils.hasAtiumArmor(target)));
-            } else if (ArmorUtils.hasAtiumArmor(target)) {
-                event.setCanceled(ArmorUtils.cancelHitWithAtiumArmor());
             }
         } catch (PlayerException ex) {
             ex.printCompleteLog();
@@ -114,11 +114,26 @@ public class OnDamageEvent {
     }
 
 
-    public static void onDamageToArmor(LivingHurtEvent event, ServerPlayer entity) {
+    public static void onDamageToArmor(LivingHurtEvent event, LivingEntity entity) {
         if (event.getSource().type().msgId().contains("explosion")) {// todo mirar de mejorar este if
             if (ArmorUtils.hasEttmetalArmor(entity)) {
                 event.setAmount(event.getAmount()/2);
             }
         }
+        if (entity instanceof Player player) {
+            try {
+                IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
+                if (!capability.isBurning(MetalTagEnum.ATIUM) && ArmorUtils.hasAtiumArmor(player)){
+                    event.setCanceled(ArmorUtils.cancelHitWithAtiumArmor());
+                }
+            } catch (PlayerException ex) {
+                ex.printCompleteLog();
+            }
+        } else {
+             if (ArmorUtils.hasAtiumArmor(entity)) {
+                event.setCanceled(ArmorUtils.cancelHitWithAtiumArmor());
+            }
+        }
+
     }
 }

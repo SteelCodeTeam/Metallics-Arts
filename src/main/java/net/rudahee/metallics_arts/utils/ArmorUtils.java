@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.utils;
 
 import net.minecraft.core.NonNullList;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
@@ -11,26 +12,42 @@ public class ArmorUtils {
     /**
      * Checks if a player is wearing a complete set of Ettmetal armor.
      *
-     * @param player The player to check for Ettmetal armor.
+     * @param livingEntity The livingEntity to check for Ettmetal armor.
      * @return {@code true} if the player is wearing a complete set of Ettmetal armor, {@code false} otherwise.
      */
-    public static boolean hasEttmetalArmor(Player player) {
-        NonNullList<ItemStack> list = player.getInventory().armor;
+    public static boolean hasEttmetalArmor(LivingEntity livingEntity) {
+
+        NonNullList<ItemStack> list = (NonNullList<ItemStack>) livingEntity.getArmorSlots();
         return (list.get(0).getItem().equals(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.BOOTS).get()) &&
                 list.get(1).getItem().equals(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get()) &&
                 list.get(2).getItem().equals(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get()) &&
                 list.get(3).getItem().equals(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.HELMET).get()));
 
     }
+    /**
+     * Checks if a player is wearing a complete set of Aluminum armor.
+     *
+     * @param livingEntity The livingEntity to check for Aluminum armor.
+     * @return {@code true} if the player is wearing a complete set of Aluminum armor, {@code false} otherwise.
+     */
+    public static boolean hasAluminumArmor(LivingEntity livingEntity) {
+
+        NonNullList<ItemStack> list = (NonNullList<ItemStack>) livingEntity.getArmorSlots();
+        return (list.get(0).getItem().equals(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get()) &&
+                list.get(1).getItem().equals(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get()) &&
+                list.get(2).getItem().equals(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get()) &&
+                list.get(3).getItem().equals(ModItemsRegister.ALUMINUM_ARMOR.get(ArmorPiecesEnum.HELMET).get()));
+
+    }
 
     /**
      * Checks if a player is wearing a complete set of Atium armor.
      *
-     * @param player The player to check for Atium armor.
+     * @param livingEntity The livingEntity to check for Atium armor.
      * @return {@code true} if the player is wearing a complete set of Atium armor, {@code false} otherwise.
      */
-    public static boolean hasAtiumArmor(Player player) {
-        NonNullList<ItemStack> list = player.getInventory().armor;
+    public static boolean hasAtiumArmor(LivingEntity livingEntity) {
+        NonNullList<ItemStack> list = (NonNullList<ItemStack>) livingEntity.getArmorSlots();
         return list.get(0).getItem().equals(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.BOOTS).get()) &&
                 list.get(1).getItem().equals(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get()) &&
                 list.get(2).getItem().equals(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get()) &&

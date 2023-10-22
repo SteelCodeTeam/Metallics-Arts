@@ -11,6 +11,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
@@ -194,22 +195,13 @@ public class ServerEventHandler {
      */
     @SubscribeEvent
     public static void onDamageEvent(final LivingHurtEvent event) {
-        /*if (event.getEntity() instanceof ServerPlayer serverPlayer) {
-            if (event.getSource().type().msgId().contains("explosion")) {// todo mirar de mejorar este if
-                NonNullList<ItemStack> list = serverPlayer.getInventory().armor;
-                if (list.get(0).getItem().equals(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.BOOTS).get()) &&
-                        list.get(1).getItem().equals(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.LEGGINGS).get()) &&
-                        list.get(2).getItem().equals(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.CHESTPLATE).get()) &&
-                        list.get(3).getItem().equals(ModItemsRegister.ETTMETAL_ARMOR.get(ArmorPiecesEnum.HELMET).get())) {
-                    event.setAmount(event.getAmount()/2);
-                }
-            }
 
-        }*/
+        OnDamageEvent.onDamageToArmor(event, event.getEntity()); //todo funciona en este if ?
+
         if (event.getSource().getDirectEntity() instanceof ServerPlayer && event.getEntity() instanceof ServerPlayer) {
             OnDamageEvent.onDamageFeruchemical(event, (ServerPlayer) event.getSource().getEntity(), (ServerPlayer) event.getEntity());
             OnDamageEvent.onDamageAllomantic(event, (ServerPlayer) event.getSource().getEntity(), (ServerPlayer) event.getEntity());
-            OnDamageEvent.onDamageToArmor(event, (ServerPlayer) event.getEntity()); //todo funciona en este if ?
+
         } else if(event.getSource().getDirectEntity() instanceof EttmetalAllomancerEntity) {
             AllomancerEvents.OnEttmetalAllomancerHit(event, (LivingEntity) event.getSource().getDirectEntity(), event.getEntity());
         }

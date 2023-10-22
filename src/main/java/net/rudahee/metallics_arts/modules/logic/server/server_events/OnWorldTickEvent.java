@@ -72,7 +72,8 @@ public class OnWorldTickEvent {
                     capability.addAllomanticMetalAmount(metal, (int) Math.floor(metal.getMaxAllomanticTicksStorage() * 0.1));
                 }
             }
-        } if (ArmorUtils.hasCopperArmor(player) && ((tick % 120) == 0)) {
+        }
+        if (ArmorUtils.hasCopperArmor(player) && ((tick % 100) == 0)) {
             if (player.level.thunderLevel > 0) {
                 LightningBolt lightning = new LightningBolt(EntityType.LIGHTNING_BOLT, level);
 

@@ -4,6 +4,7 @@ import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.utils.ArmorUtils;
 
 /**
  * Helper class that contains the methods to use the allomantic Nicrosil
@@ -22,7 +23,9 @@ public class NicrosilAllomanticHelper {
      * @param targetCapability capabilities (data) of the target.
      */
     public static void changeTargetEnhancedToTrue(Player target, IInvestedPlayerData targetCapability) {
-        targetCapability.setEnhanced(true);
-        ModNetwork.syncInvestedDataPacket(targetCapability, target);
+        if (!ArmorUtils.hasAluminumArmor(target)) {
+            targetCapability.setEnhanced(true);
+            ModNetwork.syncInvestedDataPacket(targetCapability, target);
+        }
     }
 }

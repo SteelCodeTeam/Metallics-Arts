@@ -9,6 +9,7 @@ import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerExcept
 import net.rudahee.metallics_arts.modules.logic.server.server_events.OnDamageEvent;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.on_world_tick.AllomaticTick;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.utils.ArmorUtils;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 /**
@@ -30,10 +31,13 @@ public class ChromiumAllomanticHelper {
      * @param targetCapability capabilities (data) of the target.
      */
     public static void drainMetalChromium(Player target, IInvestedPlayerData targetCapability) {
-        for (MetalTagEnum metalTagEnum : targetCapability.getAllomanticPowers()) {
-            targetCapability.drainMetals(metalTagEnum);
-            ModNetwork.syncInvestedDataPacket(targetCapability, target);
+        if (!ArmorUtils.hasAluminumArmor(target)) {
+            for (MetalTagEnum metalTagEnum : targetCapability.getAllomanticPowers()) {
+                targetCapability.drainMetals(metalTagEnum);
+                ModNetwork.syncInvestedDataPacket(targetCapability, target);
+            }
         }
+
     }
 
     /**
@@ -46,15 +50,17 @@ public class ChromiumAllomanticHelper {
     public static void drainMetalCloudChromium(Player player, Level level, boolean lerasium) {
         level.getEntitiesOfClass(Player.class, CapabilityUtils.getBubble(player, (lerasium) ? 10 : 8)).forEach(entity -> {
             if (entity != null) {
-                IInvestedPlayerData targetCapability;
-                try {
-                    targetCapability = CapabilityUtils.getCapability(entity);
-                } catch (PlayerException ex) {
-                    ex.printCompleteLog();
-                    return;
+                if (!ArmorUtils.hasAluminumArmor(player)) {
+                    IInvestedPlayerData targetCapability;
+                    try {
+                        targetCapability = CapabilityUtils.getCapability(entity);
+                    } catch (PlayerException ex) {
+                        ex.printCompleteLog();
+                        return;
+                    }
+                    targetCapability.drainMetals(MetalTagEnum.values());
+                    ModNetwork.syncInvestedDataPacket(targetCapability, entity);
                 }
-                targetCapability.drainMetals(MetalTagEnum.values());
-                ModNetwork.syncInvestedDataPacket(targetCapability, entity);
             }
         });
     }
