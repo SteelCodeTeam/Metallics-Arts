@@ -1,8 +1,11 @@
 package net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity;
 
+import com.mojang.blaze3d.shaders.Effect;
+import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
@@ -16,6 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntity;
+import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import org.jetbrains.annotations.Nullable;
 
 public class EttmetalAllomancerEntity extends Animal {
@@ -32,7 +36,6 @@ public class EttmetalAllomancerEntity extends Animal {
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1D, true));
 
     }
-
     public static AttributeSupplier.Builder getExampleAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 50.0D)

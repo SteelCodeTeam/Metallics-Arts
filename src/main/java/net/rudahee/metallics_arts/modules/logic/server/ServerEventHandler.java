@@ -1,12 +1,16 @@
 package net.rudahee.metallics_arts.modules.logic.server;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.client.Camera;
+import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
@@ -28,6 +32,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorP
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.mele.KolossBlade;
+import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.*;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.entity_events.AllomancerEvents;
@@ -231,6 +236,9 @@ public class ServerEventHandler {
     @SubscribeEvent
     public static void onWorldTickEvent(final TickEvent.LevelTickEvent event) {
 
+
+
+
         if (event.phase != TickEvent.Phase.END) {
             return;
         }
@@ -277,7 +285,6 @@ public class ServerEventHandler {
                 }
             }
         }
-
 
     }
     @SubscribeEvent

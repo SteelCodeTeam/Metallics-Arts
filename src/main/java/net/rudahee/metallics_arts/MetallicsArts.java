@@ -125,6 +125,8 @@ public class MetallicsArts {
         if (event.getObject() instanceof Player) {
             event.addCapability(ModBlocksRegister.InvestedCapabilityRegister.IDENTIFIER, new ModPaintingProvider.ModInvestedDataProvider());
         }
+
+
     }
 
     private void setup(final FMLCommonSetupEvent event)
