@@ -1,8 +1,7 @@
 {
   "replace": false,
   "values": [
-    "minecraft:elytra",
     "metallics_arts:mistcloak",
-    "backpacked:backpack"
+    "minecraft:elytra"
   ]
 }

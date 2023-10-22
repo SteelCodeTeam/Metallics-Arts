@@ -209,6 +209,7 @@ public class ClientUtils {
             ModNetwork.sendToServer(new UpdateTapPacket(metal, false));
             ModNetwork.sendToServer(new UpdateBurnPacket(metal, false));
         } else {
+            ModNetwork.sendToServer(new UpdateStoragePacket(metal, false));
             ModNetwork.sendToServer(new UpdateTapPacket(metal, true));
             ModNetwork.sendToServer(new UpdateBurnPacket(metal, true));
         }

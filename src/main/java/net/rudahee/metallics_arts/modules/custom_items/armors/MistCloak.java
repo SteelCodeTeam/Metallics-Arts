@@ -24,6 +24,8 @@ public class MistCloak extends Item implements ICurioItem {
         super(properties);
     }
 
+
+
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         LivingEntity livingEntity = slotContext.entity();
