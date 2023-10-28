@@ -12,6 +12,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -29,11 +30,15 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
 import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
 import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceScreen;
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.HemalurgyAltarScreen;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.WoodTypeMetal;
+import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.CuriosLayerDefinitions;
+import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.MetalMindModel;
+import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.MetalMindRendered;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays.MetalsOverlay;
@@ -48,6 +53,7 @@ import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
+import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -106,6 +112,8 @@ public class MetallicsArts {
         modEventBus.addListener(ModCreativeTabsEvents::addToMetallicsArtsDecorationTab);
         modEventBus.addListener(ModCreativeTabsEvents::addToCombatTab);
         modEventBus.addListener(ModCreativeTabsEvents::addToMetallicsArtsEntityTab);
+
+        modEventBus.addListener(this::registerLayers);
 
         //Register for the paintings
         ModPaintingProvider.register(modEventBus);
@@ -201,6 +209,12 @@ public class MetallicsArts {
         WoodType.register(WoodTypeMetal.ALUMINUM_TYPE);
         BlockEntityRenderers.register(ModBlockEntitiesRegister.BLOCK_ENTITY.get(), SignRenderer::new);
 
+        CuriosRendererRegistry.register(MetalMindEnum.IRON_STEEL.getBand(), MetalMindRendered::new);
+
+    }
+
+    private void registerLayers(final EntityRenderersEvent.RegisterLayerDefinitions evt) {
+        evt.registerLayerDefinition(CuriosLayerDefinitions.METALMIND, MetalMindModel::createLayer);
     }
 
 
