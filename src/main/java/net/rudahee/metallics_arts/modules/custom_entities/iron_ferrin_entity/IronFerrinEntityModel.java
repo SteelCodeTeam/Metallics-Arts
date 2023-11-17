@@ -1,6 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_entities.gold_ferruchimic_entity;// Made with Blockbench 4.6.5
-// Exported for Minecraft version 1.17 or later with Mojang mappings
-// Paste this class into your mod and generate all required imports
+package net.rudahee.metallics_arts.modules.custom_entities.iron_ferrin_entity;
 
 
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -14,7 +12,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.rudahee.metallics_arts.MetallicsArts;
 
-public class GoldFerruchimicEntityModel extends EntityModel<GoldFerruchimicEntity> {
+
+public class IronFerrinEntityModel extends EntityModel<IronFerrinEntity> {
     // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(MetallicsArts.MOD_ID, "ettmetal_alllomancer_entity"), "main");
     private final ModelPart Head;
@@ -24,7 +23,7 @@ public class GoldFerruchimicEntityModel extends EntityModel<GoldFerruchimicEntit
     private final ModelPart RightLeg;
     private final ModelPart LeftLeg;
 
-    public GoldFerruchimicEntityModel(ModelPart root) {
+    public IronFerrinEntityModel(ModelPart root) {
         this.Head = root.getChild("head");
         this.Body = root.getChild("body");
         this.RightArm = root.getChild("right_arm");
@@ -59,7 +58,7 @@ public class GoldFerruchimicEntityModel extends EntityModel<GoldFerruchimicEntit
     }
 
     @Override
-    public void setupAnim(GoldFerruchimicEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(IronFerrinEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.Head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
         this.Head.xRot = headPitch * Mth.DEG_TO_RAD;
         this.LeftLeg.xRot = Mth.cos(limbSwing*0.662F)* 1.4F * limbSwingAmount;

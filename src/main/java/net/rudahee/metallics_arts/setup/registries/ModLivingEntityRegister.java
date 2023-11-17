@@ -8,9 +8,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
-import net.rudahee.metallics_arts.modules.custom_entities.gold_ferruchimic_entity.GoldFerruchimicEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.gold_ferrin_entity.GoldFerrinEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_entity.HazeKillerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.iron_ferrin_entity.IronFerrinEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.pewter_allomancer_entity.PewterAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.steel_allomancer_entity.SteelAllomancerEntity;
 
@@ -29,9 +30,11 @@ public class ModLivingEntityRegister {
     public static final RegistryObject<EntityType<HazeKillerEntity>> HAZE_KILLER = ENTITY_TYPES.register("haze_killer_entity",
             () -> EntityType.Builder.of(HazeKillerEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":haze_killer"));
 
-    public static final RegistryObject<EntityType<GoldFerruchimicEntity>> GOLD_FERRUCHIMIC = ENTITY_TYPES.register("gold_ferruchimic_entity",
-            () -> EntityType.Builder.of(GoldFerruchimicEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":gold_ferruchimic"));
+    public static final RegistryObject<EntityType<GoldFerrinEntity>> GOLD_FERRIN = ENTITY_TYPES.register("gold_ferrin_entity",
+            () -> EntityType.Builder.of(GoldFerrinEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":gold_ferrin"));
 
+    public static final RegistryObject<EntityType<IronFerrinEntity>> IRON_FERRIN = ENTITY_TYPES.register("iron_ferrin_entity",
+            () -> EntityType.Builder.of(IronFerrinEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":iron_ferrin"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

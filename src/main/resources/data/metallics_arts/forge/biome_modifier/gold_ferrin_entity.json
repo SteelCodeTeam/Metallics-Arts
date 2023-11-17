@@ -3,7 +3,7 @@
   "biomes": "#is_overworld",
   "spawners":
   {
-    "type": "metallics_arts:gold_ferruchimic_entity",
+    "type": "metallics_arts:gold_ferrin_entity",
     "weight": 10,
     "minCount": 1,
     "maxCount": 1

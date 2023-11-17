@@ -9,12 +9,14 @@ import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntityModel;
 import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntityRenderer;
-import net.rudahee.metallics_arts.modules.custom_entities.gold_ferruchimic_entity.GoldFerruchimicEntityModel;
-import net.rudahee.metallics_arts.modules.custom_entities.gold_ferruchimic_entity.GoldFerruchimicEntityRenderer;
+import net.rudahee.metallics_arts.modules.custom_entities.gold_ferrin_entity.GoldFerrinEntityModel;
+import net.rudahee.metallics_arts.modules.custom_entities.gold_ferrin_entity.GoldFerrinEntityRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_entity.HazeKillerEntityModel;
 import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_entity.HazeKillerEntityRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntityModel;
 import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntityRenderer;
+import net.rudahee.metallics_arts.modules.custom_entities.iron_ferrin_entity.IronFerrinEntityModel;
+import net.rudahee.metallics_arts.modules.custom_entities.iron_ferrin_entity.IronFerrinEntityRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.pewter_allomancer_entity.PewterAllomancerEntityModel;
 import net.rudahee.metallics_arts.modules.custom_entities.pewter_allomancer_entity.PewterAllomancerEntityRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.steel_allomancer_entity.SteelAllomancerEntityModel;
@@ -33,7 +35,8 @@ public class ModRenderRegister {
         event.registerEntityRenderer(ModLivingEntityRegister.STEEL_ALLOMANCER.get(), SteelAllomancerEntityRenderer::new);
         event.registerEntityRenderer(ModLivingEntityRegister.PEWTER_ALLOMANCER.get(), PewterAllomancerEntityRenderer::new);
         event.registerEntityRenderer(ModLivingEntityRegister.HAZE_KILLER.get(), HazeKillerEntityRenderer::new);
-        event.registerEntityRenderer(ModLivingEntityRegister.GOLD_FERRUCHIMIC.get(), GoldFerruchimicEntityRenderer::new);
+        event.registerEntityRenderer(ModLivingEntityRegister.GOLD_FERRIN.get(), GoldFerrinEntityRenderer::new);
+        event.registerEntityRenderer(ModLivingEntityRegister.IRON_FERRIN.get(), IronFerrinEntityRenderer::new);
 
     }
 
@@ -44,7 +47,8 @@ public class ModRenderRegister {
         event.registerLayerDefinition(SteelAllomancerEntityModel.LAYER_LOCATION, SteelAllomancerEntityModel::createBodyLayer);
         event.registerLayerDefinition(PewterAllomancerEntityModel.LAYER_LOCATION, PewterAllomancerEntityModel::createBodyLayer);
         event.registerLayerDefinition(HazeKillerEntityModel.LAYER_LOCATION, HazeKillerEntityModel::createBodyLayer);
-        event.registerLayerDefinition(GoldFerruchimicEntityModel.LAYER_LOCATION, GoldFerruchimicEntityModel::createBodyLayer);
+        event.registerLayerDefinition(GoldFerrinEntityModel.LAYER_LOCATION, GoldFerrinEntityModel::createBodyLayer);
+        event.registerLayerDefinition(IronFerrinEntityModel.LAYER_LOCATION, IronFerrinEntityModel::createBodyLayer);
     }
 
 }

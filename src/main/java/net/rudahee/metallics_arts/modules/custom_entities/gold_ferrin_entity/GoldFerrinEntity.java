@@ -1,11 +1,8 @@
-package net.rudahee.metallics_arts.modules.custom_entities.gold_ferruchimic_entity;
+package net.rudahee.metallics_arts.modules.custom_entities.gold_ferrin_entity;
 
-import com.mojang.blaze3d.shaders.Effect;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
@@ -15,16 +12,14 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Witch;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.rudahee.metallics_arts.modules.custom_goals.PullAndPushGoal;
 import net.rudahee.metallics_arts.modules.custom_goals.RegenerationGoal;
 import org.jetbrains.annotations.Nullable;
 
-public class GoldFerruchimicEntity extends Animal {
-    public GoldFerruchimicEntity(EntityType<? extends Animal> type, Level level) {
+public class GoldFerrinEntity extends Animal {
+    public GoldFerrinEntity(EntityType<? extends Animal> type, Level level) {
         super(type, level);
     }
 
@@ -49,7 +44,7 @@ public class GoldFerruchimicEntity extends Animal {
                 .add(Attributes.ATTACK_SPEED, 0.5F);
     }
 
-    public static  boolean canSpawn(EntityType<GoldFerruchimicEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+    public static  boolean canSpawn(EntityType<GoldFerrinEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
 
 
         return checkMobSpawnRules(entityType, level, spawnType, pos, random);
