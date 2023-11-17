@@ -103,7 +103,6 @@ public class ClientEventHandler {
             return;
         }
 
-
         try {
             IInvestedPlayerData capabilities = CapabilityUtils.getCapability(Minecraft.getInstance().player);
             if (capabilities.isBurning(MetalTagEnum.TIN) || capabilities.isTapping(MetalTagEnum.TIN)){
