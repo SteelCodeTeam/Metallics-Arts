@@ -99,4 +99,14 @@ public class BodyPartEntity {
         spikeToDelete.ifPresent(spikeEntity -> this.spikes.remove(spikeEntity));
         this.setActualSpikes(this.getActualSpikes() - 1);
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("BodyPartEntity{");
+        sb.append("maxSpikes=").append(maxSpikes);
+        sb.append(", actualSpikes=").append(actualSpikes);
+        sb.append(", spikes=").append(spikes);
+        sb.append('}');
+        return sb.toString();
+    }
 }

@@ -733,6 +733,10 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         return (this.getAllomanticAmount(metal) > 0);
     }
 
+    @Override
+    public PlayerEntity getPlayerData() {
+        return player;
+    }
 
 
     /**

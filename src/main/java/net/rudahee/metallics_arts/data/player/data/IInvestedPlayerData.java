@@ -6,6 +6,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.BodyPartEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.TypeOfSpikeEnum;
+import net.rudahee.metallics_arts.data.player.data.model.PlayerEntity;
 import net.rudahee.metallics_arts.data.player.data.model.SpikeEntity;
 
 import java.util.ArrayList;
@@ -124,6 +125,8 @@ public interface IInvestedPlayerData {
     boolean substractAllomanticMetalAmount(MetalTagEnum metal, int qty);
 
     int getAllomanticAmount(MetalTagEnum metal);
+
+    PlayerEntity getPlayerData();
 
     CompoundTag save();
 

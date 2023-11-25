@@ -29,4 +29,13 @@ public class SpikeEntity {
     public void setType(TypeOfSpikeEnum type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("SpikeEntity{");
+        sb.append("metal=").append(metal);
+        sb.append(", type=").append(type);
+        sb.append('}');
+        return sb.toString();
+    }
 }

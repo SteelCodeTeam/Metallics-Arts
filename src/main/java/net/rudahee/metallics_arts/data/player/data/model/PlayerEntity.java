@@ -25,7 +25,7 @@ public class PlayerEntity {
     private  HashMap<MetalTagEnum, Boolean> storingMetals;
     private ArrayList<Boolean> metalMindEquipped = new ArrayList<>(10);
     private Boolean enhanced;
-    private  ArrayList<MetalTagEnum> metalsEnhanced = new ArrayList<>();
+    private ArrayList<MetalTagEnum> metalsEnhanced = new ArrayList<>();
     private Boolean modifiedHealth;
     private EttmetalState ettmetalState;
     private boolean firstJoin;
@@ -220,5 +220,31 @@ public class PlayerEntity {
 
     public void setEttmetalState(EttmetalState ettmetalState) {
         this.ettmetalState = ettmetalState;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("PlayerEntity{");
+        sb.append("head=").append(head);
+        sb.append(", chest=").append(chest);
+        sb.append(", back=").append(back);
+        sb.append(", arms=").append(arms);
+        sb.append(", legs=").append(legs);
+        sb.append(", allomanticReserve=").append(allomanticReserve);
+        sb.append(", burningMetals=").append(burningMetals);
+        sb.append(", tappingMetals=").append(tappingMetals);
+        sb.append(", storingMetals=").append(storingMetals);
+        sb.append(", metalMindEquipped=").append(metalMindEquipped);
+        sb.append(", enhanced=").append(enhanced);
+        sb.append(", metalsEnhanced=").append(metalsEnhanced);
+        sb.append(", modifiedHealth=").append(modifiedHealth);
+        sb.append(", ettmetalState=").append(ettmetalState);
+        sb.append(", firstJoin=").append(firstJoin);
+        sb.append(", hasAnyAllomanticMetal=").append(hasAnyAllomanticMetal());
+        sb.append(", hasAnyFeruchemicMetal=").append(hasAnyFeruchemicMetal());
+        sb.append(", countAllomanticMetal=").append(getCountAllomanticMetal());
+        sb.append(", countFeruchemicMetal=").append(getCountFeruchemicMetal());
+        sb.append('}');
+        return sb.toString();
     }
 }

@@ -128,6 +128,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         model = new ModelFile.UncheckedModelFile(modLoc("block/crucible_furnace"));
         horizontalBlock(ModBlocksRegister.CRUCIBLE_FURNACE.get(), model);
+        simpleBlockItem(ModBlocksRegister.CRUCIBLE_FURNACE.get(),model);
+
         //simpleBlock(ModBlocksRegister.CRUCIBLE_FURNACE.get());
 
 

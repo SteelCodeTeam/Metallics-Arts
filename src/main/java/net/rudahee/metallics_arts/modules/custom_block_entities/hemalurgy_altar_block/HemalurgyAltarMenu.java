@@ -33,47 +33,26 @@ public class HemalurgyAltarMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, -6, 17));
-            this.addSlot(new SlotItemHandler(handler, 1, -6, 36));
-            this.addSlot(new SlotItemHandler(handler, 2, 14, 1));
-            this.addSlot(new SlotItemHandler(handler, 3, 21, 1));
-            this.addSlot(new SlotItemHandler(handler, 4, 28, 1));
-            this.addSlot(new SlotItemHandler(handler, 5, 35, 1));
-            this.addSlot(new SlotItemHandler(handler, 6, 42, 1));
-            this.addSlot(new SlotItemHandler(handler, 7, 49, 1));
-            this.addSlot(new SlotItemHandler(handler, 8, 56, 1));
-            this.addSlot(new SlotItemHandler(handler, 9, 63, 1));
-            this.addSlot(new SlotItemHandler(handler, 10, 70, 1));
-            this.addSlot(new SlotItemHandler(handler, 11, 77, 1));
-            this.addSlot(new SlotItemHandler(handler, 12, 84, 1));
-            this.addSlot(new SlotItemHandler(handler, 13, 91, 1));
-            this.addSlot(new SlotItemHandler(handler, 14, 98, 1));
-            this.addSlot(new SlotItemHandler(handler, 15, 105, 1));
-            this.addSlot(new SlotItemHandler(handler, 16, 112, 1));
-            this.addSlot(new SlotItemHandler(handler, 17, 1, 7));
-            this.addSlot(new SlotItemHandler(handler, 18, 7, 7));
-            this.addSlot(new SlotItemHandler(handler, 19, 14, 7));
-            this.addSlot(new SlotItemHandler(handler, 20, 21, 7));
-            this.addSlot(new SlotItemHandler(handler, 21, 28, 7));
-            this.addSlot(new SlotItemHandler(handler, 22, 35, 7));
-            this.addSlot(new SlotItemHandler(handler, 23, 42, 7));
-            this.addSlot(new SlotItemHandler(handler, 24, 49, 7));
-            this.addSlot(new SlotItemHandler(handler, 25, 56, 7));
-            this.addSlot(new SlotItemHandler(handler, 26, 63, 7));
-            this.addSlot(new SlotItemHandler(handler, 27, 70, 7));
-            this.addSlot(new SlotItemHandler(handler, 28, 77, 7));
-            this.addSlot(new SlotItemHandler(handler, 29, 84, 7));
-            this.addSlot(new SlotItemHandler(handler, 30, 91, 7));
-            this.addSlot(new SlotItemHandler(handler, 31, 105, 7));
-            this.addSlot(new SlotItemHandler(handler, 32, 112, 7));
-            this.addSlot(new SlotItemHandler(handler, 33, 0, 14));
-            this.addSlot(new SlotItemHandler(handler, 34, 1, 14));
-            this.addSlot(new SlotItemHandler(handler, 35, 14, 14));
-            this.addSlot(new SlotItemHandler(handler, 36, 21, 14));
-            this.addSlot(new SlotItemHandler(handler, 37, 28, 14));
-            this.addSlot(new SlotItemHandler(handler, 38, 35, 14));
-            this.addSlot(new SlotItemHandler(handler, 39, 42, 14));
-
+            this.addSlot(new SlotItemHandler(handler, 0, -4, 30));
+            this.addSlot(new SlotItemHandler(handler, 1, -4, 55));
+            this.addSlot(new SlotItemHandler(handler, 2, 47, 26));
+            this.addSlot(new SlotItemHandler(handler, 3, 47, 59));
+            this.addSlot(new SlotItemHandler(handler, 4, 68, 30));
+            this.addSlot(new SlotItemHandler(handler, 5, 68, 53));
+            this.addSlot(new SlotItemHandler(handler, 6, 88, 30));
+            this.addSlot(new SlotItemHandler(handler, 7, 88, 53));
+            this.addSlot(new SlotItemHandler(handler, 8, 40, -1));
+            this.addSlot(new SlotItemHandler(handler, 9, 63, -1));
+            this.addSlot(new SlotItemHandler(handler, 10, 86, -1));
+            this.addSlot(new SlotItemHandler(handler, 11, 40, 86));
+            this.addSlot(new SlotItemHandler(handler, 12, 63, 86));
+            this.addSlot(new SlotItemHandler(handler, 13, 86, 86));
+            this.addSlot(new SlotItemHandler(handler, 14, 122, 28));
+            this.addSlot(new SlotItemHandler(handler, 15, 145, 28));
+            this.addSlot(new SlotItemHandler(handler, 16, 168, 28));
+            this.addSlot(new SlotItemHandler(handler, 17, 122, 55));
+            this.addSlot(new SlotItemHandler(handler, 18, 145, 55));
+            this.addSlot(new SlotItemHandler(handler, 19, 168, 55));
         });
 
         addDataSlots(data);
@@ -95,7 +74,7 @@ public class HemalurgyAltarMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 40;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 20;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
@@ -130,6 +109,7 @@ public class HemalurgyAltarMenu extends AbstractContainerMenu {
         return copyOfSourceStack;
     }
 
+
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
@@ -139,14 +119,14 @@ public class HemalurgyAltarMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 7 + l * 18, 129 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 138 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 7 + i * 18, 199));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 196));
         }
     }
 
