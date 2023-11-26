@@ -34,6 +34,7 @@ public class EttmetalAllomancerEntity extends Animal {
         this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1D, true));
+        this.goalSelector.addGoal(4, new FloatGoal(this));
 
     }
     public static AttributeSupplier.Builder getExampleAttributes() {

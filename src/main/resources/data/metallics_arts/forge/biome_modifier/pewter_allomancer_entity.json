@@ -4,7 +4,7 @@
   "spawners":
   {
     "type": "metallics_arts:pewter_allomancer_entity",
-    "weight": 10,
+    "weight": 1,
     "minCount": 1,
     "maxCount": 1
   }

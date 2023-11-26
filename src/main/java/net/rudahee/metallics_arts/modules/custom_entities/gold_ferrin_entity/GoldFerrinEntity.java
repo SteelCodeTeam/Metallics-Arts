@@ -31,6 +31,7 @@ public class GoldFerrinEntity extends Animal {
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1D, true));
         this.goalSelector.addGoal(1, new RegenerationGoal(this, 2,20));
+        this.goalSelector.addGoal(4, new FloatGoal(this));
 
 
     }

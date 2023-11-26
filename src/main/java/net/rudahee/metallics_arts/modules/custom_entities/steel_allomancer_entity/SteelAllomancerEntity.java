@@ -9,10 +9,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.RangedBowAttackGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
@@ -44,7 +41,7 @@ public class SteelAllomancerEntity extends Animal implements RangedAttackMob {
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.goalSelector.addGoal(4, new PullAndPushGoal(this, 3,4) );
         this.goalSelector.addGoal(1, new RangedBowAttackGoal<SteelAllomancerEntity>(this, 1.0D, 20, 15.0F));
-
+        this.goalSelector.addGoal(4, new FloatGoal(this));
     }
 
     protected void populateDefaultEquipmentSlots(RandomSource source,  DifficultyInstance difficulty) {
