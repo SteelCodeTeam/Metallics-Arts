@@ -34,7 +34,13 @@ public class ModEntityEggsRegister {
       ModItemsRegister.ENTITY_EGGS.put("pewter_allomancer_entity_spawn_egg",MetallicsArts.registerItem("pewter_allomancer_entity_spawn_egg",
               () -> new ForgeSpawnEggItem(ModLivingEntityRegister.ETTMETAL_ALLOMANCER, 0x2FCD74, 0x2F0074, new Item.Properties())));
 
+      ModItemsRegister.ENTITY_EGGS.put("gold_ferrin_entity", MetallicsArts.registerItem("gold_ferrin_entity_spawn_egg",
+              () -> new ForgeSpawnEggItem(ModLivingEntityRegister.GOLD_FERRIN,  0xc6b722  , 0x000000 , new Item.Properties())));
+
+      ModItemsRegister.ENTITY_EGGS.put("iron_ferrin_entity", MetallicsArts.registerItem("iron_ferrin_entity_spawn_egg",
+              () -> new ForgeSpawnEggItem(ModLivingEntityRegister.IRON_FERRIN,  0xa3a2954  , 0xc6b722 , new Item.Properties())));
    }
+
 
 }
 
