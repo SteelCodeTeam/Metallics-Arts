@@ -39,6 +39,9 @@ public class ModEntityEggsRegister {
 
       ModItemsRegister.ENTITY_EGGS.put("iron_ferrin_entity", MetallicsArts.registerItem("iron_ferrin_entity_spawn_egg",
               () -> new ForgeSpawnEggItem(ModLivingEntityRegister.IRON_FERRIN,  0xa3a2954  , 0xc6b722 , new Item.Properties())));
+
+      ModItemsRegister.ENTITY_EGGS.put("haze_killer_entity", MetallicsArts.registerItem("haze_killer_entity_spawn_egg",
+              () -> new ForgeSpawnEggItem(ModLivingEntityRegister.HAZE_KILLER,  0x090909   , 0xa1a196 , new Item.Properties())));
    }
 
 
