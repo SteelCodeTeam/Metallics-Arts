@@ -57,7 +57,7 @@ public class MistCloak extends Item implements ICurioItem {
 
         if (livingEntity.level instanceof ServerLevel) {
             if (livingEntity instanceof Player player) {
-                if (!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(MISTCLOACK_SPEED)) {
+                if (player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(MISTCLOACK_SPEED)) {
                     player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(MISTCLOACK_SPEED);
                 }
                 player.setCustomNameVisible(true);
@@ -78,5 +78,11 @@ public class MistCloak extends Item implements ICurioItem {
         }
 
         ICurioItem.super.onEquip(slotContext, prevStack, stack);
+    }
+
+
+    @Override
+    public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
+        return true;
     }
 }
