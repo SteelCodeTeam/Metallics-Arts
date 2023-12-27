@@ -430,6 +430,18 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 }
         }};
 
+
+        private final Map<String, String> eggs = new HashMap<>() {{
+                put("item.metallics_arts.haze_killer_entity_spawn_egg", "HazeKiller Spawn Egg");
+                put("item.metallics_arts.ettmetal_allomancer_entity_spawn_egg", "Ettmetal Allomancer Spawn Egg");
+                put("item.metallics_arts.gold_ferrin_entity_spawn_egg", "Gold Ferrin Spawn Egg");
+                put("item.metallics_arts.iron_allomancer_entity_spawn_egg", "Iron Allomancer Spawn Egg");
+                put("item.metallics_arts.iron_ferrin_entity_spawn_egg", "Iron Ferrin Spawn Egg");
+                put("item.metallics_arts.pewter_allomancer_entity_spawn_egg", "Pewter Allomancer Spawn Egg");
+                put("item.metallics_arts.steel_allomancer_entity_spawn_egg", "Steel Allomancer Spawn Egg");
+
+        }};
+
     /**
      * Constructs a new ModLanguageProviderEN instance.
      *
@@ -550,6 +562,10 @@ public class ModLanguageProviderEN extends LanguageProvider {
 
             for (String key : tables.keySet()) {
                     add(key, tables.get(key));
+            }
+
+            for (String key : eggs.keySet()) {
+                    add(key, eggs.get(key));
             }
 
     }
