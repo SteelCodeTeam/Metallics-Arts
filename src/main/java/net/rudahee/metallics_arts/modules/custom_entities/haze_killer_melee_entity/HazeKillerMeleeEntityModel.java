@@ -12,7 +12,7 @@ import net.minecraft.util.Mth;
 import net.rudahee.metallics_arts.MetallicsArts;
 
 
-public class HazeKillerEntityModel extends EntityModel<HazeKillerEntity> {
+public class HazeKillerEntityMeleeModel extends EntityModel<HazeKillerEntityMelee> {
     // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(MetallicsArts.MOD_ID, "haze_killer_entity"), "main");
     private final ModelPart Head;
@@ -22,7 +22,7 @@ public class HazeKillerEntityModel extends EntityModel<HazeKillerEntity> {
     private final ModelPart RightLeg;
     private final ModelPart LeftLeg;
 
-    public HazeKillerEntityModel(ModelPart root) {
+    public HazeKillerEntityMeleeModel(ModelPart root) {
         this.Head = root.getChild("head");
         this.Body = root.getChild("body");
         this.RightArm = root.getChild("right_arm");
@@ -57,7 +57,7 @@ public class HazeKillerEntityModel extends EntityModel<HazeKillerEntity> {
     }
 
     @Override
-    public void setupAnim(HazeKillerEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(HazeKillerEntityMelee entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.Head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
         this.Head.xRot = headPitch * Mth.DEG_TO_RAD;
         this.LeftLeg.xRot = Mth.cos(limbSwing*0.662F)* 1.4F * limbSwingAmount;
