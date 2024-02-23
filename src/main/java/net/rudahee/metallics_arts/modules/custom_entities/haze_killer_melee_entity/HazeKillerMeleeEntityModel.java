@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_entities.haze_killer_entity;
+package net.rudahee.metallics_arts.modules.custom_entities.haze_killer_melee_entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -12,9 +12,9 @@ import net.minecraft.util.Mth;
 import net.rudahee.metallics_arts.MetallicsArts;
 
 
-public class HazeKillerEntityMeleeModel extends EntityModel<HazeKillerEntityMelee> {
+public class HazeKillerMeleeEntityModel extends EntityModel<HazeKillerMeleeEntity> {
     // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(MetallicsArts.MOD_ID, "haze_killer_entity"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(MetallicsArts.MOD_ID, "haze_killer_melee_entity"), "main");
     private final ModelPart Head;
     private final ModelPart Body;
     private final ModelPart RightArm;
@@ -22,7 +22,7 @@ public class HazeKillerEntityMeleeModel extends EntityModel<HazeKillerEntityMele
     private final ModelPart RightLeg;
     private final ModelPart LeftLeg;
 
-    public HazeKillerEntityMeleeModel(ModelPart root) {
+    public HazeKillerMeleeEntityModel(ModelPart root) {
         this.Head = root.getChild("head");
         this.Body = root.getChild("body");
         this.RightArm = root.getChild("right_arm");
@@ -57,7 +57,7 @@ public class HazeKillerEntityMeleeModel extends EntityModel<HazeKillerEntityMele
     }
 
     @Override
-    public void setupAnim(HazeKillerEntityMelee entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(HazeKillerMeleeEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.Head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
         this.Head.xRot = headPitch * Mth.DEG_TO_RAD;
         this.LeftLeg.xRot = Mth.cos(limbSwing*0.662F)* 1.4F * limbSwingAmount;

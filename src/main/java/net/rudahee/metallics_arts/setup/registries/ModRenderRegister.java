@@ -11,8 +11,12 @@ import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_en
 import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntityRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.gold_ferrin_entity.GoldFerrinEntityModel;
 import net.rudahee.metallics_arts.modules.custom_entities.gold_ferrin_entity.GoldFerrinEntityRenderer;
-import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_entity.HazeKillerEntityModel;
-import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_entity.HazeKillerEntityRenderer;
+import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_melee_entity.HazeKillerMeleeEntityModel;
+import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_melee_entity.HazeKillerMeleeEntityRenderer;
+import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_ranged_entity.HazeKillerRangedEntityModel;
+import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_ranged_entity.HazeKillerRangedEntityRenderer;
+import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_tank_entity.HazeKillerTankEntityModel;
+import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_tank_entity.HazeKillerTankEntityRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntityModel;
 import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntityRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.iron_ferrin_entity.IronFerrinEntityModel;
@@ -34,7 +38,9 @@ public class ModRenderRegister {
         event.registerEntityRenderer(ModLivingEntityRegister.IRON_ALLOMANCER.get(), IronAllomancerEntityRenderer::new);
         event.registerEntityRenderer(ModLivingEntityRegister.STEEL_ALLOMANCER.get(), SteelAllomancerEntityRenderer::new);
         event.registerEntityRenderer(ModLivingEntityRegister.PEWTER_ALLOMANCER.get(), PewterAllomancerEntityRenderer::new);
-        event.registerEntityRenderer(ModLivingEntityRegister.HAZE_KILLER.get(), HazeKillerEntityRenderer::new);
+        event.registerEntityRenderer(ModLivingEntityRegister.HAZE_KILLER_MELEE.get(), HazeKillerMeleeEntityRenderer::new);
+        event.registerEntityRenderer(ModLivingEntityRegister.HAZE_KILLER_RANGED.get(), HazeKillerRangedEntityRenderer::new);
+        event.registerEntityRenderer(ModLivingEntityRegister.HAZE_KILLER_TANK.get(), HazeKillerTankEntityRenderer::new);
         event.registerEntityRenderer(ModLivingEntityRegister.GOLD_FERRIN.get(), GoldFerrinEntityRenderer::new);
         event.registerEntityRenderer(ModLivingEntityRegister.IRON_FERRIN.get(), IronFerrinEntityRenderer::new);
 
@@ -46,9 +52,12 @@ public class ModRenderRegister {
         event.registerLayerDefinition(IronAllomancerEntityModel.LAYER_LOCATION, IronAllomancerEntityModel::createBodyLayer);
         event.registerLayerDefinition(SteelAllomancerEntityModel.LAYER_LOCATION, SteelAllomancerEntityModel::createBodyLayer);
         event.registerLayerDefinition(PewterAllomancerEntityModel.LAYER_LOCATION, PewterAllomancerEntityModel::createBodyLayer);
-        event.registerLayerDefinition(HazeKillerEntityModel.LAYER_LOCATION, HazeKillerEntityModel::createBodyLayer);
+        event.registerLayerDefinition(HazeKillerMeleeEntityModel.LAYER_LOCATION, HazeKillerMeleeEntityModel::createBodyLayer);
+        event.registerLayerDefinition(HazeKillerRangedEntityModel.LAYER_LOCATION, HazeKillerRangedEntityModel::createBodyLayer);
+        event.registerLayerDefinition(HazeKillerTankEntityModel.LAYER_LOCATION, HazeKillerTankEntityModel::createBodyLayer);
         event.registerLayerDefinition(GoldFerrinEntityModel.LAYER_LOCATION, GoldFerrinEntityModel::createBodyLayer);
         event.registerLayerDefinition(IronFerrinEntityModel.LAYER_LOCATION, IronFerrinEntityModel::createBodyLayer);
+
     }
 
 }

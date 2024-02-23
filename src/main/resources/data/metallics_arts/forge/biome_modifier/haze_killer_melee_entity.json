@@ -5,7 +5,7 @@
   {
     "type": "metallics_arts:pewter_allomancer_entity",
     "weight": 1,
-    "minCount": 3,
-    "maxCount": 5
+    "minCount": 1,
+    "maxCount": 1
   }
 }

@@ -9,7 +9,9 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.gold_ferrin_entity.GoldFerrinEntity;
-import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_entity.HazeKillerEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_melee_entity.HazeKillerMeleeEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_ranged_entity.HazeKillerRangedEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_tank_entity.HazeKillerTankEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.iron_ferrin_entity.IronFerrinEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.pewter_allomancer_entity.PewterAllomancerEntity;
@@ -27,8 +29,12 @@ public class ModLivingEntityRegister {
             () -> EntityType.Builder.of(SteelAllomancerEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":steel_allomancer"));
     public static final RegistryObject<EntityType<PewterAllomancerEntity>> PEWTER_ALLOMANCER = ENTITY_TYPES.register("pewter_allomancer_entity",
             () -> EntityType.Builder.of(PewterAllomancerEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":pewter_allomancer"));
-    public static final RegistryObject<EntityType<HazeKillerEntity>> HAZE_KILLER = ENTITY_TYPES.register("haze_killer_entity",
-            () -> EntityType.Builder.of(HazeKillerEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":haze_killer"));
+    public static final RegistryObject<EntityType<HazeKillerMeleeEntity>> HAZE_KILLER_MELEE = ENTITY_TYPES.register("haze_killer_melee_entity",
+            () -> EntityType.Builder.of(HazeKillerMeleeEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":haze_killer_melee"));
+    public static final RegistryObject<EntityType<HazeKillerRangedEntity>> HAZE_KILLER_RANGED = ENTITY_TYPES.register("haze_killer_ranged_entity",
+            () -> EntityType.Builder.of(HazeKillerRangedEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":haze_killer_ranged"));
+    public static final RegistryObject<EntityType<HazeKillerTankEntity>> HAZE_KILLER_TANK = ENTITY_TYPES.register("haze_killer_tank_entity",
+            () -> EntityType.Builder.of(HazeKillerTankEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":haze_killer_tank"));
 
     public static final RegistryObject<EntityType<GoldFerrinEntity>> GOLD_FERRIN = ENTITY_TYPES.register("gold_ferrin_entity",
             () -> EntityType.Builder.of(GoldFerrinEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":gold_ferrin"));

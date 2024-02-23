@@ -432,7 +432,9 @@ public class ModLanguageProviderES extends LanguageProvider {
     }};
 
     private final Map<String, String> eggs = new HashMap<>() {{
-        put("item.metallics_arts.haze_killer_entity_spawn_egg", "Generar mataneblino");
+        put("item.metallics_arts.haze_killer_melee_entity_spawn_egg", "Generar mataneblino melee");
+        put("item.metallics_arts.haze_killer_ranged_entity_spawn_egg",  "Generar mataneblino ranged");
+        put("item.metallics_arts.haze_killer_tank_entity_spawn_egg",  "Generar mataneblino tank");
         put("item.metallics_arts.ettmetal_allomancer_entity_spawn_egg", "Generar brumoso de ettmetal");
         put("item.metallics_arts.gold_ferrin_entity_spawn_egg", "Generar ferrin de oro");
         put("item.metallics_arts.iron_allomancer_entity_spawn_egg", "Generar brumoso de hierro");

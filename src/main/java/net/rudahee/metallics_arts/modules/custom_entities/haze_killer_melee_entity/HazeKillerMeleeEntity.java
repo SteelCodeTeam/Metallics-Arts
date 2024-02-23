@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_entities.haze_killer_entity;
+package net.rudahee.metallics_arts.modules.custom_entities.haze_killer_melee_entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -17,8 +17,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
-public class HazeKillerEntityMelee extends Animal {
-    public HazeKillerEntityMelee(EntityType<? extends Animal> type, Level level) {
+public class HazeKillerMeleeEntity extends Animal {
+    public HazeKillerMeleeEntity(EntityType<? extends Animal> type, Level level) {
         super(type, level);
     }
 
@@ -44,7 +44,7 @@ public class HazeKillerEntityMelee extends Animal {
 
     }
 
-    public static  boolean canSpawn(EntityType<HazeKillerEntityMelee> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+    public static  boolean canSpawn(EntityType<HazeKillerMeleeEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
 
         return checkMobSpawnRules(entityType, level, spawnType, pos, random);
     }

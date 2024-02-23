@@ -432,7 +432,9 @@ public class ModLanguageProviderEN extends LanguageProvider {
 
 
         private final Map<String, String> eggs = new HashMap<>() {{
-                put("item.metallics_arts.haze_killer_entity_spawn_egg", "HazeKiller Spawn Egg");
+                put("item.metallics_arts.haze_killer_melee_entity_spawn_egg", "HazeKiller Melee Spawn Egg");
+                put("item.metallics_arts.haze_killer_ranged_entity_spawn_egg", "HazeKiller Ranged Spawn Egg");
+                put("item.metallics_arts.haze_killer_tank_entity_spawn_egg", "HazeKiller Tank Spawn Egg");
                 put("item.metallics_arts.ettmetal_allomancer_entity_spawn_egg", "Ettmetal Allomancer Spawn Egg");
                 put("item.metallics_arts.gold_ferrin_entity_spawn_egg", "Gold Ferrin Spawn Egg");
                 put("item.metallics_arts.iron_allomancer_entity_spawn_egg", "Iron Allomancer Spawn Egg");

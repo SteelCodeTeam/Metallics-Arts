@@ -24,7 +24,9 @@ import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvi
 import net.rudahee.metallics_arts.data.providers.MetallicsArtsGuideBookProvider;
 import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.gold_ferrin_entity.GoldFerrinEntity;
-import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_entity.HazeKillerEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_melee_entity.HazeKillerMeleeEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_ranged_entity.HazeKillerRangedEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.haze_killer_tank_entity.HazeKillerTankEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.iron_allomancer_entity.IronAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.iron_ferrin_entity.IronFerrinEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.pewter_allomancer_entity.PewterAllomancerEntity;
@@ -89,7 +91,9 @@ public final class DataGenerators {
         event.put(ModLivingEntityRegister.IRON_ALLOMANCER.get(), IronAllomancerEntity.getExampleAttributes().build());
         event.put(ModLivingEntityRegister.STEEL_ALLOMANCER.get(), SteelAllomancerEntity.getExampleAttributes().build());
         event.put(ModLivingEntityRegister.PEWTER_ALLOMANCER.get(), PewterAllomancerEntity.getExampleAttributes().build());
-        event.put(ModLivingEntityRegister.HAZE_KILLER.get(), HazeKillerEntity.getExampleAttributes().build());
+        event.put(ModLivingEntityRegister.HAZE_KILLER_MELEE.get(), HazeKillerMeleeEntity.getExampleAttributes().build());
+        event.put(ModLivingEntityRegister.HAZE_KILLER_RANGED.get(), HazeKillerMeleeEntity.getExampleAttributes().build());
+        event.put(ModLivingEntityRegister.HAZE_KILLER_TANK.get(), HazeKillerMeleeEntity.getExampleAttributes().build());
         event.put(ModLivingEntityRegister.GOLD_FERRIN.get(), GoldFerrinEntity.getExampleAttributes().build());
         event.put(ModLivingEntityRegister.IRON_FERRIN.get(), IronFerrinEntity.getExampleAttributes().build());
 
@@ -102,7 +106,9 @@ public final class DataGenerators {
         event.register(ModLivingEntityRegister.STEEL_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SteelAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
         event.register(ModLivingEntityRegister.ETTMETAL_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EttmetalAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
         event.register(ModLivingEntityRegister.PEWTER_ALLOMANCER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PewterAllomancerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
-        event.register(ModLivingEntityRegister.HAZE_KILLER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HazeKillerEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
+        event.register(ModLivingEntityRegister.HAZE_KILLER_MELEE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HazeKillerMeleeEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
+        event.register(ModLivingEntityRegister.HAZE_KILLER_RANGED.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HazeKillerRangedEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
+        event.register(ModLivingEntityRegister.HAZE_KILLER_TANK.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HazeKillerTankEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
         event.register(ModLivingEntityRegister.GOLD_FERRIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GoldFerrinEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
         event.register(ModLivingEntityRegister.IRON_FERRIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, IronFerrinEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE );
 
