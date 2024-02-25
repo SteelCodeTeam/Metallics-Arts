@@ -6,6 +6,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.custom_tiers.CustomMaterials;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
+import net.rudahee.metallics_arts.modules.custom_items.armors.AtiumArmorItem;
 import net.rudahee.metallics_arts.modules.custom_items.armors.MistCloak;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
@@ -83,19 +84,19 @@ public class ArmorRegister {
 
 
         RegistryObject<Item> atiumHelmet = MetallicsArts.registerItem("atium_helmet",
-                () -> new ArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.HELMET, PROPERTIES));
+                () -> new AtiumArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.HELMET, PROPERTIES));
         ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.HELMET, atiumHelmet);
 
         RegistryObject<Item> atiumChesplate = MetallicsArts.registerItem("atium_chestplate",
-                () -> new ArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
+                () -> new AtiumArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
         ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, atiumChesplate);
 
         RegistryObject<Item> atiumLeggings = MetallicsArts.registerItem("atium_leggings",
-                () -> new ArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.LEGGINGS, PROPERTIES));
+                () -> new AtiumArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.LEGGINGS, PROPERTIES));
         ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.LEGGINGS, atiumLeggings);
 
         RegistryObject<Item> atiumBoots = MetallicsArts.registerItem("atium_boots",
-                () -> new ArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.BOOTS, PROPERTIES));
+                () -> new AtiumArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.BOOTS, PROPERTIES));
         ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.BOOTS, atiumBoots);
 
 

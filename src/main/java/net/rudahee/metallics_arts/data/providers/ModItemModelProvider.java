@@ -1,6 +1,7 @@
 package net.rudahee.metallics_arts.data.providers;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -10,12 +11,15 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,6 +49,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator.getPackOutput(), MetallicsArts.MOD_ID, existingFileHelper);
     }
+
 
 
     /**
@@ -86,6 +91,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         }
 
         /* Cores for new armor or obsidian weapons */
+
+
+
+
         builder(itemGenerated, "item/core_obsidian", "item/cores/core_obsidian");
         builder(itemGenerated, "item/core_aluminum", "item/cores/core_aluminum");
         builder(itemGenerated, "item/core_steel", "item/cores/core_steel");
@@ -183,6 +192,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/aluminum_leggings", "item/armors/aluminum_leggings");
         builder(itemGenerated,"item/aluminum_boots", "item/armors/aluminum_boots");
 
+
         builder(itemGenerated,"item/mistcloak","item/armors/mistcloak");
         builder(itemGenerated,"item/copper_coin","item/combat/copper_coin");
         builder(itemGenerated,"item/bronze_coin","item/combat/bronze_coin");
@@ -266,6 +276,18 @@ public class ModItemModelProvider extends ItemModelProvider {
         wallItemMC(ModBlocksRegister.BLOCK_METAL_WALL.get("copper"), Blocks.COPPER_BLOCK);
         wallItemMC(ModBlocksRegister.BLOCK_METAL_WALL.get("copper_raw"), Blocks.RAW_COPPER_BLOCK);
 
+        simpleItem(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.HELMET));
+        simpleItem(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE));
+        simpleItem(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS));
+        simpleItem(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.BOOTS));
+
+    }
+
+
+    private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(MetallicsArts.MOD_ID,"item/" + item.getId().getPath()));
     }
 
     public void evenSimplerBlockItem(Block block) {
