@@ -90,7 +90,7 @@ public class MetallicsArts {
         // Register the processIMC method for modloading
         modEventBus.addListener(this::processIMC);
 
-        modEventBus.addListener(this::onGuOveirlayEvent);
+        modEventBus.addListener(this::onGuOverlayEvent);
 
         ModEffects.register(modEventBus);
 
@@ -187,7 +187,7 @@ public class MetallicsArts {
     // You can use SubscribeEvent and let the Event Bus discover methods to call
 
     @SubscribeEvent
-    public void onGuOveirlayEvent(final RegisterGuiOverlaysEvent event) {
+    public void onGuOverlayEvent(final RegisterGuiOverlaysEvent event) {
         event.registerBelowAll("invested_overlay", new MetalsOverlay());
 
         ClientEventHandler.onRenderGameOverlay(event);

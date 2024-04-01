@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.data.enums.implementations;
+package net.rudahee.metallics_arts.data.player.data.model.enums;
 
 
 /**
@@ -7,14 +7,14 @@ package net.rudahee.metallics_arts.data.enums.implementations;
  * @author SteelCode Team
  * @since 1.5.1
  * */
-public enum EttmetalState {
+public enum EttmetalStateEnum {
     DELETE_ITEMS("delete"),   // indicates that items should be deleted.
     KEEP_ITEMS("keep"),     // indicates that items should be kept.
     NOTHING("none");         // indicates that nothing should be done.
 
     final String name;
 
-    EttmetalState(String name) {
+    EttmetalStateEnum(String name) {
         this.name = name;
     }
 
@@ -22,7 +22,7 @@ public enum EttmetalState {
         return name;
     }
 
-    public static EttmetalState getEttmetaStateByName(String name) {
+    public static EttmetalStateEnum getEttmetaStateByName(String name) {
         if (name.equals("delete")) {
             return DELETE_ITEMS;
         } else if (name.equals("keep")) {

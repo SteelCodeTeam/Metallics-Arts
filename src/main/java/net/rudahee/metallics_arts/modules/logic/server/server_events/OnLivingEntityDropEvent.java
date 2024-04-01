@@ -1,30 +1,18 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
+import net.rudahee.metallics_arts.data.player.data.model.enums.EttmetalStateEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.custom_items.metal_minds.LerasiumEttmetalMetalmind;
-import net.rudahee.metallics_arts.modules.custom_items.metal_minds.abstracts.MetalmindAbstract;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
-import top.theillusivec4.curios.api.CuriosApi;
 
-import java.awt.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -76,8 +64,8 @@ public class OnLivingEntityDropEvent {
 
             try {
                 IInvestedPlayerData capabilityTarget = CapabilityUtils.getCapability(event.getEntity());
-                if (capabilityTarget.getEttmetalState().equals(EttmetalState.KEEP_ITEMS) || capabilityTarget.getEttmetalState() == EttmetalState.DELETE_ITEMS) {
-                    if (capabilityTarget.getEttmetalState().equals(EttmetalState.KEEP_ITEMS)) {
+                if (capabilityTarget.getEttmetalState().equals(EttmetalStateEnum.KEEP_ITEMS) || capabilityTarget.getEttmetalState() == EttmetalStateEnum.DELETE_ITEMS) {
+                    if (capabilityTarget.getEttmetalState().equals(EttmetalStateEnum.KEEP_ITEMS)) {
                         for (ItemStack itemStack : event.getDrops().stream().map(ItemEntity::getItem).toList()) {
                             //todo revisar por errores (si no hay respawnpoint, si esta obstruido etc)
                             BlockPos blockPos = ((ServerPlayer) event.getEntity()).getRespawnPosition();

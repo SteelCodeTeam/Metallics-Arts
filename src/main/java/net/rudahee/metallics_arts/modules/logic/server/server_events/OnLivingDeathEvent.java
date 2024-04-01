@@ -3,7 +3,7 @@ package net.rudahee.metallics_arts.modules.logic.server.server_events;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
+import net.rudahee.metallics_arts.data.player.data.model.enums.EttmetalStateEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.LerasiumEttmetalMetalmind;
@@ -35,7 +35,7 @@ public class OnLivingDeathEvent {
             IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
 
             if (capability.isTapping(MetalTagEnum.ETTMETAL)) {
-                capability.setEttmetalState(EttmetalState.KEEP_ITEMS);
+                capability.setEttmetalState(EttmetalStateEnum.KEEP_ITEMS);
                 //todo aqui deberia poder hacerse algo para recordar en que slots deben quedar los items
                 //para en el onlivinddrop asignarlos en su slot correspondiente
                 CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curioData -> {
@@ -49,7 +49,7 @@ public class OnLivingDeathEvent {
                 });
 
             } else if (capability.isStoring(MetalTagEnum.ETTMETAL)) {
-                capability.setEttmetalState(EttmetalState.DELETE_ITEMS);
+                capability.setEttmetalState(EttmetalStateEnum.DELETE_ITEMS);
             }
 
             for (MetalTagEnum metal : MetalTagEnum.values()) {

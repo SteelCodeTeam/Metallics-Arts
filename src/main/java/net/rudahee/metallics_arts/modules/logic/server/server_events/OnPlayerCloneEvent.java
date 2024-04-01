@@ -1,10 +1,8 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
+import net.rudahee.metallics_arts.data.player.data.model.enums.EttmetalStateEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
@@ -40,9 +38,9 @@ public class OnPlayerCloneEvent {
             IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
             IInvestedPlayerData originalCapability = CapabilityUtils.getCapability(original);
 
-            if (originalCapability.getEttmetalState() == EttmetalState.KEEP_ITEMS) {
+            if (originalCapability.getEttmetalState() == EttmetalStateEnum.KEEP_ITEMS) {
                 player.getInventory().replaceWith(original.getInventory());
-                originalCapability.setEttmetalState(EttmetalState.NOTHING);
+                originalCapability.setEttmetalState(EttmetalStateEnum.NOTHING);
             }
 
             if (originalCapability.hasAnyFeruchemicPower() || originalCapability.hasAnyAllomanticPower()) {

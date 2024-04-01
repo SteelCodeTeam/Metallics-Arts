@@ -2,15 +2,13 @@ package net.rudahee.metallics_arts.data.player.data;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
-import net.rudahee.metallics_arts.data.enums.implementations.BodyPartEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.EttmetalState;
+import net.rudahee.metallics_arts.data.player.data.model.enums.BodyPartEnum;
+import net.rudahee.metallics_arts.data.player.data.model.enums.EttmetalStateEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.TypeOfSpikeEnum;
 import net.rudahee.metallics_arts.data.player.data.model.PlayerEntity;
-import net.rudahee.metallics_arts.data.player.data.model.SpikeEntity;
+import net.rudahee.metallics_arts.data.player.data.model.enums.BodySlotEnum;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This interface is used to define the required methods that must exist in the InvestedPlayerData class.
@@ -23,9 +21,9 @@ import java.util.List;
 public interface IInvestedPlayerData {
     void tickAllomancyBurningMetals(Player player, int tick);
 
-    void setEttmetalState(EttmetalState state);
+    void setEttmetalState(EttmetalStateEnum state);
 
-    EttmetalState getEttmetalState();
+    EttmetalStateEnum getEttmetalState();
 
     boolean isFirstJoin();
 
@@ -83,9 +81,11 @@ public interface IInvestedPlayerData {
 
     void addAllomanticPower(MetalTagEnum metal);
 
-    void addAllomanticPower(MetalTagEnum metal, TypeOfSpikeEnum spike, BodyPartEnum part);
+    void addAllomanticPower(MetalTagEnum metal, BodyPartEnum part, BodySlotEnum slotPos, int slotNum);
 
     void addFeruchemicPower(MetalTagEnum metal);
+
+    void addFeruchemicPower(MetalTagEnum metal, BodyPartEnum part, BodySlotEnum slotPos, int slotNum);
 
     void addAllAllomantic();
 
