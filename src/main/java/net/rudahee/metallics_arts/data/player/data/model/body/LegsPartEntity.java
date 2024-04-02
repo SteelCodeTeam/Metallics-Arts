@@ -13,7 +13,8 @@ import java.util.stream.Stream;
 
 
 /**
- * Represents a LegsPartEntity, a subclass of BodyPartEntity, that represents a part of a body's legs.
+ * The ArmsPartEntity class represents the arms body part in an entity.
+ * It extends the BodyPartEntity class.
  */
 public final class LegsPartEntity extends BodyPartEntity {
 
@@ -21,14 +22,18 @@ public final class LegsPartEntity extends BodyPartEntity {
     private SpikeEntity SLOT_BACK_0;
     private SpikeEntity SLOT_BACK_1;
     private SpikeEntity SLOT_BACK_2;
+    private SpikeEntity SLOT_BACK_3;
+    private SpikeEntity SLOT_BACK_4;
+    private SpikeEntity SLOT_BACK_5;
     private SpikeEntity SLOT_FRONT_0;
     private SpikeEntity SLOT_FRONT_1;
     private SpikeEntity SLOT_FRONT_2;
+    private SpikeEntity SLOT_FRONT_3;
+    private SpikeEntity SLOT_FRONT_4;
+    private SpikeEntity SLOT_FRONT_5;
 
     /**
-     * Represents a Legs Part Entity that extends the BodyPartEntity class.
-     * It represents the legs body part and contains spikes in both front and back slots.
-     * The maximum quantity of spikes that can be added is 6.
+     * ArmsPartEntity is a class that represents the arms body part of a player.
      */
     public LegsPartEntity() {
         super(BodyPartEnum.LEGS);
@@ -36,17 +41,22 @@ public final class LegsPartEntity extends BodyPartEntity {
         addSpikeBySlot(null, 0, BodySlotEnum.BACK);
         addSpikeBySlot(null, 1, BodySlotEnum.BACK);
         addSpikeBySlot(null, 2, BodySlotEnum.BACK);
+        addSpikeBySlot(null, 3, BodySlotEnum.BACK);
+        addSpikeBySlot(null, 4, BodySlotEnum.BACK);
+        addSpikeBySlot(null, 5, BodySlotEnum.BACK);
         addSpikeBySlot(null, 0, BodySlotEnum.FRONT);
         addSpikeBySlot(null, 1, BodySlotEnum.FRONT);
         addSpikeBySlot(null, 2, BodySlotEnum.FRONT);
-
-        setMaxQtySpikes(6);
+        addSpikeBySlot(null, 3, BodySlotEnum.FRONT);
+        addSpikeBySlot(null, 4, BodySlotEnum.FRONT);
+        addSpikeBySlot(null, 5, BodySlotEnum.FRONT);
+        setMaxQtySpikes(12);
     }
 
     /**
-     * Sets the body part of the LegsPartEntity.
+     * Sets the body part of the entity.
      *
-     * @param bodyPart The BodyPartEnum representing the body part.
+     * @param bodyPart the body part to set
      */
     @Override
     public void setBodyPart(BodyPartEnum bodyPart) {
@@ -55,9 +65,9 @@ public final class LegsPartEntity extends BodyPartEntity {
 
 
     /**
-     * Retrieves the maximum quantity of spikes that can be added to the LegsPartEntity.
+     * Retrieves the maximum quantity of spikes that can be added to the body part.
      *
-     * @return The maximum quantity of spikes.
+     * @return the maximum quantity of spikes
      */
     @Override
     public Integer getMaxQtySpikes() {
@@ -66,9 +76,9 @@ public final class LegsPartEntity extends BodyPartEntity {
 
 
     /**
-     * Sets the maximum quantity of spikes that can be added to the LegsPartEntity.
+     * Sets the maximum quantity of spikes that can be added to the body part.
      *
-     * @param maxQtySpikes The maximum quantity of spikes.
+     * @param maxQtySpikes the maximum quantity of spikes
      */
     @Override
     public void setMaxQtySpikes(Integer maxQtySpikes) {
@@ -76,22 +86,25 @@ public final class LegsPartEntity extends BodyPartEntity {
     }
 
     /**
-     * Retrieves the actual quantity of spikes added to the LegsPartEntity.
+     * Retrieves the actual quantity of spikes currently present in the body part.
+     * The actual quantity of spikes is determined by counting the non-null spike slots in the body part.
      *
-     * @return The actual quantity of spikes.
+     * @return the actual quantity of spikes
      */
     @Override
     public Integer getActualQtySpikes() {
-        return Math.toIntExact(Stream.of(SLOT_BACK_0, SLOT_BACK_1, SLOT_BACK_2, SLOT_FRONT_0, SLOT_FRONT_1, SLOT_FRONT_2).filter(Objects::nonNull).count());
+        return Math.toIntExact(Stream.of(SLOT_BACK_0, SLOT_BACK_1, SLOT_BACK_2, SLOT_BACK_3, SLOT_BACK_4, SLOT_BACK_5,
+                        SLOT_FRONT_0, SLOT_FRONT_1, SLOT_FRONT_2, SLOT_FRONT_3, SLOT_FRONT_4, SLOT_FRONT_5)
+                .filter(Objects::nonNull).count());
     }
 
 
     /**
-     * Adds a spike to the LegsPartEntity in the specified slot position and slot number.
+     * Adds a spike entity to the specified slot in the body part.
      *
-     * @param entity   The SpikeEntity to be added.
-     * @param slotNum  The slot number where the spike will be added (0, 1, or 2).
-     * @param slotPos  The slot position where the spike will be added (BodySlotEnum.FRONT or BodySlotEnum.BACK).
+     * @param entity   the spike entity to add
+     * @param slotNum  the slot number
+     * @param slotPos  the slot position (either FRONT or BACK)
      */
     @Override
     public void addSpikeBySlot(SpikeEntity entity, int slotNum, BodySlotEnum slotPos) {
@@ -102,6 +115,12 @@ public final class LegsPartEntity extends BodyPartEntity {
                 SLOT_BACK_1 = entity;
             } else if (slotNum == 2) {
                 SLOT_BACK_2 = entity;
+            } else if (slotNum == 3) {
+                SLOT_BACK_3 = entity;
+            } else if (slotNum == 4) {
+                SLOT_BACK_4 = entity;
+            } else if (slotNum == 5) {
+                SLOT_BACK_5 = entity;
             }
         } else if (slotPos == BodySlotEnum.FRONT) {
             if (slotNum == 0) {
@@ -110,67 +129,72 @@ public final class LegsPartEntity extends BodyPartEntity {
                 SLOT_FRONT_1 = entity;
             } else if (slotNum == 2) {
                 SLOT_FRONT_2 = entity;
+            } else if (slotNum == 3) {
+                SLOT_FRONT_3 = entity;
+            } else if (slotNum == 4) {
+                SLOT_FRONT_4 = entity;
+            } else if (slotNum == 5) {
+                SLOT_FRONT_5 = entity;
             }
         }
     }
 
 
     /**
-     * Adds a spike randomly to the LegsPartEntity if the maximum quantity of spikes has not been reached.
-     * The spike is added to an available slot position and slot number in the LegsPartEntity.
+     * Adds a spike entity randomly to an available slot in the body part.
      *
-     * @param entity The SpikeEntity to be added.
+     * @param entity the spike entity to add
      */
     @Override
     public void addSpikeRandom(SpikeEntity entity) {
-        Random rng = new Random();
-        boolean done = false;
-        if (getMaxQtySpikes() > getActualQtySpikes()) {
-            do {
-                int slot = rng.nextInt(6);
-
-                if (slot == 0) {
-                    if (SLOT_BACK_0 == null) {
-                        SLOT_BACK_0 = entity;
-                        done = true;
-                    }
-                } else if (slot == 1) {
-                    if (SLOT_BACK_1 == null) {
-                        SLOT_BACK_1 = entity;
-                        done = true;
-                    }
-                } else if (slot == 2) {
-                    if (SLOT_BACK_2 == null) {
-                        SLOT_BACK_2 = entity;
-                        done = true;
-                    }
-                } else if (slot == 3) {
-                    if (SLOT_FRONT_0 == null) {
-                        SLOT_FRONT_0 = entity;
-                        done = true;
-                    }
-                } else if (slot == 4) {
-                    if (SLOT_FRONT_1 == null) {
-                        SLOT_FRONT_1 = entity;
-                        done = true;
-                    }
-                } else {
-                    if (SLOT_FRONT_2 == null) {
-                        SLOT_FRONT_2 = entity;
-                        done = true;
-                    }
-                }
-            } while (!done);
+        if (SLOT_BACK_0 == null) {
+            SLOT_BACK_0 = entity;
+            System.out.println("Agregado en Legs-Slot-Back 0");
+        } else if (SLOT_BACK_1 == null) {
+            SLOT_BACK_1 = entity;
+            System.out.println("Agregado en Legs-Slot-Back 1");
+        } else if (SLOT_BACK_2 == null) {
+            SLOT_BACK_2 = entity;
+            System.out.println("Agregado en Legs-Slot-Back 2");
+        } else if (SLOT_BACK_3 == null) {
+            SLOT_BACK_3 = entity;
+            System.out.println("Agregado en Legs-Slot-Back 3");
+        } else if (SLOT_BACK_4 == null) {
+            SLOT_BACK_4 = entity;
+            System.out.println("Agregado en Legs-Slot-Back 4");
+        } else if (SLOT_BACK_5 == null) {
+            SLOT_BACK_5 = entity;
+            System.out.println("Agregado en Legs-Slot-Back 5");
+        } else if (SLOT_FRONT_0 == null) {
+            SLOT_FRONT_0 = entity;
+            System.out.println("Agregado en Legs-Slot-Front-0");
+        } else if (SLOT_FRONT_1 == null) {
+            SLOT_FRONT_1 = entity;
+            System.out.println("Agregado en Legs-Slot-Front-1");
+        } else if (SLOT_FRONT_2 == null) {
+            SLOT_FRONT_2 = entity;
+            System.out.println("Agregado en Legs-Slot-Front-2");
+        } else if (SLOT_FRONT_3 == null) {
+            SLOT_FRONT_3 = entity;
+            System.out.println("Agregado en Legs-Slot-Front-3");
+        } else if (SLOT_FRONT_4 == null) {
+            SLOT_FRONT_4 = entity;
+            System.out.println("Agregado en Legs-Slot-Front-4");
+        } else if (SLOT_FRONT_5 == null) {
+            SLOT_FRONT_5 = entity;
+            System.out.println("Agregado en Legs-Slot-Front-5");
+        } else {
+            System.out.println("No se agrego la entidad " + entity + " \n EN LEGS");
         }
     }
 
 
     /**
-     * Retrieves the SpikeEntity located in the specified slot position and slot number of the LegsPartEntity.
+     * Retrieves the spike entity in the specified slot and position of the arms body part.
      *
-     * @param slotNum  The slot number where the spike is located (0, 1, or 2).
-     * @param slotPos  The slot position where the spike is located (BodySlotEnum.FRONT or BodySlotEnum.BACK).
-     * @return The SpikeEntity located in the specified slot position and slot number, or null if no spike is found.
+     * @param slotNum The slot number of the spike entity (0, 1, or 2)
+     * @param slotPos The slot position (either FRONT or BACK)
+     * @return The SpikeEntity in the specified slot and position, or null if no spike entity is found
      */
     @Override
     public SpikeEntity getSpikeBySlot(int slotNum, BodySlotEnum slotPos) {
@@ -181,6 +205,12 @@ public final class LegsPartEntity extends BodyPartEntity {
                 return SLOT_BACK_1;
             } else if (slotNum == 2) {
                 return SLOT_BACK_2;
+            } else if (slotNum == 3) {
+                return SLOT_BACK_3;
+            } else if (slotNum == 4) {
+                return SLOT_BACK_4;
+            } else if (slotNum == 5) {
+                return SLOT_BACK_5;
             }
         } else if (slotPos == BodySlotEnum.FRONT) {
             if (slotNum == 0) {
@@ -189,6 +219,12 @@ public final class LegsPartEntity extends BodyPartEntity {
                 return SLOT_FRONT_1;
             } else if (slotNum == 2) {
                 return SLOT_FRONT_2;
+            } else if (slotNum == 3) {
+                return SLOT_FRONT_3;
+            } else if (slotNum == 4) {
+                return SLOT_FRONT_4;
+            } else if (slotNum == 5) {
+                return SLOT_FRONT_5;
             }
         }
         return null;
@@ -196,41 +232,48 @@ public final class LegsPartEntity extends BodyPartEntity {
 
 
     /**
-     * Retrieves all the spikes in the LegsPartEntity.
+     * Retrieves a list of all spike entities present in the body part.
      *
-     * @return A List of SpikeEntity objects representing all the spikes.
+     * @return a list of all spike entities
      */
     @Override
     public List<SpikeEntity> getAllSpikes() {
-        return Stream.of(SLOT_BACK_0, SLOT_BACK_1, SLOT_BACK_2, SLOT_FRONT_0, SLOT_FRONT_1, SLOT_FRONT_2)
+        return Stream.of(SLOT_BACK_0, SLOT_BACK_1, SLOT_BACK_2, SLOT_BACK_3, SLOT_BACK_4, SLOT_BACK_5,
+                        SLOT_FRONT_0, SLOT_FRONT_1, SLOT_FRONT_2, SLOT_FRONT_3, SLOT_FRONT_4, SLOT_FRONT_5)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
 
     /**
-     * Retrieves all the spikes in the LegsPartEntity by slot position and slot number.
+     * Retrieves a map of all spike entities present in the arms body part, grouped by slot and number.
      *
-     * @return A HashMap containing the spike entities mapped by a string representing the slot position and slot number.
+     * @return a map where the key is a string representing the slot and number, and the value is the spike entity
      */
     @Override
     public HashMap<String, SpikeEntity> getAllSpikesBySlotAndNum() {
         HashMap<String, SpikeEntity> spikesBySlotAndNum = new HashMap<>();
-        spikesBySlotAndNum.put("BACK_BACK_0", SLOT_BACK_0);
-        spikesBySlotAndNum.put("BACK_BACK_1", SLOT_BACK_1);
-        spikesBySlotAndNum.put("BACK_BACK_2", SLOT_BACK_2);
-        spikesBySlotAndNum.put("BACK_FRONT_0", SLOT_FRONT_0);
-        spikesBySlotAndNum.put("BACK_FRONT_1", SLOT_FRONT_1);
-        spikesBySlotAndNum.put("BACK_FRONT_2", SLOT_FRONT_2);
+        spikesBySlotAndNum.put("LEGS_BACK_0", SLOT_BACK_0);
+        spikesBySlotAndNum.put("LEGS_BACK_1", SLOT_BACK_1);
+        spikesBySlotAndNum.put("LEGS_BACK_2", SLOT_BACK_2);
+        spikesBySlotAndNum.put("LEGS_BACK_3", SLOT_BACK_3);
+        spikesBySlotAndNum.put("LEGS_BACK_4", SLOT_BACK_4);
+        spikesBySlotAndNum.put("LEGS_BACK_5", SLOT_BACK_5);
+        spikesBySlotAndNum.put("LEGS_FRONT_0", SLOT_FRONT_0);
+        spikesBySlotAndNum.put("LEGS_FRONT_1", SLOT_FRONT_1);
+        spikesBySlotAndNum.put("LEGS_FRONT_2", SLOT_FRONT_2);
+        spikesBySlotAndNum.put("LEGS_FRONT_3", SLOT_FRONT_3);
+        spikesBySlotAndNum.put("LEGS_FRONT_4", SLOT_FRONT_4);
+        spikesBySlotAndNum.put("LEGS_FRONT_5", SLOT_FRONT_5);
         return spikesBySlotAndNum;
     }
 
 
     /**
-     * Removes a spike from the LegsPartEntity in the specified slot position and slot number.
+     * Removes the spike entity from the specified slot in the body part.
      *
-     * @param slotNum  The slot number where the spike will be removed (0, 1, or 2).
-     * @param slotPos  The slot position where the spike will be removed (BodySlotEnum.FRONT or BodySlotEnum.BACK).
+     * @param slotNum the slot number
+     * @param slotPos the slot position (either FRONT or BACK)
      */
     @Override
     public void removeSpikeBySlot(int slotNum, BodySlotEnum slotPos) {
@@ -241,6 +284,12 @@ public final class LegsPartEntity extends BodyPartEntity {
                 SLOT_BACK_1 = null;
             } else if (slotNum == 2) {
                 SLOT_BACK_2 = null;
+            } else if (slotNum == 3) {
+                SLOT_BACK_3 = null;
+            } else if (slotNum == 4) {
+                SLOT_BACK_4 = null;
+            } else if (slotNum == 5) {
+                SLOT_BACK_5 = null;
             }
         } else if (slotPos == BodySlotEnum.FRONT) {
             if (slotNum == 0) {
@@ -249,15 +298,22 @@ public final class LegsPartEntity extends BodyPartEntity {
                 SLOT_FRONT_1 = null;
             } else if (slotNum == 2) {
                 SLOT_FRONT_2 = null;
+            } else if (slotNum == 3) {
+                SLOT_FRONT_3 = null;
+            } else if (slotNum == 4) {
+                SLOT_FRONT_4 = null;
+            } else if (slotNum == 5) {
+                SLOT_FRONT_5 = null;
             }
         }
     }
 
-
     /**
-     * Removes a spike from the LegsPartEntity that matches the given SpikeEntity object.
+     * Removes the specified spike entity from the body part.
      *
-     * @param entity The SpikeEntity object representing the spike to be removed.
+     * @param entity the spike entity to remove
+     *
+     * @throws IllegalArgumentException if the given entity is null
      */
     @Override
     public void removeSpikeBySpikeEntity(SpikeEntity entity) {
@@ -267,12 +323,24 @@ public final class LegsPartEntity extends BodyPartEntity {
             SLOT_BACK_1 = null;
         } else if (entity == SLOT_BACK_2) {
             SLOT_BACK_2 = null;
+        } else if (entity == SLOT_BACK_3) {
+            SLOT_BACK_3 = null;
+        } else if (entity == SLOT_BACK_4) {
+            SLOT_BACK_4 = null;
+        } else if (entity == SLOT_BACK_5) {
+            SLOT_BACK_5 = null;
         } else if (entity == SLOT_FRONT_0) {
             SLOT_FRONT_0 = null;
         } else if (entity == SLOT_FRONT_1) {
             SLOT_FRONT_1 = null;
         } else if (entity == SLOT_FRONT_2) {
             SLOT_FRONT_2 = null;
+        } else if (entity == SLOT_FRONT_3) {
+            SLOT_FRONT_3 = null;
+        } else if (entity == SLOT_FRONT_4) {
+            SLOT_FRONT_4 = null;
+        } else if (entity == SLOT_FRONT_5) {
+            SLOT_FRONT_5 = null;
         }
     }
 
@@ -283,10 +351,15 @@ public final class LegsPartEntity extends BodyPartEntity {
                 ", SLOT_BACK_0=" + SLOT_BACK_0 +
                 ", SLOT_BACK_1=" + SLOT_BACK_1 +
                 ", SLOT_BACK_2=" + SLOT_BACK_2 +
+                ", SLOT_BACK_3=" + SLOT_BACK_3 +
+                ", SLOT_BACK_4=" + SLOT_BACK_4 +
+                ", SLOT_BACK_5=" + SLOT_BACK_5 +
                 ", SLOT_FRONT_0=" + SLOT_FRONT_0 +
                 ", SLOT_FRONT_1=" + SLOT_FRONT_1 +
                 ", SLOT_FRONT_2=" + SLOT_FRONT_2 +
-                ", bodyPart=" + bodyPart +
+                ", SLOT_FRONT_3=" + SLOT_FRONT_3 +
+                ", SLOT_FRONT_4=" + SLOT_FRONT_4 +
+                ", SLOT_FRONT_5=" + SLOT_FRONT_5 +
                 '}';
     }
 }

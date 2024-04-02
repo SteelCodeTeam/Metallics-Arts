@@ -79,44 +79,27 @@ public final class ChestPartEntity extends BodyPartEntity {
 
     @Override
     public void addSpikeRandom(SpikeEntity entity) {
-        Random rng = new Random();
-        boolean done = false;
-        if (getMaxQtySpikes() > getActualQtySpikes()) {
-            do {
-                int slot = rng.nextInt(6);
 
-                if (slot == 0) {
-                    if (SLOT_FRONT_0 == null) {
-                        SLOT_FRONT_0 = entity;
-                        done = true;
-                    }
-                } else if (slot == 1) {
-                    if (SLOT_FRONT_1 == null) {
-                        SLOT_FRONT_1 = entity;
-                        done = true;
-                    }
-                } else if (slot == 2) {
-                    if (SLOT_FRONT_2 == null) {
-                        SLOT_FRONT_2 = entity;
-                        done = true;
-                    }
-                } else if (slot == 3) {
-                    if (SLOT_FRONT_3 == null) {
-                        SLOT_FRONT_3 = entity;
-                        done = true;
-                    }
-                } else if (slot == 4) {
-                    if (SLOT_FRONT_4 == null) {
-                        SLOT_FRONT_4 = entity;
-                        done = true;
-                    }
-                } else {
-                    if (SLOT_FRONT_5 == null) {
-                        SLOT_FRONT_5 = entity;
-                        done = true;
-                    }
-                }
-            } while (!done);
+        if (SLOT_FRONT_0 == null) {
+            System.out.println("Chest FRONT - 0");
+            SLOT_FRONT_0 = entity;
+        } else if (SLOT_FRONT_1 == null) {
+            System.out.println("Chest FRONT - 1");
+            SLOT_FRONT_1 = entity;
+        } else if (SLOT_FRONT_2 == null) {
+            System.out.println("Chest FRONT - 2");
+            SLOT_FRONT_2 = entity;
+        } else if (SLOT_FRONT_3 == null) {
+            System.out.println("Chest FRONT - 3");
+            SLOT_FRONT_3 = entity;
+        } else if (SLOT_FRONT_4 == null) {
+            System.out.println("Chest FRONT - 4");
+            SLOT_FRONT_4 = entity;
+        } else if (SLOT_FRONT_5 == null) {
+            System.out.println("Chest FRONT - 5");
+            SLOT_FRONT_5 = entity;
+        } else {
+            System.out.println("No se agrego la entidad " + entity + " \n EN CHEST");
         }
     }
 

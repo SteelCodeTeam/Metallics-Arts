@@ -152,7 +152,6 @@ public class ServerEventHandler {
         }
     }
 
-
     /**
      * Handles the PlayerChangedDimensionEvent to perform custom actions when a player changes dimensions.
      * This method is triggered by the PlayerChangedDimensionEvent and only runs on the server-side.
@@ -185,7 +184,6 @@ public class ServerEventHandler {
         }
     }
 
-
     /**
      * Handles the LivingHurtEvent to perform custom actions when a player is damaged.
      * This method is triggered by the LivingHurtEvent and only runs on the server-side.
@@ -207,7 +205,6 @@ public class ServerEventHandler {
         }
     }
 
-
     /**
      * This method detects hitting an element with left click.
      *
@@ -227,9 +224,6 @@ public class ServerEventHandler {
      */
     @SubscribeEvent
     public static void onWorldTickEvent(final TickEvent.LevelTickEvent event) {
-
-
-
 
         if (event.phase != TickEvent.Phase.END) {
             return;

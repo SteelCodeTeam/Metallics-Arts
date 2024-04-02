@@ -22,9 +22,15 @@ public final class ArmsPartEntity extends BodyPartEntity {
     private SpikeEntity SLOT_BACK_0;
     private SpikeEntity SLOT_BACK_1;
     private SpikeEntity SLOT_BACK_2;
+    private SpikeEntity SLOT_BACK_3;
+    private SpikeEntity SLOT_BACK_4;
+    private SpikeEntity SLOT_BACK_5;
     private SpikeEntity SLOT_FRONT_0;
     private SpikeEntity SLOT_FRONT_1;
     private SpikeEntity SLOT_FRONT_2;
+    private SpikeEntity SLOT_FRONT_3;
+    private SpikeEntity SLOT_FRONT_4;
+    private SpikeEntity SLOT_FRONT_5;
 
     /**
      * ArmsPartEntity is a class that represents the arms body part of a player.
@@ -35,11 +41,16 @@ public final class ArmsPartEntity extends BodyPartEntity {
         addSpikeBySlot(null, 0, BodySlotEnum.BACK);
         addSpikeBySlot(null, 1, BodySlotEnum.BACK);
         addSpikeBySlot(null, 2, BodySlotEnum.BACK);
+        addSpikeBySlot(null, 3, BodySlotEnum.BACK);
+        addSpikeBySlot(null, 4, BodySlotEnum.BACK);
+        addSpikeBySlot(null, 5, BodySlotEnum.BACK);
         addSpikeBySlot(null, 0, BodySlotEnum.FRONT);
         addSpikeBySlot(null, 1, BodySlotEnum.FRONT);
         addSpikeBySlot(null, 2, BodySlotEnum.FRONT);
-
-        setMaxQtySpikes(6);
+        addSpikeBySlot(null, 3, BodySlotEnum.FRONT);
+        addSpikeBySlot(null, 4, BodySlotEnum.FRONT);
+        addSpikeBySlot(null, 5, BodySlotEnum.FRONT);
+        setMaxQtySpikes(12);
     }
 
     /**
@@ -82,7 +93,9 @@ public final class ArmsPartEntity extends BodyPartEntity {
      */
     @Override
     public Integer getActualQtySpikes() {
-        return Math.toIntExact(Stream.of(SLOT_BACK_0, SLOT_BACK_1, SLOT_BACK_2, SLOT_FRONT_0, SLOT_FRONT_1, SLOT_FRONT_2).filter(Objects::nonNull).count());
+        return Math.toIntExact(Stream.of(SLOT_BACK_0, SLOT_BACK_1, SLOT_BACK_2, SLOT_BACK_3, SLOT_BACK_4, SLOT_BACK_5,
+                                            SLOT_FRONT_0, SLOT_FRONT_1, SLOT_FRONT_2, SLOT_FRONT_3, SLOT_FRONT_4, SLOT_FRONT_5)
+                    .filter(Objects::nonNull).count());
     }
 
 
@@ -102,6 +115,12 @@ public final class ArmsPartEntity extends BodyPartEntity {
                 SLOT_BACK_1 = entity;
             } else if (slotNum == 2) {
                 SLOT_BACK_2 = entity;
+            } else if (slotNum == 3) {
+                SLOT_BACK_3 = entity;
+            } else if (slotNum == 4) {
+                SLOT_BACK_4 = entity;
+            } else if (slotNum == 5) {
+                SLOT_BACK_5 = entity;
             }
         } else if (slotPos == BodySlotEnum.FRONT) {
             if (slotNum == 0) {
@@ -110,6 +129,12 @@ public final class ArmsPartEntity extends BodyPartEntity {
                 SLOT_FRONT_1 = entity;
             } else if (slotNum == 2) {
                 SLOT_FRONT_2 = entity;
+            } else if (slotNum == 3) {
+                SLOT_FRONT_3 = entity;
+            } else if (slotNum == 4) {
+                SLOT_FRONT_4 = entity;
+            } else if (slotNum == 5) {
+                SLOT_FRONT_5 = entity;
             }
         }
     }
@@ -122,45 +147,46 @@ public final class ArmsPartEntity extends BodyPartEntity {
      */
     @Override
     public void addSpikeRandom(SpikeEntity entity) {
-        Random rng = new Random();
-        boolean done = false;
-        if (getMaxQtySpikes() > getActualQtySpikes()) {
-            do {
-                int slot = rng.nextInt(6);
-
-                if (slot == 0) {
-                    if (SLOT_BACK_0 == null) {
-                        SLOT_BACK_0 = entity;
-                        done = true;
-                    }
-                } else if (slot == 1) {
-                    if (SLOT_BACK_1 == null) {
-                        SLOT_BACK_1 = entity;
-                        done = true;
-                    }
-                } else if (slot == 2) {
-                    if (SLOT_BACK_2 == null) {
-                        SLOT_BACK_2 = entity;
-                        done = true;
-                    }
-                } else if (slot == 3) {
-                    if (SLOT_FRONT_0 == null) {
-                        SLOT_FRONT_0 = entity;
-                        done = true;
-                    }
-                } else if (slot == 4) {
-                    if (SLOT_FRONT_1 == null) {
-                        SLOT_FRONT_1 = entity;
-                        done = true;
-                    }
-                } else {
-                    if (SLOT_FRONT_2 == null) {
-                        SLOT_FRONT_2 = entity;
-                        done = true;
-                    }
-                }
-            } while (!done);
+        if (SLOT_BACK_0 == null) {
+            System.out.println("ARMS - BACK - 0");
+            SLOT_BACK_0 = entity;
+        } else if (SLOT_BACK_1 == null) {
+            System.out.println("ARMS - BACK - 1");
+            SLOT_BACK_1 = entity;
+        } else if (SLOT_BACK_2 == null) {
+            System.out.println("ARMS - BACK - 2");
+            SLOT_BACK_2 = entity;
+        } else if (SLOT_BACK_3 == null) {
+            System.out.println("ARMS - BACK - 3");
+            SLOT_BACK_3 = entity;
+        } else if (SLOT_BACK_4 == null) {
+            System.out.println("ARMS - BACK - 4");
+            SLOT_BACK_4 = entity;
+        } else if (SLOT_BACK_5 == null) {
+            System.out.println("ARMS - BACK - 5");
+            SLOT_BACK_5 = entity;
+        } else if (SLOT_FRONT_0 == null) {
+            System.out.println("ARMS - FRONT - 0");
+            SLOT_FRONT_0 = entity;
+        } else if (SLOT_FRONT_1 == null) {
+            System.out.println("ARMS - FRONT - 1");
+            SLOT_FRONT_1 = entity;
+        } else if (SLOT_FRONT_2 == null) {
+            System.out.println("ARMS - FRONT - 2");
+            SLOT_FRONT_2 = entity;
+        } else if (SLOT_FRONT_3 == null) {
+            System.out.println("ARMS - FRONT - 3");
+            SLOT_FRONT_3 = entity;
+        } else if (SLOT_FRONT_4 == null) {
+            System.out.println("ARMS - FRONT - 4");
+            SLOT_FRONT_4 = entity;
+        } else if (SLOT_FRONT_5 == null) {
+            System.out.println("ARMS - FRONT - 5");
+            SLOT_FRONT_5 = entity;
+        } else {
+            System.out.println("No se agrego la entidad " + entity + " \n EN ARMS");
         }
+
     }
 
 
@@ -180,6 +206,12 @@ public final class ArmsPartEntity extends BodyPartEntity {
                 return SLOT_BACK_1;
             } else if (slotNum == 2) {
                 return SLOT_BACK_2;
+            } else if (slotNum == 3) {
+                return SLOT_BACK_3;
+            } else if (slotNum == 4) {
+                return SLOT_BACK_4;
+            } else if (slotNum == 5) {
+                return SLOT_BACK_5;
             }
         } else if (slotPos == BodySlotEnum.FRONT) {
             if (slotNum == 0) {
@@ -188,6 +220,12 @@ public final class ArmsPartEntity extends BodyPartEntity {
                 return SLOT_FRONT_1;
             } else if (slotNum == 2) {
                 return SLOT_FRONT_2;
+            } else if (slotNum == 3) {
+                return SLOT_FRONT_3;
+            } else if (slotNum == 4) {
+                return SLOT_FRONT_4;
+            } else if (slotNum == 5) {
+                return SLOT_FRONT_5;
             }
         }
         return null;
@@ -201,7 +239,8 @@ public final class ArmsPartEntity extends BodyPartEntity {
      */
     @Override
     public List<SpikeEntity> getAllSpikes() {
-        return Stream.of(SLOT_BACK_0, SLOT_BACK_1, SLOT_BACK_2, SLOT_FRONT_0, SLOT_FRONT_1, SLOT_FRONT_2)
+        return Stream.of(SLOT_BACK_0, SLOT_BACK_1, SLOT_BACK_2, SLOT_BACK_3, SLOT_BACK_4, SLOT_BACK_5,
+                        SLOT_FRONT_0, SLOT_FRONT_1, SLOT_FRONT_2, SLOT_FRONT_3, SLOT_FRONT_4, SLOT_FRONT_5)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
@@ -215,12 +254,18 @@ public final class ArmsPartEntity extends BodyPartEntity {
     @Override
     public HashMap<String, SpikeEntity> getAllSpikesBySlotAndNum() {
         HashMap<String, SpikeEntity> spikesBySlotAndNum = new HashMap<>();
-        spikesBySlotAndNum.put("BACK_BACK_0", SLOT_BACK_0);
-        spikesBySlotAndNum.put("BACK_BACK_1", SLOT_BACK_1);
-        spikesBySlotAndNum.put("BACK_BACK_2", SLOT_BACK_2);
-        spikesBySlotAndNum.put("BACK_FRONT_0", SLOT_FRONT_0);
-        spikesBySlotAndNum.put("BACK_FRONT_1", SLOT_FRONT_1);
-        spikesBySlotAndNum.put("BACK_FRONT_2", SLOT_FRONT_2);
+        spikesBySlotAndNum.put("ARMS_BACK_0", SLOT_BACK_0);
+        spikesBySlotAndNum.put("ARMS_BACK_1", SLOT_BACK_1);
+        spikesBySlotAndNum.put("ARMS_BACK_2", SLOT_BACK_2);
+        spikesBySlotAndNum.put("ARMS_BACK_3", SLOT_BACK_3);
+        spikesBySlotAndNum.put("ARMS_BACK_4", SLOT_BACK_4);
+        spikesBySlotAndNum.put("ARMS_BACK_5", SLOT_BACK_5);
+        spikesBySlotAndNum.put("ARMS_FRONT_0", SLOT_FRONT_0);
+        spikesBySlotAndNum.put("ARMS_FRONT_1", SLOT_FRONT_1);
+        spikesBySlotAndNum.put("ARMS_FRONT_2", SLOT_FRONT_2);
+        spikesBySlotAndNum.put("ARMS_FRONT_3", SLOT_FRONT_3);
+        spikesBySlotAndNum.put("ARMS_FRONT_4", SLOT_FRONT_4);
+        spikesBySlotAndNum.put("ARMS_FRONT_5", SLOT_FRONT_5);
         return spikesBySlotAndNum;
     }
 
@@ -240,6 +285,12 @@ public final class ArmsPartEntity extends BodyPartEntity {
                 SLOT_BACK_1 = null;
             } else if (slotNum == 2) {
                 SLOT_BACK_2 = null;
+            } else if (slotNum == 3) {
+                SLOT_BACK_3 = null;
+            } else if (slotNum == 4) {
+                SLOT_BACK_4 = null;
+            } else if (slotNum == 5) {
+                SLOT_BACK_5 = null;
             }
         } else if (slotPos == BodySlotEnum.FRONT) {
             if (slotNum == 0) {
@@ -248,6 +299,12 @@ public final class ArmsPartEntity extends BodyPartEntity {
                 SLOT_FRONT_1 = null;
             } else if (slotNum == 2) {
                 SLOT_FRONT_2 = null;
+            } else if (slotNum == 3) {
+                SLOT_FRONT_3 = null;
+            } else if (slotNum == 4) {
+                SLOT_FRONT_4 = null;
+            } else if (slotNum == 5) {
+                SLOT_FRONT_5 = null;
             }
         }
     }
@@ -267,12 +324,24 @@ public final class ArmsPartEntity extends BodyPartEntity {
             SLOT_BACK_1 = null;
         } else if (entity == SLOT_BACK_2) {
             SLOT_BACK_2 = null;
+        } else if (entity == SLOT_BACK_3) {
+            SLOT_BACK_3 = null;
+        } else if (entity == SLOT_BACK_4) {
+            SLOT_BACK_4 = null;
+        } else if (entity == SLOT_BACK_5) {
+            SLOT_BACK_5 = null;
         } else if (entity == SLOT_FRONT_0) {
             SLOT_FRONT_0 = null;
         } else if (entity == SLOT_FRONT_1) {
             SLOT_FRONT_1 = null;
         } else if (entity == SLOT_FRONT_2) {
             SLOT_FRONT_2 = null;
+        } else if (entity == SLOT_FRONT_3) {
+            SLOT_FRONT_3 = null;
+        } else if (entity == SLOT_FRONT_4) {
+            SLOT_FRONT_4 = null;
+        } else if (entity == SLOT_FRONT_5) {
+            SLOT_FRONT_5 = null;
         }
     }
 
@@ -283,10 +352,15 @@ public final class ArmsPartEntity extends BodyPartEntity {
                 ", SLOT_BACK_0=" + SLOT_BACK_0 +
                 ", SLOT_BACK_1=" + SLOT_BACK_1 +
                 ", SLOT_BACK_2=" + SLOT_BACK_2 +
+                ", SLOT_BACK_3=" + SLOT_BACK_3 +
+                ", SLOT_BACK_4=" + SLOT_BACK_4 +
+                ", SLOT_BACK_5=" + SLOT_BACK_5 +
                 ", SLOT_FRONT_0=" + SLOT_FRONT_0 +
                 ", SLOT_FRONT_1=" + SLOT_FRONT_1 +
                 ", SLOT_FRONT_2=" + SLOT_FRONT_2 +
-                ", bodyPart=" + bodyPart +
+                ", SLOT_FRONT_3=" + SLOT_FRONT_3 +
+                ", SLOT_FRONT_4=" + SLOT_FRONT_4 +
+                ", SLOT_FRONT_5=" + SLOT_FRONT_5 +
                 '}';
     }
 }

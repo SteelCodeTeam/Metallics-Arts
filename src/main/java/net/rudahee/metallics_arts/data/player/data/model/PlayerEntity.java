@@ -20,10 +20,10 @@ public class PlayerEntity {
     private ArmsPartEntity arms;
     private LegsPartEntity legs;
 
-    private  HashMap<MetalTagEnum, Integer> allomanticReserve;
-    private  HashMap<MetalTagEnum, Boolean> burningMetals;
-    private  HashMap<MetalTagEnum, Boolean> tappingMetals;
-    private  HashMap<MetalTagEnum, Boolean> storingMetals;
+    private HashMap<MetalTagEnum, Integer> allomanticReserve;
+    private HashMap<MetalTagEnum, Boolean> burningMetals;
+    private HashMap<MetalTagEnum, Boolean> tappingMetals;
+    private HashMap<MetalTagEnum, Boolean> storingMetals;
     private ArrayList<Boolean> metalMindEquipped = new ArrayList<>(10);
     private Boolean enhanced;
     private ArrayList<MetalTagEnum> metalsEnhanced = new ArrayList<>();
@@ -88,12 +88,12 @@ public class PlayerEntity {
      * @return true if the player has the specified allomantic metal, false otherwise.
      */
     public boolean hasAllomanticMetal(MetalTagEnum metal) {
-         Optional<BodyPartEntity> bodyPart = Stream.of(this.head, this.chest, this.back, this.arms, this.legs).filter(
+        Optional<BodyPartEntity> bodyPart = Stream.of(this.head, this.chest, this.back, this.arms, this.legs).filter(
                 bodyPartEntity -> bodyPartEntity.getAllSpikes().stream().anyMatch(
-                        spikeEntity -> spikeEntity.getType().equals(TypeOfSpikeEnum.ALLOMANTIC) && spikeEntity.getMetal().equals(metal))
-         ).findAny();
+                        spikeEntity -> spikeEntity.getType().equals(TypeOfSpikeEnum.ALLOMANTIC) && spikeEntity.getMetal() != null && spikeEntity.getMetal().equals(metal))
+        ).findAny();
 
-         return bodyPart.isPresent();
+        return bodyPart.isPresent();
     }
 
     /**
@@ -115,7 +115,7 @@ public class PlayerEntity {
     public boolean hasFeruchemicMetal(MetalTagEnum metal) {
         Optional<BodyPartEntity> bodyPart = Stream.of(this.head, this.chest, this.back, this.arms, this.legs).filter(
                 bodyPartEntity -> bodyPartEntity.getAllSpikes().stream().anyMatch(
-                        spikeEntity -> spikeEntity.getType().equals(TypeOfSpikeEnum.FERUCHEMIC) && spikeEntity.getMetal().equals(metal))
+                        spikeEntity -> spikeEntity.getType().equals(TypeOfSpikeEnum.FERUCHEMIC) && spikeEntity.getMetal() != null && spikeEntity.getMetal().equals(metal))
         ).findAny();
 
         return bodyPart.isPresent();

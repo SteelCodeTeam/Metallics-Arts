@@ -99,28 +99,19 @@ public final class HeadPartEntity extends BodyPartEntity {
      */
     @Override
     public void addSpikeRandom(SpikeEntity entity) {
+
         // Check if front slots are all occupied
-
-
-        if (getActualQtySpikes() < getMaxQtySpikes()) {
-
-            if (Math.random() < 0.5) { // BACK
-                if (SLOT_BACK_0 == null) {
-                    SLOT_BACK_0 = entity;
-                }
-            } else { // FRONT
-                if (SLOT_FRONT_0 == null && SLOT_FRONT_1 == null) {
-                    if (Math.random() < 0.5) {
-                        SLOT_FRONT_0 = entity;
-                    } else {
-                        SLOT_FRONT_1 = entity;
-                    }
-                } else if (SLOT_FRONT_0 == null) {
-                    SLOT_FRONT_0 = entity;
-                } else if (SLOT_FRONT_1 == null) {
-                    SLOT_FRONT_1 = entity;
-                }
-            }
+        if (SLOT_BACK_0 == null) {
+            System.out.println("Agregado en Head-Back-0");
+            SLOT_BACK_0 = entity;
+        } else if (SLOT_FRONT_1 == null) {
+            System.out.println("Agregado en Head-Front-1");
+            SLOT_FRONT_1 = entity;
+        } else if (SLOT_FRONT_0 == null) {
+            System.out.println("Agregado en Head-Front-0");
+            SLOT_FRONT_0 = entity;
+        } else {
+            System.out.println("No se agrego la entidad " + entity + " \n EN HEAD");
         }
     }
 

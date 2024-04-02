@@ -7,7 +7,6 @@ import net.rudahee.metallics_arts.data.player.data.model.enums.BodySlotEnum;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,7 +44,7 @@ public final class BackPartEntity extends BodyPartEntity {
         addSpikeBySlot(null, 5, BodySlotEnum.BACK);
         addSpikeBySlot(null, 6, BodySlotEnum.BACK);
 
-        setMaxQtySpikes(6);
+        setMaxQtySpikes(7);
     }
 
     /**
@@ -128,50 +127,31 @@ public final class BackPartEntity extends BodyPartEntity {
      */
     @Override
     public void addSpikeRandom(SpikeEntity entity) {
-        Random rng = new Random();
-        boolean done = false;
-        if (getMaxQtySpikes() > getActualQtySpikes()) {
-            do {
-                int slot = rng.nextInt(7);
-
-                if (slot == 0) {
-                    if (SLOT_BACK_0 == null) {
-                        SLOT_BACK_0 = entity;
-                        done = true;
-                    }
-                } else if (slot == 1) {
-                    if (SLOT_BACK_1 == null) {
-                        SLOT_BACK_1 = entity;
-                        done = true;
-                    }
-                } else if (slot == 2) {
-                    if (SLOT_BACK_2 == null) {
-                        SLOT_BACK_2 = entity;
-                        done = true;
-                    }
-                } else if (slot == 3) {
-                    if (SLOT_BACK_3 == null) {
-                        SLOT_BACK_3 = entity;
-                        done = true;
-                    }
-                } else if (slot == 4) {
-                    if (SLOT_BACK_4 == null) {
-                        SLOT_BACK_4 = entity;
-                        done = true;
-                    }
-                } else if (slot == 5) {
-                    if (SLOT_BACK_5 == null) {
-                        SLOT_BACK_5 = entity;
-                        done = true;
-                    }
-                } else {
-                    if (SLOT_BACK_6 == null) {
-                        SLOT_BACK_6 = entity;
-                        done = true;
-                    }
-                }
-            } while (!done);
+        if (SLOT_BACK_0 == null) {
+            System.out.println("BACK BACK 0");
+            SLOT_BACK_0 = entity;
+        } else if (SLOT_BACK_1 == null) {
+            System.out.println("BACK BACK 1");
+            SLOT_BACK_1 = entity;
+        } else if (SLOT_BACK_2 == null) {
+            System.out.println("BACK BACK 2");
+            SLOT_BACK_2 = entity;
+        } else if (SLOT_BACK_3 == null) {
+            System.out.println("BACK BACK 3");
+            SLOT_BACK_3 = entity;
+        } else if (SLOT_BACK_4 == null) {
+            System.out.println("BACK BACK 4");
+            SLOT_BACK_4 = entity;
+        } else if (SLOT_BACK_5 == null) {
+            System.out.println("BACK BACK 5");
+            SLOT_BACK_5 = entity;
+        } else if (SLOT_BACK_6 == null) {
+            System.out.println("BACK BACK 6");
+            SLOT_BACK_6 = entity;
+        } else {
+            System.out.println("No se agrego la entidad " + entity + " \n EN BACK");
         }
+
     }
 
 

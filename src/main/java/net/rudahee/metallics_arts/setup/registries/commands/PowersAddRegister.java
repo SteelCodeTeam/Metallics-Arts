@@ -289,7 +289,7 @@ public class PowersAddRegister {
 
         return 1;
     }
-    public static int addAllFeruchemicPower (CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
+    public static int addAllFeruchemicPower(CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
             player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {

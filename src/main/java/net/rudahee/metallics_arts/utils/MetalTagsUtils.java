@@ -47,7 +47,7 @@ public class MetalTagsUtils {
         } else if (name.contains("ettmetal")) {
             return MetalTagEnum.ETTMETAL;
         } else {
-            LoggerUtils.printLogError("Se está tratando de conseguir un MetalTagEnum desde un String no valido: " + name);
+            //LoggerUtils.printLogError("Se está tratando de conseguir un MetalTagEnum desde un String no valido: " + name);
             return null;
         }
     }
