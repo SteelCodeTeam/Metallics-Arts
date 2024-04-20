@@ -12,6 +12,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
+import net.rudahee.metallics_arts.setup.registries.ModLivingEntityRegister;
 import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 import org.jetbrains.annotations.Nullable;
 
@@ -69,6 +70,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 tag(ModTags.forgeItemTag("ores/" + metal.getMetalNameLower()))
                         .add(ModBlocksRegister.BLOCK_METAL_ORES.get(metal.getMetalNameLower()).asItem());
             }
+
 
         }
         tag(ModTags.STAIRS.get("iron")).add(ModBlocksRegister.BLOCK_METAL_STAIRS.get("iron").asItem());

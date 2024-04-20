@@ -52,8 +52,10 @@ public final class DataGenerators {
 
         gen.addProvider(event.includeServer(), new ModBlockStateProvider(packOutput, existingFileHelper));
         gen.addProvider(event.includeServer(), new ModItemModelProvider(gen, existingFileHelper));
+
         gen.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
-                List.of(new LootTableProvider.SubProviderEntry(ModLootTableProvider::new, LootContextParamSets.BLOCK))));
+                List.of(new LootTableProvider.SubProviderEntry(ModEntityLootTableProvider::new, LootContextParamSets.ENTITY), new LootTableProvider.SubProviderEntry(ModLootTableProvider::new, LootContextParamSets.BLOCK))));
+
 
         gen.addProvider(event.includeServer(), new ModRecipeProvider(gen));
 

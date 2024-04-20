@@ -2,6 +2,7 @@ package net.rudahee.metallics_arts.setup.registries;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -17,7 +18,11 @@ import net.rudahee.metallics_arts.modules.custom_entities.iron_ferrin_entity.Iro
 import net.rudahee.metallics_arts.modules.custom_entities.pewter_allomancer_entity.PewterAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.steel_allomancer_entity.SteelAllomancerEntity;
 
+import java.util.HashMap;
+
 public class ModLivingEntityRegister {
+
+
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MetallicsArts.MOD_ID);
     public static final RegistryObject<EntityType<EttmetalAllomancerEntity>> ETTMETAL_ALLOMANCER = ENTITY_TYPES.register("ettmetal_allomancer_entity",
@@ -41,6 +46,9 @@ public class ModLivingEntityRegister {
 
     public static final RegistryObject<EntityType<IronFerrinEntity>> IRON_FERRIN = ENTITY_TYPES.register("iron_ferrin_entity",
             () -> EntityType.Builder.of(IronFerrinEntity::new, MobCategory.CREATURE).sized(1.0f, 2.0f).build(MetallicsArts.MOD_ID + ":iron_ferrin"));
+
+
+
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
