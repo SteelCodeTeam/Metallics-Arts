@@ -69,8 +69,7 @@ public class IronFerrinEntity extends Animal implements RangedAttackMob {
                 .add(Attributes.ATTACK_SPEED, 0.5F);
 
     }
-
-
+    
     @Override
     public void performRangedAttack(LivingEntity entity, float p_32142_) {
 

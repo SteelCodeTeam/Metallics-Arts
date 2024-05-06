@@ -11,6 +11,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeEnum;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.abstracts.MetalmindAbstract;
 import net.rudahee.metallics_arts.modules.custom_items.vials.Vial;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
@@ -100,7 +101,10 @@ public class ItemsCommandRegister {
             }
         }
 
-        context.getSource().sendSystemMessage(Component.translatable("Added 1 Vial with all metals to: " + playersName));
+
+
+
+         context.getSource().sendSystemMessage(Component.translatable("Added 1 Vial with all metals to: " + playersName));
 
         return  1;
     }

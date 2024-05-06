@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:stone"
+    },
+    "title": "logro puto",
+    "description": "aaaaaaaaa",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "player": [],
+        "items": [
+          {
+            "items": [
+              "metallics_arts:iron_spike"
+            ],
+            "nbt": "{allomantic_power:true}"
+          }
+        ]
+      }
+    }
+  }
+}
