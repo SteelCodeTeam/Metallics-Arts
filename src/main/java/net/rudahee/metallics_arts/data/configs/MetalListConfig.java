@@ -4,6 +4,8 @@ package net.rudahee.metallics_arts.data.configs;
 import net.minecraft.world.item.Items;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
+import net.rudahee.metallics_arts.data.providers.ModItemModelProvider;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,6 +32,8 @@ public class MetalListConfig {
         add("lead");
         add("nickel");
         add("tin_");
+        add("raw tin");
+        add("silver");
 
         add("shield");
         add("anvil");
@@ -81,7 +85,7 @@ public class MetalListConfig {
         add(Items.COMPASS.getDescription().toString());
         add(Items.SHEARS.getDescription().toString());
         add(Items.CHAIN.getDescription().toString());
-
+        add(ModItemsRegister.IRON_SIGN.get().getDescription().toString());
     }};
 
 }

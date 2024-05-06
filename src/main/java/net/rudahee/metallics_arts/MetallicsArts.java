@@ -43,6 +43,7 @@ import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays.MetalsOverlay;
 import net.rudahee.metallics_arts.modules.custom_entities.villagers.ModVillager;
 import net.rudahee.metallics_arts.setup.Registration;
+import net.rudahee.metallics_arts.setup.dependency_management.ModClientDependencyManagement;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.*;
 
@@ -199,6 +200,9 @@ public class MetallicsArts {
     }
 
     public void clientInit(final FMLClientSetupEvent e) {
+
+        ModClientDependencyManagement.start();
+
         ModEventsRegister.clientInit(e);
         MenuScreens.register(ModMenuRegister.CRUCIBLE_FURNACE_MENU.get(), CrucibleFurnaceScreen::new);
 

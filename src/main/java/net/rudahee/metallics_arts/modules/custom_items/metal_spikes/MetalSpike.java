@@ -19,7 +19,7 @@ import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
-import net.rudahee.metallics_arts.utils.TranslatableUtils;
+import net.rudahee.metallics_arts.utils.StringsUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -142,10 +142,10 @@ public class MetalSpike extends SwordItem {
                 stack.setTag(generateTags(stack));
             }
             if (stack.getTag().getBoolean("feruchemic_power")) {
-                toolTips.add(TranslatableUtils.generateComponent("metallics_arts.spike_feruchemic_power"));
+                toolTips.add(StringsUtils.generateComponent("metallics_arts.spike_feruchemic_power"));
             }
             if (stack.getTag().getBoolean("allomantic_power")) {
-                toolTips.add(TranslatableUtils.generateComponent("metallics_arts.spike_allomantic_power"));
+                toolTips.add(StringsUtils.generateComponent("metallics_arts.spike_allomantic_power"));
             }
         }
         super.appendHoverText(stack, level, toolTips, flag);
