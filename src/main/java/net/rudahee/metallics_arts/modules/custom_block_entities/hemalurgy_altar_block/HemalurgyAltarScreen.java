@@ -18,7 +18,7 @@ import net.rudahee.metallics_arts.utils.gui.Square;
 import java.awt.*;
 
 
-public class HemalurgyAltarScreen extends AbstractContainerScreen<HemalurgyAltarMenu> {
+public class HemalurgyAltarScreen {
 
     private static final ResourceLocation TEXTURE_FRONT =
             new ResourceLocation(MetallicsArts.MOD_ID,"textures/gui/hemalurgy_table_front.png");
@@ -31,13 +31,10 @@ public class HemalurgyAltarScreen extends AbstractContainerScreen<HemalurgyAltar
 
     private static int tick = 0;
 
-    public HemalurgyAltarScreen(HemalurgyAltarMenu menu, Inventory inventory, Component component) {
-        super(menu, inventory, component);
-    }
 
-    @Override
+
+
     protected void init() {
-        super.init();
 
         try {
             IInvestedPlayerData data = CapabilityUtils.getCapability(Minecraft.getInstance().player);
@@ -49,46 +46,39 @@ public class HemalurgyAltarScreen extends AbstractContainerScreen<HemalurgyAltar
 
     }
 
-    @Override
     protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
 
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE_FRONT);
-        int x = (width - SIZE_GUI.getBottomRight().x) / 2;
-        int y = (height - SIZE_GUI.getBottomRight().y) / 2;
-
-        blit(pPoseStack, x - 1, y + 14, SIZE_GUI.getTopLeft().x, SIZE_GUI.getTopLeft().y, SIZE_GUI.getBottomRight().x, SIZE_GUI.getBottomRight().y);
+//        RenderSystem.setShaderTexture(0, TEXTURE_FRONT);
+//        int x = (width - SIZE_GUI.getBottomRight().x) / 2;
+//        int y = (height - SIZE_GUI.getBottomRight().y) / 2;
+//
+//        blit(pPoseStack, x - 1, y + 14, SIZE_GUI.getTopLeft().x, SIZE_GUI.getTopLeft().y, SIZE_GUI.getBottomRight().x, SIZE_GUI.getBottomRight().y);
     }
 
 
-    @Override
     public void render(PoseStack pPoseStack, int mouseX, int mouseY, float delta) {
-        renderBackground(pPoseStack);
-        super.render(pPoseStack, mouseX, mouseY, delta);
-        renderTooltip(pPoseStack, mouseX, mouseY);
+
      // renderButtons(pPoseStack);
     }
 
-    @Override
     protected void renderLabels(PoseStack stack, int mouseX, int mouseY) {
-        this.font.draw(stack, this.title, -30.0F, -19.0F, 4210752);
-        this.font.draw(stack, this.playerInventoryTitle, 8.0F, (float) (this.imageHeight - 39), 4210752);
+
     }
 
 
 
     protected void renderButtons(PoseStack stack) {
-        int xWinSave = (width / 2) + 125;
-        int yWinSave = (height / 2) + 70;
-        int xWinChange = (width / 2) - 125;
-        int yWinChange = (height / 2) + 70;
-
-        blit(stack, xWinSave, yWinSave, BUTTON_CHANGE_GUI.getTopLeft().x, BUTTON_CHANGE_GUI.getTopLeft().y, BUTTON_CHANGE_GUI.getBottomRight().x, BUTTON_CHANGE_GUI.getBottomRight().y);
-        blit(stack, xWinChange, yWinChange, BUTTON_SAVE_GUI.getTopLeft().x, BUTTON_SAVE_GUI.getTopLeft().y, BUTTON_SAVE_GUI.getBottomRight().x, BUTTON_SAVE_GUI.getBottomRight().y);
+//        int xWinSave = (width / 2) + 125;
+//        int yWinSave = (height / 2) + 70;
+//        int xWinChange = (width / 2) - 125;
+//        int yWinChange = (height / 2) + 70;
+//
+//        blit(stack, xWinSave, yWinSave, BUTTON_CHANGE_GUI.getTopLeft().x, BUTTON_CHANGE_GUI.getTopLeft().y, BUTTON_CHANGE_GUI.getBottomRight().x, BUTTON_CHANGE_GUI.getBottomRight().y);
+//        blit(stack, xWinChange, yWinChange, BUTTON_SAVE_GUI.getTopLeft().x, BUTTON_SAVE_GUI.getTopLeft().y, BUTTON_SAVE_GUI.getBottomRight().x, BUTTON_SAVE_GUI.getBottomRight().y);
     }
 
-    @Override
     public boolean shouldCloseOnEsc() {
         return true;
     }

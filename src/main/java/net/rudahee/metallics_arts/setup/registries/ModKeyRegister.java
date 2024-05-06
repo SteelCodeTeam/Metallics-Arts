@@ -19,6 +19,8 @@ public class ModKeyRegister {
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping FERUCHEMIC_POWER_SELECTOR;
     @OnlyIn(Dist.CLIENT)
+    public static KeyMapping HEMALURGY_POWER_SELECTOR;
+    @OnlyIn(Dist.CLIENT)
     public static KeyMapping VERTICAL_JUMP;
     @OnlyIn(Dist.CLIENT)
     public static KeyMapping SWITCH_OVERLAY;
@@ -44,6 +46,9 @@ public class ModKeyRegister {
         evt.register(ALLOMANTIC_POWER_SELECTOR);
 
         FERUCHEMIC_POWER_SELECTOR =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic", GLFW.GLFW_KEY_N, KEY_CATEGORY);
+        evt.register(FERUCHEMIC_POWER_SELECTOR);
+
+        HEMALURGY_POWER_SELECTOR =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic", GLFW.GLFW_KEY_B, KEY_CATEGORY);
         evt.register(FERUCHEMIC_POWER_SELECTOR);
 
         VERTICAL_JUMP = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "vertical_jump", GLFW.GLFW_KEY_LEFT_CONTROL, KEY_CATEGORY);

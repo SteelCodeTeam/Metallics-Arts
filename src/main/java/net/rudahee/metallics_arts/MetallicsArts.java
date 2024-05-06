@@ -34,7 +34,6 @@ import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalM
 import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
 import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceScreen;
-import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.HemalurgyAltarScreen;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.WoodTypeMetal;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.CuriosLayerDefinitions;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.MetalMindModel;
@@ -190,6 +189,7 @@ public class MetallicsArts {
     public void onGuOverlayEvent(final RegisterGuiOverlaysEvent event) {
         event.registerBelowAll("invested_overlay", new MetalsOverlay());
 
+
         ClientEventHandler.onRenderGameOverlay(event);
     }
 
@@ -201,7 +201,6 @@ public class MetallicsArts {
     public void clientInit(final FMLClientSetupEvent e) {
         ModEventsRegister.clientInit(e);
         MenuScreens.register(ModMenuRegister.CRUCIBLE_FURNACE_MENU.get(), CrucibleFurnaceScreen::new);
-        MenuScreens.register(ModMenuRegister.HEMALUGY_ALTAR_MENU.get(), HemalurgyAltarScreen::new);
 
         WoodType.register(WoodTypeMetal.IRON_TYPE);
         WoodType.register(WoodTypeMetal.GOLD_TYPE);

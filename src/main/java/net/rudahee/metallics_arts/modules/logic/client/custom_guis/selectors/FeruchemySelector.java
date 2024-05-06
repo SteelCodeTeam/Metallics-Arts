@@ -40,8 +40,8 @@ import java.util.stream.Collectors;
 @OnlyIn(Dist.CLIENT)
 public class FeruchemySelector extends Screen {
 
-    private static final java.util.List<MetalTagEnum> internalMetals = Arrays.asList(MetalTagEnum.values()).stream().filter(metal -> !metal.isExternal() && !metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
-    private static final java.util.List<MetalTagEnum> externalMetals = Arrays.asList(MetalTagEnum.values()).stream().filter(metal -> metal.isExternal() && !metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
+    private static final List<MetalTagEnum> internalMetals = Arrays.asList(MetalTagEnum.values()).stream().filter(metal -> !metal.isExternal() && !metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
+    private static final List<MetalTagEnum> externalMetals = Arrays.asList(MetalTagEnum.values()).stream().filter(metal -> metal.isExternal() && !metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
     private static final List<MetalTagEnum> divineMetals = Arrays.asList(MetalTagEnum.values()).stream().filter(metal -> metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
 
     private final Minecraft mc;

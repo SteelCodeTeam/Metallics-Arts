@@ -35,8 +35,6 @@ public class ModCreativeTabs {
                                         () -> new ItemStack(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(MetalTagEnum.ETTMETAL.getMetalNameLower())))
                                 .title(Component.translatable("metallics_arts.tab.decorations")).withSearchBar().build());
 
-
-
         METALLICS_ARTS_ENTITY_TAB = event.registerCreativeModeTab(
                 new ResourceLocation(MetallicsArts.MOD_ID, "metallics_arts_entity_tab"),
                 builder ->

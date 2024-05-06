@@ -80,7 +80,7 @@ public class AllomanticSelector extends Screen {
         return (Mth.atan2(mouseY - centroY, mouseX - centroX) + Math.PI * 2) % (Math.PI * 2);
     }
 
-    private static double mouseDistance (int centroX, int centroY, int mouseX, int mouseY) {
+    private static double mouseDistance(int centroX, int centroY, int mouseX, int mouseY) {
         return Math.sqrt(Math.pow((mouseX-centroX),2)+Math.pow((mouseY-centroY),2));
 
     }
