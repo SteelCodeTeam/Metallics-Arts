@@ -29,16 +29,16 @@ displayURL="https://steelcode.team/" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 #logoFile="examplemod.png" #optional
 # A text field displayed in the mod UI
-credits="A small mod based on Mistborns series. Read Brandon's boooks! Required: Curios API." #optional
+credits="A mod based on Mistborns series. Read Brandon's boooks!." #optional
 # A text field displayed in the mod UI
-authors="SteelCode Team. You can check our projects in: https://steelcode.team/" #optional
+authors="SteelCode Team." #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 A mod based on Mistborns series. Read Brandon's boooks!
 
 Based on legobmw99 and blits work. Please, check their mods.
 
-Required: Curios API, Modonomicon.
+You can check our projects in: https://steelcode.team/
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.metallics_arts]] #optional
@@ -47,7 +47,7 @@ Required: Curios API, Modonomicon.
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
     # The version range of the dependency
-    versionRange="[43,)" #mandatory
+    versionRange="[44,46)" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -56,7 +56,55 @@ Required: Curios API, Modonomicon.
 [[dependencies.metallics_arts]]
     modId="minecraft"
     mandatory=true
-# This version range declares a minimum of the current minecraft version up to but not including the next major version
-    versionRange="[1.19,1.20)"
+    # This version range declares a minimum of the current minecraft version up to but not including the next major version
+    versionRange="[1.19.3,1.20)"
     ordering="NONE"
+    side="BOTH"
+
+[[dependencies.metallics_arts]] #optional
+    # the modid of the dependency
+    modId="curios" #mandatory
+    # Does this dependency have to exist - if not, ordering below must be specified
+    mandatory=true #mandatory
+    # The version range of the dependency
+    versionRange="[1.19.4-5.1.5.0,1.19.4-5.1.5.5)" #mandatory
+    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+    ordering="NONE"
+    # Side this dependency is applied on - BOTH, CLIENT or SERVER
+    side="BOTH"
+
+[[dependencies.metallics_arts]] #optional
+    # the modid of the dependency
+    modId="caelus" #mandatory
+    # Does this dependency have to exist - if not, ordering below must be specified
+    mandatory=false #mandatory
+    # The version range of the dependency
+    versionRange="[1.19.4-3.0.0.10,1.19.4-3.0.0.11)" #mandatory
+    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+    ordering="BEFORE"
+    # Side this dependency is applied on - BOTH, CLIENT or SERVER
+    side="BOTH"
+
+[[dependencies.metallics_arts]] #optional
+    # the modid of the dependency
+    modId="modonomicon" #mandatory
+    # Does this dependency have to exist - if not, ordering below must be specified
+    mandatory=false #mandatory
+    # The version range of the dependency
+    versionRange="[1.19.4-1.33.0,1.19.4-1.33.2)" #mandatory
+    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+    ordering="BEFORE"
+    # Side this dependency is applied on - BOTH, CLIENT or SERVER
+    side="BOTH"
+
+[[dependencies.metallics_arts]] #optional
+    # the modid of the dependency
+    modId="geckolib" #mandatory
+    # Does this dependency have to exist - if not, ordering below must be specified
+    mandatory=true #mandatory
+    # The version range of the dependency
+    versionRange="[4.1,4.3)" #mandatory
+    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+    ordering="NONE"
+    # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"

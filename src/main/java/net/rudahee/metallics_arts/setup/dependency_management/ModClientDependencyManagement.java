@@ -1,5 +1,8 @@
 package net.rudahee.metallics_arts.setup.dependency_management;
 
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.data.enums.implementations.dependencies.Dependencies;
 import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 
@@ -11,12 +14,18 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+@OnlyIn(Dist.CLIENT)
 public class ModClientDependencyManagement {
+
+    public static boolean FINISHED = false;
+    public static boolean ERROR = false;
 
     public static void start() {
         boolean existsCurios = false;
         boolean existsModonomicon = false;
         boolean existsGeckolib = false;
+
+        Minecraft mc = Minecraft.getInstance();
 
         File modFolder = new File("mods");
 
@@ -46,6 +55,9 @@ public class ModClientDependencyManagement {
         if (!existsGeckolib) {
             downloadGeckolib();
         }
+
+        FINISHED = true;
+
     }
 
     private static void downloadCurios() {
@@ -56,6 +68,7 @@ public class ModClientDependencyManagement {
             LoggerUtils.printLogInfo("Finished: " + Dependencies.CURIOS.getName());
         } catch (IOException ex) {
             LoggerUtils.printLogFatal("Error downloading: " + Dependencies.CURIOS.getName());
+            ERROR = true;
             ex.printStackTrace();
         }
     }
@@ -67,6 +80,7 @@ public class ModClientDependencyManagement {
             LoggerUtils.printLogInfo("Finished: " + Dependencies.MODONOMICON.getName());
         } catch (IOException ex) {
             LoggerUtils.printLogFatal("Error downloading: " + Dependencies.MODONOMICON.getName());
+            ERROR = true;
             ex.printStackTrace();
         }
     }
@@ -78,6 +92,7 @@ public class ModClientDependencyManagement {
             LoggerUtils.printLogInfo("Finished: " + Dependencies.GECKOLIB.getName());
         } catch (IOException ex) {
             LoggerUtils.printLogFatal("Error downloading: " + Dependencies.GECKOLIB.getName());
+            ERROR = true;
             ex.printStackTrace();
         }
     }

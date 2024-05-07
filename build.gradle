@@ -2,6 +2,7 @@ plugins {
     id 'eclipse'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 
@@ -122,9 +123,6 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
-}
-
-repositories {
     maven {
         url = "https://maven.theillusivec4.top/"
     }
@@ -135,29 +133,34 @@ repositories {
         name = "KliKli Dev Repsy Maven"
         url = "https://repo.repsy.io/mvn/klikli-dev/mods"
     }
-    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
 }
 
 
- dependencies {
+dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
 
+     minecraft 'net.minecraftforge:forge:1.19.4-45.2.10'
 
-     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.19.4:4.1.2')
+     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.19.4:4.2")
+     implementation("com.eliotlash.mclib:mclib:20")
 
-     minecraft 'net.minecraftforge:forge:1.19.4-45.1.10'
-     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.4-5.1.5.3")
-     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.4-5.1.5.3:api")
-
-     //compileOnly fg.deobf("mezz.jei:jei-1.19.4-common-api:13.1.0.16")
-     //compileOnly fg.deobf("mezz.jei:jei-1.19.4-forge-api:13.1.0.16")
-     //compileOnly fg.deobf("mezz.jei:jei-1.19.4-forge:13.1.0.16")
+     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.4-5.1.5.4")
+     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.4-5.1.5.4:api")
+     runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:1.19.4-3.0.0.10")
+     compileOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:1.19.4-3.0.0.10:api")
 
      compileOnly fg.deobf("mezz.jei:jei-1.19.4-common-api:13.1.0.9")
      compileOnly fg.deobf("mezz.jei:jei-1.19.4-forge-api:13.1.0.9")
-     // at runtime, use the full JEI jar for Forge
      runtimeOnly fg.deobf("mezz.jei:jei-1.19.4-forge:13.1.0.9")
 
 

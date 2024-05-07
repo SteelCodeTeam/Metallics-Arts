@@ -24,6 +24,7 @@ import net.minecraftforge.client.event.*;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fluids.FluidType;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
@@ -91,7 +92,6 @@ public class ClientEventHandler {
 
         if (Minecraft.getInstance().player == null){
             return;
-
         }
 
         Player player = Minecraft.getInstance().player;
@@ -141,9 +141,6 @@ public class ClientEventHandler {
          *
          * @param event The TickEvent.ClientTickEvent instance representing the current tick event.
          */
-
-
-
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onClientTick(final TickEvent.ClientTickEvent event) {

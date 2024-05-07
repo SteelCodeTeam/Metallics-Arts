@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -199,9 +200,10 @@ public class MetallicsArts {
         ModCommandsRegister.register(event.getDispatcher());
     }
 
+
     public void clientInit(final FMLClientSetupEvent e) {
 
-        ModClientDependencyManagement.start();
+        //ModClientDependencyManagement.start();
 
         ModEventsRegister.clientInit(e);
         MenuScreens.register(ModMenuRegister.CRUCIBLE_FURNACE_MENU.get(), CrucibleFurnaceScreen::new);
@@ -213,7 +215,6 @@ public class MetallicsArts {
         BlockEntityRenderers.register(ModBlockEntitiesRegister.BLOCK_ENTITY.get(), SignRenderer::new);
 
         CuriosRendererRegistry.register(MetalMindEnum.IRON_STEEL.getBand(), MetalMindRendered::new);
-
     }
 
     private void registerLayers(final EntityRenderersEvent.RegisterLayerDefinitions evt) {

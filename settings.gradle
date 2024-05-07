@@ -4,3 +4,8 @@ pluginManagement {
         maven { url = 'https://maven.minecraftforge.net/' }
     }
 }
+buildscript {
+    repositories {
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+    }
+}

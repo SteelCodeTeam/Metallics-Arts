@@ -1,9 +1,12 @@
 package net.rudahee.metallics_arts.setup.tabs;
 
 import com.klikli_dev.modonomicon.data.BookDataManager;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.fml.ModList;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
@@ -29,13 +32,14 @@ public class ModCreativeTabsEvents {
 
     public static void addToMetallicsArtsTab(CreativeModeTabEvent.BuildContents event) {
         if (event.getTab().equals(ModCreativeTabs.METALLICS_ARTS_TAB)) {
-            BookDataManager.get().getBooks().values().forEach(books -> {
+            if (ModList.get().isLoaded("modonomicon")) {
+                BookDataManager.get().getBooks().values().forEach(books -> {
 
-                if (books.getId().toString().contains("metallics_arts")) {
-                    event.accept(books.getBookItem());
-                }
-            });
-
+                    if (books.getId().toString().contains("metallics_arts")) {
+                        event.accept(books.getBookItem());
+                    }
+                });
+            }
 
             event.acceptAll(ModItemsRegister.ITEM_RAW_METAL.values().stream().map(ItemStack::new).collect(Collectors.toList()));
             event.acceptAll(ModItemsRegister.ITEM_METAL_INGOT.values().stream().map(ItemStack::new).collect(Collectors.toList()));
