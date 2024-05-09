@@ -14,6 +14,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.network.packets.*;
+import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 /**
@@ -109,7 +110,7 @@ public class ModNetwork {
      * @param player that need update her/his data from server.
      */
     public static void syncInvestedDataPacket(Player player) {
-        player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> syncInvestedDataPacket(data, player));
+        player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).ifPresent(data -> syncInvestedDataPacket(data, player));
     }
 
     /**

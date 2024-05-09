@@ -1,9 +1,27 @@
 package net.rudahee.metallics_arts.utils;
 
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.player.data.model.SpikeEntity;
+import net.rudahee.metallics_arts.data.player.data.model.enums.BodyPartEnum;
+import net.rudahee.metallics_arts.data.player.data.model.enums.BodySlotEnum;
+import net.rudahee.metallics_arts.data.player.data.model.enums.TypeOfSpikeEnum;
 import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 
 public class MetalTagsUtils {
+
+    public static String getStringBySpike(SpikeEntity spike) {
+        StringBuilder strBuilder = new StringBuilder();
+
+        if (spike.getMetal().getNameLower().equals("atium") || spike.getMetal().getNameLower().equals("lerasium") || spike.getMetal().getNameLower().equals("ettmetal")) {
+            strBuilder.append("divine_");
+        }
+
+        strBuilder.append(spike.getMetal().getNameLower());
+        strBuilder.append("_");
+        strBuilder.append(spike.getType().getType());
+
+        return strBuilder.toString();
+    }
 
     public static MetalTagEnum getMetalTagEnumByString(String name) {
         if (name.contains("iron")) {
@@ -38,16 +56,16 @@ public class MetalTagsUtils {
             return MetalTagEnum.CADMIUM;
         } else if (name.contains("bendalloy")) {
             return MetalTagEnum.BENDALLOY;
-        } else if (name.contains("atium")) {
+        } else if (name.contains("divine_atium")) {
             return MetalTagEnum.ATIUM;
         } else if (name.contains("malatium")) {
             return MetalTagEnum.MALATIUM;
-        } else if (name.contains("lerasium")) {
+        } else if (name.contains("divine_lerasium")) {
             return MetalTagEnum.LERASIUM;
-        } else if (name.contains("ettmetal")) {
+        } else if (name.contains("divine_ettmetal")) {
             return MetalTagEnum.ETTMETAL;
         } else {
-            //LoggerUtils.printLogError("Se está tratando de conseguir un MetalTagEnum desde un String no valido: " + name);
+            LoggerUtils.printLogError("Se está tratando de conseguir un MetalTagEnum desde un String no valido: " + name);
             return null;
         }
     }

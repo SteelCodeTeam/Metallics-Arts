@@ -17,6 +17,7 @@ import net.rudahee.metallics_arts.setup.network.packets.ChangeEmotionPacket;
 import net.rudahee.metallics_arts.setup.network.packets.RedstoneSignalsPacket;
 import net.rudahee.metallics_arts.setup.network.packets.PullAndPushBlockPacket;
 import net.rudahee.metallics_arts.setup.network.packets.PullAndPushEntityPacket;
+import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
 
@@ -102,7 +103,7 @@ public class PullOrAttackKey {
                 entity = ((EntityHitResult) trace).getEntity();
                 if (entity instanceof Player) {
                     Player otherPlayer = (Player) entity;
-                    otherPlayer.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> {
+                    otherPlayer.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).ifPresent(cap -> {
 
                     });
                 }

@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.ArrayList;
@@ -249,10 +250,10 @@ public class PowersAddRegister {
     }
 
 
-    public static int addAllomanticPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
+    public static int addAllomanticPower(CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
-            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
+            player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
                         p.addAllomanticPower(metalTagEnum);
                     }
             );
@@ -265,7 +266,7 @@ public class PowersAddRegister {
     public static int addFeruchemicPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
-            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
+            player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
                         p.addFeruchemicPower(metalTagEnum);
                     }
             );
@@ -275,11 +276,11 @@ public class PowersAddRegister {
 
         return 1;
     }
-    public static int addAllAllomanticPower (CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
+    public static int addAllAllomanticPower(CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
         ServerPlayer playerEntity = null;
 
         for (ServerPlayer player: players) {
-            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
+            player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
                         p.addAllAllomantic();
                     }
             );
@@ -292,7 +293,7 @@ public class PowersAddRegister {
     public static int addAllFeruchemicPower(CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
-            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
+            player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
                         p.addAllFeruchemic();
                     }
             );
@@ -305,7 +306,7 @@ public class PowersAddRegister {
     public static int addAllPower(CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
-            player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
+            player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).ifPresent(p ->{
                     p.addAllAllomantic();
                     p.addAllFeruchemic();
                 }

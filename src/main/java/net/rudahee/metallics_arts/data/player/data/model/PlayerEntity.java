@@ -76,9 +76,10 @@ public class PlayerEntity {
      * @return true if the player has any allomantic metal, false otherwise
      */
     public boolean hasAnyAllomanticMetal() {
-        return Stream.of(this.head, this.chest, this.back, this.arms, this.legs)
+        boolean anyAllomanticMetal = Stream.of(this.head, this.chest, this.back, this.arms, this.legs)
                 .anyMatch(partOfBody -> partOfBody.getAllSpikes().stream()
                         .anyMatch(spike -> spike.getType().equals(TypeOfSpikeEnum.ALLOMANTIC)));
+        return anyAllomanticMetal;
     }
 
     /**
@@ -101,9 +102,10 @@ public class PlayerEntity {
      *
      * @return true if the player has any feruchemic metal,*/
     public boolean hasAnyFeruchemicMetal() {
-        return Stream.of(this.head, this.chest, this.back, this.arms, this.legs)
+        boolean anyFeruchemicMetal = Stream.of(this.head, this.chest, this.back, this.arms, this.legs)
                 .anyMatch(partOfBody -> partOfBody.getAllSpikes().stream()
                         .anyMatch(spike -> spike.getType().equals(TypeOfSpikeEnum.FERUCHEMIC)));
+        return anyFeruchemicMetal;
     }
 
     /**

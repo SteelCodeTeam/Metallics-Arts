@@ -100,7 +100,7 @@ public class MetallicsArts {
         });
 
         // Register the doClientStuff method for modloading
-        modEventBus.addListener(ModBlocksRegister.InvestedCapabilityRegister::register);
+        modEventBus.addListener(InvestedPlayerCapabilityRegister::register);
         modEventBus.addListener(this::doClientStuff);
 
         ModEntityTypesRegister.register(modEventBus);
@@ -132,7 +132,7 @@ public class MetallicsArts {
     @SubscribeEvent
     public void attachCapabilitiesEntity(final AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof Player) {
-            event.addCapability(ModBlocksRegister.InvestedCapabilityRegister.IDENTIFIER, new ModPaintingProvider.ModInvestedDataProvider());
+            event.addCapability(InvestedPlayerCapabilityRegister.IDENTIFIER, new ModPaintingProvider.ModInvestedDataProvider());
         }
 
 

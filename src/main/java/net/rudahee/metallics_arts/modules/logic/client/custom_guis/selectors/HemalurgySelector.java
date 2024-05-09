@@ -23,27 +23,29 @@ public class HemalurgySelector extends Screen {
     private static final Square SIZE_GUI = new Square(new Point(0,0), new Point(0, 273), new Point(191, 0), new Point(253, 243));
 
     public HemalurgySelector() {
-        super(Component.empty());
+        super(Component.literal("holiwi"));
         this.mc = Minecraft.getInstance();
         player = mc.player;
     }
 
 
     @Override
-    public void render(PoseStack matrixStack, int mx, int my, float partialTicks) {
+    public void render(PoseStack poseStack, int mx, int my, float partialTicks) {
 
 
         Window res = mc.getWindow();
 
         if (!player.isAlive()) {
             return;
-        }
+               }
         if (mc.options.hideGui || !mc.isWindowActive() || !player.isAlive()) {
             return;
         }
         if (mc.screen != null && !(mc.screen instanceof ChatScreen)) {
             return;
         }
+
+        super.renderBackground(poseStack);
 
 
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -52,7 +54,7 @@ public class HemalurgySelector extends Screen {
         int x = (width - SIZE_GUI.getBottomRight().x) / 2;
         int y = (height - SIZE_GUI.getBottomRight().y) / 2;
 
-        blit(matrixStack, x - 1, y + 14, SIZE_GUI.getTopLeft().x, SIZE_GUI.getTopLeft().y, SIZE_GUI.getBottomRight().x, SIZE_GUI.getBottomRight().y);
+        blit(poseStack, x, y, SIZE_GUI.getTopLeft().x, SIZE_GUI.getTopLeft().y, SIZE_GUI.getBottomRight().x, SIZE_GUI.getBottomRight().y);
 
         //super.render();
     }

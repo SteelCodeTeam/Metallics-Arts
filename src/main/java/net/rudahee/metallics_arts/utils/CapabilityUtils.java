@@ -9,6 +9,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
+import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import javax.annotation.Nullable;
@@ -40,8 +41,8 @@ public class CapabilityUtils<T> {
         }
 
         // if player is present and has capabilities, we return capabilities, else, return null.
-        if (player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).isPresent()) {
-            return player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).orElseThrow(new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR));
+        if (player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).isPresent()) {
+            return player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).orElseThrow(new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR));
         } else {
             throw new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR);
         }
@@ -62,8 +63,8 @@ public class CapabilityUtils<T> {
             throw new PlayerException(ErrorTypes.PLAYER_ERROR);
         }
 
-        if (player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).isPresent()) {
-            return player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).orElseThrow(new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR));
+        if (player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).isPresent()) {
+            return player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).orElseThrow(new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR));
         } else {
             throw new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR);
         }
@@ -74,8 +75,8 @@ public class CapabilityUtils<T> {
         if (entity == null) {
             throw new PlayerException(ErrorTypes.PLAYER_ERROR);
         }
-        if (entity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).isPresent()) {
-            return entity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).orElseThrow(new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR));
+        if (entity.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).isPresent()) {
+            return entity.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).orElseThrow(new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR));
         } else {
             throw new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR);
         }

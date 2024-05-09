@@ -16,6 +16,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
+import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
@@ -443,7 +444,7 @@ public class AllomanticSelector extends Screen {
                 mt = null;
             }
 
-            this.mc.player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
+            this.mc.player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
                 ClientUtils.toggleBurn(mt, data);
                 this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK.get(), 0.1F, 2.0F);
             });

@@ -12,6 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.data.player.data.InvestedPlayerData;
+import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import javax.annotation.Nonnull;
@@ -102,7 +103,7 @@ public class ModPaintingProvider {
         @Nonnull
         @Override
         public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-            return ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP.orEmpty(cap, this.dataOptional.cast());
+            return InvestedPlayerCapabilityRegister.PLAYER_CAP.orEmpty(cap, this.dataOptional.cast());
         }
 
         /**
@@ -112,7 +113,7 @@ public class ModPaintingProvider {
          */
         @Override
         public CompoundTag serializeNBT() {
-            if (ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP == null) {
+            if (InvestedPlayerCapabilityRegister.PLAYER_CAP == null) {
                 return new CompoundTag();
             } else {
                 return data.save();
@@ -127,7 +128,7 @@ public class ModPaintingProvider {
          */
         @Override
         public void deserializeNBT(CompoundTag nbt) {
-            if (ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP != null) {
+            if (InvestedPlayerCapabilityRegister.PLAYER_CAP != null) {
                 data.load(nbt);
             }
         }

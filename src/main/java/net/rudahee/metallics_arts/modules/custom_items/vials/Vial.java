@@ -16,6 +16,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import org.jetbrains.annotations.NotNull;
@@ -199,7 +200,7 @@ public abstract class Vial extends Item {
             return new InteractionResultHolder<>(InteractionResult.FAIL, itemStackIn);
         }
         player.startUsingItem(hand);
-        InteractionResultHolder<ItemStack> res = player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).map(data -> {
+        InteractionResultHolder<ItemStack> res = player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).map(data -> {
             //If all the ones being filled are full, don't allow
             if (itemStackIn.hasTag()) {
                 for (MetalTagEnum metal : MetalTagEnum.values()) {
@@ -228,7 +229,7 @@ public abstract class Vial extends Item {
         if (!itemStack.hasTag()) {
             return itemStack;
         }
-        livingEntity.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
+        livingEntity.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
             for (MetalTagEnum metal : MetalTagEnum.values()) {
                 if (itemStack.getTag().contains(metal.getNameLower()) && itemStack.getTag().getInt(metal.getNameLower())>0) {
                     data.setAllomanticMetalsAmount(metal,

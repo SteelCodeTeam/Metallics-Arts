@@ -48,8 +48,8 @@ public class ModKeyRegister {
         FERUCHEMIC_POWER_SELECTOR =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic", GLFW.GLFW_KEY_N, KEY_CATEGORY);
         evt.register(FERUCHEMIC_POWER_SELECTOR);
 
-        HEMALURGY_POWER_SELECTOR =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "feruchemic", GLFW.GLFW_KEY_B, KEY_CATEGORY);
-        evt.register(FERUCHEMIC_POWER_SELECTOR);
+        HEMALURGY_POWER_SELECTOR =  new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "hemalurgy", GLFW.GLFW_KEY_B, KEY_CATEGORY);
+        evt.register(HEMALURGY_POWER_SELECTOR);
 
         VERTICAL_JUMP = new KeyMapping("key." + MetallicsArts.MOD_ID + "." + "vertical_jump", GLFW.GLFW_KEY_LEFT_CONTROL, KEY_CATEGORY);
         evt.register(VERTICAL_JUMP);

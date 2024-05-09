@@ -72,12 +72,13 @@ public class OnKeyInputEvent {
             if (capability.hasAnyAllomanticPower()) {
                 minecraft.setScreen(new AllomanticSelector());
             }
-        } else if (ModKeyRegister.FERUCHEMIC_POWER_SELECTOR.isDown()) {
+        }
+        if (ModKeyRegister.FERUCHEMIC_POWER_SELECTOR.isDown()) {
             if (capability.hasAnyFeruchemicPower()) {
                 minecraft.setScreen(new FeruchemySelector());
             }
         }
-        else if (ModKeyRegister.HEMALURGY_POWER_SELECTOR.isDown()) {
+        if (ModKeyRegister.HEMALURGY_POWER_SELECTOR.isDown()) {
             minecraft.setScreen(new HemalurgySelector());
         }
 

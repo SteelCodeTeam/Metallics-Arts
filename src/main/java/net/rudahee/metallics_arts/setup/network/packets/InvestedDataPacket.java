@@ -8,6 +8,7 @@ import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.UUID;
@@ -40,7 +41,7 @@ public class InvestedDataPacket {
      */
     public InvestedDataPacket(IInvestedPlayerData data, Player player) {
         this.uuid = player.getUUID();
-        this.tag = (data != null && ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP != null) ? data.save() : new CompoundTag();
+        this.tag = (data != null && InvestedPlayerCapabilityRegister.PLAYER_CAP != null) ? data.save() : new CompoundTag();
     }
 
     /**
@@ -84,8 +85,8 @@ public class InvestedDataPacket {
         ctx.get().enqueueWork(() -> {
             Player player = Minecraft.getInstance().level.getPlayerByUUID(this.uuid);
 
-            if (player != null && ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP != null) {
-                player.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).ifPresent(cap -> cap.load(this.tag));
+            if (player != null && InvestedPlayerCapabilityRegister.PLAYER_CAP != null) {
+                player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).ifPresent(cap -> cap.load(this.tag));
             }
         });
 

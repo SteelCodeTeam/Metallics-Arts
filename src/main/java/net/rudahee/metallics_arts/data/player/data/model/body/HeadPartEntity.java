@@ -104,12 +104,12 @@ public final class HeadPartEntity extends BodyPartEntity {
         if (SLOT_BACK_0 == null) {
             System.out.println("Agregado en Head-Back-0");
             SLOT_BACK_0 = entity;
-        } else if (SLOT_FRONT_1 == null) {
-            System.out.println("Agregado en Head-Front-1");
-            SLOT_FRONT_1 = entity;
         } else if (SLOT_FRONT_0 == null) {
             System.out.println("Agregado en Head-Front-0");
             SLOT_FRONT_0 = entity;
+        } else if (SLOT_FRONT_1 == null) {
+            System.out.println("Agregado en Head-Front-1");
+            SLOT_FRONT_1 = entity;
         } else {
             System.out.println("No se agrego la entidad " + entity + " \n EN HEAD");
         }
@@ -136,6 +136,8 @@ public final class HeadPartEntity extends BodyPartEntity {
                 return SLOT_BACK_0;
             }
         }
+
+        //Todo: Que cojones pasa con el Slot_back_0. Pierde el valor del metal
         return null;
     }
 

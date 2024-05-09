@@ -77,20 +77,4 @@ public class ModBlocksRegister {
         Electric.register();
     }
 
-    public static class InvestedCapabilityRegister {
-
-        public static final Capability<IInvestedPlayerData> PLAYER_CAP = CapabilityManager.get(new CapabilityToken<IInvestedPlayerData>() {
-            @Override
-            public String toString() {
-                return super.toString();
-            }
-        });
-
-        public static final ResourceLocation IDENTIFIER = new ResourceLocation(MetallicsArts.MOD_ID, "ma_data");
-
-        public static void register(final RegisterCapabilitiesEvent event) {
-            event.register(IInvestedPlayerData.class);
-        }
-
-    }
 }

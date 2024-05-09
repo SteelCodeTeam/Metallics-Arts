@@ -17,6 +17,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.Supplier;
@@ -107,8 +108,8 @@ public class PullAndPushEntityPacket {
 
 
                         if (!aluminumArmor) {
-                            IInvestedPlayerData sourceCapability = source.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).resolve().get();
-                            IInvestedPlayerData targetCapability = target.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).resolve().get();
+                            IInvestedPlayerData sourceCapability = source.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).resolve().get();
+                            IInvestedPlayerData targetCapability = target.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).resolve().get();
                             boolean areInSameState = false;
 
                             // if both are decanting or both storing are in same state

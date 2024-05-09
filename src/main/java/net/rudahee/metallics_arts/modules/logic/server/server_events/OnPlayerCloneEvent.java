@@ -7,6 +7,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
@@ -53,7 +54,7 @@ public class OnPlayerCloneEvent {
                     }
                 }
             }
-            original.getCapability(ModBlocksRegister.InvestedCapabilityRegister.PLAYER_CAP).invalidate();
+            original.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).invalidate();
             ModNetwork.syncInvestedDataPacket(player);
         } catch (PlayerException ex) {
             ex.printCompleteLog();

@@ -399,23 +399,56 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void addAllomanticPower(MetalTagEnum metal) {
+        System.out.println("ENTRANDO PARA EL METAL ALOMANTICO: " + metal);
+
         if (player.getLegs().getActualQtySpikes() < player.getLegs().getMaxQtySpikes()) {
-            player.getLegs().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
+            System.out.println("PIERNAS DISPONIBLES PARA EL METAL: " + metal);
+
+            if (player.getLegs().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.ALLOMANTIC)) {
+                player.getLegs().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
+            } else {
+                System.out.println("YA EXISTE EL METAL EN ESTA PARTE DEL CUERPO PARA EL METAL: " + metal);
+            }
         }
         else if (player.getHead().getActualQtySpikes() < player.getHead().getMaxQtySpikes()) {
-            player.getHead().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
+            System.out.println("CABEZA DISPONIBLES PARA EL METAL: " + metal);
+
+            if (player.getHead().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.ALLOMANTIC)) {
+                player.getHead().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
+            } else {
+                System.out.println("YA EXISTE EL METAL EN ESTA PARTE DEL CUERPO PARA EL METAL: " + metal);
+            }
         }
         else if (player.getBack().getActualQtySpikes() < player.getBack().getMaxQtySpikes()) {
-            player.getBack().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
+            System.out.println("ESPALDA DISPONIBLES PARA EL METAL: " + metal);
+
+            if (player.getBack().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.ALLOMANTIC)) {
+                player.getBack().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
+            } else {
+                System.out.println("YA EXISTE EL METAL EN ESTA PARTE DEL CUERPO PARA EL METAL: " + metal);
+            }
         }
         else if (player.getArms().getActualQtySpikes() < player.getArms().getMaxQtySpikes()) {
-            player.getArms().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
+            System.out.println("BRAZO DISPONIBLES PARA EL METAL: " + metal);
+            if (player.getArms().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.ALLOMANTIC)) {
+                player.getArms().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
+            } else {
+                System.out.println("YA EXISTE EL METAL EN ESTA PARTE DEL CUERPO PARA EL METAL: " + metal);
+            }
         }
         else if (player.getChest().getActualQtySpikes() < player.getChest().getMaxQtySpikes()) {
-            player.getChest().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
+            System.out.println("PECHO DISPONIBLES PARA EL METAL: " + metal);
+
+            if (player.getChest().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.ALLOMANTIC)) {
+                player.getChest().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
+            } else {
+                System.out.println("YA EXISTE EL METAL EN ESTA PARTE DEL CUERPO PARA EL METAL: " + metal);
+            }
         } else {
-            System.out.println("No available body part to add allomantic power");
+            System.out.println("NO HAY HUECO");
         };
+        System.out.println("FINALIZADO PROCESO PARA EL METAL: " + metal);
+
     }
 
 
@@ -458,22 +491,31 @@ public class InvestedPlayerData implements IInvestedPlayerData {
     public void addFeruchemicPower(MetalTagEnum metal) {
 
         if (player.getLegs().getActualQtySpikes() < player.getLegs().getMaxQtySpikes()) {
-            player.getLegs().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC));
+            if (player.getLegs().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.FERUCHEMIC)) {
+                player.getLegs().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC));
+            }
         }
         else if (player.getHead().getActualQtySpikes() < player.getHead().getMaxQtySpikes()) {
-            player.getHead().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC));
+            if (player.getHead().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.FERUCHEMIC)) {
+                player.getHead().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC));
+            }
         }
         else if (player.getBack().getActualQtySpikes() < player.getBack().getMaxQtySpikes()) {
-            player.getBack().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC));
-        }
+            if (player.getBack().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.FERUCHEMIC)) {
+                player.getBack().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC));
+            }        }
         else if (player.getArms().getActualQtySpikes() < player.getArms().getMaxQtySpikes()) {
-            player.getArms().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC));
+            if (player.getArms().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.FERUCHEMIC)) {
+                player.getArms().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC));
+            }
         }
         else if (player.getChest().getActualQtySpikes() < player.getChest().getMaxQtySpikes()) {
-            player.getChest().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC));
+            if (player.getChest().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.FERUCHEMIC)) {
+                player.getChest().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC));
+            }
         } else {
             System.out.println("No available body part to add feruchemic power");
-        }
+        };
 
     }
 
@@ -824,6 +866,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         CompoundTag back = new CompoundTag();
         CompoundTag arms = new CompoundTag();
         CompoundTag legs = new CompoundTag();
+        CompoundTag spikes = new CompoundTag();
         CompoundTag metalminds = new CompoundTag();
         CompoundTag extraData = new CompoundTag();
         CompoundTag reserve = new CompoundTag();
@@ -837,91 +880,87 @@ public class InvestedPlayerData implements IInvestedPlayerData {
 
         if (player.getHead() != null) {
             if (player.getHead().getSpikeBySlot(0, BodySlotEnum.FRONT) != null) {
-                head.putString("head_front_0", player.getHead().getSpikeBySlot(0, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getHead().getSpikeBySlot(0, BodySlotEnum.FRONT).getType().getType());
+                head.putString("head_front_0", MetalTagsUtils.getStringBySpike(player.getHead().getSpikeBySlot(0, BodySlotEnum.FRONT)));
             } else {
                 head.putString("head_front_0", "empty");
             }
             if (player.getHead().getSpikeBySlot(1, BodySlotEnum.FRONT) != null) {
-                head.putString("head_front_1", player.getHead().getSpikeBySlot(1, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getHead().getSpikeBySlot(1, BodySlotEnum.FRONT).getType().getType());
+                head.putString("head_front_1", MetalTagsUtils.getStringBySpike(player.getHead().getSpikeBySlot(1, BodySlotEnum.FRONT)));
             } else {
                 head.putString("head_front_1", "empty");
             }
             if (player.getHead().getSpikeBySlot(0, BodySlotEnum.BACK) != null) {
-                head.putString("head_back_0", player.getHead().getSpikeBySlot(0, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getHead().getSpikeBySlot(0, BodySlotEnum.BACK).getType().getType());
+                head.putString("head_back_0", MetalTagsUtils.getStringBySpike(player.getHead().getSpikeBySlot(0, BodySlotEnum.BACK)));
             } else {
                 head.putString("head_back_0", "empty");
             }
         }
         if (player.getChest() != null) {
             if (player.getChest().getSpikeBySlot(0, BodySlotEnum.FRONT) != null) {
-                chest.putString("chest_front_0", player.getChest().getSpikeBySlot(0, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getChest().getSpikeBySlot(0, BodySlotEnum.FRONT).getType().getType());
+                chest.putString("chest_front_0", MetalTagsUtils.getStringBySpike(player.getChest().getSpikeBySlot(0, BodySlotEnum.FRONT)));
             } else {
                 chest.putString("chest_front_0", "empty");
             }
             if (player.getChest().getSpikeBySlot(1, BodySlotEnum.FRONT) != null) {
-                chest.putString("chest_front_1", player.getChest().getSpikeBySlot(1, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getChest().getSpikeBySlot(1, BodySlotEnum.FRONT).getType().getType());
+                chest.putString("chest_front_1", MetalTagsUtils.getStringBySpike(player.getChest().getSpikeBySlot(1, BodySlotEnum.FRONT)));
             } else {
                 chest.putString("chest_front_1", "empty");
             }
             if (player.getChest().getSpikeBySlot(2, BodySlotEnum.FRONT) != null) {
-                chest.putString("chest_front_2", player.getChest().getSpikeBySlot(2, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getChest().getSpikeBySlot(2, BodySlotEnum.FRONT).getType().getType());
+                chest.putString("chest_front_2", MetalTagsUtils.getStringBySpike(player.getChest().getSpikeBySlot(2, BodySlotEnum.FRONT)));
             } else {
                 chest.putString("chest_front_2", "empty");
             }
             if (player.getChest().getSpikeBySlot(3, BodySlotEnum.FRONT) != null) {
-                chest.putString("chest_front_3", player.getChest().getSpikeBySlot(3, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getChest().getSpikeBySlot(3, BodySlotEnum.FRONT).getType().getType());
+                chest.putString("chest_front_3", MetalTagsUtils.getStringBySpike(player.getChest().getSpikeBySlot(3, BodySlotEnum.FRONT)));
             } else {
                 chest.putString("chest_front_3", "empty");
             }
             if (player.getChest().getSpikeBySlot(4, BodySlotEnum.FRONT) != null) {
-                chest.putString("chest_front_4", player.getChest().getSpikeBySlot(4, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getChest().getSpikeBySlot(4, BodySlotEnum.FRONT).getType().getType());
+                chest.putString("chest_front_4", MetalTagsUtils.getStringBySpike(player.getChest().getSpikeBySlot(4, BodySlotEnum.FRONT)));
             } else {
                 chest.putString("chest_front_4", "empty");
             }
             if (player.getChest().getSpikeBySlot(5, BodySlotEnum.FRONT) != null) {
-                chest.putString("chest_front_5", player.getChest().getSpikeBySlot(5, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getChest().getSpikeBySlot(5, BodySlotEnum.FRONT).getType().getType());
+                chest.putString("chest_front_5", MetalTagsUtils.getStringBySpike(player.getChest().getSpikeBySlot(5, BodySlotEnum.FRONT)));
             } else {
                 chest.putString("chest_front_5", "empty");
             }
-            if (player.getChest().getSpikeBySlot(6, BodySlotEnum.FRONT) != null) {
-                chest.putString("chest_front_6", player.getChest().getSpikeBySlot(6, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getChest().getSpikeBySlot(6, BodySlotEnum.FRONT).getType().getType());
-            } else {
-                chest.putString("chest_front_6", "empty");
-            }
+
         }
         if (player.getBack() != null) {
             if (player.getBack().getSpikeBySlot(0, BodySlotEnum.BACK) != null) {
-                back.putString("back_back_0", player.getBack().getSpikeBySlot(0, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getBack().getSpikeBySlot(0, BodySlotEnum.BACK).getType().getType());
+                back.putString("back_back_0", MetalTagsUtils.getStringBySpike(player.getBack().getSpikeBySlot(0, BodySlotEnum.BACK)));
             } else {
                 back.putString("back_back_0", "empty");
             }
             if (player.getBack().getSpikeBySlot(1, BodySlotEnum.BACK) != null) {
-                back.putString("back_back_1", player.getBack().getSpikeBySlot(1, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getBack().getSpikeBySlot(1, BodySlotEnum.BACK).getType().getType());
+                back.putString("back_back_1", MetalTagsUtils.getStringBySpike(player.getBack().getSpikeBySlot(1, BodySlotEnum.BACK)));
             } else {
                 back.putString("back_back_1", "empty");
             }
             if (player.getBack().getSpikeBySlot(2, BodySlotEnum.BACK) != null) {
-                back.putString("back_back_2", player.getBack().getSpikeBySlot(2, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getBack().getSpikeBySlot(2, BodySlotEnum.BACK).getType().getType());
+                back.putString("back_back_2", MetalTagsUtils.getStringBySpike(player.getBack().getSpikeBySlot(2, BodySlotEnum.BACK)));
             } else {
                 back.putString("back_back_2", "empty");
             }
             if (player.getBack().getSpikeBySlot(3, BodySlotEnum.BACK) != null) {
-                back.putString("back_back_3", player.getBack().getSpikeBySlot(3, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getBack().getSpikeBySlot(3, BodySlotEnum.BACK).getType().getType());
+                back.putString("back_back_3", MetalTagsUtils.getStringBySpike(player.getBack().getSpikeBySlot(3, BodySlotEnum.BACK)));
             } else {
                 back.putString("back_back_3", "empty");
             }
             if (player.getBack().getSpikeBySlot(4, BodySlotEnum.BACK) != null) {
-                back.putString("back_back_4", player.getBack().getSpikeBySlot(4, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getBack().getSpikeBySlot(4, BodySlotEnum.BACK).getType().getType());
+                back.putString("back_back_4", MetalTagsUtils.getStringBySpike(player.getBack().getSpikeBySlot(4, BodySlotEnum.BACK)));
             } else {
                 back.putString("back_back_4", "empty");
             }
             if (player.getBack().getSpikeBySlot(5, BodySlotEnum.BACK) != null) {
-                back.putString("back_back_5", player.getBack().getSpikeBySlot(5, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getBack().getSpikeBySlot(5, BodySlotEnum.BACK).getType().getType());
+                back.putString("back_back_5", MetalTagsUtils.getStringBySpike(player.getBack().getSpikeBySlot(5, BodySlotEnum.BACK)));
             } else {
                 back.putString("back_back_5", "empty");
             }
             if (player.getBack().getSpikeBySlot(6, BodySlotEnum.BACK) != null) {
-                back.putString("back_back_6", player.getBack().getSpikeBySlot(6, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getBack().getSpikeBySlot(6, BodySlotEnum.BACK).getType().getType());
+                back.putString("back_back_6", MetalTagsUtils.getStringBySpike(player.getBack().getSpikeBySlot(6, BodySlotEnum.BACK)));
             } else {
                 back.putString("back_back_6", "empty");
             }
@@ -929,62 +968,62 @@ public class InvestedPlayerData implements IInvestedPlayerData {
 
         if (player.getArms() != null) {
             if (player.getArms().getSpikeBySlot(0, BodySlotEnum.FRONT) != null) {
-                arms.putString("arms_front_0", player.getArms().getSpikeBySlot(0, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getArms().getSpikeBySlot(0, BodySlotEnum.FRONT).getType().getType());
+                arms.putString("arms_front_0", MetalTagsUtils.getStringBySpike(player.getArms().getSpikeBySlot(0, BodySlotEnum.FRONT)));
             } else {
                 arms.putString("arms_front_0", "empty");
             }
             if (player.getArms().getSpikeBySlot(1, BodySlotEnum.FRONT) != null) {
-                arms.putString("arms_front_1", player.getArms().getSpikeBySlot(1, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getArms().getSpikeBySlot(1, BodySlotEnum.FRONT).getType().getType());
+                arms.putString("arms_front_1", MetalTagsUtils.getStringBySpike(player.getArms().getSpikeBySlot(1, BodySlotEnum.FRONT)));
             } else {
                 arms.putString("arms_front_1", "empty");
             }
             if (player.getArms().getSpikeBySlot(2, BodySlotEnum.FRONT) != null) {
-                arms.putString("arms_front_2", player.getArms().getSpikeBySlot(2, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getArms().getSpikeBySlot(2, BodySlotEnum.FRONT).getType().getType());
+                arms.putString("arms_front_2", MetalTagsUtils.getStringBySpike(player.getArms().getSpikeBySlot(2, BodySlotEnum.FRONT)));
             } else {
                 arms.putString("arms_front_2", "empty");
             }
             if (player.getArms().getSpikeBySlot(3, BodySlotEnum.FRONT) != null) {
-                arms.putString("arms_front_3", player.getArms().getSpikeBySlot(3, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getArms().getSpikeBySlot(3, BodySlotEnum.FRONT).getType().getType());
+                arms.putString("arms_front_3", MetalTagsUtils.getStringBySpike(player.getArms().getSpikeBySlot(3, BodySlotEnum.FRONT)));
             } else {
                 arms.putString("arms_front_3", "empty");
             }
             if (player.getArms().getSpikeBySlot(4, BodySlotEnum.FRONT) != null) {
-                arms.putString("arms_front_4", player.getArms().getSpikeBySlot(4, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getArms().getSpikeBySlot(4, BodySlotEnum.FRONT).getType().getType());
+                arms.putString("arms_front_4", MetalTagsUtils.getStringBySpike(player.getArms().getSpikeBySlot(4, BodySlotEnum.FRONT)));
             } else {
                 arms.putString("arms_front_4", "empty");
             }
             if (player.getArms().getSpikeBySlot(5, BodySlotEnum.FRONT) != null) {
-                arms.putString("arms_front_5", player.getArms().getSpikeBySlot(5, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getArms().getSpikeBySlot(5, BodySlotEnum.FRONT).getType().getType());
+                arms.putString("arms_front_5", MetalTagsUtils.getStringBySpike(player.getArms().getSpikeBySlot(5, BodySlotEnum.FRONT)));
             } else {
                 arms.putString("arms_front_5", "empty");
             }
             if (player.getArms().getSpikeBySlot(0, BodySlotEnum.BACK) != null) {
-                arms.putString("arms_back_0", player.getArms().getSpikeBySlot(0, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getArms().getSpikeBySlot(0, BodySlotEnum.BACK).getType().getType());
+                arms.putString("arms_back_0", MetalTagsUtils.getStringBySpike(player.getArms().getSpikeBySlot(0, BodySlotEnum.BACK)));
             } else {
                 arms.putString("arms_back_0", "empty");
             }
             if (player.getArms().getSpikeBySlot(1, BodySlotEnum.BACK) != null) {
-                arms.putString("arms_back_1", player.getArms().getSpikeBySlot(1, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getArms().getSpikeBySlot(1, BodySlotEnum.BACK).getType().getType());
+                arms.putString("arms_back_1", MetalTagsUtils.getStringBySpike(player.getArms().getSpikeBySlot(1, BodySlotEnum.BACK)));
             } else {
                 arms.putString("arms_back_1", "empty");
             }
             if (player.getArms().getSpikeBySlot(2, BodySlotEnum.BACK) != null) {
-                arms.putString("arms_back_2", player.getArms().getSpikeBySlot(2, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getArms().getSpikeBySlot(2, BodySlotEnum.BACK).getType().getType());
+                arms.putString("arms_back_2", MetalTagsUtils.getStringBySpike(player.getArms().getSpikeBySlot(2, BodySlotEnum.BACK)));
             } else {
                 arms.putString("arms_back_2", "empty");
             }
             if (player.getArms().getSpikeBySlot(3, BodySlotEnum.BACK) != null) {
-                arms.putString("arms_back_3", player.getArms().getSpikeBySlot(3, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getArms().getSpikeBySlot(3, BodySlotEnum.BACK).getType().getType());
+                arms.putString("arms_back_3", MetalTagsUtils.getStringBySpike(player.getArms().getSpikeBySlot(3, BodySlotEnum.BACK)));
             } else {
                 arms.putString("arms_back_3", "empty");
             }
             if (player.getArms().getSpikeBySlot(4, BodySlotEnum.BACK) != null) {
-                arms.putString("arms_back_4", player.getArms().getSpikeBySlot(4, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getArms().getSpikeBySlot(4, BodySlotEnum.BACK).getType().getType());
+                arms.putString("arms_back_4", MetalTagsUtils.getStringBySpike(player.getArms().getSpikeBySlot(4, BodySlotEnum.BACK)));
             } else {
                 arms.putString("arms_back_4", "empty");
             }
             if (player.getArms().getSpikeBySlot(5, BodySlotEnum.BACK) != null) {
-                arms.putString("arms_back_5", player.getArms().getSpikeBySlot(5, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getArms().getSpikeBySlot(5, BodySlotEnum.BACK).getType().getType());
+                arms.putString("arms_back_5", MetalTagsUtils.getStringBySpike(player.getArms().getSpikeBySlot(5, BodySlotEnum.BACK)));
             } else {
                 arms.putString("arms_back_5", "empty");
             }
@@ -992,71 +1031,72 @@ public class InvestedPlayerData implements IInvestedPlayerData {
 
         if (player.getLegs() != null) {
             if (player.getLegs().getSpikeBySlot(0, BodySlotEnum.FRONT) != null) {
-                legs.putString("legs_front_0", player.getLegs().getSpikeBySlot(0, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getLegs().getSpikeBySlot(0, BodySlotEnum.FRONT).getType().getType());
+                legs.putString("legs_front_0", MetalTagsUtils.getStringBySpike(player.getLegs().getSpikeBySlot(0, BodySlotEnum.FRONT)));
             } else {
                 legs.putString("legs_front_0", "empty");
             }
             if (player.getLegs().getSpikeBySlot(1, BodySlotEnum.FRONT) != null) {
-                legs.putString("legs_front_1", player.getLegs().getSpikeBySlot(1, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getLegs().getSpikeBySlot(1, BodySlotEnum.FRONT).getType().getType());
+                legs.putString("legs_front_1", MetalTagsUtils.getStringBySpike(player.getLegs().getSpikeBySlot(1, BodySlotEnum.FRONT)));
             } else {
                 legs.putString("legs_front_1", "empty");
             }
             if (player.getLegs().getSpikeBySlot(2, BodySlotEnum.FRONT) != null) {
-                legs.putString("legs_front_2", player.getLegs().getSpikeBySlot(2, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getLegs().getSpikeBySlot(2, BodySlotEnum.FRONT).getType().getType());
+                legs.putString("legs_front_2", MetalTagsUtils.getStringBySpike(player.getLegs().getSpikeBySlot(2, BodySlotEnum.FRONT)));
             } else {
                 legs.putString("legs_front_2", "empty");
             }
             if (player.getLegs().getSpikeBySlot(3, BodySlotEnum.FRONT) != null) {
-                legs.putString("legs_front_3", player.getLegs().getSpikeBySlot(3, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getLegs().getSpikeBySlot(3, BodySlotEnum.FRONT).getType().getType());
+                legs.putString("legs_front_3", MetalTagsUtils.getStringBySpike(player.getLegs().getSpikeBySlot(3, BodySlotEnum.FRONT)));
             } else {
                 legs.putString("legs_front_3", "empty");
             }
             if (player.getLegs().getSpikeBySlot(4, BodySlotEnum.FRONT) != null) {
-                legs.putString("legs_front_4", player.getLegs().getSpikeBySlot(4, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getLegs().getSpikeBySlot(4, BodySlotEnum.FRONT).getType().getType());
+                legs.putString("legs_front_4", MetalTagsUtils.getStringBySpike(player.getLegs().getSpikeBySlot(4, BodySlotEnum.FRONT)));
             } else {
                 legs.putString("legs_front_4", "empty");
             }
             if (player.getLegs().getSpikeBySlot(5, BodySlotEnum.FRONT) != null) {
-                legs.putString("legs_front_5", player.getLegs().getSpikeBySlot(5, BodySlotEnum.FRONT).getMetal().getNameLower() + "_" + player.getLegs().getSpikeBySlot(5, BodySlotEnum.FRONT).getType().getType());
+                legs.putString("legs_front_5", MetalTagsUtils.getStringBySpike(player.getLegs().getSpikeBySlot(5, BodySlotEnum.FRONT)));
             } else {
                 legs.putString("legs_front_5", "empty");
             }
             if (player.getLegs().getSpikeBySlot(0, BodySlotEnum.BACK) != null) {
-                legs.putString("legs_back_0", player.getLegs().getSpikeBySlot(0, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getLegs().getSpikeBySlot(0, BodySlotEnum.BACK).getType().getType());
+                legs.putString("legs_back_0", MetalTagsUtils.getStringBySpike(player.getLegs().getSpikeBySlot(0, BodySlotEnum.BACK)));
             } else {
                 legs.putString("legs_back_0", "empty");
             }
             if (player.getLegs().getSpikeBySlot(1, BodySlotEnum.BACK) != null) {
-                legs.putString("legs_back_1", player.getLegs().getSpikeBySlot(1, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getLegs().getSpikeBySlot(1, BodySlotEnum.BACK).getType().getType());
+                legs.putString("legs_back_1", MetalTagsUtils.getStringBySpike(player.getLegs().getSpikeBySlot(1, BodySlotEnum.BACK)));
             } else {
                 legs.putString("legs_back_1", "empty");
             }
             if (player.getLegs().getSpikeBySlot(2, BodySlotEnum.BACK) != null) {
-                legs.putString("legs_back_2", player.getLegs().getSpikeBySlot(2, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getLegs().getSpikeBySlot(2, BodySlotEnum.BACK).getType().getType());
+                legs.putString("legs_back_2", MetalTagsUtils.getStringBySpike(player.getLegs().getSpikeBySlot(2, BodySlotEnum.BACK)));
             } else {
                 legs.putString("legs_back_2", "empty");
             }
             if (player.getLegs().getSpikeBySlot(3, BodySlotEnum.BACK) != null) {
-                legs.putString("legs_back_3", player.getLegs().getSpikeBySlot(3, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getLegs().getSpikeBySlot(3, BodySlotEnum.BACK).getType().getType());
+                legs.putString("legs_back_3", MetalTagsUtils.getStringBySpike(player.getLegs().getSpikeBySlot(3, BodySlotEnum.BACK)));
             } else {
                 legs.putString("legs_back_3", "empty");
             }
             if (player.getLegs().getSpikeBySlot(4, BodySlotEnum.BACK) != null) {
-                legs.putString("legs_back_4", player.getLegs().getSpikeBySlot(4, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getLegs().getSpikeBySlot(4, BodySlotEnum.BACK).getType().getType());
+                legs.putString("legs_back_4", MetalTagsUtils.getStringBySpike(player.getLegs().getSpikeBySlot(4, BodySlotEnum.BACK)));
             } else {
                 legs.putString("legs_back_4", "empty");
             }
             if (player.getLegs().getSpikeBySlot(5, BodySlotEnum.BACK) != null) {
-                legs.putString("legs_back_5", player.getLegs().getSpikeBySlot(5, BodySlotEnum.BACK).getMetal().getNameLower() + "_" + player.getLegs().getSpikeBySlot(5, BodySlotEnum.BACK).getType().getType());
+                legs.putString("legs_back_5", MetalTagsUtils.getStringBySpike(player.getLegs().getSpikeBySlot(5, BodySlotEnum.BACK)));
             } else {
                 legs.putString("legs_back_5", "empty");
             }
         }
-        playerData.put("body_head", head);
-        playerData.put("body_chest", chest);
-        playerData.put("body_back", back);
-        playerData.put("body_arms", arms);
-        playerData.put("body_legs", legs);
+        spikes.put("body_head", head);
+        spikes.put("body_chest", chest);
+        spikes.put("body_back", back);
+        spikes.put("body_arms", arms);
+        spikes.put("body_legs", legs);
+        playerData.put("spikes", spikes);
 
         for (int i = 0; i < 10; i++) {
             metalminds.putBoolean("group_" + i, this.hasMetalMindEquiped(i));
@@ -1101,12 +1141,12 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void load(CompoundTag playerData) {
-
-        CompoundTag head = playerData.getCompound("body_head");
-        CompoundTag back = playerData.getCompound("body_back");
-        CompoundTag chest = playerData.getCompound("body_chest");
-        CompoundTag legs = playerData.getCompound("body_legs");
-        CompoundTag arms = playerData.getCompound("body_arms");
+        CompoundTag spikes = playerData.getCompound("spikes");
+        CompoundTag head = spikes.getCompound("body_head");
+        CompoundTag back = spikes.getCompound("body_back");
+        CompoundTag chest = spikes.getCompound("body_chest");
+        CompoundTag legs = spikes.getCompound("body_legs");
+        CompoundTag arms = spikes.getCompound("body_arms");
         CompoundTag metalminds = playerData.getCompound("metalminds");
         CompoundTag extraData = playerData.getCompound("extra_data");
         CompoundTag reserve = extraData.getCompound("reserve");
@@ -1276,18 +1316,6 @@ public class InvestedPlayerData implements IInvestedPlayerData {
                 }
             }
         }
-
-        if (chest.getString("chest_front_6") != null) {
-            if (!chest.getString("chest_front_6").equals("empty")) {
-                if (chest.getString("chest_front_6").contains("allomantic")) {
-                    player.getChest().addSpikeBySlot(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(chest.getString("chest_front_6")), TypeOfSpikeEnum.ALLOMANTIC), 6, BodySlotEnum.FRONT);
-                } else {
-                    player.getChest().addSpikeBySlot(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(chest.getString("chest_front_6")), TypeOfSpikeEnum.FERUCHEMIC), 6, BodySlotEnum.FRONT);
-                }
-            }
-        }
-
-
 
         if (arms.getString("arms_front_0") != null) {
             if (!arms.getString("arms_front_0").equals("empty")) {
