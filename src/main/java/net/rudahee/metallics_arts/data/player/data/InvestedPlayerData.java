@@ -399,55 +399,38 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void addAllomanticPower(MetalTagEnum metal) {
-        System.out.println("ENTRANDO PARA EL METAL ALOMANTICO: " + metal);
 
         if (player.getLegs().getActualQtySpikes() < player.getLegs().getMaxQtySpikes()) {
-            System.out.println("PIERNAS DISPONIBLES PARA EL METAL: " + metal);
 
             if (player.getLegs().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.ALLOMANTIC)) {
                 player.getLegs().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
-            } else {
-                System.out.println("YA EXISTE EL METAL EN ESTA PARTE DEL CUERPO PARA EL METAL: " + metal);
             }
         }
         else if (player.getHead().getActualQtySpikes() < player.getHead().getMaxQtySpikes()) {
-            System.out.println("CABEZA DISPONIBLES PARA EL METAL: " + metal);
 
             if (player.getHead().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.ALLOMANTIC)) {
                 player.getHead().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
-            } else {
-                System.out.println("YA EXISTE EL METAL EN ESTA PARTE DEL CUERPO PARA EL METAL: " + metal);
             }
         }
         else if (player.getBack().getActualQtySpikes() < player.getBack().getMaxQtySpikes()) {
-            System.out.println("ESPALDA DISPONIBLES PARA EL METAL: " + metal);
 
             if (player.getBack().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.ALLOMANTIC)) {
                 player.getBack().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
-            } else {
-                System.out.println("YA EXISTE EL METAL EN ESTA PARTE DEL CUERPO PARA EL METAL: " + metal);
             }
         }
         else if (player.getArms().getActualQtySpikes() < player.getArms().getMaxQtySpikes()) {
-            System.out.println("BRAZO DISPONIBLES PARA EL METAL: " + metal);
             if (player.getArms().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.ALLOMANTIC)) {
                 player.getArms().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
-            } else {
-                System.out.println("YA EXISTE EL METAL EN ESTA PARTE DEL CUERPO PARA EL METAL: " + metal);
             }
         }
         else if (player.getChest().getActualQtySpikes() < player.getChest().getMaxQtySpikes()) {
-            System.out.println("PECHO DISPONIBLES PARA EL METAL: " + metal);
 
             if (player.getChest().getAllSpikes().stream().noneMatch(spike -> spike.getMetal().getNameLower().equals(metal.getNameLower()) && spike.getType() == TypeOfSpikeEnum.ALLOMANTIC)) {
                 player.getChest().addSpikeRandom(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC));
-            } else {
-                System.out.println("YA EXISTE EL METAL EN ESTA PARTE DEL CUERPO PARA EL METAL: " + metal);
             }
         } else {
             System.out.println("NO HAY HUECO");
         };
-        System.out.println("FINALIZADO PROCESO PARA EL METAL: " + metal);
 
     }
 
@@ -561,7 +544,6 @@ public class InvestedPlayerData implements IInvestedPlayerData {
 
         for (MetalTagEnum metal: filteredMetals) {
             addAllomanticPower(metal);
-            System.out.println("Agregado metal alomantico: " + metal.getNameLower());
         }
     }
 
@@ -576,7 +558,6 @@ public class InvestedPlayerData implements IInvestedPlayerData {
 
         for (MetalTagEnum metal: filteredMetals) {
             addFeruchemicPower(metal);
-            System.out.println("Agregado metal feruquimico: " + metal.getNameLower());
         }
     }
 
@@ -1169,9 +1150,9 @@ public class InvestedPlayerData implements IInvestedPlayerData {
         if (head.getString("head_back_0") != null) {
             if (!head.getString("head_back_0").equals("empty")) {
                 if (head.getString("head_back_0").contains("allomantic")) {
-                    player.getHead().addSpikeBySlot(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(head.getString("head_back_0")), TypeOfSpikeEnum.ALLOMANTIC), 0, BodySlotEnum.FRONT);
+                    player.getHead().addSpikeBySlot(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(head.getString("head_back_0")), TypeOfSpikeEnum.ALLOMANTIC), 0, BodySlotEnum.BACK);
                 } else {
-                    player.getHead().addSpikeBySlot(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(head.getString("head_back_0")), TypeOfSpikeEnum.FERUCHEMIC), 0, BodySlotEnum.FRONT);
+                    player.getHead().addSpikeBySlot(new SpikeEntity(MetalTagsUtils.getMetalTagEnumByString(head.getString("head_back_0")), TypeOfSpikeEnum.FERUCHEMIC), 0, BodySlotEnum.BACK);
                 }
             }
         }

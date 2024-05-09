@@ -149,40 +149,28 @@ public final class LegsPartEntity extends BodyPartEntity {
     public void addSpikeRandom(SpikeEntity entity) {
         if (SLOT_BACK_0 == null) {
             SLOT_BACK_0 = entity;
-            System.out.println("Agregado en Legs-Slot-Back 0");
         } else if (SLOT_BACK_1 == null) {
             SLOT_BACK_1 = entity;
-            System.out.println("Agregado en Legs-Slot-Back 1");
         } else if (SLOT_BACK_2 == null) {
             SLOT_BACK_2 = entity;
-            System.out.println("Agregado en Legs-Slot-Back 2");
         } else if (SLOT_BACK_3 == null) {
             SLOT_BACK_3 = entity;
-            System.out.println("Agregado en Legs-Slot-Back 3");
         } else if (SLOT_BACK_4 == null) {
             SLOT_BACK_4 = entity;
-            System.out.println("Agregado en Legs-Slot-Back 4");
         } else if (SLOT_BACK_5 == null) {
             SLOT_BACK_5 = entity;
-            System.out.println("Agregado en Legs-Slot-Back 5");
         } else if (SLOT_FRONT_0 == null) {
             SLOT_FRONT_0 = entity;
-            System.out.println("Agregado en Legs-Slot-Front-0");
         } else if (SLOT_FRONT_1 == null) {
             SLOT_FRONT_1 = entity;
-            System.out.println("Agregado en Legs-Slot-Front-1");
         } else if (SLOT_FRONT_2 == null) {
             SLOT_FRONT_2 = entity;
-            System.out.println("Agregado en Legs-Slot-Front-2");
         } else if (SLOT_FRONT_3 == null) {
             SLOT_FRONT_3 = entity;
-            System.out.println("Agregado en Legs-Slot-Front-3");
         } else if (SLOT_FRONT_4 == null) {
             SLOT_FRONT_4 = entity;
-            System.out.println("Agregado en Legs-Slot-Front-4");
         } else if (SLOT_FRONT_5 == null) {
             SLOT_FRONT_5 = entity;
-            System.out.println("Agregado en Legs-Slot-Front-5");
         } else {
             System.out.println("No se agrego la entidad " + entity + " \n EN LEGS");
         }

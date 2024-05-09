@@ -33,6 +33,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
 import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
+import net.rudahee.metallics_arts.data.providers.ModInvestedPlayerDataProvider;
 import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceScreen;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.WoodTypeMetal;
@@ -132,7 +133,7 @@ public class MetallicsArts {
     @SubscribeEvent
     public void attachCapabilitiesEntity(final AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof Player) {
-            event.addCapability(InvestedPlayerCapabilityRegister.IDENTIFIER, new ModPaintingProvider.ModInvestedDataProvider());
+            event.addCapability(InvestedPlayerCapabilityRegister.IDENTIFIER, new ModInvestedPlayerDataProvider());
         }
 
 

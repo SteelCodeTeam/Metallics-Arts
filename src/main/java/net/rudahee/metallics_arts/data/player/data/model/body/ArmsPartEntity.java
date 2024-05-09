@@ -148,40 +148,28 @@ public final class ArmsPartEntity extends BodyPartEntity {
     @Override
     public void addSpikeRandom(SpikeEntity entity) {
         if (SLOT_BACK_0 == null) {
-            System.out.println("ARMS - BACK - 0");
             SLOT_BACK_0 = entity;
         } else if (SLOT_BACK_1 == null) {
-            System.out.println("ARMS - BACK - 1");
             SLOT_BACK_1 = entity;
         } else if (SLOT_BACK_2 == null) {
-            System.out.println("ARMS - BACK - 2");
             SLOT_BACK_2 = entity;
         } else if (SLOT_BACK_3 == null) {
-            System.out.println("ARMS - BACK - 3");
             SLOT_BACK_3 = entity;
         } else if (SLOT_BACK_4 == null) {
-            System.out.println("ARMS - BACK - 4");
             SLOT_BACK_4 = entity;
         } else if (SLOT_BACK_5 == null) {
-            System.out.println("ARMS - BACK - 5");
             SLOT_BACK_5 = entity;
         } else if (SLOT_FRONT_0 == null) {
-            System.out.println("ARMS - FRONT - 0");
             SLOT_FRONT_0 = entity;
         } else if (SLOT_FRONT_1 == null) {
-            System.out.println("ARMS - FRONT - 1");
             SLOT_FRONT_1 = entity;
         } else if (SLOT_FRONT_2 == null) {
-            System.out.println("ARMS - FRONT - 2");
             SLOT_FRONT_2 = entity;
         } else if (SLOT_FRONT_3 == null) {
-            System.out.println("ARMS - FRONT - 3");
             SLOT_FRONT_3 = entity;
         } else if (SLOT_FRONT_4 == null) {
-            System.out.println("ARMS - FRONT - 4");
             SLOT_FRONT_4 = entity;
         } else if (SLOT_FRONT_5 == null) {
-            System.out.println("ARMS - FRONT - 5");
             SLOT_FRONT_5 = entity;
         } else {
             System.out.println("No se agrego la entidad " + entity + " \n EN ARMS");

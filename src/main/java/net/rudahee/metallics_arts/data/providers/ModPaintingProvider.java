@@ -65,9 +65,6 @@ public class ModPaintingProvider {
     public static final RegistryObject<PaintingVariant> CARLOS5 = PAINTING_VARIANTS.register("carlos_wk_art_red_sun_painting",
             () -> new PaintingVariant(32,48));
 
-
-
-
     /**
      * Registers the painting variants with the given event bus.
      *
@@ -78,66 +75,4 @@ public class ModPaintingProvider {
         PAINTING_VARIANTS2.register(eventBus);
     }
 
-    /**
-     * A custom data provider for invested player data.
-     * It implements the ICapabilitySerializable interface to allow serialization and deserialization of the data.
-     */
-    public static class ModInvestedDataProvider implements ICapabilitySerializable<CompoundTag> {
-
-        private final InvestedPlayerData data = new InvestedPlayerData();
-        private final LazyOptional<IInvestedPlayerData> dataOptional = LazyOptional.of(() -> this.data);
-
-        /**
-         * Constructs a new instance of the ModInvestedDataProvider class.
-         */
-        public ModInvestedDataProvider() {
-        }
-
-        /**
-         * Gets the capability of the invested player data.
-         *
-         * @param cap   the capability instance requested
-         * @param side  the direction to access the capability, can be null
-         * @return LazyOptional containing the capability instance if available, otherwise empty
-         */
-        @Nonnull
-        @Override
-        public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-            return InvestedPlayerCapabilityRegister.PLAYER_CAP.orEmpty(cap, this.dataOptional.cast());
-        }
-
-        /**
-         * Serializes the invested player data into a CompoundTag.
-         *
-         * @return a CompoundTag containing the serialized invested player data
-         */
-        @Override
-        public CompoundTag serializeNBT() {
-            if (InvestedPlayerCapabilityRegister.PLAYER_CAP == null) {
-                return new CompoundTag();
-            } else {
-                return data.save();
-            }
-
-        }
-
-        /**
-         * Deserializes the invested player data from a CompoundTag.
-         *
-         * @param nbt the CompoundTag containing the serialized invested player data
-         */
-        @Override
-        public void deserializeNBT(CompoundTag nbt) {
-            if (InvestedPlayerCapabilityRegister.PLAYER_CAP != null) {
-                data.load(nbt);
-            }
-        }
-
-        /**
-         * Invalidates the lazy optional data.
-         */
-        public void invalidate() {
-            this.dataOptional.invalidate();
-        }
-    }
 }

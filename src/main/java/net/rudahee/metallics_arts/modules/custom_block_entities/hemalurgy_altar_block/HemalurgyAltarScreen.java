@@ -39,7 +39,6 @@ public class HemalurgyAltarScreen {
         try {
             IInvestedPlayerData data = CapabilityUtils.getCapability(Minecraft.getInstance().player);
             PlayerEntity entity = data.getPlayerData();
-            System.out.println(entity.toString());
         } catch (PlayerException e) {
             System.out.println("Hey, el data o el player se fueron a la puta.");
         }

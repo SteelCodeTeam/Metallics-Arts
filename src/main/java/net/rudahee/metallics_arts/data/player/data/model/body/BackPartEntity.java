@@ -128,25 +128,18 @@ public final class BackPartEntity extends BodyPartEntity {
     @Override
     public void addSpikeRandom(SpikeEntity entity) {
         if (SLOT_BACK_0 == null) {
-            System.out.println("BACK BACK 0");
             SLOT_BACK_0 = entity;
         } else if (SLOT_BACK_1 == null) {
-            System.out.println("BACK BACK 1");
             SLOT_BACK_1 = entity;
         } else if (SLOT_BACK_2 == null) {
-            System.out.println("BACK BACK 2");
             SLOT_BACK_2 = entity;
         } else if (SLOT_BACK_3 == null) {
-            System.out.println("BACK BACK 3");
             SLOT_BACK_3 = entity;
         } else if (SLOT_BACK_4 == null) {
-            System.out.println("BACK BACK 4");
             SLOT_BACK_4 = entity;
         } else if (SLOT_BACK_5 == null) {
-            System.out.println("BACK BACK 5");
             SLOT_BACK_5 = entity;
         } else if (SLOT_BACK_6 == null) {
-            System.out.println("BACK BACK 6");
             SLOT_BACK_6 = entity;
         } else {
             System.out.println("No se agrego la entidad " + entity + " \n EN BACK");
