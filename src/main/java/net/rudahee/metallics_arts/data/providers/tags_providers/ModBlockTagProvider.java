@@ -77,6 +77,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         }
 
         makePickaxeMineable(ModBlocksRegister.CRUCIBLE_FURNACE.get());
+        makePickaxeDiamondMineable(ModBlocksRegister.HEMALURGY_ALTAR_BACK.get());
+        makePickaxeDiamondMineable(ModBlocksRegister.HEMALURGY_ALTAR_FRONT.get());
+
 
     }
 
@@ -216,10 +219,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         }
     }
 
-
-
-
-
     /**
      * Adds a forge tag for a group of blocks.
      *
@@ -241,6 +240,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         addTag("mineable/pickaxe", items);
         addTag("needs_iron_tool", items);
     }
+
+    private void makePickaxeDiamondMineable(Block... items) {
+        addTag("mineable/pickaxe", items);
+        addTag("needs_iron_tool", items);
+    }
+
 
     /**
      * Adds a custom tag for a group of blocks.

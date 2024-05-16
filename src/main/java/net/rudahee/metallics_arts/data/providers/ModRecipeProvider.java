@@ -1085,7 +1085,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_block", has(ModBlocksRegister.CRUCIBLE_FURNACE.get()))
                 .save(recipesConsumer, new ResourceLocation(ModBlocksRegister.CRUCIBLE_FURNACE.get().getDescriptionId()));
 
-        /*ShapedRecipeBuilder.shaped(ModItemsRegister.MISTCLOACK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItemsRegister.MISTCLOACK.get())
                 .define('#', Items.STRING)
                 .define('*', Items.PHANTOM_MEMBRANE)
                 .define('X', Items.BLACK_WOOL)
@@ -1093,7 +1093,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .pattern("***")
                 .unlockedBy("has_block", has(ModItemsRegister.MISTCLOACK.get()))
-                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.MISTCLOACK.get().getDescriptionId()));*/
+                .save(recipesConsumer, new ResourceLocation(ModItemsRegister.MISTCLOACK.get().getDescriptionId()));
 
 
 

@@ -1,9 +1,0 @@
-{
-  "parent": "block/orientable",
-  "textures": {
-    "top": "metallics_arts:block/crucible_furnace_top",
-    "front": "metallics_arts:block/crucible_furnace_side",
-    "bottom": "metallics_arts:block/crucible_furnace_bottom",
-    "side": "metallics_arts:block/crucible_furnace_side"
-  }
-}

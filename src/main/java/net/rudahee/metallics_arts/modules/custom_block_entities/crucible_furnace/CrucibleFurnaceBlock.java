@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.modules.custom_blocks.tables;
+package net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

@@ -1,12 +1,10 @@
-package net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block;
+package net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.back;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -20,20 +18,20 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.rudahee.metallics_arts.data.custom_recipes.tables.CrucibleFurnaceRecipe;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBlockEntitiesRegister;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 
-public class HemalurgyAltarBlockEntity extends BlockEntity implements MenuProvider {
+public class HemalurgyAltarBackBlockEntity extends BlockEntity implements MenuProvider {
 
     // Slots definition
-    private final ItemStackHandler itemHandler = new ItemStackHandler(40) {
+
+    private LazyOptional<IItemHandler> lazyItemHandlerFront = LazyOptional.empty();
+    private final ItemStackHandler itemHandlerFront = new ItemStackHandler(20) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -55,7 +53,7 @@ public class HemalurgyAltarBlockEntity extends BlockEntity implements MenuProvid
 
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            if (slot >= 0 && slot <= 40) {
+            if (slot >= 0 && slot <= 20) {
                 return Arrays.stream(SpikeEnum.values()).anyMatch(spike -> spike.getSpike().equals(stack.getItem()));
             }
 
@@ -63,12 +61,43 @@ public class HemalurgyAltarBlockEntity extends BlockEntity implements MenuProvid
         }
     };
 
-    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+    private LazyOptional<IItemHandler> lazyItemHandlerBack = LazyOptional.empty();
+    private final ItemStackHandler itemHandlerBack = new ItemStackHandler(20) {
+        @Override
+        protected void onContentsChanged(int slot) {
+            setChanged();
+        }
+
+        @Override
+        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            if (!isItemValid(slot, stack)) {
+                return stack;
+            }
+
+            return super.insertItem(slot, stack, simulate);
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return 1;
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            if (slot >= 0 && slot <= 20) {
+                return Arrays.stream(SpikeEnum.values()).anyMatch(spike -> spike.getSpike().equals(stack.getItem()));
+            }
+
+            return false;
+        }
+    };
+
+
 
     protected final ContainerData data;
 
-    public HemalurgyAltarBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntitiesRegister.HEMALURGY_ALTAR_ENTITY.get(), pos, state);
+    public HemalurgyAltarBackBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntitiesRegister.HEMALURGY_ALTAR_BACK_ENTITY.get(), pos, state);
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
@@ -102,7 +131,7 @@ public class HemalurgyAltarBlockEntity extends BlockEntity implements MenuProvid
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if(cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return lazyItemHandler.cast();
+            return lazyItemHandlerFront.cast();
         }
 
         return super.getCapability(cap, side);
@@ -111,47 +140,45 @@ public class HemalurgyAltarBlockEntity extends BlockEntity implements MenuProvid
     @Override
     public void onLoad() {
         super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
+        lazyItemHandlerFront = LazyOptional.of(() -> itemHandlerFront);
+        lazyItemHandlerBack = LazyOptional.of(() -> itemHandlerBack);
+
     }
 
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
-        lazyItemHandler.invalidate();
+        lazyItemHandlerFront.invalidate();
+        lazyItemHandlerBack.invalidate();
     }
 
     @Override
     protected void saveAdditional(CompoundTag tag) {
-        tag.put("inventory", itemHandler.serializeNBT());
+        tag.put("hemalurgy_altar_back", itemHandlerBack.serializeNBT());
 
         super.saveAdditional(tag);
     }
 
     @Override
     public void load(CompoundTag tag) {
-        itemHandler.deserializeNBT(tag.getCompound("inventory"));
+        itemHandlerBack.deserializeNBT(tag.getCompound("hemalurgy_altar_back"));
 
         super.load(tag);
     }
 
-    public void drops() {
-        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
+
+    public static void tick(Level level, BlockPos pos, BlockState state, HemalurgyAltarBackBlockEntity entity) {
+        if (!level.isClientSide()) {
+
         }
 
-        Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState state, HemalurgyAltarBlockEntity entity) {
-
-
-    }
-
-
-    @Nullable
-    @Override
     public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
-        return new HemalurgyAltarMenu(id, inv, this, this.data);
+        return new HemalurgyAltarBackMenu(id, inv, this, this.data);
+    }
+
+    public AbstractContainerMenu createBackMenu(int id, Inventory inv, Player player) {
+        return new HemalurgyAltarBackMenu(id, inv, this, this.data);
     }
 }

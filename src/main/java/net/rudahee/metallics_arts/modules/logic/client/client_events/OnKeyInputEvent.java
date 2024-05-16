@@ -12,7 +12,6 @@ import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerExcept
 import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.selectors.AllomanticSelector;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.selectors.FeruchemySelector;
-import net.rudahee.metallics_arts.modules.logic.client.custom_guis.selectors.HemalurgySelector;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.network.packets.ChangeAmmoGunPacket;
 import net.rudahee.metallics_arts.setup.network.packets.ReloadGunPacket;
@@ -78,9 +77,7 @@ public class OnKeyInputEvent {
                 minecraft.setScreen(new FeruchemySelector());
             }
         }
-        if (ModKeyRegister.HEMALURGY_POWER_SELECTOR.isDown()) {
-            minecraft.setScreen(new HemalurgySelector());
-        }
+
 
 
 

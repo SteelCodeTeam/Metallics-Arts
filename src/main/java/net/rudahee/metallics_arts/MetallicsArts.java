@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -36,6 +35,8 @@ import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
 import net.rudahee.metallics_arts.data.providers.ModInvestedPlayerDataProvider;
 import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceScreen;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front.HemalurgyAltarFrontScreen;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.back.HemalurgyAltarBackScreen;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.WoodTypeMetal;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.CuriosLayerDefinitions;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.MetalMindModel;
@@ -45,7 +46,6 @@ import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays.MetalsOverlay;
 import net.rudahee.metallics_arts.modules.custom_entities.villagers.ModVillager;
 import net.rudahee.metallics_arts.setup.Registration;
-import net.rudahee.metallics_arts.setup.dependency_management.ModClientDependencyManagement;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.*;
 
@@ -208,6 +208,8 @@ public class MetallicsArts {
 
         ModEventsRegister.clientInit(e);
         MenuScreens.register(ModMenuRegister.CRUCIBLE_FURNACE_MENU.get(), CrucibleFurnaceScreen::new);
+        MenuScreens.register(ModMenuRegister.HEMALURGY_ALTAR_FRONT_MENU.get(), HemalurgyAltarFrontScreen::new);
+        MenuScreens.register(ModMenuRegister.HEMALURGY_ALTAR_BACK_MENU.get(), HemalurgyAltarBackScreen::new);
 
         WoodType.register(WoodTypeMetal.IRON_TYPE);
         WoodType.register(WoodTypeMetal.GOLD_TYPE);

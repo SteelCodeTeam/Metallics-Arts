@@ -30,7 +30,7 @@ public class ModClientDependencyManagement {
         File modFolder = new File("mods");
 
         if (modFolder.isDirectory()) {
-            for (File file : modFolder.listFiles()) {
+            for (File file: modFolder.listFiles()) {
                 if (file.getName().contains(Dependencies.CURIOS.getName())) {
                     existsCurios = true;
                     LoggerUtils.printLogInfo("Mod: " + Dependencies.CURIOS.getName() + " already exists. Skipping download.");

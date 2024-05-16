@@ -299,10 +299,10 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
                     entity.itemHandler.extractItem(4, 1, false);
 
                     if (entity.itemHandler.getStackInSlot(5).isEmpty()) {
-                        entity.itemHandler.setStackInSlot(5, new ItemStack(recipe.get().getResultItem().getItemHolder(), 3));
+                        entity.itemHandler.setStackInSlot(5, new ItemStack(recipe.get().getResultItem().getItemHolder(), 4));
                     } else {
                         entity.itemHandler.setStackInSlot(5, new ItemStack(recipe.get().getResultItem().getItem(),
-                                entity.itemHandler.getStackInSlot(5).getCount() + 3));
+                                entity.itemHandler.getStackInSlot(5).getCount() + 4));
                     }
 
                     entity.progress = 0;

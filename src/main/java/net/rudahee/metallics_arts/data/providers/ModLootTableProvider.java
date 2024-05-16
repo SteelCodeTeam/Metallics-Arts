@@ -142,6 +142,9 @@ public class ModLootTableProvider implements LootTableSubProvider {
                 ModBlocksRegister.ETTMETAL_CLUSTER.get(), ModItemsRegister.ITEM_GEMS_BASE.get("ettmetal"), 1, 1);
 
         addSimpleBlock(writer, ForgeRegistries.BLOCKS.getKey(ModBlocksRegister.CRUCIBLE_FURNACE.get()).getPath(), ModBlocksRegister.CRUCIBLE_FURNACE.get());
+        addSimpleBlock(writer, ForgeRegistries.BLOCKS.getKey(ModBlocksRegister.HEMALURGY_ALTAR_FRONT.get()).getPath(), ModBlocksRegister.HEMALURGY_ALTAR_FRONT.get());
+        addSimpleBlock(writer, ForgeRegistries.BLOCKS.getKey(ModBlocksRegister.HEMALURGY_ALTAR_BACK.get()).getPath(), ModBlocksRegister.HEMALURGY_ALTAR_BACK.get());
+
 
     }
 }

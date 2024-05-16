@@ -512,6 +512,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void addFeruchemicPower(MetalTagEnum metal, BodyPartEnum part, BodySlotEnum slotPos, int slotNum) {
+
         if (part.equals(BodyPartEnum.HEAD)) {
             this.player.getHead().addSpikeBySlot(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC), slotNum, slotPos);
         } else if (part.equals(BodyPartEnum.CHEST)) {

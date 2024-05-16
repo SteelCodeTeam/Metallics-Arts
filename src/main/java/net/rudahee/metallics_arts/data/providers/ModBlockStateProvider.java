@@ -130,9 +130,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
         horizontalBlock(ModBlocksRegister.CRUCIBLE_FURNACE.get(), model);
         simpleBlockItem(ModBlocksRegister.CRUCIBLE_FURNACE.get(),model);
 
-        //simpleBlock(ModBlocksRegister.CRUCIBLE_FURNACE.get());
+        /*model = new ModelFile.UncheckedModelFile(modLoc("block/hemalurgy_altar_front"));
+        horizontalBlock(ModBlocksRegister.HEMALURGY_ALTAR_FRONT.get(), model);
+        simpleBlockItem(ModBlocksRegister.HEMALURGY_ALTAR_FRONT.get(),model);
+        model = new ModelFile.UncheckedModelFile(modLoc("block/hemalurgy_altar_back"));
+        horizontalBlock(ModBlocksRegister.HEMALURGY_ALTAR_BACK.get(), model);
+        simpleBlockItem(ModBlocksRegister.HEMALURGY_ALTAR_BACK.get(),model);
+        //simpleBlock(ModBlocksRegister.CRUCIBLE_FURNACE.get());*/
 
-
+        //TODO textura
 
         for (MetalEnum metal : MetalEnum.values()) {
             stairsBlock((StairBlock) ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower()), blockTexture(ModBlocksRegister.BLOCK_METAL_BLOCKS.get(metal.getMetalNameLower())));

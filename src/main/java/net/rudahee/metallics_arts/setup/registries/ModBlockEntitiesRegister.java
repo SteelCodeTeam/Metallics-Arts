@@ -8,7 +8,8 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceBlockEntity;
 import net.rudahee.metallics_arts.modules.custom_block_entities.distillery.DistilleryBlockEntity;
-import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.HemalurgyAltarBlockEntity;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.back.HemalurgyAltarBackBlockEntity;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front.HemalurgyAltarFrontBlockEntity;
 import net.rudahee.metallics_arts.modules.custom_block_entities.signs.ModSingBlockEntity;
 
 public class ModBlockEntitiesRegister {
@@ -21,10 +22,15 @@ public class ModBlockEntitiesRegister {
                     BlockEntityType.Builder.of(CrucibleFurnaceBlockEntity::new,
                             ModBlocksRegister.CRUCIBLE_FURNACE.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<HemalurgyAltarBlockEntity>> HEMALURGY_ALTAR_ENTITY =
-            BLOCK_ENTITIES.register("hemalurgy_altar_entity", () ->
-                    BlockEntityType.Builder.of(HemalurgyAltarBlockEntity::new,
-                            ModBlocksRegister.HEMALURGY_ALTAR.get()).build(null));
+    public static final RegistryObject<BlockEntityType<HemalurgyAltarFrontBlockEntity>> HEMALURGY_ALTAR_FRONT_ENTITY =
+            BLOCK_ENTITIES.register("hemalurgy_altar_front_entity", () ->
+                    BlockEntityType.Builder.of(HemalurgyAltarFrontBlockEntity::new,
+                            ModBlocksRegister.HEMALURGY_ALTAR_FRONT.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<HemalurgyAltarBackBlockEntity>> HEMALURGY_ALTAR_BACK_ENTITY =
+            BLOCK_ENTITIES.register("hemalurgy_altar_back_entity", () ->
+                    BlockEntityType.Builder.of(HemalurgyAltarBackBlockEntity::new,
+                            ModBlocksRegister.HEMALURGY_ALTAR_BACK.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<DistilleryBlockEntity>> DISTILLERY_ENTITY =
             BLOCK_ENTITIES.register("distillery_entity", () ->

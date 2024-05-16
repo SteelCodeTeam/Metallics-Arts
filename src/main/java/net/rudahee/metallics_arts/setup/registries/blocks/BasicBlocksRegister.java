@@ -9,13 +9,14 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.OreGenerationEnum;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.back.HemalurgyAltarBackBlock;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front.HemalurgyAltarFrontBlock;
 import net.rudahee.metallics_arts.modules.custom_blocks.ettmetal_blocks.EttmetalBlock;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.ModStandingSignBlock;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.ModWallSignBlock;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.WoodTypeMetal;
-import net.rudahee.metallics_arts.modules.custom_blocks.tables.CrucibleFurnaceBlock;
-import net.rudahee.metallics_arts.modules.custom_blocks.tables.DistilleryBlock;
-import net.rudahee.metallics_arts.modules.custom_blocks.tables.HemalurgyAltarBlock;
+import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceBlock;
+import net.rudahee.metallics_arts.modules.custom_block_entities.distillery.DistilleryBlock;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.ToIntFunction;
@@ -111,8 +112,19 @@ public class BasicBlocksRegister {
             return block;
         });
 
-        ModBlocksRegister.HEMALURGY_ALTAR = MetallicsArts.registerBlock("hemalugy_altar", () -> {
-            Block block = new HemalurgyAltarBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
+        ModBlocksRegister.HEMALURGY_ALTAR_FRONT = MetallicsArts.registerBlock("hemalugy_altar_front", () -> {
+            Block block = new HemalurgyAltarFrontBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
+                    .strength(10f, 10f)
+                    .lightLevel(litBlockEmission(16))
+                    .sound(SoundType.BASALT)
+                    .randomTicks()
+                    .requiresCorrectToolForDrops()
+                    .destroyTime(15f));
+            return block;
+        });
+
+        ModBlocksRegister.HEMALURGY_ALTAR_BACK = MetallicsArts.registerBlock("hemalugy_altar_back", () -> {
+            Block block = new HemalurgyAltarBackBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
                     .strength(10f, 10f)
                     .lightLevel(litBlockEmission(16))
                     .sound(SoundType.BASALT)

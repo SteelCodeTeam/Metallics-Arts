@@ -159,7 +159,8 @@ dependencies {
      runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:1.19.4-3.0.0.10")
      compileOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:1.19.4-3.0.0.10:api")
 
-     compileOnly fg.deobf("mezz.jei:jei-1.19.4-common-api:13.1.0.9")
+     compileOnly fg.deobf("mezz.jei:jei-1" +
+             ".19.4-common-api:13.1.0.9")
      compileOnly fg.deobf("mezz.jei:jei-1.19.4-forge-api:13.1.0.9")
      runtimeOnly fg.deobf("mezz.jei:jei-1.19.4-forge:13.1.0.9")
 

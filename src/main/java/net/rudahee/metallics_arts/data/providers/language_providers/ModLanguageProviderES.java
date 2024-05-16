@@ -180,9 +180,11 @@ public class ModLanguageProviderES extends LanguageProvider {
         put("block.metallics_arts.menu.crucible_furnace", "Horno de crisol");
         put("block.metallics_arts.crucible_furnace", "Horno de crisol");
 
-        put("block.metallics_arts.menu.hemalurgy_altar", "Altar Hemalurgico");
-        put("block.metallics_arts.hemalurgy_altar", "Altar Hemalurgico");
+        put("block.metallics_arts.menu.hemalurgy_altar_front", "Altar Hemalurgico (Frontal)");
+        put("block.metallics_arts.hemalurgy_altar_front", "Altar Hemalurgico (Frontal)");
 
+        put("block.metallics_arts.menu.hemalurgy_altar_back", "Altar Hemalurgico (Trasero)");
+        put("block.metallics_arts.hemalurgy_altar_back", "Altar Hemalurgico (Trasero)");
     }};
 
     private final Map<String, String> ingots = new HashMap<>() {{

@@ -10,7 +10,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceMenu;
-import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.HemalurgyAltarMenu;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.back.HemalurgyAltarBackMenu;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front.HemalurgyAltarFrontMenu;
 
 public class ModMenuRegister {
 
@@ -19,8 +20,11 @@ public class ModMenuRegister {
 
     public static final RegistryObject<MenuType<CrucibleFurnaceMenu>> CRUCIBLE_FURNACE_MENU =
             registerMenuType(CrucibleFurnaceMenu::new, "crucible_furnace_menu");
-    public static final RegistryObject<MenuType<HemalurgyAltarMenu>> HEMALUGY_ALTAR_MENU =
-            registerMenuType(HemalurgyAltarMenu::new, "hemalurgy_altar_menu");
+    public static final RegistryObject<MenuType<HemalurgyAltarFrontMenu>> HEMALURGY_ALTAR_FRONT_MENU =
+            registerMenuType(HemalurgyAltarFrontMenu::new, "hemalurgy_altar_front_menu");
+
+    public static final RegistryObject<MenuType<HemalurgyAltarBackMenu>> HEMALURGY_ALTAR_BACK_MENU =
+            registerMenuType(HemalurgyAltarBackMenu::new, "hemalurgy_altar_back_menu");
 
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory,
                                                                                                   String name) {
