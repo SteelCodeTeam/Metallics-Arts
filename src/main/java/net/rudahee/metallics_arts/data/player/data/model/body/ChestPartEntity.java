@@ -162,17 +162,17 @@ public final class ChestPartEntity extends BodyPartEntity {
 
     @Override
     public void removeSpikeBySpikeEntity(SpikeEntity entity) {
-        if (entity == SLOT_FRONT_0) {
+        if (entity.equals(SLOT_FRONT_0)) {
             SLOT_FRONT_0 = null;
-        } else if (entity == SLOT_FRONT_1) {
+        } else if (entity.equals(SLOT_FRONT_1)) {
             SLOT_FRONT_1 = null;
-        } else if (entity == SLOT_FRONT_2) {
+        } else if (entity.equals(SLOT_FRONT_2)) {
             SLOT_FRONT_2 = null;
-        } else if (entity == SLOT_FRONT_3) {
+        } else if (entity.equals(SLOT_FRONT_3)) {
             SLOT_FRONT_3 = null;
-        } else if (entity == SLOT_FRONT_4) {
+        } else if (entity.equals(SLOT_FRONT_4)) {
             SLOT_FRONT_4 = null;
-        } else if (entity == SLOT_FRONT_5) {
+        } else if (entity.equals(SLOT_FRONT_5)) {
             SLOT_FRONT_5 = null;
         }
     }

@@ -33,6 +33,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("metallics_arts.item.tooltip.mistcloak", "Increase your speed");
                 put("item.metallics_arts.wood_shield", CTW.WOOD.getNameInEnglish() +" "+ CTW.SHIELD.getNameInEnglish());
                 put("item.metallics_arts.bronze_aluminum_shield", MetalNamesEnum.ALUMINUM.getNameInEnglish() +" "+ CTW.SHIELD.getNameInEnglish());
+                put("item.metallics_arts.sazed_disc", "El perreo de las eras");
 
         }};
 

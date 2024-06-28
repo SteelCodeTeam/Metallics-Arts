@@ -94,7 +94,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 
 
-
+        builder(itemGenerated, "item/sazed_disc", "item/disc/sazed_disc");
         builder(itemGenerated, "item/core_obsidian", "item/cores/core_obsidian");
         builder(itemGenerated, "item/core_aluminum", "item/cores/core_aluminum");
         builder(itemGenerated, "item/core_steel", "item/cores/core_steel");

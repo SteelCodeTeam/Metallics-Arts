@@ -41,6 +41,7 @@ public class ModCreativeTabsEvents {
                 });
             }
 
+            event.accept(ModItemsRegister.SAZED_DISC);
             event.acceptAll(ModItemsRegister.ITEM_RAW_METAL.values().stream().map(ItemStack::new).collect(Collectors.toList()));
             event.acceptAll(ModItemsRegister.ITEM_METAL_INGOT.values().stream().map(ItemStack::new).collect(Collectors.toList()));
             event.acceptAll(ModItemsRegister.ITEM_GEMS_BASE.values().stream().map(ItemStack::new).collect(Collectors.toList()));

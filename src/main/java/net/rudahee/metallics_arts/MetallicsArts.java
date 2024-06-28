@@ -109,7 +109,7 @@ public class MetallicsArts {
         ModBlockEntitiesRegister.register(modEventBus);
         ModMenuRegister.register(modEventBus);
         ModVillager.register(modEventBus);
-
+        ModSoundsRegister.register(modEventBus);
         modEventBus.addListener(ModCreativeTabsEvents::addToMetallicsArtsTab);
         modEventBus.addListener(ModCreativeTabsEvents::addToMetallicsArtsDecorationTab);
         modEventBus.addListener(ModCreativeTabsEvents::addToCombatTab);

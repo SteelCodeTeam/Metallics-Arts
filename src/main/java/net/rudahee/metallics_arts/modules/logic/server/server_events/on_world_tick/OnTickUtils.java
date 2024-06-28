@@ -88,6 +88,7 @@ public class OnTickUtils {
             }
         }
 
+        //TODO: Crashing bc idk
         ModNetwork.syncInvestedDataPacket(playerCapability, player);
     }
 }

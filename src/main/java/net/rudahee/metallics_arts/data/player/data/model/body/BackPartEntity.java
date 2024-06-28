@@ -245,19 +245,19 @@ public final class BackPartEntity extends BodyPartEntity {
      */
     @Override
     public void removeSpikeBySpikeEntity(SpikeEntity entity) {
-        if (entity == SLOT_BACK_0) {
+        if (entity.equals(SLOT_BACK_0)) {
             SLOT_BACK_0 = null;
-        } else if (entity == SLOT_BACK_1) {
+        } else if (entity.equals(SLOT_BACK_1)) {
             SLOT_BACK_1 = null;
-        } else if (entity == SLOT_BACK_2) {
+        } else if (entity.equals(SLOT_BACK_2)) {
             SLOT_BACK_2 = null;
-        } else if (entity == SLOT_BACK_3) {
+        } else if (entity.equals(SLOT_BACK_3)) {
             SLOT_BACK_3 = null;
-        } else if (entity == SLOT_BACK_4) {
+        } else if (entity.equals(SLOT_BACK_4)) {
             SLOT_BACK_4 = null;
-        } else if (entity == SLOT_BACK_5) {
+        } else if (entity.equals(SLOT_BACK_5)) {
             SLOT_BACK_5 = null;
-        } else if (entity == SLOT_BACK_6) {
+        } else if (entity.equals(SLOT_BACK_6)) {
             SLOT_BACK_6 = null;
         }
     }

@@ -190,11 +190,11 @@ public final class HeadPartEntity extends BodyPartEntity {
      */
     @Override
     public void removeSpikeBySpikeEntity(SpikeEntity entity) {
-        if (entity == SLOT_FRONT_0) {
+        if (entity.equals(SLOT_FRONT_0)) {
             SLOT_FRONT_0 = null;
-        } else if (entity == SLOT_FRONT_1) {
+        } else if (entity.equals(SLOT_FRONT_1)) {
             SLOT_FRONT_1 = null;
-        } else if (entity == SLOT_BACK_0) {
+        } else if (entity.equals(SLOT_BACK_0)) {
             SLOT_BACK_0 = null;
         }
     }

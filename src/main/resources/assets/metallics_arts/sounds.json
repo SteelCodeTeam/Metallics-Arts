@@ -1,0 +1,10 @@
+{
+  "sazed_song": {
+    "sounds": [
+      {
+        "name": "metallics_arts:sazed_song",
+        "stream": true
+      }
+    ]
+  }
+}

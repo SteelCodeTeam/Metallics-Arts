@@ -173,7 +173,7 @@ public class ModLanguageProviderES extends LanguageProvider {
 
         put("item.metallics_arts.copper_coin", CTW.COIN.getNameInEnglish() + " de " + MetalNamesEnum.COPPER.getNameInSpanish().toLowerCase());
         put("item.metallics_arts.bronze_coin", CTW.COIN.getNameInEnglish() + " de " + MetalNamesEnum.BRONZE.getNameInSpanish().toLowerCase());
-
+        put("item.metallics_arts.sazed_disc", "El perreo de las eras");
     }};
 
     private final Map<String, String> tables = new HashMap<>() {{

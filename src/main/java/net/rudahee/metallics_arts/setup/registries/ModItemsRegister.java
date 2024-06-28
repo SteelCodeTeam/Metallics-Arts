@@ -91,7 +91,7 @@ public class ModItemsRegister {
     public static RegistryObject<Item> GOLD_SIGN;
     public static RegistryObject<Item> COPPER_SIGN;
     public static RegistryObject<Item> ALUMINUM_SIGN;
-
+    public static RegistryObject<Item> SAZED_DISC;
 
     public static void register() {
         BasicItemsRegister.register();
@@ -136,7 +136,6 @@ public class ModItemsRegister {
         ModItemsRegister.ITEM_CORES.put(ModItemsRegister.LERASIUM_CORE.toString(),ModItemsRegister.LERASIUM_CORE.get());
         ModItemsRegister.ITEM_CORES.put(ModItemsRegister.ETTMETAL_CORE.toString(),ModItemsRegister.ETTMETAL_CORE.get());
         ModItemsRegister.ITEM_CORES.put(ModItemsRegister.COPPER_CORE.toString(),ModItemsRegister.COPPER_CORE.get());
-
 
     }
 
