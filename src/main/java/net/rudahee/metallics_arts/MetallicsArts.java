@@ -253,8 +253,6 @@ public class MetallicsArts {
         evt.registerLayerDefinition(CuriosLayerDefinitions.METALMIND, MetalMindModel::createLayer);
     }
 
-
-
     // ITEM & BLOCK REGISTRATION
 
     public static <T extends Item> RegistryObject<T> registerItem(String name, Supplier<T> itemSupplier) {
