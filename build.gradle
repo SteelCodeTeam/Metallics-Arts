@@ -3,6 +3,7 @@ plugins {
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '5.1.+'
     id 'org.spongepowered.mixin' version '0.7.+'
+
 }
 
 
@@ -190,6 +191,7 @@ jar.finalizedBy('reobfJar')
 // However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
 // publish.dependsOn('reobfJar')
 
+/*
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -199,6 +201,25 @@ publishing {
     repositories {
         maven {
             url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+*/
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/SteelCodeTeam/Metallics-Arts")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }
