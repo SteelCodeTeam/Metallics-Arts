@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.data.providers;
 
+import lombok.extern.log4j.Log4j2;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
@@ -31,10 +32,11 @@ import net.rudahee.metallics_arts.setup.registries.ModLivingEntityRegister;
 
 import java.util.function.BiConsumer;
 
+@Log4j2
 public class ModLootTableProvider implements LootTableSubProvider {
     // Useful boilerplate from McJtyLib
     protected static void addSimpleBlock(BiConsumer<ResourceLocation, LootTable.Builder> writer, String name, Block block) {
-        MetallicsArts.LOGGER.debug("Creating Loot Table for block " + ForgeRegistries.BLOCKS.getKey(block));
+        log.debug("Creating Loot Table for block " + ForgeRegistries.BLOCKS.getKey(block));
         LootPool.Builder builder = LootPool.lootPool().name(name).setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(block));
 
         writer.accept(new ResourceLocation(MetallicsArts.MOD_ID, "blocks/" + name), LootTable.lootTable().withPool(builder));

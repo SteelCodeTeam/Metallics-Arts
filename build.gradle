@@ -149,25 +149,25 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
 
-     minecraft 'net.minecraftforge:forge:1.19.4-45.2.10'
+    minecraft 'net.minecraftforge:forge:1.19.4-45.2.10'
 
-     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.19.4:4.2")
-     implementation("com.eliotlash.mclib:mclib:20")
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.19.4:4.2")
+    implementation("com.eliotlash.mclib:mclib:20")
 
-     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.4-5.1.5.4")
-     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.4-5.1.5.4:api")
-     runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:1.19.4-3.0.0.10")
-     compileOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:1.19.4-3.0.0.10:api")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.4-5.1.5.4")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.4-5.1.5.4:api")
+    runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:1.19.4-3.0.0.10")
+    compileOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:1.19.4-3.0.0.10:api")
 
-     compileOnly fg.deobf("mezz.jei:jei-1" +
-             ".19.4-common-api:13.1.0.9")
-     compileOnly fg.deobf("mezz.jei:jei-1.19.4-forge-api:13.1.0.9")
-     runtimeOnly fg.deobf("mezz.jei:jei-1.19.4-forge:13.1.0.9")
-
+    compileOnly fg.deobf("mezz.jei:jei-1.19.4-common-api:13.1.0.9")
+    compileOnly fg.deobf("mezz.jei:jei-1.19.4-forge-api:13.1.0.9")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.19.4-forge:13.1.0.9")
 
     compileOnly fg.deobf("com.klikli_dev:modonomicon:1.19.4-1.33.1")
     runtimeOnly fg.deobf("com.klikli_dev:modonomicon:1.19.4-1.33.1")
-    
+
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
 }
 
 jar {

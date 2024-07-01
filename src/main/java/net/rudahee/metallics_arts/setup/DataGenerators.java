@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.setup;
 
+import lombok.extern.log4j.Log4j2;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -37,11 +38,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+@Log4j2
 @Mod.EventBusSubscriber(modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {
+    private DataGenerators() {
+        throw new IllegalStateException("Class can't be instantiated");
+    }
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
+
         DataGenerator gen = event.getGenerator();
         PackOutput packOutput = gen.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
@@ -49,16 +55,18 @@ public final class DataGenerators {
 
 
 
-
+        log.info("Starting Generation: Model & States");
         gen.addProvider(event.includeServer(), new ModBlockStateProvider(packOutput, existingFileHelper));
         gen.addProvider(event.includeServer(), new ModItemModelProvider(gen, existingFileHelper));
 
+        log.info("Starting Generation: Loot Tables");
         gen.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(ModEntityLootTableProvider::new, LootContextParamSets.ENTITY), new LootTableProvider.SubProviderEntry(ModLootTableProvider::new, LootContextParamSets.BLOCK))));
 
-
+        log.info("Starting Generation: Recipes");
         gen.addProvider(event.includeServer(), new ModRecipeProvider(gen));
 
+        log.info("Starting Generation: Languages");
         gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_es"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_ar"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_mx"));
@@ -74,17 +82,17 @@ public final class DataGenerators {
         gen.addProvider(event.includeServer(), new ModLanguageProviderJP(gen, "ja_jp"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderPL(gen, "pl_pl"));
 
+        log.info("Starting Generation: Guide Book");
         gen.addProvider(event.includeServer(), new MetallicsArtsGuideBookProvider(gen, MetallicsArts.MOD_ID, null));
-        //gen.addProvider(event.includeClient(), null);
 
+        log.info("Starting Generation: WorldGen");
         gen.addProvider(event.includeServer(), new ModWorldGenerationProvider(packOutput, lookupProvider));
 
-
+        log.info("Starting Generation: Tags");
         ModBlockTagProvider blockTags = new  ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
         gen.addProvider(event.includeServer(), blockTags);
         gen.addProvider(event.includeServer(), new ModItemTagsProvider(packOutput,lookupProvider, blockTags.contentsGetter(), existingFileHelper));
-        //gen.addProvider(event.includeServer(), new ModBannerTagProvider(packOutput, lookupProvider, event.getExistingFileHelper()));
-        //gen.addProvider(event.includeServer(), new ModBeaconTagProvider(packOutput, lookupProvider, existingFileHelper));
+
     }
     
     @SubscribeEvent

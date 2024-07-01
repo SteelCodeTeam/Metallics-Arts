@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts;
 
+import lombok.extern.log4j.Log4j2;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -35,32 +36,29 @@ import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
 import net.rudahee.metallics_arts.data.providers.ModInvestedPlayerDataProvider;
 import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceScreen;
-import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front.HemalurgyAltarFrontScreen;
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.back.HemalurgyAltarBackScreen;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front.HemalurgyAltarFrontScreen;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.WoodTypeMetal;
+import net.rudahee.metallics_arts.modules.custom_entities.villagers.ModVillager;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.CuriosLayerDefinitions;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.MetalMindModel;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.MetalMindRendered;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays.MetalsOverlay;
-import net.rudahee.metallics_arts.modules.custom_entities.villagers.ModVillager;
 import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.*;
-
 import net.rudahee.metallics_arts.setup.tabs.ModCreativeTabsEvents;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
+@Log4j2
 @Mod(MetallicsArts.MOD_ID)
 public class MetallicsArts {
     // Mod id
@@ -69,64 +67,102 @@ public class MetallicsArts {
     public static final String VERSION = "1.6.8";
 
     // Directly reference a log4j logger.
-    public static final Logger LOGGER = LogManager.getLogger();
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID);
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
     public MetallicsArts() {
+        log.info("""
+                
+                ======================================================
+                Starting Registration for Metallics Arts version {}
+                ======================================================
+                
+                """, VERSION);
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         //In our main, we register all our objects.
 
+        log.info("Starting Register: Blocks");
         BLOCKS.register(modEventBus);
+        log.info("Completed Register: Blocks");
+
+
+        log.info("Starting Register: Items");
         ITEMS.register(modEventBus);
+        log.info("Completed Register: Items");
+
+        log.debug("prueba");
+        log.warn("log de que algo va mal pero no crashea");
+        log.error("log de que el error crashea");
+        log.info("log de que algo va bien y quieres informar");
+
         Registration.register();
 
+        log.info("Starting Listeners: Client, Setup, queueIMC, processIMC, GUIs");
         modEventBus.addListener(this::clientInit);
-        // Register the setup method for modloading
         modEventBus.addListener(this::setup);
-        // Register the enqueueIMC method for modloading
         modEventBus.addListener(this::enqueueIMC);
-        // Register the processIMC method for modloading
         modEventBus.addListener(this::processIMC);
-
         modEventBus.addListener(this::onGuOverlayEvent);
+        log.info("Completed Some Listeners");
 
         ModEffects.register(modEventBus);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            log.info("Starting Listener: ClientKeys Shortcuts");
             modEventBus.addListener(ModKeyRegister::initKeys);
+            log.info("Completed Listener: ClientKeys Shortcuts");
+
         });
 
+        log.info("Starting Listener: Player Data");
         // Register the doClientStuff method for modloading
         modEventBus.addListener(InvestedPlayerCapabilityRegister::register);
         modEventBus.addListener(this::doClientStuff);
+        log.info("Completed Listener: Player Data");
 
+        log.info("Starting Register: Entities");
         ModEntityTypesRegister.register(modEventBus);
         ModLivingEntityRegister.register(modEventBus);
         ModBlockEntitiesRegister.register(modEventBus);
-        ModMenuRegister.register(modEventBus);
         ModVillager.register(modEventBus);
+        log.info("Completed Register: Entities");
+
+        log.info("Starting Register: Menus");
+        ModMenuRegister.register(modEventBus);
+        log.info("Completed Register: Menus");
+
+        log.info("Starting Register: Sounds");
         ModSoundsRegister.register(modEventBus);
+        log.info("Completed Register: Sounds");
+
+        log.info("Starting Listener: Creative Tabs");
         modEventBus.addListener(ModCreativeTabsEvents::addToMetallicsArtsTab);
         modEventBus.addListener(ModCreativeTabsEvents::addToMetallicsArtsDecorationTab);
         modEventBus.addListener(ModCreativeTabsEvents::addToCombatTab);
         modEventBus.addListener(ModCreativeTabsEvents::addToMetallicsArtsEntityTab);
+        log.info("Completed Listener: Creative Tabs");
 
         modEventBus.addListener(this::registerLayers);
 
-        //Register for the paintings
+        log.info("Starting Register: Paintings & Banners");
         ModPaintingProvider.register(modEventBus);
-
         ModBannersRegister.register();
+        log.info("Completed Register: Paintings & Banners");
 
-
-        // Register ourselves for server and other game events we are interested in
+        log.info("Adding mod to Minecraft's EventBus");
         MinecraftForge.EVENT_BUS.register(this);
+        log.info("Completed addition to EventBus");
 
-
+        log.info("""
+                
+                =========================================
+                Completed Registration for Metallics Arts
+                =========================================
+                
+                """);
     }
 
 
@@ -135,30 +171,24 @@ public class MetallicsArts {
         if (event.getObject() instanceof Player) {
             event.addCapability(InvestedPlayerCapabilityRegister.IDENTIFIER, new ModInvestedPlayerDataProvider());
         }
-
-
     }
 
     private void setup(final FMLCommonSetupEvent event)
     {
-        // some preinit code
-        LOGGER.info("Starting Metallics Arts Setup.");
+        log.info("Creating packets");
         ModNetwork.registerPackets();
         ModEventsRegister.register(event);
 
+        log.info("Adding wood types");
         Sheets.addWoodType(WoodTypeMetal.IRON_TYPE);
         Sheets.addWoodType(WoodTypeMetal.GOLD_TYPE);
         Sheets.addWoodType(WoodTypeMetal.COPPER_TYPE);
         Sheets.addWoodType(WoodTypeMetal.ALUMINUM_TYPE);
 
-        // TODO event.enqueueWork(ModVillager::registerPOIs);
-
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         CustomPoses.initializePoses();
-
-
 
         event.enqueueWork(() -> {
 
@@ -167,6 +197,7 @@ public class MetallicsArts {
 
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
+        log.info("Creating Curios Slots");
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
                 () -> new SlotTypeMessage.Builder("metalmind_slot")
                         .priority(1)
@@ -179,33 +210,31 @@ public class MetallicsArts {
 
     }
 
+    @SuppressWarnings("deprecation")
     private void processIMC(final InterModProcessEvent event)
     {
-        // some example code to receive and process InterModComms from other mods
-        LOGGER.info("Got IMC {}", event.getIMCStream().
-                map(m->m.getMessageSupplier().get()).
-                collect(Collectors.toList()));
+        log.info("Got IMC {}", event.getIMCStream().
+                map(m->m.getMessageSupplier().get()).toList());
     }
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
 
+    @SuppressWarnings("deprecation")
     @SubscribeEvent
     public void onGuOverlayEvent(final RegisterGuiOverlaysEvent event) {
         event.registerBelowAll("invested_overlay", new MetalsOverlay());
-
 
         ClientEventHandler.onRenderGameOverlay(event);
     }
 
     @SubscribeEvent
     public void onCommandsRegister(RegisterCommandsEvent event) {
+        log.info("Adding commands");
         ModCommandsRegister.register(event.getDispatcher());
     }
 
 
     public void clientInit(final FMLClientSetupEvent e) {
 
-        //ModClientDependencyManagement.start();
-
+        log.info("[Client] Registering Client Events");
         ModEventsRegister.clientInit(e);
         MenuScreens.register(ModMenuRegister.CRUCIBLE_FURNACE_MENU.get(), CrucibleFurnaceScreen::new);
         MenuScreens.register(ModMenuRegister.HEMALURGY_ALTAR_FRONT_MENU.get(), HemalurgyAltarFrontScreen::new);
@@ -240,14 +269,12 @@ public class MetallicsArts {
 
         RegistryObject<T> blockRegistered = registerBlockNoItem(name, blockSupplier);
         ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().stacksTo(64))));
-        //ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().tab(MA_TAB).stacksTo(64))));
         return blockRegistered;
 
     }
 
     public static <T extends Block> RegistryObject<T> registerBlockDecoration(String name, Supplier<T> blockSupplier) {
         RegistryObject<T> blockRegistered = registerBlockNoItem(name, blockSupplier);
-        //ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().tab(MA_TAB_DECORATION).stacksTo(64))));
         ITEMS.register(name, () -> (new BlockItem(blockRegistered.get(), new Item.Properties().stacksTo(64))));
         return blockRegistered;
     }

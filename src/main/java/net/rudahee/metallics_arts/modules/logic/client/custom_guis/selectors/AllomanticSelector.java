@@ -17,16 +17,15 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.ComparatorMetals;
 import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 /**
@@ -39,11 +38,12 @@ import java.util.stream.Collectors;
  * @deprecated
  */
 @OnlyIn(Dist.CLIENT)
+@Deprecated(forRemoval = true, since = "1.5.1")
 public class AllomanticSelector extends Screen {
 
-    private static final List<MetalTagEnum> internalMetals = Arrays.asList(MetalTagEnum.values()).stream().filter(metal -> !metal.isExternal() && !metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
-    private static final List<MetalTagEnum> externalMetals = Arrays.asList(MetalTagEnum.values()).stream().filter(metal -> metal.isExternal() && !metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
-    private static final List<MetalTagEnum> divineMetals = Arrays.asList(MetalTagEnum.values()).stream().filter(metal -> metal.isDivine()).sorted(new ComparatorMetals()).collect(Collectors.toList());
+    private static final List<MetalTagEnum> internalMetals = Arrays.stream(MetalTagEnum.values()).filter(metal -> !metal.isExternal() && !metal.isDivine()).sorted(new ComparatorMetals()).toList();
+    private static final List<MetalTagEnum> externalMetals = Arrays.stream(MetalTagEnum.values()).filter(metal -> metal.isExternal() && !metal.isDivine()).sorted(new ComparatorMetals()).toList();
+    private static final List<MetalTagEnum> divineMetals = Arrays.stream(MetalTagEnum.values()).filter(MetalTagEnum::isDivine).sorted(new ComparatorMetals()).toList();
 
     final Minecraft mc;
     int slotSelected = -1;
@@ -87,19 +87,19 @@ public class AllomanticSelector extends Screen {
     }
 
     @Override
-    public void render(PoseStack matrixStack, int mx, int my, float partialTicks) {
+    public void render(@NotNull PoseStack matrixStack, int mx, int my, float partialTicks) {
         super.render(matrixStack, mx, my, partialTicks);
 
         IInvestedPlayerData data = null;
         try {
             data = CapabilityUtils.getCapability(Minecraft.getInstance().player);
         } catch (PlayerException e) {
-            throw new RuntimeException(e);
+            e.printCompleteLog();
         }
 
         int centerX  = this.width / 2;
         int centerY  = this.height / 2;
-        float internalRadio = this.height/5;
+        float internalRadio = (float) this.height / 5;
         float mediumRadio = (float) (internalRadio*1.5);
         float externalRadio = (float) (mediumRadio*1.25);
 
@@ -130,7 +130,8 @@ public class AllomanticSelector extends Screen {
         //circulo externo
         for (int actualSegment  = 0; actualSegment  < divineMetals.size(); actualSegment++) {
             MetalTagEnum metal = divineMetals.get(actualSegment);
-            boolean mouseInSector = data.hasAllomanticPower(metal) &&
+            ;
+            boolean mouseInSector = (data != null && data.hasAllomanticPower(metal)) &&
                     (degreesDivinePerSegment*actualSegment < angle && angle < degreesDivinePerSegment*(actualSegment  + 1))
                     && (mediumRadio<distance && distance<externalRadio);
 
@@ -145,28 +146,7 @@ public class AllomanticSelector extends Screen {
                 }
             }
 
-            int[] actualColor;
-            if (actualSegment % 2 == 0) {
-                if (!data.hasAllomanticPower(metal)) {
-                    actualColor = noPowerEvenDivine;
-                } else if (data.isBurning(metal)) {
-                    actualColor = burningEvenDivine;
-                } else {
-                    actualColor = normalEvenDivine;
-                }
-            } else{
-                if (!data.hasAllomanticPower(metal)) {
-                    actualColor = noPowerOddDivine;
-                } else if (data.isBurning(metal)) {
-                    actualColor = burningOddDivine;
-                } else {
-                    actualColor = normalOddDivine;
-                }
-            }
-
-            if (actualSegment  == 0) {
-                buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1], actualColor[2], actualColor[3]).endVertex();
-            }
+            int[] actualColor = selectActualColor(data, centerX, centerY, buf, actualSegment, metal, noPowerEvenDivine, burningEvenDivine, normalEvenDivine, noPowerOddDivine, burningOddDivine, normalOddDivine);
 
             for (float v = 0; v < degreesDivinePerSegment  + step/2; v += step) {
                 float rad = (v + actualSegment  * degreesDivinePerSegment) ; // (*2) DUPLICA EL TAMAÑO DE LOS ULTIMOS SELECTORES, VISUALMENTE
@@ -255,27 +235,7 @@ public class AllomanticSelector extends Screen {
                 }
             }
 
-            int[] actualColor;
-            if (actualSegment % 2 == 0) {
-                if (!data.hasAllomanticPower(metal)) {
-                    actualColor = noPowerEven;
-                } else if (data.isBurning(metal)) {
-                    actualColor = burningEven;
-                } else {
-                    actualColor = normalEven;
-                }
-            } else{
-                if (!data.hasAllomanticPower(metal)) {
-                    actualColor = noPowerOdd;
-                } else if (data.isBurning(metal)) {
-                    actualColor = burningOdd;
-                } else {
-                    actualColor = normalOdd;
-                }
-            }
-            if (actualSegment  == 0) {
-                buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1],actualColor[2] ,actualColor[3]).endVertex();
-            }
+            int[] actualColor = selectActualColor(data, centerX, centerY, buf, actualSegment, metal, noPowerEven, burningEven, normalEven, noPowerOdd, burningOdd, normalOdd);
             for (float v = 0; v < degreesPerSegment  + step / 2; v += step) {
                 float rad = v + actualSegment  * degreesPerSegment ;
                 float xp = centerX  + Mth.cos(rad) * radius;
@@ -340,9 +300,6 @@ public class AllomanticSelector extends Screen {
             float xp = centerX  + Mth.cos(rad) * radius;
             float yp = centerY  + Mth.sin(rad) * radius;
 
-            float xsp = xp - 4;
-            float ysp = yp;
-
             if (mouseInSector) {
                 renderTooltip(matrixStack,Component.translatable("metallics_arts.metal_translate."+metal.getNameLower()),mx,my);
             }
@@ -366,11 +323,10 @@ public class AllomanticSelector extends Screen {
 
             float radius = externalRadio;
 
-            if (mouseInSector) {
-                if (data.getAllomanticAmount(metal)>0) {
+            if (mouseInSector && data.getAllomanticAmount(metal)>0) {
                     radius *= 1.025f;
                 }
-            }
+
 
             float rad = (actualSegment + 0.5f) * degreesExternal;
             float xp = centerX  + Mth.cos(rad) * radius;
@@ -394,6 +350,32 @@ public class AllomanticSelector extends Screen {
         RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
         RenderSystem.disableBlend();
         
+    }
+
+    private int[] selectActualColor(IInvestedPlayerData data, int centerX, int centerY, BufferBuilder buf, int actualSegment, MetalTagEnum metal, int[] noPowerEvenDivine, int[] burningEvenDivine, int[] normalEvenDivine, int[] noPowerOddDivine, int[] burningOddDivine, int[] normalOddDivine) {
+        int[] actualColor;
+        if (actualSegment % 2 == 0) {
+            if (!data.hasAllomanticPower(metal)) {
+                actualColor = noPowerEvenDivine;
+            } else if (data.isBurning(metal)) {
+                actualColor = burningEvenDivine;
+            } else {
+                actualColor = normalEvenDivine;
+            }
+        } else{
+            if (!data.hasAllomanticPower(metal)) {
+                actualColor = noPowerOddDivine;
+            } else if (data.isBurning(metal)) {
+                actualColor = burningOddDivine;
+            } else {
+                actualColor = normalOddDivine;
+            }
+        }
+
+        if (actualSegment  == 0) {
+            buf.vertex(centerX,centerY,0).color(actualColor[0], actualColor[1], actualColor[2], actualColor[3]).endVertex();
+        }
+        return actualColor;
     }
 
     @Override
@@ -444,10 +426,12 @@ public class AllomanticSelector extends Screen {
                 mt = null;
             }
 
-            this.mc.player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
-                ClientUtils.toggleBurn(mt, data);
-                this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK.get(), 0.1F, 2.0F);
-            });
+            if (this.mc.player != null) {
+                this.mc.player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).ifPresent(data -> {
+                    ClientUtils.toggleBurn(mt, data);
+                    this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK.get(), 0.1F, 2.0F);
+                });
+            }
         }
     }
 

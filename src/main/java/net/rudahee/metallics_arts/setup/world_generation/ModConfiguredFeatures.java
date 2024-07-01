@@ -26,6 +26,10 @@ import java.util.List;
 
 public class ModConfiguredFeatures {
 
+    private ModConfiguredFeatures() {
+        throw new IllegalStateException("Class can't be instantiated");
+    }
+
     /*
      * RULE REPLACEMENT
      */
@@ -159,12 +163,12 @@ public class ModConfiguredFeatures {
 
 
 
-    public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
+    private static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(MetallicsArts.MOD_ID, name));
     }
 
-    private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstapContext<ConfiguredFeature<?, ?>> context,
-                                                                                          ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
+    private static <C extends FeatureConfiguration, F extends Feature<C>> void register(BootstapContext<ConfiguredFeature<?, ?>> context,
+                                                                                          ResourceKey<ConfiguredFeature<?, ?>> key, F feature, C configuration) {
         context.register(key, new ConfiguredFeature<>(feature, configuration));
     }
 }

@@ -4,6 +4,7 @@ package net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import lombok.extern.log4j.Log4j2;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.player.LocalPlayer;
@@ -29,6 +30,7 @@ import java.awt.*;
  *
  * @deprecated
  */
+@Log4j2
 public class MetalsOverlay implements IGuiOverlay {
     private static final Point[] AllomanticFrames = new Point[6];
     private static final Point[] FeruchemicDecantFrames = new Point[6];

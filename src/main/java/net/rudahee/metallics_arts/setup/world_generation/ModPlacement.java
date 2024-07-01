@@ -6,15 +6,15 @@ import java.util.List;
 
 public class ModPlacement {
 
+    private ModPlacement() {
+        throw new IllegalStateException("Class can't be instantiated");
+    }
+
     public static List<PlacementModifier> orePlacement(PlacementModifier modifier, PlacementModifier modifier2) {
         return List.of(modifier, InSquarePlacement.spread(), modifier2, BiomeFilter.biome());
     }
 
     public static List<PlacementModifier> commonOrePlacement(int count, PlacementModifier modifier) {
         return orePlacement(CountPlacement.of(count), modifier);
-    }
-
-    public static List<PlacementModifier> rareOrePlacement(int count, PlacementModifier modifier) {
-        return orePlacement(RarityFilter.onAverageOnceEvery(count), modifier);
     }
 }

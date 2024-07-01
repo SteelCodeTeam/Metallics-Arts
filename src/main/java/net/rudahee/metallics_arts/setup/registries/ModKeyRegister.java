@@ -11,6 +11,9 @@ import org.lwjgl.glfw.GLFW;
 
 public class ModKeyRegister {
 
+    private ModKeyRegister() {
+        throw new IllegalStateException("Class can't be instantiated");
+    }
     public static final String KEY_CATEGORY = "key.category_" + MetallicsArts.MOD_ID;
     public static final String KEY_POWERS_CATEGORY = "key.category_powers_" + MetallicsArts.MOD_ID;
 

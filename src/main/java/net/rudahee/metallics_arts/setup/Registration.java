@@ -1,21 +1,25 @@
 package net.rudahee.metallics_arts.setup;
 
+import lombok.extern.log4j.Log4j2;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.setup.registries.ModRecipeTypesRegister;
 
+@Log4j2
 public class Registration {
 
-    // In this class we register each TYPE OF OBJECT we add in our mod.
+    private Registration() {
+        throw new IllegalStateException("Class can't be instantiated");
+    }
 
     public static void register() {
-        // We inject our objects to "Minecraft Bus" to load all of this
-
         ModBlocksRegister.register();
         ModItemsRegister.register();
 
+        log.info("[Metallics Arts] Starting Register: Recipes");
         ModRecipeTypesRegister.register(FMLJavaModLoadingContext.get().getModEventBus());
+        log.info("[Metallics Arts] Completed Register: Recipes");
     }
 
 }

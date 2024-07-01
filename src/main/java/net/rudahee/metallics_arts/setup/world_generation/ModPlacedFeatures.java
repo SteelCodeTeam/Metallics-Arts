@@ -16,6 +16,9 @@ import java.util.List;
 
 public class ModPlacedFeatures {
 
+    private ModPlacedFeatures() {
+        throw new IllegalStateException("Class can't be instantiated");
+    }
 
     /*
      * GEODES
@@ -101,11 +104,6 @@ public class ModPlacedFeatures {
     private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration,
                                  List<PlacementModifier> modifiers) {
         context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
-    }
-
-    private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration,
-                                 PlacementModifier... modifiers) {
-        register(context, key, configuration, List.of(modifiers));
     }
 
 }

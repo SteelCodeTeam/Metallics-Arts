@@ -7,6 +7,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorP
 import net.rudahee.metallics_arts.setup.registries.items.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -24,26 +25,30 @@ import java.util.HashMap;
  */
 public class ModItemsRegister {
 
+    private ModItemsRegister() {
+        throw new IllegalStateException("Class can't be instantiated");
+    }
+
     //Lists where we can store the items for a later usage
-    public static final HashMap<String, Item> ITEM_METAL_INGOT = new HashMap<>();
-    public static final HashMap<String, Item> ITEM_RAW_METAL = new HashMap<>();
-    public static final HashMap<String, Item> ITEM_METAL_NUGGET = new HashMap<>();
-    public static final HashMap<String, Item> ITEM_GEMS_BASE = new HashMap<>();
-    public static final HashMap<String, Item> ITEM_GEMS_NUGGET = new HashMap<>();
-    public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY = new HashMap<>();
-    public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC = new HashMap<>();
-    public static final HashMap<String, Item> ITEM_ICONS_ALLOMANCY_DIVINE = new HashMap<>();
-    public static final HashMap<String, Item> ITEM_ICONS_FERUCHEMIC_DIVINE = new HashMap<>();
-    public static final HashMap<String, Item> ITEM_CORES = new HashMap<>();
-    public static final HashMap<String, Item> ITEM_MELE_WEAPON = new HashMap<>();
-    public static final HashMap<String, Item> ITEM_RANGE_WEAPON = new HashMap<>();
-    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> STEEL_ARMOR = new HashMap<>();
-    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ALUMINUM_ARMOR = new HashMap<>();
-    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ETTMETAL_ARMOR = new HashMap<>();
-    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> LERASIUM_ARMOR = new HashMap<>();
-    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> ATIUM_ARMOR = new HashMap<>();
-    public static HashMap<ArmorPiecesEnum, RegistryObject<Item>> COPPER_ARMOR = new HashMap<>();
-    public static HashMap<String, RegistryObject<ForgeSpawnEggItem>> ENTITY_EGGS = new HashMap<>();
+    public static final Map<String, Item> ITEM_METAL_INGOT = new HashMap<>();
+    public static final Map<String, Item> ITEM_RAW_METAL = new HashMap<>();
+    public static final Map<String, Item> ITEM_METAL_NUGGET = new HashMap<>();
+    public static final Map<String, Item> ITEM_GEMS_BASE = new HashMap<>();
+    public static final Map<String, Item> ITEM_GEMS_NUGGET = new HashMap<>();
+    public static final Map<String, Item> ITEM_ICONS_ALLOMANCY = new HashMap<>();
+    public static final Map<String, Item> ITEM_ICONS_FERUCHEMIC = new HashMap<>();
+    public static final Map<String, Item> ITEM_ICONS_ALLOMANCY_DIVINE = new HashMap<>();
+    public static final Map<String, Item> ITEM_ICONS_FERUCHEMIC_DIVINE = new HashMap<>();
+    public static final Map<String, Item> ITEM_CORES = new HashMap<>();
+    public static final Map<String, Item> ITEM_MELE_WEAPON = new HashMap<>();
+    public static final Map<String, Item> ITEM_RANGE_WEAPON = new HashMap<>();
+    public static final Map<ArmorPiecesEnum, RegistryObject<Item>> STEEL_ARMOR = new HashMap<>();
+    public static final Map<ArmorPiecesEnum, RegistryObject<Item>> ALUMINUM_ARMOR = new HashMap<>();
+    public static final Map<ArmorPiecesEnum, RegistryObject<Item>> ETTMETAL_ARMOR = new HashMap<>();
+    public static final Map<ArmorPiecesEnum, RegistryObject<Item>> LERASIUM_ARMOR = new HashMap<>();
+    public static final Map<ArmorPiecesEnum, RegistryObject<Item>> ATIUM_ARMOR = new HashMap<>();
+    public static final Map<ArmorPiecesEnum, RegistryObject<Item>> COPPER_ARMOR = new HashMap<>();
+    public static final Map<String, RegistryObject<ForgeSpawnEggItem>> ENTITY_EGGS = new HashMap<>();
 
 
     // Weapons
@@ -105,7 +110,7 @@ public class ModItemsRegister {
         ModEntityEggsRegister.register();
     }
 
-    public static void ChargeInList() {
+    public static void addChargeInList() {
 
         ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.OBSIDIAN_DAGGER.toString(), ModItemsRegister.OBSIDIAN_DAGGER.get());
         ModItemsRegister.ITEM_MELE_WEAPON.put(ModItemsRegister.SILVER_KNIFE.toString(),ModItemsRegister.SILVER_KNIFE.get());

@@ -1,34 +1,32 @@
 package net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
+import lombok.extern.java.Log;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.data.player.data.model.SpikeEntity;
 import net.rudahee.metallics_arts.data.player.data.model.enums.BodyPartEnum;
 import net.rudahee.metallics_arts.data.player.data.model.enums.BodySlotEnum;
-import net.rudahee.metallics_arts.data.player.data.model.enums.TypeOfSpikeEnum;
 import net.rudahee.metallics_arts.modules.custom_items.metal_spikes.MetalSpike;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.setup.network.packets.InvestedDataPacket;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModMenuRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.HemalurgyUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+@Log
 public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
 
     private final Level level;
@@ -38,6 +36,8 @@ public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
 
     public HemalurgyAltarFrontMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
         this(id, inv, (HemalurgyAltarFrontBlockEntity) inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(0));
+
+        log.info("HemalurgyAltarFrontMenu: " + id + " " + extraData.readBlockPos());
     }
 
     @SuppressWarnings("removal")
@@ -86,14 +86,23 @@ public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
         LoggerUtils.printLogWarn("Holi: " + slot + ", " + button + ", " + type);
         try {
             IInvestedPlayerData cap = CapabilityUtils.getCapability(player);
+
             if (button == 0 && (slot >= 36 && slot <= 55)) {
                 if (ClickType.PICKUP == type) {
                     if (slots.get(slot).getItem() == ItemStack.EMPTY) {
+                        System.out.println("Slot clicked - Eliminar: " + slot + ", " + button + ", " + type);
                         removeMetalFromSlot(getCarried(), slots.get(slot), cap);
                     } else if (slots.get(slot).getItem().getItem() instanceof MetalSpike) {
+                        System.out.println("Slot clicked - Agregar: " + slot + ", " + button + ", " + type);
                         addMetalFromSlot(slots.get(slot), cap);
+                    } else {
+                        System.out.println("Slot clicked: " + slot + ", " + button + ", " + type);
                     }
+                } else {
+                    System.out.println("Pickup clicked: " + slot + ", " + button + ", " + type);
                 }
+            } else {
+                System.out.println("Else clicked: " + slot + ", " + button + ", " + type);
             }
         } catch (PlayerException e) {
             LoggerUtils.printLogInfo("Error in HemalurgyAltarBackMenu: " + e.getMessage());
@@ -194,8 +203,18 @@ public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
         slot.setChanged();
 
         if (stack.getTag().getBoolean("allomantic_power")) {
+            System.out.println("HemalurgyAltarFrontMenu: Allomantic power removing");
+            System.out.println("Metal: " + metal);
+            System.out.println("PlayerData: " + playerData);
+            System.out.println("slot: " + slot);
+            System.out.println("stack: " + stack);
             playerData.removeAllomanticPower(metal);
         } else {
+            System.out.println("HemalurgyAltarFrontMenu: Feruchemic power removing");
+            System.out.println("Metal: " + metal);
+            System.out.println("PlayerData: " + playerData);
+            System.out.println("slot: " + slot);
+            System.out.println("stack: " + stack);
             playerData.removeFeruchemicPower(metal);
         }
 

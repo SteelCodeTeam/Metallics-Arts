@@ -29,7 +29,9 @@ import net.rudahee.metallics_arts.modules.custom_entities.steel_allomancer_entit
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModRenderRegister {
-
+    private ModRenderRegister() {
+        throw new IllegalStateException("Class can't be instantiated");
+    }
     @SubscribeEvent
     public static void register(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntityTypesRegister.BULLET_PROJECTILE.get(), ThrownItemRenderer::new);

@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.data.providers.tags_providers;
 
+import lombok.extern.log4j.Log4j2;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -20,6 +21,7 @@ import java.util.concurrent.CompletableFuture;
  * @author SteelCode Team
  * @since 1.5.1
  */
+@Log4j2
 public class ModBannerTagProvider extends TagsProvider<BannerPattern> {
 
     public ModBannerTagProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
@@ -33,7 +35,7 @@ public class ModBannerTagProvider extends TagsProvider<BannerPattern> {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         for (MetalTagEnum metal : MetalTagEnum.values()) {
-            MetallicsArts.LOGGER.debug("Creating banner tag for " + metal.getNameLower());
+            log.debug("Creating banner tag for " + metal.getNameLower());
 
             this.tag(ModBannersRegister.PATTERNS_KEYS.get("a_"+metal.getNameLower())).add(ModBannersRegister.PATTERNS.get("a_"+metal.getNameLower()).getKey()).add(ModBannersRegister.PATTERNS.get("a_"+metal.getNameLower()+"_2").getKey());
             this.tag(ModBannersRegister.PATTERNS_KEYS.get("f_"+metal.getNameLower())).add(ModBannersRegister.PATTERNS.get("f_"+metal.getNameLower()).getKey()).add(ModBannersRegister.PATTERNS.get("f_"+metal.getNameLower()+"_2").getKey());

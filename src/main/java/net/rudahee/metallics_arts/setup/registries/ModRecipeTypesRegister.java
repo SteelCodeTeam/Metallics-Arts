@@ -12,6 +12,9 @@ import net.rudahee.metallics_arts.data.custom_recipes.vials.LargeVialItemRecipe;
 import net.rudahee.metallics_arts.data.custom_recipes.vials.SmallVialItemRecipe;
 
 public class ModRecipeTypesRegister {
+    private ModRecipeTypesRegister() {
+        throw new IllegalStateException("Class can't be instantiated");
+    }
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS =
             DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, MetallicsArts.MOD_ID);
 

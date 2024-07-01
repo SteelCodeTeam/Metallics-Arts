@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.data.providers.tags_providers;
 
+import lombok.extern.log4j.Log4j2;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -21,6 +22,7 @@ import java.util.concurrent.CompletableFuture;
  * @author SteelCode Team
  * @since 1.5.1
  */
+@Log4j2
 public class ModBlockTagProvider extends BlockTagsProvider {
 
     public ModBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
@@ -226,7 +228,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
      * @param items the blocks to be added to the tag
      */
     private void addForgeTag(String name, Block... items) {
-        MetallicsArts.LOGGER.debug("Creating block tag for forge:" + name);
+        log.debug("Creating block tag for forge:" + name);
         tag(net.minecraft.tags.BlockTags.create(new ResourceLocation("forge", name))).replace(false).add(items);
     }
 
@@ -254,7 +256,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
      * @param items the blocks to be added to the tag
      */
     private void addTag(String name, Block... items) {
-        MetallicsArts.LOGGER.debug("Creating block tag for minecraft:" + name);
+        log.debug("Creating block tag for minecraft:" + name);
         tag(net.minecraft.tags.BlockTags.create(new ResourceLocation("minecraft", name))).replace(false).add(items);
     }
 

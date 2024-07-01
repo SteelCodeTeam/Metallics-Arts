@@ -1,17 +1,9 @@
 package net.rudahee.metallics_arts.modules.logic.server;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.client.Camera;
-import net.minecraft.client.renderer.FogRenderer;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageType;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
@@ -29,18 +21,14 @@ import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.data.enums.implementations.ForgeMasterTrades;
-import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_entities.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.villagers.ModVillager;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.mele.KolossBlade;
-import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.*;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.entity_events.AllomancerEvents;
-import net.rudahee.metallics_arts.modules.custom_entities.villagers.ModVillager;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
-import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
-import net.rudahee.metallics_arts.utils.ArmorUtils;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.List;
@@ -117,11 +105,10 @@ public class ServerEventHandler {
      */
     @SubscribeEvent
     public static void onJoinWorld(final PlayerEvent.PlayerLoggedInEvent event) {
-        if (!event.getEntity().level.isClientSide) {
-            if (event.getEntity() instanceof ServerPlayer) {
+        if (!event.getEntity().level.isClientSide && event.getEntity() instanceof ServerPlayer) {
                 OnJoinWorldEvent.joinWorld(event.getEntity());
             }
-        }
+
     }
 
     /**
@@ -162,10 +149,6 @@ public class ServerEventHandler {
     @SubscribeEvent
     public static void onChangeDimension(final PlayerEvent.PlayerChangedDimensionEvent event) {
         if (!event.getEntity().getCommandSenderWorld().isClientSide()) {
-            ModNetwork.syncInvestedDataPacket(event.getEntity());
-            if (event.getEntity() instanceof ServerPlayer) {
-                ServerPlayer entity = (ServerPlayer) event.getEntity();
-            }
             ModNetwork.syncInvestedDataPacket(event.getEntity());
         }
     }
@@ -265,7 +248,9 @@ public class ServerEventHandler {
                     if (tick % KolossBlade.COOLDOWN == 0 && player.getItemInHand(InteractionHand.MAIN_HAND).getTag().getFloat("CustomModelData") != 1F) {
                         ItemStack gun = player.getItemInHand(InteractionHand.MAIN_HAND);
                         CompoundTag compoundTag = gun.getTag();
-                        compoundTag.putFloat("CustomModelData", 1);
+                        if (compoundTag != null) {
+                            compoundTag.putFloat("CustomModelData", 1);
+                        }
                         gun.setTag(compoundTag);
                     }
                 }

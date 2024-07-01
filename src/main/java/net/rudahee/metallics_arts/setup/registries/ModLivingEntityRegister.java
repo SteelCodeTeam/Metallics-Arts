@@ -22,7 +22,9 @@ import java.util.HashMap;
 
 public class ModLivingEntityRegister {
 
-
+    private ModLivingEntityRegister() {
+        throw new IllegalStateException("Class can't be instantiated");
+    }
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MetallicsArts.MOD_ID);
     public static final RegistryObject<EntityType<EttmetalAllomancerEntity>> ETTMETAL_ALLOMANCER = ENTITY_TYPES.register("ettmetal_allomancer_entity",

@@ -14,7 +14,9 @@ import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front.HemalurgyAltarFrontMenu;
 
 public class ModMenuRegister {
-
+    private ModMenuRegister() {
+        throw new IllegalStateException("Class can't be instantiated");
+    }
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, MetallicsArts.MOD_ID);
 

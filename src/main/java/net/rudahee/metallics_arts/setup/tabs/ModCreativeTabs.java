@@ -15,27 +15,30 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 @Mod.EventBusSubscriber(modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModCreativeTabs {
 
-    public static CreativeModeTab METALLICS_ARTS_TAB;
-    public static CreativeModeTab METALLICS_ARTS_DECORATION_TAB;
-    public static CreativeModeTab METALLICS_ARTS_ENTITY_TAB;
+    private ModCreativeTabs() {
+        throw new IllegalStateException("Class can't be instantiated");
+    }
+    protected static CreativeModeTab metallicsArtsTab;
+    protected static CreativeModeTab metallicsArtsDecorationTab;
+    protected static CreativeModeTab metallicsArtsEntityTab;
 
     @SubscribeEvent
     public static void registerTabs(CreativeModeTabEvent.Register event) {
-        METALLICS_ARTS_TAB = event.registerCreativeModeTab(
+        metallicsArtsTab = event.registerCreativeModeTab(
                 new ResourceLocation(MetallicsArts.MOD_ID, "metallics_arts_tab"),
                     builder ->
                             builder.icon(
                                     () -> new ItemStack(ModItemsRegister.ITEM_ICONS_ALLOMANCY_DIVINE.get(MetalTagEnum.ETTMETAL.getMetalNameLower())))
                                     .title(Component.literal("Metallics Arts")).withSearchBar().build());
 
-        METALLICS_ARTS_DECORATION_TAB = event.registerCreativeModeTab(
+        metallicsArtsDecorationTab = event.registerCreativeModeTab(
                 new ResourceLocation(MetallicsArts.MOD_ID, "metallics_arts_decoration_tab"),
                 builder ->
                         builder.icon(
                                         () -> new ItemStack(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(MetalTagEnum.ETTMETAL.getMetalNameLower())))
                                 .title(Component.translatable("metallics_arts.tab.decorations")).withSearchBar().build());
 
-        METALLICS_ARTS_ENTITY_TAB = event.registerCreativeModeTab(
+        metallicsArtsEntityTab = event.registerCreativeModeTab(
                 new ResourceLocation(MetallicsArts.MOD_ID, "metallics_arts_entity_tab"),
                 builder ->
                         builder.icon(

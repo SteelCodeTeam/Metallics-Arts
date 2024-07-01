@@ -1,5 +1,7 @@
 package net.rudahee.metallics_arts.modules.error_handling.utils;
 
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.error_handling.messages.SeverityType;
 
@@ -13,6 +15,7 @@ import javax.annotation.Nullable;
  * @author SteelCode Team
  * @since 1.5.1
  */
+@Log4j2
 public class LoggerUtils {
 
     /**
@@ -48,7 +51,7 @@ public class LoggerUtils {
      */
     public static void printLogInfo(String code, String message, @Nullable StackTraceElement[] stackTrace) {
         String messageBuilt = buildMessage(code, message, stackTrace);
-        MetallicsArts.LOGGER.info(messageBuilt);
+        log.info(messageBuilt);
     }
 
     /**
@@ -57,7 +60,7 @@ public class LoggerUtils {
      * @param message the error message
      */
     public static void printLogInfo(String message) {
-        MetallicsArts.LOGGER.info(message);
+        log.info(message);
     }
 
     /**
@@ -69,7 +72,7 @@ public class LoggerUtils {
      */
     public static void printLogDebug(String code, String message, @Nullable StackTraceElement[] stackTrace) {
         String messageBuilt = buildMessage(code, message, stackTrace);
-        MetallicsArts.LOGGER.debug(messageBuilt);
+        log.debug(messageBuilt);
     }
 
     /**
@@ -78,7 +81,7 @@ public class LoggerUtils {
      * @param message the error message
      */
     public static void printLogDebug(String message) {
-        MetallicsArts.LOGGER.debug(message);
+        log.debug(message);
     }
 
     /**
@@ -90,7 +93,7 @@ public class LoggerUtils {
      */
     public static void printLogWarn(String code, String message, @Nullable StackTraceElement[] stackTrace) {
         String messageBuilt = buildMessage(code, message, stackTrace);
-        MetallicsArts.LOGGER.warn(messageBuilt);
+        log.warn(messageBuilt);
     }
 
     /**
@@ -99,7 +102,7 @@ public class LoggerUtils {
      * @param message the error message
      */
     public static void printLogWarn(String message) {
-        MetallicsArts.LOGGER.warn(message);
+        log.warn(message);
     }
 
     /**
@@ -111,7 +114,7 @@ public class LoggerUtils {
      */
     public static void printLogError(String code, String message, @Nullable StackTraceElement[] stackTrace) {
         String messageBuilt = buildMessage(code, message, stackTrace);
-        MetallicsArts.LOGGER.error(messageBuilt);
+        log.error(messageBuilt);
     }
 
     /**
@@ -120,7 +123,7 @@ public class LoggerUtils {
      * @param message the error message
      */
     public static void printLogError(String message) {
-        MetallicsArts.LOGGER.error(message);
+        log.error(message);
     }
 
     /**
@@ -132,7 +135,7 @@ public class LoggerUtils {
      */
     public static void printLogFatal(String code, String message, @Nullable StackTraceElement[] stackTrace) {
         String messageBuilt = buildMessage(code, message, stackTrace);
-        MetallicsArts.LOGGER.fatal(messageBuilt);
+        log.fatal(messageBuilt);
     }
 
     /**
@@ -141,7 +144,7 @@ public class LoggerUtils {
      * @param message the error message
      */
     public static void printLogFatal(String message) {
-        MetallicsArts.LOGGER.fatal(message);
+        log.fatal(message);
     }
 
 

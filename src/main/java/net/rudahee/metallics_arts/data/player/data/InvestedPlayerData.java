@@ -569,6 +569,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void removeAllomanticPower(MetalTagEnum metal) {
+        System.out.println("InvestedPlayerData: Removing allomantic power: " + metal);
         Stream.of(player.getLegs(), player.getHead(), player.getBack(), player.getArms(), player.getChest())
                 .forEach(bodyPart -> bodyPart.removeSpikeBySpikeEntity(new SpikeEntity(metal, TypeOfSpikeEnum.ALLOMANTIC)));
     }
@@ -591,6 +592,7 @@ public class InvestedPlayerData implements IInvestedPlayerData {
      */
     @Override
     public void removeFeruchemicPower(MetalTagEnum metal) {
+        System.out.println("InvestedPlayerData: Removing feruchemic power: " + metal);
         Stream.of(player.getLegs(), player.getHead(), player.getBack(), player.getArms(), player.getChest())
                 .forEach(bodyPart -> bodyPart.removeSpikeBySpikeEntity(new SpikeEntity(metal, TypeOfSpikeEnum.FERUCHEMIC)));
     }
