@@ -99,6 +99,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated, "item/core_aluminum", "item/cores/core_aluminum");
         builder(itemGenerated, "item/core_steel", "item/cores/core_steel");
 
+        builder(itemGenerated, "item/core_copper", "item/cores/core_copper");
+        builder(itemGenerated, "item/core_atium", "item/cores/core_atium");
+        builder(itemGenerated, "item/core_lerasium", "item/cores/core_lerasium");
+        builder(itemGenerated, "item/core_ettmetal", "item/cores/core_ettmetal");
+
+
         /* All textures for feruchemic bands **/
 
         builder(itemGenerated,"item/band_aluminum_duralumin","item/metal_mind/aluminium_duralumin_band");

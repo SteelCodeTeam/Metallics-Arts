@@ -84,6 +84,7 @@ public class ModLanguageProviderES extends LanguageProvider {
         put("item.metallics_arts.core_atium", CTW.ATIUM_CORE.getNameInSpanish());
         put("item.metallics_arts.core_lerasium", CTW.LERASIUM_CORE.getNameInSpanish());
         put("item.metallics_arts.core_ettmetal", CTW.ETTMETAL_CORE.getNameInSpanish());
+        put("item.metallics_arts.core_copper", CTW.COPPER_CORE.getNameInSpanish());
     }};
 
     private final Map<String, String> armors = new HashMap<>() {{
@@ -428,6 +429,15 @@ public class ModLanguageProviderES extends LanguageProvider {
         }
 
     }};
+
+
+    private final Map<String, String> panels = new HashMap<>() {{
+        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+            put("block.metallics_arts."+metal.getId()+"_panel", CTW.PANELS.getNameInSpanish()  + " " +MetalNamesEnum.valueOf(metal.name()).getNameInLowerSpanish());
+
+        }
+    }};
+
     private final Map<String, String> colors = new HashMap<>() {{
         for (ColorsNames color : ColorsNames.values()) {
             put(color.getId(),color.getNameInSpanish());
@@ -493,6 +503,10 @@ public class ModLanguageProviderES extends LanguageProvider {
         }
         for (String key: deepslateOres.keySet()) {
             add(key, deepslateOres.get(key));
+        }
+
+        for (String key: panels.keySet()) {
+            add(key, panels.get(key));
         }
 
         for (String key: nuggets.keySet()) {

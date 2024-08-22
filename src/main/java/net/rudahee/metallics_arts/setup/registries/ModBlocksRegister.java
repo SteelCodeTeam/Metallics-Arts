@@ -69,6 +69,8 @@ public class ModBlocksRegister {
     public static RegistryObject<Block> ALLOMANTIC_PULL_BUTTON;
     public static RegistryObject<Block> ALLOMANTIC_PUSH_BUTTON;
 
+    public static final HashMap<String, Block> METAL_PANELS = new HashMap<>();
+
     public static void register() {
         AtiumBlocksRegister.register();
         LerasiumBlocksRegister.register();

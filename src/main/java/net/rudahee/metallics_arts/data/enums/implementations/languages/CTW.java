@@ -113,12 +113,15 @@ public enum CTW implements ILanguage {
     ALLOYS("alloys","Alloys","Aleaciones","合金", "Stopy"),
     PATTERNS("patterns","Patterns","Patrones","", "Wzory"),
 
+    PANELS("panel","Panel","Panel de","", ""),
+
     OBSIDIAN_CORE("obsidian_core", "Obsidian Core", "Nucleo de Obsidiana", "", ""),
     STEEL_CORE("steel_core", "Steel Core", "Nucleo de acero", "", ""),
     ALUMINUM_CORE("aluminum_core", "Aluminum Core", "Nucleo de aluminio", "", ""),
     ATIUM_CORE("atium_core", "Atium Core", "Nucleo de Atium", "", ""),
     LERASIUM_CORE("lerasium_core", "Lerasium Core", "Nucleo de lerasium", "", ""),
     ETTMETAL_CORE("ettmetal_core", "Ettmetal Core", "Nucleo de ettmetal", "", ""),
+    COPPER_CORE("copper_core", "Copper Core", "Nucleo de cobre", "", ""),
     HELMET("helmet", "Helmet", "Casco", "", ""),
     LEGGINGS("leggings", "Leggings", "Pantalones", "", ""),
     CHESTPLATE("chesplate", "Chesplate", "Pechera", "", ""),
