@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "metallics_arts:block/silver_panel",
+		"0": "metallics_arts:block/pewter_panel",
 		"particle": "copper_block"
 	},
 	"elements": [

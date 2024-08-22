@@ -90,7 +90,7 @@ public class DecorationBlockRegister {
                                 .requiresCorrectToolForDrops()
                                 .requiresCorrectToolForDrops());
 
-                ModBlocksRegister.METAL_PANELS.put(metal.getId(), block);
+                ModBlocksRegister.METAL_PANELS.put(metal.getId()+ "_panel", block);
                 return block;
             });
         }
