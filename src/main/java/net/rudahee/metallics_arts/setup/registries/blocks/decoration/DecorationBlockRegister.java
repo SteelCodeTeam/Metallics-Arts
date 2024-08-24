@@ -17,13 +17,13 @@ public class DecorationBlockRegister {
     public static void register() {
 
 
-        MetallicsArts.registerBlockDecoration("chiseled_panel", ()-> {Panels block = new Panels(
+        MetallicsArts.registerBlockDecoration("copper_panel_variant1", ()-> {Panels block = new Panels(
                 BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                             .sound(SoundType.METAL)
                             .requiresCorrectToolForDrops()
                             .requiresCorrectToolForDrops());
 
-            ModBlocksRegister.METAL_PANELS.put("chiseled_panel", block);
+            ModBlocksRegister.METAL_PANELS.put("copper_panel_variant1", block);
             return block;
         });
         MetallicsArts.registerBlockDecoration("aluminum_panel_variant1", ()-> {Panels block = new Panels(
