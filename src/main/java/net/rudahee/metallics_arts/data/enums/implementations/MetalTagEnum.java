@@ -226,4 +226,13 @@ public enum MetalTagEnum implements IMetal, IGems {
     public int getChargeForNugget() {
         return chargeForNugget;
     }
+
+    public static MetalTagEnum getMetal(String name) {
+        for (MetalTagEnum metal : values()) {
+            if (metal.getNameLower().equals(name)) {
+                return metal;
+            }
+        }
+        return null;
+    }
 }
