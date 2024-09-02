@@ -6,8 +6,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.setup.world_generation.ModConfiguredFeatures;
-import net.rudahee.metallics_arts.setup.world_generation.ModPlacedFeatures;
+import net.rudahee.metallics_arts.setup.world.ModConfiguredFeatures;
+import net.rudahee.metallics_arts.setup.world.ModPlacedFeatures;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;

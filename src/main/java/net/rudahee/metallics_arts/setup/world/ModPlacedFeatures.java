@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.setup.world_generation;
+package net.rudahee.metallics_arts.setup.world;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
