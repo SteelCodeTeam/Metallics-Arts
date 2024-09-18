@@ -85,6 +85,7 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("item.metallics_arts.core_atium", CTW.ATIUM_CORE.getNameInEnglish());
                 put("item.metallics_arts.core_lerasium", CTW.LERASIUM_CORE.getNameInEnglish());
                 put("item.metallics_arts.core_ettmetal", CTW.ETTMETAL_CORE.getNameInEnglish());
+                put("item.metallics_arts.core_copper", CTW.COPPER_CORE.getNameInEnglish());
         }};
 
         private final Map<String, String> armors = new HashMap<>() {{
@@ -432,6 +433,13 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 }
         }};
 
+        private final Map<String, String> panels = new HashMap<>() {{
+                for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
+                        put("block.metallics_arts."+metal.getId()+"_panel", MetalNamesEnum.valueOf(metal.name()).getNameInEnglish() + " " + CTW.PANELS.getNameInEnglish());
+
+                }
+        }};
+
 
         private final Map<String, String> eggs = new HashMap<>() {{
                 put("item.metallics_arts.haze_killer_melee_entity_spawn_egg", "HazeKiller Melee Spawn Egg");
@@ -520,6 +528,9 @@ public class ModLanguageProviderEN extends LanguageProvider {
             }
             for (String key: walls.keySet()) {
                     add(key, walls.get(key));
+            }
+            for (String key: panels.keySet()) {
+                    add(key, panels.get(key));
             }
             for (String key: fences.keySet()) {
                     add(key, fences.get(key));

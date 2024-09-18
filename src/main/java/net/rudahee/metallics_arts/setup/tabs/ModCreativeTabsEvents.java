@@ -96,6 +96,8 @@ public class ModCreativeTabsEvents {
             event.acceptAll(ModBlocksRegister.BLOCK_METAL_BLOCKS.values().stream().map(ItemStack::new).toList());
             event.acceptAll(ModBlocksRegister.BLOCK_GEMS_BLOCKS.values().stream().map(ItemStack::new).toList());
 
+            event.acceptAll(ModBlocksRegister.METAL_PANELS.values().stream().map(ItemStack::new).toList());
+
             event.accept(ModBlocksRegister.BUDDING_ETTMETAL);
             event.accept(ModBlocksRegister.ETTMETAL_CLUSTER);
             event.accept(ModBlocksRegister.LARGE_ETTMETAL_BUD);

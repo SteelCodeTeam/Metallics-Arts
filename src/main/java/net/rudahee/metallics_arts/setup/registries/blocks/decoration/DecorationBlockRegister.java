@@ -6,12 +6,96 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalNamesEnum;
+import net.rudahee.metallics_arts.modules.custom_blocks.Panels;
 import net.rudahee.metallics_arts.modules.custom_blocks.ettmetal_blocks.*;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 public class DecorationBlockRegister {
 
     public static void register() {
+
+
+        MetallicsArts.registerBlockDecoration("copper_panel_variant1", ()-> {Panels block = new Panels(
+                BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                            .sound(SoundType.METAL)
+                            .requiresCorrectToolForDrops()
+                            .requiresCorrectToolForDrops());
+
+            ModBlocksRegister.METAL_PANELS.put("copper_panel_variant1", block);
+            return block;
+        });
+        MetallicsArts.registerBlockDecoration("aluminum_panel_variant1", ()-> {Panels block = new Panels(
+                BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                        .sound(SoundType.METAL)
+                        .requiresCorrectToolForDrops()
+                        .requiresCorrectToolForDrops());
+
+            ModBlocksRegister.METAL_PANELS.put("aluminum_panel_variant1", block);
+            return block;
+        });
+        MetallicsArts.registerBlockDecoration("steel_panel_variant1", ()-> {Panels block = new Panels(
+                BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                        .sound(SoundType.METAL)
+                        .requiresCorrectToolForDrops()
+                        .requiresCorrectToolForDrops());
+
+            ModBlocksRegister.METAL_PANELS.put("steel_panel_variant1", block);
+            return block;
+        });
+        MetallicsArts.registerBlockDecoration("iron_panel_variant1", ()-> {Panels block = new Panels(
+                BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                        .sound(SoundType.METAL)
+                        .requiresCorrectToolForDrops()
+                        .requiresCorrectToolForDrops());
+
+            ModBlocksRegister.METAL_PANELS.put("iron_panel_variant1", block);
+            return block;
+        });
+        MetallicsArts.registerBlockDecoration("nicrosil_panel_variant1", ()-> {Panels block = new Panels(
+                BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                        .sound(SoundType.METAL)
+                        .requiresCorrectToolForDrops()
+                        .requiresCorrectToolForDrops());
+
+            ModBlocksRegister.METAL_PANELS.put("nicrosil_panel_variant1", block);
+            return block;
+        });
+        MetallicsArts.registerBlockDecoration("brass_panel_variant1", ()-> {Panels block = new Panels(
+                BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                        .sound(SoundType.METAL)
+                        .requiresCorrectToolForDrops()
+                        .requiresCorrectToolForDrops());
+
+            ModBlocksRegister.METAL_PANELS.put("brass_panel_variant1", block);
+            return block;
+        });
+        MetallicsArts.registerBlockDecoration("bronze_panel_variant1", ()-> {Panels block = new Panels(
+                BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                        .sound(SoundType.METAL)
+                        .requiresCorrectToolForDrops()
+                        .requiresCorrectToolForDrops());
+
+            ModBlocksRegister.METAL_PANELS.put("bronze_panel_variant1", block);
+            return block;
+        });
+
+
+        for (MetalNamesEnum metal: MetalNamesEnum.values()) {
+            MetallicsArts.registerBlockDecoration(metal.getId() + "_panel", ()-> {
+                Panels block = new Panels(
+                        BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                                .sound(SoundType.METAL)
+                                .requiresCorrectToolForDrops()
+                                .requiresCorrectToolForDrops());
+
+                ModBlocksRegister.METAL_PANELS.put(metal.getId()+ "_panel", block);
+                return block;
+            });
+        }
+
+
         for (MetalEnum metal: MetalEnum.values()) {
             MetallicsArts.registerBlockDecoration(metal.getMetalNameLower() + "_stairs", ()-> {
                 StairBlock block = new StairBlock(

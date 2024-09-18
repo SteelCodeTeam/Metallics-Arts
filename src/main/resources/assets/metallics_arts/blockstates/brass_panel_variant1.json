@@ -1,0 +1,19 @@
+{
+      "variants": {
+            "facing=east": {
+                  "model": "metallics_arts:block/brass_panel_variant1",
+                  "y": 90
+            },
+            "facing=north": {
+                  "model": "metallics_arts:block/brass_panel_variant1"
+            },
+            "facing=south": {
+                  "model": "metallics_arts:block/brass_panel_variant1",
+                  "y": 180
+            },
+            "facing=west": {
+                  "model": "metallics_arts:block/brass_panel_variant1",
+                  "y": 270
+            }
+      }
+}

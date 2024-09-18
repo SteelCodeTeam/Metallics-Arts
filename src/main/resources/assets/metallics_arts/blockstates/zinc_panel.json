@@ -1,0 +1,19 @@
+{
+      "variants": {
+            "facing=east": {
+                  "model": "metallics_arts:block/zinc_panel",
+                  "y": 90
+            },
+            "facing=north": {
+                  "model": "metallics_arts:block/zinc_panel"
+            },
+            "facing=south": {
+                  "model": "metallics_arts:block/zinc_panel",
+                  "y": 180
+            },
+            "facing=west": {
+                  "model": "metallics_arts:block/zinc_panel",
+                  "y": 270
+            }
+      }
+}
