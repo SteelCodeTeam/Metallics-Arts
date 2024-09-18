@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.back;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -9,17 +8,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
-import net.rudahee.metallics_arts.data.player.data.InvestedPlayerData;
 import net.rudahee.metallics_arts.data.player.data.model.SpikeEntity;
 import net.rudahee.metallics_arts.data.player.data.model.enums.BodyPartEnum;
 import net.rudahee.metallics_arts.data.player.data.model.enums.BodySlotEnum;
-import net.rudahee.metallics_arts.modules.custom_items.metal_spikes.MetalSpike;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
-import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import net.rudahee.metallics_arts.setup.registries.ModMenuRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.HemalurgyUtils;

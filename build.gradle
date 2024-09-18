@@ -212,8 +212,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/SteelCodeTeam/Metallics-Arts")
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                username = project.findProperty("gpr.user") ?: System.getenv("ga-user")
+                password = project.findProperty("gpr.key") ?: System.getenv("ga-token")
             }
         }
     }

@@ -20,15 +20,5 @@ public class PowerEffect extends MobEffect {
     public PowerEffect(MobEffectCategory mobEffectCategory, int color) {
         super(mobEffectCategory, color);
     }
-    /**
-     * Checks if the effect should be applied at the current tick of the duration.
-     *
-     * @param pDuration the current duration of the effect.
-     * @param pAmplificador the current amplifier of the effect.
-     * @return true if the effect should be applied, false otherwise.
-     */
-    @Override
-    public boolean isDurationEffectTick(int pDuration, int pAmplificador) {
-        return super.isDurationEffectTick(pDuration, pAmplificador);
-    }
+
 }
