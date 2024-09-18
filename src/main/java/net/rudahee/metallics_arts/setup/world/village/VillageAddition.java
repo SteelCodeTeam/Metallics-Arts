@@ -85,7 +85,7 @@ public class VillageAddition {
 
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/plains/houses"),
-                "metallics_arts:canton_3", 7);
+                "metallics_arts:templo_iron", 250);
 
 
 
