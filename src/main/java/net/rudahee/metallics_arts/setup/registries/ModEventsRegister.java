@@ -14,6 +14,10 @@ import net.rudahee.metallics_arts.modules.logic.server.ServerEventHandler;
 
 public class ModEventsRegister {
 
+    private ModEventsRegister() {
+        throw new IllegalStateException("Class can't be instantiated");
+    }
+
     public static void clientInit(final FMLClientSetupEvent event) {
         MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
     }
@@ -25,7 +29,5 @@ public class ModEventsRegister {
         });
     }
 
-    public static void register() {
-        ModEventsRegister.register();
-    }
+
 }

@@ -79,8 +79,6 @@ public class ModLootTableProvider implements LootTableSubProvider {
     @Override
     public void generate(BiConsumer<ResourceLocation, LootTable.Builder> writer) {
 
-
-
         for (String key: ModBlocksRegister.BLOCK_METAL_ORES.keySet()) {
             Block stoneOre = ModBlocksRegister.BLOCK_METAL_ORES.get(key);
             Item raw = ModItemsRegister.ITEM_RAW_METAL.get(key);

@@ -23,8 +23,7 @@ import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModMenuRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.HemalurgyUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 @Log
 public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
@@ -81,7 +80,7 @@ public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public void clicked(int slot, int button, ClickType type, Player player) {
+    public void clicked(int slot, int button, @NotNull ClickType type, @NotNull Player player) {
         super.clicked(slot, button, type, player);
         LoggerUtils.printLogWarn("Holi: " + slot + ", " + button + ", " + type);
         try {

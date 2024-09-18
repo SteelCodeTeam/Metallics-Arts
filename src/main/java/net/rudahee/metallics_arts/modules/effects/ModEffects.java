@@ -27,19 +27,20 @@ public class ModEffects {
      * A deferred register for registering mob effects with the Forge registries.
      * @see ForgeRegistries
      */
-    public static DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, MetallicsArts.MOD_ID);
+    public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, MetallicsArts.MOD_ID);
 
     /**
      * A map of allomantic and feruchemical effects registered in the mod.
      * Each metal has three registered effects: allomantic effect, feruchemical storage effect, and feruchemical tap effect.
      */
-    public static final Map<String, RegistryObject<MobEffect>> POWER_EFFECTS = new HashMap<>() {{
+    public static final Map<String, RegistryObject<MobEffect>> POWER_EFFECTS = new HashMap<>();
+    static {
         for (MetalTagEnum metal: MetalTagEnum.values()) {
-            put("allomantic_"+metal.getNameLower(), MOB_EFFECTS.register("allomantic_" + metal.getNameLower(), ()-> new PowerEffect(MobEffectCategory.NEUTRAL,11120)));
-            put("feruchemical_"+metal.getNameLower()+"_storage", MOB_EFFECTS.register("feruchemical_" + metal.getNameLower() + "_storage", ()-> new PowerEffect(MobEffectCategory.NEUTRAL,11120)));
-            put("feruchemical_"+metal.getNameLower()+"_tap", MOB_EFFECTS.register("feruchemical_" + metal.getNameLower() + "_tap", ()-> new PowerEffect(MobEffectCategory.NEUTRAL,11120)));
+            POWER_EFFECTS.put("allomantic_"+metal.getNameLower(), MOB_EFFECTS.register("allomantic_" + metal.getNameLower(), ()-> new PowerEffect(MobEffectCategory.NEUTRAL,11120)));
+            POWER_EFFECTS.put("feruchemical_"+metal.getNameLower()+"_storage", MOB_EFFECTS.register("feruchemical_" + metal.getNameLower() + "_storage", ()-> new PowerEffect(MobEffectCategory.NEUTRAL,11120)));
+            POWER_EFFECTS.put("feruchemical_"+metal.getNameLower()+"_tap", MOB_EFFECTS.register("feruchemical_" + metal.getNameLower() + "_tap", ()-> new PowerEffect(MobEffectCategory.NEUTRAL,11120)));
         }
-    }};
+    }
 
     /**
      * Gives an Allomantic effect to the specified player based on the given metal.
