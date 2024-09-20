@@ -6,8 +6,9 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.custom_tiers.CustomMaterials;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
-import net.rudahee.metallics_arts.modules.custom_items.armors.AtiumArmorItem;
+import net.rudahee.metallics_arts.modules.custom_items.armors.items.AtiumArmorItem;
 import net.rudahee.metallics_arts.modules.custom_items.armors.MistCloak;
+import net.rudahee.metallics_arts.modules.custom_items.armors.items.LerasiumArmorItem;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 public class ArmorRegister {
@@ -66,19 +67,19 @@ public class ArmorRegister {
 
 
         RegistryObject<Item> lerasiumHelmet = MetallicsArts.registerItem("lerasium_helmet",
-                () -> new ArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.HELMET, PROPERTIES));
+                () -> new LerasiumArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.HELMET, PROPERTIES));
         ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.HELMET, lerasiumHelmet);
 
         RegistryObject<Item> lerasiumChesplate = MetallicsArts.registerItem("lerasium_chestplate",
-                () -> new ArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
+                () -> new LerasiumArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
         ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, lerasiumChesplate);
 
         RegistryObject<Item> lerasiumLeggings = MetallicsArts.registerItem("lerasium_leggings",
-                () -> new ArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.LEGGINGS, PROPERTIES));
+                () -> new LerasiumArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.LEGGINGS, PROPERTIES));
         ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.LEGGINGS, lerasiumLeggings);
 
         RegistryObject<Item> lerasiumBoots = MetallicsArts.registerItem("lerasium_boots",
-                () -> new ArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.BOOTS, PROPERTIES));
+                () -> new LerasiumArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.BOOTS, PROPERTIES));
         ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.BOOTS, lerasiumBoots);
 
 

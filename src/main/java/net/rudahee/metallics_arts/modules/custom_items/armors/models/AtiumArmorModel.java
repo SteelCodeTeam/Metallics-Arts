@@ -1,7 +1,8 @@
-package net.rudahee.metallics_arts.modules.custom_items.armors;
+package net.rudahee.metallics_arts.modules.custom_items.armors.models;
 
 import net.minecraft.resources.ResourceLocation;
 import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.modules.custom_items.armors.items.AtiumArmorItem;
 import software.bernie.geckolib.model.GeoModel;
 
 public class AtiumArmorModel extends GeoModel<AtiumArmorItem> {

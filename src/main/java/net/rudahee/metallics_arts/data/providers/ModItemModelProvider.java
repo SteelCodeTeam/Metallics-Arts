@@ -287,6 +287,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS));
         simpleItem(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.BOOTS));
 
+        simpleItem(ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.HELMET));
+        simpleItem(ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE));
+        simpleItem(ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS));
+        simpleItem(ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.BOOTS));
+
     }
 
 
