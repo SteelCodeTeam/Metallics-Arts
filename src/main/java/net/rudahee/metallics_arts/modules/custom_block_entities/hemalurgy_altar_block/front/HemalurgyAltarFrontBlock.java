@@ -19,6 +19,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import net.rudahee.metallics_arts.setup.registries.ModBlockEntitiesRegister;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class HemalurgyAltarFrontBlock extends BaseEntityBlock {
@@ -65,19 +66,19 @@ public class HemalurgyAltarFrontBlock extends BaseEntityBlock {
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
-                                                                  BlockEntityType<T> type) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state,
+                                                                  @NotNull BlockEntityType<T> type) {
         return createTickerHelper(type, ModBlockEntitiesRegister.HEMALURGY_ALTAR_FRONT_ENTITY.get(),
                 HemalurgyAltarFrontBlockEntity::tick);
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos,
-                                 Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(@NotNull BlockState state, Level level, @NotNull BlockPos pos,
+                                          @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         if (!level.isClientSide()) {
             BlockEntity entity = level.getBlockEntity(pos);
-            if(entity instanceof HemalurgyAltarFrontBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)player), (HemalurgyAltarFrontBlockEntity)entity, pos);
+            if(entity instanceof HemalurgyAltarFrontBlockEntity entityAltar) {
+                NetworkHooks.openScreen(((ServerPlayer)player), entityAltar, pos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }

@@ -155,7 +155,7 @@ public class HemalurgyAltarFrontBlockEntity extends BlockEntity implements MenuP
     @Override
     protected void saveAdditional(CompoundTag tag) {
         tag.put("hemalurgy_altar_front", itemHandlerFront.serializeNBT());
-        tag.put("hemalurgy_altar_back", itemHandlerBack.serializeNBT());
+        //tag.put("hemalurgy_altar_back", itemHandlerBack.serializeNBT());
 
         super.saveAdditional(tag);
     }
@@ -163,7 +163,7 @@ public class HemalurgyAltarFrontBlockEntity extends BlockEntity implements MenuP
     @Override
     public void load(CompoundTag tag) {
         itemHandlerFront.deserializeNBT(tag.getCompound("hemalurgy_altar_front"));
-        itemHandlerBack.deserializeNBT(tag.getCompound("hemalurgy_altar_back"));
+        //itemHandlerBack.deserializeNBT(tag.getCompound("hemalurgy_altar_back"));
 
         super.load(tag);
     }
@@ -180,7 +180,7 @@ public class HemalurgyAltarFrontBlockEntity extends BlockEntity implements MenuP
         return new HemalurgyAltarFrontMenu(id, inv, this, this.data);
     }
 
-    public AbstractContainerMenu createBackMenu(int id, Inventory inv, Player player) {
+    public AbstractContainerMenu createFrontMenu(int id, Inventory inv, Player player) {
         return new HemalurgyAltarFrontMenu(id, inv, this, this.data);
     }
 }

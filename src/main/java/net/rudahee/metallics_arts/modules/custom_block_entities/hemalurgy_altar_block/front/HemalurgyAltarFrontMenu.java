@@ -1,13 +1,18 @@
 package net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front;
 
-import lombok.extern.java.Log;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
@@ -25,18 +30,15 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.HemalurgyUtils;
 import org.jetbrains.annotations.NotNull;
 
-@Log
 public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
 
     private final Level level;
     private final ContainerData data;
-    private final Player player;
+    private Player player;
     private HemalurgyAltarFrontBlockEntity blockEntity;
 
     public HemalurgyAltarFrontMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
         this(id, inv, (HemalurgyAltarFrontBlockEntity) inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(0));
-
-        log.info("HemalurgyAltarFrontMenu: " + id + " " + extraData.readBlockPos());
     }
 
     @SuppressWarnings("removal")
@@ -46,6 +48,7 @@ public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
 
         this.level = inv.player.level;
         this.player = inv.player;
+
         this.data = data;
         this.blockEntity = entity;
         addPlayerInventory(inv);
@@ -74,7 +77,7 @@ public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 19, 168, 57));
         });
 
-        addDataSlots(data);
+        addDataSlots(this.data);
 
         initializeDataSlots();
     }
@@ -82,97 +85,55 @@ public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
     @Override
     public void clicked(int slot, int button, @NotNull ClickType type, @NotNull Player player) {
         super.clicked(slot, button, type, player);
-        LoggerUtils.printLogWarn("Holi: " + slot + ", " + button + ", " + type);
-        try {
-            IInvestedPlayerData cap = CapabilityUtils.getCapability(player);
+        if (player instanceof ServerPlayer) {
+            LoggerUtils.printLogWarn("Holi: " + slot + ", " + button + ", " + type);
 
-            if (button == 0 && (slot >= 36 && slot <= 55)) {
-                if (ClickType.PICKUP == type) {
-                    if (slots.get(slot).getItem() == ItemStack.EMPTY) {
-                        System.out.println("Slot clicked - Eliminar: " + slot + ", " + button + ", " + type);
-                        removeMetalFromSlot(getCarried(), slots.get(slot), cap);
-                    } else if (slots.get(slot).getItem().getItem() instanceof MetalSpike) {
-                        System.out.println("Slot clicked - Agregar: " + slot + ", " + button + ", " + type);
-                        addMetalFromSlot(slots.get(slot), cap);
-                    } else {
-                        System.out.println("Slot clicked: " + slot + ", " + button + ", " + type);
-                    }
-                } else {
-                    System.out.println("Pickup clicked: " + slot + ", " + button + ", " + type);
+            Player actualPlayer = player;
+
+            try {
+                IInvestedPlayerData cap = CapabilityUtils.getCapability(actualPlayer);
+
+                if (button == 1) {
+                    return;
                 }
-            } else {
-                System.out.println("Else clicked: " + slot + ", " + button + ", " + type);
+
+                if (ClickType.QUICK_MOVE == type || ClickType.CLONE == type
+                        || ClickType.PICKUP_ALL == type || ClickType.SWAP == type || ClickType.THROW == type) {
+                    System.out.println("Haciendo nada con un click invalido");
+                    return;
+                }
+
+                if (ClickType.PICKUP == type || ClickType.QUICK_CRAFT == type) {
+                    if (button == 0 && (slot >= 36 && slot <= 55)) {
+                        if (slots.get(slot).getItem() == ItemStack.EMPTY) {
+                            actualPlayer = removeMetalFromSlot(getCarried(), slots.get(slot), cap, actualPlayer);
+
+                        } else if (slots.get(slot).getItem().getItem() instanceof MetalSpike) {
+                            actualPlayer = addMetalFromSlot(slots.get(slot), cap, actualPlayer);
+                        }
+                    }
+                }
+
+                if (actualPlayer == null) {
+                    return;
+                }
+
+                this.player = actualPlayer;
+                initializeDataSlots();
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (PlayerException e) {
-            LoggerUtils.printLogInfo("Error in HemalurgyAltarBackMenu: " + e.getMessage());
+
+            player.hurt(player.damageSources().playerAttack(player), 18.0F);
+            level.setBlock(blockEntity.getBlockPos(), Blocks.AIR.defaultBlockState(), 3);
+            level.setBlock(blockEntity.getBlockPos(), ModBlocksRegister.HEMALURGY_ALTAR_FRONT.get().defaultBlockState(), 3);
         }
-
     }
-
-    // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
-    // must assign a slot number to each of the slots used by the GUI.
-    // For this container, we can see both the tile inventory's slots as well as the player inventory slots and the hotbar.
-    // Each time we add a Slot to the container, it automatically increases the slotIndex, which means
-    //  0 - 8 = hotbar slots (which will map to the InventoryPlayer slot numbers 0 - 8)
-    //  9 - 35 = player inventory slots (which map to the InventoryPlayer slot numbers 9 - 35)
-    //  36 - 44 = TileInventory slots, which map to our TileEntity slot numbers 0 - 8)
-    private static final int HOTBAR_SLOT_COUNT = 9;
-    private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
-    private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
-    private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
-    private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
-    private static final int VANILLA_FIRST_SLOT_INDEX = 0;
-    private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-
-    // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 20;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
-        Slot sourceSlot = slots.get(index);
-        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
-        ItemStack sourceStack = sourceSlot.getItem();
-        ItemStack copyOfSourceStack = sourceStack.copy();
-
-        try {
-            if (index >= 0 && index <= 19) {
-
-                if (sourceSlot.getItem() == ItemStack.EMPTY) {
-                    removeMetalFromSlot(getCarried(), sourceSlot, CapabilityUtils.getCapability(player));
-                } else if (sourceSlot.getItem().getItem() instanceof MetalSpike) {
-                    addMetalFromSlot(sourceSlot, CapabilityUtils.getCapability(player));
-                }
-
-            }
-        } catch (PlayerException e) {
-            LoggerUtils.printLogInfo("Error in HemalurgyAltarBackMenu: " + e.getMessage());
-        }
-
-
-        // Check if the slot clicked is one of the vanilla container slots
-        if (index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            // This is a vanilla container slot so merge the stack into the tile inventory
-            if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
-                    + TE_INVENTORY_SLOT_COUNT, false)) {
-                return ItemStack.EMPTY;  // EMPTY_ITEM
-            }
-        } else if (index < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
-            // This is a TE slot so merge the stack into the players inventory
-            if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
-                return ItemStack.EMPTY;
-            }
-        } else {
-            System.out.println("Invalid slotIndex:" + index);
-            return ItemStack.EMPTY;
-        }
-        // If stack size == 0 (the entire stack was moved) set slot contents to null
-        if (sourceStack.getCount() == 0) {
-            sourceSlot.set(ItemStack.EMPTY);
-        } else {
-            sourceSlot.setChanged();
-        }
-        sourceSlot.onTake(playerIn, sourceStack);
-        return copyOfSourceStack;
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -197,37 +158,39 @@ public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
 
 
 
-    private void removeMetalFromSlot(ItemStack stack, Slot slot, IInvestedPlayerData playerData) {
+    private Player removeMetalFromSlot(ItemStack stack, Slot slot, IInvestedPlayerData playerData, Player player) {
+        if (stack.getTag() == null) {
+            return null;
+        }
+
+        if (MetalTagEnum.values()[stack.getTag().getInt("metal_spike")] == null) {
+            return null;
+        }
         MetalTagEnum metal = MetalTagEnum.values()[stack.getTag().getInt("metal_spike")];
         slot.setChanged();
 
         if (stack.getTag().getBoolean("allomantic_power")) {
-            System.out.println("HemalurgyAltarFrontMenu: Allomantic power removing");
-            System.out.println("Metal: " + metal);
-            System.out.println("PlayerData: " + playerData);
-            System.out.println("slot: " + slot);
-            System.out.println("stack: " + stack);
             playerData.removeAllomanticPower(metal);
         } else {
-            System.out.println("HemalurgyAltarFrontMenu: Feruchemic power removing");
-            System.out.println("Metal: " + metal);
-            System.out.println("PlayerData: " + playerData);
-            System.out.println("slot: " + slot);
-            System.out.println("stack: " + stack);
             playerData.removeFeruchemicPower(metal);
         }
 
-        //System.out.println(playerData.getPlayerData());
+        System.out.println("REMOVE METAL FROM SLOT. Is server?: " + (player instanceof ServerPlayer));
 
         if (player instanceof ServerPlayer) {
             ModNetwork.syncInvestedDataPacket(playerData, player);
         }
-        //TODO Tienes que testear bru
 
-       // ModNetwork.sendToServer(new InvestedDataPacket(playerData, player));
+        return player;
     }
 
-    private void addMetalFromSlot(Slot slot, IInvestedPlayerData playerData) {
+    private Player addMetalFromSlot(Slot slot, IInvestedPlayerData playerData, Player player) {
+        if (slot.getItem().getTag() == null) {
+            return null;
+        }
+        if (MetalTagEnum.values()[slot.getItem().getTag().getInt("metal_spike")] == null) {
+            return null;
+        }
         MetalTagEnum metal = MetalTagEnum.values()[slot.getItem().getTag().getInt("metal_spike")];
 
         int slotIndex = slot.getSlotIndex();
@@ -235,19 +198,17 @@ public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
 
         BodyPartEnum part = HemalurgyUtils.calculateBodyPartBySlotIndex(slotIndex);
 
-        if (slot.getSlotIndex() <= 0 && slot.getSlotIndex() >= 19) {
-            if (slot.getItem().getTag().getBoolean("allomantic_power")) {
-                playerData.addAllomanticPower(metal, part, BodySlotEnum.FRONT, slotNum);
-            } else {
-                playerData.addFeruchemicPower(metal, part, BodySlotEnum.FRONT, slotNum);
-            }
+        if (slot.getItem().getTag().getBoolean("allomantic_power")) {
+            playerData.addAllomanticPower(metal, part, BodySlotEnum.FRONT, slotNum);
+        } else {
+            playerData.addFeruchemicPower(metal, part, BodySlotEnum.FRONT, slotNum);
         }
-
-        System.out.println(playerData.getPlayerData());
 
         if (player instanceof ServerPlayer) {
             ModNetwork.syncInvestedDataPacket(playerData, player);
         }
+
+        return player;
     }
 
     @SuppressWarnings("removal")
@@ -256,7 +217,7 @@ public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
             ItemStack stack = null;
             SpikeEntity spikeEntity = null;
             try {
-                IInvestedPlayerData playerData = CapabilityUtils.getCapability(player);
+                IInvestedPlayerData playerData = CapabilityUtils.getCapability(this.player);
 
                 // HEAD
                 spikeEntity = HemalurgyUtils.generateSpikeEntity(playerData, 0, BodySlotEnum.FRONT, BodyPartEnum.HEAD);
@@ -372,7 +333,4 @@ public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
             }
         });
     }
-
-
-
 }
