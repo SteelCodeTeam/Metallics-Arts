@@ -50,6 +50,7 @@ public class ModCreativeTabsEvents {
             event.accept(ModBlocksRegister.CRUCIBLE_FURNACE);
             event.accept(ModBlocksRegister.HEMALURGY_ALTAR_FRONT);
             event.accept(ModBlocksRegister.HEMALURGY_ALTAR_BACK);
+            event.accept(ModBlocksRegister.DISTILLERY);
 
             event.accept(ModItemsRegister.IRON_SIGN);
             event.accept(ModItemsRegister.GOLD_SIGN);
@@ -63,7 +64,6 @@ public class ModCreativeTabsEvents {
 
 
             ModItemsRegister.addChargeInList(); //todo Mirar si se puede hacer en otro lado - lo tuve que poner aca porque no registraba a tiempo los items sino
-
 
             armorsCreativeTab(event);
 

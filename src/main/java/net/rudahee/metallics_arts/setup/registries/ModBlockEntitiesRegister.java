@@ -35,7 +35,7 @@ public class ModBlockEntitiesRegister {
     public static final RegistryObject<BlockEntityType<DistilleryBlockEntity>> DISTILLERY_ENTITY =
             BLOCK_ENTITIES.register("distillery_entity", () ->
                     BlockEntityType.Builder.of(DistilleryBlockEntity::new,
-                            ModBlocksRegister.DESTILLERY.get()).build(null));
+                            ModBlocksRegister.DISTILLERY.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<ModSingBlockEntity>> BLOCK_ENTITY =
             BLOCK_ENTITIES.register("sign_block_entity", () ->

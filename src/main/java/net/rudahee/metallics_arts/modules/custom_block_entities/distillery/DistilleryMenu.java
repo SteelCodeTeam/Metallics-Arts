@@ -8,7 +8,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import net.rudahee.metallics_arts.modules.custom_block_entities.distillery.DistilleryBlockEntity;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModMenuRegister;
 
@@ -22,9 +21,8 @@ public class DistilleryMenu extends AbstractContainerMenu {
     }
 
     @SuppressWarnings("removal")
-
     public DistilleryMenu(int id, Inventory inv, DistilleryBlockEntity entity, ContainerData data) {
-        super(ModMenuRegister.CRUCIBLE_FURNACE_MENU.get(), id);
+        super(ModMenuRegister.DISTILLERY_MENU.get(), id);
         checkContainerSize(inv, 6);
 
         this.level = inv.player.level;
@@ -34,12 +32,11 @@ public class DistilleryMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 7, 23));
-            this.addSlot(new SlotItemHandler(handler, 1, 54, 44));
-            this.addSlot(new SlotItemHandler(handler, 2, 73, 44));
-            this.addSlot(new SlotItemHandler(handler, 3, 54, 63));
-            this.addSlot(new SlotItemHandler(handler, 4, 73, 63));
-            this.addSlot(new SlotItemHandler(handler, 5, 137, 63));
+            this.addSlot(new SlotItemHandler(handler, 0, 58, 20));
+            this.addSlot(new SlotItemHandler(handler, 1, 102, 23));
+            this.addSlot(new SlotItemHandler(handler, 2, 123, 23));
+            this.addSlot(new SlotItemHandler(handler, 3, 145, 23));
+            this.addSlot(new SlotItemHandler(handler, 4, 123, 77));
         });
 
         addDataSlots(data);
@@ -62,7 +59,7 @@ public class DistilleryMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 6;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 5;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
@@ -100,7 +97,7 @@ public class DistilleryMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocksRegister.CRUCIBLE_FURNACE.get());
+                player, ModBlocksRegister.DISTILLERY.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
@@ -117,26 +114,4 @@ public class DistilleryMenu extends AbstractContainerMenu {
         }
     }
 
-    public int getFuelQty() {
-        int maxHeight = 51;
-        double percentage = ((double) this.data.get(DistilleryBlockEntity.FUEL_STORAGE_INDEX) / this.data.get(DistilleryBlockEntity.MAX_FUEL_STORAGE_INDEX)) * 100;
-
-        return Math.min(maxHeight, (int) ((percentage / 100) * maxHeight));
-    }
-
-    public int getProgress() {
-        int maxWidth = 24;
-
-        double percentage = ((double) this.data.get(DistilleryBlockEntity.PROGRESS_INDEX) / this.data.get(DistilleryBlockEntity.MAX_PROGRESS_INDEX)) * 100;
-
-        return Math.min(maxWidth, (int) ((percentage / 100) * maxWidth));
-    }
-
-    public boolean isHot() {
-        return this.data.get(DistilleryBlockEntity.FUEL_STORAGE_INDEX) != 0;
-    }
-
-    public int timeWithoutRecipe() {
-        return this.data.get(DistilleryBlockEntity.TIME_WITHOUT_RECIPE_INDEX);
-    }
 }

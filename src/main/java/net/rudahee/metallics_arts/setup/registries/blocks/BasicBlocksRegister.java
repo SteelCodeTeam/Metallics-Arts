@@ -134,7 +134,7 @@ public class BasicBlocksRegister {
             return block;
         });
 
-        ModBlocksRegister.DESTILLERY = MetallicsArts.registerBlock("distillery", () -> {
+        ModBlocksRegister.DISTILLERY = MetallicsArts.registerBlock("distillery", () -> {
             Block block = new DistilleryBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
                     .strength(10f, 10f)
                     .lightLevel(litBlockEmission(16))

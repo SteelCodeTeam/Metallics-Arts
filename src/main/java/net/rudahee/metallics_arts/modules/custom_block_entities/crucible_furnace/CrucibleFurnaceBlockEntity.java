@@ -32,7 +32,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-
 public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvider {
 
     // Slots definition

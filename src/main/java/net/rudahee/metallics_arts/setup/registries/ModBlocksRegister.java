@@ -1,16 +1,9 @@
 package net.rudahee.metallics_arts.setup.registries;
 
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.AmethystBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.CapabilityToken;
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.registries.RegistryObject;
-import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.setup.registries.blocks.BasicBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.decoration.DecorationBlockRegister;
 import net.rudahee.metallics_arts.setup.registries.blocks.geodes.AtiumBlocksRegister;
@@ -53,7 +46,7 @@ public class ModBlocksRegister {
     public static RegistryObject<Block> CRUCIBLE_FURNACE;
     public static RegistryObject<Block> HEMALURGY_ALTAR_FRONT;
     public static RegistryObject<Block> HEMALURGY_ALTAR_BACK;
-    public static RegistryObject<Block> DESTILLERY;
+    public static RegistryObject<Block> DISTILLERY;
 
     public static RegistryObject<Block> IRON_WALL_SIGN;
     public static RegistryObject<Block> IRON_STANDING_SIGN;

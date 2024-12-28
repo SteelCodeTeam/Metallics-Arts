@@ -4,9 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -15,14 +13,12 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.rudahee.metallics_arts.modules.custom_block_entities.distillery.DistilleryBlockEntity;
 import net.rudahee.metallics_arts.setup.registries.ModBlockEntitiesRegister;
 import org.jetbrains.annotations.Nullable;
 
 public class DistilleryBlock extends BaseEntityBlock {
+
     public DistilleryBlock(Properties properties) {
         super(properties);
     }
@@ -31,33 +27,12 @@ public class DistilleryBlock extends BaseEntityBlock {
             BED STUFF
      */
 
-    @Override
-    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float modifier) {
-        super.fallOn(level, state, pos, entity, modifier);
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-        return super.getShape(state, blockGetter, pos, context);
-    }
 
     @Override
     public RenderShape getRenderShape(BlockState state) {
-        return super.getRenderShape(state);
+        return RenderShape.MODEL;
     }
 
-
-
-
-    /*
-        HORIZONTAL FACING
-    */
-
-
-
-    /*
-            BLOCK ENTITY
-     */
 
     @Nullable
     @Override
