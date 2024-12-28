@@ -151,6 +151,13 @@ public abstract class Vial extends Item {
         return nbt;
     }
 
+    public static CompoundTag addReserveVialTagsFromMetal(MetalTagEnum metal, int reserve) {
+        CompoundTag nbt = new CompoundTag();
+        nbt.putInt(metal.getNameLower(), reserve);
+
+        return nbt;
+    }
+
     /**
      * This method define the behaviour when using is finished. but we don't do anything special, only call super().
      *
@@ -179,6 +186,23 @@ public abstract class Vial extends Item {
                     have = true;
                     break;
                 }
+            }
+        }
+        return have;
+    }
+
+    /**
+     * Auxiliary method for check if it has any tags of the metals.
+     *
+     * @param stack of the item.
+     *
+     * @return boolean
+     */
+    public static boolean hasCompletedMetalReserve(ItemStack stack, MetalTagEnum metal) {
+        boolean have = false;
+        if (stack.hasTag()) {
+            if (stack.getTag().contains(metal.getNameLower()) && stack.getTag().getInt(metal.getNameLower()) == 10) {
+                have = true;
             }
         }
         return have;

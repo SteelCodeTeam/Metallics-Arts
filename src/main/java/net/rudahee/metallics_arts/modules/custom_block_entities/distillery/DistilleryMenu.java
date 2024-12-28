@@ -17,13 +17,13 @@ public class DistilleryMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public DistilleryMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-        this(id, inv, (DistilleryBlockEntity) inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(7));
+        this(id, inv, (DistilleryBlockEntity) inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(10));
     }
 
     @SuppressWarnings("removal")
     public DistilleryMenu(int id, Inventory inv, DistilleryBlockEntity entity, ContainerData data) {
         super(ModMenuRegister.DISTILLERY_MENU.get(), id);
-        checkContainerSize(inv, 6);
+        checkContainerSize(inv, 5);
 
         this.level = inv.player.level;
         this.data = data;
