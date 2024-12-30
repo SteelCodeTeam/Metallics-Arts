@@ -169,6 +169,14 @@ dependencies {
 
     compileOnly 'org.projectlombok:lombok:1.18.34'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+mixin {
+    add sourceSets.main, 'mixins.metallics_arts.refmap.json'
+    config 'mixins/mixins.metallics_arts.json'
+
 }
 
 jar {

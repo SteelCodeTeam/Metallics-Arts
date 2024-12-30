@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.logic.client.client_events;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -7,13 +8,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.BasicGun;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.GunUtils;
+import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.RifleWithSpyGlass;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.messages.ErrorTypes;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.network.packets.FiringGunPacket;
+import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
+import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
 
 /**
  * OnMouseInputEvent is a client-side class responsible for processing
@@ -34,6 +39,7 @@ import net.rudahee.metallics_arts.setup.network.packets.FiringGunPacket;
  */
 @OnlyIn(Dist.CLIENT)
 public class OnMouseInputEvent {
+
 
     /**
      * Processes MouseInputEvents and toggles the respective powers
@@ -59,7 +65,7 @@ public class OnMouseInputEvent {
             throw new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR);
         }
 
-        /*
+
         for (int i = 0; i< MetalTagEnum.values().length; i++) {
             if (ModKeyRegister.powers[i].isDown()) {
                 if (ModKeyRegister.FERUCHEMIC_DECANT.isDown()) {
@@ -70,11 +76,11 @@ public class OnMouseInputEvent {
                     ClientUtils.toggleBurn(MetalTagEnum.getMetal(i), capability);
                 }
             }
-        }*/
+        }
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static void otro(LocalPlayer player, ItemStack itemInHand) {
+    public static void OnPlayerUsingWeapon(LocalPlayer player, ItemStack itemInHand) {
         if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof BasicGun instance) {
             if (!itemInHand.hasTag()) {
                 itemInHand.setTag(GunUtils.generateGunTags(instance.getGunType()));
@@ -84,6 +90,5 @@ public class OnMouseInputEvent {
             }
         }
     }
-
 
 }

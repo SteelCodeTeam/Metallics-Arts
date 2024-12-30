@@ -25,6 +25,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.custom_items.vials.LargeVial;
+import net.rudahee.metallics_arts.modules.custom_items.vials.Vial;
 import net.rudahee.metallics_arts.setup.registries.ModBlockEntitiesRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import org.jetbrains.annotations.NotNull;
@@ -97,17 +98,10 @@ public class DistilleryBlockEntity extends BlockEntity implements MenuProvider {
     private int tickAnimFuel = 0;
     private int tickAnimRecipe = 0;
 
-
-    public static final int PROGRESS_INDEX = 0;
-    public static final int MAX_PROGRESS_INDEX = 1;
-    public static final int FUEL_STORAGE_INDEX = 2;
-    public static final int MAX_FUEL_STORAGE_INDEX = 3;
-    public static final int TIME_WITHOUT_RECIPE_INDEX = 4;
-    public static final int TICK_FUEL_ADDED_INDEX = 5;
-    public static final int TICK_PROGRESS_INDEX = 6;
-    public static final int TICK_ANIM_FUEL_INDEX = 7;
-    public static final int TICK_ANIM_RECIPE_INDEX = 8;
-    public static final int SLOT_TO_CHECK_INDEX = 10;
+    public static final int SLOT_VOID = -1;
+    public static final int SLOT_RAW = 1;
+    public static final int SLOT_NUGGET = 2;
+    public static final int SLOT_INGOT = 3;
 
 
     public DistilleryBlockEntity(BlockPos pos, BlockState state) {
@@ -228,69 +222,58 @@ public class DistilleryBlockEntity extends BlockEntity implements MenuProvider {
     public static void tick(Level level, BlockPos pos, BlockState state, DistilleryBlockEntity entity) {
         if (!level.isClientSide()) {
 
-            if (entity.itemHandler.getStackInSlot(0).is(Items.BLAZE_POWDER)) {
-                if (entity.fuelStorage < entity.maxFuelStorage) {
-                    if (entity.tickFuelAdded < 100) {
-                        entity.tickFuelAdded++;
-                        setChanged(level, pos, state);
-                    } else {
-                        addFuel(entity, level, pos, state);
-                        resetFuelAdding(entity);
-                        setChanged(level, pos, state);
-                    }
-                } else {
-                    resetFuelAdding(entity);
-                    setChanged(level, pos, state);
-                }
-            } else {
-                resetFuelAdding(entity);
-                setChanged(level, pos, state);
-            }
+            manageFuel(entity, level, pos, state);
 
             if (entity.fuelStorage > 0) {
-
-
-                if (entity.slotToCheck == -1) {
+                if (entity.slotToCheck == SLOT_VOID) {
                     entity.slotToCheck = hasMinimalItemsForRecipe(entity, level, pos, state);
                 } else {
                     int newSlot = entity.slotToCheck = hasMinimalItemsForRecipe(entity, level, pos, state);
                     if (newSlot != entity.slotToCheck) {
-                        resetProgress(entity);
+                        entity.tickProgress = 0;
                         entity.progress = 0;
                         entity.slotToCheck = -1;
                         setChanged(level, pos, state);
-                    }
-                }
-
-                if (entity.slotToCheck != -1) {
-                    if (entity.progress < entity.maxProgress) {
-                        entity.progress++;
-                        setChanged(level, pos, state);
                     } else {
-                        removeItemsFromRecipe(entity, level, pos, state);
-                        craftItemWithTags(entity, level, pos, state);
-                        resetProgress(entity);
-                        entity.slotToCheck = -1;
-                        entity.fuelStorage =- 5;
-                        setChanged(level, pos, state);
+
+
+                        if (entity.progress < entity.maxProgress) {
+                            entity.progress++;
+                            setChanged(level, pos, state);
+                        } else {
+                            removeItemsFromRecipe(entity, level, pos, state);
+                            craftItemWithTags(entity, level, pos, state);
+                            entity.tickProgress = 0;
+                            entity.progress = 0;
+                            entity.slotToCheck = SLOT_VOID;
+                            entity.fuelStorage = entity.fuelStorage - 3;
+                            setChanged(level, pos, state);
+                        }
                     }
-                } else {
-                    resetProgress(entity);
-                    setChanged(level, pos, state);
                 }
 
             } else if (entity.fuelStorage <= 0) {
-                resetProgress(entity);
+                entity.tickProgress = 0;
+                entity.progress = 0;
+                entity.slotToCheck = SLOT_VOID;
+                setChanged(level, pos, state);
+            }
+
+            if (entity.progress > 0 && (entity.slotToCheck == SLOT_VOID
+                        || entity.itemHandler.getStackInSlot(4).is(ItemStack.EMPTY.getItem())
+                        || Vial.hasFullReserveWithoutDivine(entity.itemHandler.getStackInSlot(4)))) {
+                entity.tickProgress = 0;
+                entity.progress = 0;
+                entity.slotToCheck = SLOT_VOID;
                 setChanged(level, pos, state);
             }
         }
 
 
         if (level instanceof ServerLevel servLevel && entity.fuelStorage > 0) {
-
             if (entity.tickProgress > 0) {
-                if (entity.tickAnimRecipe == 5) {
-                    servLevel.sendParticles(ParticleTypes.BUBBLE, pos.getX() + 0.5d, pos.getY() + 1d, pos.getZ() + 0.5d, 3, 0d, 0, 0, 0d);
+                if (entity.tickAnimRecipe == 2) {
+                    servLevel.sendParticles(ParticleTypes.LAVA, pos.getX() + 0.5d, pos.getY() + 1d, pos.getZ() + 0.5d, 3, 0d, 0, 0, 0d);
                     entity.tickAnimRecipe = 0;
                 } else {
                     entity.tickAnimRecipe++;
@@ -298,8 +281,8 @@ public class DistilleryBlockEntity extends BlockEntity implements MenuProvider {
             }
 
             if (entity.tickFuelAdded > 0) {
-                if (entity.tickAnimFuel == 3) {
-                    servLevel.sendParticles(ParticleTypes.ASH, pos.getX() + 0.5d, pos.getY() + 1d, pos.getZ() + 0.5d, 3, 0d, 0, 0, 0d);
+                if (entity.tickAnimFuel == 1) {
+                    servLevel.sendParticles(ParticleTypes.CLOUD, pos.getX() + 0.5d, pos.getY() + 1d, pos.getZ() + 0.5d, 3, 0d, 0, 0, 0d);
                     entity.tickAnimRecipe = 0;
                 } else {
                     entity.tickAnimFuel++;
@@ -308,87 +291,162 @@ public class DistilleryBlockEntity extends BlockEntity implements MenuProvider {
         }
     }
 
+    private static void manageFuel(DistilleryBlockEntity entity, Level level, BlockPos pos, BlockState state) {
+        if (entity.itemHandler.getStackInSlot(0).is(Items.BLAZE_POWDER)) {
+            if (entity.fuelStorage < entity.maxFuelStorage) {
+                if (entity.tickFuelAdded < 100) {
+                    entity.tickFuelAdded++;
+                    setChanged(level, pos, state);
+                } else {
+                    addFuel(entity, level, pos, state);
+                    entity.tickFuelAdded = 0;
+                    setChanged(level, pos, state);
+                }
+            } else {
+                entity.tickFuelAdded = 0;
+                setChanged(level, pos, state);
+            }
+        } else {
+            entity.tickFuelAdded = 0;
+            setChanged(level, pos, state);
+        }
+    }
+
     private static void removeItemsFromRecipe(DistilleryBlockEntity entity, Level level, BlockPos pos, BlockState state) {
         entity.itemHandler.extractItem(entity.slotToCheck, 1, false);
     }
 
     private static void craftItemWithTags(DistilleryBlockEntity entity, Level level, BlockPos pos, BlockState state) {
-
-        MetalTagEnum metal = null;
-
-        if (entity.slotToCheck == 1) {
-            metal = MetalTagEnum.getMetal(entity.itemHandler.getStackInSlot(entity.slotToCheck).getItem()
-                    .toString().toLowerCase().replace("raw_", ""));
-        } else if (entity.slotToCheck == 3) {
-            metal = MetalTagEnum.getMetal(entity.itemHandler.getStackInSlot(entity.slotToCheck).getItem()
-                    .toString().toLowerCase().replace("_ingot", ""));
-        } else if (entity.slotToCheck == 2) {
-            metal = MetalTagEnum.getMetal(entity.itemHandler.getStackInSlot(entity.slotToCheck).getItem()
-                    .toString().toLowerCase().replace("_nugget", ""));
+        // Identificar el metal que hay que agregar según el slot
+        MetalTagEnum metal = getMetalBasedOnSlot(entity);
+        if (metal == null) {
+            return; // No se detectó un metal válido, salir
         }
 
-        ItemStack vial = entity.itemHandler.getStackInSlot(4);
+        // Obtener el vial y su tag
+        ItemStack vialStack = entity.itemHandler.getStackInSlot(4);
+        CompoundTag vialTag = vialStack.getOrCreateTag();
 
-        if (entity.slotToCheck == 3) {
-            vial.setTag(LargeVial.addReserveVialTagsFromMetal(metal, 10));
-        } else if (entity.slotToCheck == 1) {
-            vial.setTag(LargeVial.addReserveVialTagsFromMetal(metal, 5));
-        } else if (entity.slotToCheck == 2) {
-            vial.setTag(LargeVial.addReserveVialTagsFromMetal(metal, 1));
+        // Actualizar la cantidad del metal en el vial, respetando los datos existentes
+        updateVialTag(entity, vialTag, metal);
+
+        // Añadir información adicional al vial (como CustomModelData)
+        vialTag.putFloat("CustomModelData", 1);
+
+        // Crear el nuevo ItemStack con los datos actualizados
+        ItemStack finalResult = new ItemStack(ModItemsRegister.LARGE_VIAL.get(), 1);
+        finalResult.setTag(vialTag);
+    }
+
+    private static MetalTagEnum getMetalBasedOnSlot(DistilleryBlockEntity entity) {
+        ItemStack item = entity.itemHandler.getStackInSlot(entity.slotToCheck);
+        if (item.isEmpty()) {
+            return null;
         }
 
-        entity.itemHandler.setStackInSlot(4, vial);
+        String itemKey = item.getItem().toString().toLowerCase();
+
+        if (entity.slotToCheck == SLOT_RAW && itemKey.contains("raw_")) {
+            return MetalTagEnum.getMetal(itemKey.replace("raw_", ""));
+        } else if (entity.slotToCheck == SLOT_INGOT && itemKey.contains("_ingot")) {
+            return MetalTagEnum.getMetal(itemKey.replace("_ingot", ""));
+        } else if (entity.slotToCheck == SLOT_NUGGET && itemKey.contains("_nugget")) {
+            return MetalTagEnum.getMetal(itemKey.replace("_nugget", ""));
+        }
+
+        return null;
+    }
+
+    private static void updateVialTag(DistilleryBlockEntity entity, CompoundTag tag, MetalTagEnum metal) {
+        String metalKey = metal.getNameLower();
+        int currentValue = tag.getInt(metalKey); // Obtener valor actual del metal en el vial
+
+        // Calcular el nuevo valor según el slot activo
+        int addedValue = switch (entity.slotToCheck) {
+            case SLOT_INGOT -> 10; // Ingot siempre añade hasta 10
+            case SLOT_RAW -> calculateRawSlotValue(currentValue);
+            case SLOT_NUGGET -> Math.min(currentValue + 1, 10); // Nugget añade 1, máximo 10
+            default -> 0;
+        };
+
+        // Actualizar el tag con el nuevo valor del metal si se agregó algún valor
+        if (addedValue > currentValue) {
+            tag.putInt(metalKey, addedValue);
+        }
+    }
+
+    private static int calculateRawSlotValue(int currentValue) {
+        if (currentValue < 10) {
+            return Math.min(currentValue + 5, 10);
+        }
+        return currentValue;
     }
 
     private static int hasMinimalItemsForRecipe(DistilleryBlockEntity entity, Level level, BlockPos pos, BlockState state) {
-        if (entity.itemHandler.getStackInSlot(1).isEmpty() &&
-                entity.itemHandler.getStackInSlot(2).isEmpty() &&
-                entity.itemHandler.getStackInSlot(3).isEmpty()) {
-            return -1;
+        if (entity.itemHandler.getStackInSlot(SLOT_INGOT).isEmpty() &&
+                entity.itemHandler.getStackInSlot(SLOT_RAW).isEmpty() &&
+                entity.itemHandler.getStackInSlot(SLOT_NUGGET).isEmpty()) {
+            return SLOT_VOID;
         }
 
         if (entity.itemHandler.getStackInSlot(4).isEmpty()) {
-            return -1;
+            return SLOT_VOID;
         }
 
         MetalTagEnum metalRaw = null;
         MetalTagEnum metalIngot = null;
         MetalTagEnum metalNugget = null;
 
-        metalRaw = MetalTagEnum.getMetal(entity.itemHandler.getStackInSlot(1).getItem()
-                .toString().toLowerCase().replace("raw_", ""));
-        metalNugget = MetalTagEnum.getMetal(entity.itemHandler.getStackInSlot(3).getItem().
-                toString().toLowerCase().replace("_nugget", ""));
+        if (entity.itemHandler.getStackInSlot(SLOT_RAW).getItem().toString().toLowerCase().contains("raw_")) {
+            metalRaw = MetalTagEnum.getMetal(entity.itemHandler.getStackInSlot(SLOT_RAW).getItem()
+                    .toString().toLowerCase().replace("raw_", ""));
+        }
 
+        if (entity.itemHandler.getStackInSlot(SLOT_NUGGET).getItem().toString().toLowerCase().contains("_nugget")) {
+            metalNugget = MetalTagEnum.getMetal(entity.itemHandler.getStackInSlot(SLOT_NUGGET).getItem().
+                    toString().toLowerCase().replace("_nugget", ""));
+        }
 
-        if (entity.itemHandler.getStackInSlot(3).getItem().toString().toLowerCase().contains("_ingot")) {
-            metalIngot = MetalTagEnum.getMetal(entity.itemHandler.getStackInSlot(3).getItem()
+        if (entity.itemHandler.getStackInSlot(SLOT_INGOT).getItem().toString().toLowerCase().contains("_ingot")) {
+            metalIngot = MetalTagEnum.getMetal(entity.itemHandler.getStackInSlot(SLOT_INGOT).getItem()
                     .toString().toLowerCase().replace("_ingot", ""));
-        } else {
-            metalIngot = MetalTagEnum.getMetal(entity.itemHandler.getStackInSlot(3).getItem()
-                    .toString().toLowerCase());
         }
 
-        if ((metalRaw != null ||
-                    LargeVial.hasCompletedMetalReserve(entity.itemHandler.getStackInSlot(1), metalRaw)) &&
-            (metalIngot != null ||
-                    LargeVial.hasCompletedMetalReserve(entity.itemHandler.getStackInSlot(3), metalIngot)) &&
-            (metalNugget != null ||
-                    LargeVial.hasCompletedMetalReserve(entity.itemHandler.getStackInSlot(2), metalNugget))) {
-            return -1;
-        };
+        boolean flagRaw = false;
+        boolean flagNugget = false;
+        boolean flagIngot = false;
 
-        if (!LargeVial.hasCompletedMetalReserve(entity.itemHandler.getStackInSlot(3), metalIngot)) {
-            return 3;
+        if (metalRaw != null) {
+            if (!LargeVial.hasCompletedMetalReserve(entity.itemHandler.getStackInSlot(4), metalRaw)) {
+                flagRaw = true;
+            }
         }
-        if (!LargeVial.hasCompletedMetalReserve(entity.itemHandler.getStackInSlot(1), metalRaw)) {
-            return 1;
+        if (metalNugget != null) {
+            if (!LargeVial.hasCompletedMetalReserve(entity.itemHandler.getStackInSlot(4), metalNugget)) {
+                flagNugget = true;
+            }
         }
-        if (!LargeVial.hasCompletedMetalReserve(entity.itemHandler.getStackInSlot(2), metalNugget)) {
-            return 2;
+        if (metalIngot != null) {
+            if (!LargeVial.hasCompletedMetalReserve(entity.itemHandler.getStackInSlot(4), metalIngot)) {
+                flagIngot = true;
+            }
         }
 
-        return -1;
+        if (!flagRaw && !flagNugget && !flagIngot) {
+            return SLOT_VOID;
+        }
+
+        if (flagIngot) {
+            return SLOT_INGOT;
+        }
+        if (flagRaw) {
+            return SLOT_RAW;
+        }
+        if (flagNugget) {
+            return SLOT_NUGGET;
+        }
+
+        return SLOT_VOID;
     }
 
     private static void addFuel(DistilleryBlockEntity entity, Level level, BlockPos pos, BlockState state) {
@@ -402,20 +460,6 @@ public class DistilleryBlockEntity extends BlockEntity implements MenuProvider {
         entity.itemHandler.extractItem(0, 1, false);
     }
 
-    private static void resetFullProgress(DistilleryBlockEntity entity) {
-        entity.tickProgress = 0;
-        entity.tickFuelAdded = 0;
-        entity.progress = 0;
-    }
-
-    private static void resetProgress(DistilleryBlockEntity entity) {
-        entity.tickProgress = 0;
-        entity.progress = 0;
-    }
-
-    private static void resetFuelAdding(DistilleryBlockEntity entity) {
-        entity.tickFuelAdded = 0;
-    }
 
     @Nullable
     @Override

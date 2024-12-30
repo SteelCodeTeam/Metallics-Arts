@@ -204,9 +204,9 @@ public class BulletProjectile extends ThrowableItemProjectile {
                 ((LivingEntity) entitySource).setLastHurtMob(entity);
             }
         }
-
-
     }
+
+
 
     /**
      * Called when the projectile hits something.

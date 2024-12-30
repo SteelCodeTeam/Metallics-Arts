@@ -23,10 +23,16 @@ public class DistilleryBlock extends BaseEntityBlock {
         super(properties);
     }
 
-    /*
-            BED STUFF
-     */
-
+    @Override
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof DistilleryBlockEntity) {
+                ((DistilleryBlockEntity) blockEntity).drops();
+            }
+        }
+        super.onRemove(state, level, pos, newState, isMoving);
+    }
 
     @Override
     public RenderShape getRenderShape(BlockState state) {

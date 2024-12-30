@@ -157,8 +157,14 @@ public class ModLanguageProviderEN extends LanguageProvider {
                 put("block.metallics_arts.menu.crucible_furnace", "Crucible Furnace");
                 put("block.metallics_arts.crucible_furnace", "Crucible Furnace");
 
-                put("block.metallics_arts.menu.hemalurgy_altar", "Hemalurgy Altar");
-                put("block.metallics_arts.hemalurgy_altar", "Hemalurgy Altar");
+                put("block.metallics_arts.menu.hemalurgy_altar_front", "Hemalurgy Altar (Front)");
+                put("block.metallics_arts.hemalurgy_altar_front", "Hemalurgy Altar (Front)");
+
+                put("block.metallics_arts.menu.hemalurgy_altar_back", "Hemalurgy Altar (Back)");
+                put("block.metallics_arts.hemalurgy_altar_back", "Hemalurgy Altar (Back)");
+
+                put("block.metallics_arts.distillery", "Distillery");
+                put("block.metallics_arts.menu.distillery_menu.name", "Distillery");
         }};
 
 

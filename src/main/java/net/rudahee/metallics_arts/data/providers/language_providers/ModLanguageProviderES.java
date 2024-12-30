@@ -187,6 +187,9 @@ public class ModLanguageProviderES extends LanguageProvider {
 
         put("block.metallics_arts.menu.hemalurgy_altar_back", "Altar Hemalurgico (Trasero)");
         put("block.metallics_arts.hemalurgy_altar_back", "Altar Hemalurgico (Trasero)");
+        put("block.metallics_arts.distillery", "Destileria");
+        put("block.metallics_arts.menu.distillery_menu.name", "Destileria");
+
     }};
 
     private final Map<String, String> ingots = new HashMap<>() {{

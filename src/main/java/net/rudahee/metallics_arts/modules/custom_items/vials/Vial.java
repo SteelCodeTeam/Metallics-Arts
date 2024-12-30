@@ -17,11 +17,11 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -153,9 +153,36 @@ public abstract class Vial extends Item {
 
     public static CompoundTag addReserveVialTagsFromMetal(MetalTagEnum metal, int reserve) {
         CompoundTag nbt = new CompoundTag();
-        nbt.putInt(metal.getNameLower(), reserve);
+        if (nbt.getInt(metal.getGemNameLower()) == 0) {
+            nbt.putInt(metal.getNameLower(), reserve);
+        } else {
+            nbt.putInt(metal.getNameLower(), nbt.getInt(metal.getGemNameLower()) + reserve);
+        }
+
+        nbt.putFloat("CustomModelData", 1);
 
         return nbt;
+    }
+
+    public static boolean hasFullReserveWithoutDivine(@NotNull ItemStack stack) {
+        if (stack.hasTag()) {
+            List<MetalTagEnum> metals = Arrays.stream(MetalTagEnum.values())
+                    .filter(metalTagEnum -> !metalTagEnum.isDivine()).toList();
+
+            for (MetalTagEnum metal : metals) {
+                if (!stack.getTag().contains(metal.getNameLower())) {
+                    return false;
+                } else {
+                    if (stack.getTag().getInt(metal.getNameLower()) != 10) {
+                        return false;
+                    }
+                }
+            }
+        } else {
+            return false;
+        }
+
+        return true;
     }
 
     /**

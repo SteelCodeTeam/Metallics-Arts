@@ -8,6 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
+import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceBlockEntity;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModMenuRegister;
 
@@ -114,4 +115,23 @@ public class DistilleryMenu extends AbstractContainerMenu {
         }
     }
 
+    public boolean hasFuelStored() {
+        return this.data.get(2) != 0;
+    }
+
+    public double getFuelQtyPercentage() {
+        return ((double) this.data.get(2) / this.data.get(3)) * 100;
+    }
+
+    public boolean hasFuelInSlot() {
+        return this.data.get(5) != 0;
+    }
+
+    public double getProgressPercentage() {
+        return ((double) this.data.get(0) / this.data.get(1)) * 100;
+    }
+
+    public double getAddFuelProgressPercentage() {
+        return ((double) this.data.get(5) / 100) * 100;
+    }
 }

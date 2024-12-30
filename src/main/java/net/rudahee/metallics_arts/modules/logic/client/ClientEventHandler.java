@@ -17,6 +17,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
+import net.rudahee.metallics_arts.modules.custom_items.weapons.guns.RifleWithSpyGlass;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.modules.logic.client.client_events.*;
@@ -184,8 +185,11 @@ public class ClientEventHandler {
                 //button = 0 - Left click
                 //action = 1 - Press button
                 //if (!Minecraft.getInstance().screen.isPauseScreen()) {
-                    OnMouseInputEvent.otro(Minecraft.getInstance().player, Minecraft.getInstance().player.getItemInHand(InteractionHand.MAIN_HAND));
-                //}
+                    OnMouseInputEvent.OnPlayerUsingWeapon(Minecraft.getInstance().player, Minecraft.getInstance().player.getItemInHand(InteractionHand.MAIN_HAND));
+                //
+                //
+                // }
+
             }
             OnMouseInputEvent.OnMouseInputEvent(Minecraft.getInstance().player, CapabilityUtils.getCapability(Minecraft.getInstance().player));
         } catch (PlayerException ex) {
