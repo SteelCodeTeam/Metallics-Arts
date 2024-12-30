@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.rudahee.metallics_arts.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "ZoomMixin"
+  ],
+  "client": [
+    "ZoomMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "mixins.metallics_arts.refmap.json"
+}
