@@ -1,5 +1,7 @@
 {
   "values": [
-    "metallics_arts:crucible_furnace_poi"
+    "metallics_arts:crucible_furnace_poi",
+    "metallics_arts:hemalurgy_altar_front_poi",
+    "metallics_arts:hemalurgy_altar_back_poi"
   ]
 }

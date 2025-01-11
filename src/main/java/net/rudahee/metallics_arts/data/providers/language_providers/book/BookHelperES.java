@@ -4,8 +4,8 @@ import com.klikli_dev.modonomicon.api.ModonomiconAPI;
 import com.klikli_dev.modonomicon.api.datagen.BookLangHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.CTW;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalNamesEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.old.CTW;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.old.MetalNamesEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.allomancy.Interactions;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.allomancy.PowerDescriptions;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.book.feruchemic.Storage;
@@ -162,12 +162,7 @@ public class BookHelperES {
         HashMap<String, String> allomancyTraslationsMap = new HashMap<>();
         helper.entry(metal.getNameLower() + "_entry");
 
-        allomancyTraslationsMap.put(helper.entryName(), MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
-        allomancyTraslationsMap.put(helper.entryDescription(), "");
-
         helper.page("power_description");
-        allomancyTraslationsMap.put(helper.pageTitle(), MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
-        allomancyTraslationsMap.put(helper.pageText(), PowerDescriptions.valueOf(metal.name()).getSpanish());
 
         helper.page("power_interactions");
         allomancyTraslationsMap.put(helper.pageTitle(), CTW.INTERACTIONS.getNameInSpanish());
@@ -177,12 +172,6 @@ public class BookHelperES {
     private static HashMap<String, String> addFeruchemyEntry(BookLangHelper helper, MetalTagEnum metal) {
         HashMap<String, String> feruchemyTraslationsMap = new HashMap<>();
         helper.entry(metal.getNameLower() + "_entry");
-        feruchemyTraslationsMap.put(helper.entryName(), MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
-        feruchemyTraslationsMap.put(helper.entryDescription(), "");
-
-        helper.page("power_storage");
-        feruchemyTraslationsMap.put(helper.pageTitle(), MetalNamesEnum.valueOf(metal.name()).getNameInSpanish());
-        feruchemyTraslationsMap.put(helper.pageText(), Storage.valueOf(metal.name()).getSpanish());
 
         helper.page("power_tap");
         feruchemyTraslationsMap.put(helper.pageTitle(), "-");

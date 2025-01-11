@@ -7,7 +7,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalNamesEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.old.MetalNamesEnum;
 import net.rudahee.metallics_arts.modules.custom_blocks.Panels;
 import net.rudahee.metallics_arts.modules.custom_blocks.ettmetal_blocks.*;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
@@ -82,15 +82,15 @@ public class DecorationBlockRegister {
         });
 
 
-        for (MetalNamesEnum metal: MetalNamesEnum.values()) {
-            MetallicsArts.registerBlockDecoration(metal.getId() + "_panel", ()-> {
+        for (MetalTagEnum metal: MetalTagEnum.values()) {
+            MetallicsArts.registerBlockDecoration(metal.getNameLower() + "_panel", ()-> {
                 Panels block = new Panels(
                         BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                                 .sound(SoundType.METAL)
                                 .requiresCorrectToolForDrops()
                                 .requiresCorrectToolForDrops());
 
-                ModBlocksRegister.METAL_PANELS.put(metal.getId()+ "_panel", block);
+                ModBlocksRegister.METAL_PANELS.put(metal.getNameLower()+ "_panel", block);
                 return block;
             });
         }

@@ -122,7 +122,7 @@ public class HemalurgyAltarFrontBlockEntity extends BlockEntity implements MenuP
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.metallics_arts.menu.hemalurgy_altar");
+        return Component.translatable("block.metallics_arts.menu.hemalurgy_altar_front");
     }
 
 

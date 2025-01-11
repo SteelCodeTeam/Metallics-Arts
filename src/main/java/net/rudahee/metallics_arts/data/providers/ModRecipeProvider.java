@@ -18,7 +18,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorP
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.Shields;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalNamesEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.old.MetalNamesEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
@@ -198,13 +198,6 @@ public class ModRecipeProvider extends RecipeProvider {
 
 
         for (MetalEnum metal : MetalEnum.values()) {
-
-            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocksRegister.METAL_PANELS.get(metal.getMetalNameLower()+"_panel"),2)
-                    .define('#', ModTags.INGOTS.get(metal.getMetalNameLower()))
-                    .pattern("##")
-                    .pattern("##")
-                    .unlockedBy(BLOCK_ACHIEVEMENT, has(ModBlocksRegister.METAL_PANELS.get(metal.getMetalNameLower()+"_panel")))
-                    .save(recipesConsumer, new ResourceLocation(MetallicsArts.MOD_ID + "_" + metal.getMetalNameLower() + "_panel"));
 
             ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,ModBlocksRegister.BLOCK_METAL_STAIRS.get(metal.getMetalNameLower()),4)
                     .define('#', ModTags.METAL_BLOCKS.get(metal.getMetalNameLower()))
@@ -661,10 +654,10 @@ public class ModRecipeProvider extends RecipeProvider {
 
         for (String panels: ModBlocksRegister.METAL_PANELS.keySet()) {
             if (panels.contains("variant")) {
-                for (MetalNamesEnum metal : MetalNamesEnum.values()) {
-                    if (panels.contains(metal.getId())) {
+                for (MetalTagEnum metal : MetalTagEnum.values()) {
+                    if (panels.contains(metal.getNameLower())) {
                         SingleItemRecipeBuilder.stonecutting(
-                                Ingredient.of(ModBlocksRegister.METAL_PANELS.get(metal.getId()+"_panel").asItem()),
+                                Ingredient.of(ModBlocksRegister.METAL_PANELS.get(metal.getNameLower()+"_panel").asItem()),
                                 RecipeCategory.BUILDING_BLOCKS,
                                 ModBlocksRegister.METAL_PANELS.get(panels),
                                 1)

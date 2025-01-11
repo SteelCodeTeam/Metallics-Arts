@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.data.enums.implementations.languages;
+package net.rudahee.metallics_arts.data.enums.implementations.languages.old;
 
 
 /**

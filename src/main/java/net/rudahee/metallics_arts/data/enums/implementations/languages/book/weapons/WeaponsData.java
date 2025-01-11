@@ -1,7 +1,7 @@
 package net.rudahee.metallics_arts.data.enums.implementations.languages.book.weapons;
 
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.CTW;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.old.CTW;
 
 /**
  * This enum contains the auxiliary information about the weapons for the book.

@@ -112,7 +112,7 @@ public class BasicBlocksRegister {
             return block;
         });
 
-        ModBlocksRegister.HEMALURGY_ALTAR_FRONT = MetallicsArts.registerBlock("hemalugy_altar_front", () -> {
+        ModBlocksRegister.HEMALURGY_ALTAR_FRONT = MetallicsArts.registerBlock("hemalurgy_altar_front", () -> {
             Block block = new HemalurgyAltarFrontBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
                     .strength(10f, 10f)
                     .lightLevel(litBlockEmission(16))
@@ -123,7 +123,7 @@ public class BasicBlocksRegister {
             return block;
         });
 
-        ModBlocksRegister.HEMALURGY_ALTAR_BACK = MetallicsArts.registerBlock("hemalugy_altar_back", () -> {
+        ModBlocksRegister.HEMALURGY_ALTAR_BACK = MetallicsArts.registerBlock("hemalurgy_altar_back", () -> {
             Block block = new HemalurgyAltarBackBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
                     .strength(10f, 10f)
                     .lightLevel(litBlockEmission(16))

@@ -1,4 +1,4 @@
-package net.rudahee.metallics_arts.data.enums.implementations.languages;
+package net.rudahee.metallics_arts.data.enums.implementations.languages.old;
 
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.interfaces.ILanguage;
@@ -40,7 +40,7 @@ public enum CTW implements ILanguage {
     STORAGE("storage", "Storage", "Almacenaje","", "Gromadzenie"),
     TAPPING("tapping", "Tapping", "Decante","", "Czerpanie"),
     PUSH("push", "Push", "Empuje","", "Pchaj"),
-    PULL("pull", "Pull", "Tiron","", "Ciągnij"),
+    PULL("pull",  "Pull", "Tiron","", "Ciągnij"),
     VERTICAL("vertical", "Vertical", "Vertical","", "Pionowy"),
     SWITCH_OVERLAY("switch_overlay", "Switch Overlay", "Alrternar interfaz","", "Zmień nakładkę"),
 

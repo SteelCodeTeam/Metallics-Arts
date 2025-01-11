@@ -1,14 +1,12 @@
 package net.rudahee.metallics_arts.modules.logic.server;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -20,15 +18,14 @@ import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.rudahee.metallics_arts.data.enums.implementations.ForgeMasterTrades;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_entities.allomancer.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
-import net.rudahee.metallics_arts.modules.custom_entities.villagers.ModVillager;
 import net.rudahee.metallics_arts.modules.custom_items.weapons.mele.KolossBlade;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.*;
 import net.rudahee.metallics_arts.modules.logic.server.server_events.entity_events.AllomancerEvents;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
+import net.rudahee.metallics_arts.setup.registries.ModVillagersRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.List;
@@ -198,6 +195,21 @@ public class ServerEventHandler {
         OnAttackBlockEvent.hitBlock(event.getEntity(), event.getPos());
     }
 
+    @SubscribeEvent
+    public static void addCustomTrades(VillagerTradesEvent event) {
+        if (event.getType().name().equals(ModVillagersRegister.FORGE_MASTER.get().name())) {
+            OnVillagerTradesEvent.onForgeMasterVillager(event);
+        }
+
+        if (event.getType().name().equals(ModVillagersRegister.HEMALURGY_MONK.get().name())) {
+            OnVillagerTradesEvent.onHemalurgyMonkVillager(event);
+        }
+
+        if (event.getType().name().equals(ModVillagersRegister.HEMALURGY_WARRIOR.get().name())) {
+            OnVillagerTradesEvent.onHemalurgyWarriorVillager(event);
+        }
+    }
+
     /**
      * Handles the TickEvent.LevelTickEvent to perform custom actions on each world tick on server-side.
      * This method is triggered by the TickEvent.LevelTickEvent and only runs during the end phase.
@@ -258,23 +270,5 @@ public class ServerEventHandler {
         }
 
     }
-    @SubscribeEvent
-    public static void addCustomTrades(VillagerTradesEvent event) {
-        if (event.getType() == ModVillager.VILLAGER_CRUCIBLE_PROFESSION.get()) {
-            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
-            for (ForgeMasterTrades localTrade: ForgeMasterTrades.values()) {
-                if (localTrade.getOptionalSecondInput() == null) {
-                    trades.get(localTrade.getLevel()).add((trader, rand)->
-                            new MerchantOffer(localTrade.getInput(),localTrade.getOutput(),localTrade.getMaxqty(),localTrade.getXp(),0.09F
-                    ));
-                } else {
-                    trades.get(localTrade.getLevel()).add((trader, rand)->
-                            new MerchantOffer(localTrade.getInput(),localTrade.getOptionalSecondInput(), localTrade.getOutput(), localTrade.getMaxqty(),localTrade.getXp(),0.09F
-                            ));
-                }
-            }
-        }
-    }
-
 
 }

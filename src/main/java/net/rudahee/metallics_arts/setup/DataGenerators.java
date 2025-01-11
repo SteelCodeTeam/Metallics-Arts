@@ -18,8 +18,6 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.providers.*;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderEN;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderES;
-import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderJP;
-import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderPL;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBlockTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvider;
 import net.rudahee.metallics_arts.data.providers.MetallicsArtsGuideBookProvider;
@@ -67,20 +65,23 @@ public final class DataGenerators {
         gen.addProvider(event.includeServer(), new ModRecipeProvider(gen));
 
         log.info("Starting Generation: Languages");
+
+        // Spanish
         gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_es"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_ar"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_mx"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_uy"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_ve"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_cl"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderES(gen, "es_ec"));
 
-        gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_us"));
+        // English
         gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_au"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_ca"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_gb"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_nz"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_us"));
 
-        gen.addProvider(event.includeServer(), new ModLanguageProviderJP(gen, "ja_jp"));
-        gen.addProvider(event.includeServer(), new ModLanguageProviderPL(gen, "pl_pl"));
 
         log.info("Starting Generation: Guide Book");
         gen.addProvider(event.includeServer(), new MetallicsArtsGuideBookProvider(gen, MetallicsArts.MOD_ID, null));

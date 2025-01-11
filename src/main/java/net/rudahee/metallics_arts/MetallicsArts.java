@@ -40,7 +40,6 @@ import net.rudahee.metallics_arts.modules.custom_block_entities.distillery.Disti
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.back.HemalurgyAltarBackScreen;
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front.HemalurgyAltarFrontScreen;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.WoodTypeMetal;
-import net.rudahee.metallics_arts.modules.custom_entities.villagers.ModVillager;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.CuriosLayerDefinitions;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.MetalMindModel;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.MetalMindRendered;
@@ -94,10 +93,6 @@ public class MetallicsArts {
         ITEMS.register(modEventBus);
         log.info("Completed Register: Items");
 
-        log.debug("prueba");
-        log.warn("log de que algo va mal pero no crashea");
-        log.error("log de que el error crashea");
-        log.info("log de que algo va bien y quieres informar");
 
         Registration.register();
 
@@ -128,7 +123,7 @@ public class MetallicsArts {
         ModEntityTypesRegister.register(modEventBus);
         ModLivingEntityRegister.register(modEventBus);
         ModBlockEntitiesRegister.register(modEventBus);
-        ModVillager.register(modEventBus);
+        ModVillagersRegister.register(modEventBus);
         log.info("Completed Register: Entities");
 
         log.info("Starting Register: Menus");
@@ -179,6 +174,7 @@ public class MetallicsArts {
         log.info("Creating packets");
         ModNetwork.registerPackets();
         ModEventsRegister.register(event);
+        event.enqueueWork(ModVillagersRegister::registerPOI);
 
         log.info("Adding wood types");
         Sheets.addWoodType(WoodTypeMetal.IRON_TYPE);

@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 import net.rudahee.metallics_arts.data.configs.MetalListConfig;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.MetalAuxiliaryInfo;
+import net.rudahee.metallics_arts.data.enums.implementations.languages.old.MetalAuxiliaryInfo;
 import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticLever;
 import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticPullButton;
 import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticPushButton;
