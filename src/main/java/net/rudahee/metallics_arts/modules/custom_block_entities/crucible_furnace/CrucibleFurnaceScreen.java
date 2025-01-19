@@ -56,7 +56,7 @@ public class CrucibleFurnaceScreen extends AbstractContainerScreen<CrucibleFurna
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - SIZE_GUI.getBottomRight().x) / 2;
-        int y = (height - SIZE_GUI.getBottomRight().y) / 2;
+        int y = (height - SIZE_GUI.getBottomRight().y) / 2 + 1;
 
         int offsetY = 14;
 

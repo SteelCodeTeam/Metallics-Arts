@@ -17,16 +17,16 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
-public class EttmetalAllomancerEntity extends Animal {
-    public EttmetalAllomancerEntity(EntityType<? extends Animal> type, Level level) {
+public class EttmetalAllomancerEntity extends Monster {
+    public EttmetalAllomancerEntity(EntityType<? extends Monster> type, Level level) {
         super(type, level);
     }
 
     @Override
     protected void registerGoals() {
-    this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class,8.0F));
+        this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class,8.0F));
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 0.9D));
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1D, true));
         this.goalSelector.addGoal(4, new FloatGoal(this));
@@ -34,23 +34,17 @@ public class EttmetalAllomancerEntity extends Animal {
     }
     public static AttributeSupplier.Builder getExampleAttributes() {
         return Monster.createMonsterAttributes()
-                .add(Attributes.FOLLOW_RANGE, 50.0D)
-                .add(Attributes.MOVEMENT_SPEED, (double)0.30F)
+                .add(Attributes.FOLLOW_RANGE, 16.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.30F)
                 .add(Attributes.ATTACK_DAMAGE, 5.0D)
-                .add(Attributes.ARMOR, .0D)
-                .add(Attributes.MAX_HEALTH, 50)
+                .add(Attributes.ARMOR, .10D)
+                .add(Attributes.MAX_HEALTH, 10)
                 .add(Attributes.ATTACK_SPEED, 0.5F);
 
     }
 
     public static  boolean canSpawn(EntityType<EttmetalAllomancerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-
         return checkMobSpawnRules(entityType, level, spawnType, pos, random);
     }
 
-    @Nullable
-    @Override
-    public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
-        return null;
-    }
 }

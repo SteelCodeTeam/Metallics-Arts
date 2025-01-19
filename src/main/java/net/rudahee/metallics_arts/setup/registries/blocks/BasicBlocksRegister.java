@@ -112,24 +112,23 @@ public class BasicBlocksRegister {
             return block;
         });
 
-        ModBlocksRegister.HEMALURGY_ALTAR_FRONT = MetallicsArts.registerBlock("hemalurgy_altar_front", () -> {
+        ModBlocksRegister.HEMALURGY_ALTAR_FRONT = MetallicsArts.registerBlockNoItem("hemalurgy_altar_front", () -> {
             Block block = new HemalurgyAltarFrontBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
                     .strength(10f, 10f)
-                    .lightLevel(litBlockEmission(16))
                     .sound(SoundType.BASALT)
                     .randomTicks()
+                    .noOcclusion()
                     .requiresCorrectToolForDrops()
                     .destroyTime(15f));
             return block;
         });
 
-        ModBlocksRegister.HEMALURGY_ALTAR_BACK = MetallicsArts.registerBlock("hemalurgy_altar_back", () -> {
-            Block block = new HemalurgyAltarBackBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
+        ModBlocksRegister.HEMALURGY_ALTAR_BACK = MetallicsArts.registerBlockNoItem("hemalurgy_altar_back", () -> {
+            Block block = new HemalurgyAltarBackBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(10f, 10f)
-                    .lightLevel(litBlockEmission(16))
                     .sound(SoundType.BASALT)
                     .randomTicks()
-                    .requiresCorrectToolForDrops()
+                    .noOcclusion()
                     .destroyTime(15f));
             return block;
         });
@@ -137,7 +136,6 @@ public class BasicBlocksRegister {
         ModBlocksRegister.DISTILLERY = MetallicsArts.registerBlock("distillery", () -> {
             Block block = new DistilleryBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
                     .strength(10f, 10f)
-                    .lightLevel(litBlockEmission(16))
                     .sound(SoundType.BASALT)
                     .randomTicks()
                     .requiresCorrectToolForDrops()

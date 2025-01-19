@@ -1,7 +1,10 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.model.new": {
+		"idle": {
+			"loop": true
+		},
+		"new": {
 			"loop": true
 		}
 	}

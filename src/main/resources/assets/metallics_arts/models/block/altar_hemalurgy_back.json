@@ -1,9 +1,0 @@
-{
-  "parent": "block/orientable",
-  "textures": {
-    "top": "metallics_arts:block/altar_hemalurgy_back_top",
-    "front": "metallics_arts:block/altar_hemalurgy_back_side",
-    "bottom": "metallics_arts:block/altar_hemalurgy_back_bottom",
-    "side": "metallics_arts:block/altar_hemalurgy_back_side"
-  }
-}

@@ -22,13 +22,20 @@ import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeE
 import net.rudahee.metallics_arts.setup.registries.ModBlockEntitiesRegister;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoBlockEntity;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.RenderUtils;
 
 import java.util.Arrays;
 
 
-public class HemalurgyAltarFrontBlockEntity extends BlockEntity implements MenuProvider {
+public class HemalurgyAltarFrontBlockEntity extends BlockEntity implements MenuProvider, GeoBlockEntity {
 
-    // Slots definition
+    private AnimatableInstanceCache instanceCache = new SingletonAnimatableInstanceCache(this);
 
     private LazyOptional<IItemHandler> lazyItemHandlerFront = LazyOptional.empty();
     private final ItemStackHandler itemHandlerFront = new ItemStackHandler(20) {
@@ -182,5 +189,26 @@ public class HemalurgyAltarFrontBlockEntity extends BlockEntity implements MenuP
 
     public AbstractContainerMenu createFrontMenu(int id, Inventory inv, Player player) {
         return new HemalurgyAltarFrontMenu(id, inv, this, this.data);
+    }
+
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController<GeoAnimatable>(this, "controller", 0, this::predicate));
+    }
+
+    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> animationState) {
+        animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return instanceCache;
+    }
+
+    @Override
+    public double getTick(Object blockEntity) {
+        return RenderUtils.getCurrentTick();
     }
 }

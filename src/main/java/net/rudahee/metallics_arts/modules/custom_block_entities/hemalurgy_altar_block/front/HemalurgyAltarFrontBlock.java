@@ -33,19 +33,10 @@ public class HemalurgyAltarFrontBlock extends BaseEntityBlock {
             BED STUFF
      */
 
-    @Override
-    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float modifier) {
-        super.fallOn(level, state, pos, entity, modifier);
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-        return super.getShape(state, blockGetter, pos, context);
-    }
 
     @Override
     public RenderShape getRenderShape(BlockState state) {
-        return RenderShape.MODEL;
+        return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
     /*

@@ -18,7 +18,6 @@ import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorP
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.Shields;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.old.MetalNamesEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBannersRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;

@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace;
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -18,6 +19,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -236,20 +238,25 @@ public class CrucibleFurnaceBlockEntity extends BlockEntity implements MenuProvi
                 }
             }
 
-            if (level instanceof ServerLevel servLevel && entity.fuelStorage > 0) {
-                if (entity.tickAnim == 5) {
-                    servLevel.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, pos.getX() + 0.5d, pos.getY() + 1d, pos.getZ() + 0.5d, 3, 0d, 0, 0, 0d);
-                    //servLevel.sendParticles(ParticleTypes.LANDING_LAVA, pos.getX() + 0.5d, pos.getY() + 0.5d, pos.getZ() + 0.5d, 0, 0d, 0.5d, 0.5d, 0d);
-                    servLevel.sendParticles(ParticleTypes.LAVA, pos.getX() + 0.5d, pos.getY() + 0.5d, pos.getZ() + 0.5d, 0, 0d, 0.5d, 0.5d, 0d);
-                    entity.tickAnim = 0;
-                } else {
-                    entity.tickAnim++;
+            if (level instanceof ClientLevel clientLevel ) {
+                if (entity.fuelStorage > 0) {
+                    clientLevel.getBlockState(pos).setValue(BlockStateProperties.LIT, true);
+                }
+            }
+
+            if (level instanceof ServerLevel servLevel) {
+                if (entity.fuelStorage > 0) {
+                    if (entity.tickAnim == 5) {
+                        servLevel.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, pos.getX() + 0.5d, pos.getY() + 1d, pos.getZ() + 0.5d, 3, 0d, 0, 0, 0d);
+                        //servLevel.sendParticles(ParticleTypes.LANDING_LAVA, pos.getX() + 0.5d, pos.getY() + 0.5d, pos.getZ() + 0.5d, 0, 0d, 0.5d, 0.5d, 0d);
+                        servLevel.sendParticles(ParticleTypes.LAVA, pos.getX() + 0.5d, pos.getY() + 0.5d, pos.getZ() + 0.5d, 0, 0d, 0.5d, 0.5d, 0d);
+                        entity.tickAnim = 0;
+                    } else {
+                        entity.tickAnim++;
+                    }
                 }
             }
         }
-
-
-
     }
 
     public static void rechargeFuel(CrucibleFurnaceBlockEntity entity, Level level, BlockPos pos, BlockState state) {

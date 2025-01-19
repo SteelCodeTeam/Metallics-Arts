@@ -6,9 +6,8 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.custom_tiers.CustomMaterials;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
-import net.rudahee.metallics_arts.modules.custom_items.armors.items.AtiumArmorItem;
-import net.rudahee.metallics_arts.modules.custom_items.armors.MistCloak;
-import net.rudahee.metallics_arts.modules.custom_items.armors.items.LerasiumArmorItem;
+import net.rudahee.metallics_arts.modules.custom_items.armors.lerasium.LerasiumArmor;
+import net.rudahee.metallics_arts.modules.custom_items.armors.mistcloack.MistCloack;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 public class ArmorRegister {
@@ -67,38 +66,40 @@ public class ArmorRegister {
 
 
         RegistryObject<Item> lerasiumHelmet = MetallicsArts.registerItem("lerasium_helmet",
-                () -> new LerasiumArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.HELMET, PROPERTIES));
+                () -> new LerasiumArmor(CustomMaterials.LERASIUM, ArmorItem.Type.HELMET, PROPERTIES));
         ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.HELMET, lerasiumHelmet);
 
         RegistryObject<Item> lerasiumChesplate = MetallicsArts.registerItem("lerasium_chestplate",
-                () -> new LerasiumArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
+                () -> new LerasiumArmor(CustomMaterials.LERASIUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
         ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, lerasiumChesplate);
 
         RegistryObject<Item> lerasiumLeggings = MetallicsArts.registerItem("lerasium_leggings",
-                () -> new LerasiumArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.LEGGINGS, PROPERTIES));
+                () -> new LerasiumArmor(CustomMaterials.LERASIUM, ArmorItem.Type.LEGGINGS, PROPERTIES));
         ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.LEGGINGS, lerasiumLeggings);
 
         RegistryObject<Item> lerasiumBoots = MetallicsArts.registerItem("lerasium_boots",
-                () -> new LerasiumArmorItem(CustomMaterials.LERASIUM, ArmorItem.Type.BOOTS, PROPERTIES));
+                () -> new LerasiumArmor(CustomMaterials.LERASIUM, ArmorItem.Type.BOOTS, PROPERTIES));
         ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.BOOTS, lerasiumBoots);
 
 
 
-        RegistryObject<Item> atiumHelmet = MetallicsArts.registerItem("atium_helmet",
-                () -> new AtiumArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.HELMET, PROPERTIES));
-        ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.HELMET, atiumHelmet);
-
         RegistryObject<Item> atiumChesplate = MetallicsArts.registerItem("atium_chestplate",
-                () -> new AtiumArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
+                () -> new LerasiumArmor(CustomMaterials.ATIUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
         ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, atiumChesplate);
 
         RegistryObject<Item> atiumLeggings = MetallicsArts.registerItem("atium_leggings",
-                () -> new AtiumArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.LEGGINGS, PROPERTIES));
+                () -> new LerasiumArmor(CustomMaterials.ATIUM, ArmorItem.Type.LEGGINGS, PROPERTIES));
         ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.LEGGINGS, atiumLeggings);
 
         RegistryObject<Item> atiumBoots = MetallicsArts.registerItem("atium_boots",
-                () -> new AtiumArmorItem(CustomMaterials.ATIUM, ArmorItem.Type.BOOTS, PROPERTIES));
+                () -> new LerasiumArmor(CustomMaterials.ATIUM, ArmorItem.Type.BOOTS, PROPERTIES));
         ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.BOOTS, atiumBoots);
+
+        RegistryObject<Item> atiumHelmet = MetallicsArts.registerItem("atium_helmet",
+                () -> new LerasiumArmor(CustomMaterials.ATIUM, ArmorItem.Type.HELMET, PROPERTIES));
+        ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.HELMET, atiumHelmet);
+
+
 
 
         RegistryObject<Item> copperHelmet = MetallicsArts.registerItem("copper_helmet",
@@ -119,7 +120,7 @@ public class ArmorRegister {
 
 
         ModItemsRegister.MISTCLOACK = MetallicsArts.registerItem("mistcloak",
-                () -> new MistCloak(new Item.Properties().stacksTo(1)));
+                () -> new MistCloack(new Item.Properties().stacksTo(1)));
 
     }
 }

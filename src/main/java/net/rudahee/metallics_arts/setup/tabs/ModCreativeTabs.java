@@ -20,7 +20,6 @@ public class ModCreativeTabs {
     }
     protected static CreativeModeTab metallicsArtsTab;
     protected static CreativeModeTab metallicsArtsDecorationTab;
-    protected static CreativeModeTab metallicsArtsEntityTab;
 
     @SubscribeEvent
     public static void registerTabs(CreativeModeTabEvent.Register event) {
@@ -29,21 +28,15 @@ public class ModCreativeTabs {
                     builder ->
                             builder.icon(
                                     () -> new ItemStack(ModItemsRegister.ITEM_ICONS_ALLOMANCY_DIVINE.get(MetalTagEnum.ETTMETAL.getMetalNameLower())))
-                                    .title(Component.literal("Metallics Arts")).withSearchBar().build());
+                                    .title(Component.literal("Metallics Arts")).build());
 
         metallicsArtsDecorationTab = event.registerCreativeModeTab(
                 new ResourceLocation(MetallicsArts.MOD_ID, "metallics_arts_decoration_tab"),
                 builder ->
                         builder.icon(
                                         () -> new ItemStack(ModBlocksRegister.BLOCK_GEMS_BLOCKS.get(MetalTagEnum.ETTMETAL.getMetalNameLower())))
-                                .title(Component.translatable("metallics_arts.tab.decorations")).withSearchBar().build());
+                                .title(Component.translatable("metallics_arts.tab.decorations")).build());
 
-        metallicsArtsEntityTab = event.registerCreativeModeTab(
-                new ResourceLocation(MetallicsArts.MOD_ID, "metallics_arts_entity_tab"),
-                builder ->
-                        builder.icon(
-                                        () -> new ItemStack(ModItemsRegister.MISTCLOACK.get()))
-                                .title(Component.translatable("metallics_arts.tab.entities")).withSearchBar().build());
     }
 }
 

@@ -37,7 +37,7 @@ public class ModBlockEntitiesRegister {
                     BlockEntityType.Builder.of(DistilleryBlockEntity::new,
                             ModBlocksRegister.DISTILLERY.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<ModSingBlockEntity>> BLOCK_ENTITY =
+    public static final RegistryObject<BlockEntityType<ModSingBlockEntity>> SIGN_BLOCK_ENTITY =
             BLOCK_ENTITIES.register("sign_block_entity", () ->
                     BlockEntityType.Builder.of(ModSingBlockEntity::new,
                                     ModBlocksRegister.IRON_STANDING_SIGN.get(),

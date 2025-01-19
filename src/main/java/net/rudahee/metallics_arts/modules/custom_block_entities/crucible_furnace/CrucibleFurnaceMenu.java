@@ -34,11 +34,11 @@ public class CrucibleFurnaceMenu extends AbstractContainerMenu {
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
             this.addSlot(new SlotItemHandler(handler, 0, 7, 23));
-            this.addSlot(new SlotItemHandler(handler, 1, 54, 44));
-            this.addSlot(new SlotItemHandler(handler, 2, 73, 44));
-            this.addSlot(new SlotItemHandler(handler, 3, 54, 63));
-            this.addSlot(new SlotItemHandler(handler, 4, 73, 63));
-            this.addSlot(new SlotItemHandler(handler, 5, 137, 63));
+            this.addSlot(new SlotItemHandler(handler, 1, 55, 44));
+            this.addSlot(new SlotItemHandler(handler, 2, 74, 44));
+            this.addSlot(new SlotItemHandler(handler, 3, 55, 63));
+            this.addSlot(new SlotItemHandler(handler, 4, 74, 63));
+            this.addSlot(new SlotItemHandler(handler, 5, 137, 65));
         });
 
         addDataSlots(data);

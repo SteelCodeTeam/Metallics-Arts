@@ -37,7 +37,9 @@ import net.rudahee.metallics_arts.data.providers.ModInvestedPlayerDataProvider;
 import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceScreen;
 import net.rudahee.metallics_arts.modules.custom_block_entities.distillery.DistilleryScreen;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.back.HemalurgyAltarBackRenderer;
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.back.HemalurgyAltarBackScreen;
+import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front.HemalurgyAltarFrontRenderer;
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front.HemalurgyAltarFrontScreen;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.WoodTypeMetal;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.CuriosLayerDefinitions;
@@ -50,6 +52,7 @@ import net.rudahee.metallics_arts.setup.Registration;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.*;
 import net.rudahee.metallics_arts.setup.tabs.ModCreativeTabsEvents;
+import software.bernie.geckolib.GeckoLib;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
@@ -81,6 +84,7 @@ public class MetallicsArts {
                 
                 """, VERSION);
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        GeckoLib.initialize();
 
         //In our main, we register all our objects.
 
@@ -242,7 +246,10 @@ public class MetallicsArts {
         WoodType.register(WoodTypeMetal.COPPER_TYPE);
         WoodType.register(WoodTypeMetal.ALUMINUM_TYPE);
 
-        BlockEntityRenderers.register(ModBlockEntitiesRegister.BLOCK_ENTITY.get(), SignRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntitiesRegister.SIGN_BLOCK_ENTITY.get(), SignRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntitiesRegister.HEMALURGY_ALTAR_BACK_ENTITY.get(), HemalurgyAltarBackRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntitiesRegister.HEMALURGY_ALTAR_FRONT_ENTITY.get(), HemalurgyAltarFrontRenderer::new);
+
         CuriosRendererRegistry.register(MetalMindEnum.IRON_STEEL.getBand(), MetalMindRendered::new);
     }
 

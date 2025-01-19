@@ -199,7 +199,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/aluminum_boots", "item/armors/aluminum_boots");
 
 
-        builder(itemGenerated,"item/mistcloak","item/armors/mistcloak");
         builder(itemGenerated,"item/copper_coin","item/combat/copper_coin");
         builder(itemGenerated,"item/bronze_coin","item/combat/bronze_coin");
 
@@ -282,15 +281,16 @@ public class ModItemModelProvider extends ItemModelProvider {
         wallItemMC(ModBlocksRegister.BLOCK_METAL_WALL.get("copper"), Blocks.COPPER_BLOCK);
         wallItemMC(ModBlocksRegister.BLOCK_METAL_WALL.get("copper_raw"), Blocks.RAW_COPPER_BLOCK);
 
-        simpleItem(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.HELMET));
+        /*simpleItem(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.HELMET));
         simpleItem(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE));
         simpleItem(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS));
         simpleItem(ModItemsRegister.ATIUM_ARMOR.get(ArmorPiecesEnum.BOOTS));
+*/
 
-        simpleItem(ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.HELMET));
-        simpleItem(ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.CHESTPLATE));
-        simpleItem(ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.LEGGINGS));
-        simpleItem(ModItemsRegister.LERASIUM_ARMOR.get(ArmorPiecesEnum.BOOTS));
+        builder(itemGenerated,"item/lerasium_helmet", "item/armors/lerasium_helmet");
+        builder(itemGenerated,"item/lerasium_chestplate", "item/armors/lerasium_chestplate");
+        builder(itemGenerated,"item/lerasium_leggings", "item/armors/lerasium_leggings");
+        builder(itemGenerated,"item/lerasium_boots", "item/armors/lerasium_boots");
 
     }
 

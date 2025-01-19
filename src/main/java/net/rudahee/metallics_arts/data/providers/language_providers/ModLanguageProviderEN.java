@@ -53,5 +53,9 @@ public class ModLanguageProviderEN extends LanguageProvider {
             add(item.getKey(), item.getEnglish());
         }
 
+        for (RedstoneItemTranslation item: RedstoneItemTranslation.values()) {
+            add(item.getKey(), item.getEnglish());
+        }
+
     }
 }

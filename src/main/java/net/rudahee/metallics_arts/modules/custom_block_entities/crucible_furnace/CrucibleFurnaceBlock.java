@@ -46,7 +46,7 @@ public class CrucibleFurnaceBlock extends BaseEntityBlock {
      */
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(LIT, false);
     }
 
     @Override
@@ -84,9 +84,6 @@ public class CrucibleFurnaceBlock extends BaseEntityBlock {
     * BURN NEAR BLOCKS RANDOMLY
     *
     */
-
-
-
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rng) {
         if (level.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {

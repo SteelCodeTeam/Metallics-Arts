@@ -5,6 +5,7 @@ import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
 import net.rudahee.metallics_arts.setup.registries.items.*;
+import net.rudahee.metallics_arts.setup.registries.items.block_items.BasicBlockItemsRegister;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -98,6 +99,9 @@ public class ModItemsRegister {
     public static RegistryObject<Item> ALUMINUM_SIGN;
     public static RegistryObject<Item> SAZED_DISC;
 
+    public static RegistryObject<Item> HEMALURGY_ALTAR_BACK;
+    public static RegistryObject<Item> HEMALURGY_ALTAR_FRONT;
+
     public static void register() {
         BasicItemsRegister.register();
         IconsRegister.register();
@@ -108,6 +112,7 @@ public class ModItemsRegister {
         CoreBuilderItemRegister.register();
         ArmorRegister.register();
         ModEntityEggsRegister.register();
+        BasicBlockItemsRegister.register();
     }
 
     public static void addChargeInList() {
