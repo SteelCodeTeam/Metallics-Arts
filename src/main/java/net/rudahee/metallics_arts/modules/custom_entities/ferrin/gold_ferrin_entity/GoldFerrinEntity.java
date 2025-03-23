@@ -25,9 +25,8 @@ public class GoldFerrinEntity extends Animal {
 
     @Override
     protected void registerGoals() {
-    this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class,8.0F));
+        this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class,8.0F));
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1D, true));
         this.goalSelector.addGoal(1, new RegenerationGoal(this, 2,20));
@@ -45,7 +44,7 @@ public class GoldFerrinEntity extends Animal {
                 .add(Attributes.ATTACK_SPEED, 0.5F);
     }
 
-    public static  boolean canSpawn(EntityType<GoldFerrinEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+    public static boolean canSpawn(EntityType<GoldFerrinEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
 
 
         return checkMobSpawnRules(entityType, level, spawnType, pos, random);

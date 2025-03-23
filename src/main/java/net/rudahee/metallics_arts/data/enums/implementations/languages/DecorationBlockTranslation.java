@@ -269,7 +269,9 @@ public enum DecorationBlockTranslation {
     ATIUM_PANEL("block.metallics_arts.atium_panel", "Atium Panel", "Panel de atium"),
     MALATIUM_PANEL("block.metallics_arts.malatium_panel", "Malatium Panel", "Panel de malatium"),
     LERASIUM_PANEL("block.metallics_arts.lerasium_panel", "Lerasium Panel", "Panel de lerasium"),
-    ETTMETAL_PANEL("block.metallics_arts.ettmetal_panel", "Ettmetal Panel", "Panel de ettmetal")
+    ETTMETAL_PANEL("block.metallics_arts.ettmetal_panel", "Ettmetal Panel", "Panel de ettmetal"),
+    MARE_FLOWER("block.metallics_arts.mare_flower", "Mare Flower", "Flor de Mare"),
+    POTTED_MARE_FLOWER("block.metallics_arts.potted_mare_flower", "Potted Mare Flower", "Flor de Mare en Tiesto")
 
 
     ;

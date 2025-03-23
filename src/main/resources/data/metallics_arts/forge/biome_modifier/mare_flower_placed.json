@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#forge:is_plains",
+  "features": "metallics_arts:mare_flower_placed",
+  "step": "vegetal_decoration"
+}

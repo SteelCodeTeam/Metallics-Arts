@@ -4,6 +4,7 @@ package net.rudahee.metallics_arts.setup.registries.items;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.RecordItem;
 import net.minecraft.world.item.SignItem;
+import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
@@ -103,8 +104,7 @@ public class BasicItemsRegister {
                 MetallicsArts.registerItem("aluminum_sign",() -> new SignItem(new Item.Properties().stacksTo(16),
                         ModBlocksRegister.ALUMINUM_STANDING_SIGN.get(), ModBlocksRegister.ALUMINUM_WALL_SIGN.get()));
 
-
-    ModItemsRegister.SAZED_DISC =
+        ModItemsRegister.SAZED_DISC =
             MetallicsArts.registerItem("sazed_disc",() -> new RecordItem(8, ModSoundsRegister.SAZED_SONG,new Item.Properties().stacksTo(1), 2180));
     }
 

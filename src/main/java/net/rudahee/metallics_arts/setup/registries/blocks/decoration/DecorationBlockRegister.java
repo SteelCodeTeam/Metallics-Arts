@@ -1,8 +1,10 @@
 package net.rudahee.metallics_arts.setup.registries.blocks.decoration;
 
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
@@ -11,6 +13,7 @@ import net.rudahee.metallics_arts.data.enums.implementations.languages.old.Metal
 import net.rudahee.metallics_arts.modules.custom_blocks.Panels;
 import net.rudahee.metallics_arts.modules.custom_blocks.ettmetal_blocks.*;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 public class DecorationBlockRegister {
 
@@ -623,6 +626,9 @@ public class DecorationBlockRegister {
             ModBlocksRegister.BLOCK_METAL_FENCE_GATE.put("copper_raw", block);
             return block;
         });
+
+        ModBlocksRegister.MARE_FLOWER = MetallicsArts.registerBlockDecoration("mare_flower", () -> new FlowerBlock(() -> MobEffects.GLOWING, 4, BlockBehaviour.Properties.copy(Blocks.POPPY)));
+        ModBlocksRegister.POTTED_MARE_FLOWER = MetallicsArts.registerBlock("potted_mare_flower", () -> new FlowerPotBlock(Blocks.FLOWER_POT, BlockBehaviour.Properties.copy(Blocks.POPPY)));
 
     }
 }

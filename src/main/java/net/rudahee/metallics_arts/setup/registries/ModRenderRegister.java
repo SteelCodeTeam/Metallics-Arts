@@ -32,6 +32,7 @@ public class ModRenderRegister {
     private ModRenderRegister() {
         throw new IllegalStateException("Class can't be instantiated");
     }
+
     @SubscribeEvent
     public static void register(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntityTypesRegister.BULLET_PROJECTILE.get(), ThrownItemRenderer::new);
@@ -45,7 +46,6 @@ public class ModRenderRegister {
         event.registerEntityRenderer(ModLivingEntityRegister.HAZE_KILLER_TANK.get(), HazeKillerTankEntityRenderer::new);
         event.registerEntityRenderer(ModLivingEntityRegister.GOLD_FERRIN.get(), GoldFerrinEntityRenderer::new);
         event.registerEntityRenderer(ModLivingEntityRegister.IRON_FERRIN.get(), IronFerrinEntityRenderer::new);
-
     }
 
     @SubscribeEvent
@@ -59,7 +59,6 @@ public class ModRenderRegister {
         event.registerLayerDefinition(HazeKillerTankEntityModel.LAYER_LOCATION, HazeKillerTankEntityModel::createBodyLayer);
         event.registerLayerDefinition(GoldFerrinEntityModel.LAYER_LOCATION, GoldFerrinEntityModel::createBodyLayer);
         event.registerLayerDefinition(IronFerrinEntityModel.LAYER_LOCATION, IronFerrinEntityModel::createBodyLayer);
-
     }
 
 }

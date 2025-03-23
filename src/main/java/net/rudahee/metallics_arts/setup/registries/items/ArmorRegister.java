@@ -6,6 +6,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.custom_tiers.CustomMaterials;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
+import net.rudahee.metallics_arts.modules.custom_items.armors.atium.AtiumArmor;
 import net.rudahee.metallics_arts.modules.custom_items.armors.lerasium.LerasiumArmor;
 import net.rudahee.metallics_arts.modules.custom_items.armors.mistcloack.MistCloack;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
@@ -84,19 +85,19 @@ public class ArmorRegister {
 
 
         RegistryObject<Item> atiumChesplate = MetallicsArts.registerItem("atium_chestplate",
-                () -> new LerasiumArmor(CustomMaterials.ATIUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
+                () -> new AtiumArmor(CustomMaterials.ATIUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
         ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, atiumChesplate);
 
         RegistryObject<Item> atiumLeggings = MetallicsArts.registerItem("atium_leggings",
-                () -> new LerasiumArmor(CustomMaterials.ATIUM, ArmorItem.Type.LEGGINGS, PROPERTIES));
+                () -> new AtiumArmor(CustomMaterials.ATIUM, ArmorItem.Type.LEGGINGS, PROPERTIES));
         ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.LEGGINGS, atiumLeggings);
 
         RegistryObject<Item> atiumBoots = MetallicsArts.registerItem("atium_boots",
-                () -> new LerasiumArmor(CustomMaterials.ATIUM, ArmorItem.Type.BOOTS, PROPERTIES));
+                () -> new AtiumArmor(CustomMaterials.ATIUM, ArmorItem.Type.BOOTS, PROPERTIES));
         ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.BOOTS, atiumBoots);
 
         RegistryObject<Item> atiumHelmet = MetallicsArts.registerItem("atium_helmet",
-                () -> new LerasiumArmor(CustomMaterials.ATIUM, ArmorItem.Type.HELMET, PROPERTIES));
+                () -> new AtiumArmor(CustomMaterials.ATIUM, ArmorItem.Type.HELMET, PROPERTIES));
         ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.HELMET, atiumHelmet);
 
 

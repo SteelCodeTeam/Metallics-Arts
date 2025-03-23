@@ -32,6 +32,7 @@ public class EttmetalAllomancerEntity extends Monster {
         this.goalSelector.addGoal(4, new FloatGoal(this));
 
     }
+
     public static AttributeSupplier.Builder getExampleAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 16.0D)
