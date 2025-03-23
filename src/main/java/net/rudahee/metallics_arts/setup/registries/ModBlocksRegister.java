@@ -57,6 +57,10 @@ public class ModBlocksRegister {
     public static RegistryObject<Block> ALUMINUM_WALL_SIGN;
     public static RegistryObject<Block> ALUMINUM_STANDING_SIGN;
 
+    public static RegistryObject<Block> MARE_FLOWER;
+    public static RegistryObject<Block> POTTED_MARE_FLOWER;
+
+
     public static RegistryObject<Block> ALLOMANTIC_LEVER;
 
     public static RegistryObject<Block> ALLOMANTIC_PULL_BUTTON;

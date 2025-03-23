@@ -3,12 +3,14 @@ package net.rudahee.metallics_arts.setup.registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_entities.allomancer.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.ferrin.brass_ferrin_entity.BrassFerrinEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.ferrin.gold_ferrin_entity.GoldFerrinEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.haze_killer.haze_killer_melee_entity.HazeKillerMeleeEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.haze_killer.haze_killer_ranged_entity.HazeKillerRangedEntity;
@@ -28,6 +30,18 @@ public class ModLivingEntityRegister {
     }
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MetallicsArts.MOD_ID);
+
+    public static final RegistryObject<EntityType<BrassFerrinEntity>> BRASS_FERRIN = ENTITY_TYPES.register("brass_ferrin",
+            () -> EntityType.Builder.of(BrassFerrinEntity::new, MobCategory.MONSTER)
+                    .sized(COMMON_WIDTH, COMMON_HEIGHT)
+                    .canSpawnFarFromPlayer()
+                    .fireImmune()
+                    .immuneTo(Blocks.MAGMA_BLOCK)
+                    .immuneTo(Blocks.FIRE)
+                    .immuneTo(Blocks.LAVA)
+                    .clientTrackingRange(32)
+                    .build(new ResourceLocation(MetallicsArts.MOD_ID, "brass_ferrin").toString()));
+
 
     public static final RegistryObject<EntityType<EttmetalAllomancerEntity>> ETTMETAL_ALLOMANCER = ENTITY_TYPES.register("ettmetal_allomancer_entity",
             () -> EntityType.Builder.of(EttmetalAllomancerEntity::new, MobCategory.CREATURE)

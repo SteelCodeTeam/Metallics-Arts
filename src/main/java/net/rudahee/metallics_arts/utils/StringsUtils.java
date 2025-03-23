@@ -36,15 +36,4 @@ public class StringsUtils {
         return Component.translatable(stylizedString.toString());
     }
 
-    public static Component generateComponentWithoutSpace(String... strings) {
-
-        StringBuilder stylizedString = new StringBuilder();
-
-        for (String str: strings) {
-            stylizedString.append(str);
-        }
-
-        return Component.translatable(stylizedString.toString());
-    }
-
 }

@@ -53,6 +53,8 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> LEAD_PLACED_DEEPSLATE_KEY = createKey("lead_placed_deepslate");
 
+    public static final ResourceKey<PlacedFeature> MARE_FLOWER_PLACED_KEY = createKey("mare_flower_placed");
+
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -63,6 +65,9 @@ public class ModPlacedFeatures {
         PlacementUtils.register(context, ETTMETAL_PLACED_GEODE_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ETTMETAL_GEODE_KEY),
                 RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(30)), BiomeFilter.biome());
 
+
+
+        register(context, MARE_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MARE_FLOWER_KEY), List.of(NoiseThresholdCountPlacement.of(-0.8D, 15, 4), RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
 
         register(context, TIN_PLACED_STONE_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.TIN_ORE_STONE_KEY),
                 ModPlacement.commonOrePlacement(25, // veins per chunk

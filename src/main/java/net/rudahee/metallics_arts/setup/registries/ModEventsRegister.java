@@ -1,5 +1,7 @@
 package net.rudahee.metallics_arts.setup.registries;
 
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -20,6 +22,9 @@ public class ModEventsRegister {
 
     public static void register(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocksRegister.MARE_FLOWER.getId(), ModBlocksRegister.POTTED_MARE_FLOWER);
+
             MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
         });
     }

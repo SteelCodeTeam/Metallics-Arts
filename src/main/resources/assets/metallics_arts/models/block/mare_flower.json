@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "metallics_arts:block/mare_flower"
+  },
+  "render_type": "cutout"
+}

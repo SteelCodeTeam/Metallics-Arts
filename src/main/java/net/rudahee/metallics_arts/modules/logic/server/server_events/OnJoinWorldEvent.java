@@ -1,5 +1,6 @@
 package net.rudahee.metallics_arts.modules.logic.server.server_events;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
@@ -42,11 +43,14 @@ public class OnJoinWorldEvent {
 
                 if (typeOfPower.get(0) == 0) {
                     capability.addAllomanticPower(metal);
+                    player.sendSystemMessage(Component.translatable("IMPROVE NEEDED: Has empezado siendo allomante de " + metal));
                 } else if (typeOfPower.get(0) == 1) {
+                    player.sendSystemMessage(Component.translatable("IMPROVE NEEDED: Has empezado siendo ferrin de " + metal));
                     capability.addFeruchemicPower(metal);
                 } else {
                     capability.addAllomanticPower(metal);
                     capability.addFeruchemicPower(metal);
+                    player.sendSystemMessage(Component.translatable("IMPROVE NEEDED: Has empezado siendo nacidoble de " + metal));
                 }
 
                 capability.alreadyJoin();

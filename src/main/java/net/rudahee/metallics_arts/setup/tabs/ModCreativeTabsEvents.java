@@ -89,6 +89,8 @@ public class ModCreativeTabsEvents {
     public static void addToMetallicsArtsDecorationTab(CreativeModeTabEvent.BuildContents event) {
         if (event.getTab().equals(ModCreativeTabs.metallicsArtsDecorationTab)) {
 
+            event.accept(ModBlocksRegister.MARE_FLOWER);
+
             event.acceptAll(ModBlocksRegister.BLOCK_METAL_ORES.values().stream().map(ItemStack::new).toList());
             event.acceptAll(ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.values().stream().map(ItemStack::new).toList());
 

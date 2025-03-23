@@ -291,7 +291,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/lerasium_chestplate", "item/armors/lerasium_chestplate");
         builder(itemGenerated,"item/lerasium_leggings", "item/armors/lerasium_leggings");
         builder(itemGenerated,"item/lerasium_boots", "item/armors/lerasium_boots");
-
+        builder(itemGenerated,"item/atium_helmet", "item/armors/atium_helmet");
+        builder(itemGenerated,"item/atium_chestplate", "item/armors/atium_chestplate");
+        builder(itemGenerated,"item/atium_leggings", "item/armors/atium_leggings");
+        builder(itemGenerated,"item/atium_boots", "item/armors/atium_boots");
     }
 
 

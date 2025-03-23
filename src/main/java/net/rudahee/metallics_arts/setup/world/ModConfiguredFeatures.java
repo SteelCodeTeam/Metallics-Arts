@@ -1,7 +1,10 @@
 package net.rudahee.metallics_arts.setup.world;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -12,12 +15,11 @@ import net.minecraft.world.level.levelgen.GeodeCrackSettings;
 import net.minecraft.world.level.levelgen.GeodeLayerSettings;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
+import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
@@ -138,14 +140,18 @@ public class ModConfiguredFeatures {
             List.of(OreConfiguration.target(DEEPSLATE_REPLACE_RULE, ModBlocksRegister.BLOCK_METAL_DEEPSLATE_ORES.get("lead").defaultBlockState()));
     public static final ResourceKey<ConfiguredFeature<?, ?>> LEAD_ORE_DEEPSLATE_KEY = registerKey("lead_ore_deepslate_key");
 
-
-
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MARE_FLOWER_KEY = registerKey("mare_flower_key");
+    public static final ConfiguredFeature<?, ?> MARE_FLOWER_CONFIG = new ConfiguredFeature<>(Feature.FLOWER,
+            new RandomPatchConfiguration(3, 16, 3,
+                    PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
+                            BlockStateProvider.simple(ModBlocksRegister.MARE_FLOWER.get())))));
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
+        context.register(MARE_FLOWER_KEY, MARE_FLOWER_CONFIG);
+
         register(context, ATIUM_GEODE_KEY, Feature.GEODE, ATIUM_GEODE_CONFIG);
         register(context, LERASIUM_GEODE_KEY, Feature.GEODE, LERASIUM_GEODE_CONFIG);
         register(context, ETTMETAL_GEODE_KEY, Feature.GEODE, ETTMETAL_GEODE_CONFIG);
-
 
         register(context, TIN_ORE_STONE_KEY, Feature.ORE, new OreConfiguration(TIN_ORE_CONFIG_STONE, 7, 0.5f));
         register(context, ZINC_ORE_STONE_KEY, Feature.ORE, new OreConfiguration(ZINC_ORE_CONFIG_STONE, 9, 0.5f));
@@ -159,9 +165,6 @@ public class ModConfiguredFeatures {
         register(context, NICKEL_ORE_DEEPSLATE_KEY, Feature.ORE, new OreConfiguration(NICKEL_ORE_CONFIG_DEEPSLATE, 8, 0.6f));
         register(context, LEAD_ORE_DEEPSLATE_KEY, Feature.ORE, new OreConfiguration(LEAD_ORE_CONFIG_DEEPSLATE, 4, 0.5f));
     }
-
-
-
 
     private static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(MetallicsArts.MOD_ID, name));
