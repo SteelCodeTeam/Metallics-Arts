@@ -10,15 +10,13 @@ import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 public class OnAttackBlockEvent {
     public static void hitBlock(Player player, BlockPos blockPos) {
-        try {
             IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(player);
+            if (playerCapability == null) {
+                return;
+            }
             if (playerCapability.isBurning(MetalTagEnum.BRASS) && playerCapability.isTapping(MetalTagEnum.BRASS)) {
 
                 BrassCompoundingHelper.compoundingBrass(player, blockPos);
             }
-
-        } catch (PlayerException ex) {
-            ex.printCompleteLog();
-        }
     }
 }

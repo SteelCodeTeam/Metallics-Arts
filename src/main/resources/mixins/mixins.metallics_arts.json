@@ -4,9 +4,12 @@
   "package": "net.rudahee.metallics_arts.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "ClientEttmetalMixin",
     "ZoomMixin"
   ],
   "client": [
+    "BronzeOutlineOnMinecraftClassMixin",
+    "ClientEttmetalMixin",
     "ZoomMixin"
   ],
   "injectors": {

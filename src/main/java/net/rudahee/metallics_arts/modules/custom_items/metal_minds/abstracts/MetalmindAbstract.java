@@ -66,16 +66,13 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
         ICurioItem.super.onEquip(slotContext, prevStack, stack);
         Player player = (Player) slotContext.getWearer();
-        try {
             IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(player);
 
             playerCapability.setMetalMindEquiped(this.metals[0].getGroup(),true);
             playerCapability.setMetalMindEquiped(this.metals[1].getGroup(),true);
             ModNetwork.syncInvestedDataPacket(playerCapability, player);
 
-        } catch (PlayerException ex) {
-            ex.printCompleteLog();
-        }
+
     }
 
 
@@ -93,7 +90,6 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
         Player player = (Player) slotContext.getWearer();
         if (stack.getItem() != newStack.getItem()) {
-            try {
                 IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(player);
 
                 playerCapability.setMetalMindEquiped(this.metals[0].getGroup(),false);
@@ -105,9 +101,7 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
 
                 ModNetwork.syncInvestedDataPacket(playerCapability, player);
 
-            } catch (PlayerException ex) {
-                ex.printCompleteLog();
-            }
+
         }
     }
 
@@ -130,14 +124,11 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
             stack.setTag(addTags());
         }
 
-        try {
+
             IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(player);
             return !playerCapability.hasMetalMindEquiped(this.metals[0].getGroup()) && (stack.getTag().getString("key").equals(unkeyedString) || player.getStringUUID().equals(stack.getTag().getString("key")));
 
-        } catch (PlayerException e) {
-            e.printResumeLog();
-            return false;
-        }
+
     }
 
     /**
@@ -159,14 +150,10 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
             stack.setTag(addTags());
         }
 
-        try {
             IInvestedPlayerData playerCapability = CapabilityUtils.getCapability(player);
             return !playerCapability.hasMetalMindEquiped(this.metals[0].getGroup()) && (stack.getTag().getString("key").equals(unkeyedString) || player.getStringUUID().equals(stack.getTag().getString("key")));
 
-        } catch (PlayerException e) {
-            e.printResumeLog();
-            return false;
-        }
+
     }
 
     /**
@@ -249,12 +236,9 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
         if (livingEntity.level instanceof ServerLevel) {
             if (livingEntity instanceof Player player) {
                 IInvestedPlayerData playerCapability;
-                try {
+
                     playerCapability = CapabilityUtils.getCapability(player);
-                } catch (PlayerException ex) {
-                    ex.printCompleteLog();
-                    return;
-                }
+
 
                 if (playerCapability.isTapping(MetalTagEnum.ALUMINUM) || playerCapability.isStoring(MetalTagEnum.ALUMINUM)) {
                     stack.setTag(MetalMindsUtils.changeOwner(player, compoundTag, false, this.metals[0], this.metals[1]));
@@ -496,6 +480,27 @@ public abstract class MetalmindAbstract extends Item implements ICurioItem {
             nbt.putInt(metal1.getNameLower()+"_feruchemic_reserve", metal1.getMaxReserveBand());
         }
         nbt.putInt(metal2.getNameLower()+"_feruchemic_reserve", metal2.getMaxReserveBand());
+        nbt.putString("key","Nobody");
+
+        return nbt;
+    }
+
+
+    public static CompoundTag addRingTagsFull(MetalTagEnum metal1, MetalTagEnum metal2) {
+        CompoundTag nbt = new CompoundTag();
+
+        if (metal1.equals(MetalTagEnum.ALUMINUM)) {
+            nbt.putInt(metal1.getNameLower()+"_feruchemic_reserve",3);
+
+        } else if(metal1.equals(MetalTagEnum.LERASIUM)) {
+            nbt.putInt(metal1.getNameLower() + "_feruchemic_reserve",1);
+            for (MetalTagEnum metal: MetalTagEnum.values()) {
+                nbt.putInt(metal.getNameLower()+"inLerasiumBand", metal.getMaxAllomanticTicksStorage());
+            }
+        } else {
+            nbt.putInt(metal1.getNameLower()+"_feruchemic_reserve", metal1.getMaxReserveRing());
+        }
+        nbt.putInt(metal2.getNameLower()+"_feruchemic_reserve", metal2.getMaxReserveRing());
         nbt.putString("key","Nobody");
 
         return nbt;

@@ -70,5 +70,13 @@ public class ModLanguageProviderES extends LanguageProvider {
         for (RedstoneItemTranslation item: RedstoneItemTranslation.values()) {
             add(item.getKey(), item.getSpanish());
         }
+
+        for (EffectsTranslation item: EffectsTranslation.values()) {
+            add(item.getKey(), item.getSpanish());
+        }
+
+        for (CommandsTranslation item: CommandsTranslation.values()) {
+            add(item.getKey(), item.getSpanish());
+        }
     }
 }

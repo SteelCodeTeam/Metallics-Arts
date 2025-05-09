@@ -33,7 +33,7 @@ public class HazeKillerMeleeEntity extends Animal {
 
     }
 
-    public static AttributeSupplier.Builder getExampleAttributes() {
+    public static AttributeSupplier.Builder getHazeKillerAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 50.0D)
                 .add(Attributes.MOVEMENT_SPEED, (double)0.30F)

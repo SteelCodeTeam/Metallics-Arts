@@ -29,39 +29,4 @@ public class OnLivingDeathEvent {
      *
      * @param event The LivingDeathEvent that triggered this method.
      */
-    public static void livingDeath(LivingDeathEvent event) {
-        ServerPlayer player = (ServerPlayer) event.getEntity();
-        try {
-            IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
-
-            if (capability.isTapping(MetalTagEnum.ETTMETAL)) {
-                capability.setEttmetalState(EttmetalStateEnum.KEEP_ITEMS);
-                //todo aqui deberia poder hacerse algo para recordar en que slots deben quedar los items
-                //para en el onlivinddrop asignarlos en su slot correspondiente
-                CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curioData -> {
-                    for (int i=0; i < curioData.getSlots(); i++) {
-                        if (curioData.getStackInSlot(i).getItem() instanceof LerasiumEttmetalMetalmind) {
-                            CompoundTag compoundTag = curioData.getStackInSlot(i).getTag();
-                            compoundTag.putInt(MetalTagEnum.ETTMETAL.getNameLower() + "_feruchemic_reserve", 0);
-                            curioData.getStackInSlot(i).setTag(compoundTag);
-                        }
-                    }
-                });
-
-            } else if (capability.isStoring(MetalTagEnum.ETTMETAL)) {
-                capability.setEttmetalState(EttmetalStateEnum.DELETE_ITEMS);
-            }
-
-            for (MetalTagEnum metal : MetalTagEnum.values()) {
-                capability.setBurning(metal, false);
-                capability.setTapping(metal, false);
-                capability.setStoring(metal, false);
-                capability.setMetalMindEquiped(metal.getGroup(), false);
-            }
-
-            ModNetwork.syncInvestedDataPacket(capability, player);
-        } catch (PlayerException ex) {
-            ex.printCompleteLog();
-        }
-    }
 }

@@ -16,7 +16,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.rudahee.metallics_arts.modules.custom_entities.ferrin.gold_ferrin_entity.GoldFerrinEntity;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -34,12 +33,6 @@ public class BrassFerrinEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    protected boolean shouldDespawnInPeaceful() {
-        return true;
-    }
-
-
-    @Override
     protected void registerGoals() {
         goalSelector.addGoal(2, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1D, true));
@@ -47,7 +40,7 @@ public class BrassFerrinEntity extends Monster implements GeoEntity {
     }
 
 
-    public static AttributeSupplier.Builder getExampleAttributes() {
+    public static AttributeSupplier.Builder getBrassFerrinAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 32.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.40D)
@@ -57,9 +50,7 @@ public class BrassFerrinEntity extends Monster implements GeoEntity {
                 .add(Attributes.ATTACK_SPEED, 0.8F);
     }
 
-    public static boolean canSpawn(EntityType<GoldFerrinEntity> entityType, LevelAccessor accessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-
-
+    public static boolean canSpawn(EntityType<BrassFerrinEntity> entityType, LevelAccessor accessor, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         BlockPos blockpos = pos.below();
         BlockState state = accessor.getBlockState(blockpos);
 

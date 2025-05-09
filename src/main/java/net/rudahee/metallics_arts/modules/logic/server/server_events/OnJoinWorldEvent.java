@@ -30,8 +30,11 @@ public class OnJoinWorldEvent {
      * @param player The PlayerEvent.PlayerLoggedInEvent that triggered this method.
      */
     public static void joinWorld(Player player) {
-        try {
             IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
+
+            if (capability == null) {
+                return;
+            }
 
             if (capability.isFirstJoin()) {
                 List<MetalTagEnum> metals = Arrays.asList(MetalTagEnum.values());
@@ -43,14 +46,14 @@ public class OnJoinWorldEvent {
 
                 if (typeOfPower.get(0) == 0) {
                     capability.addAllomanticPower(metal);
-                    player.sendSystemMessage(Component.translatable("IMPROVE NEEDED: Has empezado siendo allomante de " + metal));
+                    player.sendSystemMessage(Component.nullToEmpty(Component.translatable("utility.metallics_arts.join_world.allomantic").getString().formatted(metal)));
                 } else if (typeOfPower.get(0) == 1) {
-                    player.sendSystemMessage(Component.translatable("IMPROVE NEEDED: Has empezado siendo ferrin de " + metal));
+                    player.sendSystemMessage(Component.nullToEmpty(Component.translatable("utility.metallics_arts.join_world.feruchemic").getString().formatted(metal)));
                     capability.addFeruchemicPower(metal);
                 } else {
                     capability.addAllomanticPower(metal);
                     capability.addFeruchemicPower(metal);
-                    player.sendSystemMessage(Component.translatable("IMPROVE NEEDED: Has empezado siendo nacidoble de " + metal));
+                    player.sendSystemMessage(Component.nullToEmpty(Component.translatable("utility.metallics_arts.join_world.twinborn").getString().formatted(metal)));
                 }
 
                 capability.alreadyJoin();
@@ -59,8 +62,6 @@ public class OnJoinWorldEvent {
                 ModNetwork.syncInvestedDataPacket(capability, player);
 
             }
-        } catch (PlayerException ex) {
-            ex.printCompleteLog();
-        }
+
     }
 }

@@ -58,15 +58,15 @@ public class CapabilityUtils<T> {
      *
      * @see IInvestedPlayerData
      */
-    public static IInvestedPlayerData getCapability(@Nullable Player player) throws PlayerException {
+    public static IInvestedPlayerData getCapability(@Nullable Player player) {
         if (player == null) {
-            throw new PlayerException(ErrorTypes.PLAYER_ERROR);
+            return null;
         }
 
         if (player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).isPresent()) {
-            return player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).orElseThrow(new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR));
+            return player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).orElse(null);
         } else {
-            throw new PlayerException(ErrorTypes.PLAYER_CAPABILITY_ERROR);
+            return null;
         }
     }
 

@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.interfaces.ITrade;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;

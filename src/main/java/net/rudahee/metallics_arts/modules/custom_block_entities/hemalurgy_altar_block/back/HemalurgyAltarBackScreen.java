@@ -38,12 +38,15 @@ public class HemalurgyAltarBackScreen extends AbstractContainerScreen<HemalurgyA
     @Override
     protected void init() {
         super.init();
-        try {
-            IInvestedPlayerData data = CapabilityUtils.getCapability(Minecraft.getInstance().player);
-            PlayerEntity entity = data.getPlayerData();
-        } catch (PlayerException e) {
-            System.out.println("Hey, el data o el player se fueron a la puta.");
+
+        IInvestedPlayerData data = CapabilityUtils.getCapability(Minecraft.getInstance().player);
+
+        if (data == null) {
+            return;
         }
+
+        PlayerEntity entity = data.getPlayerData();
+
 
     }
 

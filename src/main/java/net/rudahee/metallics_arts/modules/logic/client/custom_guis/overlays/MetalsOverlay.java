@@ -124,11 +124,8 @@ public class MetalsOverlay implements IGuiOverlay {
         RenderSystem.setShaderTexture(0, meterLocation);
 
         IInvestedPlayerData data = null;
-        try {
             data = CapabilityUtils.getCapability(Minecraft.getInstance().player);
-        } catch (PlayerException e) {
-            throw new RuntimeException(e);
-        }
+
 
 
             //RENDERING ALLOMANTIC THINGS

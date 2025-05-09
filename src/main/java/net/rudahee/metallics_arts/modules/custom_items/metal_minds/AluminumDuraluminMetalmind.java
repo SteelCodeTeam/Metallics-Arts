@@ -104,15 +104,12 @@ public class AluminumDuraluminMetalmind extends MetalmindAbstract {
             if (livingEntity.level instanceof ServerLevel) {
                 if (livingEntity instanceof Player player) {
                     IInvestedPlayerData playerCapability;
-                    try {
                         playerCapability = CapabilityUtils.getCapability(player);
                         int actualReserve = stack.getTag().getInt(this.getMetals(0).getNameLower() + "_feruchemic_reserve");
                         if (!playerCapability.isTapping(MetalTagEnum.ALUMINUM) && !playerCapability.isStoring(MetalTagEnum.ALUMINUM) && actualReserve != 3) {
                             stack.setTag(turnOffPower(compoundTag,this.getMetals(0).getNameLower() + "_feruchemic_reserve"));
                         }
-                    } catch (PlayerException ex) {
-                        ex.printCompleteLog();
-                    }
+
                 }
             }
         }

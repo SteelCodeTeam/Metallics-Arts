@@ -9,6 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
+import net.rudahee.metallics_arts.modules.custom_projectiles.AnvilProjectile;
 import net.rudahee.metallics_arts.modules.custom_projectiles.BulletProjectile;
 import net.rudahee.metallics_arts.modules.custom_projectiles.CoinProjectile;
 
@@ -35,6 +36,15 @@ public class ModEntityTypesRegister {
                     .setCustomClientFactory((spawnEntity, world) -> new CoinProjectile(world, (LivingEntity) spawnEntity.getEntity(), GunType.COPPER_COIN))
                     .sized(0.25F, 0.25F)
                     .build("coin_projectile"));
+
+    public static final RegistryObject<EntityType<AnvilProjectile>> ANVIL_PROJECTILE =
+            ENTITY_TYPES.register("anvil_projectile", () -> EntityType.Builder
+                    .<AnvilProjectile>of(AnvilProjectile::new, MobCategory.MISC)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .setUpdateInterval(10)
+                    .setCustomClientFactory((spawnEntity, world) -> new AnvilProjectile(world, (LivingEntity) spawnEntity.getEntity()))
+                    .sized(1f, 1f)
+                    .build("anvil_projectile"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

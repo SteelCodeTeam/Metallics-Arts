@@ -37,6 +37,8 @@ public class ModRenderRegister {
     public static void register(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntityTypesRegister.BULLET_PROJECTILE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntityTypesRegister.COIN_PROJECTILE.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntityTypesRegister.ANVIL_PROJECTILE.get(), ThrownItemRenderer::new);
+
         event.registerEntityRenderer(ModLivingEntityRegister.ETTMETAL_ALLOMANCER.get(), EttmetalAllomancerEntityRenderer::new);
         event.registerEntityRenderer(ModLivingEntityRegister.IRON_ALLOMANCER.get(), IronAllomancerEntityRenderer::new);
         event.registerEntityRenderer(ModLivingEntityRegister.STEEL_ALLOMANCER.get(), SteelAllomancerEntityRenderer::new);

@@ -4,10 +4,14 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
-import net.rudahee.metallics_arts.setup.registries.commands.ItemsCommandRegister;
-import net.rudahee.metallics_arts.setup.registries.commands.PowersAddRegister;
-import net.rudahee.metallics_arts.setup.registries.commands.PowersGetRegister;
-import net.rudahee.metallics_arts.setup.registries.commands.PowersRemoveRegister;
+import net.rudahee.metallics_arts.setup.registries.commands.items.BandsCommandsRegister;
+import net.rudahee.metallics_arts.setup.registries.commands.items.RingsCommandRegister;
+import net.rudahee.metallics_arts.setup.registries.commands.items.SpikeCommandRegister;
+import net.rudahee.metallics_arts.setup.registries.commands.items.VialsCommandRegister;
+import net.rudahee.metallics_arts.setup.registries.commands.powers.PowersAddRegister;
+import net.rudahee.metallics_arts.setup.registries.commands.powers.PowersFillRegister;
+import net.rudahee.metallics_arts.setup.registries.commands.powers.PowersGetRegister;
+import net.rudahee.metallics_arts.setup.registries.commands.powers.PowersRemoveRegister;
 
 import java.util.function.Predicate;
 
@@ -21,9 +25,15 @@ public class ModCommandsRegister {
     }
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        ItemsCommandRegister.register(dispatcher);
+        VialsCommandRegister.register(dispatcher);
+        BandsCommandsRegister.register(dispatcher);
+        RingsCommandRegister.register(dispatcher);
+        SpikeCommandRegister.register(dispatcher);
+        VialsCommandRegister.register(dispatcher);
+
         PowersGetRegister.register(dispatcher);
         PowersAddRegister.register(dispatcher);
+        PowersFillRegister.register(dispatcher);
         PowersRemoveRegister.register(dispatcher);
     }
 

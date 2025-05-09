@@ -193,11 +193,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/steel_chestplate", "item/armors/steel_chestplate");
         builder(itemGenerated,"item/steel_leggings", "item/armors/steel_leggings");
         builder(itemGenerated,"item/steel_boots", "item/armors/steel_boots");
+
         builder(itemGenerated,"item/aluminum_helmet", "item/armors/aluminum_helmet");
         builder(itemGenerated,"item/aluminum_chestplate", "item/armors/aluminum_chestplate");
         builder(itemGenerated,"item/aluminum_leggings", "item/armors/aluminum_leggings");
         builder(itemGenerated,"item/aluminum_boots", "item/armors/aluminum_boots");
-
 
         builder(itemGenerated,"item/copper_coin","item/combat/copper_coin");
         builder(itemGenerated,"item/bronze_coin","item/combat/bronze_coin");
@@ -291,10 +291,16 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/lerasium_chestplate", "item/armors/lerasium_chestplate");
         builder(itemGenerated,"item/lerasium_leggings", "item/armors/lerasium_leggings");
         builder(itemGenerated,"item/lerasium_boots", "item/armors/lerasium_boots");
+
         builder(itemGenerated,"item/atium_helmet", "item/armors/atium_helmet");
         builder(itemGenerated,"item/atium_chestplate", "item/armors/atium_chestplate");
         builder(itemGenerated,"item/atium_leggings", "item/armors/atium_leggings");
         builder(itemGenerated,"item/atium_boots", "item/armors/atium_boots");
+
+        builder(itemGenerated,"item/ettmetal_helmet", "item/armors/ettmetal_helmet");
+        builder(itemGenerated,"item/ettmetal_chestplate", "item/armors/ettmetal_chestplate");
+        builder(itemGenerated,"item/ettmetal_leggings", "item/armors/ettmetal_leggings");
+        builder(itemGenerated,"item/ettmetal_boots", "item/armors/ettmetal_boots");
     }
 
 

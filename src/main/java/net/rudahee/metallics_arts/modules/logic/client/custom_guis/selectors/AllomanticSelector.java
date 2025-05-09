@@ -91,11 +91,9 @@ public class AllomanticSelector extends Screen {
         super.render(matrixStack, mx, my, partialTicks);
 
         IInvestedPlayerData data = null;
-        try {
-            data = CapabilityUtils.getCapability(Minecraft.getInstance().player);
-        } catch (PlayerException e) {
-            e.printCompleteLog();
-        }
+
+        data = CapabilityUtils.getCapability(Minecraft.getInstance().player);
+
 
         int centerX  = this.width / 2;
         int centerY  = this.height / 2;

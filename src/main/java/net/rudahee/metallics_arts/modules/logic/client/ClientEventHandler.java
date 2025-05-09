@@ -82,8 +82,12 @@ public class ClientEventHandler {
             return;
         }
 
-        try {
+
             IInvestedPlayerData capabilities = CapabilityUtils.getCapability(Minecraft.getInstance().player);
+            if (capabilities == null) {
+                return;
+            }
+
             if (capabilities.isBurning(MetalTagEnum.TIN) || capabilities.isTapping(MetalTagEnum.TIN)){
                 event.setNearPlaneDistance(0);
                 event.setFarPlaneDistance(295);
@@ -106,9 +110,7 @@ public class ClientEventHandler {
                 event.setCanceled(true);
             }
 
-        } catch (PlayerException ex) {
-            ex.printResumeLog();
-        }
+
 
     }
         /**

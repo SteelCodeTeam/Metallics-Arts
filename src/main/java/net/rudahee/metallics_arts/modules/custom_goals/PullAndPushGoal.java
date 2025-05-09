@@ -2,7 +2,6 @@ package net.rudahee.metallics_arts.modules.custom_goals;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.utils.EntityUtils;
@@ -10,13 +9,13 @@ import net.rudahee.metallics_arts.utils.EntityUtils;
 public class PullAndPushGoal extends Goal {
 
 
-    private final Animal entity;
+    private final Monster entity;
     private final double power;
     private final int blocks;
     private long lastCanUseCheck;
 
 
-    public PullAndPushGoal(Animal entity, double power, int blocks) {
+    public PullAndPushGoal(Monster entity, double power, int blocks) {
         this.entity = entity;
         this.power = power;
         this.blocks = blocks;
@@ -39,12 +38,15 @@ public class PullAndPushGoal extends Goal {
 
 
 
-        if(this.entity.getTarget() instanceof ServerPlayer && EntityUtils.distance((ServerPlayer) this.entity.getTarget(), this.entity)<blocks ) {
+        if (this.entity.getTarget() instanceof ServerPlayer && EntityUtils.distance((ServerPlayer) this.entity.getTarget(), this.entity)<blocks ) {
             IronAndSteelHelpers.move(power,this.entity.getTarget(),this.entity.blockPosition());
             return true;
-        }else
+        } else {
             return false;
+        }
     }
+
+
 
 
 }

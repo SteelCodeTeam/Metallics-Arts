@@ -52,12 +52,11 @@ public class ChromiumAllomanticHelper {
             if (entity != null) {
                 if (!ArmorUtils.hasAluminumArmor(player)) {
                     IInvestedPlayerData targetCapability;
-                    try {
                         targetCapability = CapabilityUtils.getCapability(entity);
-                    } catch (PlayerException ex) {
-                        ex.printCompleteLog();
-                        return;
-                    }
+
+                        if (targetCapability == null) {
+                            return;
+                        }
                     targetCapability.drainMetals(MetalTagEnum.values());
                     ModNetwork.syncInvestedDataPacket(targetCapability, entity);
                 }

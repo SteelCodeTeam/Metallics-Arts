@@ -60,24 +60,7 @@ public class OnLivingEntityDropEvent {
 
             }
 
-        } else if (event.getEntity() instanceof ServerPlayer) {
-
-            try {
-                IInvestedPlayerData capabilityTarget = CapabilityUtils.getCapability(event.getEntity());
-                if (capabilityTarget.getEttmetalState().equals(EttmetalStateEnum.KEEP_ITEMS) || capabilityTarget.getEttmetalState() == EttmetalStateEnum.DELETE_ITEMS) {
-                    if (capabilityTarget.getEttmetalState().equals(EttmetalStateEnum.KEEP_ITEMS)) {
-                        for (ItemStack itemStack : event.getDrops().stream().map(ItemEntity::getItem).toList()) {
-                            //todo revisar por errores (si no hay respawnpoint, si esta obstruido etc)
-                            BlockPos blockPos = ((ServerPlayer) event.getEntity()).getRespawnPosition();
-                            Containers.dropItemStack(event.getEntity().level, blockPos.getX(), blockPos.getY(), blockPos.getZ(), itemStack);
-                        }
-                    }
-                    event.setCanceled(true);
-                }
-            } catch (PlayerException ex) {
-                ex.printCompleteLog();
-            }
-        }
+        } 
     }
 
 }

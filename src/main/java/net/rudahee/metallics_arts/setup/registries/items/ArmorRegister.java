@@ -7,6 +7,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.custom_tiers.CustomMaterials;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
 import net.rudahee.metallics_arts.modules.custom_items.armors.atium.AtiumArmor;
+import net.rudahee.metallics_arts.modules.custom_items.armors.harmony.EttmetalArmor;
 import net.rudahee.metallics_arts.modules.custom_items.armors.lerasium.LerasiumArmor;
 import net.rudahee.metallics_arts.modules.custom_items.armors.mistcloack.MistCloack;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
@@ -50,19 +51,19 @@ public class ArmorRegister {
 
 
         RegistryObject<Item> ettmetalHelmet = MetallicsArts.registerItem("ettmetal_helmet",
-                () -> new ArmorItem(CustomMaterials.ETTMETAL, ArmorItem.Type.HELMET, PROPERTIES));
+                () -> new EttmetalArmor(CustomMaterials.ETTMETAL, ArmorItem.Type.HELMET, PROPERTIES));
         ModItemsRegister.ETTMETAL_ARMOR.put(ArmorPiecesEnum.HELMET, ettmetalHelmet);
 
-        RegistryObject<Item> ettmetalChesplate = MetallicsArts.registerItem("ettmetal_chestplate",
-                () -> new ArmorItem(CustomMaterials.ETTMETAL, ArmorItem.Type.CHESTPLATE, PROPERTIES));
-        ModItemsRegister.ETTMETAL_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, ettmetalChesplate);
+        RegistryObject<Item> ettmetalChestplate = MetallicsArts.registerItem("ettmetal_chestplate",
+                () -> new EttmetalArmor(CustomMaterials.ETTMETAL, ArmorItem.Type.CHESTPLATE, PROPERTIES));
+        ModItemsRegister.ETTMETAL_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, ettmetalChestplate);
 
         RegistryObject<Item> ettmetalLeggings = MetallicsArts.registerItem("ettmetal_leggings",
-                () -> new ArmorItem(CustomMaterials.ETTMETAL, ArmorItem.Type.LEGGINGS, PROPERTIES));
+                () -> new EttmetalArmor(CustomMaterials.ETTMETAL, ArmorItem.Type.LEGGINGS, PROPERTIES));
         ModItemsRegister.ETTMETAL_ARMOR.put(ArmorPiecesEnum.LEGGINGS, ettmetalLeggings);
 
         RegistryObject<Item> ettmetalBoots = MetallicsArts.registerItem("ettmetal_boots",
-                () -> new ArmorItem(CustomMaterials.ETTMETAL, ArmorItem.Type.BOOTS, PROPERTIES));
+                () -> new EttmetalArmor(CustomMaterials.ETTMETAL, ArmorItem.Type.BOOTS, PROPERTIES));
         ModItemsRegister.ETTMETAL_ARMOR.put(ArmorPiecesEnum.BOOTS, ettmetalBoots);
 
 
@@ -70,9 +71,9 @@ public class ArmorRegister {
                 () -> new LerasiumArmor(CustomMaterials.LERASIUM, ArmorItem.Type.HELMET, PROPERTIES));
         ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.HELMET, lerasiumHelmet);
 
-        RegistryObject<Item> lerasiumChesplate = MetallicsArts.registerItem("lerasium_chestplate",
+        RegistryObject<Item> lerasiumChestplate = MetallicsArts.registerItem("lerasium_chestplate",
                 () -> new LerasiumArmor(CustomMaterials.LERASIUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
-        ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, lerasiumChesplate);
+        ModItemsRegister.LERASIUM_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, lerasiumChestplate);
 
         RegistryObject<Item> lerasiumLeggings = MetallicsArts.registerItem("lerasium_leggings",
                 () -> new LerasiumArmor(CustomMaterials.LERASIUM, ArmorItem.Type.LEGGINGS, PROPERTIES));
@@ -84,9 +85,9 @@ public class ArmorRegister {
 
 
 
-        RegistryObject<Item> atiumChesplate = MetallicsArts.registerItem("atium_chestplate",
+        RegistryObject<Item> atiumChestplate = MetallicsArts.registerItem("atium_chestplate",
                 () -> new AtiumArmor(CustomMaterials.ATIUM, ArmorItem.Type.CHESTPLATE, PROPERTIES));
-        ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, atiumChesplate);
+        ModItemsRegister.ATIUM_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, atiumChestplate);
 
         RegistryObject<Item> atiumLeggings = MetallicsArts.registerItem("atium_leggings",
                 () -> new AtiumArmor(CustomMaterials.ATIUM, ArmorItem.Type.LEGGINGS, PROPERTIES));

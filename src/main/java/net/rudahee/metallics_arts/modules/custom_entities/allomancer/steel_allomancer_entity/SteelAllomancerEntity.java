@@ -2,7 +2,6 @@ package net.rudahee.metallics_arts.modules.custom_entities.allomancer.steel_allo
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -11,7 +10,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
@@ -28,8 +26,8 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import javax.annotation.Nullable;
 
 
-public class SteelAllomancerEntity extends Animal implements RangedAttackMob {
-    public SteelAllomancerEntity(EntityType<? extends Animal> type, Level level) {
+public class SteelAllomancerEntity extends Monster implements RangedAttackMob {
+    public SteelAllomancerEntity(EntityType<? extends Monster> type, Level level) {
         super(type, level);
     }
 
@@ -49,7 +47,7 @@ public class SteelAllomancerEntity extends Animal implements RangedAttackMob {
         this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItemsRegister.BRONZE_COIN.get()));
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
     }
-    public static AttributeSupplier.Builder getExampleAttributes() {
+    public static AttributeSupplier.Builder getSteelAllomancerAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 50.0D)
                 .add(Attributes.MOVEMENT_SPEED, (double)0.30F)
@@ -83,26 +81,16 @@ public class SteelAllomancerEntity extends Animal implements RangedAttackMob {
     }
 
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_32146_, DifficultyInstance p_32147_, MobSpawnType p_32148_, @Nullable SpawnGroupData p_32149_, @Nullable CompoundTag p_32150_) {
-        p_32149_ = super.finalizeSpawn(p_32146_, p_32147_, p_32148_, p_32149_, p_32150_);
-        RandomSource randomsource = p_32146_.getRandom();
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor levelAccessor, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData groupData, @Nullable CompoundTag tag) {
+        groupData = super.finalizeSpawn(levelAccessor, difficulty, spawnType, groupData, tag);
+        RandomSource randomsource = levelAccessor.getRandom();
 
+        this.populateDefaultEquipmentSlots(randomsource, difficulty);
 
-        this.populateDefaultEquipmentSlots(randomsource, p_32147_);
-
-        return p_32149_;
+        return groupData;
     }
 
-    @org.jetbrains.annotations.Nullable
-    @Override
-    public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
-        return null;
-    }
-
-
-    public static boolean canSpawn(EntityType<SteelAllomancerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-
+    public static  boolean canSpawn(EntityType<SteelAllomancerEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return checkMobSpawnRules(entityType, level, spawnType, pos, random);
-
     }
 }

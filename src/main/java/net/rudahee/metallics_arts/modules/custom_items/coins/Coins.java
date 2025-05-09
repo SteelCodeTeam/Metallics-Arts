@@ -33,12 +33,12 @@ public class Coins extends Item {
       if (!level.isClientSide) {
           IInvestedPlayerData playerCapability;
 
-          try {
-              playerCapability = CapabilityUtils.getCapability(player);
-          } catch (PlayerException ex) {
-              ex.printCompleteLog();
+          playerCapability = CapabilityUtils.getCapability(player);
+          if (playerCapability == null) {
               return InteractionResultHolder.fail(itemstack);
+
           }
+
 
           if (playerCapability.isBurning(MetalTagEnum.STEEL)) {
               CoinProjectile coin = new CoinProjectile(level, player, gunType);

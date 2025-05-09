@@ -10,6 +10,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_entities.allomancer.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.iron_inquisitor.IronInquisitor;
+import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.pewter_inquisitor.PewterInquisitorEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.steel_inquisitor.SteelInquisitor;
 import net.rudahee.metallics_arts.modules.custom_entities.ferrin.brass_ferrin_entity.BrassFerrinEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.ferrin.gold_ferrin_entity.GoldFerrinEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.haze_killer.haze_killer_melee_entity.HazeKillerMeleeEntity;
@@ -31,8 +34,8 @@ public class ModLivingEntityRegister {
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MetallicsArts.MOD_ID);
 
-    public static final RegistryObject<EntityType<BrassFerrinEntity>> BRASS_FERRIN = ENTITY_TYPES.register("brass_ferrin",
-            () -> EntityType.Builder.of(BrassFerrinEntity::new, MobCategory.MONSTER)
+    public static final RegistryObject<EntityType<BrassFerrinEntity>> BRASS_FERRIN = ENTITY_TYPES.register("brass_ferrin_entity",
+            () -> EntityType.Builder.of(BrassFerrinEntity::new, MobCategory.CREATURE)
                     .sized(COMMON_WIDTH, COMMON_HEIGHT)
                     .canSpawnFarFromPlayer()
                     .fireImmune()
@@ -89,6 +92,36 @@ public class ModLivingEntityRegister {
             () -> EntityType.Builder.of(IronFerrinEntity::new, MobCategory.CREATURE)
                     .sized(COMMON_WIDTH, COMMON_HEIGHT)
                     .build(new ResourceLocation(MetallicsArts.MOD_ID + "iron_ferrin").toString()));
+
+    public static final RegistryObject<EntityType<IronInquisitor>> IRON_INQUISITOR = ENTITY_TYPES.register("iron_inquisitor_entity",
+            () -> EntityType.Builder.of(IronInquisitor::new, MobCategory.CREATURE)
+                    .sized(1.2f, 2.4f)
+                    .fireImmune()
+                    .immuneTo(Blocks.MAGMA_BLOCK)
+                    .immuneTo(Blocks.FIRE)
+                    .immuneTo(Blocks.LAVA)
+                    .clientTrackingRange(48)
+                    .build(new ResourceLocation(MetallicsArts.MOD_ID, "iron_inquisitor").toString()));
+
+    public static final RegistryObject<EntityType<SteelInquisitor>> STEEL_INQUISITOR = ENTITY_TYPES.register("steel_inquisitor_entity",
+            () -> EntityType.Builder.of(SteelInquisitor::new, MobCategory.CREATURE)
+                    .sized(1.2f, 2.4f)
+                    .fireImmune()
+                    .immuneTo(Blocks.MAGMA_BLOCK)
+                    .immuneTo(Blocks.FIRE)
+                    .immuneTo(Blocks.LAVA)
+                    .clientTrackingRange(48)
+                    .build(new ResourceLocation(MetallicsArts.MOD_ID, "steel_inquisitor").toString()));
+
+    public static final RegistryObject<EntityType<PewterInquisitorEntity>> PEWTER_INQUISITOR = ENTITY_TYPES.register("pewter_inquisitor_entity",
+            () -> EntityType.Builder.of(PewterInquisitorEntity::new, MobCategory.CREATURE)
+                    .sized(1.2f, 2.4f)
+                    .fireImmune()
+                    .immuneTo(Blocks.MAGMA_BLOCK)
+                    .immuneTo(Blocks.FIRE)
+                    .immuneTo(Blocks.LAVA)
+                    .clientTrackingRange(48)
+                    .build(new ResourceLocation(MetallicsArts.MOD_ID, "pewter_inquisitor").toString()));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

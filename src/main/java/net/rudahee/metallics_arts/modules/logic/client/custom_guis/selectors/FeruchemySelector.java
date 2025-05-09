@@ -90,11 +90,8 @@ public class FeruchemySelector extends Screen {
         super.render(matrixStack, mx, my, partialTicks);
 
         IInvestedPlayerData data = null;
-        try {
             data = CapabilityUtils.getCapability(Minecraft.getInstance().player);
-        } catch (PlayerException e) {
-            throw new RuntimeException(e);
-        }
+
 
         Point center = new Point(this.width / 2,this.height / 2);
         Point mouse = new Point(mx,my);

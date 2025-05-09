@@ -14,6 +14,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
+import net.rudahee.metallics_arts.modules.custom_goals.PullBossGoal;
 import net.rudahee.metallics_arts.setup.network.packets.*;
 import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
@@ -60,6 +61,8 @@ public class ModNetwork {
         INSTANCE.registerMessage(nextIndex(), PullAndPushBlockPacket.class, PullAndPushBlockPacket::encode, PullAndPushBlockPacket::decode, PullAndPushBlockPacket::handle);
         INSTANCE.registerMessage(nextIndex(), PullAndPushNuggetPacket.class, PullAndPushNuggetPacket::encode, PullAndPushNuggetPacket::decode, PullAndPushNuggetPacket::handle);
         INSTANCE.registerMessage(nextIndex(), PullAndPushEntityPacket.class, PullAndPushEntityPacket::encode, PullAndPushEntityPacket::decode, PullAndPushEntityPacket::handle);
+        INSTANCE.registerMessage(nextIndex(), BossPullEntityPacket.class, BossPullEntityPacket::encode, BossPullEntityPacket::decode, BossPullEntityPacket::handle);
+        INSTANCE.registerMessage(nextIndex(), BossPushEntityPacket.class, BossPushEntityPacket::encode, BossPushEntityPacket::decode, BossPushEntityPacket::handle);
         INSTANCE.registerMessage(nextIndex(), UpdateTapPacket.class, UpdateTapPacket::encode, UpdateTapPacket::decode, UpdateTapPacket::handle);
         INSTANCE.registerMessage(nextIndex(), UpdateStoragePacket.class, UpdateStoragePacket::encode, UpdateStoragePacket::decode, UpdateStoragePacket::handle);
         INSTANCE.registerMessage(nextIndex(), RemoveNuggetPacket.class, RemoveNuggetPacket::encode, RemoveNuggetPacket::decode, RemoveNuggetPacket::handle);

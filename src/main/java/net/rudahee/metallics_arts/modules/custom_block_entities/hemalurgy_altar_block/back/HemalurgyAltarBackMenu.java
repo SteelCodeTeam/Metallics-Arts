@@ -82,8 +82,12 @@ public class HemalurgyAltarBackMenu extends AbstractContainerMenu {
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
             ItemStack stack = null;
             SpikeEntity spikeEntity = null;
-            try {
+
                 IInvestedPlayerData playerData = CapabilityUtils.getCapability(player);
+
+                if (playerData == null) {
+                    return;
+                }
 
                 // HEAD
                 spikeEntity = HemalurgyUtils.generateSpikeEntity(playerData, 0, BodySlotEnum.BACK, BodyPartEnum.HEAD);
@@ -193,10 +197,6 @@ public class HemalurgyAltarBackMenu extends AbstractContainerMenu {
                     stack = HemalurgyUtils.generateTags(spikeEntity);
                     handler.insertItem(19, stack, false);
                 }
-
-            } catch (PlayerException e) {
-                LoggerUtils.printLogInfo("Error in HemalurgyAltarBackMenu: " + e.getMessage());
-            }
         });
     }
 

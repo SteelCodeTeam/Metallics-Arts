@@ -1,18 +1,13 @@
 package net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageSources;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
@@ -216,8 +211,11 @@ public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
             ItemStack stack = null;
             SpikeEntity spikeEntity = null;
-            try {
                 IInvestedPlayerData playerData = CapabilityUtils.getCapability(this.player);
+
+                if (playerData == null) {
+                    return;
+                }
 
                 // HEAD
                 spikeEntity = HemalurgyUtils.generateSpikeEntity(playerData, 0, BodySlotEnum.FRONT, BodyPartEnum.HEAD);
@@ -327,10 +325,6 @@ public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
                     stack = HemalurgyUtils.generateTags(spikeEntity);
                     handler.insertItem(19, stack, false);
                 }
-
-            } catch (PlayerException e) {
-                LoggerUtils.printLogInfo("Error in HemalurgyAltarBackMenu: " + e.getMessage());
-            }
         });
     }
 }

@@ -1,11 +1,13 @@
-package net.rudahee.metallics_arts.setup.registries.commands;
+package net.rudahee.metallics_arts.setup.registries.commands.powers;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.server.level.ServerPlayer;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
@@ -242,15 +244,34 @@ public class PowersGetRegister {
 
     }
 
-    private static int getAllomanticPower (CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
+    private static int getAllomanticPower(CommandContext<CommandSourceStack> context, MetalTagEnum metalTagEnum, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
 
             try {
                 if (CapabilityUtils.getCapability(player).hasAllomanticPower(metalTagEnum)) {
-                    context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " has " + metalTagEnum.getNameLower()));
+                    context.getSource().sendSystemMessage(
+                            Component.literal("#").withStyle(ChatFormatting.OBFUSCATED)
+                                    .append(Component.literal("").withStyle(Style.EMPTY))
+                                    .append(Component.literal(player.getScoreboardName()).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.BOLD))
+                                    .append(Component.literal("").withStyle(Style.EMPTY))
+                                    .append(Component.literal("#").withStyle(ChatFormatting.OBFUSCATED)));
+
+                    context.getSource().sendSystemMessage(Component.literal(metalTagEnum.getNameLower()).withStyle(ChatFormatting.BOLD)
+                            .append(Component.literal(" ").withStyle(Style.EMPTY))
+                            .append(Component.translatable("commands.metallics_arts.one_power_get").withStyle(ChatFormatting.BOLD))
+                            .append(Component.literal(" ⏺").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GREEN)));
                 } else {
-                    context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " doesn't have " + metalTagEnum.getNameLower()));
+                    context.getSource().sendSystemMessage(
+                            Component.literal("#").withStyle(ChatFormatting.OBFUSCATED)
+                                    .append(Component.literal(" ").withStyle(Style.EMPTY))
+                                    .append(Component.literal(player.getScoreboardName()).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.BOLD))
+                                    .append(Component.literal("#").withStyle(ChatFormatting.OBFUSCATED)));
+
+                    context.getSource().sendSystemMessage(Component.literal(metalTagEnum.getNameLower()).withStyle(ChatFormatting.BOLD)
+                            .append(Component.literal(" ").withStyle(Style.EMPTY))
+                            .append(Component.translatable("commands.metallics_arts.one_power_get").withStyle(ChatFormatting.BOLD))
+                            .append(Component.literal(" ⏺").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.RED)));
                 }
             } catch (PlayerException ex) {
                 ex.printCompleteLog();
@@ -264,11 +285,23 @@ public class PowersGetRegister {
 
         for (ServerPlayer player: players) {
             try {
+                context.getSource().sendSystemMessage(
+                        Component.literal("#").withStyle(ChatFormatting.OBFUSCATED)
+                                .append(Component.literal("").withStyle(Style.EMPTY))
+                                .append(Component.literal(player.getScoreboardName()).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.BOLD))
+                                .append(Component.literal("").withStyle(Style.EMPTY))
+                                .append(Component.literal("#").withStyle(ChatFormatting.OBFUSCATED)));
 
                 if (CapabilityUtils.getCapability(player).hasFeruchemicPower(metalTagEnum)) {
-                    context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " has " + metalTagEnum.getNameLower()));
+                    context.getSource().sendSystemMessage(Component.literal(metalTagEnum.getNameLower()).withStyle(ChatFormatting.BOLD)
+                            .append(Component.literal(" ").withStyle(Style.EMPTY))
+                            .append(Component.translatable("commands.metallics_arts.one_power_get").withStyle(ChatFormatting.BOLD))
+                            .append(Component.literal(" ⏺").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GREEN)));
                 } else {
-                    context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " doesn't have " + metalTagEnum.getNameLower()));
+                    context.getSource().sendSystemMessage(Component.literal(metalTagEnum.getNameLower()).withStyle(ChatFormatting.BOLD)
+                            .append(Component.literal(" ").withStyle(Style.EMPTY))
+                            .append(Component.translatable("commands.metallics_arts.one_power_get").withStyle(ChatFormatting.BOLD))
+                            .append(Component.literal(" ⏺").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.RED)));
                 }
             } catch (PlayerException ex) {
                 ex.printCompleteLog();
@@ -278,46 +311,61 @@ public class PowersGetRegister {
         return 1;
     }
     private static int getAllPower (CommandContext<CommandSourceStack> context, String type, Collection<ServerPlayer> players) {
-        StringBuilder allomanticPowersStr;
-        StringBuilder feruchemicPowersStr;
+
 
         for (ServerPlayer player: players) {
             try {
                 if (type.equals("allomantic") || type.equals("all")) {
-                    allomanticPowersStr = new StringBuilder();
-                    boolean firstLoopAllomantic = true;
+                    context.getSource().sendSystemMessage(
+                            Component.literal("#").withStyle(ChatFormatting.OBFUSCATED)
+                                    .append(Component.literal("").withStyle(Style.EMPTY))
+                                    .append(Component.literal(player.getScoreboardName()).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.BOLD))
+                                    .append(Component.literal("#").withStyle(ChatFormatting.OBFUSCATED))
+                                    .append(Component.literal(" ").withStyle(Style.EMPTY))
+                                    .append(Component.translatable("commands.metallics_arts.allomantic").withStyle(ChatFormatting.BOLD)));
 
                     List<MetalTagEnum> allomanticPowers = CapabilityUtils.getCapability(player).getAllomanticPowers();
-                    for (MetalTagEnum power : allomanticPowers) {
-                        if (firstLoopAllomantic) {
-                            allomanticPowersStr.append(" ").append(power.getNameLower());
-                            firstLoopAllomantic = false;
+                    for (MetalTagEnum power : MetalTagEnum.values()) {
+                        if (allomanticPowers.contains(power)) {
+                            context.getSource().sendSystemMessage(Component.literal(power.getNameLower()).withStyle(ChatFormatting.BOLD)
+                                    .append(Component.literal(" ").withStyle(Style.EMPTY))
+                                    .append(Component.translatable("commands.metallics_arts.one_power_get").withStyle(ChatFormatting.BOLD))
+                                    .append(Component.literal("⏺").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GREEN)));
                         } else {
-                            allomanticPowersStr.append(", ").append(power.getNameLower());
+                            context.getSource().sendSystemMessage(Component.literal(power.getNameLower()).withStyle(ChatFormatting.BOLD)
+                                    .append(Component.literal(" ").withStyle(Style.EMPTY))
+                                    .append(Component.translatable("commands.metallics_arts.one_power_get").withStyle(ChatFormatting.BOLD))
+                                    .append(Component.literal("⏺").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.RED)));
                         }
                     }
-
-                    context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " has  allomantics " + allomanticPowersStr));
                 }
             } catch (PlayerException ex) {
                 ex.printCompleteLog();
             }
             if (type.equals("feruchemic") || type.equals("all")) {
                 try {
-                    feruchemicPowersStr = new StringBuilder();
-                    boolean firstLoopFeruchemic = true;
+                    context.getSource().sendSystemMessage(
+                            Component.literal("#").withStyle(ChatFormatting.OBFUSCATED)
+                                    .append(Component.literal("").withStyle(Style.EMPTY))
+                                    .append(Component.literal(player.getScoreboardName()).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.BOLD))
+                                    .append(Component.literal("#").withStyle(ChatFormatting.OBFUSCATED))
+                                    .append(Component.literal("").withStyle(Style.EMPTY))
+                                    .append(Component.translatable("commands.metallics_arts.allomantic").withStyle(ChatFormatting.BOLD)));
 
                     List<MetalTagEnum> feruchemicPowers = CapabilityUtils.getCapability(player).getFeruchemicPowers();
-                    for (MetalTagEnum power : feruchemicPowers) {
-                        if (firstLoopFeruchemic) {
-                            feruchemicPowersStr.append(" ").append(power.getNameLower());
-                            firstLoopFeruchemic = false;
-                        } else {
-                            feruchemicPowersStr.append(", ").append(power.getNameLower());
-                        }
-                    }
+                    for (MetalTagEnum power : MetalTagEnum.values()) {
+                        if (feruchemicPowers.contains(power)) {
+                            context.getSource().sendSystemMessage(Component.literal(power.getNameLower()).withStyle(ChatFormatting.BOLD)
+                                    .append(Component.literal(" ").withStyle(Style.EMPTY))
+                                    .append(Component.translatable("commands.metallics_arts.one_power_get").withStyle(ChatFormatting.BOLD))
+                                    .append(Component.literal(" ⏺").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GREEN)));
 
-                    context.getSource().sendSystemMessage(Component.translatable(player.getScoreboardName() + " has  feruchemics " + feruchemicPowersStr));
+                        } else {
+                            context.getSource().sendSystemMessage(Component.literal(power.getNameLower()).withStyle(ChatFormatting.BOLD)
+                                    .append(Component.literal(" ").withStyle(Style.EMPTY))
+                                    .append(Component.translatable("commands.metallics_arts.one_power_get").withStyle(ChatFormatting.BOLD))
+                                    .append(Component.literal(" ⏺").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.RED)));                        }
+                    }
                 } catch (PlayerException ex) {
                     ex.printCompleteLog();
                 }

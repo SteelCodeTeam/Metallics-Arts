@@ -8,6 +8,7 @@ import net.rudahee.metallics_arts.modules.custom_entities.allomancer.ettmetal_al
 import net.rudahee.metallics_arts.modules.custom_entities.allomancer.iron_allomancer_entity.IronAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.allomancer.pewter_allomancer_entity.PewterAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.allomancer.steel_allomancer_entity.SteelAllomancerEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.ferrin.brass_ferrin_entity.BrassFerrinEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.ferrin.gold_ferrin_entity.GoldFerrinEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.ferrin.iron_ferrin_entity.IronFerrinEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.haze_killer.haze_killer_melee_entity.HazeKillerMeleeEntity;
@@ -28,6 +29,7 @@ public class ModSpawnPlacements {
         event.register(ModLivingEntityRegister.HAZE_KILLER_TANK.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HazeKillerTankEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE);
         event.register(ModLivingEntityRegister.GOLD_FERRIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GoldFerrinEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE);
         event.register(ModLivingEntityRegister.IRON_FERRIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, IronFerrinEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE);
+        event.register(ModLivingEntityRegister.BRASS_FERRIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BrassFerrinEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.REPLACE);
 
     }
 }

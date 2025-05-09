@@ -10,6 +10,9 @@ import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 /**
  * Handles events related to player cloning, e.g., when a player is resurrected.
@@ -35,9 +38,13 @@ public class OnPlayerCloneEvent {
         Player original = event.getOriginal();
         Player player = event.getEntity();
 
-        try {
             IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
             IInvestedPlayerData originalCapability = CapabilityUtils.getCapability(original);
+
+            if (originalCapability == null || capability == null) {
+                return;
+            }
+
 
             if (originalCapability.getEttmetalState() == EttmetalStateEnum.KEEP_ITEMS) {
                 player.getInventory().replaceWith(original.getInventory());
@@ -56,8 +63,6 @@ public class OnPlayerCloneEvent {
             }
             original.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).invalidate();
             ModNetwork.syncInvestedDataPacket(player);
-        } catch (PlayerException ex) {
-            ex.printCompleteLog();
-        }
+
     }
 }

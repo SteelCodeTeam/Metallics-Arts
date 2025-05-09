@@ -48,7 +48,7 @@ public class BrassAllomanticHelper {
 
         target.setAggressive(false);
 
-        target.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop );
+        target.goalSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop);
         target.targetSelector.getRunningGoals().filter(isAggroGoal).forEach(WrappedGoal::stop);
 
         target.setTarget(null);

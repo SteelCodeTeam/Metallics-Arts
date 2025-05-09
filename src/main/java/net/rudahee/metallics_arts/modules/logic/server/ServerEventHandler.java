@@ -122,19 +122,7 @@ public class ServerEventHandler {
         }
     }
 
-    /**
-     * Handles the LivingDeathEvent to perform custom actions when a player dies.
-     * This method is triggered by the LivingDeathEvent and only runs on the server-side.
-     * The method delegates the handling of the event to the OnLivingDeathEvent class if the player entity is a ServerPlayer.
-     *
-     * @param event The LivingDeathEvent instance representing the current player death event.
-     */
-    @SubscribeEvent
-    public static void onLivingDeath(final LivingDeathEvent event) {
-        if (event.getEntity() instanceof ServerPlayer) {
-            OnLivingDeathEvent.livingDeath(event);
-        }
-    }
+
 
     /**
      * Handles the PlayerChangedDimensionEvent to perform custom actions when a player changes dimensions.
@@ -174,9 +162,13 @@ public class ServerEventHandler {
     @SubscribeEvent
     public static void onDamageEvent(final LivingHurtEvent event) {
 
+        if (event.getEntity().level.isClientSide()) {
+            return;
+        }
+
         OnDamageEvent.onDamageToArmor(event, event.getEntity()); //todo funciona en este if ?
 
-        if (event.getSource().getDirectEntity() instanceof ServerPlayer && event.getEntity() instanceof ServerPlayer) {
+        if (event.getSource().getEntity() instanceof ServerPlayer && event.getEntity() instanceof ServerPlayer) {
             OnDamageEvent.onDamageFeruchemical(event, (ServerPlayer) event.getSource().getEntity(), (ServerPlayer) event.getEntity());
             OnDamageEvent.onDamageAllomantic(event, (ServerPlayer) event.getSource().getEntity(), (ServerPlayer) event.getEntity());
 
@@ -239,12 +231,15 @@ public class ServerEventHandler {
 
         for (Player player : playerList) {
             if (player != null) {
-                try {
+
                     IInvestedPlayerData capabilities = CapabilityUtils.getCapability(player);
+
+                    if (capabilities == null) {
+                        return;
+                    }
+
                     OnWorldTickEvent.onWorldTick(capabilities, player, event.level, tick);
-                } catch (PlayerException ex) {
-                    ex.printResumeLog();
-                }
+
 
                 /*
                  * GUNS

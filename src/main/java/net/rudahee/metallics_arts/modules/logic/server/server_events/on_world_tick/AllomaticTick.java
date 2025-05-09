@@ -189,7 +189,7 @@ public class AllomaticTick {
     private static void physicalMetals(IInvestedPlayerData playerCapability, Player player, Level level) {
 
         if (playerCapability.isBurning(MetalTagEnum.TIN)) {
-                TinAllomanticHelper.addTinEffects(player, playerCapability.getEnhanced());
+            TinAllomanticHelper.addTinEffects(player, playerCapability.getEnhanced());
         }
 
         if (playerCapability.isBurning(MetalTagEnum.PEWTER)) {

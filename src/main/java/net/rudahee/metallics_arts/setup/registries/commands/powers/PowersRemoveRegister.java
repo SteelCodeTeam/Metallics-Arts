@@ -1,19 +1,18 @@
-package net.rudahee.metallics_arts.setup.registries.commands;
+package net.rudahee.metallics_arts.setup.registries.commands.powers;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.common.capabilities.CapabilityProvider;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 
 import java.util.ArrayList;
@@ -261,7 +260,12 @@ public class PowersRemoveRegister {
             });
 
             ModNetwork.syncInvestedDataPacket(player);
-            player.sendSystemMessage(Component.translatable("Revoke " + metalTagEnum.getNameLower() + " allomantic power to " + player.getScoreboardName()));
+            player.sendSystemMessage(Component.literal(
+                            Component.translatable("commands.metallics_arts.allomantic_one_power_remove")
+                                    .getString()
+                                    .formatted(metalTagEnum.getNameLower()))
+                    .append(Component.literal(player.getScoreboardName())
+                            .withStyle(ChatFormatting.GOLD)));
         }
 
         return 1;
@@ -274,12 +278,16 @@ public class PowersRemoveRegister {
                     }
             );
             ModNetwork.syncInvestedDataPacket(player);
-            player.sendSystemMessage(Component.translatable("Revoke " + metalTagEnum.getNameLower() + " feruchemic power to " + player.getScoreboardName()));
-        }
+            player.sendSystemMessage(Component.literal(
+                            Component.translatable("commands.metallics_arts.feruchemic_one_power_remove")
+                                    .getString()
+                                    .formatted(metalTagEnum.getNameLower()))
+                    .append(Component.literal(player.getScoreboardName())
+                            .withStyle(ChatFormatting.GOLD)));        }
 
         return 1;
     }
-    public static int removeAllAllomanticPower (CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
+    public static int removeAllAllomanticPower(CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
             player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
@@ -287,12 +295,15 @@ public class PowersRemoveRegister {
                     }
             );
             ModNetwork.syncInvestedDataPacket(player);
-            player.sendSystemMessage(Component.translatable("Revoke all allomantics powers to " + player.getScoreboardName()));
+            player.sendSystemMessage(
+                    Component.translatable("commands.metallics_arts.allomantic_all_power_remove")
+                            .append(Component.literal(player.getScoreboardName()).withStyle(ChatFormatting.GOLD)));
+
         }
 
         return 1;
     }
-    public static int removeAllFeruchemicPower (CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
+    public static int removeAllFeruchemicPower(CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
 
         for (ServerPlayer player: players) {
             player.getCapability(InvestedPlayerCapabilityRegister.PLAYER_CAP).ifPresent(p -> {
@@ -300,7 +311,9 @@ public class PowersRemoveRegister {
                     }
             );
             ModNetwork.syncInvestedDataPacket(player);
-            player.sendSystemMessage(Component.translatable("Revoke all feruchemics powers to " + player.getScoreboardName()));
+            player.sendSystemMessage(
+                    Component.translatable("commands.metallics_arts.feruchemic_all_power_remove")
+                            .append(Component.literal(player.getScoreboardName()).withStyle(ChatFormatting.GOLD)));
         }
 
         return 1;
@@ -315,8 +328,9 @@ public class PowersRemoveRegister {
 
                 ModNetwork.syncInvestedDataPacket(capability, player);
 
-                player.sendSystemMessage(Component.translatable("Revoke all powers to " + player.getScoreboardName()));
-            }
+                player.sendSystemMessage(
+                        Component.translatable("commands.metallics_arts.feruchemic_all_power_remove")
+                                .append(Component.literal(player.getScoreboardName()).withStyle(ChatFormatting.GOLD)));            }
         } catch (PlayerException e) {
             e.printStackTrace();
         }
@@ -340,8 +354,23 @@ public class PowersRemoveRegister {
 
             if (Math.random() > 0.5) {
                 removeFeruchemicPower(context, metal, playerCollection);
+
+                player.sendSystemMessage(Component.literal(
+                                Component.translatable("commands.metallics_arts.feruchemic_one_power_remove")
+                                        .getString()
+                                        .formatted(metal.getNameLower()))
+                        .append(Component.literal(player.getScoreboardName())
+                                .withStyle(ChatFormatting.GOLD)));
+
             } else {
                 removeAllomanticPower(context, metal, playerCollection);
+
+                player.sendSystemMessage(Component.literal(
+                                Component.translatable("commands.metallics_arts.allomantic_one_power_remove")
+                                        .getString()
+                                        .formatted(metal.getNameLower()))
+                        .append(Component.literal(player.getScoreboardName())
+                                .withStyle(ChatFormatting.GOLD)));
             }
 
             ModNetwork.syncInvestedDataPacket(player);

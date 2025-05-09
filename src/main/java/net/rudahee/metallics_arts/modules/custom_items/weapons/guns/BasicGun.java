@@ -139,7 +139,7 @@ public class BasicGun extends ProjectileWeaponItem {
         if (!GunUtils.hasTags(stack.getTag())) {
             stack.setTag(GunUtils.generateGunTags(this.gunType));
         } else {
-            toolTips.add(Component.translatable(stack.getTag().getString(GunsAccess.BULLET_TYPE.getKey())));
+            toolTips.add(Component.translatable("util.metallics_arts.bullet_type." + stack.getTag().getString(GunsAccess.BULLET_TYPE.getKey())));
         }
         super.appendHoverText(stack, level, toolTips, flagIn);
     }

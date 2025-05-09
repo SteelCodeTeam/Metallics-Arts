@@ -26,7 +26,6 @@ public class MetalMindsUtils {
         boolean isSecondReserveZero = compoundTag.getInt(metal1.getNameLower()+"_feruchemic_reserve") == 0;
 
         IInvestedPlayerData playerCapability;
-        try {
             playerCapability = CapabilityUtils.getCapability(player);
 
             if (playerCapability.isStoring(MetalTagEnum.ALUMINUM)) {
@@ -42,10 +41,6 @@ public class MetalMindsUtils {
                     }
                 }
             }
-        } catch (PlayerException ex) {
-            ex.printCompleteLog();
-            return compoundTag;
-        }
         return compoundTag;
     }
 }

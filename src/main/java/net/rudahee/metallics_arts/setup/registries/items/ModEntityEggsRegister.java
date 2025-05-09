@@ -25,6 +25,9 @@ public class ModEntityEggsRegister {
       ModItemsRegister.ENTITY_EGGS.put("gold_ferrin_entity", MetallicsArts.registerItem("gold_ferrin_entity_spawn_egg",
               () -> new ForgeSpawnEggItem(ModLivingEntityRegister.GOLD_FERRIN,  0x00FF00  , 0xC7C7C7 , new Item.Properties())));
 
+      ModItemsRegister.ENTITY_EGGS.put("brass_ferrin_entity", MetallicsArts.registerItem("brass_ferrin_entity_spawn_egg",
+              () -> new ForgeSpawnEggItem(ModLivingEntityRegister.BRASS_FERRIN,  0x00FF00  , 0xF2C500 , new Item.Properties())));
+
       ModItemsRegister.ENTITY_EGGS.put("iron_ferrin_entity", MetallicsArts.registerItem("iron_ferrin_entity_spawn_egg",
               () -> new ForgeSpawnEggItem(ModLivingEntityRegister.IRON_FERRIN,  0x00FF00  , 0xD4D4D , new Item.Properties())));
 

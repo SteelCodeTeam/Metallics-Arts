@@ -1,7 +1,8 @@
-package net.rudahee.metallics_arts.setup.registries.commands;
+package net.rudahee.metallics_arts.setup.registries.commands.powers;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
@@ -10,7 +11,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -258,7 +258,12 @@ public class PowersAddRegister {
                     }
             );
             ModNetwork.syncInvestedDataPacket(player);
-            player.sendSystemMessage(Component.translatable("Added " + metalTagEnum.getNameLower() + " allomantic power to " + player.getScoreboardName()));
+            player.sendSystemMessage(Component.literal(
+                    Component.translatable("commands.metallics_arts.allomantic_one_power_add")
+                            .getString()
+                            .formatted(metalTagEnum.getNameLower()))
+                    .append(Component.literal(player.getScoreboardName())
+                            .withStyle(ChatFormatting.GOLD)));
         }
 
         return 1;
@@ -271,11 +276,17 @@ public class PowersAddRegister {
                     }
             );
             ModNetwork.syncInvestedDataPacket(player);
-            player.sendSystemMessage(Component.translatable("Added " + metalTagEnum.getNameLower() + " feruchemic power to " + player.getScoreboardName()));
+            player.sendSystemMessage(Component.literal(
+                            Component.translatable("commands.metallics_arts.feruchemic_one_power_add")
+                                    .getString()
+                                    .formatted(metalTagEnum.getNameLower()))
+                    .append(Component.literal(player.getScoreboardName())
+                            .withStyle(ChatFormatting.GOLD)));
         }
 
         return 1;
     }
+
     public static int addAllAllomanticPower(CommandContext<CommandSourceStack> context, Collection<ServerPlayer> players) {
         ServerPlayer playerEntity = null;
 
@@ -285,7 +296,9 @@ public class PowersAddRegister {
                     }
             );
             ModNetwork.syncInvestedDataPacket(player);
-            player.sendSystemMessage(Component.translatable("Added all allomantics powers to " + player.getScoreboardName()));
+            player.sendSystemMessage(
+                    Component.translatable("commands.metallics_arts.allomantic_all_power_add")
+                            .append(Component.literal(player.getScoreboardName()).withStyle(ChatFormatting.GOLD)));
         }
 
         return 1;
@@ -298,7 +311,9 @@ public class PowersAddRegister {
                     }
             );
             ModNetwork.syncInvestedDataPacket(player);
-            player.sendSystemMessage(Component.translatable("Added all feruchemics powers to " + player.getScoreboardName()));
+            player.sendSystemMessage(
+                            Component.translatable("commands.metallics_arts.feruchemic_all_power_add")
+                                    .append(Component.literal(player.getScoreboardName()).withStyle(ChatFormatting.GOLD)));
         }
 
         return 1;
@@ -312,7 +327,9 @@ public class PowersAddRegister {
                 }
             );
             ModNetwork.syncInvestedDataPacket(player);
-            player.sendSystemMessage(Component.translatable("Added all powers to " + player.getScoreboardName()));
+            player.sendSystemMessage(
+                    Component.translatable("commands.metallics_arts.all_power_add")
+                            .append(Component.literal(player.getScoreboardName()).withStyle(ChatFormatting.GOLD)));
         }
 
         return 1;
@@ -333,13 +350,26 @@ public class PowersAddRegister {
 
             if (Math.random() > 0.5) {
                 addFeruchemicPower(context, metal, playerCollection);
+
+                player.sendSystemMessage(Component.literal(
+                                Component.translatable("commands.metallics_arts.feruchemic_one_power_add")
+                                        .getString()
+                                        .formatted(metal.getNameLower()))
+                        .append(Component.literal(player.getScoreboardName())
+                                .withStyle(ChatFormatting.GOLD)));
+
             } else {
                 addAllomanticPower(context, metal, playerCollection);
-            }
 
+                player.sendSystemMessage(Component.literal(
+                                Component.translatable("commands.metallics_arts.allomantic_one_power_add")
+                                        .getString()
+                                        .formatted(metal.getNameLower()))
+                        .append(Component.literal(player.getScoreboardName())
+                                .withStyle(ChatFormatting.GOLD)));
+            }
             ModNetwork.syncInvestedDataPacket(player);
         }
-
         return 1;
     }
 

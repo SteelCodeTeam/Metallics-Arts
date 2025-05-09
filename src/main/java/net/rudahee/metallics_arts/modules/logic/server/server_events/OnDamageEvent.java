@@ -121,14 +121,16 @@ public class OnDamageEvent {
             }
         }
         if (entity instanceof Player player) {
-            try {
                 IInvestedPlayerData capability = CapabilityUtils.getCapability(player);
+
+                if (capability == null) {
+                    return;
+                }
+
                 if (!capability.isBurning(MetalTagEnum.ATIUM) && ArmorUtils.hasAtiumArmor(player)){
                     event.setCanceled(ArmorUtils.cancelHitWithAtiumArmor());
                 }
-            } catch (PlayerException ex) {
-                ex.printCompleteLog();
-            }
+
         } else {
              if (ArmorUtils.hasAtiumArmor(entity)) {
                 event.setCanceled(ArmorUtils.cancelHitWithAtiumArmor());
