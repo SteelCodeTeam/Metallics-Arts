@@ -4,19 +4,19 @@ import net.minecraft.resources.ResourceLocation;
 import net.rudahee.metallics_arts.MetallicsArts;
 import software.bernie.geckolib.model.GeoModel;
 
-public class PewterInquisitorEntityModel extends GeoModel<PewterInquisitorEntity>  {
+public class PewterInquisitorModel extends GeoModel<PewterInquisitor>  {
     @Override
-    public ResourceLocation getModelResource(PewterInquisitorEntity animatable) {
+    public ResourceLocation getModelResource(PewterInquisitor animatable) {
         return new ResourceLocation(MetallicsArts.MOD_ID, "geo/iron_inquisitor.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureResource(PewterInquisitorEntity animatable) {
+    public ResourceLocation getTextureResource(PewterInquisitor animatable) {
         return new ResourceLocation(MetallicsArts.MOD_ID, "textures/entity/living/iron_inquisitor.png");
     }
 
     @Override
-    public ResourceLocation getAnimationResource(PewterInquisitorEntity animatable) {
+    public ResourceLocation getAnimationResource(PewterInquisitor animatable) {
         return new ResourceLocation(MetallicsArts.MOD_ID, "animations/iron_inquisitor.animation.json");
     }
 

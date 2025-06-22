@@ -43,8 +43,9 @@ import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front.HemalurgyAltarFrontRenderer;
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front.HemalurgyAltarFrontScreen;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.WoodTypeMetal;
+import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.cadmium_inquisitor.CadmiumInquisitorRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.iron_inquisitor.IronInquisitorRenderer;
-import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.pewter_inquisitor.PewterInquisitorEntityRenderer;
+import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.pewter_inquisitor.PewterInquisitorRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.steel_inquisitor.SteelInquisitorRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.ferrin.brass_ferrin_entity.BrassFerrinEntityRenderer;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.CuriosLayerDefinitions;
@@ -256,10 +257,12 @@ public class MetallicsArts {
         BlockEntityRenderers.register(ModBlockEntitiesRegister.HEMALURGY_ALTAR_FRONT_ENTITY.get(), HemalurgyAltarFrontRenderer::new);
 
         EntityRenderers.register(ModLivingEntityRegister.BRASS_FERRIN.get(), BrassFerrinEntityRenderer::new);
+
         EntityRenderers.register(ModLivingEntityRegister.IRON_INQUISITOR.get(), IronInquisitorRenderer::new);
         EntityRenderers.register(ModLivingEntityRegister.STEEL_INQUISITOR.get(), SteelInquisitorRenderer::new);
 
-        EntityRenderers.register(ModLivingEntityRegister.PEWTER_INQUISITOR.get(), PewterInquisitorEntityRenderer::new);
+        EntityRenderers.register(ModLivingEntityRegister.PEWTER_INQUISITOR.get(), PewterInquisitorRenderer::new);
+        EntityRenderers.register(ModLivingEntityRegister.CADMIUM_INQUISITOR.get(), CadmiumInquisitorRenderer::new);
 
 
         CuriosRendererRegistry.register(MetalMindEnum.IRON_STEEL.getBand(), MetalMindRendered::new);

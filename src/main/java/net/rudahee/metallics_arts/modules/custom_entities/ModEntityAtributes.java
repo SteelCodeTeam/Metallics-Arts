@@ -9,8 +9,9 @@ import net.rudahee.metallics_arts.modules.custom_entities.allomancer.ettmetal_al
 import net.rudahee.metallics_arts.modules.custom_entities.allomancer.iron_allomancer_entity.IronAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.allomancer.pewter_allomancer_entity.PewterAllomancerEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.allomancer.steel_allomancer_entity.SteelAllomancerEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.cadmium_inquisitor.CadmiumInquisitor;
 import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.iron_inquisitor.IronInquisitor;
-import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.pewter_inquisitor.PewterInquisitorEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.pewter_inquisitor.PewterInquisitor;
 import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.steel_inquisitor.SteelInquisitor;
 import net.rudahee.metallics_arts.modules.custom_entities.ferrin.brass_ferrin_entity.BrassFerrinEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.ferrin.gold_ferrin_entity.GoldFerrinEntity;
@@ -36,7 +37,8 @@ public class ModEntityAtributes {
         event.put(ModLivingEntityRegister.IRON_FERRIN.get(), IronFerrinEntity.getIronFerrinAttributes().build());
         event.put(ModLivingEntityRegister.IRON_INQUISITOR.get(), IronInquisitor.getIronInquisitorAttributes().build());
         event.put(ModLivingEntityRegister.STEEL_INQUISITOR.get(), SteelInquisitor.getSteelInquisitorAttributes().build());
+        event.put(ModLivingEntityRegister.CADMIUM_INQUISITOR.get(), CadmiumInquisitor.getCadmiumInquisitorAttributes().build());
 
-        event.put(ModLivingEntityRegister.PEWTER_INQUISITOR.get(), PewterInquisitorEntity.getPewterInquisitorAttributes().build());
+        event.put(ModLivingEntityRegister.PEWTER_INQUISITOR.get(), PewterInquisitor.getPewterInquisitorAttributes().build());
     }
 }

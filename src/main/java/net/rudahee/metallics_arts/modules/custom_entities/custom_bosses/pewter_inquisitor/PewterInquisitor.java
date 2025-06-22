@@ -30,13 +30,13 @@ import software.bernie.geckolib.core.object.PlayState;
 
 import javax.annotation.Nullable;
 
-public class PewterInquisitorEntity extends PathfinderMob implements GeoEntity, Enemy {
+public class PewterInquisitor extends PathfinderMob implements GeoEntity, Enemy {
 
     private final AnimatableInstanceCache instanceCache = new SingletonAnimatableInstanceCache(this);
     private final ServerBossEvent bossEvent =
             new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.GREEN, BossEvent.BossBarOverlay.PROGRESS);
 
-    public PewterInquisitorEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
+    public PewterInquisitor(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
         this.setHealth(this.getMaxHealth());
         this.xpReward = 1000;
@@ -62,7 +62,7 @@ public class PewterInquisitorEntity extends PathfinderMob implements GeoEntity, 
         this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
     }
 
-    public static  boolean canSpawn(EntityType<PewterInquisitorEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+    public static  boolean canSpawn(EntityType<PewterInquisitor> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return false;
     }
 

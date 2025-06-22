@@ -15,20 +15,29 @@ import net.minecraft.world.entity.monster.Guardian;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.pewter_inquisitor.PewterInquisitorEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.pewter_inquisitor.PewterInquisitor;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
 
 import javax.annotation.Nullable;
 
-public class CadmiunInquisitorEntity extends Guardian {
+public class CadmiumInquisitor extends Guardian implements GeoEntity {
 
+    private final AnimatableInstanceCache instanceCache = new SingletonAnimatableInstanceCache(this);
     private final ServerBossEvent bossEvent =
-            new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS);
+            new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.YELLOW, BossEvent.BossBarOverlay.PROGRESS);
 
-    public CadmiunInquisitorEntity(EntityType<? extends Guardian> entityType, Level level) {
+    public CadmiumInquisitor(EntityType<? extends Guardian> entityType, Level level) {
         super(entityType, level);
+        this.setHealth(this.getMaxHealth());
+        this.xpReward = 1000;
     }
 
-    public static AttributeSupplier.Builder getExampleAttributes() {
+    public static AttributeSupplier.Builder getCadmiumInquisitorAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 64.0D)
                 .add(Attributes.MOVEMENT_SPEED,1.2D)
@@ -44,7 +53,7 @@ public class CadmiunInquisitorEntity extends Guardian {
         super.registerGoals();
     }
 
-    public static  boolean canSpawn(EntityType<PewterInquisitorEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+    public static  boolean canSpawn(EntityType<CadmiumInquisitor> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return false;
     }
 
@@ -76,4 +85,27 @@ public class CadmiunInquisitorEntity extends Guardian {
         super.stopSeenByPlayer(player);
         this.bossEvent.removePlayer(player);
     }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController<GeoAnimatable>(this, "controller", 0, this::predicate));
+
+    }
+
+    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> animationState) {
+
+        if (animationState.isMoving()) {
+            animationState.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
+
+        animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return instanceCache;
+    }
+
 }

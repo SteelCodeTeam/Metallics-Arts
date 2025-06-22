@@ -8,18 +8,18 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 
-public class PewterInquisitorEntityRenderer extends GeoEntityRenderer<PewterInquisitorEntity> {
-    public PewterInquisitorEntityRenderer(EntityRendererProvider.Context renderManager) {
-            super(renderManager, new PewterInquisitorEntityModel());
+public class PewterInquisitorRenderer extends GeoEntityRenderer<PewterInquisitor> {
+    public PewterInquisitorRenderer(EntityRendererProvider.Context renderManager) {
+            super(renderManager, new PewterInquisitorModel());
     }
 
     @Override
-    public ResourceLocation getTextureLocation(PewterInquisitorEntity animatable) {
+    public ResourceLocation getTextureLocation(PewterInquisitor animatable) {
         return new ResourceLocation(MetallicsArts.MOD_ID, "textures/entity/living/iron_inquisitor.png");
     }
 
     @Override
-    public void render(PewterInquisitorEntity entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource
+    public void render(PewterInquisitor entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource
     bufferSource, int packedLight) {
 
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);

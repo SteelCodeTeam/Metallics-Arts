@@ -10,8 +10,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.custom_entities.allomancer.ettmetal_allomancer_entity.EttmetalAllomancerEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.cadmium_inquisitor.CadmiumInquisitor;
 import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.iron_inquisitor.IronInquisitor;
-import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.pewter_inquisitor.PewterInquisitorEntity;
+import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.pewter_inquisitor.PewterInquisitor;
 import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.steel_inquisitor.SteelInquisitor;
 import net.rudahee.metallics_arts.modules.custom_entities.ferrin.brass_ferrin_entity.BrassFerrinEntity;
 import net.rudahee.metallics_arts.modules.custom_entities.ferrin.gold_ferrin_entity.GoldFerrinEntity;
@@ -113,8 +114,19 @@ public class ModLivingEntityRegister {
                     .clientTrackingRange(48)
                     .build(new ResourceLocation(MetallicsArts.MOD_ID, "steel_inquisitor").toString()));
 
-    public static final RegistryObject<EntityType<PewterInquisitorEntity>> PEWTER_INQUISITOR = ENTITY_TYPES.register("pewter_inquisitor_entity",
-            () -> EntityType.Builder.of(PewterInquisitorEntity::new, MobCategory.CREATURE)
+    public static final RegistryObject<EntityType<CadmiumInquisitor>> CADMIUM_INQUISITOR = ENTITY_TYPES.register("cadmium_inquisitor_entity",
+            () -> EntityType.Builder.of(CadmiumInquisitor::new, MobCategory.CREATURE)
+                    .sized(1.2f, 2.4f)
+                    .fireImmune()
+                    .immuneTo(Blocks.MAGMA_BLOCK)
+                    .immuneTo(Blocks.FIRE)
+                    .immuneTo(Blocks.LAVA)
+                    .clientTrackingRange(48)
+                    .build(new ResourceLocation(MetallicsArts.MOD_ID, "cadmium_inquisitor").toString()));
+
+
+    public static final RegistryObject<EntityType<PewterInquisitor>> PEWTER_INQUISITOR = ENTITY_TYPES.register("pewter_inquisitor_entity",
+            () -> EntityType.Builder.of(PewterInquisitor::new, MobCategory.CREATURE)
                     .sized(1.2f, 2.4f)
                     .fireImmune()
                     .immuneTo(Blocks.MAGMA_BLOCK)
