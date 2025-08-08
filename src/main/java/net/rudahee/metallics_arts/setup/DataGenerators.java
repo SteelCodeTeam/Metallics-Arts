@@ -14,6 +14,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.providers.*;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderEN;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderES;
+import net.rudahee.metallics_arts.data.providers.tags_providers.ModBannerTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBlockTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvider;
 import net.rudahee.metallics_arts.data.providers.MetallicsArtsGuideBookProvider;
@@ -69,6 +70,8 @@ public final class DataGenerators {
         gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_us"));
 
 
+
+        gen.addProvider(event.includeServer(), new ModBannerTagProvider(packOutput, lookupProvider, existingFileHelper));
         log.info("Starting Generation: Guide Book");
         gen.addProvider(event.includeServer(), new MetallicsArtsGuideBookProvider(gen, MetallicsArts.MOD_ID, null));
 
@@ -81,9 +84,5 @@ public final class DataGenerators {
         gen.addProvider(event.includeServer(), new ModItemTagsProvider(packOutput,lookupProvider, blockTags.contentsGetter(), existingFileHelper));
 
     }
-    
-
-
-
 
 }

@@ -19,7 +19,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = MetallicsArts.MOD_ID)
+@Mod.EventBusSubscriber(modid = MetallicsArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class VillageAddition {
     private static final ResourceKey<StructureProcessorList> EMPTY_PROCESSOR_LIST_KEY = ResourceKey.create(
             Registries.PROCESSOR_LIST, new ResourceLocation("minecraft", "empty"));
@@ -79,19 +79,13 @@ public class VillageAddition {
         Registry<StructureProcessorList> processorListRegistry = event.getServer().registryAccess().registry(Registries.PROCESSOR_LIST).orElseThrow();
 
 
-
         // Adds our piece to all village houses pool
         // Note, the resourcelocation is getting the pool files from the data folder. Not assets folder.
 
-       addBuildingToPool(templatePoolRegistry, processorListRegistry,
-                new ResourceLocation("minecraft:village/plains/houses"),
-                "metallics_arts:canton", 250);
 
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
-                new ResourceLocation("minecraft:village/plains/houses"),
-                "metallics_arts:casita", 250);
-
-
+                new ResourceLocation("minecraft:village/plains/town_centers"),
+                "metallics_arts:otra_prueba", 250);
 
     }
 }
