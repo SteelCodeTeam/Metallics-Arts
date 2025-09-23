@@ -1,0 +1,25 @@
+{
+  "values": [
+    "metallics_arts:atium_block",
+    "metallics_arts:lerasium_block",
+    "metallics_arts:ettmetal_block",
+    "metallics_arts:malatium_block",
+    "metallics_arts:nickel_block",
+    "metallics_arts:lead_block",
+    "metallics_arts:silver_block",
+    "metallics_arts:steel_block",
+    "metallics_arts:tin_block",
+    "metallics_arts:pewter_block",
+    "metallics_arts:bronze_block",
+    "metallics_arts:zinc_block",
+    "metallics_arts:brass_block",
+    "metallics_arts:electrum_block",
+    "metallics_arts:cadmium_block",
+    "metallics_arts:bendalloy_block",
+    "metallics_arts:aluminum_block",
+    "metallics_arts:duralumin_block",
+    "metallics_arts:chromium_block",
+    "metallics_arts:nicrosil_block"
+
+  ]
+}

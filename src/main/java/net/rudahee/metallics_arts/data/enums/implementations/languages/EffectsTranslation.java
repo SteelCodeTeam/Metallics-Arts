@@ -72,7 +72,6 @@ public enum EffectsTranslation {
     FERUCHEMICAL_LERASIUM_TAP("effect.metallics_arts.feruchemical_lerasium_tap", "Feruchemical Lerasium", "Lerasium feruquimico"),
     FERUCHEMICAL_ETTMETAL_TAP("effect.metallics_arts.feruchemical_ettmetal_tap", "Feruchemical Ettmetal", "Ettmetal feruquimico");
 
-
     private final String key;
     private final String english;
     private final String spanish;

@@ -4,16 +4,13 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.old.MetalNamesEnum;
 import net.rudahee.metallics_arts.modules.custom_blocks.Panels;
 import net.rudahee.metallics_arts.modules.custom_blocks.ettmetal_blocks.*;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
-import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 public class DecorationBlockRegister {
 

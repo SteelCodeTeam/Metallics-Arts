@@ -3,15 +3,7 @@ package net.rudahee.metallics_arts.data.providers.language_providers;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
-import net.rudahee.metallics_arts.data.enums.implementations.GunType;
-import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.languages.*;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.old.*;
-import net.rudahee.metallics_arts.data.providers.language_providers.book.BookHelperES;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A custom class for providing Spanish translations for mod elements.

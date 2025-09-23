@@ -21,14 +21,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 import net.rudahee.metallics_arts.data.configs.MetalListConfig;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.old.MetalAuxiliaryInfo;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
+import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvider;
 import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticLever;
 import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticPullButton;
 import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticPushButton;
-import net.rudahee.metallics_arts.setup.registries.items.ModTags;
+import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -61,19 +64,28 @@ public class IronAndSteelHelpers {
      */
     public static int haveNuggets(Player player) {
 
-        ArrayList<Ingredient> arrayList = new ArrayList<>();
+        ArrayList<Ingredient> lookingIngredient = new ArrayList<>();
 
-        for (MetalAuxiliaryInfo metal : MetalAuxiliaryInfo.values()) {
-            if (!metal.getId().equals(MetalAuxiliaryInfo.IRON.getId()) && !metal.getId().equals(MetalAuxiliaryInfo.GOLD.getId())
-            && !metal.getId().equals(MetalAuxiliaryInfo.ALUMINUM.getId()) && !metal.getId().equals(MetalAuxiliaryInfo.SILVER.getId())) {
-                arrayList.add(Ingredient.of(ModTags.NUGGETS.get(metal.getId())));
-            }
+        List.of("silver", "aluminum");
+
+        List<String> metals = Arrays.stream(MetalEnum.values()).map(MetalEnum::getMetalNameLower).toList();
+
+        metals = metals.stream().filter(metal -> !metal.equals("aluminum") && !metal.equals("silver")).toList();
+
+        for (String metal : metals) {
+            lookingIngredient.add(Ingredient.of(ModItemsRegister.ITEM_METAL_NUGGET.get(metal)));
         }
-        arrayList.add(Ingredient.of(Tags.Items.NUGGETS_IRON));
-        arrayList.add(Ingredient.of(Tags.Items.NUGGETS_GOLD));
+
+        lookingIngredient.add(Ingredient.of(ModItemsRegister.ITEM_GEMS_NUGGET.get("lerasium")));
+        lookingIngredient.add(Ingredient.of(ModItemsRegister.ITEM_GEMS_NUGGET.get("atium")));
+        lookingIngredient.add(Ingredient.of(ModItemsRegister.ITEM_GEMS_NUGGET.get("ettmetal")));
+        lookingIngredient.add(Ingredient.of(ModItemsRegister.ITEM_GEMS_NUGGET.get("malatium")));
+
+        lookingIngredient.add(Ingredient.of(Tags.Items.NUGGETS_IRON));
+        lookingIngredient.add(Ingredient.of(Tags.Items.NUGGETS_GOLD));
 
         for (ItemStack stack: player.getInventory().items) {
-            for (Ingredient ing : arrayList) {
+            for (Ingredient ing : lookingIngredient) {
                 if (ing.test(stack)) {
                     return player.getInventory().findSlotMatchingItem(stack);
                 }
