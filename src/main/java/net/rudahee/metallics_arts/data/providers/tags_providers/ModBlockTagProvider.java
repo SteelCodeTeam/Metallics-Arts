@@ -9,7 +9,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.enums.implementations.languages.old.MetalAuxiliaryInfo;
+import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.items.ModTags;
 import org.jetbrains.annotations.Nullable;
@@ -42,24 +44,27 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
 
-        for (MetalAuxiliaryInfo metal: MetalAuxiliaryInfo.values()) {
-            if (metal.isVanilla()) {
-                addVanillaBlocksTags(metal.getId());
-            } else {
-                if (metal.isAppearsInDeepslate() && metal.isAppearsInStone()) {
-                    addTagsStoneAndDeepslate(metal.getId());
-                } else if (metal.isAppearsInDeepslate()) {
-                    addDeepslateTags(metal.getId());
-                } else if (metal.isAppearsInStone()) {
-                    addStoneTags(metal.getId());
-                }
+        for (MetalEnum metal: MetalEnum.values()) {
+            addVanillaBlocksTags(metal.getMetalNameLower());
 
-                if (metal.isAppearsInDeepslate() || metal.isAppearsInStone()) {
-                    addRawTags(metal.getId());
-                }
-                addBasicBlocksTags(metal.getId(), metal.isDivine());
+            if (metal.isDeepslate() && metal.isStone()) {
+                addTagsStoneAndDeepslate(metal.getMetalNameLower());
+            } else if (metal.isDeepslate()) {
+                addDeepslateTags(metal.getMetalNameLower());
+            } else if (metal.isStone()) {
+                addStoneTags(metal.getMetalNameLower());
+            }
+
+            if (metal.isDeepslate() || metal.isStone()) {
+                addRawTags(metal.getMetalNameLower());
             }
         }
+
+
+        for (GemsEnum gem: GemsEnum.values()){
+            addBasicBlocksTags(gem.getGemNameLower(), true);
+        }
+
         for (String key : ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.keySet()) {
             addForgeTag("storage_blocks/" + key + "_cristal", ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key));
             makePickaxeMineable(ModBlocksRegister.DIVINE_CRISTAL_BLOCKS.get(key));

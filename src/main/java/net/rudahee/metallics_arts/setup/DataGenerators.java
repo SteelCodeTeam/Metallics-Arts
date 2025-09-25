@@ -17,7 +17,7 @@ import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageP
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBannerTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBlockTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvider;
-import net.rudahee.metallics_arts.data.providers.MetallicsArtsGuideBookProvider;
+import net.rudahee.metallics_arts.data.providers.language_providers.book.MetallicsArtsGuideBookProvider;
 
 import java.util.Collections;
 import java.util.List;
@@ -68,7 +68,6 @@ public final class DataGenerators {
         gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_gb"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_nz"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderEN(gen, "en_us"));
-
 
 
         gen.addProvider(event.includeServer(), new ModBannerTagProvider(packOutput, lookupProvider, existingFileHelper));

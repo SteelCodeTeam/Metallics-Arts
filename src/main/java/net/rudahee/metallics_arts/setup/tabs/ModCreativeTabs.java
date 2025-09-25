@@ -18,19 +18,19 @@ public class ModCreativeTabs {
     private ModCreativeTabs() {
         throw new IllegalStateException("Class can't be instantiated");
     }
-    protected static CreativeModeTab metallicsArtsTab;
-    protected static CreativeModeTab metallicsArtsDecorationTab;
+    public static CreativeModeTab METALLICS_ARTS_TAB;
+    public static CreativeModeTab METALLICS_ARTS_DECORATION_TAB;
 
     @SubscribeEvent
     public static void registerTabs(CreativeModeTabEvent.Register event) {
-        metallicsArtsTab = event.registerCreativeModeTab(
+        METALLICS_ARTS_TAB = event.registerCreativeModeTab(
                 new ResourceLocation(MetallicsArts.MOD_ID, "metallics_arts_tab"),
                     builder ->
                             builder.icon(
                                     () -> new ItemStack(ModItemsRegister.ITEM_ICONS_ALLOMANCY_DIVINE.get(MetalTagEnum.ETTMETAL.getMetalNameLower())))
                                     .title(Component.literal("Metallics Arts")).build());
 
-        metallicsArtsDecorationTab = event.registerCreativeModeTab(
+        METALLICS_ARTS_DECORATION_TAB = event.registerCreativeModeTab(
                 new ResourceLocation(MetallicsArts.MOD_ID, "metallics_arts_decoration_tab"),
                 builder ->
                         builder.icon(

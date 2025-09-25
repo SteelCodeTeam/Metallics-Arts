@@ -26,7 +26,7 @@ public class ModCreativeTabsEvents {
     }
 
     public static void addToMetallicsArtsTab(CreativeModeTabEvent.BuildContents event) {
-        if (event.getTab().equals(ModCreativeTabs.metallicsArtsTab)) {
+        if (event.getTab().equals(ModCreativeTabs.METALLICS_ARTS_TAB)) {
             if (ModList.get().isLoaded("modonomicon")) {
                 BookDataManager.get().getBooks().values().forEach(books -> {
 
@@ -87,7 +87,7 @@ public class ModCreativeTabsEvents {
 
 
     public static void addToMetallicsArtsDecorationTab(CreativeModeTabEvent.BuildContents event) {
-        if (event.getTab().equals(ModCreativeTabs.metallicsArtsDecorationTab)) {
+        if (event.getTab().equals(ModCreativeTabs.METALLICS_ARTS_DECORATION_TAB)) {
 
             event.accept(ModBlocksRegister.MARE_FLOWER);
 
