@@ -1,107 +1,107 @@
 {
   "display": {
     "icon": {
-      "item": "metallics_arts:band_iron_steel"
+      "item": "metallics_arts:pewter_ingot"
     },
-    "title": "Full Feruchemist",
-    "description": "The ancient power of Terris",
+    "title": "Metaled",
+    "description": "The power to push",
     "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true
   },
-  "parent": "metallics_arts:get_ring",
+  "parent": "metallics_arts:metallics_arts",
   "criteria": {
-    "band_aluminum_duralumin": {
+    "alloy_aluminum_duralumin": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "metallics_arts:band_aluminum_duralumin"
+              "metallics_arts:aluminum_ingot"
             ]
           }
         ]
       }
     },
-    "band_cadmium_bendalloy": {
+    "alloy_cadmium_bendalloy": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "metallics_arts:band_cadmium_bendalloy"
+              "metallics_arts:cadmium_ingot"
             ]
           }
         ]
       }
     },
-    "band_chromium_nicrosil": {
+    "alloy_chromium_nicrosil": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "metallics_arts:band_chromium_nicrosil"
+              "metallics_arts:chromium_ingot"
             ]
           }
         ]
       }
     },
-    "band_copper_bronze": {
+    "alloy_copper_bronze": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "metallics_arts:band_copper_bronze"
+              "minecraft:copper_ingot"
             ]
           }
         ]
       }
     },
-    "band_gold_electrum": {
+    "alloy_gold_electrum": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "metallics_arts:band_gold_electrum"
+              "minecraft:gold_ingot"
             ]
           }
         ]
       }
     },
-    "band_tin_pewter": {
+    "alloy_tin_pewter": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "metallics_arts:band_tin_pewter"
+              "metallics_arts:tin_ingot"
             ]
           }
         ]
       }
     },
-    "band_iron_steel": {
+    "alloy_iron_steel": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "metallics_arts:band_iron_steel"
+              "minecraft:iron_ingot"
             ]
           }
         ]
       }
     },
-    "band_zinc_brass": {
+    "alloy_zinc_brass": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "metallics_arts:band_zinc_brass"
+              "metallics_arts:zinc_ingot"
             ]
           }
         ]
@@ -110,28 +110,28 @@
   },
   "requirements": [
     [
-      "band_aluminum_duralumin"
+      "alloy_aluminum_duralumin"
     ],
     [
-      "band_cadmium_bendalloy"
+      "alloy_cadmium_bendalloy"
     ],
     [
-      "band_chromium_nicrosil"
+      "alloy_chromium_nicrosil"
     ],
     [
-      "band_copper_bronze"
+      "alloy_copper_bronze"
     ],
     [
-      "band_gold_electrum"
+      "alloy_gold_electrum"
     ],
     [
-      "band_tin_pewter"
+      "alloy_tin_pewter"
     ],
     [
-      "band_iron_steel"
+      "alloy_iron_steel"
     ],
     [
-      "band_zinc_brass"
+      "alloy_zinc_brass"
     ]
   ]
 }

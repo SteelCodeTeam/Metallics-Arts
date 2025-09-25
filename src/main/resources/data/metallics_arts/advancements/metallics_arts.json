@@ -3,13 +3,14 @@
     "icon": {
       "item": "metallics_arts:steel_ingot"
     },
-    "title": "Let's do it!",
-    "description": "First steeps in Scadrial",
-    "frame": "goal",
+    "title": "Metallics Arts",
+    "description": "The metals are the focus",
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+    "frame": "task",
     "show_toast": true,
-    "announce_to_chat": true
+    "announce_to_chat": true,
+    "hidden": false
   },
-  "parent": "metallics_arts:libro",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
@@ -17,7 +18,25 @@
         "items": [
           {
             "items": [
-              "metallics_arts:steel_ingot","metallics_arts:tin_ingot","metallics_arts:pewter_ingot","metallics_arts:bronze_ingot","metallics_arts:zinc_ingot","metallics_arts:brass_ingot","metallics_arts:chromium_ingot","metallics_arts:nicrosil_ingot","metallics_arts:aluminum_ingot","metallics_arts:duralumin_ingot","metallics_arts:cadmium_ingot","metallics_arts:bendalloy_ingot","metallics_arts:electrum_ingot","metallics_arts:silver_ingot","metallics_arts:lead_ingot","metallics_arts:nickel_ingot"
+              "minecraft:iron_ingot",
+              "minecraft:copper_ingot",
+              "minecraft:gold_ingot",
+              "metallics_arts:steel_ingot",
+              "metallics_arts:tin_ingot",
+              "metallics_arts:pewter_ingot",
+              "metallics_arts:bronze_ingot",
+              "metallics_arts:zinc_ingot",
+              "metallics_arts:brass_ingot",
+              "metallics_arts:chromium_ingot",
+              "metallics_arts:nicrosil_ingot",
+              "metallics_arts:aluminum_ingot",
+              "metallics_arts:duralumin_ingot",
+              "metallics_arts:cadmium_ingot",
+              "metallics_arts:bendalloy_ingot",
+              "metallics_arts:electrum_ingot",
+              "metallics_arts:silver_ingot",
+              "metallics_arts:lead_ingot",
+              "metallics_arts:nickel_ingot"
             ]
           }
         ]

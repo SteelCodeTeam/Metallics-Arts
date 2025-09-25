@@ -1,0 +1,86 @@
+{
+  "display": {
+    "icon": {
+      "item": "metallics_arts:bronze_spike"
+    },
+    "title": "Hemalurgist",
+    "description": "The art of Ruin",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "parent": "metallics_arts:get_all_alloys",
+  "criteria": {
+    "allomantic_spike": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:iron_spike",
+              "metallics_arts:steel_spike",
+              "metallics_arts:tin_spike",
+              "metallics_arts:pewter_spike",
+              "metallics_arts:copper_spike",
+              "metallics_arts:bronze_spike",
+              "metallics_arts:zinc_spike",
+              "metallics_arts:brass_spike",
+              "metallics_arts:chromium_spike",
+              "metallics_arts:nicrosil_spike",
+              "metallics_arts:aluminum_spike",
+              "metallics_arts:duralumin_spike",
+              "metallics_arts:cadmium_spike",
+              "metallics_arts:bendalloy_spike",
+              "metallics_arts:electrum_spike",
+              "metallics_arts:gold_spike",
+              "metallics_arts:atium_spike",
+              "metallics_arts:malatium_spike",
+              "metallics_arts:lerasium_spike",
+              "metallics_arts:ettmetal_spike"
+            ],
+            "nbt": "{\"allomantic_power\":true}"
+          }
+        ]
+      }
+    },
+    "feruchemic_spike": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:iron_spike",
+              "metallics_arts:steel_spike",
+              "metallics_arts:tin_spike",
+              "metallics_arts:pewter_spike",
+              "metallics_arts:copper_spike",
+              "metallics_arts:bronze_spike",
+              "metallics_arts:zinc_spike",
+              "metallics_arts:brass_spike",
+              "metallics_arts:chromium_spike",
+              "metallics_arts:nicrosil_spike",
+              "metallics_arts:aluminum_spike",
+              "metallics_arts:duralumin_spike",
+              "metallics_arts:cadmium_spike",
+              "metallics_arts:bendalloy_spike",
+              "metallics_arts:electrum_spike",
+              "metallics_arts:gold_spike",
+              "metallics_arts:atium_spike",
+              "metallics_arts:malatium_spike",
+              "metallics_arts:lerasium_spike",
+              "metallics_arts:ettmetal_spike"
+            ],
+            "nbt": "{\"feruchemic_power\":true}"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "allomantic_spike",
+      "feruchemic_spike"
+    ]
+  ]
+}

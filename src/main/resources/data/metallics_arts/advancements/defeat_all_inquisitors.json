@@ -1,0 +1,86 @@
+{
+  "display": {
+    "icon": {
+      "item": "metallics_arts:iron_spike"
+    },
+    "title": "Inquisitor Slayer",
+    "description": "Slay the Lord Ruler's servants",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "metallics_arts:get_hemalurgic_spike",
+  "criteria": {
+    "cadmium_inquisitor_entity": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "metallics_arts:cadmium_inquisitor_entity"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "iron_inquisitor_entity": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "metallics_arts:iron_inquisitor_entity"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "pewter_inquisitor_entity": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "metallics_arts:pewter_inquisitor_entity"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "steel_inquisitor_entity": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "metallics_arts:steel_inquisitor_entity"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "requirements": [
+    [
+      "cadmium_inquisitor_entity"
+    ],
+    [
+      "iron_inquisitor_entity"
+    ],
+    [
+      "pewter_inquisitor_entity"
+    ],
+    [
+      "steel_inquisitor_entity"
+    ]
+  ]
+}

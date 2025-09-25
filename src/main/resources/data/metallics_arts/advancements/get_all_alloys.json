@@ -3,13 +3,13 @@
     "icon": {
       "item": "metallics_arts:nicrosil_ingot"
     },
-    "title": "Very Hot!!",
-    "description": "Get all the alloys",
+    "title": "Alloyed",
+    "description": "For every metal, there is an alloy",
     "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true
   },
-  "parent": "metallics_arts:metallics_arts",
+  "parent": "metallics_arts:get_crucible",
   "criteria": {
     "alloy_aluminum_duralumin": {
       "trigger": "minecraft:inventory_changed",
@@ -108,5 +108,30 @@
       }
     }
   },
-  "requirements": [["alloy_aluminum_duralumin"],["alloy_cadmium_bendalloy"],["alloy_chromium_nicrosil"],["alloy_copper_bronze"],["alloy_gold_electrum"],["alloy_tin_pewter"],["alloy_iron_steel"],["alloy_zinc_brass"]]
+  "requirements": [
+    [
+      "alloy_aluminum_duralumin"
+    ],
+    [
+      "alloy_cadmium_bendalloy"
+    ],
+    [
+      "alloy_chromium_nicrosil"
+    ],
+    [
+      "alloy_copper_bronze"
+    ],
+    [
+      "alloy_gold_electrum"
+    ],
+    [
+      "alloy_tin_pewter"
+    ],
+    [
+      "alloy_iron_steel"
+    ],
+    [
+      "alloy_zinc_brass"
+    ]
+  ]
 }

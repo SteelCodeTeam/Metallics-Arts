@@ -3,8 +3,8 @@
     "icon": {
       "item": "metallics_arts:obsidian_axe"
     },
-    "title": "Get Rect",
-    "description": "Damage Up",
+    "title": "Glass Weapons",
+    "description": "A wise Hazekiller never carries metal",
     "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true
@@ -36,5 +36,12 @@
       }
     }
   },
-  "requirements": [["ObsidianAxe"],["ObsidianDagger"]]
+  "requirements": [
+    [
+      "ObsidianAxe"
+    ],
+    [
+      "ObsidianDagger"
+    ]
+  ]
 }

@@ -1,24 +1,24 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:stone"
+      "item": "metallics_arts:vindicator"
     },
-    "title": "logro puto",
-    "description": "aaaaaaaaa",
+    "title": "Vindication",
+    "description": "A weapon with identity",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },
+  "parent": "metallics_arts:get_mistcloak",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "player": [],
         "items": [
           {
             "items": [
-              "metallics_arts:iron_spike"
-            ],
-            "nbt": "{allomantic_power:true}"
+              "metallics_arts:vindicator"
+            ]
           }
         ]
       }
