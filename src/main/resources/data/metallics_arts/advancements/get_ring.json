@@ -4,12 +4,12 @@
       "item": "metallics_arts:ring_aluminum_duralumin"
     },
     "title": "Feruchemist",
-    "description": "Have you heard of Jesus?",
-    "frame": "goal",
+    "description": "The art of balance",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },
-  "parent": "metallics_arts:get_all_alloyes",
+  "parent": "metallics_arts:get_all_alloys",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
@@ -17,7 +17,16 @@
         "items": [
           {
             "items": [
-              "metallics_arts:ring_aluminum_duralumin","metallics_arts:ring_atium_malatium","metallics_arts:ring_cadmium_bendalloy","metallics_arts:ring_chromium_nicrosil","metallics_arts:ring_copper_bronze","metallics_arts:ring_gold_electrum","metallics_arts:ring_lerasium_ettmetal","metallics_arts:ring_tin_pewter","metallics_arts:ring_iron_steel","metallics_arts:ring_zinc_brass"
+              "metallics_arts:ring_aluminum_duralumin",
+              "metallics_arts:ring_atium_malatium",
+              "metallics_arts:ring_cadmium_bendalloy",
+              "metallics_arts:ring_chromium_nicrosil",
+              "metallics_arts:ring_copper_bronze",
+              "metallics_arts:ring_gold_electrum",
+              "metallics_arts:ring_lerasium_ettmetal",
+              "metallics_arts:ring_tin_pewter",
+              "metallics_arts:ring_iron_steel",
+              "metallics_arts:ring_zinc_brass"
             ]
           }
         ]

@@ -1,15 +1,15 @@
 {
   "display": {
     "icon": {
-      "item": "metallics_arts:large_vial"
+      "item": "metallics_arts:mistcloak"
     },
-    "title": "Allomantic Power",
-    "description": "A vial to hold your metals",
+    "title": "Mistcloak",
+    "description": "Essential for any Mistborn",
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },
-  "parent": "metallics_arts:metallics_arts",
+  "parent": "metallics_arts:get_vials",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
@@ -17,12 +17,16 @@
         "items": [
           {
             "items": [
-              "metallics_arts:small_vial",
-              "metallics_arts:large_vial"
+              "metallics_arts:mistcloak"
             ]
           }
         ]
       }
     }
+  },
+  "rewards": {
+    "loot": [
+      "metallics_arts:advancement_rewards/get_mistcloak"
+    ]
   }
 }

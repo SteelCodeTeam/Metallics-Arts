@@ -1,0 +1,77 @@
+{
+  "display": {
+    "icon": {
+      "item": "metallics_arts:lerasium"
+    },
+    "title": "God Metals",
+    "description": "The realm of Shards",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "metallics_arts:get_all_alloys",
+  "criteria": {
+    "lerasium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:lerasium"
+            ]
+          }
+        ]
+      }
+    },
+    "harmonium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:ettmetal"
+            ]
+          }
+        ]
+      }
+    },
+    "atium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:atium"
+            ]
+          }
+        ]
+      }
+    },
+    "malatium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "metallics_arts:malatium"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "lerasium"
+    ],
+    [
+      "harmonium"
+    ],
+    [
+      "atium"
+    ],
+    [
+      "malatium"
+    ]
+  ]
+}

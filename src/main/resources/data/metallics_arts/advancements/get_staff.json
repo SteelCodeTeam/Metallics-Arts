@@ -4,12 +4,12 @@
       "item": "metallics_arts:dueling_staff"
     },
     "title": "Hazekiller",
-    "description": "Trying to survive!",
-    "frame": "goal",
+    "description": "A Mistborn is not invincible",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },
-  "parent": "metallics_arts:get_all_alloyes",
+  "parent": "metallics_arts:metallics_arts",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",

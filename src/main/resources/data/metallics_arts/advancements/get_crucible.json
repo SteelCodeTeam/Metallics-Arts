@@ -1,15 +1,15 @@
 {
   "display": {
     "icon": {
-      "item": "metallics_arts:large_vial"
+      "item": "metallics_arts:crucible_furnace"
     },
-    "title": "Allomantic Power",
-    "description": "A vial to hold your metals",
+    "title": "Metallurgist",
+    "description": "Alloy metals efficiently",
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },
-  "parent": "metallics_arts:metallics_arts",
+  "parent": "metallics_arts:get_all_base_metals",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
@@ -17,8 +17,7 @@
         "items": [
           {
             "items": [
-              "metallics_arts:small_vial",
-              "metallics_arts:large_vial"
+              "metallics_arts:crucible_furnace"
             ]
           }
         ]
