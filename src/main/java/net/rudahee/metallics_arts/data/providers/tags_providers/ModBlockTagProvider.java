@@ -45,7 +45,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
 
         for (MetalEnum metal: MetalEnum.values()) {
-            addVanillaBlocksTags(metal.getMetalNameLower());
+            addVanillaBlocksTags(metal.getMetalNameLower(), metal.isAlloy());
 
             if (metal.isDeepslate() && metal.isStone()) {
                 addTagsStoneAndDeepslate(metal.getMetalNameLower());
@@ -168,7 +168,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCE_GATE.get(key));
     }
 
-    private void addVanillaBlocksTags(String key) {
+    private void addVanillaBlocksTags(String key, Boolean alloy) {
 
         //wall, fence_gate, fence
         addForgeTag("storage_blocks/" + key + "_wall", ModBlocksRegister.BLOCK_METAL_WALL.get(key));
@@ -180,37 +180,39 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_fence"));
         tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_fence_gate"));
 
-        //wall, fence_gate, fence raw
-        addForgeTag("storage_blocks/" + key + "_raw_wall", ModBlocksRegister.BLOCK_METAL_WALL.get(key + "_raw"));
-        addForgeTag("storage_blocks/" + key + "_raw_fence", ModBlocksRegister.BLOCK_METAL_FENCE.get(key + "_raw"));
-        addForgeTag("storage_blocks/" + key + "_raw_fence_gate", ModBlocksRegister.BLOCK_METAL_FENCE_GATE.get(key + "_raw"));
+        if (!alloy) {
+            //wall, fence_gate, fence raw
+            addForgeTag("storage_blocks/" + key + "_raw_wall", ModBlocksRegister.BLOCK_METAL_WALL.get(key + "_raw"));
+            addForgeTag("storage_blocks/" + key + "_raw_fence", ModBlocksRegister.BLOCK_METAL_FENCE.get(key + "_raw"));
+            addForgeTag("storage_blocks/" + key + "_raw_fence_gate", ModBlocksRegister.BLOCK_METAL_FENCE_GATE.get(key + "_raw"));
 
-        //Added to "storage_blocks.json"
-        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_wall"));
-        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_fence"));
-        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_fence_gate"));
+            //Added to "storage_blocks.json"
+            tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_wall"));
+            tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_fence"));
+            tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_fence_gate"));
 
-        //stair and slab raw
-        addForgeTag("storage_blocks/" + key + "_raw_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(key + "_raw"));
-        addForgeTag("storage_blocks/" + key + "_raw_slab", ModBlocksRegister.BLOCK_METAL_SLAB.get(key + "_raw"));
+            //stair and slab raw
+            addForgeTag("storage_blocks/" + key + "_raw_stairs", ModBlocksRegister.BLOCK_METAL_STAIRS.get(key + "_raw"));
+            addForgeTag("storage_blocks/" + key + "_raw_slab", ModBlocksRegister.BLOCK_METAL_SLAB.get(key + "_raw"));
 
-        //Added to "storage_blocks.json"
-        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_stairs"));
-        tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_slab"));
+            //Added to "storage_blocks.json"
+            tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_stairs"));
+            tag(ModTags.forgeBlockTag("storage_blocks")).addTags(ModTags.forgeBlockTag("storage_blocks/" + key + "_raw_slab"));
 
+            makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_WALL.get(key + "_raw"));
+            makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCE.get(key + "_raw"));
+            makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCE_GATE.get(key + "_raw"));
+
+            //stair and slab raw
+            makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(key + "_raw"));
+            makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_SLAB.get(key + "_raw"));
+        }
 
         //wall, fence_gate, fence
         makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_WALL.get(key));
         makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCE.get(key));
         makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCE_GATE.get(key));
         //wall, fence_gate, fence raw
-        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_WALL.get(key + "_raw"));
-        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCE.get(key + "_raw"));
-        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_FENCE_GATE.get(key + "_raw"));
-
-        //stair and slab raw
-        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_STAIRS.get(key + "_raw"));
-        makePickaxeMineable(ModBlocksRegister.BLOCK_METAL_SLAB.get(key + "_raw"));
 
         if (!key.equals("copper")) {
             //stair and slab // not copper, exist in vanilla
