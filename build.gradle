@@ -25,7 +25,7 @@ minecraft {
         client {
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            workingDirectory project.file('3un')
+            workingDirectory project.file('run')
 
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.

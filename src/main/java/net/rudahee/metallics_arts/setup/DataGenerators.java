@@ -12,6 +12,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.providers.*;
+import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderCAES;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderEN;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderES;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderESAN;
@@ -72,6 +73,10 @@ public final class DataGenerators {
 
         //Andalûh
         gen.addProvider(event.includeServer(), new ModLanguageProviderESAN(gen, "esan"));
+
+        //Catalan
+        gen.addProvider(event.includeServer(), new ModLanguageProviderCAES(gen, "ca_es"));
+        gen.addProvider(event.includeServer(), new ModLanguageProviderCAES(gen, "val_es"));
 
         gen.addProvider(event.includeServer(), new ModBannerTagProvider(packOutput, lookupProvider, existingFileHelper));
         log.info("Starting Generation: Guide Book");
