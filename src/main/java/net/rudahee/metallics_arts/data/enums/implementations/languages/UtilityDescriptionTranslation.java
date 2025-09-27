@@ -57,4 +57,5 @@ public enum UtilityDescriptionTranslation {
     private final String english;
     private final String spanish;
     private final String andaluz;
+
 }

@@ -7,6 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum CommandsTranslation {
 
+
     ONE_POWER_ADD_ALLOMANTIC("commands.metallics_arts.allomantic_one_power_add", "Succesfully added %s allomantic power to ", "El %s alomántico se añadido con éxito a ","Çe le a añadío er podêh alomántico del %s a "),
     ONE_POWER_ADD_FERUCHEMIC("commands.metallics_arts.feruchemic_one_power_add", "Succesfully added %s feruchemic power to ", "El %s feruquimico se añadido con éxito a ","Çe le a añadío er podêh feruquímico del %s a "),
     ALL_POWER_ADD_ALLOMANTIC("commands.metallics_arts.allomantic_all_power_add", "Succesfully added all allomantic powers to ", "Todos los poderes alománticos se han añadido con éxito a ","Çe le an añadío tôh lô poderê alománticô a "),
@@ -32,4 +33,5 @@ public enum CommandsTranslation {
     private final String english;
     private final String spanish;
     private final String andaluz;
+
 }
