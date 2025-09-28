@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "metallics_arts:iron_base",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 1642136474,
+
+    "spacing": 64,
+
+    "separation": 24,
+
+    "type": "minecraft:random_spread"
+  }
+}

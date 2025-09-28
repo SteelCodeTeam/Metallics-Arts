@@ -1,7 +1,6 @@
-package net.rudahee.metallics_arts.setup.world.village;
+package net.rudahee.metallics_arts.setup.world.structures;
 
 import com.mojang.datafixers.util.Pair;
-import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;

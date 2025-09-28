@@ -1,0 +1,18 @@
+{
+  "name": "metallics_arts:cadmium_base/descend_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "metallics_arts:cadmium_base/descend/descend",
+
+        "processors": "minecraft:empty",
+
+        "projection": "rigid",
+
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
