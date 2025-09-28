@@ -74,6 +74,8 @@ public final class DataGenerators {
         //Andalûh
         gen.addProvider(event.includeServer(), new ModLanguageProviderESAN(gen, "esan"));
 
+        gen.addProvider(true, new ModAdvancementsProvider(gen.getPackOutput(), event.getLookupProvider(), existingFileHelper));
+
         //Catalan
         gen.addProvider(event.includeServer(), new ModLanguageProviderCAES(gen, "ca_es"));
         gen.addProvider(event.includeServer(), new ModLanguageProviderCAES(gen, "val_es"));

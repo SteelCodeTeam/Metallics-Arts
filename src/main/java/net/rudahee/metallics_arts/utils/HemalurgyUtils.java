@@ -1,7 +1,12 @@
 package net.rudahee.metallics_arts.utils;
 
+import net.minecraft.advancements.Advancement;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
+import net.rudahee.metallics_arts.MetallicsArts;
+import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.SpikeEnum;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.data.player.data.model.SpikeEntity;
@@ -77,5 +82,17 @@ public class HemalurgyUtils {
         } else {
             return null;
         }
+    }
+
+    public static void giveAdvancements(MetalTagEnum metal, boolean isAllomancy, ServerPlayer serverPlayer){
+
+        String logro = isAllomancy ? "allomancy_power_"+metal.getNameLower() : "feruchemy_power_"+metal.getNameLower();
+
+        Advancement adv = serverPlayer.server.getAdvancements().getAdvancement(new ResourceLocation(MetallicsArts.MOD_ID, logro));
+
+        if (adv != null) {
+            boolean changed = serverPlayer.getAdvancements().award(adv, "Poder adquirido");
+        }
+
     }
 }

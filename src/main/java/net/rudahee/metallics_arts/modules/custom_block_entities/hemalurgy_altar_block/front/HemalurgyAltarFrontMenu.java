@@ -193,13 +193,17 @@ public class HemalurgyAltarFrontMenu extends AbstractContainerMenu {
 
         BodyPartEnum part = HemalurgyUtils.calculateBodyPartBySlotIndex(slotIndex);
 
+        boolean isAllomancy;
         if (slot.getItem().getTag().getBoolean("allomantic_power")) {
             playerData.addAllomanticPower(metal, part, BodySlotEnum.FRONT, slotNum);
+            isAllomancy = true;
         } else {
             playerData.addFeruchemicPower(metal, part, BodySlotEnum.FRONT, slotNum);
+            isAllomancy = false;
         }
 
-        if (player instanceof ServerPlayer) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            HemalurgyUtils.giveAdvancements(metal, isAllomancy, serverPlayer);
             ModNetwork.syncInvestedDataPacket(playerData, player);
         }
 

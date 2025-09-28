@@ -22,6 +22,7 @@ import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModMenuRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.HemalurgyUtils;
+import org.antlr.v4.misc.Utils;
 import org.jetbrains.annotations.NotNull;
 
 public class HemalurgyAltarBackMenu extends AbstractContainerMenu {
@@ -313,13 +314,18 @@ public class HemalurgyAltarBackMenu extends AbstractContainerMenu {
 
         BodyPartEnum part = HemalurgyUtils.calculateBodyPartBySlotIndex(slotIndex);
 
+        boolean isAllomancy;
+
         if (slot.getItem().getTag().getBoolean("allomantic_power")) {
             playerData.addAllomanticPower(metal, part, BodySlotEnum.BACK, slotNum);
+            isAllomancy = true;
         } else {
             playerData.addFeruchemicPower(metal, part, BodySlotEnum.BACK, slotNum);
+            isAllomancy = false;
         }
 
-        if (player instanceof ServerPlayer) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            HemalurgyUtils.giveAdvancements(metal, isAllomancy, serverPlayer);
             ModNetwork.syncInvestedDataPacket(playerData, player);
         }
 

@@ -64,5 +64,9 @@ public class ModLanguageProviderEN extends LanguageProvider {
         for (CommandsTranslation item: CommandsTranslation.values()) {
             add(item.getKey(), item.getEnglish());
         }
+
+        for (PowersAdvancementTranslation item: PowersAdvancementTranslation.values()) {
+            add(item.getKey(), item.getEnglish());
+        }
     }
 }

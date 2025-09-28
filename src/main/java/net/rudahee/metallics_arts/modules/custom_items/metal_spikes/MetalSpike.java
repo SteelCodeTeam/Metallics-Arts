@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.modules.custom_items.metal_spikes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -19,6 +20,7 @@ import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
+import net.rudahee.metallics_arts.utils.HemalurgyUtils;
 import net.rudahee.metallics_arts.utils.StringsUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -208,16 +210,22 @@ public class MetalSpike extends SwordItem {
             BlockPos pos = new BlockPos(target.blockPosition());
 
 
-
             //DAR PODER
             if (stack.getTag().getBoolean("allomantic_power")) {
                 if (!targetData.hasAllomanticPower(localMetal)) {
                     targetData.addAllomanticPower(localMetal);
+                    if (target instanceof ServerPlayer serverPlayer) {
+                        HemalurgyUtils.giveAdvancements(MetalTagEnum.getMetal(stack.getTag().getInt("metal_spike")), true, serverPlayer);
+                    }
+
                     doEffects(world, pos);
                 }
             } else if (stack.getTag().getBoolean("feruchemic_power")) {
                 if (!targetData.hasFeruchemicPower(localMetal)) {
                     targetData.addFeruchemicPower(localMetal);
+                    if (target instanceof ServerPlayer serverPlayer) {
+                        HemalurgyUtils.giveAdvancements(MetalTagEnum.getMetal(stack.getTag().getInt("metal_spike")), false, serverPlayer);
+                    }
                     doEffects(world, pos);
                 }
 
