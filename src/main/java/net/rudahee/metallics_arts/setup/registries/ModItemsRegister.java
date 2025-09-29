@@ -101,6 +101,7 @@ public class ModItemsRegister {
 
     public static RegistryObject<Item> HEMALURGY_ALTAR_BACK;
     public static RegistryObject<Item> HEMALURGY_ALTAR_FRONT;
+    public static RegistryObject<Item> DISTILLERY;
 
     public static void register() {
         BasicItemsRegister.register();

@@ -133,11 +133,12 @@ public class BasicBlocksRegister {
             return block;
         });
 
-        ModBlocksRegister.DISTILLERY = MetallicsArts.registerBlock("distillery", () -> {
+        ModBlocksRegister.DISTILLERY = MetallicsArts.registerBlockNoItem("distillery", () -> {
             Block block = new DistilleryBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
                     .strength(10f, 10f)
-                    .sound(SoundType.BASALT)
+                    .sound(SoundType.ANCIENT_DEBRIS)
                     .randomTicks()
+                    .noOcclusion()
                     .requiresCorrectToolForDrops()
                     .destroyTime(15f));
             return block;

@@ -86,6 +86,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         makePickaxeMineable(ModBlocksRegister.CRUCIBLE_FURNACE.get());
         makePickaxeDiamondMineable(ModBlocksRegister.HEMALURGY_ALTAR_BACK.get());
         makePickaxeDiamondMineable(ModBlocksRegister.HEMALURGY_ALTAR_FRONT.get());
+        makePickaxeDiamondMineable(ModBlocksRegister.DISTILLERY.get());
 
 
     }

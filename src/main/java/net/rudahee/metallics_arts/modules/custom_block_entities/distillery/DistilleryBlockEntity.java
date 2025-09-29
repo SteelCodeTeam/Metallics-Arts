@@ -30,8 +30,17 @@ import net.rudahee.metallics_arts.setup.registries.ModBlockEntitiesRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoBlockEntity;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
 
-public class DistilleryBlockEntity extends BlockEntity implements MenuProvider {
+public class DistilleryBlockEntity extends BlockEntity implements MenuProvider, GeoBlockEntity {
+
+    private final AnimatableInstanceCache instanceCache = new SingletonAnimatableInstanceCache(this);
+
     private final ItemStackHandler itemHandler = new ItemStackHandler(5) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -465,5 +474,20 @@ public class DistilleryBlockEntity extends BlockEntity implements MenuProvider {
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
         return new DistilleryMenu(id, inv, this, this.data);
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController<GeoAnimatable>(this, "controller", 0, this::predicate));
+    }
+
+    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> animationState) {
+        animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return instanceCache;
     }
 }

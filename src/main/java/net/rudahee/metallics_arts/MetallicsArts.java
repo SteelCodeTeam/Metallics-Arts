@@ -37,6 +37,7 @@ import net.rudahee.metallics_arts.data.player.poses.CustomPoses;
 import net.rudahee.metallics_arts.data.providers.ModInvestedPlayerDataProvider;
 import net.rudahee.metallics_arts.data.providers.ModPaintingProvider;
 import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceScreen;
+import net.rudahee.metallics_arts.modules.custom_block_entities.distillery.DistilleryBlockRenderer;
 import net.rudahee.metallics_arts.modules.custom_block_entities.distillery.DistilleryScreen;
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.back.HemalurgyAltarBackRenderer;
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.back.HemalurgyAltarBackScreen;
@@ -255,6 +256,7 @@ public class MetallicsArts {
         BlockEntityRenderers.register(ModBlockEntitiesRegister.SIGN_BLOCK_ENTITY.get(), SignRenderer::new);
         BlockEntityRenderers.register(ModBlockEntitiesRegister.HEMALURGY_ALTAR_BACK_ENTITY.get(), HemalurgyAltarBackRenderer::new);
         BlockEntityRenderers.register(ModBlockEntitiesRegister.HEMALURGY_ALTAR_FRONT_ENTITY.get(), HemalurgyAltarFrontRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntitiesRegister.DISTILLERY_ENTITY.get(), DistilleryBlockRenderer::new);
 
         EntityRenderers.register(ModLivingEntityRegister.BRASS_FERRIN.get(), BrassFerrinEntityRenderer::new);
 
