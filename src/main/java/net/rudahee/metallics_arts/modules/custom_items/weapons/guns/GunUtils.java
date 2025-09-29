@@ -177,11 +177,12 @@ public class GunUtils {
             BulletProjectile bullet = new BulletProjectile(level, player, gunType, bulletTypeToShot(tag));
             if (gunType != GunType.SHOTGUN) {
                 if (gunType == GunType.RIFLE) {
-                    bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 5F, 1.0F);
+                    /*rotation, velocity, inaccuracy*/
+                    bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0F, 5F, 0.1F);
                 } else if (gunType == GunType.RIFLE_SPYGLASS) {
-                    bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0F, 4.0F, 1.0F);
+                    bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0F, 4.0F, 0.0F);
                 } else {
-                    bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 4F, 1.0F);
+                    bullet.shootFromRotation(player, player.getXRot(), player.getYRot(), 0F, 4F, 0.3F);
                 }
                 level.addFreshEntity(bullet);
             } else {

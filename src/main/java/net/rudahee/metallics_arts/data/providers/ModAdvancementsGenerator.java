@@ -16,6 +16,8 @@ import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 
 import java.util.function.Consumer;
 
+
+//todo REVISAR EL ARBOL E IDIOMA
 public class ModAdvancementsGenerator implements ForgeAdvancementProvider.AdvancementGenerator {
 
     public void generate(HolderLookup.Provider registries,
