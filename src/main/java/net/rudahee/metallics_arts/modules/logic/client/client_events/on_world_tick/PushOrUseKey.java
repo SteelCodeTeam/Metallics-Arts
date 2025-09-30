@@ -18,6 +18,7 @@ import net.rudahee.metallics_arts.setup.network.packets.RedstoneSignalsPacket;
 import net.rudahee.metallics_arts.setup.network.packets.PullAndPushBlockPacket;
 import net.rudahee.metallics_arts.setup.network.packets.PullAndPushEntityPacket;
 import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This class contains methods to handle push and use key actions based on the player's capabilities
@@ -38,7 +39,7 @@ public class PushOrUseKey {
      * @param level      the Level instance
      * @see IInvestedPlayerData
      */
-    public static void pushKey(IInvestedPlayerData capability, Minecraft minecraft, Player player, Level level) {
+    public static void pushKey(@NotNull IInvestedPlayerData capability, Minecraft minecraft, Player player, Level level) {
         HitResult trace = ClientUtils.getMouseOverExtended(11F * 1.5F);
 
         if (capability.isBurning(MetalTagEnum.STEEL)) {
