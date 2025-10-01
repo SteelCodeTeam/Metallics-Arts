@@ -7,6 +7,7 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.custom_tiers.CustomMaterials;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.ArmorPiecesEnum;
 import net.rudahee.metallics_arts.modules.custom_items.armors.atium.AtiumArmor;
+import net.rudahee.metallics_arts.modules.custom_items.armors.copper.CopperArmor;
 import net.rudahee.metallics_arts.modules.custom_items.armors.harmony.EttmetalArmor;
 import net.rudahee.metallics_arts.modules.custom_items.armors.lerasium.LerasiumArmor;
 import net.rudahee.metallics_arts.modules.custom_items.armors.mistcloack.MistCloack;
@@ -105,19 +106,19 @@ public class ArmorRegister {
 
 
         RegistryObject<Item> copperHelmet = MetallicsArts.registerItem("copper_helmet",
-                () -> new ArmorItem(CustomMaterials.COPPER, ArmorItem.Type.HELMET, PROPERTIES));
+                () -> new CopperArmor(CustomMaterials.COPPER, ArmorItem.Type.HELMET, PROPERTIES));
         ModItemsRegister.COPPER_ARMOR.put(ArmorPiecesEnum.HELMET, copperHelmet);
 
         RegistryObject<Item> copperChesplate = MetallicsArts.registerItem("copper_chestplate",
-                () -> new ArmorItem(CustomMaterials.COPPER, ArmorItem.Type.CHESTPLATE, PROPERTIES));
+                () -> new CopperArmor(CustomMaterials.COPPER, ArmorItem.Type.CHESTPLATE, PROPERTIES));
         ModItemsRegister.COPPER_ARMOR.put(ArmorPiecesEnum.CHESTPLATE, copperChesplate);
 
         RegistryObject<Item> copperLeggings = MetallicsArts.registerItem("copper_leggings",
-                () -> new ArmorItem(CustomMaterials.COPPER, ArmorItem.Type.LEGGINGS, PROPERTIES));
+                () -> new CopperArmor(CustomMaterials.COPPER, ArmorItem.Type.LEGGINGS, PROPERTIES));
         ModItemsRegister.COPPER_ARMOR.put(ArmorPiecesEnum.LEGGINGS, copperLeggings);
 
         RegistryObject<Item> copperBoots = MetallicsArts.registerItem("copper_boots",
-                () -> new ArmorItem(CustomMaterials.COPPER, ArmorItem.Type.BOOTS, PROPERTIES));
+                () -> new CopperArmor(CustomMaterials.COPPER, ArmorItem.Type.BOOTS, PROPERTIES));
         ModItemsRegister.COPPER_ARMOR.put(ArmorPiecesEnum.BOOTS, copperBoots);
 
 

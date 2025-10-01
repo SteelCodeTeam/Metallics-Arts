@@ -301,6 +301,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated,"item/ettmetal_chestplate", "item/armors/ettmetal_chestplate");
         builder(itemGenerated,"item/ettmetal_leggings", "item/armors/ettmetal_leggings");
         builder(itemGenerated,"item/ettmetal_boots", "item/armors/ettmetal_boots");
+
+        builder(itemGenerated,"item/copper_helmet", "item/armors/copper_helmet");
+        builder(itemGenerated,"item/copper_chestplate", "item/armors/copper_chestplate");
+        builder(itemGenerated,"item/copper_leggings", "item/armors/copper_leggings");
+        builder(itemGenerated,"item/copper_boots", "item/armors/copper_boots");
     }
 
 

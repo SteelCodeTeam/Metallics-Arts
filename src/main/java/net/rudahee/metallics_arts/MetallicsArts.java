@@ -49,6 +49,7 @@ import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.iron_inq
 import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.pewter_inquisitor.PewterInquisitorRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.steel_inquisitor.SteelInquisitorRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.ferrin.brass_ferrin_entity.BrassFerrinEntityRenderer;
+import net.rudahee.metallics_arts.modules.custom_items.armors.mistcloack.MistCloakCurioRenderer;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.CuriosLayerDefinitions;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.MetalMindModel;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.MetalMindRendered;
@@ -268,6 +269,9 @@ public class MetallicsArts {
 
 
         CuriosRendererRegistry.register(MetalMindEnum.IRON_STEEL.getBand(), MetalMindRendered::new);
+
+        CuriosRendererRegistry.register(ModItemsRegister.MISTCLOACK.get(), MistCloakCurioRenderer::new);
+
     }
 
     private void registerLayers(final EntityRenderersEvent.RegisterLayerDefinitions evt) {
