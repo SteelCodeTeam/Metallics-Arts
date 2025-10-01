@@ -1,0 +1,15 @@
+{
+  "name": "metallics_arts:canton/logs_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "metallics_arts:village/canton/metals_storage",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

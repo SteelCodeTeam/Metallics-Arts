@@ -57,6 +57,12 @@ public class VillageStructureTransformer {
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/plains/houses"),
                 "metallics_arts:village/houses/forge_master", 3);
+        addBuildingToPool(templatePoolRegistry, processorListRegistry,
+                new ResourceLocation("minecraft:village/plains/town_centers"),
+                "metallics_arts:village/canton/canton_city_center", 5);
+        addBuildingToPool(templatePoolRegistry, processorListRegistry,
+                new ResourceLocation("minecraft:village/snowy/town_centers"),
+                "metallics_arts:village/canton/canton_city_center", 5);
 
     }
 }
