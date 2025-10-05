@@ -15,14 +15,12 @@ import net.rudahee.metallics_arts.data.player.data.model.SpikeEntity;
 import net.rudahee.metallics_arts.data.player.data.model.enums.BodyPartEnum;
 import net.rudahee.metallics_arts.data.player.data.model.enums.BodySlotEnum;
 import net.rudahee.metallics_arts.modules.custom_items.metal_spikes.MetalSpike;
-import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
 import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModMenuRegister;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.HemalurgyUtils;
-import org.antlr.v4.misc.Utils;
 import org.jetbrains.annotations.NotNull;
 
 public class HemalurgyAltarBackMenu extends AbstractContainerMenu {

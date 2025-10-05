@@ -2,7 +2,6 @@ package net.rudahee.metallics_arts.modules.custom_items.weapons.guns;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -12,7 +11,6 @@ import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
 import net.rudahee.metallics_arts.modules.custom_projectiles.BulletProjectile;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.Random;
 

@@ -18,6 +18,7 @@ import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInst
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.RenderUtils;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -74,11 +75,8 @@ public class MistCloack extends Item implements GeoItem, ICurioItem {
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         LivingEntity livingEntity = slotContext.entity();
 
-
         if (livingEntity.level instanceof ServerLevel) {
-
             if (livingEntity instanceof Player player) {
-
                 if (player.level.isNight() || player.level.isThundering()) {
                     if (!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(MISTCLOACK_SPEED)) {
                         player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(MISTCLOACK_SPEED);
@@ -88,7 +86,6 @@ public class MistCloack extends Item implements GeoItem, ICurioItem {
                 }
             }
         }
-
         ICurioItem.super.curioTick(slotContext, stack);
     }
 
@@ -133,11 +130,15 @@ public class MistCloack extends Item implements GeoItem, ICurioItem {
     }
 
     private PlayState predicate(AnimationState state) {
+
         state.getController().setAnimation(RawAnimation.begin().then("move_forward", Animation.LoopType.LOOP));
         state.getController().setAnimation(RawAnimation.begin().then("move_backwards", Animation.LoopType.LOOP));
 
+        state.getController().setAnimation(
+                RawAnimation.begin().then("animation.mistcloack.move_forward", Animation.LoopType.LOOP)
+        );
         return PlayState.CONTINUE;
     }
 
-
 }
+

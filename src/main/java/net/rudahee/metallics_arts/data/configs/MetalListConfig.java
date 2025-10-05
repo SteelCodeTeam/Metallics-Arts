@@ -4,7 +4,6 @@ package net.rudahee.metallics_arts.data.configs;
 import net.minecraft.world.item.Items;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.custom_items.MetalMindEnum;
-import net.rudahee.metallics_arts.data.providers.ModItemModelProvider;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
 

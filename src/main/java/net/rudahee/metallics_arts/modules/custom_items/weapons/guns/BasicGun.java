@@ -15,7 +15,6 @@ import net.minecraft.world.level.Level;
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
 import net.rudahee.metallics_arts.data.enums.implementations.GunsAccess;
 import net.rudahee.metallics_arts.setup.registries.ModItemsRegister;
-import net.rudahee.metallics_arts.setup.registries.ModKeyRegister;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;

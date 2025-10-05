@@ -2,11 +2,11 @@ package net.rudahee.metallics_arts.data.player.data;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
-import net.rudahee.metallics_arts.data.player.data.model.enums.BodyPartEnum;
-import net.rudahee.metallics_arts.data.player.data.model.enums.EttmetalStateEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.model.PlayerEntity;
+import net.rudahee.metallics_arts.data.player.data.model.enums.BodyPartEnum;
 import net.rudahee.metallics_arts.data.player.data.model.enums.BodySlotEnum;
+import net.rudahee.metallics_arts.data.player.data.model.enums.EttmetalStateEnum;
 
 import java.util.ArrayList;
 

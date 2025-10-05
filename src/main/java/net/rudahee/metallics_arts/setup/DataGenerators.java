@@ -16,10 +16,10 @@ import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageP
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderEN;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderES;
 import net.rudahee.metallics_arts.data.providers.language_providers.ModLanguageProviderESAN;
+import net.rudahee.metallics_arts.data.providers.language_providers.book.MetallicsArtsGuideBookProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBannerTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModBlockTagProvider;
 import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvider;
-import net.rudahee.metallics_arts.data.providers.language_providers.book.MetallicsArtsGuideBookProvider;
 
 import java.util.Collections;
 import java.util.List;

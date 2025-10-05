@@ -1,6 +1,5 @@
 package net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.function.Supplier;

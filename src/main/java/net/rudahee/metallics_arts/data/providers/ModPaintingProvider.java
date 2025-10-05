@@ -1,22 +1,11 @@
 package net.rudahee.metallics_arts.data.providers;
-import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
+
 import net.minecraft.world.entity.decoration.PaintingVariant;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rudahee.metallics_arts.MetallicsArts;
-import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
-import net.rudahee.metallics_arts.data.player.data.InvestedPlayerData;
-import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * A provider for custom painting variants in the mod.

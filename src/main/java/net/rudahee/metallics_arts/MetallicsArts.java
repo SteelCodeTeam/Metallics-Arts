@@ -14,7 +14,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -50,9 +49,7 @@ import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.pewter_i
 import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.steel_inquisitor.SteelInquisitorRenderer;
 import net.rudahee.metallics_arts.modules.custom_entities.ferrin.brass_ferrin_entity.BrassFerrinEntityRenderer;
 import net.rudahee.metallics_arts.modules.custom_items.armors.mistcloack.MistCloakCurioRenderer;
-import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.CuriosLayerDefinitions;
-import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.MetalMindModel;
-import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render.MetalMindRendered;
+import net.rudahee.metallics_arts.modules.custom_items.metal_minds.render_metal_minds.MetalMindCurioRenderer;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
 import net.rudahee.metallics_arts.modules.logic.client.ClientEventHandler;
 import net.rudahee.metallics_arts.modules.logic.client.custom_guis.overlays.MetalsOverlay;
@@ -153,7 +150,7 @@ public class MetallicsArts {
         modEventBus.addListener(ModCreativeTabsEvents::addToMetallicsArtsEntityTab);
         log.info("Completed Listener: Creative Tabs");
 
-        modEventBus.addListener(this::registerLayers);
+        //modEventBus.addListener(this::registerLayers);
 
         log.info("Starting Register: Paintings & Banners");
         ModPaintingProvider.register(modEventBus);
@@ -267,16 +264,14 @@ public class MetallicsArts {
         EntityRenderers.register(ModLivingEntityRegister.PEWTER_INQUISITOR.get(), PewterInquisitorRenderer::new);
         EntityRenderers.register(ModLivingEntityRegister.CADMIUM_INQUISITOR.get(), CadmiumInquisitorRenderer::new);
 
-
-        CuriosRendererRegistry.register(MetalMindEnum.IRON_STEEL.getBand(), MetalMindRendered::new);
-
         CuriosRendererRegistry.register(ModItemsRegister.MISTCLOACK.get(), MistCloakCurioRenderer::new);
 
+        for (MetalMindEnum metalMind : MetalMindEnum.values()) {
+            CuriosRendererRegistry.register(metalMind.getBand(), MetalMindCurioRenderer::new);
+            CuriosRendererRegistry.register(metalMind.getRing(), MetalMindCurioRenderer::new);
+        }
     }
 
-    private void registerLayers(final EntityRenderersEvent.RegisterLayerDefinitions evt) {
-        evt.registerLayerDefinition(CuriosLayerDefinitions.METALMIND, MetalMindModel::createLayer);
-    }
 
     // ITEM & BLOCK REGISTRATION
 

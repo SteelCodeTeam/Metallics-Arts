@@ -10,7 +10,6 @@ import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.mental_m
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.mental_metals.ZincAllomanticHelper;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.Supplier;
 

@@ -22,7 +22,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 import net.rudahee.metallics_arts.data.configs.MetalListConfig;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
-import net.rudahee.metallics_arts.data.providers.tags_providers.ModItemTagsProvider;
 import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticLever;
 import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticPullButton;
 import net.rudahee.metallics_arts.modules.custom_items.redstone.AllomanticPushButton;

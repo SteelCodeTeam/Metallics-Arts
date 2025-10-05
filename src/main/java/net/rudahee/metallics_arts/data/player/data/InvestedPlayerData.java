@@ -4,20 +4,22 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-import net.rudahee.metallics_arts.data.player.data.model.body.ChestPartEntity;
-import net.rudahee.metallics_arts.data.player.data.model.enums.BodyPartEnum;
-import net.rudahee.metallics_arts.data.player.data.model.enums.EttmetalStateEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.player.data.model.enums.TypeOfSpikeEnum;
-import net.rudahee.metallics_arts.data.player.data.model.body.BodyPartEntity;
 import net.rudahee.metallics_arts.data.player.data.model.PlayerEntity;
 import net.rudahee.metallics_arts.data.player.data.model.SpikeEntity;
+import net.rudahee.metallics_arts.data.player.data.model.body.BodyPartEntity;
+import net.rudahee.metallics_arts.data.player.data.model.enums.BodyPartEnum;
 import net.rudahee.metallics_arts.data.player.data.model.enums.BodySlotEnum;
+import net.rudahee.metallics_arts.data.player.data.model.enums.EttmetalStateEnum;
+import net.rudahee.metallics_arts.data.player.data.model.enums.TypeOfSpikeEnum;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import net.rudahee.metallics_arts.utils.MetalTagsUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**

@@ -1,8 +1,6 @@
 package net.rudahee.metallics_arts.modules.error_handling.utils;
 
-import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j2;
-import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.modules.error_handling.messages.SeverityType;
 
 import javax.annotation.Nullable;

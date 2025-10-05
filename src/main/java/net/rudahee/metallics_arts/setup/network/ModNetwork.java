@@ -11,13 +11,10 @@ import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
-
 import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
-import net.rudahee.metallics_arts.modules.custom_goals.PullBossGoal;
 import net.rudahee.metallics_arts.setup.network.packets.*;
 import net.rudahee.metallics_arts.setup.registries.InvestedPlayerCapabilityRegister;
-import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 /**
  * Class to control communications between Client game and Server game. That it's done defining packets to realize change

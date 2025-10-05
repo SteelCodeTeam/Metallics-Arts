@@ -2,9 +2,6 @@ package net.rudahee.metallics_arts.utils;
 
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
 import net.rudahee.metallics_arts.data.player.data.model.SpikeEntity;
-import net.rudahee.metallics_arts.data.player.data.model.enums.BodyPartEnum;
-import net.rudahee.metallics_arts.data.player.data.model.enums.BodySlotEnum;
-import net.rudahee.metallics_arts.data.player.data.model.enums.TypeOfSpikeEnum;
 import net.rudahee.metallics_arts.modules.error_handling.utils.LoggerUtils;
 
 public class MetalTagsUtils {

@@ -1,11 +1,13 @@
 package net.rudahee.metallics_arts.data.player.data.model;
 
-import net.rudahee.metallics_arts.data.player.data.model.enums.EttmetalStateEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalTagEnum;
-import net.rudahee.metallics_arts.data.player.data.model.enums.TypeOfSpikeEnum;
 import net.rudahee.metallics_arts.data.player.data.model.body.*;
+import net.rudahee.metallics_arts.data.player.data.model.enums.EttmetalStateEnum;
+import net.rudahee.metallics_arts.data.player.data.model.enums.TypeOfSpikeEnum;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**

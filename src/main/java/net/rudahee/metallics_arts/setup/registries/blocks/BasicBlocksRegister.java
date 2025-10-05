@@ -1,7 +1,10 @@
 package net.rudahee.metallics_arts.setup.registries.blocks;
 
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
@@ -9,14 +12,14 @@ import net.rudahee.metallics_arts.MetallicsArts;
 import net.rudahee.metallics_arts.data.enums.implementations.GemsEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.MetalEnum;
 import net.rudahee.metallics_arts.data.enums.implementations.OreGenerationEnum;
+import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceBlock;
+import net.rudahee.metallics_arts.modules.custom_block_entities.distillery.DistilleryBlock;
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.back.HemalurgyAltarBackBlock;
 import net.rudahee.metallics_arts.modules.custom_block_entities.hemalurgy_altar_block.front.HemalurgyAltarFrontBlock;
 import net.rudahee.metallics_arts.modules.custom_blocks.ettmetal_blocks.EttmetalBlock;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.ModStandingSignBlock;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.ModWallSignBlock;
 import net.rudahee.metallics_arts.modules.custom_blocks.sings.WoodTypeMetal;
-import net.rudahee.metallics_arts.modules.custom_block_entities.crucible_furnace.CrucibleFurnaceBlock;
-import net.rudahee.metallics_arts.modules.custom_block_entities.distillery.DistilleryBlock;
 import net.rudahee.metallics_arts.setup.registries.ModBlocksRegister;
 
 import java.util.function.ToIntFunction;

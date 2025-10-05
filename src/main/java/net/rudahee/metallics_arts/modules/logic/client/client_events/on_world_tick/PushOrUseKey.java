@@ -14,9 +14,9 @@ import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.logic.server.powers.allomancy.physical_metals.IronAndSteelHelpers;
 import net.rudahee.metallics_arts.setup.network.ModNetwork;
 import net.rudahee.metallics_arts.setup.network.packets.ChangeEmotionPacket;
-import net.rudahee.metallics_arts.setup.network.packets.RedstoneSignalsPacket;
 import net.rudahee.metallics_arts.setup.network.packets.PullAndPushBlockPacket;
 import net.rudahee.metallics_arts.setup.network.packets.PullAndPushEntityPacket;
+import net.rudahee.metallics_arts.setup.network.packets.RedstoneSignalsPacket;
 import net.rudahee.metallics_arts.utils.powers_utils.ClientUtils;
 import org.jetbrains.annotations.NotNull;
 

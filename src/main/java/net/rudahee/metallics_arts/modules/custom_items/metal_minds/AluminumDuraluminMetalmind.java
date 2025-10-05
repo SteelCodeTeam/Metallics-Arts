@@ -17,11 +17,8 @@ import net.rudahee.metallics_arts.data.enums.implementations.MetalmindType;
 import net.rudahee.metallics_arts.data.player.data.IInvestedPlayerData;
 import net.rudahee.metallics_arts.modules.custom_items.metal_minds.abstracts.MetalmindAbstract;
 import net.rudahee.metallics_arts.modules.effects.ModEffects;
-import net.rudahee.metallics_arts.modules.error_handling.exceptions.PlayerException;
-import net.rudahee.metallics_arts.modules.logic.server.powers.feruchemy.spiritual_metals.AluminumFeruchemicHelper;
 import net.rudahee.metallics_arts.utils.CapabilityUtils;
 import top.theillusivec4.curios.api.SlotContext;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
