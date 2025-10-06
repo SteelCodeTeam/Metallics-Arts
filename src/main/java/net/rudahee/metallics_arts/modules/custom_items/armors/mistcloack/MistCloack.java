@@ -3,6 +3,7 @@ package net.rudahee.metallics_arts.modules.custom_items.armors.mistcloack;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoItem;
@@ -30,6 +32,7 @@ import static net.rudahee.metallics_arts.modules.effects.ModModifiers.MISTCLOACK
 
 public class MistCloack extends Item implements GeoItem, ICurioItem {
 
+    private LivingEntity currentEntity;
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
 
@@ -131,8 +134,6 @@ public class MistCloack extends Item implements GeoItem, ICurioItem {
 
     private PlayState predicate(AnimationState state) {
 
-        state.getController().setAnimation(RawAnimation.begin().then("move_forward", Animation.LoopType.LOOP));
-        state.getController().setAnimation(RawAnimation.begin().then("move_backwards", Animation.LoopType.LOOP));
 
         state.getController().setAnimation(
                 RawAnimation.begin().then("animation.mistcloack.move_forward", Animation.LoopType.LOOP)
@@ -140,5 +141,20 @@ public class MistCloack extends Item implements GeoItem, ICurioItem {
         return PlayState.CONTINUE;
     }
 
+    public LivingEntity getCurrentEntity() {
+        return currentEntity;
+    }
+
+    public void setCurrentEntity(LivingEntity currentEntity) {
+        this.currentEntity = currentEntity;
+    }
+
+    public AnimatableInstanceCache getCache() {
+        return cache;
+    }
+
+    public void setCache(AnimatableInstanceCache cache) {
+        this.cache = cache;
+    }
 }
 
