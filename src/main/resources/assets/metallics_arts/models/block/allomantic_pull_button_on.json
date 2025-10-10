@@ -4,7 +4,7 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "metallics_arts:block/allomantic_pull_button",
-		"particle": "ironpull_button"
+		"particle": "metallics_arts:block/allomantic_pull_button"
 	},
 	"elements": [
 		{
@@ -21,8 +21,8 @@
 			}
 		},
 		{
-			"from": [4, 8, 4],
-			"to": [12, 10, 12],
+			"from": [5, 8, 5],
+			"to": [11, 10, 11],
 			"rotation": {"angle": 0, "axis": "y", "origin": [7, 8, 7]},
 			"faces": {
 				"north": {"uv": [6, 0, 10, 1], "texture": "#0"},
@@ -34,6 +34,35 @@
 			}
 		}
 	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 1.25, 1],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, 1.25, 1],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_righthand": {
+			"translation": [0, 3, 1],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"translation": [0, 3, 1],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 1],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"gui": {
+			"rotation": [24.75, -71.5, 0],
+			"translation": [0, 1.5, 0]
+		},
+		"head": {
+			"translation": [0, 9.5, 0]
+		}
+	},
 	"groups": [
 		{
 			"name": "ironpull_button",
