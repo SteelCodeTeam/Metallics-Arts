@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "metallics_arts:cadmium_base",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 1642136474,
+
+    "spacing": 48,
+
+    "separation": 12,
+
+    "type": "minecraft:random_spread"
+  }
+}
