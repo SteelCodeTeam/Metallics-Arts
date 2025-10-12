@@ -63,7 +63,7 @@ public class AllomaticTick {
 
     /**
      * Handles the effects of spiritual metals that are activated every tick.
-     * Drains metals when the player is burning Chromium or Aluminum.
+     * Drains metals when the player is burning Chromium or Aluminum without burning lerasium.
      *
      * @param playerCapability The player's Allomantic and Feruchemical abilities.
      * @param player           The player for whom the actions are being performed.
@@ -74,7 +74,8 @@ public class AllomaticTick {
 
         boolean isMetalsDrained = false;
 
-        if (playerCapability.isBurning(MetalTagEnum.CHROMIUM) || playerCapability.isBurning(MetalTagEnum.ALUMINUM)) {
+        if (playerCapability.isBurning(MetalTagEnum.CHROMIUM) ||
+                (playerCapability.isBurning(MetalTagEnum.ALUMINUM) && !playerCapability.isBurning(MetalTagEnum.LERASIUM))) {
             isMetalsDrained = spiritualMetals(playerCapability, player, level);
         }
 

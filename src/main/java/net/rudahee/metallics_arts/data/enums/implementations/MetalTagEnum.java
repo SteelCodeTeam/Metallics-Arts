@@ -25,7 +25,7 @@ public enum MetalTagEnum implements IMetal, IGems {
     BRASS("brass", "BRASS",3, 6000,3, true, false, 0,6000,2800),
     COPPER("copper", "COPPER",2, 8400,3, false, false, 1,5345,315),
     BRONZE("bronze", "BRONZE",2, 8400,3, false, false, 0,7200,2200),
-    ALUMINUM("aluminum", "ALUMINUM",5, 10,3, false, false, 5,4,4),
+    ALUMINUM("aluminum", "ALUMINUM",5, 2400,3, false, false, 5,4,4),
     DURALUMIN("duralumin", "DURALUMIN",5, 100,3, false, false, 4,12000,4000),
     CHROMIUM("chromium", "CHROMIUM",4, 400,3, true, false, 5,6000,2400),
     NICROSIL("nicrosil", "NICROSIL",4, 400,3, true, false, 4,9600,3000),

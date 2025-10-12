@@ -81,6 +81,9 @@ public class InvestedPlayerData implements IInvestedPlayerData {
 
         for (MetalTagEnum metal: MetalTagEnum.values()) {
             if (this.isBurning(metal)) {
+                if (metal == MetalTagEnum.ALUMINUM){
+                    System.out.println("x");
+                }
                 if (!this.hasAllomanticPower(metal)) {
                     this.setBurning(metal, false);
                 }
