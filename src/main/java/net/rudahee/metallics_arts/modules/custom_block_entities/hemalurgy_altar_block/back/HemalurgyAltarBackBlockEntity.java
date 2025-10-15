@@ -177,9 +177,7 @@ public class HemalurgyAltarBackBlockEntity extends BlockEntity implements MenuPr
 
     public static void tick(Level level, BlockPos pos, BlockState state, HemalurgyAltarBackBlockEntity entity) {
         if (!level.isClientSide()) {
-
         }
-
     }
 
     public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {

@@ -14,7 +14,7 @@ public class SteelInquisitorRenderer extends GeoEntityRenderer<SteelInquisitor> 
 
     @Override
     public ResourceLocation getTextureLocation(SteelInquisitor animatable) {
-        return new ResourceLocation(MetallicsArts.MOD_ID, "textures/entity/living/iron_inquisitor.png");
+        return new ResourceLocation(MetallicsArts.MOD_ID, "textures/entity/living/steel_inquisitor.png");
     }
 
     @Override

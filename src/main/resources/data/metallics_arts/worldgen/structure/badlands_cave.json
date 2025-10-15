@@ -1,32 +1,24 @@
 {
   "type": "minecraft:jigsaw",
-  "start_pool": "metallics_arts:cadmium_base/start_pool",
+  "start_pool": "metallics_arts:badlands_cave/start_pool",
   "size": 7,
   "max_distance_from_center": 128,
-  "biomes": "#metallics_arts:has_structure/cadmium_base",
+  "biomes": "#metallics_arts:has_structure/badlands_cave",
   "step": "surface_structures",
-  "project_start_to_heightmap": "OCEAN_FLOOR",
+  "project_start_to_heightmap": "WORLD_SURFACE",
   "use_expansion_hack": true,
-  "start_height": {"absolute":  -1},
+  "start_height": {"absolute":  -4},
   "spawn_overrides": {
-    "axolotls": {
-      "bounding_box": "full",
-      "spawns": []
-    },
     "monster": {
       "bounding_box": "full",
       "spawns": [
         {
-          "type": "minecraft:guardian",
-          "maxCount": 20,
-          "minCount": 8,
+          "type": "minecraft:skeleton",
+          "maxCount": 12,
+          "minCount": 4,
           "weight": 1
         }
       ]
-    },
-    "underground_water_creature": {
-      "bounding_box": "full",
-      "spawns": []
     }
   }
 }

@@ -96,7 +96,7 @@ public class ModLivingEntityRegister {
 
     public static final RegistryObject<EntityType<IronInquisitor>> IRON_INQUISITOR = ENTITY_TYPES.register("iron_inquisitor_entity",
             () -> EntityType.Builder.of(IronInquisitor::new, MobCategory.CREATURE)
-                    .sized(1.2f, 2.4f)
+                    .sized(0.9f, 2.4f)
                     .fireImmune()
                     .immuneTo(Blocks.MAGMA_BLOCK)
                     .immuneTo(Blocks.FIRE)
@@ -106,7 +106,7 @@ public class ModLivingEntityRegister {
 
     public static final RegistryObject<EntityType<SteelInquisitor>> STEEL_INQUISITOR = ENTITY_TYPES.register("steel_inquisitor_entity",
             () -> EntityType.Builder.of(SteelInquisitor::new, MobCategory.CREATURE)
-                    .sized(1.2f, 2.4f)
+                    .sized(0.9f, 2.4f)
                     .fireImmune()
                     .immuneTo(Blocks.MAGMA_BLOCK)
                     .immuneTo(Blocks.FIRE)
@@ -116,7 +116,7 @@ public class ModLivingEntityRegister {
 
     public static final RegistryObject<EntityType<CadmiumInquisitor>> CADMIUM_INQUISITOR = ENTITY_TYPES.register("cadmium_inquisitor_entity",
             () -> EntityType.Builder.of(CadmiumInquisitor::new, MobCategory.CREATURE)
-                    .sized(1.2f, 2.4f)
+                    .sized(0.9f, 2.4f)
                     .fireImmune()
                     .immuneTo(Blocks.MAGMA_BLOCK)
                     .immuneTo(Blocks.FIRE)
@@ -127,7 +127,7 @@ public class ModLivingEntityRegister {
 
     public static final RegistryObject<EntityType<PewterInquisitor>> PEWTER_INQUISITOR = ENTITY_TYPES.register("pewter_inquisitor_entity",
             () -> EntityType.Builder.of(PewterInquisitor::new, MobCategory.CREATURE)
-                    .sized(1.2f, 2.4f)
+                    .sized(0.9f, 2.4f)
                     .fireImmune()
                     .immuneTo(Blocks.MAGMA_BLOCK)
                     .immuneTo(Blocks.FIRE)

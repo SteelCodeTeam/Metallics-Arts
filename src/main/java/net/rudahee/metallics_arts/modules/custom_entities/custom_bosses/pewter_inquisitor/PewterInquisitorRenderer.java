@@ -15,7 +15,7 @@ public class PewterInquisitorRenderer extends GeoEntityRenderer<PewterInquisitor
 
     @Override
     public ResourceLocation getTextureLocation(PewterInquisitor animatable) {
-        return new ResourceLocation(MetallicsArts.MOD_ID, "textures/entity/living/iron_inquisitor.png");
+        return new ResourceLocation(MetallicsArts.MOD_ID, "textures/entity/living/pewter_inquisitor.png");
     }
 
     @Override

@@ -1,14 +1,14 @@
 {
   "structures": [
     {
-      "structure": "metallics_arts:cadmium_base",
+      "structure": "metallics_arts:badlands_cave",
       "weight": 1
     }
   ],
   "placement": {
     "salt": 1642136474,
 
-    "spacing": 48,
+    "spacing": 32,
 
     "separation": 12,
 

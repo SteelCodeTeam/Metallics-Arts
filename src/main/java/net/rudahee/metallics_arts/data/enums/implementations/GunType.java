@@ -9,13 +9,13 @@ package net.rudahee.metallics_arts.data.enums.implementations;
  * @since 1.6.4
  */
 public enum GunType {
-    SHOTGUN("shotgun",1F,30, 2,10),
-    RIFLE("rifle",1F,20, 1,100),
+    SHOTGUN("shotgun",18F,30, 2,10),
+    RIFLE("rifle",50F,20, 1,100),
     RIFLE_SPYGLASS("rifle_spyglass",300F,10, 1,190),
-    REVOLVER("revolver", 1F,25, 6, 20),
-    VINDICATOR("vindicator", 1F,25, 8, 20),
-    COPPER_COIN("copper_coin",1F,5, 0, 0),
-    BRONZE_COIN("bronze_coin",1F,20, 0, 0);
+    REVOLVER("revolver", 10F,30, 6, 22),
+    VINDICATOR("vindicator", 15F,20, 8, 30),
+    COPPER_COIN("copper_coin",5F,5, 0, 0),
+    BRONZE_COIN("bronze_coin",15F,10, 0, 0);
 
     private final String name;
     private final int reload_cooldown;

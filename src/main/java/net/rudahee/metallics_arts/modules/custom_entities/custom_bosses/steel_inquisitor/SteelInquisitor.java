@@ -1,9 +1,11 @@
 package net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.steel_inquisitor;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -19,7 +21,9 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.rudahee.metallics_arts.data.enums.implementations.GunType;
+import net.rudahee.metallics_arts.modules.custom_entities.custom_bosses.pewter_inquisitor.PewterInquisitor;
 import net.rudahee.metallics_arts.modules.custom_goals.JumpGoal;
 import net.rudahee.metallics_arts.modules.custom_goals.PushBossGoal;
 import net.rudahee.metallics_arts.modules.custom_projectiles.AnvilProjectile;
@@ -62,7 +66,19 @@ public class SteelInquisitor extends PathfinderMob implements GeoEntity, Enemy, 
 
     }
 
+    @Override
+    protected boolean shouldDespawnInPeaceful() {
+        return true;
+    }
 
+    @Override
+    public boolean isPersistenceRequired() {
+        return true;
+    }
+
+    public static  boolean canSpawn(EntityType<PewterInquisitor> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+        return false;
+    }
 
 
     public static AttributeSupplier.Builder getSteelInquisitorAttributes() {

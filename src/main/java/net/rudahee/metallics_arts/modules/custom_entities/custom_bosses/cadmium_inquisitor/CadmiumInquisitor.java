@@ -56,6 +56,12 @@ public class CadmiumInquisitor extends Guardian implements GeoEntity {
         return false;
     }
 
+    @Override
+    public boolean isPersistenceRequired() {
+        return true;
+    }
+
+
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         if (this.hasCustomName()) {
@@ -95,6 +101,11 @@ public class CadmiumInquisitor extends Guardian implements GeoEntity {
 
         if (animationState.isMoving()) {
             animationState.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
+
+        if (isUnderWater()) {
+            animationState.getController().setAnimation(RawAnimation.begin().then("idle_underwater", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
         }
 

@@ -1,11 +1,11 @@
 {
-  "name": "metallics_arts:savanna_outpost/start_pool",
+  "name": "metallics_arts:iron_base/arena/boss_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "metallics_arts:level_structures/savanna_outpost",
+        "location": "metallics_arts:iron_base/arena/mob/iron_boss",
 
         "processors": "minecraft:empty",
 

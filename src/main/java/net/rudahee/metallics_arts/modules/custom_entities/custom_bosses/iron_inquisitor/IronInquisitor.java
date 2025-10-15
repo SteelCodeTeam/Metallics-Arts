@@ -72,8 +72,18 @@ public class IronInquisitor extends PathfinderMob implements GeoEntity, Enemy, P
                 .add(Attributes.ATTACK_SPEED, 4.5F);
     }
 
-    public static  boolean canSpawn(EntityType<IronInquisitor> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+    public static boolean canSpawn(EntityType<IronInquisitor> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return false;
+    }
+
+    @Override
+    protected boolean shouldDespawnInPeaceful() {
+        return true;
+    }
+
+    @Override
+    public boolean isPersistenceRequired() {
+        return true;
     }
 
     public void readAdditionalSaveData(CompoundTag tag) {

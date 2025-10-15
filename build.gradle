@@ -10,7 +10,7 @@ plugins {
 
 group = 'net.rudahee.metallics_arts' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'metallics_arts'
-version = '1.19.4-1.8.0'
+version = '1.19.4-2.0.0-BETA1'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 

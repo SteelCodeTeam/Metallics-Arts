@@ -6,7 +6,7 @@
   "biomes": "#metallics_arts:has_structure/iron_base",
   "step": "surface_structures",
   "project_start_to_heightmap": "WORLD_SURFACE",
-  "use_expansion_hack": false,
+  "use_expansion_hack": true,
   "start_height": {"absolute":  -1},
   "spawn_overrides": {
     "monster": {
@@ -14,6 +14,18 @@
       "spawns": [
         {
           "type": "minecraft:skeleton",
+          "maxCount": 12,
+          "minCount": 4,
+          "weight": 1
+        },
+        {
+          "type": "metallics_arts:iron_allomancer",
+          "maxCount": 12,
+          "minCount": 6,
+          "weight": 2
+        },
+        {
+          "type": "metallics_arts:iron_ferrin",
           "maxCount": 12,
           "minCount": 4,
           "weight": 1

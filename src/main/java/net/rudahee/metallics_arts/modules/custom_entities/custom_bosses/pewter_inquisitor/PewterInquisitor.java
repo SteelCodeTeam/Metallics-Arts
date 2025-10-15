@@ -66,6 +66,17 @@ public class PewterInquisitor extends PathfinderMob implements GeoEntity, Enemy 
         return false;
     }
 
+    @Override
+    protected boolean shouldDespawnInPeaceful() {
+        return true;
+    }
+
+    @Override
+    public boolean isPersistenceRequired() {
+        return true;
+    }
+
+
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         if (this.hasCustomName()) {
