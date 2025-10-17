@@ -81,8 +81,8 @@ public final class DataGenerators {
         gen.addProvider(event.includeServer(), new ModLanguageProviderCAES(gen, "val_es"));
 
         gen.addProvider(event.includeServer(), new ModBannerTagProvider(packOutput, lookupProvider, existingFileHelper));
-        log.info("Starting Generation: Guide Book");
-        gen.addProvider(event.includeServer(), new MetallicsArtsGuideBookProvider(gen, MetallicsArts.MOD_ID, null));
+        //log.info("Starting Generation: Guide Book");
+        //gen.addProvider(event.includeServer(), new MetallicsArtsGuideBookProvider(gen, MetallicsArts.MOD_ID, null));
 
         log.info("Starting Generation: WorldGen");
         gen.addProvider(event.includeServer(), new ModWorldGenerationProvider(packOutput, lookupProvider));

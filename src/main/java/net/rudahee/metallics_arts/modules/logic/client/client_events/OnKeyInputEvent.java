@@ -78,9 +78,6 @@ public class OnKeyInputEvent {
             }
         }
 
-
-
-
         if (ModKeyRegister.RELOAD.isDown()) {
             if (player.getMainHandItem().getItem() instanceof BasicGun) {
                 ModNetwork.sendToServer(new ReloadGunPacket());

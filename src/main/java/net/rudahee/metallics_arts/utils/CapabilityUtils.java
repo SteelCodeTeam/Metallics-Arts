@@ -106,6 +106,8 @@ public class CapabilityUtils<T> {
         return list;
     }
 
+
+    /** COMPOUNDING APLICATION: BENDALLOY - CADMIUM - COPPER*/
     public static int getRadius(boolean enhanced, boolean lerasium, boolean compounding) {
         if (enhanced && lerasium && compounding) {
             return 18;
