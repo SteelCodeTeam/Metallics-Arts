@@ -226,13 +226,15 @@ public class HemalurgyAltarBackMenu extends AbstractContainerMenu {
 
     @Override
     public void clicked(int slot, int button, @NotNull ClickType type, @NotNull Player player) {
+        ItemStack itemSlotCopy = null;
+        if (slot >= 36 && slot <= 55) {
+            itemSlotCopy = this.getSlot(slot).getItem();
+        }
+
         super.clicked(slot, button, type, player);
         if (player instanceof ServerPlayer) {
-
             LoggerUtils.printLogWarn("Holi: " + slot + ", " + button + ", " + type);
-
             Player actualPlayer = player;
-
             try {
                 IInvestedPlayerData cap = CapabilityUtils.getCapability(actualPlayer);
 
@@ -240,8 +242,12 @@ public class HemalurgyAltarBackMenu extends AbstractContainerMenu {
                     return;
                 }
 
+                if  (ClickType.QUICK_MOVE == type) {
+                    System.out.println("Lo muevo rapido");
+                    return;
+                }
                 if (ClickType.QUICK_MOVE == type || ClickType.CLONE == type
-                        || ClickType.PICKUP_ALL == type || ClickType.SWAP == type || ClickType.THROW == type) {
+                        || ClickType.PICKUP_ALL == type || ClickType.SWAP == type) {
                     System.out.println("Haciendo nada con un click invalido");
                     return;
                 }
@@ -250,11 +256,13 @@ public class HemalurgyAltarBackMenu extends AbstractContainerMenu {
                     if (button == 0 && (slot >= 36 && slot <= 55)) {
                         if (slots.get(slot).getItem() == ItemStack.EMPTY) {
                             actualPlayer = removeMetalFromSlot(getCarried(), slots.get(slot), cap, actualPlayer);
-
                         } else if (slots.get(slot).getItem().getItem() instanceof MetalSpike) {
                             actualPlayer = addMetalFromSlot(slots.get(slot), cap, actualPlayer);
                         }
                     }
+                } else if (ClickType.THROW == type) {
+                    actualPlayer = removeMetalFromSlot(itemSlotCopy, slots.get(slot), cap, actualPlayer);
+                    player.hurt(player.damageSources().playerAttack(player), 18.0F);
                 }
 
                 if (actualPlayer == null) {
@@ -267,8 +275,6 @@ public class HemalurgyAltarBackMenu extends AbstractContainerMenu {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            player.hurt(player.damageSources().playerAttack(player), 18.0F);
         }
     }
 
@@ -291,6 +297,7 @@ public class HemalurgyAltarBackMenu extends AbstractContainerMenu {
 
         System.out.println("REMOVE METAL FROM SLOT. Is server?: " + (player instanceof ServerPlayer));
 
+        player.hurt(player.damageSources().playerAttack(player), 18.0F);
         if (player instanceof ServerPlayer) {
             ModNetwork.syncInvestedDataPacket(playerData, player);
         }
@@ -322,6 +329,7 @@ public class HemalurgyAltarBackMenu extends AbstractContainerMenu {
             isAllomancy = false;
         }
 
+        player.hurt(player.damageSources().playerAttack(player), 18.0F);
         if (player instanceof ServerPlayer serverPlayer) {
             HemalurgyUtils.giveAdvancements(metal, isAllomancy, serverPlayer);
             ModNetwork.syncInvestedDataPacket(playerData, player);
